@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.omg.sysml/syntax-gen" modelPluginID="org.omg.sysml"
+    modelName="KerML-Structure" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>KerML-Structure.ecore</foreignModel>
+  <genPackages prefix="KerML" basePackage="org.omg.sysml" disposableProviderFactory="true"
+      ecorePackage="KerML-Structure.ecore#/">
+    <nestedGenPackages prefix="Core" basePackage="org.omg.sysml.kerml" disposableProviderFactory="true"
+        ecorePackage="KerML-Structure.ecore#//core">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="KerML-Structure.ecore#//core/visibilityKind">
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//core/visibilityKind/public"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//core/visibilityKind/private"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//core/visibilityKind/protected"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//core/visibilityKind/package"/>
+      </genEnums>
+      <genClasses ecoreClass="KerML-Structure.ecore#//core/ElementRecord">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//core/ElementRecord/documentation"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/owner"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//core/ElementRecord/title"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//core/ElementRecord/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/relationship"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/namespace"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/memberOfNamespace"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/sourceRelationship"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/targetRelationship"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/ownedComment"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/ElementRecord/ownedElement"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//core/Comment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Comment/annotatedElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//core/Comment/comment"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//core/Model"/>
+      <genClasses ecoreClass="KerML-Structure.ecore#//core/Container">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//core/Container/packageVisibility"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Container/ownedMember"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Container/member"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//core/Relationship">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Relationship/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Relationship/related"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//core/Relationship/target"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Structure" basePackage="org.omg.sysml.kerml" disposableProviderFactory="true"
+        ecorePackage="KerML-Structure.ecore#//structure">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="KerML-Structure.ecore#//structure/PropertyAccessKind">
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/PropertyAccessKind/read"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/PropertyAccessKind/write"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/PropertyAccessKind/only"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="KerML-Structure.ecore#//structure/AggregationKind">
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/AggregationKind/Composite"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/AggregationKind/Shared"/>
+        <genEnumLiterals ecoreEnumLiteral="KerML-Structure.ecore#//structure/AggregationKind/None"/>
+      </genEnums>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Class">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/specificClassifier"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/generalClassifier"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/ownedFeature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Class/isAbstract"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/inheritedFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/typesFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/feature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/instanceOf"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/generalization"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Class/nestedFeatureOfClass"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Association">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/targetEndProperty"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/targetParticipantProperty"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/sourceEndProperty"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/sourceParticipantProperty"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/participantProperty"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/endProperty"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Association/typesConnector"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Feature">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/upper"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/lower"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/class"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/redefinedFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/subsettedFeature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/isDerived"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/isUnique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/isReadOnly"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/isOrdered"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Feature/methodVisibility"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/context"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/featurePath"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/nestingFeature"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/nestedFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/definingType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/refiningType"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/ownedType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Feature/featuringClassifier"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Generalization">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Generalization/general"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Generalization/specific"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Connector">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Connector/sourcePath"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Connector/targetPath"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/isDirected"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/sourceUpper"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/sourceLower"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/targetUpper"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/targetLower"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/sourceMultiplicity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/Connector/targetMultiplicity"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Connector/value"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/StructuredFeature">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/isPort"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/outsideAccess"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/insideAccess"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredFeature/union"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredFeature/option"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/isNavigable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/aggregation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredFeature/endOf"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredFeature/participatesIn"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/isInput"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredFeature/isOutput"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/RefinedAssociation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/RefinedAssociation/definingConnector"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/RefinedAssociation/instanceOf"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/ValueOption">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/ValueOption/option"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/ValueOption/optionOfProperty"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/DataFeature">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/DataFeature/dataType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/DataFeature/value"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/DataFeature/defaultValue"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/StructuredClass">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/output"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/input"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/requiredProperty"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/providedProperty"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute KerML-Structure.ecore#//structure/StructuredClass/isEncapsulated"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/conjugate"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/ownedConnector"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/ownedStructuredFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/typesProperty"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/blindProperty"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/portProperty"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/proxyPort"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/selfPort"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/fullPort"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/StructuredClass/interactionParticipant"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/GeneralizationSet">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/GeneralizationSet/complete"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Binding"/>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/ValueRestriction"/>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/DataType"/>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/FeaturePathNode">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/FeaturePathNode/feature"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Individual">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Individual/definingFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Individual/parent"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Individual/child"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Individual/context"/>
+      </genClasses>
+      <genClasses ecoreClass="KerML-Structure.ecore#//structure/Restricts">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Restricts/restricted"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference KerML-Structure.ecore#//structure/Restricts/restrictedBy"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

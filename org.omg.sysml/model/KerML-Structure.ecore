@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kerml" nsURI="http://www.openmbee.org/kerml" nsPrefix="kerml">
+  <eSubpackages name="core" nsURI="http://www.openmbee.org/kerml/core" nsPrefix="core">
+    <eClassifiers xsi:type="ecore:EClass" name="ElementRecord">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentation" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
+          eType="#//core/ElementRecord" eOpposite="#//core/ElementRecord/ownedElement"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relationship" ordered="false"
+          upperBound="-1" eType="#//core/Relationship" derived="true" eOpposite="#//core/Relationship/related"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
+          eType="#//core/Container" derived="true" eOpposite="#//core/Container/ownedMember"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="memberOfNamespace" ordered="false"
+          upperBound="-1" eType="#//core/Container" derived="true" eOpposite="#//core/Container/member"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRelationship" ordered="false"
+          upperBound="-1" eType="#//core/Relationship" derived="true" eOpposite="#//core/Relationship/source"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetRelationship" ordered="false"
+          upperBound="-1" eType="#//core/Relationship" derived="true" eOpposite="#//core/Relationship/target"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
+          upperBound="-1" eType="#//core/Comment"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" ordered="false"
+          upperBound="-1" eType="#//core/ElementRecord" containment="true" eOpposite="#//core/ElementRecord/owner"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//core/ElementRecord">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An object in the model that exists solely for the purposes of describing other objects within the model. The target of this description can be specified via the &quot;annotatedElement&quot; metaproperty."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
+          upperBound="-1" eType="#//core/ElementRecord"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//core/Container"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//core/ElementRecord">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A basic object which asserts a &quot;namespace&quot; for a constituents of the model. Can &quot;own&quot; other ElementRecord's and Container's."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageVisibility" ordered="false"
+          lowerBound="1" eType="#//core/visibilityKind"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" ordered="false"
+          upperBound="-1" eType="#//core/ElementRecord" derived="true" containment="true"
+          eOpposite="#//core/ElementRecord/namespace"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
+          upperBound="-1" eType="#//core/ElementRecord" derived="true" eOpposite="#//core/ElementRecord/memberOfNamespace"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//core/ElementRecord">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A type of ElementRecord which represents a link between to other ElementRecord's. This link is optionally directional by specifying a source and target."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+          eType="#//core/ElementRecord" eOpposite="#//core/ElementRecord/sourceRelationship"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
+          lowerBound="2" upperBound="2" eType="#//core/ElementRecord" derived="true"
+          eOpposite="#//core/ElementRecord/relationship"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+          eType="#//core/ElementRecord" eOpposite="#//core/ElementRecord/targetRelationship"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="visibilityKind">
+      <eLiterals name="public"/>
+      <eLiterals name="private"/>
+      <eLiterals name="protected"/>
+      <eLiterals name="package"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="structure" nsURI="http://www.openmbee.org/kerml/str" nsPrefix="str">
+    <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//core/Container">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The generic Model constructor and the generic type of all properties. It has a complete set of sub-sets. While it is permitted to create a Class in SysML2 it is intended that the user would eventually specify further intent for the Class (Block, Behavior, ConstriantBlock, Requirement, etc.). Therefore use of a plain Class would be considered a minor constraint violation that should be addressed of as the maturity of the Model improves&#xA;&#xA;Normative Alias: Definition(SysML2)&#xA;SECM Alias: Definition Element"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specificClassifier" ordered="false"
+          upperBound="-1" eType="#//structure/Class" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Specializations of this Block derived from any Generalization relationships of which block is the source"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generalClassifier" ordered="false"
+          upperBound="-1" eType="#//structure/Class" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature" containment="true" eOpposite="#//structure/Feature/class"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inheritedFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typesFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature" derived="true" eOpposite="#//structure/Feature/type"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature" derived="true" eOpposite="#//structure/Feature/featuringClassifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceOf" ordered="false"
+          eType="#//structure/Class" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
+          upperBound="-1" eType="#//structure/Generalization" eOpposite="#//structure/Generalization/specific"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeatureOfClass"
+          ordered="false" upperBound="-1" eType="#//structure/Feature" derived="true"
+          containment="true" eOpposite="#//structure/Feature/context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A Feature is an ownedRefinement if it has a defined featurePath"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//core/Relationship #//structure/StructuredClass">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetEndProperty" ordered="false"
+          lowerBound="1" eType="#//structure/StructuredFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantProperty"
+          ordered="false" lowerBound="1" eType="#//structure/StructuredFeature" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEndProperty" ordered="false"
+          lowerBound="1" eType="#//structure/StructuredFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantProperty"
+          ordered="false" lowerBound="1" eType="#//structure/StructuredFeature" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participantProperty"
+          ordered="false" lowerBound="2" upperBound="2" eType="#//structure/StructuredFeature"
+          derived="true" eOpposite="#//structure/StructuredFeature/participatesIn"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="endProperty" ordered="false"
+          lowerBound="2" upperBound="2" eType="#//structure/StructuredFeature" derived="true"
+          eOpposite="#//structure/StructuredFeature/endOf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typesConnector" ordered="false"
+          upperBound="-1" eType="#//structure/Connector" derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//core/Container">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&amp;#160;This is called Feature rather than attribute because in UML&amp;#160;Attribute's are more restrictive w.r.t. typing than the intent of KerML&amp;#160;Feature which is more open.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Possible Alias: Usage(SysML2)&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
+          lowerBound="1" upperBound="-1" eType="#//structure/Class" derived="true"
+          eOpposite="#//structure/Class/typesFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+          eType="#//structure/Class" eOpposite="#//structure/Class/ownedFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodVisibility" ordered="false"
+          lowerBound="1" eType="#//core/visibilityKind">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Specific Visibility of the feature not the package"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+          eType="#//structure/Class" derived="true" eOpposite="#//structure/Class/nestedFeatureOfClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="featurePath" upperBound="-1"
+          eType="#//structure/FeaturePathNode" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Entries on the featurePath may include other features with featurePath defined as long as the resulting path creates a legal set of M0 instances as specified by the defining model."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nestingFeature" ordered="false"
+          eType="#//structure/Feature" eOpposite="#//structure/Feature/nestedFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeature" ordered="false"
+          upperBound="-1" eType="#//structure/Feature" containment="true" eOpposite="#//structure/Feature/nestingFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingType" ordered="false"
+          lowerBound="1" eType="#//structure/Class">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Note that the default instance of definingType is the M1 Library element Any"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refiningType" ordered="false"
+          lowerBound="1" eType="#//structure/Class">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Note that the default instance of refiningType is the M1 Library element Any"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
+          upperBound="-1" eType="#//structure/Class" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClassifier"
+          ordered="false" eType="#//structure/Class" derived="true" eOpposite="#//structure/Class/feature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//core/Relationship">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
+          lowerBound="1" eType="#//structure/Class"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
+          lowerBound="1" eType="#//structure/Class" eOpposite="#//structure/Class/generalization"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//core/Relationship #//structure/StructuredFeature">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePath" lowerBound="1"
+          upperBound="-1" eType="#//structure/StructuredFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" lowerBound="1"
+          upperBound="-1" eType="#//structure/StructuredFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDirected" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceUpper" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceLower" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetUpper" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetLower" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceMultiplicity" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetMultiplicity" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+          lowerBound="1" eType="#//structure/RefinedAssociation" eOpposite="#//structure/RefinedAssociation/definingConnector"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StructuredFeature" eSuperTypes="#//structure/Feature">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPort" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="outsideAccess" ordered="false"
+          upperBound="2" eType="#//structure/PropertyAccessKind"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="insideAccess" ordered="false"
+          upperBound="2" eType="#//structure/PropertyAccessKind"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="union" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="option" ordered="false"
+          lowerBound="1" eType="#//structure/ValueOption" derived="true" containment="true"
+          eOpposite="#//structure/ValueOption/optionOfProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNavigable" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregation" ordered="false"
+          eType="#//structure/AggregationKind"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="endOf" ordered="false"
+          eType="#//structure/Association" derived="true" eOpposite="#//structure/Association/endProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatesIn" ordered="false"
+          eType="#//structure/Association" derived="true" eOpposite="#//structure/Association/participantProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInput" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOutput" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RefinedAssociation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingConnector" ordered="false"
+          lowerBound="1" eType="#//structure/Connector" eOpposite="#//structure/Connector/value"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceOf" ordered="false"
+          eType="#//structure/Association"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="PropertyAccessKind">
+      <eLiterals name="read"/>
+      <eLiterals name="write"/>
+      <eLiterals name="only"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueOption" eSuperTypes="#//core/Relationship #//structure/Class">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="option" ordered="false"
+          lowerBound="2" upperBound="-1" eType="#//structure/Class"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="optionOfProperty" ordered="false"
+          lowerBound="1" eType="#//structure/StructuredFeature" eOpposite="#//structure/StructuredFeature/option"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
+      <eLiterals name="Composite"/>
+      <eLiterals name="Shared"/>
+      <eLiterals name="None"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataFeature" eSuperTypes="#//structure/Feature">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
+          lowerBound="1" eType="#//structure/DataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+          upperBound="-1" eType="#//structure/ValueRestriction"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" ordered="false"
+          lowerBound="1" eType="#//structure/ValueRestriction"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StructuredClass" eSuperTypes="#//structure/Class">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredProperty" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedProperty" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEncapsulated" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conjugate" ordered="false"
+          lowerBound="1" eType="#//structure/StructuredClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConnector" ordered="false"
+          upperBound="-1" eType="#//structure/Connector" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStructuredFeature"
+          ordered="false" upperBound="-1" eType="#//structure/StructuredFeature" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typesProperty" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="blindProperty" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The set of all Property's not owned or required by a StructuredClass and are an endProperty of an Association where the other endProperty has that StructuredClass as its type&#xA;&#xA;FIX ME:&#xA;let assoc:Association = Class.relation->select(schematype==Association) in if assoc.endProperty.type->select(type == Class).size() >= 1 then  endProperty->select(type != Class)&#xA;"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="portProperty" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="proxyPort" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="selfPort" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fullPort" ordered="false"
+          upperBound="-1" eType="#//structure/StructuredFeature" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="interactionParticipant"
+          ordered="false" upperBound="-1" eType="#//structure/StructuredFeature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeneralizationSet" eSuperTypes="#//core/Relationship">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="complete" ordered="false"
+          lowerBound="1" eType="#//structure/Generalization"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Binding" eSuperTypes="#//structure/Connector"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueRestriction" eSuperTypes="#//structure/Class"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//structure/Class"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FeaturePathNode">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+          lowerBound="1" eType="#//structure/Feature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Individual">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Direct specification of a variant&#xA;&#xA;&#xA;Validation rule:&#xA;level=Warning&#xA;Individual tree should include all Feature's that have a defined featurePath&#xA;&#xA;"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingFeature" ordered="false"
+          lowerBound="1" eType="#//structure/Feature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
+          eType="#//structure/Individual" eOpposite="#//structure/Individual/child"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="child" ordered="false"
+          upperBound="-1" eType="#//structure/Individual" eOpposite="#//structure/Individual/parent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+          lowerBound="1" eType="#//structure/Class"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Restricts" eSuperTypes="#//core/Relationship #//structure/Generalization">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restricted" ordered="false"
+          lowerBound="1" eType="#//structure/DataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedBy" ordered="false"
+          lowerBound="1" eType="#//structure/ValueRestriction"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

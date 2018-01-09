@@ -1,0 +1,135 @@
+/*****************************************************************************
+ * Copyright (c) 2018 Ed Seidewitz
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+grammar org.omg.sysml.Alf hidden (WS, ML_COMMENT, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.openmbee.org/kerml/core" as core
+import "http://www.openmbee.org/kerml/str" as str
+
+/* CLASSES */
+ClassDeclaration returns str::Class : 
+//	( 'namespace' namespace += [core::Container | QualifiedName] )?
+//	( ^import += ImportDeclaration )*
+	( isAbstract ?= 'abstract' )? 'class' name = Name 
+//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
+//  ( specialization = SpecializationClause )?
+;
+
+ClassDefinition returns str::Class : 
+  ClassDeclaration
+	'{' ( ownedFeature += ClassMember )* '}'
+;
+
+//ClassDefinitionOrStub returns ClassDefinition : 
+//	ClassDeclaration
+//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
+//;
+
+ClassMember returns str::Feature : 
+	FeatureDefinition
+//	( documentation += DOCUMENTATION_COMMENT )?
+//	( annotation += StereotypeAnnotation )*
+//	( methodVisibility = VisibilityKind )?
+//	definition = ClassMemberDefinition
+;
+
+enum VisibilityKind returns core::visibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected'
+;
+
+/* FEATURES */
+FeatureDefinition returns str::Feature :
+	( methodVisibility = VisibilityKind )? name = Name ':' type += [str::Class | QualifiedName]
+;
+
+//FeatureDefinitionOrStub returns str::Feature : 
+//  AttributeDefinition /*| OperationDefinitionOrStub*/
+//;
+//
+///* PROPERTIES */
+//PropertyDefinition returns str::Feature : 
+//	PropertyDeclaration ';'
+//;
+//
+//AttributeDefinition returns str::Feature : 
+//	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
+//;
+//
+//AttributeInitializer returns Expression : 
+//	'=' InitializationExpression
+//;
+//
+//PropertyDeclaration returns PropertyDefinition : 
+//	name = Name ':' ( isComposite?='compose' )? 
+//	// CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+//	typePart = TypePart
+//;
+//
+//TypePart returns TypedElementDefinition :
+//  // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
+//  // CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
+//  // CHANGE: Added isSequence attribute to TypedElementDefinition.
+//  ( isAny ?= 'any' | typeName = QualifiedName )
+//  ( ( '[' 
+//      ( isMultiplicity ?= ']' | 
+//        ( lowerBound = NATURAL_VALUE '..' )? upperBound = UnlimitedNaturalLiteral ']' 
+//      )
+//    )?
+//    ( isOrdered ?= 'ordered' ( isNonunique ?= 'nonunique' )? | 
+//      isNonunique ?='nonunique' ( isOrdered ?= 'ordered' )? | 
+//      isSequence ?= 'sequence'
+//    )?
+//  )?
+//;
+
+
+/***************
+* NAMES        *
+***************/
+Name :
+	ID | UNRESTRICTED_NAME
+;
+
+QualifiedName :
+	Name ( '::' Name)*
+;
+
+/****************
+* Terminals
+*****************/
+terminal BOOLEAN_VALUE : 'true' | 'false' ;
+
+terminal NATURAL_VALUE :
+	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
+	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
+	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
+	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+;
+
+terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
+terminal UNRESTRICTED_NAME : '\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
+
+terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
+
+terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
+terminal STATEMENT_ANNOTATION : '//@' -> '\n'
+//  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
+//  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
+;
+terminal INLINE_STATEMENT : '/*@inline(' (ID | UNRESTRICTED_NAME) ')' -> '*/';
+
+terminal ML_COMMENT	: '/*' !('*' | '@') -> '*/';
+terminal SL_COMMENT : '//' (!('@'|'\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
+
+terminal WS : (' '|'\t'|'\r'|'\n')+;

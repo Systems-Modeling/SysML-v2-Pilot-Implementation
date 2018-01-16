@@ -1,0 +1,17 @@
+// Sample Alf code
+package Classes {
+
+	public class A {
+		public b: B;
+		public c: C;
+	}
+	
+	private abstract class B {
+		protected x: A;
+	}
+	
+	public class C specializes B {
+		private y: B;
+	}
+
+}

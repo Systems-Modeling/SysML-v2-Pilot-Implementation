@@ -93,7 +93,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceOf" ordered="false"
           eType="#//structure/Class" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
-          upperBound="-1" eType="#//structure/Generalization" eOpposite="#//structure/Generalization/specific"/>
+          upperBound="-1" eType="#//structure/Generalization" containment="true" eOpposite="#//structure/Generalization/specific"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeatureOfClass"
           ordered="false" upperBound="-1" eType="#//structure/Feature" derived="true"
           containment="true" eOpposite="#//structure/Feature/context">

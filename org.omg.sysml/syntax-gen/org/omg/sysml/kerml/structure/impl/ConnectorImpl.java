@@ -767,7 +767,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<org.omg.sysml.kerml.structure.Class> getType() {
 		if (type == null) {
-			type = new EObjectWithInverseResolvingEList.ManyInverse<org.omg.sysml.kerml.structure.Class>(org.omg.sysml.kerml.structure.Class.class, this, StructurePackage.CONNECTOR__TYPE, StructurePackage.CLASS__TYPES_FEATURE);
+			type = new EObjectResolvingEList<org.omg.sysml.kerml.structure.Class>(org.omg.sysml.kerml.structure.Class.class, this, StructurePackage.CONNECTOR__TYPE);
 		}
 		return type;
 	}
@@ -1786,8 +1786,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMember()).basicAdd(otherEnd, msgs);
 			case StructurePackage.CONNECTOR__MEMBER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMember()).basicAdd(otherEnd, msgs);
-			case StructurePackage.CONNECTOR__TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getType()).basicAdd(otherEnd, msgs);
 			case StructurePackage.CONNECTOR__CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -1838,8 +1836,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<?>)getOwnedMember()).basicRemove(otherEnd, msgs);
 			case StructurePackage.CONNECTOR__MEMBER:
 				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
-			case StructurePackage.CONNECTOR__TYPE:
-				return ((InternalEList<?>)getType()).basicRemove(otherEnd, msgs);
 			case StructurePackage.CONNECTOR__CLASS:
 				return basicSetClass(null, msgs);
 			case StructurePackage.CONNECTOR__CONTEXT:

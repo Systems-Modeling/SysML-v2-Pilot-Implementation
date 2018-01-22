@@ -68,7 +68,7 @@ public interface Relationship extends ElementRecord {
 	 * @return the value of the '<em>Related</em>' reference list.
 	 * @see org.omg.sysml.kerml.core.CorePackage#getRelationship_Related()
 	 * @see org.omg.sysml.kerml.core.ElementRecord#getRelationship
-	 * @model opposite="relationship" lower="2" upper="2" derived="true" ordered="false"
+	 * @model opposite="relationship" upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<ElementRecord> getRelated();

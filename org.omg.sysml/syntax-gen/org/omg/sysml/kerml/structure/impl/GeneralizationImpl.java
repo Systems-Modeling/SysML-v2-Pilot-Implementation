@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.kerml.core.impl.RelationshipImpl;
 
 import org.omg.sysml.kerml.structure.Generalization;
@@ -39,16 +40,6 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @ordered
 	 */
 	protected org.omg.sysml.kerml.structure.Class general;
-
-	/**
-	 * The cached value of the '{@link #getSpecific() <em>Specific</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecific()
-	 * @generated
-	 * @ordered
-	 */
-	protected org.omg.sysml.kerml.structure.Class specific;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,24 +104,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	public org.omg.sysml.kerml.structure.Class getSpecific() {
-		if (specific != null && specific.eIsProxy()) {
-			InternalEObject oldSpecific = (InternalEObject)specific;
-			specific = (org.omg.sysml.kerml.structure.Class)eResolveProxy(oldSpecific);
-			if (specific != oldSpecific) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
-			}
-		}
-		return specific;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.omg.sysml.kerml.structure.Class basicGetSpecific() {
-		return specific;
+		if (eContainerFeatureID() != StructurePackage.GENERALIZATION__SPECIFIC) return null;
+		return (org.omg.sysml.kerml.structure.Class)eInternalContainer();
 	}
 
 	/**
@@ -139,12 +114,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	public NotificationChain basicSetSpecific(org.omg.sysml.kerml.structure.Class newSpecific, NotificationChain msgs) {
-		org.omg.sysml.kerml.structure.Class oldSpecific = specific;
-		specific = newSpecific;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.GENERALIZATION__SPECIFIC, oldSpecific, newSpecific);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newSpecific, StructurePackage.GENERALIZATION__SPECIFIC, msgs);
 		return msgs;
 	}
 
@@ -154,10 +124,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	public void setSpecific(org.omg.sysml.kerml.structure.Class newSpecific) {
-		if (newSpecific != specific) {
+		if (newSpecific != eInternalContainer() || (eContainerFeatureID() != StructurePackage.GENERALIZATION__SPECIFIC && newSpecific != null)) {
+			if (EcoreUtil.isAncestor(this, newSpecific))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (specific != null)
-				msgs = ((InternalEObject)specific).eInverseRemove(this, StructurePackage.CLASS__GENERALIZATION, org.omg.sysml.kerml.structure.Class.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSpecific != null)
 				msgs = ((InternalEObject)newSpecific).eInverseAdd(this, StructurePackage.CLASS__GENERALIZATION, org.omg.sysml.kerml.structure.Class.class, msgs);
 			msgs = basicSetSpecific(newSpecific, msgs);
@@ -176,8 +148,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StructurePackage.GENERALIZATION__SPECIFIC:
-				if (specific != null)
-					msgs = ((InternalEObject)specific).eInverseRemove(this, StructurePackage.CLASS__GENERALIZATION, org.omg.sysml.kerml.structure.Class.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetSpecific((org.omg.sysml.kerml.structure.Class)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -203,14 +175,27 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case StructurePackage.GENERALIZATION__SPECIFIC:
+				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__GENERALIZATION, org.omg.sysml.kerml.structure.Class.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StructurePackage.GENERALIZATION__GENERAL:
 				if (resolve) return getGeneral();
 				return basicGetGeneral();
 			case StructurePackage.GENERALIZATION__SPECIFIC:
-				if (resolve) return getSpecific();
-				return basicGetSpecific();
+				return getSpecific();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,7 +247,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case StructurePackage.GENERALIZATION__GENERAL:
 				return general != null;
 			case StructurePackage.GENERALIZATION__SPECIFIC:
-				return specific != null;
+				return getSpecific() != null;
 		}
 		return super.eIsSet(featureID);
 	}

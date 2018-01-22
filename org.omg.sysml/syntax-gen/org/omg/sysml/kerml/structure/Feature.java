@@ -72,7 +72,6 @@ public interface Feature extends Container {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Class}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.kerml.structure.Class#getTypesFeature <em>Types Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference list isn't clear,
@@ -81,8 +80,7 @@ public interface Feature extends Container {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getFeature_Type()
-	 * @see org.omg.sysml.kerml.structure.Class#getTypesFeature
-	 * @model opposite="typesFeature" required="true" derived="true" ordered="false"
+	 * @model required="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.kerml.structure.Class> getType();
@@ -430,7 +428,7 @@ public interface Feature extends Container {
 	 * @return the value of the '<em>Defining Type</em>' reference.
 	 * @see #setDefiningType(org.omg.sysml.kerml.structure.Class)
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getFeature_DefiningType()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.kerml.structure.Class getDefiningType();
@@ -455,7 +453,7 @@ public interface Feature extends Container {
 	 * @return the value of the '<em>Refining Type</em>' reference.
 	 * @see #setRefiningType(org.omg.sysml.kerml.structure.Class)
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getFeature_RefiningType()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.kerml.structure.Class getRefiningType();

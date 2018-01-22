@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -317,7 +316,7 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	 */
 	public EList<org.omg.sysml.kerml.structure.Class> getType() {
 		if (type == null) {
-			type = new EObjectWithInverseResolvingEList.ManyInverse<org.omg.sysml.kerml.structure.Class>(org.omg.sysml.kerml.structure.Class.class, this, StructurePackage.FEATURE__TYPE, StructurePackage.CLASS__TYPES_FEATURE);
+			type = new EObjectResolvingEList<org.omg.sysml.kerml.structure.Class>(org.omg.sysml.kerml.structure.Class.class, this, StructurePackage.FEATURE__TYPE);
 		}
 		return type;
 	}
@@ -797,8 +796,6 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.FEATURE__TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getType()).basicAdd(otherEnd, msgs);
 			case StructurePackage.FEATURE__CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -829,8 +826,6 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.FEATURE__TYPE:
-				return ((InternalEList<?>)getType()).basicRemove(otherEnd, msgs);
 			case StructurePackage.FEATURE__CLASS:
 				return basicSetClass(null, msgs);
 			case StructurePackage.FEATURE__CONTEXT:

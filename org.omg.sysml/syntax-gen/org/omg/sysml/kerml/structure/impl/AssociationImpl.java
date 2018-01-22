@@ -214,7 +214,7 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	protected org.omg.sysml.kerml.structure.Class instanceOf;
 
 	/**
-	 * The cached value of the '{@link #getGeneralization() <em>Generalization</em>}' reference list.
+	 * The cached value of the '{@link #getGeneralization() <em>Generalization</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGeneralization()
@@ -603,7 +603,7 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 */
 	public EList<Feature> getTypesFeature() {
 		if (typesFeature == null) {
-			typesFeature = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, StructurePackage.ASSOCIATION__TYPES_FEATURE, StructurePackage.FEATURE__TYPE);
+			typesFeature = new EObjectResolvingEList<Feature>(Feature.class, this, StructurePackage.ASSOCIATION__TYPES_FEATURE);
 		}
 		return typesFeature;
 	}
@@ -665,7 +665,7 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 */
 	public EList<Generalization> getGeneralization() {
 		if (generalization == null) {
-			generalization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, StructurePackage.ASSOCIATION__GENERALIZATION, StructurePackage.GENERALIZATION__SPECIFIC);
+			generalization = new EObjectContainmentWithInverseEList<Generalization>(Generalization.class, this, StructurePackage.ASSOCIATION__GENERALIZATION, StructurePackage.GENERALIZATION__SPECIFIC);
 		}
 		return generalization;
 	}
@@ -1110,8 +1110,6 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMember()).basicAdd(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__OWNED_FEATURE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeature()).basicAdd(otherEnd, msgs);
-			case StructurePackage.ASSOCIATION__TYPES_FEATURE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTypesFeature()).basicAdd(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__FEATURE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFeature()).basicAdd(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__GENERALIZATION:
@@ -1140,8 +1138,6 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__OWNED_FEATURE:
 				return ((InternalEList<?>)getOwnedFeature()).basicRemove(otherEnd, msgs);
-			case StructurePackage.ASSOCIATION__TYPES_FEATURE:
-				return ((InternalEList<?>)getTypesFeature()).basicRemove(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__FEATURE:
 				return ((InternalEList<?>)getFeature()).basicRemove(otherEnd, msgs);
 			case StructurePackage.ASSOCIATION__GENERALIZATION:

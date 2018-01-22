@@ -133,7 +133,6 @@ public interface Class extends Container {
 	/**
 	 * Returns the value of the '<em><b>Types Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Feature}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.kerml.structure.Feature#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Types Feature</em>' reference list isn't clear,
@@ -142,8 +141,7 @@ public interface Class extends Container {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Types Feature</em>' reference list.
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getClass_TypesFeature()
-	 * @see org.omg.sysml.kerml.structure.Feature#getType
-	 * @model opposite="type" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Feature> getTypesFeature();
@@ -193,7 +191,7 @@ public interface Class extends Container {
 	void setInstanceOf(Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Generalization</b></em>' reference list.
+	 * Returns the value of the '<em><b>Generalization</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Generalization}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.kerml.structure.Generalization#getSpecific <em>Specific</em>}'.
 	 * <!-- begin-user-doc -->
@@ -202,10 +200,10 @@ public interface Class extends Container {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Generalization</em>' reference list.
+	 * @return the value of the '<em>Generalization</em>' containment reference list.
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getClass_Generalization()
 	 * @see org.omg.sysml.kerml.structure.Generalization#getSpecific
-	 * @model opposite="specific" ordered="false"
+	 * @model opposite="specific" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Generalization> getGeneralization();

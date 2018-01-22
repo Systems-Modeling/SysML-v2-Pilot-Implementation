@@ -268,7 +268,7 @@ public interface StructurePackage extends EPackage {
 	int CLASS__INSTANCE_OF = CorePackage.CONTAINER_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -539,7 +539,7 @@ public interface StructurePackage extends EPackage {
 	int ASSOCIATION__INSTANCE_OF = CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1243,7 +1243,7 @@ public interface StructurePackage extends EPackage {
 	int GENERALIZATION__GENERAL = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Specific</b></em>' reference.
+	 * The feature id for the '<em><b>Specific</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2516,7 +2516,7 @@ public interface StructurePackage extends EPackage {
 	int VALUE_OPTION__INSTANCE_OF = CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3130,7 +3130,7 @@ public interface StructurePackage extends EPackage {
 	int STRUCTURED_CLASS__INSTANCE_OF = CLASS__INSTANCE_OF;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4213,7 +4213,7 @@ public interface StructurePackage extends EPackage {
 	int VALUE_RESTRICTION__INSTANCE_OF = CLASS__INSTANCE_OF;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4457,7 +4457,7 @@ public interface StructurePackage extends EPackage {
 	int DATA_TYPE__INSTANCE_OF = CLASS__INSTANCE_OF;
 
 	/**
-	 * The feature id for the '<em><b>Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4739,7 +4739,7 @@ public interface StructurePackage extends EPackage {
 	int RESTRICTS__GENERAL = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Specific</b></em>' reference.
+	 * The feature id for the '<em><b>Specific</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4903,10 +4903,10 @@ public interface StructurePackage extends EPackage {
 	EReference getClass_InstanceOf();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.kerml.structure.Class#getGeneralization <em>Generalization</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.kerml.structure.Class#getGeneralization <em>Generalization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Generalization</em>'.
+	 * @return the meta object for the containment reference list '<em>Generalization</em>'.
 	 * @see org.omg.sysml.kerml.structure.Class#getGeneralization()
 	 * @see #getClass_()
 	 * @generated
@@ -5252,10 +5252,10 @@ public interface StructurePackage extends EPackage {
 	EReference getGeneralization_General();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.kerml.structure.Generalization#getSpecific <em>Specific</em>}'.
+	 * Returns the meta object for the container reference '{@link org.omg.sysml.kerml.structure.Generalization#getSpecific <em>Specific</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Specific</em>'.
+	 * @return the meta object for the container reference '<em>Specific</em>'.
 	 * @see org.omg.sysml.kerml.structure.Generalization#getSpecific()
 	 * @see #getGeneralization()
 	 * @generated
@@ -6071,7 +6071,7 @@ public interface StructurePackage extends EPackage {
 		EReference CLASS__INSTANCE_OF = eINSTANCE.getClass_InstanceOf();
 
 		/**
-		 * The meta object literal for the '<em><b>Generalization</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Generalization</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -6333,7 +6333,7 @@ public interface StructurePackage extends EPackage {
 		EReference GENERALIZATION__GENERAL = eINSTANCE.getGeneralization_General();
 
 		/**
-		 * The meta object literal for the '<em><b>Specific</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Specific</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

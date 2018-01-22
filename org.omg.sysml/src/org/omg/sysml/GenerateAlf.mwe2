@@ -16,15 +16,15 @@ Workflow {
 			project = StandardProjectConfig {
 				baseName = "${projectName}"
 				rootPath = rootPath
-//				runtimeTest = {
-//					enabled = true
-//				}
-//				eclipsePlugin = {
-//					enabled = true
-//				}
-//				eclipsePluginTest = {
-//					enabled = true
-//				}
+				runtimeTest = {
+					enabled = true
+				}
+				eclipsePlugin = {
+					enabled = true
+				}
+				eclipsePluginTest = {
+					enabled = true
+				}
 				createEclipseMetaData = true
 			}
 			

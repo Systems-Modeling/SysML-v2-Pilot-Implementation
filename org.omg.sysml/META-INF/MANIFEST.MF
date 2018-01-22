@@ -1,9 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.omg.sysml
-Bundle-Vendor: My Company
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: org.omg.sysml; singleton:=true
+Bundle-ClassPath: .
+Bundle-SymbolicName: org.omg.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
@@ -11,7 +13,11 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",
+ org.eclipse.xtext.xtext.generator;bundle-version="2.12.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.services,
  org.omg.sysml,
@@ -20,5 +26,13 @@ Export-Package: org.omg.sysml.services,
  org.omg.sysml.parser.antlr,
  org.omg.sysml.serializer,
  org.omg.sysml.parser.antlr.internal,
- org.omg.sysml.validation
-Import-Package: org.apache.log4j
+ org.omg.sysml.validation,
+ org.omg.sysml.kerml.core,
+ org.omg.sysml.kerml.core.impl,
+ org.omg.sysml.kerml.core.util,
+ org.omg.sysml.kerml.structure,
+ org.omg.sysml.kerml.structure.impl,
+ org.omg.sysml.kerml.structure.util
+Import-Package: com.ibm.icu.impl.text;version="58.2.0",
+ org.apache.commons.logging,
+ org.apache.log4j

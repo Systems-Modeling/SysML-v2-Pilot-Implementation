@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated KerML-Structure -->
+      <package
+            uri="http://www.openmbee.org/kerml/core"
+            class="org.omg.sysml.kerml.core.CorePackage"
+            genModel="model/KerML-Structure.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated KerML-Structure -->
+      <package
+            uri="http://www.openmbee.org/kerml/str"
+            class="org.omg.sysml.kerml.structure.StructurePackage"
+            genModel="model/KerML-Structure.genmodel"/>
+   </extension>
+
+</plugin>

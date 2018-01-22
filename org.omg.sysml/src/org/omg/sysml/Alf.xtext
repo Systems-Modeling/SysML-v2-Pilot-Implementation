@@ -55,6 +55,7 @@ ClassDeclaration returns str::Class :
 //;
 
 Generalization returns str::Generalization :
+	// NOTE: Made Relationship::related optional.
 	general = [str::Class | QualifiedName]
 ;
 
@@ -85,8 +86,11 @@ enum VisibilityKind returns core::visibilityKind :
 
 /* FEATURES */
 FeatureDefinition returns str::Feature :
-	( methodVisibility = VisibilityKind )? name = Name ':' type += [str::Class | QualifiedName]
+	( methodVisibility = VisibilityKind )? name = Name ':' 
+	// NOTE: Made type unidirectional; made definingType and refiningType optional.
+	type += [str::Class | QualifiedName]
 //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
+	';'
 ;
 
 //FeatureDefinitionOrStub returns str::Feature : 

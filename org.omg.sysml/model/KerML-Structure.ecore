@@ -55,8 +55,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
           eType="#//core/ElementRecord" eOpposite="#//core/ElementRecord/sourceRelationship"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
-          lowerBound="2" upperBound="2" eType="#//core/ElementRecord" derived="true"
-          eOpposite="#//core/ElementRecord/relationship"/>
+          upperBound="2" eType="#//core/ElementRecord" derived="true" eOpposite="#//core/ElementRecord/relationship"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
           eType="#//core/ElementRecord" eOpposite="#//core/ElementRecord/targetRelationship"/>
     </eClassifiers>
@@ -87,7 +86,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="inheritedFeature" ordered="false"
           upperBound="-1" eType="#//structure/Feature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="typesFeature" ordered="false"
-          upperBound="-1" eType="#//structure/Feature" derived="true" eOpposite="#//structure/Feature/type"/>
+          upperBound="-1" eType="#//structure/Feature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
           upperBound="-1" eType="#//structure/Feature" derived="true" eOpposite="#//structure/Feature/featuringClassifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceOf" ordered="false"
@@ -125,8 +124,7 @@
         <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&amp;#160;This is called Feature rather than attribute because in UML&amp;#160;Attribute's are more restrictive w.r.t. typing than the intent of KerML&amp;#160;Feature which is more open.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Possible Alias: Usage(SysML2)&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
-          lowerBound="1" upperBound="-1" eType="#//structure/Class" derived="true"
-          eOpposite="#//structure/Class/typesFeature"/>
+          lowerBound="1" upperBound="-1" eType="#//structure/Class" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" ordered="false"
@@ -164,13 +162,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeature" ordered="false"
           upperBound="-1" eType="#//structure/Feature" containment="true" eOpposite="#//structure/Feature/nestingFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingType" ordered="false"
-          lowerBound="1" eType="#//structure/Class">
+          eType="#//structure/Class">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Note that the default instance of definingType is the M1 Library element Any"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refiningType" ordered="false"
-          lowerBound="1" eType="#//structure/Class">
+          eType="#//structure/Class">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Note that the default instance of refiningType is the M1 Library element Any"/>
         </eAnnotations>

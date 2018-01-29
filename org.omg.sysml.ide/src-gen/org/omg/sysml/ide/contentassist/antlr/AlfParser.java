@@ -61,7 +61,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassDefinitionOrStubAccess().getOwnedFeatureAssignment_6(), "rule__ClassDefinitionOrStub__OwnedFeatureAssignment_6");
 					put(grammarAccess.getFeatureDefinitionAccess().getMethodVisibilityAssignment_0(), "rule__FeatureDefinition__MethodVisibilityAssignment_0");
 					put(grammarAccess.getFeatureDefinitionAccess().getNameAssignment_1(), "rule__FeatureDefinition__NameAssignment_1");
-					put(grammarAccess.getFeatureDefinitionAccess().getTypeAssignment_3(), "rule__FeatureDefinition__TypeAssignment_3");
+					put(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeAssignment_3(), "rule__FeatureDefinition__DefiningTypeAssignment_3");
 				}
 			};
 		}

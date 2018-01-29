@@ -1673,7 +1673,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0());
+            					newCompositeNode(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0());
             				
             pushFollow(FOLLOW_15);
             ruleQualifiedName();

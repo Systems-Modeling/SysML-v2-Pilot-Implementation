@@ -3972,31 +3972,31 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureDefinition__Group__3__Impl"
-    // InternalAlf.g:1273:1: rule__FeatureDefinition__Group__3__Impl : ( ( rule__FeatureDefinition__TypeAssignment_3 ) ) ;
+    // InternalAlf.g:1273:1: rule__FeatureDefinition__Group__3__Impl : ( ( rule__FeatureDefinition__DefiningTypeAssignment_3 ) ) ;
     public final void rule__FeatureDefinition__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:1277:1: ( ( ( rule__FeatureDefinition__TypeAssignment_3 ) ) )
-            // InternalAlf.g:1278:1: ( ( rule__FeatureDefinition__TypeAssignment_3 ) )
+            // InternalAlf.g:1277:1: ( ( ( rule__FeatureDefinition__DefiningTypeAssignment_3 ) ) )
+            // InternalAlf.g:1278:1: ( ( rule__FeatureDefinition__DefiningTypeAssignment_3 ) )
             {
-            // InternalAlf.g:1278:1: ( ( rule__FeatureDefinition__TypeAssignment_3 ) )
-            // InternalAlf.g:1279:2: ( rule__FeatureDefinition__TypeAssignment_3 )
+            // InternalAlf.g:1278:1: ( ( rule__FeatureDefinition__DefiningTypeAssignment_3 ) )
+            // InternalAlf.g:1279:2: ( rule__FeatureDefinition__DefiningTypeAssignment_3 )
             {
-             before(grammarAccess.getFeatureDefinitionAccess().getTypeAssignment_3()); 
-            // InternalAlf.g:1280:2: ( rule__FeatureDefinition__TypeAssignment_3 )
-            // InternalAlf.g:1280:3: rule__FeatureDefinition__TypeAssignment_3
+             before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeAssignment_3()); 
+            // InternalAlf.g:1280:2: ( rule__FeatureDefinition__DefiningTypeAssignment_3 )
+            // InternalAlf.g:1280:3: rule__FeatureDefinition__DefiningTypeAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureDefinition__TypeAssignment_3();
+            rule__FeatureDefinition__DefiningTypeAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getFeatureDefinitionAccess().getTypeAssignment_3()); 
+             after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeAssignment_3()); 
 
             }
 
@@ -5086,9 +5086,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureDefinition__NameAssignment_1"
 
 
-    // $ANTLR start "rule__FeatureDefinition__TypeAssignment_3"
-    // InternalAlf.g:1675:1: rule__FeatureDefinition__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
-    public final void rule__FeatureDefinition__TypeAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__FeatureDefinition__DefiningTypeAssignment_3"
+    // InternalAlf.g:1675:1: rule__FeatureDefinition__DefiningTypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
+    public final void rule__FeatureDefinition__DefiningTypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -5099,21 +5099,21 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:1680:2: ( ( ruleQualifiedName ) )
             // InternalAlf.g:1681:3: ( ruleQualifiedName )
             {
-             before(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0()); 
+             before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0()); 
             // InternalAlf.g:1682:3: ( ruleQualifiedName )
             // InternalAlf.g:1683:4: ruleQualifiedName
             {
-             before(grammarAccess.getFeatureDefinitionAccess().getTypeClassQualifiedNameParserRuleCall_3_0_1()); 
+             before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1()); 
             pushFollow(FOLLOW_2);
             ruleQualifiedName();
 
             state._fsp--;
 
-             after(grammarAccess.getFeatureDefinitionAccess().getTypeClassQualifiedNameParserRuleCall_3_0_1()); 
+             after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1()); 
 
             }
 
-             after(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0()); 
+             after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0()); 
 
             }
 
@@ -5132,7 +5132,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureDefinition__TypeAssignment_3"
+    // $ANTLR end "rule__FeatureDefinition__DefiningTypeAssignment_3"
 
     // Delegated rules
 

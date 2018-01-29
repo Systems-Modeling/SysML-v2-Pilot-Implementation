@@ -123,7 +123,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     FeatureDefinition returns Feature
 	 *
 	 * Constraint:
-	 *     (methodVisibility=VisibilityKind? name=Name type+=[Class|QualifiedName])
+	 *     (methodVisibility=VisibilityKind? name=Name definingType=[Class|QualifiedName])
 	 */
 	protected void sequence_FeatureDefinition(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

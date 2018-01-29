@@ -636,7 +636,7 @@ ruleFeatureDefinition returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0());
+					newCompositeNode(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0());
 				}
 				ruleQualifiedName
 				{

@@ -1276,9 +1276,9 @@ rule__FeatureDefinition__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFeatureDefinitionAccess().getTypeAssignment_3()); }
-	(rule__FeatureDefinition__TypeAssignment_3)
-	{ after(grammarAccess.getFeatureDefinitionAccess().getTypeAssignment_3()); }
+	{ before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeAssignment_3()); }
+	(rule__FeatureDefinition__DefiningTypeAssignment_3)
+	{ after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeAssignment_3()); }
 )
 ;
 finally {
@@ -1672,19 +1672,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FeatureDefinition__TypeAssignment_3
+rule__FeatureDefinition__DefiningTypeAssignment_3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0()); }
+		{ before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0()); }
 		(
-			{ before(grammarAccess.getFeatureDefinitionAccess().getTypeClassQualifiedNameParserRuleCall_3_0_1()); }
+			{ before(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getFeatureDefinitionAccess().getTypeClassQualifiedNameParserRuleCall_3_0_1()); }
+			{ after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1()); }
 		)
-		{ after(grammarAccess.getFeatureDefinitionAccess().getTypeClassCrossReference_3_0()); }
+		{ after(grammarAccess.getFeatureDefinitionAccess().getDefiningTypeClassCrossReference_3_0()); }
 	)
 ;
 finally {

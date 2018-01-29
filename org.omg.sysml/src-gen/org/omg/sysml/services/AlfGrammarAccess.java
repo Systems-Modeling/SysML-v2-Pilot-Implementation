@@ -223,6 +223,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	general=[str::Class|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
+		//// NOTE: Made Relationship::related optional.
 		//general=[str::Class|QualifiedName]
 		public Assignment getGeneralAssignment() { return cGeneralAssignment; }
 		
@@ -365,21 +366,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cTypeClassCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
-		private final RuleCall cTypeClassQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cTypeClassCrossReference_3_0.eContents().get(1);
+		private final Assignment cDefiningTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cDefiningTypeClassCrossReference_3_0 = (CrossReference)cDefiningTypeAssignment_3.eContents().get(0);
+		private final RuleCall cDefiningTypeClassQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cDefiningTypeClassCrossReference_3_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		///* FEATURES */ FeatureDefinition str::Feature:
 		//	methodVisibility=VisibilityKind? name=Name ':'
 		//	// NOTE: Made type unidirectional; made definingType and refiningType optional.
-		//	type+=[str::Class|QualifiedName]
+		//	definingType=[str::Class|QualifiedName]
 		//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//	';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//methodVisibility=VisibilityKind? name=Name ':' // NOTE: Made type unidirectional; made definingType and refiningType optional.
-		//type+=[str::Class|QualifiedName] //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
+		//definingType=[str::Class|QualifiedName] //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//';'
 		public Group getGroup() { return cGroup; }
 		
@@ -399,14 +400,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
 		//// NOTE: Made type unidirectional; made definingType and refiningType optional.
-		//type+=[str::Class|QualifiedName]
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		//definingType=[str::Class|QualifiedName]
+		public Assignment getDefiningTypeAssignment_3() { return cDefiningTypeAssignment_3; }
 		
 		//[str::Class|QualifiedName]
-		public CrossReference getTypeClassCrossReference_3_0() { return cTypeClassCrossReference_3_0; }
+		public CrossReference getDefiningTypeClassCrossReference_3_0() { return cDefiningTypeClassCrossReference_3_0; }
 		
 		//QualifiedName
-		public RuleCall getTypeClassQualifiedNameParserRuleCall_3_0_1() { return cTypeClassQualifiedNameParserRuleCall_3_0_1; }
+		public RuleCall getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1() { return cDefiningTypeClassQualifiedNameParserRuleCall_3_0_1; }
 		
 		////	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//';'
@@ -745,7 +746,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	///* FEATURES */ FeatureDefinition str::Feature:
 	//	methodVisibility=VisibilityKind? name=Name ':'
 	//	// NOTE: Made type unidirectional; made definingType and refiningType optional.
-	//	type+=[str::Class|QualifiedName]
+	//	definingType=[str::Class|QualifiedName]
 	//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	//	';';
 	public FeatureDefinitionElements getFeatureDefinitionAccess() {

@@ -88,7 +88,7 @@ enum VisibilityKind returns core::visibilityKind :
 FeatureDefinition returns str::Feature :
 	( methodVisibility = VisibilityKind )? name = Name ':' 
 	// NOTE: Made type unidirectional; made definingType and refiningType optional.
-	type += [str::Class | QualifiedName]
+	definingType = [str::Class | QualifiedName]
 //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	';'
 ;

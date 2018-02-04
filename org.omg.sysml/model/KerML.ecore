@@ -620,7 +620,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayNumber" ordered="false"
-          lowerBound="1" eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean">
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         	<details key="documentation" value="Indicate if the referenceNumber should be displayed or not"/>
         </eAnnotations>
@@ -902,7 +902,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStreaming" ordered="false"
-          lowerBound="1" eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="direction" ordered="false"
           lowerBound="1" eType="#//Expression/Enumeration" derived="true" containment="true"/>
@@ -1105,10 +1105,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" ordered="false" lowerBound="1"
           eType="#//Behavior/Interaction" eOpposite="#//Behavior/Interaction/interactionParticipant"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInput" ordered="false"
-          eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOutput" ordered="false"
-          eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingType" ordered="false"
           lowerBound="1" eType="#//Structure/StructuredClass"/>

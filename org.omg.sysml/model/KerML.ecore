@@ -4,57 +4,69 @@
     nsPrefix="kerml">
   <eSubpackages name="Service" nsURI="http://www.openmbee.org/kerml/com" nsPrefix="com">
     <eClassifiers xsi:type="ecore:EClass" name="Branch" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="A ServerRecord representing a configuration control space within a Resource"
-          references="#//Service/Branch"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A ServerRecord representing a configuration control space within a Resource"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tag" ordered="false"
           upperBound="-1" eType="#//Service/Tag" derived="true" eOpposite="#//Service/Tag/branch">
-        <eAnnotations source="A derived property which contains references to the tag's which apply to revision's within the specified branch"
-            references="#//Service/Branch/tag"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A derived property which contains references to the tag's which apply to revision's within the specified branch"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="copyTime" ordered="false"
           eType="#//Expression/TimeExpression" derived="true">
-        <eAnnotations source="A value property indicating the time at which this branch was created from it's master. If this is the master branch this value indicates the time the resource was created."
-            references="#//Service/Branch/copyTime"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A value property indicating the time at which this branch was created from it's master. If this is the master branch this value indicates the time the resource was created."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="child" ordered="false"
           upperBound="-1" eType="#//Service/Branch" derived="true" eOpposite="#//Service/Branch/parent">
-        <eAnnotations source="A list of references to all branch's which branch off of this context"
-            references="#//Service/Branch/child"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of references to all branch's which branch off of this context"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" ordered="false"
           lowerBound="1" eType="#//Service/Project" eOpposite="#//Service/Project/branch">
-        <eAnnotations source="The resource which contains this branch." references="#//Service/Branch/project"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The resource which contains this branch."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMaster" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true">
-        <eAnnotations source="A boolean which indicates if this particular branch is the &quot;master&quot; for a particular resource"
-            references="#//Service/Branch/isMaster"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A boolean which indicates if this particular branch is the &quot;master&quot; for a particular resource"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="commit" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Service/Revision" eOpposite="#//Service/Revision/branch">
-        <eAnnotations source="Indicates the commit records which are associated with this branch."
-            references="#//Service/Branch/commit"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Indicates the commit records which are associated with this branch."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
           eType="#//Service/Branch" eOpposite="#//Service/Branch/child">
-        <eAnnotations source="An optional property which indicates the parent branch for this branch. If not specified this is the master branch and &quot;isMaster&quot; will be set to true."
-            references="#//Service/Branch/parent"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="An optional property which indicates the parent branch for this branch. If not specified this is the master branch and &quot;isMaster&quot; will be set to true."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="head" ordered="false"
           lowerBound="1" eType="#//Service/Revision">
-        <eAnnotations source="Indicates the latest revision associated with this branch. References to element's associated with this revision will be editable by clients."
-            references="#//Service/Branch/head"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Indicates the latest revision associated with this branch. References to element's associated with this revision will be editable by clients."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="copyRevision" ordered="false"
           eType="#//Service/Revision">
-        <eAnnotations source="Indicates the revision from which this branch diverged from its parent. If this is empty the branch is the master. A merge-down operation from the parent should update this property"
-            references="#//Service/Branch/copyRevision"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Indicates the revision from which this branch diverged from its parent. If this is empty the branch is the master. A merge-down operation from the parent should update this property"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Tag" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="A LabeledRecord which adds additional metadata to a single Revision of a Resource "
-          references="#//Service/Tag"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A LabeledRecord which adds additional metadata to a single Revision of a Resource "/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="timestamp" ordered="false"
           lowerBound="1" eType="#//Expression/TimeExpression" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedToRevision" ordered="false"
@@ -67,8 +79,9 @@
           lowerBound="1" eType="#//Service/Branch" derived="true" eOpposite="#//Service/Branch/tag"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision" abstract="true" eSuperTypes="#//Service/DatabaseRecord">
-      <eAnnotations source="A record of changes made to ElementRecord's within a particular Branch of a Resource&#xA;"
-          references="#//Service/Revision"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A record of changes made to ElementRecord's within a particular Branch of a Resource&#xA;"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="date" ordered="false"
           lowerBound="1" eType="#//Expression/TimeExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="branch" ordered="false"
@@ -96,8 +109,9 @@
           lowerBound="1" eType="#//Service/Project" eOpposite="#//Service/Project/revision"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelDatabase" abstract="true" eSuperTypes="#//Service/Record">
-      <eAnnotations source="An object representing the server itself which contains all ServerRecord's and has a URI which is the root URL for all stored ServerRecord's"
-          references="#//Service/ModelDatabase"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="An object representing the server itself which contains all ServerRecord's and has a URI which is the root URL for all stored ServerRecord's"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBranch" ordered="false"
           upperBound="-1" eType="#//Service/Branch"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRevision" ordered="false"
@@ -122,17 +136,20 @@
           lowerBound="1" eType="#//Extension/Schema"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LabeledRecord" abstract="true" eSuperTypes="#//Service/DatabaseRecord">
-      <eAnnotations source="A ServerRecord which has an additional String label for human readable description"
-          references="#//Service/LabeledRecord"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A ServerRecord which has an additional String label for human readable description"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="A string value used to identify this ServerRecord in a more unique fashion."
-            references="#//Service/LabeledRecord/label"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A string value used to identify this ServerRecord in a more unique fashion."/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Organization" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="A sub-division of a ModelDatabase which defines common access and permissions across it's member Resource's "
-          references="#//Service/Organization"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A sub-division of a ModelDatabase which defines common access and permissions across it's member Resource's "/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" ordered="false"
           upperBound="-1" eType="#//Service/Project" eOpposite="#//Service/Project/org"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="authorizedUsers" ordered="false"
@@ -145,148 +162,182 @@
           upperBound="-1" eType="#//Service/Organization" eOpposite="#//Service/Organization/parent"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Project" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="A ServerRecord object representing a single project within a Workspace. Can contain, Branch's, Revision's, and Tag's "
-          references="#//Service/Project"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A ServerRecord object representing a single project within a Workspace. Can contain, Branch's, Revision's, and Tag's "/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="usedResource" ordered="false"
           upperBound="-1" eType="#//Service/Project">
-        <eAnnotations source="A list of the resource usages references for this resource. "
-            references="#//Service/Project/usedResource"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of the resource usages references for this resource. "/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="element" ordered="false"
           upperBound="-1" eType="#//Service/Element" eOpposite="#//Service/Element/project">
-        <eAnnotations source="A list of all Element's in head the revision of this Resource"
-            references="#//Service/Project/element"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all Element's in head the revision of this Resource"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="branch" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Service/Branch" containment="true"
           eOpposite="#//Service/Branch/project">
-        <eAnnotations source="A list of all Branch's in this Resource." references="#//Service/Project/branch"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all Branch's in this Resource."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="masterBranch" ordered="false"
           lowerBound="1" eType="#//Service/Branch">
-        <eAnnotations source="The master Branch of this Resource." references="#//Service/Project/masterBranch"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The master Branch of this Resource."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tag" ordered="false"
           upperBound="-1" eType="#//Service/Tag" derived="true" eOpposite="#//Service/Tag/project">
-        <eAnnotations source="A list of all tag's which apply to revision's within this Resource."
-            references="#//Service/Project/tag"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all tag's which apply to revision's within this Resource."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="org" ordered="false"
           lowerBound="1" eType="#//Service/Organization" eOpposite="#//Service/Organization/project">
-        <eAnnotations source="The Workspace of which this Resource is a member." references="#//Service/Project/org"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The Workspace of which this Resource is a member."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" lowerBound="1"
           upperBound="-1" eType="#//Service/Revision" eOpposite="#//Service/Revision/project">
-        <eAnnotations source="The list of Revision's that this Resource contains."
-            references="#//Service/Project/revision"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The list of Revision's that this Resource contains."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rootElement" ordered="false"
           upperBound="-1" eType="#//Service/Element">
-        <eAnnotations source="A list of Elements which are at the root of the head revision of this resource"
-            references="#//Service/Project/rootElement"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of Elements which are at the root of the head revision of this resource"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="An object representing the entire timeline for a modeled thing. This functions similarly to &quot;Configuration Item&quot; in PLM."
-          references="#//Service/Element"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="An object representing the entire timeline for a modeled thing. This functions similarly to &quot;Configuration Item&quot; in PLM."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elementData" lowerBound="1"
           upperBound="-1" eType="#//Core/ElementRecord" eOpposite="#//Core/ElementRecord/recordOf">
-        <eAnnotations source="An ordered list of the ElementRecord's which make up the entire time line of this Element."
-            references="#//Service/Element/elementData"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="An ordered list of the ElementRecord's which make up the entire time line of this Element."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="deletedAt" ordered="false"
           upperBound="-1" eType="#//Service/Revision">
-        <eAnnotations source="Indicates the revisions in which this element has been deleted, if this revision is part of the history of a particular branch this element should not appear in search results."
-            references="#//Service/Element/deletedAt"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Indicates the revisions in which this element has been deleted, if this revision is part of the history of a particular branch this element should not appear in search results."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" ordered="false"
           lowerBound="1" eType="#//Service/Project" eOpposite="#//Service/Project/element">
-        <eAnnotations source="The Resource which contains this element." references="#//Service/Element/project"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The Resource which contains this element."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           derived="true">
-        <eAnnotations source="A name which reflects the &quot;name&quot; attribute of the ElementRecord in the head revision of the master branch."
-            references="#//Service/Element/label"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A name which reflects the &quot;name&quot; attribute of the ElementRecord in the head revision of the master branch."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="write" ordered="false"
           upperBound="-1" eType="#//Service/Role" derived="true">
-        <eAnnotations source="A derived list of all the Role's which have permission to write to this element and its elementrecord's. This is a combination of the localWrite, inheritedWrite, and recursiveWrite fields "
-            references="#//Service/Element/write"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A derived list of all the Role's which have permission to write to this element and its elementrecord's. This is a combination of the localWrite, inheritedWrite, and recursiveWrite fields "/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="read" ordered="false"
           upperBound="-1" eType="#//Service/Role" derived="true">
-        <eAnnotations source="A derived list of all the Role's which have permission to read to this element and its elementrecord's. This is a combination of the localRead, inheritedRead, and recursiveRead fields "
-            references="#//Service/Element/read"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A derived list of all the Role's which have permission to read to this element and its elementrecord's. This is a combination of the localRead, inheritedRead, and recursiveRead fields "/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localRead" ordered="false"
           upperBound="-1" eType="#//Service/Role">
-        <eAnnotations source="A list of all the Role's which have permission to read this element and its elementrecord's but not it's children."
-            references="#//Service/Element/localRead"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have permission to read this element and its elementrecord's but not it's children."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localWrite" ordered="false"
           upperBound="-1" eType="#//Service/Role">
-        <eAnnotations source="A list of all the Role's which have permission to write to this element and its elementrecord's but not it's children."
-            references="#//Service/Element/localWrite"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have permission to write to this element and its elementrecord's but not it's children."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inheritedRead" ordered="false"
           upperBound="-1" eType="#//Service/Role" derived="true">
-        <eAnnotations source="A list of all the Role's which have inherited permission to read this element and its elementrecord's. Derived from a recursiveRead in the parent of this element."
-            references="#//Service/Element/inheritedRead"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have inherited permission to read this element and its elementrecord's. Derived from a recursiveRead in the parent of this element."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inheritedWrite" ordered="false"
           upperBound="-1" eType="#//Service/Role" derived="true">
-        <eAnnotations source="A list of all the Role's which have inherited permission to write to this element and its elementrecord's. Derived from a recursiveWrite in the containment hierarchy of this element."
-            references="#//Service/Element/inheritedWrite"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have inherited permission to write to this element and its elementrecord's. Derived from a recursiveWrite in the containment hierarchy of this element."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="recursiveRead" ordered="false"
           upperBound="-1" eType="#//Service/Role">
-        <eAnnotations source="A list of all the Role's which have recursive permission originating from this element to read this element and its child element's."
-            references="#//Service/Element/recursiveRead"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have recursive permission originating from this element to read this element and its child element's."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="recursiveWrite" ordered="false"
           upperBound="-1" eType="#//Service/Role">
-        <eAnnotations source="A list of all the Role's which have recursive permission originating from this element to write to this element and its child element's."
-            references="#//Service/Element/recursiveWrite"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all the Role's which have recursive permission originating from this element to write to this element and its child element's."/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataAttribute" abstract="true" eSuperTypes="#//Service/Record">
-      <eAnnotations source="A child object which represents implementation specific ServerData in the form of a single key value pair. These key value pairs are constrained and defined by the Metamodel used."
-          references="#//Service/DataAttribute"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A child object which represents implementation specific ServerData in the form of a single key value pair. These key value pairs are constrained and defined by the Metamodel used."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributeClass" ordered="false"
           lowerBound="1" eType="#//Extension/SchemaProperty">
-        <eAnnotations source="The metaAttribute which defines and constrains the value of this ESIAttribute"
-            references="#//Service/DataAttribute/attributeClass"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The metaAttribute which defines and constrains the value of this ESIAttribute"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
           lowerBound="1">
-        <eAnnotations source="The value of this ESIAttribute. The contents of this value are defined and constrained by it's MetaAttribute."
-            references="#//Service/DataAttribute/value"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The value of this ESIAttribute. The contents of this value are defined and constrained by it's MetaAttribute."/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ServerData" abstract="true" eSuperTypes="#//Service/Record">
-      <eAnnotations source="A group of attributes which represents the implementation specific data associated with this particular ServerRecord the valid attributes and constraints for this group are defined by the user defined Metamodel and stored as value pairs in ServerAttribute's. Some of these attributes may map directly to KerML data depending on implementation choices."
-          references="#//Service/ServerData"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A group of attributes which represents the implementation specific data associated with this particular ServerRecord the valid attributes and constraints for this group are defined by the user defined Metamodel and stored as value pairs in ServerAttribute's. Some of these attributes may map directly to KerML data depending on implementation choices."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemaType" ordered="false"
           lowerBound="1" eType="#//Extension/SchemaType" changeable="false">
-        <eAnnotations source="The Metaclass which defines the membership of the attributes of this ESIData."
-            references="#//Service/ServerData/schemaType"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The Metaclass which defines the membership of the attributes of this ESIData."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" ordered="false"
           upperBound="-1" eType="#//Service/DataAttribute" containment="true">
-        <eAnnotations source="The attributes defined by the schemaType Metaclass which make up this ESIData Type."
-            references="#//Service/ServerData/attributes"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The attributes defined by the schemaType Metaclass which make up this ESIData Type."/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DatabaseRecord" abstract="true" eSuperTypes="#//Service/Record">
-      <eAnnotations source="A single row in a database table which has an ID and a URI (for RESful retrieval)"
-          references="#//Service/DatabaseRecord"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A single row in a database table which has an ID and a URI (for RESful retrieval)"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningDatabase" ordered="false"
           lowerBound="1" eType="#//Service/ModelDatabase" eOpposite="#//Service/ModelDatabase/ownedRecord"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserRecord" abstract="true" eSuperTypes="#//Service/DatabaseRecord">
-      <eAnnotations source="A ServerRecord which functions similarly to an unversioned/unbranchable ElementRecord which stores information about system users either for the internal identity server or synch'd from an external source. This data is defined and constrained by an .ecore schema specifying the user-data fields desired"
-          references="#//Service/UserRecord"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A ServerRecord which functions similarly to an unversioned/unbranchable ElementRecord which stores information about system users either for the internal identity server or synch'd from an external source. This data is defined and constrained by an .ecore schema specifying the user-data fields desired"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false"/>
@@ -298,25 +349,30 @@
           lowerBound="1" upperBound="-1" eType="#//Service/Organization" eOpposite="#//Service/Organization/authorizedUsers"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true" eSuperTypes="#//Service/LabeledRecord">
-      <eAnnotations source="A definition of a specific position within a workspace to ease the management of individual user rights."
-          references="#//Service/Role"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A definition of a specific position within a workspace to ease the management of individual user rights."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="hasRole" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Service/UserRecord" eOpposite="#//Service/UserRecord/roleOf"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" ordered="false"
           lowerBound="1" eType="#//Service/Organization" eOpposite="#//Service/Organization/role"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ApplicationData" abstract="true" eSuperTypes="#//Service/DatabaseRecord">
-      <eAnnotations source="A ServerRecord which functions similarly to an unversioned/unbranchable ElementRecord and stores information for the web application platform. This data is defined and constrained by .ecore schema specific to the web application system"
-          references="#//Service/ApplicationData"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A ServerRecord which functions similarly to an unversioned/unbranchable ElementRecord and stores information for the web application platform. This data is defined and constrained by .ecore schema specific to the web application system"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="webApplicationData" ordered="false"
           lowerBound="1" eType="#//Service/ServerData"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Record" abstract="true">
-      <eAnnotations source="The most common form of data in the Semantic Web" references="#//Service/Record"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="The most common form of data in the Semantic Web"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="URI" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="The context specific URI from which the data represented in LinkedDataRecord's can be retrieved"
-            references="#//Service/Record/URI"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The context specific URI from which the data represented in LinkedDataRecord's can be retrieved"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" ordered="false" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -328,15 +384,17 @@
     <eClassifiers xsi:type="ecore:EClass" name="Schema" eSuperTypes="#//Service/DatabaseRecord">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="strictRedefinition" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="Require that in order to be usable within the MetaModel an attribute must be redefined"
-            references="#//Extension/Schema/strictRedefinition"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Require that in order to be usable within the MetaModel an attribute must be redefined"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSchemaType" ordered="false"
           upperBound="-1" eType="#//Extension/SchemaType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemaType" ordered="false"
           upperBound="-1" eType="#//Extension/SchemaType">
-        <eAnnotations source="A list of all Element's in head the revision of this Resource"
-            references="#//Extension/Schema/schemaType"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A list of all Element's in head the revision of this Resource"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SchemaProperty" eSuperTypes="#//Structure/StructuredFeature #//Service/LabeledRecord">
@@ -346,8 +404,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="SchemaType" eSuperTypes="#//Service/LabeledRecord">
       <eStructuralFeatures xsi:type="ecore:EReference" name="disabledAttribute" ordered="false"
           upperBound="-1" eType="#//Extension/SchemaProperty" derived="true">
-        <eAnnotations source="Any Attributes cumulatively inherited from a &quot;Kernel Model Language&quot; Metatypes which are not redefined in this language. This property is 0 if the Strict Redefinition property of the Metamodel is set to false"
-            references="#//Extension/SchemaType/disabledAttribute"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Any Attributes cumulatively inherited from a &quot;Kernel Model Language&quot; Metatypes which are not redefined in this language. This property is 0 if the Strict Redefinition property of the Metamodel is set to false"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
           upperBound="-1" eType="#//Extension/SchemaProperty" containment="true"/>
@@ -400,8 +459,9 @@
           ordered="false" lowerBound="1" eType="#//Expression/ValueSpecification"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Expression/ValueSpecification">
-      <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;Opaque Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;- Multi Language is similar to Virtual Function table in C++&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Idea of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;An Expression is intended to be evaluated using the language specified. If only one body is specified the expression is equivalent to a Literal. If there are multiple body values the expression will be evaluated to that language Literal Example:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body='This is a string'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This is a string'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Concatenate String Example&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;opaqueExpression{&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;name='name'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;expression:ElementExpression = 'string':Block&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;body = 'self.name'language='ocl'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body=('This',name(elementValue('string':Block))),'is comprised of multiple elements')}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This string is comprised of multiple elements'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Standard OCL Equivalent&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;x : String = 1-&amp;gt;oclAsType(String).concat(2-&amp;gt;oclAsType(String)&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;You could have a &amp;quot;CastExpression&amp;quot; instead of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;with a type field&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-          references="#//Expression/Expression"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;Opaque Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;- Multi Language is similar to Virtual Function table in C++&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Idea of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;An Expression is intended to be evaluated using the language specified. If only one body is specified the expression is equivalent to a Literal. If there are multiple body values the expression will be evaluated to that language Literal Example:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body='This is a string'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This is a string'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Concatenate String Example&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;opaqueExpression{&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;name='name'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;expression:ElementExpression = 'string':Block&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;body = 'self.name'language='ocl'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body=('This',name(elementValue('string':Block))),'is comprised of multiple elements')}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This string is comprised of multiple elements'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Standard OCL Equivalent&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;x : String = 1-&amp;gt;oclAsType(String).concat(2-&amp;gt;oclAsType(String)&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;You could have a &amp;quot;CastExpression&amp;quot; instead of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;with a type field&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operator" ordered="false"
@@ -434,12 +494,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ElementPath"/>
     <eClassifiers xsi:type="ecore:EClass" name="ElementGroup">
-      <eAnnotations source="The most basic piece of model information. Represents an assertion that something should exist in the model. That assertion can be optionally named and described"
-          references="#//Expression/ElementGroup"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="The most basic piece of model information. Represents an assertion that something should exist in the model. That assertion can be optionally named and described"/>
+      </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NestedPropertyExpression" eSuperTypes="#//Expression/Expression">
-      <eAnnotations source="The most basic piece of model information. Represents an assertion that something should exist in the model. That assertion can be optionally named and described"
-          references="#//Expression/NestedPropertyExpression"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="The most basic piece of model information. Represents an assertion that something should exist in the model. That assertion can be optionally named and described"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="featurePath" lowerBound="1"
           upperBound="-1" eType="#//Structure/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPathOfFeature"
@@ -448,12 +510,14 @@
   </eSubpackages>
   <eSubpackages name="Document" nsURI="http://www.openmbee.org/kerml/view" nsPrefix="view">
     <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//Structure/StructuredClass">
-      <eAnnotations source="The modeling element that represents information that has been developed for a particular viewpoint of a stakeholder"
-          references="#//Document/View"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="The modeling element that represents information that has been developed for a particular viewpoint of a stakeholder"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="viewpoint" ordered="false"
           lowerBound="1" eType="#//Document/Viewpoint" derived="true">
-        <eAnnotations source="&lt;html>&#xA;&lt;body>&#xA;&lt;p>A derived reference to the Viewpoint template which defines the style of the content presented in this view.&lt;/p>&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/View/viewpoint"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;&lt;body>&#xA;&lt;p>A derived reference to the Viewpoint template which defines the style of the content presented in this view.&lt;/p>&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="exposedElement" ordered="false"
           upperBound="-1" eType="#//Expression/ExternalReference" derived="true"/>
@@ -471,23 +535,27 @@
           upperBound="-1" eType="#//Structure/Class"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTemplate" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="A Boolean which indicates if the Presentation ordering is required for all conforming View's&#xA;"
-            references="#//Document/Viewpoint/isTemplate"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A Boolean which indicates if the Presentation ordering is required for all conforming View's&#xA;"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="presentation" lowerBound="1"
           upperBound="-1" eType="#//Document/Presentation">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An orderable list of the attributes typed by PresentationTemplates that the conforming View will be required to display&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Method shall be automatically generated if a View is created without an explicit Viewpoint Method&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/Viewpoint/presentation"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An orderable list of the attributes typed by PresentationTemplates that the conforming View will be required to display&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Method shall be automatically generated if a View is created without an explicit Viewpoint Method&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="purpose" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="A short description of how the Viewpoint addresses the stakeholder concerns"
-            references="#//Document/Viewpoint/purpose"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A short description of how the Viewpoint addresses the stakeholder concerns"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;The languages used to express the models that represent content which is represented by the view.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Implementation Requirements:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol>&#xA;      &lt;li>&#xA;The language specification such as its metamodel, profile, or other language specification referred to by its URI.&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/Viewpoint/language"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;The languages used to express the models that represent content which is represented by the view.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Implementation Requirements:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol>&#xA;      &lt;li>&#xA;The language specification such as its metamodel, profile, or other language specification referred to by its URI.&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Presentation" abstract="true" eSuperTypes="#//Structure/StructuredClass">
@@ -495,8 +563,9 @@
           upperBound="-1" eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="method" ordered="false"
           eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="Method via which the context of the Presentation will further collected, filtered and sorted"
-            references="#//Document/Presentation/method"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Method via which the context of the Presentation will further collected, filtered and sorted"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="editable" ordered="false"
           eType="#//Expression/ListExpression"/>
@@ -512,49 +581,57 @@
           lowerBound="1" eType="#//Document/View"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//Structure/StructuredClass">
-      <eAnnotations source="A Class which defines the scope of a product via Association's to an ordered set of View's"
-          references="#//Document/Document"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A Class which defines the scope of a product via Association's to an ordered set of View's"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="view" lowerBound="1"
           upperBound="-1" eType="#//Structure/StructuredFeature" derived="true">
-        <eAnnotations source="A derived list of Attribute's that are owned by the Document and are typed by View's. The order of this property defines the order in which the View's will be displayed at the top level of the Document."
-            references="#//Document/Document/view"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A derived list of Attribute's that are owned by the Document and are typed by View's. The order of this property defines the order in which the View's will be displayed at the top level of the Document."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceFormat" ordered="false"
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="&quot;1&quot;">
-        <eAnnotations source="i. A ListExpression defining the style of Presentation Numbers within the Document&#xA;ii. Requirements:&#xA;&#x9;i. Style shall be repeated recursively&#xA;&#x9;ii. Default shall be numeric, defined by a '1' character&#xA;&#x9;iii. Number format shall be defined using the first unit in the list&#xA;&#x9;&#x9;1) Roman Numerals: &quot;I&quot;,&quot;i&quot;&#xA;&#x9;&#x9;2) Letters: &quot;A&quot;,&quot;a&quot;&#xA;&#x9;&#x9;3) Numbers: &quot;1&quot;&#xA;&#x9;iv. A special format shall allow inclusion of a Section number as a prefix&#xA;&#x9;&#x9;1) Examples:&#xA;&#x9;&#x9;&#x9;a) &lt;section>-1  would result in &quot;Table 2-1&quot; for example for the 1st table in Section 2&#xA;&#x9;&#x9;&#x9;b) &lt;section>.&lt;section>/1 would result in &quot;Table 2.0/5&quot; for the 5th table in section 2.0"
-            references="#//Document/Document/referenceFormat"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="i. A ListExpression defining the style of Presentation Numbers within the Document&#xA;ii. Requirements:&#xA;&#x9;i. Style shall be repeated recursively&#xA;&#x9;ii. Default shall be numeric, defined by a '1' character&#xA;&#x9;iii. Number format shall be defined using the first unit in the list&#xA;&#x9;&#x9;1) Roman Numerals: &quot;I&quot;,&quot;i&quot;&#xA;&#x9;&#x9;2) Letters: &quot;A&quot;,&quot;a&quot;&#xA;&#x9;&#x9;3) Numbers: &quot;1&quot;&#xA;&#x9;iv. A special format shall allow inclusion of a Section number as a prefix&#xA;&#x9;&#x9;1) Examples:&#xA;&#x9;&#x9;&#x9;a) &lt;section>-1  would result in &quot;Table 2-1&quot; for example for the 1st table in Section 2&#xA;&#x9;&#x9;&#x9;b) &lt;section>.&lt;section>/1 would result in &quot;Table 2.0/5&quot; for the 5th table in section 2.0"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTitle" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="A Document title which indicates the content a reader might expect to find within."
-            references="#//Document/Document/defaultTitle"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A Document title which indicates the content a reader might expect to find within."/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTemplate" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sectionNumberFormat"
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="&quot;1&quot;">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>A ListExpression defining the style of Section Numbers within the Document&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Style shall be repeated recursively&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Default shall be numeric, defined by a '1' character&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number format shall be defined using the first unit in the list&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Roman Numerals: &amp;quot;I&amp;quot;,&amp;quot;i&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Letters: &amp;quot;A&amp;quot;,&amp;quot;a&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Numbers: &amp;quot;1&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Subsections number shall be the parent number concatenated with a &amp;quot;.&amp;lt;numberformat&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/Document/sectionNumberFormat"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>A ListExpression defining the style of Section Numbers within the Document&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Style shall be repeated recursively&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Default shall be numeric, defined by a '1' character&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number format shall be defined using the first unit in the list&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Roman Numerals: &amp;quot;I&amp;quot;,&amp;quot;i&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Letters: &amp;quot;A&amp;quot;,&amp;quot;a&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Numbers: &amp;quot;1&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Subsections number shall be the parent number concatenated with a &amp;quot;.&amp;lt;numberformat&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentNumber" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" derived="true">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The specific read-only Document number as defined by the order the Document was created within the parent ModelDatabase&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Number format shall conform to parameter defined in the parent database&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number shall be used as a document-unique identifier for presentationCrossReferences rendered within documentation&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>In the context of the parent Document presentationCrossReference shall de-referenced to &amp;quot;Section #&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>References outside the current document shall de-reference to read &amp;quot;&amp;lt;Document #&amp;gt;:&amp;lt;Document Name&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Clicking the reference shall highlight the document within the tooltip window (clicking within the tree shall navigate to Document&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/Document/documentNumber"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The specific read-only Document number as defined by the order the Document was created within the parent ModelDatabase&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Number format shall conform to parameter defined in the parent database&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number shall be used as a document-unique identifier for presentationCrossReferences rendered within documentation&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>In the context of the parent Document presentationCrossReference shall de-referenced to &amp;quot;Section #&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>References outside the current document shall de-reference to read &amp;quot;&amp;lt;Document #&amp;gt;:&amp;lt;Document Name&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Clicking the reference shall highlight the document within the tooltip window (clicking within the tree shall navigate to Document&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayNumber" ordered="false"
           lowerBound="1" eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean">
-        <eAnnotations source="Indicate if the referenceNumber should be displayed or not"
-            references="#//Document/Document/displayNumber"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Indicate if the referenceNumber should be displayed or not"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//Document/TitledPresentation #//Document/CaptionedPresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="columnDefinition" lowerBound="1"
           upperBound="-1" eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of expressions defining the membership of each cell within a row&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The collection of objects resulting from the Filtering of the Context shall be the &amp;quot;Context&amp;quot; for each row of the table.&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Column membership shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/Table/columnDefinition"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of expressions defining the membership of each cell within a row&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The collection of objects resulting from the Filtering of the Context shall be the &amp;quot;Context&amp;quot; for each row of the table.&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Column membership shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isColumnTable" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -585,13 +662,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Document/TitledPresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sublevelDefinition" upperBound="-1"
           eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining the membership of each level below the top&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>For the top&amp;#160; each member of the Context or shall be queried&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>For Sub-levels (2-n) a single member of level (n-1) shall be the sole context and the shall query execute from there&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Level Filter shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>level two might want to display references to the ownedAttributes of each level one object&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>OCL: self.ownedAttributeList &lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/List/sublevelDefinition"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining the membership of each level below the top&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>For the top&amp;#160; each member of the Context or shall be queried&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>For Sub-levels (2-n) a single member of level (n-1) shall be the sole context and the shall query execute from there&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Level Filter shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>level two might want to display references to the ownedAttributes of each level one object&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>OCL: self.ownedAttributeList &lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="presentationFormat" lowerBound="1"
           upperBound="-1" eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining what is displayed at each level&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>List Display can be defined using OCL/K&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Simple&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level one might want to only display references to the name of each element&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL: self.name&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Intermediate&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level two might want to display references to the Name and Documentation of properties owned by each level 1 object&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL:&amp;#160; self.name.concat('&amp;lt;/br&amp;gt;').concat(self.documentation)&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/List/presentationFormat"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining what is displayed at each level&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>List Display can be defined using OCL/K&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Simple&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level one might want to only display references to the name of each element&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL: self.name&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Intermediate&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level two might want to display references to the Name and Documentation of properties owned by each level 1 object&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL:&amp;#160; self.name.concat('&amp;lt;/br&amp;gt;').concat(self.documentation)&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="bulletStyle" lowerBound="1"
           upperBound="-1" eType="#//Expression/StringExpression"/>
@@ -605,13 +684,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           derived="true">
-        <eAnnotations source="This is the number in which the presentation appears within a Section, this number is hirearchical delineated by a &quot;.&quot; when within a section&#xA;&#xA;For example&#xA;&#xA;1 Paragraph&#xA;2 Table&#xA;3 Section&#xA;3.1 Paragraph&#xA;3.2 Section&#xA;3.2.1 Table&#xA;3.3 Section "
-            references="#//Document/PresentationInstance/index"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="This is the number in which the presentation appears within a Section, this number is hirearchical delineated by a &quot;.&quot; when within a section&#xA;&#xA;For example&#xA;&#xA;1 Paragraph&#xA;2 Table&#xA;3 Section&#xA;3.1 Paragraph&#xA;3.2 Section&#xA;3.2.1 Table&#xA;3.3 Section "/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceCategory" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="A user definable category for the numbering type of the object (i.e. &quot;Table&quot; or &quot;Section&quot;)"
-            references="#//Document/PresentationInstance/referenceCategory"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A user definable category for the numbering type of the object (i.e. &quot;Table&quot; or &quot;Section&quot;)"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" ordered="false"
           upperBound="-1" eType="#//Core/ElementRecord" derived="true"/>
@@ -620,15 +701,17 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceNumber" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           derived="true">
-        <eAnnotations source="This number indicates the order in which this presentation appears along side other members of its reference category (Figure/Table/Equation/List/Section...). For non &quot;Section&quot; the style of this number is determined by the referenceFormat attribute on the document. Section numbering is determined by the &quot;sectionFormat&quot; attribute&#xA;&#xA;For Example&#xA;&#xA;1 Section&#xA;1-1 Paragraph&#xA;1-1 Table&#xA;1-1 Image&#xA;1-2 Table&#xA;1.1 Section&#xA;2 Section&#xA;2-1 Table"
-            references="#//Document/PresentationInstance/referenceNumber"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="This number indicates the order in which this presentation appears along side other members of its reference category (Figure/Table/Equation/List/Section...). For non &quot;Section&quot; the style of this number is determined by the referenceFormat attribute on the document. Section numbering is determined by the &quot;sectionFormat&quot; attribute&#xA;&#xA;For Example&#xA;&#xA;1 Section&#xA;1-1 Paragraph&#xA;1-1 Table&#xA;1-1 Image&#xA;1-2 Table&#xA;1.1 Section&#xA;2 Section&#xA;2-1 Table"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="navigation" ordered="false"
           upperBound="-1" eType="#//Expression/ExternalReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
           upperBound="-1" eType="#//Core/ElementRecord" derived="true">
-        <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An array of one or more objects representing the source context of the  query&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;;font-family:Calibri; font-size:11.0pt;&quot;>Defined by the context of the parent view (ignores parent view if defined at M1)&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-            references="#//Document/PresentationInstance/context"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An array of one or more objects representing the source context of the  query&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;;font-family:Calibri; font-size:11.0pt;&quot;>Defined by the context of the parent view (ignores parent view if defined at M1)&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="content" ordered="false"
           lowerBound="1" eType="#//Expression/ValueSpecification"/>
@@ -714,8 +797,9 @@
           upperBound="-1" eType="#//Core/ElementRecord" containment="true" eOpposite="#//Core/ElementRecord/owner"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="An object in the model that exists solely for the purposes of describing other objects within the model. The target of this description can be specified via the &quot;annotatedElement&quot; metaproperty."
-          references="#//Core/Comment"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="An object in the model that exists solely for the purposes of describing other objects within the model. The target of this description can be specified via the &quot;annotatedElement&quot; metaproperty."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
           upperBound="-1" eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="commentExpression" ordered="false"
@@ -725,8 +809,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Core/Container"/>
     <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="A basic object which asserts a &quot;namespace&quot; for a constituents of the model. Can &quot;own&quot; other ElementRecord's and Container's."
-          references="#//Core/Container"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A basic object which asserts a &quot;namespace&quot; for a constituents of the model. Can &quot;own&quot; other ElementRecord's and Container's."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedCharacterization"
           ordered="false" upperBound="-1" eType="#//Extension/Characterization" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageVisibility" ordered="false"
@@ -740,8 +825,9 @@
           upperBound="-1" eType="#//Core/ElementRecord" derived="true" eOpposite="#//Core/ElementRecord/memberOfNamespace"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="A type of ElementRecord which represents a link between to other ElementRecord's. This link is optionally directional by specifying a source and target."
-          references="#//Core/Relationship"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="A type of ElementRecord which represents a link between to other ElementRecord's. This link is optionally directional by specifying a source and target."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
           eType="#//Core/ElementRecord" eOpposite="#//Core/ElementRecord/sourceRelationship"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
@@ -781,8 +867,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//Structure/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="involves" ordered="false"
           upperBound="-1" eType="#//Structure/StructuredFeature">
-        <eAnnotations source="{involvesProperty.type.oclIsTypeOf(Behavior) == false}"
-            references="#//Behavior/Behavior/involves"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="{involvesProperty.type.oclIsTypeOf(Behavior) == false}"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStep" ordered="false"
           upperBound="-1" eType="#//Behavior/OccurrenceProperty" eOpposite="#//Behavior/OccurrenceProperty/behavior"/>
@@ -835,12 +922,14 @@
   </eSubpackages>
   <eSubpackages name="Structure" nsURI="http://www.openmbee.org/kerml/str" nsPrefix="str">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Core/Container">
-      <eAnnotations source="The generic Model constructor and the generic type of all properties. It has a complete set of sub-sets. While it is permitted to create a Class in SysML2 it is intended that the user would eventually specify further intent for the Class (Block, Behavior, ConstriantBlock, Requirement, etc.). Therefore use of a plain Class would be considered a minor constraint violation that should be addressed of as the maturity of the Model improves&#xA;&#xA;Normative Alias: Definition(SysML2)&#xA;SECM Alias: Definition Element"
-          references="#//Structure/Class"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="The generic Model constructor and the generic type of all properties. It has a complete set of sub-sets. While it is permitted to create a Class in SysML2 it is intended that the user would eventually specify further intent for the Class (Block, Behavior, ConstriantBlock, Requirement, etc.). Therefore use of a plain Class would be considered a minor constraint violation that should be addressed of as the maturity of the Model improves&#xA;&#xA;Normative Alias: Definition(SysML2)&#xA;SECM Alias: Definition Element"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="specificClassifier" ordered="false"
           upperBound="-1" eType="#//Structure/Class" derived="true">
-        <eAnnotations source="Specializations of this Block derived from any Generalization relationships of which block is the source"
-            references="#//Structure/Class/specificClassifier"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Specializations of this Block derived from any Generalization relationships of which block is the source"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="generalClassifier" ordered="false"
           upperBound="-1" eType="#//Structure/Class" derived="true"/>
@@ -861,8 +950,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeatureOfClass"
           ordered="false" upperBound="-1" eType="#//Structure/Feature" derived="true"
           containment="true" eOpposite="#//Structure/Feature/context">
-        <eAnnotations source="A Feature is an ownedRefinement if it has a defined featurePath"
-            references="#//Structure/Class/nestedFeatureOfClass"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="A Feature is an ownedRefinement if it has a defined featurePath"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" ordered="false" lowerBound="1"
           eType="#//Structure/Individual" eOpposite="#//Structure/Individual/context"/>
@@ -893,8 +983,9 @@
           upperBound="-1" eType="#//Structure/Connector" derived="true" eOpposite="#//Structure/Connector/type"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Core/Container">
-      <eAnnotations source="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&amp;#160;This is called Feature rather than attribute because in UML&amp;#160;Attribute's are more restrictive w.r.t. typing than the intent of KerML&amp;#160;Feature which is more open.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Possible Alias: Usage(SysML2)&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"
-          references="#//Structure/Feature"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&amp;#160;This is called Feature rather than attribute because in UML&amp;#160;Attribute's are more restrictive w.r.t. typing than the intent of KerML&amp;#160;Feature which is more open.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Possible Alias: Usage(SysML2)&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Structure/Class" derived="true"
           eOpposite="#//Structure/Class/typesFeature"/>
@@ -920,8 +1011,9 @@
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodVisibility" ordered="false"
           lowerBound="1" eType="#//Core/visibilityKind">
-        <eAnnotations source="Specific Visibility of the feature not the package"
-            references="#//Structure/Feature/methodVisibility"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Specific Visibility of the feature not the package"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
           eType="#//Structure/Class" derived="true" eOpposite="#//Structure/Class/nestedFeatureOfClass"/>
@@ -931,13 +1023,15 @@
           upperBound="-1" eType="#//Structure/Feature" containment="true" eOpposite="#//Structure/Feature/nestingFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingType" ordered="false"
           lowerBound="1" eType="#//Structure/Class">
-        <eAnnotations source="Note that the default instance of definingType is the M1 Library element Any"
-            references="#//Structure/Feature/definingType"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Note that the default instance of definingType is the M1 Library element Any"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="refiningType" ordered="false"
           lowerBound="1" eType="#//Structure/Class">
-        <eAnnotations source="Note that the default instance of refiningType is the M1 Library element Any"
-            references="#//Structure/Feature/refiningType"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Note that the default instance of refiningType is the M1 Library element Any"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
           upperBound="-1" eType="#//Structure/Class" containment="true"/>
@@ -1076,8 +1170,9 @@
           upperBound="-1" eType="#//Structure/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="blindProperty" ordered="false"
           upperBound="-1" eType="#//Structure/StructuredFeature" derived="true">
-        <eAnnotations source="The set of all Property's not owned or required by a StructuredClass and are an endProperty of an Association where the other endProperty has that StructuredClass as its type&#xA;&#xA;FIX ME:&#xA;let assoc:Association = Class.relation->select(schematype==Association) in if assoc.endProperty.type->select(type == Class).size() >= 1 then  endProperty->select(type != Class)&#xA;"
-            references="#//Structure/StructuredClass/blindProperty"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="The set of all Property's not owned or required by a StructuredClass and are an endProperty of an Association where the other endProperty has that StructuredClass as its type&#xA;&#xA;FIX ME:&#xA;let assoc:Association = Class.relation->select(schematype==Association) in if assoc.endProperty.type->select(type == Class).size() >= 1 then  endProperty->select(type != Class)&#xA;"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="portProperty" ordered="false"
           upperBound="-1" eType="#//Structure/StructuredFeature" derived="true" containment="true"/>
@@ -1108,23 +1203,29 @@
           eType="#//Expression/ValueSpecification"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="unit" ordered="false"
           eType="#//Expression/StringExpression">
-        <eAnnotations source="Inches, etc" references="#//Structure/ValueRestriction/unit"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Inches, etc"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Structure/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="quantityKind" ordered="false"
           eType="#//Expression/StringExpression">
-        <eAnnotations source="Torque, Work, Force, Volume, Flow Rate, etc... &quot;sense&quot; of the thing"
-            references="#//Structure/DataType/quantityKind"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Torque, Work, Force, Volume, Flow Rate, etc... &quot;sense&quot; of the thing"/>
+        </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" ordered="false"
           eType="#//Expression/StringExpression">
-        <eAnnotations source="Length, Mass, Time, Lumens" references="#//Structure/DataType/dimension"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        	<details key="documentation" value="Length, Mass, Time, Lumens"/>
+        </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Individual">
-      <eAnnotations source="Direct specification of a variant&#xA;&#xA;&#xA;Validation rule:&#xA;level=Warning&#xA;Individual tree should include all Feature's that have a defined featurePath&#xA;&#xA;"
-          references="#//Structure/Individual"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      	<details key="documentation" value="Direct specification of a variant&#xA;&#xA;&#xA;Validation rule:&#xA;level=Warning&#xA;Individual tree should include all Feature's that have a defined featurePath&#xA;&#xA;"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingFeature" ordered="false"
           lowerBound="1" eType="#//Structure/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"

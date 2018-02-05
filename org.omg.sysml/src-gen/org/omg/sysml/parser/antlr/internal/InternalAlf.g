@@ -416,7 +416,32 @@ ruleClassDeclaration returns [EObject current=null]
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)+
+			)
+			(
+				otherlv_5=','
+				{
+					newLeafNode(otherlv_5, grammarAccess.getClassDeclarationAccess().getCommaKeyword_3_2_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassDeclarationAccess().getGeneralizationGeneralizationParserRuleCall_3_2_1_0());
+						}
+						lv_generalization_6_0=ruleGeneralization
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassDeclarationRule());
+							}
+							add(
+								$current,
+								"generalization",
+								lv_generalization_6_0,
+								"org.omg.sysml.Alf.Generalization");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
 		)?
 	)
 ;
@@ -603,18 +628,43 @@ ruleClassDefinitionOrStub returns [EObject current=null]
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)+
+			)
+			(
+				otherlv_6=','
+				{
+					newLeafNode(otherlv_6, grammarAccess.getClassDefinitionOrStubAccess().getCommaKeyword_4_2_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassDefinitionOrStubAccess().getGeneralizationGeneralizationParserRuleCall_4_2_1_0());
+						}
+						lv_generalization_7_0=ruleGeneralization
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassDefinitionOrStubRule());
+							}
+							add(
+								$current,
+								"generalization",
+								lv_generalization_7_0,
+								"org.omg.sysml.Alf.Generalization");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
 		)?
-		otherlv_6='{'
+		otherlv_8='{'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getClassDefinitionOrStubAccess().getLeftCurlyBracketKeyword_5());
+			newLeafNode(otherlv_8, grammarAccess.getClassDefinitionOrStubAccess().getLeftCurlyBracketKeyword_5());
 		}
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getClassDefinitionOrStubAccess().getOwnedFeatureClassMemberParserRuleCall_6_0());
 				}
-				lv_ownedFeature_7_0=ruleClassMember
+				lv_ownedFeature_9_0=ruleClassMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassDefinitionOrStubRule());
@@ -622,15 +672,15 @@ ruleClassDefinitionOrStub returns [EObject current=null]
 					add(
 						$current,
 						"ownedFeature",
-						lv_ownedFeature_7_0,
+						lv_ownedFeature_9_0,
 						"org.omg.sysml.Alf.ClassMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_8='}'
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getClassDefinitionOrStubAccess().getRightCurlyBracketKeyword_7());
+			newLeafNode(otherlv_10, grammarAccess.getClassDefinitionOrStubAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;

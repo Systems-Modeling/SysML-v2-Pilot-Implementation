@@ -51,7 +51,7 @@ ClassDeclaration returns str::Class :
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	// NOTE: Made generalization a containment reference.
-	( 'specializes' ( generalization += Generalization )+ )?
+	( 'specializes' generalization += Generalization ( ',' generalization += Generalization )* )?
 ;
 
 Generalization returns str::Generalization :
@@ -66,7 +66,7 @@ ClassDefinition returns str::Class :
 
 ClassDefinitionOrStub returns str::Class : 
 	( packageVisibility = VisibilityKind ) ( isAbstract ?= 'abstract' )? 'class' name = Name 
-		( 'specializes' ( generalization += Generalization )+ )?
+	( 'specializes' generalization += Generalization ( ',' generalization += Generalization )* )?
 		'{' ( ownedFeature += ClassMember )* '}'
 //	ClassDeclaration
 //	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )

@@ -39,9 +39,11 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageDefinitionOrStubAccess().getGroup(), "rule__PackageDefinitionOrStub__Group__0");
 					put(grammarAccess.getClassDeclarationAccess().getGroup(), "rule__ClassDeclaration__Group__0");
 					put(grammarAccess.getClassDeclarationAccess().getGroup_3(), "rule__ClassDeclaration__Group_3__0");
+					put(grammarAccess.getClassDeclarationAccess().getGroup_3_2(), "rule__ClassDeclaration__Group_3_2__0");
 					put(grammarAccess.getClassDefinitionAccess().getGroup(), "rule__ClassDefinition__Group__0");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getGroup(), "rule__ClassDefinitionOrStub__Group__0");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getGroup_4(), "rule__ClassDefinitionOrStub__Group_4__0");
+					put(grammarAccess.getClassDefinitionOrStubAccess().getGroup_4_2(), "rule__ClassDefinitionOrStub__Group_4_2__0");
 					put(grammarAccess.getFeatureDefinitionAccess().getGroup(), "rule__FeatureDefinition__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
@@ -53,12 +55,14 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassDeclarationAccess().getIsAbstractAssignment_0(), "rule__ClassDeclaration__IsAbstractAssignment_0");
 					put(grammarAccess.getClassDeclarationAccess().getNameAssignment_2(), "rule__ClassDeclaration__NameAssignment_2");
 					put(grammarAccess.getClassDeclarationAccess().getGeneralizationAssignment_3_1(), "rule__ClassDeclaration__GeneralizationAssignment_3_1");
+					put(grammarAccess.getClassDeclarationAccess().getGeneralizationAssignment_3_2_1(), "rule__ClassDeclaration__GeneralizationAssignment_3_2_1");
 					put(grammarAccess.getGeneralizationAccess().getGeneralAssignment(), "rule__Generalization__GeneralAssignment");
 					put(grammarAccess.getClassDefinitionAccess().getOwnedFeatureAssignment_2(), "rule__ClassDefinition__OwnedFeatureAssignment_2");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getPackageVisibilityAssignment_0(), "rule__ClassDefinitionOrStub__PackageVisibilityAssignment_0");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getIsAbstractAssignment_1(), "rule__ClassDefinitionOrStub__IsAbstractAssignment_1");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getNameAssignment_3(), "rule__ClassDefinitionOrStub__NameAssignment_3");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getGeneralizationAssignment_4_1(), "rule__ClassDefinitionOrStub__GeneralizationAssignment_4_1");
+					put(grammarAccess.getClassDefinitionOrStubAccess().getGeneralizationAssignment_4_2_1(), "rule__ClassDefinitionOrStub__GeneralizationAssignment_4_2_1");
 					put(grammarAccess.getClassDefinitionOrStubAccess().getOwnedFeatureAssignment_6(), "rule__ClassDefinitionOrStub__OwnedFeatureAssignment_6");
 					put(grammarAccess.getFeatureDefinitionAccess().getMethodVisibilityAssignment_0(), "rule__FeatureDefinition__MethodVisibilityAssignment_0");
 					put(grammarAccess.getFeatureDefinitionAccess().getNameAssignment_1(), "rule__FeatureDefinition__NameAssignment_1");

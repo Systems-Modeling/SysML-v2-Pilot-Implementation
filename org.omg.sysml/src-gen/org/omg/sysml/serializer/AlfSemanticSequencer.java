@@ -85,7 +85,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDeclaration returns Class
 	 *
 	 * Constraint:
-	 *     (isAbstract?='abstract'? name=Name generalization+=Generalization*)
+	 *     (isAbstract?='abstract'? name=Name (generalization+=Generalization generalization+=Generalization*)?)
 	 */
 	protected void sequence_ClassDeclaration(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -98,7 +98,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDefinition returns Class
 	 *
 	 * Constraint:
-	 *     (isAbstract?='abstract'? name=Name generalization+=Generalization* ownedFeature+=ClassMember*)
+	 *     (isAbstract?='abstract'? name=Name (generalization+=Generalization generalization+=Generalization*)? ownedFeature+=ClassMember*)
 	 */
 	protected void sequence_ClassDeclaration_ClassDefinition(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -113,7 +113,13 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDefinitionOrStub returns Class
 	 *
 	 * Constraint:
-	 *     (packageVisibility=VisibilityKind isAbstract?='abstract'? name=Name generalization+=Generalization* ownedFeature+=ClassMember*)
+	 *     (
+	 *         packageVisibility=VisibilityKind 
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (generalization+=Generalization generalization+=Generalization*)? 
+	 *         ownedFeature+=ClassMember*
+	 *     )
 	 */
 	protected void sequence_ClassDefinitionOrStub(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

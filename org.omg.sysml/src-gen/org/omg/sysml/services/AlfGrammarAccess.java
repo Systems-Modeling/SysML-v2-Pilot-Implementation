@@ -190,14 +190,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSpecializesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cGeneralizationAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cGeneralizationGeneralizationParserRuleCall_3_1_0 = (RuleCall)cGeneralizationAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cGeneralizationAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cGeneralizationGeneralizationParserRuleCall_3_2_1_0 = (RuleCall)cGeneralizationAssignment_3_2_1.eContents().get(0);
 		
 		///* CLASSES */ ClassDeclaration str::Class:
-		//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization+)?;
+		//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
+		//	generalization+=Generalization)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
 		////	( ^import += ImportDeclaration )*
-		//isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization+)?
+		//isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
+		//generalization+=Generalization)*)?
 		public Group getGroup() { return cGroup; }
 		
 		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
@@ -217,17 +223,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
-		//('specializes' generalization+=Generalization+)?
+		//('specializes' generalization+=Generalization (',' generalization+=Generalization)*)?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'specializes'
 		public Keyword getSpecializesKeyword_3_0() { return cSpecializesKeyword_3_0; }
 		
-		//generalization+=Generalization+
+		//generalization+=Generalization
 		public Assignment getGeneralizationAssignment_3_1() { return cGeneralizationAssignment_3_1; }
 		
 		//Generalization
 		public RuleCall getGeneralizationGeneralizationParserRuleCall_3_1_0() { return cGeneralizationGeneralizationParserRuleCall_3_1_0; }
+		
+		//(',' generalization+=Generalization)*
+		public Group getGroup_3_2() { return cGroup_3_2; }
+		
+		//','
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+		
+		//generalization+=Generalization
+		public Assignment getGeneralizationAssignment_3_2_1() { return cGeneralizationAssignment_3_2_1; }
+		
+		//Generalization
+		public RuleCall getGeneralizationGeneralizationParserRuleCall_3_2_1_0() { return cGeneralizationGeneralizationParserRuleCall_3_2_1_0; }
 	}
 	public class GeneralizationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Generalization");
@@ -295,6 +313,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSpecializesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cGeneralizationAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cGeneralizationGeneralizationParserRuleCall_4_1_0 = (RuleCall)cGeneralizationAssignment_4_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cGeneralizationAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cGeneralizationGeneralizationParserRuleCall_4_2_1_0 = (RuleCall)cGeneralizationAssignment_4_2_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cOwnedFeatureAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cOwnedFeatureClassMemberParserRuleCall_6_0 = (RuleCall)cOwnedFeatureAssignment_6.eContents().get(0);
@@ -302,15 +324,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ClassDefinitionOrStub str::Class:
 		//	packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes'
-		//	generalization+=Generalization+)?
+		//	generalization+=Generalization (',' generalization+=Generalization)*)?
 		//	'{' ownedFeature+=ClassMember* '}'
 		//	//	ClassDeclaration
 		//	//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes'
-		//generalization+=Generalization+)? '{' ownedFeature+=ClassMember* '}'
+		//packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization
+		//(',' generalization+=Generalization)*)? '{' ownedFeature+=ClassMember* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//packageVisibility=VisibilityKind
@@ -334,17 +356,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
 		
-		//('specializes' generalization+=Generalization+)?
+		//('specializes' generalization+=Generalization (',' generalization+=Generalization)*)?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'specializes'
 		public Keyword getSpecializesKeyword_4_0() { return cSpecializesKeyword_4_0; }
 		
-		//generalization+=Generalization+
+		//generalization+=Generalization
 		public Assignment getGeneralizationAssignment_4_1() { return cGeneralizationAssignment_4_1; }
 		
 		//Generalization
 		public RuleCall getGeneralizationGeneralizationParserRuleCall_4_1_0() { return cGeneralizationGeneralizationParserRuleCall_4_1_0; }
+		
+		//(',' generalization+=Generalization)*
+		public Group getGroup_4_2() { return cGroup_4_2; }
+		
+		//','
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+		
+		//generalization+=Generalization
+		public Assignment getGeneralizationAssignment_4_2_1() { return cGeneralizationAssignment_4_2_1; }
+		
+		//Generalization
+		public RuleCall getGeneralizationGeneralizationParserRuleCall_4_2_1_0() { return cGeneralizationGeneralizationParserRuleCall_4_2_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
@@ -698,7 +732,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* CLASSES */ ClassDeclaration str::Class:
-	//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization+)?;
+	//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
+	//	generalization+=Generalization)*)?;
 	public ClassDeclarationElements getClassDeclarationAccess() {
 		return pClassDeclaration;
 	}
@@ -730,7 +765,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ClassDefinitionOrStub str::Class:
 	//	packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes'
-	//	generalization+=Generalization+)?
+	//	generalization+=Generalization (',' generalization+=Generalization)*)?
 	//	'{' ownedFeature+=ClassMember* '}'
 	//	//	ClassDeclaration
 	//	//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )

@@ -1,0 +1,67 @@
+/*****************************************************************************
+ * Copyright (c) 2018 Model Driven Solutions, Inc.
+ *    
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype Structure uses "http://www.openmbee.org/kerml/str";
+modeltype Core uses "http://www.openmbee.org/kerml/core";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation KerMLStructure2UML(in kerml: Structure, out uml: UML);
+
+main() {
+	kerml.rootObjects()![Core::Container].map toNamespace();
+}
+
+// CORE
+
+abstract mapping Core::ElementRecord::toNamedElement() : UML::NamedElement {
+	name := self.name;
+}
+
+mapping Core::ElementRecord::toPackageableElement() : UML::PackageableElement
+	disjuncts 
+		Structure::Class::toClass,
+		Core::Container::toPackage;
+
+mapping Core::Container::toNamespace() : UML::Namespace
+	disjuncts 
+		Structure::Class::toClass,
+		Core::Container::toPackage;
+
+mapping Core::Container::toPackage() : UML::Package
+	inherits Core::ElementRecord::toNamedElement {
+	visibility := toVisibilityKind(self.packageVisibility);
+	packagedElement := self.ownedMember->map toPackageableElement()->asSet();
+}
+
+// STRUCTURE
+
+mapping Structure::Class::toClass() : UML::Class
+	inherits Core::ElementRecord::toNamedElement {
+	visibility := toVisibilityKind(self.packageVisibility);
+	ownedAttribute := self.ownedFeature->map toProperty();
+	generalization := self.generalization->map toGeneralization();
+}
+
+mapping Structure::Generalization::toGeneralization() : UML::Generalization {
+	general := self.general.map toClass();
+}
+
+mapping Structure::Feature::toProperty() : UML::Property
+	inherits Core::ElementRecord::toNamedElement {
+	visibility := toVisibilityKind(self.methodVisibility);
+	type := self.definingType.map toClass();
+}
+
+query toVisibilityKind(visibility : Core::visibilityKind) : UML::VisibilityKind {
+	return 
+		if visibility = null then null
+		else if visibility = Core::visibilityKind::private then UML::VisibilityKind::private
+		else if visibility = Core::visibilityKind::public then UML::VisibilityKind::public
+		else if visibility = Core::visibilityKind::protected then UML::VisibilityKind::protected
+		endif endif endif endif;
+}

@@ -11,7 +11,12 @@ package Classes {
 	}
 	
 	public class C specializes B {
-		private y: B;
+		private y: P.D;
+	}
+	
+	public package P {
+		public class D specializes B {
+		}
 	}
 
 }

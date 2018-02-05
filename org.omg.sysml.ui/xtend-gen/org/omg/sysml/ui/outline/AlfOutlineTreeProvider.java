@@ -3,7 +3,13 @@
  */
 package org.omg.sysml.ui.outline;
 
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.omg.sysml.kerml.core.ElementRecord;
+import org.omg.sysml.kerml.structure.Feature;
+import org.omg.sysml.kerml.structure.Generalization;
+import org.omg.sysml.kerml.structure.StructurePackage;
 
 /**
  * Customization of the default outline structure.
@@ -12,4 +18,43 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
  */
 @SuppressWarnings("all")
 public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
+  public String _text(final ElementRecord element) {
+    String _name = element.eClass().getName();
+    String _plus = (_name + " ");
+    String _xifexpression = null;
+    String _name_1 = element.getName();
+    boolean _tripleNotEquals = (_name_1 != null);
+    if (_tripleNotEquals) {
+      _xifexpression = element.getName();
+    } else {
+      _xifexpression = "";
+    }
+    return (_plus + _xifexpression);
+  }
+  
+  public boolean _isLeaf(final Feature feature) {
+    return false;
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
+    Image __image = this._image(feature.getDefiningType());
+    String _name = feature.getDefiningType().getName();
+    String _plus = ("definingType " + _name);
+    this.createEStructuralFeatureNode(parentNode, feature, 
+      StructurePackage.Literals.FEATURE__DEFINING_TYPE, __image, _plus, 
+      true);
+  }
+  
+  public boolean _isLeaf(final Generalization generalization) {
+    return (generalization == null);
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Generalization generalization) {
+    Image __image = this._image(generalization.getGeneral());
+    String _name = generalization.getGeneral().getName();
+    String _plus = ("general " + _name);
+    this.createEStructuralFeatureNode(parentNode, generalization, 
+      StructurePackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
+      true);
+  }
 }

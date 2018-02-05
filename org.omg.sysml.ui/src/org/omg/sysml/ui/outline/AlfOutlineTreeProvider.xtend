@@ -4,6 +4,11 @@
 package org.omg.sysml.ui.outline
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.omg.sysml.kerml.core.ElementRecord
+import org.omg.sysml.kerml.structure.Feature
+import org.omg.sysml.kerml.structure.StructurePackage
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.omg.sysml.kerml.structure.Generalization
 
 /**
  * Customization of the default outline structure.
@@ -11,5 +16,34 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
+
+	def String _text(ElementRecord element) {
+		element.eClass.name + ' ' +
+			if (element.name !== null) element.name else '' 
+	}
+	
+	def boolean _isLeaf(Feature feature) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Feature feature) {
+		createEStructuralFeatureNode(parentNode, feature, 
+			StructurePackage.Literals.FEATURE__DEFINING_TYPE, 
+			_image(feature.definingType), "definingType " + feature.definingType.name, 
+			true
+		)
+	}
+
+	def boolean _isLeaf(Generalization generalization) {
+		generalization === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
+		createEStructuralFeatureNode(parentNode, generalization, 
+			StructurePackage.Literals.GENERALIZATION__GENERAL, 
+			_image(generalization.general), "general " + generalization.general.name, 
+			true
+		)
+	}
 
 }

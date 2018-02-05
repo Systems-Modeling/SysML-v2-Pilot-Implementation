@@ -20,10 +20,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.omg.sysml.kerml.core.impl.ContainerImpl;
-
-import org.omg.sysml.kerml.core.visibilityKind;
-
 import org.omg.sysml.kerml.structure.Feature;
 import org.omg.sysml.kerml.structure.FeaturePathNode;
 import org.omg.sysml.kerml.structure.StructurePackage;
@@ -59,7 +55,7 @@ import org.omg.sysml.kerml.structure.StructurePackage;
  *
  * @generated
  */
-public class FeatureImpl extends ContainerImpl implements Feature {
+public class FeatureImpl extends org.omg.sysml.kerml.core.impl.ContainerImpl implements Feature {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -218,7 +214,7 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final visibilityKind METHOD_VISIBILITY_EDEFAULT = visibilityKind.PUBLIC;
+	protected static final org.omg.sysml.kerml.core.visibilityKind METHOD_VISIBILITY_EDEFAULT = org.omg.sysml.kerml.core.visibilityKind.PUBLIC;
 
 	/**
 	 * The cached value of the '{@link #getMethodVisibility() <em>Method Visibility</em>}' attribute.
@@ -228,7 +224,7 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected visibilityKind methodVisibility = METHOD_VISIBILITY_EDEFAULT;
+	protected org.omg.sysml.kerml.core.visibilityKind methodVisibility = METHOD_VISIBILITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getFeaturePath() <em>Feature Path</em>}' containment reference list.
@@ -517,7 +513,7 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public visibilityKind getMethodVisibility() {
+	public org.omg.sysml.kerml.core.visibilityKind getMethodVisibility() {
 		return methodVisibility;
 	}
 
@@ -526,8 +522,8 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMethodVisibility(visibilityKind newMethodVisibility) {
-		visibilityKind oldMethodVisibility = methodVisibility;
+	public void setMethodVisibility(org.omg.sysml.kerml.core.visibilityKind newMethodVisibility) {
+		org.omg.sysml.kerml.core.visibilityKind oldMethodVisibility = methodVisibility;
 		methodVisibility = newMethodVisibility == null ? METHOD_VISIBILITY_EDEFAULT : newMethodVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.FEATURE__METHOD_VISIBILITY, oldMethodVisibility, methodVisibility));
@@ -958,7 +954,7 @@ public class FeatureImpl extends ContainerImpl implements Feature {
 				setIsOrdered((Boolean)newValue);
 				return;
 			case StructurePackage.FEATURE__METHOD_VISIBILITY:
-				setMethodVisibility((visibilityKind)newValue);
+				setMethodVisibility((org.omg.sysml.kerml.core.visibilityKind)newValue);
 				return;
 			case StructurePackage.FEATURE__CONTEXT:
 				setContext((org.omg.sysml.kerml.structure.Class)newValue);

@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.kerml.structure;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Restricts</b></em>'.
@@ -21,7 +19,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface Restricts extends Relationship, Generalization {
+public interface Restricts extends org.omg.sysml.kerml.core.Relationship, Generalization {
 	/**
 	 * Returns the value of the '<em><b>Restricted</b></em>' reference.
 	 * <!-- begin-user-doc -->

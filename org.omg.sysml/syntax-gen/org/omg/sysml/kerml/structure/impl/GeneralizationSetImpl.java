@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.kerml.core.impl.RelationshipImpl;
-
 import org.omg.sysml.kerml.structure.Generalization;
 import org.omg.sysml.kerml.structure.GeneralizationSet;
 import org.omg.sysml.kerml.structure.StructurePackage;
@@ -28,7 +26,7 @@ import org.omg.sysml.kerml.structure.StructurePackage;
  *
  * @generated
  */
-public class GeneralizationSetImpl extends RelationshipImpl implements GeneralizationSet {
+public class GeneralizationSetImpl extends org.omg.sysml.kerml.core.impl.RelationshipImpl implements GeneralizationSet {
 	/**
 	 * The cached value of the '{@link #getComplete() <em>Complete</em>}' reference.
 	 * <!-- begin-user-doc -->

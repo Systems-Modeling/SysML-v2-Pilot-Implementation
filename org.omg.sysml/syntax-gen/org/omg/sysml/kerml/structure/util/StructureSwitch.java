@@ -7,10 +7,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.omg.sysml.kerml.core.Container;
-import org.omg.sysml.kerml.core.ElementRecord;
-import org.omg.sysml.kerml.core.Relationship;
-
 import org.omg.sysml.kerml.structure.Association;
 import org.omg.sysml.kerml.structure.Binding;
 import org.omg.sysml.kerml.structure.Connector;
@@ -504,7 +500,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementRecord(ElementRecord object) {
+	public T caseElementRecord(org.omg.sysml.kerml.core.ElementRecord object) {
 		return null;
 	}
 
@@ -519,7 +515,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseContainer(Container object) {
+	public T caseContainer(org.omg.sysml.kerml.core.Container object) {
 		return null;
 	}
 
@@ -534,7 +530,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRelationship(Relationship object) {
+	public T caseRelationship(org.omg.sysml.kerml.core.Relationship object) {
 		return null;
 	}
 

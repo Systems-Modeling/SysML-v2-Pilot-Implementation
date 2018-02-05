@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://www.openmbee.org/kerml/core" nsPrefix="core">
+  <eClassifiers xsi:type="ecore:EClass" name="ElementRecord">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentation" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
+        eType="#//ElementRecord" eOpposite="#//ElementRecord/ownedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationship" ordered="false"
+        upperBound="-1" eType="#//Relationship" derived="true" eOpposite="#//Relationship/related"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
+        eType="#//Container" derived="true" eOpposite="#//Container/ownedMember"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberOfNamespace" ordered="false"
+        upperBound="-1" eType="#//Container" derived="true" eOpposite="#//Container/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRelationship" ordered="false"
+        upperBound="-1" eType="#//Relationship" derived="true" eOpposite="#//Relationship/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRelationship" ordered="false"
+        upperBound="-1" eType="#//Relationship" derived="true" eOpposite="#//Relationship/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
+        upperBound="-1" eType="#//Comment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" ordered="false"
+        upperBound="-1" eType="#//ElementRecord" containment="true" eOpposite="#//ElementRecord/owner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//ElementRecord">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An object in the model that exists solely for the purposes of describing other objects within the model. The target of this description can be specified via the &quot;annotatedElement&quot; metaproperty."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
+        upperBound="-1" eType="#//ElementRecord"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Container"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//ElementRecord">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A basic object which asserts a &quot;namespace&quot; for a constituents of the model. Can &quot;own&quot; other ElementRecord's and Container's."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageVisibility" ordered="false"
+        lowerBound="1" eType="#//visibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" ordered="false"
+        upperBound="-1" eType="#//ElementRecord" derived="true" containment="true"
+        eOpposite="#//ElementRecord/namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
+        upperBound="-1" eType="#//ElementRecord" derived="true" eOpposite="#//ElementRecord/memberOfNamespace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//ElementRecord">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A type of ElementRecord which represents a link between to other ElementRecord's. This link is optionally directional by specifying a source and target."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="#//ElementRecord" eOpposite="#//ElementRecord/sourceRelationship"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
+        upperBound="2" eType="#//ElementRecord" derived="true" eOpposite="#//ElementRecord/relationship"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="#//ElementRecord" eOpposite="#//ElementRecord/targetRelationship"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="visibilityKind">
+    <eLiterals name="public"/>
+    <eLiterals name="private"/>
+    <eLiterals name="protected"/>
+    <eLiterals name="package"/>
+  </eClassifiers>
+</ecore:EPackage>

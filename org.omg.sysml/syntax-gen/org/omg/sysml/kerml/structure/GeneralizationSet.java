@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.kerml.structure;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Generalization Set</b></em>'.
@@ -20,7 +18,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface GeneralizationSet extends Relationship {
+public interface GeneralizationSet extends org.omg.sysml.kerml.core.Relationship {
 	/**
 	 * Returns the value of the '<em><b>Complete</b></em>' reference.
 	 * <!-- begin-user-doc -->

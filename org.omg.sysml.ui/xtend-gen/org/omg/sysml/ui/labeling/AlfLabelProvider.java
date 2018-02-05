@@ -6,6 +6,7 @@ package org.omg.sysml.ui.labeling;
 import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+import org.omg.sysml.kerml.core.ElementRecord;
 
 /**
  * Provides labels for EObjects.
@@ -17,5 +18,19 @@ public class AlfLabelProvider extends DefaultEObjectLabelProvider {
   @Inject
   public AlfLabelProvider(final AdapterFactoryLabelProvider delegate) {
     super(delegate);
+  }
+  
+  public String text(final ElementRecord element) {
+    String _name = element.eClass().getName();
+    String _plus = (_name + " ");
+    String _xifexpression = null;
+    String _name_1 = element.getName();
+    boolean _tripleNotEquals = (_name_1 != null);
+    if (_tripleNotEquals) {
+      _xifexpression = element.getName();
+    } else {
+      _xifexpression = "";
+    }
+    return (_plus + _xifexpression);
   }
 }

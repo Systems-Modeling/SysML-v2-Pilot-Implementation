@@ -42,7 +42,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_PackageDefinitionOrStub(context, (Container) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getPackageDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()
+						|| rule == grammarAccess.getPackageDefinitionRule()) {
 					sequence_PackageDefinition(context, (Container) semanticObject); 
 					return; 
 				}
@@ -55,7 +56,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ClassDeclaration(context, (org.omg.sysml.kerml.structure.Class) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getClassDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()
+						|| rule == grammarAccess.getClassDefinitionRule()) {
 					sequence_ClassDeclaration_ClassDefinition(context, (org.omg.sysml.kerml.structure.Class) semanticObject); 
 					return; 
 				}
@@ -92,6 +94,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     UnitDefinition returns Class
 	 *     ClassDefinition returns Class
 	 *
 	 * Constraint:
@@ -164,6 +167,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     UnitDefinition returns Container
 	 *     PackageDefinition returns Container
 	 *
 	 * Constraint:

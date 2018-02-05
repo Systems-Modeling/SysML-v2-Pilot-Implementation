@@ -25,6 +25,25 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
+	public class UnitDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnitDefinition");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPackageDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cClassDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		///* UNITS */ UnitDefinition core::Container:
+		//	PackageDefinition | ClassDefinition;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PackageDefinition | ClassDefinition
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PackageDefinition
+		public RuleCall getPackageDefinitionParserRuleCall_0() { return cPackageDefinitionParserRuleCall_0; }
+		
+		//ClassDefinition
+		public RuleCall getClassDefinitionParserRuleCall_1() { return cClassDefinitionParserRuleCall_1; }
+	}
 	public class PackageDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -176,12 +195,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization+)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		////	( 'namespace' namespace += [core::Container | QualifiedName] )?
+		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
 		////	( ^import += ImportDeclaration )*
 		//isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization+)?
 		public Group getGroup() { return cGroup; }
 		
-		////	( 'namespace' namespace += [core::Container | QualifiedName] )?
+		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
 		////	( ^import += ImportDeclaration )*
 		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
@@ -216,9 +235,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cGeneralClassCrossReference_0 = (CrossReference)cGeneralAssignment.eContents().get(0);
 		private final RuleCall cGeneralClassQualifiedNameParserRuleCall_0_1 = (RuleCall)cGeneralClassCrossReference_0.eContents().get(1);
 		
-		////SpecializationClause returns QualifiedNameList : 
-		////	'specializes' QualifiedNameList
-		////;
 		//Generalization str::Generalization:
 		//	general=[str::Class|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
@@ -373,13 +389,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		///* FEATURES */ FeatureDefinition str::Feature:
 		//	methodVisibility=VisibilityKind? name=Name ':'
-		//	// NOTE: Made type unidirectional; made definingType and refiningType optional.
+		//	// NOTE: (Made type unidirectional); made type and refiningType optional.
 		//	definingType=[str::Class|QualifiedName]
 		//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//	';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//methodVisibility=VisibilityKind? name=Name ':' // NOTE: Made type unidirectional; made definingType and refiningType optional.
+		//methodVisibility=VisibilityKind? name=Name ':' // NOTE: (Made type unidirectional); made type and refiningType optional.
 		//definingType=[str::Class|QualifiedName] //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//';'
 		public Group getGroup() { return cGroup; }
@@ -399,7 +415,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//// NOTE: Made type unidirectional; made definingType and refiningType optional.
+		//// NOTE: (Made type unidirectional); made type and refiningType optional.
 		//definingType=[str::Class|QualifiedName]
 		public Assignment getDefiningTypeAssignment_3() { return cDefiningTypeAssignment_3; }
 		
@@ -419,16 +435,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUNRESTRICTED_NAMETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		////FeatureDefinitionOrStub returns str::Feature : 
+		////FeatureDefinitionOrStub returns kerml::Feature : 
 		////  AttributeDefinition /*| OperationDefinitionOrStub*/
 		////;
 		////
 		/////* PROPERTIES */
-		////PropertyDefinition returns str::Feature : 
+		////PropertyDefinition returns kerml::Feature : 
 		////	PropertyDeclaration ';'
 		////;
 		////
-		////AttributeDefinition returns str::Feature : 
+		////AttributeDefinition returns kerml::Feature : 
 		////	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 		////;
 		////
@@ -478,24 +494,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//QualifiedName:
-		//	Name ('::' Name)*;
+		//	Name ('.' Name)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name ('::' Name)*
+		//Name ('.' Name)*
 		public Group getGroup() { return cGroup; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
 		
-		//('::' Name)*
+		//('.' Name)*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'::'
-		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
@@ -537,6 +553,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getProtectedProtectedKeyword_2_0() { return cProtectedProtectedKeyword_2_0; }
 	}
 	
+	private final UnitDefinitionElements pUnitDefinition;
 	private final PackageDefinitionElements pPackageDefinition;
 	private final PackageDefinitionOrStubElements pPackageDefinitionOrStub;
 	private final PackagedElementElements pPackagedElement;
@@ -568,6 +585,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	@Inject
 	public AlfGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pUnitDefinition = new UnitDefinitionElements();
 		this.pPackageDefinition = new PackageDefinitionElements();
 		this.pPackageDefinitionOrStub = new PackageDefinitionOrStubElements();
 		this.pPackagedElement = new PackagedElementElements();
@@ -617,6 +635,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 
+	
+	///* UNITS */ UnitDefinition core::Container:
+	//	PackageDefinition | ClassDefinition;
+	public UnitDefinitionElements getUnitDefinitionAccess() {
+		return pUnitDefinition;
+	}
+	
+	public ParserRule getUnitDefinitionRule() {
+		return getUnitDefinitionAccess().getRule();
+	}
 	
 	///* PACKAGES */ PackageDefinition core::Container:
 	//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
@@ -679,9 +707,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDeclarationAccess().getRule();
 	}
 	
-	////SpecializationClause returns QualifiedNameList : 
-	////	'specializes' QualifiedNameList
-	////;
 	//Generalization str::Generalization:
 	//	general=[str::Class|QualifiedName];
 	public GeneralizationElements getGeneralizationAccess() {
@@ -745,7 +770,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* FEATURES */ FeatureDefinition str::Feature:
 	//	methodVisibility=VisibilityKind? name=Name ':'
-	//	// NOTE: Made type unidirectional; made definingType and refiningType optional.
+	//	// NOTE: (Made type unidirectional); made type and refiningType optional.
 	//	definingType=[str::Class|QualifiedName]
 	//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	//	';';
@@ -757,16 +782,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureDefinitionAccess().getRule();
 	}
 	
-	////FeatureDefinitionOrStub returns str::Feature : 
+	////FeatureDefinitionOrStub returns kerml::Feature : 
 	////  AttributeDefinition /*| OperationDefinitionOrStub*/
 	////;
 	////
 	/////* PROPERTIES */
-	////PropertyDefinition returns str::Feature : 
+	////PropertyDefinition returns kerml::Feature : 
 	////	PropertyDeclaration ';'
 	////;
 	////
-	////AttributeDefinition returns str::Feature : 
+	////AttributeDefinition returns kerml::Feature : 
 	////	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 	////;
 	////
@@ -809,7 +834,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//QualifiedName:
-	//	Name ('::' Name)*;
+	//	Name ('.' Name)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}

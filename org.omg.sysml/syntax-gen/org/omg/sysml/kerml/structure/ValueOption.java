@@ -4,8 +4,6 @@ package org.omg.sysml.kerml.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Value Option</b></em>'.
@@ -23,7 +21,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface ValueOption extends Relationship, org.omg.sysml.kerml.structure.Class {
+public interface ValueOption extends org.omg.sysml.kerml.core.Relationship, org.omg.sysml.kerml.structure.Class {
 	/**
 	 * Returns the value of the '<em><b>Option</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Class}.

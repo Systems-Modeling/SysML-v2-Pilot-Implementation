@@ -31,6 +31,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getUnitDefinitionAccess().getAlternatives(), "rule__UnitDefinition__Alternatives");
 					put(grammarAccess.getPackagedElementDefinitionAccess().getAlternatives(), "rule__PackagedElementDefinition__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getVisibilityKindAccess().getAlternatives(), "rule__VisibilityKind__Alternatives");

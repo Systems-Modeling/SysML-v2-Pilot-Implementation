@@ -7,11 +7,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated KerML-Structure -->
+      <!-- @generated KerML-Core -->
       <package
             uri="http://www.openmbee.org/kerml/core"
             class="org.omg.sysml.kerml.core.CorePackage"
-            genModel="model/KerML-Structure.genmodel"/>
+            genModel="model/KerML-Core.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

@@ -22,13 +22,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.omg.sysml.kerml.core.CorePackage;
-import org.omg.sysml.kerml.core.ElementRecord;
-
-import org.omg.sysml.kerml.core.impl.RelationshipImpl;
-
-import org.omg.sysml.kerml.core.visibilityKind;
-
 import org.omg.sysml.kerml.structure.AggregationKind;
 import org.omg.sysml.kerml.structure.Association;
 import org.omg.sysml.kerml.structure.Connector;
@@ -95,7 +88,7 @@ import org.omg.sysml.kerml.structure.ValueOption;
  *
  * @generated
  */
-public class ConnectorImpl extends RelationshipImpl implements Connector {
+public class ConnectorImpl extends org.omg.sysml.kerml.core.impl.RelationshipImpl implements Connector {
 	/**
 	 * The default value of the '{@link #getPackageVisibility() <em>Package Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -104,7 +97,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final visibilityKind PACKAGE_VISIBILITY_EDEFAULT = visibilityKind.PUBLIC;
+	protected static final org.omg.sysml.kerml.core.visibilityKind PACKAGE_VISIBILITY_EDEFAULT = org.omg.sysml.kerml.core.visibilityKind.PUBLIC;
 
 	/**
 	 * The cached value of the '{@link #getPackageVisibility() <em>Package Visibility</em>}' attribute.
@@ -114,7 +107,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected visibilityKind packageVisibility = PACKAGE_VISIBILITY_EDEFAULT;
+	protected org.omg.sysml.kerml.core.visibilityKind packageVisibility = PACKAGE_VISIBILITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedMember() <em>Owned Member</em>}' containment reference list.
@@ -124,7 +117,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ElementRecord> ownedMember;
+	protected EList<org.omg.sysml.kerml.core.ElementRecord> ownedMember;
 
 	/**
 	 * The cached value of the '{@link #getMember() <em>Member</em>}' reference list.
@@ -134,7 +127,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ElementRecord> member;
+	protected EList<org.omg.sysml.kerml.core.ElementRecord> member;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference list.
@@ -294,7 +287,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final visibilityKind METHOD_VISIBILITY_EDEFAULT = visibilityKind.PUBLIC;
+	protected static final org.omg.sysml.kerml.core.visibilityKind METHOD_VISIBILITY_EDEFAULT = org.omg.sysml.kerml.core.visibilityKind.PUBLIC;
 
 	/**
 	 * The cached value of the '{@link #getMethodVisibility() <em>Method Visibility</em>}' attribute.
@@ -304,7 +297,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected visibilityKind methodVisibility = METHOD_VISIBILITY_EDEFAULT;
+	protected org.omg.sysml.kerml.core.visibilityKind methodVisibility = METHOD_VISIBILITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getFeaturePath() <em>Feature Path</em>}' containment reference list.
@@ -720,7 +713,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public visibilityKind getPackageVisibility() {
+	public org.omg.sysml.kerml.core.visibilityKind getPackageVisibility() {
 		return packageVisibility;
 	}
 
@@ -729,8 +722,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackageVisibility(visibilityKind newPackageVisibility) {
-		visibilityKind oldPackageVisibility = packageVisibility;
+	public void setPackageVisibility(org.omg.sysml.kerml.core.visibilityKind newPackageVisibility) {
+		org.omg.sysml.kerml.core.visibilityKind oldPackageVisibility = packageVisibility;
 		packageVisibility = newPackageVisibility == null ? PACKAGE_VISIBILITY_EDEFAULT : newPackageVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CONNECTOR__PACKAGE_VISIBILITY, oldPackageVisibility, packageVisibility));
@@ -741,9 +734,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ElementRecord> getOwnedMember() {
+	public EList<org.omg.sysml.kerml.core.ElementRecord> getOwnedMember() {
 		if (ownedMember == null) {
-			ownedMember = new EObjectContainmentWithInverseEList<ElementRecord>(ElementRecord.class, this, StructurePackage.CONNECTOR__OWNED_MEMBER, CorePackage.ELEMENT_RECORD__NAMESPACE);
+			ownedMember = new EObjectContainmentWithInverseEList<org.omg.sysml.kerml.core.ElementRecord>(org.omg.sysml.kerml.core.ElementRecord.class, this, StructurePackage.CONNECTOR__OWNED_MEMBER, org.omg.sysml.kerml.core.CorePackage.ELEMENT_RECORD__NAMESPACE);
 		}
 		return ownedMember;
 	}
@@ -753,9 +746,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ElementRecord> getMember() {
+	public EList<org.omg.sysml.kerml.core.ElementRecord> getMember() {
 		if (member == null) {
-			member = new EObjectWithInverseResolvingEList.ManyInverse<ElementRecord>(ElementRecord.class, this, StructurePackage.CONNECTOR__MEMBER, CorePackage.ELEMENT_RECORD__MEMBER_OF_NAMESPACE);
+			member = new EObjectWithInverseResolvingEList.ManyInverse<org.omg.sysml.kerml.core.ElementRecord>(org.omg.sysml.kerml.core.ElementRecord.class, this, StructurePackage.CONNECTOR__MEMBER, org.omg.sysml.kerml.core.CorePackage.ELEMENT_RECORD__MEMBER_OF_NAMESPACE);
 		}
 		return member;
 	}
@@ -968,7 +961,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public visibilityKind getMethodVisibility() {
+	public org.omg.sysml.kerml.core.visibilityKind getMethodVisibility() {
 		return methodVisibility;
 	}
 
@@ -977,8 +970,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMethodVisibility(visibilityKind newMethodVisibility) {
-		visibilityKind oldMethodVisibility = methodVisibility;
+	public void setMethodVisibility(org.omg.sysml.kerml.core.visibilityKind newMethodVisibility) {
+		org.omg.sysml.kerml.core.visibilityKind oldMethodVisibility = methodVisibility;
 		methodVisibility = newMethodVisibility == null ? METHOD_VISIBILITY_EDEFAULT : newMethodVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CONNECTOR__METHOD_VISIBILITY, oldMethodVisibility, methodVisibility));
@@ -1994,15 +1987,15 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StructurePackage.CONNECTOR__PACKAGE_VISIBILITY:
-				setPackageVisibility((visibilityKind)newValue);
+				setPackageVisibility((org.omg.sysml.kerml.core.visibilityKind)newValue);
 				return;
 			case StructurePackage.CONNECTOR__OWNED_MEMBER:
 				getOwnedMember().clear();
-				getOwnedMember().addAll((Collection<? extends ElementRecord>)newValue);
+				getOwnedMember().addAll((Collection<? extends org.omg.sysml.kerml.core.ElementRecord>)newValue);
 				return;
 			case StructurePackage.CONNECTOR__MEMBER:
 				getMember().clear();
-				getMember().addAll((Collection<? extends ElementRecord>)newValue);
+				getMember().addAll((Collection<? extends org.omg.sysml.kerml.core.ElementRecord>)newValue);
 				return;
 			case StructurePackage.CONNECTOR__TYPE:
 				getType().clear();
@@ -2038,7 +2031,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				setIsOrdered((Boolean)newValue);
 				return;
 			case StructurePackage.CONNECTOR__METHOD_VISIBILITY:
-				setMethodVisibility((visibilityKind)newValue);
+				setMethodVisibility((org.omg.sysml.kerml.core.visibilityKind)newValue);
 				return;
 			case StructurePackage.CONNECTOR__CONTEXT:
 				setContext((org.omg.sysml.kerml.structure.Class)newValue);
@@ -2387,9 +2380,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.omg.sysml.kerml.core.Container.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.CONNECTOR__PACKAGE_VISIBILITY: return CorePackage.CONTAINER__PACKAGE_VISIBILITY;
-				case StructurePackage.CONNECTOR__OWNED_MEMBER: return CorePackage.CONTAINER__OWNED_MEMBER;
-				case StructurePackage.CONNECTOR__MEMBER: return CorePackage.CONTAINER__MEMBER;
+				case StructurePackage.CONNECTOR__PACKAGE_VISIBILITY: return org.omg.sysml.kerml.core.CorePackage.CONTAINER__PACKAGE_VISIBILITY;
+				case StructurePackage.CONNECTOR__OWNED_MEMBER: return org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_MEMBER;
+				case StructurePackage.CONNECTOR__MEMBER: return org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER;
 				default: return -1;
 			}
 		}
@@ -2445,9 +2438,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.omg.sysml.kerml.core.Container.class) {
 			switch (baseFeatureID) {
-				case CorePackage.CONTAINER__PACKAGE_VISIBILITY: return StructurePackage.CONNECTOR__PACKAGE_VISIBILITY;
-				case CorePackage.CONTAINER__OWNED_MEMBER: return StructurePackage.CONNECTOR__OWNED_MEMBER;
-				case CorePackage.CONTAINER__MEMBER: return StructurePackage.CONNECTOR__MEMBER;
+				case org.omg.sysml.kerml.core.CorePackage.CONTAINER__PACKAGE_VISIBILITY: return StructurePackage.CONNECTOR__PACKAGE_VISIBILITY;
+				case org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_MEMBER: return StructurePackage.CONNECTOR__OWNED_MEMBER;
+				case org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER: return StructurePackage.CONNECTOR__MEMBER;
 				default: return -1;
 			}
 		}

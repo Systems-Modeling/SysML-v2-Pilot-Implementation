@@ -18,10 +18,6 @@ import org.omg.sysml.kerml.core.Model;
 import org.omg.sysml.kerml.core.Relationship;
 import org.omg.sysml.kerml.core.visibilityKind;
 
-import org.omg.sysml.kerml.structure.StructurePackage;
-
-import org.omg.sysml.kerml.structure.impl.StructurePackageImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -117,16 +113,11 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theCorePackage.createPackageContents();
-		theStructurePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theCorePackage.initializePackageContents();
-		theStructurePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theCorePackage.freeze();

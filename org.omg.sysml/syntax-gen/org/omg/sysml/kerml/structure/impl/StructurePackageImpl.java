@@ -10,10 +10,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.omg.sysml.kerml.core.CorePackage;
-
-import org.omg.sysml.kerml.core.impl.CorePackageImpl;
-
 import org.omg.sysml.kerml.structure.AggregationKind;
 import org.omg.sysml.kerml.structure.Association;
 import org.omg.sysml.kerml.structure.Binding;
@@ -221,16 +217,14 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
+		// Initialize simple dependencies
+		org.omg.sysml.kerml.core.CorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theStructurePackage.createPackageContents();
-		theCorePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStructurePackage.initializePackageContents();
-		theCorePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStructurePackage.freeze();
@@ -1393,7 +1387,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		CorePackage theCorePackage = (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
+		org.omg.sysml.kerml.core.CorePackage theCorePackage = (org.omg.sysml.kerml.core.CorePackage)EPackage.Registry.INSTANCE.getEPackage(org.omg.sysml.kerml.core.CorePackage.eNS_URI);
 
 		// Create type parameters
 

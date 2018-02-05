@@ -4,8 +4,6 @@ package org.omg.sysml.kerml.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Connector</b></em>'.
@@ -31,7 +29,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface Connector extends Relationship, StructuredFeature {
+public interface Connector extends org.omg.sysml.kerml.core.Relationship, StructuredFeature {
 	/**
 	 * Returns the value of the '<em><b>Source Path</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.StructuredFeature}.

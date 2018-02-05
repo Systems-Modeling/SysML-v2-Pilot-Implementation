@@ -44,7 +44,7 @@ import org.omg.sysml.services.AlfGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "PackageDefinition";
+    	return "UnitDefinition";
    	}
 
    	@Override
@@ -60,6 +60,42 @@ import org.omg.sysml.services.AlfGrammarAccess;
         appendSkippedTokens();
     }
 }
+
+// Entry rule entryRuleUnitDefinition
+entryRuleUnitDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUnitDefinitionRule()); }
+	iv_ruleUnitDefinition=ruleUnitDefinition
+	{ $current=$iv_ruleUnitDefinition.current; }
+	EOF;
+
+// Rule UnitDefinition
+ruleUnitDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getUnitDefinitionAccess().getPackageDefinitionParserRuleCall_0());
+		}
+		this_PackageDefinition_0=rulePackageDefinition
+		{
+			$current = $this_PackageDefinition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getUnitDefinitionAccess().getClassDefinitionParserRuleCall_1());
+		}
+		this_ClassDefinition_1=ruleClassDefinition
+		{
+			$current = $this_ClassDefinition_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
 
 // Entry rule entryRulePackageDefinition
 entryRulePackageDefinition returns [EObject current=null]:
@@ -418,6 +454,60 @@ ruleGeneralization returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleClassDefinition
+entryRuleClassDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassDefinitionRule()); }
+	iv_ruleClassDefinition=ruleClassDefinition
+	{ $current=$iv_ruleClassDefinition.current; }
+	EOF;
+
+// Rule ClassDefinition
+ruleClassDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getClassDefinitionAccess().getClassDeclarationParserRuleCall_0());
+		}
+		this_ClassDeclaration_0=ruleClassDeclaration
+		{
+			$current = $this_ClassDeclaration_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getClassDefinitionAccess().getLeftCurlyBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getClassDefinitionAccess().getOwnedFeatureClassMemberParserRuleCall_2_0());
+				}
+				lv_ownedFeature_2_0=ruleClassMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClassDefinitionRule());
+					}
+					add(
+						$current,
+						"ownedFeature",
+						lv_ownedFeature_2_0,
+						"org.omg.sysml.Alf.ClassMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_3='}'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getClassDefinitionAccess().getRightCurlyBracketKeyword_3());
+		}
+	)
+;
+
 // Entry rule entryRuleClassDefinitionOrStub
 entryRuleClassDefinitionOrStub returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getClassDefinitionOrStubRule()); }
@@ -712,10 +802,10 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 			afterParserOrEnumRuleCall();
 		}
 		(
-			kw='::'
+			kw='.'
 			{
 				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0());
+				newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0());
 			}
 			{
 				newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1());

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="http://www.openmbee.org/kerml/core" targetURI="platform:/resource/org.omg.sysml/model/KerML-Core.ecore"/>
+  <mapping sourceURI="http://www.openmbee.org/kerml/str" targetURI="platform:/resource/org.omg.sysml/model/KerML-Structure.ecore"/>
+</uriMap:MappingContainer>

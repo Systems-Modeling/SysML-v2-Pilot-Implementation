@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.omg.sysml.kerml.core.impl.ContainerImpl;
-
 import org.omg.sysml.kerml.structure.Feature;
 import org.omg.sysml.kerml.structure.Generalization;
 import org.omg.sysml.kerml.structure.StructurePackage;
@@ -47,7 +45,7 @@ import org.omg.sysml.kerml.structure.StructurePackage;
  *
  * @generated
  */
-public class ClassImpl extends ContainerImpl implements org.omg.sysml.kerml.structure.Class {
+public class ClassImpl extends org.omg.sysml.kerml.core.impl.ContainerImpl implements org.omg.sysml.kerml.structure.Class {
 	/**
 	 * The cached value of the '{@link #getSpecificClassifier() <em>Specific Classifier</em>}' reference list.
 	 * <!-- begin-user-doc -->

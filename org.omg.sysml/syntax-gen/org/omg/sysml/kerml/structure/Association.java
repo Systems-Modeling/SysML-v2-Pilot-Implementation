@@ -4,8 +4,6 @@ package org.omg.sysml.kerml.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Association</b></em>'.
@@ -28,7 +26,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface Association extends Relationship, StructuredClass {
+public interface Association extends org.omg.sysml.kerml.core.Relationship, StructuredClass {
 	/**
 	 * Returns the value of the '<em><b>Target End Property</b></em>' reference.
 	 * <!-- begin-user-doc -->

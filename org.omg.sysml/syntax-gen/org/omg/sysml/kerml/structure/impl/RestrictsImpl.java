@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.omg.sysml.kerml.core.impl.RelationshipImpl;
 
 import org.omg.sysml.kerml.structure.DataType;
 import org.omg.sysml.kerml.structure.Generalization;
@@ -35,7 +34,7 @@ import org.omg.sysml.kerml.structure.ValueRestriction;
  *
  * @generated
  */
-public class RestrictsImpl extends RelationshipImpl implements Restricts {
+public class RestrictsImpl extends org.omg.sysml.kerml.core.impl.RelationshipImpl implements Restricts {
 	/**
 	 * The cached value of the '{@link #getGeneral() <em>General</em>}' reference.
 	 * <!-- begin-user-doc -->

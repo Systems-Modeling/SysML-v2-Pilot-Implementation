@@ -12,6 +12,11 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.openmbee.org/kerml/core" as core
 import "http://www.openmbee.org/kerml/str" as str
 
+/* UNITS */
+UnitDefinition returns core::Container:
+	PackageDefinition | ClassDefinition
+;
+
 /* PACKAGES */
 PackageDefinition returns core::Container: 
 	'package' name = Name '{' ( ownedMember += PackagedElement )* '}' 
@@ -41,18 +46,13 @@ ClassifierDefinitionOrStub returns str::Class:
 
 /* CLASSES */
 ClassDeclaration returns str::Class : 
-//	( 'namespace' namespace += [core::Container | QualifiedName] )?
+//	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
 //	( ^import += ImportDeclaration )*
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-//  ( specialization = SpecializationClause )?
 	// NOTE: Made generalization a containment reference.
 	( 'specializes' ( generalization += Generalization )+ )?
 ;
-
-//SpecializationClause returns QualifiedNameList : 
-//	'specializes' QualifiedNameList
-//;
 
 Generalization returns str::Generalization :
 	// NOTE: Made Relationship::related optional.
@@ -87,22 +87,22 @@ enum VisibilityKind returns core::visibilityKind :
 /* FEATURES */
 FeatureDefinition returns str::Feature :
 	( methodVisibility = VisibilityKind )? name = Name ':' 
-	// NOTE: Made type unidirectional; made definingType and refiningType optional.
+	// NOTE: (Made type unidirectional); made type and refiningType optional.
 	definingType = [str::Class | QualifiedName]
 //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	';'
 ;
 
-//FeatureDefinitionOrStub returns str::Feature : 
+//FeatureDefinitionOrStub returns kerml::Feature : 
 //  AttributeDefinition /*| OperationDefinitionOrStub*/
 //;
 //
 ///* PROPERTIES */
-//PropertyDefinition returns str::Feature : 
+//PropertyDefinition returns kerml::Feature : 
 //	PropertyDeclaration ';'
 //;
 //
-//AttributeDefinition returns str::Feature : 
+//AttributeDefinition returns kerml::Feature : 
 //	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 //;
 //
@@ -142,7 +142,7 @@ Name :
 ;
 
 QualifiedName :
-	Name ( '::' Name)*
+	Name ( '.' Name)*
 ;
 
 /****************

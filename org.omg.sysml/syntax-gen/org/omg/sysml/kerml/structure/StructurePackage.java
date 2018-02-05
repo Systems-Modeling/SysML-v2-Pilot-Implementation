@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.omg.sysml.kerml.core.CorePackage;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -76,7 +74,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DOCUMENTATION = CorePackage.CONTAINER__DOCUMENTATION;
+	int CLASS__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.CONTAINER__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -85,7 +83,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNER = CorePackage.CONTAINER__OWNER;
+	int CLASS__OWNER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -94,7 +92,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__TITLE = CorePackage.CONTAINER__TITLE;
+	int CLASS__TITLE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -103,7 +101,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NAME = CorePackage.CONTAINER__NAME;
+	int CLASS__NAME = org.omg.sysml.kerml.core.CorePackage.CONTAINER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -112,7 +110,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__RELATIONSHIP = CorePackage.CONTAINER__RELATIONSHIP;
+	int CLASS__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -121,7 +119,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NAMESPACE = CorePackage.CONTAINER__NAMESPACE;
+	int CLASS__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -130,7 +128,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__MEMBER_OF_NAMESPACE = CorePackage.CONTAINER__MEMBER_OF_NAMESPACE;
+	int CLASS__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -139,7 +137,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SOURCE_RELATIONSHIP = CorePackage.CONTAINER__SOURCE_RELATIONSHIP;
+	int CLASS__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -148,7 +146,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__TARGET_RELATIONSHIP = CorePackage.CONTAINER__TARGET_RELATIONSHIP;
+	int CLASS__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -157,7 +155,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_COMMENT = CorePackage.CONTAINER__OWNED_COMMENT;
+	int CLASS__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -166,7 +164,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_ELEMENT = CorePackage.CONTAINER__OWNED_ELEMENT;
+	int CLASS__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Package Visibility</b></em>' attribute.
@@ -175,7 +173,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__PACKAGE_VISIBILITY = CorePackage.CONTAINER__PACKAGE_VISIBILITY;
+	int CLASS__PACKAGE_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.CONTAINER__PACKAGE_VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
@@ -184,7 +182,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_MEMBER = CorePackage.CONTAINER__OWNED_MEMBER;
+	int CLASS__OWNED_MEMBER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -193,7 +191,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__MEMBER = CorePackage.CONTAINER__MEMBER;
+	int CLASS__MEMBER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Specific Classifier</b></em>' reference list.
@@ -202,7 +200,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SPECIFIC_CLASSIFIER = CorePackage.CONTAINER_FEATURE_COUNT + 0;
+	int CLASS__SPECIFIC_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>General Classifier</b></em>' reference list.
@@ -211,7 +209,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__GENERAL_CLASSIFIER = CorePackage.CONTAINER_FEATURE_COUNT + 1;
+	int CLASS__GENERAL_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' containment reference list.
@@ -220,7 +218,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 2;
+	int CLASS__OWNED_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -229,7 +227,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__IS_ABSTRACT = CorePackage.CONTAINER_FEATURE_COUNT + 3;
+	int CLASS__IS_ABSTRACT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -238,7 +236,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INHERITED_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 4;
+	int CLASS__INHERITED_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Types Feature</b></em>' reference list.
@@ -247,7 +245,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__TYPES_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 5;
+	int CLASS__TYPES_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -256,7 +254,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 6;
+	int CLASS__FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Instance Of</b></em>' reference.
@@ -265,7 +263,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INSTANCE_OF = CorePackage.CONTAINER_FEATURE_COUNT + 7;
+	int CLASS__INSTANCE_OF = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -274,7 +272,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__GENERALIZATION = CorePackage.CONTAINER_FEATURE_COUNT + 8;
+	int CLASS__GENERALIZATION = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Nested Feature Of Class</b></em>' containment reference list.
@@ -283,7 +281,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED_FEATURE_OF_CLASS = CorePackage.CONTAINER_FEATURE_COUNT + 9;
+	int CLASS__NESTED_FEATURE_OF_CLASS = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -292,7 +290,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = CorePackage.CONTAINER_FEATURE_COUNT + 10;
+	int CLASS_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -301,7 +299,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = CorePackage.CONTAINER_OPERATION_COUNT + 0;
+	int CLASS_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.AssociationImpl <em>Association</em>}' class.
@@ -320,7 +318,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int ASSOCIATION__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -329,7 +327,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int ASSOCIATION__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -338,7 +336,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int ASSOCIATION__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -347,7 +345,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__NAME = CorePackage.RELATIONSHIP__NAME;
+	int ASSOCIATION__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -356,7 +354,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int ASSOCIATION__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -365,7 +363,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int ASSOCIATION__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -374,7 +372,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int ASSOCIATION__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -383,7 +381,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int ASSOCIATION__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -392,7 +390,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int ASSOCIATION__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -401,7 +399,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int ASSOCIATION__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -410,7 +408,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int ASSOCIATION__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -419,7 +417,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int ASSOCIATION__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -428,7 +426,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int ASSOCIATION__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -437,7 +435,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int ASSOCIATION__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Package Visibility</b></em>' attribute.
@@ -446,7 +444,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PACKAGE_VISIBILITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int ASSOCIATION__PACKAGE_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
@@ -455,7 +453,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int ASSOCIATION__OWNED_MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -464,7 +462,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int ASSOCIATION__MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Specific Classifier</b></em>' reference list.
@@ -473,7 +471,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SPECIFIC_CLASSIFIER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+	int ASSOCIATION__SPECIFIC_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>General Classifier</b></em>' reference list.
@@ -482,7 +480,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__GENERAL_CLASSIFIER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
+	int ASSOCIATION__GENERAL_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' containment reference list.
@@ -491,7 +489,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
+	int ASSOCIATION__OWNED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -500,7 +498,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__IS_ABSTRACT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
+	int ASSOCIATION__IS_ABSTRACT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -509,7 +507,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INHERITED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
+	int ASSOCIATION__INHERITED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Types Feature</b></em>' reference list.
@@ -518,7 +516,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TYPES_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
+	int ASSOCIATION__TYPES_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -527,7 +525,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
+	int ASSOCIATION__FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Instance Of</b></em>' reference.
@@ -536,7 +534,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INSTANCE_OF = CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
+	int ASSOCIATION__INSTANCE_OF = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -545,7 +543,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__GENERALIZATION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
+	int ASSOCIATION__GENERALIZATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Nested Feature Of Class</b></em>' containment reference list.
@@ -554,7 +552,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__NESTED_FEATURE_OF_CLASS = CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
+	int ASSOCIATION__NESTED_FEATURE_OF_CLASS = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' containment reference list.
@@ -563,7 +561,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OUTPUT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
+	int ASSOCIATION__OUTPUT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' containment reference list.
@@ -572,7 +570,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INPUT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
+	int ASSOCIATION__INPUT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Required Property</b></em>' reference list.
@@ -581,7 +579,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__REQUIRED_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
+	int ASSOCIATION__REQUIRED_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Provided Property</b></em>' containment reference list.
@@ -590,7 +588,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PROVIDED_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 16;
+	int ASSOCIATION__PROVIDED_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Is Encapsulated</b></em>' attribute.
@@ -599,7 +597,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__IS_ENCAPSULATED = CorePackage.RELATIONSHIP_FEATURE_COUNT + 17;
+	int ASSOCIATION__IS_ENCAPSULATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Conjugate</b></em>' reference.
@@ -608,7 +606,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__CONJUGATE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 18;
+	int ASSOCIATION__CONJUGATE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Owned Connector</b></em>' containment reference list.
@@ -617,7 +615,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_CONNECTOR = CorePackage.RELATIONSHIP_FEATURE_COUNT + 19;
+	int ASSOCIATION__OWNED_CONNECTOR = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Owned Structured Feature</b></em>' containment reference list.
@@ -626,7 +624,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_STRUCTURED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 20;
+	int ASSOCIATION__OWNED_STRUCTURED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Types Property</b></em>' reference list.
@@ -635,7 +633,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TYPES_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 21;
+	int ASSOCIATION__TYPES_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Blind Property</b></em>' reference list.
@@ -644,7 +642,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__BLIND_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 22;
+	int ASSOCIATION__BLIND_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Port Property</b></em>' containment reference list.
@@ -653,7 +651,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PORT_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 23;
+	int ASSOCIATION__PORT_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Proxy Port</b></em>' containment reference list.
@@ -662,7 +660,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PROXY_PORT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 24;
+	int ASSOCIATION__PROXY_PORT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Self Port</b></em>' containment reference list.
@@ -671,7 +669,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SELF_PORT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 25;
+	int ASSOCIATION__SELF_PORT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Full Port</b></em>' containment reference list.
@@ -680,7 +678,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__FULL_PORT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 26;
+	int ASSOCIATION__FULL_PORT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Interaction Participant</b></em>' reference list.
@@ -689,7 +687,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INTERACTION_PARTICIPANT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 27;
+	int ASSOCIATION__INTERACTION_PARTICIPANT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Target End Property</b></em>' reference.
@@ -698,7 +696,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET_END_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 28;
+	int ASSOCIATION__TARGET_END_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Target Participant Property</b></em>' containment reference.
@@ -707,7 +705,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET_PARTICIPANT_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 29;
+	int ASSOCIATION__TARGET_PARTICIPANT_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Source End Property</b></em>' reference.
@@ -716,7 +714,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE_END_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 30;
+	int ASSOCIATION__SOURCE_END_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Source Participant Property</b></em>' containment reference.
@@ -725,7 +723,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE_PARTICIPANT_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 31;
+	int ASSOCIATION__SOURCE_PARTICIPANT_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Participant Property</b></em>' reference list.
@@ -734,7 +732,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PARTICIPANT_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 32;
+	int ASSOCIATION__PARTICIPANT_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>End Property</b></em>' reference list.
@@ -743,7 +741,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__END_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 33;
+	int ASSOCIATION__END_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Types Connector</b></em>' reference list.
@@ -752,7 +750,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TYPES_CONNECTOR = CorePackage.RELATIONSHIP_FEATURE_COUNT + 34;
+	int ASSOCIATION__TYPES_CONNECTOR = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 34;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -761,7 +759,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 35;
+	int ASSOCIATION_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 35;
 
 	/**
 	 * The number of operations of the '<em>Association</em>' class.
@@ -770,7 +768,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int ASSOCIATION_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.FeatureImpl <em>Feature</em>}' class.
@@ -789,7 +787,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__DOCUMENTATION = CorePackage.CONTAINER__DOCUMENTATION;
+	int FEATURE__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.CONTAINER__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -798,7 +796,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNER = CorePackage.CONTAINER__OWNER;
+	int FEATURE__OWNER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -807,7 +805,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__TITLE = CorePackage.CONTAINER__TITLE;
+	int FEATURE__TITLE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -816,7 +814,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NAME = CorePackage.CONTAINER__NAME;
+	int FEATURE__NAME = org.omg.sysml.kerml.core.CorePackage.CONTAINER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -825,7 +823,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__RELATIONSHIP = CorePackage.CONTAINER__RELATIONSHIP;
+	int FEATURE__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -834,7 +832,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NAMESPACE = CorePackage.CONTAINER__NAMESPACE;
+	int FEATURE__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -843,7 +841,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__MEMBER_OF_NAMESPACE = CorePackage.CONTAINER__MEMBER_OF_NAMESPACE;
+	int FEATURE__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -852,7 +850,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__SOURCE_RELATIONSHIP = CorePackage.CONTAINER__SOURCE_RELATIONSHIP;
+	int FEATURE__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -861,7 +859,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__TARGET_RELATIONSHIP = CorePackage.CONTAINER__TARGET_RELATIONSHIP;
+	int FEATURE__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.CONTAINER__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -870,7 +868,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_COMMENT = CorePackage.CONTAINER__OWNED_COMMENT;
+	int FEATURE__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -879,7 +877,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_ELEMENT = CorePackage.CONTAINER__OWNED_ELEMENT;
+	int FEATURE__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Package Visibility</b></em>' attribute.
@@ -888,7 +886,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__PACKAGE_VISIBILITY = CorePackage.CONTAINER__PACKAGE_VISIBILITY;
+	int FEATURE__PACKAGE_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.CONTAINER__PACKAGE_VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
@@ -897,7 +895,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_MEMBER = CorePackage.CONTAINER__OWNED_MEMBER;
+	int FEATURE__OWNED_MEMBER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -906,7 +904,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__MEMBER = CorePackage.CONTAINER__MEMBER;
+	int FEATURE__MEMBER = org.omg.sysml.kerml.core.CorePackage.CONTAINER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -915,7 +913,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__TYPE = CorePackage.CONTAINER_FEATURE_COUNT + 0;
+	int FEATURE__TYPE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -924,7 +922,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__UPPER = CorePackage.CONTAINER_FEATURE_COUNT + 1;
+	int FEATURE__UPPER = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -933,7 +931,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__LOWER = CorePackage.CONTAINER_FEATURE_COUNT + 2;
+	int FEATURE__LOWER = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -942,7 +940,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__CLASS = CorePackage.CONTAINER_FEATURE_COUNT + 3;
+	int FEATURE__CLASS = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Feature</b></em>' reference list.
@@ -951,7 +949,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__REDEFINED_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 4;
+	int FEATURE__REDEFINED_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Subsetted Feature</b></em>' reference list.
@@ -960,7 +958,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__SUBSETTED_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 5;
+	int FEATURE__SUBSETTED_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -969,7 +967,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_DERIVED = CorePackage.CONTAINER_FEATURE_COUNT + 6;
+	int FEATURE__IS_DERIVED = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -978,7 +976,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_UNIQUE = CorePackage.CONTAINER_FEATURE_COUNT + 7;
+	int FEATURE__IS_UNIQUE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -987,7 +985,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_READ_ONLY = CorePackage.CONTAINER_FEATURE_COUNT + 8;
+	int FEATURE__IS_READ_ONLY = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -996,7 +994,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_ORDERED = CorePackage.CONTAINER_FEATURE_COUNT + 9;
+	int FEATURE__IS_ORDERED = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Method Visibility</b></em>' attribute.
@@ -1005,7 +1003,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__METHOD_VISIBILITY = CorePackage.CONTAINER_FEATURE_COUNT + 10;
+	int FEATURE__METHOD_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' container reference.
@@ -1014,7 +1012,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__CONTEXT = CorePackage.CONTAINER_FEATURE_COUNT + 11;
+	int FEATURE__CONTEXT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Feature Path</b></em>' containment reference list.
@@ -1023,7 +1021,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURE_PATH = CorePackage.CONTAINER_FEATURE_COUNT + 12;
+	int FEATURE__FEATURE_PATH = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Nesting Feature</b></em>' container reference.
@@ -1032,7 +1030,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NESTING_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 13;
+	int FEATURE__NESTING_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Nested Feature</b></em>' containment reference list.
@@ -1041,7 +1039,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NESTED_FEATURE = CorePackage.CONTAINER_FEATURE_COUNT + 14;
+	int FEATURE__NESTED_FEATURE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Defining Type</b></em>' reference.
@@ -1050,7 +1048,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__DEFINING_TYPE = CorePackage.CONTAINER_FEATURE_COUNT + 15;
+	int FEATURE__DEFINING_TYPE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Refining Type</b></em>' reference.
@@ -1059,7 +1057,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__REFINING_TYPE = CorePackage.CONTAINER_FEATURE_COUNT + 16;
+	int FEATURE__REFINING_TYPE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
@@ -1068,7 +1066,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_TYPE = CorePackage.CONTAINER_FEATURE_COUNT + 17;
+	int FEATURE__OWNED_TYPE = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Featuring Classifier</b></em>' reference.
@@ -1077,7 +1075,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURING_CLASSIFIER = CorePackage.CONTAINER_FEATURE_COUNT + 18;
+	int FEATURE__FEATURING_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 18;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -1086,7 +1084,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = CorePackage.CONTAINER_FEATURE_COUNT + 19;
+	int FEATURE_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -1095,7 +1093,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_COUNT = CorePackage.CONTAINER_OPERATION_COUNT + 0;
+	int FEATURE_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -1114,7 +1112,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int GENERALIZATION__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -1123,7 +1121,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int GENERALIZATION__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -1132,7 +1130,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int GENERALIZATION__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1141,7 +1139,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__NAME = CorePackage.RELATIONSHIP__NAME;
+	int GENERALIZATION__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -1150,7 +1148,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int GENERALIZATION__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -1159,7 +1157,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int GENERALIZATION__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -1168,7 +1166,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int GENERALIZATION__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -1177,7 +1175,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int GENERALIZATION__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -1186,7 +1184,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int GENERALIZATION__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -1195,7 +1193,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int GENERALIZATION__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -1204,7 +1202,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int GENERALIZATION__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1213,7 +1211,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int GENERALIZATION__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -1222,7 +1220,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int GENERALIZATION__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1231,7 +1229,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int GENERALIZATION__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>General</b></em>' reference.
@@ -1240,7 +1238,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__GENERAL = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int GENERALIZATION__GENERAL = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Specific</b></em>' container reference.
@@ -1249,7 +1247,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION__SPECIFIC = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int GENERALIZATION__SPECIFIC = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Generalization</em>' class.
@@ -1258,7 +1256,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int GENERALIZATION_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Generalization</em>' class.
@@ -1267,7 +1265,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int GENERALIZATION_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.ConnectorImpl <em>Connector</em>}' class.
@@ -1286,7 +1284,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int CONNECTOR__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -1295,7 +1293,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int CONNECTOR__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -1304,7 +1302,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int CONNECTOR__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1313,7 +1311,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__NAME = CorePackage.RELATIONSHIP__NAME;
+	int CONNECTOR__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -1322,7 +1320,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int CONNECTOR__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -1331,7 +1329,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int CONNECTOR__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -1340,7 +1338,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int CONNECTOR__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -1349,7 +1347,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int CONNECTOR__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -1358,7 +1356,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int CONNECTOR__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -1367,7 +1365,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int CONNECTOR__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -1376,7 +1374,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int CONNECTOR__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1385,7 +1383,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int CONNECTOR__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -1394,7 +1392,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int CONNECTOR__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1403,7 +1401,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int CONNECTOR__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Package Visibility</b></em>' attribute.
@@ -1412,7 +1410,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__PACKAGE_VISIBILITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int CONNECTOR__PACKAGE_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
@@ -1421,7 +1419,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int CONNECTOR__OWNED_MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -1430,7 +1428,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int CONNECTOR__MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -1439,7 +1437,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TYPE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+	int CONNECTOR__TYPE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -1448,7 +1446,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__UPPER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
+	int CONNECTOR__UPPER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -1457,7 +1455,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__LOWER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
+	int CONNECTOR__LOWER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' container reference.
@@ -1466,7 +1464,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__CLASS = CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
+	int CONNECTOR__CLASS = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Feature</b></em>' reference list.
@@ -1475,7 +1473,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__REDEFINED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
+	int CONNECTOR__REDEFINED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Subsetted Feature</b></em>' reference list.
@@ -1484,7 +1482,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SUBSETTED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
+	int CONNECTOR__SUBSETTED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -1493,7 +1491,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_DERIVED = CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
+	int CONNECTOR__IS_DERIVED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -1502,7 +1500,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_UNIQUE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
+	int CONNECTOR__IS_UNIQUE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -1511,7 +1509,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_READ_ONLY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
+	int CONNECTOR__IS_READ_ONLY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -1520,7 +1518,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_ORDERED = CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
+	int CONNECTOR__IS_ORDERED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Method Visibility</b></em>' attribute.
@@ -1529,7 +1527,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__METHOD_VISIBILITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
+	int CONNECTOR__METHOD_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' container reference.
@@ -1538,7 +1536,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__CONTEXT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
+	int CONNECTOR__CONTEXT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Feature Path</b></em>' containment reference list.
@@ -1547,7 +1545,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__FEATURE_PATH = CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
+	int CONNECTOR__FEATURE_PATH = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Nesting Feature</b></em>' container reference.
@@ -1556,7 +1554,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__NESTING_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 16;
+	int CONNECTOR__NESTING_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Nested Feature</b></em>' containment reference list.
@@ -1565,7 +1563,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__NESTED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 17;
+	int CONNECTOR__NESTED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Defining Type</b></em>' reference.
@@ -1574,7 +1572,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__DEFINING_TYPE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 18;
+	int CONNECTOR__DEFINING_TYPE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Refining Type</b></em>' reference.
@@ -1583,7 +1581,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__REFINING_TYPE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 19;
+	int CONNECTOR__REFINING_TYPE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
@@ -1592,7 +1590,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_TYPE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 20;
+	int CONNECTOR__OWNED_TYPE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Featuring Classifier</b></em>' reference.
@@ -1601,7 +1599,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__FEATURING_CLASSIFIER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 21;
+	int CONNECTOR__FEATURING_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
@@ -1610,7 +1608,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_PORT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 22;
+	int CONNECTOR__IS_PORT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Outside Access</b></em>' attribute list.
@@ -1619,7 +1617,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OUTSIDE_ACCESS = CorePackage.RELATIONSHIP_FEATURE_COUNT + 23;
+	int CONNECTOR__OUTSIDE_ACCESS = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Inside Access</b></em>' attribute list.
@@ -1628,7 +1626,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__INSIDE_ACCESS = CorePackage.RELATIONSHIP_FEATURE_COUNT + 24;
+	int CONNECTOR__INSIDE_ACCESS = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Union</b></em>' reference list.
@@ -1637,7 +1635,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__UNION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 25;
+	int CONNECTOR__UNION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Option</b></em>' containment reference.
@@ -1646,7 +1644,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OPTION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 26;
+	int CONNECTOR__OPTION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Is Navigable</b></em>' attribute.
@@ -1655,7 +1653,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_NAVIGABLE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 27;
+	int CONNECTOR__IS_NAVIGABLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Aggregation</b></em>' attribute.
@@ -1664,7 +1662,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__AGGREGATION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 28;
+	int CONNECTOR__AGGREGATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>End Of</b></em>' reference.
@@ -1673,7 +1671,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__END_OF = CorePackage.RELATIONSHIP_FEATURE_COUNT + 29;
+	int CONNECTOR__END_OF = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Participates In</b></em>' reference.
@@ -1682,7 +1680,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__PARTICIPATES_IN = CorePackage.RELATIONSHIP_FEATURE_COUNT + 30;
+	int CONNECTOR__PARTICIPATES_IN = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Is Input</b></em>' attribute.
@@ -1691,7 +1689,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_INPUT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 31;
+	int CONNECTOR__IS_INPUT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Is Output</b></em>' attribute.
@@ -1700,7 +1698,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_OUTPUT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 32;
+	int CONNECTOR__IS_OUTPUT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Source Path</b></em>' reference list.
@@ -1709,7 +1707,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_PATH = CorePackage.RELATIONSHIP_FEATURE_COUNT + 33;
+	int CONNECTOR__SOURCE_PATH = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Target Path</b></em>' reference list.
@@ -1718,7 +1716,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_PATH = CorePackage.RELATIONSHIP_FEATURE_COUNT + 34;
+	int CONNECTOR__TARGET_PATH = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 34;
 
 	/**
 	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
@@ -1727,7 +1725,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_DIRECTED = CorePackage.RELATIONSHIP_FEATURE_COUNT + 35;
+	int CONNECTOR__IS_DIRECTED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 35;
 
 	/**
 	 * The feature id for the '<em><b>Source Upper</b></em>' attribute.
@@ -1736,7 +1734,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_UPPER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 36;
+	int CONNECTOR__SOURCE_UPPER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 36;
 
 	/**
 	 * The feature id for the '<em><b>Source Lower</b></em>' attribute.
@@ -1745,7 +1743,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_LOWER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 37;
+	int CONNECTOR__SOURCE_LOWER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 37;
 
 	/**
 	 * The feature id for the '<em><b>Target Upper</b></em>' attribute.
@@ -1754,7 +1752,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_UPPER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 38;
+	int CONNECTOR__TARGET_UPPER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 38;
 
 	/**
 	 * The feature id for the '<em><b>Target Lower</b></em>' attribute.
@@ -1763,7 +1761,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_LOWER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 39;
+	int CONNECTOR__TARGET_LOWER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 39;
 
 	/**
 	 * The feature id for the '<em><b>Source Multiplicity</b></em>' attribute.
@@ -1772,7 +1770,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_MULTIPLICITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 40;
+	int CONNECTOR__SOURCE_MULTIPLICITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 40;
 
 	/**
 	 * The feature id for the '<em><b>Target Multiplicity</b></em>' attribute.
@@ -1781,7 +1779,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_MULTIPLICITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 41;
+	int CONNECTOR__TARGET_MULTIPLICITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 41;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1790,7 +1788,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__VALUE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 42;
+	int CONNECTOR__VALUE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 42;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -1799,7 +1797,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 43;
+	int CONNECTOR_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 43;
 
 	/**
 	 * The number of operations of the '<em>Connector</em>' class.
@@ -1808,7 +1806,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int CONNECTOR_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.StructuredFeatureImpl <em>Structured Feature</em>}' class.
@@ -2297,7 +2295,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int VALUE_OPTION__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -2306,7 +2304,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int VALUE_OPTION__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -2315,7 +2313,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int VALUE_OPTION__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2324,7 +2322,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__NAME = CorePackage.RELATIONSHIP__NAME;
+	int VALUE_OPTION__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -2333,7 +2331,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int VALUE_OPTION__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -2342,7 +2340,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int VALUE_OPTION__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -2351,7 +2349,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int VALUE_OPTION__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -2360,7 +2358,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int VALUE_OPTION__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -2369,7 +2367,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int VALUE_OPTION__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -2378,7 +2376,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int VALUE_OPTION__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -2387,7 +2385,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int VALUE_OPTION__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2396,7 +2394,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int VALUE_OPTION__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -2405,7 +2403,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int VALUE_OPTION__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2414,7 +2412,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int VALUE_OPTION__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Package Visibility</b></em>' attribute.
@@ -2423,7 +2421,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__PACKAGE_VISIBILITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int VALUE_OPTION__PACKAGE_VISIBILITY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
@@ -2432,7 +2430,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OWNED_MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int VALUE_OPTION__OWNED_MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -2441,7 +2439,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__MEMBER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int VALUE_OPTION__MEMBER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Specific Classifier</b></em>' reference list.
@@ -2450,7 +2448,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__SPECIFIC_CLASSIFIER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+	int VALUE_OPTION__SPECIFIC_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>General Classifier</b></em>' reference list.
@@ -2459,7 +2457,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__GENERAL_CLASSIFIER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
+	int VALUE_OPTION__GENERAL_CLASSIFIER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' containment reference list.
@@ -2468,7 +2466,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OWNED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
+	int VALUE_OPTION__OWNED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2477,7 +2475,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__IS_ABSTRACT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
+	int VALUE_OPTION__IS_ABSTRACT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -2486,7 +2484,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__INHERITED_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
+	int VALUE_OPTION__INHERITED_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Types Feature</b></em>' reference list.
@@ -2495,7 +2493,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__TYPES_FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
+	int VALUE_OPTION__TYPES_FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2504,7 +2502,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__FEATURE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
+	int VALUE_OPTION__FEATURE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Instance Of</b></em>' reference.
@@ -2513,7 +2511,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__INSTANCE_OF = CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
+	int VALUE_OPTION__INSTANCE_OF = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -2522,7 +2520,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__GENERALIZATION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
+	int VALUE_OPTION__GENERALIZATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Nested Feature Of Class</b></em>' containment reference list.
@@ -2531,7 +2529,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__NESTED_FEATURE_OF_CLASS = CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
+	int VALUE_OPTION__NESTED_FEATURE_OF_CLASS = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Option</b></em>' reference list.
@@ -2540,7 +2538,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OPTION = CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
+	int VALUE_OPTION__OPTION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Option Of Property</b></em>' container reference.
@@ -2549,7 +2547,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION__OPTION_OF_PROPERTY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
+	int VALUE_OPTION__OPTION_OF_PROPERTY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Value Option</em>' class.
@@ -2558,7 +2556,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
+	int VALUE_OPTION_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Value Option</em>' class.
@@ -2567,7 +2565,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPTION_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int VALUE_OPTION_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.DataFeatureImpl <em>Data Feature</em>}' class.
@@ -3317,7 +3315,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int GENERALIZATION_SET__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -3326,7 +3324,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int GENERALIZATION_SET__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -3335,7 +3333,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int GENERALIZATION_SET__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3344,7 +3342,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__NAME = CorePackage.RELATIONSHIP__NAME;
+	int GENERALIZATION_SET__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -3353,7 +3351,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int GENERALIZATION_SET__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -3362,7 +3360,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int GENERALIZATION_SET__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -3371,7 +3369,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int GENERALIZATION_SET__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -3380,7 +3378,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int GENERALIZATION_SET__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -3389,7 +3387,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int GENERALIZATION_SET__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -3398,7 +3396,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int GENERALIZATION_SET__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -3407,7 +3405,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int GENERALIZATION_SET__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -3416,7 +3414,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int GENERALIZATION_SET__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -3425,7 +3423,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int GENERALIZATION_SET__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -3434,7 +3432,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int GENERALIZATION_SET__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Complete</b></em>' reference.
@@ -3443,7 +3441,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET__COMPLETE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int GENERALIZATION_SET__COMPLETE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Generalization Set</em>' class.
@@ -3452,7 +3450,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int GENERALIZATION_SET_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Generalization Set</em>' class.
@@ -3461,7 +3459,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_SET_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int GENERALIZATION_SET_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.impl.BindingImpl <em>Binding</em>}' class.
@@ -4610,7 +4608,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__DOCUMENTATION = CorePackage.RELATIONSHIP__DOCUMENTATION;
+	int RESTRICTS__DOCUMENTATION = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -4619,7 +4617,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int RESTRICTS__OWNER = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -4628,7 +4626,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__TITLE = CorePackage.RELATIONSHIP__TITLE;
+	int RESTRICTS__TITLE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TITLE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4637,7 +4635,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__NAME = CorePackage.RELATIONSHIP__NAME;
+	int RESTRICTS__NAME = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Relationship</b></em>' reference list.
@@ -4646,7 +4644,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__RELATIONSHIP = CorePackage.RELATIONSHIP__RELATIONSHIP;
+	int RESTRICTS__RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
@@ -4655,7 +4653,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__NAMESPACE = CorePackage.RELATIONSHIP__NAMESPACE;
+	int RESTRICTS__NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Member Of Namespace</b></em>' reference list.
@@ -4664,7 +4662,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__MEMBER_OF_NAMESPACE = CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
+	int RESTRICTS__MEMBER_OF_NAMESPACE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__MEMBER_OF_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Source Relationship</b></em>' reference list.
@@ -4673,7 +4671,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__SOURCE_RELATIONSHIP = CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
+	int RESTRICTS__SOURCE_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Target Relationship</b></em>' reference list.
@@ -4682,7 +4680,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__TARGET_RELATIONSHIP = CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
+	int RESTRICTS__TARGET_RELATIONSHIP = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' reference list.
@@ -4691,7 +4689,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__OWNED_COMMENT = CorePackage.RELATIONSHIP__OWNED_COMMENT;
+	int RESTRICTS__OWNED_COMMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -4700,7 +4698,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int RESTRICTS__OWNED_ELEMENT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -4709,7 +4707,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int RESTRICTS__SOURCE = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -4718,7 +4716,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int RESTRICTS__RELATED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -4727,7 +4725,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int RESTRICTS__TARGET = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>General</b></em>' reference.
@@ -4736,7 +4734,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__GENERAL = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int RESTRICTS__GENERAL = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Specific</b></em>' container reference.
@@ -4745,7 +4743,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__SPECIFIC = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+	int RESTRICTS__SPECIFIC = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Restricted</b></em>' reference.
@@ -4754,7 +4752,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__RESTRICTED = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int RESTRICTS__RESTRICTED = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Restricted By</b></em>' reference.
@@ -4763,7 +4761,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS__RESTRICTED_BY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+	int RESTRICTS__RESTRICTED_BY = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Restricts</em>' class.
@@ -4772,7 +4770,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
+	int RESTRICTS_FEATURE_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Restricts</em>' class.
@@ -4781,7 +4779,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESTRICTS_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int RESTRICTS_OPERATION_COUNT = org.omg.sysml.kerml.core.CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.kerml.structure.PropertyAccessKind <em>Property Access Kind</em>}' enum.

@@ -4,8 +4,6 @@ package org.omg.sysml.kerml.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.omg.sysml.kerml.core.Container;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
@@ -38,7 +36,7 @@ import org.omg.sysml.kerml.core.Container;
  * @model
  * @generated
  */
-public interface Class extends Container {
+public interface Class extends org.omg.sysml.kerml.core.Container {
 	/**
 	 * Returns the value of the '<em><b>Specific Classifier</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Class}.
@@ -196,7 +194,7 @@ public interface Class extends Container {
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.kerml.structure.Generalization#getSpecific <em>Specific</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Generalization</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Generalization</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

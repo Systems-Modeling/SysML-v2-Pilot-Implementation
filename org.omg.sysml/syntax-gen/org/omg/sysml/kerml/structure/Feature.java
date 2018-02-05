@@ -4,9 +4,6 @@ package org.omg.sysml.kerml.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.omg.sysml.kerml.core.Container;
-import org.omg.sysml.kerml.core.visibilityKind;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Feature</b></em>'.
@@ -68,7 +65,7 @@ import org.omg.sysml.kerml.core.visibilityKind;
  * @model
  * @generated
  */
-public interface Feature extends Container {
+public interface Feature extends org.omg.sysml.kerml.core.Container {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.kerml.structure.Class}.
@@ -311,12 +308,12 @@ public interface Feature extends Container {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Method Visibility</em>' attribute.
 	 * @see org.omg.sysml.kerml.core.visibilityKind
-	 * @see #setMethodVisibility(visibilityKind)
+	 * @see #setMethodVisibility(org.omg.sysml.kerml.core.visibilityKind)
 	 * @see org.omg.sysml.kerml.structure.StructurePackage#getFeature_MethodVisibility()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	visibilityKind getMethodVisibility();
+	org.omg.sysml.kerml.core.visibilityKind getMethodVisibility();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.kerml.structure.Feature#getMethodVisibility <em>Method Visibility</em>}' attribute.
@@ -327,7 +324,7 @@ public interface Feature extends Container {
 	 * @see #getMethodVisibility()
 	 * @generated
 	 */
-	void setMethodVisibility(visibilityKind value);
+	void setMethodVisibility(org.omg.sysml.kerml.core.visibilityKind value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' container reference.

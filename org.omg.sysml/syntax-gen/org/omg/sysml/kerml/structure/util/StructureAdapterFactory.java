@@ -9,10 +9,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.omg.sysml.kerml.core.Container;
-import org.omg.sysml.kerml.core.ElementRecord;
-import org.omg.sysml.kerml.core.Relationship;
-
 import org.omg.sysml.kerml.structure.Association;
 import org.omg.sysml.kerml.structure.Binding;
 import org.omg.sysml.kerml.structure.Connector;
@@ -156,15 +152,15 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createRestrictsAdapter();
 			}
 			@Override
-			public Adapter caseElementRecord(ElementRecord object) {
+			public Adapter caseElementRecord(org.omg.sysml.kerml.core.ElementRecord object) {
 				return createElementRecordAdapter();
 			}
 			@Override
-			public Adapter caseContainer(Container object) {
+			public Adapter caseContainer(org.omg.sysml.kerml.core.Container object) {
 				return createContainerAdapter();
 			}
 			@Override
-			public Adapter caseRelationship(Relationship object) {
+			public Adapter caseRelationship(org.omg.sysml.kerml.core.Relationship object) {
 				return createRelationshipAdapter();
 			}
 			@Override

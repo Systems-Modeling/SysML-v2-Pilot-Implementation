@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.kerml.structure;
 
-import org.omg.sysml.kerml.core.Relationship;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Generalization</b></em>'.
@@ -21,7 +19,7 @@ import org.omg.sysml.kerml.core.Relationship;
  * @model
  * @generated
  */
-public interface Generalization extends Relationship {
+public interface Generalization extends org.omg.sysml.kerml.core.Relationship {
 	/**
 	 * Returns the value of the '<em><b>General</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -53,7 +51,7 @@ public interface Generalization extends Relationship {
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.kerml.structure.Class#getGeneralization <em>Generalization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Specific</em>' reference isn't clear,
+	 * If the meaning of the '<em>Specific</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

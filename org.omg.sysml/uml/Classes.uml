@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_rlWiUAtaEeiaW-mSk1cRpw" name="Classes" visibility="public">
+  <packagedElement xmi:type="uml:Class" xmi:id="_rlWiUQtaEeiaW-mSk1cRpw" name="C" visibility="public">
+    <generalization xmi:id="_rlWiUgtaEeiaW-mSk1cRpw" general="_rlWiWgtaEeiaW-mSk1cRpw"/>
+    <ownedAttribute xmi:id="_rlWiUwtaEeiaW-mSk1cRpw" name="y" visibility="private" type="_rlWiWAtaEeiaW-mSk1cRpw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rlWiVAtaEeiaW-mSk1cRpw" name="A" visibility="public">
+    <ownedAttribute xmi:id="_rlWiVQtaEeiaW-mSk1cRpw" name="b" visibility="public" type="_rlWiWgtaEeiaW-mSk1cRpw"/>
+    <ownedAttribute xmi:id="_rlWiVgtaEeiaW-mSk1cRpw" name="c" visibility="public" type="_rlWiUQtaEeiaW-mSk1cRpw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rlWiVwtaEeiaW-mSk1cRpw" name="P" visibility="public">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rlWiWAtaEeiaW-mSk1cRpw" name="D" visibility="public">
+      <generalization xmi:id="_rlWiWQtaEeiaW-mSk1cRpw" general="_rlWiUQtaEeiaW-mSk1cRpw"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rlWiWgtaEeiaW-mSk1cRpw" name="B" visibility="private">
+    <ownedAttribute xmi:id="_rlWiWwtaEeiaW-mSk1cRpw" name="x" visibility="protected" type="_rlWiVAtaEeiaW-mSk1cRpw"/>
+  </packagedElement>
+</uml:Package>

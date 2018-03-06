@@ -30,11 +30,6 @@ import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
-import org.eclipse.uml2.uml.resource.XMI2UMLResource;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
-import org.omg.sysml.AlfStandaloneSetup;
-import org.omg.sysml.kerml.core.CorePackage;
-import org.omg.sysml.kerml.structure.StructurePackage;
 
 public class QVTRunner {
 	
@@ -47,17 +42,8 @@ public class QVTRunner {
 		this.initialize();
 	}
 	
-	@SuppressWarnings("unused")
 	protected void initialize() {
 		this.setConfigProperty("keepModeling", true);
-		
-		UMLResourcesUtil.init(this.resourceSet);
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
-	    
-	    StructurePackage structure = StructurePackage.eINSTANCE;
-	    CorePackage core = CorePackage.eINSTANCE;
-	    
-	    AlfStandaloneSetup.doSetup();
 	}
 	
 	public void setConfigProperty(String name, Object value) {
@@ -208,18 +194,7 @@ public class QVTRunner {
 	}
 
 	protected String constructOutputPath(final String...resourcePaths) {
-		int n = resourcePaths.length;
-		
-		// Second to last resource path is presumed to be the input file path.
-		String fileName = Paths.get(resourcePaths[n - 2]).getFileName().toString();
-		int i = fileName.indexOf('.');
-		if (i >= 0) {
-			fileName = fileName.substring(0, i);
-		}
-		
-		// Last resource path is presumed to be the output directory path,
-		// to which the input file name is appended.
-		return resourcePaths[n - 1] + "/" + fileName + ".uml";
+		return resourcePaths[resourcePaths.length - 1];
 	}
 	
 	public String[] processArgs(String[] args) {
@@ -285,7 +260,7 @@ public class QVTRunner {
 	}
 	
 	public static void main(String[] args) {
-		new QVTRunner().run(args, 2, "QVTRunner [-l logPath] qvtPath [inputPaths] outputPath");
+		new QVTRunner().run(args, 3, "QVTRunner [-l logPath] qvtPath inputPaths outputPath");
 	}
 
 }

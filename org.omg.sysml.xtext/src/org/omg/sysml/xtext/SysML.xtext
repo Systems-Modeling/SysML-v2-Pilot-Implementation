@@ -1,0 +1,159 @@
+grammar org.omg.sysml.xtext.SysML with org.eclipse.xtext.common.Terminals
+
+generate sysML "http://www.omg.org/spec/SysML"
+
+// Containers
+Container:
+	Package | Definition
+;
+
+Import:
+	'import' importedNamespace = [PackageMember | QualifiedNameWithWildCard] ';'
+;
+
+QualifiedNameWithWildCard:
+	QualifiedName '.*'?
+;
+
+Package:
+	(^import += Import)*
+	'package' name = Name '{' (member += PackageMember)* '}'
+;
+
+PackageMember:
+	Container | Feature | Part
+;
+
+// Definitions
+
+Definition:
+	ValueTypeDefinition | BlockDefinition
+;
+
+ValueTypeDefinition:
+	'valuetype' name = Name 
+		( ( '=' type = [ValueTypeDefinition | QualifiedName] (units = Units)? )? ';'
+		| '{' (feature += BasicFeature)* '}'
+		)
+;
+
+BlockDefinition:
+	'block' name = Name (';' | '{' (feature += Feature)* '}')
+;
+
+// Usages
+
+Part:
+	'part' 
+		(name = Name  
+			( index = UsageIndex?
+			  ( ':' definition = [Definition | QualifiedName] ('is' base = [Part | QualifiedName])? |
+			    'is' base = [Part | QualifiedName] )
+			)? |
+		  'is' base = [Part | QualifiedName]
+		)
+		('[' multiplicity = Multiplicity ']')? 
+		(';' | '{' (member += Member)* '}')
+;
+
+Member:
+	Feature | Part | Connector
+;
+
+UsageIndex:
+	'[' name = Name (':' multiplicity = Multiplicity)? ']'
+;
+
+Multiplicity:
+	(lowerBound = Bound '..')? upperBound = UpperBound
+;
+
+Bound:
+	value = INT | var = Name
+;
+
+UpperBound:
+	value = INT | var = Name | unbounded ?= '*'
+;
+
+
+// Features
+
+Feature:
+	BasicFeature | ConnectableFeature
+;
+
+BasicFeature:
+	name = Name  
+		( (index = UsageIndex)? ':' definition = [Definition | QualifiedName] )?
+		('[' multiplicity = Multiplicity ']')?
+		('=' expression = Expression)? ';'
+;
+
+ConnectableFeature:
+	direction = ConnectionDirection name = Name 
+		( (index = UsageIndex)? ':' definition = [Definition | QualifiedName] )?
+		('[' multiplicity = Multiplicity ']')? ';'
+;
+
+ConnectionDirection:
+	IN = 'in' | OUT = 'out' | INOUT = 'inout'
+;
+
+// RELATIONSHIPS
+
+Connector:
+	'connector' (name = Name)? 
+		source = [ConnectableFeature | QualifiedName] '=>' 
+		target = [ConnectableFeature | QualifiedName] ';'
+;
+
+// UNITS
+
+Units:
+	numerator = UnitsProduct ('/' denominator = UnitsProduct)?
+;
+
+UnitsProduct:
+	factor += UnitsExponent ('-' factor += UnitsExponent)*
+;
+
+UnitsExponent:
+	unit = ID ('^' exponent = IntegerLiteral)?
+;
+
+// EXPRESSIONS
+
+Expression:
+	NumericLiteral | FeatureReferenceExpression
+;
+
+FeatureReferenceExpression:
+	feature = [Feature | QualifiedName]
+;
+
+NumericLiteral:
+	(IntegerLiteral | RealLiteral) (units = Units)?
+;
+
+IntegerLiteral:
+	(sign = Sign)? value = INT
+;
+
+RealLiteral:
+	(sign = Sign)? integerPart = INT '.' (fractionPart = INT)?
+;
+
+Sign:
+	PLUS = '+' | MINUS = '-'
+;
+
+// NAMES
+
+QualifiedName:
+	Name ('.' Name)*
+;
+
+Name:
+	ID
+;

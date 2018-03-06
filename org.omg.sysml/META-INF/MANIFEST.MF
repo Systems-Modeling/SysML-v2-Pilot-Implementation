@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-SymbolicName: org.omg.sysml.kerml.str;singleton:=true
+Bundle-SymbolicName: org.omg.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
@@ -21,20 +21,21 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.m2m.qvt.oml,
  org.eclipse.uml2.uml.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.omg.sysml.services,
- org.omg.sysml,
- org.omg.sysml.scoping,
+Export-Package: org.omg.sysml,
  org.omg.sysml.generator,
- org.omg.sysml.parser.antlr,
- org.omg.sysml.serializer,
- org.omg.sysml.parser.antlr.internal,
- org.omg.sysml.validation,
  org.omg.sysml.kerml.core,
  org.omg.sysml.kerml.core.impl,
  org.omg.sysml.kerml.core.util,
  org.omg.sysml.kerml.structure,
  org.omg.sysml.kerml.structure.impl,
- org.omg.sysml.kerml.structure.util
+ org.omg.sysml.kerml.structure.util,
+ org.omg.sysml.parser.antlr,
+ org.omg.sysml.parser.antlr.internal,
+ org.omg.sysml.qvt,
+ org.omg.sysml.scoping,
+ org.omg.sysml.serializer,
+ org.omg.sysml.services,
+ org.omg.sysml.validation
 Import-Package: com.ibm.icu.impl.text;version="58.2.0",
  org.apache.commons.logging,
  org.apache.log4j

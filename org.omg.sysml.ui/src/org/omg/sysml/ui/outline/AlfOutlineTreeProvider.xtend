@@ -4,11 +4,11 @@
 package org.omg.sysml.ui.outline
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
-import org.omg.sysml.kerml.core.ElementRecord
-import org.omg.sysml.kerml.structure.Feature
-import org.omg.sysml.kerml.structure.StructurePackage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import org.omg.sysml.kerml.structure.Generalization
+import org.omg.sysml.core.Element
+import org.omg.sysml.classification.Feature
+import org.omg.sysml.classification.Generalization
+import org.omg.sysml.classification.ClassificationPackage
 
 /**
  * Customization of the default outline structure.
@@ -17,7 +17,7 @@ import org.omg.sysml.kerml.structure.Generalization
  */
 class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
-	def String _text(ElementRecord element) {
+	def String _text(Element element) {
 		element.eClass.name + ' ' +
 			if (element.name !== null) element.name else '' 
 	}
@@ -28,8 +28,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
 		createEStructuralFeatureNode(parentNode, feature, 
-			StructurePackage.Literals.FEATURE__DEFINING_TYPE, 
-			_image(feature.definingType), "definingType " + feature.definingType.name, 
+			ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, 
+			_image(feature.referencedType), "definingType " + feature.referencedType.get(0).name, 
 			true
 		)
 	}
@@ -40,7 +40,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		createEStructuralFeatureNode(parentNode, generalization, 
-			StructurePackage.Literals.GENERALIZATION__GENERAL, 
+			ClassificationPackage.Literals.GENERALIZATION__GENERAL, 
 			_image(generalization.general), "general " + generalization.general.name, 
 			true
 		)

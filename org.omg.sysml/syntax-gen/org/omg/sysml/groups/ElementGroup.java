@@ -19,6 +19,7 @@ import org.omg.sysml.core.Element;
  *   <li>{@link org.omg.sysml.groups.ElementGroup#getGroupImport <em>Group Import</em>}</li>
  *   <li>{@link org.omg.sysml.groups.ElementGroup#getImportedMember <em>Imported Member</em>}</li>
  *   <li>{@link org.omg.sysml.groups.ElementGroup#getOwnedMember <em>Owned Member</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.ElementGroup#getGroupMember <em>Group Member</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.groups.GroupsPackage#getElementGroup()
@@ -77,19 +78,37 @@ public interface ElementGroup extends Element {
 	EList<Element> getImportedMember();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Member</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Member</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.core.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Member</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Member</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Member</em>' containment reference list.
+	 * @return the value of the '<em>Owned Member</em>' reference list.
 	 * @see org.omg.sysml.groups.GroupsPackage#getElementGroup_OwnedMember()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<Element> getOwnedMember();
+
+	/**
+	 * Returns the value of the '<em><b>Group Member</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.groups.GroupMember}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.GroupMember#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Group Member</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group Member</em>' containment reference list.
+	 * @see org.omg.sysml.groups.GroupsPackage#getElementGroup_GroupMember()
+	 * @see org.omg.sysml.groups.GroupMember#getGroup
+	 * @model opposite="group" containment="true"
+	 * @generated
+	 */
+	EList<GroupMember> getGroupMember();
 
 } // ElementGroup

@@ -22,7 +22,7 @@ UnitDefinition returns groups::Namespace:
 /* PACKAGES */
 
 PackageDefinition returns groups::Namespace: 
-	'package' name = Name '{' ( memberNaming += PackagedElement )* '}' 
+	'package' name = Name '{' ( groupMember += PackagedElement )* '}' 
 ;
 
 PackageDefinitionOrStub returns groups::Namespace :
@@ -30,11 +30,11 @@ PackageDefinitionOrStub returns groups::Namespace :
 	PackageDefinition
 ;
 
-PackagedElement returns groups::MemberNaming : 
+PackagedElement returns groups::NamespaceMember : 
 //  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     visibility = ImportVisibilityIndicator 
-	ownedElement += PackagedElementDefinition
+	ownedMemberElement = PackagedElementDefinition
 ;
 
 enum ImportVisibilityIndicator returns groups::VisibilityKind:
@@ -63,7 +63,7 @@ Generalization returns classification::Generalization :
 ;
 
 ClassDefinition returns classification::Class : 
-  ClassDeclaration '{' ( memberNaming += ClassMember )* '}'
+  ClassDeclaration '{' ( groupMember += ClassMember )* '}'
 ;
 
 ClassDefinitionOrStub returns classification::Class :
@@ -72,13 +72,13 @@ ClassDefinitionOrStub returns classification::Class :
 //	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
 ;
 
-ClassMember returns groups::MemberNaming : 
+ClassMember returns groups::NamespaceMember : 
 //	( documentation += DOCUMENTATION_COMMENT )?
 //	( annotation += StereotypeAnnotation )*
 //	( methodVisibility = VisibilityKind )?
 //	definition = ClassMemberDefinition
 	visibility = VisibilityIndicator
-	ownedElement += FeatureDefinition
+	ownedMemberElement = FeatureDefinition
 ;
 
 enum VisibilityIndicator returns groups::VisibilityKind :
@@ -93,16 +93,16 @@ FeatureDefinition returns classification::Feature :
 	';'
 ;
 
-//FeatureDefinitionOrStub returns kerml::Feature : 
+//FeatureDefinitionOrStub returns classification::Feature : 
 //  AttributeDefinition /*| OperationDefinitionOrStub*/
 //;
 //
 ///* PROPERTIES */
-//PropertyDefinition returns kerml::Feature : 
+//PropertyDefinition returns classification::Feature : 
 //	PropertyDeclaration ';'
 //;
 //
-//AttributeDefinition returns kerml::Feature : 
+//AttributeDefinition returns classification::Feature : 
 //	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 //;
 //

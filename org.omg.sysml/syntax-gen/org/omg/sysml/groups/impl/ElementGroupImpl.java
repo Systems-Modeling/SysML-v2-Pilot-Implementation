@@ -11,17 +11,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.omg.sysml.core.Element;
 
 import org.omg.sysml.core.impl.ElementImpl;
 
 import org.omg.sysml.groups.ElementGroup;
 import org.omg.sysml.groups.GroupImport;
+import org.omg.sysml.groups.GroupMember;
 import org.omg.sysml.groups.GroupsPackage;
 
 /**
@@ -36,6 +35,7 @@ import org.omg.sysml.groups.GroupsPackage;
  *   <li>{@link org.omg.sysml.groups.impl.ElementGroupImpl#getGroupImport <em>Group Import</em>}</li>
  *   <li>{@link org.omg.sysml.groups.impl.ElementGroupImpl#getImportedMember <em>Imported Member</em>}</li>
  *   <li>{@link org.omg.sysml.groups.impl.ElementGroupImpl#getOwnedMember <em>Owned Member</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.ElementGroupImpl#getGroupMember <em>Group Member</em>}</li>
  * </ul>
  *
  * @generated
@@ -72,7 +72,7 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 	protected EList<Element> importedMember;
 
 	/**
-	 * The cached value of the '{@link #getOwnedMember() <em>Owned Member</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedMember() <em>Owned Member</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMember()
@@ -80,6 +80,16 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 	 * @ordered
 	 */
 	protected EList<Element> ownedMember;
+
+	/**
+	 * The cached value of the '{@link #getGroupMember() <em>Group Member</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroupMember()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GroupMember> groupMember;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,9 +153,21 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 	 */
 	public EList<Element> getOwnedMember() {
 		if (ownedMember == null) {
-			ownedMember = new EObjectContainmentEList<Element>(Element.class, this, GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER);
+			ownedMember = new EObjectResolvingEList<Element>(Element.class, this, GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER);
 		}
 		return ownedMember;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GroupMember> getGroupMember() {
+		if (groupMember == null) {
+			groupMember = new EObjectContainmentWithInverseEList<GroupMember>(GroupMember.class, this, GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER, GroupsPackage.GROUP_MEMBER__GROUP);
+		}
+		return groupMember;
 	}
 
 	/**
@@ -159,6 +181,8 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 		switch (featureID) {
 			case GroupsPackage.ELEMENT_GROUP__GROUP_IMPORT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGroupImport()).basicAdd(otherEnd, msgs);
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGroupMember()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -173,8 +197,8 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 		switch (featureID) {
 			case GroupsPackage.ELEMENT_GROUP__GROUP_IMPORT:
 				return ((InternalEList<?>)getGroupImport()).basicRemove(otherEnd, msgs);
-			case GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER:
-				return ((InternalEList<?>)getOwnedMember()).basicRemove(otherEnd, msgs);
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				return ((InternalEList<?>)getGroupMember()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -195,6 +219,8 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 				return getImportedMember();
 			case GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER:
 				return getOwnedMember();
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				return getGroupMember();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,6 +250,10 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 				getOwnedMember().clear();
 				getOwnedMember().addAll((Collection<? extends Element>)newValue);
 				return;
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				getGroupMember().clear();
+				getGroupMember().addAll((Collection<? extends GroupMember>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -248,6 +278,9 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 			case GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER:
 				getOwnedMember().clear();
 				return;
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				getGroupMember().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,6 +301,8 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 				return importedMember != null && !importedMember.isEmpty();
 			case GroupsPackage.ELEMENT_GROUP__OWNED_MEMBER:
 				return ownedMember != null && !ownedMember.isEmpty();
+			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
+				return groupMember != null && !groupMember.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

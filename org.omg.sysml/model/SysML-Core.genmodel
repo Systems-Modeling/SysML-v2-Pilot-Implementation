@@ -13,7 +13,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML-Core.ecore#//Element/owner"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Core.ecore#//Element/identifier"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Core.ecore#//Element/owningGroup"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Core.ecore#//Element/defaultName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Core.ecore#//Element/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Core.ecore#//Element/owningNamespace"/>
     </genClasses>
     <genClasses ecoreClass="SysML-Core.ecore#//Relationship">

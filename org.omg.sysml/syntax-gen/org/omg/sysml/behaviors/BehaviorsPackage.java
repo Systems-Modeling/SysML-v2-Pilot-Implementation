@@ -149,7 +149,7 @@ public interface BehaviorsPackage extends EPackage {
 	int BEHAVIOR__IMPORTED_MEMBER = ClassificationPackage.CLASS__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,13 +158,22 @@ public interface BehaviorsPackage extends EPackage {
 	int BEHAVIOR__OWNED_MEMBER = ClassificationPackage.CLASS__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__MEMBER_NAMING = ClassificationPackage.CLASS__MEMBER_NAMING;
+	int BEHAVIOR__GROUP_MEMBER = ClassificationPackage.CLASS__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__NAMESPACE_MEMBER = ClassificationPackage.CLASS__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -339,7 +348,7 @@ public interface BehaviorsPackage extends EPackage {
 	int FUNCTION__IMPORTED_MEMBER = BEHAVIOR__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -348,13 +357,22 @@ public interface BehaviorsPackage extends EPackage {
 	int FUNCTION__OWNED_MEMBER = BEHAVIOR__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION__MEMBER_NAMING = BEHAVIOR__MEMBER_NAMING;
+	int FUNCTION__GROUP_MEMBER = BEHAVIOR__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__NAMESPACE_MEMBER = BEHAVIOR__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -529,7 +547,7 @@ public interface BehaviorsPackage extends EPackage {
 	int PREDICATE__IMPORTED_MEMBER = FUNCTION__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -538,13 +556,22 @@ public interface BehaviorsPackage extends EPackage {
 	int PREDICATE__OWNED_MEMBER = FUNCTION__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__MEMBER_NAMING = FUNCTION__MEMBER_NAMING;
+	int PREDICATE__GROUP_MEMBER = FUNCTION__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__NAMESPACE_MEMBER = FUNCTION__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -719,7 +746,7 @@ public interface BehaviorsPackage extends EPackage {
 	int EXPRESSION__IMPORTED_MEMBER = FUNCTION__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -728,13 +755,22 @@ public interface BehaviorsPackage extends EPackage {
 	int EXPRESSION__OWNED_MEMBER = FUNCTION__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__MEMBER_NAMING = FUNCTION__MEMBER_NAMING;
+	int EXPRESSION__GROUP_MEMBER = FUNCTION__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__NAMESPACE_MEMBER = FUNCTION__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -909,7 +945,7 @@ public interface BehaviorsPackage extends EPackage {
 	int LITERAL_INTEGER__IMPORTED_MEMBER = EXPRESSION__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -918,13 +954,22 @@ public interface BehaviorsPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__MEMBER_NAMING = EXPRESSION__MEMBER_NAMING;
+	int LITERAL_INTEGER__GROUP_MEMBER = EXPRESSION__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__NAMESPACE_MEMBER = EXPRESSION__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -1108,7 +1153,7 @@ public interface BehaviorsPackage extends EPackage {
 	int LITERAL_UNBOUNDED__IMPORTED_MEMBER = EXPRESSION__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1117,13 +1162,22 @@ public interface BehaviorsPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__MEMBER_NAMING = EXPRESSION__MEMBER_NAMING;
+	int LITERAL_UNBOUNDED__GROUP_MEMBER = EXPRESSION__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__NAMESPACE_MEMBER = EXPRESSION__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.

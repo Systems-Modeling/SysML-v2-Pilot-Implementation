@@ -17,7 +17,7 @@ main() {
 	sysml.rootObjects()![Groups::Namespace].map toNamespace();
 }
 
-// CORE
+// Core
 
 abstract mapping Core::Element::toNamedElement() : UML::NamedElement {
 	name := self.name;
@@ -34,7 +34,7 @@ mapping Core::Element::toPackageableElement() : UML::PackageableElement
 		Classification::Class::toClass,
 		Groups::Namespace::toPackage;
 
-// GROUPS
+// Groups
 
 mapping Groups::Namespace::toNamespace() : UML::Namespace
 	disjuncts 
@@ -43,31 +43,31 @@ mapping Groups::Namespace::toNamespace() : UML::Namespace
 
 mapping Groups::Namespace::toPackage() : UML::Package
 	inherits Core::Element::toNamedElement {
-	packagedElement += self.memberNaming->map toPackageableElement();
+	packagedElement += self.groupMember->map toPackageableElement();
 }
 
-mapping Groups::MemberNaming::toPackageableElement() : UML::PackageableElement {
+mapping Groups::NamespaceMember::toPackageableElement() : UML::PackageableElement {
 init {
-	result := self.ownedElement![true].map toPackageableElement();
+	result := self.ownedMemberElement.map toPackageableElement();
 }
 	visibility := toVisibilityKind(self.visibility);
 }
 
-//query Groups::Namespace::namingOf(e: Element): MemberNaming {
-//	return self.memberNaming![element = e];
+//query Groups::Namespace::namingOf(e: Element): NamespaceMember {
+//	return self.namespaceMember![element = e];
 //}
 
-// CLASSIFICATION
+// Classification
 
 mapping Classification::Class::toClass() : UML::Class
 	inherits Core::Element::toNamedElement {
-	ownedAttribute := self.memberNaming[ownedElement![Feature] <> null]->map toProperty();
+	ownedAttribute := self.groupMember[ownedMemberElement.oclIsTypeOf(classification::Feature)].oclAsType(NamespaceMember)->map toProperty();
 	generalization := self.ownedGeneralization->map toGeneralization();
 }
 
-mapping Groups::MemberNaming::toProperty() : UML::Property {
+mapping Groups::NamespaceMember::toProperty() : UML::Property {
 init {
-	result := self.ownedElement![Feature].map toProperty();
+	result := self.ownedMemberElement.oclAsType(Classification::Feature).map toProperty();
 }
 	visibility := toVisibilityKind(self.visibility);
 }

@@ -15,12 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.omg.sysml.behaviors.Predicate;
-
+import org.omg.sysml.behaviors.Behavior;
 import org.omg.sysml.core.Element;
 
-import org.omg.sysml.core.impl.ElementImpl;
+import org.omg.sysml.core.impl.RelationshipImpl;
 
 import org.omg.sysml.groups.ElementGroup;
 import org.omg.sysml.groups.GroupImport;
@@ -41,7 +39,7 @@ import org.omg.sysml.groups.GroupsPackage;
  *
  * @generated
  */
-public class GroupImportImpl extends ElementImpl implements GroupImport {
+public class GroupImportImpl extends RelationshipImpl implements GroupImport {
 	/**
 	 * The cached value of the '{@link #getImportedGroup() <em>Imported Group</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,7 +58,7 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 	 * @generated
 	 * @ordered
 	 */
-	protected Predicate selecter;
+	protected Behavior selecter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,10 +163,10 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Predicate getSelecter() {
+	public Behavior getSelecter() {
 		if (selecter != null && selecter.eIsProxy()) {
 			InternalEObject oldSelecter = (InternalEObject)selecter;
-			selecter = (Predicate)eResolveProxy(oldSelecter);
+			selecter = (Behavior)eResolveProxy(oldSelecter);
 			if (selecter != oldSelecter) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GroupsPackage.GROUP_IMPORT__SELECTER, oldSelecter, selecter));
@@ -182,7 +180,7 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Predicate basicGetSelecter() {
+	public Behavior basicGetSelecter() {
 		return selecter;
 	}
 
@@ -191,8 +189,8 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelecter(Predicate newSelecter) {
-		Predicate oldSelecter = selecter;
+	public void setSelecter(Behavior newSelecter) {
+		Behavior oldSelecter = selecter;
 		selecter = newSelecter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_IMPORT__SELECTER, oldSelecter, selecter));
@@ -288,7 +286,7 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 				setImportingGroup((ElementGroup)newValue);
 				return;
 			case GroupsPackage.GROUP_IMPORT__SELECTER:
-				setSelecter((Predicate)newValue);
+				setSelecter((Behavior)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,7 +307,7 @@ public class GroupImportImpl extends ElementImpl implements GroupImport {
 				setImportingGroup((ElementGroup)null);
 				return;
 			case GroupsPackage.GROUP_IMPORT__SELECTER:
-				setSelecter((Predicate)null);
+				setSelecter((Behavior)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -87,8 +87,12 @@ public class GroupsAdapterFactory extends AdapterFactoryImpl {
 				return createGroupImportAdapter();
 			}
 			@Override
-			public Adapter caseMemberNaming(MemberNaming object) {
-				return createMemberNamingAdapter();
+			public Adapter caseNamespaceMember(NamespaceMember object) {
+				return createNamespaceMemberAdapter();
+			}
+			@Override
+			public Adapter caseGroupMember(GroupMember object) {
+				return createGroupMemberAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -175,16 +179,30 @@ public class GroupsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.MemberNaming <em>Member Naming</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.NamespaceMember <em>Namespace Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.sysml.groups.MemberNaming
+	 * @see org.omg.sysml.groups.NamespaceMember
 	 * @generated
 	 */
-	public Adapter createMemberNamingAdapter() {
+	public Adapter createNamespaceMemberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.GroupMember <em>Group Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.groups.GroupMember
+	 * @generated
+	 */
+	public Adapter createGroupMemberAdapter() {
 		return null;
 	}
 

@@ -6,24 +6,24 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Member Naming</b></em>'.
+ * A representation of the model object '<em><b>Namespace Member</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.MemberNaming#getMemberName <em>Member Name</em>}</li>
- *   <li>{@link org.omg.sysml.groups.MemberNaming#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.groups.MemberNaming#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.groups.MemberNaming#getAliases <em>Aliases</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.NamespaceMember#getMemberName <em>Member Name</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.NamespaceMember#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.NamespaceMember#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.NamespaceMember#getAliases <em>Aliases</em>}</li>
  * </ul>
  *
- * @see org.omg.sysml.groups.GroupsPackage#getMemberNaming()
+ * @see org.omg.sysml.groups.GroupsPackage#getNamespaceMember()
  * @model
  * @generated
  */
-public interface MemberNaming extends GroupMember {
+public interface NamespaceMember extends GroupMember {
 	/**
 	 * Returns the value of the '<em><b>Member Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -34,14 +34,14 @@ public interface MemberNaming extends GroupMember {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Member Name</em>' attribute.
 	 * @see #setMemberName(String)
-	 * @see org.omg.sysml.groups.GroupsPackage#getMemberNaming_MemberName()
-	 * @model required="true" ordered="false"
+	 * @see org.omg.sysml.groups.GroupsPackage#getNamespaceMember_MemberName()
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getMemberName();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.MemberNaming#getMemberName <em>Member Name</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.groups.NamespaceMember#getMemberName <em>Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Member Name</em>' attribute.
@@ -52,7 +52,7 @@ public interface MemberNaming extends GroupMember {
 
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.Namespace#getMemberNaming <em>Member Naming</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.Namespace#getNamespaceMember <em>Namespace Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Namespace</em>' reference isn't clear,
@@ -61,15 +61,15 @@ public interface MemberNaming extends GroupMember {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespace</em>' reference.
 	 * @see #setNamespace(Namespace)
-	 * @see org.omg.sysml.groups.GroupsPackage#getMemberNaming_Namespace()
-	 * @see org.omg.sysml.groups.Namespace#getMemberNaming
-	 * @model opposite="memberNaming" required="true" ordered="false"
+	 * @see org.omg.sysml.groups.GroupsPackage#getNamespaceMember_Namespace()
+	 * @see org.omg.sysml.groups.Namespace#getNamespaceMember
+	 * @model opposite="namespaceMember" ordered="false"
 	 * @generated
 	 */
 	Namespace getNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.MemberNaming#getNamespace <em>Namespace</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.groups.NamespaceMember#getNamespace <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Namespace</em>' reference.
@@ -90,14 +90,14 @@ public interface MemberNaming extends GroupMember {
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.omg.sysml.groups.VisibilityKind
 	 * @see #setVisibility(VisibilityKind)
-	 * @see org.omg.sysml.groups.GroupsPackage#getMemberNaming_Visibility()
+	 * @see org.omg.sysml.groups.GroupsPackage#getNamespaceMember_Visibility()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	VisibilityKind getVisibility();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.MemberNaming#getVisibility <em>Visibility</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.groups.NamespaceMember#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Visibility</em>' attribute.
@@ -117,7 +117,7 @@ public interface MemberNaming extends GroupMember {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aliases</em>' attribute list.
-	 * @see org.omg.sysml.groups.GroupsPackage#getMemberNaming_Aliases()
+	 * @see org.omg.sysml.groups.GroupsPackage#getNamespaceMember_Aliases()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -129,6 +129,6 @@ public interface MemberNaming extends GroupMember {
 	 * @model required="true" ordered="false" namingRequired="true" namingOrdered="false"
 	 * @generated
 	 */
-	boolean isDistinguishableFrom(MemberNaming naming);
+	boolean isDistinguishableFrom(NamespaceMember naming);
 
-} // MemberNaming
+} // NamespaceMember

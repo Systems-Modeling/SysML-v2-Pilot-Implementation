@@ -18,8 +18,8 @@ import org.omg.sysml.classification.ClassificationPackage;
 import org.omg.sysml.classification.Feature;
 import org.omg.sysml.classification.Generalization;
 import org.omg.sysml.groups.GroupsPackage;
-import org.omg.sysml.groups.MemberNaming;
 import org.omg.sysml.groups.Namespace;
+import org.omg.sysml.groups.NamespaceMember;
 import org.omg.sysml.services.AlfGrammarAccess;
 
 @SuppressWarnings("all")
@@ -59,19 +59,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			}
 		else if (epackage == GroupsPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case GroupsPackage.MEMBER_NAMING:
-				if (rule == grammarAccess.getClassMemberRule()) {
-					sequence_ClassMember(context, (MemberNaming) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementRule()) {
-					sequence_PackagedElement(context, (MemberNaming) semanticObject); 
-					return; 
-				}
-				else break;
 			case GroupsPackage.NAMESPACE:
 				sequence_PackageDefinition(context, (Namespace) semanticObject); 
 				return; 
+			case GroupsPackage.NAMESPACE_MEMBER:
+				if (rule == grammarAccess.getClassMemberRule()) {
+					sequence_ClassMember(context, (NamespaceMember) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPackagedElementRule()) {
+					sequence_PackagedElement(context, (NamespaceMember) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -98,7 +98,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDefinitionOrStub returns Class
 	 *
 	 * Constraint:
-	 *     (isAbstract?='abstract'? name=Name (ownedGeneralization+=Generalization ownedGeneralization+=Generalization*)? memberNaming+=ClassMember*)
+	 *     (isAbstract?='abstract'? name=Name (ownedGeneralization+=Generalization ownedGeneralization+=Generalization*)? groupMember+=ClassMember*)
 	 */
 	protected void sequence_ClassDeclaration_ClassDefinition(ISerializationContext context, org.omg.sysml.classification.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -107,13 +107,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ClassMember returns MemberNaming
+	 *     ClassMember returns NamespaceMember
 	 *
 	 * Constraint:
-	 *     (visibility=VisibilityIndicator ownedElement+=FeatureDefinition)
+	 *     (visibility=VisibilityIndicator ownedMemberElement=FeatureDefinition)
 	 */
-	protected void sequence_ClassMember(ISerializationContext context, MemberNaming semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ClassMember(ISerializationContext context, NamespaceMember semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GroupsPackage.Literals.NAMESPACE_MEMBER__VISIBILITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GroupsPackage.Literals.NAMESPACE_MEMBER__VISIBILITY));
+			if (transientValues.isValueTransient(semanticObject, GroupsPackage.Literals.GROUP_MEMBER__OWNED_MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GroupsPackage.Literals.GROUP_MEMBER__OWNED_MEMBER_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getClassMemberAccess().getVisibilityVisibilityIndicatorEnumRuleCall_0_0(), semanticObject.getVisibility());
+		feeder.accept(grammarAccess.getClassMemberAccess().getOwnedMemberElementFeatureDefinitionParserRuleCall_1_0(), semanticObject.getOwnedMemberElement());
+		feeder.finish();
 	}
 	
 	
@@ -155,7 +164,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PackagedElementDefinition returns Namespace
 	 *
 	 * Constraint:
-	 *     (name=Name memberNaming+=PackagedElement*)
+	 *     (name=Name groupMember+=PackagedElement*)
 	 */
 	protected void sequence_PackageDefinition(ISerializationContext context, Namespace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -164,13 +173,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PackagedElement returns MemberNaming
+	 *     PackagedElement returns NamespaceMember
 	 *
 	 * Constraint:
-	 *     (visibility=ImportVisibilityIndicator ownedElement+=PackagedElementDefinition)
+	 *     (visibility=ImportVisibilityIndicator ownedMemberElement=PackagedElementDefinition)
 	 */
-	protected void sequence_PackagedElement(ISerializationContext context, MemberNaming semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PackagedElement(ISerializationContext context, NamespaceMember semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GroupsPackage.Literals.NAMESPACE_MEMBER__VISIBILITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GroupsPackage.Literals.NAMESPACE_MEMBER__VISIBILITY));
+			if (transientValues.isValueTransient(semanticObject, GroupsPackage.Literals.GROUP_MEMBER__OWNED_MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GroupsPackage.Literals.GROUP_MEMBER__OWNED_MEMBER_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPackagedElementAccess().getVisibilityImportVisibilityIndicatorEnumRuleCall_0_0(), semanticObject.getVisibility());
+		feeder.accept(grammarAccess.getPackagedElementAccess().getOwnedMemberElementPackagedElementDefinitionParserRuleCall_1_0(), semanticObject.getOwnedMemberElement());
+		feeder.finish();
 	}
 	
 	

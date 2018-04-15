@@ -143,17 +143,17 @@ rulePackageDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPackageDefinitionAccess().getMemberNamingPackagedElementParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getPackageDefinitionAccess().getGroupMemberPackagedElementParserRuleCall_3_0());
 				}
-				lv_memberNaming_3_0=rulePackagedElement
+				lv_groupMember_3_0=rulePackagedElement
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPackageDefinitionRule());
 					}
 					add(
 						$current,
-						"memberNaming",
-						lv_memberNaming_3_0,
+						"groupMember",
+						lv_groupMember_3_0,
 						"org.omg.sysml.Alf.PackagedElement");
 					afterParserOrEnumRuleCall();
 				}
@@ -229,17 +229,17 @@ rulePackagedElement returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPackagedElementAccess().getOwnedElementPackagedElementDefinitionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getPackagedElementAccess().getOwnedMemberElementPackagedElementDefinitionParserRuleCall_1_0());
 				}
-				lv_ownedElement_1_0=rulePackagedElementDefinition
+				lv_ownedMemberElement_1_0=rulePackagedElementDefinition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPackagedElementRule());
 					}
-					add(
+					set(
 						$current,
-						"ownedElement",
-						lv_ownedElement_1_0,
+						"ownedMemberElement",
+						lv_ownedMemberElement_1_0,
 						"org.omg.sysml.Alf.PackagedElementDefinition");
 					afterParserOrEnumRuleCall();
 				}
@@ -479,17 +479,17 @@ ruleClassDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassDefinitionAccess().getMemberNamingClassMemberParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getClassDefinitionAccess().getGroupMemberClassMemberParserRuleCall_2_0());
 				}
-				lv_memberNaming_2_0=ruleClassMember
+				lv_groupMember_2_0=ruleClassMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassDefinitionRule());
 					}
 					add(
 						$current,
-						"memberNaming",
-						lv_memberNaming_2_0,
+						"groupMember",
+						lv_groupMember_2_0,
 						"org.omg.sysml.Alf.ClassMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -565,17 +565,17 @@ ruleClassMember returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassMemberAccess().getOwnedElementFeatureDefinitionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getClassMemberAccess().getOwnedMemberElementFeatureDefinitionParserRuleCall_1_0());
 				}
-				lv_ownedElement_1_0=ruleFeatureDefinition
+				lv_ownedMemberElement_1_0=ruleFeatureDefinition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassMemberRule());
 					}
-					add(
+					set(
 						$current,
-						"ownedElement",
-						lv_ownedElement_1_0,
+						"ownedMemberElement",
+						lv_ownedMemberElement_1_0,
 						"org.omg.sysml.Alf.FeatureDefinition");
 					afterParserOrEnumRuleCall();
 				}

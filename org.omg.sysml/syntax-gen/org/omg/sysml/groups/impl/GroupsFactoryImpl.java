@@ -61,7 +61,8 @@ public class GroupsFactoryImpl extends EFactoryImpl implements GroupsFactory {
 			case GroupsPackage.NAMESPACE_IMPORT: return createNamespaceImport();
 			case GroupsPackage.ELEMENT_GROUP: return createElementGroup();
 			case GroupsPackage.GROUP_IMPORT: return createGroupImport();
-			case GroupsPackage.MEMBER_NAMING: return createMemberNaming();
+			case GroupsPackage.NAMESPACE_MEMBER: return createNamespaceMember();
+			case GroupsPackage.GROUP_MEMBER: return createGroupMember();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -142,9 +143,19 @@ public class GroupsFactoryImpl extends EFactoryImpl implements GroupsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MemberNaming createMemberNaming() {
-		MemberNamingImpl memberNaming = new MemberNamingImpl();
-		return memberNaming;
+	public NamespaceMember createNamespaceMember() {
+		NamespaceMemberImpl namespaceMember = new NamespaceMemberImpl();
+		return namespaceMember;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GroupMember createGroupMember() {
+		GroupMemberImpl groupMember = new GroupMemberImpl();
+		return groupMember;
 	}
 
 	/**

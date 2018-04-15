@@ -6,10 +6,10 @@ package org.omg.sysml.ui.outline;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
-import org.omg.sysml.kerml.core.ElementRecord;
-import org.omg.sysml.kerml.structure.Feature;
-import org.omg.sysml.kerml.structure.Generalization;
-import org.omg.sysml.kerml.structure.StructurePackage;
+import org.omg.sysml.classification.ClassificationPackage;
+import org.omg.sysml.classification.Feature;
+import org.omg.sysml.classification.Generalization;
+import org.omg.sysml.core.Element;
 
 /**
  * Customization of the default outline structure.
@@ -18,7 +18,7 @@ import org.omg.sysml.kerml.structure.StructurePackage;
  */
 @SuppressWarnings("all")
 public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
-  public String _text(final ElementRecord element) {
+  public String _text(final Element element) {
     String _name = element.eClass().getName();
     String _plus = (_name + " ");
     String _xifexpression = null;
@@ -37,11 +37,11 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
-    Image __image = this._image(feature.getDefiningType());
-    String _name = feature.getDefiningType().getName();
+    Image __image = this._image(feature.getReferencedType());
+    String _name = feature.getReferencedType().get(0).getName();
     String _plus = ("definingType " + _name);
     this.createEStructuralFeatureNode(parentNode, feature, 
-      StructurePackage.Literals.FEATURE__DEFINING_TYPE, __image, _plus, 
+      ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
       true);
   }
   
@@ -54,7 +54,7 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
     String _name = generalization.getGeneral().getName();
     String _plus = ("general " + _name);
     this.createEStructuralFeatureNode(parentNode, generalization, 
-      StructurePackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
+      ClassificationPackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
       true);
   }
 }

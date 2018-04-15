@@ -11,7 +11,6 @@ import org.omg.sysml.behaviors.BehaviorsPackage;
 import org.omg.sysml.classification.ClassificationPackage;
 import org.omg.sysml.core.CorePackage;
 import org.omg.sysml.groups.GroupsPackage;
-import org.omg.sysml.sysml.SysmlPackage;
 
 public class Alf2UML extends QVTRunner {
 
@@ -26,7 +25,6 @@ public class Alf2UML extends QVTRunner {
 	    GroupsPackage group = GroupsPackage.eINSTANCE;
 	    ClassificationPackage classification = ClassificationPackage.eINSTANCE;
 	    BehaviorsPackage behavior = BehaviorsPackage.eINSTANCE;
-	    SysmlPackage sysml = SysmlPackage.eINSTANCE;
 	    
 	    AlfStandaloneSetup.doSetup();
 	}

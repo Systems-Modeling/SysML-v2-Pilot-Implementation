@@ -152,7 +152,7 @@ public interface ClassificationPackage extends EPackage {
 	int CLASS__IMPORTED_MEMBER = GroupsPackage.NAMESPACE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,13 +161,22 @@ public interface ClassificationPackage extends EPackage {
 	int CLASS__OWNED_MEMBER = GroupsPackage.NAMESPACE__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__MEMBER_NAMING = GroupsPackage.NAMESPACE__MEMBER_NAMING;
+	int CLASS__GROUP_MEMBER = GroupsPackage.NAMESPACE__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__NAMESPACE_MEMBER = GroupsPackage.NAMESPACE__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -342,7 +351,7 @@ public interface ClassificationPackage extends EPackage {
 	int FEATURE__IMPORTED_MEMBER = GroupsPackage.NAMESPACE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -351,13 +360,22 @@ public interface ClassificationPackage extends EPackage {
 	int FEATURE__OWNED_MEMBER = GroupsPackage.NAMESPACE__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__MEMBER_NAMING = GroupsPackage.NAMESPACE__MEMBER_NAMING;
+	int FEATURE__GROUP_MEMBER = GroupsPackage.NAMESPACE__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__NAMESPACE_MEMBER = GroupsPackage.NAMESPACE__NAMESPACE_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.

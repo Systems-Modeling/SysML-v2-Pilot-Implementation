@@ -17,35 +17,29 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.omg.sysml.core.Element;
-
-import org.omg.sysml.core.impl.RelationshipImpl;
 
 import org.omg.sysml.groups.GroupsPackage;
-import org.omg.sysml.groups.MemberNaming;
 import org.omg.sysml.groups.Namespace;
+import org.omg.sysml.groups.NamespaceMember;
 import org.omg.sysml.groups.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Member Naming</b></em>'.
+ * An implementation of the model object '<em><b>Namespace Member</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.impl.MemberNamingImpl#getMemberName <em>Member Name</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.MemberNamingImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.MemberNamingImpl#getElement <em>Element</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.MemberNamingImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.MemberNamingImpl#getAliases <em>Aliases</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.NamespaceMemberImpl#getMemberName <em>Member Name</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.NamespaceMemberImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.NamespaceMemberImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.NamespaceMemberImpl#getAliases <em>Aliases</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
+public class NamespaceMemberImpl extends GroupMemberImpl implements NamespaceMember {
 	/**
 	 * The default value of the '{@link #getMemberName() <em>Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,14 +61,14 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	protected String memberName = MEMBER_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
+	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
+	 * @see #getNamespace()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element element;
+	protected Namespace namespace;
 
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
@@ -111,7 +105,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MemberNamingImpl() {
+	protected NamespaceMemberImpl() {
 		super();
 	}
 
@@ -122,7 +116,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GroupsPackage.Literals.MEMBER_NAMING;
+		return GroupsPackage.Literals.NAMESPACE_MEMBER;
 	}
 
 	/**
@@ -143,7 +137,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 		String oldMemberName = memberName;
 		memberName = newMemberName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.MEMBER_NAMING__MEMBER_NAME, oldMemberName, memberName));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.NAMESPACE_MEMBER__MEMBER_NAME, oldMemberName, memberName));
 	}
 
 	/**
@@ -152,8 +146,24 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * @generated
 	 */
 	public Namespace getNamespace() {
-		if (eContainerFeatureID() != GroupsPackage.MEMBER_NAMING__NAMESPACE) return null;
-		return (Namespace)eInternalContainer();
+		if (namespace != null && namespace.eIsProxy()) {
+			InternalEObject oldNamespace = (InternalEObject)namespace;
+			namespace = (Namespace)eResolveProxy(oldNamespace);
+			if (namespace != oldNamespace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GroupsPackage.NAMESPACE_MEMBER__NAMESPACE, oldNamespace, namespace));
+			}
+		}
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Namespace basicGetNamespace() {
+		return namespace;
 	}
 
 	/**
@@ -162,7 +172,12 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * @generated
 	 */
 	public NotificationChain basicSetNamespace(Namespace newNamespace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newNamespace, GroupsPackage.MEMBER_NAMING__NAMESPACE, msgs);
+		Namespace oldNamespace = namespace;
+		namespace = newNamespace;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GroupsPackage.NAMESPACE_MEMBER__NAMESPACE, oldNamespace, newNamespace);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -172,57 +187,17 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * @generated
 	 */
 	public void setNamespace(Namespace newNamespace) {
-		if (newNamespace != eInternalContainer() || (eContainerFeatureID() != GroupsPackage.MEMBER_NAMING__NAMESPACE && newNamespace != null)) {
-			if (EcoreUtil.isAncestor(this, newNamespace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newNamespace != namespace) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (namespace != null)
+				msgs = ((InternalEObject)namespace).eInverseRemove(this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, Namespace.class, msgs);
 			if (newNamespace != null)
-				msgs = ((InternalEObject)newNamespace).eInverseAdd(this, GroupsPackage.NAMESPACE__MEMBER_NAMING, Namespace.class, msgs);
+				msgs = ((InternalEObject)newNamespace).eInverseAdd(this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, Namespace.class, msgs);
 			msgs = basicSetNamespace(newNamespace, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.MEMBER_NAMING__NAMESPACE, newNamespace, newNamespace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element getElement() {
-		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (Element)eResolveProxy(oldElement);
-			if (element != oldElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GroupsPackage.MEMBER_NAMING__ELEMENT, oldElement, element));
-			}
-		}
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element basicGetElement() {
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElement(Element newElement) {
-		Element oldElement = element;
-		element = newElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.MEMBER_NAMING__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.NAMESPACE_MEMBER__NAMESPACE, newNamespace, newNamespace));
 	}
 
 	/**
@@ -243,7 +218,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.MEMBER_NAMING__VISIBILITY, oldVisibility, visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.NAMESPACE_MEMBER__VISIBILITY, oldVisibility, visibility));
 	}
 
 	/**
@@ -253,7 +228,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 */
 	public EList<String> getAliases() {
 		if (aliases == null) {
-			aliases = new EDataTypeUniqueEList<String>(String.class, this, GroupsPackage.MEMBER_NAMING__ALIASES);
+			aliases = new EDataTypeUniqueEList<String>(String.class, this, GroupsPackage.NAMESPACE_MEMBER__ALIASES);
 		}
 		return aliases;
 	}
@@ -263,7 +238,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDistinguishableFrom(MemberNaming naming) {
+	public boolean isDistinguishableFrom(NamespaceMember naming) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -277,9 +252,9 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
+				if (namespace != null)
+					msgs = ((InternalEObject)namespace).eInverseRemove(this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, Namespace.class, msgs);
 				return basicSetNamespace((Namespace)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -293,7 +268,7 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
 				return basicSetNamespace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -305,32 +280,16 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
-				return eInternalContainer().eInverseRemove(this, GroupsPackage.NAMESPACE__MEMBER_NAMING, Namespace.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__MEMBER_NAME:
+			case GroupsPackage.NAMESPACE_MEMBER__MEMBER_NAME:
 				return getMemberName();
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
-				return getNamespace();
-			case GroupsPackage.MEMBER_NAMING__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
-			case GroupsPackage.MEMBER_NAMING__VISIBILITY:
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
+				if (resolve) return getNamespace();
+				return basicGetNamespace();
+			case GroupsPackage.NAMESPACE_MEMBER__VISIBILITY:
 				return getVisibility();
-			case GroupsPackage.MEMBER_NAMING__ALIASES:
+			case GroupsPackage.NAMESPACE_MEMBER__ALIASES:
 				return getAliases();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -345,19 +304,16 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__MEMBER_NAME:
+			case GroupsPackage.NAMESPACE_MEMBER__MEMBER_NAME:
 				setMemberName((String)newValue);
 				return;
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
 				setNamespace((Namespace)newValue);
 				return;
-			case GroupsPackage.MEMBER_NAMING__ELEMENT:
-				setElement((Element)newValue);
-				return;
-			case GroupsPackage.MEMBER_NAMING__VISIBILITY:
+			case GroupsPackage.NAMESPACE_MEMBER__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
 				return;
-			case GroupsPackage.MEMBER_NAMING__ALIASES:
+			case GroupsPackage.NAMESPACE_MEMBER__ALIASES:
 				getAliases().clear();
 				getAliases().addAll((Collection<? extends String>)newValue);
 				return;
@@ -373,19 +329,16 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__MEMBER_NAME:
+			case GroupsPackage.NAMESPACE_MEMBER__MEMBER_NAME:
 				setMemberName(MEMBER_NAME_EDEFAULT);
 				return;
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
 				setNamespace((Namespace)null);
 				return;
-			case GroupsPackage.MEMBER_NAMING__ELEMENT:
-				setElement((Element)null);
-				return;
-			case GroupsPackage.MEMBER_NAMING__VISIBILITY:
+			case GroupsPackage.NAMESPACE_MEMBER__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
-			case GroupsPackage.MEMBER_NAMING__ALIASES:
+			case GroupsPackage.NAMESPACE_MEMBER__ALIASES:
 				getAliases().clear();
 				return;
 		}
@@ -400,15 +353,13 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.MEMBER_NAMING__MEMBER_NAME:
+			case GroupsPackage.NAMESPACE_MEMBER__MEMBER_NAME:
 				return MEMBER_NAME_EDEFAULT == null ? memberName != null : !MEMBER_NAME_EDEFAULT.equals(memberName);
-			case GroupsPackage.MEMBER_NAMING__NAMESPACE:
-				return getNamespace() != null;
-			case GroupsPackage.MEMBER_NAMING__ELEMENT:
-				return element != null;
-			case GroupsPackage.MEMBER_NAMING__VISIBILITY:
+			case GroupsPackage.NAMESPACE_MEMBER__NAMESPACE:
+				return namespace != null;
+			case GroupsPackage.NAMESPACE_MEMBER__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
-			case GroupsPackage.MEMBER_NAMING__ALIASES:
+			case GroupsPackage.NAMESPACE_MEMBER__ALIASES:
 				return aliases != null && !aliases.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -422,8 +373,8 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case GroupsPackage.MEMBER_NAMING___IS_DISTINGUISHABLE_FROM__MEMBERNAMING:
-				return isDistinguishableFrom((MemberNaming)arguments.get(0));
+			case GroupsPackage.NAMESPACE_MEMBER___IS_DISTINGUISHABLE_FROM__NAMESPACEMEMBER:
+				return isDistinguishableFrom((NamespaceMember)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -448,4 +399,4 @@ public class MemberNamingImpl extends RelationshipImpl implements MemberNaming {
 		return result.toString();
 	}
 
-} //MemberNamingImpl
+} //NamespaceMemberImpl

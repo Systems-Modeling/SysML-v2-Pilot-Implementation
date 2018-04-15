@@ -15,7 +15,7 @@ import org.omg.sysml.core.Element;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.Namespace#getMemberNaming <em>Member Naming</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.Namespace#getNamespaceMember <em>Namespace Member</em>}</li>
  *   <li>{@link org.omg.sysml.groups.Namespace#getNamespaceImport <em>Namespace Import</em>}</li>
  * </ul>
  *
@@ -25,22 +25,22 @@ import org.omg.sysml.core.Element;
  */
 public interface Namespace extends ElementGroup {
 	/**
-	 * Returns the value of the '<em><b>Member Naming</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.groups.MemberNaming}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.MemberNaming#getNamespace <em>Namespace</em>}'.
+	 * Returns the value of the '<em><b>Namespace Member</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.groups.NamespaceMember}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.NamespaceMember#getNamespace <em>Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Member Naming</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Namespace Member</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Member Naming</em>' containment reference list.
-	 * @see org.omg.sysml.groups.GroupsPackage#getNamespace_MemberNaming()
-	 * @see org.omg.sysml.groups.MemberNaming#getNamespace
-	 * @model opposite="namespace" containment="true"
+	 * @return the value of the '<em>Namespace Member</em>' reference list.
+	 * @see org.omg.sysml.groups.GroupsPackage#getNamespace_NamespaceMember()
+	 * @see org.omg.sysml.groups.NamespaceMember#getNamespace
+	 * @model opposite="namespace"
 	 * @generated
 	 */
-	EList<MemberNaming> getMemberNaming();
+	EList<NamespaceMember> getNamespaceMember();
 
 	/**
 	 * Returns the value of the '<em><b>Namespace Import</b></em>' reference list.

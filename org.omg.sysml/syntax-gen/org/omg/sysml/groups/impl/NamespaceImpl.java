@@ -13,16 +13,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.core.Element;
 
 import org.omg.sysml.groups.GroupsPackage;
-import org.omg.sysml.groups.MemberNaming;
 import org.omg.sysml.groups.Namespace;
 import org.omg.sysml.groups.NamespaceImport;
+import org.omg.sysml.groups.NamespaceMember;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +31,7 @@ import org.omg.sysml.groups.NamespaceImport;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.impl.NamespaceImpl#getMemberNaming <em>Member Naming</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.NamespaceImpl#getNamespaceMember <em>Namespace Member</em>}</li>
  *   <li>{@link org.omg.sysml.groups.impl.NamespaceImpl#getNamespaceImport <em>Namespace Import</em>}</li>
  * </ul>
  *
@@ -40,14 +39,14 @@ import org.omg.sysml.groups.NamespaceImport;
  */
 public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	/**
-	 * The cached value of the '{@link #getMemberNaming() <em>Member Naming</em>}' containment reference list.
+	 * The cached value of the '{@link #getNamespaceMember() <em>Namespace Member</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemberNaming()
+	 * @see #getNamespaceMember()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MemberNaming> memberNaming;
+	protected EList<NamespaceMember> namespaceMember;
 
 	/**
 	 * The cached value of the '{@link #getNamespaceImport() <em>Namespace Import</em>}' reference list.
@@ -83,11 +82,11 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MemberNaming> getMemberNaming() {
-		if (memberNaming == null) {
-			memberNaming = new EObjectContainmentWithInverseEList<MemberNaming>(MemberNaming.class, this, GroupsPackage.NAMESPACE__MEMBER_NAMING, GroupsPackage.MEMBER_NAMING__NAMESPACE);
+	public EList<NamespaceMember> getNamespaceMember() {
+		if (namespaceMember == null) {
+			namespaceMember = new EObjectWithInverseResolvingEList<NamespaceMember>(NamespaceMember.class, this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, GroupsPackage.NAMESPACE_MEMBER__NAMESPACE);
 		}
-		return memberNaming;
+		return namespaceMember;
 	}
 
 	/**
@@ -122,8 +121,8 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMemberNaming()).basicAdd(otherEnd, msgs);
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNamespaceMember()).basicAdd(otherEnd, msgs);
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNamespaceImport()).basicAdd(otherEnd, msgs);
 		}
@@ -138,8 +137,8 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				return ((InternalEList<?>)getMemberNaming()).basicRemove(otherEnd, msgs);
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				return ((InternalEList<?>)getNamespaceMember()).basicRemove(otherEnd, msgs);
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				return ((InternalEList<?>)getNamespaceImport()).basicRemove(otherEnd, msgs);
 		}
@@ -154,8 +153,8 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				return getMemberNaming();
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				return getNamespaceMember();
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				return getNamespaceImport();
 		}
@@ -171,9 +170,9 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				getMemberNaming().clear();
-				getMemberNaming().addAll((Collection<? extends MemberNaming>)newValue);
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				getNamespaceMember().clear();
+				getNamespaceMember().addAll((Collection<? extends NamespaceMember>)newValue);
 				return;
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				getNamespaceImport().clear();
@@ -191,8 +190,8 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				getMemberNaming().clear();
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				getNamespaceMember().clear();
 				return;
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				getNamespaceImport().clear();
@@ -209,8 +208,8 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.NAMESPACE__MEMBER_NAMING:
-				return memberNaming != null && !memberNaming.isEmpty();
+			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
+				return namespaceMember != null && !namespaceMember.isEmpty();
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				return namespaceImport != null && !namespaceImport.isEmpty();
 		}

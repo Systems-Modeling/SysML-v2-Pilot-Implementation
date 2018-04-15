@@ -8,7 +8,7 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup
 var rootPath = ".."
 var projectName = "org.omg.sysml"
 var genModel = "platform:/resource/${projectName}/model/SysML-Classification.genmodel"
-var ePackage = "${projectName}.sysml.SysmlPackage"
+var ePackage = "${projectName}.classification.ClassificationPackage"
 
 Workflow {
 	

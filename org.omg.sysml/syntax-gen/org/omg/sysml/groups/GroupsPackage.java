@@ -152,7 +152,7 @@ public interface GroupsPackage extends EPackage {
 	int ELEMENT_GROUP__IMPORTED_MEMBER = CorePackage.ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,13 +161,22 @@ public interface GroupsPackage extends EPackage {
 	int ELEMENT_GROUP__OWNED_MEMBER = CorePackage.ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_GROUP__GROUP_MEMBER = CorePackage.ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Element Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_GROUP_FEATURE_COUNT = CorePackage.ELEMENT_FEATURE_COUNT + 4;
+	int ELEMENT_GROUP_FEATURE_COUNT = CorePackage.ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Element Group</em>' class.
@@ -270,7 +279,7 @@ public interface GroupsPackage extends EPackage {
 	int NAMESPACE__IMPORTED_MEMBER = ELEMENT_GROUP__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -279,13 +288,22 @@ public interface GroupsPackage extends EPackage {
 	int NAMESPACE__OWNED_MEMBER = ELEMENT_GROUP__OWNED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Member Naming</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Group Member</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE__MEMBER_NAMING = ELEMENT_GROUP_FEATURE_COUNT + 0;
+	int NAMESPACE__GROUP_MEMBER = ELEMENT_GROUP__GROUP_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Namespace Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__NAMESPACE_MEMBER = ELEMENT_GROUP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Import</b></em>' reference list.
@@ -340,7 +358,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__OWNED_ELEMENT = CorePackage.ELEMENT__OWNED_ELEMENT;
+	int GROUP_IMPORT__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -349,7 +367,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__OWNER = CorePackage.ELEMENT__OWNER;
+	int GROUP_IMPORT__OWNER = CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -358,7 +376,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__IDENTIFIER = CorePackage.ELEMENT__IDENTIFIER;
+	int GROUP_IMPORT__IDENTIFIER = CorePackage.RELATIONSHIP__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Group</b></em>' reference.
@@ -367,7 +385,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__OWNING_GROUP = CorePackage.ELEMENT__OWNING_GROUP;
+	int GROUP_IMPORT__OWNING_GROUP = CorePackage.RELATIONSHIP__OWNING_GROUP;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -376,7 +394,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__NAME = CorePackage.ELEMENT__NAME;
+	int GROUP_IMPORT__NAME = CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -385,7 +403,34 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__OWNING_NAMESPACE = CorePackage.ELEMENT__OWNING_NAMESPACE;
+	int GROUP_IMPORT__OWNING_NAMESPACE = CorePackage.RELATIONSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Related</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_IMPORT__RELATED = CorePackage.RELATIONSHIP__RELATED;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_IMPORT__TARGET = CorePackage.RELATIONSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_IMPORT__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Imported Group</b></em>' reference.
@@ -394,7 +439,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__IMPORTED_GROUP = CorePackage.ELEMENT_FEATURE_COUNT + 0;
+	int GROUP_IMPORT__IMPORTED_GROUP = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Importing Group</b></em>' container reference.
@@ -403,7 +448,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__IMPORTING_GROUP = CorePackage.ELEMENT_FEATURE_COUNT + 1;
+	int GROUP_IMPORT__IMPORTING_GROUP = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Selecter</b></em>' reference.
@@ -412,7 +457,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT__SELECTER = CorePackage.ELEMENT_FEATURE_COUNT + 2;
+	int GROUP_IMPORT__SELECTER = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Group Import</em>' class.
@@ -421,7 +466,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT_FEATURE_COUNT = CorePackage.ELEMENT_FEATURE_COUNT + 3;
+	int GROUP_IMPORT_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Imported Members</em>' operation.
@@ -430,7 +475,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT___IMPORTED_MEMBERS = CorePackage.ELEMENT_OPERATION_COUNT + 0;
+	int GROUP_IMPORT___IMPORTED_MEMBERS = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Group Import</em>' class.
@@ -439,7 +484,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GROUP_IMPORT_OPERATION_COUNT = CorePackage.ELEMENT_OPERATION_COUNT + 1;
+	int GROUP_IMPORT_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.groups.impl.NamespaceImportImpl <em>Namespace Import</em>}' class.
@@ -504,6 +549,33 @@ public interface GroupsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMESPACE_IMPORT__OWNING_NAMESPACE = GROUP_IMPORT__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Related</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_IMPORT__RELATED = GROUP_IMPORT__RELATED;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_IMPORT__TARGET = GROUP_IMPORT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_IMPORT__SOURCE = GROUP_IMPORT__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Imported Group</b></em>' reference.
@@ -587,14 +659,14 @@ public interface GroupsPackage extends EPackage {
 	int NAMESPACE_IMPORT_OPERATION_COUNT = GROUP_IMPORT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.omg.sysml.groups.impl.MemberNamingImpl <em>Member Naming</em>}' class.
+	 * The meta object id for the '{@link org.omg.sysml.groups.impl.GroupMemberImpl <em>Group Member</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.groups.impl.MemberNamingImpl
-	 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getMemberNaming()
+	 * @see org.omg.sysml.groups.impl.GroupMemberImpl
+	 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getGroupMember()
 	 * @generated
 	 */
-	int MEMBER_NAMING = 4;
+	int GROUP_MEMBER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
@@ -603,7 +675,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
+	int GROUP_MEMBER__OWNED_ELEMENT = CorePackage.RELATIONSHIP__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -612,7 +684,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__OWNER = CorePackage.RELATIONSHIP__OWNER;
+	int GROUP_MEMBER__OWNER = CorePackage.RELATIONSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -621,7 +693,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__IDENTIFIER = CorePackage.RELATIONSHIP__IDENTIFIER;
+	int GROUP_MEMBER__IDENTIFIER = CorePackage.RELATIONSHIP__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Group</b></em>' reference.
@@ -630,7 +702,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__OWNING_GROUP = CorePackage.RELATIONSHIP__OWNING_GROUP;
+	int GROUP_MEMBER__OWNING_GROUP = CorePackage.RELATIONSHIP__OWNING_GROUP;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -639,7 +711,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__NAME = CorePackage.RELATIONSHIP__NAME;
+	int GROUP_MEMBER__NAME = CorePackage.RELATIONSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -648,7 +720,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__OWNING_NAMESPACE = CorePackage.RELATIONSHIP__OWNING_NAMESPACE;
+	int GROUP_MEMBER__OWNING_NAMESPACE = CorePackage.RELATIONSHIP__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Related</b></em>' reference list.
@@ -657,7 +729,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__RELATED = CorePackage.RELATIONSHIP__RELATED;
+	int GROUP_MEMBER__RELATED = CorePackage.RELATIONSHIP__RELATED;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -666,7 +738,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__TARGET = CorePackage.RELATIONSHIP__TARGET;
+	int GROUP_MEMBER__TARGET = CorePackage.RELATIONSHIP__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -675,7 +747,170 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+	int GROUP_MEMBER__SOURCE = CorePackage.RELATIONSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Group</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_MEMBER__GROUP = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_MEMBER__MEMBER_ELEMENT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_MEMBER__OWNED_MEMBER_ELEMENT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Group Member</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_MEMBER_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Group Member</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_MEMBER_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.groups.impl.NamespaceMemberImpl <em>Namespace Member</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.groups.impl.NamespaceMemberImpl
+	 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getNamespaceMember()
+	 * @generated
+	 */
+	int NAMESPACE_MEMBER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__OWNED_ELEMENT = GROUP_MEMBER__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__OWNER = GROUP_MEMBER__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__IDENTIFIER = GROUP_MEMBER__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Group</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__OWNING_GROUP = GROUP_MEMBER__OWNING_GROUP;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__NAME = GROUP_MEMBER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__OWNING_NAMESPACE = GROUP_MEMBER__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Related</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__RELATED = GROUP_MEMBER__RELATED;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__TARGET = GROUP_MEMBER__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__SOURCE = GROUP_MEMBER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Group</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__GROUP = GROUP_MEMBER__GROUP;
+
+	/**
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__MEMBER_ELEMENT = GROUP_MEMBER__MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_MEMBER__OWNED_MEMBER_ELEMENT = GROUP_MEMBER__OWNED_MEMBER_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
@@ -684,25 +919,16 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__MEMBER_NAME = CorePackage.RELATIONSHIP_FEATURE_COUNT + 0;
+	int NAMESPACE_MEMBER__MEMBER_NAME = GROUP_MEMBER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' container reference.
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__NAMESPACE = CorePackage.RELATIONSHIP_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEMBER_NAMING__ELEMENT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 2;
+	int NAMESPACE_MEMBER__NAMESPACE = GROUP_MEMBER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -711,7 +937,7 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__VISIBILITY = CorePackage.RELATIONSHIP_FEATURE_COUNT + 3;
+	int NAMESPACE_MEMBER__VISIBILITY = GROUP_MEMBER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
@@ -720,16 +946,16 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING__ALIASES = CorePackage.RELATIONSHIP_FEATURE_COUNT + 4;
+	int NAMESPACE_MEMBER__ALIASES = GROUP_MEMBER_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Member Naming</em>' class.
+	 * The number of structural features of the '<em>Namespace Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING_FEATURE_COUNT = CorePackage.RELATIONSHIP_FEATURE_COUNT + 5;
+	int NAMESPACE_MEMBER_FEATURE_COUNT = GROUP_MEMBER_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -738,16 +964,16 @@ public interface GroupsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING___IS_DISTINGUISHABLE_FROM__MEMBERNAMING = CorePackage.RELATIONSHIP_OPERATION_COUNT + 0;
+	int NAMESPACE_MEMBER___IS_DISTINGUISHABLE_FROM__NAMESPACEMEMBER = GROUP_MEMBER_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Member Naming</em>' class.
+	 * The number of operations of the '<em>Namespace Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_NAMING_OPERATION_COUNT = CorePackage.RELATIONSHIP_OPERATION_COUNT + 1;
+	int NAMESPACE_MEMBER_OPERATION_COUNT = GROUP_MEMBER_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.groups.VisibilityKind <em>Visibility Kind</em>}' enum.
@@ -757,7 +983,7 @@ public interface GroupsPackage extends EPackage {
 	 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 5;
+	int VISIBILITY_KIND = 6;
 
 
 	/**
@@ -771,15 +997,15 @@ public interface GroupsPackage extends EPackage {
 	EClass getNamespace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.groups.Namespace#getMemberNaming <em>Member Naming</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.groups.Namespace#getNamespaceMember <em>Namespace Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Member Naming</em>'.
-	 * @see org.omg.sysml.groups.Namespace#getMemberNaming()
+	 * @return the meta object for the reference list '<em>Namespace Member</em>'.
+	 * @see org.omg.sysml.groups.Namespace#getNamespaceMember()
 	 * @see #getNamespace()
 	 * @generated
 	 */
-	EReference getNamespace_MemberNaming();
+	EReference getNamespace_NamespaceMember();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.groups.Namespace#getNamespaceImport <em>Namespace Import</em>}'.
@@ -899,15 +1125,26 @@ public interface GroupsPackage extends EPackage {
 	EReference getElementGroup_ImportedMember();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.groups.ElementGroup#getOwnedMember <em>Owned Member</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.groups.ElementGroup#getOwnedMember <em>Owned Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Member</em>'.
+	 * @return the meta object for the reference list '<em>Owned Member</em>'.
 	 * @see org.omg.sysml.groups.ElementGroup#getOwnedMember()
 	 * @see #getElementGroup()
 	 * @generated
 	 */
 	EReference getElementGroup_OwnedMember();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.groups.ElementGroup#getGroupMember <em>Group Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Group Member</em>'.
+	 * @see org.omg.sysml.groups.ElementGroup#getGroupMember()
+	 * @see #getElementGroup()
+	 * @generated
+	 */
+	EReference getElementGroup_GroupMember();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.groups.GroupImport <em>Group Import</em>}'.
@@ -963,79 +1200,111 @@ public interface GroupsPackage extends EPackage {
 	EOperation getGroupImport__ImportedMembers();
 
 	/**
-	 * Returns the meta object for class '{@link org.omg.sysml.groups.MemberNaming <em>Member Naming</em>}'.
+	 * Returns the meta object for class '{@link org.omg.sysml.groups.NamespaceMember <em>Namespace Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Member Naming</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming
+	 * @return the meta object for class '<em>Namespace Member</em>'.
+	 * @see org.omg.sysml.groups.NamespaceMember
 	 * @generated
 	 */
-	EClass getMemberNaming();
+	EClass getNamespaceMember();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.omg.sysml.groups.MemberNaming#getMemberName <em>Member Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.omg.sysml.groups.NamespaceMember#getMemberName <em>Member Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Member Name</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming#getMemberName()
-	 * @see #getMemberNaming()
+	 * @see org.omg.sysml.groups.NamespaceMember#getMemberName()
+	 * @see #getNamespaceMember()
 	 * @generated
 	 */
-	EAttribute getMemberNaming_MemberName();
+	EAttribute getNamespaceMember_MemberName();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.groups.MemberNaming#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.groups.NamespaceMember#getNamespace <em>Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Namespace</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming#getNamespace()
-	 * @see #getMemberNaming()
+	 * @return the meta object for the reference '<em>Namespace</em>'.
+	 * @see org.omg.sysml.groups.NamespaceMember#getNamespace()
+	 * @see #getNamespaceMember()
 	 * @generated
 	 */
-	EReference getMemberNaming_Namespace();
+	EReference getNamespaceMember_Namespace();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.groups.MemberNaming#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming#getElement()
-	 * @see #getMemberNaming()
-	 * @generated
-	 */
-	EReference getMemberNaming_Element();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.omg.sysml.groups.MemberNaming#getVisibility <em>Visibility</em>}'.
+	 * Returns the meta object for the attribute '{@link org.omg.sysml.groups.NamespaceMember#getVisibility <em>Visibility</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Visibility</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming#getVisibility()
-	 * @see #getMemberNaming()
+	 * @see org.omg.sysml.groups.NamespaceMember#getVisibility()
+	 * @see #getNamespaceMember()
 	 * @generated
 	 */
-	EAttribute getMemberNaming_Visibility();
+	EAttribute getNamespaceMember_Visibility();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.omg.sysml.groups.MemberNaming#getAliases <em>Aliases</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.omg.sysml.groups.NamespaceMember#getAliases <em>Aliases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Aliases</em>'.
-	 * @see org.omg.sysml.groups.MemberNaming#getAliases()
-	 * @see #getMemberNaming()
+	 * @see org.omg.sysml.groups.NamespaceMember#getAliases()
+	 * @see #getNamespaceMember()
 	 * @generated
 	 */
-	EAttribute getMemberNaming_Aliases();
+	EAttribute getNamespaceMember_Aliases();
 
 	/**
-	 * Returns the meta object for the '{@link org.omg.sysml.groups.MemberNaming#isDistinguishableFrom(org.omg.sysml.groups.MemberNaming) <em>Is Distinguishable From</em>}' operation.
+	 * Returns the meta object for the '{@link org.omg.sysml.groups.NamespaceMember#isDistinguishableFrom(org.omg.sysml.groups.NamespaceMember) <em>Is Distinguishable From</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Distinguishable From</em>' operation.
-	 * @see org.omg.sysml.groups.MemberNaming#isDistinguishableFrom(org.omg.sysml.groups.MemberNaming)
+	 * @see org.omg.sysml.groups.NamespaceMember#isDistinguishableFrom(org.omg.sysml.groups.NamespaceMember)
 	 * @generated
 	 */
-	EOperation getMemberNaming__IsDistinguishableFrom__MemberNaming();
+	EOperation getNamespaceMember__IsDistinguishableFrom__NamespaceMember();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.groups.GroupMember <em>Group Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Group Member</em>'.
+	 * @see org.omg.sysml.groups.GroupMember
+	 * @generated
+	 */
+	EClass getGroupMember();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.omg.sysml.groups.GroupMember#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Group</em>'.
+	 * @see org.omg.sysml.groups.GroupMember#getGroup()
+	 * @see #getGroupMember()
+	 * @generated
+	 */
+	EReference getGroupMember_Group();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.groups.GroupMember#getMemberElement <em>Member Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Member Element</em>'.
+	 * @see org.omg.sysml.groups.GroupMember#getMemberElement()
+	 * @see #getGroupMember()
+	 * @generated
+	 */
+	EReference getGroupMember_MemberElement();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.groups.GroupMember#getOwnedMemberElement <em>Owned Member Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Member Element</em>'.
+	 * @see org.omg.sysml.groups.GroupMember#getOwnedMemberElement()
+	 * @see #getGroupMember()
+	 * @generated
+	 */
+	EReference getGroupMember_OwnedMemberElement();
 
 	/**
 	 * Returns the meta object for enum '{@link org.omg.sysml.groups.VisibilityKind <em>Visibility Kind</em>}'.
@@ -1081,12 +1350,12 @@ public interface GroupsPackage extends EPackage {
 		EClass NAMESPACE = eINSTANCE.getNamespace();
 
 		/**
-		 * The meta object literal for the '<em><b>Member Naming</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Namespace Member</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAMESPACE__MEMBER_NAMING = eINSTANCE.getNamespace_MemberNaming();
+		EReference NAMESPACE__NAMESPACE_MEMBER = eINSTANCE.getNamespace_NamespaceMember();
 
 		/**
 		 * The meta object literal for the '<em><b>Namespace Import</b></em>' reference list feature.
@@ -1181,12 +1450,20 @@ public interface GroupsPackage extends EPackage {
 		EReference ELEMENT_GROUP__IMPORTED_MEMBER = eINSTANCE.getElementGroup_ImportedMember();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Member</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Member</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ELEMENT_GROUP__OWNED_MEMBER = eINSTANCE.getElementGroup_OwnedMember();
+
+		/**
+		 * The meta object literal for the '<em><b>Group Member</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT_GROUP__GROUP_MEMBER = eINSTANCE.getElementGroup_GroupMember();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.groups.impl.GroupImportImpl <em>Group Import</em>}' class.
@@ -1231,14 +1508,14 @@ public interface GroupsPackage extends EPackage {
 		EOperation GROUP_IMPORT___IMPORTED_MEMBERS = eINSTANCE.getGroupImport__ImportedMembers();
 
 		/**
-		 * The meta object literal for the '{@link org.omg.sysml.groups.impl.MemberNamingImpl <em>Member Naming</em>}' class.
+		 * The meta object literal for the '{@link org.omg.sysml.groups.impl.NamespaceMemberImpl <em>Namespace Member</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.groups.impl.MemberNamingImpl
-		 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getMemberNaming()
+		 * @see org.omg.sysml.groups.impl.NamespaceMemberImpl
+		 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getNamespaceMember()
 		 * @generated
 		 */
-		EClass MEMBER_NAMING = eINSTANCE.getMemberNaming();
+		EClass NAMESPACE_MEMBER = eINSTANCE.getNamespaceMember();
 
 		/**
 		 * The meta object literal for the '<em><b>Member Name</b></em>' attribute feature.
@@ -1246,23 +1523,15 @@ public interface GroupsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MEMBER_NAMING__MEMBER_NAME = eINSTANCE.getMemberNaming_MemberName();
+		EAttribute NAMESPACE_MEMBER__MEMBER_NAME = eINSTANCE.getNamespaceMember_MemberName();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MEMBER_NAMING__NAMESPACE = eINSTANCE.getMemberNaming_Namespace();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MEMBER_NAMING__ELEMENT = eINSTANCE.getMemberNaming_Element();
+		EReference NAMESPACE_MEMBER__NAMESPACE = eINSTANCE.getNamespaceMember_Namespace();
 
 		/**
 		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
@@ -1270,7 +1539,7 @@ public interface GroupsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MEMBER_NAMING__VISIBILITY = eINSTANCE.getMemberNaming_Visibility();
+		EAttribute NAMESPACE_MEMBER__VISIBILITY = eINSTANCE.getNamespaceMember_Visibility();
 
 		/**
 		 * The meta object literal for the '<em><b>Aliases</b></em>' attribute list feature.
@@ -1278,7 +1547,7 @@ public interface GroupsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MEMBER_NAMING__ALIASES = eINSTANCE.getMemberNaming_Aliases();
+		EAttribute NAMESPACE_MEMBER__ALIASES = eINSTANCE.getNamespaceMember_Aliases();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Distinguishable From</b></em>' operation.
@@ -1286,7 +1555,41 @@ public interface GroupsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MEMBER_NAMING___IS_DISTINGUISHABLE_FROM__MEMBERNAMING = eINSTANCE.getMemberNaming__IsDistinguishableFrom__MemberNaming();
+		EOperation NAMESPACE_MEMBER___IS_DISTINGUISHABLE_FROM__NAMESPACEMEMBER = eINSTANCE.getNamespaceMember__IsDistinguishableFrom__NamespaceMember();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.groups.impl.GroupMemberImpl <em>Group Member</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.groups.impl.GroupMemberImpl
+		 * @see org.omg.sysml.groups.impl.GroupsPackageImpl#getGroupMember()
+		 * @generated
+		 */
+		EClass GROUP_MEMBER = eINSTANCE.getGroupMember();
+
+		/**
+		 * The meta object literal for the '<em><b>Group</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUP_MEMBER__GROUP = eINSTANCE.getGroupMember_Group();
+
+		/**
+		 * The meta object literal for the '<em><b>Member Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUP_MEMBER__MEMBER_ELEMENT = eINSTANCE.getGroupMember_MemberElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Member Element</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUP_MEMBER__OWNED_MEMBER_ELEMENT = eINSTANCE.getGroupMember_OwnedMemberElement();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.groups.VisibilityKind <em>Visibility Kind</em>}' enum.

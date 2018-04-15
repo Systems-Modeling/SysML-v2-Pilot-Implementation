@@ -6,4 +6,5 @@
   <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Core" targetURI="platform:/resource/org.omg.sysml/model/SysML-Core.ecore"/>
   <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Groups" targetURI="platform:/resource/org.omg.sysml/model/SysML-Groups.ecore"/>
   <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Classification" targetURI="platform:/resource/org.omg.sysml/model/SysML-Classification.ecore"/>
+  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0" targetURI="platform:/resource/org.omg.sysml/model/SysML.ecore"/>
 </uriMap:MappingContainer>

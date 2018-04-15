@@ -47,17 +47,17 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getPackageDefinitionAccess().getNameAssignment_1(), "rule__PackageDefinition__NameAssignment_1");
-					put(grammarAccess.getPackageDefinitionAccess().getMemberNamingAssignment_3(), "rule__PackageDefinition__MemberNamingAssignment_3");
+					put(grammarAccess.getPackageDefinitionAccess().getGroupMemberAssignment_3(), "rule__PackageDefinition__GroupMemberAssignment_3");
 					put(grammarAccess.getPackagedElementAccess().getVisibilityAssignment_0(), "rule__PackagedElement__VisibilityAssignment_0");
-					put(grammarAccess.getPackagedElementAccess().getOwnedElementAssignment_1(), "rule__PackagedElement__OwnedElementAssignment_1");
+					put(grammarAccess.getPackagedElementAccess().getOwnedMemberElementAssignment_1(), "rule__PackagedElement__OwnedMemberElementAssignment_1");
 					put(grammarAccess.getClassDeclarationAccess().getIsAbstractAssignment_0(), "rule__ClassDeclaration__IsAbstractAssignment_0");
 					put(grammarAccess.getClassDeclarationAccess().getNameAssignment_2(), "rule__ClassDeclaration__NameAssignment_2");
 					put(grammarAccess.getClassDeclarationAccess().getOwnedGeneralizationAssignment_3_1(), "rule__ClassDeclaration__OwnedGeneralizationAssignment_3_1");
 					put(grammarAccess.getClassDeclarationAccess().getOwnedGeneralizationAssignment_3_2_1(), "rule__ClassDeclaration__OwnedGeneralizationAssignment_3_2_1");
 					put(grammarAccess.getGeneralizationAccess().getGeneralAssignment(), "rule__Generalization__GeneralAssignment");
-					put(grammarAccess.getClassDefinitionAccess().getMemberNamingAssignment_2(), "rule__ClassDefinition__MemberNamingAssignment_2");
+					put(grammarAccess.getClassDefinitionAccess().getGroupMemberAssignment_2(), "rule__ClassDefinition__GroupMemberAssignment_2");
 					put(grammarAccess.getClassMemberAccess().getVisibilityAssignment_0(), "rule__ClassMember__VisibilityAssignment_0");
-					put(grammarAccess.getClassMemberAccess().getOwnedElementAssignment_1(), "rule__ClassMember__OwnedElementAssignment_1");
+					put(grammarAccess.getClassMemberAccess().getOwnedMemberElementAssignment_1(), "rule__ClassMember__OwnedMemberElementAssignment_1");
 					put(grammarAccess.getFeatureDefinitionAccess().getNameAssignment_0(), "rule__FeatureDefinition__NameAssignment_0");
 					put(grammarAccess.getFeatureDefinitionAccess().getReferencedTypeAssignment_2(), "rule__FeatureDefinition__ReferencedTypeAssignment_2");
 				}

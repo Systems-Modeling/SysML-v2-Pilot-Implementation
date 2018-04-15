@@ -81,6 +81,7 @@ public class GroupsSwitch<T> extends Switch<T> {
 				NamespaceImport namespaceImport = (NamespaceImport)theEObject;
 				T result = caseNamespaceImport(namespaceImport);
 				if (result == null) result = caseGroupImport(namespaceImport);
+				if (result == null) result = caseRelationship(namespaceImport);
 				if (result == null) result = caseElement(namespaceImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -95,15 +96,25 @@ public class GroupsSwitch<T> extends Switch<T> {
 			case GroupsPackage.GROUP_IMPORT: {
 				GroupImport groupImport = (GroupImport)theEObject;
 				T result = caseGroupImport(groupImport);
+				if (result == null) result = caseRelationship(groupImport);
 				if (result == null) result = caseElement(groupImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GroupsPackage.MEMBER_NAMING: {
-				MemberNaming memberNaming = (MemberNaming)theEObject;
-				T result = caseMemberNaming(memberNaming);
-				if (result == null) result = caseRelationship(memberNaming);
-				if (result == null) result = caseElement(memberNaming);
+			case GroupsPackage.NAMESPACE_MEMBER: {
+				NamespaceMember namespaceMember = (NamespaceMember)theEObject;
+				T result = caseNamespaceMember(namespaceMember);
+				if (result == null) result = caseGroupMember(namespaceMember);
+				if (result == null) result = caseRelationship(namespaceMember);
+				if (result == null) result = caseElement(namespaceMember);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GroupsPackage.GROUP_MEMBER: {
+				GroupMember groupMember = (GroupMember)theEObject;
+				T result = caseGroupMember(groupMember);
+				if (result == null) result = caseRelationship(groupMember);
+				if (result == null) result = caseElement(groupMember);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,17 +183,32 @@ public class GroupsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Member Naming</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Namespace Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Member Naming</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Namespace Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMemberNaming(MemberNaming object) {
+	public T caseNamespaceMember(NamespaceMember object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Group Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Group Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGroupMember(GroupMember object) {
 		return null;
 	}
 

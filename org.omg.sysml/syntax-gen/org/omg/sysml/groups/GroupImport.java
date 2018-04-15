@@ -3,10 +3,9 @@
 package org.omg.sysml.groups;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.omg.sysml.behaviors.Predicate;
-
+import org.omg.sysml.behaviors.Behavior;
 import org.omg.sysml.core.Element;
+import org.omg.sysml.core.Relationship;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,7 @@ import org.omg.sysml.core.Element;
  * @model
  * @generated
  */
-public interface GroupImport extends Element {
+public interface GroupImport extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Imported Group</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -90,12 +89,12 @@ public interface GroupImport extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Selecter</em>' reference.
-	 * @see #setSelecter(Predicate)
+	 * @see #setSelecter(Behavior)
 	 * @see org.omg.sysml.groups.GroupsPackage#getGroupImport_Selecter()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Predicate getSelecter();
+	Behavior getSelecter();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.groups.GroupImport#getSelecter <em>Selecter</em>}' reference.
@@ -105,7 +104,7 @@ public interface GroupImport extends Element {
 	 * @see #getSelecter()
 	 * @generated
 	 */
-	void setSelecter(Predicate value);
+	void setSelecter(Behavior value);
 
 	/**
 	 * <!-- begin-user-doc -->

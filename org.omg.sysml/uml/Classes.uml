@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_BdAjUD9qEeiGAM6PQ33KLQ" name="Classes">
-  <packagedElement xmi:type="uml:Class" xmi:id="_BdAjUT9qEeiGAM6PQ33KLQ" name="A" visibility="public">
-    <ownedAttribute xmi:id="_BdAjUj9qEeiGAM6PQ33KLQ" name="b" visibility="public" type="_BdAjVD9qEeiGAM6PQ33KLQ"/>
-    <ownedAttribute xmi:id="_BdAjUz9qEeiGAM6PQ33KLQ" name="c" visibility="public" type="_BdAjVj9qEeiGAM6PQ33KLQ"/>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_RstdQUD4EeixCaaq9OXucQ" name="Classes">
+  <packagedElement xmi:type="uml:Class" xmi:id="_RsuEUED4EeixCaaq9OXucQ" name="A" visibility="public">
+    <ownedAttribute xmi:id="_RsuEUUD4EeixCaaq9OXucQ" name="b" visibility="public" type="_RsuEU0D4EeixCaaq9OXucQ"/>
+    <ownedAttribute xmi:id="_RsuEUkD4EeixCaaq9OXucQ" name="c" visibility="public" type="_RsuEVUD4EeixCaaq9OXucQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_BdAjVD9qEeiGAM6PQ33KLQ" name="B" visibility="private">
-    <ownedAttribute xmi:id="_BdAjVT9qEeiGAM6PQ33KLQ" name="x" visibility="protected" type="_BdAjUT9qEeiGAM6PQ33KLQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RsuEU0D4EeixCaaq9OXucQ" name="B" visibility="private">
+    <ownedAttribute xmi:id="_RsuEVED4EeixCaaq9OXucQ" name="x" visibility="protected" type="_RsuEUED4EeixCaaq9OXucQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_BdAjVj9qEeiGAM6PQ33KLQ" name="C" visibility="public">
-    <generalization xmi:id="_BdAjVz9qEeiGAM6PQ33KLQ" general="_BdAjVD9qEeiGAM6PQ33KLQ"/>
-    <ownedAttribute xmi:id="_BdAjWD9qEeiGAM6PQ33KLQ" name="y" visibility="private" type="_BdAjWj9qEeiGAM6PQ33KLQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RsuEVUD4EeixCaaq9OXucQ" name="C" visibility="public">
+    <generalization xmi:id="_RsuEVkD4EeixCaaq9OXucQ" general="_RsuEU0D4EeixCaaq9OXucQ"/>
+    <ownedAttribute xmi:id="_RsuEV0D4EeixCaaq9OXucQ" name="y" visibility="private" type="_RsuEWUD4EeixCaaq9OXucQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_BdAjWT9qEeiGAM6PQ33KLQ" name="P" visibility="public">
-    <packagedElement xmi:type="uml:Class" xmi:id="_BdAjWj9qEeiGAM6PQ33KLQ" name="D" visibility="public">
-      <generalization xmi:id="_BdAjWz9qEeiGAM6PQ33KLQ" general="_BdAjVj9qEeiGAM6PQ33KLQ"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_RsuEWED4EeixCaaq9OXucQ" name="P" visibility="public">
+    <packagedElement xmi:type="uml:Class" xmi:id="_RsuEWUD4EeixCaaq9OXucQ" name="D" visibility="public">
+      <generalization xmi:id="_RsuEWkD4EeixCaaq9OXucQ" general="_RsuEVUD4EeixCaaq9OXucQ"/>
     </packagedElement>
   </packagedElement>
 </uml:Package>

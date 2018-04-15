@@ -51,15 +51,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cMemberNamingAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMemberNamingPackagedElementParserRuleCall_3_0 = (RuleCall)cMemberNamingAssignment_3.eContents().get(0);
+		private final Assignment cGroupMemberAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cGroupMemberPackagedElementParserRuleCall_3_0 = (RuleCall)cGroupMemberAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		///* PACKAGES */ PackageDefinition groups::Namespace:
-		//	'package' name=Name '{' memberNaming+=PackagedElement* '}';
+		//	'package' name=Name '{' groupMember+=PackagedElement* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=Name '{' memberNaming+=PackagedElement* '}'
+		//'package' name=Name '{' groupMember+=PackagedElement* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'package'
@@ -74,11 +74,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//memberNaming+=PackagedElement*
-		public Assignment getMemberNamingAssignment_3() { return cMemberNamingAssignment_3; }
+		//groupMember+=PackagedElement*
+		public Assignment getGroupMemberAssignment_3() { return cGroupMemberAssignment_3; }
 		
 		//PackagedElement
-		public RuleCall getMemberNamingPackagedElementParserRuleCall_3_0() { return cMemberNamingPackagedElementParserRuleCall_3_0; }
+		public RuleCall getGroupMemberPackagedElementParserRuleCall_3_0() { return cGroupMemberPackagedElementParserRuleCall_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -100,17 +100,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityImportVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Assignment cOwnedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedElementPackagedElementDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedElementAssignment_1.eContents().get(0);
+		private final Assignment cOwnedMemberElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedMemberElementPackagedElementDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedMemberElementAssignment_1.eContents().get(0);
 		
-		//PackagedElement groups::MemberNaming:
+		//PackagedElement groups::NamespaceMember:
 		//	visibility=ImportVisibilityIndicator
-		//	ownedElement+=PackagedElementDefinition;
+		//	ownedMemberElement=PackagedElementDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
-		//visibility=ImportVisibilityIndicator ownedElement+=PackagedElementDefinition
+		//visibility=ImportVisibilityIndicator ownedMemberElement=PackagedElementDefinition
 		public Group getGroup() { return cGroup; }
 		
 		////  ( documentation += DOCUMENTATION_COMMENT )?
@@ -121,11 +121,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportVisibilityIndicator
 		public RuleCall getVisibilityImportVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityImportVisibilityIndicatorEnumRuleCall_0_0; }
 		
-		//ownedElement+=PackagedElementDefinition
-		public Assignment getOwnedElementAssignment_1() { return cOwnedElementAssignment_1; }
+		//ownedMemberElement=PackagedElementDefinition
+		public Assignment getOwnedMemberElementAssignment_1() { return cOwnedMemberElementAssignment_1; }
 		
 		//PackagedElementDefinition
-		public RuleCall getOwnedElementPackagedElementDefinitionParserRuleCall_1_0() { return cOwnedElementPackagedElementDefinitionParserRuleCall_1_0; }
+		public RuleCall getOwnedMemberElementPackagedElementDefinitionParserRuleCall_1_0() { return cOwnedMemberElementPackagedElementDefinitionParserRuleCall_1_0; }
 	}
 	public class PackagedElementDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackagedElementDefinition");
@@ -250,15 +250,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMemberNamingAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMemberNamingClassMemberParserRuleCall_2_0 = (RuleCall)cMemberNamingAssignment_2.eContents().get(0);
+		private final Assignment cGroupMemberAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cGroupMemberClassMemberParserRuleCall_2_0 = (RuleCall)cGroupMemberAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ClassDefinition classification::Class:
-		//	ClassDeclaration '{' memberNaming+=ClassMember* '}';
+		//	ClassDeclaration '{' groupMember+=ClassMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ClassDeclaration '{' memberNaming+=ClassMember* '}'
+		//ClassDeclaration '{' groupMember+=ClassMember* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//ClassDeclaration
@@ -267,11 +267,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//memberNaming+=ClassMember*
-		public Assignment getMemberNamingAssignment_2() { return cMemberNamingAssignment_2; }
+		//groupMember+=ClassMember*
+		public Assignment getGroupMemberAssignment_2() { return cGroupMemberAssignment_2; }
 		
 		//ClassMember
-		public RuleCall getMemberNamingClassMemberParserRuleCall_2_0() { return cMemberNamingClassMemberParserRuleCall_2_0; }
+		public RuleCall getGroupMemberClassMemberParserRuleCall_2_0() { return cGroupMemberClassMemberParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -295,19 +295,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Assignment cOwnedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedElementFeatureDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedElementAssignment_1.eContents().get(0);
+		private final Assignment cOwnedMemberElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedMemberElementFeatureDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedMemberElementAssignment_1.eContents().get(0);
 		
-		//ClassMember groups::MemberNaming:
+		//ClassMember groups::NamespaceMember:
 		//	visibility=VisibilityIndicator
-		//	ownedElement+=FeatureDefinition;
+		//	ownedMemberElement=FeatureDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////	( documentation += DOCUMENTATION_COMMENT )?
 		////	( annotation += StereotypeAnnotation )*
 		////	( methodVisibility = VisibilityKind )?
 		////	definition = ClassMemberDefinition
-		//visibility=VisibilityIndicator ownedElement+=FeatureDefinition
+		//visibility=VisibilityIndicator ownedMemberElement=FeatureDefinition
 		public Group getGroup() { return cGroup; }
 		
 		////	( documentation += DOCUMENTATION_COMMENT )?
@@ -320,11 +320,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//VisibilityIndicator
 		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0_0; }
 		
-		//ownedElement+=FeatureDefinition
-		public Assignment getOwnedElementAssignment_1() { return cOwnedElementAssignment_1; }
+		//ownedMemberElement=FeatureDefinition
+		public Assignment getOwnedMemberElementAssignment_1() { return cOwnedMemberElementAssignment_1; }
 		
 		//FeatureDefinition
-		public RuleCall getOwnedElementFeatureDefinitionParserRuleCall_1_0() { return cOwnedElementFeatureDefinitionParserRuleCall_1_0; }
+		public RuleCall getOwnedMemberElementFeatureDefinitionParserRuleCall_1_0() { return cOwnedMemberElementFeatureDefinitionParserRuleCall_1_0; }
 	}
 	public class FeatureDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureDefinition");
@@ -375,16 +375,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUNRESTRICTED_NAMETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		////FeatureDefinitionOrStub returns kerml::Feature : 
+		////FeatureDefinitionOrStub returns classification::Feature : 
 		////  AttributeDefinition /*| OperationDefinitionOrStub*/
 		////;
 		////
 		/////* PROPERTIES */
-		////PropertyDefinition returns kerml::Feature : 
+		////PropertyDefinition returns classification::Feature : 
 		////	PropertyDeclaration ';'
 		////;
 		////
-		////AttributeDefinition returns kerml::Feature : 
+		////AttributeDefinition returns classification::Feature : 
 		////	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 		////;
 		////
@@ -616,7 +616,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* PACKAGES */ PackageDefinition groups::Namespace:
-	//	'package' name=Name '{' memberNaming+=PackagedElement* '}';
+	//	'package' name=Name '{' groupMember+=PackagedElement* '}';
 	public PackageDefinitionElements getPackageDefinitionAccess() {
 		return pPackageDefinition;
 	}
@@ -635,9 +635,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDefinitionOrStubAccess().getRule();
 	}
 	
-	//PackagedElement groups::MemberNaming:
+	//PackagedElement groups::NamespaceMember:
 	//	visibility=ImportVisibilityIndicator
-	//	ownedElement+=PackagedElementDefinition;
+	//	ownedMemberElement=PackagedElementDefinition;
 	public PackagedElementElements getPackagedElementAccess() {
 		return pPackagedElement;
 	}
@@ -698,7 +698,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ClassDefinition classification::Class:
-	//	ClassDeclaration '{' memberNaming+=ClassMember* '}';
+	//	ClassDeclaration '{' groupMember+=ClassMember* '}';
 	public ClassDefinitionElements getClassDefinitionAccess() {
 		return pClassDefinition;
 	}
@@ -720,9 +720,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDefinitionOrStubAccess().getRule();
 	}
 	
-	//ClassMember groups::MemberNaming:
+	//ClassMember groups::NamespaceMember:
 	//	visibility=VisibilityIndicator
-	//	ownedElement+=FeatureDefinition;
+	//	ownedMemberElement=FeatureDefinition;
 	public ClassMemberElements getClassMemberAccess() {
 		return pClassMember;
 	}
@@ -753,16 +753,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureDefinitionAccess().getRule();
 	}
 	
-	////FeatureDefinitionOrStub returns kerml::Feature : 
+	////FeatureDefinitionOrStub returns classification::Feature : 
 	////  AttributeDefinition /*| OperationDefinitionOrStub*/
 	////;
 	////
 	/////* PROPERTIES */
-	////PropertyDefinition returns kerml::Feature : 
+	////PropertyDefinition returns classification::Feature : 
 	////	PropertyDeclaration ';'
 	////;
 	////
-	////AttributeDefinition returns kerml::Feature : 
+	////AttributeDefinition returns classification::Feature : 
 	////	PropertyDeclaration ( initializer = AttributeInitializer )? ';'
 	////;
 	////

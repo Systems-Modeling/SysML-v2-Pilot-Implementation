@@ -12,7 +12,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omg.sysml.kerml.core.Container;
+import org.omg.sysml.groups.Namespace;
 import org.omg.sysml.tests.AlfInjectorProvider;
 
 @RunWith(XtextRunner.class)
@@ -20,7 +20,7 @@ import org.omg.sysml.tests.AlfInjectorProvider;
 @SuppressWarnings("all")
 public class AlfParsingTest {
   @Inject
-  private ParseHelper<Container> parseHelper;
+  private ParseHelper<Namespace> parseHelper;
   
   @Test
   public void loadModel() {
@@ -28,7 +28,7 @@ public class AlfParsingTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Hello Xtext!");
       _builder.newLine();
-      final Container result = this.parseHelper.parse(_builder);
+      final Namespace result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       Assert.assertTrue(result.eResource().getErrors().isEmpty());
     } catch (Throwable _e) {

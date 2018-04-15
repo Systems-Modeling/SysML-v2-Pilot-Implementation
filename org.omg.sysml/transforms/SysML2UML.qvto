@@ -1,0 +1,92 @@
+/*****************************************************************************
+ * Copyright (c) 2018 Model Driven Solutions, Inc.
+ *    
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype Core uses "http://www.omg.org/spec/SysML/2.0/Core";
+modeltype Groups uses "http://www.omg.org/spec/SysML/2.0/Groups";
+modeltype Classification uses "http://www.omg.org/spec/SysML/2.0/Classification";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation SysML2UML(in sysml: Classification, out uml: UML);
+
+main() {
+	sysml.rootObjects()![Groups::Namespace].map toNamespace();
+}
+
+// CORE
+
+abstract mapping Core::Element::toNamedElement() : UML::NamedElement {
+	name := self.name;
+//	var namespace = self.owningNamespace;
+//	if namespace <> null then {
+//		var naming = namespace.namingOf(self);
+//		name := naming.name;
+//		visibility := toVisibilityKind(naming.visibility);
+//	} endif;
+}
+
+mapping Core::Element::toPackageableElement() : UML::PackageableElement
+	disjuncts 
+		Classification::Class::toClass,
+		Groups::Namespace::toPackage;
+
+// GROUPS
+
+mapping Groups::Namespace::toNamespace() : UML::Namespace
+	disjuncts 
+		Classification::Class::toClass,
+		Groups::Namespace::toPackage;
+
+mapping Groups::Namespace::toPackage() : UML::Package
+	inherits Core::Element::toNamedElement {
+	packagedElement += self.memberNaming->map toPackageableElement();
+}
+
+mapping Groups::MemberNaming::toPackageableElement() : UML::PackageableElement {
+init {
+	result := self.ownedElement![true].map toPackageableElement();
+}
+	visibility := toVisibilityKind(self.visibility);
+}
+
+//query Groups::Namespace::namingOf(e: Element): MemberNaming {
+//	return self.memberNaming![element = e];
+//}
+
+// CLASSIFICATION
+
+mapping Classification::Class::toClass() : UML::Class
+	inherits Core::Element::toNamedElement {
+	ownedAttribute := self.memberNaming[ownedElement![Feature] <> null]->map toProperty();
+	generalization := self.ownedGeneralization->map toGeneralization();
+}
+
+mapping Groups::MemberNaming::toProperty() : UML::Property {
+init {
+	result := self.ownedElement![Feature].map toProperty();
+}
+	visibility := toVisibilityKind(self.visibility);
+}
+
+mapping Classification::Generalization::toGeneralization() : UML::Generalization {
+	general := self.general.late resolveone(UML::Class);
+}
+
+mapping Classification::Feature::toProperty() : UML::Property
+	inherits Core::Element::toNamedElement {
+	type := self.referencedType![true].late resolveone(UML::Type);
+}
+
+query toVisibilityKind(visibility : Groups::VisibilityKind) : UML::VisibilityKind {
+	return 
+		if visibility = null then null
+		else if visibility = Groups::VisibilityKind::private then UML::VisibilityKind::private
+		else if visibility = Groups::VisibilityKind::public then UML::VisibilityKind::public
+		else if visibility = Groups::VisibilityKind::protected then UML::VisibilityKind::protected
+		else if visibility = Groups::VisibilityKind::package then UML::VisibilityKind::package
+		endif endif endif endif endif;
+}

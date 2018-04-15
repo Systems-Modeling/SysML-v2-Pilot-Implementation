@@ -14,11 +14,12 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import org.omg.sysml.kerml.core.Container;
-import org.omg.sysml.kerml.core.CorePackage;
-import org.omg.sysml.kerml.structure.Feature;
-import org.omg.sysml.kerml.structure.Generalization;
-import org.omg.sysml.kerml.structure.StructurePackage;
+import org.omg.sysml.classification.ClassificationPackage;
+import org.omg.sysml.classification.Feature;
+import org.omg.sysml.classification.Generalization;
+import org.omg.sysml.groups.GroupsPackage;
+import org.omg.sysml.groups.MemberNaming;
+import org.omg.sysml.groups.Namespace;
 import org.omg.sysml.services.AlfGrammarAccess;
 
 @SuppressWarnings("all")
@@ -33,47 +34,43 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		ParserRule rule = context.getParserRule();
 		Action action = context.getAssignedAction();
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
-		if (epackage == CorePackage.eINSTANCE)
+		if (epackage == ClassificationPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case CorePackage.CONTAINER:
-				if (rule == grammarAccess.getPackageDefinitionOrStubRule()
-						|| rule == grammarAccess.getPackagedElementRule()
-						|| rule == grammarAccess.getPackagedElementDefinitionRule()) {
-					sequence_PackageDefinitionOrStub(context, (Container) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getUnitDefinitionRule()
-						|| rule == grammarAccess.getPackageDefinitionRule()) {
-					sequence_PackageDefinition(context, (Container) semanticObject); 
-					return; 
-				}
-				else break;
-			}
-		else if (epackage == StructurePackage.eINSTANCE)
-			switch (semanticObject.eClass().getClassifierID()) {
-			case StructurePackage.CLASS:
+			case ClassificationPackage.CLASS:
 				if (rule == grammarAccess.getClassDeclarationRule()) {
-					sequence_ClassDeclaration(context, (org.omg.sysml.kerml.structure.Class) semanticObject); 
+					sequence_ClassDeclaration(context, (org.omg.sysml.classification.Class) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitDefinitionRule()
-						|| rule == grammarAccess.getClassDefinitionRule()) {
-					sequence_ClassDeclaration_ClassDefinition(context, (org.omg.sysml.kerml.structure.Class) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementRule()
 						|| rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassDefinitionRule()
 						|| rule == grammarAccess.getClassDefinitionOrStubRule()) {
-					sequence_ClassDefinitionOrStub(context, (org.omg.sysml.kerml.structure.Class) semanticObject); 
+					sequence_ClassDeclaration_ClassDefinition(context, (org.omg.sysml.classification.Class) semanticObject); 
 					return; 
 				}
 				else break;
-			case StructurePackage.FEATURE:
+			case ClassificationPackage.FEATURE:
 				sequence_FeatureDefinition(context, (Feature) semanticObject); 
 				return; 
-			case StructurePackage.GENERALIZATION:
+			case ClassificationPackage.GENERALIZATION:
 				sequence_Generalization(context, (Generalization) semanticObject); 
+				return; 
+			}
+		else if (epackage == GroupsPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
+			case GroupsPackage.MEMBER_NAMING:
+				if (rule == grammarAccess.getClassMemberRule()) {
+					sequence_ClassMember(context, (MemberNaming) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPackagedElementRule()) {
+					sequence_PackagedElement(context, (MemberNaming) semanticObject); 
+					return; 
+				}
+				else break;
+			case GroupsPackage.NAMESPACE:
+				sequence_PackageDefinition(context, (Namespace) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -85,9 +82,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDeclaration returns Class
 	 *
 	 * Constraint:
-	 *     (isAbstract?='abstract'? name=Name (generalization+=Generalization generalization+=Generalization*)?)
+	 *     (isAbstract?='abstract'? name=Name (ownedGeneralization+=Generalization ownedGeneralization+=Generalization*)?)
 	 */
-	protected void sequence_ClassDeclaration(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
+	protected void sequence_ClassDeclaration(ISerializationContext context, org.omg.sysml.classification.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -95,44 +92,37 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     UnitDefinition returns Class
-	 *     ClassDefinition returns Class
-	 *
-	 * Constraint:
-	 *     (isAbstract?='abstract'? name=Name (generalization+=Generalization generalization+=Generalization*)? ownedFeature+=ClassMember*)
-	 */
-	protected void sequence_ClassDeclaration_ClassDefinition(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackagedElement returns Class
 	 *     PackagedElementDefinition returns Class
 	 *     ClassifierDefinitionOrStub returns Class
+	 *     ClassDefinition returns Class
 	 *     ClassDefinitionOrStub returns Class
 	 *
 	 * Constraint:
-	 *     (
-	 *         packageVisibility=VisibilityKind 
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (generalization+=Generalization generalization+=Generalization*)? 
-	 *         ownedFeature+=ClassMember*
-	 *     )
+	 *     (isAbstract?='abstract'? name=Name (ownedGeneralization+=Generalization ownedGeneralization+=Generalization*)? memberNaming+=ClassMember*)
 	 */
-	protected void sequence_ClassDefinitionOrStub(ISerializationContext context, org.omg.sysml.kerml.structure.Class semanticObject) {
+	protected void sequence_ClassDeclaration_ClassDefinition(ISerializationContext context, org.omg.sysml.classification.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     ClassMember returns Feature
+	 *     ClassMember returns MemberNaming
+	 *
+	 * Constraint:
+	 *     (visibility=VisibilityIndicator ownedElement+=FeatureDefinition)
+	 */
+	protected void sequence_ClassMember(ISerializationContext context, MemberNaming semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FeatureDefinition returns Feature
 	 *
 	 * Constraint:
-	 *     (methodVisibility=VisibilityKind? name=Name definingType=[Class|QualifiedName])
+	 *     (name=Name referencedType+=[Class|QualifiedName])
 	 */
 	protected void sequence_FeatureDefinition(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -148,38 +138,38 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, StructurePackage.Literals.GENERALIZATION__GENERAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StructurePackage.Literals.GENERALIZATION__GENERAL));
+			if (transientValues.isValueTransient(semanticObject, ClassificationPackage.Literals.GENERALIZATION__GENERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ClassificationPackage.Literals.GENERALIZATION__GENERAL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getGeneralClassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(StructurePackage.Literals.GENERALIZATION__GENERAL, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getGeneralClassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(ClassificationPackage.Literals.GENERALIZATION__GENERAL, false));
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     PackageDefinitionOrStub returns Container
-	 *     PackagedElement returns Container
-	 *     PackagedElementDefinition returns Container
+	 *     UnitDefinition returns Namespace
+	 *     PackageDefinition returns Namespace
+	 *     PackageDefinitionOrStub returns Namespace
+	 *     PackagedElementDefinition returns Namespace
 	 *
 	 * Constraint:
-	 *     (packageVisibility=VisibilityKind name=Name ownedMember+=PackagedElement*)
+	 *     (name=Name memberNaming+=PackagedElement*)
 	 */
-	protected void sequence_PackageDefinitionOrStub(ISerializationContext context, Container semanticObject) {
+	protected void sequence_PackageDefinition(ISerializationContext context, Namespace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     UnitDefinition returns Container
-	 *     PackageDefinition returns Container
+	 *     PackagedElement returns MemberNaming
 	 *
 	 * Constraint:
-	 *     (name=Name ownedMember+=PackagedElement*)
+	 *     (visibility=ImportVisibilityIndicator ownedElement+=PackagedElementDefinition)
 	 */
-	protected void sequence_PackageDefinition(ISerializationContext context, Container semanticObject) {
+	protected void sequence_PackagedElement(ISerializationContext context, MemberNaming semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

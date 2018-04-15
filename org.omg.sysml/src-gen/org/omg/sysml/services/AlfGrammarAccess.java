@@ -31,7 +31,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackageDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cClassDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		///* UNITS */ UnitDefinition core::Container:
+		///* UNITS */ UnitDefinition groups::Namespace:
 		//	PackageDefinition | ClassDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -51,15 +51,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedMemberAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedMemberPackagedElementParserRuleCall_3_0 = (RuleCall)cOwnedMemberAssignment_3.eContents().get(0);
+		private final Assignment cMemberNamingAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMemberNamingPackagedElementParserRuleCall_3_0 = (RuleCall)cMemberNamingAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		///* PACKAGES */ PackageDefinition core::Container:
-		//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
+		///* PACKAGES */ PackageDefinition groups::Namespace:
+		//	'package' name=Name '{' memberNaming+=PackagedElement* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=Name '{' ownedMember+=PackagedElement* '}'
+		//'package' name=Name '{' memberNaming+=PackagedElement* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'package'
@@ -74,79 +74,58 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//ownedMember+=PackagedElement*
-		public Assignment getOwnedMemberAssignment_3() { return cOwnedMemberAssignment_3; }
+		//memberNaming+=PackagedElement*
+		public Assignment getMemberNamingAssignment_3() { return cMemberNamingAssignment_3; }
 		
 		//PackagedElement
-		public RuleCall getOwnedMemberPackagedElementParserRuleCall_3_0() { return cOwnedMemberPackagedElementParserRuleCall_3_0; }
+		public RuleCall getMemberNamingPackagedElementParserRuleCall_3_0() { return cMemberNamingPackagedElementParserRuleCall_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class PackageDefinitionOrStubElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageDefinitionOrStub");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPackageVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPackageVisibilityVisibilityKindEnumRuleCall_0_0 = (RuleCall)cPackageVisibilityAssignment_0.eContents().get(0);
-		private final Keyword cPackageKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cOwnedMemberAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedMemberPackagedElementParserRuleCall_4_0 = (RuleCall)cOwnedMemberAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cPackageDefinitionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//PackageDefinitionOrStub core::Container:
-		//	packageVisibility=VisibilityKind 'package' name=Name
-		//	'{' ownedMember+=PackagedElement* '}';
+		//PackageDefinitionOrStub groups::Namespace:
+		//	PackageDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////	'package' name = Name ( isStub ?= ';' | '{' ( ownedMember += PackagedElement )* '}' )
-		//packageVisibility=VisibilityKind 'package' name=Name '{' ownedMember+=PackagedElement* '}'
-		public Group getGroup() { return cGroup; }
-		
-		////	'package' name = Name ( isStub ?= ';' | '{' ( ownedMember += PackagedElement )* '}' )
-		//packageVisibility=VisibilityKind
-		public Assignment getPackageVisibilityAssignment_0() { return cPackageVisibilityAssignment_0; }
-		
-		//VisibilityKind
-		public RuleCall getPackageVisibilityVisibilityKindEnumRuleCall_0_0() { return cPackageVisibilityVisibilityKindEnumRuleCall_0_0; }
-		
-		//'package'
-		public Keyword getPackageKeyword_1() { return cPackageKeyword_1; }
-		
-		//name=Name
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-		
-		//Name
-		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
-		
-		//ownedMember+=PackagedElement*
-		public Assignment getOwnedMemberAssignment_4() { return cOwnedMemberAssignment_4; }
-		
-		//PackagedElement
-		public RuleCall getOwnedMemberPackagedElementParserRuleCall_4_0() { return cOwnedMemberPackagedElementParserRuleCall_4_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		//PackageDefinition
+		public RuleCall getPackageDefinitionParserRuleCall() { return cPackageDefinitionParserRuleCall; }
 	}
 	public class PackagedElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackagedElement");
-		private final RuleCall cPackagedElementDefinitionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVisibilityImportVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final Assignment cOwnedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedElementPackagedElementDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedElementAssignment_1.eContents().get(0);
 		
-		//PackagedElement core::ElementRecord:
-		//	PackagedElementDefinition;
+		//PackagedElement groups::MemberNaming:
+		//	visibility=ImportVisibilityIndicator
+		//	ownedElement+=PackagedElementDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
-		////  visibility = ImportVisibilityIndicator 
-		////	definition = PackagedElementDefinition
+		//visibility=ImportVisibilityIndicator ownedElement+=PackagedElementDefinition
+		public Group getGroup() { return cGroup; }
+		
+		////  ( documentation += DOCUMENTATION_COMMENT )?
+		////  ( annotation += StereotypeAnnotation )*
+		//visibility=ImportVisibilityIndicator
+		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
+		
+		//ImportVisibilityIndicator
+		public RuleCall getVisibilityImportVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityImportVisibilityIndicatorEnumRuleCall_0_0; }
+		
+		//ownedElement+=PackagedElementDefinition
+		public Assignment getOwnedElementAssignment_1() { return cOwnedElementAssignment_1; }
+		
 		//PackagedElementDefinition
-		public RuleCall getPackagedElementDefinitionParserRuleCall() { return cPackagedElementDefinitionParserRuleCall; }
+		public RuleCall getOwnedElementPackagedElementDefinitionParserRuleCall_1_0() { return cOwnedElementPackagedElementDefinitionParserRuleCall_1_0; }
 	}
 	public class PackagedElementDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackagedElementDefinition");
@@ -154,7 +133,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackageDefinitionOrStubParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cClassifierDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//PackagedElementDefinition core::ElementRecord:
+		//PackagedElementDefinition core::Element:
 		//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -171,7 +150,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ClassifierDefinitionOrStub");
 		private final RuleCall cClassDefinitionOrStubParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//ClassifierDefinitionOrStub str::Class:
+		//ClassifierDefinitionOrStub classification::Class:
 		//	ClassDefinitionOrStub;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -188,25 +167,25 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cSpecializesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cGeneralizationAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cGeneralizationGeneralizationParserRuleCall_3_1_0 = (RuleCall)cGeneralizationAssignment_3_1.eContents().get(0);
+		private final Assignment cOwnedGeneralizationAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOwnedGeneralizationGeneralizationParserRuleCall_3_1_0 = (RuleCall)cOwnedGeneralizationAssignment_3_1.eContents().get(0);
 		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
 		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cGeneralizationAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cGeneralizationGeneralizationParserRuleCall_3_2_1_0 = (RuleCall)cGeneralizationAssignment_3_2_1.eContents().get(0);
+		private final Assignment cOwnedGeneralizationAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cOwnedGeneralizationGeneralizationParserRuleCall_3_2_1_0 = (RuleCall)cOwnedGeneralizationAssignment_3_2_1.eContents().get(0);
 		
-		///* CLASSES */ ClassDeclaration str::Class:
-		//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
-		//	generalization+=Generalization)*)?;
+		///* CLASSES */ ClassDeclaration classification::Class:
+		//	isAbstract?='abstract'? 'class' name=Name ('specializes' ownedGeneralization+=Generalization (','
+		//	ownedGeneralization+=Generalization)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
+		////	( 'namespace' namespace += [groups::Namespace | QualifiedName] )?
 		////	( ^import += ImportDeclaration )*
-		//isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
-		//generalization+=Generalization)*)?
+		//isAbstract?='abstract'? 'class' name=Name ('specializes' ownedGeneralization+=Generalization (','
+		//ownedGeneralization+=Generalization)*)?
 		public Group getGroup() { return cGroup; }
 		
-		////	( 'namespace' namespace += [kerml::Container | QualifiedName] )?
+		////	( 'namespace' namespace += [groups::Namespace | QualifiedName] )?
 		////	( ^import += ImportDeclaration )*
 		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
@@ -223,29 +202,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
-		//('specializes' generalization+=Generalization (',' generalization+=Generalization)*)?
+		//('specializes' ownedGeneralization+=Generalization (',' ownedGeneralization+=Generalization)*)?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'specializes'
 		public Keyword getSpecializesKeyword_3_0() { return cSpecializesKeyword_3_0; }
 		
-		//generalization+=Generalization
-		public Assignment getGeneralizationAssignment_3_1() { return cGeneralizationAssignment_3_1; }
+		//ownedGeneralization+=Generalization
+		public Assignment getOwnedGeneralizationAssignment_3_1() { return cOwnedGeneralizationAssignment_3_1; }
 		
 		//Generalization
-		public RuleCall getGeneralizationGeneralizationParserRuleCall_3_1_0() { return cGeneralizationGeneralizationParserRuleCall_3_1_0; }
+		public RuleCall getOwnedGeneralizationGeneralizationParserRuleCall_3_1_0() { return cOwnedGeneralizationGeneralizationParserRuleCall_3_1_0; }
 		
-		//(',' generalization+=Generalization)*
+		//(',' ownedGeneralization+=Generalization)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 		
 		//','
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 		
-		//generalization+=Generalization
-		public Assignment getGeneralizationAssignment_3_2_1() { return cGeneralizationAssignment_3_2_1; }
+		//ownedGeneralization+=Generalization
+		public Assignment getOwnedGeneralizationAssignment_3_2_1() { return cOwnedGeneralizationAssignment_3_2_1; }
 		
 		//Generalization
-		public RuleCall getGeneralizationGeneralizationParserRuleCall_3_2_1_0() { return cGeneralizationGeneralizationParserRuleCall_3_2_1_0; }
+		public RuleCall getOwnedGeneralizationGeneralizationParserRuleCall_3_2_1_0() { return cOwnedGeneralizationGeneralizationParserRuleCall_3_2_1_0; }
 	}
 	public class GeneralizationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Generalization");
@@ -253,15 +232,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cGeneralClassCrossReference_0 = (CrossReference)cGeneralAssignment.eContents().get(0);
 		private final RuleCall cGeneralClassQualifiedNameParserRuleCall_0_1 = (RuleCall)cGeneralClassCrossReference_0.eContents().get(1);
 		
-		//Generalization str::Generalization:
-		//	general=[str::Class|QualifiedName];
+		//Generalization classification::Generalization:
+		//	general=[classification::Class|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//// NOTE: Made Relationship::related optional.
-		//general=[str::Class|QualifiedName]
+		//general=[classification::Class|QualifiedName]
 		public Assignment getGeneralAssignment() { return cGeneralAssignment; }
 		
-		//[str::Class|QualifiedName]
+		//[classification::Class|QualifiedName]
 		public CrossReference getGeneralClassCrossReference_0() { return cGeneralClassCrossReference_0; }
 		
 		//QualifiedName
@@ -272,16 +250,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedFeatureClassMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureAssignment_2.eContents().get(0);
+		private final Assignment cMemberNamingAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMemberNamingClassMemberParserRuleCall_2_0 = (RuleCall)cMemberNamingAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//ClassDefinition str::Class:
-		//	ClassDeclaration
-		//	'{' ownedFeature+=ClassMember* '}';
+		//ClassDefinition classification::Class:
+		//	ClassDeclaration '{' memberNaming+=ClassMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ClassDeclaration '{' ownedFeature+=ClassMember* '}'
+		//ClassDeclaration '{' memberNaming+=ClassMember* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//ClassDeclaration
@@ -290,178 +267,107 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//ownedFeature+=ClassMember*
-		public Assignment getOwnedFeatureAssignment_2() { return cOwnedFeatureAssignment_2; }
+		//memberNaming+=ClassMember*
+		public Assignment getMemberNamingAssignment_2() { return cMemberNamingAssignment_2; }
 		
 		//ClassMember
-		public RuleCall getOwnedFeatureClassMemberParserRuleCall_2_0() { return cOwnedFeatureClassMemberParserRuleCall_2_0; }
+		public RuleCall getMemberNamingClassMemberParserRuleCall_2_0() { return cMemberNamingClassMemberParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class ClassDefinitionOrStubElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ClassDefinitionOrStub");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPackageVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPackageVisibilityVisibilityKindEnumRuleCall_0_0 = (RuleCall)cPackageVisibilityAssignment_0.eContents().get(0);
-		private final Assignment cIsAbstractAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Keyword cIsAbstractAbstractKeyword_1_0 = (Keyword)cIsAbstractAssignment_1.eContents().get(0);
-		private final Keyword cClassKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNameNameParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cSpecializesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cGeneralizationAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cGeneralizationGeneralizationParserRuleCall_4_1_0 = (RuleCall)cGeneralizationAssignment_4_1.eContents().get(0);
-		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
-		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
-		private final Assignment cGeneralizationAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
-		private final RuleCall cGeneralizationGeneralizationParserRuleCall_4_2_1_0 = (RuleCall)cGeneralizationAssignment_4_2_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cOwnedFeatureAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cOwnedFeatureClassMemberParserRuleCall_6_0 = (RuleCall)cOwnedFeatureAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final RuleCall cClassDefinitionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//ClassDefinitionOrStub str::Class:
-		//	packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes'
-		//	generalization+=Generalization (',' generalization+=Generalization)*)?
-		//	'{' ownedFeature+=ClassMember* '}'
+		//ClassDefinitionOrStub classification::Class:
+		//	ClassDefinition
 		//	//	ClassDeclaration
 		//	//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization
-		//(',' generalization+=Generalization)*)? '{' ownedFeature+=ClassMember* '}'
-		public Group getGroup() { return cGroup; }
-		
-		//packageVisibility=VisibilityKind
-		public Assignment getPackageVisibilityAssignment_0() { return cPackageVisibilityAssignment_0; }
-		
-		//VisibilityKind
-		public RuleCall getPackageVisibilityVisibilityKindEnumRuleCall_0_0() { return cPackageVisibilityVisibilityKindEnumRuleCall_0_0; }
-		
-		//isAbstract?='abstract'?
-		public Assignment getIsAbstractAssignment_1() { return cIsAbstractAssignment_1; }
-		
-		//'abstract'
-		public Keyword getIsAbstractAbstractKeyword_1_0() { return cIsAbstractAbstractKeyword_1_0; }
-		
-		//'class'
-		public Keyword getClassKeyword_2() { return cClassKeyword_2; }
-		
-		//name=Name
-		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
-		
-		//Name
-		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
-		
-		//('specializes' generalization+=Generalization (',' generalization+=Generalization)*)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'specializes'
-		public Keyword getSpecializesKeyword_4_0() { return cSpecializesKeyword_4_0; }
-		
-		//generalization+=Generalization
-		public Assignment getGeneralizationAssignment_4_1() { return cGeneralizationAssignment_4_1; }
-		
-		//Generalization
-		public RuleCall getGeneralizationGeneralizationParserRuleCall_4_1_0() { return cGeneralizationGeneralizationParserRuleCall_4_1_0; }
-		
-		//(',' generalization+=Generalization)*
-		public Group getGroup_4_2() { return cGroup_4_2; }
-		
-		//','
-		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
-		
-		//generalization+=Generalization
-		public Assignment getGeneralizationAssignment_4_2_1() { return cGeneralizationAssignment_4_2_1; }
-		
-		//Generalization
-		public RuleCall getGeneralizationGeneralizationParserRuleCall_4_2_1_0() { return cGeneralizationGeneralizationParserRuleCall_4_2_1_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
-		
-		//ownedFeature+=ClassMember*
-		public Assignment getOwnedFeatureAssignment_6() { return cOwnedFeatureAssignment_6; }
-		
-		//ClassMember
-		public RuleCall getOwnedFeatureClassMemberParserRuleCall_6_0() { return cOwnedFeatureClassMemberParserRuleCall_6_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		//ClassDefinition
+		public RuleCall getClassDefinitionParserRuleCall() { return cClassDefinitionParserRuleCall; }
 	}
 	public class ClassMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ClassMember");
-		private final RuleCall cFeatureDefinitionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final Assignment cOwnedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedElementFeatureDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedElementAssignment_1.eContents().get(0);
 		
-		//ClassMember str::Feature:
-		//	FeatureDefinition
-		//	//	( documentation += DOCUMENTATION_COMMENT )?
-		//	//	( annotation += StereotypeAnnotation )*
-		//	//	( methodVisibility = VisibilityKind )?
-		//	//	definition = ClassMemberDefinition
-		//;
+		//ClassMember groups::MemberNaming:
+		//	visibility=VisibilityIndicator
+		//	ownedElement+=FeatureDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
+		////	( documentation += DOCUMENTATION_COMMENT )?
+		////	( annotation += StereotypeAnnotation )*
+		////	( methodVisibility = VisibilityKind )?
+		////	definition = ClassMemberDefinition
+		//visibility=VisibilityIndicator ownedElement+=FeatureDefinition
+		public Group getGroup() { return cGroup; }
+		
+		////	( documentation += DOCUMENTATION_COMMENT )?
+		////	( annotation += StereotypeAnnotation )*
+		////	( methodVisibility = VisibilityKind )?
+		////	definition = ClassMemberDefinition
+		//visibility=VisibilityIndicator
+		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
+		
+		//VisibilityIndicator
+		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0_0; }
+		
+		//ownedElement+=FeatureDefinition
+		public Assignment getOwnedElementAssignment_1() { return cOwnedElementAssignment_1; }
+		
 		//FeatureDefinition
-		public RuleCall getFeatureDefinitionParserRuleCall() { return cFeatureDefinitionParserRuleCall; }
+		public RuleCall getOwnedElementFeatureDefinitionParserRuleCall_1_0() { return cOwnedElementFeatureDefinitionParserRuleCall_1_0; }
 	}
 	public class FeatureDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cMethodVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cMethodVisibilityVisibilityKindEnumRuleCall_0_0 = (RuleCall)cMethodVisibilityAssignment_0.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDefiningTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cDefiningTypeClassCrossReference_3_0 = (CrossReference)cDefiningTypeAssignment_3.eContents().get(0);
-		private final RuleCall cDefiningTypeClassQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cDefiningTypeClassCrossReference_3_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cReferencedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cReferencedTypeClassCrossReference_2_0 = (CrossReference)cReferencedTypeAssignment_2.eContents().get(0);
+		private final RuleCall cReferencedTypeClassQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cReferencedTypeClassCrossReference_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		///* FEATURES */ FeatureDefinition str::Feature:
-		//	methodVisibility=VisibilityKind? name=Name ':'
-		//	// NOTE: (Made type unidirectional); made type and refiningType optional.
-		//	definingType=[str::Class|QualifiedName]
+		///* FEATURES */ FeatureDefinition classification::Feature:
+		//	name=Name ':' referencedType+=[classification::Class|QualifiedName]
 		//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//	';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//methodVisibility=VisibilityKind? name=Name ':' // NOTE: (Made type unidirectional); made type and refiningType optional.
-		//definingType=[str::Class|QualifiedName] //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
+		//name=Name ':' referencedType+=[classification::Class|QualifiedName] //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//';'
 		public Group getGroup() { return cGroup; }
 		
-		//methodVisibility=VisibilityKind?
-		public Assignment getMethodVisibilityAssignment_0() { return cMethodVisibilityAssignment_0; }
-		
-		//VisibilityKind
-		public RuleCall getMethodVisibilityVisibilityKindEnumRuleCall_0_0() { return cMethodVisibilityVisibilityKindEnumRuleCall_0_0; }
-		
 		//name=Name
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
 		//Name
-		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
+		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 		
 		//':'
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//// NOTE: (Made type unidirectional); made type and refiningType optional.
-		//definingType=[str::Class|QualifiedName]
-		public Assignment getDefiningTypeAssignment_3() { return cDefiningTypeAssignment_3; }
+		//referencedType+=[classification::Class|QualifiedName]
+		public Assignment getReferencedTypeAssignment_2() { return cReferencedTypeAssignment_2; }
 		
-		//[str::Class|QualifiedName]
-		public CrossReference getDefiningTypeClassCrossReference_3_0() { return cDefiningTypeClassCrossReference_3_0; }
+		//[classification::Class|QualifiedName]
+		public CrossReference getReferencedTypeClassCrossReference_2_0() { return cReferencedTypeClassCrossReference_2_0; }
 		
 		//QualifiedName
-		public RuleCall getDefiningTypeClassQualifiedNameParserRuleCall_3_0_1() { return cDefiningTypeClassQualifiedNameParserRuleCall_3_0_1; }
+		public RuleCall getReferencedTypeClassQualifiedNameParserRuleCall_2_0_1() { return cReferencedTypeClassQualifiedNameParserRuleCall_2_0_1; }
 		
 		////	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
@@ -551,8 +457,35 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
 	}
 	
-	public class VisibilityKindElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.VisibilityKind");
+	public class ImportVisibilityIndicatorElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ImportVisibilityIndicator");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cPublicEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPublicPublicKeyword_0_0 = (Keyword)cPublicEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cPrivateEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cPrivatePrivateKeyword_1_0 = (Keyword)cPrivateEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum ImportVisibilityIndicator returns groups::VisibilityKind:
+		//	public | private;
+		public EnumRule getRule() { return rule; }
+		
+		//public | private
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//public
+		public EnumLiteralDeclaration getPublicEnumLiteralDeclaration_0() { return cPublicEnumLiteralDeclaration_0; }
+		
+		//'public'
+		public Keyword getPublicPublicKeyword_0_0() { return cPublicPublicKeyword_0_0; }
+		
+		//private
+		public EnumLiteralDeclaration getPrivateEnumLiteralDeclaration_1() { return cPrivateEnumLiteralDeclaration_1; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_1_0() { return cPrivatePrivateKeyword_1_0; }
+	}
+	public class VisibilityIndicatorElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.VisibilityIndicator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cPublicEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cPublicPublicKeyword_0_0 = (Keyword)cPublicEnumLiteralDeclaration_0.eContents().get(0);
@@ -561,7 +494,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cProtectedEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cProtectedProtectedKeyword_2_0 = (Keyword)cProtectedEnumLiteralDeclaration_2.eContents().get(0);
 		
-		//enum VisibilityKind returns core::visibilityKind:
+		//enum VisibilityIndicator returns groups::VisibilityKind:
 		//	public | private | protected;
 		public EnumRule getRule() { return rule; }
 		
@@ -591,6 +524,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final PackageDefinitionElements pPackageDefinition;
 	private final PackageDefinitionOrStubElements pPackageDefinitionOrStub;
 	private final PackagedElementElements pPackagedElement;
+	private final ImportVisibilityIndicatorElements eImportVisibilityIndicator;
 	private final PackagedElementDefinitionElements pPackagedElementDefinition;
 	private final ClassifierDefinitionOrStubElements pClassifierDefinitionOrStub;
 	private final ClassDeclarationElements pClassDeclaration;
@@ -598,7 +532,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final ClassDefinitionElements pClassDefinition;
 	private final ClassDefinitionOrStubElements pClassDefinitionOrStub;
 	private final ClassMemberElements pClassMember;
-	private final VisibilityKindElements eVisibilityKind;
+	private final VisibilityIndicatorElements eVisibilityIndicator;
 	private final FeatureDefinitionElements pFeatureDefinition;
 	private final NameElements pName;
 	private final QualifiedNameElements pQualifiedName;
@@ -623,6 +557,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPackageDefinition = new PackageDefinitionElements();
 		this.pPackageDefinitionOrStub = new PackageDefinitionOrStubElements();
 		this.pPackagedElement = new PackagedElementElements();
+		this.eImportVisibilityIndicator = new ImportVisibilityIndicatorElements();
 		this.pPackagedElementDefinition = new PackagedElementDefinitionElements();
 		this.pClassifierDefinitionOrStub = new ClassifierDefinitionOrStubElements();
 		this.pClassDeclaration = new ClassDeclarationElements();
@@ -630,7 +565,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pClassDefinition = new ClassDefinitionElements();
 		this.pClassDefinitionOrStub = new ClassDefinitionOrStubElements();
 		this.pClassMember = new ClassMemberElements();
-		this.eVisibilityKind = new VisibilityKindElements();
+		this.eVisibilityIndicator = new VisibilityIndicatorElements();
 		this.pFeatureDefinition = new FeatureDefinitionElements();
 		this.pName = new NameElements();
 		this.pQualifiedName = new QualifiedNameElements();
@@ -670,7 +605,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
-	///* UNITS */ UnitDefinition core::Container:
+	///* UNITS */ UnitDefinition groups::Namespace:
 	//	PackageDefinition | ClassDefinition;
 	public UnitDefinitionElements getUnitDefinitionAccess() {
 		return pUnitDefinition;
@@ -680,8 +615,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnitDefinitionAccess().getRule();
 	}
 	
-	///* PACKAGES */ PackageDefinition core::Container:
-	//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
+	///* PACKAGES */ PackageDefinition groups::Namespace:
+	//	'package' name=Name '{' memberNaming+=PackagedElement* '}';
 	public PackageDefinitionElements getPackageDefinitionAccess() {
 		return pPackageDefinition;
 	}
@@ -690,9 +625,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDefinitionAccess().getRule();
 	}
 	
-	//PackageDefinitionOrStub core::Container:
-	//	packageVisibility=VisibilityKind 'package' name=Name
-	//	'{' ownedMember+=PackagedElement* '}';
+	//PackageDefinitionOrStub groups::Namespace:
+	//	PackageDefinition;
 	public PackageDefinitionOrStubElements getPackageDefinitionOrStubAccess() {
 		return pPackageDefinitionOrStub;
 	}
@@ -701,8 +635,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDefinitionOrStubAccess().getRule();
 	}
 	
-	//PackagedElement core::ElementRecord:
-	//	PackagedElementDefinition;
+	//PackagedElement groups::MemberNaming:
+	//	visibility=ImportVisibilityIndicator
+	//	ownedElement+=PackagedElementDefinition;
 	public PackagedElementElements getPackagedElementAccess() {
 		return pPackagedElement;
 	}
@@ -711,7 +646,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackagedElementAccess().getRule();
 	}
 	
-	//PackagedElementDefinition core::ElementRecord:
+	//enum ImportVisibilityIndicator returns groups::VisibilityKind:
+	//	public | private;
+	public ImportVisibilityIndicatorElements getImportVisibilityIndicatorAccess() {
+		return eImportVisibilityIndicator;
+	}
+	
+	public EnumRule getImportVisibilityIndicatorRule() {
+		return getImportVisibilityIndicatorAccess().getRule();
+	}
+	
+	//PackagedElementDefinition core::Element:
 	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
 	public PackagedElementDefinitionElements getPackagedElementDefinitionAccess() {
 		return pPackagedElementDefinition;
@@ -721,7 +666,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackagedElementDefinitionAccess().getRule();
 	}
 	
-	//ClassifierDefinitionOrStub str::Class:
+	//ClassifierDefinitionOrStub classification::Class:
 	//	ClassDefinitionOrStub;
 	public ClassifierDefinitionOrStubElements getClassifierDefinitionOrStubAccess() {
 		return pClassifierDefinitionOrStub;
@@ -731,9 +676,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierDefinitionOrStubAccess().getRule();
 	}
 	
-	///* CLASSES */ ClassDeclaration str::Class:
-	//	isAbstract?='abstract'? 'class' name=Name ('specializes' generalization+=Generalization (','
-	//	generalization+=Generalization)*)?;
+	///* CLASSES */ ClassDeclaration classification::Class:
+	//	isAbstract?='abstract'? 'class' name=Name ('specializes' ownedGeneralization+=Generalization (','
+	//	ownedGeneralization+=Generalization)*)?;
 	public ClassDeclarationElements getClassDeclarationAccess() {
 		return pClassDeclaration;
 	}
@@ -742,8 +687,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDeclarationAccess().getRule();
 	}
 	
-	//Generalization str::Generalization:
-	//	general=[str::Class|QualifiedName];
+	//Generalization classification::Generalization:
+	//	general=[classification::Class|QualifiedName];
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}
@@ -752,9 +697,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getGeneralizationAccess().getRule();
 	}
 	
-	//ClassDefinition str::Class:
-	//	ClassDeclaration
-	//	'{' ownedFeature+=ClassMember* '}';
+	//ClassDefinition classification::Class:
+	//	ClassDeclaration '{' memberNaming+=ClassMember* '}';
 	public ClassDefinitionElements getClassDefinitionAccess() {
 		return pClassDefinition;
 	}
@@ -763,10 +707,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDefinitionAccess().getRule();
 	}
 	
-	//ClassDefinitionOrStub str::Class:
-	//	packageVisibility=VisibilityKind isAbstract?='abstract'? 'class' name=Name ('specializes'
-	//	generalization+=Generalization (',' generalization+=Generalization)*)?
-	//	'{' ownedFeature+=ClassMember* '}'
+	//ClassDefinitionOrStub classification::Class:
+	//	ClassDefinition
 	//	//	ClassDeclaration
 	//	//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
 	//;
@@ -778,13 +720,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDefinitionOrStubAccess().getRule();
 	}
 	
-	//ClassMember str::Feature:
-	//	FeatureDefinition
-	//	//	( documentation += DOCUMENTATION_COMMENT )?
-	//	//	( annotation += StereotypeAnnotation )*
-	//	//	( methodVisibility = VisibilityKind )?
-	//	//	definition = ClassMemberDefinition
-	//;
+	//ClassMember groups::MemberNaming:
+	//	visibility=VisibilityIndicator
+	//	ownedElement+=FeatureDefinition;
 	public ClassMemberElements getClassMemberAccess() {
 		return pClassMember;
 	}
@@ -793,20 +731,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassMemberAccess().getRule();
 	}
 	
-	//enum VisibilityKind returns core::visibilityKind:
+	//enum VisibilityIndicator returns groups::VisibilityKind:
 	//	public | private | protected;
-	public VisibilityKindElements getVisibilityKindAccess() {
-		return eVisibilityKind;
+	public VisibilityIndicatorElements getVisibilityIndicatorAccess() {
+		return eVisibilityIndicator;
 	}
 	
-	public EnumRule getVisibilityKindRule() {
-		return getVisibilityKindAccess().getRule();
+	public EnumRule getVisibilityIndicatorRule() {
+		return getVisibilityIndicatorAccess().getRule();
 	}
 	
-	///* FEATURES */ FeatureDefinition str::Feature:
-	//	methodVisibility=VisibilityKind? name=Name ':'
-	//	// NOTE: (Made type unidirectional); made type and refiningType optional.
-	//	definingType=[str::Class|QualifiedName]
+	///* FEATURES */ FeatureDefinition classification::Feature:
+	//	name=Name ':' referencedType+=[classification::Class|QualifiedName]
 	//	//	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	//	';';
 	public FeatureDefinitionElements getFeatureDefinitionAccess() {

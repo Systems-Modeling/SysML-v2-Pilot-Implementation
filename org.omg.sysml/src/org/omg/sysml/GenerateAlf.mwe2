@@ -7,8 +7,8 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup
 
 var rootPath = ".."
 var projectName = "org.omg.sysml"
-var genModel = "platform:/resource/${projectName}/model/KerML-Structure.genmodel"
-var ePackage = "${projectName}.kerml.structure.StructurePackage"
+var genModel = "platform:/resource/${projectName}/model/SysML-Classification.genmodel"
+var ePackage = "${projectName}.sysml.SysmlPackage"
 
 Workflow {
 	

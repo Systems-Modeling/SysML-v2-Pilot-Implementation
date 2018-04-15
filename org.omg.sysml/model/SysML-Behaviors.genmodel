@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.omg.sysml/syntax-gen" modelPluginID="org.omg.sysml.behaviors"
+    modelName="SysML-Behaviors" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="SysML-Classification.genmodel#//classification SysML-Core.genmodel#//core SysML-Groups.genmodel#//groups"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SysML-Behaviors.ecore</foreignModel>
+  <genPackages prefix="Behaviors" basePackage="org.omg.sysml" disposableProviderFactory="true"
+      ecorePackage="SysML-Behaviors.ecore#/">
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//Behavior"/>
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//Function"/>
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//Predicate"/>
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//Expression"/>
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//LiteralInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Behaviors.ecore#//LiteralInteger/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SysML-Behaviors.ecore#//LiteralUnbounded"/>
+  </genPackages>
+</genmodel:GenModel>

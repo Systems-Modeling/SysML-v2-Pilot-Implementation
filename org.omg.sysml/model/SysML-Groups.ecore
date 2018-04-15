@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="groups" nsURI="http://www.omg.org/spec/SysML/2.0/Groups" nsPrefix="groups">
+  <eClassifiers xsi:type="ecore:EClass" name="Namespace" eSuperTypes="#//ElementGroup">
+    <eOperations name="nameOf" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="element" ordered="false" lowerBound="1" eType="ecore:EClass SysML-Core.ecore#//Element"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberNaming" upperBound="-1"
+        eType="#//MemberNaming" containment="true" eOpposite="#//MemberNaming/namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespaceImport" ordered="false"
+        upperBound="-1" eType="#//NamespaceImport" eOpposite="#//NamespaceImport/importingNamespace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamespaceImport" eSuperTypes="#//GroupImport">
+    <eOperations name="importedMembers" ordered="false" upperBound="-1" eType="ecore:EClass SysML-Core.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingNamespace" ordered="false"
+        lowerBound="1" eType="#//Namespace" eOpposite="#//Namespace/namespaceImport"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedNamespace" ordered="false"
+        lowerBound="1" eType="#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        lowerBound="1" eType="#//VisibilityKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementGroup" eSuperTypes="SysML-Core.ecore#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
+        eType="ecore:EClass SysML-Core.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groupImport" upperBound="-1"
+        eType="#//GroupImport" containment="true" eOpposite="#//GroupImport/importingGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMember" ordered="false"
+        upperBound="-1" eType="ecore:EClass SysML-Core.ecore#//Element" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
+        eType="ecore:EClass SysML-Core.ecore#//Element" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupImport" eSuperTypes="SysML-Core.ecore#//Element">
+    <eOperations name="importedMembers" ordered="false" upperBound="-1" eType="ecore:EClass SysML-Core.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedGroup" ordered="false"
+        lowerBound="1" eType="#//ElementGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingGroup" ordered="false"
+        lowerBound="1" eType="#//ElementGroup" eOpposite="#//ElementGroup/groupImport"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selecter" ordered="false"
+        eType="ecore:EClass SysML-Behaviors.ecore#//Predicate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MemberNaming" eSuperTypes="SysML-Core.ecore#//Relationship">
+    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="naming" ordered="false" lowerBound="1" eType="#//MemberNaming"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
+        lowerBound="1" eType="#//Namespace" eOpposite="#//Namespace/memberNaming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" ordered="false"
+        eType="ecore:EClass SysML-Core.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        lowerBound="1" eType="#//VisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliases" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
+    <eLiterals name="public"/>
+    <eLiterals name="private"/>
+    <eLiterals name="protected"/>
+    <eLiterals name="package"/>
+  </eClassifiers>
+</ecore:EPackage>

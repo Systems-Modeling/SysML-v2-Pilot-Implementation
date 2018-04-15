@@ -13,8 +13,9 @@ public abstract class AbstractAlfValidator extends AbstractDeclarativeValidator 
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.openmbee.org/kerml/core"));
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.openmbee.org/kerml/str"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Groups"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Core"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Classification"));
 		return result;
 	}
 	

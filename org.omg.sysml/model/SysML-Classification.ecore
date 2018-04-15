@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="classification" nsURI="http://www.omg.org/spec/SysML/2.0/Classification"
+    nsPrefix="classification">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="SysML-Groups.ecore#//Namespace">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/featuringClasses"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature" containment="true" eOpposite="#//Feature/class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization" ordered="false"
+        upperBound="-1" eType="#//Generalization" containment="true" eOpposite="#//Generalization/owningGeneralization"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="SysML-Groups.ecore#//Namespace">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" ordered="false"
+        eType="ecore:EClass SysML-Behaviors.ecore#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" ordered="false"
+        eType="ecore:EClass SysML-Behaviors.ecore#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClasses" ordered="false"
+        upperBound="-1" eType="#//Class" derived="true" eOpposite="#//Class/feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+        eType="#//Class" eOpposite="#//Class/ownedFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
+        eType="#//Class" derived="true" eOpposite="#//Class/typedFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
+        upperBound="-1" eType="#//Class" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedType" ordered="false"
+        upperBound="-1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="SysML-Core.ecore#//Relationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
+        lowerBound="1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
+        eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningGeneralization" ordered="false"
+        eType="#//Class" eOpposite="#//Class/ownedGeneralization"/>
+  </eClassifiers>
+</ecore:EPackage>

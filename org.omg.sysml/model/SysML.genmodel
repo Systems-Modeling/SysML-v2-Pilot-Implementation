@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/org.omg.sysml/syntax-gen" modelPluginID="org.omg.sysml"
+    modelName="SysML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="SysML-Behaviors.genmodel#//behaviors SysML-Classification.genmodel#//classification SysML-Core.genmodel#//core SysML-Groups.genmodel#//groups"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SysML.ecore</foreignModel>
+  <genPackages prefix="Sysml" basePackage="org.omg.sysml" disposableProviderFactory="true"
+      ecorePackage="SysML.ecore#/">
+    <genClasses ecoreClass="SysML.ecore#//Model"/>
+  </genPackages>
+</genmodel:GenModel>

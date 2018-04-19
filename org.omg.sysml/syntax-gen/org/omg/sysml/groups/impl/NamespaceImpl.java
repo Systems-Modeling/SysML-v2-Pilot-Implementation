@@ -21,7 +21,7 @@ import org.omg.sysml.core.Element;
 import org.omg.sysml.groups.GroupsPackage;
 import org.omg.sysml.groups.Namespace;
 import org.omg.sysml.groups.NamespaceImport;
-import org.omg.sysml.groups.NamespaceMember;
+import org.omg.sysml.groups.NamespaceMembership;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<NamespaceMember> namespaceMember;
+	protected EList<NamespaceMembership> namespaceMember;
 
 	/**
 	 * The cached value of the '{@link #getNamespaceImport() <em>Namespace Import</em>}' reference list.
@@ -82,9 +82,9 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NamespaceMember> getNamespaceMember() {
+	public EList<NamespaceMembership> getNamespaceMember() {
 		if (namespaceMember == null) {
-			namespaceMember = new EObjectWithInverseResolvingEList<NamespaceMember>(NamespaceMember.class, this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, GroupsPackage.NAMESPACE_MEMBER__NAMESPACE);
+			namespaceMember = new EObjectWithInverseResolvingEList<NamespaceMembership>(NamespaceMembership.class, this, GroupsPackage.NAMESPACE__NAMESPACE_MEMBER, GroupsPackage.NAMESPACE_MEMBERSHIP__NAMESPACE);
 		}
 		return namespaceMember;
 	}
@@ -172,7 +172,7 @@ public class NamespaceImpl extends ElementGroupImpl implements Namespace {
 		switch (featureID) {
 			case GroupsPackage.NAMESPACE__NAMESPACE_MEMBER:
 				getNamespaceMember().clear();
-				getNamespaceMember().addAll((Collection<? extends NamespaceMember>)newValue);
+				getNamespaceMember().addAll((Collection<? extends NamespaceMembership>)newValue);
 				return;
 			case GroupsPackage.NAMESPACE__NAMESPACE_IMPORT:
 				getNamespaceImport().clear();

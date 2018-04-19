@@ -17,25 +17,25 @@ import org.omg.sysml.core.Element;
 import org.omg.sysml.core.impl.RelationshipImpl;
 
 import org.omg.sysml.groups.ElementGroup;
-import org.omg.sysml.groups.GroupMember;
+import org.omg.sysml.groups.GroupMembership;
 import org.omg.sysml.groups.GroupsPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Group Member</b></em>'.
+ * An implementation of the model object '<em><b>Group Membership</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.impl.GroupMemberImpl#getGroup <em>Group</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.GroupMemberImpl#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.groups.impl.GroupMemberImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.GroupMembershipImpl#getGroup <em>Group</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.GroupMembershipImpl#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.impl.GroupMembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
+public class GroupMembershipImpl extends RelationshipImpl implements GroupMembership {
 	/**
 	 * The cached value of the '{@link #getMemberElement() <em>Member Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GroupMemberImpl() {
+	protected GroupMembershipImpl() {
 		super();
 	}
 
@@ -72,7 +72,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GroupsPackage.Literals.GROUP_MEMBER;
+		return GroupsPackage.Literals.GROUP_MEMBERSHIP;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	 * @generated
 	 */
 	public ElementGroup getGroup() {
-		if (eContainerFeatureID() != GroupsPackage.GROUP_MEMBER__GROUP) return null;
+		if (eContainerFeatureID() != GroupsPackage.GROUP_MEMBERSHIP__GROUP) return null;
 		return (ElementGroup)eInternalContainer();
 	}
 
@@ -91,7 +91,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	 * @generated
 	 */
 	public NotificationChain basicSetGroup(ElementGroup newGroup, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGroup, GroupsPackage.GROUP_MEMBER__GROUP, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newGroup, GroupsPackage.GROUP_MEMBERSHIP__GROUP, msgs);
 		return msgs;
 	}
 
@@ -101,7 +101,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	 * @generated
 	 */
 	public void setGroup(ElementGroup newGroup) {
-		if (newGroup != eInternalContainer() || (eContainerFeatureID() != GroupsPackage.GROUP_MEMBER__GROUP && newGroup != null)) {
+		if (newGroup != eInternalContainer() || (eContainerFeatureID() != GroupsPackage.GROUP_MEMBERSHIP__GROUP && newGroup != null)) {
 			if (EcoreUtil.isAncestor(this, newGroup))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -113,7 +113,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBER__GROUP, newGroup, newGroup));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBERSHIP__GROUP, newGroup, newGroup));
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 			memberElement = (Element)eResolveProxy(oldMemberElement);
 			if (memberElement != oldMemberElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT, oldMemberElement, memberElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT, oldMemberElement, memberElement));
 			}
 		}
 		return memberElement;
@@ -151,7 +151,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 		Element oldMemberElement = memberElement;
 		memberElement = newMemberElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT, oldMemberElement, memberElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT, oldMemberElement, memberElement));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 		Element oldOwnedMemberElement = ownedMemberElement;
 		ownedMemberElement = newOwnedMemberElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT, oldOwnedMemberElement, newOwnedMemberElement);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT, oldOwnedMemberElement, newOwnedMemberElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -187,14 +187,14 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 		if (newOwnedMemberElement != ownedMemberElement) {
 			NotificationChain msgs = null;
 			if (ownedMemberElement != null)
-				msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT, null, msgs);
+				msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT, null, msgs);
 			if (newOwnedMemberElement != null)
-				msgs = ((InternalEObject)newOwnedMemberElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT, null, msgs);
+				msgs = ((InternalEObject)newOwnedMemberElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT, null, msgs);
 			msgs = basicSetOwnedMemberElement(newOwnedMemberElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT, newOwnedMemberElement, newOwnedMemberElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT, newOwnedMemberElement, newOwnedMemberElement));
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetGroup((ElementGroup)otherEnd, msgs);
@@ -221,9 +221,9 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				return basicSetGroup(null, msgs);
-			case GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return basicSetOwnedMemberElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -237,7 +237,7 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				return eInternalContainer().eInverseRemove(this, GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER, ElementGroup.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -251,12 +251,12 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				return getGroup();
-			case GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT:
 				if (resolve) return getMemberElement();
 				return basicGetMemberElement();
-			case GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return getOwnedMemberElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -270,13 +270,13 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				setGroup((ElementGroup)newValue);
 				return;
-			case GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)newValue);
 				return;
-			case GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				setOwnedMemberElement((Element)newValue);
 				return;
 		}
@@ -291,13 +291,13 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				setGroup((ElementGroup)null);
 				return;
-			case GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)null);
 				return;
-			case GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				setOwnedMemberElement((Element)null);
 				return;
 		}
@@ -312,14 +312,14 @@ public class GroupMemberImpl extends RelationshipImpl implements GroupMember {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GroupsPackage.GROUP_MEMBER__GROUP:
+			case GroupsPackage.GROUP_MEMBERSHIP__GROUP:
 				return getGroup() != null;
-			case GroupsPackage.GROUP_MEMBER__MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__MEMBER_ELEMENT:
 				return memberElement != null;
-			case GroupsPackage.GROUP_MEMBER__OWNED_MEMBER_ELEMENT:
+			case GroupsPackage.GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return ownedMemberElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //GroupMemberImpl
+} //GroupMembershipImpl

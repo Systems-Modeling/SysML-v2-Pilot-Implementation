@@ -6,7 +6,7 @@
       <eParameters name="element" ordered="false" lowerBound="1" eType="ecore:EClass SysML-Core.ecore#//Element"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespaceMember" upperBound="-1"
-        eType="#//NamespaceMember" eOpposite="#//NamespaceMember/namespace"/>
+        eType="#//NamespaceMembership" eOpposite="#//NamespaceMembership/namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespaceImport" ordered="false"
         upperBound="-1" eType="#//NamespaceImport" eOpposite="#//NamespaceImport/importingNamespace"/>
   </eClassifiers>
@@ -29,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
         eType="ecore:EClass SysML-Core.ecore#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groupMember" upperBound="-1"
-        eType="#//GroupMember" containment="true" eOpposite="#//GroupMember/group"/>
+        eType="#//GroupMembership" containment="true" eOpposite="#//GroupMembership/group"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GroupImport" eSuperTypes="SysML-Core.ecore#//Relationship">
     <eOperations name="importedMembers" ordered="false" upperBound="-1" eType="ecore:EClass SysML-Core.ecore#//Element"/>
@@ -40,16 +40,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="selecter" ordered="false"
         eType="ecore:EClass SysML-Behaviors.ecore#//Behavior"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamespaceMember" eSuperTypes="#//GroupMember">
+  <eClassifiers xsi:type="ecore:EClass" name="NamespaceMembership" eSuperTypes="#//GroupMembership">
     <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="naming" ordered="false" lowerBound="1" eType="#//NamespaceMember"/>
+      <eParameters name="naming" ordered="false" lowerBound="1" eType="#//NamespaceMembership"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
         eType="#//Namespace" eOpposite="#//Namespace/namespaceMember"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
-        lowerBound="1" eType="#//VisibilityKind"/>
+        lowerBound="1" eType="#//VisibilityKind" defaultValueLiteral="public"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliases" ordered="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -59,7 +59,7 @@
     <eLiterals name="protected"/>
     <eLiterals name="package"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GroupMember" eSuperTypes="SysML-Core.ecore#//Relationship">
+  <eClassifiers xsi:type="ecore:EClass" name="GroupMembership" eSuperTypes="SysML-Core.ecore#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" ordered="false"
         lowerBound="1" eType="#//ElementGroup" eOpposite="#//ElementGroup/groupMember"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="memberElement" ordered="false"

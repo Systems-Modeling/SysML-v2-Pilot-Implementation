@@ -25,12 +25,12 @@ import org.omg.sysml.core.impl.CorePackageImpl;
 
 import org.omg.sysml.groups.ElementGroup;
 import org.omg.sysml.groups.GroupImport;
-import org.omg.sysml.groups.GroupMember;
+import org.omg.sysml.groups.GroupMembership;
 import org.omg.sysml.groups.GroupsFactory;
 import org.omg.sysml.groups.GroupsPackage;
 import org.omg.sysml.groups.Namespace;
 import org.omg.sysml.groups.NamespaceImport;
-import org.omg.sysml.groups.NamespaceMember;
+import org.omg.sysml.groups.NamespaceMembership;
 import org.omg.sysml.groups.VisibilityKind;
 
 /**
@@ -73,14 +73,14 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namespaceMemberEClass = null;
+	private EClass namespaceMembershipEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass groupMemberEClass = null;
+	private EClass groupMembershipEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -346,8 +346,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamespaceMember() {
-		return namespaceMemberEClass;
+	public EClass getNamespaceMembership() {
+		return namespaceMembershipEClass;
 	}
 
 	/**
@@ -355,8 +355,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamespaceMember_MemberName() {
-		return (EAttribute)namespaceMemberEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNamespaceMembership_MemberName() {
+		return (EAttribute)namespaceMembershipEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -364,8 +364,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamespaceMember_Namespace() {
-		return (EReference)namespaceMemberEClass.getEStructuralFeatures().get(1);
+	public EReference getNamespaceMembership_Namespace() {
+		return (EReference)namespaceMembershipEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -373,8 +373,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamespaceMember_Visibility() {
-		return (EAttribute)namespaceMemberEClass.getEStructuralFeatures().get(2);
+	public EAttribute getNamespaceMembership_Visibility() {
+		return (EAttribute)namespaceMembershipEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -382,8 +382,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamespaceMember_Aliases() {
-		return (EAttribute)namespaceMemberEClass.getEStructuralFeatures().get(3);
+	public EAttribute getNamespaceMembership_Aliases() {
+		return (EAttribute)namespaceMembershipEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -391,8 +391,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNamespaceMember__IsDistinguishableFrom__NamespaceMember() {
-		return namespaceMemberEClass.getEOperations().get(0);
+	public EOperation getNamespaceMembership__IsDistinguishableFrom__NamespaceMembership() {
+		return namespaceMembershipEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -400,8 +400,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGroupMember() {
-		return groupMemberEClass;
+	public EClass getGroupMembership() {
+		return groupMembershipEClass;
 	}
 
 	/**
@@ -409,8 +409,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGroupMember_Group() {
-		return (EReference)groupMemberEClass.getEStructuralFeatures().get(0);
+	public EReference getGroupMembership_Group() {
+		return (EReference)groupMembershipEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -418,8 +418,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGroupMember_MemberElement() {
-		return (EReference)groupMemberEClass.getEStructuralFeatures().get(1);
+	public EReference getGroupMembership_MemberElement() {
+		return (EReference)groupMembershipEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -427,8 +427,8 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGroupMember_OwnedMemberElement() {
-		return (EReference)groupMemberEClass.getEStructuralFeatures().get(2);
+	public EReference getGroupMembership_OwnedMemberElement() {
+		return (EReference)groupMembershipEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -492,17 +492,17 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 		createEReference(groupImportEClass, GROUP_IMPORT__SELECTER);
 		createEOperation(groupImportEClass, GROUP_IMPORT___IMPORTED_MEMBERS);
 
-		namespaceMemberEClass = createEClass(NAMESPACE_MEMBER);
-		createEAttribute(namespaceMemberEClass, NAMESPACE_MEMBER__MEMBER_NAME);
-		createEReference(namespaceMemberEClass, NAMESPACE_MEMBER__NAMESPACE);
-		createEAttribute(namespaceMemberEClass, NAMESPACE_MEMBER__VISIBILITY);
-		createEAttribute(namespaceMemberEClass, NAMESPACE_MEMBER__ALIASES);
-		createEOperation(namespaceMemberEClass, NAMESPACE_MEMBER___IS_DISTINGUISHABLE_FROM__NAMESPACEMEMBER);
+		namespaceMembershipEClass = createEClass(NAMESPACE_MEMBERSHIP);
+		createEAttribute(namespaceMembershipEClass, NAMESPACE_MEMBERSHIP__MEMBER_NAME);
+		createEReference(namespaceMembershipEClass, NAMESPACE_MEMBERSHIP__NAMESPACE);
+		createEAttribute(namespaceMembershipEClass, NAMESPACE_MEMBERSHIP__VISIBILITY);
+		createEAttribute(namespaceMembershipEClass, NAMESPACE_MEMBERSHIP__ALIASES);
+		createEOperation(namespaceMembershipEClass, NAMESPACE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__NAMESPACEMEMBERSHIP);
 
-		groupMemberEClass = createEClass(GROUP_MEMBER);
-		createEReference(groupMemberEClass, GROUP_MEMBER__GROUP);
-		createEReference(groupMemberEClass, GROUP_MEMBER__MEMBER_ELEMENT);
-		createEReference(groupMemberEClass, GROUP_MEMBER__OWNED_MEMBER_ELEMENT);
+		groupMembershipEClass = createEClass(GROUP_MEMBERSHIP);
+		createEReference(groupMembershipEClass, GROUP_MEMBERSHIP__GROUP);
+		createEReference(groupMembershipEClass, GROUP_MEMBERSHIP__MEMBER_ELEMENT);
+		createEReference(groupMembershipEClass, GROUP_MEMBERSHIP__OWNED_MEMBER_ELEMENT);
 
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
@@ -544,12 +544,12 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 		namespaceImportEClass.getESuperTypes().add(this.getGroupImport());
 		elementGroupEClass.getESuperTypes().add(theCorePackage.getElement());
 		groupImportEClass.getESuperTypes().add(theCorePackage.getRelationship());
-		namespaceMemberEClass.getESuperTypes().add(this.getGroupMember());
-		groupMemberEClass.getESuperTypes().add(theCorePackage.getRelationship());
+		namespaceMembershipEClass.getESuperTypes().add(this.getGroupMembership());
+		groupMembershipEClass.getESuperTypes().add(theCorePackage.getRelationship());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namespaceEClass, Namespace.class, "Namespace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamespace_NamespaceMember(), this.getNamespaceMember(), this.getNamespaceMember_Namespace(), "namespaceMember", null, 0, -1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamespace_NamespaceMember(), this.getNamespaceMembership(), this.getNamespaceMembership_Namespace(), "namespaceMember", null, 0, -1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNamespace_NamespaceImport(), this.getNamespaceImport(), this.getNamespaceImport_ImportingNamespace(), "namespaceImport", null, 0, -1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		EOperation op = initEOperation(getNamespace__NameOf__Element(), ecorePackage.getEString(), "nameOf", 0, 1, IS_UNIQUE, !IS_ORDERED);
@@ -567,7 +567,7 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 		initEReference(getElementGroup_GroupImport(), this.getGroupImport(), this.getGroupImport_ImportingGroup(), "groupImport", null, 0, -1, ElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getElementGroup_ImportedMember(), theCorePackage.getElement(), null, "importedMember", null, 0, -1, ElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getElementGroup_OwnedMember(), theCorePackage.getElement(), null, "ownedMember", null, 0, -1, ElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getElementGroup_GroupMember(), this.getGroupMember(), this.getGroupMember_Group(), "groupMember", null, 0, -1, ElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementGroup_GroupMember(), this.getGroupMembership(), this.getGroupMembership_Group(), "groupMember", null, 0, -1, ElementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(groupImportEClass, GroupImport.class, "GroupImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroupImport_ImportedGroup(), this.getElementGroup(), null, "importedGroup", null, 1, 1, GroupImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -576,19 +576,19 @@ public class GroupsPackageImpl extends EPackageImpl implements GroupsPackage {
 
 		initEOperation(getGroupImport__ImportedMembers(), theCorePackage.getElement(), "importedMembers", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(namespaceMemberEClass, NamespaceMember.class, "NamespaceMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamespaceMember_MemberName(), ecorePackage.getEString(), "memberName", null, 0, 1, NamespaceMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNamespaceMember_Namespace(), this.getNamespace(), this.getNamespace_NamespaceMember(), "namespace", null, 0, 1, NamespaceMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getNamespaceMember_Visibility(), this.getVisibilityKind(), "visibility", null, 1, 1, NamespaceMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getNamespaceMember_Aliases(), ecorePackage.getEString(), "aliases", null, 0, -1, NamespaceMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(namespaceMembershipEClass, NamespaceMembership.class, "NamespaceMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamespaceMembership_MemberName(), ecorePackage.getEString(), "memberName", null, 0, 1, NamespaceMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNamespaceMembership_Namespace(), this.getNamespace(), this.getNamespace_NamespaceMember(), "namespace", null, 0, 1, NamespaceMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getNamespaceMembership_Visibility(), this.getVisibilityKind(), "visibility", "public", 1, 1, NamespaceMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getNamespaceMembership_Aliases(), ecorePackage.getEString(), "aliases", null, 0, -1, NamespaceMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = initEOperation(getNamespaceMember__IsDistinguishableFrom__NamespaceMember(), ecorePackage.getEBoolean(), "isDistinguishableFrom", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getNamespaceMember(), "naming", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getNamespaceMembership__IsDistinguishableFrom__NamespaceMembership(), ecorePackage.getEBoolean(), "isDistinguishableFrom", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getNamespaceMembership(), "naming", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(groupMemberEClass, GroupMember.class, "GroupMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGroupMember_Group(), this.getElementGroup(), this.getElementGroup_GroupMember(), "group", null, 1, 1, GroupMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getGroupMember_MemberElement(), theCorePackage.getElement(), null, "memberElement", null, 0, 1, GroupMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getGroupMember_OwnedMemberElement(), theCorePackage.getElement(), null, "ownedMemberElement", null, 0, 1, GroupMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(groupMembershipEClass, GroupMembership.class, "GroupMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGroupMembership_Group(), this.getElementGroup(), this.getElementGroup_GroupMember(), "group", null, 1, 1, GroupMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getGroupMembership_MemberElement(), theCorePackage.getElement(), null, "memberElement", null, 0, 1, GroupMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getGroupMembership_OwnedMemberElement(), theCorePackage.getElement(), null, "ownedMemberElement", null, 0, 1, GroupMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

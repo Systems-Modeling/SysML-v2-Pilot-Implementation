@@ -20,7 +20,7 @@ import org.omg.sysml.core.impl.ElementImpl;
 
 import org.omg.sysml.groups.ElementGroup;
 import org.omg.sysml.groups.GroupImport;
-import org.omg.sysml.groups.GroupMember;
+import org.omg.sysml.groups.GroupMembership;
 import org.omg.sysml.groups.GroupsPackage;
 
 /**
@@ -89,7 +89,7 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GroupMember> groupMember;
+	protected EList<GroupMembership> groupMember;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,9 +163,9 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GroupMember> getGroupMember() {
+	public EList<GroupMembership> getGroupMember() {
 		if (groupMember == null) {
-			groupMember = new EObjectContainmentWithInverseEList<GroupMember>(GroupMember.class, this, GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER, GroupsPackage.GROUP_MEMBER__GROUP);
+			groupMember = new EObjectContainmentWithInverseEList<GroupMembership>(GroupMembership.class, this, GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER, GroupsPackage.GROUP_MEMBERSHIP__GROUP);
 		}
 		return groupMember;
 	}
@@ -252,7 +252,7 @@ public class ElementGroupImpl extends ElementImpl implements ElementGroup {
 				return;
 			case GroupsPackage.ELEMENT_GROUP__GROUP_MEMBER:
 				getGroupMember().clear();
-				getGroupMember().addAll((Collection<? extends GroupMember>)newValue);
+				getGroupMember().addAll((Collection<? extends GroupMembership>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

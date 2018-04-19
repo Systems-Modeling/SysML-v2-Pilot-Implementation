@@ -46,14 +46,14 @@ mapping Groups::Namespace::toPackage() : UML::Package
 	packagedElement += self.groupMember->map toPackageableElement();
 }
 
-mapping Groups::NamespaceMember::toPackageableElement() : UML::PackageableElement {
+mapping Groups::NamespaceMembership::toPackageableElement() : UML::PackageableElement {
 init {
 	result := self.ownedMemberElement.map toPackageableElement();
 }
 	visibility := toVisibilityKind(self.visibility);
 }
 
-//query Groups::Namespace::namingOf(e: Element): NamespaceMember {
+//query Groups::Namespace::namingOf(e: Element): NamespaceMembership {
 //	return self.namespaceMember![element = e];
 //}
 
@@ -61,11 +61,11 @@ init {
 
 mapping Classification::Class::toClass() : UML::Class
 	inherits Core::Element::toNamedElement {
-	ownedAttribute := self.groupMember[ownedMemberElement.oclIsTypeOf(classification::Feature)].oclAsType(NamespaceMember)->map toProperty();
+	ownedAttribute := self.groupMember[ownedMemberElement.oclIsTypeOf(classification::Feature)].oclAsType(NamespaceMembership)->map toProperty();
 	generalization := self.ownedGeneralization->map toGeneralization();
 }
 
-mapping Groups::NamespaceMember::toProperty() : UML::Property {
+mapping Groups::NamespaceMembership::toProperty() : UML::Property {
 init {
 	result := self.ownedMemberElement.oclAsType(Classification::Feature).map toProperty();
 }

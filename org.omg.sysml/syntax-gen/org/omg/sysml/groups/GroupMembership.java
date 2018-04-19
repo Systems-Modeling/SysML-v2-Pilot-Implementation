@@ -7,23 +7,23 @@ import org.omg.sysml.core.Relationship;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Group Member</b></em>'.
+ * A representation of the model object '<em><b>Group Membership</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.groups.GroupMember#getGroup <em>Group</em>}</li>
- *   <li>{@link org.omg.sysml.groups.GroupMember#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.groups.GroupMember#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.GroupMembership#getGroup <em>Group</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.GroupMembership#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.groups.GroupMembership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
- * @see org.omg.sysml.groups.GroupsPackage#getGroupMember()
+ * @see org.omg.sysml.groups.GroupsPackage#getGroupMembership()
  * @model
  * @generated
  */
-public interface GroupMember extends Relationship {
+public interface GroupMembership extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Group</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.ElementGroup#getGroupMember <em>Group Member</em>}'.
@@ -35,7 +35,7 @@ public interface GroupMember extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Group</em>' container reference.
 	 * @see #setGroup(ElementGroup)
-	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMember_Group()
+	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMembership_Group()
 	 * @see org.omg.sysml.groups.ElementGroup#getGroupMember
 	 * @model opposite="groupMember" required="true" transient="false" ordered="false"
 	 * @generated
@@ -43,7 +43,7 @@ public interface GroupMember extends Relationship {
 	ElementGroup getGroup();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMember#getGroup <em>Group</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMembership#getGroup <em>Group</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Group</em>' container reference.
@@ -62,14 +62,14 @@ public interface GroupMember extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Member Element</em>' reference.
 	 * @see #setMemberElement(Element)
-	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMember_MemberElement()
+	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMembership_MemberElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	Element getMemberElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMember#getMemberElement <em>Member Element</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMembership#getMemberElement <em>Member Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Member Element</em>' reference.
@@ -88,14 +88,14 @@ public interface GroupMember extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Member Element</em>' containment reference.
 	 * @see #setOwnedMemberElement(Element)
-	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMember_OwnedMemberElement()
+	 * @see org.omg.sysml.groups.GroupsPackage#getGroupMembership_OwnedMemberElement()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMember#getOwnedMemberElement <em>Owned Member Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.omg.sysml.groups.GroupMembership#getOwnedMemberElement <em>Owned Member Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Member Element</em>' containment reference.
@@ -104,4 +104,4 @@ public interface GroupMember extends Relationship {
 	 */
 	void setOwnedMemberElement(Element value);
 
-} // GroupMember
+} // GroupMembership

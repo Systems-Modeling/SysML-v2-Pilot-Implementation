@@ -10,6 +10,8 @@ import org.omg.sysml.classification.ClassificationPackage;
 import org.omg.sysml.classification.Feature;
 import org.omg.sysml.classification.Generalization;
 import org.omg.sysml.core.Element;
+import org.omg.sysml.groups.NamespaceMembership;
+import org.omg.sysml.groups.VisibilityKind;
 
 /**
  * Customization of the default outline structure.
@@ -19,17 +21,66 @@ import org.omg.sysml.core.Element;
 @SuppressWarnings("all")
 public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   public String _text(final Element element) {
-    String _name = element.eClass().getName();
-    String _plus = (_name + " ");
-    String _xifexpression = null;
-    String _name_1 = element.getName();
-    boolean _tripleNotEquals = (_name_1 != null);
-    if (_tripleNotEquals) {
-      _xifexpression = element.getName();
-    } else {
-      _xifexpression = "";
+    String _xblockexpression = null;
+    {
+      String text = element.eClass().getName();
+      String _name = element.getName();
+      boolean _tripleNotEquals = (_name != null);
+      if (_tripleNotEquals) {
+        String _text = text;
+        String _name_1 = element.getName();
+        String _plus = (" " + _name_1);
+        text = (_text + _plus);
+      } else {
+        if ((element instanceof NamespaceMembership)) {
+          NamespaceMembership member = ((NamespaceMembership) element);
+          VisibilityKind _visibility = member.getVisibility();
+          boolean _tripleNotEquals_1 = (_visibility != null);
+          if (_tripleNotEquals_1) {
+            String _text_1 = text;
+            VisibilityKind _visibility_1 = member.getVisibility();
+            String _plus_1 = (" " + _visibility_1);
+            text = (_text_1 + _plus_1);
+          }
+          String _memberName = member.getMemberName();
+          boolean _tripleNotEquals_2 = (_memberName != null);
+          if (_tripleNotEquals_2) {
+            String _text_2 = text;
+            String _memberName_1 = member.getMemberName();
+            String _plus_2 = (" " + _memberName_1);
+            text = (_text_2 + _plus_2);
+          } else {
+            Element _ownedMemberElement = member.getOwnedMemberElement();
+            boolean _tripleNotEquals_3 = (_ownedMemberElement != null);
+            if (_tripleNotEquals_3) {
+              String _name_2 = member.getOwnedMemberElement().getName();
+              boolean _tripleNotEquals_4 = (_name_2 != null);
+              if (_tripleNotEquals_4) {
+                String _text_3 = text;
+                String _name_3 = member.getOwnedMemberElement().getName();
+                String _plus_3 = (" " + _name_3);
+                text = (_text_3 + _plus_3);
+              }
+            } else {
+              Element _memberElement = member.getMemberElement();
+              boolean _tripleNotEquals_5 = (_memberElement != null);
+              if (_tripleNotEquals_5) {
+                String _name_4 = member.getMemberElement().getName();
+                boolean _tripleNotEquals_6 = (_name_4 != null);
+                if (_tripleNotEquals_6) {
+                  String _text_4 = text;
+                  String _name_5 = member.getMemberElement().getName();
+                  String _plus_4 = (" " + _name_5);
+                  text = (_text_4 + _plus_4);
+                }
+              }
+            }
+          }
+        }
+      }
+      _xblockexpression = text;
     }
-    return (_plus + _xifexpression);
+    return _xblockexpression;
   }
   
   public boolean _isLeaf(final Feature feature) {
@@ -39,7 +90,7 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
     Image __image = this._image(feature.getReferencedType());
     String _name = feature.getReferencedType().get(0).getName();
-    String _plus = ("definingType " + _name);
+    String _plus = ("type " + _name);
     this.createEStructuralFeatureNode(parentNode, feature, 
       ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
       true);

@@ -40,19 +40,19 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupImport/selecter"/>
       <genOperations ecoreOperation="SysML-Groups.ecore#//GroupImport/importedMembers"/>
     </genClasses>
-    <genClasses ecoreClass="SysML-Groups.ecore#//NamespaceMember">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMember/memberName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//NamespaceMember/namespace"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMember/visibility"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMember/aliases"/>
-      <genOperations ecoreOperation="SysML-Groups.ecore#//NamespaceMember/isDistinguishableFrom">
-        <genParameters ecoreParameter="SysML-Groups.ecore#//NamespaceMember/isDistinguishableFrom/naming"/>
+    <genClasses ecoreClass="SysML-Groups.ecore#//NamespaceMembership">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMembership/memberName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//NamespaceMembership/namespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMembership/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML-Groups.ecore#//NamespaceMembership/aliases"/>
+      <genOperations ecoreOperation="SysML-Groups.ecore#//NamespaceMembership/isDistinguishableFrom">
+        <genParameters ecoreParameter="SysML-Groups.ecore#//NamespaceMembership/isDistinguishableFrom/naming"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="SysML-Groups.ecore#//GroupMember">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMember/group"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMember/memberElement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMember/ownedMemberElement"/>
+    <genClasses ecoreClass="SysML-Groups.ecore#//GroupMembership">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMembership/group"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMembership/memberElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML-Groups.ecore#//GroupMembership/ownedMemberElement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -26,8 +26,8 @@ import org.omg.sysml.core.Element;
 public interface Namespace extends ElementGroup {
 	/**
 	 * Returns the value of the '<em><b>Namespace Member</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.groups.NamespaceMember}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.NamespaceMember#getNamespace <em>Namespace</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.groups.NamespaceMembership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.NamespaceMembership#getNamespace <em>Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Namespace Member</em>' reference list isn't clear,
@@ -36,11 +36,11 @@ public interface Namespace extends ElementGroup {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespace Member</em>' reference list.
 	 * @see org.omg.sysml.groups.GroupsPackage#getNamespace_NamespaceMember()
-	 * @see org.omg.sysml.groups.NamespaceMember#getNamespace
+	 * @see org.omg.sysml.groups.NamespaceMembership#getNamespace
 	 * @model opposite="namespace"
 	 * @generated
 	 */
-	EList<NamespaceMember> getNamespaceMember();
+	EList<NamespaceMembership> getNamespaceMember();
 
 	/**
 	 * Returns the value of the '<em><b>Namespace Import</b></em>' reference list.

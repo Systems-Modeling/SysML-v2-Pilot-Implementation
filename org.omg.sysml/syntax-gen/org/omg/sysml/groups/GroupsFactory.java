@@ -58,22 +58,22 @@ public interface GroupsFactory extends EFactory {
 	GroupImport createGroupImport();
 
 	/**
-	 * Returns a new object of class '<em>Namespace Member</em>'.
+	 * Returns a new object of class '<em>Namespace Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Namespace Member</em>'.
+	 * @return a new object of class '<em>Namespace Membership</em>'.
 	 * @generated
 	 */
-	NamespaceMember createNamespaceMember();
+	NamespaceMembership createNamespaceMembership();
 
 	/**
-	 * Returns a new object of class '<em>Group Member</em>'.
+	 * Returns a new object of class '<em>Group Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Group Member</em>'.
+	 * @return a new object of class '<em>Group Membership</em>'.
 	 * @generated
 	 */
-	GroupMember createGroupMember();
+	GroupMembership createGroupMembership();
 
 	/**
 	 * Returns the package supported by this factory.

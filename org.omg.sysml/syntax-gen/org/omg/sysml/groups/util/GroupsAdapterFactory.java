@@ -87,12 +87,12 @@ public class GroupsAdapterFactory extends AdapterFactoryImpl {
 				return createGroupImportAdapter();
 			}
 			@Override
-			public Adapter caseNamespaceMember(NamespaceMember object) {
-				return createNamespaceMemberAdapter();
+			public Adapter caseNamespaceMembership(NamespaceMembership object) {
+				return createNamespaceMembershipAdapter();
 			}
 			@Override
-			public Adapter caseGroupMember(GroupMember object) {
-				return createGroupMemberAdapter();
+			public Adapter caseGroupMembership(GroupMembership object) {
+				return createGroupMembershipAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -179,30 +179,30 @@ public class GroupsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.NamespaceMember <em>Namespace Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.NamespaceMembership <em>Namespace Membership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.sysml.groups.NamespaceMember
+	 * @see org.omg.sysml.groups.NamespaceMembership
 	 * @generated
 	 */
-	public Adapter createNamespaceMemberAdapter() {
+	public Adapter createNamespaceMembershipAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.GroupMember <em>Group Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.groups.GroupMembership <em>Group Membership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.sysml.groups.GroupMember
+	 * @see org.omg.sysml.groups.GroupMembership
 	 * @generated
 	 */
-	public Adapter createGroupMemberAdapter() {
+	public Adapter createGroupMembershipAdapter() {
 		return null;
 	}
 

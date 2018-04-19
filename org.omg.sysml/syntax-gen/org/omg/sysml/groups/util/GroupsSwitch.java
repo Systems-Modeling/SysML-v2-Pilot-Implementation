@@ -101,20 +101,20 @@ public class GroupsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GroupsPackage.NAMESPACE_MEMBER: {
-				NamespaceMember namespaceMember = (NamespaceMember)theEObject;
-				T result = caseNamespaceMember(namespaceMember);
-				if (result == null) result = caseGroupMember(namespaceMember);
-				if (result == null) result = caseRelationship(namespaceMember);
-				if (result == null) result = caseElement(namespaceMember);
+			case GroupsPackage.NAMESPACE_MEMBERSHIP: {
+				NamespaceMembership namespaceMembership = (NamespaceMembership)theEObject;
+				T result = caseNamespaceMembership(namespaceMembership);
+				if (result == null) result = caseGroupMembership(namespaceMembership);
+				if (result == null) result = caseRelationship(namespaceMembership);
+				if (result == null) result = caseElement(namespaceMembership);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GroupsPackage.GROUP_MEMBER: {
-				GroupMember groupMember = (GroupMember)theEObject;
-				T result = caseGroupMember(groupMember);
-				if (result == null) result = caseRelationship(groupMember);
-				if (result == null) result = caseElement(groupMember);
+			case GroupsPackage.GROUP_MEMBERSHIP: {
+				GroupMembership groupMembership = (GroupMembership)theEObject;
+				T result = caseGroupMembership(groupMembership);
+				if (result == null) result = caseRelationship(groupMembership);
+				if (result == null) result = caseElement(groupMembership);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -183,32 +183,32 @@ public class GroupsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Namespace Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Namespace Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Namespace Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Namespace Membership</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamespaceMember(NamespaceMember object) {
+	public T caseNamespaceMembership(NamespaceMembership object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Group Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Group Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Group Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Group Membership</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGroupMember(GroupMember object) {
+	public T caseGroupMembership(GroupMembership object) {
 		return null;
 	}
 

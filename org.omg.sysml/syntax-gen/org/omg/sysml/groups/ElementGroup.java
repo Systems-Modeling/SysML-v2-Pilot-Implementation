@@ -95,8 +95,8 @@ public interface ElementGroup extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Group Member</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.groups.GroupMember}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.GroupMember#getGroup <em>Group</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.groups.GroupMembership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.groups.GroupMembership#getGroup <em>Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Group Member</em>' containment reference list isn't clear,
@@ -105,10 +105,10 @@ public interface ElementGroup extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Group Member</em>' containment reference list.
 	 * @see org.omg.sysml.groups.GroupsPackage#getElementGroup_GroupMember()
-	 * @see org.omg.sysml.groups.GroupMember#getGroup
+	 * @see org.omg.sysml.groups.GroupMembership#getGroup
 	 * @model opposite="group" containment="true"
 	 * @generated
 	 */
-	EList<GroupMember> getGroupMember();
+	EList<GroupMembership> getGroupMember();
 
 } // ElementGroup

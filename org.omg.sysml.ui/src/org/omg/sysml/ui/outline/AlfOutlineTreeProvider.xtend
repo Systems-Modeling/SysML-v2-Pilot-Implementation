@@ -9,6 +9,7 @@ import org.omg.sysml.core.Element
 import org.omg.sysml.classification.Feature
 import org.omg.sysml.classification.Generalization
 import org.omg.sysml.classification.ClassificationPackage
+import org.omg.sysml.groups.NamespaceMembership
 
 /**
  * Customization of the default outline structure.
@@ -18,8 +19,27 @@ import org.omg.sysml.classification.ClassificationPackage
 class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def String _text(Element element) {
-		element.eClass.name + ' ' +
-			if (element.name !== null) element.name else '' 
+		var text = element.eClass.name;
+		if (element.name !== null) {
+			text += ' ' + element.name;
+		} else if (element instanceof NamespaceMembership) {
+			var member = element as NamespaceMembership;
+			if (member.visibility !== null) {
+				text += ' ' + member.visibility;
+			}
+			if (member.memberName !== null) {
+				text += ' ' + member.memberName
+			} else if (member.ownedMemberElement !== null) {
+				if (member.ownedMemberElement.name !== null) {
+					text += ' ' + member.ownedMemberElement.name;
+				}
+			} else if (member.memberElement !== null) {
+				if (member.memberElement.name !== null) {
+					text += ' ' + member.memberElement.name;
+				}
+			}
+		}
+		text 
 	}
 	
 	def boolean _isLeaf(Feature feature) {
@@ -29,7 +49,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
 		createEStructuralFeatureNode(parentNode, feature, 
 			ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, 
-			_image(feature.referencedType), "definingType " + feature.referencedType.get(0).name, 
+			_image(feature.referencedType), "type " + feature.referencedType.get(0).name, 
 			true
 		)
 	}

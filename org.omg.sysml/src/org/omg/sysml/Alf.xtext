@@ -1,6 +1,22 @@
 /*****************************************************************************
+ * SysML 2 Pilot Implementation
  * Copyright (c) 2018 Model Driven Solutions, Inc.
  *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
  * Contributors:
  *  Ed Seidewitz
  * 
@@ -22,7 +38,7 @@ UnitDefinition returns groups::Namespace:
 /* PACKAGES */
 
 PackageDefinition returns groups::Namespace: 
-	'package' name = Name '{' ( groupMember += PackagedElement )* '}' 
+	'package' name = Name '{' ( groupMember += MemberDefinition )* '}' 
 ;
 
 PackageDefinitionOrStub returns groups::Namespace :
@@ -30,19 +46,29 @@ PackageDefinitionOrStub returns groups::Namespace :
 	PackageDefinition
 ;
 
-PackagedElement returns groups::NamespaceMember : 
+MemberDefinition returns groups::NamespaceMembership : 
 //  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
-    visibility = ImportVisibilityIndicator 
-	ownedMemberElement = PackagedElementDefinition
+    ( visibility = VisibilityIndicator )?
+	( ownedMemberElement = PackagedElementDefinition
+	| MemberKind ( memberName = Name )? 'is' memberElement = [core::Element|QualifiedName] ';'
+	)
 ;
 
-enum ImportVisibilityIndicator returns groups::VisibilityKind:
-	public = 'public' | private = 'private'
+enum VisibilityIndicator returns groups::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
 ;
+
+MemberKind :
+	'package' | 'class' | 'feature'
+;
+
+//enum ImportVisibilityIndicator returns groups::VisibilityKind:
+//	public = 'public' | private = 'private'
+//;
 
 PackagedElementDefinition returns core::Element:
-  PackageDefinitionOrStub | ClassifierDefinitionOrStub
+  PackageDefinitionOrStub | ClassifierDefinitionOrStub | FeatureDefinition
 ;
 
 ClassifierDefinitionOrStub returns classification::Class:
@@ -63,7 +89,7 @@ Generalization returns classification::Generalization :
 ;
 
 ClassDefinition returns classification::Class : 
-  ClassDeclaration '{' ( groupMember += ClassMember )* '}'
+  ClassDeclaration '{' ( groupMember += MemberDefinition )* '}'
 ;
 
 ClassDefinitionOrStub returns classification::Class :
@@ -72,23 +98,27 @@ ClassDefinitionOrStub returns classification::Class :
 //	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
 ;
 
-ClassMember returns groups::NamespaceMember : 
+/*
+ClassMember returns groups::NamespaceMembership : 
 //	( documentation += DOCUMENTATION_COMMENT )?
 //	( annotation += StereotypeAnnotation )*
 //	( methodVisibility = VisibilityKind )?
 //	definition = ClassMemberDefinition
-	visibility = VisibilityIndicator
-	ownedMemberElement = FeatureDefinition
+	( visibility = VisibilityIndicator )?
+	( ownedMemberElement = ClassElementDefinition
+	| 'has' memberElement = [core::Element|QualifiedName] ";"
+	)
 ;
+*/
 
-enum VisibilityIndicator returns groups::VisibilityKind :
-	public = 'public' | private = 'private' | protected = 'protected'
-;
+//ClassElementDefinition returns core::Element :
+//	FeatureDefinition
+//;
 
 /* FEATURES */
 
 FeatureDefinition returns classification::Feature :
-	name = Name ':' referencedType += [classification::Class | QualifiedName]
+	'feature'? name = Name ':' referencedType += [classification::Class | QualifiedName]
 //	( '[' lower = NATURAL_VALUE '..' upper = NATURAL_VALUE ']' )?
 	';'
 ;

@@ -10,6 +10,8 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.omg.sysml.services.AlfGrammarAccess;
@@ -18,17 +20,31 @@ import org.omg.sysml.services.AlfGrammarAccess;
 public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AlfGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_FeatureDefinition_FeatureKeyword_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
+		match_FeatureDefinition_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getFeatureDefinitionAccess().getFeatureKeyword_0());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getMemberKindRule())
+			return getMemberKindToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * MemberKind :
+	 * 	'package' | 'class' | 'feature'
+	 * ;
+	 */
+	protected String getMemberKindToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "package";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -36,8 +52,21 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_FeatureDefinition_FeatureKeyword_0_q.equals(syntax))
+				emit_FeatureDefinition_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     'feature'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) name=Name
+	 */
+	protected void emit_FeatureDefinition_FeatureKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

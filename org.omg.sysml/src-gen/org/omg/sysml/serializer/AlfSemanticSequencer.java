@@ -14,6 +14,9 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.omg.sysml.behaviors.BehaviorsPackage;
+import org.omg.sysml.behaviors.LiteralInteger;
+import org.omg.sysml.behaviors.LiteralUnbounded;
 import org.omg.sysml.classification.ClassificationPackage;
 import org.omg.sysml.classification.Feature;
 import org.omg.sysml.classification.Generalization;
@@ -34,10 +37,23 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		ParserRule rule = context.getParserRule();
 		Action action = context.getAssignedAction();
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
-		if (epackage == ClassificationPackage.eINSTANCE)
+		if (epackage == BehaviorsPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
+			case BehaviorsPackage.LITERAL_INTEGER:
+				sequence_NaturalLiteralExpression(context, (LiteralInteger) semanticObject); 
+				return; 
+			case BehaviorsPackage.LITERAL_UNBOUNDED:
+				sequence_UnlimitedNaturalLiteralExpression(context, (LiteralUnbounded) semanticObject); 
+				return; 
+			}
+		else if (epackage == ClassificationPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case ClassificationPackage.CLASS:
-				if (rule == grammarAccess.getClassDeclarationRule()) {
+				if (rule == grammarAccess.getAnonymousClassDefinitionRule()) {
+					sequence_AnonymousClassDefinition(context, (org.omg.sysml.classification.Class) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getClassDeclarationRule()) {
 					sequence_ClassDeclaration(context, (org.omg.sysml.classification.Class) semanticObject); 
 					return; 
 				}
@@ -69,6 +85,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AnonymousClassDefinition returns Class
+	 *
+	 * Constraint:
+	 *     groupMember+=MemberDefinition*
+	 */
+	protected void sequence_AnonymousClassDefinition(ISerializationContext context, org.omg.sysml.classification.Class semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -104,7 +132,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     FeatureDefinition returns Feature
 	 *
 	 * Constraint:
-	 *     (name=Name referencedType+=[Class|QualifiedName])
+	 *     (
+	 *         (
+	 *             name=Name 
+	 *             (referencedType+=[Class|QualifiedName] redefinedFeature+=[Feature|QualifiedName]?)? 
+	 *             (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)? 
+	 *             ownedType+=AnonymousClassDefinition?
+	 *         ) | 
+	 *         (
+	 *             name=Name? 
+	 *             redefinedFeature+=[Feature|QualifiedName] 
+	 *             (
+	 *                 ((lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)? ownedType+=AnonymousClassDefinition) | 
+	 *                 (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)
+	 *             )
+	 *         )
+	 *     )
 	 */
 	protected void sequence_FeatureDefinition(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -143,6 +186,25 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     NaturalLiteralExpression returns LiteralInteger
+	 *     UnlimitedNaturalLiteralExpression returns LiteralInteger
+	 *
+	 * Constraint:
+	 *     value=NATURAL_VALUE
+	 */
+	protected void sequence_NaturalLiteralExpression(ISerializationContext context, LiteralInteger semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BehaviorsPackage.Literals.LITERAL_INTEGER__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BehaviorsPackage.Literals.LITERAL_INTEGER__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNaturalLiteralExpressionAccess().getValueNATURAL_VALUETerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     UnitDefinition returns Namespace
 	 *     PackageDefinition returns Namespace
 	 *     PackageDefinitionOrStub returns Namespace
@@ -152,6 +214,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name groupMember+=MemberDefinition*)
 	 */
 	protected void sequence_PackageDefinition(ISerializationContext context, Namespace semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnlimitedNaturalLiteralExpression returns LiteralUnbounded
+	 *
+	 * Constraint:
+	 *     {LiteralUnbounded}
+	 */
+	protected void sequence_UnlimitedNaturalLiteralExpression(ISerializationContext context, LiteralUnbounded semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

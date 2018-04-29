@@ -47,11 +47,15 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
-		createEStructuralFeatureNode(parentNode, feature, 
-			ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, 
-			_image(feature.referencedType), "type " + feature.referencedType.get(0).name, 
-			true
-		)
+		var referencedTypes = feature.referencedType
+		if (!referencedTypes.isEmpty) {
+			createEStructuralFeatureNode(parentNode, feature, 
+				ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, 
+				_image(feature.referencedType), "type " + feature.referencedType.get(0).name, 
+				true
+			)
+		}
+		super._createChildren(parentNode, feature)
 	}
 
 	def boolean _isLeaf(Generalization generalization) {

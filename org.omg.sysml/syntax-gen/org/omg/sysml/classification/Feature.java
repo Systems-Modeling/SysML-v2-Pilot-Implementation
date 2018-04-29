@@ -38,52 +38,52 @@ import org.omg.sysml.groups.Namespace;
  */
 public interface Feature extends Namespace {
 	/**
-	 * Returns the value of the '<em><b>Lower</b></em>' reference.
+	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower</em>' reference.
+	 * @return the value of the '<em>Lower</em>' containment reference.
 	 * @see #setLower(Expression)
 	 * @see org.omg.sysml.classification.ClassificationPackage#getFeature_Lower()
-	 * @model ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	Expression getLower();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.classification.Feature#getLower <em>Lower</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.classification.Feature#getLower <em>Lower</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower</em>' reference.
+	 * @param value the new value of the '<em>Lower</em>' containment reference.
 	 * @see #getLower()
 	 * @generated
 	 */
 	void setLower(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Upper</b></em>' reference.
+	 * Returns the value of the '<em><b>Upper</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper</em>' reference.
+	 * @return the value of the '<em>Upper</em>' containment reference.
 	 * @see #setUpper(Expression)
 	 * @see org.omg.sysml.classification.ClassificationPackage#getFeature_Upper()
-	 * @model ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	Expression getUpper();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.classification.Feature#getUpper <em>Upper</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.classification.Feature#getUpper <em>Upper</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper</em>' reference.
+	 * @param value the new value of the '<em>Upper</em>' containment reference.
 	 * @see #getUpper()
 	 * @generated
 	 */

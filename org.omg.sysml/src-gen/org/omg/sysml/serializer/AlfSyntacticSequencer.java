@@ -10,6 +10,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -20,11 +21,13 @@ import org.omg.sysml.services.AlfGrammarAccess;
 public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AlfGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1;
 	protected AbstractElementAlias match_FeatureDefinition_FeatureKeyword_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
+		match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getIsKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getSpecializesKeyword_3_0_1()));
 		match_FeatureDefinition_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getFeatureDefinitionAccess().getFeatureKeyword_0());
 	}
 	
@@ -52,7 +55,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_FeatureDefinition_FeatureKeyword_0_q.equals(syntax))
+			if (match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1.equals(syntax))
+				emit_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureDefinition_FeatureKeyword_0_q.equals(syntax))
 				emit_FeatureDefinition_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
@@ -60,9 +65,21 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
+	 *     'is' | 'specializes'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=Name (ambiguity) ownedGeneralization+=Generalization
+	 */
+	protected void emit_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'is' redefinedFeature+=[Feature|QualifiedName]
 	 *     (rule start) (ambiguity) name=Name
 	 */
 	protected void emit_FeatureDefinition_FeatureKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

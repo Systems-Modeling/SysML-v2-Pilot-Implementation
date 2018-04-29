@@ -3,6 +3,7 @@
  */
 package org.omg.sysml.ui.outline;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -88,12 +89,18 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
-    Image __image = this._image(feature.getReferencedType());
-    String _name = feature.getReferencedType().get(0).getName();
-    String _plus = ("type " + _name);
-    this.createEStructuralFeatureNode(parentNode, feature, 
-      ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
-      true);
+    EList<org.omg.sysml.classification.Class> referencedTypes = feature.getReferencedType();
+    boolean _isEmpty = referencedTypes.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      Image __image = this._image(feature.getReferencedType());
+      String _name = feature.getReferencedType().get(0).getName();
+      String _plus = ("type " + _name);
+      this.createEStructuralFeatureNode(parentNode, feature, 
+        ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
+        true);
+    }
+    super._createChildren(parentNode, feature);
   }
   
   public boolean _isLeaf(final Generalization generalization) {

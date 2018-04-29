@@ -54,7 +54,7 @@ import org.omg.sysml.groups.impl.NamespaceImpl;
  */
 public class FeatureImpl extends NamespaceImpl implements Feature {
 	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' reference.
+	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLower()
@@ -64,7 +64,7 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	protected Expression lower;
 
 	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' reference.
+	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpper()
@@ -238,14 +238,6 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * @generated
 	 */
 	public Expression getLower() {
-		if (lower != null && lower.eIsProxy()) {
-			InternalEObject oldLower = (InternalEObject)lower;
-			lower = (Expression)eResolveProxy(oldLower);
-			if (lower != oldLower) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassificationPackage.FEATURE__LOWER, oldLower, lower));
-			}
-		}
 		return lower;
 	}
 
@@ -254,8 +246,14 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression basicGetLower() {
-		return lower;
+	public NotificationChain basicSetLower(Expression newLower, NotificationChain msgs) {
+		Expression oldLower = lower;
+		lower = newLower;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__LOWER, oldLower, newLower);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -264,10 +262,17 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * @generated
 	 */
 	public void setLower(Expression newLower) {
-		Expression oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__LOWER, oldLower, lower));
+		if (newLower != lower) {
+			NotificationChain msgs = null;
+			if (lower != null)
+				msgs = ((InternalEObject)lower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassificationPackage.FEATURE__LOWER, null, msgs);
+			if (newLower != null)
+				msgs = ((InternalEObject)newLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClassificationPackage.FEATURE__LOWER, null, msgs);
+			msgs = basicSetLower(newLower, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__LOWER, newLower, newLower));
 	}
 
 	/**
@@ -276,14 +281,6 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * @generated
 	 */
 	public Expression getUpper() {
-		if (upper != null && upper.eIsProxy()) {
-			InternalEObject oldUpper = (InternalEObject)upper;
-			upper = (Expression)eResolveProxy(oldUpper);
-			if (upper != oldUpper) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassificationPackage.FEATURE__UPPER, oldUpper, upper));
-			}
-		}
 		return upper;
 	}
 
@@ -292,8 +289,14 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression basicGetUpper() {
-		return upper;
+	public NotificationChain basicSetUpper(Expression newUpper, NotificationChain msgs) {
+		Expression oldUpper = upper;
+		upper = newUpper;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__UPPER, oldUpper, newUpper);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -302,10 +305,17 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	 * @generated
 	 */
 	public void setUpper(Expression newUpper) {
-		Expression oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__UPPER, oldUpper, upper));
+		if (newUpper != upper) {
+			NotificationChain msgs = null;
+			if (upper != null)
+				msgs = ((InternalEObject)upper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassificationPackage.FEATURE__UPPER, null, msgs);
+			if (newUpper != null)
+				msgs = ((InternalEObject)newUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClassificationPackage.FEATURE__UPPER, null, msgs);
+			msgs = basicSetUpper(newUpper, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassificationPackage.FEATURE__UPPER, newUpper, newUpper));
 	}
 
 	/**
@@ -534,6 +544,10 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ClassificationPackage.FEATURE__LOWER:
+				return basicSetLower(null, msgs);
+			case ClassificationPackage.FEATURE__UPPER:
+				return basicSetUpper(null, msgs);
 			case ClassificationPackage.FEATURE__FEATURING_CLASSES:
 				return ((InternalEList<?>)getFeaturingClasses()).basicRemove(otherEnd, msgs);
 			case ClassificationPackage.FEATURE__CLASS:
@@ -569,11 +583,9 @@ public class FeatureImpl extends NamespaceImpl implements Feature {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ClassificationPackage.FEATURE__LOWER:
-				if (resolve) return getLower();
-				return basicGetLower();
+				return getLower();
 			case ClassificationPackage.FEATURE__UPPER:
-				if (resolve) return getUpper();
-				return basicGetUpper();
+				return getUpper();
 			case ClassificationPackage.FEATURE__IS_DERIVED:
 				return isIsDerived();
 			case ClassificationPackage.FEATURE__IS_UNIQUE:

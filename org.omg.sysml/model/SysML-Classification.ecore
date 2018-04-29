@@ -16,9 +16,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="SysML-Groups.ecore#//Namespace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lower" ordered="false"
-        eType="ecore:EClass SysML-Behaviors.ecore#//Expression"/>
+        eType="ecore:EClass SysML-Behaviors.ecore#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="upper" ordered="false"
-        eType="ecore:EClass SysML-Behaviors.ecore#//Expression"/>
+        eType="ecore:EClass SysML-Behaviors.ecore#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"

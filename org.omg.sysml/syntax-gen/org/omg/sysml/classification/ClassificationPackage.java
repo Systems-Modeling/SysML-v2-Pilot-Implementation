@@ -387,7 +387,7 @@ public interface ClassificationPackage extends EPackage {
 	int FEATURE__NAMESPACE_IMPORT = GroupsPackage.NAMESPACE__NAMESPACE_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' reference.
+	 * The feature id for the '<em><b>Lower</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -396,7 +396,7 @@ public interface ClassificationPackage extends EPackage {
 	int FEATURE__LOWER = GroupsPackage.NAMESPACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Upper</b></em>' reference.
+	 * The feature id for the '<em><b>Upper</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -743,10 +743,10 @@ public interface ClassificationPackage extends EPackage {
 	EClass getFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.classification.Feature#getLower <em>Lower</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.classification.Feature#getLower <em>Lower</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Lower</em>'.
+	 * @return the meta object for the containment reference '<em>Lower</em>'.
 	 * @see org.omg.sysml.classification.Feature#getLower()
 	 * @see #getFeature()
 	 * @generated
@@ -754,10 +754,10 @@ public interface ClassificationPackage extends EPackage {
 	EReference getFeature_Lower();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.classification.Feature#getUpper <em>Upper</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.classification.Feature#getUpper <em>Upper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Upper</em>'.
+	 * @return the meta object for the containment reference '<em>Upper</em>'.
 	 * @see org.omg.sysml.classification.Feature#getUpper()
 	 * @see #getFeature()
 	 * @generated
@@ -1012,7 +1012,7 @@ public interface ClassificationPackage extends EPackage {
 		EClass FEATURE = eINSTANCE.getFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Lower</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1020,7 +1020,7 @@ public interface ClassificationPackage extends EPackage {
 		EReference FEATURE__LOWER = eINSTANCE.getFeature_Lower();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Upper</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

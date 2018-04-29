@@ -16,6 +16,7 @@ public abstract class AbstractAlfValidator extends AbstractDeclarativeValidator 
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Groups"));
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Core"));
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Classification"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0/Behavior"));
 		return result;
 	}
 	

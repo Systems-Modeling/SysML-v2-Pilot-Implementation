@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="owl" nsURI="http://www.omg.org/spec/SysML/2.0/OWL" nsPrefix="owl">
+  <eClassifiers xsi:type="ecore:EClass" name="OntologyDocument">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefixDeclarations" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ontology" eType="#//Ontology"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ontology">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ontologyIRI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="versionIRI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directlyImportsDocuments"
+        unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ontologyAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axioms" upperBound="-1"
+        eType="#//Axiom" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityIRI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectProperty" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProperty" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationProperty" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Individual"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedIndividual" eSuperTypes="#//Entity #//Individual"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnonymousIndividual" eSuperTypes="#//Individual">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nodeId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//AnnotationValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lexicalForm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" eType="#//Datatype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Declaration" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotation" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectProperty" eType="#//ObjectProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyReference" eSuperTypes="#//ObjectPropertyExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InverseObjectProperty" eSuperTypes="#//ObjectPropertyExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyReference" eSuperTypes="#//DataPropertyExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataProperty" eType="#//DataProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataRange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DatatypeReference" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" eType="#//Datatype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataIntersectionOf" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRanges" upperBound="-1"
+        eType="#//DataRange" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataUnionOf" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRanges" upperBound="-1"
+        eType="#//DataRange" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataComplementOf" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//DataRange"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataOneOf" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
+        eType="#//Literal" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatatypeRestriction" eSuperTypes="#//DataRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="#//DatatypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restrictions" upperBound="-1"
+        eType="#//FacetRestriction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FacetRestriction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constrainingFacet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restrictionValue" eType="#//Literal"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassReference" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectIntersectionOf" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpressions" upperBound="-1"
+        eType="#//ClassExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectUnionOf" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpressions" upperBound="-1"
+        eType="#//ClassExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectComplementOf" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectOneOf" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" upperBound="-1"
+        eType="#//IndividualReference" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndividualReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedIndividualReference" eSuperTypes="#//IndividualReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual" eType="#//NamedIndividual"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnonymousIndividualReference" eSuperTypes="#//IndividualReference #//AnnotationValue #//AnnotationSubject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual" eType="#//AnonymousIndividual"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectSomeValuesFrom" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectAllValuesFrom" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectHasValue" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual" eType="#//IndividualReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectHasSelf" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectMinCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectMaxCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectExactCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSomeValuesFrom" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" upperBound="-1"
+        eType="#//DataRange" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataAllValuesFrom" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" upperBound="-1"
+        eType="#//DataRange" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataHasValue" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataMinCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//DataRange"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataMaxCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//DataRange"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataExactCardinality" eSuperTypes="#//ClassExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//DataRange"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Axiom"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassAxiom" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubClassOf" eSuperTypes="#//ClassAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subClassExpression" eType="#//ClassExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClassExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EquivalentClasses" eSuperTypes="#//ClassAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" upperBound="-1"
+        eType="#//ClassExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisjointClasses" eSuperTypes="#//ClassAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" upperBound="-1"
+        eType="#//ClassExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisjointUnion" eSuperTypes="#//ClassAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//ClassReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="disjointClassExpression"
+        upperBound="-1" eType="#//ClassExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyAxiom" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubObjectPropertyOf" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subObjectPropertyExpression"
+        upperBound="-1" eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EquivalentObjectProperties" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpressions"
+        upperBound="-1" eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisjointObjectProperties" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpressions"
+        upperBound="-1" eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InverseObjectProperties" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression1"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression2"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyDomain" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyRange" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InverseFunctionalObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflexiveObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymmetricObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsymmetricObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitiveObjectProperty" eSuperTypes="#//ObjectPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyAxiom" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubDataPropertyOf" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subDataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superDataPropertyExpression"
+        eType="#//DataPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EquivalentDataProperties" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisjointDataProperties" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyDomain" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyRange" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalDataProperty" eSuperTypes="#//DataPropertyAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatatypeDefinition" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" eType="#//DatatypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//DataRange"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HasKey" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpressions"
+        upperBound="-1" eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+        upperBound="-1" eType="#//DataPropertyExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assertion" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SameIndividual" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" upperBound="-1"
+        eType="#//IndividualReference" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DifferentIndividuals" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" upperBound="-1"
+        eType="#//IndividualReference" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassAssertion" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" eType="#//ClassExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual" eType="#//IndividualReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyAssertion" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceIndividual" eType="#//Individual"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetIndividual" eType="#//Individual"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NegativeObjectPropertyAssertion" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceIndividual" eType="#//IndividualReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetIndividual" eType="#//IndividualReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPropertyAssertion" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceIndividual" eType="#//IndividualReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetValue" eType="#//Literal"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NegativeDataPropertyAssertion" eSuperTypes="#//Assertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+        eType="#//ObjectPropertyExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceIndividual" eType="#//IndividualReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetValue" eType="#//Literal"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationAnnotations"
+        upperBound="-1" eType="#//Annotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationProperty" eType="#//AnnotationProperty"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationvalue" eType="#//AnnotationValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationAxiom" eSuperTypes="#//Axiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationAnnotations"
+        upperBound="-1" eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationAssertion" eSuperTypes="#//AnnotationAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationProperty" eType="#//AnnotationProperty"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationSubject" eType="#//AnnotationSubject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationValue" eType="#//AnnotationValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationSubject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubAnnotationPropertyOf" eSuperTypes="#//AnnotationAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subAnnotationProperty"
+        eType="#//AnnotationProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superAnnotationProperty"
+        eType="#//AnnotationProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationPropertyDomain" eSuperTypes="#//AnnotationAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationProperty" eType="#//AnnotationProperty"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="domain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationPropertyRange" eSuperTypes="#//AnnotationAxiom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationProperty" eType="#//AnnotationProperty"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -32,3 +32,40 @@ with associated ide, tests, ui and ui.tests projects for each.
 
 4. Double clicking on the sample Alf file should open it in the generated Xtext Alf editor.
  
+### Copyright License Header
+
+#### For new code
+Set up a Jave code template as follows:
+1. Window > Preferences (Mac-OS: Eclipse > Preferences)
+2. Java > Code Style > Code Templates
+3. Code > New Java files > Edit
+4. **Prepend** (insert above the existing content) the following and modify the second line:
+    ```
+    /**
+     * SysML 2 Pilot Implementation
+     * Copyright (C) 2018  California Institute of Technology ("Caltech")
+     *
+     * This program is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Lesser General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *
+     * This program is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Lesser General Public License for more details.
+     *
+     * You should have received a copy of the GNU Lesser General Public License
+     * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+     *
+     * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+     */
+    ```
+5. Apply > OK
+
+#### For existing code
+* When modifying existing code created by someone in a different organization, add a new copyright line, without changing anything else in the header.
+
+#### Sources
+* [GNU GPL v3.0 - How to Apply These Terms to Your New Programs](https://www.gnu.org/licenses/gpl-3.0.en.html)
+* [Using the SPDX License List for Tagging and Linking](https://hakre.wordpress.com/2012/07/25/using-the-spdx-license-list-for-tagging-and-linking/)

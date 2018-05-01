@@ -85,6 +85,7 @@ import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
 import org.omg.sysml.owl.owl.SameIndividual;
 import org.omg.sysml.owl.owl.StringLiteral;
@@ -324,6 +325,9 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case OwlPackage.ONTOLOGY_DOCUMENT:
 				sequence_OntologyDocument(context, (OntologyDocument) semanticObject); 
 				return; 
+			case OwlPackage.PREFIX_DECLARATION:
+				sequence_PrefixDeclaration(context, (PrefixDeclaration) semanticObject); 
+				return; 
 			case OwlPackage.REFLEXIVE_OBJECT_PROPERTY:
 				sequence_ReflexiveObjectProperty(context, (ReflexiveObjectProperty) semanticObject); 
 				return; 
@@ -465,15 +469,15 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AnnotationSubject returns AnonymousIndividualReference
 	 *
 	 * Constraint:
-	 *     individual=[AnonymousIndividual|NodeID]
+	 *     individual=NodeID
 	 */
 	protected void sequence_AnonymousIndividualReference(ISerializationContext context, AnonymousIndividualReference semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL));
+			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.INDIVIDUAL_REFERENCE__INDIVIDUAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.INDIVIDUAL_REFERENCE__INDIVIDUAL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualAnonymousIndividualNodeIDParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL, false));
+		feeder.accept(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualNodeIDParserRuleCall_0(), semanticObject.getIndividual());
 		feeder.finish();
 	}
 	
@@ -531,7 +535,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassReference returns ClassReference
 	 *
 	 * Constraint:
-	 *     class=[Class|IRI]
+	 *     class=IRI
 	 */
 	protected void sequence_ClassReference(ISerializationContext context, ClassReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -539,7 +543,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.CLASS_REFERENCE__CLASS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getClassReferenceAccess().getClassClassIRIParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.CLASS_REFERENCE__CLASS, false));
+		feeder.accept(grammarAccess.getClassReferenceAccess().getClassIRIParserRuleCall_0(), semanticObject.getClass_());
 		feeder.finish();
 	}
 	
@@ -731,7 +735,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DataPropertyReference returns DataPropertyReference
 	 *
 	 * Constraint:
-	 *     dataProperty=[DataProperty|IRI]
+	 *     dataProperty=IRI
 	 */
 	protected void sequence_DataPropertyReference(ISerializationContext context, DataPropertyReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -739,7 +743,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.DATA_PROPERTY_REFERENCE__DATA_PROPERTY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyDataPropertyIRIParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.DATA_PROPERTY_REFERENCE__DATA_PROPERTY, false));
+		feeder.accept(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyIRIParserRuleCall_0(), semanticObject.getDataProperty());
 		feeder.finish();
 	}
 	
@@ -809,7 +813,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DatatypeReference returns DatatypeReference
 	 *
 	 * Constraint:
-	 *     datatype=[Datatype|IRI]
+	 *     datatype=IRI
 	 */
 	protected void sequence_DatatypeReference(ISerializationContext context, DatatypeReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -817,7 +821,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.DATATYPE_REFERENCE__DATATYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDatatypeReferenceAccess().getDatatypeDatatypeIRIParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.DATATYPE_REFERENCE__DATATYPE, false));
+		feeder.accept(grammarAccess.getDatatypeReferenceAccess().getDatatypeIRIParserRuleCall_0(), semanticObject.getDatatype());
 		feeder.finish();
 	}
 	
@@ -889,7 +893,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DisjointClasses returns DisjointClasses
 	 *
 	 * Constraint:
-	 *     (axiomAnnotations+=Annotation* classExpression+=ClassExpression classExpression+=ClassExpression+)
+	 *     (axiomAnnotations+=Annotation* classExpressions+=ClassExpression classExpressions+=ClassExpression+)
 	 */
 	protected void sequence_DisjointClasses(ISerializationContext context, DisjointClasses semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -931,7 +935,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DisjointUnion returns DisjointUnion
 	 *
 	 * Constraint:
-	 *     (axiomAnnotations+=Annotation* class=ClassReference disjointClassExpression+=ClassExpression disjointClassExpression+=ClassExpression+)
+	 *     (axiomAnnotations+=Annotation* class=ClassReference disjointClassExpressions+=ClassExpression disjointClassExpressions+=ClassExpression+)
 	 */
 	protected void sequence_DisjointUnion(ISerializationContext context, DisjointUnion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -945,7 +949,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EquivalentClasses returns EquivalentClasses
 	 *
 	 * Constraint:
-	 *     (axiomAnnotations+=Annotation* classExpression+=ClassExpression classExpression+=ClassExpression+)
+	 *     (axiomAnnotations+=Annotation* classExpressions+=ClassExpression classExpressions+=ClassExpression+)
 	 */
 	protected void sequence_EquivalentClasses(ISerializationContext context, EquivalentClasses semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1081,7 +1085,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     InverseObjectProperty returns InverseObjectProperty
 	 *
 	 * Constraint:
-	 *     objectProperty=[ObjectProperty|IRI]
+	 *     objectProperty=IRI
 	 */
 	protected void sequence_InverseObjectProperty(ISerializationContext context, InverseObjectProperty semanticObject) {
 		if (errorAcceptor != null) {
@@ -1089,7 +1093,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1(), semanticObject.eGet(OwlPackage.Literals.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY, false));
+		feeder.accept(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyIRIParserRuleCall_2_0(), semanticObject.getObjectProperty());
 		feeder.finish();
 	}
 	
@@ -1114,15 +1118,15 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     NamedIndividualReference returns NamedIndividualReference
 	 *
 	 * Constraint:
-	 *     individual=[NamedIndividual|IRI]
+	 *     individual=IRI
 	 */
 	protected void sequence_NamedIndividualReference(ISerializationContext context, NamedIndividualReference semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL));
+			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.INDIVIDUAL_REFERENCE__INDIVIDUAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.INDIVIDUAL_REFERENCE__INDIVIDUAL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNamedIndividualReferenceAccess().getIndividualNamedIndividualIRIParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL, false));
+		feeder.accept(grammarAccess.getNamedIndividualReferenceAccess().getIndividualIRIParserRuleCall_0(), semanticObject.getIndividual());
 		feeder.finish();
 	}
 	
@@ -1338,8 +1342,8 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         axiomAnnotations+=Annotation* 
 	 *         objectPropertyExpression=ObjectPropertyExpression 
-	 *         sourceIndividual=[Individual|IRI] 
-	 *         targetIndividual=[Individual|IRI]
+	 *         sourceIndividual=IndividualReference 
+	 *         targetIndividual=IndividualReference
 	 *     )
 	 */
 	protected void sequence_ObjectPropertyAssertion(ISerializationContext context, ObjectPropertyAssertion semanticObject) {
@@ -1381,7 +1385,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ObjectPropertyReference returns ObjectPropertyReference
 	 *
 	 * Constraint:
-	 *     objectProperty=[ObjectProperty|IRI]
+	 *     objectProperty=IRI
 	 */
 	protected void sequence_ObjectPropertyReference(ISerializationContext context, ObjectPropertyReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -1389,7 +1393,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_0_1(), semanticObject.eGet(OwlPackage.Literals.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY, false));
+		feeder.accept(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyIRIParserRuleCall_0(), semanticObject.getObjectProperty());
 		feeder.finish();
 	}
 	
@@ -1470,6 +1474,27 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Ontology(ISerializationContext context, Ontology semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrefixDeclaration returns PrefixDeclaration
+	 *
+	 * Constraint:
+	 *     (prefixName=PrefixName fullIRI=FullIRI)
+	 */
+	protected void sequence_PrefixDeclaration(ISerializationContext context, PrefixDeclaration semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.PREFIX_DECLARATION__PREFIX_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.PREFIX_DECLARATION__PREFIX_NAME));
+			if (transientValues.isValueTransient(semanticObject, OwlPackage.Literals.PREFIX_DECLARATION__FULL_IRI) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, OwlPackage.Literals.PREFIX_DECLARATION__FULL_IRI));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrefixDeclarationAccess().getPrefixNamePrefixNameParserRuleCall_2_0(), semanticObject.getPrefixName());
+		feeder.accept(grammarAccess.getPrefixDeclarationAccess().getFullIRIFullIRIParserRuleCall_4_0(), semanticObject.getFullIRI());
+		feeder.finish();
 	}
 	
 	
@@ -1615,7 +1640,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AnnotationValue returns TypedLiteral
 	 *
 	 * Constraint:
-	 *     (lexicalForm=STRING datatype=[Datatype|IRI])
+	 *     (lexicalForm=STRING datatype=IRI)
 	 */
 	protected void sequence_TypedLiteral(ISerializationContext context, TypedLiteral semanticObject) {
 		if (errorAcceptor != null) {
@@ -1626,7 +1651,7 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypedLiteralAccess().getLexicalFormSTRINGTerminalRuleCall_0_0(), semanticObject.getLexicalForm());
-		feeder.accept(grammarAccess.getTypedLiteralAccess().getDatatypeDatatypeIRIParserRuleCall_2_0_1(), semanticObject.eGet(OwlPackage.Literals.TYPED_LITERAL__DATATYPE, false));
+		feeder.accept(grammarAccess.getTypedLiteralAccess().getDatatypeIRIParserRuleCall_2_0(), semanticObject.getDatatype());
 		feeder.finish();
 	}
 	

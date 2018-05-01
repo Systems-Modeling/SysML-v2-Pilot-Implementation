@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.owl.owl.DisjointUnion#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.omg.sysml.owl.owl.DisjointUnion#getDisjointClassExpression <em>Disjoint Class Expression</em>}</li>
+ *   <li>{@link org.omg.sysml.owl.owl.DisjointUnion#getDisjointClassExpressions <em>Disjoint Class Expressions</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.owl.owl.OwlPackage#getDisjointUnion()
@@ -51,19 +51,19 @@ public interface DisjointUnion extends ClassAxiom
   void setClass(ClassReference value);
 
   /**
-   * Returns the value of the '<em><b>Disjoint Class Expression</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Disjoint Class Expressions</b></em>' containment reference list.
    * The list contents are of type {@link org.omg.sysml.owl.owl.ClassExpression}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Disjoint Class Expression</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Disjoint Class Expressions</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Disjoint Class Expression</em>' containment reference list.
-   * @see org.omg.sysml.owl.owl.OwlPackage#getDisjointUnion_DisjointClassExpression()
+   * @return the value of the '<em>Disjoint Class Expressions</em>' containment reference list.
+   * @see org.omg.sysml.owl.owl.OwlPackage#getDisjointUnion_DisjointClassExpressions()
    * @model containment="true"
    * @generated
    */
-  EList<ClassExpression> getDisjointClassExpression();
+  EList<ClassExpression> getDisjointClassExpressions();
 
 } // DisjointUnion

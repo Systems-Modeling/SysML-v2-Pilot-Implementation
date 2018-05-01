@@ -30,12 +30,12 @@ generate owl "http://www.omg.org/spec/SysML/2.0/OWL"
 // Ontologies
 
 OntologyDocument:
-	( prefixDeclarations += PrefixDeclaration* ) 
+	( prefixDeclarations += PrefixDeclaration )*
 	ontology = Ontology
 ;
 
 PrefixDeclaration:
-	'Prefix' '(' PrefixName '=' FullIRI ')'
+	'Prefix' '(' prefixName = PrefixName '=' fullIRI = FullIRI ')'
 ;
 
 Ontology:
@@ -101,7 +101,7 @@ Literal:
 ;
 
 TypedLiteral:
-	lexicalForm = STRING '^^' datatype = [Datatype|IRI]
+	lexicalForm = STRING '^^' datatype = IRI // [Datatype|IRI]
 ;
 
 StringLiteral:
@@ -132,12 +132,12 @@ ObjectPropertyExpression:
 ;
 
 ObjectPropertyReference:
-	objectProperty = [ObjectProperty|IRI]
+	objectProperty = IRI // [ObjectProperty|IRI]
 ;
 
 InverseObjectProperty:
 	'ObjectInverseOf' '(' 
-		objectProperty = [ObjectProperty|IRI] 
+		objectProperty = IRI // [ObjectProperty|IRI] 
 	')'
 ;
 
@@ -146,7 +146,7 @@ DataPropertyExpression:
 ;
 
 DataPropertyReference:
-	dataProperty = [DataProperty|IRI]
+	dataProperty = IRI // [DataProperty|IRI]
 ;
 
 // Data Ranges
@@ -161,7 +161,7 @@ DataRange:
 ;
 
 DatatypeReference:
-	datatype = [Datatype|IRI]
+	datatype = IRI // [Datatype|IRI]
 ;
 
 DataIntersectionOf:
@@ -213,7 +213,7 @@ ClassExpression:
 ;
 
 ClassReference:
-	class = [Class|IRI]
+	class = IRI // [Class|IRI]
 ;
 
 ObjectIntersectionOf:
@@ -246,11 +246,11 @@ IndividualReference:
 ;
 
 NamedIndividualReference:
-	individual = [NamedIndividual|IRI]
+	individual = IRI // [NamedIndividual|IRI]
 ;
 
 AnonymousIndividualReference:
-	individual = [AnonymousIndividual|NodeID]
+	individual = NodeID // [AnonymousIndividual|NodeID]
 ;
 
 ObjectSomeValuesFrom:
@@ -379,16 +379,16 @@ SubClassOf:
 EquivalentClasses:
 	'EquivalentClasses' '('
 		( axiomAnnotations += Annotation )*
-		classExpression += ClassExpression
-		( classExpression += ClassExpression )+
+		classExpressions += ClassExpression
+		( classExpressions += ClassExpression )+
 	')'
 ;
 
 DisjointClasses:
 	'DisjointClasses' '('
 		( axiomAnnotations += Annotation )*
-		classExpression += ClassExpression
-		( classExpression += ClassExpression )+
+		classExpressions += ClassExpression
+		( classExpressions += ClassExpression )+
 	')'
 ;
 
@@ -396,8 +396,8 @@ DisjointUnion:
 	'DisjointUnion' '('
 		( axiomAnnotations += Annotation )*
 		class = ClassReference
-		disjointClassExpression += ClassExpression
-		( disjointClassExpression += ClassExpression )+
+		disjointClassExpressions += ClassExpression
+		( disjointClassExpressions += ClassExpression )+
 	')'
 ;
 
@@ -632,8 +632,8 @@ ObjectPropertyAssertion:
 	'ObjectPropertyAssertion' '('
 		( axiomAnnotations += Annotation )*
 		objectPropertyExpression = ObjectPropertyExpression
-		sourceIndividual = [Individual|IRI]
-		targetIndividual = [Individual|IRI]
+		sourceIndividual = IndividualReference
+		targetIndividual = IndividualReference
 	')'
 ;
 

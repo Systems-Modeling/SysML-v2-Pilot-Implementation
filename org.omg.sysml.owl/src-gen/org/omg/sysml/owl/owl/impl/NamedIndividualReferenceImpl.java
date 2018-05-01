@@ -3,14 +3,8 @@
  */
 package org.omg.sysml.owl.owl.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.omg.sysml.owl.owl.NamedIndividual;
 import org.omg.sysml.owl.owl.NamedIndividualReference;
 import org.omg.sysml.owl.owl.OwlPackage;
 
@@ -18,27 +12,11 @@ import org.omg.sysml.owl.owl.OwlPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Named Individual Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link org.omg.sysml.owl.owl.impl.NamedIndividualReferenceImpl#getIndividual <em>Individual</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class NamedIndividualReferenceImpl extends IndividualReferenceImpl implements NamedIndividualReference
 {
-  /**
-   * The cached value of the '{@link #getIndividual() <em>Individual</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIndividual()
-   * @generated
-   * @ordered
-   */
-  protected NamedIndividual individual;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -58,116 +36,6 @@ public class NamedIndividualReferenceImpl extends IndividualReferenceImpl implem
   protected EClass eStaticClass()
   {
     return OwlPackage.Literals.NAMED_INDIVIDUAL_REFERENCE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NamedIndividual getIndividual()
-  {
-    if (individual != null && individual.eIsProxy())
-    {
-      InternalEObject oldIndividual = (InternalEObject)individual;
-      individual = (NamedIndividual)eResolveProxy(oldIndividual);
-      if (individual != oldIndividual)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL, oldIndividual, individual));
-      }
-    }
-    return individual;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NamedIndividual basicGetIndividual()
-  {
-    return individual;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setIndividual(NamedIndividual newIndividual)
-  {
-    NamedIndividual oldIndividual = individual;
-    individual = newIndividual;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL, oldIndividual, individual));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        if (resolve) return getIndividual();
-        return basicGetIndividual();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        setIndividual((NamedIndividual)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        setIndividual((NamedIndividual)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        return individual != null;
-    }
-    return super.eIsSet(featureID);
   }
 
 } //NamedIndividualReferenceImpl

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<stringAttribute key="bad_container_name" value="/org.omg.sysml.ow/launch"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.omg.sysml.owl/src/org/omg/sysml/owl/qvt/Alf2OWL.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.omg.sysml.owl.qvt.Alf2OWL"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-l &quot;${workspace_loc:org.omg.sysml.owl}&quot;/log.txt&#10;&quot;${workspace_loc:org.omg.sysml.owl}&quot;/transforms/SysML2OWL.qvto&#10;&quot;${selected_resource_loc}&quot; &#10;&quot;${workspace_loc:org.omg.sysml.owl}&quot;/owl"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.omg.sysml.owl"/>
+</launchConfiguration>

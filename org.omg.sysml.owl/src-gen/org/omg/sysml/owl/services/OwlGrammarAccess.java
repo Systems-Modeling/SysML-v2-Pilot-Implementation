@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -34,7 +33,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Ontologies
 		//OntologyDocument:
-		//	prefixDeclarations+=PrefixDeclaration* ontology=Ontology;
+		//	prefixDeclarations+=PrefixDeclaration*
+		//	ontology=Ontology;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//prefixDeclarations+=PrefixDeclaration* ontology=Ontology
@@ -57,16 +57,18 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPrefixKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cPrefixNameParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cPrefixNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPrefixNamePrefixNameParserRuleCall_2_0 = (RuleCall)cPrefixNameAssignment_2.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final RuleCall cFullIRIParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Assignment cFullIRIAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cFullIRIFullIRIParserRuleCall_4_0 = (RuleCall)cFullIRIAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//PrefixDeclaration:
-		//	'Prefix' '(' PrefixName '=' FullIRI ')';
+		//	'Prefix' '(' prefixName=PrefixName '=' fullIRI=FullIRI ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Prefix' '(' PrefixName '=' FullIRI ')'
+		//'Prefix' '(' prefixName=PrefixName '=' fullIRI=FullIRI ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Prefix'
@@ -75,14 +77,20 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
+		//prefixName=PrefixName
+		public Assignment getPrefixNameAssignment_2() { return cPrefixNameAssignment_2; }
+		
 		//PrefixName
-		public RuleCall getPrefixNameParserRuleCall_2() { return cPrefixNameParserRuleCall_2; }
+		public RuleCall getPrefixNamePrefixNameParserRuleCall_2_0() { return cPrefixNamePrefixNameParserRuleCall_2_0; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
 		
+		//fullIRI=FullIRI
+		public Assignment getFullIRIAssignment_4() { return cFullIRIAssignment_4; }
+		
 		//FullIRI
-		public RuleCall getFullIRIParserRuleCall_4() { return cFullIRIParserRuleCall_4; }
+		public RuleCall getFullIRIFullIRIParserRuleCall_4_0() { return cFullIRIFullIRIParserRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -376,14 +384,14 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLexicalFormSTRINGTerminalRuleCall_0_0 = (RuleCall)cLexicalFormAssignment_0.eContents().get(0);
 		private final Keyword cCircumflexAccentCircumflexAccentKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDatatypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cDatatypeDatatypeCrossReference_2_0 = (CrossReference)cDatatypeAssignment_2.eContents().get(0);
-		private final RuleCall cDatatypeDatatypeIRIParserRuleCall_2_0_1 = (RuleCall)cDatatypeDatatypeCrossReference_2_0.eContents().get(1);
+		private final RuleCall cDatatypeIRIParserRuleCall_2_0 = (RuleCall)cDatatypeAssignment_2.eContents().get(0);
 		
 		//TypedLiteral:
-		//	lexicalForm=STRING '^^' datatype=[Datatype|IRI];
+		//	lexicalForm=STRING '^^' datatype=IRI // [Datatype|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//lexicalForm=STRING '^^' datatype=[Datatype|IRI]
+		//lexicalForm=STRING '^^' datatype=IRI
 		public Group getGroup() { return cGroup; }
 		
 		//lexicalForm=STRING
@@ -395,14 +403,11 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//'^^'
 		public Keyword getCircumflexAccentCircumflexAccentKeyword_1() { return cCircumflexAccentCircumflexAccentKeyword_1; }
 		
-		//datatype=[Datatype|IRI]
+		//datatype=IRI
 		public Assignment getDatatypeAssignment_2() { return cDatatypeAssignment_2; }
 		
-		//[Datatype|IRI]
-		public CrossReference getDatatypeDatatypeCrossReference_2_0() { return cDatatypeDatatypeCrossReference_2_0; }
-		
 		//IRI
-		public RuleCall getDatatypeDatatypeIRIParserRuleCall_2_0_1() { return cDatatypeDatatypeIRIParserRuleCall_2_0_1; }
+		public RuleCall getDatatypeIRIParserRuleCall_2_0() { return cDatatypeIRIParserRuleCall_2_0; }
 	}
 	public class StringLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.StringLiteral");
@@ -621,21 +626,18 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	public class ObjectPropertyReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.ObjectPropertyReference");
 		private final Assignment cObjectPropertyAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cObjectPropertyObjectPropertyCrossReference_0 = (CrossReference)cObjectPropertyAssignment.eContents().get(0);
-		private final RuleCall cObjectPropertyObjectPropertyIRIParserRuleCall_0_1 = (RuleCall)cObjectPropertyObjectPropertyCrossReference_0.eContents().get(1);
+		private final RuleCall cObjectPropertyIRIParserRuleCall_0 = (RuleCall)cObjectPropertyAssignment.eContents().get(0);
 		
 		//ObjectPropertyReference:
-		//	objectProperty=[ObjectProperty|IRI];
+		//	objectProperty=IRI // [ObjectProperty|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//objectProperty=[ObjectProperty|IRI]
+		//objectProperty=IRI
 		public Assignment getObjectPropertyAssignment() { return cObjectPropertyAssignment; }
 		
-		//[ObjectProperty|IRI]
-		public CrossReference getObjectPropertyObjectPropertyCrossReference_0() { return cObjectPropertyObjectPropertyCrossReference_0; }
-		
 		//IRI
-		public RuleCall getObjectPropertyObjectPropertyIRIParserRuleCall_0_1() { return cObjectPropertyObjectPropertyIRIParserRuleCall_0_1; }
+		public RuleCall getObjectPropertyIRIParserRuleCall_0() { return cObjectPropertyIRIParserRuleCall_0; }
 	}
 	public class InverseObjectPropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.InverseObjectProperty");
@@ -643,17 +645,17 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cObjectInverseOfKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cObjectPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cObjectPropertyObjectPropertyCrossReference_2_0 = (CrossReference)cObjectPropertyAssignment_2.eContents().get(0);
-		private final RuleCall cObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1 = (RuleCall)cObjectPropertyObjectPropertyCrossReference_2_0.eContents().get(1);
+		private final RuleCall cObjectPropertyIRIParserRuleCall_2_0 = (RuleCall)cObjectPropertyAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//InverseObjectProperty:
 		//	'ObjectInverseOf' '('
-		//	objectProperty=[ObjectProperty|IRI]
+		//	objectProperty=IRI // [ObjectProperty|IRI] 
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ObjectInverseOf' '(' objectProperty=[ObjectProperty|IRI] ')'
+		//'ObjectInverseOf' '(' objectProperty=IRI // [ObjectProperty|IRI] 
+		//')'
 		public Group getGroup() { return cGroup; }
 		
 		//'ObjectInverseOf'
@@ -662,15 +664,13 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//objectProperty=[ObjectProperty|IRI]
+		//objectProperty=IRI
 		public Assignment getObjectPropertyAssignment_2() { return cObjectPropertyAssignment_2; }
 		
-		//[ObjectProperty|IRI]
-		public CrossReference getObjectPropertyObjectPropertyCrossReference_2_0() { return cObjectPropertyObjectPropertyCrossReference_2_0; }
-		
 		//IRI
-		public RuleCall getObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1() { return cObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1; }
+		public RuleCall getObjectPropertyIRIParserRuleCall_2_0() { return cObjectPropertyIRIParserRuleCall_2_0; }
 		
+		//// [ObjectProperty|IRI] 
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
@@ -688,21 +688,18 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	public class DataPropertyReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.DataPropertyReference");
 		private final Assignment cDataPropertyAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cDataPropertyDataPropertyCrossReference_0 = (CrossReference)cDataPropertyAssignment.eContents().get(0);
-		private final RuleCall cDataPropertyDataPropertyIRIParserRuleCall_0_1 = (RuleCall)cDataPropertyDataPropertyCrossReference_0.eContents().get(1);
+		private final RuleCall cDataPropertyIRIParserRuleCall_0 = (RuleCall)cDataPropertyAssignment.eContents().get(0);
 		
 		//DataPropertyReference:
-		//	dataProperty=[DataProperty|IRI];
+		//	dataProperty=IRI // [DataProperty|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//dataProperty=[DataProperty|IRI]
+		//dataProperty=IRI
 		public Assignment getDataPropertyAssignment() { return cDataPropertyAssignment; }
 		
-		//[DataProperty|IRI]
-		public CrossReference getDataPropertyDataPropertyCrossReference_0() { return cDataPropertyDataPropertyCrossReference_0; }
-		
 		//IRI
-		public RuleCall getDataPropertyDataPropertyIRIParserRuleCall_0_1() { return cDataPropertyDataPropertyIRIParserRuleCall_0_1; }
+		public RuleCall getDataPropertyIRIParserRuleCall_0() { return cDataPropertyIRIParserRuleCall_0; }
 	}
 	public class DataRangeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.DataRange");
@@ -743,21 +740,18 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	public class DatatypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.DatatypeReference");
 		private final Assignment cDatatypeAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cDatatypeDatatypeCrossReference_0 = (CrossReference)cDatatypeAssignment.eContents().get(0);
-		private final RuleCall cDatatypeDatatypeIRIParserRuleCall_0_1 = (RuleCall)cDatatypeDatatypeCrossReference_0.eContents().get(1);
+		private final RuleCall cDatatypeIRIParserRuleCall_0 = (RuleCall)cDatatypeAssignment.eContents().get(0);
 		
 		//DatatypeReference:
-		//	datatype=[Datatype|IRI];
+		//	datatype=IRI // [Datatype|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//datatype=[Datatype|IRI]
+		//datatype=IRI
 		public Assignment getDatatypeAssignment() { return cDatatypeAssignment; }
 		
-		//[Datatype|IRI]
-		public CrossReference getDatatypeDatatypeCrossReference_0() { return cDatatypeDatatypeCrossReference_0; }
-		
 		//IRI
-		public RuleCall getDatatypeDatatypeIRIParserRuleCall_0_1() { return cDatatypeDatatypeIRIParserRuleCall_0_1; }
+		public RuleCall getDatatypeIRIParserRuleCall_0() { return cDatatypeIRIParserRuleCall_0; }
 	}
 	public class DataIntersectionOfElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.DataIntersectionOf");
@@ -1071,21 +1065,18 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	public class ClassReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.ClassReference");
 		private final Assignment cClassAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cClassClassCrossReference_0 = (CrossReference)cClassAssignment.eContents().get(0);
-		private final RuleCall cClassClassIRIParserRuleCall_0_1 = (RuleCall)cClassClassCrossReference_0.eContents().get(1);
+		private final RuleCall cClassIRIParserRuleCall_0 = (RuleCall)cClassAssignment.eContents().get(0);
 		
 		//ClassReference:
-		//	class=[Class|IRI];
+		//	class=IRI // [Class|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//class=[Class|IRI]
+		//class=IRI
 		public Assignment getClassAssignment() { return cClassAssignment; }
 		
-		//[Class|IRI]
-		public CrossReference getClassClassCrossReference_0() { return cClassClassCrossReference_0; }
-		
 		//IRI
-		public RuleCall getClassClassIRIParserRuleCall_0_1() { return cClassClassIRIParserRuleCall_0_1; }
+		public RuleCall getClassIRIParserRuleCall_0() { return cClassIRIParserRuleCall_0; }
 	}
 	public class ObjectIntersectionOfElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.ObjectIntersectionOf");
@@ -1241,40 +1232,34 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	public class NamedIndividualReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.NamedIndividualReference");
 		private final Assignment cIndividualAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cIndividualNamedIndividualCrossReference_0 = (CrossReference)cIndividualAssignment.eContents().get(0);
-		private final RuleCall cIndividualNamedIndividualIRIParserRuleCall_0_1 = (RuleCall)cIndividualNamedIndividualCrossReference_0.eContents().get(1);
+		private final RuleCall cIndividualIRIParserRuleCall_0 = (RuleCall)cIndividualAssignment.eContents().get(0);
 		
 		//NamedIndividualReference:
-		//	individual=[NamedIndividual|IRI];
+		//	individual=IRI // [NamedIndividual|IRI]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//individual=[NamedIndividual|IRI]
+		//individual=IRI
 		public Assignment getIndividualAssignment() { return cIndividualAssignment; }
 		
-		//[NamedIndividual|IRI]
-		public CrossReference getIndividualNamedIndividualCrossReference_0() { return cIndividualNamedIndividualCrossReference_0; }
-		
 		//IRI
-		public RuleCall getIndividualNamedIndividualIRIParserRuleCall_0_1() { return cIndividualNamedIndividualIRIParserRuleCall_0_1; }
+		public RuleCall getIndividualIRIParserRuleCall_0() { return cIndividualIRIParserRuleCall_0; }
 	}
 	public class AnonymousIndividualReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.AnonymousIndividualReference");
 		private final Assignment cIndividualAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cIndividualAnonymousIndividualCrossReference_0 = (CrossReference)cIndividualAssignment.eContents().get(0);
-		private final RuleCall cIndividualAnonymousIndividualNodeIDParserRuleCall_0_1 = (RuleCall)cIndividualAnonymousIndividualCrossReference_0.eContents().get(1);
+		private final RuleCall cIndividualNodeIDParserRuleCall_0 = (RuleCall)cIndividualAssignment.eContents().get(0);
 		
 		//AnonymousIndividualReference:
-		//	individual=[AnonymousIndividual|NodeID];
+		//	individual=NodeID // [AnonymousIndividual|NodeID]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//individual=[AnonymousIndividual|NodeID]
+		//individual=NodeID
 		public Assignment getIndividualAssignment() { return cIndividualAssignment; }
 		
-		//[AnonymousIndividual|NodeID]
-		public CrossReference getIndividualAnonymousIndividualCrossReference_0() { return cIndividualAnonymousIndividualCrossReference_0; }
-		
 		//NodeID
-		public RuleCall getIndividualAnonymousIndividualNodeIDParserRuleCall_0_1() { return cIndividualAnonymousIndividualNodeIDParserRuleCall_0_1; }
+		public RuleCall getIndividualNodeIDParserRuleCall_0() { return cIndividualNodeIDParserRuleCall_0; }
 	}
 	public class ObjectSomeValuesFromElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.ObjectSomeValuesFrom");
@@ -1988,22 +1973,22 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAxiomAnnotationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cAxiomAnnotationsAnnotationParserRuleCall_2_0 = (RuleCall)cAxiomAnnotationsAssignment_2.eContents().get(0);
-		private final Assignment cClassExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cClassExpressionClassExpressionParserRuleCall_3_0 = (RuleCall)cClassExpressionAssignment_3.eContents().get(0);
-		private final Assignment cClassExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cClassExpressionClassExpressionParserRuleCall_4_0 = (RuleCall)cClassExpressionAssignment_4.eContents().get(0);
+		private final Assignment cClassExpressionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassExpressionsClassExpressionParserRuleCall_3_0 = (RuleCall)cClassExpressionsAssignment_3.eContents().get(0);
+		private final Assignment cClassExpressionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cClassExpressionsClassExpressionParserRuleCall_4_0 = (RuleCall)cClassExpressionsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//EquivalentClasses:
 		//	'EquivalentClasses' '('
 		//	axiomAnnotations+=Annotation*
-		//	classExpression+=ClassExpression
-		//	classExpression+=ClassExpression+
+		//	classExpressions+=ClassExpression
+		//	classExpressions+=ClassExpression+
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'EquivalentClasses' '(' axiomAnnotations+=Annotation* classExpression+=ClassExpression classExpression+=ClassExpression+
-		//')'
+		//'EquivalentClasses' '(' axiomAnnotations+=Annotation* classExpressions+=ClassExpression
+		//classExpressions+=ClassExpression+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'EquivalentClasses'
@@ -2018,17 +2003,17 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//Annotation
 		public RuleCall getAxiomAnnotationsAnnotationParserRuleCall_2_0() { return cAxiomAnnotationsAnnotationParserRuleCall_2_0; }
 		
-		//classExpression+=ClassExpression
-		public Assignment getClassExpressionAssignment_3() { return cClassExpressionAssignment_3; }
+		//classExpressions+=ClassExpression
+		public Assignment getClassExpressionsAssignment_3() { return cClassExpressionsAssignment_3; }
 		
 		//ClassExpression
-		public RuleCall getClassExpressionClassExpressionParserRuleCall_3_0() { return cClassExpressionClassExpressionParserRuleCall_3_0; }
+		public RuleCall getClassExpressionsClassExpressionParserRuleCall_3_0() { return cClassExpressionsClassExpressionParserRuleCall_3_0; }
 		
-		//classExpression+=ClassExpression+
-		public Assignment getClassExpressionAssignment_4() { return cClassExpressionAssignment_4; }
+		//classExpressions+=ClassExpression+
+		public Assignment getClassExpressionsAssignment_4() { return cClassExpressionsAssignment_4; }
 		
 		//ClassExpression
-		public RuleCall getClassExpressionClassExpressionParserRuleCall_4_0() { return cClassExpressionClassExpressionParserRuleCall_4_0; }
+		public RuleCall getClassExpressionsClassExpressionParserRuleCall_4_0() { return cClassExpressionsClassExpressionParserRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -2040,21 +2025,21 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAxiomAnnotationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cAxiomAnnotationsAnnotationParserRuleCall_2_0 = (RuleCall)cAxiomAnnotationsAssignment_2.eContents().get(0);
-		private final Assignment cClassExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cClassExpressionClassExpressionParserRuleCall_3_0 = (RuleCall)cClassExpressionAssignment_3.eContents().get(0);
-		private final Assignment cClassExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cClassExpressionClassExpressionParserRuleCall_4_0 = (RuleCall)cClassExpressionAssignment_4.eContents().get(0);
+		private final Assignment cClassExpressionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassExpressionsClassExpressionParserRuleCall_3_0 = (RuleCall)cClassExpressionsAssignment_3.eContents().get(0);
+		private final Assignment cClassExpressionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cClassExpressionsClassExpressionParserRuleCall_4_0 = (RuleCall)cClassExpressionsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//DisjointClasses:
 		//	'DisjointClasses' '('
 		//	axiomAnnotations+=Annotation*
-		//	classExpression+=ClassExpression
-		//	classExpression+=ClassExpression+
+		//	classExpressions+=ClassExpression
+		//	classExpressions+=ClassExpression+
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'DisjointClasses' '(' axiomAnnotations+=Annotation* classExpression+=ClassExpression classExpression+=ClassExpression+
+		//'DisjointClasses' '(' axiomAnnotations+=Annotation* classExpressions+=ClassExpression classExpressions+=ClassExpression+
 		//')'
 		public Group getGroup() { return cGroup; }
 		
@@ -2070,17 +2055,17 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//Annotation
 		public RuleCall getAxiomAnnotationsAnnotationParserRuleCall_2_0() { return cAxiomAnnotationsAnnotationParserRuleCall_2_0; }
 		
-		//classExpression+=ClassExpression
-		public Assignment getClassExpressionAssignment_3() { return cClassExpressionAssignment_3; }
+		//classExpressions+=ClassExpression
+		public Assignment getClassExpressionsAssignment_3() { return cClassExpressionsAssignment_3; }
 		
 		//ClassExpression
-		public RuleCall getClassExpressionClassExpressionParserRuleCall_3_0() { return cClassExpressionClassExpressionParserRuleCall_3_0; }
+		public RuleCall getClassExpressionsClassExpressionParserRuleCall_3_0() { return cClassExpressionsClassExpressionParserRuleCall_3_0; }
 		
-		//classExpression+=ClassExpression+
-		public Assignment getClassExpressionAssignment_4() { return cClassExpressionAssignment_4; }
+		//classExpressions+=ClassExpression+
+		public Assignment getClassExpressionsAssignment_4() { return cClassExpressionsAssignment_4; }
 		
 		//ClassExpression
-		public RuleCall getClassExpressionClassExpressionParserRuleCall_4_0() { return cClassExpressionClassExpressionParserRuleCall_4_0; }
+		public RuleCall getClassExpressionsClassExpressionParserRuleCall_4_0() { return cClassExpressionsClassExpressionParserRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -2094,23 +2079,23 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAxiomAnnotationsAnnotationParserRuleCall_2_0 = (RuleCall)cAxiomAnnotationsAssignment_2.eContents().get(0);
 		private final Assignment cClassAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cClassClassReferenceParserRuleCall_3_0 = (RuleCall)cClassAssignment_3.eContents().get(0);
-		private final Assignment cDisjointClassExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cDisjointClassExpressionClassExpressionParserRuleCall_4_0 = (RuleCall)cDisjointClassExpressionAssignment_4.eContents().get(0);
-		private final Assignment cDisjointClassExpressionAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cDisjointClassExpressionClassExpressionParserRuleCall_5_0 = (RuleCall)cDisjointClassExpressionAssignment_5.eContents().get(0);
+		private final Assignment cDisjointClassExpressionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDisjointClassExpressionsClassExpressionParserRuleCall_4_0 = (RuleCall)cDisjointClassExpressionsAssignment_4.eContents().get(0);
+		private final Assignment cDisjointClassExpressionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDisjointClassExpressionsClassExpressionParserRuleCall_5_0 = (RuleCall)cDisjointClassExpressionsAssignment_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//DisjointUnion:
 		//	'DisjointUnion' '('
 		//	axiomAnnotations+=Annotation*
 		//	class=ClassReference
-		//	disjointClassExpression+=ClassExpression
-		//	disjointClassExpression+=ClassExpression+
+		//	disjointClassExpressions+=ClassExpression
+		//	disjointClassExpressions+=ClassExpression+
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'DisjointUnion' '(' axiomAnnotations+=Annotation* class=ClassReference disjointClassExpression+=ClassExpression
-		//disjointClassExpression+=ClassExpression+ ')'
+		//'DisjointUnion' '(' axiomAnnotations+=Annotation* class=ClassReference disjointClassExpressions+=ClassExpression
+		//disjointClassExpressions+=ClassExpression+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'DisjointUnion'
@@ -2131,17 +2116,17 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassReference
 		public RuleCall getClassClassReferenceParserRuleCall_3_0() { return cClassClassReferenceParserRuleCall_3_0; }
 		
-		//disjointClassExpression+=ClassExpression
-		public Assignment getDisjointClassExpressionAssignment_4() { return cDisjointClassExpressionAssignment_4; }
+		//disjointClassExpressions+=ClassExpression
+		public Assignment getDisjointClassExpressionsAssignment_4() { return cDisjointClassExpressionsAssignment_4; }
 		
 		//ClassExpression
-		public RuleCall getDisjointClassExpressionClassExpressionParserRuleCall_4_0() { return cDisjointClassExpressionClassExpressionParserRuleCall_4_0; }
+		public RuleCall getDisjointClassExpressionsClassExpressionParserRuleCall_4_0() { return cDisjointClassExpressionsClassExpressionParserRuleCall_4_0; }
 		
-		//disjointClassExpression+=ClassExpression+
-		public Assignment getDisjointClassExpressionAssignment_5() { return cDisjointClassExpressionAssignment_5; }
+		//disjointClassExpressions+=ClassExpression+
+		public Assignment getDisjointClassExpressionsAssignment_5() { return cDisjointClassExpressionsAssignment_5; }
 		
 		//ClassExpression
-		public RuleCall getDisjointClassExpressionClassExpressionParserRuleCall_5_0() { return cDisjointClassExpressionClassExpressionParserRuleCall_5_0; }
+		public RuleCall getDisjointClassExpressionsClassExpressionParserRuleCall_5_0() { return cDisjointClassExpressionsClassExpressionParserRuleCall_5_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -3522,23 +3507,22 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cObjectPropertyExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0 = (RuleCall)cObjectPropertyExpressionAssignment_3.eContents().get(0);
 		private final Assignment cSourceIndividualAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cSourceIndividualIndividualCrossReference_4_0 = (CrossReference)cSourceIndividualAssignment_4.eContents().get(0);
-		private final RuleCall cSourceIndividualIndividualIRIParserRuleCall_4_0_1 = (RuleCall)cSourceIndividualIndividualCrossReference_4_0.eContents().get(1);
+		private final RuleCall cSourceIndividualIndividualReferenceParserRuleCall_4_0 = (RuleCall)cSourceIndividualAssignment_4.eContents().get(0);
 		private final Assignment cTargetIndividualAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cTargetIndividualIndividualCrossReference_5_0 = (CrossReference)cTargetIndividualAssignment_5.eContents().get(0);
-		private final RuleCall cTargetIndividualIndividualIRIParserRuleCall_5_0_1 = (RuleCall)cTargetIndividualIndividualCrossReference_5_0.eContents().get(1);
+		private final RuleCall cTargetIndividualIndividualReferenceParserRuleCall_5_0 = (RuleCall)cTargetIndividualAssignment_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//ObjectPropertyAssertion:
 		//	'ObjectPropertyAssertion' '('
 		//	axiomAnnotations+=Annotation*
 		//	objectPropertyExpression=ObjectPropertyExpression
-		//	sourceIndividual=[Individual|IRI] targetIndividual=[Individual|IRI]
+		//	sourceIndividual=IndividualReference
+		//	targetIndividual=IndividualReference
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'ObjectPropertyAssertion' '(' axiomAnnotations+=Annotation* objectPropertyExpression=ObjectPropertyExpression
-		//sourceIndividual=[Individual|IRI] targetIndividual=[Individual|IRI] ')'
+		//sourceIndividual=IndividualReference targetIndividual=IndividualReference ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'ObjectPropertyAssertion'
@@ -3559,23 +3543,17 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		//ObjectPropertyExpression
 		public RuleCall getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0() { return cObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0; }
 		
-		//sourceIndividual=[Individual|IRI]
+		//sourceIndividual=IndividualReference
 		public Assignment getSourceIndividualAssignment_4() { return cSourceIndividualAssignment_4; }
 		
-		//[Individual|IRI]
-		public CrossReference getSourceIndividualIndividualCrossReference_4_0() { return cSourceIndividualIndividualCrossReference_4_0; }
+		//IndividualReference
+		public RuleCall getSourceIndividualIndividualReferenceParserRuleCall_4_0() { return cSourceIndividualIndividualReferenceParserRuleCall_4_0; }
 		
-		//IRI
-		public RuleCall getSourceIndividualIndividualIRIParserRuleCall_4_0_1() { return cSourceIndividualIndividualIRIParserRuleCall_4_0_1; }
-		
-		//targetIndividual=[Individual|IRI]
+		//targetIndividual=IndividualReference
 		public Assignment getTargetIndividualAssignment_5() { return cTargetIndividualAssignment_5; }
 		
-		//[Individual|IRI]
-		public CrossReference getTargetIndividualIndividualCrossReference_5_0() { return cTargetIndividualIndividualCrossReference_5_0; }
-		
-		//IRI
-		public RuleCall getTargetIndividualIndividualIRIParserRuleCall_5_0_1() { return cTargetIndividualIndividualIRIParserRuleCall_5_0_1; }
+		//IndividualReference
+		public RuleCall getTargetIndividualIndividualReferenceParserRuleCall_5_0() { return cTargetIndividualIndividualReferenceParserRuleCall_5_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -4462,7 +4440,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Ontologies
 	//OntologyDocument:
-	//	prefixDeclarations+=PrefixDeclaration* ontology=Ontology;
+	//	prefixDeclarations+=PrefixDeclaration*
+	//	ontology=Ontology;
 	public OntologyDocumentElements getOntologyDocumentAccess() {
 		return pOntologyDocument;
 	}
@@ -4472,7 +4451,7 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrefixDeclaration:
-	//	'Prefix' '(' PrefixName '=' FullIRI ')';
+	//	'Prefix' '(' prefixName=PrefixName '=' fullIRI=FullIRI ')';
 	public PrefixDeclarationElements getPrefixDeclarationAccess() {
 		return pPrefixDeclaration;
 	}
@@ -4607,7 +4586,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TypedLiteral:
-	//	lexicalForm=STRING '^^' datatype=[Datatype|IRI];
+	//	lexicalForm=STRING '^^' datatype=IRI // [Datatype|IRI]
+	//;
 	public TypedLiteralElements getTypedLiteralAccess() {
 		return pTypedLiteral;
 	}
@@ -4666,7 +4646,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ObjectPropertyReference:
-	//	objectProperty=[ObjectProperty|IRI];
+	//	objectProperty=IRI // [ObjectProperty|IRI]
+	//;
 	public ObjectPropertyReferenceElements getObjectPropertyReferenceAccess() {
 		return pObjectPropertyReference;
 	}
@@ -4677,7 +4658,7 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//InverseObjectProperty:
 	//	'ObjectInverseOf' '('
-	//	objectProperty=[ObjectProperty|IRI]
+	//	objectProperty=IRI // [ObjectProperty|IRI] 
 	//	')';
 	public InverseObjectPropertyElements getInverseObjectPropertyAccess() {
 		return pInverseObjectProperty;
@@ -4698,7 +4679,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DataPropertyReference:
-	//	dataProperty=[DataProperty|IRI];
+	//	dataProperty=IRI // [DataProperty|IRI]
+	//;
 	public DataPropertyReferenceElements getDataPropertyReferenceAccess() {
 		return pDataPropertyReference;
 	}
@@ -4719,7 +4701,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DatatypeReference:
-	//	datatype=[Datatype|IRI];
+	//	datatype=IRI // [Datatype|IRI]
+	//;
 	public DatatypeReferenceElements getDatatypeReferenceAccess() {
 		return pDatatypeReference;
 	}
@@ -4816,7 +4799,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ClassReference:
-	//	class=[Class|IRI];
+	//	class=IRI // [Class|IRI]
+	//;
 	public ClassReferenceElements getClassReferenceAccess() {
 		return pClassReference;
 	}
@@ -4884,7 +4868,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NamedIndividualReference:
-	//	individual=[NamedIndividual|IRI];
+	//	individual=IRI // [NamedIndividual|IRI]
+	//;
 	public NamedIndividualReferenceElements getNamedIndividualReferenceAccess() {
 		return pNamedIndividualReference;
 	}
@@ -4894,7 +4879,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AnonymousIndividualReference:
-	//	individual=[AnonymousIndividual|NodeID];
+	//	individual=NodeID // [AnonymousIndividual|NodeID]
+	//;
 	public AnonymousIndividualReferenceElements getAnonymousIndividualReferenceAccess() {
 		return pAnonymousIndividualReference;
 	}
@@ -5114,8 +5100,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	//EquivalentClasses:
 	//	'EquivalentClasses' '('
 	//	axiomAnnotations+=Annotation*
-	//	classExpression+=ClassExpression
-	//	classExpression+=ClassExpression+
+	//	classExpressions+=ClassExpression
+	//	classExpressions+=ClassExpression+
 	//	')';
 	public EquivalentClassesElements getEquivalentClassesAccess() {
 		return pEquivalentClasses;
@@ -5128,8 +5114,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	//DisjointClasses:
 	//	'DisjointClasses' '('
 	//	axiomAnnotations+=Annotation*
-	//	classExpression+=ClassExpression
-	//	classExpression+=ClassExpression+
+	//	classExpressions+=ClassExpression
+	//	classExpressions+=ClassExpression+
 	//	')';
 	public DisjointClassesElements getDisjointClassesAccess() {
 		return pDisjointClasses;
@@ -5143,8 +5129,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	//	'DisjointUnion' '('
 	//	axiomAnnotations+=Annotation*
 	//	class=ClassReference
-	//	disjointClassExpression+=ClassExpression
-	//	disjointClassExpression+=ClassExpression+
+	//	disjointClassExpressions+=ClassExpression
+	//	disjointClassExpressions+=ClassExpression+
 	//	')';
 	public DisjointUnionElements getDisjointUnionAccess() {
 		return pDisjointUnion;
@@ -5528,7 +5514,8 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	//	'ObjectPropertyAssertion' '('
 	//	axiomAnnotations+=Annotation*
 	//	objectPropertyExpression=ObjectPropertyExpression
-	//	sourceIndividual=[Individual|IRI] targetIndividual=[Individual|IRI]
+	//	sourceIndividual=IndividualReference
+	//	targetIndividual=IndividualReference
 	//	')';
 	public ObjectPropertyAssertionElements getObjectPropertyAssertionAccess() {
 		return pObjectPropertyAssertion;

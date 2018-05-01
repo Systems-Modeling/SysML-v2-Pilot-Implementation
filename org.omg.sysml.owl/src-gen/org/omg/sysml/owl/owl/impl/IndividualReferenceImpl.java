@@ -3,8 +3,11 @@
  */
 package org.omg.sysml.owl.owl.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.omg.sysml.owl.owl.IndividualReference;
@@ -14,11 +17,37 @@ import org.omg.sysml.owl.owl.OwlPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Individual Reference</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.owl.owl.impl.IndividualReferenceImpl#getIndividual <em>Individual</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class IndividualReferenceImpl extends MinimalEObjectImpl.Container implements IndividualReference
 {
+  /**
+   * The default value of the '{@link #getIndividual() <em>Individual</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIndividual()
+   * @generated
+   * @ordered
+   */
+  protected static final String INDIVIDUAL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIndividual() <em>Individual</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIndividual()
+   * @generated
+   * @ordered
+   */
+  protected String individual = INDIVIDUAL_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -38,6 +67,112 @@ public class IndividualReferenceImpl extends MinimalEObjectImpl.Container implem
   protected EClass eStaticClass()
   {
     return OwlPackage.Literals.INDIVIDUAL_REFERENCE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getIndividual()
+  {
+    return individual;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIndividual(String newIndividual)
+  {
+    String oldIndividual = individual;
+    individual = newIndividual;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.INDIVIDUAL_REFERENCE__INDIVIDUAL, oldIndividual, individual));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case OwlPackage.INDIVIDUAL_REFERENCE__INDIVIDUAL:
+        return getIndividual();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case OwlPackage.INDIVIDUAL_REFERENCE__INDIVIDUAL:
+        setIndividual((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case OwlPackage.INDIVIDUAL_REFERENCE__INDIVIDUAL:
+        setIndividual(INDIVIDUAL_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case OwlPackage.INDIVIDUAL_REFERENCE__INDIVIDUAL:
+        return INDIVIDUAL_EDEFAULT == null ? individual != null : !INDIVIDUAL_EDEFAULT.equals(individual);
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (individual: ");
+    result.append(individual);
+    result.append(')');
+    return result.toString();
   }
 
 } //IndividualReferenceImpl

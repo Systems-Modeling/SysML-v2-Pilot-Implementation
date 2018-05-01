@@ -16,11 +16,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,14 +41,14 @@ import org.omg.sysml.owl.owl.OwlPackage;
 public class OntologyDocumentImpl extends MinimalEObjectImpl.Container implements OntologyDocument
 {
   /**
-   * The cached value of the '{@link #getPrefixDeclarations() <em>Prefix Declarations</em>}' attribute list.
+   * The cached value of the '{@link #getPrefixDeclarations() <em>Prefix Declarations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPrefixDeclarations()
    * @generated
    * @ordered
    */
-  protected EList<String> prefixDeclarations;
+  protected EList<PrefixDeclaration> prefixDeclarations;
 
   /**
    * The cached value of the '{@link #getOntology() <em>Ontology</em>}' containment reference.
@@ -84,11 +86,11 @@ public class OntologyDocumentImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getPrefixDeclarations()
+  public EList<PrefixDeclaration> getPrefixDeclarations()
   {
     if (prefixDeclarations == null)
     {
-      prefixDeclarations = new EDataTypeEList<String>(String.class, this, OwlPackage.ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS);
+      prefixDeclarations = new EObjectContainmentEList<PrefixDeclaration>(PrefixDeclaration.class, this, OwlPackage.ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS);
     }
     return prefixDeclarations;
   }
@@ -151,6 +153,8 @@ public class OntologyDocumentImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
+      case OwlPackage.ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS:
+        return ((InternalEList<?>)getPrefixDeclarations()).basicRemove(otherEnd, msgs);
       case OwlPackage.ONTOLOGY_DOCUMENT__ONTOLOGY:
         return basicSetOntology(null, msgs);
     }
@@ -188,7 +192,7 @@ public class OntologyDocumentImpl extends MinimalEObjectImpl.Container implement
     {
       case OwlPackage.ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS:
         getPrefixDeclarations().clear();
-        getPrefixDeclarations().addAll((Collection<? extends String>)newValue);
+        getPrefixDeclarations().addAll((Collection<? extends PrefixDeclaration>)newValue);
         return;
       case OwlPackage.ONTOLOGY_DOCUMENT__ONTOLOGY:
         setOntology((Ontology)newValue);
@@ -233,23 +237,6 @@ public class OntologyDocumentImpl extends MinimalEObjectImpl.Container implement
         return ontology != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (prefixDeclarations: ");
-    result.append(prefixDeclarations);
-    result.append(')');
-    return result.toString();
   }
 
 } //OntologyDocumentImpl

@@ -9,12 +9,6 @@ package org.omg.sysml.owl.owl;
  * A representation of the model object '<em><b>Anonymous Individual Reference</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.omg.sysml.owl.owl.AnonymousIndividualReference#getIndividual <em>Individual</em>}</li>
- * </ul>
  *
  * @see org.omg.sysml.owl.owl.OwlPackage#getAnonymousIndividualReference()
  * @model
@@ -22,30 +16,4 @@ package org.omg.sysml.owl.owl;
  */
 public interface AnonymousIndividualReference extends IndividualReference, AnnotationValue, AnnotationSubject
 {
-  /**
-   * Returns the value of the '<em><b>Individual</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Individual</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Individual</em>' reference.
-   * @see #setIndividual(AnonymousIndividual)
-   * @see org.omg.sysml.owl.owl.OwlPackage#getAnonymousIndividualReference_Individual()
-   * @model
-   * @generated
-   */
-  AnonymousIndividual getIndividual();
-
-  /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.AnonymousIndividualReference#getIndividual <em>Individual</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Individual</em>' reference.
-   * @see #getIndividual()
-   * @generated
-   */
-  void setIndividual(AnonymousIndividual value);
-
 } // AnonymousIndividualReference

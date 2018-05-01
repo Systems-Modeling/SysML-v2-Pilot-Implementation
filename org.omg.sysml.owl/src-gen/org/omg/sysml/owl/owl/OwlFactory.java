@@ -33,6 +33,15 @@ public interface OwlFactory extends EFactory
   OntologyDocument createOntologyDocument();
 
   /**
+   * Returns a new object of class '<em>Prefix Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Prefix Declaration</em>'.
+   * @generated
+   */
+  PrefixDeclaration createPrefixDeclaration();
+
+  /**
    * Returns a new object of class '<em>Ontology</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

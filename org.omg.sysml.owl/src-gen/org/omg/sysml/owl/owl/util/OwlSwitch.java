@@ -93,6 +93,7 @@ import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
 import org.omg.sysml.owl.owl.SameIndividual;
 import org.omg.sysml.owl.owl.StringLiteral;
@@ -171,6 +172,13 @@ public class OwlSwitch<T> extends Switch<T>
       {
         OntologyDocument ontologyDocument = (OntologyDocument)theEObject;
         T result = caseOntologyDocument(ontologyDocument);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case OwlPackage.PREFIX_DECLARATION:
+      {
+        PrefixDeclaration prefixDeclaration = (PrefixDeclaration)theEObject;
+        T result = casePrefixDeclaration(prefixDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -968,6 +976,22 @@ public class OwlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseOntologyDocument(OntologyDocument object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Prefix Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Prefix Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrefixDeclaration(PrefixDeclaration object)
   {
     return null;
   }

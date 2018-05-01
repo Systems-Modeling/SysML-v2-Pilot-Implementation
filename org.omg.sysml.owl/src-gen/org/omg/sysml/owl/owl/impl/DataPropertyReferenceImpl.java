@@ -6,11 +6,9 @@ package org.omg.sysml.owl.owl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.owl.owl.DataProperty;
 import org.omg.sysml.owl.owl.DataPropertyReference;
 import org.omg.sysml.owl.owl.OwlPackage;
 
@@ -30,14 +28,24 @@ import org.omg.sysml.owl.owl.OwlPackage;
 public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implements DataPropertyReference
 {
   /**
-   * The cached value of the '{@link #getDataProperty() <em>Data Property</em>}' reference.
+   * The default value of the '{@link #getDataProperty() <em>Data Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDataProperty()
    * @generated
    * @ordered
    */
-  protected DataProperty dataProperty;
+  protected static final String DATA_PROPERTY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDataProperty() <em>Data Property</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDataProperty()
+   * @generated
+   * @ordered
+   */
+  protected String dataProperty = DATA_PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,27 +73,7 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public DataProperty getDataProperty()
-  {
-    if (dataProperty != null && dataProperty.eIsProxy())
-    {
-      InternalEObject oldDataProperty = (InternalEObject)dataProperty;
-      dataProperty = (DataProperty)eResolveProxy(oldDataProperty);
-      if (dataProperty != oldDataProperty)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY, oldDataProperty, dataProperty));
-      }
-    }
-    return dataProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DataProperty basicGetDataProperty()
+  public String getDataProperty()
   {
     return dataProperty;
   }
@@ -95,9 +83,9 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDataProperty(DataProperty newDataProperty)
+  public void setDataProperty(String newDataProperty)
   {
-    DataProperty oldDataProperty = dataProperty;
+    String oldDataProperty = dataProperty;
     dataProperty = newDataProperty;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY, oldDataProperty, dataProperty));
@@ -114,8 +102,7 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
     switch (featureID)
     {
       case OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY:
-        if (resolve) return getDataProperty();
-        return basicGetDataProperty();
+        return getDataProperty();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,7 +118,7 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
     switch (featureID)
     {
       case OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY:
-        setDataProperty((DataProperty)newValue);
+        setDataProperty((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +135,7 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
     switch (featureID)
     {
       case OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY:
-        setDataProperty((DataProperty)null);
+        setDataProperty(DATA_PROPERTY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -165,9 +152,26 @@ public class DataPropertyReferenceImpl extends DataPropertyExpressionImpl implem
     switch (featureID)
     {
       case OwlPackage.DATA_PROPERTY_REFERENCE__DATA_PROPERTY:
-        return dataProperty != null;
+        return DATA_PROPERTY_EDEFAULT == null ? dataProperty != null : !DATA_PROPERTY_EDEFAULT.equals(dataProperty);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (dataProperty: ");
+    result.append(dataProperty);
+    result.append(')');
+    return result.toString();
   }
 
 } //DataPropertyReferenceImpl

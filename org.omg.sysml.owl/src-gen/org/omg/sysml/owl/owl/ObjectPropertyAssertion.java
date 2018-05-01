@@ -51,55 +51,55 @@ public interface ObjectPropertyAssertion extends Assertion
   void setObjectPropertyExpression(ObjectPropertyExpression value);
 
   /**
-   * Returns the value of the '<em><b>Source Individual</b></em>' reference.
+   * Returns the value of the '<em><b>Source Individual</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Source Individual</em>' reference isn't clear,
+   * If the meaning of the '<em>Source Individual</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Source Individual</em>' reference.
-   * @see #setSourceIndividual(Individual)
+   * @return the value of the '<em>Source Individual</em>' containment reference.
+   * @see #setSourceIndividual(IndividualReference)
    * @see org.omg.sysml.owl.owl.OwlPackage#getObjectPropertyAssertion_SourceIndividual()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  Individual getSourceIndividual();
+  IndividualReference getSourceIndividual();
 
   /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyAssertion#getSourceIndividual <em>Source Individual</em>}' reference.
+   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyAssertion#getSourceIndividual <em>Source Individual</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source Individual</em>' reference.
+   * @param value the new value of the '<em>Source Individual</em>' containment reference.
    * @see #getSourceIndividual()
    * @generated
    */
-  void setSourceIndividual(Individual value);
+  void setSourceIndividual(IndividualReference value);
 
   /**
-   * Returns the value of the '<em><b>Target Individual</b></em>' reference.
+   * Returns the value of the '<em><b>Target Individual</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Target Individual</em>' reference isn't clear,
+   * If the meaning of the '<em>Target Individual</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Target Individual</em>' reference.
-   * @see #setTargetIndividual(Individual)
+   * @return the value of the '<em>Target Individual</em>' containment reference.
+   * @see #setTargetIndividual(IndividualReference)
    * @see org.omg.sysml.owl.owl.OwlPackage#getObjectPropertyAssertion_TargetIndividual()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  Individual getTargetIndividual();
+  IndividualReference getTargetIndividual();
 
   /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyAssertion#getTargetIndividual <em>Target Individual</em>}' reference.
+   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyAssertion#getTargetIndividual <em>Target Individual</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target Individual</em>' reference.
+   * @param value the new value of the '<em>Target Individual</em>' containment reference.
    * @see #getTargetIndividual()
    * @generated
    */
-  void setTargetIndividual(Individual value);
+  void setTargetIndividual(IndividualReference value);
 
 } // ObjectPropertyAssertion

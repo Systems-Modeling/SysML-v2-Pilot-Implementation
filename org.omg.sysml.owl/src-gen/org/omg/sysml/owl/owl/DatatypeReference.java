@@ -23,29 +23,29 @@ package org.omg.sysml.owl.owl;
 public interface DatatypeReference extends DataRange
 {
   /**
-   * Returns the value of the '<em><b>Datatype</b></em>' reference.
+   * Returns the value of the '<em><b>Datatype</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Datatype</em>' reference isn't clear,
+   * If the meaning of the '<em>Datatype</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Datatype</em>' reference.
-   * @see #setDatatype(Datatype)
+   * @return the value of the '<em>Datatype</em>' attribute.
+   * @see #setDatatype(String)
    * @see org.omg.sysml.owl.owl.OwlPackage#getDatatypeReference_Datatype()
    * @model
    * @generated
    */
-  Datatype getDatatype();
+  String getDatatype();
 
   /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.DatatypeReference#getDatatype <em>Datatype</em>}' reference.
+   * Sets the value of the '{@link org.omg.sysml.owl.owl.DatatypeReference#getDatatype <em>Datatype</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Datatype</em>' reference.
+   * @param value the new value of the '<em>Datatype</em>' attribute.
    * @see #getDatatype()
    * @generated
    */
-  void setDatatype(Datatype value);
+  void setDatatype(String value);
 
 } // DatatypeReference

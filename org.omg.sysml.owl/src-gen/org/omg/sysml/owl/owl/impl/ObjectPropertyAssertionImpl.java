@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.owl.owl.Individual;
+import org.omg.sysml.owl.owl.IndividualReference;
 import org.omg.sysml.owl.owl.ObjectPropertyAssertion;
 import org.omg.sysml.owl.owl.ObjectPropertyExpression;
 import org.omg.sysml.owl.owl.OwlPackage;
@@ -44,24 +44,24 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
   protected ObjectPropertyExpression objectPropertyExpression;
 
   /**
-   * The cached value of the '{@link #getSourceIndividual() <em>Source Individual</em>}' reference.
+   * The cached value of the '{@link #getSourceIndividual() <em>Source Individual</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSourceIndividual()
    * @generated
    * @ordered
    */
-  protected Individual sourceIndividual;
+  protected IndividualReference sourceIndividual;
 
   /**
-   * The cached value of the '{@link #getTargetIndividual() <em>Target Individual</em>}' reference.
+   * The cached value of the '{@link #getTargetIndividual() <em>Target Individual</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTargetIndividual()
    * @generated
    * @ordered
    */
-  protected Individual targetIndividual;
+  protected IndividualReference targetIndividual;
 
   /**
    * <!-- begin-user-doc -->
@@ -137,27 +137,7 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
    * <!-- end-user-doc -->
    * @generated
    */
-  public Individual getSourceIndividual()
-  {
-    if (sourceIndividual != null && sourceIndividual.eIsProxy())
-    {
-      InternalEObject oldSourceIndividual = (InternalEObject)sourceIndividual;
-      sourceIndividual = (Individual)eResolveProxy(oldSourceIndividual);
-      if (sourceIndividual != oldSourceIndividual)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, oldSourceIndividual, sourceIndividual));
-      }
-    }
-    return sourceIndividual;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Individual basicGetSourceIndividual()
+  public IndividualReference getSourceIndividual()
   {
     return sourceIndividual;
   }
@@ -167,32 +147,16 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSourceIndividual(Individual newSourceIndividual)
+  public NotificationChain basicSetSourceIndividual(IndividualReference newSourceIndividual, NotificationChain msgs)
   {
-    Individual oldSourceIndividual = sourceIndividual;
+    IndividualReference oldSourceIndividual = sourceIndividual;
     sourceIndividual = newSourceIndividual;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, oldSourceIndividual, sourceIndividual));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Individual getTargetIndividual()
-  {
-    if (targetIndividual != null && targetIndividual.eIsProxy())
     {
-      InternalEObject oldTargetIndividual = (InternalEObject)targetIndividual;
-      targetIndividual = (Individual)eResolveProxy(oldTargetIndividual);
-      if (targetIndividual != oldTargetIndividual)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, oldTargetIndividual, targetIndividual));
-      }
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, oldSourceIndividual, newSourceIndividual);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return targetIndividual;
+    return msgs;
   }
 
   /**
@@ -200,7 +164,28 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
    * <!-- end-user-doc -->
    * @generated
    */
-  public Individual basicGetTargetIndividual()
+  public void setSourceIndividual(IndividualReference newSourceIndividual)
+  {
+    if (newSourceIndividual != sourceIndividual)
+    {
+      NotificationChain msgs = null;
+      if (sourceIndividual != null)
+        msgs = ((InternalEObject)sourceIndividual).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, null, msgs);
+      if (newSourceIndividual != null)
+        msgs = ((InternalEObject)newSourceIndividual).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, null, msgs);
+      msgs = basicSetSourceIndividual(newSourceIndividual, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL, newSourceIndividual, newSourceIndividual));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IndividualReference getTargetIndividual()
   {
     return targetIndividual;
   }
@@ -210,12 +195,37 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTargetIndividual(Individual newTargetIndividual)
+  public NotificationChain basicSetTargetIndividual(IndividualReference newTargetIndividual, NotificationChain msgs)
   {
-    Individual oldTargetIndividual = targetIndividual;
+    IndividualReference oldTargetIndividual = targetIndividual;
     targetIndividual = newTargetIndividual;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, oldTargetIndividual, targetIndividual));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, oldTargetIndividual, newTargetIndividual);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTargetIndividual(IndividualReference newTargetIndividual)
+  {
+    if (newTargetIndividual != targetIndividual)
+    {
+      NotificationChain msgs = null;
+      if (targetIndividual != null)
+        msgs = ((InternalEObject)targetIndividual).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, null, msgs);
+      if (newTargetIndividual != null)
+        msgs = ((InternalEObject)newTargetIndividual).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, null, msgs);
+      msgs = basicSetTargetIndividual(newTargetIndividual, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL, newTargetIndividual, newTargetIndividual));
   }
 
   /**
@@ -230,6 +240,10 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
     {
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__OBJECT_PROPERTY_EXPRESSION:
         return basicSetObjectPropertyExpression(null, msgs);
+      case OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL:
+        return basicSetSourceIndividual(null, msgs);
+      case OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL:
+        return basicSetTargetIndividual(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -247,11 +261,9 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__OBJECT_PROPERTY_EXPRESSION:
         return getObjectPropertyExpression();
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL:
-        if (resolve) return getSourceIndividual();
-        return basicGetSourceIndividual();
+        return getSourceIndividual();
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL:
-        if (resolve) return getTargetIndividual();
-        return basicGetTargetIndividual();
+        return getTargetIndividual();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -270,10 +282,10 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
         setObjectPropertyExpression((ObjectPropertyExpression)newValue);
         return;
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL:
-        setSourceIndividual((Individual)newValue);
+        setSourceIndividual((IndividualReference)newValue);
         return;
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL:
-        setTargetIndividual((Individual)newValue);
+        setTargetIndividual((IndividualReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -293,10 +305,10 @@ public class ObjectPropertyAssertionImpl extends AssertionImpl implements Object
         setObjectPropertyExpression((ObjectPropertyExpression)null);
         return;
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__SOURCE_INDIVIDUAL:
-        setSourceIndividual((Individual)null);
+        setSourceIndividual((IndividualReference)null);
         return;
       case OwlPackage.OBJECT_PROPERTY_ASSERTION__TARGET_INDIVIDUAL:
-        setTargetIndividual((Individual)null);
+        setTargetIndividual((IndividualReference)null);
         return;
     }
     super.eUnset(featureID);

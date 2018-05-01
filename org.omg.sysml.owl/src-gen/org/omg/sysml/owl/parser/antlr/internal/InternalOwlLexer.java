@@ -1713,10 +1713,10 @@ public class InternalOwlLexer extends Lexer {
     // $ANTLR start "RULE_ISEGMENT"
     public final void mRULE_ISEGMENT() throws RecognitionException {
         try {
-            // InternalOwl.g:7098:24: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )* )
-            // InternalOwl.g:7098:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )*
+            // InternalOwl.g:7142:24: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )* )
+            // InternalOwl.g:7142:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )*
             {
-            // InternalOwl.g:7098:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )*
+            // InternalOwl.g:7142:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '.' | '~' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -1763,8 +1763,8 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_FULL_IRI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7100:15: ( '<' RULE_ID ':' '//' RULE_ISEGMENT ( '/' RULE_ISEGMENT )* ( '#' RULE_ISEGMENT )? '>' )
-            // InternalOwl.g:7100:17: '<' RULE_ID ':' '//' RULE_ISEGMENT ( '/' RULE_ISEGMENT )* ( '#' RULE_ISEGMENT )? '>'
+            // InternalOwl.g:7144:15: ( '<' RULE_ID ':' '//' RULE_ISEGMENT ( '/' RULE_ISEGMENT )* ( '#' RULE_ISEGMENT )? '>' )
+            // InternalOwl.g:7144:17: '<' RULE_ID ':' '//' RULE_ISEGMENT ( '/' RULE_ISEGMENT )* ( '#' RULE_ISEGMENT )? '>'
             {
             match('<'); 
             mRULE_ID(); 
@@ -1772,7 +1772,7 @@ public class InternalOwlLexer extends Lexer {
             match("//"); 
 
             mRULE_ISEGMENT(); 
-            // InternalOwl.g:7100:52: ( '/' RULE_ISEGMENT )*
+            // InternalOwl.g:7144:52: ( '/' RULE_ISEGMENT )*
             loop2:
             do {
                 int alt2=2;
@@ -1785,7 +1785,7 @@ public class InternalOwlLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalOwl.g:7100:53: '/' RULE_ISEGMENT
+            	    // InternalOwl.g:7144:53: '/' RULE_ISEGMENT
             	    {
             	    match('/'); 
             	    mRULE_ISEGMENT(); 
@@ -1798,7 +1798,7 @@ public class InternalOwlLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalOwl.g:7100:73: ( '#' RULE_ISEGMENT )?
+            // InternalOwl.g:7144:73: ( '#' RULE_ISEGMENT )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1807,7 +1807,7 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalOwl.g:7100:74: '#' RULE_ISEGMENT
+                    // InternalOwl.g:7144:74: '#' RULE_ISEGMENT
                     {
                     match('#'); 
                     mRULE_ISEGMENT(); 
@@ -1832,8 +1832,8 @@ public class InternalOwlLexer extends Lexer {
     // $ANTLR start "RULE_PN_CHARS_BASE"
     public final void mRULE_PN_CHARS_BASE() throws RecognitionException {
         try {
-            // InternalOwl.g:7102:29: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
-            // InternalOwl.g:7102:31: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // InternalOwl.g:7146:29: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+            // InternalOwl.g:7146:31: ( 'a' .. 'z' | 'A' .. 'Z' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1856,8 +1856,8 @@ public class InternalOwlLexer extends Lexer {
     // $ANTLR start "RULE_PN_CHARS_U"
     public final void mRULE_PN_CHARS_U() throws RecognitionException {
         try {
-            // InternalOwl.g:7104:26: ( ( RULE_PN_CHARS_BASE | '_' ) )
-            // InternalOwl.g:7104:28: ( RULE_PN_CHARS_BASE | '_' )
+            // InternalOwl.g:7148:26: ( ( RULE_PN_CHARS_BASE | '_' ) )
+            // InternalOwl.g:7148:28: ( RULE_PN_CHARS_BASE | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1880,8 +1880,8 @@ public class InternalOwlLexer extends Lexer {
     // $ANTLR start "RULE_PN_CHARS"
     public final void mRULE_PN_CHARS() throws RecognitionException {
         try {
-            // InternalOwl.g:7106:24: ( ( RULE_PN_CHARS_U | '-' | '0' .. '9' ) )
-            // InternalOwl.g:7106:26: ( RULE_PN_CHARS_U | '-' | '0' .. '9' )
+            // InternalOwl.g:7150:24: ( ( RULE_PN_CHARS_U | '-' | '0' .. '9' ) )
+            // InternalOwl.g:7150:26: ( RULE_PN_CHARS_U | '-' | '0' .. '9' )
             {
             if ( input.LA(1)=='-'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1906,11 +1906,11 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_PN_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7108:16: ( RULE_PN_CHARS_BASE ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
-            // InternalOwl.g:7108:18: RULE_PN_CHARS_BASE ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7152:16: ( RULE_PN_CHARS_BASE ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
+            // InternalOwl.g:7152:18: RULE_PN_CHARS_BASE ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             {
             mRULE_PN_CHARS_BASE(); 
-            // InternalOwl.g:7108:37: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7152:37: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1919,9 +1919,9 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalOwl.g:7108:38: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
+                    // InternalOwl.g:7152:38: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
                     {
-                    // InternalOwl.g:7108:38: ( RULE_PN_CHARS | '.' )*
+                    // InternalOwl.g:7152:38: ( RULE_PN_CHARS | '.' )*
                     loop4:
                     do {
                         int alt4=2;
@@ -1986,8 +1986,8 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_PN_LOCAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7110:15: ( ':' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
-            // InternalOwl.g:7110:17: ':' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7154:15: ( ':' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
+            // InternalOwl.g:7154:17: ':' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             {
             match(':'); 
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1999,7 +1999,7 @@ public class InternalOwlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalOwl.g:7110:48: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7154:48: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2008,9 +2008,9 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalOwl.g:7110:49: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
+                    // InternalOwl.g:7154:49: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
                     {
-                    // InternalOwl.g:7110:49: ( RULE_PN_CHARS | '.' )*
+                    // InternalOwl.g:7154:49: ( RULE_PN_CHARS | '.' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -2075,8 +2075,8 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_BLANK_NODE_LABEL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7112:23: ( '_:' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
-            // InternalOwl.g:7112:25: '_:' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7156:23: ( '_:' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )? )
+            // InternalOwl.g:7156:25: '_:' ( RULE_PN_CHARS_U | '0' .. '9' ) ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             {
             match("_:"); 
 
@@ -2089,7 +2089,7 @@ public class InternalOwlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalOwl.g:7112:57: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
+            // InternalOwl.g:7156:57: ( ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2098,9 +2098,9 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalOwl.g:7112:58: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
+                    // InternalOwl.g:7156:58: ( RULE_PN_CHARS | '.' )* RULE_PN_CHARS
                     {
-                    // InternalOwl.g:7112:58: ( RULE_PN_CHARS | '.' )*
+                    // InternalOwl.g:7156:58: ( RULE_PN_CHARS | '.' )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2163,10 +2163,10 @@ public class InternalOwlLexer extends Lexer {
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
-            // InternalOwl.g:7114:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalOwl.g:7114:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalOwl.g:7158:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalOwl.g:7158:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalOwl.g:7114:20: ( '^' )?
+            // InternalOwl.g:7158:20: ( '^' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2175,7 +2175,7 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalOwl.g:7114:20: '^'
+                    // InternalOwl.g:7158:20: '^'
                     {
                     match('^'); 
 
@@ -2193,7 +2193,7 @@ public class InternalOwlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalOwl.g:7114:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalOwl.g:7158:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop11:
             do {
                 int alt11=2;
@@ -2240,10 +2240,10 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7116:10: ( ( '0' .. '9' )+ )
-            // InternalOwl.g:7116:12: ( '0' .. '9' )+
+            // InternalOwl.g:7160:10: ( ( '0' .. '9' )+ )
+            // InternalOwl.g:7160:12: ( '0' .. '9' )+
             {
-            // InternalOwl.g:7116:12: ( '0' .. '9' )+
+            // InternalOwl.g:7160:12: ( '0' .. '9' )+
             int cnt12=0;
             loop12:
             do {
@@ -2257,7 +2257,7 @@ public class InternalOwlLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // InternalOwl.g:7116:13: '0' .. '9'
+            	    // InternalOwl.g:7160:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2289,10 +2289,10 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7118:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalOwl.g:7118:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalOwl.g:7162:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalOwl.g:7162:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalOwl.g:7118:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalOwl.g:7162:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2310,10 +2310,10 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // InternalOwl.g:7118:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalOwl.g:7162:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalOwl.g:7118:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalOwl.g:7162:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -2329,7 +2329,7 @@ public class InternalOwlLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // InternalOwl.g:7118:21: '\\\\' .
+                    	    // InternalOwl.g:7162:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2337,7 +2337,7 @@ public class InternalOwlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalOwl.g:7118:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalOwl.g:7162:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2362,10 +2362,10 @@ public class InternalOwlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalOwl.g:7118:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalOwl.g:7162:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalOwl.g:7118:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalOwl.g:7162:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop14:
                     do {
                         int alt14=3;
@@ -2381,7 +2381,7 @@ public class InternalOwlLexer extends Lexer {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // InternalOwl.g:7118:54: '\\\\' .
+                    	    // InternalOwl.g:7162:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2389,7 +2389,7 @@ public class InternalOwlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalOwl.g:7118:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalOwl.g:7162:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2432,12 +2432,12 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7120:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalOwl.g:7120:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalOwl.g:7164:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalOwl.g:7164:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalOwl.g:7120:24: ( options {greedy=false; } : . )*
+            // InternalOwl.g:7164:24: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -2462,7 +2462,7 @@ public class InternalOwlLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // InternalOwl.g:7120:52: .
+            	    // InternalOwl.g:7164:52: .
             	    {
             	    matchAny(); 
 
@@ -2492,12 +2492,12 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7122:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalOwl.g:7122:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalOwl.g:7166:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalOwl.g:7166:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalOwl.g:7122:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalOwl.g:7166:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop17:
             do {
                 int alt17=2;
@@ -2510,7 +2510,7 @@ public class InternalOwlLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // InternalOwl.g:7122:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalOwl.g:7166:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2530,7 +2530,7 @@ public class InternalOwlLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalOwl.g:7122:40: ( ( '\\r' )? '\\n' )?
+            // InternalOwl.g:7166:40: ( ( '\\r' )? '\\n' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -2539,9 +2539,9 @@ public class InternalOwlLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // InternalOwl.g:7122:41: ( '\\r' )? '\\n'
+                    // InternalOwl.g:7166:41: ( '\\r' )? '\\n'
                     {
-                    // InternalOwl.g:7122:41: ( '\\r' )?
+                    // InternalOwl.g:7166:41: ( '\\r' )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -2550,7 +2550,7 @@ public class InternalOwlLexer extends Lexer {
                     }
                     switch (alt18) {
                         case 1 :
-                            // InternalOwl.g:7122:41: '\\r'
+                            // InternalOwl.g:7166:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2582,10 +2582,10 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7124:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalOwl.g:7124:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalOwl.g:7168:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalOwl.g:7168:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalOwl.g:7124:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalOwl.g:7168:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt20=0;
             loop20:
             do {
@@ -2639,8 +2639,8 @@ public class InternalOwlLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalOwl.g:7126:16: ( . )
-            // InternalOwl.g:7126:18: .
+            // InternalOwl.g:7170:16: ( . )
+            // InternalOwl.g:7170:18: .
             {
             matchAny(); 
 

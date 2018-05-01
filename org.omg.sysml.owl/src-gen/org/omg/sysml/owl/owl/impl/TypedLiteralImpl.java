@@ -6,11 +6,9 @@ package org.omg.sysml.owl.owl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.owl.owl.Datatype;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.TypedLiteral;
 
@@ -30,14 +28,24 @@ import org.omg.sysml.owl.owl.TypedLiteral;
 public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
 {
   /**
-   * The cached value of the '{@link #getDatatype() <em>Datatype</em>}' reference.
+   * The default value of the '{@link #getDatatype() <em>Datatype</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDatatype()
    * @generated
    * @ordered
    */
-  protected Datatype datatype;
+  protected static final String DATATYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDatatype() <em>Datatype</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDatatype()
+   * @generated
+   * @ordered
+   */
+  protected String datatype = DATATYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,27 +73,7 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
    * <!-- end-user-doc -->
    * @generated
    */
-  public Datatype getDatatype()
-  {
-    if (datatype != null && datatype.eIsProxy())
-    {
-      InternalEObject oldDatatype = (InternalEObject)datatype;
-      datatype = (Datatype)eResolveProxy(oldDatatype);
-      if (datatype != oldDatatype)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.TYPED_LITERAL__DATATYPE, oldDatatype, datatype));
-      }
-    }
-    return datatype;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Datatype basicGetDatatype()
+  public String getDatatype()
   {
     return datatype;
   }
@@ -95,9 +83,9 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDatatype(Datatype newDatatype)
+  public void setDatatype(String newDatatype)
   {
-    Datatype oldDatatype = datatype;
+    String oldDatatype = datatype;
     datatype = newDatatype;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.TYPED_LITERAL__DATATYPE, oldDatatype, datatype));
@@ -114,8 +102,7 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
     switch (featureID)
     {
       case OwlPackage.TYPED_LITERAL__DATATYPE:
-        if (resolve) return getDatatype();
-        return basicGetDatatype();
+        return getDatatype();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,7 +118,7 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
     switch (featureID)
     {
       case OwlPackage.TYPED_LITERAL__DATATYPE:
-        setDatatype((Datatype)newValue);
+        setDatatype((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +135,7 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
     switch (featureID)
     {
       case OwlPackage.TYPED_LITERAL__DATATYPE:
-        setDatatype((Datatype)null);
+        setDatatype(DATATYPE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -165,9 +152,26 @@ public class TypedLiteralImpl extends LiteralImpl implements TypedLiteral
     switch (featureID)
     {
       case OwlPackage.TYPED_LITERAL__DATATYPE:
-        return datatype != null;
+        return DATATYPE_EDEFAULT == null ? datatype != null : !DATATYPE_EDEFAULT.equals(datatype);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (datatype: ");
+    result.append(datatype);
+    result.append(')');
+    return result.toString();
   }
 
 } //TypedLiteralImpl

@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface ObjectPropertyExpression extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Object Property</b></em>' reference.
+   * Returns the value of the '<em><b>Object Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Object Property</em>' reference isn't clear,
+   * If the meaning of the '<em>Object Property</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object Property</em>' reference.
-   * @see #setObjectProperty(ObjectProperty)
+   * @return the value of the '<em>Object Property</em>' attribute.
+   * @see #setObjectProperty(String)
    * @see org.omg.sysml.owl.owl.OwlPackage#getObjectPropertyExpression_ObjectProperty()
    * @model
    * @generated
    */
-  ObjectProperty getObjectProperty();
+  String getObjectProperty();
 
   /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyExpression#getObjectProperty <em>Object Property</em>}' reference.
+   * Sets the value of the '{@link org.omg.sysml.owl.owl.ObjectPropertyExpression#getObjectProperty <em>Object Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object Property</em>' reference.
+   * @param value the new value of the '<em>Object Property</em>' attribute.
    * @see #getObjectProperty()
    * @generated
    */
-  void setObjectProperty(ObjectProperty value);
+  void setObjectProperty(String value);
 
 } // ObjectPropertyExpression

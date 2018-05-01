@@ -95,6 +95,7 @@ import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
 import org.omg.sysml.owl.owl.SameIndividual;
 import org.omg.sysml.owl.owl.StringLiteral;
@@ -173,6 +174,11 @@ public class OwlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseOntologyDocument(OntologyDocument object)
       {
         return createOntologyDocumentAdapter();
+      }
+      @Override
+      public Adapter casePrefixDeclaration(PrefixDeclaration object)
+      {
+        return createPrefixDeclarationAdapter();
       }
       @Override
       public Adapter caseOntology(Ontology object)
@@ -677,6 +683,21 @@ public class OwlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createOntologyDocumentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.omg.sysml.owl.owl.PrefixDeclaration <em>Prefix Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.omg.sysml.owl.owl.PrefixDeclaration
+   * @generated
+   */
+  public Adapter createPrefixDeclarationAdapter()
   {
     return null;
   }

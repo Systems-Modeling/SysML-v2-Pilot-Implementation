@@ -7917,11 +7917,11 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
             if ( (LA1_0==RULE_STRING) ) {
                 int LA1_1 = input.LA(2);
 
-                if ( (LA1_1==25) ) {
-                    alt1=1;
-                }
-                else if ( (LA1_1==EOF||LA1_1==RULE_FULL_IRI||(LA1_1>=RULE_PN_PREFIX && LA1_1<=RULE_STRING)||LA1_1==22) ) {
+                if ( (LA1_1==EOF||LA1_1==RULE_FULL_IRI||(LA1_1>=RULE_PN_PREFIX && LA1_1<=RULE_STRING)||LA1_1==22) ) {
                     alt1=2;
+                }
+                else if ( (LA1_1==25) ) {
+                    alt1=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -11004,25 +11004,31 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixDeclaration__Group__2__Impl"
-    // InternalOwl.g:3363:1: rule__PrefixDeclaration__Group__2__Impl : ( rulePrefixName ) ;
+    // InternalOwl.g:3363:1: rule__PrefixDeclaration__Group__2__Impl : ( ( rule__PrefixDeclaration__PrefixNameAssignment_2 ) ) ;
     public final void rule__PrefixDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:3367:1: ( ( rulePrefixName ) )
-            // InternalOwl.g:3368:1: ( rulePrefixName )
+            // InternalOwl.g:3367:1: ( ( ( rule__PrefixDeclaration__PrefixNameAssignment_2 ) ) )
+            // InternalOwl.g:3368:1: ( ( rule__PrefixDeclaration__PrefixNameAssignment_2 ) )
             {
-            // InternalOwl.g:3368:1: ( rulePrefixName )
-            // InternalOwl.g:3369:2: rulePrefixName
+            // InternalOwl.g:3368:1: ( ( rule__PrefixDeclaration__PrefixNameAssignment_2 ) )
+            // InternalOwl.g:3369:2: ( rule__PrefixDeclaration__PrefixNameAssignment_2 )
             {
-             before(grammarAccess.getPrefixDeclarationAccess().getPrefixNameParserRuleCall_2()); 
+             before(grammarAccess.getPrefixDeclarationAccess().getPrefixNameAssignment_2()); 
+            // InternalOwl.g:3370:2: ( rule__PrefixDeclaration__PrefixNameAssignment_2 )
+            // InternalOwl.g:3370:3: rule__PrefixDeclaration__PrefixNameAssignment_2
+            {
             pushFollow(FOLLOW_2);
-            rulePrefixName();
+            rule__PrefixDeclaration__PrefixNameAssignment_2();
 
             state._fsp--;
 
-             after(grammarAccess.getPrefixDeclarationAccess().getPrefixNameParserRuleCall_2()); 
+
+            }
+
+             after(grammarAccess.getPrefixDeclarationAccess().getPrefixNameAssignment_2()); 
 
             }
 
@@ -11158,25 +11164,31 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixDeclaration__Group__4__Impl"
-    // InternalOwl.g:3417:1: rule__PrefixDeclaration__Group__4__Impl : ( ruleFullIRI ) ;
+    // InternalOwl.g:3417:1: rule__PrefixDeclaration__Group__4__Impl : ( ( rule__PrefixDeclaration__FullIRIAssignment_4 ) ) ;
     public final void rule__PrefixDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:3421:1: ( ( ruleFullIRI ) )
-            // InternalOwl.g:3422:1: ( ruleFullIRI )
+            // InternalOwl.g:3421:1: ( ( ( rule__PrefixDeclaration__FullIRIAssignment_4 ) ) )
+            // InternalOwl.g:3422:1: ( ( rule__PrefixDeclaration__FullIRIAssignment_4 ) )
             {
-            // InternalOwl.g:3422:1: ( ruleFullIRI )
-            // InternalOwl.g:3423:2: ruleFullIRI
+            // InternalOwl.g:3422:1: ( ( rule__PrefixDeclaration__FullIRIAssignment_4 ) )
+            // InternalOwl.g:3423:2: ( rule__PrefixDeclaration__FullIRIAssignment_4 )
             {
-             before(grammarAccess.getPrefixDeclarationAccess().getFullIRIParserRuleCall_4()); 
+             before(grammarAccess.getPrefixDeclarationAccess().getFullIRIAssignment_4()); 
+            // InternalOwl.g:3424:2: ( rule__PrefixDeclaration__FullIRIAssignment_4 )
+            // InternalOwl.g:3424:3: rule__PrefixDeclaration__FullIRIAssignment_4
+            {
             pushFollow(FOLLOW_2);
-            ruleFullIRI();
+            rule__PrefixDeclaration__FullIRIAssignment_4();
 
             state._fsp--;
 
-             after(grammarAccess.getPrefixDeclarationAccess().getFullIRIParserRuleCall_4()); 
+
+            }
+
+             after(grammarAccess.getPrefixDeclarationAccess().getFullIRIAssignment_4()); 
 
             }
 
@@ -25001,31 +25013,31 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentClasses__Group__3__Impl"
-    // InternalOwl.g:8043:1: rule__EquivalentClasses__Group__3__Impl : ( ( rule__EquivalentClasses__ClassExpressionAssignment_3 ) ) ;
+    // InternalOwl.g:8043:1: rule__EquivalentClasses__Group__3__Impl : ( ( rule__EquivalentClasses__ClassExpressionsAssignment_3 ) ) ;
     public final void rule__EquivalentClasses__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8047:1: ( ( ( rule__EquivalentClasses__ClassExpressionAssignment_3 ) ) )
-            // InternalOwl.g:8048:1: ( ( rule__EquivalentClasses__ClassExpressionAssignment_3 ) )
+            // InternalOwl.g:8047:1: ( ( ( rule__EquivalentClasses__ClassExpressionsAssignment_3 ) ) )
+            // InternalOwl.g:8048:1: ( ( rule__EquivalentClasses__ClassExpressionsAssignment_3 ) )
             {
-            // InternalOwl.g:8048:1: ( ( rule__EquivalentClasses__ClassExpressionAssignment_3 ) )
-            // InternalOwl.g:8049:2: ( rule__EquivalentClasses__ClassExpressionAssignment_3 )
+            // InternalOwl.g:8048:1: ( ( rule__EquivalentClasses__ClassExpressionsAssignment_3 ) )
+            // InternalOwl.g:8049:2: ( rule__EquivalentClasses__ClassExpressionsAssignment_3 )
             {
-             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_3()); 
-            // InternalOwl.g:8050:2: ( rule__EquivalentClasses__ClassExpressionAssignment_3 )
-            // InternalOwl.g:8050:3: rule__EquivalentClasses__ClassExpressionAssignment_3
+             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_3()); 
+            // InternalOwl.g:8050:2: ( rule__EquivalentClasses__ClassExpressionsAssignment_3 )
+            // InternalOwl.g:8050:3: rule__EquivalentClasses__ClassExpressionsAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__EquivalentClasses__ClassExpressionAssignment_3();
+            rule__EquivalentClasses__ClassExpressionsAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_3()); 
+             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_3()); 
 
             }
 
@@ -25086,42 +25098,42 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentClasses__Group__4__Impl"
-    // InternalOwl.g:8070:1: rule__EquivalentClasses__Group__4__Impl : ( ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* ) ) ;
+    // InternalOwl.g:8070:1: rule__EquivalentClasses__Group__4__Impl : ( ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* ) ) ;
     public final void rule__EquivalentClasses__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8074:1: ( ( ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* ) ) )
-            // InternalOwl.g:8075:1: ( ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* ) )
+            // InternalOwl.g:8074:1: ( ( ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* ) ) )
+            // InternalOwl.g:8075:1: ( ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* ) )
             {
-            // InternalOwl.g:8075:1: ( ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* ) )
-            // InternalOwl.g:8076:2: ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* )
+            // InternalOwl.g:8075:1: ( ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* ) )
+            // InternalOwl.g:8076:2: ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* )
             {
-            // InternalOwl.g:8076:2: ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 ) )
-            // InternalOwl.g:8077:3: ( rule__EquivalentClasses__ClassExpressionAssignment_4 )
+            // InternalOwl.g:8076:2: ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 ) )
+            // InternalOwl.g:8077:3: ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )
             {
-             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_4()); 
-            // InternalOwl.g:8078:3: ( rule__EquivalentClasses__ClassExpressionAssignment_4 )
-            // InternalOwl.g:8078:4: rule__EquivalentClasses__ClassExpressionAssignment_4
+             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_4()); 
+            // InternalOwl.g:8078:3: ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )
+            // InternalOwl.g:8078:4: rule__EquivalentClasses__ClassExpressionsAssignment_4
             {
             pushFollow(FOLLOW_23);
-            rule__EquivalentClasses__ClassExpressionAssignment_4();
+            rule__EquivalentClasses__ClassExpressionsAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_4()); 
+             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_4()); 
 
             }
 
-            // InternalOwl.g:8081:2: ( ( rule__EquivalentClasses__ClassExpressionAssignment_4 )* )
-            // InternalOwl.g:8082:3: ( rule__EquivalentClasses__ClassExpressionAssignment_4 )*
+            // InternalOwl.g:8081:2: ( ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )* )
+            // InternalOwl.g:8082:3: ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )*
             {
-             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_4()); 
-            // InternalOwl.g:8083:3: ( rule__EquivalentClasses__ClassExpressionAssignment_4 )*
+             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_4()); 
+            // InternalOwl.g:8083:3: ( rule__EquivalentClasses__ClassExpressionsAssignment_4 )*
             loop41:
             do {
                 int alt41=2;
@@ -25134,10 +25146,10 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
                 switch (alt41) {
             	case 1 :
-            	    // InternalOwl.g:8083:4: rule__EquivalentClasses__ClassExpressionAssignment_4
+            	    // InternalOwl.g:8083:4: rule__EquivalentClasses__ClassExpressionsAssignment_4
             	    {
             	    pushFollow(FOLLOW_23);
-            	    rule__EquivalentClasses__ClassExpressionAssignment_4();
+            	    rule__EquivalentClasses__ClassExpressionsAssignment_4();
 
             	    state._fsp--;
 
@@ -25150,7 +25162,7 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionAssignment_4()); 
+             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionsAssignment_4()); 
 
             }
 
@@ -25537,31 +25549,31 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointClasses__Group__3__Impl"
-    // InternalOwl.g:8212:1: rule__DisjointClasses__Group__3__Impl : ( ( rule__DisjointClasses__ClassExpressionAssignment_3 ) ) ;
+    // InternalOwl.g:8212:1: rule__DisjointClasses__Group__3__Impl : ( ( rule__DisjointClasses__ClassExpressionsAssignment_3 ) ) ;
     public final void rule__DisjointClasses__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8216:1: ( ( ( rule__DisjointClasses__ClassExpressionAssignment_3 ) ) )
-            // InternalOwl.g:8217:1: ( ( rule__DisjointClasses__ClassExpressionAssignment_3 ) )
+            // InternalOwl.g:8216:1: ( ( ( rule__DisjointClasses__ClassExpressionsAssignment_3 ) ) )
+            // InternalOwl.g:8217:1: ( ( rule__DisjointClasses__ClassExpressionsAssignment_3 ) )
             {
-            // InternalOwl.g:8217:1: ( ( rule__DisjointClasses__ClassExpressionAssignment_3 ) )
-            // InternalOwl.g:8218:2: ( rule__DisjointClasses__ClassExpressionAssignment_3 )
+            // InternalOwl.g:8217:1: ( ( rule__DisjointClasses__ClassExpressionsAssignment_3 ) )
+            // InternalOwl.g:8218:2: ( rule__DisjointClasses__ClassExpressionsAssignment_3 )
             {
-             before(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_3()); 
-            // InternalOwl.g:8219:2: ( rule__DisjointClasses__ClassExpressionAssignment_3 )
-            // InternalOwl.g:8219:3: rule__DisjointClasses__ClassExpressionAssignment_3
+             before(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_3()); 
+            // InternalOwl.g:8219:2: ( rule__DisjointClasses__ClassExpressionsAssignment_3 )
+            // InternalOwl.g:8219:3: rule__DisjointClasses__ClassExpressionsAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__DisjointClasses__ClassExpressionAssignment_3();
+            rule__DisjointClasses__ClassExpressionsAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_3()); 
+             after(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_3()); 
 
             }
 
@@ -25622,42 +25634,42 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointClasses__Group__4__Impl"
-    // InternalOwl.g:8239:1: rule__DisjointClasses__Group__4__Impl : ( ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* ) ) ;
+    // InternalOwl.g:8239:1: rule__DisjointClasses__Group__4__Impl : ( ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* ) ) ;
     public final void rule__DisjointClasses__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8243:1: ( ( ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* ) ) )
-            // InternalOwl.g:8244:1: ( ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* ) )
+            // InternalOwl.g:8243:1: ( ( ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* ) ) )
+            // InternalOwl.g:8244:1: ( ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* ) )
             {
-            // InternalOwl.g:8244:1: ( ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* ) )
-            // InternalOwl.g:8245:2: ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* )
+            // InternalOwl.g:8244:1: ( ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* ) )
+            // InternalOwl.g:8245:2: ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) ) ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* )
             {
-            // InternalOwl.g:8245:2: ( ( rule__DisjointClasses__ClassExpressionAssignment_4 ) )
-            // InternalOwl.g:8246:3: ( rule__DisjointClasses__ClassExpressionAssignment_4 )
+            // InternalOwl.g:8245:2: ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 ) )
+            // InternalOwl.g:8246:3: ( rule__DisjointClasses__ClassExpressionsAssignment_4 )
             {
-             before(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_4()); 
-            // InternalOwl.g:8247:3: ( rule__DisjointClasses__ClassExpressionAssignment_4 )
-            // InternalOwl.g:8247:4: rule__DisjointClasses__ClassExpressionAssignment_4
+             before(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_4()); 
+            // InternalOwl.g:8247:3: ( rule__DisjointClasses__ClassExpressionsAssignment_4 )
+            // InternalOwl.g:8247:4: rule__DisjointClasses__ClassExpressionsAssignment_4
             {
             pushFollow(FOLLOW_23);
-            rule__DisjointClasses__ClassExpressionAssignment_4();
+            rule__DisjointClasses__ClassExpressionsAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_4()); 
+             after(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_4()); 
 
             }
 
-            // InternalOwl.g:8250:2: ( ( rule__DisjointClasses__ClassExpressionAssignment_4 )* )
-            // InternalOwl.g:8251:3: ( rule__DisjointClasses__ClassExpressionAssignment_4 )*
+            // InternalOwl.g:8250:2: ( ( rule__DisjointClasses__ClassExpressionsAssignment_4 )* )
+            // InternalOwl.g:8251:3: ( rule__DisjointClasses__ClassExpressionsAssignment_4 )*
             {
-             before(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_4()); 
-            // InternalOwl.g:8252:3: ( rule__DisjointClasses__ClassExpressionAssignment_4 )*
+             before(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_4()); 
+            // InternalOwl.g:8252:3: ( rule__DisjointClasses__ClassExpressionsAssignment_4 )*
             loop43:
             do {
                 int alt43=2;
@@ -25670,10 +25682,10 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
                 switch (alt43) {
             	case 1 :
-            	    // InternalOwl.g:8252:4: rule__DisjointClasses__ClassExpressionAssignment_4
+            	    // InternalOwl.g:8252:4: rule__DisjointClasses__ClassExpressionsAssignment_4
             	    {
             	    pushFollow(FOLLOW_23);
-            	    rule__DisjointClasses__ClassExpressionAssignment_4();
+            	    rule__DisjointClasses__ClassExpressionsAssignment_4();
 
             	    state._fsp--;
 
@@ -25686,7 +25698,7 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getDisjointClassesAccess().getClassExpressionAssignment_4()); 
+             after(grammarAccess.getDisjointClassesAccess().getClassExpressionsAssignment_4()); 
 
             }
 
@@ -26158,31 +26170,31 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointUnion__Group__4__Impl"
-    // InternalOwl.g:8408:1: rule__DisjointUnion__Group__4__Impl : ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 ) ) ;
+    // InternalOwl.g:8408:1: rule__DisjointUnion__Group__4__Impl : ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 ) ) ;
     public final void rule__DisjointUnion__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8412:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 ) ) )
-            // InternalOwl.g:8413:1: ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 ) )
+            // InternalOwl.g:8412:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 ) ) )
+            // InternalOwl.g:8413:1: ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 ) )
             {
-            // InternalOwl.g:8413:1: ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 ) )
-            // InternalOwl.g:8414:2: ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 )
+            // InternalOwl.g:8413:1: ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 ) )
+            // InternalOwl.g:8414:2: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 )
             {
-             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_4()); 
-            // InternalOwl.g:8415:2: ( rule__DisjointUnion__DisjointClassExpressionAssignment_4 )
-            // InternalOwl.g:8415:3: rule__DisjointUnion__DisjointClassExpressionAssignment_4
+             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_4()); 
+            // InternalOwl.g:8415:2: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_4 )
+            // InternalOwl.g:8415:3: rule__DisjointUnion__DisjointClassExpressionsAssignment_4
             {
             pushFollow(FOLLOW_2);
-            rule__DisjointUnion__DisjointClassExpressionAssignment_4();
+            rule__DisjointUnion__DisjointClassExpressionsAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_4()); 
+             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_4()); 
 
             }
 
@@ -26243,42 +26255,42 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointUnion__Group__5__Impl"
-    // InternalOwl.g:8435:1: rule__DisjointUnion__Group__5__Impl : ( ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* ) ) ;
+    // InternalOwl.g:8435:1: rule__DisjointUnion__Group__5__Impl : ( ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* ) ) ;
     public final void rule__DisjointUnion__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:8439:1: ( ( ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* ) ) )
-            // InternalOwl.g:8440:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* ) )
+            // InternalOwl.g:8439:1: ( ( ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* ) ) )
+            // InternalOwl.g:8440:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* ) )
             {
-            // InternalOwl.g:8440:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* ) )
-            // InternalOwl.g:8441:2: ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* )
+            // InternalOwl.g:8440:1: ( ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* ) )
+            // InternalOwl.g:8441:2: ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) ) ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* )
             {
-            // InternalOwl.g:8441:2: ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 ) )
-            // InternalOwl.g:8442:3: ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )
+            // InternalOwl.g:8441:2: ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 ) )
+            // InternalOwl.g:8442:3: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )
             {
-             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_5()); 
-            // InternalOwl.g:8443:3: ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )
-            // InternalOwl.g:8443:4: rule__DisjointUnion__DisjointClassExpressionAssignment_5
+             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_5()); 
+            // InternalOwl.g:8443:3: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )
+            // InternalOwl.g:8443:4: rule__DisjointUnion__DisjointClassExpressionsAssignment_5
             {
             pushFollow(FOLLOW_23);
-            rule__DisjointUnion__DisjointClassExpressionAssignment_5();
+            rule__DisjointUnion__DisjointClassExpressionsAssignment_5();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_5()); 
+             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_5()); 
 
             }
 
-            // InternalOwl.g:8446:2: ( ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )* )
-            // InternalOwl.g:8447:3: ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )*
+            // InternalOwl.g:8446:2: ( ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )* )
+            // InternalOwl.g:8447:3: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )*
             {
-             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_5()); 
-            // InternalOwl.g:8448:3: ( rule__DisjointUnion__DisjointClassExpressionAssignment_5 )*
+             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_5()); 
+            // InternalOwl.g:8448:3: ( rule__DisjointUnion__DisjointClassExpressionsAssignment_5 )*
             loop45:
             do {
                 int alt45=2;
@@ -26291,10 +26303,10 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
                 switch (alt45) {
             	case 1 :
-            	    // InternalOwl.g:8448:4: rule__DisjointUnion__DisjointClassExpressionAssignment_5
+            	    // InternalOwl.g:8448:4: rule__DisjointUnion__DisjointClassExpressionsAssignment_5
             	    {
             	    pushFollow(FOLLOW_23);
-            	    rule__DisjointUnion__DisjointClassExpressionAssignment_5();
+            	    rule__DisjointUnion__DisjointClassExpressionsAssignment_5();
 
             	    state._fsp--;
 
@@ -26307,7 +26319,7 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionAssignment_5()); 
+             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsAssignment_5()); 
 
             }
 
@@ -38759,7 +38771,7 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
             // InternalOwl.g:12506:1: ( rule__ObjectPropertyAssertion__Group__3__Impl rule__ObjectPropertyAssertion__Group__4 )
             // InternalOwl.g:12507:2: rule__ObjectPropertyAssertion__Group__3__Impl rule__ObjectPropertyAssertion__Group__4
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_24);
             rule__ObjectPropertyAssertion__Group__3__Impl();
 
             state._fsp--;
@@ -38844,7 +38856,7 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
             // InternalOwl.g:12533:1: ( rule__ObjectPropertyAssertion__Group__4__Impl rule__ObjectPropertyAssertion__Group__5 )
             // InternalOwl.g:12534:2: rule__ObjectPropertyAssertion__Group__4__Impl rule__ObjectPropertyAssertion__Group__5
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_24);
             rule__ObjectPropertyAssertion__Group__4__Impl();
 
             state._fsp--;
@@ -44062,18 +44074,100 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__OntologyDocument__OntologyAssignment_1"
 
 
+    // $ANTLR start "rule__PrefixDeclaration__PrefixNameAssignment_2"
+    // InternalOwl.g:14260:1: rule__PrefixDeclaration__PrefixNameAssignment_2 : ( rulePrefixName ) ;
+    public final void rule__PrefixDeclaration__PrefixNameAssignment_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalOwl.g:14264:1: ( ( rulePrefixName ) )
+            // InternalOwl.g:14265:2: ( rulePrefixName )
+            {
+            // InternalOwl.g:14265:2: ( rulePrefixName )
+            // InternalOwl.g:14266:3: rulePrefixName
+            {
+             before(grammarAccess.getPrefixDeclarationAccess().getPrefixNamePrefixNameParserRuleCall_2_0()); 
+            pushFollow(FOLLOW_2);
+            rulePrefixName();
+
+            state._fsp--;
+
+             after(grammarAccess.getPrefixDeclarationAccess().getPrefixNamePrefixNameParserRuleCall_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrefixDeclaration__PrefixNameAssignment_2"
+
+
+    // $ANTLR start "rule__PrefixDeclaration__FullIRIAssignment_4"
+    // InternalOwl.g:14275:1: rule__PrefixDeclaration__FullIRIAssignment_4 : ( ruleFullIRI ) ;
+    public final void rule__PrefixDeclaration__FullIRIAssignment_4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalOwl.g:14279:1: ( ( ruleFullIRI ) )
+            // InternalOwl.g:14280:2: ( ruleFullIRI )
+            {
+            // InternalOwl.g:14280:2: ( ruleFullIRI )
+            // InternalOwl.g:14281:3: ruleFullIRI
+            {
+             before(grammarAccess.getPrefixDeclarationAccess().getFullIRIFullIRIParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_2);
+            ruleFullIRI();
+
+            state._fsp--;
+
+             after(grammarAccess.getPrefixDeclarationAccess().getFullIRIFullIRIParserRuleCall_4_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__PrefixDeclaration__FullIRIAssignment_4"
+
+
     // $ANTLR start "rule__Ontology__OntologyIRIAssignment_3_0"
-    // InternalOwl.g:14260:1: rule__Ontology__OntologyIRIAssignment_3_0 : ( ruleIRI ) ;
+    // InternalOwl.g:14290:1: rule__Ontology__OntologyIRIAssignment_3_0 : ( ruleIRI ) ;
     public final void rule__Ontology__OntologyIRIAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14264:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14265:2: ( ruleIRI )
+            // InternalOwl.g:14294:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14295:2: ( ruleIRI )
             {
-            // InternalOwl.g:14265:2: ( ruleIRI )
-            // InternalOwl.g:14266:3: ruleIRI
+            // InternalOwl.g:14295:2: ( ruleIRI )
+            // InternalOwl.g:14296:3: ruleIRI
             {
              before(grammarAccess.getOntologyAccess().getOntologyIRIIRIParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -44104,17 +44198,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Ontology__VersionIRIAssignment_3_1"
-    // InternalOwl.g:14275:1: rule__Ontology__VersionIRIAssignment_3_1 : ( ruleIRI ) ;
+    // InternalOwl.g:14305:1: rule__Ontology__VersionIRIAssignment_3_1 : ( ruleIRI ) ;
     public final void rule__Ontology__VersionIRIAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14279:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14280:2: ( ruleIRI )
+            // InternalOwl.g:14309:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14310:2: ( ruleIRI )
             {
-            // InternalOwl.g:14280:2: ( ruleIRI )
-            // InternalOwl.g:14281:3: ruleIRI
+            // InternalOwl.g:14310:2: ( ruleIRI )
+            // InternalOwl.g:14311:3: ruleIRI
             {
              before(grammarAccess.getOntologyAccess().getVersionIRIIRIParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -44145,17 +44239,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Ontology__DirectlyImportsDocumentsAssignment_4"
-    // InternalOwl.g:14290:1: rule__Ontology__DirectlyImportsDocumentsAssignment_4 : ( ruleDirectlyImportsDocument ) ;
+    // InternalOwl.g:14320:1: rule__Ontology__DirectlyImportsDocumentsAssignment_4 : ( ruleDirectlyImportsDocument ) ;
     public final void rule__Ontology__DirectlyImportsDocumentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14294:1: ( ( ruleDirectlyImportsDocument ) )
-            // InternalOwl.g:14295:2: ( ruleDirectlyImportsDocument )
+            // InternalOwl.g:14324:1: ( ( ruleDirectlyImportsDocument ) )
+            // InternalOwl.g:14325:2: ( ruleDirectlyImportsDocument )
             {
-            // InternalOwl.g:14295:2: ( ruleDirectlyImportsDocument )
-            // InternalOwl.g:14296:3: ruleDirectlyImportsDocument
+            // InternalOwl.g:14325:2: ( ruleDirectlyImportsDocument )
+            // InternalOwl.g:14326:3: ruleDirectlyImportsDocument
             {
              before(grammarAccess.getOntologyAccess().getDirectlyImportsDocumentsDirectlyImportsDocumentParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -44186,17 +44280,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Ontology__OntologyAnnotationsAssignment_5"
-    // InternalOwl.g:14305:1: rule__Ontology__OntologyAnnotationsAssignment_5 : ( ruleAnnotation ) ;
+    // InternalOwl.g:14335:1: rule__Ontology__OntologyAnnotationsAssignment_5 : ( ruleAnnotation ) ;
     public final void rule__Ontology__OntologyAnnotationsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14309:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:14310:2: ( ruleAnnotation )
+            // InternalOwl.g:14339:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:14340:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:14310:2: ( ruleAnnotation )
-            // InternalOwl.g:14311:3: ruleAnnotation
+            // InternalOwl.g:14340:2: ( ruleAnnotation )
+            // InternalOwl.g:14341:3: ruleAnnotation
             {
              before(grammarAccess.getOntologyAccess().getOntologyAnnotationsAnnotationParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -44227,17 +44321,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Ontology__AxiomsAssignment_6"
-    // InternalOwl.g:14320:1: rule__Ontology__AxiomsAssignment_6 : ( ruleAxiom ) ;
+    // InternalOwl.g:14350:1: rule__Ontology__AxiomsAssignment_6 : ( ruleAxiom ) ;
     public final void rule__Ontology__AxiomsAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14324:1: ( ( ruleAxiom ) )
-            // InternalOwl.g:14325:2: ( ruleAxiom )
+            // InternalOwl.g:14354:1: ( ( ruleAxiom ) )
+            // InternalOwl.g:14355:2: ( ruleAxiom )
             {
-            // InternalOwl.g:14325:2: ( ruleAxiom )
-            // InternalOwl.g:14326:3: ruleAxiom
+            // InternalOwl.g:14355:2: ( ruleAxiom )
+            // InternalOwl.g:14356:3: ruleAxiom
             {
              before(grammarAccess.getOntologyAccess().getAxiomsAxiomParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
@@ -44268,17 +44362,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__EntityIRIAssignment"
-    // InternalOwl.g:14335:1: rule__Class__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14365:1: rule__Class__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__Class__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14339:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14340:2: ( ruleIRI )
+            // InternalOwl.g:14369:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14370:2: ( ruleIRI )
             {
-            // InternalOwl.g:14340:2: ( ruleIRI )
-            // InternalOwl.g:14341:3: ruleIRI
+            // InternalOwl.g:14370:2: ( ruleIRI )
+            // InternalOwl.g:14371:3: ruleIRI
             {
              before(grammarAccess.getClassAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44309,17 +44403,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__EntityIRIAssignment"
-    // InternalOwl.g:14350:1: rule__Datatype__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14380:1: rule__Datatype__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__Datatype__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14354:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14355:2: ( ruleIRI )
+            // InternalOwl.g:14384:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14385:2: ( ruleIRI )
             {
-            // InternalOwl.g:14355:2: ( ruleIRI )
-            // InternalOwl.g:14356:3: ruleIRI
+            // InternalOwl.g:14385:2: ( ruleIRI )
+            // InternalOwl.g:14386:3: ruleIRI
             {
              before(grammarAccess.getDatatypeAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44350,17 +44444,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectProperty__EntityIRIAssignment"
-    // InternalOwl.g:14365:1: rule__ObjectProperty__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14395:1: rule__ObjectProperty__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__ObjectProperty__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14369:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14370:2: ( ruleIRI )
+            // InternalOwl.g:14399:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14400:2: ( ruleIRI )
             {
-            // InternalOwl.g:14370:2: ( ruleIRI )
-            // InternalOwl.g:14371:3: ruleIRI
+            // InternalOwl.g:14400:2: ( ruleIRI )
+            // InternalOwl.g:14401:3: ruleIRI
             {
              before(grammarAccess.getObjectPropertyAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44391,17 +44485,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataProperty__EntityIRIAssignment"
-    // InternalOwl.g:14380:1: rule__DataProperty__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14410:1: rule__DataProperty__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__DataProperty__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14384:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14385:2: ( ruleIRI )
+            // InternalOwl.g:14414:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14415:2: ( ruleIRI )
             {
-            // InternalOwl.g:14385:2: ( ruleIRI )
-            // InternalOwl.g:14386:3: ruleIRI
+            // InternalOwl.g:14415:2: ( ruleIRI )
+            // InternalOwl.g:14416:3: ruleIRI
             {
              before(grammarAccess.getDataPropertyAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44432,17 +44526,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationProperty__EntityIRIAssignment"
-    // InternalOwl.g:14395:1: rule__AnnotationProperty__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14425:1: rule__AnnotationProperty__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__AnnotationProperty__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14399:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14400:2: ( ruleIRI )
+            // InternalOwl.g:14429:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14430:2: ( ruleIRI )
             {
-            // InternalOwl.g:14400:2: ( ruleIRI )
-            // InternalOwl.g:14401:3: ruleIRI
+            // InternalOwl.g:14430:2: ( ruleIRI )
+            // InternalOwl.g:14431:3: ruleIRI
             {
              before(grammarAccess.getAnnotationPropertyAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44473,17 +44567,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedIndividual__EntityIRIAssignment"
-    // InternalOwl.g:14410:1: rule__NamedIndividual__EntityIRIAssignment : ( ruleIRI ) ;
+    // InternalOwl.g:14440:1: rule__NamedIndividual__EntityIRIAssignment : ( ruleIRI ) ;
     public final void rule__NamedIndividual__EntityIRIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14414:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14415:2: ( ruleIRI )
+            // InternalOwl.g:14444:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14445:2: ( ruleIRI )
             {
-            // InternalOwl.g:14415:2: ( ruleIRI )
-            // InternalOwl.g:14416:3: ruleIRI
+            // InternalOwl.g:14445:2: ( ruleIRI )
+            // InternalOwl.g:14446:3: ruleIRI
             {
              before(grammarAccess.getNamedIndividualAccess().getEntityIRIIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44514,17 +44608,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnonymousIndividual__NodeIdAssignment"
-    // InternalOwl.g:14425:1: rule__AnonymousIndividual__NodeIdAssignment : ( ruleNodeID ) ;
+    // InternalOwl.g:14455:1: rule__AnonymousIndividual__NodeIdAssignment : ( ruleNodeID ) ;
     public final void rule__AnonymousIndividual__NodeIdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14429:1: ( ( ruleNodeID ) )
-            // InternalOwl.g:14430:2: ( ruleNodeID )
+            // InternalOwl.g:14459:1: ( ( ruleNodeID ) )
+            // InternalOwl.g:14460:2: ( ruleNodeID )
             {
-            // InternalOwl.g:14430:2: ( ruleNodeID )
-            // InternalOwl.g:14431:3: ruleNodeID
+            // InternalOwl.g:14460:2: ( ruleNodeID )
+            // InternalOwl.g:14461:3: ruleNodeID
             {
              before(grammarAccess.getAnonymousIndividualAccess().getNodeIdNodeIDParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -44555,17 +44649,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedLiteral__LexicalFormAssignment_0"
-    // InternalOwl.g:14440:1: rule__TypedLiteral__LexicalFormAssignment_0 : ( RULE_STRING ) ;
+    // InternalOwl.g:14470:1: rule__TypedLiteral__LexicalFormAssignment_0 : ( RULE_STRING ) ;
     public final void rule__TypedLiteral__LexicalFormAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14444:1: ( ( RULE_STRING ) )
-            // InternalOwl.g:14445:2: ( RULE_STRING )
+            // InternalOwl.g:14474:1: ( ( RULE_STRING ) )
+            // InternalOwl.g:14475:2: ( RULE_STRING )
             {
-            // InternalOwl.g:14445:2: ( RULE_STRING )
-            // InternalOwl.g:14446:3: RULE_STRING
+            // InternalOwl.g:14475:2: ( RULE_STRING )
+            // InternalOwl.g:14476:3: RULE_STRING
             {
              before(grammarAccess.getTypedLiteralAccess().getLexicalFormSTRINGTerminalRuleCall_0_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -44592,33 +44686,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedLiteral__DatatypeAssignment_2"
-    // InternalOwl.g:14455:1: rule__TypedLiteral__DatatypeAssignment_2 : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14485:1: rule__TypedLiteral__DatatypeAssignment_2 : ( ruleIRI ) ;
     public final void rule__TypedLiteral__DatatypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14459:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14460:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14489:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14490:2: ( ruleIRI )
             {
-            // InternalOwl.g:14460:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14461:3: ( ruleIRI )
+            // InternalOwl.g:14490:2: ( ruleIRI )
+            // InternalOwl.g:14491:3: ruleIRI
             {
-             before(grammarAccess.getTypedLiteralAccess().getDatatypeDatatypeCrossReference_2_0()); 
-            // InternalOwl.g:14462:3: ( ruleIRI )
-            // InternalOwl.g:14463:4: ruleIRI
-            {
-             before(grammarAccess.getTypedLiteralAccess().getDatatypeDatatypeIRIParserRuleCall_2_0_1()); 
+             before(grammarAccess.getTypedLiteralAccess().getDatatypeIRIParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getTypedLiteralAccess().getDatatypeDatatypeIRIParserRuleCall_2_0_1()); 
-
-            }
-
-             after(grammarAccess.getTypedLiteralAccess().getDatatypeDatatypeCrossReference_2_0()); 
+             after(grammarAccess.getTypedLiteralAccess().getDatatypeIRIParserRuleCall_2_0()); 
 
             }
 
@@ -44641,17 +44727,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringLiteral__LexicalFormAssignment"
-    // InternalOwl.g:14474:1: rule__StringLiteral__LexicalFormAssignment : ( RULE_STRING ) ;
+    // InternalOwl.g:14500:1: rule__StringLiteral__LexicalFormAssignment : ( RULE_STRING ) ;
     public final void rule__StringLiteral__LexicalFormAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14478:1: ( ( RULE_STRING ) )
-            // InternalOwl.g:14479:2: ( RULE_STRING )
+            // InternalOwl.g:14504:1: ( ( RULE_STRING ) )
+            // InternalOwl.g:14505:2: ( RULE_STRING )
             {
-            // InternalOwl.g:14479:2: ( RULE_STRING )
-            // InternalOwl.g:14480:3: RULE_STRING
+            // InternalOwl.g:14505:2: ( RULE_STRING )
+            // InternalOwl.g:14506:3: RULE_STRING
             {
              before(grammarAccess.getStringLiteralAccess().getLexicalFormSTRINGTerminalRuleCall_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -44678,17 +44764,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Declaration__AxiomAnnotationAssignment_2"
-    // InternalOwl.g:14489:1: rule__Declaration__AxiomAnnotationAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:14515:1: rule__Declaration__AxiomAnnotationAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__Declaration__AxiomAnnotationAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14493:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:14494:2: ( ruleAnnotation )
+            // InternalOwl.g:14519:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:14520:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:14494:2: ( ruleAnnotation )
-            // InternalOwl.g:14495:3: ruleAnnotation
+            // InternalOwl.g:14520:2: ( ruleAnnotation )
+            // InternalOwl.g:14521:3: ruleAnnotation
             {
              before(grammarAccess.getDeclarationAccess().getAxiomAnnotationAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -44719,17 +44805,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Declaration__EntityAssignment_3"
-    // InternalOwl.g:14504:1: rule__Declaration__EntityAssignment_3 : ( ruleEntityDeclaration ) ;
+    // InternalOwl.g:14530:1: rule__Declaration__EntityAssignment_3 : ( ruleEntityDeclaration ) ;
     public final void rule__Declaration__EntityAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14508:1: ( ( ruleEntityDeclaration ) )
-            // InternalOwl.g:14509:2: ( ruleEntityDeclaration )
+            // InternalOwl.g:14534:1: ( ( ruleEntityDeclaration ) )
+            // InternalOwl.g:14535:2: ( ruleEntityDeclaration )
             {
-            // InternalOwl.g:14509:2: ( ruleEntityDeclaration )
-            // InternalOwl.g:14510:3: ruleEntityDeclaration
+            // InternalOwl.g:14535:2: ( ruleEntityDeclaration )
+            // InternalOwl.g:14536:3: ruleEntityDeclaration
             {
              before(grammarAccess.getDeclarationAccess().getEntityEntityDeclarationParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -44760,33 +44846,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyReference__ObjectPropertyAssignment"
-    // InternalOwl.g:14519:1: rule__ObjectPropertyReference__ObjectPropertyAssignment : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14545:1: rule__ObjectPropertyReference__ObjectPropertyAssignment : ( ruleIRI ) ;
     public final void rule__ObjectPropertyReference__ObjectPropertyAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14523:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14524:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14549:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14550:2: ( ruleIRI )
             {
-            // InternalOwl.g:14524:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14525:3: ( ruleIRI )
+            // InternalOwl.g:14550:2: ( ruleIRI )
+            // InternalOwl.g:14551:3: ruleIRI
             {
-             before(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyObjectPropertyCrossReference_0()); 
-            // InternalOwl.g:14526:3: ( ruleIRI )
-            // InternalOwl.g:14527:4: ruleIRI
-            {
-             before(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_0_1()); 
+             before(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyObjectPropertyCrossReference_0()); 
+             after(grammarAccess.getObjectPropertyReferenceAccess().getObjectPropertyIRIParserRuleCall_0()); 
 
             }
 
@@ -44809,33 +44887,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseObjectProperty__ObjectPropertyAssignment_2"
-    // InternalOwl.g:14538:1: rule__InverseObjectProperty__ObjectPropertyAssignment_2 : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14560:1: rule__InverseObjectProperty__ObjectPropertyAssignment_2 : ( ruleIRI ) ;
     public final void rule__InverseObjectProperty__ObjectPropertyAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14542:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14543:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14564:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14565:2: ( ruleIRI )
             {
-            // InternalOwl.g:14543:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14544:3: ( ruleIRI )
+            // InternalOwl.g:14565:2: ( ruleIRI )
+            // InternalOwl.g:14566:3: ruleIRI
             {
-             before(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyObjectPropertyCrossReference_2_0()); 
-            // InternalOwl.g:14545:3: ( ruleIRI )
-            // InternalOwl.g:14546:4: ruleIRI
-            {
-             before(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1()); 
+             before(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyIRIParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyObjectPropertyIRIParserRuleCall_2_0_1()); 
-
-            }
-
-             after(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyObjectPropertyCrossReference_2_0()); 
+             after(grammarAccess.getInverseObjectPropertyAccess().getObjectPropertyIRIParserRuleCall_2_0()); 
 
             }
 
@@ -44858,33 +44928,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyReference__DataPropertyAssignment"
-    // InternalOwl.g:14557:1: rule__DataPropertyReference__DataPropertyAssignment : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14575:1: rule__DataPropertyReference__DataPropertyAssignment : ( ruleIRI ) ;
     public final void rule__DataPropertyReference__DataPropertyAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14561:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14562:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14579:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14580:2: ( ruleIRI )
             {
-            // InternalOwl.g:14562:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14563:3: ( ruleIRI )
+            // InternalOwl.g:14580:2: ( ruleIRI )
+            // InternalOwl.g:14581:3: ruleIRI
             {
-             before(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyDataPropertyCrossReference_0()); 
-            // InternalOwl.g:14564:3: ( ruleIRI )
-            // InternalOwl.g:14565:4: ruleIRI
-            {
-             before(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyDataPropertyIRIParserRuleCall_0_1()); 
+             before(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyDataPropertyIRIParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyDataPropertyCrossReference_0()); 
+             after(grammarAccess.getDataPropertyReferenceAccess().getDataPropertyIRIParserRuleCall_0()); 
 
             }
 
@@ -44907,33 +44969,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeReference__DatatypeAssignment"
-    // InternalOwl.g:14576:1: rule__DatatypeReference__DatatypeAssignment : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14590:1: rule__DatatypeReference__DatatypeAssignment : ( ruleIRI ) ;
     public final void rule__DatatypeReference__DatatypeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14580:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14581:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14594:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14595:2: ( ruleIRI )
             {
-            // InternalOwl.g:14581:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14582:3: ( ruleIRI )
+            // InternalOwl.g:14595:2: ( ruleIRI )
+            // InternalOwl.g:14596:3: ruleIRI
             {
-             before(grammarAccess.getDatatypeReferenceAccess().getDatatypeDatatypeCrossReference_0()); 
-            // InternalOwl.g:14583:3: ( ruleIRI )
-            // InternalOwl.g:14584:4: ruleIRI
-            {
-             before(grammarAccess.getDatatypeReferenceAccess().getDatatypeDatatypeIRIParserRuleCall_0_1()); 
+             before(grammarAccess.getDatatypeReferenceAccess().getDatatypeIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getDatatypeReferenceAccess().getDatatypeDatatypeIRIParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getDatatypeReferenceAccess().getDatatypeDatatypeCrossReference_0()); 
+             after(grammarAccess.getDatatypeReferenceAccess().getDatatypeIRIParserRuleCall_0()); 
 
             }
 
@@ -44956,17 +45010,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataIntersectionOf__DataRangesAssignment_2"
-    // InternalOwl.g:14595:1: rule__DataIntersectionOf__DataRangesAssignment_2 : ( ruleDataRange ) ;
+    // InternalOwl.g:14605:1: rule__DataIntersectionOf__DataRangesAssignment_2 : ( ruleDataRange ) ;
     public final void rule__DataIntersectionOf__DataRangesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14599:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:14600:2: ( ruleDataRange )
+            // InternalOwl.g:14609:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:14610:2: ( ruleDataRange )
             {
-            // InternalOwl.g:14600:2: ( ruleDataRange )
-            // InternalOwl.g:14601:3: ruleDataRange
+            // InternalOwl.g:14610:2: ( ruleDataRange )
+            // InternalOwl.g:14611:3: ruleDataRange
             {
              before(grammarAccess.getDataIntersectionOfAccess().getDataRangesDataRangeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -44997,17 +45051,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataIntersectionOf__DataRangesAssignment_3"
-    // InternalOwl.g:14610:1: rule__DataIntersectionOf__DataRangesAssignment_3 : ( ruleDataRange ) ;
+    // InternalOwl.g:14620:1: rule__DataIntersectionOf__DataRangesAssignment_3 : ( ruleDataRange ) ;
     public final void rule__DataIntersectionOf__DataRangesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14614:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:14615:2: ( ruleDataRange )
+            // InternalOwl.g:14624:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:14625:2: ( ruleDataRange )
             {
-            // InternalOwl.g:14615:2: ( ruleDataRange )
-            // InternalOwl.g:14616:3: ruleDataRange
+            // InternalOwl.g:14625:2: ( ruleDataRange )
+            // InternalOwl.g:14626:3: ruleDataRange
             {
              before(grammarAccess.getDataIntersectionOfAccess().getDataRangesDataRangeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45038,17 +45092,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataUnionOf__DataRangesAssignment_2"
-    // InternalOwl.g:14625:1: rule__DataUnionOf__DataRangesAssignment_2 : ( ruleDataRange ) ;
+    // InternalOwl.g:14635:1: rule__DataUnionOf__DataRangesAssignment_2 : ( ruleDataRange ) ;
     public final void rule__DataUnionOf__DataRangesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14629:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:14630:2: ( ruleDataRange )
+            // InternalOwl.g:14639:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:14640:2: ( ruleDataRange )
             {
-            // InternalOwl.g:14630:2: ( ruleDataRange )
-            // InternalOwl.g:14631:3: ruleDataRange
+            // InternalOwl.g:14640:2: ( ruleDataRange )
+            // InternalOwl.g:14641:3: ruleDataRange
             {
              before(grammarAccess.getDataUnionOfAccess().getDataRangesDataRangeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45079,17 +45133,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataUnionOf__DataRangesAssignment_3"
-    // InternalOwl.g:14640:1: rule__DataUnionOf__DataRangesAssignment_3 : ( ruleDataRange ) ;
+    // InternalOwl.g:14650:1: rule__DataUnionOf__DataRangesAssignment_3 : ( ruleDataRange ) ;
     public final void rule__DataUnionOf__DataRangesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14644:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:14645:2: ( ruleDataRange )
+            // InternalOwl.g:14654:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:14655:2: ( ruleDataRange )
             {
-            // InternalOwl.g:14645:2: ( ruleDataRange )
-            // InternalOwl.g:14646:3: ruleDataRange
+            // InternalOwl.g:14655:2: ( ruleDataRange )
+            // InternalOwl.g:14656:3: ruleDataRange
             {
              before(grammarAccess.getDataUnionOfAccess().getDataRangesDataRangeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45120,17 +45174,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataComplementOf__DataRangeAssignment_2"
-    // InternalOwl.g:14655:1: rule__DataComplementOf__DataRangeAssignment_2 : ( ruleDataRange ) ;
+    // InternalOwl.g:14665:1: rule__DataComplementOf__DataRangeAssignment_2 : ( ruleDataRange ) ;
     public final void rule__DataComplementOf__DataRangeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14659:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:14660:2: ( ruleDataRange )
+            // InternalOwl.g:14669:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:14670:2: ( ruleDataRange )
             {
-            // InternalOwl.g:14660:2: ( ruleDataRange )
-            // InternalOwl.g:14661:3: ruleDataRange
+            // InternalOwl.g:14670:2: ( ruleDataRange )
+            // InternalOwl.g:14671:3: ruleDataRange
             {
              before(grammarAccess.getDataComplementOfAccess().getDataRangeDataRangeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45161,17 +45215,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataOneOf__LiteralsAssignment_2"
-    // InternalOwl.g:14670:1: rule__DataOneOf__LiteralsAssignment_2 : ( ruleLiteral ) ;
+    // InternalOwl.g:14680:1: rule__DataOneOf__LiteralsAssignment_2 : ( ruleLiteral ) ;
     public final void rule__DataOneOf__LiteralsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14674:1: ( ( ruleLiteral ) )
-            // InternalOwl.g:14675:2: ( ruleLiteral )
+            // InternalOwl.g:14684:1: ( ( ruleLiteral ) )
+            // InternalOwl.g:14685:2: ( ruleLiteral )
             {
-            // InternalOwl.g:14675:2: ( ruleLiteral )
-            // InternalOwl.g:14676:3: ruleLiteral
+            // InternalOwl.g:14685:2: ( ruleLiteral )
+            // InternalOwl.g:14686:3: ruleLiteral
             {
              before(grammarAccess.getDataOneOfAccess().getLiteralsLiteralParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45202,17 +45256,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeRestriction__DataTypeAssignment_2"
-    // InternalOwl.g:14685:1: rule__DatatypeRestriction__DataTypeAssignment_2 : ( ruleDatatypeReference ) ;
+    // InternalOwl.g:14695:1: rule__DatatypeRestriction__DataTypeAssignment_2 : ( ruleDatatypeReference ) ;
     public final void rule__DatatypeRestriction__DataTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14689:1: ( ( ruleDatatypeReference ) )
-            // InternalOwl.g:14690:2: ( ruleDatatypeReference )
+            // InternalOwl.g:14699:1: ( ( ruleDatatypeReference ) )
+            // InternalOwl.g:14700:2: ( ruleDatatypeReference )
             {
-            // InternalOwl.g:14690:2: ( ruleDatatypeReference )
-            // InternalOwl.g:14691:3: ruleDatatypeReference
+            // InternalOwl.g:14700:2: ( ruleDatatypeReference )
+            // InternalOwl.g:14701:3: ruleDatatypeReference
             {
              before(grammarAccess.getDatatypeRestrictionAccess().getDataTypeDatatypeReferenceParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45243,17 +45297,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeRestriction__RestrictionsAssignment_3"
-    // InternalOwl.g:14700:1: rule__DatatypeRestriction__RestrictionsAssignment_3 : ( ruleFacetRestriction ) ;
+    // InternalOwl.g:14710:1: rule__DatatypeRestriction__RestrictionsAssignment_3 : ( ruleFacetRestriction ) ;
     public final void rule__DatatypeRestriction__RestrictionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14704:1: ( ( ruleFacetRestriction ) )
-            // InternalOwl.g:14705:2: ( ruleFacetRestriction )
+            // InternalOwl.g:14714:1: ( ( ruleFacetRestriction ) )
+            // InternalOwl.g:14715:2: ( ruleFacetRestriction )
             {
-            // InternalOwl.g:14705:2: ( ruleFacetRestriction )
-            // InternalOwl.g:14706:3: ruleFacetRestriction
+            // InternalOwl.g:14715:2: ( ruleFacetRestriction )
+            // InternalOwl.g:14716:3: ruleFacetRestriction
             {
              before(grammarAccess.getDatatypeRestrictionAccess().getRestrictionsFacetRestrictionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45284,17 +45338,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FacetRestriction__ConstrainingFacetAssignment_0"
-    // InternalOwl.g:14715:1: rule__FacetRestriction__ConstrainingFacetAssignment_0 : ( ruleIRI ) ;
+    // InternalOwl.g:14725:1: rule__FacetRestriction__ConstrainingFacetAssignment_0 : ( ruleIRI ) ;
     public final void rule__FacetRestriction__ConstrainingFacetAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14719:1: ( ( ruleIRI ) )
-            // InternalOwl.g:14720:2: ( ruleIRI )
+            // InternalOwl.g:14729:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14730:2: ( ruleIRI )
             {
-            // InternalOwl.g:14720:2: ( ruleIRI )
-            // InternalOwl.g:14721:3: ruleIRI
+            // InternalOwl.g:14730:2: ( ruleIRI )
+            // InternalOwl.g:14731:3: ruleIRI
             {
              before(grammarAccess.getFacetRestrictionAccess().getConstrainingFacetIRIParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -45325,17 +45379,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FacetRestriction__RestrictionValueAssignment_1"
-    // InternalOwl.g:14730:1: rule__FacetRestriction__RestrictionValueAssignment_1 : ( ruleLiteral ) ;
+    // InternalOwl.g:14740:1: rule__FacetRestriction__RestrictionValueAssignment_1 : ( ruleLiteral ) ;
     public final void rule__FacetRestriction__RestrictionValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14734:1: ( ( ruleLiteral ) )
-            // InternalOwl.g:14735:2: ( ruleLiteral )
+            // InternalOwl.g:14744:1: ( ( ruleLiteral ) )
+            // InternalOwl.g:14745:2: ( ruleLiteral )
             {
-            // InternalOwl.g:14735:2: ( ruleLiteral )
-            // InternalOwl.g:14736:3: ruleLiteral
+            // InternalOwl.g:14745:2: ( ruleLiteral )
+            // InternalOwl.g:14746:3: ruleLiteral
             {
              before(grammarAccess.getFacetRestrictionAccess().getRestrictionValueLiteralParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -45366,33 +45420,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassReference__ClassAssignment"
-    // InternalOwl.g:14745:1: rule__ClassReference__ClassAssignment : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14755:1: rule__ClassReference__ClassAssignment : ( ruleIRI ) ;
     public final void rule__ClassReference__ClassAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14749:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14750:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14759:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14760:2: ( ruleIRI )
             {
-            // InternalOwl.g:14750:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14751:3: ( ruleIRI )
+            // InternalOwl.g:14760:2: ( ruleIRI )
+            // InternalOwl.g:14761:3: ruleIRI
             {
-             before(grammarAccess.getClassReferenceAccess().getClassClassCrossReference_0()); 
-            // InternalOwl.g:14752:3: ( ruleIRI )
-            // InternalOwl.g:14753:4: ruleIRI
-            {
-             before(grammarAccess.getClassReferenceAccess().getClassClassIRIParserRuleCall_0_1()); 
+             before(grammarAccess.getClassReferenceAccess().getClassIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getClassReferenceAccess().getClassClassIRIParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getClassReferenceAccess().getClassClassCrossReference_0()); 
+             after(grammarAccess.getClassReferenceAccess().getClassIRIParserRuleCall_0()); 
 
             }
 
@@ -45415,17 +45461,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectIntersectionOf__ClassExpressionsAssignment_2"
-    // InternalOwl.g:14764:1: rule__ObjectIntersectionOf__ClassExpressionsAssignment_2 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14770:1: rule__ObjectIntersectionOf__ClassExpressionsAssignment_2 : ( ruleClassExpression ) ;
     public final void rule__ObjectIntersectionOf__ClassExpressionsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14768:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:14769:2: ( ruleClassExpression )
+            // InternalOwl.g:14774:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:14775:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:14769:2: ( ruleClassExpression )
-            // InternalOwl.g:14770:3: ruleClassExpression
+            // InternalOwl.g:14775:2: ( ruleClassExpression )
+            // InternalOwl.g:14776:3: ruleClassExpression
             {
              before(grammarAccess.getObjectIntersectionOfAccess().getClassExpressionsClassExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45456,17 +45502,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectUnionOf__ClassExpressionsAssignment_2"
-    // InternalOwl.g:14779:1: rule__ObjectUnionOf__ClassExpressionsAssignment_2 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14785:1: rule__ObjectUnionOf__ClassExpressionsAssignment_2 : ( ruleClassExpression ) ;
     public final void rule__ObjectUnionOf__ClassExpressionsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14783:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:14784:2: ( ruleClassExpression )
+            // InternalOwl.g:14789:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:14790:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:14784:2: ( ruleClassExpression )
-            // InternalOwl.g:14785:3: ruleClassExpression
+            // InternalOwl.g:14790:2: ( ruleClassExpression )
+            // InternalOwl.g:14791:3: ruleClassExpression
             {
              before(grammarAccess.getObjectUnionOfAccess().getClassExpressionsClassExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45497,17 +45543,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectComplementOf__ClassExpressionAssignment_2"
-    // InternalOwl.g:14794:1: rule__ObjectComplementOf__ClassExpressionAssignment_2 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14800:1: rule__ObjectComplementOf__ClassExpressionAssignment_2 : ( ruleClassExpression ) ;
     public final void rule__ObjectComplementOf__ClassExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14798:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:14799:2: ( ruleClassExpression )
+            // InternalOwl.g:14804:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:14805:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:14799:2: ( ruleClassExpression )
-            // InternalOwl.g:14800:3: ruleClassExpression
+            // InternalOwl.g:14805:2: ( ruleClassExpression )
+            // InternalOwl.g:14806:3: ruleClassExpression
             {
              before(grammarAccess.getObjectComplementOfAccess().getClassExpressionClassExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45538,17 +45584,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectOneOf__IndividualsAssignment_2"
-    // InternalOwl.g:14809:1: rule__ObjectOneOf__IndividualsAssignment_2 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:14815:1: rule__ObjectOneOf__IndividualsAssignment_2 : ( ruleIndividualReference ) ;
     public final void rule__ObjectOneOf__IndividualsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14813:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:14814:2: ( ruleIndividualReference )
+            // InternalOwl.g:14819:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:14820:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:14814:2: ( ruleIndividualReference )
-            // InternalOwl.g:14815:3: ruleIndividualReference
+            // InternalOwl.g:14820:2: ( ruleIndividualReference )
+            // InternalOwl.g:14821:3: ruleIndividualReference
             {
              before(grammarAccess.getObjectOneOfAccess().getIndividualsIndividualReferenceParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45579,33 +45625,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedIndividualReference__IndividualAssignment"
-    // InternalOwl.g:14824:1: rule__NamedIndividualReference__IndividualAssignment : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:14830:1: rule__NamedIndividualReference__IndividualAssignment : ( ruleIRI ) ;
     public final void rule__NamedIndividualReference__IndividualAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14828:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:14829:2: ( ( ruleIRI ) )
+            // InternalOwl.g:14834:1: ( ( ruleIRI ) )
+            // InternalOwl.g:14835:2: ( ruleIRI )
             {
-            // InternalOwl.g:14829:2: ( ( ruleIRI ) )
-            // InternalOwl.g:14830:3: ( ruleIRI )
+            // InternalOwl.g:14835:2: ( ruleIRI )
+            // InternalOwl.g:14836:3: ruleIRI
             {
-             before(grammarAccess.getNamedIndividualReferenceAccess().getIndividualNamedIndividualCrossReference_0()); 
-            // InternalOwl.g:14831:3: ( ruleIRI )
-            // InternalOwl.g:14832:4: ruleIRI
-            {
-             before(grammarAccess.getNamedIndividualReferenceAccess().getIndividualNamedIndividualIRIParserRuleCall_0_1()); 
+             before(grammarAccess.getNamedIndividualReferenceAccess().getIndividualIRIParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleIRI();
 
             state._fsp--;
 
-             after(grammarAccess.getNamedIndividualReferenceAccess().getIndividualNamedIndividualIRIParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getNamedIndividualReferenceAccess().getIndividualNamedIndividualCrossReference_0()); 
+             after(grammarAccess.getNamedIndividualReferenceAccess().getIndividualIRIParserRuleCall_0()); 
 
             }
 
@@ -45628,33 +45666,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnonymousIndividualReference__IndividualAssignment"
-    // InternalOwl.g:14843:1: rule__AnonymousIndividualReference__IndividualAssignment : ( ( ruleNodeID ) ) ;
+    // InternalOwl.g:14845:1: rule__AnonymousIndividualReference__IndividualAssignment : ( ruleNodeID ) ;
     public final void rule__AnonymousIndividualReference__IndividualAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14847:1: ( ( ( ruleNodeID ) ) )
-            // InternalOwl.g:14848:2: ( ( ruleNodeID ) )
+            // InternalOwl.g:14849:1: ( ( ruleNodeID ) )
+            // InternalOwl.g:14850:2: ( ruleNodeID )
             {
-            // InternalOwl.g:14848:2: ( ( ruleNodeID ) )
-            // InternalOwl.g:14849:3: ( ruleNodeID )
+            // InternalOwl.g:14850:2: ( ruleNodeID )
+            // InternalOwl.g:14851:3: ruleNodeID
             {
-             before(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualAnonymousIndividualCrossReference_0()); 
-            // InternalOwl.g:14850:3: ( ruleNodeID )
-            // InternalOwl.g:14851:4: ruleNodeID
-            {
-             before(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualAnonymousIndividualNodeIDParserRuleCall_0_1()); 
+             before(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualNodeIDParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleNodeID();
 
             state._fsp--;
 
-             after(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualAnonymousIndividualNodeIDParserRuleCall_0_1()); 
-
-            }
-
-             after(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualAnonymousIndividualCrossReference_0()); 
+             after(grammarAccess.getAnonymousIndividualReferenceAccess().getIndividualNodeIDParserRuleCall_0()); 
 
             }
 
@@ -45677,17 +45707,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectSomeValuesFrom__ObjectPropertyExpressionAssignment_2"
-    // InternalOwl.g:14862:1: rule__ObjectSomeValuesFrom__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:14860:1: rule__ObjectSomeValuesFrom__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectSomeValuesFrom__ObjectPropertyExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14866:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:14867:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14864:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:14865:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:14867:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:14868:3: ruleObjectPropertyExpression
+            // InternalOwl.g:14865:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14866:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectSomeValuesFromAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45718,17 +45748,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectSomeValuesFrom__ClassExpressionAssignment_3"
-    // InternalOwl.g:14877:1: rule__ObjectSomeValuesFrom__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14875:1: rule__ObjectSomeValuesFrom__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
     public final void rule__ObjectSomeValuesFrom__ClassExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14881:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:14882:2: ( ruleClassExpression )
+            // InternalOwl.g:14879:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:14880:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:14882:2: ( ruleClassExpression )
-            // InternalOwl.g:14883:3: ruleClassExpression
+            // InternalOwl.g:14880:2: ( ruleClassExpression )
+            // InternalOwl.g:14881:3: ruleClassExpression
             {
              before(grammarAccess.getObjectSomeValuesFromAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45759,17 +45789,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectAllValuesFrom__ObjectPropertyExpressionAssignment_2"
-    // InternalOwl.g:14892:1: rule__ObjectAllValuesFrom__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:14890:1: rule__ObjectAllValuesFrom__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectAllValuesFrom__ObjectPropertyExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14896:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:14897:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14894:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:14895:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:14897:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:14898:3: ruleObjectPropertyExpression
+            // InternalOwl.g:14895:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14896:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectAllValuesFromAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45800,17 +45830,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectAllValuesFrom__ClassExpressionAssignment_3"
-    // InternalOwl.g:14907:1: rule__ObjectAllValuesFrom__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14905:1: rule__ObjectAllValuesFrom__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
     public final void rule__ObjectAllValuesFrom__ClassExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14911:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:14912:2: ( ruleClassExpression )
+            // InternalOwl.g:14909:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:14910:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:14912:2: ( ruleClassExpression )
-            // InternalOwl.g:14913:3: ruleClassExpression
+            // InternalOwl.g:14910:2: ( ruleClassExpression )
+            // InternalOwl.g:14911:3: ruleClassExpression
             {
              before(grammarAccess.getObjectAllValuesFromAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45841,17 +45871,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectHasValue__ObjectPropertyExpressionAssignment_2"
-    // InternalOwl.g:14922:1: rule__ObjectHasValue__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:14920:1: rule__ObjectHasValue__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectHasValue__ObjectPropertyExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14926:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:14927:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14924:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:14925:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:14927:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:14928:3: ruleObjectPropertyExpression
+            // InternalOwl.g:14925:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14926:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectHasValueAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45882,17 +45912,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectHasValue__IndividualAssignment_3"
-    // InternalOwl.g:14937:1: rule__ObjectHasValue__IndividualAssignment_3 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:14935:1: rule__ObjectHasValue__IndividualAssignment_3 : ( ruleIndividualReference ) ;
     public final void rule__ObjectHasValue__IndividualAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14941:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:14942:2: ( ruleIndividualReference )
+            // InternalOwl.g:14939:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:14940:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:14942:2: ( ruleIndividualReference )
-            // InternalOwl.g:14943:3: ruleIndividualReference
+            // InternalOwl.g:14940:2: ( ruleIndividualReference )
+            // InternalOwl.g:14941:3: ruleIndividualReference
             {
              before(grammarAccess.getObjectHasValueAccess().getIndividualIndividualReferenceParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -45923,17 +45953,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectHasSelf__ObjectPropertyExpressionAssignment_2"
-    // InternalOwl.g:14952:1: rule__ObjectHasSelf__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:14950:1: rule__ObjectHasSelf__ObjectPropertyExpressionAssignment_2 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectHasSelf__ObjectPropertyExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14956:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:14957:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14954:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:14955:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:14957:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:14958:3: ruleObjectPropertyExpression
+            // InternalOwl.g:14955:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14956:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectHasSelfAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -45964,17 +45994,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMinCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:14967:1: rule__ObjectMinCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:14965:1: rule__ObjectMinCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__ObjectMinCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14971:1: ( ( RULE_INT ) )
-            // InternalOwl.g:14972:2: ( RULE_INT )
+            // InternalOwl.g:14969:1: ( ( RULE_INT ) )
+            // InternalOwl.g:14970:2: ( RULE_INT )
             {
-            // InternalOwl.g:14972:2: ( RULE_INT )
-            // InternalOwl.g:14973:3: RULE_INT
+            // InternalOwl.g:14970:2: ( RULE_INT )
+            // InternalOwl.g:14971:3: RULE_INT
             {
              before(grammarAccess.getObjectMinCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46001,17 +46031,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMinCardinality__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:14982:1: rule__ObjectMinCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:14980:1: rule__ObjectMinCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectMinCardinality__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:14986:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:14987:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14984:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:14985:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:14987:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:14988:3: ruleObjectPropertyExpression
+            // InternalOwl.g:14985:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:14986:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectMinCardinalityAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46042,17 +46072,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMinCardinality__ClassExpressionAssignment_4"
-    // InternalOwl.g:14997:1: rule__ObjectMinCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:14995:1: rule__ObjectMinCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__ObjectMinCardinality__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15001:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15002:2: ( ruleClassExpression )
+            // InternalOwl.g:14999:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15000:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15002:2: ( ruleClassExpression )
-            // InternalOwl.g:15003:3: ruleClassExpression
+            // InternalOwl.g:15000:2: ( ruleClassExpression )
+            // InternalOwl.g:15001:3: ruleClassExpression
             {
              before(grammarAccess.getObjectMinCardinalityAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46083,17 +46113,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMaxCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:15012:1: rule__ObjectMaxCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:15010:1: rule__ObjectMaxCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__ObjectMaxCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15016:1: ( ( RULE_INT ) )
-            // InternalOwl.g:15017:2: ( RULE_INT )
+            // InternalOwl.g:15014:1: ( ( RULE_INT ) )
+            // InternalOwl.g:15015:2: ( RULE_INT )
             {
-            // InternalOwl.g:15017:2: ( RULE_INT )
-            // InternalOwl.g:15018:3: RULE_INT
+            // InternalOwl.g:15015:2: ( RULE_INT )
+            // InternalOwl.g:15016:3: RULE_INT
             {
              before(grammarAccess.getObjectMaxCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46120,17 +46150,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMaxCardinality__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15027:1: rule__ObjectMaxCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15025:1: rule__ObjectMaxCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectMaxCardinality__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15031:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15032:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15029:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15030:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15032:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15033:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15030:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15031:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectMaxCardinalityAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46161,17 +46191,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectMaxCardinality__ClassExpressionAssignment_4"
-    // InternalOwl.g:15042:1: rule__ObjectMaxCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15040:1: rule__ObjectMaxCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__ObjectMaxCardinality__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15046:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15047:2: ( ruleClassExpression )
+            // InternalOwl.g:15044:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15045:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15047:2: ( ruleClassExpression )
-            // InternalOwl.g:15048:3: ruleClassExpression
+            // InternalOwl.g:15045:2: ( ruleClassExpression )
+            // InternalOwl.g:15046:3: ruleClassExpression
             {
              before(grammarAccess.getObjectMaxCardinalityAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46202,17 +46232,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectExactCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:15057:1: rule__ObjectExactCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:15055:1: rule__ObjectExactCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__ObjectExactCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15061:1: ( ( RULE_INT ) )
-            // InternalOwl.g:15062:2: ( RULE_INT )
+            // InternalOwl.g:15059:1: ( ( RULE_INT ) )
+            // InternalOwl.g:15060:2: ( RULE_INT )
             {
-            // InternalOwl.g:15062:2: ( RULE_INT )
-            // InternalOwl.g:15063:3: RULE_INT
+            // InternalOwl.g:15060:2: ( RULE_INT )
+            // InternalOwl.g:15061:3: RULE_INT
             {
              before(grammarAccess.getObjectExactCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46239,17 +46269,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectExactCardinality__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15072:1: rule__ObjectExactCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15070:1: rule__ObjectExactCardinality__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectExactCardinality__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15076:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15077:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15074:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15075:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15077:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15078:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15075:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15076:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectExactCardinalityAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46280,17 +46310,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectExactCardinality__ClassExpressionAssignment_4"
-    // InternalOwl.g:15087:1: rule__ObjectExactCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15085:1: rule__ObjectExactCardinality__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__ObjectExactCardinality__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15091:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15092:2: ( ruleClassExpression )
+            // InternalOwl.g:15089:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15090:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15092:2: ( ruleClassExpression )
-            // InternalOwl.g:15093:3: ruleClassExpression
+            // InternalOwl.g:15090:2: ( ruleClassExpression )
+            // InternalOwl.g:15091:3: ruleClassExpression
             {
              before(grammarAccess.getObjectExactCardinalityAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46321,17 +46351,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSomeValuesFrom__DataPropertyExpressionsAssignment_2"
-    // InternalOwl.g:15102:1: rule__DataSomeValuesFrom__DataPropertyExpressionsAssignment_2 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15100:1: rule__DataSomeValuesFrom__DataPropertyExpressionsAssignment_2 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataSomeValuesFrom__DataPropertyExpressionsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15106:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15107:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15104:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15105:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15107:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15108:3: ruleDataPropertyExpression
+            // InternalOwl.g:15105:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15106:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataSomeValuesFromAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -46362,17 +46392,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSomeValuesFrom__DataRangeAssignment_3"
-    // InternalOwl.g:15117:1: rule__DataSomeValuesFrom__DataRangeAssignment_3 : ( ruleDataRange ) ;
+    // InternalOwl.g:15115:1: rule__DataSomeValuesFrom__DataRangeAssignment_3 : ( ruleDataRange ) ;
     public final void rule__DataSomeValuesFrom__DataRangeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15121:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:15122:2: ( ruleDataRange )
+            // InternalOwl.g:15119:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:15120:2: ( ruleDataRange )
             {
-            // InternalOwl.g:15122:2: ( ruleDataRange )
-            // InternalOwl.g:15123:3: ruleDataRange
+            // InternalOwl.g:15120:2: ( ruleDataRange )
+            // InternalOwl.g:15121:3: ruleDataRange
             {
              before(grammarAccess.getDataSomeValuesFromAccess().getDataRangeDataRangeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46403,17 +46433,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataAllValuesFrom__DataPropertyExpressionsAssignment_2"
-    // InternalOwl.g:15132:1: rule__DataAllValuesFrom__DataPropertyExpressionsAssignment_2 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15130:1: rule__DataAllValuesFrom__DataPropertyExpressionsAssignment_2 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataAllValuesFrom__DataPropertyExpressionsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15136:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15137:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15134:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15135:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15137:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15138:3: ruleDataPropertyExpression
+            // InternalOwl.g:15135:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15136:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataAllValuesFromAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -46444,17 +46474,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataAllValuesFrom__DataRangeAssignment_3"
-    // InternalOwl.g:15147:1: rule__DataAllValuesFrom__DataRangeAssignment_3 : ( ruleDataRange ) ;
+    // InternalOwl.g:15145:1: rule__DataAllValuesFrom__DataRangeAssignment_3 : ( ruleDataRange ) ;
     public final void rule__DataAllValuesFrom__DataRangeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15151:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:15152:2: ( ruleDataRange )
+            // InternalOwl.g:15149:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:15150:2: ( ruleDataRange )
             {
-            // InternalOwl.g:15152:2: ( ruleDataRange )
-            // InternalOwl.g:15153:3: ruleDataRange
+            // InternalOwl.g:15150:2: ( ruleDataRange )
+            // InternalOwl.g:15151:3: ruleDataRange
             {
              before(grammarAccess.getDataAllValuesFromAccess().getDataRangeDataRangeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46485,17 +46515,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataHasValue__DataPropertyExpressionAssignment_2"
-    // InternalOwl.g:15162:1: rule__DataHasValue__DataPropertyExpressionAssignment_2 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15160:1: rule__DataHasValue__DataPropertyExpressionAssignment_2 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataHasValue__DataPropertyExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15166:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15167:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15164:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15165:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15167:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15168:3: ruleDataPropertyExpression
+            // InternalOwl.g:15165:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15166:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataHasValueAccess().getDataPropertyExpressionDataPropertyExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -46526,17 +46556,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataHasValue__LiteralAssignment_3"
-    // InternalOwl.g:15177:1: rule__DataHasValue__LiteralAssignment_3 : ( ruleLiteral ) ;
+    // InternalOwl.g:15175:1: rule__DataHasValue__LiteralAssignment_3 : ( ruleLiteral ) ;
     public final void rule__DataHasValue__LiteralAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15181:1: ( ( ruleLiteral ) )
-            // InternalOwl.g:15182:2: ( ruleLiteral )
+            // InternalOwl.g:15179:1: ( ( ruleLiteral ) )
+            // InternalOwl.g:15180:2: ( ruleLiteral )
             {
-            // InternalOwl.g:15182:2: ( ruleLiteral )
-            // InternalOwl.g:15183:3: ruleLiteral
+            // InternalOwl.g:15180:2: ( ruleLiteral )
+            // InternalOwl.g:15181:3: ruleLiteral
             {
              before(grammarAccess.getDataHasValueAccess().getLiteralLiteralParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46567,17 +46597,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMinCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:15192:1: rule__DataMinCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:15190:1: rule__DataMinCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__DataMinCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15196:1: ( ( RULE_INT ) )
-            // InternalOwl.g:15197:2: ( RULE_INT )
+            // InternalOwl.g:15194:1: ( ( RULE_INT ) )
+            // InternalOwl.g:15195:2: ( RULE_INT )
             {
-            // InternalOwl.g:15197:2: ( RULE_INT )
-            // InternalOwl.g:15198:3: RULE_INT
+            // InternalOwl.g:15195:2: ( RULE_INT )
+            // InternalOwl.g:15196:3: RULE_INT
             {
              before(grammarAccess.getDataMinCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46604,17 +46634,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMinCardinality__DataPropertyExpressionAssignment_3"
-    // InternalOwl.g:15207:1: rule__DataMinCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15205:1: rule__DataMinCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataMinCardinality__DataPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15211:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15212:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15209:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15210:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15212:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15213:3: ruleDataPropertyExpression
+            // InternalOwl.g:15210:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15211:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataMinCardinalityAccess().getDataPropertyExpressionDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46645,17 +46675,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMinCardinality__DataRangeAssignment_4"
-    // InternalOwl.g:15222:1: rule__DataMinCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
+    // InternalOwl.g:15220:1: rule__DataMinCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
     public final void rule__DataMinCardinality__DataRangeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15226:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:15227:2: ( ruleDataRange )
+            // InternalOwl.g:15224:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:15225:2: ( ruleDataRange )
             {
-            // InternalOwl.g:15227:2: ( ruleDataRange )
-            // InternalOwl.g:15228:3: ruleDataRange
+            // InternalOwl.g:15225:2: ( ruleDataRange )
+            // InternalOwl.g:15226:3: ruleDataRange
             {
              before(grammarAccess.getDataMinCardinalityAccess().getDataRangeDataRangeParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46686,17 +46716,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMaxCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:15237:1: rule__DataMaxCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:15235:1: rule__DataMaxCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__DataMaxCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15241:1: ( ( RULE_INT ) )
-            // InternalOwl.g:15242:2: ( RULE_INT )
+            // InternalOwl.g:15239:1: ( ( RULE_INT ) )
+            // InternalOwl.g:15240:2: ( RULE_INT )
             {
-            // InternalOwl.g:15242:2: ( RULE_INT )
-            // InternalOwl.g:15243:3: RULE_INT
+            // InternalOwl.g:15240:2: ( RULE_INT )
+            // InternalOwl.g:15241:3: RULE_INT
             {
              before(grammarAccess.getDataMaxCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46723,17 +46753,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMaxCardinality__DataPropertyExpressionAssignment_3"
-    // InternalOwl.g:15252:1: rule__DataMaxCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15250:1: rule__DataMaxCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataMaxCardinality__DataPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15256:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15257:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15254:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15255:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15257:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15258:3: ruleDataPropertyExpression
+            // InternalOwl.g:15255:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15256:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataMaxCardinalityAccess().getDataPropertyExpressionDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46764,17 +46794,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataMaxCardinality__DataRangeAssignment_4"
-    // InternalOwl.g:15267:1: rule__DataMaxCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
+    // InternalOwl.g:15265:1: rule__DataMaxCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
     public final void rule__DataMaxCardinality__DataRangeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15271:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:15272:2: ( ruleDataRange )
+            // InternalOwl.g:15269:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:15270:2: ( ruleDataRange )
             {
-            // InternalOwl.g:15272:2: ( ruleDataRange )
-            // InternalOwl.g:15273:3: ruleDataRange
+            // InternalOwl.g:15270:2: ( ruleDataRange )
+            // InternalOwl.g:15271:3: ruleDataRange
             {
              before(grammarAccess.getDataMaxCardinalityAccess().getDataRangeDataRangeParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46805,17 +46835,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataExactCardinality__CardinalityAssignment_2"
-    // InternalOwl.g:15282:1: rule__DataExactCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
+    // InternalOwl.g:15280:1: rule__DataExactCardinality__CardinalityAssignment_2 : ( RULE_INT ) ;
     public final void rule__DataExactCardinality__CardinalityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15286:1: ( ( RULE_INT ) )
-            // InternalOwl.g:15287:2: ( RULE_INT )
+            // InternalOwl.g:15284:1: ( ( RULE_INT ) )
+            // InternalOwl.g:15285:2: ( RULE_INT )
             {
-            // InternalOwl.g:15287:2: ( RULE_INT )
-            // InternalOwl.g:15288:3: RULE_INT
+            // InternalOwl.g:15285:2: ( RULE_INT )
+            // InternalOwl.g:15286:3: RULE_INT
             {
              before(grammarAccess.getDataExactCardinalityAccess().getCardinalityINTTerminalRuleCall_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -46842,17 +46872,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataExactCardinality__DataPropertyExpressionAssignment_3"
-    // InternalOwl.g:15297:1: rule__DataExactCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:15295:1: rule__DataExactCardinality__DataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataExactCardinality__DataPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15301:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:15302:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15299:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:15300:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:15302:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:15303:3: ruleDataPropertyExpression
+            // InternalOwl.g:15300:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:15301:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataExactCardinalityAccess().getDataPropertyExpressionDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -46883,17 +46913,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataExactCardinality__DataRangeAssignment_4"
-    // InternalOwl.g:15312:1: rule__DataExactCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
+    // InternalOwl.g:15310:1: rule__DataExactCardinality__DataRangeAssignment_4 : ( ruleDataRange ) ;
     public final void rule__DataExactCardinality__DataRangeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15316:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:15317:2: ( ruleDataRange )
+            // InternalOwl.g:15314:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:15315:2: ( ruleDataRange )
             {
-            // InternalOwl.g:15317:2: ( ruleDataRange )
-            // InternalOwl.g:15318:3: ruleDataRange
+            // InternalOwl.g:15315:2: ( ruleDataRange )
+            // InternalOwl.g:15316:3: ruleDataRange
             {
              before(grammarAccess.getDataExactCardinalityAccess().getDataRangeDataRangeParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -46924,17 +46954,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubClassOf__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15327:1: rule__SubClassOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15325:1: rule__SubClassOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SubClassOf__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15331:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15332:2: ( ruleAnnotation )
+            // InternalOwl.g:15329:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15330:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15332:2: ( ruleAnnotation )
-            // InternalOwl.g:15333:3: ruleAnnotation
+            // InternalOwl.g:15330:2: ( ruleAnnotation )
+            // InternalOwl.g:15331:3: ruleAnnotation
             {
              before(grammarAccess.getSubClassOfAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -46965,17 +46995,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubClassOf__SubClassExpressionAssignment_3"
-    // InternalOwl.g:15342:1: rule__SubClassOf__SubClassExpressionAssignment_3 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15340:1: rule__SubClassOf__SubClassExpressionAssignment_3 : ( ruleClassExpression ) ;
     public final void rule__SubClassOf__SubClassExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15346:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15347:2: ( ruleClassExpression )
+            // InternalOwl.g:15344:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15345:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15347:2: ( ruleClassExpression )
-            // InternalOwl.g:15348:3: ruleClassExpression
+            // InternalOwl.g:15345:2: ( ruleClassExpression )
+            // InternalOwl.g:15346:3: ruleClassExpression
             {
              before(grammarAccess.getSubClassOfAccess().getSubClassExpressionClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -47006,17 +47036,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubClassOf__SuperClassExpressionAssignment_4"
-    // InternalOwl.g:15357:1: rule__SubClassOf__SuperClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15355:1: rule__SubClassOf__SuperClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__SubClassOf__SuperClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15361:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15362:2: ( ruleClassExpression )
+            // InternalOwl.g:15359:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15360:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15362:2: ( ruleClassExpression )
-            // InternalOwl.g:15363:3: ruleClassExpression
+            // InternalOwl.g:15360:2: ( ruleClassExpression )
+            // InternalOwl.g:15361:3: ruleClassExpression
             {
              before(grammarAccess.getSubClassOfAccess().getSuperClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -47047,17 +47077,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentClasses__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15372:1: rule__EquivalentClasses__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15370:1: rule__EquivalentClasses__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__EquivalentClasses__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15376:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15377:2: ( ruleAnnotation )
+            // InternalOwl.g:15374:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15375:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15377:2: ( ruleAnnotation )
-            // InternalOwl.g:15378:3: ruleAnnotation
+            // InternalOwl.g:15375:2: ( ruleAnnotation )
+            // InternalOwl.g:15376:3: ruleAnnotation
             {
              before(grammarAccess.getEquivalentClassesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47087,26 +47117,26 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EquivalentClasses__AxiomAnnotationsAssignment_2"
 
 
-    // $ANTLR start "rule__EquivalentClasses__ClassExpressionAssignment_3"
-    // InternalOwl.g:15387:1: rule__EquivalentClasses__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
-    public final void rule__EquivalentClasses__ClassExpressionAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__EquivalentClasses__ClassExpressionsAssignment_3"
+    // InternalOwl.g:15385:1: rule__EquivalentClasses__ClassExpressionsAssignment_3 : ( ruleClassExpression ) ;
+    public final void rule__EquivalentClasses__ClassExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15391:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15392:2: ( ruleClassExpression )
+            // InternalOwl.g:15389:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15390:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15392:2: ( ruleClassExpression )
-            // InternalOwl.g:15393:3: ruleClassExpression
+            // InternalOwl.g:15390:2: ( ruleClassExpression )
+            // InternalOwl.g:15391:3: ruleClassExpression
             {
-             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
+             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionsClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
+             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionsClassExpressionParserRuleCall_3_0()); 
 
             }
 
@@ -47125,29 +47155,29 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EquivalentClasses__ClassExpressionAssignment_3"
+    // $ANTLR end "rule__EquivalentClasses__ClassExpressionsAssignment_3"
 
 
-    // $ANTLR start "rule__EquivalentClasses__ClassExpressionAssignment_4"
-    // InternalOwl.g:15402:1: rule__EquivalentClasses__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
-    public final void rule__EquivalentClasses__ClassExpressionAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__EquivalentClasses__ClassExpressionsAssignment_4"
+    // InternalOwl.g:15400:1: rule__EquivalentClasses__ClassExpressionsAssignment_4 : ( ruleClassExpression ) ;
+    public final void rule__EquivalentClasses__ClassExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15406:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15407:2: ( ruleClassExpression )
+            // InternalOwl.g:15404:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15405:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15407:2: ( ruleClassExpression )
-            // InternalOwl.g:15408:3: ruleClassExpression
+            // InternalOwl.g:15405:2: ( ruleClassExpression )
+            // InternalOwl.g:15406:3: ruleClassExpression
             {
-             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
+             before(grammarAccess.getEquivalentClassesAccess().getClassExpressionsClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
+             after(grammarAccess.getEquivalentClassesAccess().getClassExpressionsClassExpressionParserRuleCall_4_0()); 
 
             }
 
@@ -47166,21 +47196,21 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EquivalentClasses__ClassExpressionAssignment_4"
+    // $ANTLR end "rule__EquivalentClasses__ClassExpressionsAssignment_4"
 
 
     // $ANTLR start "rule__DisjointClasses__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15417:1: rule__DisjointClasses__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15415:1: rule__DisjointClasses__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DisjointClasses__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15421:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15422:2: ( ruleAnnotation )
+            // InternalOwl.g:15419:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15420:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15422:2: ( ruleAnnotation )
-            // InternalOwl.g:15423:3: ruleAnnotation
+            // InternalOwl.g:15420:2: ( ruleAnnotation )
+            // InternalOwl.g:15421:3: ruleAnnotation
             {
              before(grammarAccess.getDisjointClassesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47210,26 +47240,26 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DisjointClasses__AxiomAnnotationsAssignment_2"
 
 
-    // $ANTLR start "rule__DisjointClasses__ClassExpressionAssignment_3"
-    // InternalOwl.g:15432:1: rule__DisjointClasses__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
-    public final void rule__DisjointClasses__ClassExpressionAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__DisjointClasses__ClassExpressionsAssignment_3"
+    // InternalOwl.g:15430:1: rule__DisjointClasses__ClassExpressionsAssignment_3 : ( ruleClassExpression ) ;
+    public final void rule__DisjointClasses__ClassExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15436:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15437:2: ( ruleClassExpression )
+            // InternalOwl.g:15434:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15435:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15437:2: ( ruleClassExpression )
-            // InternalOwl.g:15438:3: ruleClassExpression
+            // InternalOwl.g:15435:2: ( ruleClassExpression )
+            // InternalOwl.g:15436:3: ruleClassExpression
             {
-             before(grammarAccess.getDisjointClassesAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
+             before(grammarAccess.getDisjointClassesAccess().getClassExpressionsClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getDisjointClassesAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
+             after(grammarAccess.getDisjointClassesAccess().getClassExpressionsClassExpressionParserRuleCall_3_0()); 
 
             }
 
@@ -47248,29 +47278,29 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DisjointClasses__ClassExpressionAssignment_3"
+    // $ANTLR end "rule__DisjointClasses__ClassExpressionsAssignment_3"
 
 
-    // $ANTLR start "rule__DisjointClasses__ClassExpressionAssignment_4"
-    // InternalOwl.g:15447:1: rule__DisjointClasses__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
-    public final void rule__DisjointClasses__ClassExpressionAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__DisjointClasses__ClassExpressionsAssignment_4"
+    // InternalOwl.g:15445:1: rule__DisjointClasses__ClassExpressionsAssignment_4 : ( ruleClassExpression ) ;
+    public final void rule__DisjointClasses__ClassExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15451:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15452:2: ( ruleClassExpression )
+            // InternalOwl.g:15449:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15450:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15452:2: ( ruleClassExpression )
-            // InternalOwl.g:15453:3: ruleClassExpression
+            // InternalOwl.g:15450:2: ( ruleClassExpression )
+            // InternalOwl.g:15451:3: ruleClassExpression
             {
-             before(grammarAccess.getDisjointClassesAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
+             before(grammarAccess.getDisjointClassesAccess().getClassExpressionsClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getDisjointClassesAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
+             after(grammarAccess.getDisjointClassesAccess().getClassExpressionsClassExpressionParserRuleCall_4_0()); 
 
             }
 
@@ -47289,21 +47319,21 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DisjointClasses__ClassExpressionAssignment_4"
+    // $ANTLR end "rule__DisjointClasses__ClassExpressionsAssignment_4"
 
 
     // $ANTLR start "rule__DisjointUnion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15462:1: rule__DisjointUnion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15460:1: rule__DisjointUnion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DisjointUnion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15466:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15467:2: ( ruleAnnotation )
+            // InternalOwl.g:15464:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15465:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15467:2: ( ruleAnnotation )
-            // InternalOwl.g:15468:3: ruleAnnotation
+            // InternalOwl.g:15465:2: ( ruleAnnotation )
+            // InternalOwl.g:15466:3: ruleAnnotation
             {
              before(grammarAccess.getDisjointUnionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47334,17 +47364,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointUnion__ClassAssignment_3"
-    // InternalOwl.g:15477:1: rule__DisjointUnion__ClassAssignment_3 : ( ruleClassReference ) ;
+    // InternalOwl.g:15475:1: rule__DisjointUnion__ClassAssignment_3 : ( ruleClassReference ) ;
     public final void rule__DisjointUnion__ClassAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15481:1: ( ( ruleClassReference ) )
-            // InternalOwl.g:15482:2: ( ruleClassReference )
+            // InternalOwl.g:15479:1: ( ( ruleClassReference ) )
+            // InternalOwl.g:15480:2: ( ruleClassReference )
             {
-            // InternalOwl.g:15482:2: ( ruleClassReference )
-            // InternalOwl.g:15483:3: ruleClassReference
+            // InternalOwl.g:15480:2: ( ruleClassReference )
+            // InternalOwl.g:15481:3: ruleClassReference
             {
              before(grammarAccess.getDisjointUnionAccess().getClassClassReferenceParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -47374,26 +47404,26 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DisjointUnion__ClassAssignment_3"
 
 
-    // $ANTLR start "rule__DisjointUnion__DisjointClassExpressionAssignment_4"
-    // InternalOwl.g:15492:1: rule__DisjointUnion__DisjointClassExpressionAssignment_4 : ( ruleClassExpression ) ;
-    public final void rule__DisjointUnion__DisjointClassExpressionAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__DisjointUnion__DisjointClassExpressionsAssignment_4"
+    // InternalOwl.g:15490:1: rule__DisjointUnion__DisjointClassExpressionsAssignment_4 : ( ruleClassExpression ) ;
+    public final void rule__DisjointUnion__DisjointClassExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15496:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15497:2: ( ruleClassExpression )
+            // InternalOwl.g:15494:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15495:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15497:2: ( ruleClassExpression )
-            // InternalOwl.g:15498:3: ruleClassExpression
+            // InternalOwl.g:15495:2: ( ruleClassExpression )
+            // InternalOwl.g:15496:3: ruleClassExpression
             {
-             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionClassExpressionParserRuleCall_4_0()); 
+             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionClassExpressionParserRuleCall_4_0()); 
+             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsClassExpressionParserRuleCall_4_0()); 
 
             }
 
@@ -47412,29 +47442,29 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DisjointUnion__DisjointClassExpressionAssignment_4"
+    // $ANTLR end "rule__DisjointUnion__DisjointClassExpressionsAssignment_4"
 
 
-    // $ANTLR start "rule__DisjointUnion__DisjointClassExpressionAssignment_5"
-    // InternalOwl.g:15507:1: rule__DisjointUnion__DisjointClassExpressionAssignment_5 : ( ruleClassExpression ) ;
-    public final void rule__DisjointUnion__DisjointClassExpressionAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__DisjointUnion__DisjointClassExpressionsAssignment_5"
+    // InternalOwl.g:15505:1: rule__DisjointUnion__DisjointClassExpressionsAssignment_5 : ( ruleClassExpression ) ;
+    public final void rule__DisjointUnion__DisjointClassExpressionsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15511:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15512:2: ( ruleClassExpression )
+            // InternalOwl.g:15509:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15510:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15512:2: ( ruleClassExpression )
-            // InternalOwl.g:15513:3: ruleClassExpression
+            // InternalOwl.g:15510:2: ( ruleClassExpression )
+            // InternalOwl.g:15511:3: ruleClassExpression
             {
-             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionClassExpressionParserRuleCall_5_0()); 
+             before(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsClassExpressionParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
             ruleClassExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionClassExpressionParserRuleCall_5_0()); 
+             after(grammarAccess.getDisjointUnionAccess().getDisjointClassExpressionsClassExpressionParserRuleCall_5_0()); 
 
             }
 
@@ -47453,21 +47483,21 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DisjointUnion__DisjointClassExpressionAssignment_5"
+    // $ANTLR end "rule__DisjointUnion__DisjointClassExpressionsAssignment_5"
 
 
     // $ANTLR start "rule__SubObjectPropertyOf__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15522:1: rule__SubObjectPropertyOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15520:1: rule__SubObjectPropertyOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SubObjectPropertyOf__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15526:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15527:2: ( ruleAnnotation )
+            // InternalOwl.g:15524:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15525:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15527:2: ( ruleAnnotation )
-            // InternalOwl.g:15528:3: ruleAnnotation
+            // InternalOwl.g:15525:2: ( ruleAnnotation )
+            // InternalOwl.g:15526:3: ruleAnnotation
             {
              before(grammarAccess.getSubObjectPropertyOfAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47498,17 +47528,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_0"
-    // InternalOwl.g:15537:1: rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_0 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15535:1: rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_0 : ( ruleObjectPropertyExpression ) ;
     public final void rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15541:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15542:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15539:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15540:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15542:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15543:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15540:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15541:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getSubObjectPropertyOfAccess().getSubObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -47539,17 +47569,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_1_2"
-    // InternalOwl.g:15552:1: rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_1_2 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15550:1: rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_1_2 : ( ruleObjectPropertyExpression ) ;
     public final void rule__SubObjectPropertyOf__SubObjectPropertyExpressionAssignment_3_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15556:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15557:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15554:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15555:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15557:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15558:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15555:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15556:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getSubObjectPropertyOfAccess().getSubObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47580,17 +47610,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentObjectProperties__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15567:1: rule__EquivalentObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15565:1: rule__EquivalentObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__EquivalentObjectProperties__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15571:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15572:2: ( ruleAnnotation )
+            // InternalOwl.g:15569:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15570:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15572:2: ( ruleAnnotation )
-            // InternalOwl.g:15573:3: ruleAnnotation
+            // InternalOwl.g:15570:2: ( ruleAnnotation )
+            // InternalOwl.g:15571:3: ruleAnnotation
             {
              before(grammarAccess.getEquivalentObjectPropertiesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47621,17 +47651,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_3"
-    // InternalOwl.g:15582:1: rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15580:1: rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15586:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15587:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15584:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15585:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15587:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15588:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15585:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15586:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getEquivalentObjectPropertiesAccess().getObjectPropertyExpressionsObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -47662,17 +47692,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_4"
-    // InternalOwl.g:15597:1: rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_4 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15595:1: rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_4 : ( ruleObjectPropertyExpression ) ;
     public final void rule__EquivalentObjectProperties__ObjectPropertyExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15601:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15602:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15599:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15600:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15602:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15603:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15600:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15601:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getEquivalentObjectPropertiesAccess().getObjectPropertyExpressionsObjectPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -47703,17 +47733,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointObjectProperties__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15612:1: rule__DisjointObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15610:1: rule__DisjointObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DisjointObjectProperties__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15616:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15617:2: ( ruleAnnotation )
+            // InternalOwl.g:15614:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15615:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15617:2: ( ruleAnnotation )
-            // InternalOwl.g:15618:3: ruleAnnotation
+            // InternalOwl.g:15615:2: ( ruleAnnotation )
+            // InternalOwl.g:15616:3: ruleAnnotation
             {
              before(grammarAccess.getDisjointObjectPropertiesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47744,17 +47774,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_3"
-    // InternalOwl.g:15627:1: rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15625:1: rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15631:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15632:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15629:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15630:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15632:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15633:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15630:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15631:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getDisjointObjectPropertiesAccess().getObjectPropertyExpressionsObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -47785,17 +47815,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_4"
-    // InternalOwl.g:15642:1: rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_4 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15640:1: rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_4 : ( ruleObjectPropertyExpression ) ;
     public final void rule__DisjointObjectProperties__ObjectPropertyExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15646:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15647:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15644:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15645:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15647:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15648:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15645:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15646:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getDisjointObjectPropertiesAccess().getObjectPropertyExpressionsObjectPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -47826,17 +47856,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseObjectProperties__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15657:1: rule__InverseObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15655:1: rule__InverseObjectProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__InverseObjectProperties__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15661:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15662:2: ( ruleAnnotation )
+            // InternalOwl.g:15659:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15660:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15662:2: ( ruleAnnotation )
-            // InternalOwl.g:15663:3: ruleAnnotation
+            // InternalOwl.g:15660:2: ( ruleAnnotation )
+            // InternalOwl.g:15661:3: ruleAnnotation
             {
              before(grammarAccess.getInverseObjectPropertiesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47867,17 +47897,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseObjectProperties__ObjectPropertyExpression1Assignment_3"
-    // InternalOwl.g:15672:1: rule__InverseObjectProperties__ObjectPropertyExpression1Assignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15670:1: rule__InverseObjectProperties__ObjectPropertyExpression1Assignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__InverseObjectProperties__ObjectPropertyExpression1Assignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15676:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15677:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15674:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15675:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15677:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15678:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15675:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15676:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getInverseObjectPropertiesAccess().getObjectPropertyExpression1ObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -47908,17 +47938,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseObjectProperties__ObjectPropertyExpression2Assignment_4"
-    // InternalOwl.g:15687:1: rule__InverseObjectProperties__ObjectPropertyExpression2Assignment_4 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15685:1: rule__InverseObjectProperties__ObjectPropertyExpression2Assignment_4 : ( ruleObjectPropertyExpression ) ;
     public final void rule__InverseObjectProperties__ObjectPropertyExpression2Assignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15691:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15692:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15689:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15690:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15692:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15693:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15690:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15691:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getInverseObjectPropertiesAccess().getObjectPropertyExpression2ObjectPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -47949,17 +47979,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyDomain__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15702:1: rule__ObjectPropertyDomain__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15700:1: rule__ObjectPropertyDomain__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__ObjectPropertyDomain__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15706:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15707:2: ( ruleAnnotation )
+            // InternalOwl.g:15704:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15705:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15707:2: ( ruleAnnotation )
-            // InternalOwl.g:15708:3: ruleAnnotation
+            // InternalOwl.g:15705:2: ( ruleAnnotation )
+            // InternalOwl.g:15706:3: ruleAnnotation
             {
              before(grammarAccess.getObjectPropertyDomainAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -47990,17 +48020,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyDomain__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15717:1: rule__ObjectPropertyDomain__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15715:1: rule__ObjectPropertyDomain__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectPropertyDomain__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15721:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15722:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15719:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15720:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15722:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15723:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15720:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15721:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectPropertyDomainAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48031,17 +48061,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyDomain__ClassExpressionAssignment_4"
-    // InternalOwl.g:15732:1: rule__ObjectPropertyDomain__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15730:1: rule__ObjectPropertyDomain__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__ObjectPropertyDomain__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15736:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15737:2: ( ruleClassExpression )
+            // InternalOwl.g:15734:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15735:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15737:2: ( ruleClassExpression )
-            // InternalOwl.g:15738:3: ruleClassExpression
+            // InternalOwl.g:15735:2: ( ruleClassExpression )
+            // InternalOwl.g:15736:3: ruleClassExpression
             {
              before(grammarAccess.getObjectPropertyDomainAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -48072,17 +48102,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyRange__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15747:1: rule__ObjectPropertyRange__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15745:1: rule__ObjectPropertyRange__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__ObjectPropertyRange__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15751:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15752:2: ( ruleAnnotation )
+            // InternalOwl.g:15749:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15750:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15752:2: ( ruleAnnotation )
-            // InternalOwl.g:15753:3: ruleAnnotation
+            // InternalOwl.g:15750:2: ( ruleAnnotation )
+            // InternalOwl.g:15751:3: ruleAnnotation
             {
              before(grammarAccess.getObjectPropertyRangeAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48113,17 +48143,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyRange__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15762:1: rule__ObjectPropertyRange__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15760:1: rule__ObjectPropertyRange__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectPropertyRange__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15766:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15767:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15764:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15765:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15767:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15768:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15765:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15766:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectPropertyRangeAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48154,17 +48184,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyRange__ClassExpressionAssignment_4"
-    // InternalOwl.g:15777:1: rule__ObjectPropertyRange__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:15775:1: rule__ObjectPropertyRange__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__ObjectPropertyRange__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15781:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:15782:2: ( ruleClassExpression )
+            // InternalOwl.g:15779:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:15780:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:15782:2: ( ruleClassExpression )
-            // InternalOwl.g:15783:3: ruleClassExpression
+            // InternalOwl.g:15780:2: ( ruleClassExpression )
+            // InternalOwl.g:15781:3: ruleClassExpression
             {
              before(grammarAccess.getObjectPropertyRangeAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -48195,17 +48225,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionalObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15792:1: rule__FunctionalObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15790:1: rule__FunctionalObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__FunctionalObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15796:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15797:2: ( ruleAnnotation )
+            // InternalOwl.g:15794:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15795:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15797:2: ( ruleAnnotation )
-            // InternalOwl.g:15798:3: ruleAnnotation
+            // InternalOwl.g:15795:2: ( ruleAnnotation )
+            // InternalOwl.g:15796:3: ruleAnnotation
             {
              before(grammarAccess.getFunctionalObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48236,17 +48266,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionalObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15807:1: rule__FunctionalObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15805:1: rule__FunctionalObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__FunctionalObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15811:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15812:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15809:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15810:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15812:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15813:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15810:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15811:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getFunctionalObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48277,17 +48307,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseFunctionalObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15822:1: rule__InverseFunctionalObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15820:1: rule__InverseFunctionalObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__InverseFunctionalObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15826:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15827:2: ( ruleAnnotation )
+            // InternalOwl.g:15824:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15825:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15827:2: ( ruleAnnotation )
-            // InternalOwl.g:15828:3: ruleAnnotation
+            // InternalOwl.g:15825:2: ( ruleAnnotation )
+            // InternalOwl.g:15826:3: ruleAnnotation
             {
              before(grammarAccess.getInverseFunctionalObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48318,17 +48348,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InverseFunctionalObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15837:1: rule__InverseFunctionalObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15835:1: rule__InverseFunctionalObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__InverseFunctionalObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15841:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15842:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15839:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15840:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15842:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15843:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15840:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15841:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getInverseFunctionalObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48359,17 +48389,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ReflexiveObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15852:1: rule__ReflexiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15850:1: rule__ReflexiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__ReflexiveObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15856:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15857:2: ( ruleAnnotation )
+            // InternalOwl.g:15854:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15855:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15857:2: ( ruleAnnotation )
-            // InternalOwl.g:15858:3: ruleAnnotation
+            // InternalOwl.g:15855:2: ( ruleAnnotation )
+            // InternalOwl.g:15856:3: ruleAnnotation
             {
              before(grammarAccess.getReflexiveObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48400,17 +48430,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ReflexiveObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15867:1: rule__ReflexiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15865:1: rule__ReflexiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ReflexiveObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15871:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15872:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15869:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15870:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15872:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15873:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15870:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15871:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getReflexiveObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48441,17 +48471,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IrreflexiveObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15882:1: rule__IrreflexiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15880:1: rule__IrreflexiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__IrreflexiveObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15886:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15887:2: ( ruleAnnotation )
+            // InternalOwl.g:15884:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15885:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15887:2: ( ruleAnnotation )
-            // InternalOwl.g:15888:3: ruleAnnotation
+            // InternalOwl.g:15885:2: ( ruleAnnotation )
+            // InternalOwl.g:15886:3: ruleAnnotation
             {
              before(grammarAccess.getIrreflexiveObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48482,17 +48512,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IrreflexiveObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15897:1: rule__IrreflexiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15895:1: rule__IrreflexiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__IrreflexiveObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15901:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15902:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15899:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15900:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15902:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15903:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15900:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15901:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getIrreflexiveObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48523,17 +48553,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SymmetricObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15912:1: rule__SymmetricObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15910:1: rule__SymmetricObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SymmetricObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15916:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15917:2: ( ruleAnnotation )
+            // InternalOwl.g:15914:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15915:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15917:2: ( ruleAnnotation )
-            // InternalOwl.g:15918:3: ruleAnnotation
+            // InternalOwl.g:15915:2: ( ruleAnnotation )
+            // InternalOwl.g:15916:3: ruleAnnotation
             {
              before(grammarAccess.getSymmetricObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48564,17 +48594,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SymmetricObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15927:1: rule__SymmetricObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15925:1: rule__SymmetricObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__SymmetricObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15931:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15932:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15929:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15930:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15932:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15933:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15930:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15931:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getSymmetricObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48605,17 +48635,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AsymmetricObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15942:1: rule__AsymmetricObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15940:1: rule__AsymmetricObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__AsymmetricObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15946:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15947:2: ( ruleAnnotation )
+            // InternalOwl.g:15944:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15945:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15947:2: ( ruleAnnotation )
-            // InternalOwl.g:15948:3: ruleAnnotation
+            // InternalOwl.g:15945:2: ( ruleAnnotation )
+            // InternalOwl.g:15946:3: ruleAnnotation
             {
              before(grammarAccess.getAsymmetricObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48646,17 +48676,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AsymmetricObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15957:1: rule__AsymmetricObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15955:1: rule__AsymmetricObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__AsymmetricObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15961:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15962:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15959:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15960:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15962:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15963:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15960:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15961:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getAsymmetricObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48687,17 +48717,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TransitiveObjectProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:15972:1: rule__TransitiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:15970:1: rule__TransitiveObjectProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__TransitiveObjectProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15976:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:15977:2: ( ruleAnnotation )
+            // InternalOwl.g:15974:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:15975:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:15977:2: ( ruleAnnotation )
-            // InternalOwl.g:15978:3: ruleAnnotation
+            // InternalOwl.g:15975:2: ( ruleAnnotation )
+            // InternalOwl.g:15976:3: ruleAnnotation
             {
              before(grammarAccess.getTransitiveObjectPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48728,17 +48758,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TransitiveObjectProperty__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:15987:1: rule__TransitiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:15985:1: rule__TransitiveObjectProperty__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__TransitiveObjectProperty__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:15991:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:15992:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15989:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:15990:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:15992:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:15993:3: ruleObjectPropertyExpression
+            // InternalOwl.g:15990:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:15991:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getTransitiveObjectPropertyAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48769,17 +48799,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubDataPropertyOf__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16002:1: rule__SubDataPropertyOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16000:1: rule__SubDataPropertyOf__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SubDataPropertyOf__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16006:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16007:2: ( ruleAnnotation )
+            // InternalOwl.g:16004:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16005:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16007:2: ( ruleAnnotation )
-            // InternalOwl.g:16008:3: ruleAnnotation
+            // InternalOwl.g:16005:2: ( ruleAnnotation )
+            // InternalOwl.g:16006:3: ruleAnnotation
             {
              before(grammarAccess.getSubDataPropertyOfAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48810,17 +48840,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubDataPropertyOf__SubDataPropertyExpressionAssignment_3"
-    // InternalOwl.g:16017:1: rule__SubDataPropertyOf__SubDataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16015:1: rule__SubDataPropertyOf__SubDataPropertyExpressionAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__SubDataPropertyOf__SubDataPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16021:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16022:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16019:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16020:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16022:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16023:3: ruleDataPropertyExpression
+            // InternalOwl.g:16020:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16021:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getSubDataPropertyOfAccess().getSubDataPropertyExpressionDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48851,17 +48881,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubDataPropertyOf__SuperDataPropertyExpressionAssignment_4"
-    // InternalOwl.g:16032:1: rule__SubDataPropertyOf__SuperDataPropertyExpressionAssignment_4 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16030:1: rule__SubDataPropertyOf__SuperDataPropertyExpressionAssignment_4 : ( ruleDataPropertyExpression ) ;
     public final void rule__SubDataPropertyOf__SuperDataPropertyExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16036:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16037:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16034:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16035:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16037:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16038:3: ruleDataPropertyExpression
+            // InternalOwl.g:16035:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16036:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getSubDataPropertyOfAccess().getSuperDataPropertyExpressionDataPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -48892,17 +48922,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentDataProperties__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16047:1: rule__EquivalentDataProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16045:1: rule__EquivalentDataProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__EquivalentDataProperties__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16051:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16052:2: ( ruleAnnotation )
+            // InternalOwl.g:16049:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16050:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16052:2: ( ruleAnnotation )
-            // InternalOwl.g:16053:3: ruleAnnotation
+            // InternalOwl.g:16050:2: ( ruleAnnotation )
+            // InternalOwl.g:16051:3: ruleAnnotation
             {
              before(grammarAccess.getEquivalentDataPropertiesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -48933,17 +48963,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_3"
-    // InternalOwl.g:16062:1: rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16060:1: rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16066:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16067:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16064:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16065:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16067:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16068:3: ruleDataPropertyExpression
+            // InternalOwl.g:16065:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16066:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getEquivalentDataPropertiesAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -48974,17 +49004,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_4"
-    // InternalOwl.g:16077:1: rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_4 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16075:1: rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_4 : ( ruleDataPropertyExpression ) ;
     public final void rule__EquivalentDataProperties__DataPropertyExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16081:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16082:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16079:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16080:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16082:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16083:3: ruleDataPropertyExpression
+            // InternalOwl.g:16080:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16081:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getEquivalentDataPropertiesAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49015,17 +49045,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointDataProperties__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16092:1: rule__DisjointDataProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16090:1: rule__DisjointDataProperties__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DisjointDataProperties__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16096:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16097:2: ( ruleAnnotation )
+            // InternalOwl.g:16094:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16095:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16097:2: ( ruleAnnotation )
-            // InternalOwl.g:16098:3: ruleAnnotation
+            // InternalOwl.g:16095:2: ( ruleAnnotation )
+            // InternalOwl.g:16096:3: ruleAnnotation
             {
              before(grammarAccess.getDisjointDataPropertiesAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49056,17 +49086,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointDataProperties__DataPropertyExpressionsAssignment_3"
-    // InternalOwl.g:16107:1: rule__DisjointDataProperties__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16105:1: rule__DisjointDataProperties__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DisjointDataProperties__DataPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16111:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16112:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16109:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16110:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16112:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16113:3: ruleDataPropertyExpression
+            // InternalOwl.g:16110:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16111:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDisjointDataPropertiesAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49097,17 +49127,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DisjointDataProperties__DataPropertyExpressionsAssignment_4"
-    // InternalOwl.g:16122:1: rule__DisjointDataProperties__DataPropertyExpressionsAssignment_4 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16120:1: rule__DisjointDataProperties__DataPropertyExpressionsAssignment_4 : ( ruleDataPropertyExpression ) ;
     public final void rule__DisjointDataProperties__DataPropertyExpressionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16126:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16127:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16124:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16125:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16127:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16128:3: ruleDataPropertyExpression
+            // InternalOwl.g:16125:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16126:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDisjointDataPropertiesAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49138,17 +49168,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyDomain__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16137:1: rule__DataPropertyDomain__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16135:1: rule__DataPropertyDomain__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DataPropertyDomain__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16141:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16142:2: ( ruleAnnotation )
+            // InternalOwl.g:16139:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16140:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16142:2: ( ruleAnnotation )
-            // InternalOwl.g:16143:3: ruleAnnotation
+            // InternalOwl.g:16140:2: ( ruleAnnotation )
+            // InternalOwl.g:16141:3: ruleAnnotation
             {
              before(grammarAccess.getDataPropertyDomainAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49179,17 +49209,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyDomain__DataPropertyExpressionsAssignment_3"
-    // InternalOwl.g:16152:1: rule__DataPropertyDomain__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16150:1: rule__DataPropertyDomain__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataPropertyDomain__DataPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16156:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16157:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16154:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16155:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16157:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16158:3: ruleDataPropertyExpression
+            // InternalOwl.g:16155:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16156:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataPropertyDomainAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49220,17 +49250,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyDomain__ClassExpressionAssignment_4"
-    // InternalOwl.g:16167:1: rule__DataPropertyDomain__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:16165:1: rule__DataPropertyDomain__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__DataPropertyDomain__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16171:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:16172:2: ( ruleClassExpression )
+            // InternalOwl.g:16169:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:16170:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:16172:2: ( ruleClassExpression )
-            // InternalOwl.g:16173:3: ruleClassExpression
+            // InternalOwl.g:16170:2: ( ruleClassExpression )
+            // InternalOwl.g:16171:3: ruleClassExpression
             {
              before(grammarAccess.getDataPropertyDomainAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49261,17 +49291,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyRange__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16182:1: rule__DataPropertyRange__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16180:1: rule__DataPropertyRange__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DataPropertyRange__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16186:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16187:2: ( ruleAnnotation )
+            // InternalOwl.g:16184:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16185:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16187:2: ( ruleAnnotation )
-            // InternalOwl.g:16188:3: ruleAnnotation
+            // InternalOwl.g:16185:2: ( ruleAnnotation )
+            // InternalOwl.g:16186:3: ruleAnnotation
             {
              before(grammarAccess.getDataPropertyRangeAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49302,17 +49332,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyRange__DataPropertyExpressionsAssignment_3"
-    // InternalOwl.g:16197:1: rule__DataPropertyRange__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16195:1: rule__DataPropertyRange__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__DataPropertyRange__DataPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16201:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16202:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16199:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16200:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16202:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16203:3: ruleDataPropertyExpression
+            // InternalOwl.g:16200:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16201:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getDataPropertyRangeAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49343,17 +49373,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyRange__ClassExpressionAssignment_4"
-    // InternalOwl.g:16212:1: rule__DataPropertyRange__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
+    // InternalOwl.g:16210:1: rule__DataPropertyRange__ClassExpressionAssignment_4 : ( ruleClassExpression ) ;
     public final void rule__DataPropertyRange__ClassExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16216:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:16217:2: ( ruleClassExpression )
+            // InternalOwl.g:16214:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:16215:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:16217:2: ( ruleClassExpression )
-            // InternalOwl.g:16218:3: ruleClassExpression
+            // InternalOwl.g:16215:2: ( ruleClassExpression )
+            // InternalOwl.g:16216:3: ruleClassExpression
             {
              before(grammarAccess.getDataPropertyRangeAccess().getClassExpressionClassExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49384,17 +49414,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionalDataProperty__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16227:1: rule__FunctionalDataProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16225:1: rule__FunctionalDataProperty__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__FunctionalDataProperty__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16231:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16232:2: ( ruleAnnotation )
+            // InternalOwl.g:16229:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16230:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16232:2: ( ruleAnnotation )
-            // InternalOwl.g:16233:3: ruleAnnotation
+            // InternalOwl.g:16230:2: ( ruleAnnotation )
+            // InternalOwl.g:16231:3: ruleAnnotation
             {
              before(grammarAccess.getFunctionalDataPropertyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49425,17 +49455,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionalDataProperty__DataPropertyExpressionsAssignment_3"
-    // InternalOwl.g:16242:1: rule__FunctionalDataProperty__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16240:1: rule__FunctionalDataProperty__DataPropertyExpressionsAssignment_3 : ( ruleDataPropertyExpression ) ;
     public final void rule__FunctionalDataProperty__DataPropertyExpressionsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16246:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16247:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16244:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16245:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16247:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16248:3: ruleDataPropertyExpression
+            // InternalOwl.g:16245:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16246:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getFunctionalDataPropertyAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49466,17 +49496,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeDefinition__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16257:1: rule__DatatypeDefinition__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16255:1: rule__DatatypeDefinition__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DatatypeDefinition__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16261:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16262:2: ( ruleAnnotation )
+            // InternalOwl.g:16259:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16260:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16262:2: ( ruleAnnotation )
-            // InternalOwl.g:16263:3: ruleAnnotation
+            // InternalOwl.g:16260:2: ( ruleAnnotation )
+            // InternalOwl.g:16261:3: ruleAnnotation
             {
              before(grammarAccess.getDatatypeDefinitionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49507,17 +49537,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeDefinition__DatatypeAssignment_3"
-    // InternalOwl.g:16272:1: rule__DatatypeDefinition__DatatypeAssignment_3 : ( ruleDatatypeReference ) ;
+    // InternalOwl.g:16270:1: rule__DatatypeDefinition__DatatypeAssignment_3 : ( ruleDatatypeReference ) ;
     public final void rule__DatatypeDefinition__DatatypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16276:1: ( ( ruleDatatypeReference ) )
-            // InternalOwl.g:16277:2: ( ruleDatatypeReference )
+            // InternalOwl.g:16274:1: ( ( ruleDatatypeReference ) )
+            // InternalOwl.g:16275:2: ( ruleDatatypeReference )
             {
-            // InternalOwl.g:16277:2: ( ruleDatatypeReference )
-            // InternalOwl.g:16278:3: ruleDatatypeReference
+            // InternalOwl.g:16275:2: ( ruleDatatypeReference )
+            // InternalOwl.g:16276:3: ruleDatatypeReference
             {
              before(grammarAccess.getDatatypeDefinitionAccess().getDatatypeDatatypeReferenceParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49548,17 +49578,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeDefinition__DataRangeAssignment_4"
-    // InternalOwl.g:16287:1: rule__DatatypeDefinition__DataRangeAssignment_4 : ( ruleDataRange ) ;
+    // InternalOwl.g:16285:1: rule__DatatypeDefinition__DataRangeAssignment_4 : ( ruleDataRange ) ;
     public final void rule__DatatypeDefinition__DataRangeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16291:1: ( ( ruleDataRange ) )
-            // InternalOwl.g:16292:2: ( ruleDataRange )
+            // InternalOwl.g:16289:1: ( ( ruleDataRange ) )
+            // InternalOwl.g:16290:2: ( ruleDataRange )
             {
-            // InternalOwl.g:16292:2: ( ruleDataRange )
-            // InternalOwl.g:16293:3: ruleDataRange
+            // InternalOwl.g:16290:2: ( ruleDataRange )
+            // InternalOwl.g:16291:3: ruleDataRange
             {
              before(grammarAccess.getDatatypeDefinitionAccess().getDataRangeDataRangeParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49589,17 +49619,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__HasKey__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16302:1: rule__HasKey__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16300:1: rule__HasKey__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__HasKey__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16306:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16307:2: ( ruleAnnotation )
+            // InternalOwl.g:16304:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16305:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16307:2: ( ruleAnnotation )
-            // InternalOwl.g:16308:3: ruleAnnotation
+            // InternalOwl.g:16305:2: ( ruleAnnotation )
+            // InternalOwl.g:16306:3: ruleAnnotation
             {
              before(grammarAccess.getHasKeyAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49630,17 +49660,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__HasKey__ClassExpressionAssignment_3"
-    // InternalOwl.g:16317:1: rule__HasKey__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
+    // InternalOwl.g:16315:1: rule__HasKey__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
     public final void rule__HasKey__ClassExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16321:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:16322:2: ( ruleClassExpression )
+            // InternalOwl.g:16319:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:16320:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:16322:2: ( ruleClassExpression )
-            // InternalOwl.g:16323:3: ruleClassExpression
+            // InternalOwl.g:16320:2: ( ruleClassExpression )
+            // InternalOwl.g:16321:3: ruleClassExpression
             {
              before(grammarAccess.getHasKeyAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49671,17 +49701,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__HasKey__ObjectPropertyExpressionsAssignment_5"
-    // InternalOwl.g:16332:1: rule__HasKey__ObjectPropertyExpressionsAssignment_5 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:16330:1: rule__HasKey__ObjectPropertyExpressionsAssignment_5 : ( ruleObjectPropertyExpression ) ;
     public final void rule__HasKey__ObjectPropertyExpressionsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16336:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:16337:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16334:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:16335:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:16337:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:16338:3: ruleObjectPropertyExpression
+            // InternalOwl.g:16335:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16336:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getHasKeyAccess().getObjectPropertyExpressionsObjectPropertyExpressionParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -49712,17 +49742,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__HasKey__DataPropertyExpressionsAssignment_8"
-    // InternalOwl.g:16347:1: rule__HasKey__DataPropertyExpressionsAssignment_8 : ( ruleDataPropertyExpression ) ;
+    // InternalOwl.g:16345:1: rule__HasKey__DataPropertyExpressionsAssignment_8 : ( ruleDataPropertyExpression ) ;
     public final void rule__HasKey__DataPropertyExpressionsAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16351:1: ( ( ruleDataPropertyExpression ) )
-            // InternalOwl.g:16352:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16349:1: ( ( ruleDataPropertyExpression ) )
+            // InternalOwl.g:16350:2: ( ruleDataPropertyExpression )
             {
-            // InternalOwl.g:16352:2: ( ruleDataPropertyExpression )
-            // InternalOwl.g:16353:3: ruleDataPropertyExpression
+            // InternalOwl.g:16350:2: ( ruleDataPropertyExpression )
+            // InternalOwl.g:16351:3: ruleDataPropertyExpression
             {
              before(grammarAccess.getHasKeyAccess().getDataPropertyExpressionsDataPropertyExpressionParserRuleCall_8_0()); 
             pushFollow(FOLLOW_2);
@@ -49753,17 +49783,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SameIndividual__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16362:1: rule__SameIndividual__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16360:1: rule__SameIndividual__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SameIndividual__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16366:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16367:2: ( ruleAnnotation )
+            // InternalOwl.g:16364:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16365:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16367:2: ( ruleAnnotation )
-            // InternalOwl.g:16368:3: ruleAnnotation
+            // InternalOwl.g:16365:2: ( ruleAnnotation )
+            // InternalOwl.g:16366:3: ruleAnnotation
             {
              before(grammarAccess.getSameIndividualAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49794,17 +49824,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SameIndividual__IndividualsAssignment_3"
-    // InternalOwl.g:16377:1: rule__SameIndividual__IndividualsAssignment_3 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16375:1: rule__SameIndividual__IndividualsAssignment_3 : ( ruleIndividualReference ) ;
     public final void rule__SameIndividual__IndividualsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16381:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16382:2: ( ruleIndividualReference )
+            // InternalOwl.g:16379:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16380:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16382:2: ( ruleIndividualReference )
-            // InternalOwl.g:16383:3: ruleIndividualReference
+            // InternalOwl.g:16380:2: ( ruleIndividualReference )
+            // InternalOwl.g:16381:3: ruleIndividualReference
             {
              before(grammarAccess.getSameIndividualAccess().getIndividualsIndividualReferenceParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49835,17 +49865,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SameIndividual__IndividualsAssignment_4"
-    // InternalOwl.g:16392:1: rule__SameIndividual__IndividualsAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16390:1: rule__SameIndividual__IndividualsAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__SameIndividual__IndividualsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16396:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16397:2: ( ruleIndividualReference )
+            // InternalOwl.g:16394:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16395:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16397:2: ( ruleIndividualReference )
-            // InternalOwl.g:16398:3: ruleIndividualReference
+            // InternalOwl.g:16395:2: ( ruleIndividualReference )
+            // InternalOwl.g:16396:3: ruleIndividualReference
             {
              before(grammarAccess.getSameIndividualAccess().getIndividualsIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49876,17 +49906,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DifferentIndividuals__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16407:1: rule__DifferentIndividuals__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16405:1: rule__DifferentIndividuals__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DifferentIndividuals__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16411:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16412:2: ( ruleAnnotation )
+            // InternalOwl.g:16409:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16410:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16412:2: ( ruleAnnotation )
-            // InternalOwl.g:16413:3: ruleAnnotation
+            // InternalOwl.g:16410:2: ( ruleAnnotation )
+            // InternalOwl.g:16411:3: ruleAnnotation
             {
              before(grammarAccess.getDifferentIndividualsAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -49917,17 +49947,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DifferentIndividuals__IndividualsAssignment_3"
-    // InternalOwl.g:16422:1: rule__DifferentIndividuals__IndividualsAssignment_3 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16420:1: rule__DifferentIndividuals__IndividualsAssignment_3 : ( ruleIndividualReference ) ;
     public final void rule__DifferentIndividuals__IndividualsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16426:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16427:2: ( ruleIndividualReference )
+            // InternalOwl.g:16424:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16425:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16427:2: ( ruleIndividualReference )
-            // InternalOwl.g:16428:3: ruleIndividualReference
+            // InternalOwl.g:16425:2: ( ruleIndividualReference )
+            // InternalOwl.g:16426:3: ruleIndividualReference
             {
              before(grammarAccess.getDifferentIndividualsAccess().getIndividualsIndividualReferenceParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -49958,17 +49988,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DifferentIndividuals__IndividualsAssignment_4"
-    // InternalOwl.g:16437:1: rule__DifferentIndividuals__IndividualsAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16435:1: rule__DifferentIndividuals__IndividualsAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__DifferentIndividuals__IndividualsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16441:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16442:2: ( ruleIndividualReference )
+            // InternalOwl.g:16439:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16440:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16442:2: ( ruleIndividualReference )
-            // InternalOwl.g:16443:3: ruleIndividualReference
+            // InternalOwl.g:16440:2: ( ruleIndividualReference )
+            // InternalOwl.g:16441:3: ruleIndividualReference
             {
              before(grammarAccess.getDifferentIndividualsAccess().getIndividualsIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -49999,17 +50029,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassAssertion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16452:1: rule__ClassAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16450:1: rule__ClassAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__ClassAssertion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16456:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16457:2: ( ruleAnnotation )
+            // InternalOwl.g:16454:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16455:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16457:2: ( ruleAnnotation )
-            // InternalOwl.g:16458:3: ruleAnnotation
+            // InternalOwl.g:16455:2: ( ruleAnnotation )
+            // InternalOwl.g:16456:3: ruleAnnotation
             {
              before(grammarAccess.getClassAssertionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50040,17 +50070,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassAssertion__ClassExpressionAssignment_3"
-    // InternalOwl.g:16467:1: rule__ClassAssertion__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
+    // InternalOwl.g:16465:1: rule__ClassAssertion__ClassExpressionAssignment_3 : ( ruleClassExpression ) ;
     public final void rule__ClassAssertion__ClassExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16471:1: ( ( ruleClassExpression ) )
-            // InternalOwl.g:16472:2: ( ruleClassExpression )
+            // InternalOwl.g:16469:1: ( ( ruleClassExpression ) )
+            // InternalOwl.g:16470:2: ( ruleClassExpression )
             {
-            // InternalOwl.g:16472:2: ( ruleClassExpression )
-            // InternalOwl.g:16473:3: ruleClassExpression
+            // InternalOwl.g:16470:2: ( ruleClassExpression )
+            // InternalOwl.g:16471:3: ruleClassExpression
             {
              before(grammarAccess.getClassAssertionAccess().getClassExpressionClassExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50081,17 +50111,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassAssertion__IndividualAssignment_4"
-    // InternalOwl.g:16482:1: rule__ClassAssertion__IndividualAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16480:1: rule__ClassAssertion__IndividualAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__ClassAssertion__IndividualAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16486:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16487:2: ( ruleIndividualReference )
+            // InternalOwl.g:16484:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16485:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16487:2: ( ruleIndividualReference )
-            // InternalOwl.g:16488:3: ruleIndividualReference
+            // InternalOwl.g:16485:2: ( ruleIndividualReference )
+            // InternalOwl.g:16486:3: ruleIndividualReference
             {
              before(grammarAccess.getClassAssertionAccess().getIndividualIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -50122,17 +50152,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyAssertion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16497:1: rule__ObjectPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16495:1: rule__ObjectPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__ObjectPropertyAssertion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16501:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16502:2: ( ruleAnnotation )
+            // InternalOwl.g:16499:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16500:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16502:2: ( ruleAnnotation )
-            // InternalOwl.g:16503:3: ruleAnnotation
+            // InternalOwl.g:16500:2: ( ruleAnnotation )
+            // InternalOwl.g:16501:3: ruleAnnotation
             {
              before(grammarAccess.getObjectPropertyAssertionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50163,17 +50193,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:16512:1: rule__ObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:16510:1: rule__ObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__ObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16516:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:16517:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16514:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:16515:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:16517:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:16518:3: ruleObjectPropertyExpression
+            // InternalOwl.g:16515:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16516:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getObjectPropertyAssertionAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50204,33 +50234,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyAssertion__SourceIndividualAssignment_4"
-    // InternalOwl.g:16527:1: rule__ObjectPropertyAssertion__SourceIndividualAssignment_4 : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:16525:1: rule__ObjectPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__ObjectPropertyAssertion__SourceIndividualAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16531:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:16532:2: ( ( ruleIRI ) )
+            // InternalOwl.g:16529:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16530:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16532:2: ( ( ruleIRI ) )
-            // InternalOwl.g:16533:3: ( ruleIRI )
+            // InternalOwl.g:16530:2: ( ruleIndividualReference )
+            // InternalOwl.g:16531:3: ruleIndividualReference
             {
-             before(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualCrossReference_4_0()); 
-            // InternalOwl.g:16534:3: ( ruleIRI )
-            // InternalOwl.g:16535:4: ruleIRI
-            {
-             before(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualIRIParserRuleCall_4_0_1()); 
+             before(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
-            ruleIRI();
+            ruleIndividualReference();
 
             state._fsp--;
 
-             after(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualIRIParserRuleCall_4_0_1()); 
-
-            }
-
-             after(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualCrossReference_4_0()); 
+             after(grammarAccess.getObjectPropertyAssertionAccess().getSourceIndividualIndividualReferenceParserRuleCall_4_0()); 
 
             }
 
@@ -50253,33 +50275,25 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ObjectPropertyAssertion__TargetIndividualAssignment_5"
-    // InternalOwl.g:16546:1: rule__ObjectPropertyAssertion__TargetIndividualAssignment_5 : ( ( ruleIRI ) ) ;
+    // InternalOwl.g:16540:1: rule__ObjectPropertyAssertion__TargetIndividualAssignment_5 : ( ruleIndividualReference ) ;
     public final void rule__ObjectPropertyAssertion__TargetIndividualAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16550:1: ( ( ( ruleIRI ) ) )
-            // InternalOwl.g:16551:2: ( ( ruleIRI ) )
+            // InternalOwl.g:16544:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16545:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16551:2: ( ( ruleIRI ) )
-            // InternalOwl.g:16552:3: ( ruleIRI )
+            // InternalOwl.g:16545:2: ( ruleIndividualReference )
+            // InternalOwl.g:16546:3: ruleIndividualReference
             {
-             before(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualCrossReference_5_0()); 
-            // InternalOwl.g:16553:3: ( ruleIRI )
-            // InternalOwl.g:16554:4: ruleIRI
-            {
-             before(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualIRIParserRuleCall_5_0_1()); 
+             before(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualReferenceParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
-            ruleIRI();
+            ruleIndividualReference();
 
             state._fsp--;
 
-             after(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualIRIParserRuleCall_5_0_1()); 
-
-            }
-
-             after(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualCrossReference_5_0()); 
+             after(grammarAccess.getObjectPropertyAssertionAccess().getTargetIndividualIndividualReferenceParserRuleCall_5_0()); 
 
             }
 
@@ -50302,17 +50316,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeObjectPropertyAssertion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16565:1: rule__NegativeObjectPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16555:1: rule__NegativeObjectPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__NegativeObjectPropertyAssertion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16569:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16570:2: ( ruleAnnotation )
+            // InternalOwl.g:16559:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16560:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16570:2: ( ruleAnnotation )
-            // InternalOwl.g:16571:3: ruleAnnotation
+            // InternalOwl.g:16560:2: ( ruleAnnotation )
+            // InternalOwl.g:16561:3: ruleAnnotation
             {
              before(grammarAccess.getNegativeObjectPropertyAssertionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50343,17 +50357,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:16580:1: rule__NegativeObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:16570:1: rule__NegativeObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__NegativeObjectPropertyAssertion__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16584:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:16585:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16574:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:16575:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:16585:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:16586:3: ruleObjectPropertyExpression
+            // InternalOwl.g:16575:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16576:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getNegativeObjectPropertyAssertionAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50384,17 +50398,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeObjectPropertyAssertion__SourceIndividualAssignment_4"
-    // InternalOwl.g:16595:1: rule__NegativeObjectPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16585:1: rule__NegativeObjectPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__NegativeObjectPropertyAssertion__SourceIndividualAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16599:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16600:2: ( ruleIndividualReference )
+            // InternalOwl.g:16589:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16590:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16600:2: ( ruleIndividualReference )
-            // InternalOwl.g:16601:3: ruleIndividualReference
+            // InternalOwl.g:16590:2: ( ruleIndividualReference )
+            // InternalOwl.g:16591:3: ruleIndividualReference
             {
              before(grammarAccess.getNegativeObjectPropertyAssertionAccess().getSourceIndividualIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -50425,17 +50439,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeObjectPropertyAssertion__TargetIndividualAssignment_5"
-    // InternalOwl.g:16610:1: rule__NegativeObjectPropertyAssertion__TargetIndividualAssignment_5 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16600:1: rule__NegativeObjectPropertyAssertion__TargetIndividualAssignment_5 : ( ruleIndividualReference ) ;
     public final void rule__NegativeObjectPropertyAssertion__TargetIndividualAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16614:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16615:2: ( ruleIndividualReference )
+            // InternalOwl.g:16604:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16605:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16615:2: ( ruleIndividualReference )
-            // InternalOwl.g:16616:3: ruleIndividualReference
+            // InternalOwl.g:16605:2: ( ruleIndividualReference )
+            // InternalOwl.g:16606:3: ruleIndividualReference
             {
              before(grammarAccess.getNegativeObjectPropertyAssertionAccess().getTargetIndividualIndividualReferenceParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -50466,17 +50480,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyAssertion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16625:1: rule__DataPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16615:1: rule__DataPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__DataPropertyAssertion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16629:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16630:2: ( ruleAnnotation )
+            // InternalOwl.g:16619:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16620:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16630:2: ( ruleAnnotation )
-            // InternalOwl.g:16631:3: ruleAnnotation
+            // InternalOwl.g:16620:2: ( ruleAnnotation )
+            // InternalOwl.g:16621:3: ruleAnnotation
             {
              before(grammarAccess.getDataPropertyAssertionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50507,17 +50521,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyAssertion__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:16640:1: rule__DataPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:16630:1: rule__DataPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__DataPropertyAssertion__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16644:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:16645:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16634:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:16635:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:16645:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:16646:3: ruleObjectPropertyExpression
+            // InternalOwl.g:16635:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16636:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getDataPropertyAssertionAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50548,17 +50562,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyAssertion__SourceIndividualAssignment_4"
-    // InternalOwl.g:16655:1: rule__DataPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16645:1: rule__DataPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__DataPropertyAssertion__SourceIndividualAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16659:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16660:2: ( ruleIndividualReference )
+            // InternalOwl.g:16649:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16650:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16660:2: ( ruleIndividualReference )
-            // InternalOwl.g:16661:3: ruleIndividualReference
+            // InternalOwl.g:16650:2: ( ruleIndividualReference )
+            // InternalOwl.g:16651:3: ruleIndividualReference
             {
              before(grammarAccess.getDataPropertyAssertionAccess().getSourceIndividualIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -50589,17 +50603,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataPropertyAssertion__TargetValueAssignment_5"
-    // InternalOwl.g:16670:1: rule__DataPropertyAssertion__TargetValueAssignment_5 : ( ruleLiteral ) ;
+    // InternalOwl.g:16660:1: rule__DataPropertyAssertion__TargetValueAssignment_5 : ( ruleLiteral ) ;
     public final void rule__DataPropertyAssertion__TargetValueAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16674:1: ( ( ruleLiteral ) )
-            // InternalOwl.g:16675:2: ( ruleLiteral )
+            // InternalOwl.g:16664:1: ( ( ruleLiteral ) )
+            // InternalOwl.g:16665:2: ( ruleLiteral )
             {
-            // InternalOwl.g:16675:2: ( ruleLiteral )
-            // InternalOwl.g:16676:3: ruleLiteral
+            // InternalOwl.g:16665:2: ( ruleLiteral )
+            // InternalOwl.g:16666:3: ruleLiteral
             {
              before(grammarAccess.getDataPropertyAssertionAccess().getTargetValueLiteralParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -50630,17 +50644,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeDataPropertyAssertion__AxiomAnnotationsAssignment_2"
-    // InternalOwl.g:16685:1: rule__NegativeDataPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16675:1: rule__NegativeDataPropertyAssertion__AxiomAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__NegativeDataPropertyAssertion__AxiomAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16689:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16690:2: ( ruleAnnotation )
+            // InternalOwl.g:16679:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16680:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16690:2: ( ruleAnnotation )
-            // InternalOwl.g:16691:3: ruleAnnotation
+            // InternalOwl.g:16680:2: ( ruleAnnotation )
+            // InternalOwl.g:16681:3: ruleAnnotation
             {
              before(grammarAccess.getNegativeDataPropertyAssertionAccess().getAxiomAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50671,17 +50685,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeDataPropertyAssertion__ObjectPropertyExpressionAssignment_3"
-    // InternalOwl.g:16700:1: rule__NegativeDataPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
+    // InternalOwl.g:16690:1: rule__NegativeDataPropertyAssertion__ObjectPropertyExpressionAssignment_3 : ( ruleObjectPropertyExpression ) ;
     public final void rule__NegativeDataPropertyAssertion__ObjectPropertyExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16704:1: ( ( ruleObjectPropertyExpression ) )
-            // InternalOwl.g:16705:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16694:1: ( ( ruleObjectPropertyExpression ) )
+            // InternalOwl.g:16695:2: ( ruleObjectPropertyExpression )
             {
-            // InternalOwl.g:16705:2: ( ruleObjectPropertyExpression )
-            // InternalOwl.g:16706:3: ruleObjectPropertyExpression
+            // InternalOwl.g:16695:2: ( ruleObjectPropertyExpression )
+            // InternalOwl.g:16696:3: ruleObjectPropertyExpression
             {
              before(grammarAccess.getNegativeDataPropertyAssertionAccess().getObjectPropertyExpressionObjectPropertyExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50712,17 +50726,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeDataPropertyAssertion__SourceIndividualAssignment_4"
-    // InternalOwl.g:16715:1: rule__NegativeDataPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
+    // InternalOwl.g:16705:1: rule__NegativeDataPropertyAssertion__SourceIndividualAssignment_4 : ( ruleIndividualReference ) ;
     public final void rule__NegativeDataPropertyAssertion__SourceIndividualAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16719:1: ( ( ruleIndividualReference ) )
-            // InternalOwl.g:16720:2: ( ruleIndividualReference )
+            // InternalOwl.g:16709:1: ( ( ruleIndividualReference ) )
+            // InternalOwl.g:16710:2: ( ruleIndividualReference )
             {
-            // InternalOwl.g:16720:2: ( ruleIndividualReference )
-            // InternalOwl.g:16721:3: ruleIndividualReference
+            // InternalOwl.g:16710:2: ( ruleIndividualReference )
+            // InternalOwl.g:16711:3: ruleIndividualReference
             {
              before(grammarAccess.getNegativeDataPropertyAssertionAccess().getSourceIndividualIndividualReferenceParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -50753,17 +50767,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NegativeDataPropertyAssertion__TargetValueAssignment_5"
-    // InternalOwl.g:16730:1: rule__NegativeDataPropertyAssertion__TargetValueAssignment_5 : ( ruleLiteral ) ;
+    // InternalOwl.g:16720:1: rule__NegativeDataPropertyAssertion__TargetValueAssignment_5 : ( ruleLiteral ) ;
     public final void rule__NegativeDataPropertyAssertion__TargetValueAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16734:1: ( ( ruleLiteral ) )
-            // InternalOwl.g:16735:2: ( ruleLiteral )
+            // InternalOwl.g:16724:1: ( ( ruleLiteral ) )
+            // InternalOwl.g:16725:2: ( ruleLiteral )
             {
-            // InternalOwl.g:16735:2: ( ruleLiteral )
-            // InternalOwl.g:16736:3: ruleLiteral
+            // InternalOwl.g:16725:2: ( ruleLiteral )
+            // InternalOwl.g:16726:3: ruleLiteral
             {
              before(grammarAccess.getNegativeDataPropertyAssertionAccess().getTargetValueLiteralParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -50794,17 +50808,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Annotation__AnnotationAnnotationsAssignment_2"
-    // InternalOwl.g:16745:1: rule__Annotation__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16735:1: rule__Annotation__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__Annotation__AnnotationAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16749:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16750:2: ( ruleAnnotation )
+            // InternalOwl.g:16739:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16740:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16750:2: ( ruleAnnotation )
-            // InternalOwl.g:16751:3: ruleAnnotation
+            // InternalOwl.g:16740:2: ( ruleAnnotation )
+            // InternalOwl.g:16741:3: ruleAnnotation
             {
              before(grammarAccess.getAnnotationAccess().getAnnotationAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50835,17 +50849,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Annotation__AnnotationPropertyAssignment_3"
-    // InternalOwl.g:16760:1: rule__Annotation__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16750:1: rule__Annotation__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
     public final void rule__Annotation__AnnotationPropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16764:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16765:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16754:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16755:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16765:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16766:3: ruleAnnotationProperty
+            // InternalOwl.g:16755:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16756:3: ruleAnnotationProperty
             {
              before(grammarAccess.getAnnotationAccess().getAnnotationPropertyAnnotationPropertyParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50876,17 +50890,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Annotation__AnnotationvalueAssignment_4"
-    // InternalOwl.g:16775:1: rule__Annotation__AnnotationvalueAssignment_4 : ( ruleAnnotationValue ) ;
+    // InternalOwl.g:16765:1: rule__Annotation__AnnotationvalueAssignment_4 : ( ruleAnnotationValue ) ;
     public final void rule__Annotation__AnnotationvalueAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16779:1: ( ( ruleAnnotationValue ) )
-            // InternalOwl.g:16780:2: ( ruleAnnotationValue )
+            // InternalOwl.g:16769:1: ( ( ruleAnnotationValue ) )
+            // InternalOwl.g:16770:2: ( ruleAnnotationValue )
             {
-            // InternalOwl.g:16780:2: ( ruleAnnotationValue )
-            // InternalOwl.g:16781:3: ruleAnnotationValue
+            // InternalOwl.g:16770:2: ( ruleAnnotationValue )
+            // InternalOwl.g:16771:3: ruleAnnotationValue
             {
              before(grammarAccess.getAnnotationAccess().getAnnotationvalueAnnotationValueParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -50917,17 +50931,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationAssertion__AnnotationAnnotationsAssignment_2"
-    // InternalOwl.g:16790:1: rule__AnnotationAssertion__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16780:1: rule__AnnotationAssertion__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__AnnotationAssertion__AnnotationAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16794:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16795:2: ( ruleAnnotation )
+            // InternalOwl.g:16784:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16785:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16795:2: ( ruleAnnotation )
-            // InternalOwl.g:16796:3: ruleAnnotation
+            // InternalOwl.g:16785:2: ( ruleAnnotation )
+            // InternalOwl.g:16786:3: ruleAnnotation
             {
              before(grammarAccess.getAnnotationAssertionAccess().getAnnotationAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -50958,17 +50972,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationAssertion__AnnotationPropertyAssignment_3"
-    // InternalOwl.g:16805:1: rule__AnnotationAssertion__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16795:1: rule__AnnotationAssertion__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
     public final void rule__AnnotationAssertion__AnnotationPropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16809:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16810:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16799:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16800:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16810:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16811:3: ruleAnnotationProperty
+            // InternalOwl.g:16800:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16801:3: ruleAnnotationProperty
             {
              before(grammarAccess.getAnnotationAssertionAccess().getAnnotationPropertyAnnotationPropertyParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -50999,17 +51013,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationAssertion__AnnotationSubjectAssignment_4"
-    // InternalOwl.g:16820:1: rule__AnnotationAssertion__AnnotationSubjectAssignment_4 : ( ruleAnnotationSubject ) ;
+    // InternalOwl.g:16810:1: rule__AnnotationAssertion__AnnotationSubjectAssignment_4 : ( ruleAnnotationSubject ) ;
     public final void rule__AnnotationAssertion__AnnotationSubjectAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16824:1: ( ( ruleAnnotationSubject ) )
-            // InternalOwl.g:16825:2: ( ruleAnnotationSubject )
+            // InternalOwl.g:16814:1: ( ( ruleAnnotationSubject ) )
+            // InternalOwl.g:16815:2: ( ruleAnnotationSubject )
             {
-            // InternalOwl.g:16825:2: ( ruleAnnotationSubject )
-            // InternalOwl.g:16826:3: ruleAnnotationSubject
+            // InternalOwl.g:16815:2: ( ruleAnnotationSubject )
+            // InternalOwl.g:16816:3: ruleAnnotationSubject
             {
              before(grammarAccess.getAnnotationAssertionAccess().getAnnotationSubjectAnnotationSubjectParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -51040,17 +51054,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationAssertion__AnnotationValueAssignment_5"
-    // InternalOwl.g:16835:1: rule__AnnotationAssertion__AnnotationValueAssignment_5 : ( ruleAnnotationValue ) ;
+    // InternalOwl.g:16825:1: rule__AnnotationAssertion__AnnotationValueAssignment_5 : ( ruleAnnotationValue ) ;
     public final void rule__AnnotationAssertion__AnnotationValueAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16839:1: ( ( ruleAnnotationValue ) )
-            // InternalOwl.g:16840:2: ( ruleAnnotationValue )
+            // InternalOwl.g:16829:1: ( ( ruleAnnotationValue ) )
+            // InternalOwl.g:16830:2: ( ruleAnnotationValue )
             {
-            // InternalOwl.g:16840:2: ( ruleAnnotationValue )
-            // InternalOwl.g:16841:3: ruleAnnotationValue
+            // InternalOwl.g:16830:2: ( ruleAnnotationValue )
+            // InternalOwl.g:16831:3: ruleAnnotationValue
             {
              before(grammarAccess.getAnnotationAssertionAccess().getAnnotationValueAnnotationValueParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -51081,17 +51095,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubAnnotationPropertyOf__AnnotationAnnotationsAssignment_2"
-    // InternalOwl.g:16850:1: rule__SubAnnotationPropertyOf__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16840:1: rule__SubAnnotationPropertyOf__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__SubAnnotationPropertyOf__AnnotationAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16854:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16855:2: ( ruleAnnotation )
+            // InternalOwl.g:16844:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16845:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16855:2: ( ruleAnnotation )
-            // InternalOwl.g:16856:3: ruleAnnotation
+            // InternalOwl.g:16845:2: ( ruleAnnotation )
+            // InternalOwl.g:16846:3: ruleAnnotation
             {
              before(grammarAccess.getSubAnnotationPropertyOfAccess().getAnnotationAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -51122,17 +51136,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubAnnotationPropertyOf__SubAnnotationPropertyAssignment_3"
-    // InternalOwl.g:16865:1: rule__SubAnnotationPropertyOf__SubAnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16855:1: rule__SubAnnotationPropertyOf__SubAnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
     public final void rule__SubAnnotationPropertyOf__SubAnnotationPropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16869:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16870:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16859:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16860:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16870:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16871:3: ruleAnnotationProperty
+            // InternalOwl.g:16860:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16861:3: ruleAnnotationProperty
             {
              before(grammarAccess.getSubAnnotationPropertyOfAccess().getSubAnnotationPropertyAnnotationPropertyParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -51163,17 +51177,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubAnnotationPropertyOf__SuperAnnotationPropertyAssignment_4"
-    // InternalOwl.g:16880:1: rule__SubAnnotationPropertyOf__SuperAnnotationPropertyAssignment_4 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16870:1: rule__SubAnnotationPropertyOf__SuperAnnotationPropertyAssignment_4 : ( ruleAnnotationProperty ) ;
     public final void rule__SubAnnotationPropertyOf__SuperAnnotationPropertyAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16884:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16885:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16874:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16875:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16885:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16886:3: ruleAnnotationProperty
+            // InternalOwl.g:16875:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16876:3: ruleAnnotationProperty
             {
              before(grammarAccess.getSubAnnotationPropertyOfAccess().getSuperAnnotationPropertyAnnotationPropertyParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -51204,17 +51218,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyDomain__AnnotationAnnotationsAssignment_2"
-    // InternalOwl.g:16895:1: rule__AnnotationPropertyDomain__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16885:1: rule__AnnotationPropertyDomain__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__AnnotationPropertyDomain__AnnotationAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16899:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16900:2: ( ruleAnnotation )
+            // InternalOwl.g:16889:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16890:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16900:2: ( ruleAnnotation )
-            // InternalOwl.g:16901:3: ruleAnnotation
+            // InternalOwl.g:16890:2: ( ruleAnnotation )
+            // InternalOwl.g:16891:3: ruleAnnotation
             {
              before(grammarAccess.getAnnotationPropertyDomainAccess().getAnnotationAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -51245,17 +51259,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyDomain__AnnotationPropertyAssignment_3"
-    // InternalOwl.g:16910:1: rule__AnnotationPropertyDomain__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16900:1: rule__AnnotationPropertyDomain__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
     public final void rule__AnnotationPropertyDomain__AnnotationPropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16914:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16915:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16904:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16905:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16915:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16916:3: ruleAnnotationProperty
+            // InternalOwl.g:16905:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16906:3: ruleAnnotationProperty
             {
              before(grammarAccess.getAnnotationPropertyDomainAccess().getAnnotationPropertyAnnotationPropertyParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -51286,17 +51300,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyDomain__DomainAssignment_4"
-    // InternalOwl.g:16925:1: rule__AnnotationPropertyDomain__DomainAssignment_4 : ( ruleIRI ) ;
+    // InternalOwl.g:16915:1: rule__AnnotationPropertyDomain__DomainAssignment_4 : ( ruleIRI ) ;
     public final void rule__AnnotationPropertyDomain__DomainAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16929:1: ( ( ruleIRI ) )
-            // InternalOwl.g:16930:2: ( ruleIRI )
+            // InternalOwl.g:16919:1: ( ( ruleIRI ) )
+            // InternalOwl.g:16920:2: ( ruleIRI )
             {
-            // InternalOwl.g:16930:2: ( ruleIRI )
-            // InternalOwl.g:16931:3: ruleIRI
+            // InternalOwl.g:16920:2: ( ruleIRI )
+            // InternalOwl.g:16921:3: ruleIRI
             {
              before(grammarAccess.getAnnotationPropertyDomainAccess().getDomainIRIParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -51327,17 +51341,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyRange__AnnotationAnnotationsAssignment_2"
-    // InternalOwl.g:16940:1: rule__AnnotationPropertyRange__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
+    // InternalOwl.g:16930:1: rule__AnnotationPropertyRange__AnnotationAnnotationsAssignment_2 : ( ruleAnnotation ) ;
     public final void rule__AnnotationPropertyRange__AnnotationAnnotationsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16944:1: ( ( ruleAnnotation ) )
-            // InternalOwl.g:16945:2: ( ruleAnnotation )
+            // InternalOwl.g:16934:1: ( ( ruleAnnotation ) )
+            // InternalOwl.g:16935:2: ( ruleAnnotation )
             {
-            // InternalOwl.g:16945:2: ( ruleAnnotation )
-            // InternalOwl.g:16946:3: ruleAnnotation
+            // InternalOwl.g:16935:2: ( ruleAnnotation )
+            // InternalOwl.g:16936:3: ruleAnnotation
             {
              before(grammarAccess.getAnnotationPropertyRangeAccess().getAnnotationAnnotationsAnnotationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -51368,17 +51382,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyRange__AnnotationPropertyAssignment_3"
-    // InternalOwl.g:16955:1: rule__AnnotationPropertyRange__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
+    // InternalOwl.g:16945:1: rule__AnnotationPropertyRange__AnnotationPropertyAssignment_3 : ( ruleAnnotationProperty ) ;
     public final void rule__AnnotationPropertyRange__AnnotationPropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16959:1: ( ( ruleAnnotationProperty ) )
-            // InternalOwl.g:16960:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16949:1: ( ( ruleAnnotationProperty ) )
+            // InternalOwl.g:16950:2: ( ruleAnnotationProperty )
             {
-            // InternalOwl.g:16960:2: ( ruleAnnotationProperty )
-            // InternalOwl.g:16961:3: ruleAnnotationProperty
+            // InternalOwl.g:16950:2: ( ruleAnnotationProperty )
+            // InternalOwl.g:16951:3: ruleAnnotationProperty
             {
              before(grammarAccess.getAnnotationPropertyRangeAccess().getAnnotationPropertyAnnotationPropertyParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -51409,17 +51423,17 @@ public class InternalOwlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AnnotationPropertyRange__RangeAssignment_4"
-    // InternalOwl.g:16970:1: rule__AnnotationPropertyRange__RangeAssignment_4 : ( ruleIRI ) ;
+    // InternalOwl.g:16960:1: rule__AnnotationPropertyRange__RangeAssignment_4 : ( ruleIRI ) ;
     public final void rule__AnnotationPropertyRange__RangeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalOwl.g:16974:1: ( ( ruleIRI ) )
-            // InternalOwl.g:16975:2: ( ruleIRI )
+            // InternalOwl.g:16964:1: ( ( ruleIRI ) )
+            // InternalOwl.g:16965:2: ( ruleIRI )
             {
-            // InternalOwl.g:16975:2: ( ruleIRI )
-            // InternalOwl.g:16976:3: ruleIRI
+            // InternalOwl.g:16965:2: ( ruleIRI )
+            // InternalOwl.g:16966:3: ruleIRI
             {
              before(grammarAccess.getAnnotationPropertyRangeAccess().getRangeIRIParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);

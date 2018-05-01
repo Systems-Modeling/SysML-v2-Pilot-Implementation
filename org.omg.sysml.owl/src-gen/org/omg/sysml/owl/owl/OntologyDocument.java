@@ -27,20 +27,20 @@ import org.eclipse.emf.ecore.EObject;
 public interface OntologyDocument extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Prefix Declarations</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Prefix Declarations</b></em>' containment reference list.
+   * The list contents are of type {@link org.omg.sysml.owl.owl.PrefixDeclaration}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Prefix Declarations</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Prefix Declarations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Prefix Declarations</em>' attribute list.
+   * @return the value of the '<em>Prefix Declarations</em>' containment reference list.
    * @see org.omg.sysml.owl.owl.OwlPackage#getOntologyDocument_PrefixDeclarations()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getPrefixDeclarations();
+  EList<PrefixDeclaration> getPrefixDeclarations();
 
   /**
    * Returns the value of the '<em><b>Ontology</b></em>' containment reference.

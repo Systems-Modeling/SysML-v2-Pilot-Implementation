@@ -97,6 +97,7 @@ import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlFactory;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
 import org.omg.sysml.owl.owl.SameIndividual;
 import org.omg.sysml.owl.owl.StringLiteral;
@@ -161,6 +162,7 @@ public class OwlFactoryImpl extends EFactoryImpl implements OwlFactory
     switch (eClass.getClassifierID())
     {
       case OwlPackage.ONTOLOGY_DOCUMENT: return createOntologyDocument();
+      case OwlPackage.PREFIX_DECLARATION: return createPrefixDeclaration();
       case OwlPackage.ONTOLOGY: return createOntology();
       case OwlPackage.ENTITY: return createEntity();
       case OwlPackage.CLASS: return createClass();
@@ -269,6 +271,17 @@ public class OwlFactoryImpl extends EFactoryImpl implements OwlFactory
   {
     OntologyDocumentImpl ontologyDocument = new OntologyDocumentImpl();
     return ontologyDocument;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrefixDeclaration createPrefixDeclaration()
+  {
+    PrefixDeclarationImpl prefixDeclaration = new PrefixDeclarationImpl();
+    return prefixDeclaration;
   }
 
   /**

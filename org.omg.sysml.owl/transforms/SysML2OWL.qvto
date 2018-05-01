@@ -1,0 +1,385 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype Core uses "http://www.omg.org/spec/SysML/2.0/Core";
+modeltype Groups uses "http://www.omg.org/spec/SysML/2.0/Groups";
+modeltype Classification uses "http://www.omg.org/spec/SysML/2.0/Classification";
+modeltype Behavior uses "http://www.omg.org/spec/SysML/2.0/Behavior";
+modeltype OWL uses "http://www.omg.org/spec/SysML/2.0/OWL";
+modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
+
+transformation SysML2OWL(in sysml: Classification, out owl: OWL);
+
+main() {
+	var root := sysml.rootObjects()![Groups::Namespace];
+	assert fatal (root <> null) with log('No root Namespace');
+	log('Transforming ' + root.name + ' to ' + root.URL());
+	root.mapToDeclarations();
+	
+	// TEMPORARY CLEAN-UP
+	owl.rootObjects()[OWL::Entity]->forEach (entity) { new Declaration(entity) };
+	
+	new OntologyDocument(root.URL(), owl.rootObjects()[OWL::Axiom]);
+}
+
+// Utility
+
+query valueOf(s: String): String {
+	return 
+		if s = null then "<null>"
+		else if s.oclIsInvalid() then "<invalid>"
+	    else s endif endif;
+}
+
+// Constructors
+
+constructor OWL::OntologyDocument::OntologyDocument(prefixDeclarations_: List(OWL::PrefixDeclaration), ontology_: OWL::Ontology) {
+	prefixDeclarations := prefixDeclarations_;
+	ontology := ontology_;
+}
+
+constructor OWL::OntologyDocument::OntologyDocument(ontologyURL: String, axioms: Set(OWL::Axiom)) {
+	prefixDeclarations += new PrefixDeclaration(":", "<" + ontologyURL + "#" + ">");
+	ontology := new Ontology("<" + ontologyURL + ">", axioms);
+}
+
+constructor OWL::PrefixDeclaration::PrefixDeclaration(prefixName_: String, fullIRI_: String) {
+	prefixName := prefixName_;
+	fullIRI := fullIRI_;
+}
+
+constructor OWL::Ontology::Ontology(ontologyIRI_: String, axioms_: Set(OWL::Axiom)) {
+	ontologyIRI := ontologyIRI_;
+	axioms := axioms_;
+}
+
+constructor OWL::Declaration::Declaration(entity_: OWL::Entity) {
+	entity := entity_;
+}
+
+constructor OWL::ClassReference::ClassReference(referent: OWL::Class) {
+	_class := referent.entityIRI;
+}
+
+constructor OWL::EquivalentClasses::EquivalentClasses(classExpression1: OWL::ClassExpression, classExpression2: OWL::ClassExpression) {	
+	classExpressions += classExpression1;
+	classExpressions += classExpression2;
+}
+
+constructor OWL::ObjectPropertyReference::ObjectPropertyReference(referent: OWL::ObjectProperty) {
+	objectProperty := referent.entityIRI;
+}
+
+constructor OWL::ObjectPropertyDomain::ObjectPropertyDomain(objectProperty: OWL::ObjectPropertyExpression, domain: OWL::ClassExpression) {
+	objectPropertyExpression := objectProperty;
+	classExpression := domain;
+}
+
+constructor OWL::ObjectPropertyRange::ObjectPropertyRange(objectProperty: OWL::ObjectPropertyExpression, domain: OWL::ClassExpression) {
+	objectPropertyExpression := objectProperty;
+	classExpression := domain;
+}
+
+constructor OWL::ObjectMinCardinality::ObjectMinCardinality(lower: Integer, objectProperty: OWL::ObjectPropertyExpression) {
+	cardinality := lower;
+	objectPropertyExpression := objectProperty;
+}
+
+constructor OWL::ObjectMaxCardinality::ObjectMaxCardinality(upper: Integer, objectProperty: OWL::ObjectPropertyExpression) {
+	cardinality := upper;
+	objectPropertyExpression := objectProperty;
+}
+
+constructor OWL::SubClassOf::SubClassOf(subClass: OWL::ClassExpression, superClass: OWL::ClassExpression) {
+	subClassExpression := subClass;
+	superClassExpression := superClass;
+}
+
+// Element
+
+query ElementIRI(element: Core::Element): String {
+	return ':' + element.qualifiedName();
+}
+
+query Core::Element::name(): String {
+	return self.name;
+}
+
+query Core::Element::qualifiedName(): String {
+	var owner := self.owner();
+	return
+		if owner = null then self.name()
+		else owner.qualifiedName() + "." + self.name()
+		endif;
+}
+
+abstract query Core::Element::IRI(): String;
+
+query Core::Element::owner(): Core::Element {
+//	log('Element ' + self.toString());
+	var container := self.container();
+//	log ('  container: ' + container.toString());
+	if container <> null and container.oclIsKindOf(Groups::GroupMembership) then {
+		container := container.container();
+	} endif;
+//	log('  owner: ' + if container = null then "<none>" else container.toString() endif);
+	return if container = null then null else container.oclAsType(Core::Element) endif;
+}
+
+helper Core::Element::mapToDeclarations() {	
+}
+
+mapping Core::Element::toEntity(): OWL::Entity disjuncts
+	Classification::Class::toClass,
+	Classification::Feature::toObjectProperty;
+
+// Namespace
+
+query Groups::Namespace::URL(): String {
+	return 'http://www.omg.org/SysML/ontology/' + self.qualifiedName().replace(".", "/");
+}
+
+helper Groups::Namespace::mapToDeclarations() {
+	self.groupMember.ownedMemberElement->mapToDeclarations();
+}
+
+//mapping Groups::Namespace::toDeclaration(): Declaration {
+//	log('Mapping Namespace ' + valueOf(self.name) + ' to Declaration');
+//	entity := self.map toEntity();
+//	log('  entity: ' + entity.toString());
+//}
+
+mapping Groups::Namespace::toDeclaration(): OWL::Declaration {
+	entity := self.map toEntity();
+//	log('Mapping Namespace ' + valueOf(self.name) + ' to Declaration');
+//	log('  entity: ' + entity.toString());	
+}
+
+abstract mapping Groups::Namespace::toEntityBase(): OWL::Entity {
+	entityIRI := self.IRI();
+}
+
+// Class
+
+query Classification::Class::owningFeature(): Classification::Feature {
+	var owner = self.container();
+	return
+		if owner <> null and owner.oclIsKindOf(Classification::Feature) then
+			owner.oclAsType(Classification::Feature)
+		else 
+			null
+		endif;
+}
+
+query Classification::Class::name(): String {
+	var effectiveName := self.name;
+	if effectiveName = null then {
+		var owningFeature := self.owningFeature();
+		if owningFeature <> null then {
+			effectiveName := '_' + owningFeature.name()
+		} else {
+			effectiveName := '_anonymous_';
+		} endif;
+	} endif;
+	return effectiveName;
+}
+	
+query Classification::Class::IRI(): String {
+	return ElementIRI(self) + '-Class';
+}
+
+query Classification::Class::ownedFeatures(): List(Classification::Feature) {
+	return self.groupMember.ownedMemberElement[Classification::Feature];
+}
+
+query Classification::Class::implicitSuperclass(): Classification::Class {
+	var owningFeature := self.owningFeature();
+	return
+		if owningFeature = null then null
+		else owningFeature.type()
+		endif
+}
+
+query Classification::Class::superclasses(): Bag(Classification::Class) {
+	var superclasses := self.ownedGeneralization.general;
+	var implicitSuperclass := self.implicitSuperclass();
+	if implicitSuperclass <> null then {
+		superclasses += implicitSuperclass;
+	} endif;
+	return superclasses;
+}
+
+query Classification::Class::feature(featureName: String): Classification::Feature {
+	var members := self.groupMember.ownedMemberElement->union(self.groupMember.memberElement);
+	var namedFeature := members[Classification::Feature]![name = featureName];
+	if namedFeature = null then {
+		namedFeature := self.superclasses().feature(featureName)![true];
+	} endif;
+	return namedFeature;
+}
+
+helper Classification::Class::mapToDeclarations() {
+	self.map toDeclaration();
+	self.groupMember.ownedMemberElement->mapToDeclarations();
+}
+
+mapping Classification::Class::toClass(): OWL::Class 
+	inherits Groups::Namespace::toEntityBase {
+	log('Mapping Class ' + valueOf(self.name()) + ' to Class ' + valueOf(entityIRI));
+	
+	self.ownedGeneralization->map toSubClassOf();
+	var implicitSuperclass := self.implicitSuperclass();
+	if implicitSuperclass <> null then {
+		new SubClassOf(
+			new ClassReference(result), 
+			implicitSuperclass.mapToClassExpression());
+	} endif;
+}
+
+helper Classification::Class::mapToClassExpression(): OWL::ClassExpression {
+//	log('Mapping Class ' + valueOf(self.name) + ' to ClassExpression');
+	var entity := self.map toClass();
+//    log('  entity: ' + entity.toString());
+	return new OWL::ClassReference(entity);
+}
+
+// Feature
+
+query Classification::Feature::name(): String {
+	var redefinedFeature := self.redefinedFeature();
+	return
+		if redefinedFeature <> null then redefinedFeature.name()
+		else valueOf(self.name)
+		endif;
+}
+
+query Classification::Feature::IRI(): String {
+	return ElementIRI(self) + '-Feature';
+}
+
+query Classification::Feature::redefinedFeature(): Classification::Feature {
+	log('Feature ' + valueOf(self.name));
+	var feature := self.redefinedFeature![true];
+	if feature = null and self.name <> null then {
+		var owner := self.owner();
+		if (owner <> null and owner.oclIsKindOf(Classification::Class)) then {
+			 feature := 
+			 	owner.oclAsType(Classification::Class).superclasses().feature(self.name)![true];		
+	    } endif;
+	} endif;
+	log('  redefinedFeature: ' + if feature.oclIsInvalid() then "<invalid>" else if feature = null then "<none>" else valueOf(feature.name) endif endif);
+	return feature;
+}
+
+query Classification::Feature::type(): Classification::Class {
+	var featureType := self.referencedType![true];
+	if featureType = null then {
+		var redefinedFeature := self.redefinedFeature();
+		if redefinedFeature <> null then {
+			featureType := redefinedFeature.type();
+		} endif;
+	} endif;
+	return featureType;
+}
+
+query Classification::Feature::range(): Classification::Class {
+	return
+		if self.referencedType->notEmpty() then
+			self.referencedType![true]
+		else if self.ownedType->notEmpty() then
+			self.ownedType![true]
+		else
+			null
+		endif endif;
+}
+
+helper Classification::Feature::mapToDeclarations() {
+	self.map toDeclaration();
+	self.ownedType->mapToDeclarations();
+}
+
+helper newMinCardinality(cardinality: Integer, objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
+		new EquivalentClasses(
+			new OWL::ClassReference(domain),
+			new ObjectMinCardinality(cardinality, new ObjectPropertyReference(objectProperty)));
+}
+
+helper newMaxCardinality(cardinality: Integer, objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
+		new EquivalentClasses(
+			new OWL::ClassReference(domain),
+			new ObjectMaxCardinality(cardinality, new ObjectPropertyReference(objectProperty)));
+}
+
+helper Classification::Feature::mapMultiplicity(objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
+	if self.lower <> null then {
+		if self.lower.oclIsKindOf(Behavior::LiteralInteger) then {
+			newMinCardinality(self.lower.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+		} endif;
+	} else if self.upper <> null then {
+		if self.upper.oclIsKindOf(Behavior::LiteralInteger) then {
+			newMinCardinality(self.upper.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+		} endif
+	} else {
+		newMinCardinality(1, objectProperty, domain);
+	} endif endif;
+	
+	if self.upper <> null and self.upper.oclIsKindOf(Behavior::LiteralInteger) then {
+		newMaxCardinality(self.upper.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+	} else if self.upper = null then {
+		newMaxCardinality(1, objectProperty, domain);
+	} endif endif;
+}
+
+mapping Classification::Feature::toObjectProperty(): OWL::ObjectProperty  
+	inherits Groups::Namespace::toEntityBase {
+	log('Mapping Feature ' + valueOf(self.name) + ' to ObjectProperty ' + valueOf(entityIRI));
+
+	var owner = self.owner();
+	if owner <> null and owner.oclIsKindOf(Classification::Class) then {
+		var domain := owner.oclAsType(Classification::Class).map toClass();
+		log('  domain: ' + if domain = null then '<null>' else domain.toString() endif);
+		new OWL::ObjectPropertyDomain(new ObjectPropertyReference(result), new OWL::ClassReference(domain));
+		self.mapMultiplicity(result, domain);
+	} endif;
+	if self.referencedType->notEmpty() or self.ownedType->notEmpty() then {
+		new OWL::ObjectPropertyRange(
+			new ObjectPropertyReference(result),
+			self.range().mapToClassExpression());
+	} endif;
+
+}
+
+helper Classification::Feature::mapToObjectPropertyExpression(): OWL::ObjectPropertyExpression {
+	return new OWL::ObjectPropertyReference(self.map toObjectProperty());
+}
+
+// Generalization
+
+mapping Classification::Generalization::toSubClassOf(): OWL::SubClassOf {
+    log('Mapping Generalization');
+	subClassExpression := self.container().oclAsType(Classification::Class).mapToClassExpression();
+	superClassExpression := self.general.mapToClassExpression();
+	log('  subClassExpression: ' + valueOf(subClassExpression.oclAsType(ClassReference)._class));
+	log('  superClassExpression: ' + valueOf(superClassExpression.oclAsType(ClassReference)._class));
+}

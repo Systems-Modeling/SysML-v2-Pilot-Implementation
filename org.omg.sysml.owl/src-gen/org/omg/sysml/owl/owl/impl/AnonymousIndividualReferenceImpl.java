@@ -3,14 +3,8 @@
  */
 package org.omg.sysml.owl.owl.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.omg.sysml.owl.owl.AnonymousIndividual;
 import org.omg.sysml.owl.owl.AnonymousIndividualReference;
 import org.omg.sysml.owl.owl.OwlPackage;
 
@@ -18,27 +12,11 @@ import org.omg.sysml.owl.owl.OwlPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Anonymous Individual Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link org.omg.sysml.owl.owl.impl.AnonymousIndividualReferenceImpl#getIndividual <em>Individual</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class AnonymousIndividualReferenceImpl extends IndividualReferenceImpl implements AnonymousIndividualReference
 {
-  /**
-   * The cached value of the '{@link #getIndividual() <em>Individual</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIndividual()
-   * @generated
-   * @ordered
-   */
-  protected AnonymousIndividual individual;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -58,116 +36,6 @@ public class AnonymousIndividualReferenceImpl extends IndividualReferenceImpl im
   protected EClass eStaticClass()
   {
     return OwlPackage.Literals.ANONYMOUS_INDIVIDUAL_REFERENCE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnonymousIndividual getIndividual()
-  {
-    if (individual != null && individual.eIsProxy())
-    {
-      InternalEObject oldIndividual = (InternalEObject)individual;
-      individual = (AnonymousIndividual)eResolveProxy(oldIndividual);
-      if (individual != oldIndividual)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL, oldIndividual, individual));
-      }
-    }
-    return individual;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnonymousIndividual basicGetIndividual()
-  {
-    return individual;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setIndividual(AnonymousIndividual newIndividual)
-  {
-    AnonymousIndividual oldIndividual = individual;
-    individual = newIndividual;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL, oldIndividual, individual));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        if (resolve) return getIndividual();
-        return basicGetIndividual();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        setIndividual((AnonymousIndividual)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        setIndividual((AnonymousIndividual)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case OwlPackage.ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL:
-        return individual != null;
-    }
-    return super.eIsSet(featureID);
   }
 
 } //AnonymousIndividualReferenceImpl

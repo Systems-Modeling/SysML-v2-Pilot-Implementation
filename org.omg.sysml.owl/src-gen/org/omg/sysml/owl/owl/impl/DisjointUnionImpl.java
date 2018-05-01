@@ -32,7 +32,7 @@ import org.omg.sysml.owl.owl.OwlPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.owl.owl.impl.DisjointUnionImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.omg.sysml.owl.owl.impl.DisjointUnionImpl#getDisjointClassExpression <em>Disjoint Class Expression</em>}</li>
+ *   <li>{@link org.omg.sysml.owl.owl.impl.DisjointUnionImpl#getDisjointClassExpressions <em>Disjoint Class Expressions</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,14 +50,14 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
   protected ClassReference class_;
 
   /**
-   * The cached value of the '{@link #getDisjointClassExpression() <em>Disjoint Class Expression</em>}' containment reference list.
+   * The cached value of the '{@link #getDisjointClassExpressions() <em>Disjoint Class Expressions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDisjointClassExpression()
+   * @see #getDisjointClassExpressions()
    * @generated
    * @ordered
    */
-  protected EList<ClassExpression> disjointClassExpression;
+  protected EList<ClassExpression> disjointClassExpressions;
 
   /**
    * <!-- begin-user-doc -->
@@ -133,13 +133,13 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ClassExpression> getDisjointClassExpression()
+  public EList<ClassExpression> getDisjointClassExpressions()
   {
-    if (disjointClassExpression == null)
+    if (disjointClassExpressions == null)
     {
-      disjointClassExpression = new EObjectContainmentEList<ClassExpression>(ClassExpression.class, this, OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION);
+      disjointClassExpressions = new EObjectContainmentEList<ClassExpression>(ClassExpression.class, this, OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS);
     }
-    return disjointClassExpression;
+    return disjointClassExpressions;
   }
 
   /**
@@ -154,8 +154,8 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
     {
       case OwlPackage.DISJOINT_UNION__CLASS:
         return basicSetClass(null, msgs);
-      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION:
-        return ((InternalEList<?>)getDisjointClassExpression()).basicRemove(otherEnd, msgs);
+      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS:
+        return ((InternalEList<?>)getDisjointClassExpressions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -172,8 +172,8 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
     {
       case OwlPackage.DISJOINT_UNION__CLASS:
         return getClass_();
-      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION:
-        return getDisjointClassExpression();
+      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS:
+        return getDisjointClassExpressions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -192,9 +192,9 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
       case OwlPackage.DISJOINT_UNION__CLASS:
         setClass((ClassReference)newValue);
         return;
-      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION:
-        getDisjointClassExpression().clear();
-        getDisjointClassExpression().addAll((Collection<? extends ClassExpression>)newValue);
+      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS:
+        getDisjointClassExpressions().clear();
+        getDisjointClassExpressions().addAll((Collection<? extends ClassExpression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -213,8 +213,8 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
       case OwlPackage.DISJOINT_UNION__CLASS:
         setClass((ClassReference)null);
         return;
-      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION:
-        getDisjointClassExpression().clear();
+      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS:
+        getDisjointClassExpressions().clear();
         return;
     }
     super.eUnset(featureID);
@@ -232,8 +232,8 @@ public class DisjointUnionImpl extends ClassAxiomImpl implements DisjointUnion
     {
       case OwlPackage.DISJOINT_UNION__CLASS:
         return class_ != null;
-      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION:
-        return disjointClassExpression != null && !disjointClassExpression.isEmpty();
+      case OwlPackage.DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS:
+        return disjointClassExpressions != null && !disjointClassExpressions.isEmpty();
     }
     return super.eIsSet(featureID);
   }

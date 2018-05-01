@@ -6,12 +6,10 @@ package org.omg.sysml.owl.owl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.omg.sysml.owl.owl.ObjectProperty;
 import org.omg.sysml.owl.owl.ObjectPropertyExpression;
 import org.omg.sysml.owl.owl.OwlPackage;
 
@@ -31,14 +29,24 @@ import org.omg.sysml.owl.owl.OwlPackage;
 public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container implements ObjectPropertyExpression
 {
   /**
-   * The cached value of the '{@link #getObjectProperty() <em>Object Property</em>}' reference.
+   * The default value of the '{@link #getObjectProperty() <em>Object Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getObjectProperty()
    * @generated
    * @ordered
    */
-  protected ObjectProperty objectProperty;
+  protected static final String OBJECT_PROPERTY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getObjectProperty() <em>Object Property</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getObjectProperty()
+   * @generated
+   * @ordered
+   */
+  protected String objectProperty = OBJECT_PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,27 +74,7 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public ObjectProperty getObjectProperty()
-  {
-    if (objectProperty != null && objectProperty.eIsProxy())
-    {
-      InternalEObject oldObjectProperty = (InternalEObject)objectProperty;
-      objectProperty = (ObjectProperty)eResolveProxy(oldObjectProperty);
-      if (objectProperty != oldObjectProperty)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY, oldObjectProperty, objectProperty));
-      }
-    }
-    return objectProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ObjectProperty basicGetObjectProperty()
+  public String getObjectProperty()
   {
     return objectProperty;
   }
@@ -96,9 +84,9 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setObjectProperty(ObjectProperty newObjectProperty)
+  public void setObjectProperty(String newObjectProperty)
   {
-    ObjectProperty oldObjectProperty = objectProperty;
+    String oldObjectProperty = objectProperty;
     objectProperty = newObjectProperty;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY, oldObjectProperty, objectProperty));
@@ -115,8 +103,7 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY:
-        if (resolve) return getObjectProperty();
-        return basicGetObjectProperty();
+        return getObjectProperty();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,7 +119,7 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY:
-        setObjectProperty((ObjectProperty)newValue);
+        setObjectProperty((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,7 +136,7 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY:
-        setObjectProperty((ObjectProperty)null);
+        setObjectProperty(OBJECT_PROPERTY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -166,9 +153,26 @@ public class ObjectPropertyExpressionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case OwlPackage.OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY:
-        return objectProperty != null;
+        return OBJECT_PROPERTY_EDEFAULT == null ? objectProperty != null : !OBJECT_PROPERTY_EDEFAULT.equals(objectProperty);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (objectProperty: ");
+    result.append(objectProperty);
+    result.append(')');
+    return result.toString();
   }
 
 } //ObjectPropertyExpressionImpl

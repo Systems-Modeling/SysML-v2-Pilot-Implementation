@@ -6,7 +6,6 @@ package org.omg.sysml.owl.owl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -29,14 +28,24 @@ import org.omg.sysml.owl.owl.OwlPackage;
 public class ClassReferenceImpl extends ClassExpressionImpl implements ClassReference
 {
   /**
-   * The cached value of the '{@link #getClass_() <em>Class</em>}' reference.
+   * The default value of the '{@link #getClass_() <em>Class</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getClass_()
    * @generated
    * @ordered
    */
-  protected org.omg.sysml.owl.owl.Class class_;
+  protected static final String CLASS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getClass_()
+   * @generated
+   * @ordered
+   */
+  protected String class_ = CLASS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -64,27 +73,7 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
    * <!-- end-user-doc -->
    * @generated
    */
-  public org.omg.sysml.owl.owl.Class getClass_()
-  {
-    if (class_ != null && class_.eIsProxy())
-    {
-      InternalEObject oldClass = (InternalEObject)class_;
-      class_ = (org.omg.sysml.owl.owl.Class)eResolveProxy(oldClass);
-      if (class_ != oldClass)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OwlPackage.CLASS_REFERENCE__CLASS, oldClass, class_));
-      }
-    }
-    return class_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public org.omg.sysml.owl.owl.Class basicGetClass()
+  public String getClass_()
   {
     return class_;
   }
@@ -94,9 +83,9 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setClass(org.omg.sysml.owl.owl.Class newClass)
+  public void setClass(String newClass)
   {
-    org.omg.sysml.owl.owl.Class oldClass = class_;
+    String oldClass = class_;
     class_ = newClass;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OwlPackage.CLASS_REFERENCE__CLASS, oldClass, class_));
@@ -113,8 +102,7 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
     switch (featureID)
     {
       case OwlPackage.CLASS_REFERENCE__CLASS:
-        if (resolve) return getClass_();
-        return basicGetClass();
+        return getClass_();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -130,7 +118,7 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
     switch (featureID)
     {
       case OwlPackage.CLASS_REFERENCE__CLASS:
-        setClass((org.omg.sysml.owl.owl.Class)newValue);
+        setClass((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,7 +135,7 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
     switch (featureID)
     {
       case OwlPackage.CLASS_REFERENCE__CLASS:
-        setClass((org.omg.sysml.owl.owl.Class)null);
+        setClass(CLASS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -164,9 +152,26 @@ public class ClassReferenceImpl extends ClassExpressionImpl implements ClassRefe
     switch (featureID)
     {
       case OwlPackage.CLASS_REFERENCE__CLASS:
-        return class_ != null;
+        return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (class: ");
+    result.append(class_);
+    result.append(')');
+    return result.toString();
   }
 
 } //ClassReferenceImpl

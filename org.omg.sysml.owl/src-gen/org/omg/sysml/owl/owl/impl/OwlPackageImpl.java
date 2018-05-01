@@ -96,6 +96,7 @@ import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
 import org.omg.sysml.owl.owl.OwlFactory;
 import org.omg.sysml.owl.owl.OwlPackage;
+import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
 import org.omg.sysml.owl.owl.SameIndividual;
 import org.omg.sysml.owl.owl.StringLiteral;
@@ -121,6 +122,13 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * @generated
    */
   private EClass ontologyDocumentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass prefixDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -858,9 +866,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getOntologyDocument_PrefixDeclarations()
+  public EReference getOntologyDocument_PrefixDeclarations()
   {
-    return (EAttribute)ontologyDocumentEClass.getEStructuralFeatures().get(0);
+    return (EReference)ontologyDocumentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -871,6 +879,36 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
   public EReference getOntologyDocument_Ontology()
   {
     return (EReference)ontologyDocumentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPrefixDeclaration()
+  {
+    return prefixDeclarationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPrefixDeclaration_PrefixName()
+  {
+    return (EAttribute)prefixDeclarationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPrefixDeclaration_FullIRI()
+  {
+    return (EAttribute)prefixDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1078,9 +1116,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTypedLiteral_Datatype()
+  public EAttribute getTypedLiteral_Datatype()
   {
-    return (EReference)typedLiteralEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)typedLiteralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1138,9 +1176,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getObjectPropertyExpression_ObjectProperty()
+  public EAttribute getObjectPropertyExpression_ObjectProperty()
   {
-    return (EReference)objectPropertyExpressionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)objectPropertyExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1188,9 +1226,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataPropertyReference_DataProperty()
+  public EAttribute getDataPropertyReference_DataProperty()
   {
-    return (EReference)dataPropertyReferenceEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)dataPropertyReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1218,9 +1256,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatatypeReference_Datatype()
+  public EAttribute getDatatypeReference_Datatype()
   {
-    return (EReference)datatypeReferenceEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)datatypeReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1388,9 +1426,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getClassReference_Class()
+  public EAttribute getClassReference_Class()
   {
-    return (EReference)classReferenceEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)classReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1488,6 +1526,16 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getIndividualReference_Individual()
+  {
+    return (EAttribute)individualReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNamedIndividualReference()
   {
     return namedIndividualReferenceEClass;
@@ -1498,29 +1546,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNamedIndividualReference_Individual()
-  {
-    return (EReference)namedIndividualReferenceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getAnonymousIndividualReference()
   {
     return anonymousIndividualReferenceEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAnonymousIndividualReference_Individual()
-  {
-    return (EReference)anonymousIndividualReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2038,7 +2066,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEquivalentClasses_ClassExpression()
+  public EReference getEquivalentClasses_ClassExpressions()
   {
     return (EReference)equivalentClassesEClass.getEStructuralFeatures().get(0);
   }
@@ -2058,7 +2086,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDisjointClasses_ClassExpression()
+  public EReference getDisjointClasses_ClassExpressions()
   {
     return (EReference)disjointClassesEClass.getEStructuralFeatures().get(0);
   }
@@ -2088,7 +2116,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDisjointUnion_DisjointClassExpression()
+  public EReference getDisjointUnion_DisjointClassExpressions()
   {
     return (EReference)disjointUnionEClass.getEStructuralFeatures().get(1);
   }
@@ -3154,8 +3182,12 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
 
     // Create classes and their features
     ontologyDocumentEClass = createEClass(ONTOLOGY_DOCUMENT);
-    createEAttribute(ontologyDocumentEClass, ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS);
+    createEReference(ontologyDocumentEClass, ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS);
     createEReference(ontologyDocumentEClass, ONTOLOGY_DOCUMENT__ONTOLOGY);
+
+    prefixDeclarationEClass = createEClass(PREFIX_DECLARATION);
+    createEAttribute(prefixDeclarationEClass, PREFIX_DECLARATION__PREFIX_NAME);
+    createEAttribute(prefixDeclarationEClass, PREFIX_DECLARATION__FULL_IRI);
 
     ontologyEClass = createEClass(ONTOLOGY);
     createEAttribute(ontologyEClass, ONTOLOGY__ONTOLOGY_IRI);
@@ -3188,7 +3220,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     createEAttribute(literalEClass, LITERAL__LEXICAL_FORM);
 
     typedLiteralEClass = createEClass(TYPED_LITERAL);
-    createEReference(typedLiteralEClass, TYPED_LITERAL__DATATYPE);
+    createEAttribute(typedLiteralEClass, TYPED_LITERAL__DATATYPE);
 
     stringLiteralEClass = createEClass(STRING_LITERAL);
 
@@ -3197,7 +3229,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     createEReference(declarationEClass, DECLARATION__ENTITY);
 
     objectPropertyExpressionEClass = createEClass(OBJECT_PROPERTY_EXPRESSION);
-    createEReference(objectPropertyExpressionEClass, OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY);
+    createEAttribute(objectPropertyExpressionEClass, OBJECT_PROPERTY_EXPRESSION__OBJECT_PROPERTY);
 
     objectPropertyReferenceEClass = createEClass(OBJECT_PROPERTY_REFERENCE);
 
@@ -3206,12 +3238,12 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     dataPropertyExpressionEClass = createEClass(DATA_PROPERTY_EXPRESSION);
 
     dataPropertyReferenceEClass = createEClass(DATA_PROPERTY_REFERENCE);
-    createEReference(dataPropertyReferenceEClass, DATA_PROPERTY_REFERENCE__DATA_PROPERTY);
+    createEAttribute(dataPropertyReferenceEClass, DATA_PROPERTY_REFERENCE__DATA_PROPERTY);
 
     dataRangeEClass = createEClass(DATA_RANGE);
 
     datatypeReferenceEClass = createEClass(DATATYPE_REFERENCE);
-    createEReference(datatypeReferenceEClass, DATATYPE_REFERENCE__DATATYPE);
+    createEAttribute(datatypeReferenceEClass, DATATYPE_REFERENCE__DATATYPE);
 
     dataIntersectionOfEClass = createEClass(DATA_INTERSECTION_OF);
     createEReference(dataIntersectionOfEClass, DATA_INTERSECTION_OF__DATA_RANGES);
@@ -3236,7 +3268,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     classExpressionEClass = createEClass(CLASS_EXPRESSION);
 
     classReferenceEClass = createEClass(CLASS_REFERENCE);
-    createEReference(classReferenceEClass, CLASS_REFERENCE__CLASS);
+    createEAttribute(classReferenceEClass, CLASS_REFERENCE__CLASS);
 
     objectIntersectionOfEClass = createEClass(OBJECT_INTERSECTION_OF);
     createEReference(objectIntersectionOfEClass, OBJECT_INTERSECTION_OF__CLASS_EXPRESSIONS);
@@ -3251,12 +3283,11 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     createEReference(objectOneOfEClass, OBJECT_ONE_OF__INDIVIDUALS);
 
     individualReferenceEClass = createEClass(INDIVIDUAL_REFERENCE);
+    createEAttribute(individualReferenceEClass, INDIVIDUAL_REFERENCE__INDIVIDUAL);
 
     namedIndividualReferenceEClass = createEClass(NAMED_INDIVIDUAL_REFERENCE);
-    createEReference(namedIndividualReferenceEClass, NAMED_INDIVIDUAL_REFERENCE__INDIVIDUAL);
 
     anonymousIndividualReferenceEClass = createEClass(ANONYMOUS_INDIVIDUAL_REFERENCE);
-    createEReference(anonymousIndividualReferenceEClass, ANONYMOUS_INDIVIDUAL_REFERENCE__INDIVIDUAL);
 
     objectSomeValuesFromEClass = createEClass(OBJECT_SOME_VALUES_FROM);
     createEReference(objectSomeValuesFromEClass, OBJECT_SOME_VALUES_FROM__OBJECT_PROPERTY_EXPRESSION);
@@ -3325,14 +3356,14 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     createEReference(subClassOfEClass, SUB_CLASS_OF__SUPER_CLASS_EXPRESSION);
 
     equivalentClassesEClass = createEClass(EQUIVALENT_CLASSES);
-    createEReference(equivalentClassesEClass, EQUIVALENT_CLASSES__CLASS_EXPRESSION);
+    createEReference(equivalentClassesEClass, EQUIVALENT_CLASSES__CLASS_EXPRESSIONS);
 
     disjointClassesEClass = createEClass(DISJOINT_CLASSES);
-    createEReference(disjointClassesEClass, DISJOINT_CLASSES__CLASS_EXPRESSION);
+    createEReference(disjointClassesEClass, DISJOINT_CLASSES__CLASS_EXPRESSIONS);
 
     disjointUnionEClass = createEClass(DISJOINT_UNION);
     createEReference(disjointUnionEClass, DISJOINT_UNION__CLASS);
-    createEReference(disjointUnionEClass, DISJOINT_UNION__DISJOINT_CLASS_EXPRESSION);
+    createEReference(disjointUnionEClass, DISJOINT_UNION__DISJOINT_CLASS_EXPRESSIONS);
 
     objectPropertyAxiomEClass = createEClass(OBJECT_PROPERTY_AXIOM);
     createEReference(objectPropertyAxiomEClass, OBJECT_PROPERTY_AXIOM__AXIOM_ANNOTATIONS);
@@ -3593,8 +3624,12 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(ontologyDocumentEClass, OntologyDocument.class, "OntologyDocument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getOntologyDocument_PrefixDeclarations(), ecorePackage.getEString(), "prefixDeclarations", null, 0, -1, OntologyDocument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOntologyDocument_PrefixDeclarations(), this.getPrefixDeclaration(), null, "prefixDeclarations", null, 0, -1, OntologyDocument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOntologyDocument_Ontology(), this.getOntology(), null, "ontology", null, 0, 1, OntologyDocument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(prefixDeclarationEClass, PrefixDeclaration.class, "PrefixDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPrefixDeclaration_PrefixName(), ecorePackage.getEString(), "prefixName", null, 0, 1, PrefixDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrefixDeclaration_FullIRI(), ecorePackage.getEString(), "fullIRI", null, 0, 1, PrefixDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ontologyEClass, Ontology.class, "Ontology", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOntology_OntologyIRI(), ecorePackage.getEString(), "ontologyIRI", null, 0, 1, Ontology.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3627,7 +3662,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEAttribute(getLiteral_LexicalForm(), ecorePackage.getEString(), "lexicalForm", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typedLiteralEClass, TypedLiteral.class, "TypedLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTypedLiteral_Datatype(), this.getDatatype(), null, "datatype", null, 0, 1, TypedLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTypedLiteral_Datatype(), ecorePackage.getEString(), "datatype", null, 0, 1, TypedLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3636,7 +3671,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEReference(getDeclaration_Entity(), this.getEntity(), null, "entity", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectPropertyExpressionEClass, ObjectPropertyExpression.class, "ObjectPropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getObjectPropertyExpression_ObjectProperty(), this.getObjectProperty(), null, "objectProperty", null, 0, 1, ObjectPropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getObjectPropertyExpression_ObjectProperty(), ecorePackage.getEString(), "objectProperty", null, 0, 1, ObjectPropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectPropertyReferenceEClass, ObjectPropertyReference.class, "ObjectPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3645,12 +3680,12 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEClass(dataPropertyExpressionEClass, DataPropertyExpression.class, "DataPropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(dataPropertyReferenceEClass, DataPropertyReference.class, "DataPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDataPropertyReference_DataProperty(), this.getDataProperty(), null, "dataProperty", null, 0, 1, DataPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDataPropertyReference_DataProperty(), ecorePackage.getEString(), "dataProperty", null, 0, 1, DataPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dataRangeEClass, DataRange.class, "DataRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(datatypeReferenceEClass, DatatypeReference.class, "DatatypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDatatypeReference_Datatype(), this.getDatatype(), null, "datatype", null, 0, 1, DatatypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDatatypeReference_Datatype(), ecorePackage.getEString(), "datatype", null, 0, 1, DatatypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dataIntersectionOfEClass, DataIntersectionOf.class, "DataIntersectionOf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDataIntersectionOf_DataRanges(), this.getDataRange(), null, "dataRanges", null, 0, -1, DataIntersectionOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3675,7 +3710,7 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEClass(classExpressionEClass, ClassExpression.class, "ClassExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(classReferenceEClass, ClassReference.class, "ClassReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getClassReference_Class(), this.getClass_(), null, "class", null, 0, 1, ClassReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getClassReference_Class(), ecorePackage.getEString(), "class", null, 0, 1, ClassReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectIntersectionOfEClass, ObjectIntersectionOf.class, "ObjectIntersectionOf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getObjectIntersectionOf_ClassExpressions(), this.getClassExpression(), null, "classExpressions", null, 0, -1, ObjectIntersectionOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3690,12 +3725,11 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEReference(getObjectOneOf_Individuals(), this.getIndividualReference(), null, "individuals", null, 0, -1, ObjectOneOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(individualReferenceEClass, IndividualReference.class, "IndividualReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIndividualReference_Individual(), ecorePackage.getEString(), "individual", null, 0, 1, IndividualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(namedIndividualReferenceEClass, NamedIndividualReference.class, "NamedIndividualReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNamedIndividualReference_Individual(), this.getNamedIndividual(), null, "individual", null, 0, 1, NamedIndividualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(anonymousIndividualReferenceEClass, AnonymousIndividualReference.class, "AnonymousIndividualReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAnonymousIndividualReference_Individual(), this.getAnonymousIndividual(), null, "individual", null, 0, 1, AnonymousIndividualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectSomeValuesFromEClass, ObjectSomeValuesFrom.class, "ObjectSomeValuesFrom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getObjectSomeValuesFrom_ObjectPropertyExpression(), this.getObjectPropertyExpression(), null, "objectPropertyExpression", null, 0, 1, ObjectSomeValuesFrom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3764,14 +3798,14 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     initEReference(getSubClassOf_SuperClassExpression(), this.getClassExpression(), null, "superClassExpression", null, 0, 1, SubClassOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(equivalentClassesEClass, EquivalentClasses.class, "EquivalentClasses", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEquivalentClasses_ClassExpression(), this.getClassExpression(), null, "classExpression", null, 0, -1, EquivalentClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEquivalentClasses_ClassExpressions(), this.getClassExpression(), null, "classExpressions", null, 0, -1, EquivalentClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(disjointClassesEClass, DisjointClasses.class, "DisjointClasses", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDisjointClasses_ClassExpression(), this.getClassExpression(), null, "classExpression", null, 0, -1, DisjointClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDisjointClasses_ClassExpressions(), this.getClassExpression(), null, "classExpressions", null, 0, -1, DisjointClasses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(disjointUnionEClass, DisjointUnion.class, "DisjointUnion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDisjointUnion_Class(), this.getClassReference(), null, "class", null, 0, 1, DisjointUnion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDisjointUnion_DisjointClassExpression(), this.getClassExpression(), null, "disjointClassExpression", null, 0, -1, DisjointUnion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDisjointUnion_DisjointClassExpressions(), this.getClassExpression(), null, "disjointClassExpressions", null, 0, -1, DisjointUnion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectPropertyAxiomEClass, ObjectPropertyAxiom.class, "ObjectPropertyAxiom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getObjectPropertyAxiom_AxiomAnnotations(), this.getAnnotation(), null, "axiomAnnotations", null, 0, -1, ObjectPropertyAxiom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3868,8 +3902,8 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
 
     initEClass(objectPropertyAssertionEClass, ObjectPropertyAssertion.class, "ObjectPropertyAssertion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getObjectPropertyAssertion_ObjectPropertyExpression(), this.getObjectPropertyExpression(), null, "objectPropertyExpression", null, 0, 1, ObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getObjectPropertyAssertion_SourceIndividual(), this.getIndividual(), null, "sourceIndividual", null, 0, 1, ObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getObjectPropertyAssertion_TargetIndividual(), this.getIndividual(), null, "targetIndividual", null, 0, 1, ObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getObjectPropertyAssertion_SourceIndividual(), this.getIndividualReference(), null, "sourceIndividual", null, 0, 1, ObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getObjectPropertyAssertion_TargetIndividual(), this.getIndividualReference(), null, "targetIndividual", null, 0, 1, ObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(negativeObjectPropertyAssertionEClass, NegativeObjectPropertyAssertion.class, "NegativeObjectPropertyAssertion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNegativeObjectPropertyAssertion_ObjectPropertyExpression(), this.getObjectPropertyExpression(), null, "objectPropertyExpression", null, 0, 1, NegativeObjectPropertyAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -27,7 +27,7 @@ import org.omg.sysml.owl.owl.OwlPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.owl.owl.impl.EquivalentClassesImpl#getClassExpression <em>Class Expression</em>}</li>
+ *   <li>{@link org.omg.sysml.owl.owl.impl.EquivalentClassesImpl#getClassExpressions <em>Class Expressions</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,14 +35,14 @@ import org.omg.sysml.owl.owl.OwlPackage;
 public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentClasses
 {
   /**
-   * The cached value of the '{@link #getClassExpression() <em>Class Expression</em>}' containment reference list.
+   * The cached value of the '{@link #getClassExpressions() <em>Class Expressions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClassExpression()
+   * @see #getClassExpressions()
    * @generated
    * @ordered
    */
-  protected EList<ClassExpression> classExpression;
+  protected EList<ClassExpression> classExpressions;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,13 +70,13 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ClassExpression> getClassExpression()
+  public EList<ClassExpression> getClassExpressions()
   {
-    if (classExpression == null)
+    if (classExpressions == null)
     {
-      classExpression = new EObjectContainmentEList<ClassExpression>(ClassExpression.class, this, OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION);
+      classExpressions = new EObjectContainmentEList<ClassExpression>(ClassExpression.class, this, OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS);
     }
-    return classExpression;
+    return classExpressions;
   }
 
   /**
@@ -89,8 +89,8 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
   {
     switch (featureID)
     {
-      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION:
-        return ((InternalEList<?>)getClassExpression()).basicRemove(otherEnd, msgs);
+      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS:
+        return ((InternalEList<?>)getClassExpressions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -105,8 +105,8 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
   {
     switch (featureID)
     {
-      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION:
-        return getClassExpression();
+      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS:
+        return getClassExpressions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -122,9 +122,9 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
   {
     switch (featureID)
     {
-      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION:
-        getClassExpression().clear();
-        getClassExpression().addAll((Collection<? extends ClassExpression>)newValue);
+      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS:
+        getClassExpressions().clear();
+        getClassExpressions().addAll((Collection<? extends ClassExpression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +140,8 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
   {
     switch (featureID)
     {
-      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION:
-        getClassExpression().clear();
+      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS:
+        getClassExpressions().clear();
         return;
     }
     super.eUnset(featureID);
@@ -157,8 +157,8 @@ public class EquivalentClassesImpl extends ClassAxiomImpl implements EquivalentC
   {
     switch (featureID)
     {
-      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSION:
-        return classExpression != null && !classExpression.isEmpty();
+      case OwlPackage.EQUIVALENT_CLASSES__CLASS_EXPRESSIONS:
+        return classExpressions != null && !classExpressions.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -23,29 +23,29 @@ package org.omg.sysml.owl.owl;
 public interface DataPropertyReference extends DataPropertyExpression
 {
   /**
-   * Returns the value of the '<em><b>Data Property</b></em>' reference.
+   * Returns the value of the '<em><b>Data Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Data Property</em>' reference isn't clear,
+   * If the meaning of the '<em>Data Property</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Data Property</em>' reference.
-   * @see #setDataProperty(DataProperty)
+   * @return the value of the '<em>Data Property</em>' attribute.
+   * @see #setDataProperty(String)
    * @see org.omg.sysml.owl.owl.OwlPackage#getDataPropertyReference_DataProperty()
    * @model
    * @generated
    */
-  DataProperty getDataProperty();
+  String getDataProperty();
 
   /**
-   * Sets the value of the '{@link org.omg.sysml.owl.owl.DataPropertyReference#getDataProperty <em>Data Property</em>}' reference.
+   * Sets the value of the '{@link org.omg.sysml.owl.owl.DataPropertyReference#getDataProperty <em>Data Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Data Property</em>' reference.
+   * @param value the new value of the '<em>Data Property</em>' attribute.
    * @see #getDataProperty()
    * @generated
    */
-  void setDataProperty(DataProperty value);
+  void setDataProperty(String value);
 
 } // DataPropertyReference

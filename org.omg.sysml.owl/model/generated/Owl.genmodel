@@ -6,6 +6,9 @@
     copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="Owl" basePackage="org.omg.sysml.owl" disposableProviderFactory="true"
       fileExtensions="owl" ecorePackage="Owl.ecore#/">
+    <genClasses ecoreClass="Owl.ecore#//OntologyFile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Owl.ecore#//OntologyFile/documents"/>
+    </genClasses>
     <genClasses ecoreClass="Owl.ecore#//OntologyDocument">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Owl.ecore#//OntologyDocument/prefixDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Owl.ecore#//OntologyDocument/ontology"/>

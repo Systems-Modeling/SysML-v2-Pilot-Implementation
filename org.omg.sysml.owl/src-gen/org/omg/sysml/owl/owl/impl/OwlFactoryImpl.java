@@ -95,6 +95,7 @@ import org.omg.sysml.owl.owl.ObjectSomeValuesFrom;
 import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
+import org.omg.sysml.owl.owl.OntologyFile;
 import org.omg.sysml.owl.owl.OwlFactory;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.PrefixDeclaration;
@@ -161,6 +162,7 @@ public class OwlFactoryImpl extends EFactoryImpl implements OwlFactory
   {
     switch (eClass.getClassifierID())
     {
+      case OwlPackage.ONTOLOGY_FILE: return createOntologyFile();
       case OwlPackage.ONTOLOGY_DOCUMENT: return createOntologyDocument();
       case OwlPackage.PREFIX_DECLARATION: return createPrefixDeclaration();
       case OwlPackage.ONTOLOGY: return createOntology();
@@ -260,6 +262,17 @@ public class OwlFactoryImpl extends EFactoryImpl implements OwlFactory
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OntologyFile createOntologyFile()
+  {
+    OntologyFileImpl ontologyFile = new OntologyFileImpl();
+    return ontologyFile;
   }
 
   /**

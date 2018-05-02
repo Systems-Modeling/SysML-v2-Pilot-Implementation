@@ -24,6 +24,15 @@ public interface OwlFactory extends EFactory
   OwlFactory eINSTANCE = org.omg.sysml.owl.owl.impl.OwlFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Ontology File</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ontology File</em>'.
+   * @generated
+   */
+  OntologyFile createOntologyFile();
+
+  /**
    * Returns a new object of class '<em>Ontology Document</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -92,6 +92,7 @@ import org.omg.sysml.owl.owl.ObjectSomeValuesFrom;
 import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
+import org.omg.sysml.owl.owl.OntologyFile;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
@@ -168,6 +169,13 @@ public class OwlSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case OwlPackage.ONTOLOGY_FILE:
+      {
+        OntologyFile ontologyFile = (OntologyFile)theEObject;
+        T result = caseOntologyFile(ontologyFile);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case OwlPackage.ONTOLOGY_DOCUMENT:
       {
         OntologyDocument ontologyDocument = (OntologyDocument)theEObject;
@@ -962,6 +970,22 @@ public class OwlSwitch<T> extends Switch<T>
       }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Ontology File</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Ontology File</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOntologyFile(OntologyFile object)
+  {
+    return null;
   }
 
   /**

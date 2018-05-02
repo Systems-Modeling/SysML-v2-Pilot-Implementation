@@ -58,6 +58,34 @@ public interface OwlPackage extends EPackage
   OwlPackage eINSTANCE = org.omg.sysml.owl.owl.impl.OwlPackageImpl.init();
 
   /**
+   * The meta object id for the '{@link org.omg.sysml.owl.owl.impl.OntologyFileImpl <em>Ontology File</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.omg.sysml.owl.owl.impl.OntologyFileImpl
+   * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getOntologyFile()
+   * @generated
+   */
+  int ONTOLOGY_FILE = 0;
+
+  /**
+   * The feature id for the '<em><b>Documents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ONTOLOGY_FILE__DOCUMENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Ontology File</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ONTOLOGY_FILE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.omg.sysml.owl.owl.impl.OntologyDocumentImpl <em>Ontology Document</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -65,7 +93,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getOntologyDocument()
    * @generated
    */
-  int ONTOLOGY_DOCUMENT = 0;
+  int ONTOLOGY_DOCUMENT = 1;
 
   /**
    * The feature id for the '<em><b>Prefix Declarations</b></em>' containment reference list.
@@ -102,7 +130,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getPrefixDeclaration()
    * @generated
    */
-  int PREFIX_DECLARATION = 1;
+  int PREFIX_DECLARATION = 2;
 
   /**
    * The feature id for the '<em><b>Prefix Name</b></em>' attribute.
@@ -139,7 +167,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getOntology()
    * @generated
    */
-  int ONTOLOGY = 2;
+  int ONTOLOGY = 3;
 
   /**
    * The feature id for the '<em><b>Ontology IRI</b></em>' attribute.
@@ -203,7 +231,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 3;
+  int ENTITY = 4;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -231,7 +259,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getClass_()
    * @generated
    */
-  int CLASS = 4;
+  int CLASS = 5;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -259,7 +287,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDatatype()
    * @generated
    */
-  int DATATYPE = 5;
+  int DATATYPE = 6;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -287,7 +315,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectProperty()
    * @generated
    */
-  int OBJECT_PROPERTY = 6;
+  int OBJECT_PROPERTY = 7;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -315,7 +343,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataProperty()
    * @generated
    */
-  int DATA_PROPERTY = 7;
+  int DATA_PROPERTY = 8;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -343,7 +371,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationProperty()
    * @generated
    */
-  int ANNOTATION_PROPERTY = 8;
+  int ANNOTATION_PROPERTY = 9;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -371,7 +399,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getIndividual()
    * @generated
    */
-  int INDIVIDUAL = 9;
+  int INDIVIDUAL = 10;
 
   /**
    * The number of structural features of the '<em>Individual</em>' class.
@@ -390,7 +418,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getNamedIndividual()
    * @generated
    */
-  int NAMED_INDIVIDUAL = 10;
+  int NAMED_INDIVIDUAL = 11;
 
   /**
    * The feature id for the '<em><b>Entity IRI</b></em>' attribute.
@@ -418,7 +446,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnonymousIndividual()
    * @generated
    */
-  int ANONYMOUS_INDIVIDUAL = 11;
+  int ANONYMOUS_INDIVIDUAL = 12;
 
   /**
    * The feature id for the '<em><b>Node Id</b></em>' attribute.
@@ -446,7 +474,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationValue()
    * @generated
    */
-  int ANNOTATION_VALUE = 89;
+  int ANNOTATION_VALUE = 90;
 
   /**
    * The number of structural features of the '<em>Annotation Value</em>' class.
@@ -465,7 +493,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 12;
+  int LITERAL = 13;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -493,7 +521,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getTypedLiteral()
    * @generated
    */
-  int TYPED_LITERAL = 13;
+  int TYPED_LITERAL = 14;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -530,7 +558,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getStringLiteral()
    * @generated
    */
-  int STRING_LITERAL = 14;
+  int STRING_LITERAL = 15;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -558,7 +586,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAxiom()
    * @generated
    */
-  int AXIOM = 51;
+  int AXIOM = 52;
 
   /**
    * The number of structural features of the '<em>Axiom</em>' class.
@@ -577,7 +605,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDeclaration()
    * @generated
    */
-  int DECLARATION = 15;
+  int DECLARATION = 16;
 
   /**
    * The feature id for the '<em><b>Axiom Annotation</b></em>' containment reference list.
@@ -614,7 +642,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyExpression()
    * @generated
    */
-  int OBJECT_PROPERTY_EXPRESSION = 16;
+  int OBJECT_PROPERTY_EXPRESSION = 17;
 
   /**
    * The feature id for the '<em><b>Object Property</b></em>' attribute.
@@ -642,7 +670,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyReference()
    * @generated
    */
-  int OBJECT_PROPERTY_REFERENCE = 17;
+  int OBJECT_PROPERTY_REFERENCE = 18;
 
   /**
    * The feature id for the '<em><b>Object Property</b></em>' attribute.
@@ -670,7 +698,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getInverseObjectProperty()
    * @generated
    */
-  int INVERSE_OBJECT_PROPERTY = 18;
+  int INVERSE_OBJECT_PROPERTY = 19;
 
   /**
    * The feature id for the '<em><b>Object Property</b></em>' attribute.
@@ -698,7 +726,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyExpression()
    * @generated
    */
-  int DATA_PROPERTY_EXPRESSION = 19;
+  int DATA_PROPERTY_EXPRESSION = 20;
 
   /**
    * The number of structural features of the '<em>Data Property Expression</em>' class.
@@ -717,7 +745,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyReference()
    * @generated
    */
-  int DATA_PROPERTY_REFERENCE = 20;
+  int DATA_PROPERTY_REFERENCE = 21;
 
   /**
    * The feature id for the '<em><b>Data Property</b></em>' attribute.
@@ -745,7 +773,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataRange()
    * @generated
    */
-  int DATA_RANGE = 21;
+  int DATA_RANGE = 22;
 
   /**
    * The number of structural features of the '<em>Data Range</em>' class.
@@ -764,7 +792,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDatatypeReference()
    * @generated
    */
-  int DATATYPE_REFERENCE = 22;
+  int DATATYPE_REFERENCE = 23;
 
   /**
    * The feature id for the '<em><b>Datatype</b></em>' attribute.
@@ -792,7 +820,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataIntersectionOf()
    * @generated
    */
-  int DATA_INTERSECTION_OF = 23;
+  int DATA_INTERSECTION_OF = 24;
 
   /**
    * The feature id for the '<em><b>Data Ranges</b></em>' containment reference list.
@@ -820,7 +848,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataUnionOf()
    * @generated
    */
-  int DATA_UNION_OF = 24;
+  int DATA_UNION_OF = 25;
 
   /**
    * The feature id for the '<em><b>Data Ranges</b></em>' containment reference list.
@@ -848,7 +876,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataComplementOf()
    * @generated
    */
-  int DATA_COMPLEMENT_OF = 25;
+  int DATA_COMPLEMENT_OF = 26;
 
   /**
    * The feature id for the '<em><b>Data Range</b></em>' containment reference.
@@ -876,7 +904,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataOneOf()
    * @generated
    */
-  int DATA_ONE_OF = 26;
+  int DATA_ONE_OF = 27;
 
   /**
    * The feature id for the '<em><b>Literals</b></em>' containment reference list.
@@ -904,7 +932,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDatatypeRestriction()
    * @generated
    */
-  int DATATYPE_RESTRICTION = 27;
+  int DATATYPE_RESTRICTION = 28;
 
   /**
    * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -941,7 +969,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getFacetRestriction()
    * @generated
    */
-  int FACET_RESTRICTION = 28;
+  int FACET_RESTRICTION = 29;
 
   /**
    * The feature id for the '<em><b>Constraining Facet</b></em>' attribute.
@@ -978,7 +1006,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getClassExpression()
    * @generated
    */
-  int CLASS_EXPRESSION = 29;
+  int CLASS_EXPRESSION = 30;
 
   /**
    * The number of structural features of the '<em>Class Expression</em>' class.
@@ -997,7 +1025,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getClassReference()
    * @generated
    */
-  int CLASS_REFERENCE = 30;
+  int CLASS_REFERENCE = 31;
 
   /**
    * The feature id for the '<em><b>Class</b></em>' attribute.
@@ -1025,7 +1053,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectIntersectionOf()
    * @generated
    */
-  int OBJECT_INTERSECTION_OF = 31;
+  int OBJECT_INTERSECTION_OF = 32;
 
   /**
    * The feature id for the '<em><b>Class Expressions</b></em>' containment reference list.
@@ -1053,7 +1081,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectUnionOf()
    * @generated
    */
-  int OBJECT_UNION_OF = 32;
+  int OBJECT_UNION_OF = 33;
 
   /**
    * The feature id for the '<em><b>Class Expressions</b></em>' containment reference list.
@@ -1081,7 +1109,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectComplementOf()
    * @generated
    */
-  int OBJECT_COMPLEMENT_OF = 33;
+  int OBJECT_COMPLEMENT_OF = 34;
 
   /**
    * The feature id for the '<em><b>Class Expression</b></em>' containment reference.
@@ -1109,7 +1137,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectOneOf()
    * @generated
    */
-  int OBJECT_ONE_OF = 34;
+  int OBJECT_ONE_OF = 35;
 
   /**
    * The feature id for the '<em><b>Individuals</b></em>' containment reference list.
@@ -1137,7 +1165,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getIndividualReference()
    * @generated
    */
-  int INDIVIDUAL_REFERENCE = 35;
+  int INDIVIDUAL_REFERENCE = 36;
 
   /**
    * The feature id for the '<em><b>Individual</b></em>' attribute.
@@ -1165,7 +1193,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getNamedIndividualReference()
    * @generated
    */
-  int NAMED_INDIVIDUAL_REFERENCE = 36;
+  int NAMED_INDIVIDUAL_REFERENCE = 37;
 
   /**
    * The feature id for the '<em><b>Individual</b></em>' attribute.
@@ -1193,7 +1221,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnonymousIndividualReference()
    * @generated
    */
-  int ANONYMOUS_INDIVIDUAL_REFERENCE = 37;
+  int ANONYMOUS_INDIVIDUAL_REFERENCE = 38;
 
   /**
    * The feature id for the '<em><b>Individual</b></em>' attribute.
@@ -1221,7 +1249,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectSomeValuesFrom()
    * @generated
    */
-  int OBJECT_SOME_VALUES_FROM = 38;
+  int OBJECT_SOME_VALUES_FROM = 39;
 
   /**
    * The feature id for the '<em><b>Object Property Expression</b></em>' containment reference.
@@ -1258,7 +1286,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectAllValuesFrom()
    * @generated
    */
-  int OBJECT_ALL_VALUES_FROM = 39;
+  int OBJECT_ALL_VALUES_FROM = 40;
 
   /**
    * The feature id for the '<em><b>Object Property Expression</b></em>' containment reference.
@@ -1295,7 +1323,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectHasValue()
    * @generated
    */
-  int OBJECT_HAS_VALUE = 40;
+  int OBJECT_HAS_VALUE = 41;
 
   /**
    * The feature id for the '<em><b>Object Property Expression</b></em>' containment reference.
@@ -1332,7 +1360,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectHasSelf()
    * @generated
    */
-  int OBJECT_HAS_SELF = 41;
+  int OBJECT_HAS_SELF = 42;
 
   /**
    * The feature id for the '<em><b>Object Property Expression</b></em>' containment reference.
@@ -1360,7 +1388,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectMinCardinality()
    * @generated
    */
-  int OBJECT_MIN_CARDINALITY = 42;
+  int OBJECT_MIN_CARDINALITY = 43;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1406,7 +1434,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectMaxCardinality()
    * @generated
    */
-  int OBJECT_MAX_CARDINALITY = 43;
+  int OBJECT_MAX_CARDINALITY = 44;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1452,7 +1480,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectExactCardinality()
    * @generated
    */
-  int OBJECT_EXACT_CARDINALITY = 44;
+  int OBJECT_EXACT_CARDINALITY = 45;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1498,7 +1526,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataSomeValuesFrom()
    * @generated
    */
-  int DATA_SOME_VALUES_FROM = 45;
+  int DATA_SOME_VALUES_FROM = 46;
 
   /**
    * The feature id for the '<em><b>Data Property Expressions</b></em>' containment reference list.
@@ -1535,7 +1563,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataAllValuesFrom()
    * @generated
    */
-  int DATA_ALL_VALUES_FROM = 46;
+  int DATA_ALL_VALUES_FROM = 47;
 
   /**
    * The feature id for the '<em><b>Data Property Expressions</b></em>' containment reference list.
@@ -1572,7 +1600,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataHasValue()
    * @generated
    */
-  int DATA_HAS_VALUE = 47;
+  int DATA_HAS_VALUE = 48;
 
   /**
    * The feature id for the '<em><b>Data Property Expression</b></em>' containment reference.
@@ -1609,7 +1637,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataMinCardinality()
    * @generated
    */
-  int DATA_MIN_CARDINALITY = 48;
+  int DATA_MIN_CARDINALITY = 49;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1655,7 +1683,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataMaxCardinality()
    * @generated
    */
-  int DATA_MAX_CARDINALITY = 49;
+  int DATA_MAX_CARDINALITY = 50;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1701,7 +1729,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataExactCardinality()
    * @generated
    */
-  int DATA_EXACT_CARDINALITY = 50;
+  int DATA_EXACT_CARDINALITY = 51;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -1747,7 +1775,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getClassAxiom()
    * @generated
    */
-  int CLASS_AXIOM = 52;
+  int CLASS_AXIOM = 53;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1775,7 +1803,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSubClassOf()
    * @generated
    */
-  int SUB_CLASS_OF = 53;
+  int SUB_CLASS_OF = 54;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1821,7 +1849,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getEquivalentClasses()
    * @generated
    */
-  int EQUIVALENT_CLASSES = 54;
+  int EQUIVALENT_CLASSES = 55;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1858,7 +1886,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDisjointClasses()
    * @generated
    */
-  int DISJOINT_CLASSES = 55;
+  int DISJOINT_CLASSES = 56;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1895,7 +1923,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDisjointUnion()
    * @generated
    */
-  int DISJOINT_UNION = 56;
+  int DISJOINT_UNION = 57;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1941,7 +1969,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyAxiom()
    * @generated
    */
-  int OBJECT_PROPERTY_AXIOM = 57;
+  int OBJECT_PROPERTY_AXIOM = 58;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -1969,7 +1997,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSubObjectPropertyOf()
    * @generated
    */
-  int SUB_OBJECT_PROPERTY_OF = 58;
+  int SUB_OBJECT_PROPERTY_OF = 59;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2006,7 +2034,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getEquivalentObjectProperties()
    * @generated
    */
-  int EQUIVALENT_OBJECT_PROPERTIES = 59;
+  int EQUIVALENT_OBJECT_PROPERTIES = 60;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2043,7 +2071,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDisjointObjectProperties()
    * @generated
    */
-  int DISJOINT_OBJECT_PROPERTIES = 60;
+  int DISJOINT_OBJECT_PROPERTIES = 61;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2080,7 +2108,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getInverseObjectProperties()
    * @generated
    */
-  int INVERSE_OBJECT_PROPERTIES = 61;
+  int INVERSE_OBJECT_PROPERTIES = 62;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2126,7 +2154,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyDomain()
    * @generated
    */
-  int OBJECT_PROPERTY_DOMAIN = 62;
+  int OBJECT_PROPERTY_DOMAIN = 63;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2172,7 +2200,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyRange()
    * @generated
    */
-  int OBJECT_PROPERTY_RANGE = 63;
+  int OBJECT_PROPERTY_RANGE = 64;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2218,7 +2246,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getFunctionalObjectProperty()
    * @generated
    */
-  int FUNCTIONAL_OBJECT_PROPERTY = 64;
+  int FUNCTIONAL_OBJECT_PROPERTY = 65;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2255,7 +2283,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getInverseFunctionalObjectProperty()
    * @generated
    */
-  int INVERSE_FUNCTIONAL_OBJECT_PROPERTY = 65;
+  int INVERSE_FUNCTIONAL_OBJECT_PROPERTY = 66;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2292,7 +2320,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getReflexiveObjectProperty()
    * @generated
    */
-  int REFLEXIVE_OBJECT_PROPERTY = 66;
+  int REFLEXIVE_OBJECT_PROPERTY = 67;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2329,7 +2357,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getIrreflexiveObjectProperty()
    * @generated
    */
-  int IRREFLEXIVE_OBJECT_PROPERTY = 67;
+  int IRREFLEXIVE_OBJECT_PROPERTY = 68;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2366,7 +2394,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSymmetricObjectProperty()
    * @generated
    */
-  int SYMMETRIC_OBJECT_PROPERTY = 68;
+  int SYMMETRIC_OBJECT_PROPERTY = 69;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2403,7 +2431,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAsymmetricObjectProperty()
    * @generated
    */
-  int ASYMMETRIC_OBJECT_PROPERTY = 69;
+  int ASYMMETRIC_OBJECT_PROPERTY = 70;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2440,7 +2468,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getTransitiveObjectProperty()
    * @generated
    */
-  int TRANSITIVE_OBJECT_PROPERTY = 70;
+  int TRANSITIVE_OBJECT_PROPERTY = 71;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2477,7 +2505,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyAxiom()
    * @generated
    */
-  int DATA_PROPERTY_AXIOM = 71;
+  int DATA_PROPERTY_AXIOM = 72;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2505,7 +2533,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSubDataPropertyOf()
    * @generated
    */
-  int SUB_DATA_PROPERTY_OF = 72;
+  int SUB_DATA_PROPERTY_OF = 73;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2551,7 +2579,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getEquivalentDataProperties()
    * @generated
    */
-  int EQUIVALENT_DATA_PROPERTIES = 73;
+  int EQUIVALENT_DATA_PROPERTIES = 74;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2588,7 +2616,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDisjointDataProperties()
    * @generated
    */
-  int DISJOINT_DATA_PROPERTIES = 74;
+  int DISJOINT_DATA_PROPERTIES = 75;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2625,7 +2653,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyDomain()
    * @generated
    */
-  int DATA_PROPERTY_DOMAIN = 75;
+  int DATA_PROPERTY_DOMAIN = 76;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2671,7 +2699,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyRange()
    * @generated
    */
-  int DATA_PROPERTY_RANGE = 76;
+  int DATA_PROPERTY_RANGE = 77;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2717,7 +2745,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getFunctionalDataProperty()
    * @generated
    */
-  int FUNCTIONAL_DATA_PROPERTY = 77;
+  int FUNCTIONAL_DATA_PROPERTY = 78;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2754,7 +2782,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDatatypeDefinition()
    * @generated
    */
-  int DATATYPE_DEFINITION = 78;
+  int DATATYPE_DEFINITION = 79;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2800,7 +2828,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getHasKey()
    * @generated
    */
-  int HAS_KEY = 79;
+  int HAS_KEY = 80;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2855,7 +2883,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAssertion()
    * @generated
    */
-  int ASSERTION = 80;
+  int ASSERTION = 81;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2883,7 +2911,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSameIndividual()
    * @generated
    */
-  int SAME_INDIVIDUAL = 81;
+  int SAME_INDIVIDUAL = 82;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2920,7 +2948,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDifferentIndividuals()
    * @generated
    */
-  int DIFFERENT_INDIVIDUALS = 82;
+  int DIFFERENT_INDIVIDUALS = 83;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -2957,7 +2985,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getClassAssertion()
    * @generated
    */
-  int CLASS_ASSERTION = 83;
+  int CLASS_ASSERTION = 84;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -3003,7 +3031,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getObjectPropertyAssertion()
    * @generated
    */
-  int OBJECT_PROPERTY_ASSERTION = 84;
+  int OBJECT_PROPERTY_ASSERTION = 85;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -3058,7 +3086,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getNegativeObjectPropertyAssertion()
    * @generated
    */
-  int NEGATIVE_OBJECT_PROPERTY_ASSERTION = 85;
+  int NEGATIVE_OBJECT_PROPERTY_ASSERTION = 86;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -3113,7 +3141,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getDataPropertyAssertion()
    * @generated
    */
-  int DATA_PROPERTY_ASSERTION = 86;
+  int DATA_PROPERTY_ASSERTION = 87;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -3168,7 +3196,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getNegativeDataPropertyAssertion()
    * @generated
    */
-  int NEGATIVE_DATA_PROPERTY_ASSERTION = 87;
+  int NEGATIVE_DATA_PROPERTY_ASSERTION = 88;
 
   /**
    * The feature id for the '<em><b>Axiom Annotations</b></em>' containment reference list.
@@ -3223,7 +3251,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 88;
+  int ANNOTATION = 89;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3269,7 +3297,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationAxiom()
    * @generated
    */
-  int ANNOTATION_AXIOM = 90;
+  int ANNOTATION_AXIOM = 91;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3297,7 +3325,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationAssertion()
    * @generated
    */
-  int ANNOTATION_ASSERTION = 91;
+  int ANNOTATION_ASSERTION = 92;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3352,7 +3380,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationSubject()
    * @generated
    */
-  int ANNOTATION_SUBJECT = 92;
+  int ANNOTATION_SUBJECT = 93;
 
   /**
    * The number of structural features of the '<em>Annotation Subject</em>' class.
@@ -3371,7 +3399,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getSubAnnotationPropertyOf()
    * @generated
    */
-  int SUB_ANNOTATION_PROPERTY_OF = 93;
+  int SUB_ANNOTATION_PROPERTY_OF = 94;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3417,7 +3445,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationPropertyDomain()
    * @generated
    */
-  int ANNOTATION_PROPERTY_DOMAIN = 94;
+  int ANNOTATION_PROPERTY_DOMAIN = 95;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3463,7 +3491,7 @@ public interface OwlPackage extends EPackage
    * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getAnnotationPropertyRange()
    * @generated
    */
-  int ANNOTATION_PROPERTY_RANGE = 95;
+  int ANNOTATION_PROPERTY_RANGE = 96;
 
   /**
    * The feature id for the '<em><b>Annotation Annotations</b></em>' containment reference list.
@@ -3501,6 +3529,27 @@ public interface OwlPackage extends EPackage
    */
   int ANNOTATION_PROPERTY_RANGE_FEATURE_COUNT = ANNOTATION_AXIOM_FEATURE_COUNT + 2;
 
+
+  /**
+   * Returns the meta object for class '{@link org.omg.sysml.owl.owl.OntologyFile <em>Ontology File</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Ontology File</em>'.
+   * @see org.omg.sysml.owl.owl.OntologyFile
+   * @generated
+   */
+  EClass getOntologyFile();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.omg.sysml.owl.owl.OntologyFile#getDocuments <em>Documents</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Documents</em>'.
+   * @see org.omg.sysml.owl.owl.OntologyFile#getDocuments()
+   * @see #getOntologyFile()
+   * @generated
+   */
+  EReference getOntologyFile_Documents();
 
   /**
    * Returns the meta object for class '{@link org.omg.sysml.owl.owl.OntologyDocument <em>Ontology Document</em>}'.
@@ -5959,6 +6008,24 @@ public interface OwlPackage extends EPackage
    */
   interface Literals
   {
+    /**
+     * The meta object literal for the '{@link org.omg.sysml.owl.owl.impl.OntologyFileImpl <em>Ontology File</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.omg.sysml.owl.owl.impl.OntologyFileImpl
+     * @see org.omg.sysml.owl.owl.impl.OwlPackageImpl#getOntologyFile()
+     * @generated
+     */
+    EClass ONTOLOGY_FILE = eINSTANCE.getOntologyFile();
+
+    /**
+     * The meta object literal for the '<em><b>Documents</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ONTOLOGY_FILE__DOCUMENTS = eINSTANCE.getOntologyFile_Documents();
+
     /**
      * The meta object literal for the '{@link org.omg.sysml.owl.owl.impl.OntologyDocumentImpl <em>Ontology Document</em>}' class.
      * <!-- begin-user-doc -->

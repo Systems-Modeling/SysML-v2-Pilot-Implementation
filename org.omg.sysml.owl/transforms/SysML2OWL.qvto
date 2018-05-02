@@ -32,15 +32,14 @@ modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 transformation SysML2OWL(in sysml: Classification, out owl: OWL);
 
 main() {
-	var root := sysml.rootObjects()![Groups::Namespace];
-	assert fatal (root <> null) with log('No root Namespace');
-	log('Transforming ' + root.name + ' to ' + root.URL());
-	root.mapToDeclarations();
-	
-	// TEMPORARY CLEAN-UP
-	owl.rootObjects()[OWL::Entity]->forEach (entity) { new Declaration(entity) };
-	
-	new OntologyDocument(root.URL(), owl.rootObjects()[OWL::Axiom]);
+	var roots := sysml.rootObjects()[Groups::Namespace];
+	assert fatal (roots->notEmpty()) with log('No root Namespaces');
+	var file = object OntologyFile { };
+	roots->forEach(root) {
+		log('Transforming ' + root.name + ' to ' + root.URL());
+		root.mapToDeclarations();
+		file.documents += new OntologyDocument(root.URL(), owl.rootObjects()[OWL::Axiom]);
+	};
 }
 
 // Utility

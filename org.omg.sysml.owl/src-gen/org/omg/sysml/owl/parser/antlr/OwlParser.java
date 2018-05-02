@@ -27,7 +27,7 @@ public class OwlParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "OntologyDocument";
+		return "OntologyFile";
 	}
 
 	public OwlGrammarAccess getGrammarAccess() {

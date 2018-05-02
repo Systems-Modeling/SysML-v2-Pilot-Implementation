@@ -128,6 +128,7 @@ public class OwlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAnnotationPropertyRangeAccess().getGroup(), "rule__AnnotationPropertyRange__Group__0");
 					put(grammarAccess.getAbbreviatedIRIAccess().getGroup(), "rule__AbbreviatedIRI__Group__0");
 					put(grammarAccess.getPrefixNameAccess().getGroup(), "rule__PrefixName__Group__0");
+					put(grammarAccess.getOntologyFileAccess().getDocumentsAssignment(), "rule__OntologyFile__DocumentsAssignment");
 					put(grammarAccess.getOntologyDocumentAccess().getPrefixDeclarationsAssignment_0(), "rule__OntologyDocument__PrefixDeclarationsAssignment_0");
 					put(grammarAccess.getOntologyDocumentAccess().getOntologyAssignment_1(), "rule__OntologyDocument__OntologyAssignment_1");
 					put(grammarAccess.getPrefixDeclarationAccess().getPrefixNameAssignment_2(), "rule__PrefixDeclaration__PrefixNameAssignment_2");

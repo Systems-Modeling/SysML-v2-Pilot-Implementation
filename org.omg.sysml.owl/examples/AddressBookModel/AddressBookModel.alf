@@ -1,10 +1,5 @@
 package AddressBookModel {
 
-	package PrimitiveTypes {
-		class String { }
-	}
-	
-	
 	class Entry {
 		name: PrimitiveTypes.String;
 		address: PrimitiveTypes.String;

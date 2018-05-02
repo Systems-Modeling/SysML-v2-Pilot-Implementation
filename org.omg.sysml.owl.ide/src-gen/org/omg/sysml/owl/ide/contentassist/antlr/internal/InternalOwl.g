@@ -49,6 +49,38 @@ import org.omg.sysml.owl.services.OwlGrammarAccess;
 	}
 }
 
+// Entry rule entryRuleOntologyFile
+entryRuleOntologyFile
+:
+{ before(grammarAccess.getOntologyFileRule()); }
+	 ruleOntologyFile
+{ after(grammarAccess.getOntologyFileRule()); } 
+	 EOF 
+;
+
+// Rule OntologyFile
+ruleOntologyFile 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		(
+			{ before(grammarAccess.getOntologyFileAccess().getDocumentsAssignment()); }
+			(rule__OntologyFile__DocumentsAssignment)
+			{ after(grammarAccess.getOntologyFileAccess().getDocumentsAssignment()); }
+		)
+		(
+			{ before(grammarAccess.getOntologyFileAccess().getDocumentsAssignment()); }
+			(rule__OntologyFile__DocumentsAssignment)*
+			{ after(grammarAccess.getOntologyFileAccess().getDocumentsAssignment()); }
+		)
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleOntologyDocument
 entryRuleOntologyDocument
 :
@@ -14226,6 +14258,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+
+rule__OntologyFile__DocumentsAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getOntologyFileAccess().getDocumentsOntologyDocumentParserRuleCall_0()); }
+		ruleOntologyDocument
+		{ after(grammarAccess.getOntologyFileAccess().getDocumentsOntologyDocumentParserRuleCall_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 rule__OntologyDocument__PrefixDeclarationsAssignment_0
 	@init {

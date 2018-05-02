@@ -84,6 +84,7 @@ import org.omg.sysml.owl.owl.ObjectSomeValuesFrom;
 import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
+import org.omg.sysml.owl.owl.OntologyFile;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
@@ -324,6 +325,9 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case OwlPackage.ONTOLOGY_DOCUMENT:
 				sequence_OntologyDocument(context, (OntologyDocument) semanticObject); 
+				return; 
+			case OwlPackage.ONTOLOGY_FILE:
+				sequence_OntologyFile(context, (OntologyFile) semanticObject); 
 				return; 
 			case OwlPackage.PREFIX_DECLARATION:
 				sequence_PrefixDeclaration(context, (PrefixDeclaration) semanticObject); 
@@ -1461,6 +1465,18 @@ public class OwlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (prefixDeclarations+=PrefixDeclaration* ontology=Ontology)
 	 */
 	protected void sequence_OntologyDocument(ISerializationContext context, OntologyDocument semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OntologyFile returns OntologyFile
+	 *
+	 * Constraint:
+	 *     documents+=OntologyDocument+
+	 */
+	protected void sequence_OntologyFile(ISerializationContext context, OntologyFile semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

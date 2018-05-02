@@ -23,6 +23,22 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	
+	public class OntologyFileElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.OntologyFile");
+		private final Assignment cDocumentsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cDocumentsOntologyDocumentParserRuleCall_0 = (RuleCall)cDocumentsAssignment.eContents().get(0);
+		
+		//// Ontologies
+		//OntologyFile:
+		//	documents+=OntologyDocument+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//documents+=OntologyDocument+
+		public Assignment getDocumentsAssignment() { return cDocumentsAssignment; }
+		
+		//OntologyDocument
+		public RuleCall getDocumentsOntologyDocumentParserRuleCall_0() { return cDocumentsOntologyDocumentParserRuleCall_0; }
+	}
 	public class OntologyDocumentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.owl.Owl.OntologyDocument");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -31,7 +47,6 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOntologyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOntologyOntologyParserRuleCall_1_0 = (RuleCall)cOntologyAssignment_1.eContents().get(0);
 		
-		//// Ontologies
 		//OntologyDocument:
 		//	prefixDeclarations+=PrefixDeclaration*
 		//	ontology=Ontology;
@@ -4177,6 +4192,7 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	private final OntologyFileElements pOntologyFile;
 	private final OntologyDocumentElements pOntologyDocument;
 	private final PrefixDeclarationElements pPrefixDeclaration;
 	private final OntologyElements pOntology;
@@ -4298,6 +4314,7 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
+		this.pOntologyFile = new OntologyFileElements();
 		this.pOntologyDocument = new OntologyDocumentElements();
 		this.pPrefixDeclaration = new PrefixDeclarationElements();
 		this.pOntology = new OntologyElements();
@@ -4439,6 +4456,16 @@ public class OwlGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//// Ontologies
+	//OntologyFile:
+	//	documents+=OntologyDocument+;
+	public OntologyFileElements getOntologyFileAccess() {
+		return pOntologyFile;
+	}
+	
+	public ParserRule getOntologyFileRule() {
+		return getOntologyFileAccess().getRule();
+	}
+	
 	//OntologyDocument:
 	//	prefixDeclarations+=PrefixDeclaration*
 	//	ontology=Ontology;

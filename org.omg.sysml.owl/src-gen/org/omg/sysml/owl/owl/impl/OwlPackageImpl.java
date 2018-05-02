@@ -94,6 +94,7 @@ import org.omg.sysml.owl.owl.ObjectSomeValuesFrom;
 import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
+import org.omg.sysml.owl.owl.OntologyFile;
 import org.omg.sysml.owl.owl.OwlFactory;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.PrefixDeclaration;
@@ -116,6 +117,13 @@ import org.omg.sysml.owl.owl.TypedLiteral;
  */
 public class OwlPackageImpl extends EPackageImpl implements OwlPackage
 {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ontologyFileEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -849,6 +857,26 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(OwlPackage.eNS_URI, theOwlPackage);
     return theOwlPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOntologyFile()
+  {
+    return ontologyFileEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOntologyFile_Documents()
+  {
+    return (EReference)ontologyFileEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3181,6 +3209,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     isCreated = true;
 
     // Create classes and their features
+    ontologyFileEClass = createEClass(ONTOLOGY_FILE);
+    createEReference(ontologyFileEClass, ONTOLOGY_FILE__DOCUMENTS);
+
     ontologyDocumentEClass = createEClass(ONTOLOGY_DOCUMENT);
     createEReference(ontologyDocumentEClass, ONTOLOGY_DOCUMENT__PREFIX_DECLARATIONS);
     createEReference(ontologyDocumentEClass, ONTOLOGY_DOCUMENT__ONTOLOGY);
@@ -3623,6 +3654,9 @@ public class OwlPackageImpl extends EPackageImpl implements OwlPackage
     annotationPropertyRangeEClass.getESuperTypes().add(this.getAnnotationAxiom());
 
     // Initialize classes and features; add operations and parameters
+    initEClass(ontologyFileEClass, OntologyFile.class, "OntologyFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOntologyFile_Documents(), this.getOntologyDocument(), null, "documents", null, 0, -1, OntologyFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(ontologyDocumentEClass, OntologyDocument.class, "OntologyDocument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOntologyDocument_PrefixDeclarations(), this.getPrefixDeclaration(), null, "prefixDeclarations", null, 0, -1, OntologyDocument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOntologyDocument_Ontology(), this.getOntology(), null, "ontology", null, 0, 1, OntologyDocument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

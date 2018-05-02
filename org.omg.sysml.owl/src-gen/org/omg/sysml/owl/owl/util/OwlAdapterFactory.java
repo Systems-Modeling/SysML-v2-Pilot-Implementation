@@ -94,6 +94,7 @@ import org.omg.sysml.owl.owl.ObjectSomeValuesFrom;
 import org.omg.sysml.owl.owl.ObjectUnionOf;
 import org.omg.sysml.owl.owl.Ontology;
 import org.omg.sysml.owl.owl.OntologyDocument;
+import org.omg.sysml.owl.owl.OntologyFile;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.owl.owl.PrefixDeclaration;
 import org.omg.sysml.owl.owl.ReflexiveObjectProperty;
@@ -170,6 +171,11 @@ public class OwlAdapterFactory extends AdapterFactoryImpl
   protected OwlSwitch<Adapter> modelSwitch =
     new OwlSwitch<Adapter>()
     {
+      @Override
+      public Adapter caseOntologyFile(OntologyFile object)
+      {
+        return createOntologyFileAdapter();
+      }
       @Override
       public Adapter caseOntologyDocument(OntologyDocument object)
       {
@@ -671,6 +677,21 @@ public class OwlAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.omg.sysml.owl.owl.OntologyFile <em>Ontology File</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.omg.sysml.owl.owl.OntologyFile
+   * @generated
+   */
+  public Adapter createOntologyFileAdapter()
+  {
+    return null;
+  }
 
   /**
    * Creates a new adapter for an object of class '{@link org.omg.sysml.owl.owl.OntologyDocument <em>Ontology Document</em>}'.

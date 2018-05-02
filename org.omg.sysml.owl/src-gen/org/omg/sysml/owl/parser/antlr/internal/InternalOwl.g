@@ -43,7 +43,7 @@ import org.omg.sysml.owl.services.OwlGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "OntologyDocument";
+    	return "OntologyFile";
    	}
 
    	@Override
@@ -59,6 +59,42 @@ import org.omg.sysml.owl.services.OwlGrammarAccess;
         appendSkippedTokens();
     }
 }
+
+// Entry rule entryRuleOntologyFile
+entryRuleOntologyFile returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOntologyFileRule()); }
+	iv_ruleOntologyFile=ruleOntologyFile
+	{ $current=$iv_ruleOntologyFile.current; }
+	EOF;
+
+// Rule OntologyFile
+ruleOntologyFile returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getOntologyFileAccess().getDocumentsOntologyDocumentParserRuleCall_0());
+			}
+			lv_documents_0_0=ruleOntologyDocument
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getOntologyFileRule());
+				}
+				add(
+					$current,
+					"documents",
+					lv_documents_0_0,
+					"org.omg.sysml.owl.Owl.OntologyDocument");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)+
+;
 
 // Entry rule entryRuleOntologyDocument
 entryRuleOntologyDocument returns [EObject current=null]:

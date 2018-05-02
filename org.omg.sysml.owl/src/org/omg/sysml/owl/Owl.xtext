@@ -29,6 +29,10 @@ generate owl "http://www.omg.org/spec/SysML/2.0/OWL"
 
 // Ontologies
 
+OntologyFile:
+	( documents += OntologyDocument )+
+;
+
 OntologyDocument:
 	( prefixDeclarations += PrefixDeclaration )*
 	ontology = Ontology

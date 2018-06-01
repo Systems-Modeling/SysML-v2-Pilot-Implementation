@@ -1,0 +1,6 @@
+package PrimitiveTypes {
+	class Integer { }
+	class Real { }
+	class String { }
+	class Timestamp { }
+}

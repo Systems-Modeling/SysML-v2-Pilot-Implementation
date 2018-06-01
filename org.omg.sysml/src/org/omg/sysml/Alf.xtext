@@ -25,38 +25,35 @@
 grammar org.omg.sysml.Alf hidden (WS, ML_COMMENT, SL_COMMENT)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "http://www.omg.org/spec/SysML/2.0/Core" as Core
-import "http://www.omg.org/spec/SysML/2.0/Groups" as Groups
-import "http://www.omg.org/spec/SysML/2.0/Classification" as Classification
-import "http://www.omg.org/spec/SysML/2.0/Behavior" as Behavior
+import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
-UnitDefinition returns Groups::Namespace:
+UnitDefinition returns SysML::Package:
 	PackageDefinition | ClassDefinition
 ;
 
 /* PACKAGES */
 
-PackageDefinition returns Groups::Namespace: 
-	'package' name = Name '{' ( groupMember += MemberDefinition )* '}' 
+PackageDefinition returns SysML::Package: 
+	'package' name = Name '{' ( membership += MemberDefinition )* '}' 
 ;
 
-PackageDefinitionOrStub returns Groups::Namespace :
+PackageDefinitionOrStub returns SysML::Package :
 //	'package' name = Name ( isStub ?= ';' | '{' ( ownedMember += PackagedElement )* '}' )
 	PackageDefinition
 ;
 
-MemberDefinition returns Groups::NamespaceMembership : 
+MemberDefinition returns SysML::Membership : 
 //  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( ownedMemberElement = PackagedElementDefinition
-	| MemberKind ( memberName = Name )? 'is' memberElement = [Core::Element|QualifiedName] ';'
+	| MemberKind ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
 	)
 ;
 
-enum VisibilityIndicator returns Groups::VisibilityKind :
+enum VisibilityIndicator returns SysML::VisibilityKind :
 	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
 ;
 
@@ -68,32 +65,36 @@ MemberKind :
 //	public = 'public' | private = 'private'
 //;
 
-PackagedElementDefinition returns Core::Element:
+PackagedElementDefinition returns SysML::Element:
   PackageDefinitionOrStub | ClassifierDefinitionOrStub | FeatureDefinition
 ;
 
-ClassifierDefinitionOrStub returns Classification::Class:
+ClassifierDefinitionOrStub returns SysML::Class:
 	ClassDefinitionOrStub
 ;
 
 /* CLASSES */
-ClassDeclaration returns Classification::Class : 
+ClassDeclaration returns SysML::Class : 
 //	( 'namespace' namespace += [groups::Namespace | QualifiedName] )?
 //	( ^import += ImportDeclaration )*
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( ( 'is' | 'specializes' ) ownedGeneralization += Generalization ( ',' ownedGeneralization += Generalization )* )?
+	( ( 'is' | 'specializes' ) membership += OwnedGeneralization ( ',' membership += OwnedGeneralization )* )?
 ;
 
-Generalization returns Classification::Generalization :
-	general = [Classification::Class | QualifiedName]
+OwnedGeneralization returns SysML::Membership:
+	ownedMemberElement = Generalization
 ;
 
-ClassDefinition returns Classification::Class : 
-  ClassDeclaration '{' ( groupMember += MemberDefinition )* '}'
+Generalization returns SysML::Generalization:
+	general = [SysML::Class | QualifiedName]
 ;
 
-ClassDefinitionOrStub returns Classification::Class :
+ClassDefinition returns SysML::Class : 
+  ClassDeclaration '{' ( membership += MemberDefinition )* '}'
+;
+
+ClassDefinitionOrStub returns SysML::Class :
 	ClassDefinition 
 //	ClassDeclaration
 //	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
@@ -118,32 +119,40 @@ ClassMember returns groups::NamespaceMembership :
 
 /* FEATURES */
 
-FeatureDefinition returns Classification::Feature :
+FeatureDefinition returns SysML::Feature :
 	'feature'?  
 	( name = Name 
-	  ( ':' referencedType += [Classification::Class | QualifiedName] 
-	  	( 'is' redefinedFeature += [Classification::Feature|QualifiedName] )?
+	  ( ':' referencedType += [SysML::Class | QualifiedName] 
+	  	( 'is' membership += OwnedRedefinition )?
       ) ?
       ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	  ( ';' | ownedType += AnonymousClassDefinition )
-	| ( name = Name )? 'is' redefinedFeature += [Classification::Feature|QualifiedName]
+	  ( ';' | '{' ( membership += MemberDefinition )* '}' )
+	| ( name = Name )? 'is' membership += OwnedRedefinition
 	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	    ownedType += AnonymousClassDefinition
+	    '{' ( membership += MemberDefinition )* '}'
 	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
 	  )
 	)
 ;
 
-AnonymousClassDefinition returns Classification::Class :
-	{Classification::Class} '{' ( groupMember += MemberDefinition )* '}'
+OwnedRedefinition returns SysML::Membership:
+	ownedMemberElement = Redefinition
 ;
 
-NaturalLiteralExpression returns Behavior::LiteralInteger:
+Redefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature|QualifiedName] 
+;
+
+//AnonymousClassDefinition returns SysML::Class :
+//	{SysML::Class} '{' ( membership += MemberDefinition )* '}'
+//;
+
+NaturalLiteralExpression returns SysML::LiteralInteger:
 	value = NATURAL_VALUE
 ;
 
-UnlimitedNaturalLiteralExpression returns Behavior::Expression:
-	NaturalLiteralExpression | {Behavior::LiteralUnbounded} '*'
+UnlimitedNaturalLiteralExpression returns SysML::Expression:
+	NaturalLiteralExpression | {SysML::LiteralUnbounded} '*'
 ;
 
 //FeatureDefinitionOrStub returns classification::Feature : 

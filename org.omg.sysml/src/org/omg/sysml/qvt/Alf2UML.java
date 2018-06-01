@@ -7,10 +7,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.omg.sysml.AlfStandaloneSetup;
-import org.omg.sysml.behaviors.BehaviorsPackage;
-import org.omg.sysml.classification.ClassificationPackage;
-import org.omg.sysml.core.CorePackage;
-import org.omg.sysml.groups.GroupsPackage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class Alf2UML extends QVTRunner {
 
@@ -21,10 +18,7 @@ public class Alf2UML extends QVTRunner {
 		UMLResourcesUtil.init(this.resourceSet);
 	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
 	    
-	    CorePackage core = CorePackage.eINSTANCE;
-	    GroupsPackage group = GroupsPackage.eINSTANCE;
-	    ClassificationPackage classification = ClassificationPackage.eINSTANCE;
-	    BehaviorsPackage behavior = BehaviorsPackage.eINSTANCE;
+	    SysMLPackage sysml = SysMLPackage.eINSTANCE;
 	    
 	    AlfStandaloneSetup.doSetup();
 	}

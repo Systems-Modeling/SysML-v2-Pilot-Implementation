@@ -11,6 +11,7 @@ import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -23,12 +24,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1;
 	protected AbstractElementAlias match_FeatureDefinition_FeatureKeyword_0_q;
+	protected AbstractElementAlias match_FeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getIsKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getSpecializesKeyword_3_0_1()));
 		match_FeatureDefinition_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getFeatureDefinitionAccess().getFeatureKeyword_0());
+		match_FeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureDefinitionAccess().getLeftCurlyBracketKeyword_1_0_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureDefinitionAccess().getRightCurlyBracketKeyword_1_0_3_1_2())), new TokenAlias(false, false, grammarAccess.getFeatureDefinitionAccess().getSemicolonKeyword_1_0_3_0()));
 	}
 	
 	@Override
@@ -59,16 +62,18 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureDefinition_FeatureKeyword_0_q.equals(syntax))
 				emit_FeatureDefinition_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__.equals(syntax))
+				emit_FeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
 	/**
 	 * Ambiguous syntax:
-	 *     'is' | 'specializes'
+	 *     'specializes' | 'is'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=Name (ambiguity) ownedGeneralization+=Generalization
+	 *     name=Name (ambiguity) membership+=OwnedGeneralization
 	 */
 	protected void emit_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -79,10 +84,24 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'is' redefinedFeature+=[Feature|QualifiedName]
+	 *     (rule start) (ambiguity) 'is' membership+=OwnedRedefinition
 	 *     (rule start) (ambiguity) name=Name
 	 */
 	protected void emit_FeatureDefinition_FeatureKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ';' | ('{' '}')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     membership+=OwnedRedefinition (ambiguity) (rule end)
+	 *     name=Name (ambiguity) (rule end)
+	 *     referencedType+=[Class|QualifiedName] (ambiguity) (rule end)
+	 *     upper=UnlimitedNaturalLiteralExpression ']' (ambiguity) (rule end)
+	 */
+	protected void emit_FeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

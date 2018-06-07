@@ -1,4 +1,4 @@
-# SySML v2 Pilot Implementation Protoyping
+# SysML v2 Pilot Implementation Protoyping
 
 ## Installation Instructions
 

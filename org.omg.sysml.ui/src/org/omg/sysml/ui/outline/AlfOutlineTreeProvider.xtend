@@ -5,11 +5,13 @@ package org.omg.sysml.ui.outline
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import org.omg.sysml.core.Element
-import org.omg.sysml.classification.Feature
-import org.omg.sysml.classification.Generalization
-import org.omg.sysml.classification.ClassificationPackage
-import org.omg.sysml.groups.NamespaceMembership
+import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.Subset
 
 /**
  * Customization of the default outline structure.
@@ -22,8 +24,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var text = element.eClass.name;
 		if (element.name !== null) {
 			text += ' ' + element.name;
-		} else if (element instanceof NamespaceMembership) {
-			var member = element as NamespaceMembership;
+		} else if (element instanceof Membership) {
+			var member = element as Membership;
 			if (member.visibility !== null) {
 				text += ' ' + member.visibility;
 			}
@@ -50,7 +52,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var referencedTypes = feature.referencedType
 		if (!referencedTypes.isEmpty) {
 			createEStructuralFeatureNode(parentNode, feature, 
-				ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, 
+				SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, 
 				_image(feature.referencedType), "type " + feature.referencedType.get(0).name, 
 				true
 			)
@@ -63,11 +65,41 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
-		createEStructuralFeatureNode(parentNode, generalization, 
-			ClassificationPackage.Literals.GENERALIZATION__GENERAL, 
-			_image(generalization.general), "general " + generalization.general.name, 
-			true
-		)
+		if (generalization.general !== null && generalization.general.name !== null) {
+			createEStructuralFeatureNode(parentNode, generalization, 
+				SysMLPackage.Literals.GENERALIZATION__GENERAL, 
+				_image(generalization.general), "general " + generalization.general.name, 
+				true
+			)
+		}
+	}
+	
+	def boolean _isLeaf(Redefinition redefinition) {
+		redefinition === null
+	}
+
+	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
+		if (redefinition.redefinedFeature !== null && redefinition.redefinedFeature.name !== null) {
+			createEStructuralFeatureNode(parentNode, redefinition, 
+				SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, 
+				_image(redefinition.redefinedFeature), "redefines " + redefinition.redefinedFeature.name, 
+				true
+			)
+		}
+	}
+
+	def boolean _isLeaf(Subset subset) {
+		subset === null
+	}
+
+	def void _createChildren(IOutlineNode parentNode, Subset subset) {
+		if (subset.subsettedFeature !== null && subset.subsettedFeature.name !== null) {
+			createEStructuralFeatureNode(parentNode, subset, 
+				SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, 
+				_image(subset.subsettedFeature), "subsets " + subset.subsettedFeature.name, 
+				true
+			)
+		}
 	}
 
 }

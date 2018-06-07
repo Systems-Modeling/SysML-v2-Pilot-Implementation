@@ -10,13 +10,13 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.omg.sysml.groups.Namespace
+import org.omg.sysml.lang.sysml.Package
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class AlfParsingTest {
 	@Inject
-	ParseHelper<Namespace> parseHelper
+	ParseHelper<Package> parseHelper
 	
 	@Test
 	def void loadModel() {

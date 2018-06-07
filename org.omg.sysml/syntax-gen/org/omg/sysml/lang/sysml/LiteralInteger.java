@@ -19,7 +19,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LiteralInteger extends Expression {
+public interface LiteralInteger extends LiteralExpression {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

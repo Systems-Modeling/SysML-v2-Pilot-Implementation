@@ -36,3 +36,4 @@ Export-Package: org.omg.sysml,
 Import-Package: com.ibm.icu.impl.text;version="58.2.0",
  org.apache.commons.logging,
  org.apache.log4j
+Automatic-Module-Name: org.omg.sysml

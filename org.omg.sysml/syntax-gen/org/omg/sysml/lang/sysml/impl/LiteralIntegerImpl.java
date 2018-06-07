@@ -24,7 +24,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class LiteralIntegerImpl extends ExpressionImpl implements LiteralInteger {
+public class LiteralIntegerImpl extends LiteralExpressionImpl implements LiteralInteger {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

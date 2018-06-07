@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="http://www.omg.org/spec/SysML/2.0" nsPrefix="sysml">
+  <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Relationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
+        lowerBound="1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
+        eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningGeneralization" ordered="false"
+        eType="#//Class" eOpposite="#//Class/ownedGeneralization"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Predicate" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Relationship">
     <eOperations name="importedMembers" ordered="false" upperBound="-1" eType="#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importingPackage" ordered="false"
@@ -12,90 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="selecter" ordered="false"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Membership" eSuperTypes="#//Relationship">
-    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="naming" ordered="false" lowerBound="1" eType="#//Membership"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" ordered="false"
-        lowerBound="1" eType="#//Package" eOpposite="#//Package/membership"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
-        lowerBound="1" eType="#//VisibilityKind"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliases" ordered="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="memberElement" ordered="false"
-        eType="#//Element"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
-        eType="#//Element" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Element">
-    <eOperations name="nameOf" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="membership" upperBound="-1"
-        eType="#//Membership" containment="true" eOpposite="#//Membership/package"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImport" ordered="false"
-        upperBound="-1" eType="#//Import" containment="true" eOpposite="#//Import/importingPackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMember" ordered="false"
-        upperBound="-1" eType="#//Element" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
-        upperBound="-1" eType="#//Element" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
-        eType="#//Element" derived="true" eOpposite="#//Element/owningPackage"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
-    <eLiterals name="public"/>
-    <eLiterals name="private"/>
-    <eLiterals name="protected"/>
-    <eLiterals name="package"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" ordered="false"
-        lowerBound="1" eType="#//Element"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
-        unique="false" upperBound="2" eType="#//Element" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-        eType="#//Element"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-        eType="#//Element"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" ordered="false"
-        upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/owner"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
-        eType="#//Element" eOpposite="#//Element/ownedElement"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" ordered="false"
-        eType="#//Package" eOpposite="#//Package/ownedMember"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Relationship">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
-        lowerBound="1" eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
-        eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningGeneralization" ordered="false"
-        eType="#//Class" eOpposite="#//Class/ownedGeneralization"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Package">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
-        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/featuringClasses"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
-        upperBound="-1" eType="#//Feature" eOpposite="#//Feature/class"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typedFeature" ordered="false"
-        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization" ordered="false"
-        upperBound="-1" eType="#//Generalization" derived="true" eOpposite="#//Generalization/owningGeneralization"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Package">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lower" ordered="false"
         eType="#//Expression" containment="true"/>
@@ -115,9 +42,9 @@
         eType="#//Class" eOpposite="#//Class/ownedFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
         eType="#//Class" derived="true" eOpposite="#//Class/typedFeature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
-        upperBound="-1" eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedType" ordered="false"
+        upperBound="-1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
         upperBound="-1" eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeature" ordered="false"
         upperBound="-1" eType="#//Feature" eOpposite="#//Feature/nestingFeature"/>
@@ -127,16 +54,36 @@
         upperBound="-1" eType="#//Redefinition" derived="true" eOpposite="#//Redefinition/owningFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubset" ordered="false"
         upperBound="-1" eType="#//Subset" derived="true" eOpposite="#//Subset/owningFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPort" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
+        eType="#//FeatureDirectionKind"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Behavior"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Membership" eSuperTypes="#//Relationship">
+    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="naming" ordered="false" lowerBound="1" eType="#//Membership"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" ordered="false"
+        lowerBound="1" eType="#//Package" eOpposite="#//Package/membership"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        lowerBound="1" eType="#//VisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliases" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberElement" ordered="false"
+        eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
+        eType="#//Element" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LiteralUnbounded" eSuperTypes="#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//Class"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Predicate" eSuperTypes="#//Function"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
+    <eLiterals name="public"/>
+    <eLiterals name="private"/>
+    <eLiterals name="protected"/>
+    <eLiterals name="package"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Redefinition" eSuperTypes="#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedFeature" ordered="false"
         lowerBound="1" eType="#//Feature"/>
@@ -145,12 +92,126 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeature" ordered="false"
         eType="#//Feature" derived="true" eOpposite="#//Feature/ownedRedefinition"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
+        unique="false" upperBound="2" eType="#//Element" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//LiteralExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" ordered="false"
+        lowerBound="1" eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralUnbounded" eSuperTypes="#//LiteralExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subset" eSuperTypes="#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedFeature" ordered="false"
         lowerBound="1" eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsettingFeature" ordered="false"
-        lowerBound="1" eType="#//Feature"/>
+        eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeature" ordered="false"
         eType="#//Feature" derived="true" eOpposite="#//Feature/ownedSubset"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Package">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/featuringClasses"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature" eOpposite="#//Feature/class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typedFeature" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true" eOpposite="#//Feature/type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization" ordered="false"
+        upperBound="-1" eType="#//Generalization" derived="true" eOpposite="#//Generalization/owningGeneralization"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+        upperBound="-1" eType="#//Feature" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" ordered="false"
+        upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/owner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
+        eType="#//Element" eOpposite="#//Element/ownedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" ordered="false"
+        eType="#//Package" eOpposite="#//Package/ownedMember"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Behavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Element">
+    <eOperations name="nameOf" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="membership" upperBound="-1"
+        eType="#//Membership" containment="true" eOpposite="#//Membership/package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImport" ordered="false"
+        upperBound="-1" eType="#//Import" containment="true" eOpposite="#//Import/importingPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMember" ordered="false"
+        upperBound="-1" eType="#//Element" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
+        upperBound="-1" eType="#//Element" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
+        eType="#//Element" derived="true" eOpposite="#//Element/owningPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Relationship #//Feature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFeatures" ordered="false"
+        unique="false" upperBound="2" eType="#//Feature" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFeature" ordered="false"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetFeature" ordered="false"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePath" lowerBound="1"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" lowerBound="1"
+        upperBound="-1" eType="#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirectionKind">
+    <eLiterals name="in"/>
+    <eLiterals name="out"/>
+    <eLiterals name="inout"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralReal" eSuperTypes="#//LiteralExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralBoolean" eSuperTypes="#//LiteralExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementReferenceExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referent" ordered="false"
+        lowerBound="1" eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralNull" eSuperTypes="#//LiteralExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralExpression" eSuperTypes="#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralString" eSuperTypes="#//LiteralExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+        lowerBound="1" eType="#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

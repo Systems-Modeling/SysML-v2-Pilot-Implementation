@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -41,12 +42,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeaturingClasses <em>Featuring Classes</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getNestedFeature <em>Nested Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getNestingFeature <em>Nesting Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubset <em>Owned Subset</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @generated
@@ -183,16 +187,6 @@ public class FeatureImpl extends PackageImpl implements Feature {
 	protected EList<org.omg.sysml.lang.sysml.Class> type;
 
 	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> ownedType;
-
-	/**
 	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -201,6 +195,16 @@ public class FeatureImpl extends PackageImpl implements Feature {
 	 * @ordered
 	 */
 	protected EList<org.omg.sysml.lang.sysml.Class> referencedType;
+
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.omg.sysml.lang.sysml.Class> ownedType;
 
 	/**
 	 * The cached value of the '{@link #getNestedFeature() <em>Nested Feature</em>}' reference list.
@@ -241,6 +245,56 @@ public class FeatureImpl extends PackageImpl implements Feature {
 	 * @ordered
 	 */
 	protected EList<Subset> ownedSubset;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression value;
+
+	/**
+	 * The default value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PORT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPort = IS_PORT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = FeatureDirectionKind.IN;
+
+	/**
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -640,6 +694,91 @@ public class FeatureImpl extends PackageImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Expression getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs) {
+		Expression oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Expression newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsPort() {
+		return isPort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsPort(boolean newIsPort) {
+		boolean oldIsPort = isPort;
+		isPort = newIsPort;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_PORT, oldIsPort, isPort));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind getDirection() {
+		return direction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDirection(FeatureDirectionKind newDirection) {
+		FeatureDirectionKind oldDirection = direction;
+		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__DIRECTION, oldDirection, direction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -692,6 +831,8 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return ((InternalEList<?>)getOwnedRedefinition()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				return ((InternalEList<?>)getOwnedSubset()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.FEATURE__VALUE:
+				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -723,10 +864,10 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return basicGetClass();
 			case SysMLPackage.FEATURE__TYPE:
 				return getType();
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				return getOwnedType();
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				return getReferencedType();
+			case SysMLPackage.FEATURE__OWNED_TYPE:
+				return getOwnedType();
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				return getNestedFeature();
 			case SysMLPackage.FEATURE__NESTING_FEATURE:
@@ -736,6 +877,12 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				return getOwnedSubset();
+			case SysMLPackage.FEATURE__VALUE:
+				return getValue();
+			case SysMLPackage.FEATURE__IS_PORT:
+				return isIsPort();
+			case SysMLPackage.FEATURE__DIRECTION:
+				return getDirection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -778,13 +925,13 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				getType().clear();
 				getType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
-				return;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				getReferencedType().clear();
 				getReferencedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNED_TYPE:
+				getOwnedType().clear();
+				getOwnedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
 				return;
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				getNestedFeature().clear();
@@ -800,6 +947,15 @@ public class FeatureImpl extends PackageImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				getOwnedSubset().clear();
 				getOwnedSubset().addAll((Collection<? extends Subset>)newValue);
+				return;
+			case SysMLPackage.FEATURE__VALUE:
+				setValue((Expression)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_PORT:
+				setIsPort((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__DIRECTION:
+				setDirection((FeatureDirectionKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -840,11 +996,11 @@ public class FeatureImpl extends PackageImpl implements Feature {
 			case SysMLPackage.FEATURE__TYPE:
 				getType().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				getOwnedType().clear();
-				return;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				getReferencedType().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNED_TYPE:
+				getOwnedType().clear();
 				return;
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				getNestedFeature().clear();
@@ -857,6 +1013,15 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return;
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				getOwnedSubset().clear();
+				return;
+			case SysMLPackage.FEATURE__VALUE:
+				setValue((Expression)null);
+				return;
+			case SysMLPackage.FEATURE__IS_PORT:
+				setIsPort(IS_PORT_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__DIRECTION:
+				setDirection(DIRECTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -888,10 +1053,10 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return class_ != null;
 			case SysMLPackage.FEATURE__TYPE:
 				return type != null && !type.isEmpty();
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				return ownedType != null && !ownedType.isEmpty();
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				return referencedType != null && !referencedType.isEmpty();
+			case SysMLPackage.FEATURE__OWNED_TYPE:
+				return ownedType != null && !ownedType.isEmpty();
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				return nestedFeature != null && !nestedFeature.isEmpty();
 			case SysMLPackage.FEATURE__NESTING_FEATURE:
@@ -900,6 +1065,12 @@ public class FeatureImpl extends PackageImpl implements Feature {
 				return ownedRedefinition != null && !ownedRedefinition.isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				return ownedSubset != null && !ownedSubset.isEmpty();
+			case SysMLPackage.FEATURE__VALUE:
+				return value != null;
+			case SysMLPackage.FEATURE__IS_PORT:
+				return isPort != IS_PORT_EDEFAULT;
+			case SysMLPackage.FEATURE__DIRECTION:
+				return direction != DIRECTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -922,6 +1093,10 @@ public class FeatureImpl extends PackageImpl implements Feature {
 		result.append(isReadOnly);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isPort: ");
+		result.append(isPort);
+		result.append(", direction: ");
+		result.append(direction);
 		result.append(')');
 		return result.toString();
 	}

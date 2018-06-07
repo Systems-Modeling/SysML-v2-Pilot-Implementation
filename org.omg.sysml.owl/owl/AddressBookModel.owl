@@ -1,5 +1,6 @@
 Prefix ( : = <http://www.omg.org/SysML/ontology/AddressBookModel#> ) 
-Ontology ( <http://www.omg.org/SysML/ontology/AddressBookModel> 
+Ontology ( <http://www.omg.org/SysML/ontology/AddressBookModel>
+ 
 Declaration ( Class ( :AddressBookModel.Entry-Class ) ) 
 Declaration ( ObjectProperty ( :AddressBookModel.Entry.name-Feature ) ) 
 ObjectPropertyDomain ( :AddressBookModel.Entry.name-Feature :AddressBookModel.Entry-Class ) 
@@ -14,6 +15,7 @@ ObjectPropertyRange ( :AddressBookModel.Entry.address-Feature :PrimitiveTypes.St
 Declaration ( ObjectProperty ( :AddressBookModel.AddressBook.entries-Feature ) ) 
 ObjectPropertyDomain ( :AddressBookModel.AddressBook.entries-Feature :AddressBookModel.AddressBook-Class ) 
 ObjectPropertyRange ( :AddressBookModel.AddressBook.entries-Feature :AddressBookModel.Entry-Class ) ) 
+
 Prefix ( : = <http://www.omg.org/SysML/ontology/PrimitiveTypes#> ) 
 Ontology ( <http://www.omg.org/SysML/ontology/PrimitiveTypes> 
 Declaration ( Class ( :PrimitiveTypes.Integer-Class ) ) 

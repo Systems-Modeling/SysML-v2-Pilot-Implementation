@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Class#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Class#getTypedFeature <em>Typed Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Class#getOwnedGeneralization <em>Owned Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Class#getInput <em>Input</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Class#getOutput <em>Output</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getClass_()
@@ -122,5 +124,37 @@ public interface Class extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	EList<Generalization> getOwnedGeneralization();
+
+	/**
+	 * Returns the value of the '<em><b>Input</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Input</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Input</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClass_Input()
+	 * @model derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<Feature> getInput();
+
+	/**
+	 * Returns the value of the '<em><b>Output</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Output</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Output</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClass_Output()
+	 * @model derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<Feature> getOutput();
 
 } // Class

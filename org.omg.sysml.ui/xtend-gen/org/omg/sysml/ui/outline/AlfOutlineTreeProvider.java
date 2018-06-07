@@ -7,12 +7,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
-import org.omg.sysml.classification.ClassificationPackage;
-import org.omg.sysml.classification.Feature;
-import org.omg.sysml.classification.Generalization;
-import org.omg.sysml.core.Element;
-import org.omg.sysml.groups.NamespaceMembership;
-import org.omg.sysml.groups.VisibilityKind;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Subset;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
  * Customization of the default outline structure.
@@ -33,8 +35,8 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
         String _plus = (" " + _name_1);
         text = (_text + _plus);
       } else {
-        if ((element instanceof NamespaceMembership)) {
-          NamespaceMembership member = ((NamespaceMembership) element);
+        if ((element instanceof Membership)) {
+          Membership member = ((Membership) element);
           VisibilityKind _visibility = member.getVisibility();
           boolean _tripleNotEquals_1 = (_visibility != null);
           if (_tripleNotEquals_1) {
@@ -89,7 +91,7 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
-    EList<org.omg.sysml.classification.Class> referencedTypes = feature.getReferencedType();
+    EList<org.omg.sysml.lang.sysml.Class> referencedTypes = feature.getReferencedType();
     boolean _isEmpty = referencedTypes.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
@@ -97,7 +99,7 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
       String _name = feature.getReferencedType().get(0).getName();
       String _plus = ("type " + _name);
       this.createEStructuralFeatureNode(parentNode, feature, 
-        ClassificationPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
+        SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
         true);
     }
     super._createChildren(parentNode, feature);
@@ -108,11 +110,43 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Generalization generalization) {
-    Image __image = this._image(generalization.getGeneral());
-    String _name = generalization.getGeneral().getName();
-    String _plus = ("general " + _name);
-    this.createEStructuralFeatureNode(parentNode, generalization, 
-      ClassificationPackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
-      true);
+    if (((generalization.getGeneral() != null) && (generalization.getGeneral().getName() != null))) {
+      Image __image = this._image(generalization.getGeneral());
+      String _name = generalization.getGeneral().getName();
+      String _plus = ("general " + _name);
+      this.createEStructuralFeatureNode(parentNode, generalization, 
+        SysMLPackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
+        true);
+    }
+  }
+  
+  public boolean _isLeaf(final Redefinition redefinition) {
+    return (redefinition == null);
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Redefinition redefinition) {
+    if (((redefinition.getRedefinedFeature() != null) && (redefinition.getRedefinedFeature().getName() != null))) {
+      Image __image = this._image(redefinition.getRedefinedFeature());
+      String _name = redefinition.getRedefinedFeature().getName();
+      String _plus = ("redefines " + _name);
+      this.createEStructuralFeatureNode(parentNode, redefinition, 
+        SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, __image, _plus, 
+        true);
+    }
+  }
+  
+  public boolean _isLeaf(final Subset subset) {
+    return (subset == null);
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Subset subset) {
+    if (((subset.getSubsettedFeature() != null) && (subset.getSubsettedFeature().getName() != null))) {
+      Image __image = this._image(subset.getSubsettedFeature());
+      String _name = subset.getSubsettedFeature().getName();
+      String _plus = ("subsets " + _name);
+      this.createEStructuralFeatureNode(parentNode, subset, 
+        SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, __image, _plus, 
+        true);
+    }
   }
 }

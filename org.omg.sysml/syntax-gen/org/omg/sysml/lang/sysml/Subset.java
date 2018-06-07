@@ -59,7 +59,7 @@ public interface Subset extends Relationship {
 	 * @return the value of the '<em>Subsetting Feature</em>' reference.
 	 * @see #setSubsettingFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettingFeature()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Feature getSubsettingFeature();

@@ -170,7 +170,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueTypeDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBlockDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//// DEFINITIONS
+		//// Definitions
 		//Definition:
 		//	ValueTypeDefinition | BlockDefinition;
 		@Override public ParserRule getRule() { return rule; }
@@ -1410,7 +1410,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageMemberAccess().getRule();
 	}
 	
-	//// DEFINITIONS
+	//// Definitions
 	//Definition:
 	//	ValueTypeDefinition | BlockDefinition;
 	public DefinitionElements getDefinitionAccess() {

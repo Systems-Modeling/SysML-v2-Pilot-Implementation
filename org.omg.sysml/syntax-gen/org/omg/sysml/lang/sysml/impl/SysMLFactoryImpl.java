@@ -13,18 +13,29 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.InstanceCreationExpression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
+import org.omg.sysml.lang.sysml.LiteralNull;
+import org.omg.sysml.lang.sysml.LiteralReal;
+import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -74,23 +85,33 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SysMLPackage.IMPORT: return createImport();
-			case SysMLPackage.MEMBERSHIP: return createMembership();
-			case SysMLPackage.PACKAGE: return createPackage();
-			case SysMLPackage.COMMENT: return createComment();
-			case SysMLPackage.RELATIONSHIP: return createRelationship();
-			case SysMLPackage.ELEMENT: return createElement();
-			case SysMLPackage.GENERALIZATION: return createGeneralization();
-			case SysMLPackage.CLASS: return createClass();
-			case SysMLPackage.FEATURE: return createFeature();
-			case SysMLPackage.FUNCTION: return createFunction();
-			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
-			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
 			case SysMLPackage.BEHAVIOR: return createBehavior();
+			case SysMLPackage.GENERALIZATION: return createGeneralization();
 			case SysMLPackage.PREDICATE: return createPredicate();
+			case SysMLPackage.IMPORT: return createImport();
 			case SysMLPackage.EXPRESSION: return createExpression();
+			case SysMLPackage.FEATURE: return createFeature();
+			case SysMLPackage.MEMBERSHIP: return createMembership();
 			case SysMLPackage.REDEFINITION: return createRedefinition();
+			case SysMLPackage.RELATIONSHIP: return createRelationship();
+			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
+			case SysMLPackage.COMMENT: return createComment();
+			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
 			case SysMLPackage.SUBSET: return createSubset();
+			case SysMLPackage.CLASS: return createClass();
+			case SysMLPackage.ELEMENT: return createElement();
+			case SysMLPackage.FUNCTION: return createFunction();
+			case SysMLPackage.PACKAGE: return createPackage();
+			case SysMLPackage.CONNECTOR: return createConnector();
+			case SysMLPackage.LITERAL_REAL: return createLiteralReal();
+			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
+			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION: return createElementReferenceExpression();
+			case SysMLPackage.LITERAL_NULL: return createLiteralNull();
+			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
+			case SysMLPackage.LITERAL_STRING: return createLiteralString();
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
+			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +127,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case SysMLPackage.VISIBILITY_KIND:
 				return createVisibilityKindFromString(eDataType, initialValue);
+			case SysMLPackage.FEATURE_DIRECTION_KIND:
+				return createFeatureDirectionKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -121,6 +144,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case SysMLPackage.VISIBILITY_KIND:
 				return convertVisibilityKindToString(eDataType, instanceValue);
+			case SysMLPackage.FEATURE_DIRECTION_KIND:
+				return convertFeatureDirectionKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -154,6 +179,106 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public org.omg.sysml.lang.sysml.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Connector createConnector() {
+		ConnectorImpl connector = new ConnectorImpl();
+		return connector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LiteralReal createLiteralReal() {
+		LiteralRealImpl literalReal = new LiteralRealImpl();
+		return literalReal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LiteralBoolean createLiteralBoolean() {
+		LiteralBooleanImpl literalBoolean = new LiteralBooleanImpl();
+		return literalBoolean;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReferenceExpression createElementReferenceExpression() {
+		ElementReferenceExpressionImpl elementReferenceExpression = new ElementReferenceExpressionImpl();
+		return elementReferenceExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LiteralNull createLiteralNull() {
+		LiteralNullImpl literalNull = new LiteralNullImpl();
+		return literalNull;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LiteralExpression createLiteralExpression() {
+		LiteralExpressionImpl literalExpression = new LiteralExpressionImpl();
+		return literalExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LiteralString createLiteralString() {
+		LiteralStringImpl literalString = new LiteralStringImpl();
+		return literalString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SequenceConstructionExpression createSequenceConstructionExpression() {
+		SequenceConstructionExpressionImpl sequenceConstructionExpression = new SequenceConstructionExpressionImpl();
+		return sequenceConstructionExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstanceCreationExpression createInstanceCreationExpression() {
+		InstanceCreationExpressionImpl instanceCreationExpression = new InstanceCreationExpressionImpl();
+		return instanceCreationExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorExpression createOperatorExpression() {
+		OperatorExpressionImpl operatorExpression = new OperatorExpressionImpl();
+		return operatorExpression;
 	}
 
 	/**
@@ -313,6 +438,26 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * @generated
 	 */
 	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind createFeatureDirectionKindFromString(EDataType eDataType, String initialValue) {
+		FeatureDirectionKind result = FeatureDirectionKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFeatureDirectionKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

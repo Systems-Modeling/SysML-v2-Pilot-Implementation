@@ -49,7 +49,7 @@ MemberDefinition returns SysML::Membership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( ownedMemberElement = PackagedElementDefinition
-	| MemberKind ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| MemberKind? ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
 	)
 ;
 
@@ -119,33 +119,116 @@ ClassMember returns groups::NamespaceMembership :
 
 /* FEATURES */
 
-FeatureDefinition returns SysML::Feature :
-	'feature'?  
+FeatureDefinition returns SysML::Feature:
+	BasicFeatureDefinition | ConnectorDefinition
+;
+
+BasicFeatureDefinition returns SysML::Feature :
+	( 'feature' | isPort ?= 'port' )? ( direction = FeatureDirection )?
 	( name = Name 
 	  ( ':' referencedType += [SysML::Class | QualifiedName] 
-	  	( 'is' membership += OwnedRedefinition )?
+	  	( membership += OwnedRedefinitionOrSubset )?
       ) ?
       ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	  ( ';' | '{' ( membership += MemberDefinition )* '}' )
-	| ( name = Name )? 'is' membership += OwnedRedefinition
+	  ( ( '=' value = Expression )? ';' | '{' ( membership += MemberDefinition )* '}' )
+	| ( name = Name )? membership += OwnedRedefinitionOrSubset
 	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	    '{' ( membership += MemberDefinition )* '}'
+	     ( '=' value = Expression ';' | '{' ( membership += MemberDefinition )* '}' )
 	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
 	  )
 	)
 ;
 
-OwnedRedefinition returns SysML::Membership:
-	ownedMemberElement = Redefinition
+enum FeatureDirection returns SysML::FeatureDirectionKind:
+	in = 'in' | out = 'out' | inout = 'inout'
+;
+
+OwnedRedefinitionOrSubset returns SysML::Membership:
+	( ( 'is' | 'redefines' ) ownedMemberElement = Redefinition |
+	  'subsets' ownedMemberElement = Subset
+	)
 ;
 
 Redefinition returns SysML::Redefinition:
 	redefinedFeature = [SysML::Feature|QualifiedName] 
 ;
 
+Subset returns SysML::Subset:
+	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
+ConnectorDefinition returns SysML::Connector:
+	'connector' (name = Name)? 
+		sourcePath += [SysML::Feature | QualifiedName] '=>' 
+		targetPath += [SysML::Feature | QualifiedName] ';'
+;
+
 //AnonymousClassDefinition returns SysML::Class :
 //	{SysML::Class} '{' ( membership += MemberDefinition )* '}'
 //;
+
+/* EXPRESSIONS */
+
+Expression returns SysML::Expression:
+	BinaryExpression
+;
+
+BinaryExpression returns SysML::Expression:
+	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
+		( operator = BinaryOperator operand += Expression | operator = '@' '[' operand += Expression ']' ) )?
+;
+
+BinaryOperator:
+	'+' | '-' | '*' | '/' | '^'
+;
+
+UnaryExpression returns SysML::Expression:
+	PrimaryExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += PrimaryExpression
+;
+
+UnaryOperator:
+	'+' | '-'
+;
+
+PrimaryExpression returns SysML::Expression:
+	LiteralExpression | ElementReferenceExpression | InstanceCreationExpression | SequenceConstructionExpression | '(' Expression ')'
+;
+
+ElementReferenceExpression returns SysML::ElementReferenceExpression:
+	referent = [SysML::Element | QualifiedName]
+;
+
+InstanceCreationExpression returns SysML::InstanceCreationExpression:
+	class = [SysML::Class  | QualifiedName] '(' ( argument += Expression ( ',' argument += Expression )* )? ')'
+;
+
+SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
+	{SysML::SequenceConstructionExpression} '{' ( element += Expression ( ',' element += Expression )* )? '}'
+;
+
+LiteralExpression returns SysML::Expression:
+	NullLiteralExpression | BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
+;
+
+NullLiteralExpression returns SysML::LiteralNull:
+	{SysML::LiteralNull} 'null'
+;
+
+BooleanLiteralExpression returns SysML::LiteralBoolean :
+	value = BOOLEAN_VALUE
+;
+
+StringLiteralExpression returns SysML::LiteralString :
+	value = STRING_VALUE
+;
+
+RealLiteralExpression returns SysML::LiteralReal:
+	value = RealValue
+;
+
+RealValue returns Ecore::EDouble:
+	(NATURAL_VALUE '.' ( NATURAL_VALUE )? | '.' NATURAL_VALUE) (('e' | 'E') ('+' | '-')? NATURAL_VALUE)?
+;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
 	value = NATURAL_VALUE
@@ -210,7 +293,8 @@ QualifiedName :
 /****************
 * Terminals
 *****************/
-terminal BOOLEAN_VALUE : 'true' | 'false' ;
+terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
+	'true' | 'false' ;
 
 terminal NATURAL_VALUE returns Ecore::EInt :
 	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
@@ -222,7 +306,8 @@ terminal NATURAL_VALUE returns Ecore::EInt :
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
 terminal UNRESTRICTED_NAME : '\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
 
-terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
+terminal STRING_VALUE returns Ecore::EString : 
+	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
 
 terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
 terminal STATEMENT_ANNOTATION : '//@' -> '\n'

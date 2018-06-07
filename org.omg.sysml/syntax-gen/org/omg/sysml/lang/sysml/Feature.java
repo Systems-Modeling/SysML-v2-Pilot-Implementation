@@ -22,12 +22,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingClasses <em>Featuring Classes</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getNestedFeature <em>Nested Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getNestingFeature <em>Nesting Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset <em>Owned Subset</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature()
@@ -368,5 +371,86 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	EList<Subset> getOwnedSubset();
+
+	/**
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Value()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	Expression getValue();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Port</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Port</em>' attribute.
+	 * @see #setIsPort(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsPort()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsPort();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsPort <em>Is Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Port</em>' attribute.
+	 * @see #isIsPort()
+	 * @generated
+	 */
+	void setIsPort(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.FeatureDirectionKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Direction</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
+	 * @see #setDirection(FeatureDirectionKind)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Direction()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	FeatureDirectionKind getDirection();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Direction</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
+	 * @see #getDirection()
+	 * @generated
+	 */
+	void setDirection(FeatureDirectionKind value);
 
 } // Feature

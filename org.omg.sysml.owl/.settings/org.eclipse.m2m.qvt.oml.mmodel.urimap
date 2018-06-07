@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Core" targetURI="platform:/resource/org.omg.sysml/model/SysML-Core.ecore"/>
-  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Groups" targetURI="platform:/resource/org.omg.sysml/model/SysML-Groups.ecore"/>
-  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Classification" targetURI="platform:/resource/org.omg.sysml/model/SysML-Classification.ecore"/>
-  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/Behavior" targetURI="platform:/resource/org.omg.sysml/model/SysML-Behaviors.ecore"/>
   <mapping sourceURI="http://www.omg.org/spec/SysML/2.0/OWL" targetURI="platform:/resource/org.omg.sysml.owl/model/generated/Owl.ecore"/>
+  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0" targetURI="platform:/resource/org.omg.sysml/model/SysML.ecore"/>
 </uriMap:MappingContainer>

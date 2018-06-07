@@ -27,10 +27,7 @@ package org.omg.sysml.owl.qvt;
 import java.nio.file.Paths;
 
 import org.omg.sysml.AlfStandaloneSetup;
-import org.omg.sysml.behaviors.BehaviorsPackage;
-import org.omg.sysml.classification.ClassificationPackage;
-import org.omg.sysml.core.CorePackage;
-import org.omg.sysml.groups.GroupsPackage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.owl.OwlStandaloneSetup;
 import org.omg.sysml.owl.owl.OwlPackage;
 import org.omg.sysml.qvt.QVTRunner;
@@ -41,10 +38,7 @@ public class Alf2OWL extends QVTRunner {
 	protected void initialize() {
 		super.initialize();
 		
-	    CorePackage core = CorePackage.eINSTANCE;
-	    GroupsPackage group = GroupsPackage.eINSTANCE;
-	    ClassificationPackage classification = ClassificationPackage.eINSTANCE;
-	    BehaviorsPackage behavior = BehaviorsPackage.eINSTANCE;
+	    SysMLPackage sysml = SysMLPackage.eINSTANCE;
 	    
 	    AlfStandaloneSetup.doSetup();
 	    

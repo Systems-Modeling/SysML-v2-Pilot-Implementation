@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LiteralUnbounded extends Expression {
+public interface LiteralUnbounded extends LiteralExpression {
 } // LiteralUnbounded

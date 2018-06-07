@@ -14,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class LiteralUnboundedImpl extends ExpressionImpl implements LiteralUnbounded {
+public class LiteralUnboundedImpl extends LiteralExpressionImpl implements LiteralUnbounded {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

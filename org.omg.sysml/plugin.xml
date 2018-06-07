@@ -6,40 +6,6 @@
 
 <plugin>
 
-
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML-Core -->
-      <package
-            uri="http://www.omg.org/spec/SysML/2.0/Core"
-            class="org.omg.sysml.core.CorePackage"
-            genModel="model/SysML-Core.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML-Groups -->
-      <package
-            uri="http://www.omg.org/spec/SysML/2.0/Groups"
-            class="org.omg.sysml.groups.GroupsPackage"
-            genModel="model/SysML-Groups.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML-Classification -->
-      <package
-            uri="http://www.omg.org/spec/SysML/2.0/Classification"
-            class="org.omg.sysml.classification.ClassificationPackage"
-            genModel="model/SysML-Classification.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML-Behaviors -->
-      <package
-            uri="http://www.omg.org/spec/SysML/2.0/Behavior"
-            class="org.omg.sysml.behaviors.BehaviorsPackage"
-            genModel="model/SysML-Behaviors.genmodel"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SysML -->
       <package

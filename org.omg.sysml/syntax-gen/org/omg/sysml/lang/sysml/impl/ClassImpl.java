@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,6 +35,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getTypedFeature <em>Typed Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getInput <em>Input</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOutput <em>Output</em>}</li>
  * </ul>
  *
  * @generated
@@ -98,6 +101,26 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 * @ordered
 	 */
 	protected EList<Generalization> ownedGeneralization;
+
+	/**
+	 * The cached value of the '{@link #getInput() <em>Input</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInput()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> input;
+
+	/**
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> output;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,6 +215,30 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Feature> getInput() {
+		if (input == null) {
+			input = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CLASS__INPUT);
+		}
+		return input;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getOutput() {
+		if (output == null) {
+			output = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CLASS__OUTPUT);
+		}
+		return output;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -246,6 +293,10 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				return getTypedFeature();
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return getOwnedGeneralization();
+			case SysMLPackage.CLASS__INPUT:
+				return getInput();
+			case SysMLPackage.CLASS__OUTPUT:
+				return getOutput();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,6 +329,14 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				getOwnedGeneralization().clear();
 				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
 				return;
+			case SysMLPackage.CLASS__INPUT:
+				getInput().clear();
+				getInput().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CLASS__OUTPUT:
+				getOutput().clear();
+				getOutput().addAll((Collection<? extends Feature>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -305,6 +364,12 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				return;
+			case SysMLPackage.CLASS__INPUT:
+				getInput().clear();
+				return;
+			case SysMLPackage.CLASS__OUTPUT:
+				getOutput().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -327,6 +392,10 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				return typedFeature != null && !typedFeature.isEmpty();
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return ownedGeneralization != null && !ownedGeneralization.isEmpty();
+			case SysMLPackage.CLASS__INPUT:
+				return input != null && !input.isEmpty();
+			case SysMLPackage.CLASS__OUTPUT:
+				return output != null && !output.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

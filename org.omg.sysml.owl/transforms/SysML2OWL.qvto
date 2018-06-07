@@ -22,18 +22,15 @@
  * 
  *****************************************************************************/
 
-modeltype Core uses "http://www.omg.org/spec/SysML/2.0/Core";
-modeltype Groups uses "http://www.omg.org/spec/SysML/2.0/Groups";
-modeltype Classification uses "http://www.omg.org/spec/SysML/2.0/Classification";
-modeltype Behavior uses "http://www.omg.org/spec/SysML/2.0/Behavior";
+modeltype SysML uses "http://www.omg.org/spec/SysML/2.0";
 modeltype OWL uses "http://www.omg.org/spec/SysML/2.0/OWL";
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 
-transformation SysML2OWL(in sysml: Classification, out owl: OWL);
+transformation SysML2OWL(in sysml: SysML, out owl: OWL);
 
 main() {
-	var roots := sysml.rootObjects()[Groups::Namespace];
-	assert fatal (roots->notEmpty()) with log('No root Namespaces');
+	var roots := sysml.rootObjects()[SysML::Package];
+	assert fatal (roots->notEmpty()) with log('No root Packages');
 	var file = object OntologyFile { };
 	roots->forEach(root) {
 		log('Transforming ' + root.name + ' to ' + root.URL());
@@ -117,15 +114,15 @@ constructor OWL::SubClassOf::SubClassOf(subClass: OWL::ClassExpression, superCla
 
 // Element
 
-query ElementIRI(element: Core::Element): String {
+query ElementIRI(element: SysML::Element): String {
 	return ':' + element.qualifiedName();
 }
 
-query Core::Element::name(): String {
+query SysML::Element::name(): String {
 	return self.name;
 }
 
-query Core::Element::qualifiedName(): String {
+query SysML::Element::qualifiedName(): String {
 	var owner := self.owner();
 	return
 		if owner = null then self.name()
@@ -133,65 +130,65 @@ query Core::Element::qualifiedName(): String {
 		endif;
 }
 
-abstract query Core::Element::IRI(): String;
+abstract query SysML::Element::IRI(): String;
 
-query Core::Element::owner(): Core::Element {
+query SysML::Element::owner(): SysML::Element {
 //	log('Element ' + self.toString());
 	var container := self.container();
 //	log ('  container: ' + container.toString());
-	if container <> null and container.oclIsKindOf(Groups::GroupMembership) then {
+	if container <> null and container.oclIsKindOf(SysML::Membership) then {
 		container := container.container();
 	} endif;
 //	log('  owner: ' + if container = null then "<none>" else container.toString() endif);
-	return if container = null then null else container.oclAsType(Core::Element) endif;
+	return if container = null then null else container.oclAsType(SysML::Element) endif;
 }
 
-helper Core::Element::mapToDeclarations() {	
+helper SysML::Element::mapToDeclarations() {	
 }
 
-mapping Core::Element::toEntity(): OWL::Entity disjuncts
-	Classification::Class::toClass,
-	Classification::Feature::toObjectProperty;
+mapping SysML::Element::toEntity(): OWL::Entity disjuncts
+	SysML::Class::toClass,
+	SysML::Feature::toObjectProperty;
 
 // Namespace
 
-query Groups::Namespace::URL(): String {
+query SysML::Package::URL(): String {
 	return 'http://www.omg.org/SysML/ontology/' + self.qualifiedName().replace(".", "/");
 }
 
-helper Groups::Namespace::mapToDeclarations() {
-	self.groupMember.ownedMemberElement->mapToDeclarations();
+helper SysML::Package::mapToDeclarations() {
+	self.membership.ownedMemberElement->mapToDeclarations();
 }
 
-//mapping Groups::Namespace::toDeclaration(): Declaration {
+//mapping SysML::Package::toDeclaration(): Declaration {
 //	log('Mapping Namespace ' + valueOf(self.name) + ' to Declaration');
 //	entity := self.map toEntity();
 //	log('  entity: ' + entity.toString());
 //}
 
-mapping Groups::Namespace::toDeclaration(): OWL::Declaration {
+mapping SysML::Package::toDeclaration(): OWL::Declaration {
 	entity := self.map toEntity();
 //	log('Mapping Namespace ' + valueOf(self.name) + ' to Declaration');
 //	log('  entity: ' + entity.toString());	
 }
 
-abstract mapping Groups::Namespace::toEntityBase(): OWL::Entity {
+abstract mapping SysML::Package::toEntityBase(): OWL::Entity {
 	entityIRI := self.IRI();
 }
 
 // Class
 
-query Classification::Class::owningFeature(): Classification::Feature {
+query SysML::Class::owningFeature(): SysML::Feature {
 	var owner = self.container();
 	return
-		if owner <> null and owner.oclIsKindOf(Classification::Feature) then
-			owner.oclAsType(Classification::Feature)
+		if owner <> null and owner.oclIsKindOf(SysML::Feature) then
+			owner.oclAsType(SysML::Feature)
 		else 
 			null
 		endif;
 }
 
-query Classification::Class::name(): String {
+query SysML::Class::name(): String {
 	var effectiveName := self.name;
 	if effectiveName = null then {
 		var owningFeature := self.owningFeature();
@@ -204,15 +201,15 @@ query Classification::Class::name(): String {
 	return effectiveName;
 }
 	
-query Classification::Class::IRI(): String {
+query SysML::Class::IRI(): String {
 	return ElementIRI(self) + '-Class';
 }
 
-query Classification::Class::ownedFeatures(): List(Classification::Feature) {
-	return self.groupMember.ownedMemberElement[Classification::Feature];
+query SysML::Class::ownedFeatures(): List(SysML::Feature) {
+	return self.membership.ownedMemberElement[SysML::Feature];
 }
 
-query Classification::Class::implicitSuperclass(): Classification::Class {
+query SysML::Class::implicitSuperclass(): SysML::Class {
 	var owningFeature := self.owningFeature();
 	return
 		if owningFeature = null then null
@@ -220,7 +217,7 @@ query Classification::Class::implicitSuperclass(): Classification::Class {
 		endif
 }
 
-query Classification::Class::superclasses(): Bag(Classification::Class) {
+query SysML::Class::superclasses(): Bag(SysML::Class) {
 	var superclasses := self.ownedGeneralization.general;
 	var implicitSuperclass := self.implicitSuperclass();
 	if implicitSuperclass <> null then {
@@ -229,22 +226,22 @@ query Classification::Class::superclasses(): Bag(Classification::Class) {
 	return superclasses;
 }
 
-query Classification::Class::feature(featureName: String): Classification::Feature {
-	var members := self.groupMember.ownedMemberElement->union(self.groupMember.memberElement);
-	var namedFeature := members[Classification::Feature]![name = featureName];
+query SysML::Class::feature(featureName: String): SysML::Feature {
+	var members := self.membership.ownedMemberElement->union(self.membership.memberElement);
+	var namedFeature := members[SysML::Feature]![name = featureName];
 	if namedFeature = null then {
 		namedFeature := self.superclasses().feature(featureName)![true];
 	} endif;
 	return namedFeature;
 }
 
-helper Classification::Class::mapToDeclarations() {
+helper SysML::Class::mapToDeclarations() {
 	self.map toDeclaration();
-	self.groupMember.ownedMemberElement->mapToDeclarations();
+	self.membership.ownedMemberElement->mapToDeclarations();
 }
 
-mapping Classification::Class::toClass(): OWL::Class 
-	inherits Groups::Namespace::toEntityBase {
+mapping SysML::Class::toClass(): OWL::Class 
+	inherits SysML::Package::toEntityBase {
 	log('Mapping Class ' + valueOf(self.name()) + ' to Class ' + valueOf(entityIRI));
 	
 	self.ownedGeneralization->map toSubClassOf();
@@ -256,7 +253,7 @@ mapping Classification::Class::toClass(): OWL::Class
 	} endif;
 }
 
-helper Classification::Class::mapToClassExpression(): OWL::ClassExpression {
+helper SysML::Class::mapToClassExpression(): OWL::ClassExpression {
 //	log('Mapping Class ' + valueOf(self.name) + ' to ClassExpression');
 	var entity := self.map toClass();
 //    log('  entity: ' + entity.toString());
@@ -265,7 +262,7 @@ helper Classification::Class::mapToClassExpression(): OWL::ClassExpression {
 
 // Feature
 
-query Classification::Feature::name(): String {
+query SysML::Feature::name(): String {
 	var redefinedFeature := self.redefinedFeature();
 	return
 		if redefinedFeature <> null then redefinedFeature.name()
@@ -273,25 +270,25 @@ query Classification::Feature::name(): String {
 		endif;
 }
 
-query Classification::Feature::IRI(): String {
+query SysML::Feature::IRI(): String {
 	return ElementIRI(self) + '-Feature';
 }
 
-query Classification::Feature::redefinedFeature(): Classification::Feature {
+query SysML::Feature::redefinedFeature(): SysML::Feature {
 	log('Feature ' + valueOf(self.name));
-	var feature := self.redefinedFeature![true];
+	var feature := self.ownedRedefinition.redefinedFeature![true];
 	if feature = null and self.name <> null then {
 		var owner := self.owner();
-		if (owner <> null and owner.oclIsKindOf(Classification::Class)) then {
+		if (owner <> null and owner.oclIsKindOf(SysML::Class)) then {
 			 feature := 
-			 	owner.oclAsType(Classification::Class).superclasses().feature(self.name)![true];		
+			 	owner.oclAsType(SysML::Class).superclasses().feature(self.name)![true];		
 	    } endif;
 	} endif;
 	log('  redefinedFeature: ' + if feature.oclIsInvalid() then "<invalid>" else if feature = null then "<none>" else valueOf(feature.name) endif endif);
 	return feature;
 }
 
-query Classification::Feature::type(): Classification::Class {
+query SysML::Feature::type(): SysML::Class {
 	var featureType := self.referencedType![true];
 	if featureType = null then {
 		var redefinedFeature := self.redefinedFeature();
@@ -302,7 +299,7 @@ query Classification::Feature::type(): Classification::Class {
 	return featureType;
 }
 
-query Classification::Feature::range(): Classification::Class {
+query SysML::Feature::range(): SysML::Class {
 	return
 		if self.referencedType->notEmpty() then
 			self.referencedType![true]
@@ -313,7 +310,7 @@ query Classification::Feature::range(): Classification::Class {
 		endif endif;
 }
 
-helper Classification::Feature::mapToDeclarations() {
+helper SysML::Feature::mapToDeclarations() {
 	self.map toDeclaration();
 	self.ownedType->mapToDeclarations();
 }
@@ -330,33 +327,33 @@ helper newMaxCardinality(cardinality: Integer, objectProperty: OWL::ObjectProper
 			new ObjectMaxCardinality(cardinality, new ObjectPropertyReference(objectProperty)));
 }
 
-helper Classification::Feature::mapMultiplicity(objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
+helper SysML::Feature::mapMultiplicity(objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
 	if self.lower <> null then {
-		if self.lower.oclIsKindOf(Behavior::LiteralInteger) then {
-			newMinCardinality(self.lower.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+		if self.lower.oclIsKindOf(SysML::LiteralInteger) then {
+			newMinCardinality(self.lower.oclAsType(SysML::LiteralInteger).value, objectProperty, domain);
 		} endif;
 	} else if self.upper <> null then {
-		if self.upper.oclIsKindOf(Behavior::LiteralInteger) then {
-			newMinCardinality(self.upper.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+		if self.upper.oclIsKindOf(SysML::LiteralInteger) then {
+			newMinCardinality(self.upper.oclAsType(SysML::LiteralInteger).value, objectProperty, domain);
 		} endif
 	} else {
 		newMinCardinality(1, objectProperty, domain);
 	} endif endif;
 	
-	if self.upper <> null and self.upper.oclIsKindOf(Behavior::LiteralInteger) then {
-		newMaxCardinality(self.upper.oclAsType(Behavior::LiteralInteger).value, objectProperty, domain);
+	if self.upper <> null and self.upper.oclIsKindOf(SysML::LiteralInteger) then {
+		newMaxCardinality(self.upper.oclAsType(SysML::LiteralInteger).value, objectProperty, domain);
 	} else if self.upper = null then {
 		newMaxCardinality(1, objectProperty, domain);
 	} endif endif;
 }
 
-mapping Classification::Feature::toObjectProperty(): OWL::ObjectProperty  
-	inherits Groups::Namespace::toEntityBase {
+mapping SysML::Feature::toObjectProperty(): OWL::ObjectProperty  
+	inherits SysML::Package::toEntityBase {
 	log('Mapping Feature ' + valueOf(self.name) + ' to ObjectProperty ' + valueOf(entityIRI));
 
 	var owner = self.owner();
-	if owner <> null and owner.oclIsKindOf(Classification::Class) then {
-		var domain := owner.oclAsType(Classification::Class).map toClass();
+	if owner <> null and owner.oclIsKindOf(SysML::Class) then {
+		var domain := owner.oclAsType(SysML::Class).map toClass();
 		log('  domain: ' + if domain = null then '<null>' else domain.toString() endif);
 		new OWL::ObjectPropertyDomain(new ObjectPropertyReference(result), new OWL::ClassReference(domain));
 		self.mapMultiplicity(result, domain);
@@ -369,15 +366,15 @@ mapping Classification::Feature::toObjectProperty(): OWL::ObjectProperty
 
 }
 
-helper Classification::Feature::mapToObjectPropertyExpression(): OWL::ObjectPropertyExpression {
+helper SysML::Feature::mapToObjectPropertyExpression(): OWL::ObjectPropertyExpression {
 	return new OWL::ObjectPropertyReference(self.map toObjectProperty());
 }
 
 // Generalization
 
-mapping Classification::Generalization::toSubClassOf(): OWL::SubClassOf {
+mapping SysML::Generalization::toSubClassOf(): OWL::SubClassOf {
     log('Mapping Generalization');
-	subClassExpression := self.container().oclAsType(Classification::Class).mapToClassExpression();
+	subClassExpression := self.container().oclAsType(SysML::Class).mapToClassExpression();
 	superClassExpression := self.general.mapToClassExpression();
 	log('  subClassExpression: ' + valueOf(subClassExpression.oclAsType(ClassReference)._class));
 	log('  superClassExpression: ' + valueOf(superClassExpression.oclAsType(ClassReference)._class));

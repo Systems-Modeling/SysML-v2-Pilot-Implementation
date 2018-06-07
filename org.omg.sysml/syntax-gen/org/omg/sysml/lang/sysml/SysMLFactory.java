@@ -49,6 +49,96 @@ public interface SysMLFactory extends EFactory {
 	Package createPackage();
 
 	/**
+	 * Returns a new object of class '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connector</em>'.
+	 * @generated
+	 */
+	Connector createConnector();
+
+	/**
+	 * Returns a new object of class '<em>Literal Real</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Real</em>'.
+	 * @generated
+	 */
+	LiteralReal createLiteralReal();
+
+	/**
+	 * Returns a new object of class '<em>Literal Boolean</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Boolean</em>'.
+	 * @generated
+	 */
+	LiteralBoolean createLiteralBoolean();
+
+	/**
+	 * Returns a new object of class '<em>Element Reference Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Reference Expression</em>'.
+	 * @generated
+	 */
+	ElementReferenceExpression createElementReferenceExpression();
+
+	/**
+	 * Returns a new object of class '<em>Literal Null</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Null</em>'.
+	 * @generated
+	 */
+	LiteralNull createLiteralNull();
+
+	/**
+	 * Returns a new object of class '<em>Literal Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Expression</em>'.
+	 * @generated
+	 */
+	LiteralExpression createLiteralExpression();
+
+	/**
+	 * Returns a new object of class '<em>Literal String</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal String</em>'.
+	 * @generated
+	 */
+	LiteralString createLiteralString();
+
+	/**
+	 * Returns a new object of class '<em>Sequence Construction Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence Construction Expression</em>'.
+	 * @generated
+	 */
+	SequenceConstructionExpression createSequenceConstructionExpression();
+
+	/**
+	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Creation Expression</em>'.
+	 * @generated
+	 */
+	InstanceCreationExpression createInstanceCreationExpression();
+
+	/**
+	 * Returns a new object of class '<em>Operator Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operator Expression</em>'.
+	 * @generated
+	 */
+	OperatorExpression createOperatorExpression();
+
+	/**
 	 * Returns a new object of class '<em>Comment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

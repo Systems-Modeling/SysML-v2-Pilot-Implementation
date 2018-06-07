@@ -1,0 +1,25 @@
+package SI {
+	
+	// Base Units
+	m: 	ISQ.LengthUnit;
+	kg: ISQ.MassUnit;
+	s: 	ISQ.TimeUnit;
+	A: 	ISQ.ElectricCurrentUnit;
+	K: 	ISQ.TemperatureUnit;
+	mol:ISQ.AmountOfSubstanceUnit;
+	cd:	ISQ.LuminousIntensityUnit;
+	
+	// Derived Units
+	N: ISQ.ForceUnit = kg * m / s ^ 2;
+	/*
+	N: ISQ.ForceUnit = Quantities.DerivedUnit(
+		{ Quantities.MeasurementUnitPowerFactor(kg,1),
+		  Quantities.MeasurementUnitPowerFactor(m,1),
+		  Quantities.MeasurementUnitPowerFactor(s,-2)
+		}
+	);
+	*/
+	
+	//...
+		
+}

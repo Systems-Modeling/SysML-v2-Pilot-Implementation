@@ -1,0 +1,22 @@
+Prefix ( : = <http://www.omg.org/SysML/ontology/AddressBookModel#> ) 
+Ontology ( <http://www.omg.org/SysML/ontology/AddressBookModel> 
+	Declaration ( Class ( :AddressBookModel.PrimitiveTypes.String-Class ) ) 
+	Declaration ( Class ( :AddressBookModel.Entry-Class ) ) 
+	Declaration ( ObjectProperty ( :AddressBookModel.Entry.name-Feature ) ) 
+	ObjectPropertyDomain ( :AddressBookModel.Entry.name-Feature :AddressBookModel.Entry-Class ) 
+	ObjectPropertyRange ( :AddressBookModel.Entry.name-Feature :AddressBookModel.PrimitiveTypes.String-Class ) 
+	EquivalentClasses ( :AddressBookModel.Entry-Class 
+		ObjectMinCardinality ( 1 :AddressBookModel.Entry.name-Feature ) ) 
+	EquivalentClasses ( :AddressBookModel.Entry-Class 
+		ObjectMaxCardinality ( 1 :AddressBookModel.Entry.name-Feature ) ) 
+	Declaration ( ObjectProperty ( :AddressBookModel.Entry.address-Feature ) ) 
+	ObjectPropertyDomain ( :AddressBookModel.Entry.address-Feature :AddressBookModel.Entry-Class ) 
+	ObjectPropertyRange ( :AddressBookModel.Entry.address-Feature :AddressBookModel.PrimitiveTypes.String-Class ) 
+	EquivalentClasses ( :AddressBookModel.Entry-Class 
+		ObjectMinCardinality ( 1 :AddressBookModel.Entry.address-Feature ) ) 
+	EquivalentClasses ( :AddressBookModel.Entry-Class 
+		ObjectMaxCardinality ( 1 :AddressBookModel.Entry.address-Feature ) ) 
+	Declaration ( Class ( :AddressBookModel.AddressBook-Class ) ) 
+	Declaration ( ObjectProperty ( :AddressBookModel.AddressBook.entries-Feature ) ) 
+	ObjectPropertyDomain ( :AddressBookModel.AddressBook.entries-Feature :AddressBookModel.AddressBook-Class ) 
+	ObjectPropertyRange ( :AddressBookModel.AddressBook.entries-Feature :AddressBookModel.Entry-Class ) )

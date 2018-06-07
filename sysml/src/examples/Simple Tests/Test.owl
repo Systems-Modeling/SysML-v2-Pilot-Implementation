@@ -1,0 +1,11 @@
+Prefix(:=<http://www.example.com/ontology1#>)
+Ontology( <http://www.example.com/ontology1>
+    Import( <http://www.example.com/ontology2> )
+    Annotation( rdfs:label "An example" )
+	Declaration(
+		Annotation(:Blah "blah")
+		Class(:Child)
+	)
+	Declaration(Class(owl:Thing))
+    SubClassOf( :Child owl:Thing )
+)

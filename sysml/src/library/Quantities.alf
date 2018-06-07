@@ -1,0 +1,25 @@
+package Quantities {
+	
+	class Quantity specializes ScalarValues.Number {
+		numericValue: ScalarValues.Number;
+		unit: MeasurementUnit;
+	}
+	
+	abstract class MeasurementUnit specializes Base.Value { }
+	
+	class SimpleUnit specializes MeasurementUnit { }
+	
+	class DerivedUnit specializes MeasurementUnit {
+		unitFactor: MeasurementUnitPowerFactor[1..*];
+	}
+	class MeasurementUnitPowerFactor specializes Base.Value {
+		unit: MeasurementUnit;
+		exponent: ScalarValues.Integer;
+	}
+	
+	abstract class ConversionBasedUnit specializes MeasurementUnit {
+		conversionFactor: ScalarValues.Number;
+		unit: MeasurementUnit;
+	}
+	
+}

@@ -1,0 +1,17 @@
+package ScalarValues {
+	abstract class ScalarValue specializes Base.Value {}
+	class Boolean specializes ScalarValue { }
+	class String specializes ScalarValue { }
+	class Number specializes ScalarValue { }	
+	
+	class Integer specializes Number { }
+	class Real specializes Number { }
+	class UnlimitedNatural specializes Number { }
+	class Natural specializes Integer, UnlimitedNatural { }
+	
+	class Complex specializes Number {
+		re: Real;
+		im: Real;
+	}			
+}
+		

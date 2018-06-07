@@ -1,0 +1,38 @@
+package VehicleDefinitions {
+	
+	class TorqueUnit is Quantities.DerivedUnit {
+		feature unitFactor1 subsets Quantities.DerivedUnit.unitFactor {
+			feature unit: ISQ.ForceUnit is Quantities.MeasurementUnitPowerFactor.unit;
+			feature exponent is Quantities.MeasurementUnitPowerFactor.exponent = 1;
+		}
+		feature unitFactor2 subsets Quantities.DerivedUnit.unitFactor {
+			feature unit: ISQ.LengthUnit is Quantities.MeasurementUnitPowerFactor.unit;
+			feature exponent is Quantities.MeasurementUnitPowerFactor.exponent = 1;
+		}
+	}
+	
+	class Torque is Quantities.Quantity {
+		feature numericValue: ScalarValues.Real is Quantities.Quantity.numericValue;
+		feature unit: TorqueUnit is Quantities.Quantity.unit;
+	}
+	
+	class Vehicle { }
+	
+	class AxleAssembly { }
+	
+	class WheelHub { }
+	
+	class Wheel {
+		port in hub: WheelHub; 
+	}
+	
+	class Axle {
+		port out leftMountingPoint: WheelHub;
+		port out rightMountingPoint: WheelHub;
+	}
+	
+	class Lugbolt {
+		feature torque: Torque;
+	}
+	
+}

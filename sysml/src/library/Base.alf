@@ -1,0 +1,12 @@
+package Base {
+		
+	abstract class Anything { }
+	abstract class Object specializes Anything { }
+	abstract class Value specializes Anything { }
+	abstract class Enumeration specializes Value { }
+	
+	abstract class Class specializes Object {
+		base: Class { base = Object; }
+	}
+	
+}

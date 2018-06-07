@@ -1,0 +1,22 @@
+// Sample Alf code
+package Classes {
+	
+	feature f: A {
+		
+	}
+
+	public class A {
+		feature b: B;
+		protected feature c: C;
+	}
+	
+	abstract class B {
+		packaged x: C;
+		package P { }
+	}
+	
+	private class C specializes B {
+		private y: B;
+	}
+	
+}

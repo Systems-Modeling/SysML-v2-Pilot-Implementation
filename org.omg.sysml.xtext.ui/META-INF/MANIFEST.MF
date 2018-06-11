@@ -3,10 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext.ui
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: org.omg.sysml.xtext.ui; singleton:=true
+Bundle-SymbolicName: org.omg.sysml.usage.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.omg.sysml.xtext,
- org.omg.sysml.xtext.ide,
+Require-Bundle: org.omg.sysml.usage,
+ org.omg.sysml.usage.ide,
  org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.shared,
  org.eclipse.xtext.ui.codetemplates.ui,

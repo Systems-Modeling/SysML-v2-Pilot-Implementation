@@ -6,7 +6,7 @@
  * 
  *****************************************************************************/
 
-package org.omg.sysml.xtext.qvt;
+package org.omg.sysml.usage.qvt;
 
 import java.nio.file.Paths;
 import java.util.List;

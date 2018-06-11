@@ -1,4 +1,4 @@
-grammar org.omg.sysml.xtext.SysML with org.eclipse.xtext.common.Terminals
+grammar org.omg.sysml.usage.SysML with org.eclipse.xtext.common.Terminals
 
 generate sysML "http://www.omg.org/spec/SysML"
 

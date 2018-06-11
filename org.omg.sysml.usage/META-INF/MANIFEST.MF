@@ -21,13 +21,13 @@ Require-Bundle: org.eclipse.xtext,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.usage.scoping,
  org.omg.sysml.usage.validation,
- org.omg.sysml.xtext,
- org.omg.sysml.xtext.generator,
- org.omg.sysml.xtext.parser.antlr,
- org.omg.sysml.xtext.parser.antlr.internal,
- org.omg.sysml.xtext.serializer,
- org.omg.sysml.xtext.services,
- org.omg.sysml.xtext.sysML,
- org.omg.sysml.xtext.sysML.impl,
- org.omg.sysml.xtext.sysML.util
+ org.omg.sysml.usage,
+ org.omg.sysml.usage.sysML,
+ org.omg.sysml.usage.sysML.impl,
+ org.omg.sysml.usage.generator,
+ org.omg.sysml.usage.services,
+ org.omg.sysml.usage.serializer,
+ org.omg.sysml.usage.parser.antlr,
+ org.omg.sysml.usage.sysML.util,
+ org.omg.sysml.usage.parser.antlr.internal
 Import-Package: org.apache.log4j

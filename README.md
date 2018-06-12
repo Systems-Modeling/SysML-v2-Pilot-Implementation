@@ -32,7 +32,7 @@ and `org.omg.sysml.usage`, with associated `ide`, `tests`, `ui` and `ui.tests` p
 
 5. Double clicking on any `.alf` file in the sysml project should open it in the generated Xtext Alf editor.
  
-### Copyright License Header
+## Copyright License Header
 
 #### For new code
 Set up a Jave code template as follows:

@@ -17,20 +17,20 @@
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import all projects from the repository into your Eclipse workspace. The should included the projects org.omg.sysml and org.omg.sysml.xtext,
-with associated ide, tests, ui and ui.tests projects for each.
+3. Import all projects from the repository into your Eclipse workspace. The should included the projects `org.omg.sysml`, `org.sysml.owl` 
+and `org.omg.sysml.usage`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
 
 ### Prototype Alf Implementation
 
-1. Find the file org.omg.sysml/src/org.omg.sysml/GenerateAlf.mwe2, right click on it, and select Run As > MWE2 Workflow, to execute the Xtext generator.
-   * NOTE: Even if the generation completes successfully, there may still be error annotations on the files Alf.xtext and KerML.ecore. You can ignore these for now, they should not affect the running of the generated editor.
+1. Find the file `org.omg.sysml/src/org.omg.sysml/GenerateAlf.mwe2`, right click on it, and select Run As > MWE2 Workflow, to execute the Xtext generator.
 
-2. Once the generation is complete, right click on project org.omg.sysml, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
+2. Once the generation is complete, right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
 
-3. Create a project in the runtime Eclipse workspace and Import the sample Alf file into it, using Import > File System and browsing to the samples subdirectory of the org.omg.sysml project under your Git working directory. 
-(Or you can create your own file, with the extension “.alf”.)
+3. Add the SysML-v2-Pilot-Implementation Git repository (already cloned previously) to the runtime Eclipse instance.
 
-4. Double clicking on the sample Alf file should open it in the generated Xtext Alf editor.
+4. Import the project `sysml` into the runtime Eclipse workspace.
+
+5. Double clicking on any `.alf` file in the sysml project should open it in the generated Xtext Alf editor.
  
 ### Copyright License Header
 

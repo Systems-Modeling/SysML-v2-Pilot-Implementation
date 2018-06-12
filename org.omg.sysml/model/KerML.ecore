@@ -5,41 +5,24 @@
   <eSubpackages name="Extension" nsURI="http://www.openmbee.org/kerml/ext" nsPrefix="ext">
     <eClassifiers xsi:type="ecore:EClass" name="Schema">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="strictRedefinition" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Require that in order to be usable within the MetaModel an attribute must be redefined"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSchemaType" ordered="false"
           upperBound="-1" eType="#//Extension/SchemaType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemaType" ordered="false"
-          upperBound="-1" eType="#//Extension/SchemaType">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A list of all Element's in head the revision of this Resource"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Extension/SchemaType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SchemaProperty" eSuperTypes="#//Structured%20Classifiers/StructuredFeature">
+    <eClassifiers xsi:type="ecore:EClass" name="SchemaProperty" eSuperTypes="#//StructuredClassifiers/StructuredFeature">
       <eStructuralFeatures xsi:type="ecore:EReference" name="mapsTo" ordered="false"
           eType="#//Extension/SchemaProperty"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SchemaType">
+    <eClassifiers xsi:type="ecore:EClass" name="SchemaType" eSuperTypes="#//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="disabledAttribute" ordered="false"
-          upperBound="-1" eType="#//Extension/SchemaProperty" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Any Attributes cumulatively inherited from a &quot;Kernel Model Language&quot; Metatypes which are not redefined in this language. This property is 0 if the Strict Redefinition property of the Metamodel is set to false"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Extension/SchemaProperty" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
-          upperBound="-1" eType="#//Extension/SchemaProperty" containment="true"/>
+          upperBound="-1" eType="#//Extension/SchemaProperty"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Characterization" eSuperTypes="#//Classification/Class"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Characterizes" eSuperTypes="#//Core/Relationship">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-          lowerBound="1" eType="#//Extension/Characterization"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-          lowerBound="1"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Characterizes" eSuperTypes="#//Core/Relationship"/>
   </eSubpackages>
   <eSubpackages name="Expression" nsURI="http://www.openmbee.org/kerml/expr" nsPrefix="expr">
     <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Expression/Expression"/>
@@ -59,7 +42,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
-          eType="#//Common%20Behavior/Behavior"/>
+          eType="#//CommonBehavior/Behavior"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RealExpression" eSuperTypes="#//Expression/Expression"/>
     <eClassifiers xsi:type="ecore:EClass" name="ElementReference" eSuperTypes="#//Expression/ValueSpecification">
@@ -67,19 +50,12 @@
           eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementURI" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fromResource" ordered="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" ordered="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="branch" ordered="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" ordered="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//Expression/ListExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="selectedEnumeration"
           ordered="false" lowerBound="1" eType="#//Expression/ValueSpecification"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Expression/ValueSpecification">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;Opaque Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;- Multi Language is similar to Virtual Function table in C++&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Idea of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;An Expression is intended to be evaluated using the language specified. If only one body is specified the expression is equivalent to a Literal. If there are multiple body values the expression will be evaluated to that language Literal Example:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body='This is a string'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This is a string'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Concatenate String Example&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;opaqueExpression{&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;name='name'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;expression:ElementExpression = 'string':Block&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;body = 'self.name'language='ocl'}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;StringExpression{body=('This',name(elementValue('string':Block))),'is comprised of multiple elements')}&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Evaluation Result='This string is comprised of multiple elements'&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Standard OCL Equivalent&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;x : String = 1-&amp;gt;oclAsType(String).concat(2-&amp;gt;oclAsType(String)&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;You could have a &amp;quot;CastExpression&amp;quot; instead of &amp;lt;Kind&amp;gt;Expression&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;with a type field&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Expression/ValueSpecification"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operator" ordered="false"
@@ -112,22 +88,15 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Document" nsURI="http://www.openmbee.org/kerml/view" nsPrefix="view">
-    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//Structured%20Classifiers/StructuredClass">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The modeling element that represents information that has been developed for a particular viewpoint of a stakeholder"/>
-      </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="viewpoint" ordered="false"
-          lowerBound="1" eType="#//Document/Viewpoint" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;&lt;body>&#xA;&lt;p>A derived reference to the Viewpoint template which defines the style of the content presented in this view.&lt;/p>&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="#//Document/Viewpoint" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="exposedElement" ordered="false"
           upperBound="-1" eType="#//Expression/ElementReference" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeInheritedExpose"
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subView" ordered="false"
-          lowerBound="1" upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          lowerBound="1" upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="content" ordered="false"
           eType="#//Expression/Expression"/>
     </eClassifiers>
@@ -137,39 +106,19 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="concern" ordered="false"
           upperBound="-1" eType="#//Classification/Class"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTemplate" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A Boolean which indicates if the Presentation ordering is required for all conforming View's&#xA;"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="presentation" lowerBound="1"
-          upperBound="-1" eType="#//Document/Presentation">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An orderable list of the attributes typed by PresentationTemplates that the conforming View will be required to display&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Method shall be automatically generated if a View is created without an explicit Viewpoint Method&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Document/Presentation"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="purpose" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A short description of how the Viewpoint addresses the stakeholder concerns"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" ordered="false"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;The languages used to express the models that represent content which is represented by the view.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Implementation Requirements:&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol>&#xA;      &lt;li>&#xA;The language specification such as its metamodel, profile, or other language specification referred to by its URI.&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Presentation" abstract="true" eSuperTypes="#//Structured%20Classifiers/StructuredClass">
+    <eClassifiers xsi:type="ecore:EClass" name="Presentation" abstract="true" eSuperTypes="#//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
           upperBound="-1" eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="method" ordered="false"
-          eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Method via which the context of the Presentation will further collected, filtered and sorted"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//Expression/OpaqueExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="editable" ordered="false"
           eType="#//Expression/ListExpression"/>
     </eClassifiers>
@@ -183,59 +132,28 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="view" ordered="false"
           lowerBound="1" eType="#//Document/View"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//Structured%20Classifiers/StructuredClass">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A Class which defines the scope of a product via Association's to an ordered set of View's"/>
-      </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="view" lowerBound="1"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A derived list of Attribute's that are owned by the Document and are typed by View's. The order of this property defines the order in which the View's will be displayed at the top level of the Document."/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceFormat" ordered="false"
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="&quot;1&quot;">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="i. A ListExpression defining the style of Presentation Numbers within the Document&#xA;ii. Requirements:&#xA;&#x9;i. Style shall be repeated recursively&#xA;&#x9;ii. Default shall be numeric, defined by a '1' character&#xA;&#x9;iii. Number format shall be defined using the first unit in the list&#xA;&#x9;&#x9;1) Roman Numerals: &quot;I&quot;,&quot;i&quot;&#xA;&#x9;&#x9;2) Letters: &quot;A&quot;,&quot;a&quot;&#xA;&#x9;&#x9;3) Numbers: &quot;1&quot;&#xA;&#x9;iv. A special format shall allow inclusion of a Section number as a prefix&#xA;&#x9;&#x9;1) Examples:&#xA;&#x9;&#x9;&#x9;a) &lt;section>-1  would result in &quot;Table 2-1&quot; for example for the 1st table in Section 2&#xA;&#x9;&#x9;&#x9;b) &lt;section>.&lt;section>/1 would result in &quot;Table 2.0/5&quot; for the 5th table in section 2.0"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          defaultValueLiteral="&quot;1&quot;"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTitle" ordered="false"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A Document title which indicates the content a reader might expect to find within."/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTemplate" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sectionNumberFormat"
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="&quot;1&quot;">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>A ListExpression defining the style of Section Numbers within the Document&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Style shall be repeated recursively&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Default shall be numeric, defined by a '1' character&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number format shall be defined using the first unit in the list&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Roman Numerals: &amp;quot;I&amp;quot;,&amp;quot;i&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Letters: &amp;quot;A&amp;quot;,&amp;quot;a&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Numbers: &amp;quot;1&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Subsections number shall be the parent number concatenated with a &amp;quot;.&amp;lt;numberformat&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          defaultValueLiteral="&quot;1&quot;"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentNumber" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          changeable="false" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The specific read-only Document number as defined by the order the Document was created within the parent ModelDatabase&lt;/span>&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Implementation Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:0.0px;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Number format shall conform to parameter defined in the parent database&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Number shall be used as a document-unique identifier for presentationCrossReferences rendered within documentation&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>In the context of the parent Document presentationCrossReference shall de-referenced to &amp;quot;Section #&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>References outside the current document shall de-reference to read &amp;quot;&amp;lt;Document #&amp;gt;:&amp;lt;Document Name&amp;gt;&amp;quot;&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Clicking the reference shall highlight the document within the tooltip window (clicking within the tree shall navigate to Document&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          changeable="false" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayNumber" ordered="false"
-          lowerBound="1" eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Indicate if the referenceNumber should be displayed or not"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//Document/TitledPresentation #//Document/CaptionedPresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="columnDefinition" lowerBound="1"
-          upperBound="-1" eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of expressions defining the membership of each cell within a row&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>The collection of objects resulting from the Filtering of the Context shall be the &amp;quot;Context&amp;quot; for each row of the table.&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Column membership shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Expression/OpaqueExpression"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isColumnTable" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnHeader" lowerBound="1"
@@ -264,17 +182,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="OpaquePresentation" eSuperTypes="#//Document/Presentation"/>
     <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Document/TitledPresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sublevelDefinition" upperBound="-1"
-          eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining the membership of each level below the top&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>For the top&amp;#160; each member of the Context or shall be queried&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>For Sub-levels (2-n) a single member of level (n-1) shall be the sole context and the shall query execute from there&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Level Filter shall be defined using OCL/K or a DGM&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>level two might want to display references to the ownedAttributes of each level one object&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>OCL: self.ownedAttributeList &lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//Expression/OpaqueExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="presentationFormat" lowerBound="1"
-          upperBound="-1" eType="#//Expression/OpaqueExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An ordered set of one or more queries defining what is displayed at each level&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Requirements:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>List Display can be defined using OCL/K&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;      &lt;/ol>&#xA;      &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Example:&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;ol type=&quot;i&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;        &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Simple&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level one might want to only display references to the name of each element&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL: self.name&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;        &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>Intermediate&lt;/span>&#xA;&#xA;        &lt;/li>&#xA;        &lt;ol type=&quot;1&quot; style=&quot;margin-left:.375in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;          &lt;li value=&quot;1&quot; style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>Level two might want to display references to the Name and Documentation of properties owned by each level 1 object&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;          &lt;li style=&quot;margin-top:0px;margin-bottom:0px;vertical-align:middle;&quot;>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;&quot;>OCL:&amp;#160; self.name.concat('&amp;lt;/br&amp;gt;').concat(self.documentation)&lt;/span>&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ol>&#xA;      &lt;/ol>&#xA;    &lt;/ol>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Expression/OpaqueExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="bulletStyle" lowerBound="1"
           upperBound="-1" eType="#//Expression/StringExpression"/>
     </eClassifiers>
@@ -286,36 +196,20 @@
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="This is the number in which the presentation appears within a Section, this number is hirearchical delineated by a &quot;.&quot; when within a section&#xA;&#xA;For example&#xA;&#xA;1 Paragraph&#xA;2 Table&#xA;3 Section&#xA;3.1 Paragraph&#xA;3.2 Section&#xA;3.2.1 Table&#xA;3.3 Section "/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceCategory" ordered="false"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A user definable category for the numbering type of the object (i.e. &quot;Table&quot; or &quot;Section&quot;)"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" ordered="false"
           upperBound="-1" eType="#//Core/ElementRecord" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="caption" ordered="false"
           eType="#//Expression/StringExpression"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceNumber" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="This number indicates the order in which this presentation appears along side other members of its reference category (Figure/Table/Equation/List/Section...). For non &quot;Section&quot; the style of this number is determined by the referenceFormat attribute on the document. Section numbering is determined by the &quot;sectionFormat&quot; attribute&#xA;&#xA;For Example&#xA;&#xA;1 Section&#xA;1-1 Paragraph&#xA;1-1 Table&#xA;1-1 Image&#xA;1-2 Table&#xA;1.1 Section&#xA;2 Section&#xA;2-1 Table"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="navigation" ordered="false"
           upperBound="-1" eType="#//Expression/ElementReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
-          upperBound="-1" eType="#//Core/ElementRecord" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;ol type=&quot;a&quot; style=&quot;margin-left:.75in;margin-top:0in;margin-bottom:0in;font-family:Calibri;font-size:11.0pt;font-weight:normal;font-style:normal;direction:ltr;unicode-bidi:embed;&quot;>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt; font-weight:normal;;font-family:Calibri; font-size:11.0pt; font-weight:normal;&quot;>An array of one or more objects representing the source context of the  query&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;      &lt;li>&#xA;&lt;span style=&quot;font-family:Calibri; font-size:11.0pt;;font-family:Calibri; font-size:11.0pt;&quot;>Defined by the context of the parent view (ignores parent view if defined at M1)&lt;/span>&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ol>&#xA;    &lt;p style=&quot;margin-left:0.0px;&quot;>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Core/ElementRecord" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="content" ordered="false"
           lowerBound="1" eType="#//Expression/ValueSpecification"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="presents" ordered="false"
@@ -367,25 +261,12 @@
           lowerBound="1" eType="#//Expression/TimeExpression" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiedAuthor" ordered="false"
-          lowerBound="1" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="creationAuthor" ordered="false"
-          lowerBound="1" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemaType" ordered="false"
           lowerBound="1" eType="#//Extension/SchemaType" changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="creationTime" ordered="false"
           lowerBound="1" eType="#//Expression/TimeExpression" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="recordOf" ordered="false"
-          lowerBound="1"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" ordered="false"
-          lowerBound="1" changeable="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="serverData" ordered="false"
-          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relationship" ordered="false"
-          unique="false" upperBound="-1" eType="#//Core/Relationship" derived="true"
-          eOpposite="#//Core/Relationship/related"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="project" ordered="false"
-          lowerBound="1" derived="true"/>
+          unique="false" upperBound="-1" eType="#//Core/Relationship" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="adornment" ordered="false"
           upperBound="-1" eType="#//Expression/OpaqueExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
@@ -404,9 +285,6 @@
           upperBound="-1" eType="#//Core/ElementRecord" containment="true" eOpposite="#//Core/ElementRecord/owner"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="An object in the model that exists solely for the purposes of describing other objects within the model. The target of this description can be specified via the &quot;annotatedElement&quot; metaproperty. Can be used to define groups of elements that conform to a user or Expression defined membership set."/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" upperBound="-1"
           eType="#//Core/ElementRecord"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false"
@@ -414,17 +292,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="commentExpression" ordered="false"
           upperBound="-1" eType="#//Expression/StringExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="annotationExpression"
-          ordered="false" upperBound="-1">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="An Expression which is used to dynamically define the membership of the annotatedElement attribute"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          ordered="false" upperBound="-1" eType="#//Expression/Expression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Core/Container"/>
     <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A basic object which asserts a &quot;namespace&quot; for a constituents of the model. Can &quot;own&quot; other ElementRecord's and Container's."/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedCharacterization"
           ordered="false" upperBound="-1" eType="#//Extension/Characterization" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageVisibility" ordered="false"
@@ -438,14 +309,11 @@
           upperBound="-1" eType="#//Core/ElementRecord" derived="true" eOpposite="#//Core/ElementRecord/memberOfNamespace"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Core/ElementRecord">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A type of ElementRecord which represents a link between to other ElementRecord's. This link is optionally directional by specifying a source and target."/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
           eType="#//Core/ElementRecord" eOpposite="#//Core/ElementRecord/sourceRelationship"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
           unique="false" lowerBound="2" upperBound="2" eType="#//Core/ElementRecord"
-          derived="true" eOpposite="#//Core/ElementRecord/relationship"/>
+          derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
           eType="#//Core/ElementRecord" eOpposite="#//Core/ElementRecord/targetRelationship"/>
     </eClassifiers>
@@ -456,55 +324,45 @@
       <eLiterals name="package"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Common Behavior" nsURI="http://www.openmbee.org/kerml/bhav"
-      nsPrefix="bhav">
-    <eClassifiers xsi:type="ecore:EClass" name="OccurrenceProperty" eSuperTypes="#//Structured%20Classifiers/StructuredFeature">
+  <eSubpackages name="CommonBehavior" nsURI="http://www.openmbee.org/kerml/bhav" nsPrefix="bhav">
+    <eClassifiers xsi:type="ecore:EClass" name="OccurrenceProperty" eSuperTypes="#//StructuredClassifiers/StructuredFeature">
       <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" ordered="false"
           eType="#//Classification/Class"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass" eOpposite="#//Structured%20Classifiers/StructuredClass/ownedAdjunct"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOperation" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
-          eType="#//Common%20Behavior/Behavior" derived="true" eOpposite="#//Common%20Behavior/Behavior/ownedStep"/>
+          eType="#//CommonBehavior/Behavior" derived="true" eOpposite="#//CommonBehavior/Behavior/ownedStep"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Succession" eSuperTypes="#//Structured%20Classifiers/Connector">
+    <eClassifiers xsi:type="ecore:EClass" name="Succession" eSuperTypes="#//StructuredClassifiers/Connector">
       <eStructuralFeatures xsi:type="ecore:EReference" name="to" ordered="false" lowerBound="1"
-          eType="#//Common%20Behavior/OccurrenceProperty"/>
+          eType="#//CommonBehavior/OccurrenceProperty"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="from" ordered="false"
-          lowerBound="1" eType="#//Common%20Behavior/OccurrenceProperty"/>
+          lowerBound="1" eType="#//CommonBehavior/OccurrenceProperty"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//Structured%20Classifiers/StructuredClass">
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="involves" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="{involvesProperty.type.oclIsTypeOf(Behavior) == false}"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//CommonBehavior/OccurrenceProperty"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStep" ordered="false"
-          upperBound="-1" eType="#//Common%20Behavior/OccurrenceProperty" eOpposite="#//Common%20Behavior/OccurrenceProperty/behavior"/>
+          upperBound="-1" eType="#//CommonBehavior/OccurrenceProperty" eOpposite="#//CommonBehavior/OccurrenceProperty/behavior"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Interaction" eSuperTypes="#//Common%20Behavior/Behavior #//Structured%20Classifiers/Association">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantAdjunct"
-          ordered="false" lowerBound="1" eType="#//Common%20Behavior/OccurrenceProperty"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantAdjunct"
-          ordered="false" lowerBound="1" eType="#//Common%20Behavior/OccurrenceProperty"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Interaction" eSuperTypes="#//CommonBehavior/Behavior #//StructuredClassifiers/Association">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantOccurrence"
+          ordered="false" lowerBound="1" eType="#//CommonBehavior/OccurrenceProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantOccurrence"
+          ordered="false" lowerBound="1" eType="#//CommonBehavior/OccurrenceProperty"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interactionParticipant"
-          ordered="false" lowerBound="2" upperBound="2" eType="#//Structured%20Classifiers/StructuredFeature"
-          containment="true" eOpposite="#//Structured%20Classifiers/StructuredFeature/%"/>
+          ordered="false" lowerBound="2" upperBound="2" eType="#//StructuredClassifiers/StructuredFeature"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="State"/>
-  <eSubpackages name="Interface">
+  <eSubpackages name="State" nsURI="http://www.openmbee.org/kerml/state" nsPrefix="state"/>
+  <eSubpackages name="Interface" nsURI="http://www.openmbee.org/kerml/intf" nsPrefix="intf">
     <eClassifiers xsi:type="ecore:EClass" name="InterfaceClass" eSuperTypes="#//Classification/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="protocolParticipant"
-          ordered="false" lowerBound="1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          ordered="false" lowerBound="1" eType="#//StructuredClassifiers/StructuredFeature"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Item Flow" eSuperTypes="#//Structured%20Classifiers/Connector #//Common%20Behavior/OccurrenceProperty">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
-          eType="#//Common%20Behavior/Interaction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ItemFlow" eSuperTypes="#//StructuredClassifiers/Connector #//CommonBehavior/OccurrenceProperty">
       <eStructuralFeatures xsi:type="ecore:EReference" name="typeOfThingFlowing" unique="false"
-          lowerBound="1" upperBound="-1" eType="#//Structured%20Classifiers/StructuredClass"/>
+          lowerBound="1" upperBound="-1" eType="#//StructuredClassifiers/StructuredClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFlowProperty" unique="false"
           lowerBound="1" upperBound="-1" eType="#//Classification/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetFlowProperty" unique="false"
@@ -512,35 +370,19 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStreaming" ordered="false"
-          lowerBound="1" eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="direction" ordered="false"
           lowerBound="1" eType="#//Expression/Enumeration" derived="true" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Supports" eSuperTypes="#//Classification/Generalization">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
-          lowerBound="1" eType="#//Interface/InterfaceClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
-          lowerBound="1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Provides" eSuperTypes="#//Classification/Generalization">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
-          lowerBound="1" eType="#//Interface/InterfaceClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Supports" eSuperTypes="#//Classification/Generalization"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Provides" eSuperTypes="#//Classification/Generalization"/>
   </eSubpackages>
-  <eSubpackages name="Classification" nsURI="http://www.openmbee.org/kerml/str" nsPrefix="str">
+  <eSubpackages name="Classification" nsURI="http://www.openmbee.org/kerml/class"
+      nsPrefix="class">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Core/Container">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The generic Model constructor and the generic type of all properties. It has a complete set of sub-sets. While it is permitted to create a Class in SysML2 it is intended that the user would eventually specify further intent for the Class (Block, Behavior, ConstriantBlock, Requirement, etc.). Therefore use of a plain Class would be considered a minor constraint violation that should be addressed of as the maturity of the Model improves&#xA;&#xA;Normative Alias: Definition(SysML2)&#xA;SECM Alias: Definition Element"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="specificClassifier" ordered="false"
-          upperBound="-1" eType="#//Classification/Class" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Specializations of this Block derived from any Generalization relationships of which block is the source"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Classification/Class" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="generalClassifier" ordered="false"
           upperBound="-1" eType="#//Classification/Class" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
@@ -560,21 +402,15 @@
           derived="true" eOpposite="#//Classification/Generalization/specific"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeatureOfClass"
           ordered="false" upperBound="-1" eType="#//Classification/Feature" derived="true"
-          eOpposite="#//Classification/Feature/nestingContext">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A Feature is an ownedRefinement if it has a defined featurePath"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" ordered="false" lowerBound="1"
-          eType="#//Classification/Individual" eOpposite="#//Classification/Individual/context"/>
+          eOpposite="#//Classification/Feature/nestingContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextOfIndividual"
+          ordered="false" lowerBound="1" eType="#//Classification/Individual" derived="true"
+          eOpposite="#//Classification/Individual/context"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="generalOfGeneralization"
           ordered="false" upperBound="-1" eType="#//Classification/Generalization"
           derived="true" eOpposite="#//Classification/Generalization/general"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Core/Container">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;&amp;#160;This is called Feature rather than attribute because in UML&amp;#160;Attribute's are more restrictive w.r.t. typing than the intent of KerML&amp;#160;Feature which is more open.&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;p>&#xA;Possible Alias: Usage(SysML2)&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
           lowerBound="1" upperBound="-1" eType="#//Classification/Class" derived="true"
           eOpposite="#//Classification/Class/typesFeature"/>
@@ -587,11 +423,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
           eType="#//Classification/Class" eOpposite="#//Classification/Class/ownedFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedFeature" ordered="false"
-          upperBound="-1" eType="#//Classification/Feature">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="{ Constraints loosened to include nesting properties redefining/subsetting unnested ones, and multiplicities that are wider than the redefined one, and narrower/= product of those with multiplicities up the chain. }"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Classification/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedFeature" ordered="false"
           upperBound="-1" eType="#//Classification/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
@@ -603,33 +435,19 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodVisibility" ordered="false"
-          lowerBound="1" eType="#//Core/visibilityKind">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Specific Visibility of the feature not the package"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          lowerBound="1" eType="#//Core/visibilityKind"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestingContext" ordered="false"
           eType="#//Classification/Class" derived="true" eOpposite="#//Classification/Class/nestedFeatureOfClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestingFeature" ordered="false"
           eType="#//Classification/Feature" eOpposite="#//Classification/Feature/nestedFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeature" ordered="false"
-          upperBound="-1" eType="#//Classification/Feature" containment="true" eOpposite="#//Classification/Feature/nestingFeature">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="{ Must redefine a (single?) non-nested property that is owned / inherited by the type of the nesting property. }&#xA;{ Must be unique among the properties in the same nesting chain.}&#xA;{ The (function) domain = set of M0 things reached by navigation through the nesting chain to the immediately nesting property, starting from M0 instances of the class owning the unnested property at the beginning of the chain.}"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Classification/Feature" containment="true" eOpposite="#//Classification/Feature/nestingFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedType" ordered="false"
-          upperBound="-1" eType="#//Classification/Class">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Note that the default instance of definingType is the M1 Library element Any"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//Classification/Class"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
           upperBound="-1" eType="#//Classification/Class" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClassifier"
           ordered="false" eType="#//Classification/Class" derived="true" eOpposite="#//Classification/Class/feature"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeaturePath" ordered="false"
-          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Core/Relationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
@@ -651,11 +469,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="complete" ordered="false"
           lowerBound="1" eType="#//Classification/Generalization"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Binding" eSuperTypes="#//Structured%20Classifiers/Connector"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Binding" eSuperTypes="#//StructuredClassifiers/Connector"/>
     <eClassifiers xsi:type="ecore:EClass" name="Individual">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Direct specification of a variant&#xA;&#xA;&#xA;Validation rule:&#xA;level=Warning&#xA;Individual tree should include all Feature's that have a defined featurePath&#xA;&#xA;"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="definingFeature" ordered="false"
           lowerBound="1" eType="#//Classification/Feature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
@@ -663,77 +478,59 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="child" ordered="false"
           upperBound="-1" eType="#//Classification/Individual" eOpposite="#//Classification/Individual/parent"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
-          lowerBound="1" eType="#//Classification/Class" eOpposite="#//Classification/Class/%"/>
+          lowerBound="1" eType="#//Classification/Class" eOpposite="#//Classification/Class/contextOfIndividual"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Data Classifiers">
+  <eSubpackages name="DataClassifiers" nsURI="http://www.openmbee.org/kerml/data"
+      nsPrefix="data">
     <eClassifiers xsi:type="ecore:EClass" name="DataFeature" eSuperTypes="#//Classification/Feature">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
-          lowerBound="1" eType="#//Data%20Classifiers/DataType"/>
+          lowerBound="1" eType="#//DataClassifiers/DataType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
-          upperBound="-1" eType="#//Data%20Classifiers/ValueRestriction"/>
+          upperBound="-1" eType="#//DataClassifiers/ValueRestriction"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" ordered="false"
-          lowerBound="1" eType="#//Data%20Classifiers/ValueRestriction"/>
+          lowerBound="1" eType="#//DataClassifiers/ValueRestriction"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Classification/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="quantityKind" ordered="false"
-          eType="#//Expression/StringExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Torque, Work, Force, Volume, Flow Rate, etc... &quot;sense&quot; of the thing"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//Expression/StringExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" ordered="false"
-          eType="#//Expression/StringExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Length, Mass, Time, Lumens"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//Expression/StringExpression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueRestriction" eSuperTypes="#//Classification/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="specification" ordered="false"
           eType="#//Expression/ValueSpecification"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="unit" ordered="false"
-          eType="#//Expression/StringExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Inches, etc"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//Expression/StringExpression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueOfDataType" ordered="false"
+          eType="#//DataClassifiers/DataType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Restricts" eSuperTypes="#//Core/Relationship #//Classification/Generalization">
       <eStructuralFeatures xsi:type="ecore:EReference" name="restricted" ordered="false"
-          lowerBound="1" eType="#//Data%20Classifiers/DataType"/>
+          lowerBound="1" eType="#//DataClassifiers/DataType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedBy" ordered="false"
-          lowerBound="1" eType="#//Data%20Classifiers/ValueRestriction"/>
+          lowerBound="1" eType="#//DataClassifiers/ValueRestriction"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Structured Classifiers">
-    <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Core/Relationship #//Structured%20Classifiers/StructuredClass">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass" derived="true"/>
+  <eSubpackages name="StructuredClassifiers" nsURI="http://www.openmbee.org/kerml/str"
+      nsPrefix="str">
+    <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Core/Relationship #//StructuredClassifiers/StructuredClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetEndProperty" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          lowerBound="1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantProperty"
-          ordered="false" lowerBound="1" eType="#//Structured%20Classifiers/StructuredFeature"
-          containment="true"/>
+          ordered="false" lowerBound="1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEndProperty" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          lowerBound="1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantProperty"
-          ordered="false" lowerBound="1" eType="#//Structured%20Classifiers/StructuredFeature"
-          containment="true"/>
+          ordered="false" lowerBound="1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participantProperty"
-          ordered="false" lowerBound="2" upperBound="2" eType="#//Structured%20Classifiers/StructuredFeature"
-          derived="true" eOpposite="#//Structured%20Classifiers/StructuredFeature/participatesIn"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
-          unique="false" lowerBound="2" upperBound="2" eType="#//Structured%20Classifiers/StructuredClass"
-          derived="true"/>
+          ordered="false" lowerBound="2" upperBound="2" eType="#//StructuredClassifiers/StructuredFeature"
+          derived="true" eOpposite="#//StructuredClassifiers/StructuredFeature/participatesIn"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="endProperty" ordered="false"
-          unique="false" lowerBound="2" upperBound="2" eType="#//Structured%20Classifiers/StructuredFeature"
-          derived="true" eOpposite="#//Structured%20Classifiers/StructuredFeature/endOf"/>
+          unique="false" lowerBound="2" upperBound="2" eType="#//StructuredClassifiers/StructuredFeature"
+          derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="typesConnector" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/Connector" derived="true"
-          eOpposite="#//Structured%20Classifiers/Connector/type"/>
+          upperBound="-1" eType="#//StructuredClassifiers/Connector" derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StructuredFeature" eSuperTypes="#//Classification/Feature">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPort" ordered="false"
@@ -743,46 +540,32 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="insideAccess" ordered="false"
           upperBound="2" eType="#//Classification/PropertyAccessKind"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="union" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="option" ordered="false"
-          lowerBound="1" derived="true" containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNavigable" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregation" ordered="false"
           eType="#//Classification/AggregationKind"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="endOf" ordered="false"
-          eType="#//Structured%20Classifiers/Association" derived="true" eOpposite="#//Structured%20Classifiers/Association/endProperty"/>
+          eType="#//StructuredClassifiers/Association" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatesIn" ordered="false"
-          eType="#//Structured%20Classifiers/Association" derived="true" eOpposite="#//Structured%20Classifiers/Association/participantProperty"/>
+          eType="#//StructuredClassifiers/Association" derived="true" eOpposite="#//StructuredClassifiers/Association/participantProperty"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="structuredClass" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass" eOpposite="#//Structured%20Classifiers/StructuredClass/ownedStructuredFeature"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" ordered="false" lowerBound="1"
-          eType="#//Common%20Behavior/Interaction" eOpposite="#//Common%20Behavior/Interaction/interactionParticipant"/>
+          lowerBound="1" eType="#//StructuredClassifiers/StructuredClass" eOpposite="#//StructuredClassifiers/StructuredClass/ownedStructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInput" ordered="false"
-          eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOutput" ordered="false"
-          eType="ecore:EDataType SysML_Profile.ecore#//SysML/Libraries/PrimitiveValueTypes/Boolean"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedType" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredClass" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Core/Relationship #//Structured%20Classifiers/StructuredFeature">
+    <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Core/Relationship #//StructuredClassifiers/StructuredFeature">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePath" lowerBound="1"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" lowerBound="1"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDirected" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-          eType="#//Structured%20Classifiers/StructuredFeature"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false"
-          eType="#//Structured%20Classifiers/Association" eOpposite="#//Structured%20Classifiers/Association/typesConnector"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-          eType="#//Structured%20Classifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceUpper" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceLower" ordered="false"
@@ -797,68 +580,51 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetMultiplicity" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
-          unique="false" lowerBound="2" upperBound="2" eType="#//Structured%20Classifiers/StructuredFeature"
-          derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StructuredClass" eSuperTypes="#//Classification/Class">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;html>&#xA;  &lt;head>&#xA;&#x9;&#x9;&lt;style>&#xA;&#x9;&#x9;&#x9;p {padding:0px; margin:0px;}&#xA;&#x9;&#x9;&lt;/style>&#xA;&#x9;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;Occurrence&#xA;&#xA;    &lt;/p>&#xA;&#xA;    &lt;ul>&#xA;      &lt;li>&#xA;M1 Library element which defines basic semantics for Temporal ordering&#xA;&#xA;      &lt;/li>&#xA;      &lt;li>&#xA;This is achieved via the &amp;quot;Happens Before&amp;quot; and &amp;quot;Happens During&amp;quot; Association's&#xA;        &lt;ul>&#xA;          &lt;li>&#xA;Happens Before: Allows structured models to specify which Occurrence preceded it in a flow such as in an activity, timeline or state machine&#xA;&#xA;          &lt;/li>&#xA;          &lt;li>&#xA;Happens During: Allows structured models to specifically call out which occurrences participate in the flow of the parent&#xA;&#xA;          &lt;/li>&#xA;        &lt;/ul>&#xA;&#xA;      &lt;/li>&#xA;    &lt;/ul>&#xA;    &lt;p>&#xA;&amp;#160;&#xA;&#xA;    &lt;/p>&#xA;&#xA;&lt;/body>&#xA;&lt;/html>"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredProperty" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedProperty" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"
-          containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="protocol" ordered="false"
-          upperBound="-1" eType="#//Common%20Behavior/Interaction"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAdjunct" ordered="false"
-          upperBound="-1" eType="#//Common%20Behavior/OccurrenceProperty" containment="true"
-          eOpposite="#//Common%20Behavior/OccurrenceProperty/owner"/>
+          upperBound="-1" eType="#//CommonBehavior/Interaction"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOccurrence" ordered="false"
+          upperBound="-1" eType="#//CommonBehavior/OccurrenceProperty"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEncapsulated" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conjugate" ordered="false"
-          lowerBound="1" eType="#//Structured%20Classifiers/StructuredClass"/>
+          lowerBound="1" eType="#//StructuredClassifiers/StructuredClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConnector" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/Connector" containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/Connector"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStructuredFeature"
-          ordered="false" upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature"
-          containment="true" eOpposite="#//Structured%20Classifiers/StructuredFeature/structuredClass"/>
+          ordered="false" upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"
+          containment="true" eOpposite="#//StructuredClassifiers/StructuredFeature/structuredClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="typesProperty" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="blindProperty" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The set of all Property's not owned or required by a StructuredClass and are an endProperty of an Association where the other endProperty has that StructuredClass as its type&#xA;&#xA;FIX ME:&#xA;let assoc:Association = Class.relation->select(schematype==Association) in if assoc.endProperty.type->select(type == Class).size() >= 1 then  endProperty->select(type != Class)&#xA;"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="portProperty" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"
-          containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="proxyPort" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"
-          containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="selfPort" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"
-          containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fullPort" ordered="false"
-          upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature" derived="true"
-          containment="true"/>
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="supports" ordered="false"
           upperBound="-1" eType="#//Interface/InterfaceClass" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterface" ordered="false"
           upperBound="-1" eType="#//Interface/InterfaceClass" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredInterface" ordered="false"
           upperBound="-1" eType="#//Interface/InterfaceClass" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="interactionParticipant"
-          ordered="false" upperBound="-1" eType="#//Structured%20Classifiers/StructuredFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatesIn" ordered="false"
+          upperBound="-1" eType="#//StructuredClassifiers/StructuredFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOccurrenceProperty"
-          ordered="false" upperBound="-1" eType="#//Common%20Behavior/OccurrenceProperty"
-          containment="true"/>
+          ordered="false" upperBound="-1" eType="#//CommonBehavior/OccurrenceProperty"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

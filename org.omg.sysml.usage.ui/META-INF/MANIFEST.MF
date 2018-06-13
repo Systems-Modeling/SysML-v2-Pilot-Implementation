@@ -23,4 +23,5 @@ Export-Package: org.omg.sysml.usage.ui.quickfix,
  org.omg.sysml.usage.ui.internal,
  org.omg.sysml.usage.ui.contentassist,
  org.omg.sysml.usage.ui.quickfix
-Bundle-Activator: org.omg.sysml.usage.ui.internal.XtextActivator
+Bundle-Activator: org.omg.sysml.usage.ui.internal.UsageActivator
+Automatic-Module-Name: org.omg.sysml.usage.ui

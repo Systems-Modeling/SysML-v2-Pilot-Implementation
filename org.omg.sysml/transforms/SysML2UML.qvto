@@ -47,9 +47,12 @@ query SysML::Element::name(): String {
 		endif endif;
 }
 
-abstract mapping SysML::Element::toNamedElement(): UML::NamedElement {
-	log('Mapping ' + self.metaClassName() + ' ' + self.name() + ' to ' + result.metaClassName());
-	
+abstract mapping SysML::Element::toElement(): UML::Element {
+	log('Mapping ' + self.metaClassName() + ' ' + self.name() + ' to ' + result.metaClassName());	
+}
+
+abstract mapping SysML::Element::toNamedElement(): UML::NamedElement
+	inherits SysML::Element::toElement {	
 	name := self.name;
 //	var package = self.owningPackage;
 //	if package <> null then {
@@ -203,11 +206,14 @@ mapping SysML::Feature::toProperty(): UML::Property
 		SysML::Feature::toPort;
 
 mapping SysML::Feature::toAnyProperty(): UML::Property
-	inherits SysML::Element::toNamedElement {
+	inherits SysML::Feature::toNamedElement {
 	type := self.typeElement().late resolveone(UML::Class);
 	self.mapMultiplicity(result);
 	redefinedProperty := self.redefinedFeatures()->late resolveone(UML::Property);
 	subsettedProperty := self.subsettedFeatures()->late resolveone(UML::Property);
+	if self.value <> null then {
+		defaultValue := self.value.map toValueSpecification();
+	} endif;
 }
 
 mapping SysML::Feature::toPlainProperty(): UML::Property
@@ -226,7 +232,7 @@ mapping SysML::Feature::toInstanceSpecification(): UML::InstanceSpecification
 }
 
 mapping SysML::Feature::toClass(): UML::Class
-	inherits SysML::Package::toClass
+	inherits SysML::Package::toClass, SysML::Feature::toNamedElement
 	when { self.typeElement() = self } {
 	var typeElement := self.parentTypeElement();
 	if typeElement <> null then {
@@ -265,4 +271,75 @@ helper SysML::Feature::mapMultiplicity(inout element: UML::MultiplicityElement) 
 	} else {
 		element.lower := element.upper;
 	} endif endif;
+}
+
+// Expressions
+
+mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
+	disjuncts
+		SysML::LiteralExpression::toLiteralSpecification,
+		SysML::OperatorExpression::toExpression,
+		SysML::InstanceCreationExpression::toExpression,
+		SysML::SequenceConstructionExpression::toExpression,
+		SysML::ElementReferenceExpression::toExpression;
+
+mapping SysML::LiteralExpression::toLiteralSpecification(): UML::LiteralSpecification
+	disjuncts
+		SysML::LiteralBoolean::toLiteralBoolean,
+		SysML::LiteralString::toLiteralString,
+		SysML::LiteralInteger::toLiteralInteger,
+		SysML::LiteralReal::toLiteralReal,
+		SysML::LiteralUnbounded::toLiteralUnlimitedNatural,
+		SysML::LiteralNull::toLiteralNull;
+
+mapping SysML::LiteralBoolean::toLiteralBoolean(): UML::LiteralBoolean
+	inherits SysML::Element::toNamedElement {
+	value := self.value;
+}
+
+mapping SysML::LiteralString::toLiteralString(): UML::LiteralString
+	inherits SysML::Element::toNamedElement {
+	value := self.value;
+}
+
+mapping SysML::LiteralInteger::toLiteralInteger(): UML::LiteralInteger
+	inherits SysML::Element::toNamedElement {
+	value := self.value;
+}
+
+mapping SysML::LiteralReal::toLiteralReal(): UML::LiteralReal
+	inherits SysML::Element::toNamedElement {
+	value := self.value;
+}
+
+mapping SysML::LiteralUnbounded::toLiteralUnlimitedNatural(): UML::LiteralUnlimitedNatural
+	inherits SysML::Element::toNamedElement {
+	value := -1;
+}
+
+mapping SysML::LiteralNull::toLiteralNull(): UML::LiteralNull
+	inherits SysML::Element::toNamedElement {
+}
+
+mapping OperatorExpression::toExpression(): UML::Expression
+	inherits SysML::Element::toNamedElement {
+	symbol := self.operator;
+	operand := self.operand->map toValueSpecification();
+}
+
+mapping InstanceCreationExpression::toExpression(): UML::Expression
+	inherits SysML::Element::toNamedElement {
+	symbol := 'new ' + self._class.name;
+	operand := self.argument->map toValueSpecification();
+}
+
+mapping SequenceConstructionExpression::toExpression(): UML::Expression
+	inherits SysML::Element::toNamedElement {
+	symbol := 'sequence';
+	operand := self.element->map toValueSpecification();
+}
+
+mapping ElementReferenceExpression::toExpression(): UML::Expression
+	inherits SysML::Element::toNamedElement {
+	symbol := self.referent.name;
 }

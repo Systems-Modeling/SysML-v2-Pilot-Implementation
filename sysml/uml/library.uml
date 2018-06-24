@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ufPkEXfYEeiGhKkbk7RgTg" name="Model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufPkEnfYEeiGhKkbk7RgTg" name="Quantities">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkE3fYEeiGhKkbk7RgTg" name="Quantity" visibility="public">
+      <generalization xmi:id="_ufPkFHfYEeiGhKkbk7RgTg" general="_ufQLJ3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufPkFXfYEeiGhKkbk7RgTg" name="numericValue" visibility="public" type="_ufQLJ3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkFnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkF3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufPkGHfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufPkG3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkGXfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkGnfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkG3fYEeiGhKkbk7RgTg" name="MeasurementUnit" visibility="public">
+      <generalization xmi:id="_ufPkHHfYEeiGhKkbk7RgTg" general="_ufQLPnfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkHXfYEeiGhKkbk7RgTg" name="SimpleUnit" visibility="public">
+      <generalization xmi:id="_ufPkHnfYEeiGhKkbk7RgTg" general="_ufPkG3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkH3fYEeiGhKkbk7RgTg" name="DerivedUnit" visibility="public">
+      <generalization xmi:id="_ufPkIHfYEeiGhKkbk7RgTg" general="_ufPkG3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufPkIXfYEeiGhKkbk7RgTg" name="unitFactor" visibility="public" type="_ufPkJHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkInfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkI3fYEeiGhKkbk7RgTg" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkJHfYEeiGhKkbk7RgTg" name="MeasurementUnitPowerFactor" visibility="public">
+      <generalization xmi:id="_ufPkJXfYEeiGhKkbk7RgTg" general="_ufQLPnfYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufPkJnfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufPkG3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkJ3fYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkKHfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufPkKXfYEeiGhKkbk7RgTg" name="exponent" visibility="public" type="_ufQLKXfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkKnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkK3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkLHfYEeiGhKkbk7RgTg" name="ConversionBasedUnit" visibility="public">
+      <generalization xmi:id="_ufPkLXfYEeiGhKkbk7RgTg" general="_ufPkG3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufPkLnfYEeiGhKkbk7RgTg" name="conversionFactor" visibility="public" type="_ufQLJ3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkL3fYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkMHfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufPkMXfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufPkG3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufPkMnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufPkM3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufPkNHfYEeiGhKkbk7RgTg" name="SI">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkNXfYEeiGhKkbk7RgTg" name="m" visibility="public" classifier="_ufQLT3fYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkNnfYEeiGhKkbk7RgTg" name="kg" visibility="public" classifier="_ufQLUXfYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkN3fYEeiGhKkbk7RgTg" name="s" visibility="public" classifier="_ufQLU3fYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkOHfYEeiGhKkbk7RgTg" name="A" visibility="public" classifier="_ufQLVXfYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkOXfYEeiGhKkbk7RgTg" name="K" visibility="public" classifier="_ufQLV3fYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkOnfYEeiGhKkbk7RgTg" name="mol" visibility="public" classifier="_ufQLWXfYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkO3fYEeiGhKkbk7RgTg" name="cd" visibility="public" classifier="_ufQLW3fYEeiGhKkbk7RgTg"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ufPkPHfYEeiGhKkbk7RgTg" name="N" visibility="public" classifier="_ufQLXXfYEeiGhKkbk7RgTg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufPkPXfYEeiGhKkbk7RgTg" name="Time">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufPkPnfYEeiGhKkbk7RgTg" name="DateTime" visibility="public">
+      <generalization xmi:id="_ufPkP3fYEeiGhKkbk7RgTg" general="_ufQLIXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufQLIHfYEeiGhKkbk7RgTg" name="ScalarValues">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLIXfYEeiGhKkbk7RgTg" name="ScalarValue" visibility="public">
+      <generalization xmi:id="_ufQLInfYEeiGhKkbk7RgTg" general="_ufQLPnfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLI3fYEeiGhKkbk7RgTg" name="Boolean" visibility="public">
+      <generalization xmi:id="_ufQLJHfYEeiGhKkbk7RgTg" general="_ufQLIXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLJXfYEeiGhKkbk7RgTg" name="String" visibility="public">
+      <generalization xmi:id="_ufQLJnfYEeiGhKkbk7RgTg" general="_ufQLIXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLJ3fYEeiGhKkbk7RgTg" name="Number" visibility="public">
+      <generalization xmi:id="_ufQLKHfYEeiGhKkbk7RgTg" general="_ufQLIXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLKXfYEeiGhKkbk7RgTg" name="Integer" visibility="public">
+      <generalization xmi:id="_ufQLKnfYEeiGhKkbk7RgTg" general="_ufQLJ3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLK3fYEeiGhKkbk7RgTg" name="Real" visibility="public">
+      <generalization xmi:id="_ufQLLHfYEeiGhKkbk7RgTg" general="_ufQLJ3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLLXfYEeiGhKkbk7RgTg" name="UnlimitedNatural" visibility="public">
+      <generalization xmi:id="_ufQLLnfYEeiGhKkbk7RgTg" general="_ufQLJ3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLL3fYEeiGhKkbk7RgTg" name="Natural" visibility="public">
+      <generalization xmi:id="_ufQLMHfYEeiGhKkbk7RgTg" general="_ufQLKXfYEeiGhKkbk7RgTg"/>
+      <generalization xmi:id="_ufQLMXfYEeiGhKkbk7RgTg" general="_ufQLLXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLMnfYEeiGhKkbk7RgTg" name="Complex" visibility="public">
+      <generalization xmi:id="_ufQLM3fYEeiGhKkbk7RgTg" general="_ufQLJ3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLNHfYEeiGhKkbk7RgTg" name="re" visibility="public" type="_ufQLK3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLNXfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLNnfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufQLN3fYEeiGhKkbk7RgTg" name="im" visibility="public" type="_ufQLK3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLOHfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLOXfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufQLOnfYEeiGhKkbk7RgTg" name="Base">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLO3fYEeiGhKkbk7RgTg" name="Anything" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLPHfYEeiGhKkbk7RgTg" name="Object" visibility="public">
+      <generalization xmi:id="_ufQLPXfYEeiGhKkbk7RgTg" general="_ufQLO3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLPnfYEeiGhKkbk7RgTg" name="Value" visibility="public">
+      <generalization xmi:id="_ufQLP3fYEeiGhKkbk7RgTg" general="_ufQLO3fYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLQHfYEeiGhKkbk7RgTg" name="Enumeration" visibility="public">
+      <generalization xmi:id="_ufQLQXfYEeiGhKkbk7RgTg" general="_ufQLPnfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLQnfYEeiGhKkbk7RgTg" name="Class" visibility="public">
+      <generalization xmi:id="_ufQLQ3fYEeiGhKkbk7RgTg" general="_ufQLPHfYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLRHfYEeiGhKkbk7RgTg" name="base" visibility="public" type="_ufQLR3fYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLRXfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLRnfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_ufQLR3fYEeiGhKkbk7RgTg" name="base">
+        <generalization xmi:id="_ufQLSHfYEeiGhKkbk7RgTg" general="_ufQLQnfYEeiGhKkbk7RgTg"/>
+        <ownedAttribute xmi:id="_ufQLSXfYEeiGhKkbk7RgTg" name="base" visibility="public" type="_ufQLTXfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLSnfYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLS3fYEeiGhKkbk7RgTg" value="1"/>
+          <defaultValue xmi:type="uml:Expression" xmi:id="_ufQLTHfYEeiGhKkbk7RgTg" symbol="Object">
+            <name xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_ufQLTXfYEeiGhKkbk7RgTg" name="base"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ufQLTnfYEeiGhKkbk7RgTg" name="ISQ">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLT3fYEeiGhKkbk7RgTg" name="LengthUnit" visibility="public">
+      <generalization xmi:id="_ufQLUHfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLUXfYEeiGhKkbk7RgTg" name="MassUnit" visibility="public">
+      <generalization xmi:id="_ufQLUnfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLU3fYEeiGhKkbk7RgTg" name="TimeUnit" visibility="public">
+      <generalization xmi:id="_ufQLVHfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLVXfYEeiGhKkbk7RgTg" name="ElectricCurrentUnit" visibility="public">
+      <generalization xmi:id="_ufQLVnfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLV3fYEeiGhKkbk7RgTg" name="TemperatureUnit" visibility="public">
+      <generalization xmi:id="_ufQLWHfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLWXfYEeiGhKkbk7RgTg" name="AmountOfSubstanceUnit" visibility="public">
+      <generalization xmi:id="_ufQLWnfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLW3fYEeiGhKkbk7RgTg" name="LuminousIntensityUnit" visibility="public">
+      <generalization xmi:id="_ufQLXHfYEeiGhKkbk7RgTg" general="_ufPkHXfYEeiGhKkbk7RgTg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLXXfYEeiGhKkbk7RgTg" name="ForceUnit" visibility="public">
+      <generalization xmi:id="_ufQLXnfYEeiGhKkbk7RgTg" general="_ufPkH3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLX3fYEeiGhKkbk7RgTg" name="unitFactor1" visibility="public" type="_ufQLaHfYEeiGhKkbk7RgTg" subsettedProperty="_ufPkIXfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLYHfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLYXfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufQLYnfYEeiGhKkbk7RgTg" name="unitFactor2" visibility="public" type="_ufQLcXfYEeiGhKkbk7RgTg" subsettedProperty="_ufPkIXfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLY3fYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLZHfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ufQLZXfYEeiGhKkbk7RgTg" name="unitFactor3" visibility="public" type="_ufQLenfYEeiGhKkbk7RgTg" subsettedProperty="_ufPkIXfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLZnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLZ3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_ufQLaHfYEeiGhKkbk7RgTg" name="unitFactor1">
+        <generalization xmi:id="_ufQLaXfYEeiGhKkbk7RgTg" general="_ufPkJHfYEeiGhKkbk7RgTg"/>
+        <ownedAttribute xmi:id="_ufQLanfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLUXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkJnfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLa3fYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLbHfYEeiGhKkbk7RgTg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ufQLbXfYEeiGhKkbk7RgTg" name="exponent" visibility="public" type="_ufQLKXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkKXfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLbnfYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLb3fYEeiGhKkbk7RgTg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLcHfYEeiGhKkbk7RgTg" value="1">
+            <name xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_ufQLcXfYEeiGhKkbk7RgTg" name="unitFactor2">
+        <generalization xmi:id="_ufQLcnfYEeiGhKkbk7RgTg" general="_ufPkJHfYEeiGhKkbk7RgTg"/>
+        <ownedAttribute xmi:id="_ufQLc3fYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLT3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkJnfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLdHfYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLdXfYEeiGhKkbk7RgTg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ufQLdnfYEeiGhKkbk7RgTg" name="exponent" visibility="public" type="_ufQLKXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkKXfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLd3fYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLeHfYEeiGhKkbk7RgTg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLeXfYEeiGhKkbk7RgTg" value="1">
+            <name xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_ufQLenfYEeiGhKkbk7RgTg" name="unitFactor3">
+        <generalization xmi:id="_ufQLe3fYEeiGhKkbk7RgTg" general="_ufPkJHfYEeiGhKkbk7RgTg"/>
+        <ownedAttribute xmi:id="_ufQLfHfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLU3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkJnfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLfXfYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLfnfYEeiGhKkbk7RgTg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ufQLf3fYEeiGhKkbk7RgTg" name="exponent" visibility="public" type="_ufQLKXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkKXfYEeiGhKkbk7RgTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLgHfYEeiGhKkbk7RgTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLgXfYEeiGhKkbk7RgTg" value="1"/>
+          <defaultValue xmi:type="uml:Expression" xmi:id="_ufQLgnfYEeiGhKkbk7RgTg" symbol="-">
+            <name xsi:nil="true"/>
+            <operand xmi:type="uml:LiteralInteger" xmi:id="_ufQLg3fYEeiGhKkbk7RgTg" value="2">
+              <name xsi:nil="true"/>
+            </operand>
+          </defaultValue>
+        </ownedAttribute>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLhHfYEeiGhKkbk7RgTg" name="Length" visibility="public">
+      <generalization xmi:id="_ufQLhXfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLhnfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLT3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLh3fYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLiHfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLiXfYEeiGhKkbk7RgTg" name="Mass" visibility="public">
+      <generalization xmi:id="_ufQLinfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLi3fYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLUXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLjHfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLjXfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLjnfYEeiGhKkbk7RgTg" name="Time" visibility="public">
+      <generalization xmi:id="_ufQLj3fYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLkHfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLU3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLkXfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLknfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLk3fYEeiGhKkbk7RgTg" name="ElectricCurrent" visibility="public">
+      <generalization xmi:id="_ufQLlHfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLlXfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLVXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLlnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLl3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLmHfYEeiGhKkbk7RgTg" name="Temperature" visibility="public">
+      <generalization xmi:id="_ufQLmXfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLmnfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLV3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLm3fYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLnHfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLnXfYEeiGhKkbk7RgTg" name="AmountOfSubstance" visibility="public">
+      <generalization xmi:id="_ufQLnnfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLn3fYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLWXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLoHfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLoXfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLonfYEeiGhKkbk7RgTg" name="LuminousIntensity" visibility="public">
+      <generalization xmi:id="_ufQLo3fYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLpHfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLW3fYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLpXfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLpnfYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ufQLp3fYEeiGhKkbk7RgTg" name="Force" visibility="public">
+      <generalization xmi:id="_ufQLqHfYEeiGhKkbk7RgTg" general="_ufPkE3fYEeiGhKkbk7RgTg"/>
+      <ownedAttribute xmi:id="_ufQLqXfYEeiGhKkbk7RgTg" name="unit" visibility="public" type="_ufQLXXfYEeiGhKkbk7RgTg" redefinedProperty="_ufPkGHfYEeiGhKkbk7RgTg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ufQLqnfYEeiGhKkbk7RgTg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ufQLq3fYEeiGhKkbk7RgTg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

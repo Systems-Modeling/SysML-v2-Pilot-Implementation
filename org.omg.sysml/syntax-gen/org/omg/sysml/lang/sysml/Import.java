@@ -139,6 +139,6 @@ public interface Import extends Relationship {
 	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<Element> importedMembers();
+	EList<Membership> importedMembership();
 
 } // Import

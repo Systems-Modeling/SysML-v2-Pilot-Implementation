@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -33,10 +34,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#isIsAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getTypedFeature <em>Typed Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassImpl#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,16 +85,6 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	protected EList<Feature> ownedFeature;
 
 	/**
-	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> typedFeature;
-
-	/**
 	 * The cached value of the '{@link #getOwnedGeneralization() <em>Owned Generalization</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,6 +113,26 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 * @ordered
 	 */
 	protected EList<Feature> output;
+
+	/**
+	 * The cached value of the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FeatureMembership> ownedFeatureMembership;
+
+	/**
+	 * The cached value of the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature owningFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,7 +181,7 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 */
 	public EList<Feature> getFeature() {
 		if (feature == null) {
-			feature = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, SysMLPackage.CLASS__FEATURE, SysMLPackage.FEATURE__FEATURING_CLASSES);
+			feature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CLASS__FEATURE);
 		}
 		return feature;
 	}
@@ -181,7 +193,7 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 */
 	public EList<Feature> getOwnedFeature() {
 		if (ownedFeature == null) {
-			ownedFeature = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.CLASS__OWNED_FEATURE, SysMLPackage.FEATURE__CLASS);
+			ownedFeature = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.CLASS__OWNED_FEATURE, SysMLPackage.FEATURE__OWNING_CLASS);
 		}
 		return ownedFeature;
 	}
@@ -191,21 +203,9 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getTypedFeature() {
-		if (typedFeature == null) {
-			typedFeature = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, SysMLPackage.CLASS__TYPED_FEATURE, SysMLPackage.FEATURE__TYPE);
-		}
-		return typedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		if (ownedGeneralization == null) {
-			ownedGeneralization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, SysMLPackage.CLASS__OWNED_GENERALIZATION, SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION);
+			ownedGeneralization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, SysMLPackage.CLASS__OWNED_GENERALIZATION, SysMLPackage.GENERALIZATION__OWNING_CLASS);
 		}
 		return ownedGeneralization;
 	}
@@ -239,18 +239,92 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<FeatureMembership> getOwnedFeatureMembership() {
+		if (ownedFeatureMembership == null) {
+			ownedFeatureMembership = new EObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS);
+		}
+		return ownedFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getOwningFeature() {
+		if (owningFeature != null && owningFeature.eIsProxy()) {
+			InternalEObject oldOwningFeature = (InternalEObject)owningFeature;
+			owningFeature = (Feature)eResolveProxy(oldOwningFeature);
+			if (owningFeature != oldOwningFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CLASS__OWNING_FEATURE, oldOwningFeature, owningFeature));
+			}
+		}
+		return owningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetOwningFeature() {
+		return owningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningFeature(Feature newOwningFeature, NotificationChain msgs) {
+		Feature oldOwningFeature = owningFeature;
+		owningFeature = newOwningFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CLASS__OWNING_FEATURE, oldOwningFeature, newOwningFeature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningFeature(Feature newOwningFeature) {
+		if (newOwningFeature != owningFeature) {
+			NotificationChain msgs = null;
+			if (owningFeature != null)
+				msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
+			if (newOwningFeature != null)
+				msgs = ((InternalEObject)newOwningFeature).eInverseAdd(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
+			msgs = basicSetOwningFeature(newOwningFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CLASS__OWNING_FEATURE, newOwningFeature, newOwningFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CLASS__FEATURE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CLASS__OWNED_FEATURE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeature()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTypedFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedGeneralization()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeatureMembership()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				if (owningFeature != null)
+					msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
+				return basicSetOwningFeature((Feature)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -263,14 +337,14 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CLASS__FEATURE:
-				return ((InternalEList<?>)getFeature()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CLASS__OWNED_FEATURE:
 				return ((InternalEList<?>)getOwnedFeature()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				return ((InternalEList<?>)getTypedFeature()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return ((InternalEList<?>)getOwnedGeneralization()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				return ((InternalEList<?>)getOwnedFeatureMembership()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				return basicSetOwningFeature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -289,14 +363,17 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				return getFeature();
 			case SysMLPackage.CLASS__OWNED_FEATURE:
 				return getOwnedFeature();
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				return getTypedFeature();
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return getOwnedGeneralization();
 			case SysMLPackage.CLASS__INPUT:
 				return getInput();
 			case SysMLPackage.CLASS__OUTPUT:
 				return getOutput();
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				return getOwnedFeatureMembership();
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				if (resolve) return getOwningFeature();
+				return basicGetOwningFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -321,10 +398,6 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				getOwnedFeature().clear();
 				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				getTypedFeature().clear();
-				getTypedFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
@@ -336,6 +409,13 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 			case SysMLPackage.CLASS__OUTPUT:
 				getOutput().clear();
 				getOutput().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
+				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
+				return;
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				setOwningFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -358,9 +438,6 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 			case SysMLPackage.CLASS__OWNED_FEATURE:
 				getOwnedFeature().clear();
 				return;
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				getTypedFeature().clear();
-				return;
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				return;
@@ -369,6 +446,12 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				return;
 			case SysMLPackage.CLASS__OUTPUT:
 				getOutput().clear();
+				return;
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
+				return;
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				setOwningFeature((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -388,14 +471,16 @@ public class ClassImpl extends PackageImpl implements org.omg.sysml.lang.sysml.C
 				return feature != null && !feature.isEmpty();
 			case SysMLPackage.CLASS__OWNED_FEATURE:
 				return ownedFeature != null && !ownedFeature.isEmpty();
-			case SysMLPackage.CLASS__TYPED_FEATURE:
-				return typedFeature != null && !typedFeature.isEmpty();
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				return ownedGeneralization != null && !ownedGeneralization.isEmpty();
 			case SysMLPackage.CLASS__INPUT:
 				return input != null && !input.isEmpty();
 			case SysMLPackage.CLASS__OUTPUT:
 				return output != null && !output.isEmpty();
+			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
+				return ownedFeatureMembership != null && !ownedFeatureMembership.isEmpty();
+			case SysMLPackage.CLASS__OWNING_FEATURE:
+				return owningFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

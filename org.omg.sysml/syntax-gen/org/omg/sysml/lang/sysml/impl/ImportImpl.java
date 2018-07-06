@@ -15,9 +15,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
@@ -246,7 +245,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> importedMembers() {
+	public EList<Membership> importedMembership() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -395,8 +394,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case SysMLPackage.IMPORT___IMPORTED_MEMBERS:
-				return importedMembers();
+			case SysMLPackage.IMPORT___IMPORTED_MEMBERSHIP:
+				return importedMembership();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

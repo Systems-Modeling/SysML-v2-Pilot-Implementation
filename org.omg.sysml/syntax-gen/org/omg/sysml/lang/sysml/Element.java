@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
  * </ul>
  *
@@ -100,32 +100,32 @@ public interface Element extends EObject {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Owning Namespace</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Package</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Namespace</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Package</em>' reference.
-	 * @see #setOwningPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningPackage()
+	 * @return the value of the '<em>Owning Namespace</em>' reference.
+	 * @see #setOwningNamespace(org.omg.sysml.lang.sysml.Package)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMember
 	 * @model opposite="ownedMember" ordered="false"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getOwningPackage();
+	org.omg.sysml.lang.sysml.Package getOwningNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningPackage <em>Owning Package</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Package</em>' reference.
-	 * @see #getOwningPackage()
+	 * @param value the new value of the '<em>Owning Namespace</em>' reference.
+	 * @see #getOwningNamespace()
 	 * @generated
 	 */
-	void setOwningPackage(org.omg.sysml.lang.sysml.Package value);
+	void setOwningNamespace(org.omg.sysml.lang.sysml.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

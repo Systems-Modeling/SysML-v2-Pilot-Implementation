@@ -21,7 +21,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface Subset extends Relationship {
+public interface Subset extends Generalization {
 	/**
 	 * Returns the value of the '<em><b>Subsetted Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ public interface Subset extends Relationship {
 	 * @return the value of the '<em>Subsetted Feature</em>' reference.
 	 * @see #setSubsettedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettedFeature()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Feature getSubsettedFeature();

@@ -14,11 +14,11 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getPackage <em>Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()
@@ -51,34 +51,6 @@ public interface Membership extends Relationship {
 	 * @generated
 	 */
 	void setMemberName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getMembership <em>Membership</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Package</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' container reference.
-	 * @see #setPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_Package()
-	 * @see org.omg.sysml.lang.sysml.Package#getMembership
-	 * @model opposite="membership" required="true" transient="false" ordered="false"
-	 * @generated
-	 */
-	org.omg.sysml.lang.sysml.Package getPackage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getPackage <em>Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' container reference.
-	 * @see #getPackage()
-	 * @generated
-	 */
-	void setPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
@@ -178,11 +150,39 @@ public interface Membership extends Relationship {
 	void setOwnedMemberElement(Element value);
 
 	/**
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" namingRequired="true" namingOrdered="false"
+	 * @return the value of the '<em>Owning Package</em>' container reference.
+	 * @see #setOwningPackage(org.omg.sysml.lang.sysml.Package)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwningPackage()
+	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership
+	 * @model opposite="ownedMembership" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-	boolean isDistinguishableFrom(Membership naming);
+	org.omg.sysml.lang.sysml.Package getOwningPackage();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwningPackage <em>Owning Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Package</em>' container reference.
+	 * @see #getOwningPackage()
+	 * @generated
+	 */
+	void setOwningPackage(org.omg.sysml.lang.sysml.Package value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" otherRequired="true" otherOrdered="false"
+	 * @generated
+	 */
+	boolean isDistinguishableFrom(Membership other);
 
 } // Membership

@@ -123,6 +123,18 @@ query SysML::Membership::memberElement(): SysML::Element {
 		endif;
 }
 
+helper SysML::Membership::mapToProperty(): UML::Property {
+	return self.memberElement().oclAsType(SysML::Feature).map toProperty();
+}
+
+helper SysML::FeatureMembership::mapToProperty(): UML::Property {
+	var feature := self.memberElement().oclAsType(SysML::Feature);
+	return
+		if self.direction = null then feature.map toProperty()
+		else self.feature.map toPort()
+		endif;
+}
+
 mapping SysML::Membership::toPackageableElement(): UML::PackageableElement
 	when { self.ownedMemberElement <> null } {
 init {
@@ -134,11 +146,18 @@ init {
 mapping SysML::Membership::toProperty(): UML::Property
 	when { self.memberElement().oclIsKindOf(SysML::Feature) } {
 init {
-	result := self.memberElement().oclAsType(SysML::Feature).map toProperty();
+	result := self.mapToProperty();
 }
 	visibility := toVisibilityKind(self.visibility);
 	if self.memberName <> null then {
 		name := self.memberName;
+	} endif;
+}
+
+mapping SysML::FeatureMembership::toProperty(): UML::Property 
+	inherits SysML::Membership::toProperty {
+	if self.direction = SysML::FeatureDirectionKind::_out then {
+		result.oclAsType(UML::Port).isConjugated := true;
 	} endif;
 }
 
@@ -201,11 +220,6 @@ abstract mapping SysML::Feature::toNamedElement(): UML::NamedElement
 }
 
 mapping SysML::Feature::toProperty(): UML::Property
-	disjuncts
-		SysML::Feature::toPlainProperty,
-		SysML::Feature::toPort;
-
-mapping SysML::Feature::toAnyProperty(): UML::Property
 	inherits SysML::Feature::toNamedElement {
 	type := self.typeElement().late resolveone(UML::Class);
 	self.mapMultiplicity(result);
@@ -216,14 +230,8 @@ mapping SysML::Feature::toAnyProperty(): UML::Property
 	} endif;
 }
 
-mapping SysML::Feature::toPlainProperty(): UML::Property
-	inherits SysML::Feature::toAnyProperty
-	when { not self.isPort } {		
-}
-
-mapping SysML::Feature::toPort(): UML::Port 
-	inherits SysML::Feature::toAnyProperty
-	when { self.isPort } {		
+mapping SysML::Feature::toPort(): UML::Port
+	inherits SysML::Feature::toProperty {
 }
 
 mapping SysML::Feature::toInstanceSpecification(): UML::InstanceSpecification

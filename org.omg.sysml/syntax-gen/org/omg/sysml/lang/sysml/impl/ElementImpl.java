@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
  * </ul>
  *
@@ -71,14 +71,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwningPackage() <em>Owning Package</em>}' reference.
+	 * The cached value of the '{@link #getOwningNamespace() <em>Owning Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwningPackage()
+	 * @see #getOwningNamespace()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Package owningPackage;
+	protected org.omg.sysml.lang.sysml.Package owningNamespace;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -198,16 +198,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Package getOwningPackage() {
-		if (owningPackage != null && owningPackage.eIsProxy()) {
-			InternalEObject oldOwningPackage = (InternalEObject)owningPackage;
-			owningPackage = (org.omg.sysml.lang.sysml.Package)eResolveProxy(oldOwningPackage);
-			if (owningPackage != oldOwningPackage) {
+	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
+		if (owningNamespace != null && owningNamespace.eIsProxy()) {
+			InternalEObject oldOwningNamespace = (InternalEObject)owningNamespace;
+			owningNamespace = (org.omg.sysml.lang.sysml.Package)eResolveProxy(oldOwningNamespace);
+			if (owningNamespace != oldOwningNamespace) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ELEMENT__OWNING_PACKAGE, oldOwningPackage, owningPackage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ELEMENT__OWNING_NAMESPACE, oldOwningNamespace, owningNamespace));
 			}
 		}
-		return owningPackage;
+		return owningNamespace;
 	}
 
 	/**
@@ -215,8 +215,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Package basicGetOwningPackage() {
-		return owningPackage;
+	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
+		return owningNamespace;
 	}
 
 	/**
@@ -224,11 +224,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningPackage(org.omg.sysml.lang.sysml.Package newOwningPackage, NotificationChain msgs) {
-		org.omg.sysml.lang.sysml.Package oldOwningPackage = owningPackage;
-		owningPackage = newOwningPackage;
+	public NotificationChain basicSetOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace, NotificationChain msgs) {
+		org.omg.sysml.lang.sysml.Package oldOwningNamespace = owningNamespace;
+		owningNamespace = newOwningNamespace;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_PACKAGE, oldOwningPackage, newOwningPackage);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_NAMESPACE, oldOwningNamespace, newOwningNamespace);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -239,18 +239,18 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningPackage(org.omg.sysml.lang.sysml.Package newOwningPackage) {
-		if (newOwningPackage != owningPackage) {
+	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
+		if (newOwningNamespace != owningNamespace) {
 			NotificationChain msgs = null;
-			if (owningPackage != null)
-				msgs = ((InternalEObject)owningPackage).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
-			if (newOwningPackage != null)
-				msgs = ((InternalEObject)newOwningPackage).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
-			msgs = basicSetOwningPackage(newOwningPackage, msgs);
+			if (owningNamespace != null)
+				msgs = ((InternalEObject)owningNamespace).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
+			if (newOwningNamespace != null)
+				msgs = ((InternalEObject)newOwningNamespace).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
+			msgs = basicSetOwningNamespace(newOwningNamespace, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_NAMESPACE, newOwningNamespace, newOwningNamespace));
 	}
 
 	/**
@@ -289,10 +289,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwner((Element)otherEnd, msgs);
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				if (owningPackage != null)
-					msgs = ((InternalEObject)owningPackage).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
-				return basicSetOwningPackage((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				if (owningNamespace != null)
+					msgs = ((InternalEObject)owningNamespace).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
+				return basicSetOwningNamespace((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -309,8 +309,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return ((InternalEList<?>)getOwnedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNER:
 				return basicSetOwner(null, msgs);
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				return basicSetOwningPackage(null, msgs);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				return basicSetOwningNamespace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -343,9 +343,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwner();
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return getIdentifier();
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				if (resolve) return getOwningPackage();
-				return basicGetOwningPackage();
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				if (resolve) return getOwningNamespace();
+				return basicGetOwningNamespace();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
 		}
@@ -371,8 +371,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				setOwningPackage((org.omg.sysml.lang.sysml.Package)newValue);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
@@ -398,8 +398,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				setOwningPackage((org.omg.sysml.lang.sysml.Package)null);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
@@ -422,8 +422,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwner() != null;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case SysMLPackage.ELEMENT__OWNING_PACKAGE:
-				return owningPackage != null;
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				return owningNamespace != null;
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}

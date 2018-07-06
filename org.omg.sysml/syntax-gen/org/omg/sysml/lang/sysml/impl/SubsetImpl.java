@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class SubsetImpl extends RelationshipImpl implements Subset {
+public class SubsetImpl extends GeneralizationImpl implements Subset {
 	/**
 	 * The cached value of the '{@link #getSubsettedFeature() <em>Subsetted Feature</em>}' reference.
 	 * <!-- begin-user-doc -->

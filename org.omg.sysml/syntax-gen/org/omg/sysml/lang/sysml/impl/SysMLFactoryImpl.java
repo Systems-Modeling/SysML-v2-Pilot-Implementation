@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -19,6 +20,8 @@ import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureDomain;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Import;
@@ -85,33 +88,36 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SysMLPackage.BEHAVIOR: return createBehavior();
-			case SysMLPackage.GENERALIZATION: return createGeneralization();
+			case SysMLPackage.CLASS: return createClass();
+			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION: return createElementReferenceExpression();
+			case SysMLPackage.MEMBERSHIP: return createMembership();
+			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
+			case SysMLPackage.FEATURE: return createFeature();
+			case SysMLPackage.EXPRESSION: return createExpression();
+			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
+			case SysMLPackage.REDEFINITION: return createRedefinition();
 			case SysMLPackage.PREDICATE: return createPredicate();
 			case SysMLPackage.IMPORT: return createImport();
-			case SysMLPackage.EXPRESSION: return createExpression();
-			case SysMLPackage.FEATURE: return createFeature();
-			case SysMLPackage.MEMBERSHIP: return createMembership();
-			case SysMLPackage.REDEFINITION: return createRedefinition();
-			case SysMLPackage.RELATIONSHIP: return createRelationship();
-			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
-			case SysMLPackage.COMMENT: return createComment();
-			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
-			case SysMLPackage.SUBSET: return createSubset();
-			case SysMLPackage.CLASS: return createClass();
-			case SysMLPackage.ELEMENT: return createElement();
-			case SysMLPackage.FUNCTION: return createFunction();
 			case SysMLPackage.PACKAGE: return createPackage();
-			case SysMLPackage.CONNECTOR: return createConnector();
-			case SysMLPackage.LITERAL_REAL: return createLiteralReal();
-			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
-			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION: return createElementReferenceExpression();
-			case SysMLPackage.LITERAL_NULL: return createLiteralNull();
-			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
-			case SysMLPackage.LITERAL_STRING: return createLiteralString();
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
 			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
+			case SysMLPackage.COMMENT: return createComment();
+			case SysMLPackage.GENERALIZATION: return createGeneralization();
+			case SysMLPackage.FUNCTION: return createFunction();
+			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
+			case SysMLPackage.CONNECTOR: return createConnector();
+			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
+			case SysMLPackage.RELATIONSHIP: return createRelationship();
+			case SysMLPackage.LITERAL_STRING: return createLiteralString();
+			case SysMLPackage.ELEMENT: return createElement();
+			case SysMLPackage.LITERAL_NULL: return createLiteralNull();
+			case SysMLPackage.LITERAL_REAL: return createLiteralReal();
+			case SysMLPackage.BEHAVIOR: return createBehavior();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
+			case SysMLPackage.SUBSET: return createSubset();
+			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
+			case SysMLPackage.ASSOCIATION: return createAssociation();
+			case SysMLPackage.FEATURE_DOMAIN: return createFeatureDomain();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -125,10 +131,10 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SysMLPackage.VISIBILITY_KIND:
-				return createVisibilityKindFromString(eDataType, initialValue);
 			case SysMLPackage.FEATURE_DIRECTION_KIND:
 				return createFeatureDirectionKindFromString(eDataType, initialValue);
+			case SysMLPackage.VISIBILITY_KIND:
+				return createVisibilityKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -142,10 +148,10 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case SysMLPackage.VISIBILITY_KIND:
-				return convertVisibilityKindToString(eDataType, instanceValue);
 			case SysMLPackage.FEATURE_DIRECTION_KIND:
 				return convertFeatureDirectionKindToString(eDataType, instanceValue);
+			case SysMLPackage.VISIBILITY_KIND:
+				return convertVisibilityKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -419,6 +425,36 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public Subset createSubset() {
 		SubsetImpl subset = new SubsetImpl();
 		return subset;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureMembership createFeatureMembership() {
+		FeatureMembershipImpl featureMembership = new FeatureMembershipImpl();
+		return featureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association createAssociation() {
+		AssociationImpl association = new AssociationImpl();
+		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDomain createFeatureDomain() {
+		FeatureDomainImpl featureDomain = new FeatureDomainImpl();
+		return featureDomain;
 	}
 
 	/**

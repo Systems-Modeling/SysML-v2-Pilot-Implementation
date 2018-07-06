@@ -23,7 +23,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningGeneralization <em>Owning Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,14 +50,14 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	protected org.omg.sysml.lang.sysml.Class specific;
 
 	/**
-	 * The cached value of the '{@link #getOwningGeneralization() <em>Owning Generalization</em>}' reference.
+	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwningGeneralization()
+	 * @see #getOwningClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Class owningGeneralization;
+	protected org.omg.sysml.lang.sysml.Class owningClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,16 +159,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getOwningGeneralization() {
-		if (owningGeneralization != null && owningGeneralization.eIsProxy()) {
-			InternalEObject oldOwningGeneralization = (InternalEObject)owningGeneralization;
-			owningGeneralization = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldOwningGeneralization);
-			if (owningGeneralization != oldOwningGeneralization) {
+	public org.omg.sysml.lang.sysml.Class getOwningClass() {
+		if (owningClass != null && owningClass.eIsProxy()) {
+			InternalEObject oldOwningClass = (InternalEObject)owningClass;
+			owningClass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldOwningClass);
+			if (owningClass != oldOwningClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION, oldOwningGeneralization, owningGeneralization));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__OWNING_CLASS, oldOwningClass, owningClass));
 			}
 		}
-		return owningGeneralization;
+		return owningClass;
 	}
 
 	/**
@@ -176,8 +176,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetOwningGeneralization() {
-		return owningGeneralization;
+	public org.omg.sysml.lang.sysml.Class basicGetOwningClass() {
+		return owningClass;
 	}
 
 	/**
@@ -185,11 +185,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningGeneralization(org.omg.sysml.lang.sysml.Class newOwningGeneralization, NotificationChain msgs) {
-		org.omg.sysml.lang.sysml.Class oldOwningGeneralization = owningGeneralization;
-		owningGeneralization = newOwningGeneralization;
+	public NotificationChain basicSetOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass, NotificationChain msgs) {
+		org.omg.sysml.lang.sysml.Class oldOwningClass = owningClass;
+		owningClass = newOwningClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION, oldOwningGeneralization, newOwningGeneralization);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_CLASS, oldOwningClass, newOwningClass);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -200,18 +200,18 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningGeneralization(org.omg.sysml.lang.sysml.Class newOwningGeneralization) {
-		if (newOwningGeneralization != owningGeneralization) {
+	public void setOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass) {
+		if (newOwningClass != owningClass) {
 			NotificationChain msgs = null;
-			if (owningGeneralization != null)
-				msgs = ((InternalEObject)owningGeneralization).eInverseRemove(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
-			if (newOwningGeneralization != null)
-				msgs = ((InternalEObject)newOwningGeneralization).eInverseAdd(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
-			msgs = basicSetOwningGeneralization(newOwningGeneralization, msgs);
+			if (owningClass != null)
+				msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
+			if (newOwningClass != null)
+				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
+			msgs = basicSetOwningClass(newOwningClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION, newOwningGeneralization, newOwningGeneralization));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_CLASS, newOwningClass, newOwningClass));
 	}
 
 	/**
@@ -222,10 +222,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				if (owningGeneralization != null)
-					msgs = ((InternalEObject)owningGeneralization).eInverseRemove(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
-				return basicSetOwningGeneralization((org.omg.sysml.lang.sysml.Class)otherEnd, msgs);
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				if (owningClass != null)
+					msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_GENERALIZATION, org.omg.sysml.lang.sysml.Class.class, msgs);
+				return basicSetOwningClass((org.omg.sysml.lang.sysml.Class)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -238,8 +238,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				return basicSetOwningGeneralization(null, msgs);
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -258,9 +258,9 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				if (resolve) return getSpecific();
 				return basicGetSpecific();
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				if (resolve) return getOwningGeneralization();
-				return basicGetOwningGeneralization();
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				if (resolve) return getOwningClass();
+				return basicGetOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,8 +279,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((org.omg.sysml.lang.sysml.Class)newValue);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				setOwningGeneralization((org.omg.sysml.lang.sysml.Class)newValue);
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -300,8 +300,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((org.omg.sysml.lang.sysml.Class)null);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				setOwningGeneralization((org.omg.sysml.lang.sysml.Class)null);
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -319,8 +319,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 				return general != null;
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				return specific != null;
-			case SysMLPackage.GENERALIZATION__OWNING_GENERALIZATION:
-				return owningGeneralization != null;
+			case SysMLPackage.GENERALIZATION__OWNING_CLASS:
+				return owningClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

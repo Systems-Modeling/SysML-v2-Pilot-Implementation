@@ -19,8 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsOrdered <em>Is Ordered</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingClasses <em>Featuring Classes</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
@@ -29,15 +28,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset <em>Owned Subset</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsPort <em>Is Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature()
  * @model
  * @generated
  */
-public interface Feature extends org.omg.sysml.lang.sysml.Package {
+public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -195,55 +194,36 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	void setIsOrdered(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Featuring Classes</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getFeature <em>Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Featuring Classes</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Featuring Classes</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingClasses()
-	 * @see org.omg.sysml.lang.sysml.Class#getFeature
-	 * @model opposite="feature" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<org.omg.sysml.lang.sysml.Class> getFeaturingClasses();
-
-	/**
-	 * Returns the value of the '<em><b>Class</b></em>' reference.
+	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwnedFeature <em>Owned Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Class</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Class</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(org.omg.sysml.lang.sysml.Class)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Class()
+	 * @return the value of the '<em>Owning Class</em>' reference.
+	 * @see #setOwningClass(org.omg.sysml.lang.sysml.Class)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningClass()
 	 * @see org.omg.sysml.lang.sysml.Class#getOwnedFeature
-	 * @model opposite="ownedFeature" ordered="false"
+	 * @model opposite="ownedFeature" derived="true" ordered="false"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getClass_();
+	org.omg.sysml.lang.sysml.Class getOwningClass();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getClass_ <em>Class</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningClass <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' reference.
-	 * @see #getClass_()
+	 * @param value the new value of the '<em>Owning Class</em>' reference.
+	 * @see #getOwningClass()
 	 * @generated
 	 */
-	void setClass(org.omg.sysml.lang.sysml.Class value);
+	void setOwningClass(org.omg.sysml.lang.sysml.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getTypedFeature <em>Typed Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference list isn't clear,
@@ -252,8 +232,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @see org.omg.sysml.lang.sysml.Class#getTypedFeature
-	 * @model opposite="typedFeature" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getType();
@@ -261,6 +240,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwningFeature <em>Owning Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Type</em>' reference list isn't clear,
@@ -269,7 +249,8 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedType()
-	 * @model ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Class#getOwningFeature
+	 * @model opposite="owningFeature" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getOwnedType();
@@ -285,7 +266,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
-	 * @model ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getReferencedType();
@@ -303,13 +284,14 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Nested Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_NestedFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getNestingFeature
-	 * @model opposite="nestingFeature" ordered="false"
+	 * @model opposite="nestingFeature" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Feature> getNestedFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Nesting Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Nesting Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getNestedFeature <em>Nested Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -317,29 +299,17 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nesting Feature</em>' reference.
-	 * @see #setNestingFeature(Feature)
+	 * @return the value of the '<em>Nesting Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_NestingFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getNestedFeature
-	 * @model opposite="nestedFeature" ordered="false"
+	 * @model opposite="nestedFeature" derived="true" ordered="false"
 	 * @generated
 	 */
-	Feature getNestingFeature();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getNestingFeature <em>Nesting Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nesting Feature</em>' reference.
-	 * @see #getNestingFeature()
-	 * @generated
-	 */
-	void setNestingFeature(Feature value);
+	EList<Feature> getNestingFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Redefinition}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Redefinition#getOwningFeature <em>Owning Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Redefinition</em>' reference list isn't clear,
@@ -348,8 +318,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
-	 * @see org.omg.sysml.lang.sysml.Redefinition#getOwningFeature
-	 * @model opposite="owningFeature" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Redefinition> getOwnedRedefinition();
@@ -399,58 +368,49 @@ public interface Feature extends org.omg.sysml.lang.sysml.Package {
 	void setValue(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Port</b></em>' attribute.
+	 * Returns the value of the '<em><b>Participant Of Association</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getParticipant <em>Participant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Port</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Participant Of Association</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Port</em>' attribute.
-	 * @see #setIsPort(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsPort()
-	 * @model required="true" ordered="false"
+	 * @return the value of the '<em>Participant Of Association</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ParticipantOfAssociation()
+	 * @see org.omg.sysml.lang.sysml.Association#getParticipant
+	 * @model opposite="participant" derived="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIsPort();
+	EList<Association> getParticipantOfAssociation();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsPort <em>Is Port</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Port</em>' attribute.
-	 * @see #isIsPort()
-	 * @generated
-	 */
-	void setIsPort(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.FeatureDirectionKind}.
+	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement <em>Owned Feature Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Owning Feature Membership</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Direction</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
-	 * @see #setDirection(FeatureDirectionKind)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Direction()
-	 * @model ordered="false"
+	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @see #setOwningFeatureMembership(FeatureMembership)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement
+	 * @model opposite="ownedFeatureElement" transient="false" ordered="false"
 	 * @generated
 	 */
-	FeatureDirectionKind getDirection();
+	FeatureMembership getOwningFeatureMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Direction</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
-	 * @see #getDirection()
+	 * @param value the new value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @see #getOwningFeatureMembership()
 	 * @generated
 	 */
-	void setDirection(FeatureDirectionKind value);
+	void setOwningFeatureMembership(FeatureMembership value);
 
 } // Feature

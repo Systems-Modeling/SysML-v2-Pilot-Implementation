@@ -14,14 +14,13 @@ package org.omg.sysml.lang.sysml;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Redefinition#getRedefinedFeature <em>Redefined Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Redefinition#getRedefiningFeature <em>Redefining Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Redefinition#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition()
  * @model
  * @generated
  */
-public interface Redefinition extends Relationship {
+public interface Redefinition extends Subset {
 	/**
 	 * Returns the value of the '<em><b>Redefined Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -73,33 +72,5 @@ public interface Redefinition extends Relationship {
 	 * @generated
 	 */
 	void setRedefiningFeature(Feature value);
-
-	/**
-	 * Returns the value of the '<em><b>Owning Feature</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Feature</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Feature</em>' reference.
-	 * @see #setOwningFeature(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_OwningFeature()
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition
-	 * @model opposite="ownedRedefinition" derived="true" ordered="false"
-	 * @generated
-	 */
-	Feature getOwningFeature();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Redefinition#getOwningFeature <em>Owning Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature</em>' reference.
-	 * @see #getOwningFeature()
-	 * @generated
-	 */
-	void setOwningFeature(Feature value);
 
 } // Redefinition

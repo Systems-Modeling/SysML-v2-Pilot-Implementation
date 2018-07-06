@@ -3,8 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -24,12 +22,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getRedefinedFeature <em>Redefined Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getRedefiningFeature <em>Redefining Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
+public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	/**
 	 * The cached value of the '{@link #getRedefinedFeature() <em>Redefined Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -49,16 +46,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 	 * @ordered
 	 */
 	protected Feature redefiningFeature;
-
-	/**
-	 * The cached value of the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature owningFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,96 +147,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getOwningFeature() {
-		if (owningFeature != null && owningFeature.eIsProxy()) {
-			InternalEObject oldOwningFeature = (InternalEObject)owningFeature;
-			owningFeature = (Feature)eResolveProxy(oldOwningFeature);
-			if (owningFeature != oldOwningFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.REDEFINITION__OWNING_FEATURE, oldOwningFeature, owningFeature));
-			}
-		}
-		return owningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetOwningFeature() {
-		return owningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningFeature(Feature newOwningFeature, NotificationChain msgs) {
-		Feature oldOwningFeature = owningFeature;
-		owningFeature = newOwningFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.REDEFINITION__OWNING_FEATURE, oldOwningFeature, newOwningFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningFeature(Feature newOwningFeature) {
-		if (newOwningFeature != owningFeature) {
-			NotificationChain msgs = null;
-			if (owningFeature != null)
-				msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_REDEFINITION, Feature.class, msgs);
-			if (newOwningFeature != null)
-				msgs = ((InternalEObject)newOwningFeature).eInverseAdd(this, SysMLPackage.FEATURE__OWNED_REDEFINITION, Feature.class, msgs);
-			msgs = basicSetOwningFeature(newOwningFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.REDEFINITION__OWNING_FEATURE, newOwningFeature, newOwningFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				if (owningFeature != null)
-					msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_REDEFINITION, Feature.class, msgs);
-				return basicSetOwningFeature((Feature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				return basicSetOwningFeature(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -259,9 +156,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				if (resolve) return getRedefiningFeature();
 				return basicGetRedefiningFeature();
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				if (resolve) return getOwningFeature();
-				return basicGetOwningFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,9 +173,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 				return;
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				setRedefiningFeature((Feature)newValue);
-				return;
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				setOwningFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -301,9 +192,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				setRedefiningFeature((Feature)null);
 				return;
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				setOwningFeature((Feature)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -320,8 +208,6 @@ public class RedefinitionImpl extends RelationshipImpl implements Redefinition {
 				return redefinedFeature != null;
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				return redefiningFeature != null;
-			case SysMLPackage.REDEFINITION__OWNING_FEATURE:
-				return owningFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

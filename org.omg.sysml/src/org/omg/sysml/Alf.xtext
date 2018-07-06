@@ -36,7 +36,7 @@ UnitDefinition returns SysML::Package:
 /* PACKAGES */
 
 PackageDefinition returns SysML::Package: 
-	'package' name = Name '{' ( membership += MemberDefinition )* '}' 
+	'package' name = Name '{' ( ownedMembership += PackageMember )* '}' 
 ;
 
 PackageDefinitionOrStub returns SysML::Package :
@@ -44,12 +44,26 @@ PackageDefinitionOrStub returns SysML::Package :
 	PackageDefinition
 ;
 
-MemberDefinition returns SysML::Membership : 
+PackageMember returns SysML::Membership : 
+	NonFeatureMember | PackagedFeatureMember
+;
+
+NonFeatureMember returns SysML::Membership : 
 //  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
-	( ownedMemberElement = PackagedElementDefinition
-	| MemberKind? ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	( ownedMemberElement = NonFeatureDefinition
+	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
+	| 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+	)
+;
+
+PackagedFeatureMember returns SysML::Membership : 
+//  ( documentation += DOCUMENTATION_COMMENT )?
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
+	( 'feature'? ownedMemberElement = FeatureDefinition
+	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
@@ -66,7 +80,11 @@ MemberKind :
 //;
 
 PackagedElementDefinition returns SysML::Element:
-  PackageDefinitionOrStub | ClassifierDefinitionOrStub | FeatureDefinition
+  NonFeatureDefinition | FeatureDefinition
+;
+
+NonFeatureDefinition returns SysML::Element:
+	PackageDefinitionOrStub | ClassifierDefinitionOrStub
 ;
 
 ClassifierDefinitionOrStub returns SysML::Class:
@@ -79,7 +97,7 @@ ClassDeclaration returns SysML::Class :
 //	( ^import += ImportDeclaration )*
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( ( 'is' | 'specializes' ) membership += OwnedGeneralization ( ',' membership += OwnedGeneralization )* )?
+	( ( 'is' | 'specializes' ) ownedMembership += OwnedGeneralization ( ',' ownedMembership += OwnedGeneralization )* )?
 ;
 
 OwnedGeneralization returns SysML::Membership:
@@ -91,7 +109,7 @@ Generalization returns SysML::Generalization:
 ;
 
 ClassDefinition returns SysML::Class : 
-  ClassDeclaration '{' ( membership += MemberDefinition )* '}'
+  ClassDeclaration '{' ( ownedMembership += ClassMember )* '}'
 ;
 
 ClassDefinitionOrStub returns SysML::Class :
@@ -113,34 +131,38 @@ ClassMember returns groups::NamespaceMembership :
 ;
 */
 
-//ClassElementDefinition returns core::Element :
-//	FeatureDefinition
-//;
-
-/* FEATURES */
-
-FeatureDefinition returns SysML::Feature:
-	BasicFeatureDefinition | ConnectorDefinition
+ClassMember returns SysML::Membership : 
+	NonFeatureMember | ClassFeatureMember
 ;
 
-BasicFeatureDefinition returns SysML::Feature :
-	( 'feature' | isPort ?= 'port' )? ( direction = FeatureDirection )?
-	( name = Name 
-	  ( ':' referencedType += [SysML::Class | QualifiedName] 
-	  	( membership += OwnedRedefinitionOrSubset )?
-      ) ?
-      ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	  ( ( '=' value = Expression )? ';' | '{' ( membership += MemberDefinition )* '}' )
-	| ( name = Name )? membership += OwnedRedefinitionOrSubset
-	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	     ( '=' value = Expression ';' | '{' ( membership += MemberDefinition )* '}' )
-	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
-	  )
-	)
+ClassFeatureMember returns SysML::FeatureMembership : 
+//  ( documentation += DOCUMENTATION_COMMENT )?
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
+    ( 'feature' | isPort ?= 'port' direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
+    | 'connector' ownedMemberElement = ConnectorDefinition
+	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
+;
+
+/* FEATURES */
+
+FeatureDefinition returns SysML::Feature :
+	( name = Name 
+	  ( ':' referencedType += [SysML::Class | QualifiedName] 
+	  	( ownedMembership += OwnedRedefinitionOrSubset )?
+      ) ?
+      ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
+	  ( ( '=' value = Expression )? ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	| ( name = Name )? ownedMembership += OwnedRedefinitionOrSubset
+	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
+	     ( '=' value = Expression ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
+	  )
+	)
 ;
 
 OwnedRedefinitionOrSubset returns SysML::Membership:
@@ -158,9 +180,9 @@ Subset returns SysML::Subset:
 ;
 
 ConnectorDefinition returns SysML::Connector:
-	'connector' (name = Name)? 
-		sourcePath += [SysML::Feature | QualifiedName] '=>' 
-		targetPath += [SysML::Feature | QualifiedName] ';'
+	(name = Name)? 
+		sourceFeature = [SysML::Feature | QualifiedName] '=>' 
+		targetFeature = [SysML::Feature | QualifiedName] ';'
 ;
 
 //AnonymousClassDefinition returns SysML::Class :

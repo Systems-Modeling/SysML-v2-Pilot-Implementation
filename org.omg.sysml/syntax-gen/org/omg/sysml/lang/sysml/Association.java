@@ -40,7 +40,7 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
-	 * @model lower="2" upper="2" derived="true" ordered="false"
+	 * @model upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getRelatedType();
@@ -56,7 +56,7 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	 * @return the value of the '<em>Source Type</em>' reference.
 	 * @see #setSourceType(org.omg.sysml.lang.sysml.Class)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceType()
-	 * @model required="true" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Class getSourceType();
@@ -82,7 +82,7 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	 * @return the value of the '<em>Target Type</em>' reference.
 	 * @see #setTargetType(org.omg.sysml.lang.sysml.Class)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetType()
-	 * @model required="true" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Class getTargetType();
@@ -110,47 +110,67 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	 * @return the value of the '<em>Participant</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_Participant()
 	 * @see org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation
-	 * @model opposite="participantOfAssociation" lower="2" upper="2" derived="true" ordered="false"
+	 * @model opposite="participantOfAssociation" upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Feature> getParticipant();
 
 	/**
-	 * Returns the value of the '<em><b>Source Participant</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * Returns the value of the '<em><b>Source Participant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Participant</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Participant</em>' reference list.
+	 * @return the value of the '<em>Source Participant</em>' reference.
+	 * @see #setSourceParticipant(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceParticipant()
-	 * @model lower="2" upper="2" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getSourceParticipant();
+	Feature getSourceParticipant();
 
 	/**
-	 * Returns the value of the '<em><b>Target Participant</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Participant</em>' reference.
+	 * @see #getSourceParticipant()
+	 * @generated
+	 */
+	void setSourceParticipant(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Participant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Participant</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Participant</em>' reference list.
+	 * @return the value of the '<em>Target Participant</em>' reference.
+	 * @see #setTargetParticipant(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetParticipant()
-	 * @model lower="2" upper="2" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getTargetParticipant();
+	Feature getTargetParticipant();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Participant</em>' reference.
+	 * @see #getTargetParticipant()
+	 * @generated
+	 */
+	void setTargetParticipant(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>End</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureDomain}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureDomain#getEndOfAssociation <em>End Of Association</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End</em>' reference list isn't clear,
@@ -159,42 +179,62 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_End()
-	 * @see org.omg.sysml.lang.sysml.FeatureDomain#getEndOfAssociation
-	 * @model opposite="endOfAssociation" required="true" upper="2" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Feature#getEndOfAssociation
+	 * @model opposite="endOfAssociation" upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<FeatureDomain> getEnd();
+	EList<Feature> getEnd();
 
 	/**
-	 * Returns the value of the '<em><b>Target End</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureDomain}.
+	 * Returns the value of the '<em><b>Target End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target End</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target End</em>' reference list.
+	 * @return the value of the '<em>Target End</em>' reference.
+	 * @see #setTargetEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetEnd()
-	 * @model lower="2" upper="2" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<FeatureDomain> getTargetEnd();
+	Feature getTargetEnd();
 
 	/**
-	 * Returns the value of the '<em><b>Source End</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureDomain}.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target End</em>' reference.
+	 * @see #getTargetEnd()
+	 * @generated
+	 */
+	void setTargetEnd(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Source End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source End</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source End</em>' reference list.
+	 * @return the value of the '<em>Source End</em>' reference.
+	 * @see #setSourceEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceEnd()
-	 * @model lower="2" upper="2" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<FeatureDomain> getSourceEnd();
+	Feature getSourceEnd();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source End</em>' reference.
+	 * @see #getSourceEnd()
+	 * @generated
+	 */
+	void setSourceEnd(Feature value);
 
 } // Association

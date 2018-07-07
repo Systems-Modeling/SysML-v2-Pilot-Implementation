@@ -2757,13 +2757,31 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNING_FEATURE_MEMBERSHIP = CLASS_FEATURE_COUNT + 16;
 
 	/**
+	 * The feature id for the '<em><b>End Of Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__END_OF_ASSOCIATION = CLASS_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_COMPOSITE = CLASS_FEATURE_COUNT + 18;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 17;
+	int FEATURE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 19;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -4472,13 +4490,31 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNING_FEATURE_MEMBERSHIP = RELATIONSHIP_FEATURE_COUNT + 30;
 
 	/**
+	 * The feature id for the '<em><b>End Of Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__END_OF_ASSOCIATION = RELATIONSHIP_FEATURE_COUNT + 31;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__IS_COMPOSITE = RELATIONSHIP_FEATURE_COUNT + 32;
+
+	/**
 	 * The feature id for the '<em><b>Related Features</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__RELATED_FEATURES = RELATIONSHIP_FEATURE_COUNT + 31;
+	int CONNECTOR__RELATED_FEATURES = RELATIONSHIP_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Source Feature</b></em>' reference.
@@ -4487,7 +4523,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_FEATURE = RELATIONSHIP_FEATURE_COUNT + 32;
+	int CONNECTOR__SOURCE_FEATURE = RELATIONSHIP_FEATURE_COUNT + 34;
 
 	/**
 	 * The feature id for the '<em><b>Target Feature</b></em>' reference.
@@ -4496,7 +4532,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_FEATURE = RELATIONSHIP_FEATURE_COUNT + 33;
+	int CONNECTOR__TARGET_FEATURE = RELATIONSHIP_FEATURE_COUNT + 35;
 
 	/**
 	 * The feature id for the '<em><b>Source Path</b></em>' reference list.
@@ -4505,7 +4541,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_PATH = RELATIONSHIP_FEATURE_COUNT + 34;
+	int CONNECTOR__SOURCE_PATH = RELATIONSHIP_FEATURE_COUNT + 36;
 
 	/**
 	 * The feature id for the '<em><b>Target Path</b></em>' reference list.
@@ -4514,7 +4550,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_PATH = RELATIONSHIP_FEATURE_COUNT + 35;
+	int CONNECTOR__TARGET_PATH = RELATIONSHIP_FEATURE_COUNT + 37;
 
 	/**
 	 * The feature id for the '<em><b>Association</b></em>' reference.
@@ -4523,7 +4559,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__ASSOCIATION = RELATIONSHIP_FEATURE_COUNT + 36;
+	int CONNECTOR__ASSOCIATION = RELATIONSHIP_FEATURE_COUNT + 38;
 
 	/**
 	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
@@ -4532,7 +4568,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_DIRECTED = RELATIONSHIP_FEATURE_COUNT + 37;
+	int CONNECTOR__IS_DIRECTED = RELATIONSHIP_FEATURE_COUNT + 39;
 
 	/**
 	 * The feature id for the '<em><b>Source Lower</b></em>' containment reference.
@@ -4541,7 +4577,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_LOWER = RELATIONSHIP_FEATURE_COUNT + 38;
+	int CONNECTOR__SOURCE_LOWER = RELATIONSHIP_FEATURE_COUNT + 40;
 
 	/**
 	 * The feature id for the '<em><b>Source Upper</b></em>' containment reference.
@@ -4550,7 +4586,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__SOURCE_UPPER = RELATIONSHIP_FEATURE_COUNT + 39;
+	int CONNECTOR__SOURCE_UPPER = RELATIONSHIP_FEATURE_COUNT + 41;
 
 	/**
 	 * The feature id for the '<em><b>Target Lower</b></em>' containment reference.
@@ -4559,7 +4595,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_LOWER = RELATIONSHIP_FEATURE_COUNT + 40;
+	int CONNECTOR__TARGET_LOWER = RELATIONSHIP_FEATURE_COUNT + 42;
 
 	/**
 	 * The feature id for the '<em><b>Target Upper</b></em>' containment reference.
@@ -4568,7 +4604,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__TARGET_UPPER = RELATIONSHIP_FEATURE_COUNT + 41;
+	int CONNECTOR__TARGET_UPPER = RELATIONSHIP_FEATURE_COUNT + 43;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -4577,7 +4613,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 42;
+	int CONNECTOR_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 44;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -5831,22 +5867,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__DOMAIN = MEMBERSHIP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>End Of Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_MEMBERSHIP__END_OF_ASSOCIATION = MEMBERSHIP_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 3;
+	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
@@ -5855,7 +5882,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 4;
+	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
@@ -5864,7 +5891,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 5;
+	int FEATURE_MEMBERSHIP__MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Element</b></em>' containment reference.
@@ -5873,7 +5900,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT = MEMBERSHIP_FEATURE_COUNT + 6;
+	int FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT = MEMBERSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
@@ -5882,7 +5909,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__OWNING_CLASS = MEMBERSHIP_FEATURE_COUNT + 7;
+	int FEATURE_MEMBERSHIP__OWNING_CLASS = MEMBERSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Feature Membership</em>' class.
@@ -5891,7 +5918,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 8;
+	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -6146,7 +6173,7 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__PARTICIPANT = RELATIONSHIP_FEATURE_COUNT + 17;
 
 	/**
-	 * The feature id for the '<em><b>Source Participant</b></em>' reference list.
+	 * The feature id for the '<em><b>Source Participant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6155,7 +6182,7 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__SOURCE_PARTICIPANT = RELATIONSHIP_FEATURE_COUNT + 18;
 
 	/**
-	 * The feature id for the '<em><b>Target Participant</b></em>' reference list.
+	 * The feature id for the '<em><b>Target Participant</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6173,7 +6200,7 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__END = RELATIONSHIP_FEATURE_COUNT + 20;
 
 	/**
-	 * The feature id for the '<em><b>Target End</b></em>' reference list.
+	 * The feature id for the '<em><b>Target End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6182,7 +6209,7 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__TARGET_END = RELATIONSHIP_FEATURE_COUNT + 21;
 
 	/**
-	 * The feature id for the '<em><b>Source End</b></em>' reference list.
+	 * The feature id for the '<em><b>Source End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6317,22 +6344,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_DOMAIN__DOMAIN = RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>End Of Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_DOMAIN__END_OF_ASSOCIATION = RELATIONSHIP_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Feature Domain</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_DOMAIN_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+	int FEATURE_DOMAIN_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Feature Domain</em>' class.
@@ -7410,6 +7428,28 @@ public interface SysMLPackage extends EPackage {
 	EReference getFeature_OwningFeatureMembership();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>End Of Association</em>'.
+	 * @see org.omg.sysml.lang.sysml.Feature#getEndOfAssociation()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_EndOfAssociation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.Feature#isIsComposite <em>Is Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Composite</em>'.
+	 * @see org.omg.sysml.lang.sysml.Feature#isIsComposite()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_IsComposite();
+
+	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Function <em>Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7675,10 +7715,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getAssociation_Participant();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Source Participant</em>'.
+	 * @return the meta object for the reference '<em>Source Participant</em>'.
 	 * @see org.omg.sysml.lang.sysml.Association#getSourceParticipant()
 	 * @see #getAssociation()
 	 * @generated
@@ -7686,10 +7726,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getAssociation_SourceParticipant();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Target Participant</em>'.
+	 * @return the meta object for the reference '<em>Target Participant</em>'.
 	 * @see org.omg.sysml.lang.sysml.Association#getTargetParticipant()
 	 * @see #getAssociation()
 	 * @generated
@@ -7708,10 +7748,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getAssociation_End();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Target End</em>'.
+	 * @return the meta object for the reference '<em>Target End</em>'.
 	 * @see org.omg.sysml.lang.sysml.Association#getTargetEnd()
 	 * @see #getAssociation()
 	 * @generated
@@ -7719,10 +7759,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getAssociation_TargetEnd();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Source End</em>'.
+	 * @return the meta object for the reference '<em>Source End</em>'.
 	 * @see org.omg.sysml.lang.sysml.Association#getSourceEnd()
 	 * @see #getAssociation()
 	 * @generated
@@ -7760,17 +7800,6 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureDomain_Domain();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.FeatureDomain#getEndOfAssociation <em>End Of Association</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>End Of Association</em>'.
-	 * @see org.omg.sysml.lang.sysml.FeatureDomain#getEndOfAssociation()
-	 * @see #getFeatureDomain()
-	 * @generated
-	 */
-	EReference getFeatureDomain_EndOfAssociation();
 
 	/**
 	 * Returns the meta object for enum '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}'.
@@ -8630,6 +8659,22 @@ public interface SysMLPackage extends EPackage {
 		EReference FEATURE__OWNING_FEATURE_MEMBERSHIP = eINSTANCE.getFeature_OwningFeatureMembership();
 
 		/**
+		 * The meta object literal for the '<em><b>End Of Association</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__END_OF_ASSOCIATION = eINSTANCE.getFeature_EndOfAssociation();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Composite</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__IS_COMPOSITE = eINSTANCE.getFeature_IsComposite();
+
+		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.FunctionImpl <em>Function</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8850,7 +8895,7 @@ public interface SysMLPackage extends EPackage {
 		EReference ASSOCIATION__PARTICIPANT = eINSTANCE.getAssociation_Participant();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Participant</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Source Participant</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -8858,7 +8903,7 @@ public interface SysMLPackage extends EPackage {
 		EReference ASSOCIATION__SOURCE_PARTICIPANT = eINSTANCE.getAssociation_SourceParticipant();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Participant</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Target Participant</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -8874,7 +8919,7 @@ public interface SysMLPackage extends EPackage {
 		EReference ASSOCIATION__END = eINSTANCE.getAssociation_End();
 
 		/**
-		 * The meta object literal for the '<em><b>Target End</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Target End</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -8882,7 +8927,7 @@ public interface SysMLPackage extends EPackage {
 		EReference ASSOCIATION__TARGET_END = eINSTANCE.getAssociation_TargetEnd();
 
 		/**
-		 * The meta object literal for the '<em><b>Source End</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Source End</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -8914,14 +8959,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_DOMAIN__DOMAIN = eINSTANCE.getFeatureDomain_Domain();
-
-		/**
-		 * The meta object literal for the '<em><b>End Of Association</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE_DOMAIN__END_OF_ASSOCIATION = eINSTANCE.getFeatureDomain_EndOfAssociation();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.

@@ -22,17 +22,17 @@ package VehicleDefinitions {
 	
 	class WheelHub { }
 	
-	class Wheel {
-		port in hub: WheelHub; 
-	}
+	class Wheel { }
 	
-	class Axle {
-		port out leftMountingPoint: WheelHub;
-		port out rightMountingPoint: WheelHub;
-	}
+	class Axle { }
 	
 	class Lugbolt {
 		feature torque: Torque;
+	}
+	
+	assoc Mounting {
+		feature hub: WheelHub;
+		feature axle: Axle;
 	}
 	
 }

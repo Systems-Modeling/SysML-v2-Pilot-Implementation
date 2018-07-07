@@ -66,6 +66,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/participantOfAssociation"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningFeatureMembership"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/endOfAssociation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isComposite"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//Expression"/>
     <genClasses ecoreClass="SysML.ecore#//LiteralExpression"/>
@@ -176,7 +178,6 @@
     <genClasses ecoreClass="SysML.ecore#//FeatureDomain">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureDomain/feature"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureDomain/domain"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureDomain/endOfAssociation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

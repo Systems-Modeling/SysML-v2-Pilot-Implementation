@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDomain;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Import;
@@ -258,24 +257,24 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	protected EList<Feature> participant;
 
 	/**
-	 * The cached value of the '{@link #getSourceParticipant() <em>Source Participant</em>}' reference list.
+	 * The cached value of the '{@link #getSourceParticipant() <em>Source Participant</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceParticipant()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> sourceParticipant;
+	protected Feature sourceParticipant;
 
 	/**
-	 * The cached value of the '{@link #getTargetParticipant() <em>Target Participant</em>}' reference list.
+	 * The cached value of the '{@link #getTargetParticipant() <em>Target Participant</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetParticipant()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> targetParticipant;
+	protected Feature targetParticipant;
 
 	/**
 	 * The cached value of the '{@link #getEnd() <em>End</em>}' reference list.
@@ -285,27 +284,27 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FeatureDomain> end;
+	protected EList<Feature> end;
 
 	/**
-	 * The cached value of the '{@link #getTargetEnd() <em>Target End</em>}' reference list.
+	 * The cached value of the '{@link #getTargetEnd() <em>Target End</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FeatureDomain> targetEnd;
+	protected Feature targetEnd;
 
 	/**
-	 * The cached value of the '{@link #getSourceEnd() <em>Source End</em>}' reference list.
+	 * The cached value of the '{@link #getSourceEnd() <em>Source End</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FeatureDomain> sourceEnd;
+	protected Feature sourceEnd;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -656,9 +655,14 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getSourceParticipant() {
-		if (sourceParticipant == null) {
-			sourceParticipant = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT);
+	public Feature getSourceParticipant() {
+		if (sourceParticipant != null && sourceParticipant.eIsProxy()) {
+			InternalEObject oldSourceParticipant = (InternalEObject)sourceParticipant;
+			sourceParticipant = (Feature)eResolveProxy(oldSourceParticipant);
+			if (sourceParticipant != oldSourceParticipant) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT, oldSourceParticipant, sourceParticipant));
+			}
 		}
 		return sourceParticipant;
 	}
@@ -668,9 +672,35 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getTargetParticipant() {
-		if (targetParticipant == null) {
-			targetParticipant = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT);
+	public Feature basicGetSourceParticipant() {
+		return sourceParticipant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceParticipant(Feature newSourceParticipant) {
+		Feature oldSourceParticipant = sourceParticipant;
+		sourceParticipant = newSourceParticipant;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT, oldSourceParticipant, sourceParticipant));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getTargetParticipant() {
+		if (targetParticipant != null && targetParticipant.eIsProxy()) {
+			InternalEObject oldTargetParticipant = (InternalEObject)targetParticipant;
+			targetParticipant = (Feature)eResolveProxy(oldTargetParticipant);
+			if (targetParticipant != oldTargetParticipant) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT, oldTargetParticipant, targetParticipant));
+			}
 		}
 		return targetParticipant;
 	}
@@ -680,9 +710,30 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FeatureDomain> getEnd() {
+	public Feature basicGetTargetParticipant() {
+		return targetParticipant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetParticipant(Feature newTargetParticipant) {
+		Feature oldTargetParticipant = targetParticipant;
+		targetParticipant = newTargetParticipant;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT, oldTargetParticipant, targetParticipant));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getEnd() {
 		if (end == null) {
-			end = new EObjectWithInverseResolvingEList<FeatureDomain>(FeatureDomain.class, this, SysMLPackage.ASSOCIATION__END, SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION);
+			end = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__END, SysMLPackage.FEATURE__END_OF_ASSOCIATION);
 		}
 		return end;
 	}
@@ -692,9 +743,14 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FeatureDomain> getTargetEnd() {
-		if (targetEnd == null) {
-			targetEnd = new EObjectResolvingEList<FeatureDomain>(FeatureDomain.class, this, SysMLPackage.ASSOCIATION__TARGET_END);
+	public Feature getTargetEnd() {
+		if (targetEnd != null && targetEnd.eIsProxy()) {
+			InternalEObject oldTargetEnd = (InternalEObject)targetEnd;
+			targetEnd = (Feature)eResolveProxy(oldTargetEnd);
+			if (targetEnd != oldTargetEnd) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSOCIATION__TARGET_END, oldTargetEnd, targetEnd));
+			}
 		}
 		return targetEnd;
 	}
@@ -704,11 +760,58 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FeatureDomain> getSourceEnd() {
-		if (sourceEnd == null) {
-			sourceEnd = new EObjectResolvingEList<FeatureDomain>(FeatureDomain.class, this, SysMLPackage.ASSOCIATION__SOURCE_END);
+	public Feature basicGetTargetEnd() {
+		return targetEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetEnd(Feature newTargetEnd) {
+		Feature oldTargetEnd = targetEnd;
+		targetEnd = newTargetEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__TARGET_END, oldTargetEnd, targetEnd));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getSourceEnd() {
+		if (sourceEnd != null && sourceEnd.eIsProxy()) {
+			InternalEObject oldSourceEnd = (InternalEObject)sourceEnd;
+			sourceEnd = (Feature)eResolveProxy(oldSourceEnd);
+			if (sourceEnd != oldSourceEnd) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSOCIATION__SOURCE_END, oldSourceEnd, sourceEnd));
+			}
 		}
 		return sourceEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetSourceEnd() {
+		return sourceEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceEnd(Feature newSourceEnd) {
+		Feature oldSourceEnd = sourceEnd;
+		sourceEnd = newSourceEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__SOURCE_END, oldSourceEnd, sourceEnd));
 	}
 
 	/**
@@ -844,15 +947,19 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 			case SysMLPackage.ASSOCIATION__PARTICIPANT:
 				return getParticipant();
 			case SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT:
-				return getSourceParticipant();
+				if (resolve) return getSourceParticipant();
+				return basicGetSourceParticipant();
 			case SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT:
-				return getTargetParticipant();
+				if (resolve) return getTargetParticipant();
+				return basicGetTargetParticipant();
 			case SysMLPackage.ASSOCIATION__END:
 				return getEnd();
 			case SysMLPackage.ASSOCIATION__TARGET_END:
-				return getTargetEnd();
+				if (resolve) return getTargetEnd();
+				return basicGetTargetEnd();
 			case SysMLPackage.ASSOCIATION__SOURCE_END:
-				return getSourceEnd();
+				if (resolve) return getSourceEnd();
+				return basicGetSourceEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -935,24 +1042,20 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 				getParticipant().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT:
-				getSourceParticipant().clear();
-				getSourceParticipant().addAll((Collection<? extends Feature>)newValue);
+				setSourceParticipant((Feature)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT:
-				getTargetParticipant().clear();
-				getTargetParticipant().addAll((Collection<? extends Feature>)newValue);
+				setTargetParticipant((Feature)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__END:
 				getEnd().clear();
-				getEnd().addAll((Collection<? extends FeatureDomain>)newValue);
+				getEnd().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_END:
-				getTargetEnd().clear();
-				getTargetEnd().addAll((Collection<? extends FeatureDomain>)newValue);
+				setTargetEnd((Feature)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_END:
-				getSourceEnd().clear();
-				getSourceEnd().addAll((Collection<? extends FeatureDomain>)newValue);
+				setSourceEnd((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1021,19 +1124,19 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 				getParticipant().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT:
-				getSourceParticipant().clear();
+				setSourceParticipant((Feature)null);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT:
-				getTargetParticipant().clear();
+				setTargetParticipant((Feature)null);
 				return;
 			case SysMLPackage.ASSOCIATION__END:
 				getEnd().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_END:
-				getTargetEnd().clear();
+				setTargetEnd((Feature)null);
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_END:
-				getSourceEnd().clear();
+				setSourceEnd((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1084,15 +1187,15 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 			case SysMLPackage.ASSOCIATION__PARTICIPANT:
 				return participant != null && !participant.isEmpty();
 			case SysMLPackage.ASSOCIATION__SOURCE_PARTICIPANT:
-				return sourceParticipant != null && !sourceParticipant.isEmpty();
+				return sourceParticipant != null;
 			case SysMLPackage.ASSOCIATION__TARGET_PARTICIPANT:
-				return targetParticipant != null && !targetParticipant.isEmpty();
+				return targetParticipant != null;
 			case SysMLPackage.ASSOCIATION__END:
 				return end != null && !end.isEmpty();
 			case SysMLPackage.ASSOCIATION__TARGET_END:
-				return targetEnd != null && !targetEnd.isEmpty();
+				return targetEnd != null;
 			case SysMLPackage.ASSOCIATION__SOURCE_END:
-				return sourceEnd != null && !sourceEnd.isEmpty();
+				return sourceEnd != null;
 		}
 		return super.eIsSet(featureID);
 	}

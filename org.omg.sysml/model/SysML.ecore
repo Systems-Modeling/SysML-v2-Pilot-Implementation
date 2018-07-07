@@ -88,6 +88,10 @@
         ordered="false" upperBound="-1" eType="#//Association" derived="true" eOpposite="#//Association/participant"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/ownedFeatureElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endOfAssociation" ordered="false"
+        eType="#//Association" derived="true" eOpposite="#//Association/end"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpression" eSuperTypes="#//Expression"/>
@@ -244,30 +248,28 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Relationship #//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedType" ordered="false"
-        unique="false" lowerBound="2" upperBound="2" eType="#//Class" derived="true"/>
+        unique="false" upperBound="2" eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" ordered="false"
-        lowerBound="1" eType="#//Class" derived="true"/>
+        eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetType" ordered="false"
-        lowerBound="1" eType="#//Class" derived="true"/>
+        eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participant" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/participantOfAssociation"/>
+        upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/participantOfAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipant" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//Feature"/>
+        eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipant" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" ordered="false" lowerBound="1"
-        upperBound="2" eType="#//FeatureDomain" derived="true" eOpposite="#//FeatureDomain/endOfAssociation"/>
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" ordered="false" upperBound="2"
+        eType="#//Feature" derived="true" eOpposite="#//Feature/endOfAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetEnd" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//FeatureDomain"/>
+        eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEnd" ordered="false"
-        lowerBound="2" upperBound="2" eType="#//FeatureDomain"/>
+        eType="#//Feature"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureDomain" eSuperTypes="#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
         eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" ordered="false"
         eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endOfAssociation" ordered="false"
-        eType="#//Association" derived="true" eOpposite="#//Association/end"/>
   </eClassifiers>
 </ecore:EPackage>

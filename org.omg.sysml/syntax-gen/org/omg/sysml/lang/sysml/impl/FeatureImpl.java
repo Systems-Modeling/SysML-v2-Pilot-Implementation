@@ -52,6 +52,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOfAssociation <em>End Of Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsComposite <em>Is Composite</em>}</li>
  * </ul>
  *
  * @generated
@@ -256,6 +258,36 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @ordered
 	 */
 	protected EList<Association> participantOfAssociation;
+
+	/**
+	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndOfAssociation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Association endOfAssociation;
+
+	/**
+	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -691,6 +723,87 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Association getEndOfAssociation() {
+		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
+			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
+			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
+			if (endOfAssociation != oldEndOfAssociation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
+			}
+		}
+		return endOfAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association basicGetEndOfAssociation() {
+		return endOfAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
+		Association oldEndOfAssociation = endOfAssociation;
+		endOfAssociation = newEndOfAssociation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndOfAssociation(Association newEndOfAssociation) {
+		if (newEndOfAssociation != endOfAssociation) {
+			NotificationChain msgs = null;
+			if (endOfAssociation != null)
+				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+			if (newEndOfAssociation != null)
+				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsComposite() {
+		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -713,6 +826,10 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				if (endOfAssociation != null)
+					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+				return basicSetEndOfAssociation((Association)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -745,6 +862,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return ((InternalEList<?>)getParticipantOfAssociation()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return basicSetOwningFeatureMembership(null, msgs);
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				return basicSetEndOfAssociation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -806,6 +925,11 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return getParticipantOfAssociation();
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership();
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				if (resolve) return getEndOfAssociation();
+				return basicGetEndOfAssociation();
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				return isIsComposite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -878,6 +1002,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				setEndOfAssociation((Association)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -941,6 +1071,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)null);
 				return;
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				setEndOfAssociation((Association)null);
+				return;
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				setIsComposite(IS_COMPOSITE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -987,6 +1123,10 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return participantOfAssociation != null && !participantOfAssociation.isEmpty();
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership() != null;
+			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
+				return endOfAssociation != null;
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				return isComposite != IS_COMPOSITE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1009,6 +1149,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		result.append(isReadOnly);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isComposite: ");
+		result.append(isComposite);
 		result.append(')');
 		return result.toString();
 	}

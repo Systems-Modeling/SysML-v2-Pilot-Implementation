@@ -3,14 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDomain;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -25,7 +21,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureDomainImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureDomainImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureDomainImpl#getEndOfAssociation <em>End Of Association</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,16 +45,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 	 * @ordered
 	 */
 	protected org.omg.sysml.lang.sysml.Class domain;
-
-	/**
-	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Association endOfAssociation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,96 +146,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association getEndOfAssociation() {
-		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
-			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
-			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
-			if (endOfAssociation != oldEndOfAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
-			}
-		}
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Association basicGetEndOfAssociation() {
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
-		Association oldEndOfAssociation = endOfAssociation;
-		endOfAssociation = newEndOfAssociation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndOfAssociation(Association newEndOfAssociation) {
-		if (newEndOfAssociation != endOfAssociation) {
-			NotificationChain msgs = null;
-			if (endOfAssociation != null)
-				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-			if (newEndOfAssociation != null)
-				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				if (endOfAssociation != null)
-					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-				return basicSetEndOfAssociation((Association)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				return basicSetEndOfAssociation(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -260,9 +155,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 			case SysMLPackage.FEATURE_DOMAIN__DOMAIN:
 				if (resolve) return getDomain();
 				return basicGetDomain();
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				if (resolve) return getEndOfAssociation();
-				return basicGetEndOfAssociation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,9 +172,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 				return;
 			case SysMLPackage.FEATURE_DOMAIN__DOMAIN:
 				setDomain((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -302,9 +191,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 			case SysMLPackage.FEATURE_DOMAIN__DOMAIN:
 				setDomain((org.omg.sysml.lang.sysml.Class)null);
 				return;
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -321,8 +207,6 @@ public class FeatureDomainImpl extends RelationshipImpl implements FeatureDomain
 				return feature != null;
 			case SysMLPackage.FEATURE_DOMAIN__DOMAIN:
 				return domain != null;
-			case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION:
-				return endOfAssociation != null;
 		}
 		return super.eIsSet(featureID);
 	}

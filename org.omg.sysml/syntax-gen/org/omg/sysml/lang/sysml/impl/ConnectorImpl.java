@@ -74,6 +74,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getEndOfAssociation <em>End Of Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeatures <em>Related Features</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetFeature <em>Target Feature</em>}</li>
@@ -439,6 +441,36 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @ordered
 	 */
 	protected EList<Association> participantOfAssociation;
+
+	/**
+	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndOfAssociation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Association endOfAssociation;
+
+	/**
+	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRelatedFeatures() <em>Related Features</em>}' reference list.
@@ -1219,6 +1251,87 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Association getEndOfAssociation() {
+		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
+			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
+			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
+			if (endOfAssociation != oldEndOfAssociation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
+			}
+		}
+		return endOfAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association basicGetEndOfAssociation() {
+		return endOfAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
+		Association oldEndOfAssociation = endOfAssociation;
+		endOfAssociation = newEndOfAssociation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndOfAssociation(Association newEndOfAssociation) {
+		if (newEndOfAssociation != endOfAssociation) {
+			NotificationChain msgs = null;
+			if (endOfAssociation != null)
+				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+			if (newEndOfAssociation != null)
+				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsComposite() {
+		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Feature> getRelatedFeatures() {
 		if (relatedFeatures == null) {
 			relatedFeatures = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR__RELATED_FEATURES);
@@ -1622,6 +1735,10 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				if (endOfAssociation != null)
+					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+				return basicSetEndOfAssociation((Association)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1668,6 +1785,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<?>)getParticipantOfAssociation()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return basicSetOwningFeatureMembership(null, msgs);
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				return basicSetEndOfAssociation(null, msgs);
 			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
 				return basicSetSourceLower(null, msgs);
 			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
@@ -1766,6 +1885,11 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getParticipantOfAssociation();
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership();
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				if (resolve) return getEndOfAssociation();
+				return basicGetEndOfAssociation();
+			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
+				return isIsComposite();
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				return getRelatedFeatures();
 			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
@@ -1917,6 +2041,12 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				setEndOfAssociation((Association)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
+				return;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				getRelatedFeatures().clear();
 				getRelatedFeatures().addAll((Collection<? extends Feature>)newValue);
@@ -2058,6 +2188,12 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)null);
 				return;
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				setEndOfAssociation((Association)null);
+				return;
+			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
+				setIsComposite(IS_COMPOSITE_EDEFAULT);
+				return;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				getRelatedFeatures().clear();
 				return;
@@ -2165,6 +2301,10 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return participantOfAssociation != null && !participantOfAssociation.isEmpty();
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership() != null;
+			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
+				return endOfAssociation != null;
+			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
+				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				return relatedFeatures != null && !relatedFeatures.isEmpty();
 			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
@@ -2241,6 +2381,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.CONNECTOR__VALUE: return SysMLPackage.FEATURE__VALUE;
 				case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION: return SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION;
 				case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP;
+				case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION: return SysMLPackage.FEATURE__END_OF_ASSOCIATION;
+				case SysMLPackage.CONNECTOR__IS_COMPOSITE: return SysMLPackage.FEATURE__IS_COMPOSITE;
 				default: return -1;
 			}
 		}
@@ -2297,6 +2439,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.FEATURE__VALUE: return SysMLPackage.CONNECTOR__VALUE;
 				case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION: return SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION;
 				case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
+				case SysMLPackage.FEATURE__END_OF_ASSOCIATION: return SysMLPackage.CONNECTOR__END_OF_ASSOCIATION;
+				case SysMLPackage.FEATURE__IS_COMPOSITE: return SysMLPackage.CONNECTOR__IS_COMPOSITE;
 				default: return -1;
 			}
 		}
@@ -2367,6 +2511,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 		result.append(isReadOnly);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isComposite: ");
+		result.append(isComposite);
 		result.append(", isDirected: ");
 		result.append(isDirected);
 		result.append(')');

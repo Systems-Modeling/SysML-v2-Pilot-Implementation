@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureDomain;
@@ -27,7 +25,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getEndOfAssociation <em>End Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
@@ -57,16 +54,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected org.omg.sysml.lang.sysml.Class domain;
-
-	/**
-	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Association endOfAssociation;
 
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
@@ -231,66 +218,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		domain = newDomain;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN, oldDomain, domain));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Association getEndOfAssociation() {
-		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
-			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
-			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
-			if (endOfAssociation != oldEndOfAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
-			}
-		}
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Association basicGetEndOfAssociation() {
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
-		Association oldEndOfAssociation = endOfAssociation;
-		endOfAssociation = newEndOfAssociation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndOfAssociation(Association newEndOfAssociation) {
-		if (newEndOfAssociation != endOfAssociation) {
-			NotificationChain msgs = null;
-			if (endOfAssociation != null)
-				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-			if (newEndOfAssociation != null)
-				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
 	}
 
 	/**
@@ -484,10 +411,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				if (endOfAssociation != null)
-					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
-				return basicSetEndOfAssociation((Association)otherEnd, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT:
 				if (ownedFeatureElement != null)
 					msgs = ((InternalEObject)ownedFeatureElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT, null, msgs);
@@ -508,8 +431,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				return basicSetEndOfAssociation(null, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT:
 				return basicSetOwnedFeatureElement(null, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
@@ -532,9 +453,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
 				if (resolve) return getDomain();
 				return basicGetDomain();
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				if (resolve) return getEndOfAssociation();
-				return basicGetEndOfAssociation();
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				return getDirection();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -564,9 +482,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
 				setDomain((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				setDirection((FeatureDirectionKind)newValue);
@@ -601,9 +516,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
 				setDomain((org.omg.sysml.lang.sysml.Class)null);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				setDirection(DIRECTION_EDEFAULT);
 				return;
@@ -635,8 +547,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return feature != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
 				return domain != null;
-			case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION:
-				return endOfAssociation != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -662,7 +572,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			switch (derivedFeatureID) {
 				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE: return SysMLPackage.FEATURE_DOMAIN__FEATURE;
 				case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN: return SysMLPackage.FEATURE_DOMAIN__DOMAIN;
-				case SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION: return SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION;
 				default: return -1;
 			}
 		}
@@ -680,7 +589,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			switch (baseFeatureID) {
 				case SysMLPackage.FEATURE_DOMAIN__FEATURE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURE;
 				case SysMLPackage.FEATURE_DOMAIN__DOMAIN: return SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN;
-				case SysMLPackage.FEATURE_DOMAIN__END_OF_ASSOCIATION: return SysMLPackage.FEATURE_MEMBERSHIP__END_OF_ASSOCIATION;
 				default: return -1;
 			}
 		}

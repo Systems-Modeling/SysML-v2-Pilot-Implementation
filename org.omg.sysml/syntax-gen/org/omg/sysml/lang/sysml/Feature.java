@@ -30,6 +30,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsComposite <em>Is Composite</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature()
@@ -412,5 +414,59 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @generated
 	 */
 	void setOwningFeatureMembership(FeatureMembership value);
+
+	/**
+	 * Returns the value of the '<em><b>End Of Association</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getEnd <em>End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Of Association</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Of Association</em>' reference.
+	 * @see #setEndOfAssociation(Association)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOfAssociation()
+	 * @see org.omg.sysml.lang.sysml.Association#getEnd
+	 * @model opposite="end" derived="true" ordered="false"
+	 * @generated
+	 */
+	Association getEndOfAssociation();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Of Association</em>' reference.
+	 * @see #getEndOfAssociation()
+	 * @generated
+	 */
+	void setEndOfAssociation(Association value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Composite</em>' attribute.
+	 * @see #setIsComposite(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsComposite();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsComposite <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Composite</em>' attribute.
+	 * @see #isIsComposite()
+	 * @generated
+	 */
+	void setIsComposite(boolean value);
 
 } // Feature

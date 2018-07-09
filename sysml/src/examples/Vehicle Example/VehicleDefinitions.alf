@@ -18,21 +18,33 @@ package VehicleDefinitions {
 	
 	class Vehicle { }
 	
+	class Transmission { }
+	
 	class AxleAssembly { }
-	
-	class WheelHub { }
-	
-	class Wheel { }
 	
 	class Axle { }
 	
+	class Wheel { }
+	
 	class Lugbolt {
-		feature torque: Torque;
+		feature tighteningTorque: Torque;
+	}
+	
+	class DriveIF { 
+		feature in driveTorque: Torque;
+	}
+	
+	class AxleMountIF { 
+		feature out transferredTorque: Torque;
+	}
+	
+	class WheelHubIF { 
+		feature in appliedTorque: Torque;
 	}
 	
 	assoc Mounting {
-		feature hub: WheelHub;
-		feature axle: Axle;
+		feature hub: WheelHubIF;
+		feature axleMount: AxleMountIF;
 	}
-	
+
 }

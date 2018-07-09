@@ -1448,9 +1448,9 @@ rule__ClassFeatureMember__Alternatives_1_0_0
 	)
 	|
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getGroup_1_0_0_1()); }
-		(rule__ClassFeatureMember__Group_1_0_0_1__0)
-		{ after(grammarAccess.getClassFeatureMemberAccess().getGroup_1_0_0_1()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1()); }
+		(rule__ClassFeatureMember__IsPortAssignment_1_0_0_1)
+		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1()); }
 	)
 ;
 finally {
@@ -1469,9 +1469,9 @@ rule__ClassFeatureMember__Alternatives_1_1_0
 	)
 	|
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getGroup_1_1_0_1()); }
-		(rule__ClassFeatureMember__Group_1_1_0_1__0)
-		{ after(grammarAccess.getClassFeatureMemberAccess().getGroup_1_1_0_1()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1()); }
+		(rule__ClassFeatureMember__IsPortAssignment_1_1_0_1)
+		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1()); }
 	)
 ;
 finally {
@@ -3077,6 +3077,7 @@ rule__ClassFeatureMember__Group_1_0__1
 	}
 :
 	rule__ClassFeatureMember__Group_1_0__1__Impl
+	rule__ClassFeatureMember__Group_1_0__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3088,63 +3089,35 @@ rule__ClassFeatureMember__Group_1_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_1()); }
-	(rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_1)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_1()); }
+	{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_1()); }
+	(rule__ClassFeatureMember__DirectionAssignment_1_0_1)?
+	{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-
-rule__ClassFeatureMember__Group_1_0_0_1__0
+rule__ClassFeatureMember__Group_1_0__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ClassFeatureMember__Group_1_0_0_1__0__Impl
-	rule__ClassFeatureMember__Group_1_0_0_1__1
+	rule__ClassFeatureMember__Group_1_0__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__Group_1_0_0_1__0__Impl
+rule__ClassFeatureMember__Group_1_0__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1_0()); }
-	(rule__ClassFeatureMember__IsPortAssignment_1_0_0_1_0)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ClassFeatureMember__Group_1_0_0_1__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__ClassFeatureMember__Group_1_0_0_1__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ClassFeatureMember__Group_1_0_0_1__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_0_1_1()); }
-	(rule__ClassFeatureMember__DirectionAssignment_1_0_0_1_1)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_0_1_1()); }
+	{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_2()); }
+	(rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_2)
+	{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_2()); }
 )
 ;
 finally {
@@ -3185,6 +3158,7 @@ rule__ClassFeatureMember__Group_1_1__1
 	}
 :
 	rule__ClassFeatureMember__Group_1_1__1__Impl
+	rule__ClassFeatureMember__Group_1_1__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3196,63 +3170,35 @@ rule__ClassFeatureMember__Group_1_1__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_1()); }
-	(rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_1)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_1()); }
+	{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_1()); }
+	(rule__ClassFeatureMember__DirectionAssignment_1_1_1)?
+	{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-
-rule__ClassFeatureMember__Group_1_1_0_1__0
+rule__ClassFeatureMember__Group_1_1__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ClassFeatureMember__Group_1_1_0_1__0__Impl
-	rule__ClassFeatureMember__Group_1_1_0_1__1
+	rule__ClassFeatureMember__Group_1_1__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__Group_1_1_0_1__0__Impl
+rule__ClassFeatureMember__Group_1_1__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1_0()); }
-	(rule__ClassFeatureMember__IsPortAssignment_1_1_0_1_0)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ClassFeatureMember__Group_1_1_0_1__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__ClassFeatureMember__Group_1_1_0_1__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ClassFeatureMember__Group_1_1_0_1__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_0_1_1()); }
-	(rule__ClassFeatureMember__DirectionAssignment_1_1_0_1_1)
-	{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_0_1_1()); }
+	{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_2()); }
+	(rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_2)
+	{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_2()); }
 )
 ;
 finally {
@@ -7113,98 +7059,98 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__IsPortAssignment_1_0_0_1_0
+rule__ClassFeatureMember__IsPortAssignment_1_0_0_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0()); }
 		(
-			{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0_0()); }
+			{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0()); }
 			'port'
-			{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0_0()); }
+			{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0()); }
 		)
-		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__DirectionAssignment_1_0_0_1_1
+rule__ClassFeatureMember__DirectionAssignment_1_0_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_0_1_1_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_1_0()); }
 		ruleFeatureDirection
-		{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_0_1_1_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_1
+rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_1_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_2_0()); }
 		ruleTypedFeatureDefinition
-		{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_1_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_2_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__IsPortAssignment_1_1_0_1_0
+rule__ClassFeatureMember__IsPortAssignment_1_1_0_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0()); }
 		(
-			{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0_0()); }
+			{ before(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0()); }
 			'port'
-			{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0_0()); }
+			{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0()); }
 		)
-		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__DirectionAssignment_1_1_0_1_1
+rule__ClassFeatureMember__DirectionAssignment_1_1_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_0_1_1_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_1_0()); }
 		ruleFeatureDirection
-		{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_0_1_1_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_1
+rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_1_0()); }
+		{ before(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_2_0()); }
 		ruleUntypedFeatureDefinition
-		{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_1_0()); }
+		{ after(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_2_0()); }
 	)
 ;
 finally {

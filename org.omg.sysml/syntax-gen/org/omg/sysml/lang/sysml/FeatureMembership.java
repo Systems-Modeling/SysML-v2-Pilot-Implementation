@@ -12,18 +12,72 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement <em>Owned Feature Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership()
  * @model
  * @generated
  */
-public interface FeatureMembership extends Membership, FeatureDomain {
+public interface FeatureMembership extends Membership {
+	/**
+	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Derived</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Derived</em>' attribute.
+	 * @see #setIsDerived(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsDerived()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsDerived();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsDerived <em>Is Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Derived</em>' attribute.
+	 * @see #isIsDerived()
+	 * @generated
+	 */
+	void setIsDerived(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Read Only</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Read Only</em>' attribute.
+	 * @see #setIsReadOnly(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsReadOnly()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsReadOnly();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsReadOnly <em>Is Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Read Only</em>' attribute.
+	 * @see #isIsReadOnly()
+	 * @generated
+	 */
+	void setIsReadOnly(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.FeatureDirectionKind}.
@@ -64,7 +118,7 @@ public interface FeatureMembership extends Membership, FeatureDomain {
 	 * @return the value of the '<em>Is Port</em>' attribute.
 	 * @see #setIsPort(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPort()
-	 * @model required="true" derived="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsPort();

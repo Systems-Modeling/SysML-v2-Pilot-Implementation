@@ -17,59 +17,76 @@ package VehicleUsages {
 		feature frontAssembly: composes VehicleDefinitions.AxleAssembly {
 			feature frontWheel is narrowRimWheel[2] {
 				feature is narrowRimWheel.lugbolt[4] {
-					feature torque is VehicleDefinitions.Lugbolt.torque = T1;
+					feature torque is VehicleDefinitions.Lugbolt.tighteningTorque = T1;
 				}
 			}
-			feature frontAxle: composes VehicleDefinitions.Axle {
-				port out leftMountingPoint: composes VehicleDefinitions.WheelHub;
-				port out rightMountingPoint: composes VehicleDefinitions.WheelHub;
-			}
+			feature frontAxle: composes VehicleDefinitions.Axle;
 		}
 		
 		feature rearAssembly: VehicleDefinitions.AxleAssembly {
 			feature rearWheel is wideRimWheel[2] {
 				feature is wideRimWheel.lugbolt[6] {
-					feature torque is VehicleDefinitions.Lugbolt.torque = T2;
+					feature torque is VehicleDefinitions.Lugbolt.tighteningTorque = T2;
 				}
 			}
-			feature rearAxle: VehicleDefinitions.Axle {
-				port out leftMountingPoint: composes VehicleDefinitions.WheelHub;
-				port out rightMountingPoint: composes VehicleDefinitions.WheelHub;
-			}			
+			feature rearAxle: composes VehicleDefinitions.Axle;			
 		}
 	}
 	
 	feature vehicle_C2 is vehicle_C1 {
-		feature is vehicle_C1.frontAssembly {
+		feature frontAssembly is vehicle_C1.frontAssembly {
 			feature leftFrontWheel subsets vehicle_C1.frontAssembly.frontWheel[1] {
-				port in hub: composes VehicleDefinitions.WheelHub;
+				port hub: VehicleDefinitions.WheelHub;
 			}
 			feature rightFrontWheel subsets vehicle_C1.frontAssembly.frontWheel[1] {
-				port in hub: composes VehicleDefinitions.WheelHub;
+				port hub: VehicleDefinitions.WheelHub;
 			}
 			
+			feature frontAxle is vehicle_C1.frontAssembly.frontAxle {
+				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
+				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
+			}
+		
 			connector leftFrontMount: VehicleDefinitions.Mounting is 
-				vehicle_C1.frontAssembly.frontAxle.leftMountingPoint => leftFrontWheel.hub;
+				frontAxle.leftMountingPoint => leftFrontWheel.hub;
 				
 			connector rightFrontMount: VehicleDefinitions.Mounting is 
-				vehicle_C1.frontAssembly.frontAxle.rightMountingPoint => rightFrontWheel.hub;
+				frontAxle.rightMountingPoint => rightFrontWheel.hub;
 		}
 		
-		feature is vehicle_C1.rearAssembly {
+		feature rearAssembly is vehicle_C1.rearAssembly {
 			feature leftRearWheel subsets vehicle_C1.rearAssembly.rearWheel[1] {
-				port in hub: composes VehicleDefinitions.WheelHub;
+				port hub: VehicleDefinitions.WheelHubIF;
 			}
 			feature rightRearWheel subsets vehicle_C1.rearAssembly.rearWheel[1] {
-				port in hub: composes VehicleDefinitions.WheelHub;
+				port hub: VehicleDefinitions.WheelHubIF;
 			}
 
+			feature rearAxle is vehicle_C1.rearAssembly.rearAxle {
+				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
+				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
+			}
+			
 			connector leftRearMount: VehicleDefinitions.Mounting is 
-				vehicle_C1.rearAssembly.rearAxle.leftMountingPoint => leftRearWheel.hub;
+				rearAxle.leftMountingPoint => leftRearWheel.hub;
 				
 			connector rightRearMount: VehicleDefinitions.Mounting is 
-				vehicle_C1.rearAssembly.rearAxle.rightMountingPoint => rightRearWheel.hub;
+				rearAxle.rightMountingPoint => rightRearWheel.hub;
+		}		
+	}
+	
+	feature vehicle_C3 is vehicle_C2 {
+		feature transmission: composes VehicleDefinitions.Transmission {
+			port out drive: VehicleDefinitions.DriveIF;
 		}
 		
+		feature rearAssembly is vehicle_C2.rearAssembly {
+			feature rearAxle is vehicle_C2.rearAssembly.rearAxle {
+				port in drive: VehicleDefinitions.DriveIF;
+			}
+		}
+		
+		connector driveShaft is 
+			transmission.drive => rearAssembly.rearAxle.drive;			
 	}
-
 }

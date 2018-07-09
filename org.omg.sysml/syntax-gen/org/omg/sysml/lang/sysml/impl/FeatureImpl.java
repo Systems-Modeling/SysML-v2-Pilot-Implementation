@@ -37,9 +37,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsUnique <em>Is Unique</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
@@ -80,26 +78,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	protected Expression upper;
 
 	/**
-	 * The default value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsDerived()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_DERIVED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsDerived()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isDerived = IS_DERIVED_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isIsUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,26 +96,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isUnique = IS_UNIQUE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsReadOnly()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsReadOnly()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsOrdered() <em>Is Ordered</em>}' attribute.
@@ -399,27 +357,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsDerived() {
-		return isDerived;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsDerived(boolean newIsDerived) {
-		boolean oldIsDerived = isDerived;
-		isDerived = newIsDerived;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_DERIVED, oldIsDerived, isDerived));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isIsUnique() {
 		return isUnique;
 	}
@@ -434,27 +371,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		isUnique = newIsUnique;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_UNIQUE, oldIsUnique, isUnique));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsReadOnly() {
-		return isReadOnly;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsReadOnly(boolean newIsReadOnly) {
-		boolean oldIsReadOnly = isReadOnly;
-		isReadOnly = newIsReadOnly;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_READ_ONLY, oldIsReadOnly, isReadOnly));
 	}
 
 	/**
@@ -894,12 +810,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return getLower();
 			case SysMLPackage.FEATURE__UPPER:
 				return getUpper();
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				return isIsDerived();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isIsUnique();
-			case SysMLPackage.FEATURE__IS_READ_ONLY:
-				return isIsReadOnly();
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				return isIsOrdered();
 			case SysMLPackage.FEATURE__OWNING_CLASS:
@@ -949,14 +861,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__UPPER:
 				setUpper((Expression)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				setIsDerived((Boolean)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE__IS_READ_ONLY:
-				setIsReadOnly((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
@@ -1026,14 +932,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__UPPER:
 				setUpper((Expression)null);
 				return;
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				setIsDerived(IS_DERIVED_EDEFAULT);
-				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
-				return;
-			case SysMLPackage.FEATURE__IS_READ_ONLY:
-				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
@@ -1093,12 +993,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return lower != null;
 			case SysMLPackage.FEATURE__UPPER:
 				return upper != null;
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
-			case SysMLPackage.FEATURE__IS_READ_ONLY:
-				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNING_CLASS:
@@ -1141,12 +1037,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isDerived: ");
-		result.append(isDerived);
-		result.append(", isUnique: ");
+		result.append(" (isUnique: ");
 		result.append(isUnique);
-		result.append(", isReadOnly: ");
-		result.append(isReadOnly);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
 		result.append(", isComposite: ");

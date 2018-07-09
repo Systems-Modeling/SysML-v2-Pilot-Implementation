@@ -283,15 +283,6 @@ public interface SysMLFactory extends EFactory {
 	Association createAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Feature Domain</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Domain</em>'.
-	 * @generated
-	 */
-	FeatureDomain createFeatureDomain();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -956,44 +956,42 @@ ruleClassFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							(
-								lv_isPort_2_0='port'
-								{
-									newLeafNode(lv_isPort_2_0, grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0_0());
+							lv_isPort_2_0='port'
+							{
+								newLeafNode(lv_isPort_2_0, grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_0_0_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getClassFeatureMemberRule());
 								}
-								{
-									if ($current==null) {
-										$current = createModelElement(grammarAccess.getClassFeatureMemberRule());
-									}
-									setWithLastConsumed($current, "isPort", true, "port");
-								}
-							)
-						)
-						(
-							(
-								{
-									newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_0_1_1_0());
-								}
-								lv_direction_3_0=ruleFeatureDirection
-								{
-									if ($current==null) {
-										$current = createModelElementForParent(grammarAccess.getClassFeatureMemberRule());
-									}
-									set(
-										$current,
-										"direction",
-										lv_direction_3_0,
-										"org.omg.sysml.Alf.FeatureDirection");
-									afterParserOrEnumRuleCall();
-								}
-							)
+								setWithLastConsumed($current, "isPort", true, "port");
+							}
 						)
 					)
 				)?
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_1_0());
+							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_1_0());
+						}
+						lv_direction_3_0=ruleFeatureDirection
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassFeatureMemberRule());
+							}
+							set(
+								$current,
+								"direction",
+								lv_direction_3_0,
+								"org.omg.sysml.Alf.FeatureDirection");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementTypedFeatureDefinitionParserRuleCall_1_0_2_0());
 						}
 						lv_ownedMemberElement_4_0=ruleTypedFeatureDefinition
 						{
@@ -1020,44 +1018,42 @@ ruleClassFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							(
-								lv_isPort_6_0='port'
-								{
-									newLeafNode(lv_isPort_6_0, grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0_0());
+							lv_isPort_6_0='port'
+							{
+								newLeafNode(lv_isPort_6_0, grammarAccess.getClassFeatureMemberAccess().getIsPortPortKeyword_1_1_0_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getClassFeatureMemberRule());
 								}
-								{
-									if ($current==null) {
-										$current = createModelElement(grammarAccess.getClassFeatureMemberRule());
-									}
-									setWithLastConsumed($current, "isPort", true, "port");
-								}
-							)
-						)
-						(
-							(
-								{
-									newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_0_1_1_0());
-								}
-								lv_direction_7_0=ruleFeatureDirection
-								{
-									if ($current==null) {
-										$current = createModelElementForParent(grammarAccess.getClassFeatureMemberRule());
-									}
-									set(
-										$current,
-										"direction",
-										lv_direction_7_0,
-										"org.omg.sysml.Alf.FeatureDirection");
-									afterParserOrEnumRuleCall();
-								}
-							)
+								setWithLastConsumed($current, "isPort", true, "port");
+							}
 						)
 					)
 				)
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_1_0());
+							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_1_0());
+						}
+						lv_direction_7_0=ruleFeatureDirection
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassFeatureMemberRule());
+							}
+							set(
+								$current,
+								"direction",
+								lv_direction_7_0,
+								"org.omg.sysml.Alf.FeatureDirection");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementUntypedFeatureDefinitionParserRuleCall_1_1_2_0());
 						}
 						lv_ownedMemberElement_8_0=ruleUntypedFeatureDefinition
 						{

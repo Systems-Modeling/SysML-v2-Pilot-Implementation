@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDomain;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -375,7 +374,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				FeatureMembership featureMembership = (FeatureMembership)theEObject;
 				T result = caseFeatureMembership(featureMembership);
 				if (result == null) result = caseMembership(featureMembership);
-				if (result == null) result = caseFeatureDomain(featureMembership);
 				if (result == null) result = caseRelationship(featureMembership);
 				if (result == null) result = caseElement(featureMembership);
 				if (result == null) result = defaultCase(theEObject);
@@ -388,14 +386,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClass(association);
 				if (result == null) result = casePackage(association);
 				if (result == null) result = caseElement(association);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.FEATURE_DOMAIN: {
-				FeatureDomain featureDomain = (FeatureDomain)theEObject;
-				T result = caseFeatureDomain(featureDomain);
-				if (result == null) result = caseRelationship(featureDomain);
-				if (result == null) result = caseElement(featureDomain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -835,21 +825,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAssociation(Association object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature Domain</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature Domain</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeatureDomain(FeatureDomain object) {
 		return null;
 	}
 

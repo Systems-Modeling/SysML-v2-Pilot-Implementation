@@ -20,7 +20,6 @@ import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureDomain;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -117,7 +116,6 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.SUBSET: return createSubset();
 			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
 			case SysMLPackage.ASSOCIATION: return createAssociation();
-			case SysMLPackage.FEATURE_DOMAIN: return createFeatureDomain();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -445,16 +443,6 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FeatureDomain createFeatureDomain() {
-		FeatureDomainImpl featureDomain = new FeatureDomainImpl();
-		return featureDomain;
 	}
 
 	/**

@@ -275,8 +275,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPort?='port' direction=FeatureDirection)? ownedMemberElement=TypedFeatureDefinition) | 
-	 *             ((isPort?='port' direction=FeatureDirection)? ownedMemberElement=UntypedFeatureDefinition) | 
+	 *             (isPort?='port'? direction=FeatureDirection? ownedMemberElement=TypedFeatureDefinition) | 
+	 *             (isPort?='port'? direction=FeatureDirection? ownedMemberElement=UntypedFeatureDefinition) | 
 	 *             ownedMemberElement=ConnectorDefinition | 
 	 *             ((memberName=Name | memberName=Name)? memberElement=[Element|QualifiedName])
 	 *         )

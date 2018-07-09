@@ -15,9 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsUnique <em>Is Unique</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
@@ -92,32 +90,6 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	void setUpper(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Derived</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Derived</em>' attribute.
-	 * @see #setIsDerived(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsDerived()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isIsDerived();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsDerived <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Derived</em>' attribute.
-	 * @see #isIsDerived()
-	 * @generated
-	 */
-	void setIsDerived(boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>Is Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -142,32 +114,6 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @generated
 	 */
 	void setIsUnique(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Read Only</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Read Only</em>' attribute.
-	 * @see #setIsReadOnly(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsReadOnly()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isIsReadOnly();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsReadOnly <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Read Only</em>' attribute.
-	 * @see #isIsReadOnly()
-	 * @generated
-	 */
-	void setIsReadOnly(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Ordered</b></em>' attribute.

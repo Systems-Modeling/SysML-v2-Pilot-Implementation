@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureDomain;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -23,77 +22,57 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedFeatureElement <em>Owned Feature Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsPort <em>Is Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureMembershipImpl extends MembershipImpl implements FeatureMembership {
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * The default value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeature()
+	 * @see #isIsDerived()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature feature;
+	protected static final boolean IS_DERIVED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
+	 * The cached value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDomain()
+	 * @see #isIsDerived()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Class domain;
+	protected boolean isDerived = IS_DERIVED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * The default value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDirection()
+	 * @see #isIsReadOnly()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = FeatureDirectionKind.IN;
+	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * The cached value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDirection()
+	 * @see #isIsReadOnly()
 	 * @generated
 	 * @ordered
 	 */
-	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPort()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_PORT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPort()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isPort = IS_PORT_EDEFAULT;
+	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getMemberFeature() <em>Member Feature</em>}' reference.
@@ -126,6 +105,46 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	protected org.omg.sysml.lang.sysml.Class owningClass;
 
 	/**
+	 * The default value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PORT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPort = IS_PORT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = FeatureDirectionKind.IN;
+
+	/**
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -149,16 +168,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeature() {
-		if (feature != null && feature.eIsProxy()) {
-			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (Feature)eResolveProxy(oldFeature);
-			if (feature != oldFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__FEATURE, oldFeature, feature));
-			}
-		}
-		return feature;
+	public boolean isIsDerived() {
+		return isDerived;
 	}
 
 	/**
@@ -166,20 +177,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetFeature() {
-		return feature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFeature(Feature newFeature) {
-		Feature oldFeature = feature;
-		feature = newFeature;
+	public void setIsDerived(boolean newIsDerived) {
+		boolean oldIsDerived = isDerived;
+		isDerived = newIsDerived;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__FEATURE, oldFeature, feature));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED, oldIsDerived, isDerived));
 	}
 
 	/**
@@ -187,16 +189,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getDomain() {
-		if (domain != null && domain.eIsProxy()) {
-			InternalEObject oldDomain = (InternalEObject)domain;
-			domain = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldDomain);
-			if (domain != oldDomain) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN, oldDomain, domain));
-			}
-		}
-		return domain;
+	public boolean isIsReadOnly() {
+		return isReadOnly;
 	}
 
 	/**
@@ -204,20 +198,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetDomain() {
-		return domain;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDomain(org.omg.sysml.lang.sysml.Class newDomain) {
-		org.omg.sysml.lang.sysml.Class oldDomain = domain;
-		domain = newDomain;
+	public void setIsReadOnly(boolean newIsReadOnly) {
+		boolean oldIsReadOnly = isReadOnly;
+		isReadOnly = newIsReadOnly;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN, oldDomain, domain));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY, oldIsReadOnly, isReadOnly));
 	}
 
 	/**
@@ -447,16 +432,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
-				if (resolve) return getDomain();
-				return basicGetDomain();
-			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
-				return getDirection();
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
-				return isIsPort();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
+				return isIsDerived();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
+				return isIsReadOnly();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				if (resolve) return getMemberFeature();
 				return basicGetMemberFeature();
@@ -465,6 +444,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				if (resolve) return getOwningClass();
 				return basicGetOwningClass();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
+				return isIsPort();
+			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
+				return getDirection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -477,17 +460,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				setFeature((Feature)newValue);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
+				setIsDerived((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
-				setDomain((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
-				setDirection((FeatureDirectionKind)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
-				setIsPort((Boolean)newValue);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
+				setIsReadOnly((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)newValue);
@@ -497,6 +474,12 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
+				setIsPort((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
+				setDirection((FeatureDirectionKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -510,17 +493,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				setFeature((Feature)null);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
+				setIsDerived(IS_DERIVED_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
-				setDomain((org.omg.sysml.lang.sysml.Class)null);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
-				setDirection(DIRECTION_EDEFAULT);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
-				setIsPort(IS_PORT_EDEFAULT);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
+				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)null);
@@ -530,6 +507,12 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
+				setIsPort(IS_PORT_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
+				setDirection(DIRECTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -543,56 +526,22 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				return feature != null;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN:
-				return domain != null;
-			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
-				return direction != DIRECTION_EDEFAULT;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
-				return isPort != IS_PORT_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
+				return isDerived != IS_DERIVED_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
+				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				return memberFeature != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT:
 				return ownedFeatureElement != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				return owningClass != null;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
+				return isPort != IS_PORT_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
+				return direction != DIRECTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == FeatureDomain.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE: return SysMLPackage.FEATURE_DOMAIN__FEATURE;
-				case SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN: return SysMLPackage.FEATURE_DOMAIN__DOMAIN;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == FeatureDomain.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.FEATURE_DOMAIN__FEATURE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURE;
-				case SysMLPackage.FEATURE_DOMAIN__DOMAIN: return SysMLPackage.FEATURE_MEMBERSHIP__DOMAIN;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -605,10 +554,14 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (direction: ");
-		result.append(direction);
+		result.append(" (isDerived: ");
+		result.append(isDerived);
+		result.append(", isReadOnly: ");
+		result.append(isReadOnly);
 		result.append(", isPort: ");
 		result.append(isPort);
+		result.append(", direction: ");
+		result.append(direction);
 		result.append(')');
 		return result.toString();
 	}

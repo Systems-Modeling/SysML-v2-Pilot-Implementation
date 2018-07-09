@@ -59,9 +59,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningFeature <em>Owning Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsUnique <em>Is Unique</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getType <em>Type</em>}</li>
@@ -263,26 +261,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected Expression upper;
 
 	/**
-	 * The default value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsDerived()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_DERIVED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsDerived()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isDerived = IS_DERIVED_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isIsUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -301,26 +279,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @ordered
 	 */
 	protected boolean isUnique = IS_UNIQUE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsReadOnly()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsReadOnly()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsOrdered() <em>Is Ordered</em>}' attribute.
@@ -927,27 +885,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsDerived() {
-		return isDerived;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsDerived(boolean newIsDerived) {
-		boolean oldIsDerived = isDerived;
-		isDerived = newIsDerived;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_DERIVED, oldIsDerived, isDerived));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isIsUnique() {
 		return isUnique;
 	}
@@ -962,27 +899,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 		isUnique = newIsUnique;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_UNIQUE, oldIsUnique, isUnique));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsReadOnly() {
-		return isReadOnly;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsReadOnly(boolean newIsReadOnly) {
-		boolean oldIsReadOnly = isReadOnly;
-		isReadOnly = newIsReadOnly;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_READ_ONLY, oldIsReadOnly, isReadOnly));
 	}
 
 	/**
@@ -1854,12 +1770,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getLower();
 			case SysMLPackage.CONNECTOR__UPPER:
 				return getUpper();
-			case SysMLPackage.CONNECTOR__IS_DERIVED:
-				return isIsDerived();
 			case SysMLPackage.CONNECTOR__IS_UNIQUE:
 				return isIsUnique();
-			case SysMLPackage.CONNECTOR__IS_READ_ONLY:
-				return isIsReadOnly();
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				return isIsOrdered();
 			case SysMLPackage.CONNECTOR__OWNING_CLASS:
@@ -1988,14 +1900,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__UPPER:
 				setUpper((Expression)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__IS_DERIVED:
-				setIsDerived((Boolean)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__IS_READ_ONLY:
-				setIsReadOnly((Boolean)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
@@ -2143,14 +2049,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__UPPER:
 				setUpper((Expression)null);
 				return;
-			case SysMLPackage.CONNECTOR__IS_DERIVED:
-				setIsDerived(IS_DERIVED_EDEFAULT);
-				return;
 			case SysMLPackage.CONNECTOR__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
-				return;
-			case SysMLPackage.CONNECTOR__IS_READ_ONLY:
-				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
@@ -2271,12 +2171,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return lower != null;
 			case SysMLPackage.CONNECTOR__UPPER:
 				return upper != null;
-			case SysMLPackage.CONNECTOR__IS_DERIVED:
-				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
-			case SysMLPackage.CONNECTOR__IS_READ_ONLY:
-				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__OWNING_CLASS:
@@ -2366,9 +2262,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTOR__LOWER: return SysMLPackage.FEATURE__LOWER;
 				case SysMLPackage.CONNECTOR__UPPER: return SysMLPackage.FEATURE__UPPER;
-				case SysMLPackage.CONNECTOR__IS_DERIVED: return SysMLPackage.FEATURE__IS_DERIVED;
 				case SysMLPackage.CONNECTOR__IS_UNIQUE: return SysMLPackage.FEATURE__IS_UNIQUE;
-				case SysMLPackage.CONNECTOR__IS_READ_ONLY: return SysMLPackage.FEATURE__IS_READ_ONLY;
 				case SysMLPackage.CONNECTOR__IS_ORDERED: return SysMLPackage.FEATURE__IS_ORDERED;
 				case SysMLPackage.CONNECTOR__OWNING_CLASS: return SysMLPackage.FEATURE__OWNING_CLASS;
 				case SysMLPackage.CONNECTOR__TYPE: return SysMLPackage.FEATURE__TYPE;
@@ -2424,9 +2318,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			switch (baseFeatureID) {
 				case SysMLPackage.FEATURE__LOWER: return SysMLPackage.CONNECTOR__LOWER;
 				case SysMLPackage.FEATURE__UPPER: return SysMLPackage.CONNECTOR__UPPER;
-				case SysMLPackage.FEATURE__IS_DERIVED: return SysMLPackage.CONNECTOR__IS_DERIVED;
 				case SysMLPackage.FEATURE__IS_UNIQUE: return SysMLPackage.CONNECTOR__IS_UNIQUE;
-				case SysMLPackage.FEATURE__IS_READ_ONLY: return SysMLPackage.CONNECTOR__IS_READ_ONLY;
 				case SysMLPackage.FEATURE__IS_ORDERED: return SysMLPackage.CONNECTOR__IS_ORDERED;
 				case SysMLPackage.FEATURE__OWNING_CLASS: return SysMLPackage.CONNECTOR__OWNING_CLASS;
 				case SysMLPackage.FEATURE__TYPE: return SysMLPackage.CONNECTOR__TYPE;
@@ -2503,12 +2395,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isAbstract: ");
 		result.append(isAbstract);
-		result.append(", isDerived: ");
-		result.append(isDerived);
 		result.append(", isUnique: ");
 		result.append(isUnique);
-		result.append(", isReadOnly: ");
-		result.append(isReadOnly);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
 		result.append(", isComposite: ");

@@ -123,7 +123,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) direction=FeatureDirection
 	 *     (rule start) (ambiguity) ownedMemberElement=TypedFeatureDefinition
+	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberElement=TypedFeatureDefinition
 	 */
 	protected void emit_ClassFeatureMember_FeatureKeyword_1_0_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

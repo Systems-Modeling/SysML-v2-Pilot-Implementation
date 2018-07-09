@@ -79,9 +79,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassDefinitionAccess().getGroup(), "rule__ClassDefinition__Group__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup(), "rule__ClassFeatureMember__Group__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_0(), "rule__ClassFeatureMember__Group_1_0__0");
-					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_0_0_1(), "rule__ClassFeatureMember__Group_1_0_0_1__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_1(), "rule__ClassFeatureMember__Group_1_1__0");
-					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_1_0_1(), "rule__ClassFeatureMember__Group_1_1_0_1__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_2(), "rule__ClassFeatureMember__Group_1_2__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_3(), "rule__ClassFeatureMember__Group_1_3__0");
 					put(grammarAccess.getClassFeatureMemberAccess().getGroup_1_3_0_0(), "rule__ClassFeatureMember__Group_1_3_0_0__0");
@@ -149,12 +147,12 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGeneralizationAccess().getGeneralAssignment(), "rule__Generalization__GeneralAssignment");
 					put(grammarAccess.getClassDefinitionAccess().getOwnedMembershipAssignment_2(), "rule__ClassDefinition__OwnedMembershipAssignment_2");
 					put(grammarAccess.getClassFeatureMemberAccess().getVisibilityAssignment_0(), "rule__ClassFeatureMember__VisibilityAssignment_0");
-					put(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1_0(), "rule__ClassFeatureMember__IsPortAssignment_1_0_0_1_0");
-					put(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_0_1_1(), "rule__ClassFeatureMember__DirectionAssignment_1_0_0_1_1");
-					put(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_1(), "rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_1");
-					put(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1_0(), "rule__ClassFeatureMember__IsPortAssignment_1_1_0_1_0");
-					put(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_0_1_1(), "rule__ClassFeatureMember__DirectionAssignment_1_1_0_1_1");
-					put(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_1(), "rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_1");
+					put(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_0_0_1(), "rule__ClassFeatureMember__IsPortAssignment_1_0_0_1");
+					put(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_0_1(), "rule__ClassFeatureMember__DirectionAssignment_1_0_1");
+					put(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_0_2(), "rule__ClassFeatureMember__OwnedMemberElementAssignment_1_0_2");
+					put(grammarAccess.getClassFeatureMemberAccess().getIsPortAssignment_1_1_0_1(), "rule__ClassFeatureMember__IsPortAssignment_1_1_0_1");
+					put(grammarAccess.getClassFeatureMemberAccess().getDirectionAssignment_1_1_1(), "rule__ClassFeatureMember__DirectionAssignment_1_1_1");
+					put(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_1_2(), "rule__ClassFeatureMember__OwnedMemberElementAssignment_1_1_2");
 					put(grammarAccess.getClassFeatureMemberAccess().getOwnedMemberElementAssignment_1_2_1(), "rule__ClassFeatureMember__OwnedMemberElementAssignment_1_2_1");
 					put(grammarAccess.getClassFeatureMemberAccess().getMemberNameAssignment_1_3_0_0_1(), "rule__ClassFeatureMember__MemberNameAssignment_1_3_0_0_1");
 					put(grammarAccess.getClassFeatureMemberAccess().getMemberNameAssignment_1_3_0_1(), "rule__ClassFeatureMember__MemberNameAssignment_1_3_0_1");

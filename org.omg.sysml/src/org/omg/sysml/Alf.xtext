@@ -124,8 +124,8 @@ ClassFeatureMember returns SysML::FeatureMembership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
-      ( 'feature' | isPort ?= 'port' direction = FeatureDirection )? ownedMemberElement = TypedFeatureDefinition
-    | ( 'feature' | isPort ?= 'port' direction = FeatureDirection ) ownedMemberElement = UntypedFeatureDefinition
+      ( 'feature' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = TypedFeatureDefinition
+    | ( 'feature' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UntypedFeatureDefinition
     | 'connector' ownedMemberElement = ConnectorDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
 	)

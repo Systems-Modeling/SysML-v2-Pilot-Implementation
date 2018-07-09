@@ -51,9 +51,7 @@
     <genClasses ecoreClass="SysML.ecore#//Feature">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/lower"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/upper"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isDerived"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isUnique"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isReadOnly"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isOrdered"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningClass"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/type"/>
@@ -158,11 +156,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Subset/owningFeature"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//FeatureMembership">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/direction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isDerived"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isReadOnly"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/memberFeature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/ownedFeatureElement"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/owningClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/direction"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//Association">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/relatedType"/>
@@ -174,10 +174,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/end"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/targetEnd"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/sourceEnd"/>
-    </genClasses>
-    <genClasses ecoreClass="SysML.ecore#//FeatureDomain">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureDomain/feature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureDomain/domain"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

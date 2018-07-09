@@ -66,8 +66,8 @@ PackagedFeatureMember returns SysML::Membership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( 
-	  'feature'? ownedMemberElement = TypedFeatureDefinition
-	| 'feature' ownedMemberElement = UntypedFeatureDefinition
+	  'feature'? ownedMemberElement = NamedFeatureDefinition
+	| 'feature' ownedMemberElement = UnnamedFeatureDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
@@ -124,8 +124,8 @@ ClassFeatureMember returns SysML::FeatureMembership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
-      ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = TypedFeatureDefinition
-    | ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UntypedFeatureDefinition
+      ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
+    | ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UnnamedFeatureDefinition
     | 'connector' ownedMemberElement = ConnectorDefinition
 	| ( ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
 	)
@@ -155,17 +155,26 @@ AssociationDefinitionOrStub returns SysML::Association :
 
 /* FEATURES */
 
-TypedFeatureDefinition returns SysML::Feature :
+NamedFeatureDefinition returns SysML::Feature :
 	name = Name 
-	( ':' ( isComposite ?= 'composes' )? ( referencedType += [SysML::Class | QualifiedName] | 'any' )
-	  ( ownedMembership += OwnedRedefinitionOrSubset )? 
-	)?
-    ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	( '=' value = Expression )? ( ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	(
+	  ( ':' ( isComposite ?= 'composes' )? ( referencedType += [SysML::Class | QualifiedName] | 'any' )
+	    ( ownedMembership += OwnedRedefinitionOrSubset )? 
+	  )?
+      ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
+	  ( '=' value = Expression )? ( ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	| ownedMembership += OwnedRedefinitionOrSubset
+	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
+	     ( '=' value = Expression ( ';' | '{' ( ownedMembership += ClassMember )* '}' ) 
+	     | '{' ( ownedMembership += ClassMember )* '}'
+	     )
+	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
+	  )
+	)
 ;
 
-UntypedFeatureDefinition returns SysML::Feature :
-	( name = Name )? ownedMembership += OwnedRedefinitionOrSubset
+UnnamedFeatureDefinition returns SysML::Feature :
+	ownedMembership += OwnedRedefinitionOrSubset
 	( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
 	   ( '=' value = Expression ( ';' | '{' ( ownedMembership += ClassMember )* '}' ) 
 	   | '{' ( ownedMembership += ClassMember )* '}'
@@ -210,14 +219,14 @@ BinaryOperator:
 ;
 
 UnaryExpression returns SysML::Expression:
-	AccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += AccessExpression
+	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
 ;
 
 UnaryOperator:
 	'+' | '-'
 ;
 
-AccessExpression returns SysML::Expression:
+SequenceAccessExpression returns SysML::Expression:
 	 PrimaryExpression 
 	 ( {SysML::SequenceAccessExpression.primary = current} '[' index = Expression ']' )*
 ;

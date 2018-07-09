@@ -125,6 +125,7 @@ public interface Membership extends Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Member Element</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Element</em>' containment reference isn't clear,
@@ -134,7 +135,8 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Owned Member Element</em>' containment reference.
 	 * @see #setOwnedMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement()
-	 * @model containment="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
+	 * @model opposite="owningMembership" containment="true" ordered="false"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();

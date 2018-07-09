@@ -1,48 +1,48 @@
 package VehicleUsages {
 
-	feature 'N・m': VehicleDefinitions.TorqueUnit = SI.N * SI.m;
+	'N・m': VehicleDefinitions.TorqueUnit = SI.N * SI.m;
 	
-	feature T1: VehicleDefinitions.Torque = 10.0@['N・m']; // VehicleDefinitions.Torque(10.0, 'N・m')
-	feature T2: VehicleDefinitions.Torque = 20.0@['N・m']; // VehicleDefinitions.Torque(20.0, 'N・m')
+	T1: VehicleDefinitions.Torque = 10.0@['N・m']; // VehicleDefinitions.Torque(10.0, 'N・m')
+	T2: VehicleDefinitions.Torque = 20.0@['N・m']; // VehicleDefinitions.Torque(20.0, 'N・m')
 	
-	feature narrowRimWheel: VehicleDefinitions.Wheel {
-		feature lugbolt: composes VehicleDefinitions.Lugbolt[4..5];
+	narrowRimWheel: VehicleDefinitions.Wheel {
+		part lugbolt: VehicleDefinitions.Lugbolt[4..5];
 	}
 
-	feature wideRimWheel: VehicleDefinitions.Wheel {
-		feature lugbolt: composes VehicleDefinitions.Lugbolt[4..6];
+	wideRimWheel: VehicleDefinitions.Wheel {
+		part lugbolt: VehicleDefinitions.Lugbolt[4..6];
 	}
 
-	feature vehicle_C1: VehicleDefinitions.Vehicle {
-		feature frontAssembly: composes VehicleDefinitions.AxleAssembly {
-			feature frontWheel is narrowRimWheel[2] {
-				feature is narrowRimWheel.lugbolt[4] {
-					feature torque is VehicleDefinitions.Lugbolt.tighteningTorque = T1;
+	vehicle_C1: VehicleDefinitions.Vehicle {
+		part frontAxleAssembly: VehicleDefinitions.AxleAssembly {
+			part frontWheel is narrowRimWheel[2] {
+				part lugbolt is narrowRimWheel.lugbolt[4] {
+					feature tighteningTorque is VehicleDefinitions.Lugbolt.tighteningTorque = T1;
 				}
 			}
-			feature frontAxle: composes VehicleDefinitions.Axle;
+			part frontAxle: VehicleDefinitions.Axle;
 		}
 		
-		feature rearAssembly: VehicleDefinitions.AxleAssembly {
-			feature rearWheel is wideRimWheel[2] {
-				feature is wideRimWheel.lugbolt[6] {
-					feature torque is VehicleDefinitions.Lugbolt.tighteningTorque = T2;
+		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
+			part rearWheel is wideRimWheel[2] {
+				part lugbolt is wideRimWheel.lugbolt[6] {
+					feature tighteningTorque is VehicleDefinitions.Lugbolt.tighteningTorque = T2;
 				}
 			}
-			feature rearAxle: composes VehicleDefinitions.Axle;			
+			part rearAxle: VehicleDefinitions.Axle;			
 		}
 	}
 	
-	feature vehicle_C2 is vehicle_C1 {
-		feature frontAssembly is vehicle_C1.frontAssembly {
-			feature leftFrontWheel subsets vehicle_C1.frontAssembly.frontWheel[1] {
-				port hub: VehicleDefinitions.WheelHub;
+	vehicle_C2 is vehicle_C1 {
+		part frontAxleAssembly is vehicle_C1.frontAxleAssembly {
+			part leftFrontWheel subsets vehicle_C1.frontAxleAssembly.frontWheel = vehicle_C1.frontAxleAssembly.frontWheel[1] {
+				port hub: VehicleDefinitions.WheelHubIF;
 			}
-			feature rightFrontWheel subsets vehicle_C1.frontAssembly.frontWheel[1] {
-				port hub: VehicleDefinitions.WheelHub;
+			part rightFrontWheel subsets vehicle_C1.frontAxleAssembly.frontWheel = vehicle_C1.frontAxleAssembly.frontWheel[2] {
+				port hub: VehicleDefinitions.WheelHubIF;
 			}
 			
-			feature frontAxle is vehicle_C1.frontAssembly.frontAxle {
+			part frontAxle is vehicle_C1.frontAxleAssembly.frontAxle {
 				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
 				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
 			}
@@ -54,15 +54,15 @@ package VehicleUsages {
 				frontAxle.rightMountingPoint => rightFrontWheel.hub;
 		}
 		
-		feature rearAssembly is vehicle_C1.rearAssembly {
-			feature leftRearWheel subsets vehicle_C1.rearAssembly.rearWheel[1] {
+		part rearAxleAssembly is vehicle_C1.rearAxleAssembly {
+			part leftRearWheel subsets vehicle_C1.rearAxleAssembly.rearWheel = vehicle_C1.rearAxleAssembly.rearWheel[1] {
 				port hub: VehicleDefinitions.WheelHubIF;
 			}
-			feature rightRearWheel subsets vehicle_C1.rearAssembly.rearWheel[1] {
+			part rightRearWheel subsets vehicle_C1.rearAxleAssembly.rearWheel = vehicle_C1.rearAxleAssembly.rearWheel[2] {
 				port hub: VehicleDefinitions.WheelHubIF;
 			}
 
-			feature rearAxle is vehicle_C1.rearAssembly.rearAxle {
+			part rearAxle is vehicle_C1.rearAxleAssembly.rearAxle {
 				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
 				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
 			}
@@ -75,18 +75,18 @@ package VehicleUsages {
 		}		
 	}
 	
-	feature vehicle_C3 is vehicle_C2 {
-		feature transmission: composes VehicleDefinitions.Transmission {
+	vehicle_C3 is vehicle_C2 {
+		part transmission: VehicleDefinitions.Transmission {
 			port out drive: VehicleDefinitions.DriveIF;
 		}
 		
-		feature rearAssembly is vehicle_C2.rearAssembly {
-			feature rearAxle is vehicle_C2.rearAssembly.rearAxle {
+		part rearAxleAssembly is vehicle_C2.rearAxleAssembly {
+			part rearAxle is vehicle_C2.rearAxleAssembly.rearAxle {
 				port in drive: VehicleDefinitions.DriveIF;
 			}
 		}
 		
 		connector driveShaft is 
-			transmission.drive => rearAssembly.rearAxle.drive;			
+			transmission.drive => rearAxleAssembly.rearAxle.drive;			
 	}
 }

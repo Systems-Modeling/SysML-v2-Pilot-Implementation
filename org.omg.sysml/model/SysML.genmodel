@@ -140,6 +140,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Element/identifier"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Element/owningNamespace"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Element/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML.ecore#//Element/owningMembership"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//LiteralNull"/>
     <genClasses ecoreClass="SysML.ecore#//LiteralReal">

@@ -107,7 +107,7 @@ public interface Package extends Element {
 	 * @return the value of the '<em>Owned Membership</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getOwningPackage
-	 * @model opposite="owningPackage" containment="true" ordered="false"
+	 * @model opposite="owningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();
@@ -123,7 +123,7 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imported Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_ImportedMembership()
-	 * @model derived="true" ordered="false"
+	 * @model derived="true"
 	 * @generated
 	 */
 	EList<Membership> getImportedMembership();

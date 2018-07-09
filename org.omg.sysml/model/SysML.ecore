@@ -41,7 +41,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="memberElement" ordered="false"
         eType="#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
-        eType="#//Element" containment="true"/>
+        eType="#//Element" containment="true" eOpposite="#//Element/owningMembership"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" ordered="false"
         lowerBound="1" eType="#//Package" eOpposite="#//Package/ownedMembership"/>
   </eClassifiers>
@@ -131,10 +131,10 @@
         eType="#//Element" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
         eType="#//Element" derived="true" eOpposite="#//Element/owningNamespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMembership" ordered="false"
-        upperBound="-1" eType="#//Membership" containment="true" eOpposite="#//Membership/owningPackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMembership" ordered="false"
-        upperBound="-1" eType="#//Membership" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMembership" upperBound="-1"
+        eType="#//Membership" containment="true" eOpposite="#//Membership/owningPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMembership" upperBound="-1"
+        eType="#//Membership" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperatorExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
@@ -209,6 +209,8 @@
         eType="#//Package" eOpposite="#//Package/ownedMember"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningMembership" ordered="false"
+        eType="#//Membership" eOpposite="#//Membership/ownedMemberElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralNull" eSuperTypes="#//LiteralExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralReal" eSuperTypes="#//LiteralExpression">

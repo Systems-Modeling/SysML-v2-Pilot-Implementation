@@ -257,9 +257,9 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		if (newOwnedMemberElement != ownedMemberElement) {
 			NotificationChain msgs = null;
 			if (ownedMemberElement != null)
-				msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, null, msgs);
+				msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
 			if (newOwnedMemberElement != null)
-				msgs = ((InternalEObject)newOwnedMemberElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, null, msgs);
+				msgs = ((InternalEObject)newOwnedMemberElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
 			msgs = basicSetOwnedMemberElement(newOwnedMemberElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -327,6 +327,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				if (ownedMemberElement != null)
+					msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, null, msgs);
+				return basicSetOwnedMemberElement((Element)otherEnd, msgs);
 			case SysMLPackage.MEMBERSHIP__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

@@ -84,12 +84,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_ElementReferenceExpression(context, (ElementReferenceExpression) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE:
-				if (rule == grammarAccess.getTypedFeatureDefinitionRule()) {
-					sequence_TypedFeatureDefinition(context, (Feature) semanticObject); 
+				if (rule == grammarAccess.getNamedFeatureDefinitionRule()) {
+					sequence_NamedFeatureDefinition(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getUntypedFeatureDefinitionRule()) {
-					sequence_UntypedFeatureDefinition(context, (Feature) semanticObject); 
+				else if (rule == grammarAccess.getUnnamedFeatureDefinitionRule()) {
+					sequence_UnnamedFeatureDefinition(context, (Feature) semanticObject); 
 					return; 
 				}
 				else break;
@@ -153,7 +153,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Redefinition(context, (Redefinition) semanticObject); 
 				return; 
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION:
-				sequence_AccessExpression(context, (SequenceAccessExpression) semanticObject); 
+				sequence_SequenceAccessExpression(context, (SequenceAccessExpression) semanticObject); 
 				return; 
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
 				sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
@@ -165,33 +165,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
-	/**
-	 * Contexts:
-	 *     Expression returns SequenceAccessExpression
-	 *     BinaryExpression returns SequenceAccessExpression
-	 *     BinaryExpression.OperatorExpression_1_0 returns SequenceAccessExpression
-	 *     UnaryExpression returns SequenceAccessExpression
-	 *     AccessExpression returns SequenceAccessExpression
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns SequenceAccessExpression
-	 *     PrimaryExpression returns SequenceAccessExpression
-	 *
-	 * Constraint:
-	 *     (primary=AccessExpression_SequenceAccessExpression_1_0 index=Expression)
-	 */
-	protected void sequence_AccessExpression(ISerializationContext context, SequenceAccessExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__PRIMARY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__PRIMARY));
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__INDEX));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAccessExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_0(), semanticObject.getPrimary());
-		feeder.accept(grammarAccess.getAccessExpressionAccess().getIndexExpressionParserRuleCall_1_2_0(), semanticObject.getIndex());
-		feeder.finish();
-	}
-	
 	
 	/**
 	 * Contexts:
@@ -232,14 +205,14 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns OperatorExpression
 	 *     BinaryExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     UnaryExpression returns OperatorExpression
-	 *     AccessExpression returns OperatorExpression
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns OperatorExpression
+	 *     SequenceAccessExpression returns OperatorExpression
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns OperatorExpression
 	 *     PrimaryExpression returns OperatorExpression
 	 *
 	 * Constraint:
 	 *     (
 	 *         (operand+=BinaryExpression_OperatorExpression_1_0 ((operator=BinaryOperator operand+=Expression) | (operator='@' operand+=Expression))) | 
-	 *         (operator=UnaryOperator operand+=AccessExpression)
+	 *         (operator=UnaryOperator operand+=SequenceAccessExpression)
 	 *     )
 	 */
 	protected void sequence_BinaryExpression_UnaryExpression(ISerializationContext context, OperatorExpression semanticObject) {
@@ -253,8 +226,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns LiteralBoolean
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     UnaryExpression returns LiteralBoolean
-	 *     AccessExpression returns LiteralBoolean
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralBoolean
+	 *     SequenceAccessExpression returns LiteralBoolean
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralBoolean
 	 *     PrimaryExpression returns LiteralBoolean
 	 *     LiteralExpression returns LiteralBoolean
 	 *     BooleanLiteralExpression returns LiteralBoolean
@@ -310,8 +283,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=TypedFeatureDefinition) | 
-	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=UntypedFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=UnnamedFeatureDefinition) | 
 	 *             ownedMemberElement=ConnectorDefinition | 
 	 *             (((isComposite?='part'? memberName=Name?) | memberName=Name)? memberElement=[Element|QualifiedName])
 	 *         )
@@ -340,8 +313,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns ElementReferenceExpression
 	 *     BinaryExpression.OperatorExpression_1_0 returns ElementReferenceExpression
 	 *     UnaryExpression returns ElementReferenceExpression
-	 *     AccessExpression returns ElementReferenceExpression
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns ElementReferenceExpression
+	 *     SequenceAccessExpression returns ElementReferenceExpression
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns ElementReferenceExpression
 	 *     PrimaryExpression returns ElementReferenceExpression
 	 *     ElementReferenceExpression returns ElementReferenceExpression
 	 *
@@ -383,8 +356,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns InstanceCreationExpression
 	 *     BinaryExpression.OperatorExpression_1_0 returns InstanceCreationExpression
 	 *     UnaryExpression returns InstanceCreationExpression
-	 *     AccessExpression returns InstanceCreationExpression
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns InstanceCreationExpression
+	 *     SequenceAccessExpression returns InstanceCreationExpression
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns InstanceCreationExpression
 	 *     PrimaryExpression returns InstanceCreationExpression
 	 *     InstanceCreationExpression returns InstanceCreationExpression
 	 *
@@ -398,12 +371,46 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     NamedFeatureDefinition returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=Name 
+	 *         (
+	 *             (
+	 *                 isComposite?='composes'? 
+	 *                 referencedType+=[Class|QualifiedName]? 
+	 *                 ownedMembership+=OwnedRedefinitionOrSubset? 
+	 *                 (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)? 
+	 *                 value=Expression? 
+	 *                 ownedMembership+=ClassMember*
+	 *             ) | 
+	 *             (
+	 *                 ownedMembership+=OwnedRedefinitionOrSubset 
+	 *                 (
+	 *                     (
+	 *                         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)? 
+	 *                         ((value=Expression ownedMembership+=ClassMember*) | ownedMembership+=ClassMember+)?
+	 *                     ) | 
+	 *                     (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)
+	 *                 )
+	 *             )
+	 *         )
+	 *     )
+	 */
+	protected void sequence_NamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expression returns LiteralInteger
 	 *     BinaryExpression returns LiteralInteger
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     UnaryExpression returns LiteralInteger
-	 *     AccessExpression returns LiteralInteger
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralInteger
+	 *     SequenceAccessExpression returns LiteralInteger
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralInteger
 	 *     PrimaryExpression returns LiteralInteger
 	 *     LiteralExpression returns LiteralInteger
 	 *     NaturalLiteralExpression returns LiteralInteger
@@ -446,8 +453,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             visibility=VisibilityIndicator? 
 	 *             (
-	 *                 ownedMemberElement=TypedFeatureDefinition | 
-	 *                 ownedMemberElement=UntypedFeatureDefinition | 
+	 *                 ownedMemberElement=NamedFeatureDefinition | 
+	 *                 ownedMemberElement=UnnamedFeatureDefinition | 
 	 *                 ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName])
 	 *             )
 	 *         )
@@ -464,8 +471,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns LiteralNull
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralNull
 	 *     UnaryExpression returns LiteralNull
-	 *     AccessExpression returns LiteralNull
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralNull
+	 *     SequenceAccessExpression returns LiteralNull
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralNull
 	 *     PrimaryExpression returns LiteralNull
 	 *     LiteralExpression returns LiteralNull
 	 *     NullLiteralExpression returns LiteralNull
@@ -531,8 +538,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ownedMemberElement=TypedFeatureDefinition | 
-	 *             ownedMemberElement=UntypedFeatureDefinition | 
+	 *             ownedMemberElement=NamedFeatureDefinition | 
+	 *             ownedMemberElement=UnnamedFeatureDefinition | 
 	 *             ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName])
 	 *         )
 	 *     )
@@ -548,8 +555,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns LiteralReal
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     UnaryExpression returns LiteralReal
-	 *     AccessExpression returns LiteralReal
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralReal
+	 *     SequenceAccessExpression returns LiteralReal
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralReal
 	 *     PrimaryExpression returns LiteralReal
 	 *     LiteralExpression returns LiteralReal
 	 *     RealLiteralExpression returns LiteralReal
@@ -588,12 +595,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Expression returns SequenceAccessExpression
+	 *     BinaryExpression returns SequenceAccessExpression
+	 *     BinaryExpression.OperatorExpression_1_0 returns SequenceAccessExpression
+	 *     UnaryExpression returns SequenceAccessExpression
+	 *     SequenceAccessExpression returns SequenceAccessExpression
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns SequenceAccessExpression
+	 *     PrimaryExpression returns SequenceAccessExpression
+	 *
+	 * Constraint:
+	 *     (primary=SequenceAccessExpression_SequenceAccessExpression_1_0 index=Expression)
+	 */
+	protected void sequence_SequenceAccessExpression(ISerializationContext context, SequenceAccessExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__PRIMARY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__PRIMARY));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__INDEX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SEQUENCE_ACCESS_EXPRESSION__INDEX));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceAccessExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_0(), semanticObject.getPrimary());
+		feeder.accept(grammarAccess.getSequenceAccessExpressionAccess().getIndexExpressionParserRuleCall_1_2_0(), semanticObject.getIndex());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expression returns SequenceConstructionExpression
 	 *     BinaryExpression returns SequenceConstructionExpression
 	 *     BinaryExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
 	 *     UnaryExpression returns SequenceConstructionExpression
-	 *     AccessExpression returns SequenceConstructionExpression
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns SequenceConstructionExpression
+	 *     SequenceAccessExpression returns SequenceConstructionExpression
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns SequenceConstructionExpression
 	 *     PrimaryExpression returns SequenceConstructionExpression
 	 *     SequenceConstructionExpression returns SequenceConstructionExpression
 	 *
@@ -611,8 +645,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryExpression returns LiteralString
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralString
 	 *     UnaryExpression returns LiteralString
-	 *     AccessExpression returns LiteralString
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralString
+	 *     SequenceAccessExpression returns LiteralString
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralString
 	 *     PrimaryExpression returns LiteralString
 	 *     LiteralExpression returns LiteralString
 	 *     StringLiteralExpression returns LiteralString
@@ -651,32 +685,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     TypedFeatureDefinition returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         name=Name 
-	 *         isComposite?='composes'? 
-	 *         referencedType+=[Class|QualifiedName]? 
-	 *         ownedMembership+=OwnedRedefinitionOrSubset? 
-	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)? 
-	 *         value=Expression? 
-	 *         ownedMembership+=ClassMember*
-	 *     )
-	 */
-	protected void sequence_TypedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Expression returns LiteralUnbounded
 	 *     BinaryExpression returns LiteralUnbounded
 	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     UnaryExpression returns LiteralUnbounded
-	 *     AccessExpression returns LiteralUnbounded
-	 *     AccessExpression.SequenceAccessExpression_1_0 returns LiteralUnbounded
+	 *     SequenceAccessExpression returns LiteralUnbounded
+	 *     SequenceAccessExpression.SequenceAccessExpression_1_0 returns LiteralUnbounded
 	 *     PrimaryExpression returns LiteralUnbounded
 	 *     LiteralExpression returns LiteralUnbounded
 	 *     UnlimitedNaturalLiteralExpression returns LiteralUnbounded
@@ -691,11 +705,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     UntypedFeatureDefinition returns Feature
+	 *     UnnamedFeatureDefinition returns Feature
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=Name? 
 	 *         ownedMembership+=OwnedRedefinitionOrSubset 
 	 *         (
 	 *             (
@@ -706,7 +719,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         )
 	 *     )
 	 */
-	protected void sequence_UntypedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
+	protected void sequence_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

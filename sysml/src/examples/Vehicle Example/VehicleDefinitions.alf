@@ -43,8 +43,8 @@ package VehicleDefinitions {
 	}
 	
 	assoc Mounting {
-		feature hub: WheelHubIF;
 		feature axleMount: AxleMountIF;
+		feature hub: WheelHubIF;
 	}
 
 }

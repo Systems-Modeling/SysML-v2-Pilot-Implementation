@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -35,6 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  * </ul>
  *
  * @generated
@@ -279,6 +281,47 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Membership getOwningMembership() {
+		if (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_MEMBERSHIP) return null;
+		return (Membership)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningMembership, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningMembership(Membership newOwningMembership) {
+		if (newOwningMembership != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_MEMBERSHIP && newOwningMembership != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningMembership))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningMembership != null)
+				msgs = ((InternalEObject)newOwningMembership).eInverseAdd(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
+			msgs = basicSetOwningMembership(newOwningMembership, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, newOwningMembership, newOwningMembership));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -293,6 +336,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				if (owningNamespace != null)
 					msgs = ((InternalEObject)owningNamespace).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
 				return basicSetOwningNamespace((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningMembership((Membership)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -311,6 +358,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicSetOwner(null, msgs);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return basicSetOwningNamespace(null, msgs);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return basicSetOwningMembership(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -325,6 +374,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.ELEMENT__OWNER:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -348,6 +399,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwningNamespace();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -377,6 +430,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
 				return;
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -404,6 +460,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -426,6 +485,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return owningNamespace != null;
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership() != null;
 		}
 		return super.eIsSet(featureID);
 	}

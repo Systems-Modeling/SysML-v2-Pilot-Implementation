@@ -161,6 +161,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/memberFeature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/ownedFeatureElement"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/owningClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isComposite"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/isPort"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//FeatureMembership/direction"/>
     </genClasses>
@@ -174,6 +175,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/end"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/targetEnd"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/sourceEnd"/>
+    </genClasses>
+    <genClasses ecoreClass="SysML.ecore#//FeatureAccessExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureAccessExpression/expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureAccessExpression/accessedFeature"/>
+    </genClasses>
+    <genClasses ecoreClass="SysML.ecore#//SequenceAccessExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//SequenceAccessExpression/primary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//SequenceAccessExpression/index"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

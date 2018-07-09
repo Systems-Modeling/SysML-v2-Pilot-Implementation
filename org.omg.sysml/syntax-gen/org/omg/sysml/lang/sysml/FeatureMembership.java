@@ -17,6 +17,7 @@ package org.omg.sysml.lang.sysml;
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement <em>Owned Feature Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
  * </ul>
@@ -214,5 +215,31 @@ public interface FeatureMembership extends Membership {
 	 * @generated
 	 */
 	void setOwningClass(org.omg.sysml.lang.sysml.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Composite</em>' attribute.
+	 * @see #setIsComposite(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsComposite()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsComposite();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isIsComposite <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Composite</em>' attribute.
+	 * @see #isIsComposite()
+	 * @generated
+	 */
+	void setIsComposite(boolean value);
 
 } // FeatureMembership

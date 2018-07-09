@@ -283,6 +283,24 @@ public interface SysMLFactory extends EFactory {
 	Association createAssociation();
 
 	/**
+	 * Returns a new object of class '<em>Feature Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Access Expression</em>'.
+	 * @generated
+	 */
+	FeatureAccessExpression createFeatureAccessExpression();
+
+	/**
+	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence Access Expression</em>'.
+	 * @generated
+	 */
+	SequenceAccessExpression createSequenceAccessExpression();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

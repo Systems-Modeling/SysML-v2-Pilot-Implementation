@@ -87,7 +87,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="endOfAssociation" ordered="false"
         eType="#//Association" derived="true" eOpposite="#//Association/end"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpression" eSuperTypes="#//Expression"/>
@@ -240,6 +241,8 @@
         eType="#//Feature" containment="true" eOpposite="#//Feature/owningFeatureMembership"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" ordered="false"
         eType="#//Class" eOpposite="#//Class/ownedFeatureMembership"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPort" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
@@ -264,5 +267,17 @@
         eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEnd" ordered="false"
         eType="#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureAccessExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessedFeature" ordered="false"
+        lowerBound="1" eType="#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceAccessExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primary" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

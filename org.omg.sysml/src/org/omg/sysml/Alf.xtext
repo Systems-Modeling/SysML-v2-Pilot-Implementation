@@ -124,10 +124,10 @@ ClassFeatureMember returns SysML::FeatureMembership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
-      ( 'feature' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = TypedFeatureDefinition
-    | ( 'feature' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UntypedFeatureDefinition
+      ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = TypedFeatureDefinition
+    | ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UntypedFeatureDefinition
     | 'connector' ownedMemberElement = ConnectorDefinition
-	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| ( ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
 	)
 ;
 
@@ -161,13 +161,15 @@ TypedFeatureDefinition returns SysML::Feature :
 	  ( ownedMembership += OwnedRedefinitionOrSubset )? 
 	)?
     ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	( ( '=' value = Expression )? ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	( '=' value = Expression )? ( ';' | '{' ( ownedMembership += ClassMember )* '}' )
 ;
 
 UntypedFeatureDefinition returns SysML::Feature :
 	( name = Name )? ownedMembership += OwnedRedefinitionOrSubset
 	( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	   ( '=' value = Expression ';' | '{' ( ownedMembership += ClassMember )* '}' )
+	   ( '=' value = Expression ( ';' | '{' ( ownedMembership += ClassMember )* '}' ) 
+	   | '{' ( ownedMembership += ClassMember )* '}'
+	   )
 	| '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
 	)
 ;
@@ -208,15 +210,24 @@ BinaryOperator:
 ;
 
 UnaryExpression returns SysML::Expression:
-	PrimaryExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += PrimaryExpression
+	AccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += AccessExpression
 ;
 
 UnaryOperator:
 	'+' | '-'
 ;
 
+AccessExpression returns SysML::Expression:
+	 PrimaryExpression 
+	 ( {SysML::SequenceAccessExpression.primary = current} '[' index = Expression ']' )*
+;
+
 PrimaryExpression returns SysML::Expression:
-	LiteralExpression | ElementReferenceExpression | InstanceCreationExpression | SequenceConstructionExpression | '(' Expression ')'
+	  LiteralExpression 
+	| ElementReferenceExpression 
+	| InstanceCreationExpression 
+	| SequenceConstructionExpression 
+	| '(' Expression ')'
 ;
 
 ElementReferenceExpression returns SysML::ElementReferenceExpression:

@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedFeatureElement <em>Owned Feature Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isIsPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
  * </ul>
@@ -103,6 +104,26 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected org.omg.sysml.lang.sysml.Class owningClass;
+
+	/**
+	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsPort() <em>Is Port</em>}' attribute.
@@ -393,6 +414,27 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsComposite() {
+		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -444,6 +486,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				if (resolve) return getOwningClass();
 				return basicGetOwningClass();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				return isIsComposite();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isIsPort();
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
@@ -474,6 +518,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort((Boolean)newValue);
@@ -508,6 +555,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				setIsComposite(IS_COMPOSITE_EDEFAULT);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort(IS_PORT_EDEFAULT);
 				return;
@@ -536,6 +586,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return ownedFeatureElement != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS:
 				return owningClass != null;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isPort != IS_PORT_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
@@ -558,6 +610,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		result.append(isDerived);
 		result.append(", isReadOnly: ");
 		result.append(isReadOnly);
+		result.append(", isComposite: ");
+		result.append(isComposite);
 		result.append(", isPort: ");
 		result.append(isPort);
 		result.append(", direction: ");

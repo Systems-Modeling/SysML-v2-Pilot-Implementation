@@ -19,6 +19,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureAccessExpression;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
@@ -37,6 +38,7 @@ import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SequenceAccessExpression;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -252,6 +254,20 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass associationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureAccessExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sequenceAccessExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1360,7 +1376,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	public EAttribute getFeatureMembership_Direction() {
-		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1369,7 +1385,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	public EAttribute getFeatureMembership_IsPort() {
-		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1397,6 +1413,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	public EReference getFeatureMembership_OwningClass() {
 		return (EReference)featureMembershipEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeatureMembership_IsComposite() {
+		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1487,6 +1512,60 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	public EReference getAssociation_SourceEnd() {
 		return (EReference)associationEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFeatureAccessExpression() {
+		return featureAccessExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureAccessExpression_Expression() {
+		return (EReference)featureAccessExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureAccessExpression_AccessedFeature() {
+		return (EReference)featureAccessExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSequenceAccessExpression() {
+		return sequenceAccessExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSequenceAccessExpression_Primary() {
+		return (EReference)sequenceAccessExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSequenceAccessExpression_Index() {
+		return (EReference)sequenceAccessExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1679,6 +1758,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(featureMembershipEClass, FEATURE_MEMBERSHIP__MEMBER_FEATURE);
 		createEReference(featureMembershipEClass, FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT);
 		createEReference(featureMembershipEClass, FEATURE_MEMBERSHIP__OWNING_CLASS);
+		createEAttribute(featureMembershipEClass, FEATURE_MEMBERSHIP__IS_COMPOSITE);
 		createEAttribute(featureMembershipEClass, FEATURE_MEMBERSHIP__IS_PORT);
 		createEAttribute(featureMembershipEClass, FEATURE_MEMBERSHIP__DIRECTION);
 
@@ -1692,6 +1772,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(associationEClass, ASSOCIATION__END);
 		createEReference(associationEClass, ASSOCIATION__TARGET_END);
 		createEReference(associationEClass, ASSOCIATION__SOURCE_END);
+
+		featureAccessExpressionEClass = createEClass(FEATURE_ACCESS_EXPRESSION);
+		createEReference(featureAccessExpressionEClass, FEATURE_ACCESS_EXPRESSION__EXPRESSION);
+		createEReference(featureAccessExpressionEClass, FEATURE_ACCESS_EXPRESSION__ACCESSED_FEATURE);
+
+		sequenceAccessExpressionEClass = createEClass(SEQUENCE_ACCESS_EXPRESSION);
+		createEReference(sequenceAccessExpressionEClass, SEQUENCE_ACCESS_EXPRESSION__PRIMARY);
+		createEReference(sequenceAccessExpressionEClass, SEQUENCE_ACCESS_EXPRESSION__INDEX);
 
 		// Create enums
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -1756,6 +1844,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		featureMembershipEClass.getESuperTypes().add(this.getMembership());
 		associationEClass.getESuperTypes().add(this.getRelationship());
 		associationEClass.getESuperTypes().add(this.getClass_());
+		featureAccessExpressionEClass.getESuperTypes().add(this.getExpression());
+		sequenceAccessExpressionEClass.getESuperTypes().add(this.getExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(classEClass, org.omg.sysml.lang.sysml.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1805,7 +1895,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getFeature_ParticipantOfAssociation(), this.getAssociation(), this.getAssociation_Participant(), "participantOfAssociation", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeature_OwningFeatureMembership(), this.getFeatureMembership(), this.getFeatureMembership_OwnedFeatureElement(), "owningFeatureMembership", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeature_EndOfAssociation(), this.getAssociation(), this.getAssociation_End(), "endOfAssociation", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsComposite(), ecorePackage.getEBoolean(), "isComposite", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsComposite(), ecorePackage.getEBoolean(), "isComposite", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1909,6 +1999,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getFeatureMembership_MemberFeature(), this.getFeature(), null, "memberFeature", null, 0, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureMembership_OwnedFeatureElement(), this.getFeature(), this.getFeature_OwningFeatureMembership(), "ownedFeatureElement", null, 0, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureMembership_OwningClass(), this.getClass_(), this.getClass_OwnedFeatureMembership(), "owningClass", null, 0, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeatureMembership_IsComposite(), ecorePackage.getEBoolean(), "isComposite", null, 1, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureMembership_IsPort(), ecorePackage.getEBoolean(), "isPort", null, 1, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureMembership_Direction(), this.getFeatureDirectionKind(), "direction", null, 0, 1, FeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -1922,6 +2013,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getAssociation_End(), this.getFeature(), this.getFeature_EndOfAssociation(), "end", null, 0, 2, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociation_TargetEnd(), this.getFeature(), null, "targetEnd", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociation_SourceEnd(), this.getFeature(), null, "sourceEnd", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(featureAccessExpressionEClass, FeatureAccessExpression.class, "FeatureAccessExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureAccessExpression_Expression(), this.getExpression(), null, "expression", null, 1, 1, FeatureAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeatureAccessExpression_AccessedFeature(), this.getFeature(), null, "accessedFeature", null, 1, 1, FeatureAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(sequenceAccessExpressionEClass, SequenceAccessExpression.class, "SequenceAccessExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSequenceAccessExpression_Primary(), this.getExpression(), null, "primary", null, 1, 1, SequenceAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSequenceAccessExpression_Index(), this.getExpression(), null, "index", null, 1, 1, SequenceAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(featureDirectionKindEEnum, FeatureDirectionKind.class, "FeatureDirectionKind");

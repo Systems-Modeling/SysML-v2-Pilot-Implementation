@@ -19,6 +19,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureAccessExpression;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
@@ -37,6 +38,7 @@ import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SequenceAccessExpression;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -116,6 +118,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.SUBSET: return createSubset();
 			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
 			case SysMLPackage.ASSOCIATION: return createAssociation();
+			case SysMLPackage.FEATURE_ACCESS_EXPRESSION: return createFeatureAccessExpression();
+			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION: return createSequenceAccessExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -443,6 +447,26 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureAccessExpression createFeatureAccessExpression() {
+		FeatureAccessExpressionImpl featureAccessExpression = new FeatureAccessExpressionImpl();
+		return featureAccessExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SequenceAccessExpression createSequenceAccessExpression() {
+		SequenceAccessExpressionImpl sequenceAccessExpression = new SequenceAccessExpressionImpl();
+		return sequenceAccessExpression;
 	}
 
 	/**

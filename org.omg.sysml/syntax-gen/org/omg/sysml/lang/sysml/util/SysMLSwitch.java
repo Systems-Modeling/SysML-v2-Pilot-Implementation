@@ -15,6 +15,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureAccessExpression;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -32,6 +33,7 @@ import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SequenceAccessExpression;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -386,6 +388,30 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClass(association);
 				if (result == null) result = casePackage(association);
 				if (result == null) result = caseElement(association);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.FEATURE_ACCESS_EXPRESSION: {
+				FeatureAccessExpression featureAccessExpression = (FeatureAccessExpression)theEObject;
+				T result = caseFeatureAccessExpression(featureAccessExpression);
+				if (result == null) result = caseExpression(featureAccessExpression);
+				if (result == null) result = caseFunction(featureAccessExpression);
+				if (result == null) result = caseBehavior(featureAccessExpression);
+				if (result == null) result = caseClass(featureAccessExpression);
+				if (result == null) result = casePackage(featureAccessExpression);
+				if (result == null) result = caseElement(featureAccessExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION: {
+				SequenceAccessExpression sequenceAccessExpression = (SequenceAccessExpression)theEObject;
+				T result = caseSequenceAccessExpression(sequenceAccessExpression);
+				if (result == null) result = caseExpression(sequenceAccessExpression);
+				if (result == null) result = caseFunction(sequenceAccessExpression);
+				if (result == null) result = caseBehavior(sequenceAccessExpression);
+				if (result == null) result = caseClass(sequenceAccessExpression);
+				if (result == null) result = casePackage(sequenceAccessExpression);
+				if (result == null) result = caseElement(sequenceAccessExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -825,6 +851,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAssociation(Association object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Access Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureAccessExpression(FeatureAccessExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sequence Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sequence Access Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSequenceAccessExpression(SequenceAccessExpression object) {
 		return null;
 	}
 

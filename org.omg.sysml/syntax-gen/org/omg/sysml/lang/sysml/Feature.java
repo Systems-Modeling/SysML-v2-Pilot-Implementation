@@ -400,7 +400,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
-	 * @model required="true" ordered="false"
+	 * @model required="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsComposite();

@@ -29,8 +29,27 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
-UnitDefinition returns SysML::Package:
-	PackageDefinition | ClassDefinition
+UnitDefinition returns SysML::Package :
+	CommentedUnitDefinition | UnCommentedUnitDefinition
+;
+
+CommentedUnitDefinition returns SysML::Package :
+	( ownedMembership += CommentMember )+
+	ownedMembership += UnitMember
+;
+
+UnitMember returns SysML::Membership:
+	ownedMemberElement = UnCommentedUnitDefinition
+;
+
+UnCommentedUnitDefinition returns SysML::Package :
+	PackageDefinition | ClassDefinition | NamedFeatureDefinition
+;
+
+/* COMMENTS */
+
+Comment returns SysML::Comment :
+	body = DOCUMENTATION_COMMENT
 ;
 
 /* PACKAGES */
@@ -48,8 +67,15 @@ PackageMember returns SysML::Membership :
 	NonFeatureMember | PackagedFeatureMember
 ;
 
-NonFeatureMember returns SysML::Membership : 
-//  ( documentation += DOCUMENTATION_COMMENT )?
+NonFeatureMember returns SysML::Membership :
+	CommentMember | NonCommentNonFeatureMember
+;
+
+CommentMember returns SysML::Membership :
+	ownedMemberElement = Comment
+;
+
+NonCommentNonFeatureMember returns SysML::Membership : 
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( ownedMemberElement = NonFeatureDefinition
@@ -62,7 +88,6 @@ NonFeatureMemberKind :
 ;
 
 PackagedFeatureMember returns SysML::Membership : 
-//  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( 
@@ -120,7 +145,6 @@ ClassMember returns SysML::Membership :
 ;
 
 ClassFeatureMember returns SysML::FeatureMembership : 
-//  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
@@ -155,7 +179,6 @@ AssociationDefinitionOrStub returns SysML::Association :
 ;
 
 AssociationFeatureMember returns SysML::FeatureMembership :
-//  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
@@ -166,7 +189,6 @@ AssociationFeatureMember returns SysML::FeatureMembership :
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
-//  ( documentation += DOCUMENTATION_COMMENT )?
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (

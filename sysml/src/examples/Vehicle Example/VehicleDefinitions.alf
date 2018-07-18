@@ -1,4 +1,9 @@
+/**
+ * Example vehicle definitions model.
+ **/
 package VehicleDefinitions {
+	
+	/** VALUE TYPES **/
 	
 	class TorqueUnit is Quantities.DerivedUnit {
 		feature unitFactor1 subsets Quantities.DerivedUnit.unitFactor {
@@ -16,6 +21,8 @@ package VehicleDefinitions {
 		feature unit: TorqueUnit is Quantities.Quantity.unit;
 	}
 	
+	/** BLOCKS **/
+	
 	class Vehicle { }
 	
 	class Transmission { }
@@ -30,6 +37,8 @@ package VehicleDefinitions {
 		feature tighteningTorque: Torque;
 	}
 	
+	/** INTERFACE BLOCKS **/
+	
 	class DriveIF { 
 		feature in driveTorque: Torque;
 	}
@@ -41,6 +50,8 @@ package VehicleDefinitions {
 	class WheelHubIF { 
 		feature in appliedTorque: Torque;
 	}
+	
+	/** ASSOCIATION BLOCKS **/
 	
 	assoc Mounting {
 		end axleMount: AxleMountIF;

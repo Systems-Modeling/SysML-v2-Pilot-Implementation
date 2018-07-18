@@ -1,18 +1,26 @@
+/**
+ * Example usages of elements from the vehicle definitions model.
+ **/
 package VehicleUsages {
 
+	/** VALUES **/
+	 
 	'N・m': VehicleDefinitions.TorqueUnit = SI.N * SI.m;
 	
 	T1: VehicleDefinitions.Torque = 10.0@['N・m']; // VehicleDefinitions.Torque(10.0, 'N・m')
 	T2: VehicleDefinitions.Torque = 20.0@['N・m']; // VehicleDefinitions.Torque(20.0, 'N・m')
 	
+	/** PARTS **/
+	
+	/** Wheel configurations. **/
 	narrowRimWheel: VehicleDefinitions.Wheel {
 		part lugbolt: VehicleDefinitions.Lugbolt[4..5];
 	}
-
 	wideRimWheel: VehicleDefinitions.Wheel {
 		part lugbolt: VehicleDefinitions.Lugbolt[4..6];
 	}
 
+	/** Basic Vehicle configuration showing a part hierarchy. **/
 	vehicle_C1: VehicleDefinitions.Vehicle {
 		part frontAxleAssembly: VehicleDefinitions.AxleAssembly {
 			part frontWheel is narrowRimWheel[2] {
@@ -33,6 +41,7 @@ package VehicleUsages {
 		}
 	}
 	
+	/** Specialized configuration with part-specific ports. **/
 	vehicle_C2 is vehicle_C1 {
 		part frontAxleAssembly is vehicle_C1.frontAxleAssembly {
 			part leftFrontWheel subsets vehicle_C1.frontAxleAssembly.frontWheel = vehicle_C1.frontAxleAssembly.frontWheel[1] {
@@ -75,6 +84,7 @@ package VehicleUsages {
 		}		
 	}
 	
+	/** Further specialized configuration with a connector to a deeply-nested port. **/
 	vehicle_C3 is vehicle_C2 {
 		part transmission: VehicleDefinitions.Transmission {
 			port out drive: VehicleDefinitions.DriveIF;

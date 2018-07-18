@@ -58,7 +58,7 @@ public interface Comment extends Element {
 	 * @return the value of the '<em>Commented Element</em>' reference.
 	 * @see #setCommentedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_CommentedElement()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Element getCommentedElement();

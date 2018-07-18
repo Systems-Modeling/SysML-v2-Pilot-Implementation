@@ -110,7 +110,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     'specializes' | 'is'
+	 *     'is' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedMembership+=OwnedGeneralization
@@ -171,7 +171,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     isComposite?='composes' 'any' (ambiguity) (rule end)
@@ -273,7 +273,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     value=Expression (ambiguity) (rule end)

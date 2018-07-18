@@ -146,7 +146,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" ordered="false"
-        lowerBound="1" eType="#//Element"/>
+        eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"

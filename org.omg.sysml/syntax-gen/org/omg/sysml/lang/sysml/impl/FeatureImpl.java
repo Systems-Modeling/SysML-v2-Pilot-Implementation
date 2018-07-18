@@ -588,7 +588,7 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 */
 	public EList<Association> getParticipantOfAssociation() {
 		if (participantOfAssociation == null) {
-			participantOfAssociation = new EObjectWithInverseResolvingEList.ManyInverse<Association>(Association.class, this, SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION, SysMLPackage.ASSOCIATION__PARTICIPANT);
+			participantOfAssociation = new EObjectWithInverseResolvingEList.ManyInverse<Association>(Association.class, this, SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION, SysMLPackage.ASSOCIATION__PARTICIPANT_FEATURE);
 		}
 		return participantOfAssociation;
 	}
@@ -684,9 +684,9 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		if (newEndOfAssociation != endOfAssociation) {
 			NotificationChain msgs = null;
 			if (endOfAssociation != null)
-				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
 			if (newEndOfAssociation != null)
-				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
 			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -744,7 +744,7 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
 			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
 				if (endOfAssociation != null)
-					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END, Association.class, msgs);
+					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
 				return basicSetEndOfAssociation((Association)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);

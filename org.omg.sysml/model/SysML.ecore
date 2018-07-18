@@ -81,11 +81,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantOfAssociation"
-        ordered="false" upperBound="-1" eType="#//Association" derived="true" eOpposite="#//Association/participant"/>
+        ordered="false" upperBound="-1" eType="#//Association" derived="true" eOpposite="#//Association/participantFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/ownedFeatureElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endOfAssociation" ordered="false"
-        eType="#//Association" derived="true" eOpposite="#//Association/end"/>
+        eType="#//Association" derived="true" eOpposite="#//Association/endFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         derived="true"/>
@@ -257,18 +257,20 @@
         eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetType" ordered="false"
         eType="#//Class" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="participant" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participantFeature" ordered="false"
         upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/participantOfAssociation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipant" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantFeature"
+        ordered="false" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantFeature"
+        ordered="false" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endFeature" ordered="false"
+        upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/endOfAssociation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetEndFeature" ordered="false"
         eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipant" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEndFeature" ordered="false"
         eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" ordered="false" upperBound="2"
-        eType="#//Feature" derived="true" eOpposite="#//Feature/endOfAssociation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetEnd" ordered="false"
-        eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEnd" ordered="false"
-        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedEndFeatureMembership"
+        upperBound="-1" eType="#//EndFeatureMembership" eOpposite="#//EndFeatureMembership/owningAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureAccessExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
@@ -281,5 +283,9 @@
         lowerBound="1" eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
         lowerBound="1" eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndFeatureMembership" eSuperTypes="#//FeatureMembership">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningAssociation" ordered="false"
+        eType="#//Association" eOpposite="#//Association/ownedEndFeatureMembership"/>
   </eClassifiers>
 </ecore:EPackage>

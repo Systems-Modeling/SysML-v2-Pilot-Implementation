@@ -6388,58 +6388,67 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__TARGET_TYPE = RELATIONSHIP_FEATURE_COUNT + 16;
 
 	/**
-	 * The feature id for the '<em><b>Participant</b></em>' reference list.
+	 * The feature id for the '<em><b>Participant Feature</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__PARTICIPANT = RELATIONSHIP_FEATURE_COUNT + 17;
+	int ASSOCIATION__PARTICIPANT_FEATURE = RELATIONSHIP_FEATURE_COUNT + 17;
 
 	/**
-	 * The feature id for the '<em><b>Source Participant</b></em>' reference.
+	 * The feature id for the '<em><b>Source Participant Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE_PARTICIPANT = RELATIONSHIP_FEATURE_COUNT + 18;
+	int ASSOCIATION__SOURCE_PARTICIPANT_FEATURE = RELATIONSHIP_FEATURE_COUNT + 18;
 
 	/**
-	 * The feature id for the '<em><b>Target Participant</b></em>' reference.
+	 * The feature id for the '<em><b>Target Participant Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET_PARTICIPANT = RELATIONSHIP_FEATURE_COUNT + 19;
+	int ASSOCIATION__TARGET_PARTICIPANT_FEATURE = RELATIONSHIP_FEATURE_COUNT + 19;
 
 	/**
-	 * The feature id for the '<em><b>End</b></em>' reference list.
+	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__END = RELATIONSHIP_FEATURE_COUNT + 20;
+	int ASSOCIATION__END_FEATURE = RELATIONSHIP_FEATURE_COUNT + 20;
 
 	/**
-	 * The feature id for the '<em><b>Target End</b></em>' reference.
+	 * The feature id for the '<em><b>Target End Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__TARGET_END = RELATIONSHIP_FEATURE_COUNT + 21;
+	int ASSOCIATION__TARGET_END_FEATURE = RELATIONSHIP_FEATURE_COUNT + 21;
 
 	/**
-	 * The feature id for the '<em><b>Source End</b></em>' reference.
+	 * The feature id for the '<em><b>Source End Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE_END = RELATIONSHIP_FEATURE_COUNT + 22;
+	int ASSOCIATION__SOURCE_END_FEATURE = RELATIONSHIP_FEATURE_COUNT + 22;
+
+	/**
+	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = RELATIONSHIP_FEATURE_COUNT + 23;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -6448,7 +6457,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 23;
+	int ASSOCIATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 24;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -6966,6 +6975,259 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_ACCESS_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.EndFeatureMembershipImpl <em>End Feature Membership</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.EndFeatureMembershipImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getEndFeatureMembership()
+	 * @generated
+	 */
+	int END_FEATURE_MEMBERSHIP = 31;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNER = FEATURE_MEMBERSHIP__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__IDENTIFIER = FEATURE_MEMBERSHIP__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_NAMESPACE = FEATURE_MEMBERSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__NAME = FEATURE_MEMBERSHIP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Related</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__RELATED = FEATURE_MEMBERSHIP__RELATED;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__TARGET = FEATURE_MEMBERSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__SOURCE = FEATURE_MEMBERSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__MEMBER_NAME = FEATURE_MEMBERSHIP__MEMBER_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__VISIBILITY = FEATURE_MEMBERSHIP__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__ALIASES = FEATURE_MEMBERSHIP__ALIASES;
+
+	/**
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__MEMBER_ELEMENT = FEATURE_MEMBERSHIP__MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_PACKAGE = FEATURE_MEMBERSHIP__OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__IS_DERIVED = FEATURE_MEMBERSHIP__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__IS_READ_ONLY = FEATURE_MEMBERSHIP__IS_READ_ONLY;
+
+	/**
+	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT = FEATURE_MEMBERSHIP__OWNED_FEATURE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_CLASS = FEATURE_MEMBERSHIP__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__IS_COMPOSITE = FEATURE_MEMBERSHIP__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__IS_PORT = FEATURE_MEMBERSHIP__IS_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__DIRECTION = FEATURE_MEMBERSHIP__DIRECTION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>End Feature Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
+
+	/**
+	 * The number of operations of the '<em>End Feature Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6973,7 +7235,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 32;
+	int VISIBILITY_KIND = 33;
 
 
 	/**
@@ -6984,7 +7246,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 31;
+	int FEATURE_DIRECTION_KIND = 32;
 
 
 	/**
@@ -8330,70 +8592,81 @@ public interface SysMLPackage extends EPackage {
 	EReference getAssociation_TargetType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getParticipant <em>Participant</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getParticipantFeature <em>Participant Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Participant</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getParticipant()
+	 * @return the meta object for the reference list '<em>Participant Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getParticipantFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_Participant();
+	EReference getAssociation_ParticipantFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipantFeature <em>Source Participant Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Participant</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getSourceParticipant()
+	 * @return the meta object for the reference '<em>Source Participant Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getSourceParticipantFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_SourceParticipant();
+	EReference getAssociation_SourceParticipantFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipantFeature <em>Target Participant Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Participant</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getTargetParticipant()
+	 * @return the meta object for the reference '<em>Target Participant Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getTargetParticipantFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_TargetParticipant();
+	EReference getAssociation_TargetParticipantFeature();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getEnd <em>End</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getEndFeature <em>End Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>End</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getEnd()
+	 * @return the meta object for the reference list '<em>End Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getEndFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_End();
+	EReference getAssociation_EndFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getTargetEndFeature <em>Target End Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target End</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getTargetEnd()
+	 * @return the meta object for the reference '<em>Target End Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getTargetEndFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_TargetEnd();
+	EReference getAssociation_TargetEndFeature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Association#getSourceEndFeature <em>Source End Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source End</em>'.
-	 * @see org.omg.sysml.lang.sysml.Association#getSourceEnd()
+	 * @return the meta object for the reference '<em>Source End Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getSourceEndFeature()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EReference getAssociation_SourceEnd();
+	EReference getAssociation_SourceEndFeature();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership <em>Owned End Feature Membership</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Owned End Feature Membership</em>'.
+	 * @see org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_OwnedEndFeatureMembership();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.FeatureAccessExpression <em>Feature Access Expression</em>}'.
@@ -8458,6 +8731,27 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSequenceAccessExpression_Index();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.EndFeatureMembership <em>End Feature Membership</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>End Feature Membership</em>'.
+	 * @see org.omg.sysml.lang.sysml.EndFeatureMembership
+	 * @generated
+	 */
+	EClass getEndFeatureMembership();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation <em>Owning Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owning Association</em>'.
+	 * @see org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation()
+	 * @see #getEndFeatureMembership()
+	 * @generated
+	 */
+	EReference getEndFeatureMembership_OwningAssociation();
 
 	/**
 	 * Returns the meta object for enum '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}'.
@@ -9561,52 +9855,60 @@ public interface SysMLPackage extends EPackage {
 		EReference ASSOCIATION__TARGET_TYPE = eINSTANCE.getAssociation_TargetType();
 
 		/**
-		 * The meta object literal for the '<em><b>Participant</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Participant Feature</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__PARTICIPANT = eINSTANCE.getAssociation_Participant();
+		EReference ASSOCIATION__PARTICIPANT_FEATURE = eINSTANCE.getAssociation_ParticipantFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Participant</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source Participant Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__SOURCE_PARTICIPANT = eINSTANCE.getAssociation_SourceParticipant();
+		EReference ASSOCIATION__SOURCE_PARTICIPANT_FEATURE = eINSTANCE.getAssociation_SourceParticipantFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Participant</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target Participant Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__TARGET_PARTICIPANT = eINSTANCE.getAssociation_TargetParticipant();
+		EReference ASSOCIATION__TARGET_PARTICIPANT_FEATURE = eINSTANCE.getAssociation_TargetParticipantFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>End</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>End Feature</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__END = eINSTANCE.getAssociation_End();
+		EReference ASSOCIATION__END_FEATURE = eINSTANCE.getAssociation_EndFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Target End</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target End Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__TARGET_END = eINSTANCE.getAssociation_TargetEnd();
+		EReference ASSOCIATION__TARGET_END_FEATURE = eINSTANCE.getAssociation_TargetEndFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Source End</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source End Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION__SOURCE_END = eINSTANCE.getAssociation_SourceEnd();
+		EReference ASSOCIATION__SOURCE_END_FEATURE = eINSTANCE.getAssociation_SourceEndFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned End Feature Membership</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = eINSTANCE.getAssociation_OwnedEndFeatureMembership();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.FeatureAccessExpressionImpl <em>Feature Access Expression</em>}' class.
@@ -9659,6 +9961,24 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEQUENCE_ACCESS_EXPRESSION__INDEX = eINSTANCE.getSequenceAccessExpression_Index();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.EndFeatureMembershipImpl <em>End Feature Membership</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.EndFeatureMembershipImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getEndFeatureMembership()
+		 * @generated
+		 */
+		EClass END_FEATURE_MEMBERSHIP = eINSTANCE.getEndFeatureMembership();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Association</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION = eINSTANCE.getEndFeatureMembership_OwningAssociation();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.

@@ -16,12 +16,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetType <em>Target Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getParticipant <em>Participant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getEnd <em>End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getParticipantFeature <em>Participant Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceParticipantFeature <em>Source Participant Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetParticipantFeature <em>Target Participant Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetEndFeature <em>Target End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceEndFeature <em>Source End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership <em>Owned End Feature Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation()
@@ -98,143 +99,161 @@ public interface Association extends Relationship, org.omg.sysml.lang.sysml.Clas
 	void setTargetType(org.omg.sysml.lang.sysml.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Participant</b></em>' reference list.
+	 * Returns the value of the '<em><b>Participant Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation <em>Participant Of Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Participant</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Participant Feature</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Participant</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_Participant()
+	 * @return the value of the '<em>Participant Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_ParticipantFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation
 	 * @model opposite="participantOfAssociation" upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getParticipant();
+	EList<Feature> getParticipantFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Source Participant</b></em>' reference.
+	 * Returns the value of the '<em><b>Source Participant Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source Participant</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Source Participant Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Participant</em>' reference.
-	 * @see #setSourceParticipant(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceParticipant()
+	 * @return the value of the '<em>Source Participant Feature</em>' reference.
+	 * @see #setSourceParticipantFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceParticipantFeature()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Feature getSourceParticipant();
+	Feature getSourceParticipantFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipant <em>Source Participant</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceParticipantFeature <em>Source Participant Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Participant</em>' reference.
-	 * @see #getSourceParticipant()
+	 * @param value the new value of the '<em>Source Participant Feature</em>' reference.
+	 * @see #getSourceParticipantFeature()
 	 * @generated
 	 */
-	void setSourceParticipant(Feature value);
+	void setSourceParticipantFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Participant</b></em>' reference.
+	 * Returns the value of the '<em><b>Target Participant Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Participant</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Target Participant Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Participant</em>' reference.
-	 * @see #setTargetParticipant(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetParticipant()
+	 * @return the value of the '<em>Target Participant Feature</em>' reference.
+	 * @see #setTargetParticipantFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetParticipantFeature()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Feature getTargetParticipant();
+	Feature getTargetParticipantFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipant <em>Target Participant</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetParticipantFeature <em>Target Participant Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Participant</em>' reference.
-	 * @see #getTargetParticipant()
+	 * @param value the new value of the '<em>Target Participant Feature</em>' reference.
+	 * @see #getTargetParticipantFeature()
 	 * @generated
 	 */
-	void setTargetParticipant(Feature value);
+	void setTargetParticipantFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>End</b></em>' reference list.
+	 * Returns the value of the '<em><b>End Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End</em>' reference list isn't clear,
+	 * If the meaning of the '<em>End Feature</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_End()
+	 * @return the value of the '<em>End Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_EndFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getEndOfAssociation
 	 * @model opposite="endOfAssociation" upper="2" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getEnd();
+	EList<Feature> getEndFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Target End</b></em>' reference.
+	 * Returns the value of the '<em><b>Target End Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target End</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Target End Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target End</em>' reference.
-	 * @see #setTargetEnd(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetEnd()
+	 * @return the value of the '<em>Target End Feature</em>' reference.
+	 * @see #setTargetEndFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetEndFeature()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Feature getTargetEnd();
+	Feature getTargetEndFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetEnd <em>Target End</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getTargetEndFeature <em>Target End Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target End</em>' reference.
-	 * @see #getTargetEnd()
+	 * @param value the new value of the '<em>Target End Feature</em>' reference.
+	 * @see #getTargetEndFeature()
 	 * @generated
 	 */
-	void setTargetEnd(Feature value);
+	void setTargetEndFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>Source End</b></em>' reference.
+	 * Returns the value of the '<em><b>Source End Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source End</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Source End Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source End</em>' reference.
-	 * @see #setSourceEnd(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceEnd()
+	 * @return the value of the '<em>Source End Feature</em>' reference.
+	 * @see #setSourceEndFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceEndFeature()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Feature getSourceEnd();
+	Feature getSourceEndFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceEnd <em>Source End</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceEndFeature <em>Source End Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source End</em>' reference.
-	 * @see #getSourceEnd()
+	 * @param value the new value of the '<em>Source End Feature</em>' reference.
+	 * @see #getSourceEndFeature()
 	 * @generated
 	 */
-	void setSourceEnd(Feature value);
+	void setSourceEndFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned End Feature Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EndFeatureMembership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation <em>Owning Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned End Feature Membership</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned End Feature Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_OwnedEndFeatureMembership()
+	 * @see org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation
+	 * @model opposite="owningAssociation"
+	 * @generated
+	 */
+	EList<EndFeatureMembership> getOwnedEndFeatureMembership();
 
 } // Association

@@ -301,6 +301,15 @@ public interface SysMLFactory extends EFactory {
 	SequenceAccessExpression createSequenceAccessExpression();
 
 	/**
+	 * Returns a new object of class '<em>End Feature Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>End Feature Membership</em>'.
+	 * @generated
+	 */
+	EndFeatureMembership createEndFeatureMembership();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

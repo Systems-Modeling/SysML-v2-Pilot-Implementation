@@ -318,7 +318,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	/**
 	 * Returns the value of the '<em><b>Participant Of Association</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getParticipant <em>Participant</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getParticipantFeature <em>Participant Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Participant Of Association</em>' reference list isn't clear,
@@ -327,8 +327,8 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participant Of Association</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ParticipantOfAssociation()
-	 * @see org.omg.sysml.lang.sysml.Association#getParticipant
-	 * @model opposite="participant" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Association#getParticipantFeature
+	 * @model opposite="participantFeature" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Association> getParticipantOfAssociation();
@@ -363,7 +363,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 
 	/**
 	 * Returns the value of the '<em><b>End Of Association</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getEnd <em>End</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getEndFeature <em>End Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End Of Association</em>' reference isn't clear,
@@ -373,8 +373,8 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @return the value of the '<em>End Of Association</em>' reference.
 	 * @see #setEndOfAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOfAssociation()
-	 * @see org.omg.sysml.lang.sysml.Association#getEnd
-	 * @model opposite="end" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Association#getEndFeature
+	 * @model opposite="endFeature" derived="true" ordered="false"
 	 * @generated
 	 */
 	Association getEndOfAssociation();

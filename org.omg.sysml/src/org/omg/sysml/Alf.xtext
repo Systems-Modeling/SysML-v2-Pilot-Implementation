@@ -143,17 +143,44 @@ AssociationDeclaration returns SysML::Association :
 ;
 
 AssociationDefinition returns SysML::Association:
-	AssociationDeclaration '{' 
-		ownedMembership += PackagedFeatureMember 
-		ownedMembership += PackagedFeatureMember 
-	'}'
+	AssociationDeclaration '{' ( ownedMembership += AssociationMember )* '}'
+;
+
+AssociationMember returns SysML::Membership :
+	NonFeatureMember | AssociationFeatureMember | EndFeatureMember
 ;
 
 AssociationDefinitionOrStub returns SysML::Association :
 	AssociationDefinition
 ;
 
+AssociationFeatureMember returns SysML::FeatureMembership :
+//  ( documentation += DOCUMENTATION_COMMENT )?
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
+    (
+      ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
+    | 'connector' ownedMemberElement = ConnectorDefinition
+	| ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	)
+;
+
+EndFeatureMember returns SysML::EndFeatureMembership :
+//  ( documentation += DOCUMENTATION_COMMENT )?
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
+    (
+      'end'? ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
+    | 'end' ( direction = FeatureDirection )? ownedMemberElement = UnnamedFeatureDefinition
+	| ( 'end' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	)
+;
+
 /* FEATURES */
+
+FeatureDefinition returns SysML::Feature :
+	NamedFeatureDefinition | UnnamedFeatureDefinition
+;
 
 NamedFeatureDefinition returns SysML::Feature :
 	name = Name 

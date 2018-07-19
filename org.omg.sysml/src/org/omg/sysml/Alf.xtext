@@ -34,7 +34,7 @@ UnitDefinition returns SysML::Package :
 ;
 
 CommentedUnitDefinition returns SysML::Package :
-	( ownedMembership += CommentMember )+
+	( ownedElement += Comment )+
 	ownedMembership += UnitMember
 ;
 
@@ -67,15 +67,8 @@ PackageMember returns SysML::Membership :
 	NonFeatureMember | PackagedFeatureMember
 ;
 
-NonFeatureMember returns SysML::Membership :
-	CommentMember | NonCommentNonFeatureMember
-;
-
-CommentMember returns SysML::Membership :
-	ownedMemberElement = Comment
-;
-
-NonCommentNonFeatureMember returns SysML::Membership : 
+NonFeatureMember returns SysML::Membership : 
+	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( ownedMemberElement = NonFeatureDefinition
@@ -87,7 +80,8 @@ NonFeatureMemberKind :
 	'package' | 'class' | 'assoc'
 ;
 
-PackagedFeatureMember returns SysML::Membership : 
+PackagedFeatureMember returns SysML::Membership :
+	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( 
@@ -145,6 +139,7 @@ ClassMember returns SysML::Membership :
 ;
 
 ClassFeatureMember returns SysML::FeatureMembership : 
+	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
@@ -179,6 +174,7 @@ AssociationDefinitionOrStub returns SysML::Association :
 ;
 
 AssociationFeatureMember returns SysML::FeatureMembership :
+	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (
@@ -189,6 +185,7 @@ AssociationFeatureMember returns SysML::FeatureMembership :
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
+	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
     (

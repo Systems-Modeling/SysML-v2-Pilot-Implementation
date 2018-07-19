@@ -3,8 +3,9 @@
  **/
 package VehicleDefinitions {
 	
-	/** VALUE TYPES **/
+	/* VALUE TYPES */
 	
+	/** Torque unit value type defined as a force unit times a length unit. **/
 	class TorqueUnit is Quantities.DerivedUnit {
 		feature unitFactor1 subsets Quantities.DerivedUnit.unitFactor {
 			feature unit: ISQ.ForceUnit is Quantities.MeasurementUnitPowerFactor.unit;
@@ -16,12 +17,13 @@ package VehicleDefinitions {
 		}
 	}
 	
+	/** Torque quantity value type defined as a real value with a torque unit. **/
 	class Torque is Quantities.Quantity {
 		feature numericValue: ScalarValues.Real is Quantities.Quantity.numericValue;
 		feature unit: TorqueUnit is Quantities.Quantity.unit;
 	}
 	
-	/** BLOCKS **/
+	/* BLOCKS */
 	
 	class Vehicle { }
 	
@@ -37,7 +39,7 @@ package VehicleDefinitions {
 		feature tighteningTorque: Torque;
 	}
 	
-	/** INTERFACE BLOCKS **/
+	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
 		feature in driveTorque: Torque;
@@ -51,8 +53,11 @@ package VehicleDefinitions {
 		feature in appliedTorque: Torque;
 	}
 	
-	/** ASSOCIATION BLOCKS **/
+	/* ASSOCIATION BLOCKS */
 	
+	/** An association intended to be used as the type of a connector
+	 *  mounting a Wheel to an Axle.
+	 **/
 	assoc Mounting {
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;

@@ -24,14 +24,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AssociationDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1;
 	protected AbstractElementAlias match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1;
-	protected AbstractElementAlias match_ClassFeatureMember_FeatureKeyword_1_0_0_0_q;
+	protected AbstractElementAlias match_ClassFeatureMember_FeatureKeyword_2_0_0_0_q;
 	protected AbstractElementAlias match_ConnectorDefinition_IsKeyword_0_2_q;
-	protected AbstractElementAlias match_EndFeatureMember_EndKeyword_1_0_0_q;
+	protected AbstractElementAlias match_EndFeatureMember_EndKeyword_2_0_0_q;
 	protected AbstractElementAlias match_NamedFeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__;
 	protected AbstractElementAlias match_NamedFeatureDefinition_SemicolonKeyword_1_1_1_0_1_0_2_0_or___LeftCurlyBracketKeyword_1_1_1_0_1_0_2_1_0_RightCurlyBracketKeyword_1_1_1_0_1_0_2_1_2__;
 	protected AbstractElementAlias match_NamedFeatureDefinition___ColonKeyword_1_0_0_0_AnyKeyword_1_0_0_2_1__q;
 	protected AbstractElementAlias match_OwnedRedefinitionOrSubset_IsKeyword_0_0_0_or_RedefinesKeyword_0_0_1;
-	protected AbstractElementAlias match_PackagedFeatureMember_FeatureKeyword_1_0_0_q;
+	protected AbstractElementAlias match_PackagedFeatureMember_FeatureKeyword_2_0_0_q;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_p;
 	protected AbstractElementAlias match_UnnamedFeatureDefinition_SemicolonKeyword_1_0_1_0_2_0_or___LeftCurlyBracketKeyword_1_0_1_0_2_1_0_RightCurlyBracketKeyword_1_0_1_0_2_1_2__;
@@ -41,14 +41,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_AssociationDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssociationDeclarationAccess().getIsKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getAssociationDeclarationAccess().getSpecializesKeyword_3_0_1()));
 		match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getIsKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getClassDeclarationAccess().getSpecializesKeyword_3_0_1()));
-		match_ClassFeatureMember_FeatureKeyword_1_0_0_0_q = new TokenAlias(false, true, grammarAccess.getClassFeatureMemberAccess().getFeatureKeyword_1_0_0_0());
+		match_ClassFeatureMember_FeatureKeyword_2_0_0_0_q = new TokenAlias(false, true, grammarAccess.getClassFeatureMemberAccess().getFeatureKeyword_2_0_0_0());
 		match_ConnectorDefinition_IsKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getConnectorDefinitionAccess().getIsKeyword_0_2());
-		match_EndFeatureMember_EndKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_0_0());
+		match_EndFeatureMember_EndKeyword_2_0_0_q = new TokenAlias(false, true, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_2_0_0());
 		match_NamedFeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getLeftCurlyBracketKeyword_1_0_3_1_0()), new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getRightCurlyBracketKeyword_1_0_3_1_2())), new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getSemicolonKeyword_1_0_3_0()));
 		match_NamedFeatureDefinition_SemicolonKeyword_1_1_1_0_1_0_2_0_or___LeftCurlyBracketKeyword_1_1_1_0_1_0_2_1_0_RightCurlyBracketKeyword_1_1_1_0_1_0_2_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getLeftCurlyBracketKeyword_1_1_1_0_1_0_2_1_0()), new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getRightCurlyBracketKeyword_1_1_1_0_1_0_2_1_2())), new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getSemicolonKeyword_1_1_1_0_1_0_2_0()));
 		match_NamedFeatureDefinition___ColonKeyword_1_0_0_0_AnyKeyword_1_0_0_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getColonKeyword_1_0_0_0()), new TokenAlias(false, false, grammarAccess.getNamedFeatureDefinitionAccess().getAnyKeyword_1_0_0_2_1()));
 		match_OwnedRedefinitionOrSubset_IsKeyword_0_0_0_or_RedefinesKeyword_0_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getOwnedRedefinitionOrSubsetAccess().getIsKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getOwnedRedefinitionOrSubsetAccess().getRedefinesKeyword_0_0_1()));
-		match_PackagedFeatureMember_FeatureKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getPackagedFeatureMemberAccess().getFeatureKeyword_1_0_0());
+		match_PackagedFeatureMember_FeatureKeyword_2_0_0_q = new TokenAlias(false, true, grammarAccess.getPackagedFeatureMemberAccess().getFeatureKeyword_2_0_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_UnnamedFeatureDefinition_SemicolonKeyword_1_0_1_0_2_0_or___LeftCurlyBracketKeyword_1_0_1_0_2_1_0_RightCurlyBracketKeyword_1_0_1_0_2_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getUnnamedFeatureDefinitionAccess().getLeftCurlyBracketKeyword_1_0_1_0_2_1_0()), new TokenAlias(false, false, grammarAccess.getUnnamedFeatureDefinitionAccess().getRightCurlyBracketKeyword_1_0_1_0_2_1_2())), new TokenAlias(false, false, grammarAccess.getUnnamedFeatureDefinitionAccess().getSemicolonKeyword_1_0_1_0_2_0()));
@@ -82,12 +82,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AssociationDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1.equals(syntax))
 				emit_ClassDeclaration_IsKeyword_3_0_0_or_SpecializesKeyword_3_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ClassFeatureMember_FeatureKeyword_1_0_0_0_q.equals(syntax))
-				emit_ClassFeatureMember_FeatureKeyword_1_0_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ClassFeatureMember_FeatureKeyword_2_0_0_0_q.equals(syntax))
+				emit_ClassFeatureMember_FeatureKeyword_2_0_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConnectorDefinition_IsKeyword_0_2_q.equals(syntax))
 				emit_ConnectorDefinition_IsKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_EndFeatureMember_EndKeyword_1_0_0_q.equals(syntax))
-				emit_EndFeatureMember_EndKeyword_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_EndFeatureMember_EndKeyword_2_0_0_q.equals(syntax))
+				emit_EndFeatureMember_EndKeyword_2_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NamedFeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__.equals(syntax))
 				emit_NamedFeatureDefinition_SemicolonKeyword_1_0_3_0_or___LeftCurlyBracketKeyword_1_0_3_1_0_RightCurlyBracketKeyword_1_0_3_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NamedFeatureDefinition_SemicolonKeyword_1_1_1_0_1_0_2_0_or___LeftCurlyBracketKeyword_1_1_1_0_1_0_2_1_0_RightCurlyBracketKeyword_1_1_1_0_1_0_2_1_2__.equals(syntax))
@@ -96,8 +96,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_NamedFeatureDefinition___ColonKeyword_1_0_0_0_AnyKeyword_1_0_0_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OwnedRedefinitionOrSubset_IsKeyword_0_0_0_or_RedefinesKeyword_0_0_1.equals(syntax))
 				emit_OwnedRedefinitionOrSubset_IsKeyword_0_0_0_or_RedefinesKeyword_0_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackagedFeatureMember_FeatureKeyword_1_0_0_q.equals(syntax))
-				emit_PackagedFeatureMember_FeatureKeyword_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedFeatureMember_FeatureKeyword_2_0_0_q.equals(syntax))
+				emit_PackagedFeatureMember_FeatureKeyword_2_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
@@ -110,7 +110,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     'is' | 'specializes'
+	 *     'specializes' | 'is'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedMembership+=OwnedGeneralization
@@ -137,10 +137,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) direction=FeatureDirection
 	 *     (rule start) (ambiguity) ownedMemberElement=NamedFeatureDefinition
+	 *     ownedElement+=Comment (ambiguity) direction=FeatureDirection
+	 *     ownedElement+=Comment (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 */
-	protected void emit_ClassFeatureMember_FeatureKeyword_1_0_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ClassFeatureMember_FeatureKeyword_2_0_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -162,10 +164,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) direction=FeatureDirection
 	 *     (rule start) (ambiguity) ownedMemberElement=NamedFeatureDefinition
+	 *     ownedElement+=Comment (ambiguity) direction=FeatureDirection
+	 *     ownedElement+=Comment (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 */
-	protected void emit_EndFeatureMember_EndKeyword_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_EndFeatureMember_EndKeyword_2_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -229,9 +233,10 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedMemberElement=NamedFeatureDefinition
+	 *     ownedElement+=Comment (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 */
-	protected void emit_PackagedFeatureMember_FeatureKeyword_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackagedFeatureMember_FeatureKeyword_2_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -273,7 +278,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     value=Expression (ambiguity) (rule end)

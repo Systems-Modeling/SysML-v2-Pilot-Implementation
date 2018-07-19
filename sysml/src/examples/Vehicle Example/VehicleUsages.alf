@@ -3,19 +3,21 @@
  **/
 package VehicleUsages {
 
-	/** VALUES **/
+	/* VALUES */
 	 
 	'N・m': VehicleDefinitions.TorqueUnit = SI.N * SI.m;
 	
 	T1: VehicleDefinitions.Torque = 10.0@['N・m']; // VehicleDefinitions.Torque(10.0, 'N・m')
 	T2: VehicleDefinitions.Torque = 20.0@['N・m']; // VehicleDefinitions.Torque(20.0, 'N・m')
 	
-	/** PARTS **/
+	/* PARTS */
 	
-	/** Wheel configurations. **/
+	/** Narrow-rim wheel configuration with 4 to 5 lugbults. **/
 	narrowRimWheel: VehicleDefinitions.Wheel {
 		part lugbolt: VehicleDefinitions.Lugbolt[4..5];
 	}
+	
+	/** Wide-rim wheel configuration with 4 to 6 lugbults. **/	
 	wideRimWheel: VehicleDefinitions.Wheel {
 		part lugbolt: VehicleDefinitions.Lugbolt[4..6];
 	}

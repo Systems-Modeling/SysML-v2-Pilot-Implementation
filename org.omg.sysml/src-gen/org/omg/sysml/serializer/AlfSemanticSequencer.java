@@ -145,22 +145,14 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_UnlimitedNaturalLiteralExpression(context, (LiteralUnbounded) semanticObject); 
 				return; 
 			case SysMLPackage.MEMBERSHIP:
-				if (rule == grammarAccess.getCommentMemberRule()) {
-					sequence_CommentMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonFeatureMemberRule()
+				if (rule == grammarAccess.getNonFeatureMemberRule()
 						|| rule == grammarAccess.getClassMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()) {
-					sequence_CommentMember_NonCommentNonFeatureMember(context, (Membership) semanticObject); 
+					sequence_NonFeatureMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackageMemberRule()) {
-					sequence_CommentMember_NonCommentNonFeatureMember_PackagedFeatureMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonCommentNonFeatureMemberRule()) {
-					sequence_NonCommentNonFeatureMember(context, (Membership) semanticObject); 
+					sequence_NonFeatureMember_PackagedFeatureMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedGeneralizationRule()) {
@@ -256,6 +248,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
@@ -352,6 +345,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
@@ -362,64 +356,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ClassFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     CommentMember returns Membership
-	 *
-	 * Constraint:
-	 *     ownedMemberElement=Comment
-	 */
-	protected void sequence_CommentMember(ISerializationContext context, Membership semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCommentMemberAccess().getOwnedMemberElementCommentParserRuleCall_0(), semanticObject.getOwnedMemberElement());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     NonFeatureMember returns Membership
-	 *     ClassMember returns Membership
-	 *     AssociationMember returns Membership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedMemberElement=Comment | 
-	 *         (visibility=VisibilityIndicator? (ownedMemberElement=NonFeatureDefinition | (memberName=Name? memberElement=[Element|QualifiedName])))
-	 *     )
-	 */
-	protected void sequence_CommentMember_NonCommentNonFeatureMember(ISerializationContext context, Membership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageMember returns Membership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedMemberElement=Comment | 
-	 *         (visibility=VisibilityIndicator? (ownedMemberElement=NonFeatureDefinition | (memberName=Name? memberElement=[Element|QualifiedName]))) | 
-	 *         (
-	 *             visibility=VisibilityIndicator? 
-	 *             (
-	 *                 ownedMemberElement=NamedFeatureDefinition | 
-	 *                 ownedMemberElement=UnnamedFeatureDefinition | 
-	 *                 ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName])
-	 *             )
-	 *         )
-	 *     )
-	 */
-	protected void sequence_CommentMember_NonCommentNonFeatureMember_PackagedFeatureMember(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -447,7 +383,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CommentedUnitDefinition returns Package
 	 *
 	 * Constraint:
-	 *     (ownedMembership+=CommentMember+ ownedMembership+=UnitMember)
+	 *     (ownedElement+=Comment+ ownedMembership+=UnitMember)
 	 */
 	protected void sequence_CommentedUnitDefinition(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -459,7 +395,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     UnitDefinition returns Package
 	 *
 	 * Constraint:
-	 *     ((ownedMembership+=CommentMember+ ownedMembership+=UnitMember) | (name=Name ownedMembership+=PackageMember*))
+	 *     ((ownedElement+=Comment+ ownedMembership+=UnitMember) | (name=Name ownedMembership+=PackageMember*))
 	 */
 	protected void sequence_CommentedUnitDefinition_PackageDefinition(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -510,6 +446,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
@@ -671,12 +608,45 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     NonCommentNonFeatureMember returns Membership
+	 *     NonFeatureMember returns Membership
+	 *     ClassMember returns Membership
+	 *     AssociationMember returns Membership
 	 *
 	 * Constraint:
-	 *     (visibility=VisibilityIndicator? (ownedMemberElement=NonFeatureDefinition | (memberName=Name? memberElement=[Element|QualifiedName])))
+	 *     (
+	 *         ownedElement+=Comment* 
+	 *         visibility=VisibilityIndicator? 
+	 *         (ownedMemberElement=NonFeatureDefinition | (memberName=Name? memberElement=[Element|QualifiedName]))
+	 *     )
 	 */
-	protected void sequence_NonCommentNonFeatureMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_NonFeatureMember(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackageMember returns Membership
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             ownedElement+=Comment* 
+	 *             visibility=VisibilityIndicator? 
+	 *             (ownedMemberElement=NonFeatureDefinition | (memberName=Name? memberElement=[Element|QualifiedName]))
+	 *         ) | 
+	 *         (
+	 *             ownedElement+=Comment* 
+	 *             visibility=VisibilityIndicator? 
+	 *             (
+	 *                 ownedMemberElement=NamedFeatureDefinition | 
+	 *                 ownedMemberElement=UnnamedFeatureDefinition | 
+	 *                 ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName])
+	 *             )
+	 *         )
+	 *     )
+	 */
+	protected void sequence_NonFeatureMember_PackagedFeatureMember(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -752,6 +722,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NamedFeatureDefinition | 

@@ -407,18 +407,4 @@
 			type="text">
 		</fileTypes>
 	</extension>
-	<!-- adding resource factories -->
-	<extension
-		point="org.eclipse.emf.ecore.extension_parser">
-		<parser
-			class="org.omg.sysml.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="alf">
-		</parser>
-	</extension>
-	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
-		<resourceServiceProvider
-			class="org.omg.sysml.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-			uriExtension="alf">
-		</resourceServiceProvider>
-	</extension>
 </plugin>

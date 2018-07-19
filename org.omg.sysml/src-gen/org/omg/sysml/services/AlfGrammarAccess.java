@@ -714,7 +714,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	memberElement=[SysML::Element|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator? (('feature' | isComposite?='part' | isPort?='port')? direction=FeatureDirection?
 		//ownedMemberElement=NamedFeatureDefinition | ('feature' | isComposite?='part' | isPort?='port')
@@ -723,7 +722,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//memberElement=[SysML::Element|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator?
 		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
@@ -1046,14 +1044,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	| ('feature' | isComposite?='part') memberName=Name? 'is' memberElement=[SysML::Element|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator? (('feature' | isComposite?='part' | isPort?='port') direction=FeatureDirection?
 		//ownedMemberElement=FeatureDefinition | 'connector' ownedMemberElement=ConnectorDefinition | ('feature' |
 		//isComposite?='part') memberName=Name? 'is' memberElement=[SysML::Element|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator?
 		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
@@ -1185,14 +1181,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	| ('end' memberName=Name? | memberName=Name) 'is' memberElement=[SysML::Element|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator? ('end'? direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | 'end'
 		//direction=FeatureDirection? ownedMemberElement=UnnamedFeatureDefinition | ('end' memberName=Name? | memberName=Name)
 		//'is' memberElement=[SysML::Element|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
 		
-		////  ( documentation += DOCUMENTATION_COMMENT )?
 		////  ( annotation += StereotypeAnnotation )*
 		//visibility=VisibilityIndicator?
 		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
@@ -2627,24 +2621,32 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
+		private final Keyword cColonColonKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//QualifiedName:
-		//	Name ('.' Name)*;
+		//	Name (('.' | '::') Name)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name ('.' Name)*
+		//Name (('.' | '::') Name)*
 		public Group getGroup() { return cGroup; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
 		
-		//('.' Name)*
+		//(('.' | '::') Name)*
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//'.' | '::'
+		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		
 		//'.'
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		public Keyword getFullStopKeyword_1_0_0() { return cFullStopKeyword_1_0_0; }
+		
+		//'::'
+		public Keyword getColonColonKeyword_1_0_1() { return cColonColonKeyword_1_0_1; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
@@ -3500,7 +3502,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//QualifiedName:
-	//	Name ('.' Name)*;
+	//	Name (('.' | '::') Name)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}

@@ -78,6 +78,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealValueAccess().getAlternatives_1_1(), "rule__RealValue__Alternatives_1_1");
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getAlternatives(), "rule__UnlimitedNaturalLiteralExpression__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
+					put(grammarAccess.getQualifiedNameAccess().getAlternatives_1_0(), "rule__QualifiedName__Alternatives_1_0");
 					put(grammarAccess.getVisibilityIndicatorAccess().getAlternatives(), "rule__VisibilityIndicator__Alternatives");
 					put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
 					put(grammarAccess.getCommentedUnitDefinitionAccess().getGroup(), "rule__CommentedUnitDefinition__Group__0");

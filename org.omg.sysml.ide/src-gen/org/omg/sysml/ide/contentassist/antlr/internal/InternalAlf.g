@@ -2563,6 +2563,27 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__QualifiedName__Alternatives_1_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0_0()); }
+		'.'
+		{ after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0_1()); }
+		'::'
+		{ after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__VisibilityIndicator__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -8993,9 +9014,9 @@ rule__QualifiedName__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); }
-	'.'
-	{ after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); }
+	{ before(grammarAccess.getQualifiedNameAccess().getAlternatives_1_0()); }
+	(rule__QualifiedName__Alternatives_1_0)
+	{ after(grammarAccess.getQualifiedNameAccess().getAlternatives_1_0()); }
 )
 ;
 finally {

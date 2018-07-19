@@ -4169,17 +4169,25 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 			afterParserOrEnumRuleCall();
 		}
 		(
-			kw='.'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0());
-			}
+			(
+				kw='.'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0_0());
+				}
+				    |
+				kw='::'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0_1());
+				}
+			)
 			{
 				newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1());
 			}
-			this_Name_2=ruleName
+			this_Name_3=ruleName
 			{
-				$current.merge(this_Name_2);
+				$current.merge(this_Name_3);
 			}
 			{
 				afterParserOrEnumRuleCall();

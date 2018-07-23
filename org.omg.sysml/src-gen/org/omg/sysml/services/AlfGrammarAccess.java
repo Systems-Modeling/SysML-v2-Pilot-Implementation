@@ -2618,35 +2618,73 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QualifiedName");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cColonQualifiedNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDotQualifiedNameParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//QualifiedName:
+		//	ColonQualifiedName | DotQualifiedName;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ColonQualifiedName | DotQualifiedName
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ColonQualifiedName
+		public RuleCall getColonQualifiedNameParserRuleCall_0() { return cColonQualifiedNameParserRuleCall_0; }
+		
+		//DotQualifiedName
+		public RuleCall getDotQualifiedNameParserRuleCall_1() { return cDotQualifiedNameParserRuleCall_1; }
+	}
+	public class ColonQualifiedNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ColonQualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cFullStopKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cColonColonKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
-		//QualifiedName:
-		//	Name (('.' | '::') Name)*;
+		//ColonQualifiedName:
+		//	Name ('::' Name)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name (('.' | '::') Name)*
+		//Name ('::' Name)*
 		public Group getGroup() { return cGroup; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
 		
-		//(('.' | '::') Name)*
+		//('::' Name)*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'.' | '::'
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//'::'
+		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+		
+		//Name
+		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
+	}
+	public class DotQualifiedNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.DotQualifiedName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//DotQualifiedName:
+		//	Name ('.' Name)+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Name ('.' Name)+
+		public Group getGroup() { return cGroup; }
+		
+		//Name
+		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
+		
+		//('.' Name)+
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_1_0_0() { return cFullStopKeyword_1_0_0; }
-		
-		//'::'
-		public Keyword getColonColonKeyword_1_0_1() { return cColonColonKeyword_1_0_1; }
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
@@ -2788,6 +2826,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final UnlimitedNaturalLiteralExpressionElements pUnlimitedNaturalLiteralExpression;
 	private final NameElements pName;
 	private final QualifiedNameElements pQualifiedName;
+	private final ColonQualifiedNameElements pColonQualifiedName;
+	private final DotQualifiedNameElements pDotQualifiedName;
 	private final TerminalRule tBOOLEAN_VALUE;
 	private final TerminalRule tNATURAL_VALUE;
 	private final TerminalRule tID;
@@ -2862,6 +2902,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUnlimitedNaturalLiteralExpression = new UnlimitedNaturalLiteralExpressionElements();
 		this.pName = new NameElements();
 		this.pQualifiedName = new QualifiedNameElements();
+		this.pColonQualifiedName = new ColonQualifiedNameElements();
+		this.pDotQualifiedName = new DotQualifiedNameElements();
 		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BOOLEAN_VALUE");
 		this.tNATURAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NATURAL_VALUE");
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ID");
@@ -3502,13 +3544,33 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//QualifiedName:
-	//	Name (('.' | '::') Name)*;
+	//	ColonQualifiedName | DotQualifiedName;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}
 	
 	public ParserRule getQualifiedNameRule() {
 		return getQualifiedNameAccess().getRule();
+	}
+	
+	//ColonQualifiedName:
+	//	Name ('::' Name)*;
+	public ColonQualifiedNameElements getColonQualifiedNameAccess() {
+		return pColonQualifiedName;
+	}
+	
+	public ParserRule getColonQualifiedNameRule() {
+		return getColonQualifiedNameAccess().getRule();
+	}
+	
+	//DotQualifiedName:
+	//	Name ('.' Name)+;
+	public DotQualifiedNameElements getDotQualifiedNameAccess() {
+		return pDotQualifiedName;
+	}
+	
+	public ParserRule getDotQualifiedNameRule() {
+		return getDotQualifiedNameAccess().getRule();
 	}
 	
 	//terminal BOOLEAN_VALUE returns Ecore::EBoolean:

@@ -206,6 +206,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) '[' upper=UnlimitedNaturalLiteralExpression
 	 *     name=Name (ambiguity) '{' ownedMembership+=ClassMember
 	 *     name=Name (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     name=Name (ambiguity) (('{' '}') | ';') (rule end)
 	 */
 	protected void emit_NamedFeatureDefinition___ColonKeyword_1_0_0_0_AnyKeyword_1_0_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -272,7 +273,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     value=Expression (ambiguity) (rule end)

@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc. and IncQuery Labs Ltd.
+ * Copyright (c) 2018 IncQuery Labs Ltd.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -130,8 +130,10 @@ public class AlfParsingTest {
       _builder.newLine();
       final org.omg.sysml.lang.sysml.Package result = this.parseHelper.parse(_builder, rs);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+      int _length = ((Object[])Conversions.unwrapArray(result.eResource().getErrors(), Object.class)).length;
+      boolean _equals = (_length == 1);
+      Assert.assertTrue(_equals);
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getPackage(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -157,8 +159,10 @@ public class AlfParsingTest {
       _builder.newLine();
       final org.omg.sysml.lang.sysml.Package result = this.parseHelper.parse(_builder, rs);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+      int _length = ((Object[])Conversions.unwrapArray(result.eResource().getErrors(), Object.class)).length;
+      boolean _equals = (_length == 1);
+      Assert.assertTrue(_equals);
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getPackage(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -317,8 +321,8 @@ public class AlfParsingTest {
       int _length = ((Object[])Conversions.unwrapArray(result.eResource().getErrors(), Object.class)).length;
       boolean _equals = (_length == 2);
       Assert.assertTrue(_equals);
-      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getClass_(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 148, (-1));
-      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getMembership(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 150, (-1));
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getClass_(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, (-1));
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getMembership(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 117, (-1));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -362,8 +366,8 @@ public class AlfParsingTest {
       int _length = ((Object[])Conversions.unwrapArray(result.eResource().getErrors(), Object.class)).length;
       boolean _equals = (_length == 2);
       Assert.assertTrue(_equals);
-      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getClass_(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 148, (-1));
-      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getMembership(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 149, (-1));
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getClass_(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, (-1));
+      this._validationTestHelper.assertError(result, SysMLPackage.eINSTANCE.getMembership(), XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 116, (-1));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

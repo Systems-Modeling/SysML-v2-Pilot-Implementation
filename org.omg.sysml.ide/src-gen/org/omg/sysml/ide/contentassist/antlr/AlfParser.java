@@ -78,7 +78,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealValueAccess().getAlternatives_1_1(), "rule__RealValue__Alternatives_1_1");
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getAlternatives(), "rule__UnlimitedNaturalLiteralExpression__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
-					put(grammarAccess.getQualifiedNameAccess().getAlternatives_1_0(), "rule__QualifiedName__Alternatives_1_0");
+					put(grammarAccess.getQualifiedNameAccess().getAlternatives(), "rule__QualifiedName__Alternatives");
 					put(grammarAccess.getVisibilityIndicatorAccess().getAlternatives(), "rule__VisibilityIndicator__Alternatives");
 					put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
 					put(grammarAccess.getCommentedUnitDefinitionAccess().getGroup(), "rule__CommentedUnitDefinition__Group__0");
@@ -163,8 +163,10 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealValueAccess().getGroup_0_1(), "rule__RealValue__Group_0_1__0");
 					put(grammarAccess.getRealValueAccess().getGroup_1(), "rule__RealValue__Group_1__0");
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getGroup_1(), "rule__UnlimitedNaturalLiteralExpression__Group_1__0");
-					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
-					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
+					put(grammarAccess.getColonQualifiedNameAccess().getGroup(), "rule__ColonQualifiedName__Group__0");
+					put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");
+					put(grammarAccess.getDotQualifiedNameAccess().getGroup(), "rule__DotQualifiedName__Group__0");
+					put(grammarAccess.getDotQualifiedNameAccess().getGroup_1(), "rule__DotQualifiedName__Group_1__0");
 					put(grammarAccess.getCommentedUnitDefinitionAccess().getOwnedMembershipAssignment_0(), "rule__CommentedUnitDefinition__OwnedMembershipAssignment_0");
 					put(grammarAccess.getCommentedUnitDefinitionAccess().getOwnedMembershipAssignment_1(), "rule__CommentedUnitDefinition__OwnedMembershipAssignment_1");
 					put(grammarAccess.getUnitMemberAccess().getOwnedMemberElementAssignment(), "rule__UnitMember__OwnedMemberElementAssignment");

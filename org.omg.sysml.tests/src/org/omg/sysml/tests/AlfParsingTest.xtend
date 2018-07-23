@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc. and IncQuery Labs Ltd.
+ * Copyright (c) 2018 IncQuery Labs Ltd.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -94,10 +94,8 @@ class AlfParsingTest {
 			}
 		''', rs)
 		Assert.assertNotNull(result)
-
-		result.assertNoErrors
-
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
@@ -113,8 +111,8 @@ class AlfParsingTest {
 			}
 		''', rs)
 		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
@@ -195,8 +193,8 @@ class AlfParsingTest {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 148, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 150, -1)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
+		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 117, -1)
 	}
 
 	@Test
@@ -218,8 +216,8 @@ class AlfParsingTest {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 148, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 149, -1)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
+		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 116, -1)
 	}
 
 }

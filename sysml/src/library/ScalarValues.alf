@@ -1,5 +1,5 @@
 package ScalarValues {
-	abstract class ScalarValue specializes Base.Value {}
+	abstract class ScalarValue specializes Base::Value {}
 	class Boolean specializes ScalarValue { }
 	class String specializes ScalarValue { }
 	class Number specializes ScalarValue { }	

@@ -1,58 +1,58 @@
 package ISQ {
 	
 	// Base Quantity Kinds
-	class LengthUnit specializes Quantities.SimpleUnit { }
-	class MassUnit specializes Quantities.SimpleUnit { }
-	class TimeUnit specializes Quantities.SimpleUnit { }
-	class ElectricCurrentUnit specializes Quantities.SimpleUnit { }
-	class TemperatureUnit specializes Quantities.SimpleUnit { }
-	class AmountOfSubstanceUnit specializes Quantities.SimpleUnit { }
-	class LuminousIntensityUnit specializes Quantities.SimpleUnit { }	
+	class LengthUnit specializes Quantities::SimpleUnit { }
+	class MassUnit specializes Quantities::SimpleUnit { }
+	class TimeUnit specializes Quantities::SimpleUnit { }
+	class ElectricCurrentUnit specializes Quantities::SimpleUnit { }
+	class TemperatureUnit specializes Quantities::SimpleUnit { }
+	class AmountOfSubstanceUnit specializes Quantities::SimpleUnit { }
+	class LuminousIntensityUnit specializes Quantities::SimpleUnit { }	
 	
 	// Derived Quantity Kinds		
-	class ForceUnit specializes Quantities.DerivedUnit {
-		unitFactor1 subsets Quantities.DerivedUnit.unitFactor {
-			unit: MassUnit redefines Quantities.MeasurementUnitPowerFactor.unit;
-			exponent redefines Quantities.MeasurementUnitPowerFactor.exponent = 1;
+	class ForceUnit specializes Quantities::DerivedUnit {
+		unitFactor1 subsets Quantities::DerivedUnit::unitFactor {
+			unit: MassUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
+			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
 		}
-		unitFactor2 subsets Quantities.DerivedUnit.unitFactor {
-			unit: LengthUnit redefines Quantities.MeasurementUnitPowerFactor.unit;
-			exponent redefines Quantities.MeasurementUnitPowerFactor.exponent = 1;
+		unitFactor2 subsets Quantities::DerivedUnit::unitFactor {
+			unit: LengthUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
+			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
 		}
-		unitFactor3 subsets Quantities.DerivedUnit.unitFactor {
-			unit: TimeUnit redefines Quantities.MeasurementUnitPowerFactor.unit;
-			exponent redefines Quantities.MeasurementUnitPowerFactor.exponent = -2;
+		unitFactor3 subsets Quantities::DerivedUnit::unitFactor {
+			unit: TimeUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
+			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = -2;
 		}
 	}
 	
 	// ...
 	
 	// Base Quantities
-	class Length specializes Quantities.Quantity {
-		unit: LengthUnit redefines Quantities.Quantity.unit;
+	class Length specializes Quantities::Quantity {
+		unit: LengthUnit redefines Quantities::Quantity::unit;
 	}	
-	class Mass specializes Quantities.Quantity {
-		unit: MassUnit redefines Quantities.Quantity.unit;
+	class Mass specializes Quantities::Quantity {
+		unit: MassUnit redefines Quantities::Quantity::unit;
 	}	
-	class Time specializes Quantities.Quantity {
-		unit: TimeUnit redefines Quantities.Quantity.unit;
+	class Time specializes Quantities::Quantity {
+		unit: TimeUnit redefines Quantities::Quantity::unit;
 	}	
-	class ElectricCurrent specializes Quantities.Quantity {
-		unit: ElectricCurrentUnit redefines Quantities.Quantity.unit;
+	class ElectricCurrent specializes Quantities::Quantity {
+		unit: ElectricCurrentUnit redefines Quantities::Quantity::unit;
 	}	
-	class Temperature specializes Quantities.Quantity {
-		unit: TemperatureUnit redefines Quantities.Quantity.unit;
+	class Temperature specializes Quantities::Quantity {
+		unit: TemperatureUnit redefines Quantities::Quantity::unit;
 	}		
-	class AmountOfSubstance specializes Quantities.Quantity {
-		unit: AmountOfSubstanceUnit redefines Quantities.Quantity.unit;
+	class AmountOfSubstance specializes Quantities::Quantity {
+		unit: AmountOfSubstanceUnit redefines Quantities::Quantity::unit;
 	}		
-	class LuminousIntensity specializes Quantities.Quantity {
-		unit: LuminousIntensityUnit redefines Quantities.Quantity.unit;
+	class LuminousIntensity specializes Quantities::Quantity {
+		unit: LuminousIntensityUnit redefines Quantities::Quantity::unit;
 	}
 
 	// Derived Quantities
-	class Force specializes Quantities.Quantity {
-		unit: ForceUnit redefines Quantities.Quantity.unit;
+	class Force specializes Quantities::Quantity {
+		unit: ForceUnit redefines Quantities::Quantity::unit;
 	}
 	
 	// ...	

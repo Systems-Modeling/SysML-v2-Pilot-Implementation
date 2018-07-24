@@ -121,7 +121,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'specializes' | 'is'
+	 *     'is' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedMembership+=OwnedGeneralization

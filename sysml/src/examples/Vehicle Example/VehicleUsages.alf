@@ -5,100 +5,100 @@ package VehicleUsages {
 
 	/* VALUES */
 	 
-	'N・m': VehicleDefinitions.TorqueUnit = SI.N * SI.m;
+	'N・m': VehicleDefinitions::TorqueUnit = SI.N * SI.m;
 	
-	T1: VehicleDefinitions.Torque = 10.0@['N・m']; // VehicleDefinitions.Torque(10.0, 'N・m')
-	T2: VehicleDefinitions.Torque = 20.0@['N・m']; // VehicleDefinitions.Torque(20.0, 'N・m')
+	T1: VehicleDefinitions::Torque = 10.0@['N・m']; // VehicleDefinitions::Torque(10.0, 'N・m')
+	T2: VehicleDefinitions::Torque = 20.0@['N・m']; // VehicleDefinitions::Torque(20.0, 'N・m')
 	
 	/* PARTS */
 	
 	/** Narrow-rim wheel configuration with 4 to 5 lugbults. **/
-	narrowRimWheel: VehicleDefinitions.Wheel {
-		part lugbolt: VehicleDefinitions.Lugbolt[4..5];
+	narrowRimWheel: VehicleDefinitions::Wheel {
+		part lugbolt: VehicleDefinitions::Lugbolt[4..5];
 	}
 	
 	/** Wide-rim wheel configuration with 4 to 6 lugbults. **/	
-	wideRimWheel: VehicleDefinitions.Wheel {
-		part lugbolt: VehicleDefinitions.Lugbolt[4..6];
+	wideRimWheel: VehicleDefinitions::Wheel {
+		part lugbolt: VehicleDefinitions::Lugbolt[4..6];
 	}
 
 	/** Basic Vehicle configuration showing a part hierarchy. **/
-	vehicle_C1: VehicleDefinitions.Vehicle {
-		part frontAxleAssembly: VehicleDefinitions.AxleAssembly {
+	vehicle_C1: VehicleDefinitions::Vehicle {
+		part frontAxleAssembly: VehicleDefinitions::AxleAssembly {
 			part frontWheel is narrowRimWheel[2] {
-				part lugbolt is narrowRimWheel.lugbolt[4] {
-					feature tighteningTorque is VehicleDefinitions.Lugbolt.tighteningTorque = T1;
+				part lugbolt is narrowRimWheel::lugbolt[4] {
+					feature tighteningTorque is VehicleDefinitions::Lugbolt::tighteningTorque = T1;
 				}
 			}
-			part frontAxle: VehicleDefinitions.Axle;
+			part frontAxle: VehicleDefinitions::Axle;
 		}
 		
 		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
 			part rearWheel is wideRimWheel[2] {
-				part lugbolt is wideRimWheel.lugbolt[6] {
-					feature tighteningTorque is VehicleDefinitions.Lugbolt.tighteningTorque = T2;
+				part lugbolt is wideRimWheel::lugbolt[6] {
+					feature tighteningTorque is VehicleDefinitions::Lugbolt::tighteningTorque = T2;
 				}
 			}
-			part rearAxle: VehicleDefinitions.Axle;			
+			part rearAxle: VehicleDefinitions::Axle;			
 		}
 	}
 	
 	/** Specialized configuration with part-specific ports. **/
 	vehicle_C2 is vehicle_C1 {
-		part frontAxleAssembly is vehicle_C1.frontAxleAssembly {
-			part leftFrontWheel subsets vehicle_C1.frontAxleAssembly.frontWheel = vehicle_C1.frontAxleAssembly.frontWheel[1] {
-				port hub: VehicleDefinitions.WheelHubIF;
+		part frontAxleAssembly is vehicle_C1::frontAxleAssembly {
+			part leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[1] {
+				port hub: VehicleDefinitions::WheelHubIF;
 			}
-			part rightFrontWheel subsets vehicle_C1.frontAxleAssembly.frontWheel = vehicle_C1.frontAxleAssembly.frontWheel[2] {
-				port hub: VehicleDefinitions.WheelHubIF;
+			part rightFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[2] {
+				port hub: VehicleDefinitions::WheelHubIF;
 			}
 			
-			part frontAxle is vehicle_C1.frontAxleAssembly.frontAxle {
-				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
-				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
+			part frontAxle is vehicle_C1::frontAxleAssembly::frontAxle {
+				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
+				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
 			}
 		
-			connector leftFrontMount: VehicleDefinitions.Mounting is 
-				frontAxle.leftMountingPoint => leftFrontWheel.hub;
+			connector leftFrontMount: VehicleDefinitions::Mounting is 
+				frontAxle::leftMountingPoint => leftFrontWheel::hub;
 				
-			connector rightFrontMount: VehicleDefinitions.Mounting is 
-				frontAxle.rightMountingPoint => rightFrontWheel.hub;
+			connector rightFrontMount: VehicleDefinitions::Mounting is 
+				frontAxle::rightMountingPoint => rightFrontWheel::hub;
 		}
 		
-		part rearAxleAssembly is vehicle_C1.rearAxleAssembly {
-			part leftRearWheel subsets vehicle_C1.rearAxleAssembly.rearWheel = vehicle_C1.rearAxleAssembly.rearWheel[1] {
-				port hub: VehicleDefinitions.WheelHubIF;
+		part rearAxleAssembly is vehicle_C1::rearAxleAssembly {
+			part leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[1] {
+				port hub: VehicleDefinitions::WheelHubIF;
 			}
-			part rightRearWheel subsets vehicle_C1.rearAxleAssembly.rearWheel = vehicle_C1.rearAxleAssembly.rearWheel[2] {
-				port hub: VehicleDefinitions.WheelHubIF;
+			part rightRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[2] {
+				port hub: VehicleDefinitions::WheelHubIF;
 			}
 
-			part rearAxle is vehicle_C1.rearAxleAssembly.rearAxle {
-				port leftMountingPoint: VehicleDefinitions.AxleMountIF;
-				port rightMountingPoint: VehicleDefinitions.AxleMountIF;
+			part rearAxle is vehicle_C1::rearAxleAssembly::rearAxle {
+				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
+				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
 			}
 			
-			connector leftRearMount: VehicleDefinitions.Mounting is 
-				rearAxle.leftMountingPoint => leftRearWheel.hub;
+			connector leftRearMount: VehicleDefinitions::Mounting is 
+				rearAxle::leftMountingPoint => leftRearWheel::hub;
 				
-			connector rightRearMount: VehicleDefinitions.Mounting is 
-				rearAxle.rightMountingPoint => rightRearWheel.hub;
+			connector rightRearMount: VehicleDefinitions::Mounting is 
+				rearAxle::rightMountingPoint => rightRearWheel::hub;
 		}		
 	}
 	
 	/** Further specialized configuration with a connector to a deeply-nested port. **/
 	vehicle_C3 is vehicle_C2 {
-		part transmission: VehicleDefinitions.Transmission {
-			port out drive: VehicleDefinitions.DriveIF;
+		part transmission: VehicleDefinitions::Transmission {
+			port out drive: VehicleDefinitions::DriveIF;
 		}
 		
-		part rearAxleAssembly is vehicle_C2.rearAxleAssembly {
-			part rearAxle is vehicle_C2.rearAxleAssembly.rearAxle {
-				port in drive: VehicleDefinitions.DriveIF;
+		part rearAxleAssembly is vehicle_C2::rearAxleAssembly {
+			part rearAxle is vehicle_C2::rearAxleAssembly::rearAxle {
+				port in drive: VehicleDefinitions::DriveIF;
 			}
 		}
 		
 		connector driveShaft is 
-			transmission.drive => rearAxleAssembly.rearAxle.drive;			
+			transmission::drive => rearAxleAssembly::rearAxle::drive;			
 	}
 }

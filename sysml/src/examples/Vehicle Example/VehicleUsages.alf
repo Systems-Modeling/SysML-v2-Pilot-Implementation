@@ -2,10 +2,13 @@
  * Example usages of elements from the vehicle definitions model.
  **/
 package VehicleUsages {
+	import SI::N;
+	import SI::m;
+	import VehicleDefinitions::*;
 
 	/* VALUES */
 	 
-	'N・m': VehicleDefinitions::TorqueUnit = SI.N * SI.m;
+	'N・m': VehicleDefinitions::TorqueUnit = SI::N * SI::m;
 	
 	T1: VehicleDefinitions::Torque = 10.0@['N・m']; // VehicleDefinitions::Torque(10.0, 'N・m')
 	T2: VehicleDefinitions::Torque = 20.0@['N・m']; // VehicleDefinitions::Torque(20.0, 'N・m')

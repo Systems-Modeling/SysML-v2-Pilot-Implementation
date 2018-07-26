@@ -1,3 +1,5 @@
+private import ScalarValues::*;
+private import Time::DateTime;
 package Packets {
 	
 	feature 'packet header' { }
@@ -9,9 +11,9 @@ package Packets {
 	
 	class 'Data Packet' { 
 		feature 'packet primary header' is 'packet header' {
-			feature 'packet version number': ScalarValues.Integer;
-			feature 'packet identification': ScalarValues.String;
-			feature 'packet data length': ScalarValues.Integer;
+			feature 'packet version number': ScalarValues::Integer;
+			feature 'packet identification': ScalarValues::String;
+			feature 'packet data length': ScalarValues::Integer;
 		}
 		feature is 'packet data field';
 	}
@@ -19,13 +21,13 @@ package Packets {
 	class 'Thermal Data Packet' specializes 'Data Packet' {
 		feature 'packet data field' is Packets.'packet data field'{
 			feature 'packet secondary header' is 'packet header' {
-				feature 'packet timestamp': Time.DateTime;
-				feature 'telemetry packet type': ScalarValues.String;
+				feature 'packet timestamp': Time::DateTime;
+				feature 'telemetry packet type': ScalarValues::String;
 			}
 			
-			feature 'user data field' is Packets.'packet data field'.'user data field' {
-				feature timestamp: Time.DateTime;
-				feature temperature: ScalarValues.Real;
+			feature 'user data field' is Packets::'packet data field'::'user data field' {
+				feature timestamp: Time::DateTime;
+				feature temperature: ScalarValues::Real;
 			}
 		}
 	}

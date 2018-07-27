@@ -10,6 +10,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subset;
@@ -86,6 +87,40 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
     return _xblockexpression;
   }
   
+  public boolean _isLeaf(final Membership membership) {
+    return false;
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Membership membership) {
+    Element memberElement = membership.getMemberElement();
+    if (((membership.getOwnedMemberElement() == null) && 
+      (memberElement != null))) {
+      Image __image = this._image(memberElement);
+      String __text = this._text(memberElement);
+      String _plus = ("imports " + __text);
+      this.createEStructuralFeatureNode(parentNode, membership, 
+        SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, __image, _plus, 
+        this._isLeaf(memberElement));
+    }
+    super._createChildren(parentNode, membership);
+  }
+  
+  public boolean _isLeaf(final Import _import) {
+    return false;
+  }
+  
+  public void _createChildren(final IOutlineNode parentNode, final Import _import) {
+    org.omg.sysml.lang.sysml.Package importedPackage = _import.getImportedPackage();
+    if ((importedPackage != null)) {
+      Image __image = this._image(importedPackage);
+      String __text = this._text(importedPackage);
+      String _plus = ("imports " + __text);
+      this.createEStructuralFeatureNode(parentNode, _import, 
+        SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, __image, _plus, 
+        this._isLeaf(importedPackage));
+    }
+  }
+  
   public boolean _isLeaf(final Feature feature) {
     return false;
   }
@@ -95,12 +130,12 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
     boolean _isEmpty = referencedTypes.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
-      Image __image = this._image(feature.getReferencedType());
-      String _name = feature.getReferencedType().get(0).getName();
-      String _plus = ("type " + _name);
+      Image __image = this._image(referencedTypes);
+      String __text = this._text(referencedTypes.get(0));
+      String _plus = ("type " + __text);
       this.createEStructuralFeatureNode(parentNode, feature, 
         SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
-        true);
+        this._isLeaf(referencedTypes.get(0)));
     }
     super._createChildren(parentNode, feature);
   }
@@ -110,13 +145,15 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Generalization generalization) {
-    if (((generalization.getGeneral() != null) && (generalization.getGeneral().getName() != null))) {
+    org.omg.sysml.lang.sysml.Class _general = generalization.getGeneral();
+    boolean _tripleNotEquals = (_general != null);
+    if (_tripleNotEquals) {
       Image __image = this._image(generalization.getGeneral());
-      String _name = generalization.getGeneral().getName();
-      String _plus = ("general " + _name);
+      String __text = this._text(generalization.getGeneral());
+      String _plus = ("general " + __text);
       this.createEStructuralFeatureNode(parentNode, generalization, 
         SysMLPackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
-        true);
+        this._isLeaf(generalization.getGeneral()));
     }
   }
   
@@ -125,13 +162,15 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Redefinition redefinition) {
-    if (((redefinition.getRedefinedFeature() != null) && (redefinition.getRedefinedFeature().getName() != null))) {
+    Feature _redefinedFeature = redefinition.getRedefinedFeature();
+    boolean _tripleNotEquals = (_redefinedFeature != null);
+    if (_tripleNotEquals) {
       Image __image = this._image(redefinition.getRedefinedFeature());
-      String _name = redefinition.getRedefinedFeature().getName();
-      String _plus = ("redefines " + _name);
+      String __text = this._text(redefinition.getRedefinedFeature());
+      String _plus = ("redefines " + __text);
       this.createEStructuralFeatureNode(parentNode, redefinition, 
         SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, __image, _plus, 
-        true);
+        this._isLeaf(redefinition.getRedefinedFeature()));
     }
   }
   
@@ -140,13 +179,15 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Subset subset) {
-    if (((subset.getSubsettedFeature() != null) && (subset.getSubsettedFeature().getName() != null))) {
+    Feature _subsettedFeature = subset.getSubsettedFeature();
+    boolean _tripleNotEquals = (_subsettedFeature != null);
+    if (_tripleNotEquals) {
       Image __image = this._image(subset.getSubsettedFeature());
-      String _name = subset.getSubsettedFeature().getName();
-      String _plus = ("subsets " + _name);
+      String __text = this._text(subset.getSubsettedFeature());
+      String _plus = ("subsets " + __text);
       this.createEStructuralFeatureNode(parentNode, subset, 
-        SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, __image, _plus, 
-        true);
+        SysMLPackage.Literals.SUBSET__SUBSETTED_FEATURE, __image, _plus, 
+        this._isLeaf(subset.getSubsettedFeature()));
     }
   }
 }

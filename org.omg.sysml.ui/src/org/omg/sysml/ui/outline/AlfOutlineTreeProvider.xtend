@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subset
+import org.omg.sysml.lang.sysml.Import
 
 /**
  * Customization of the default outline structure.
@@ -44,6 +45,38 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text 
 	}
 	
+	def boolean _isLeaf(Membership membership) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Membership membership) {
+		var memberElement = membership.memberElement;
+		if (membership.ownedMemberElement === null && 
+				memberElement !== null) {
+			createEStructuralFeatureNode(parentNode, membership, 
+				SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, 
+				_image(memberElement), "imports " + memberElement._text, 
+				memberElement._isLeaf
+			)
+		}
+		super._createChildren(parentNode, membership)
+	}
+	
+	def boolean _isLeaf(Import _import) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Import _import) {
+		var importedPackage = _import.importedPackage;
+		if (importedPackage !== null) {
+			createEStructuralFeatureNode(parentNode, _import, 
+				SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, 
+				_image(importedPackage), "imports " + importedPackage._text, 
+				importedPackage._isLeaf
+			)
+		}
+	}
+	
 	def boolean _isLeaf(Feature feature) {
 		false
 	}
@@ -53,8 +86,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (!referencedTypes.isEmpty) {
 			createEStructuralFeatureNode(parentNode, feature, 
 				SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, 
-				_image(feature.referencedType), "type " + feature.referencedType.get(0).name, 
-				true
+				_image(referencedTypes), "type " + referencedTypes.get(0)._text, 
+				referencedTypes.get(0)._isLeaf
 			)
 		}
 		super._createChildren(parentNode, feature)
@@ -65,11 +98,11 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
-		if (generalization.general !== null && generalization.general.name !== null) {
+		if (generalization.general !== null) {
 			createEStructuralFeatureNode(parentNode, generalization, 
 				SysMLPackage.Literals.GENERALIZATION__GENERAL, 
-				_image(generalization.general), "general " + generalization.general.name, 
-				true
+				_image(generalization.general), "general " + generalization.general._text, 
+				generalization.general._isLeaf
 			)
 		}
 	}
@@ -79,11 +112,11 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
-		if (redefinition.redefinedFeature !== null && redefinition.redefinedFeature.name !== null) {
+		if (redefinition.redefinedFeature !== null) {
 			createEStructuralFeatureNode(parentNode, redefinition, 
 				SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, 
-				_image(redefinition.redefinedFeature), "redefines " + redefinition.redefinedFeature.name, 
-				true
+				_image(redefinition.redefinedFeature), "redefines " + redefinition.redefinedFeature._text, 
+				redefinition.redefinedFeature._isLeaf
 			)
 		}
 	}
@@ -93,11 +126,11 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Subset subset) {
-		if (subset.subsettedFeature !== null && subset.subsettedFeature.name !== null) {
+		if (subset.subsettedFeature !== null) {
 			createEStructuralFeatureNode(parentNode, subset, 
-				SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, 
-				_image(subset.subsettedFeature), "subsets " + subset.subsettedFeature.name, 
-				true
+				SysMLPackage.Literals.SUBSET__SUBSETTED_FEATURE, 
+				_image(subset.subsettedFeature), "subsets " + subset.subsettedFeature._text, 
+				subset.subsettedFeature._isLeaf
 			)
 		}
 	}

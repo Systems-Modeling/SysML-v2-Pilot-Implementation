@@ -62,21 +62,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getNonFeatureMemberKindRule())
-			return getNonFeatureMemberKindToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * NonFeatureMemberKind :
-	 * 	'package' | 'class' | 'assoc'
-	 * ;
-	 */
-	protected String getNonFeatureMemberKindToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "package";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -122,7 +110,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     'specializes' | 'is'
+	 *     'is' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedElement+=Generalization
@@ -160,7 +148,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'is' | 'specializes'
+	 *     'specializes' | 'is'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedElement+=Generalization
@@ -171,7 +159,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'is' | 'specializes'
+	 *     'specializes' | 'is'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedElement+=Generalization
@@ -214,7 +202,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 *     ownedElement+=Comment (ambiguity) ownedMemberElement=NamedFeatureDefinition
-	 *     visibility=ImportVisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
 	 */
 	protected void emit_FeaturePackageMember_FeatureKeyword_2_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -323,7 +311,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     value=Expression (ambiguity) (rule end)

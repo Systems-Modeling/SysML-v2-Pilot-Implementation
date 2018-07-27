@@ -40,7 +40,6 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageDefinitionAccess().getAlternatives_3(), "rule__PackageDefinition__Alternatives_3");
 					put(grammarAccess.getPackageMemberAccess().getAlternatives(), "rule__PackageMember__Alternatives");
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getAlternatives_2(), "rule__NonFeaturePackageMember__Alternatives_2");
-					put(grammarAccess.getNonFeatureMemberKindAccess().getAlternatives(), "rule__NonFeatureMemberKind__Alternatives");
 					put(grammarAccess.getFeaturePackageMemberAccess().getAlternatives_2(), "rule__FeaturePackageMember__Alternatives_2");
 					put(grammarAccess.getFeaturePackageMemberAccess().getAlternatives_2_2_0(), "rule__FeaturePackageMember__Alternatives_2_2_0");
 					put(grammarAccess.getClassUnitDefinitionAccess().getAlternatives_0(), "rule__ClassUnitDefinition__Alternatives_0");
@@ -97,7 +96,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getAlternatives(), "rule__UnlimitedNaturalLiteralExpression__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getQualifiedNameAccess().getAlternatives(), "rule__QualifiedName__Alternatives");
-					put(grammarAccess.getImportVisibilityIndicatorAccess().getAlternatives(), "rule__ImportVisibilityIndicator__Alternatives");
+					put(grammarAccess.getPackageElementVisibilityIndicatorAccess().getAlternatives(), "rule__PackageElementVisibilityIndicator__Alternatives");
 					put(grammarAccess.getVisibilityIndicatorAccess().getAlternatives(), "rule__VisibilityIndicator__Alternatives");
 					put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
 					put(grammarAccess.getPackageImportAccess().getGroup(), "rule__PackageImport__Group__0");
@@ -111,7 +110,9 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup(), "rule__NonFeaturePackageMember__Group__0");
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_1(), "rule__NonFeaturePackageMember__Group_2_1__0");
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_2(), "rule__NonFeaturePackageMember__Group_2_2__0");
-					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_2_2(), "rule__NonFeaturePackageMember__Group_2_2_2__0");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_3(), "rule__NonFeaturePackageMember__Group_2_3__0");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_4(), "rule__NonFeaturePackageMember__Group_2_4__0");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getGroup_2_4_2(), "rule__NonFeaturePackageMember__Group_2_4_2__0");
 					put(grammarAccess.getFeaturePackageMemberAccess().getGroup(), "rule__FeaturePackageMember__Group__0");
 					put(grammarAccess.getFeaturePackageMemberAccess().getGroup_2_0(), "rule__FeaturePackageMember__Group_2_0__0");
 					put(grammarAccess.getFeaturePackageMemberAccess().getGroup_2_1(), "rule__FeaturePackageMember__Group_2_1__0");
@@ -126,7 +127,9 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup(), "rule__NonFeatureClassMember__Group__0");
 					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_1(), "rule__NonFeatureClassMember__Group_2_1__0");
 					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_2(), "rule__NonFeatureClassMember__Group_2_2__0");
-					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_2_2(), "rule__NonFeatureClassMember__Group_2_2_2__0");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_3(), "rule__NonFeatureClassMember__Group_2_3__0");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_4(), "rule__NonFeatureClassMember__Group_2_4__0");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getGroup_2_4_2(), "rule__NonFeatureClassMember__Group_2_4_2__0");
 					put(grammarAccess.getFeatureClassMemberAccess().getGroup(), "rule__FeatureClassMember__Group__0");
 					put(grammarAccess.getFeatureClassMemberAccess().getGroup_2_0(), "rule__FeatureClassMember__Group_2_0__0");
 					put(grammarAccess.getFeatureClassMemberAccess().getGroup_2_1(), "rule__FeatureClassMember__Group_2_1__0");
@@ -214,7 +217,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_2_2_0(), "rule__PackageImport__ImportedPackageAssignment_2_2_0");
 					put(grammarAccess.getElementImportAccess().getVisibilityAssignment_0(), "rule__ElementImport__VisibilityAssignment_0");
 					put(grammarAccess.getElementImportAccess().getMemberElementAssignment_2(), "rule__ElementImport__MemberElementAssignment_2");
-					put(grammarAccess.getElementImportAccess().getAliasesAssignment_3_1(), "rule__ElementImport__AliasesAssignment_3_1");
+					put(grammarAccess.getElementImportAccess().getMemberNameAssignment_3_1(), "rule__ElementImport__MemberNameAssignment_3_1");
 					put(grammarAccess.getPackageUnitDefinitionAccess().getOwnedImportAssignment_0_0(), "rule__PackageUnitDefinition__OwnedImportAssignment_0_0");
 					put(grammarAccess.getPackageUnitDefinitionAccess().getOwnedMembershipAssignment_0_1(), "rule__PackageUnitDefinition__OwnedMembershipAssignment_0_1");
 					put(grammarAccess.getPackageUnitDefinitionAccess().getOwnedElementAssignment_1(), "rule__PackageUnitDefinition__OwnedElementAssignment_1");
@@ -229,8 +232,12 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getOwnedMemberElementAssignment_2_0(), "rule__NonFeaturePackageMember__OwnedMemberElementAssignment_2_0");
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberNameAssignment_2_1_1(), "rule__NonFeaturePackageMember__MemberNameAssignment_2_1_1");
 					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberElementAssignment_2_1_3(), "rule__NonFeaturePackageMember__MemberElementAssignment_2_1_3");
-					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberElementAssignment_2_2_1(), "rule__NonFeaturePackageMember__MemberElementAssignment_2_2_1");
-					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberNameAssignment_2_2_2_1(), "rule__NonFeaturePackageMember__MemberNameAssignment_2_2_2_1");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberNameAssignment_2_2_1(), "rule__NonFeaturePackageMember__MemberNameAssignment_2_2_1");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberElementAssignment_2_2_3(), "rule__NonFeaturePackageMember__MemberElementAssignment_2_2_3");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberNameAssignment_2_3_1(), "rule__NonFeaturePackageMember__MemberNameAssignment_2_3_1");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberElementAssignment_2_3_3(), "rule__NonFeaturePackageMember__MemberElementAssignment_2_3_3");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberElementAssignment_2_4_1(), "rule__NonFeaturePackageMember__MemberElementAssignment_2_4_1");
+					put(grammarAccess.getNonFeaturePackageMemberAccess().getMemberNameAssignment_2_4_2_1(), "rule__NonFeaturePackageMember__MemberNameAssignment_2_4_2_1");
 					put(grammarAccess.getFeaturePackageMemberAccess().getOwnedElementAssignment_0(), "rule__FeaturePackageMember__OwnedElementAssignment_0");
 					put(grammarAccess.getFeaturePackageMemberAccess().getVisibilityAssignment_1(), "rule__FeaturePackageMember__VisibilityAssignment_1");
 					put(grammarAccess.getFeaturePackageMemberAccess().getOwnedMemberElementAssignment_2_0_1(), "rule__FeaturePackageMember__OwnedMemberElementAssignment_2_0_1");
@@ -259,8 +266,12 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeatureClassMemberAccess().getOwnedMemberElementAssignment_2_0(), "rule__NonFeatureClassMember__OwnedMemberElementAssignment_2_0");
 					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberNameAssignment_2_1_1(), "rule__NonFeatureClassMember__MemberNameAssignment_2_1_1");
 					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberElementAssignment_2_1_3(), "rule__NonFeatureClassMember__MemberElementAssignment_2_1_3");
-					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberElementAssignment_2_2_1(), "rule__NonFeatureClassMember__MemberElementAssignment_2_2_1");
-					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberNameAssignment_2_2_2_1(), "rule__NonFeatureClassMember__MemberNameAssignment_2_2_2_1");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberNameAssignment_2_2_1(), "rule__NonFeatureClassMember__MemberNameAssignment_2_2_1");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberElementAssignment_2_2_3(), "rule__NonFeatureClassMember__MemberElementAssignment_2_2_3");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberNameAssignment_2_3_1(), "rule__NonFeatureClassMember__MemberNameAssignment_2_3_1");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberElementAssignment_2_3_3(), "rule__NonFeatureClassMember__MemberElementAssignment_2_3_3");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberElementAssignment_2_4_1(), "rule__NonFeatureClassMember__MemberElementAssignment_2_4_1");
+					put(grammarAccess.getNonFeatureClassMemberAccess().getMemberNameAssignment_2_4_2_1(), "rule__NonFeatureClassMember__MemberNameAssignment_2_4_2_1");
 					put(grammarAccess.getFeatureClassMemberAccess().getOwnedElementAssignment_0(), "rule__FeatureClassMember__OwnedElementAssignment_0");
 					put(grammarAccess.getFeatureClassMemberAccess().getVisibilityAssignment_1(), "rule__FeatureClassMember__VisibilityAssignment_1");
 					put(grammarAccess.getFeatureClassMemberAccess().getIsCompositeAssignment_2_0_0_1(), "rule__FeatureClassMember__IsCompositeAssignment_2_0_0_1");

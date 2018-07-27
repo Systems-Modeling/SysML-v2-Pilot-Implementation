@@ -48,8 +48,8 @@ Comment returns SysML::Comment :
 /* IMPORTS */
 
 PackageImport returns SysML::Import :
-	( visibility = ImportVisibilityIndicator )? 'import' 
-	(
+	( visibility = PackageElementVisibilityIndicator )?  
+	'import' (
 	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
 	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
 	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
@@ -57,13 +57,8 @@ PackageImport returns SysML::Import :
 ;
 
 ElementImport returns SysML::Membership :
-	( visibility = ImportVisibilityIndicator )? 'import' 
-	memberElement = [SysML::Element|QualifiedName] 
-	( 'as' aliases += Name )? ';'
-;
-
-enum ImportVisibilityIndicator returns SysML::VisibilityKind:
-	public = 'public' | private = 'private'
+	( visibility = PackageElementVisibilityIndicator )? 
+	'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 ;
 
 /* PACKAGES */
@@ -99,26 +94,32 @@ PackageMember returns SysML::Membership :
 NonFeaturePackageMember returns SysML::Membership : 
 	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
-    ( visibility = ImportVisibilityIndicator )?
+    ( visibility = PackageElementVisibilityIndicator )?
 	( ownedMemberElement = NonFeatureDefinition
-	| NonFeatureMemberKind ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
+    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+    | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
 ;
 
-NonFeatureMemberKind :
-	'package' | 'class' | 'assoc'
-;
+//NonFeatureMemberKind :
+//	'package' | 'class' | 'assoc'
+//;
 
 FeaturePackageMember returns SysML::Membership :
 	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
-    ( visibility = ImportVisibilityIndicator )?
+    ( visibility = PackageElementVisibilityIndicator )?
 	( 
 	  'feature'? ownedMemberElement = NamedFeatureDefinition
 	| 'feature' ownedMemberElement = UnnamedFeatureDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
+;
+
+enum PackageElementVisibilityIndicator returns SysML::VisibilityKind:
+	public = 'public' | private = 'private'
 ;
 
 /* CLASSES */
@@ -163,7 +164,9 @@ NonFeatureClassMember returns SysML::Membership :
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 	( ownedMemberElement = NonFeatureDefinition
-	| NonFeatureMemberKind ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
+    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+    | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
 ;
@@ -176,7 +179,7 @@ FeatureClassMember returns SysML::FeatureMembership :
       ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
     | ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = UnnamedFeatureDefinition
     | 'connector' ownedMemberElement = ConnectorDefinition
-	| ( ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| ( ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
@@ -224,7 +227,7 @@ AssociationFeatureMember returns SysML::FeatureMembership :
     (
       ( 'feature' | isComposite ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
     | 'connector' ownedMemberElement = ConnectorDefinition
-	| ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| ( 'feature' | isComposite ?= 'part' ) ( memberName = Name )? 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
@@ -235,7 +238,7 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
     (
       'end'? ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
     | 'end' ( direction = FeatureDirection )? ownedMemberElement = UnnamedFeatureDefinition
-	| ( 'end' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Element|QualifiedName] ';'
+	| ( 'end' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
@@ -423,7 +426,8 @@ terminal NATURAL_VALUE returns Ecore::EInt :
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
-terminal UNRESTRICTED_NAME : '\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
+terminal UNRESTRICTED_NAME returns Ecore::EString : 
+	'\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
 
 terminal STRING_VALUE returns Ecore::EString : 
 	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;

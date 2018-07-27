@@ -237,7 +237,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             (direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
 	 *             (direction=FeatureDirection? ownedMemberElement=UnnamedFeatureDefinition) | 
-	 *             ((memberName=Name | memberName=Name)? memberElement=[Element|QualifiedName])
+	 *             ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -258,7 +258,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
 	 *             ownedMemberElement=ConnectorDefinition | 
-	 *             (isComposite?='part'? memberName=Name? memberElement=[Element|QualifiedName])
+	 *             (isComposite?='part'? memberName=Name? memberElement=[Feature|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -408,7 +408,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ElementImport returns Membership
 	 *
 	 * Constraint:
-	 *     (visibility=ImportVisibilityIndicator? memberElement=[Element|QualifiedName] aliases+=Name?)
+	 *     (visibility=PackageElementVisibilityIndicator? memberElement=[Element|QualifiedName] memberName=Name?)
 	 */
 	protected void sequence_ElementImport(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -453,7 +453,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
 	 *             ((isComposite?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=UnnamedFeatureDefinition) | 
 	 *             ownedMemberElement=ConnectorDefinition | 
-	 *             (((isComposite?='part'? memberName=Name?) | memberName=Name)? memberElement=[Element|QualifiedName])
+	 *             (((isComposite?='part'? memberName=Name?) | memberName=Name)? memberElement=[Feature|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -469,7 +469,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedElement+=Comment* 
-	 *         visibility=ImportVisibilityIndicator? 
+	 *         visibility=PackageElementVisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NamedFeatureDefinition | 
 	 *             ownedMemberElement=UnnamedFeatureDefinition | 
@@ -490,16 +490,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         (
 	 *             ownedElement+=Comment* 
-	 *             visibility=ImportVisibilityIndicator? 
+	 *             visibility=PackageElementVisibilityIndicator? 
 	 *             (
 	 *                 ownedMemberElement=NonFeatureDefinition | 
-	 *                 (memberName=Name? memberElement=[Element|QualifiedName]) | 
+	 *                 (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	 *                 (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	 *                 (memberName=Name? memberElement=[Association|QualifiedName]) | 
 	 *                 (memberElement=[Element|QualifiedName] memberName=Name?)
 	 *             )
 	 *         ) | 
 	 *         (
 	 *             ownedElement+=Comment* 
-	 *             visibility=ImportVisibilityIndicator? 
+	 *             visibility=PackageElementVisibilityIndicator? 
 	 *             (
 	 *                 ownedMemberElement=NamedFeatureDefinition | 
 	 *                 ownedMemberElement=UnnamedFeatureDefinition | 
@@ -689,7 +691,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
-	 *             (memberName=Name? memberElement=[Element|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 
 	 *             (memberElement=[Element|QualifiedName] memberName=Name?)
 	 *         )
 	 *     )
@@ -706,10 +710,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedElement+=Comment* 
-	 *         visibility=ImportVisibilityIndicator? 
+	 *         visibility=PackageElementVisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
-	 *             (memberName=Name? memberElement=[Element|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 
 	 *             (memberElement=[Element|QualifiedName] memberName=Name?)
 	 *         )
 	 *     )
@@ -759,7 +765,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         visibility=ImportVisibilityIndicator? 
+	 *         visibility=PackageElementVisibilityIndicator? 
 	 *         (importedPackage=[Package|Name] | importedPackage=[Package|ColonQualifiedName] | importedPackage=[Package|DotQualifiedName])
 	 *     )
 	 */

@@ -39,6 +39,40 @@ UnitDefinition returns SysML::Package :
 	| FeatureUnitDefinition
 ;
 
+PackageUnitDefinition returns SysML::Package: 
+    UnitPrefix PackageDefinition 
+;
+
+ClassUnitDefinition returns SysML::Class : 
+	UnitPrefix ClassDefinition
+;
+
+AssociationUnitDefinition returns SysML::Association :
+	UnitPrefix AssociationDefinition
+;
+
+FeatureUnitDefinition returns SysML::Feature :
+	UnitPrefix FeatureBodyDefinition
+;
+
+fragment UnitPrefix returns SysML::Package :
+	//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
+	( ownedImport += PackageImport 
+	| ownedMembership += ElementImport
+	)*
+	( ownedElement += Comment )*
+;
+
+/* VISIBILITY */
+
+enum PackageElementVisibilityIndicator returns SysML::VisibilityKind:
+	public = 'public' | private = 'private'
+;
+
+enum VisibilityIndicator returns SysML::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
+;
+
 /* COMMENTS */
 
 Comment returns SysML::Comment :
@@ -67,34 +101,27 @@ NonFeatureDefinition returns SysML::Package:
 	PackageDefinitionOrStub | ClassDefinitionOrStub | AssociationDefinitionOrStub
 ;
 
-PackageUnitDefinition returns SysML::Package: 
-//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
-	( ownedImport += PackageImport 
-	| ownedMembership += ElementImport
-	)*
-	( ownedElement += Comment )*
-	'package' name = Name '{' ( ownedMembership += PackageMember | ownedImport += PackageImport )* '}' 
-;
-
-PackageDefinition returns SysML::Package: 
-	'package' name = Name '{' ( ownedMembership += PackageMember | ownedImport += PackageImport )* '}' 
-;
-
 PackageDefinitionOrStub returns SysML::Package :
 	PackageDefinition
 //	'package' name = Name ( isStub ?= ';' | '{' ( ownedMembership += PackageMember )* '}' )
 ;
 
+fragment PackageDefinition returns SysML::Package: 
+	'package' name = Name '{' ( ownedMembership += PackageMember | ownedImport += PackageImport )* '}' 
+;
+
 /* PACKAGE MEMBERSHIPS */
 
 PackageMember returns SysML::Membership : 
-	NonFeaturePackageMember | FeaturePackageMember
-;
-
-NonFeaturePackageMember returns SysML::Membership : 
 	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
-    ( visibility = PackageElementVisibilityIndicator )?
+    ( visibility = PackageElementVisibilityIndicator )?	
+	( NonFeatureMemberElement 
+	| FeaturePackageMemberElement
+	)
+;
+
+fragment NonFeatureMemberElement returns SysML::Membership :
 	( ownedMemberElement = NonFeatureDefinition
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
     | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
@@ -107,10 +134,7 @@ NonFeaturePackageMember returns SysML::Membership :
 //	'package' | 'class' | 'assoc'
 //;
 
-FeaturePackageMember returns SysML::Membership :
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = PackageElementVisibilityIndicator )?
+fragment FeaturePackageMemberElement returns SysML::Membership :
 	( 
 	  'feature'? ownedMemberElement = NamedFeatureDefinition
 	| 'feature' ownedMemberElement = UnnamedFeatureDefinition
@@ -118,35 +142,25 @@ FeaturePackageMember returns SysML::Membership :
 	)
 ;
 
-enum PackageElementVisibilityIndicator returns SysML::VisibilityKind:
-	public = 'public' | private = 'private'
-;
-
 /* CLASSES */
-
-ClassUnitDefinition returns SysML::Class : 
-//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
-	( ownedImport += PackageImport 
-	| ownedMembership += ElementImport
-	)*
-	( ownedElement += Comment )*
-	( isAbstract ?= 'abstract' )? 'class' name = Name 
-//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
-	'{' ( ownedMembership += ClassMember | ownedImport += PackageImport  )* '}'
-;
-
-ClassDefinition returns SysML::Class : 
-	( isAbstract ?= 'abstract' )? 'class' name = Name 
-//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
-	'{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}'
-;
 
 ClassDefinitionOrStub returns SysML::Class :
 	ClassDefinition 
-//	ClassDeclaration
-//	( isStub ?= ';' | '{' ( ownedMember += ClassMember )* '}' )
+//	ClassDeclaration ( isStub ?= ';' | ClassBody '}' )
+;
+
+fragment ClassDefinition returns SysML::Class : 
+	ClassDeclaration ClassBody
+;
+
+fragment ClassDeclaration returns SysML::Class :
+	( isAbstract ?= 'abstract' )? 'class' name = Name 
+//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
+	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
+;
+
+fragment ClassBody returns SysML::Class :
+	'{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}'
 ;
 
 Generalization returns SysML::Generalization:
@@ -163,12 +177,7 @@ NonFeatureClassMember returns SysML::Membership :
 	( ownedElement += Comment )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
-	( ownedMemberElement = NonFeatureDefinition
-	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
-    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
-    | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
-	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
-	)
+	NonFeatureMemberElement
 ;
 
 FeatureClassMember returns SysML::FeatureMembership : 
@@ -183,35 +192,28 @@ FeatureClassMember returns SysML::FeatureMembership :
 	)
 ;
 
-enum VisibilityIndicator returns SysML::VisibilityKind :
-	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
-;
-
 enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
 /* ASSOCIATIONS */
 
-AssociationUnitDefinition returns SysML::Association :
-//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
-	( ownedImport += PackageImport 
-	| ownedMembership += ElementImport
-	)*
-	( ownedElement += Comment )*
-	( isAbstract ?= 'abstract' )? 'assoc' name = Name
-	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
-	'{' ( ownedMembership += AssociationMember | ownedImport += PackageImport )* '}'
-;
-
-AssociationDefinition returns SysML::Association:
-	( isAbstract ?= 'abstract' )? 'assoc' name = Name
-	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
-	'{' ( ownedMembership += AssociationMember | ownedImport += PackageImport )* '}'
-;
-
 AssociationDefinitionOrStub returns SysML::Association :
 	AssociationDefinition
+	// AssociationDeclaration { isStub = ';' | AssociationBody }
+;
+
+fragment AssociationDefinition returns SysML::Association :
+	AssociationDeclaration AssociationBody
+;
+
+fragment AssociationDeclaration returns SysML::Association :
+	( isAbstract ?= 'abstract' )? 'assoc' name = Name
+	( ( 'is' | 'specializes' ) ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
+;
+
+fragment AssociationBody returns SysML::Association :
+	'{' ( ownedMembership += AssociationMember | ownedImport += PackageImport )* '}'
 ;
 
 /* ASSOCIATION MEMBERSHIPS */
@@ -244,58 +246,43 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 
 /* FEATURES */
 
-FeatureUnitDefinition returns SysML::Feature :
-//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
-	( ownedImport += PackageImport 
-	| ownedMembership += ElementImport
-	)*
-	( ownedElement += Comment )+
-	'feature' name = Name
-	(
-	  ( ':' ( referencedType += [SysML::Class | QualifiedName] | 'any' )
-	    ( ownedElement += SubsetOrRedefinition )?
-	  | ownedElement += SubsetOrRedefinition
-	  )
-      ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	  '{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}'
-	)
-;
-
 FeatureDefinition returns SysML::Feature :
 	NamedFeatureDefinition | UnnamedFeatureDefinition
 ;
 
 NamedFeatureDefinition returns SysML::Feature :
-	name = Name 
-	(
-	  ( ':' ( isComposite ?= 'compose' )? ( referencedType += [SysML::Class | QualifiedName] | 'any' )
-	    ( ownedElement += SubsetOrRedefinition )? 
-	  )?
-      ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	  ( '=' value = Expression )? ( ';' | '{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}' )
-	| ownedElement += SubsetOrRedefinition
-	  ( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	     ( '=' value = Expression ( ';' | '{' ( ownedMembership += ClassMember )* '}' ) 
-	     | '{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}'
-	     )
-	  | '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
-	  )
-	)
+	FeatureDeclaration FeatureCompletion
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
-	ownedElement += SubsetOrRedefinition
-	( ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
-	   ( '=' value = Expression ( ';' | '{' ( ownedMembership += ClassMember )* '}' ) 
-	   | '{' ( ownedMembership += ClassMember | ownedImport += PackageImport )* '}'
-	   )
-	| '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' ';'
-	)
+	ownedElement += SubsetOrRedefinition TypePart? Multiplicity?
+	FeatureCompletion
+;
+
+fragment FeatureBodyDefinition returns SysML::Feature :
+	'feature' FeatureDeclaration ClassBody
+;
+
+fragment FeatureDeclaration returns SysML::Feature :
+	name = Name TypePart? Multiplicity? 
+	( ownedElement += SubsetOrRedefinition )? 
+;
+
+fragment FeatureCompletion returns SysML::Feature :
+	( '=' value = Expression )? ( ';' | ClassBody )
+;
+
+fragment TypePart returns SysML::Feature :
+	':' ( isComposite ?= 'compose' )? ( referencedType += [SysML::Class | QualifiedName] | 'any' )
+;
+
+fragment Multiplicity returns SysML::Feature :
+	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
 SubsetOrRedefinition returns SysML::Subset :
 	( 'subsets' Subset
-	| ( 'is' | 'redefines' ) Redefinition
+	| 'redefines' Redefinition
 	)
 ;
 

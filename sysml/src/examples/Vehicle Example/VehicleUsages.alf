@@ -28,18 +28,18 @@ package VehicleUsages {
 	/** Basic Vehicle configuration showing a part hierarchy. **/
 	vehicle_C1: VehicleDefinitions::Vehicle {
 		part frontAxleAssembly: VehicleDefinitions::AxleAssembly {
-			part frontWheel is narrowRimWheel[2] {
-				part lugbolt is narrowRimWheel::lugbolt[4] {
-					feature tighteningTorque is VehicleDefinitions::Lugbolt::tighteningTorque = T1;
+			part frontWheel[2] redefines narrowRimWheel {
+				part lugbolt[4] redefines narrowRimWheel::lugbolt {
+					feature tighteningTorque redefines VehicleDefinitions::Lugbolt::tighteningTorque = T1;
 				}
 			}
 			part frontAxle: VehicleDefinitions::Axle;
 		}
 		
 		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
-			part rearWheel is wideRimWheel[2] {
-				part lugbolt is wideRimWheel::lugbolt[6] {
-					feature tighteningTorque is VehicleDefinitions::Lugbolt::tighteningTorque = T2;
+			part rearWheel[2] redefines wideRimWheel {
+				part lugbolt[6] redefines wideRimWheel::lugbolt {
+					feature tighteningTorque redefines VehicleDefinitions::Lugbolt::tighteningTorque = T2;
 				}
 			}
 			part rearAxle: VehicleDefinitions::Axle;			
@@ -47,8 +47,8 @@ package VehicleUsages {
 	}
 	
 	/** Specialized configuration with part-specific ports. **/
-	vehicle_C2 is vehicle_C1 {
-		part frontAxleAssembly is vehicle_C1::frontAxleAssembly {
+	vehicle_C2 redefines vehicle_C1 {
+		part frontAxleAssembly redefines vehicle_C1::frontAxleAssembly {
 			part leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[1] {
 				port hub: VehicleDefinitions::WheelHubIF;
 			}
@@ -56,7 +56,7 @@ package VehicleUsages {
 				port hub: VehicleDefinitions::WheelHubIF;
 			}
 			
-			part frontAxle is vehicle_C1::frontAxleAssembly::frontAxle {
+			part frontAxle redefines vehicle_C1::frontAxleAssembly::frontAxle {
 				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
 				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
 			}
@@ -68,7 +68,7 @@ package VehicleUsages {
 				frontAxle::rightMountingPoint => rightFrontWheel::hub;
 		}
 		
-		part rearAxleAssembly is vehicle_C1::rearAxleAssembly {
+		part rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
 			part leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[1] {
 				port hub: VehicleDefinitions::WheelHubIF;
 			}
@@ -76,7 +76,7 @@ package VehicleUsages {
 				port hub: VehicleDefinitions::WheelHubIF;
 			}
 
-			part rearAxle is vehicle_C1::rearAxleAssembly::rearAxle {
+			part rearAxle redefines vehicle_C1::rearAxleAssembly::rearAxle {
 				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
 				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
 			}
@@ -90,13 +90,13 @@ package VehicleUsages {
 	}
 	
 	/** Further specialized configuration with a connector to a deeply-nested port. **/
-	vehicle_C3 is vehicle_C2 {
+	vehicle_C3 redefines vehicle_C2 {
 		part transmission: VehicleDefinitions::Transmission {
 			port out drive: VehicleDefinitions::DriveIF;
 		}
 		
-		part rearAxleAssembly is vehicle_C2::rearAxleAssembly {
-			part rearAxle is vehicle_C2::rearAxleAssembly::rearAxle {
+		part rearAxleAssembly redefines vehicle_C2::rearAxleAssembly {
+			part rearAxle redefines vehicle_C2::rearAxleAssembly::rearAxle {
 				port in drive: VehicleDefinitions::DriveIF;
 			}
 		}

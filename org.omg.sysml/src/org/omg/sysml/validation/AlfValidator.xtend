@@ -3,6 +3,13 @@
  */
 package org.omg.sysml.validation
 
+import java.util.Stack
+import org.eclipse.xtext.validation.Check
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Class
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +18,52 @@ package org.omg.sysml.validation
  */
 class AlfValidator extends AbstractAlfValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					AlfPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	
+	public static val CIRCLE_INHERITANCE = 'circleInheritance'
+
+	@Check
+	def checkImportCircle(Class c) {
+		val towalk = new Stack
+		val walked = newHashSet
+		//towalk.addAll(c.ownedGeneralization.map(e|e.general))
+		towalk.addAll(c.ownedElement.filter(Generalization).map(e|e.general))
+		//towalk.addAll(c.eAllContents.filter(Generalization).map(e|e.general).toSet)
+		while(!towalk.isEmpty){
+			val item=towalk.pop
+			walked.add(item)
+			towalk.addAll(item.ownedElement.filter(Generalization).map(e|e.general).filter(e|!walked.contains(e)).toSet)
+		}
+		if(walked.contains(c)){
+			error("Circle Inheritance",c,SysMLPackage.eINSTANCE.element_Name, CIRCLE_INHERITANCE)
+		}
+	}
+	
+	public static val CIRCLE_REFERENCE= 'circleReference'
+	
+	
+	//check ha osztályból származik, : feature-re, is feature-re
+	//todo subset-re, és a többire is ellenőrizni
+	@Check
+	def checkFeatureCircleRef(Feature f){
+		val towalk = new Stack
+		val walked = newHashSet
+		towalk.addAll(f.referencedType.toSet)
+		towalk.addAll(f.ownedElement.filter(Redefinition).map(e|e.redefinedFeature).toSet)
+		while(!towalk.isEmpty){
+			val item=towalk.pop
+			walked.add(item)
+			if(item instanceof Class){
+				towalk.addAll(item.ownedElement.filter(Generalization).map(e|e.general).filter(e|!walked.contains(e)).toSet)
+			}
+			if(item instanceof Feature){
+				val fi = item as Feature
+				towalk.addAll(fi.referencedType.filter(e|!walked.contains(e)).toSet)
+				towalk.addAll(fi.ownedElement.filter(Redefinition).map(e|e.redefinedFeature).filter(e|!walked.contains(e)).toSet)
+			}
+		}
+		if(walked.contains(f)){
+			error("Circle Reference",f,SysMLPackage.eINSTANCE.element_Name, CIRCLE_REFERENCE)
+		}
+	}
 	
 }

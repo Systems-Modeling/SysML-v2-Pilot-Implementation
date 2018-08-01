@@ -15,6 +15,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -122,6 +123,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.FEATURE_ACCESS_EXPRESSION: return createFeatureAccessExpression();
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION: return createSequenceAccessExpression();
 			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
+			case SysMLPackage.CONNECTOR_END: return createConnectorEnd();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -479,6 +481,16 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public EndFeatureMembership createEndFeatureMembership() {
 		EndFeatureMembershipImpl endFeatureMembership = new EndFeatureMembershipImpl();
 		return endFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConnectorEnd createConnectorEnd() {
+		ConnectorEndImpl connectorEnd = new ConnectorEndImpl();
+		return connectorEnd;
 	}
 
 	/**

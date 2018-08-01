@@ -296,10 +296,19 @@ helper SysML::Feature::mapMultiplicity(inout element: UML::MultiplicityElement) 
 
 mapping SysML::Connector::toConnector(): UML::Connector
 	inherits SysML::Element::toNamedElement {
-	_end += new UML::ConnectorEnd(self.sourceFeature);
-	_end += new UML::ConnectorEnd(self.targetFeature);
-	if self.association<> null then {
+	// Note: This presumes that the connector ends are ordered the same as
+	// the association ends.
+	_end += self.connectorEnd->map toConnectorEnd();
+	if self.association <> null then {
 		type := self.association.late resolveone(UML::Association);
+	} endif;
+}
+
+mapping SysML::ConnectorEnd::toConnectorEnd(): UML::ConnectorEnd {
+	role := self.feature.late resolveone(UML::Property);
+	if self.feature.owningMembership <> null and 
+		self.feature.owningMembership.owningPackage.oclIsKindOf(SysML::Feature) then {
+		partWithPort := self.feature.owningMembership.owningPackage.late resolveone(UML::Property);
 	} endif;
 }
 

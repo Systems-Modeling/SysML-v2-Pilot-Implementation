@@ -1,4 +1,4 @@
 package Time {
-	class DateTime is ScalarValues::ScalarValue { }
+	class DateTime specializes ScalarValues::ScalarValue { }
 }
 		

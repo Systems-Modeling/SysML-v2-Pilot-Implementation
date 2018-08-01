@@ -26,10 +26,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset <em>Owned Subset</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature()
@@ -316,24 +315,6 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	void setValue(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Participant Of Association</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getParticipantFeature <em>Participant Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Participant Of Association</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Participant Of Association</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ParticipantOfAssociation()
-	 * @see org.omg.sysml.lang.sysml.Association#getParticipantFeature
-	 * @model opposite="participantFeature" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<Association> getParticipantOfAssociation();
-
-	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement <em>Owned Feature Element</em>}'.
 	 * <!-- begin-user-doc -->
@@ -362,34 +343,6 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	void setOwningFeatureMembership(FeatureMembership value);
 
 	/**
-	 * Returns the value of the '<em><b>End Of Association</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getEndFeature <em>End Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>End Of Association</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End Of Association</em>' reference.
-	 * @see #setEndOfAssociation(Association)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOfAssociation()
-	 * @see org.omg.sysml.lang.sysml.Association#getEndFeature
-	 * @model opposite="endFeature" derived="true" ordered="false"
-	 * @generated
-	 */
-	Association getEndOfAssociation();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getEndOfAssociation <em>End Of Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End Of Association</em>' reference.
-	 * @see #getEndOfAssociation()
-	 * @generated
-	 */
-	void setEndOfAssociation(Association value);
-
-	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -414,5 +367,31 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @generated
 	 */
 	void setIsComposite(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Nonunique</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Nonunique</em>' attribute.
+	 * @see #setIsNonunique(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
+	 * @model required="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isIsNonunique();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isIsNonunique <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Nonunique</em>' attribute.
+	 * @see #isIsNonunique()
+	 * @generated
+	 */
+	void setIsNonunique(boolean value);
 
 } // Feature

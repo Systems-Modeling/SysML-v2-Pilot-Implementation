@@ -3,16 +3,9 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.omg.sysml.lang.sysml.Element;
@@ -46,24 +39,24 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	protected EList<Element> related;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element target;
+	protected EList<Element> target;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element source;
+	protected EList<Element> source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,14 +94,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Element)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.RELATIONSHIP__TARGET, oldTarget, target));
-			}
+	public EList<Element> getTarget() {
+		if (target == null) {
+			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__TARGET);
 		}
 		return target;
 	}
@@ -118,58 +106,11 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(Element newTarget) {
-		Element oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__TARGET, oldTarget, target));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Element)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.RELATIONSHIP__SOURCE, oldSource, source));
-			}
+	public EList<Element> getSource() {
+		if (source == null) {
+			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__SOURCE);
 		}
 		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element basicGetSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(Element newSource) {
-		Element oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -183,11 +124,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			case SysMLPackage.RELATIONSHIP__RELATED:
 				return getRelated();
 			case SysMLPackage.RELATIONSHIP__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
+				return getTarget();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,10 +145,12 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				getRelated().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
-				setTarget((Element)newValue);
+				getTarget().clear();
+				getTarget().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.RELATIONSHIP__SOURCE:
-				setSource((Element)newValue);
+				getSource().clear();
+				getSource().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,10 +168,10 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				getRelated().clear();
 				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
-				setTarget((Element)null);
+				getTarget().clear();
 				return;
 			case SysMLPackage.RELATIONSHIP__SOURCE:
-				setSource((Element)null);
+				getSource().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -247,9 +188,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			case SysMLPackage.RELATIONSHIP__RELATED:
 				return related != null && !related.isEmpty();
 			case SysMLPackage.RELATIONSHIP__TARGET:
-				return target != null;
+				return target != null && !target.isEmpty();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
-				return source != null;
+				return source != null && !source.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

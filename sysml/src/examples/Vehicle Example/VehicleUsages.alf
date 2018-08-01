@@ -15,12 +15,12 @@ package VehicleUsages {
 	
 	/* PARTS */
 	
-	/** Narrow-rim wheel configuration with 4 to 5 lugbults. **/
+	/** Narrow-rim wheel configuration with 4 to 5 lugbolts. **/
 	narrowRimWheel: VehicleDefinitions::Wheel {
 		part lugbolt: VehicleDefinitions::Lugbolt[4..5];
 	}
 	
-	/** Wide-rim wheel configuration with 4 to 6 lugbults. **/	
+	/** Wide-rim wheel configuration with 4 to 6 lugbolts. **/	
 	wideRimWheel: VehicleDefinitions::Wheel {
 		part lugbolt: VehicleDefinitions::Lugbolt[4..6];
 	}
@@ -62,10 +62,10 @@ package VehicleUsages {
 			}
 		
 			connector leftFrontMount: VehicleDefinitions::Mounting is 
-				frontAxle::leftMountingPoint => leftFrontWheel::hub;
+				frontAxle::leftMountingPoint to leftFrontWheel::hub;
 				
 			connector rightFrontMount: VehicleDefinitions::Mounting is 
-				frontAxle::rightMountingPoint => rightFrontWheel::hub;
+				frontAxle::rightMountingPoint to rightFrontWheel::hub;
 		}
 		
 		part rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
@@ -82,10 +82,10 @@ package VehicleUsages {
 			}
 			
 			connector leftRearMount: VehicleDefinitions::Mounting is 
-				rearAxle::leftMountingPoint => leftRearWheel::hub;
+				rearAxle::leftMountingPoint to leftRearWheel::hub;
 				
 			connector rightRearMount: VehicleDefinitions::Mounting is 
-				rearAxle::rightMountingPoint => rightRearWheel::hub;
+				rearAxle::rightMountingPoint to rightRearWheel::hub;
 		}		
 	}
 	
@@ -102,6 +102,6 @@ package VehicleUsages {
 		}
 		
 		connector driveShaft is 
-			transmission::drive => rearAxleAssembly::rearAxle::drive;			
+			transmission::drive to rearAxleAssembly::rearAxle::drive;			
 	}
 }

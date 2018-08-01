@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -48,10 +46,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubset <em>Owned Subset</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOfAssociation <em>End Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @generated
@@ -208,26 +205,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	protected Expression value;
 
 	/**
-	 * The cached value of the '{@link #getParticipantOfAssociation() <em>Participant Of Association</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParticipantOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Association> participantOfAssociation;
-
-	/**
-	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Association endOfAssociation;
-
-	/**
 	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,6 +223,26 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -586,18 +583,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Association> getParticipantOfAssociation() {
-		if (participantOfAssociation == null) {
-			participantOfAssociation = new EObjectWithInverseResolvingEList.ManyInverse<Association>(Association.class, this, SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION, SysMLPackage.ASSOCIATION__PARTICIPANT_FEATURE);
-		}
-		return participantOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FeatureMembership getOwningFeatureMembership() {
 		if (eContainerFeatureID() != SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP) return null;
 		return (FeatureMembership)eInternalContainer();
@@ -639,66 +624,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association getEndOfAssociation() {
-		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
-			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
-			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
-			if (endOfAssociation != oldEndOfAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
-			}
-		}
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Association basicGetEndOfAssociation() {
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
-		Association oldEndOfAssociation = endOfAssociation;
-		endOfAssociation = newEndOfAssociation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndOfAssociation(Association newEndOfAssociation) {
-		if (newEndOfAssociation != endOfAssociation) {
-			NotificationChain msgs = null;
-			if (endOfAssociation != null)
-				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-			if (newEndOfAssociation != null)
-				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isIsComposite() {
 		return isComposite;
 	}
@@ -713,6 +638,27 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		isComposite = newIsComposite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsNonunique() {
+		return isNonunique;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsNonunique(boolean newIsNonunique) {
+		boolean oldIsNonunique = isNonunique;
+		isNonunique = newIsNonunique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_NONUNIQUE, oldIsNonunique, isNonunique));
 	}
 
 	/**
@@ -736,16 +682,10 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestingFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNED_SUBSET:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSubset()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipantOfAssociation()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				if (endOfAssociation != null)
-					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-				return basicSetEndOfAssociation((Association)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -774,12 +714,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return ((InternalEList<?>)getOwnedSubset()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__VALUE:
 				return basicSetValue(null, msgs);
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				return ((InternalEList<?>)getParticipantOfAssociation()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return basicSetOwningFeatureMembership(null, msgs);
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				return basicSetEndOfAssociation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -833,15 +769,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return getOwnedSubset();
 			case SysMLPackage.FEATURE__VALUE:
 				return getValue();
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				return getParticipantOfAssociation();
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership();
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				if (resolve) return getEndOfAssociation();
-				return basicGetEndOfAssociation();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isIsComposite();
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				return isIsNonunique();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -901,18 +834,14 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__VALUE:
 				setValue((Expression)newValue);
 				return;
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				getParticipantOfAssociation().clear();
-				getParticipantOfAssociation().addAll((Collection<? extends Association>)newValue);
-				return;
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				setIsNonunique((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -965,17 +894,14 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__VALUE:
 				setValue((Expression)null);
 				return;
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				getParticipantOfAssociation().clear();
-				return;
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)null);
 				return;
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)null);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1015,14 +941,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return ownedSubset != null && !ownedSubset.isEmpty();
 			case SysMLPackage.FEATURE__VALUE:
 				return value != null;
-			case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION:
-				return participantOfAssociation != null && !participantOfAssociation.isEmpty();
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership() != null;
-			case SysMLPackage.FEATURE__END_OF_ASSOCIATION:
-				return endOfAssociation != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1043,6 +967,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		result.append(isOrdered);
 		result.append(", isComposite: ");
 		result.append(isComposite);
+		result.append(", isNonunique: ");
+		result.append(isNonunique);
 		result.append(')');
 		return result.toString();
 	}

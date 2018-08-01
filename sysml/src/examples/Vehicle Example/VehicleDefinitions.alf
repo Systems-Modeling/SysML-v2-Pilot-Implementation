@@ -6,7 +6,7 @@ package VehicleDefinitions {
 	/* VALUE TYPES */
 	
 	/** Torque unit value type defined as a force unit times a length unit. **/
-	class TorqueUnit is Quantities::DerivedUnit {
+	class TorqueUnit specializes Quantities::DerivedUnit {
 		feature unitFactor1 subsets Quantities::DerivedUnit::unitFactor {
 			feature unit: ISQ::ForceUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
 			feature exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
@@ -18,7 +18,7 @@ package VehicleDefinitions {
 	}
 	
 	/** Torque quantity value type defined as a real value with a torque unit. **/
-	class Torque is Quantities.Quantity {
+	class Torque specializes Quantities.Quantity {
 		feature numericValue: ScalarValues::Real redefines Quantities::Quantity::numericValue;
 		feature unit: TorqueUnit redefines Quantities::Quantity::unit;
 	}

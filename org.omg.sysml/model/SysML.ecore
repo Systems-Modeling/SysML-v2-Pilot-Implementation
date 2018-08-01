@@ -80,13 +80,12 @@
         upperBound="-1" eType="#//Subset" derived="true" eOpposite="#//Subset/owningFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="participantOfAssociation"
-        ordered="false" upperBound="-1" eType="#//Association" derived="true" eOpposite="#//Association/participantFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/ownedFeatureElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endOfAssociation" ordered="false"
-        eType="#//Association" derived="true" eOpposite="#//Association/endFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         derived="true"/>
   </eClassifiers>
@@ -160,27 +159,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="LiteralUnbounded" eSuperTypes="#//LiteralExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Relationship #//Feature">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFeatures" ordered="false"
-        unique="false" upperBound="2" eType="#//Feature" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFeature" ordered="false"
-        eType="#//Feature" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetFeature" ordered="false"
-        eType="#//Feature" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePath" upperBound="-1"
-        eType="#//FeatureMembership"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" upperBound="-1"
-        eType="#//FeatureMembership"/>
+        unique="false" upperBound="-1" eType="#//Feature" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
         eType="#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDirected" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLower" ordered="false"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceUpper" ordered="false"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLower" ordered="false"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetUpper" ordered="false"
-        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnd" upperBound="-1"
+        eType="#//ConnectorEnd" containment="true" eOpposite="#//ConnectorEnd/connector"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralBoolean" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -188,11 +173,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="related" ordered="false"
-        unique="false" upperBound="2" eType="#//Element" derived="true"/>
+        unique="false" upperBound="-1" eType="#//Element" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-        eType="#//Element"/>
+        upperBound="-1" eType="#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-        eType="#//Element"/>
+        upperBound="-1" eType="#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralString" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -252,23 +237,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Relationship #//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedType" ordered="false"
-        unique="false" upperBound="2" eType="#//Class" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" ordered="false"
-        eType="#//Class" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetType" ordered="false"
-        eType="#//Class" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="participantFeature" ordered="false"
-        upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/participantOfAssociation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParticipantFeature"
-        ordered="false" eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetParticipantFeature"
-        ordered="false" eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endFeature" ordered="false"
-        upperBound="2" eType="#//Feature" derived="true" eOpposite="#//Feature/endOfAssociation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetEndFeature" ordered="false"
-        eType="#//Feature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEndFeature" ordered="false"
-        eType="#//Feature"/>
+        unique="false" upperBound="-1" eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedEndFeatureMembership"
         upperBound="-1" eType="#//EndFeatureMembership" eOpposite="#//EndFeatureMembership/owningAssociation"/>
   </eClassifiers>
@@ -287,5 +256,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="EndFeatureMembership" eSuperTypes="#//FeatureMembership">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningAssociation" ordered="false"
         eType="#//Association" eOpposite="#//Association/ownedEndFeatureMembership"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectorEnd" eSuperTypes="#//Relationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+        lowerBound="1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" ordered="false"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" ordered="false"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" ordered="false" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connector" ordered="false"
+        lowerBound="1" eType="#//Connector" eOpposite="#//Connector/connectorEnd"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -1,12 +1,28 @@
 package Base {
 		
 	abstract class Anything { }
-	abstract class Object specializes Anything { }
+	
 	abstract class Value specializes Anything { }
 	abstract class Enumeration specializes Value { }
 	
-	abstract class Class specializes Object {
-		base: Class { base = Object; }
+	abstract class Object specializes Anything { }
+	
+	class Link specializes Object {
+		feature participant: Anything[2..*] ordered;
+	}
+	
+	assoc BinaryLink specializes Link {
+		end sourceEnd: Anything[0..*];
+	    end targetEnd: Anything[0..*];     
+
+		feature participant: Anything[2] redefines Link::participant;
+		
+	    feature sourceParticipant subsets participant = participant[1];
+	    feature targetParticipant subsets participant = participant[2];
+	
+	    connector :BinaryLink
+	    	(sourceEnd => sourceParticipant,
+	         targetEnd => targetParticipant);	
 	}
 	
 }

@@ -34,61 +34,41 @@ public interface Relationship extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Related()
-	 * @model upper="2" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Element> getRelated();
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Element)
+	 * @return the value of the '<em>Target</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Target()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Element getTarget();
+	EList<Element> getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Relationship#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
-	 * @generated
-	 */
-	void setTarget(Element value);
-
-	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Source</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Element)
+	 * @return the value of the '<em>Source</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Source()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Element getSource();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Relationship#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(Element value);
+	EList<Element> getSource();
 
 } // Relationship

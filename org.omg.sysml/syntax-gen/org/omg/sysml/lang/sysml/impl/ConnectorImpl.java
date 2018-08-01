@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -70,21 +71,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedSubset <em>Owned Subset</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getParticipantOfAssociation <em>Participant Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getEndOfAssociation <em>End Of Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsNonunique <em>Is Nonunique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeatures <em>Related Features</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetFeature <em>Target Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourcePath <em>Source Path</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetPath <em>Target Path</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsDirected <em>Is Directed</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceLower <em>Source Lower</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceUpper <em>Source Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetLower <em>Target Lower</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetUpper <em>Target Upper</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
  * </ul>
  *
  * @generated
@@ -391,26 +384,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected Expression value;
 
 	/**
-	 * The cached value of the '{@link #getParticipantOfAssociation() <em>Participant Of Association</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParticipantOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Association> participantOfAssociation;
-
-	/**
-	 * The cached value of the '{@link #getEndOfAssociation() <em>End Of Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndOfAssociation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Association endOfAssociation;
-
-	/**
 	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -431,6 +404,26 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getRelatedFeatures() <em>Related Features</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -439,46 +432,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @ordered
 	 */
 	protected EList<Feature> relatedFeatures;
-
-	/**
-	 * The cached value of the '{@link #getSourceFeature() <em>Source Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature sourceFeature;
-
-	/**
-	 * The cached value of the '{@link #getTargetFeature() <em>Target Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature targetFeature;
-
-	/**
-	 * The cached value of the '{@link #getSourcePath() <em>Source Path</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourcePath()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FeatureMembership> sourcePath;
-
-	/**
-	 * The cached value of the '{@link #getTargetPath() <em>Target Path</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FeatureMembership> targetPath;
 
 	/**
 	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' reference.
@@ -511,44 +464,14 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSourceLower() <em>Source Lower</em>}' containment reference.
+	 * The cached value of the '{@link #getConnectorEnd() <em>Connector End</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceLower()
+	 * @see #getConnectorEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression sourceLower;
-
-	/**
-	 * The cached value of the '{@link #getSourceUpper() <em>Source Upper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression sourceUpper;
-
-	/**
-	 * The cached value of the '{@link #getTargetLower() <em>Target Lower</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression targetLower;
-
-	/**
-	 * The cached value of the '{@link #getTargetUpper() <em>Target Upper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression targetUpper;
+	protected EList<ConnectorEnd> connectorEnd;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1114,18 +1037,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Association> getParticipantOfAssociation() {
-		if (participantOfAssociation == null) {
-			participantOfAssociation = new EObjectWithInverseResolvingEList.ManyInverse<Association>(Association.class, this, SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION, SysMLPackage.ASSOCIATION__PARTICIPANT_FEATURE);
-		}
-		return participantOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FeatureMembership getOwningFeatureMembership() {
 		if (eContainerFeatureID() != SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP) return null;
 		return (FeatureMembership)eInternalContainer();
@@ -1167,66 +1078,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association getEndOfAssociation() {
-		if (endOfAssociation != null && endOfAssociation.eIsProxy()) {
-			InternalEObject oldEndOfAssociation = (InternalEObject)endOfAssociation;
-			endOfAssociation = (Association)eResolveProxy(oldEndOfAssociation);
-			if (endOfAssociation != oldEndOfAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, oldEndOfAssociation, endOfAssociation));
-			}
-		}
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Association basicGetEndOfAssociation() {
-		return endOfAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndOfAssociation(Association newEndOfAssociation, NotificationChain msgs) {
-		Association oldEndOfAssociation = endOfAssociation;
-		endOfAssociation = newEndOfAssociation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, oldEndOfAssociation, newEndOfAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndOfAssociation(Association newEndOfAssociation) {
-		if (newEndOfAssociation != endOfAssociation) {
-			NotificationChain msgs = null;
-			if (endOfAssociation != null)
-				msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-			if (newEndOfAssociation != null)
-				msgs = ((InternalEObject)newEndOfAssociation).eInverseAdd(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-			msgs = basicSetEndOfAssociation(newEndOfAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__END_OF_ASSOCIATION, newEndOfAssociation, newEndOfAssociation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isIsComposite() {
 		return isComposite;
 	}
@@ -1248,111 +1099,32 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsNonunique() {
+		return isNonunique;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsNonunique(boolean newIsNonunique) {
+		boolean oldIsNonunique = isNonunique;
+		isNonunique = newIsNonunique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_NONUNIQUE, oldIsNonunique, isNonunique));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Feature> getRelatedFeatures() {
 		if (relatedFeatures == null) {
 			relatedFeatures = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR__RELATED_FEATURES);
 		}
 		return relatedFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature getSourceFeature() {
-		if (sourceFeature != null && sourceFeature.eIsProxy()) {
-			InternalEObject oldSourceFeature = (InternalEObject)sourceFeature;
-			sourceFeature = (Feature)eResolveProxy(oldSourceFeature);
-			if (sourceFeature != oldSourceFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__SOURCE_FEATURE, oldSourceFeature, sourceFeature));
-			}
-		}
-		return sourceFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetSourceFeature() {
-		return sourceFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceFeature(Feature newSourceFeature) {
-		Feature oldSourceFeature = sourceFeature;
-		sourceFeature = newSourceFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__SOURCE_FEATURE, oldSourceFeature, sourceFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature getTargetFeature() {
-		if (targetFeature != null && targetFeature.eIsProxy()) {
-			InternalEObject oldTargetFeature = (InternalEObject)targetFeature;
-			targetFeature = (Feature)eResolveProxy(oldTargetFeature);
-			if (targetFeature != oldTargetFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__TARGET_FEATURE, oldTargetFeature, targetFeature));
-			}
-		}
-		return targetFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetTargetFeature() {
-		return targetFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetFeature(Feature newTargetFeature) {
-		Feature oldTargetFeature = targetFeature;
-		targetFeature = newTargetFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__TARGET_FEATURE, oldTargetFeature, targetFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<FeatureMembership> getSourcePath() {
-		if (sourcePath == null) {
-			sourcePath = new EObjectResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CONNECTOR__SOURCE_PATH);
-		}
-		return sourcePath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<FeatureMembership> getTargetPath() {
-		if (targetPath == null) {
-			targetPath = new EObjectResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CONNECTOR__TARGET_PATH);
-		}
-		return targetPath;
 	}
 
 	/**
@@ -1419,171 +1191,11 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getSourceLower() {
-		return sourceLower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSourceLower(Expression newSourceLower, NotificationChain msgs) {
-		Expression oldSourceLower = sourceLower;
-		sourceLower = newSourceLower;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__SOURCE_LOWER, oldSourceLower, newSourceLower);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ConnectorEnd> getConnectorEnd() {
+		if (connectorEnd == null) {
+			connectorEnd = new EObjectContainmentWithInverseEList<ConnectorEnd>(ConnectorEnd.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END, SysMLPackage.CONNECTOR_END__CONNECTOR);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceLower(Expression newSourceLower) {
-		if (newSourceLower != sourceLower) {
-			NotificationChain msgs = null;
-			if (sourceLower != null)
-				msgs = ((InternalEObject)sourceLower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__SOURCE_LOWER, null, msgs);
-			if (newSourceLower != null)
-				msgs = ((InternalEObject)newSourceLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__SOURCE_LOWER, null, msgs);
-			msgs = basicSetSourceLower(newSourceLower, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__SOURCE_LOWER, newSourceLower, newSourceLower));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getSourceUpper() {
-		return sourceUpper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSourceUpper(Expression newSourceUpper, NotificationChain msgs) {
-		Expression oldSourceUpper = sourceUpper;
-		sourceUpper = newSourceUpper;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__SOURCE_UPPER, oldSourceUpper, newSourceUpper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceUpper(Expression newSourceUpper) {
-		if (newSourceUpper != sourceUpper) {
-			NotificationChain msgs = null;
-			if (sourceUpper != null)
-				msgs = ((InternalEObject)sourceUpper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__SOURCE_UPPER, null, msgs);
-			if (newSourceUpper != null)
-				msgs = ((InternalEObject)newSourceUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__SOURCE_UPPER, null, msgs);
-			msgs = basicSetSourceUpper(newSourceUpper, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__SOURCE_UPPER, newSourceUpper, newSourceUpper));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getTargetLower() {
-		return targetLower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTargetLower(Expression newTargetLower, NotificationChain msgs) {
-		Expression oldTargetLower = targetLower;
-		targetLower = newTargetLower;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__TARGET_LOWER, oldTargetLower, newTargetLower);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetLower(Expression newTargetLower) {
-		if (newTargetLower != targetLower) {
-			NotificationChain msgs = null;
-			if (targetLower != null)
-				msgs = ((InternalEObject)targetLower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__TARGET_LOWER, null, msgs);
-			if (newTargetLower != null)
-				msgs = ((InternalEObject)newTargetLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__TARGET_LOWER, null, msgs);
-			msgs = basicSetTargetLower(newTargetLower, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__TARGET_LOWER, newTargetLower, newTargetLower));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getTargetUpper() {
-		return targetUpper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTargetUpper(Expression newTargetUpper, NotificationChain msgs) {
-		Expression oldTargetUpper = targetUpper;
-		targetUpper = newTargetUpper;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__TARGET_UPPER, oldTargetUpper, newTargetUpper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetUpper(Expression newTargetUpper) {
-		if (newTargetUpper != targetUpper) {
-			NotificationChain msgs = null;
-			if (targetUpper != null)
-				msgs = ((InternalEObject)targetUpper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__TARGET_UPPER, null, msgs);
-			if (newTargetUpper != null)
-				msgs = ((InternalEObject)newTargetUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR__TARGET_UPPER, null, msgs);
-			msgs = basicSetTargetUpper(newTargetUpper, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__TARGET_UPPER, newTargetUpper, newTargetUpper));
+		return connectorEnd;
 	}
 
 	/**
@@ -1645,16 +1257,12 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestingFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_SUBSET:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSubset()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipantOfAssociation()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				if (endOfAssociation != null)
-					msgs = ((InternalEObject)endOfAssociation).eInverseRemove(this, SysMLPackage.ASSOCIATION__END_FEATURE, Association.class, msgs);
-				return basicSetEndOfAssociation((Association)otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectorEnd()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1697,20 +1305,10 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<?>)getOwnedSubset()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__VALUE:
 				return basicSetValue(null, msgs);
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				return ((InternalEList<?>)getParticipantOfAssociation()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return basicSetOwningFeatureMembership(null, msgs);
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				return basicSetEndOfAssociation(null, msgs);
-			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
-				return basicSetSourceLower(null, msgs);
-			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
-				return basicSetSourceUpper(null, msgs);
-			case SysMLPackage.CONNECTOR__TARGET_LOWER:
-				return basicSetTargetLower(null, msgs);
-			case SysMLPackage.CONNECTOR__TARGET_UPPER:
-				return basicSetTargetUpper(null, msgs);
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				return ((InternalEList<?>)getConnectorEnd()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1793,40 +1391,21 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getOwnedSubset();
 			case SysMLPackage.CONNECTOR__VALUE:
 				return getValue();
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				return getParticipantOfAssociation();
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership();
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				if (resolve) return getEndOfAssociation();
-				return basicGetEndOfAssociation();
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				return isIsComposite();
+			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
+				return isIsNonunique();
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				return getRelatedFeatures();
-			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
-				if (resolve) return getSourceFeature();
-				return basicGetSourceFeature();
-			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
-				if (resolve) return getTargetFeature();
-				return basicGetTargetFeature();
-			case SysMLPackage.CONNECTOR__SOURCE_PATH:
-				return getSourcePath();
-			case SysMLPackage.CONNECTOR__TARGET_PATH:
-				return getTargetPath();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				if (resolve) return getAssociation();
 				return basicGetAssociation();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isIsDirected();
-			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
-				return getSourceLower();
-			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
-				return getSourceUpper();
-			case SysMLPackage.CONNECTOR__TARGET_LOWER:
-				return getTargetLower();
-			case SysMLPackage.CONNECTOR__TARGET_UPPER:
-				return getTargetUpper();
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				return getConnectorEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1940,36 +1519,18 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__VALUE:
 				setValue((Expression)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				getParticipantOfAssociation().clear();
-				getParticipantOfAssociation().addAll((Collection<? extends Association>)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
+			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
+				setIsNonunique((Boolean)newValue);
+				return;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				getRelatedFeatures().clear();
 				getRelatedFeatures().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
-				setSourceFeature((Feature)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
-				setTargetFeature((Feature)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_PATH:
-				getSourcePath().clear();
-				getSourcePath().addAll((Collection<? extends FeatureMembership>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_PATH:
-				getTargetPath().clear();
-				getTargetPath().addAll((Collection<? extends FeatureMembership>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				setAssociation((Association)newValue);
@@ -1977,17 +1538,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
-				setSourceLower((Expression)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
-				setSourceUpper((Expression)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_LOWER:
-				setTargetLower((Expression)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_UPPER:
-				setTargetUpper((Expression)newValue);
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				getConnectorEnd().clear();
+				getConnectorEnd().addAll((Collection<? extends ConnectorEnd>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -2082,32 +1635,17 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__VALUE:
 				setValue((Expression)null);
 				return;
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				getParticipantOfAssociation().clear();
-				return;
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				setOwningFeatureMembership((FeatureMembership)null);
-				return;
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				setEndOfAssociation((Association)null);
 				return;
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
+			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
+				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
+				return;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				getRelatedFeatures().clear();
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
-				setSourceFeature((Feature)null);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
-				setTargetFeature((Feature)null);
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_PATH:
-				getSourcePath().clear();
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_PATH:
-				getTargetPath().clear();
 				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				setAssociation((Association)null);
@@ -2115,17 +1653,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
-			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
-				setSourceLower((Expression)null);
-				return;
-			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
-				setSourceUpper((Expression)null);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_LOWER:
-				setTargetLower((Expression)null);
-				return;
-			case SysMLPackage.CONNECTOR__TARGET_UPPER:
-				setTargetUpper((Expression)null);
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				getConnectorEnd().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -2193,36 +1722,20 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ownedSubset != null && !ownedSubset.isEmpty();
 			case SysMLPackage.CONNECTOR__VALUE:
 				return value != null;
-			case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION:
-				return participantOfAssociation != null && !participantOfAssociation.isEmpty();
 			case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP:
 				return getOwningFeatureMembership() != null;
-			case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION:
-				return endOfAssociation != null;
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
+				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
 				return relatedFeatures != null && !relatedFeatures.isEmpty();
-			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
-				return sourceFeature != null;
-			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
-				return targetFeature != null;
-			case SysMLPackage.CONNECTOR__SOURCE_PATH:
-				return sourcePath != null && !sourcePath.isEmpty();
-			case SysMLPackage.CONNECTOR__TARGET_PATH:
-				return targetPath != null && !targetPath.isEmpty();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return association != null;
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
-			case SysMLPackage.CONNECTOR__SOURCE_LOWER:
-				return sourceLower != null;
-			case SysMLPackage.CONNECTOR__SOURCE_UPPER:
-				return sourceUpper != null;
-			case SysMLPackage.CONNECTOR__TARGET_LOWER:
-				return targetLower != null;
-			case SysMLPackage.CONNECTOR__TARGET_UPPER:
-				return targetUpper != null;
+			case SysMLPackage.CONNECTOR__CONNECTOR_END:
+				return connectorEnd != null && !connectorEnd.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2273,10 +1786,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.CONNECTOR__OWNED_REDEFINITION: return SysMLPackage.FEATURE__OWNED_REDEFINITION;
 				case SysMLPackage.CONNECTOR__OWNED_SUBSET: return SysMLPackage.FEATURE__OWNED_SUBSET;
 				case SysMLPackage.CONNECTOR__VALUE: return SysMLPackage.FEATURE__VALUE;
-				case SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION: return SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION;
 				case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP;
-				case SysMLPackage.CONNECTOR__END_OF_ASSOCIATION: return SysMLPackage.FEATURE__END_OF_ASSOCIATION;
 				case SysMLPackage.CONNECTOR__IS_COMPOSITE: return SysMLPackage.FEATURE__IS_COMPOSITE;
+				case SysMLPackage.CONNECTOR__IS_NONUNIQUE: return SysMLPackage.FEATURE__IS_NONUNIQUE;
 				default: return -1;
 			}
 		}
@@ -2329,10 +1841,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.FEATURE__OWNED_REDEFINITION: return SysMLPackage.CONNECTOR__OWNED_REDEFINITION;
 				case SysMLPackage.FEATURE__OWNED_SUBSET: return SysMLPackage.CONNECTOR__OWNED_SUBSET;
 				case SysMLPackage.FEATURE__VALUE: return SysMLPackage.CONNECTOR__VALUE;
-				case SysMLPackage.FEATURE__PARTICIPANT_OF_ASSOCIATION: return SysMLPackage.CONNECTOR__PARTICIPANT_OF_ASSOCIATION;
 				case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
-				case SysMLPackage.FEATURE__END_OF_ASSOCIATION: return SysMLPackage.CONNECTOR__END_OF_ASSOCIATION;
 				case SysMLPackage.FEATURE__IS_COMPOSITE: return SysMLPackage.CONNECTOR__IS_COMPOSITE;
+				case SysMLPackage.FEATURE__IS_NONUNIQUE: return SysMLPackage.CONNECTOR__IS_NONUNIQUE;
 				default: return -1;
 			}
 		}
@@ -2401,6 +1912,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 		result.append(isOrdered);
 		result.append(", isComposite: ");
 		result.append(isComposite);
+		result.append(", isNonunique: ");
+		result.append(isNonunique);
 		result.append(", isDirected: ");
 		result.append(isDirected);
 		result.append(')');

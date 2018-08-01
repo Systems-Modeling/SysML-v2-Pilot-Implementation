@@ -62,10 +62,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedRedefinition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedSubset"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/participantOfAssociation"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningFeatureMembership"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/endOfAssociation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isComposite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isNonunique"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//Expression"/>
     <genClasses ecoreClass="SysML.ecore#//LiteralExpression"/>
@@ -112,16 +111,9 @@
     <genClasses ecoreClass="SysML.ecore#//LiteralUnbounded"/>
     <genClasses ecoreClass="SysML.ecore#//Connector">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/relatedFeatures"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/sourceFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/targetFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/sourcePath"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/targetPath"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/association"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Connector/isDirected"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/sourceLower"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/sourceUpper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/targetLower"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/targetUpper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/connectorEnd"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//LiteralBoolean">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralBoolean/value"/>
@@ -168,14 +160,6 @@
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//Association">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/relatedType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/sourceType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/targetType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/participantFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/sourceParticipantFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/targetParticipantFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/endFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/targetEndFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/sourceEndFeature"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/ownedEndFeatureMembership"/>
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//FeatureAccessExpression">
@@ -188,6 +172,13 @@
     </genClasses>
     <genClasses ecoreClass="SysML.ecore#//EndFeatureMembership">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//EndFeatureMembership/owningAssociation"/>
+    </genClasses>
+    <genClasses ecoreClass="SysML.ecore#//ConnectorEnd">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConnectorEnd/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ConnectorEnd/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ConnectorEnd/upper"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConnectorEnd/end"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SysML.ecore#//ConnectorEnd/connector"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

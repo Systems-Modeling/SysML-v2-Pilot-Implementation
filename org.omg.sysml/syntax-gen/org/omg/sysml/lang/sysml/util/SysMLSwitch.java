@@ -11,6 +11,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -423,6 +424,14 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMembership(endFeatureMembership);
 				if (result == null) result = caseRelationship(endFeatureMembership);
 				if (result == null) result = caseElement(endFeatureMembership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.CONNECTOR_END: {
+				ConnectorEnd connectorEnd = (ConnectorEnd)theEObject;
+				T result = caseConnectorEnd(connectorEnd);
+				if (result == null) result = caseRelationship(connectorEnd);
+				if (result == null) result = caseElement(connectorEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -907,6 +916,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEndFeatureMembership(EndFeatureMembership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Connector End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connector End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConnectorEnd(ConnectorEnd object) {
 		return null;
 	}
 

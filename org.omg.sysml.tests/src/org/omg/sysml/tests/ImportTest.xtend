@@ -72,63 +72,63 @@ class ImportTest {
 	// publicClass is public class
 	// privateClass is private class
 	//
-	def ResourceSetImpl getDependencyPrivate(){
-		val rs= resourceSetProvider.get
-		parseHelper.parse(
-		'''package testt {
-					private class P1{
-						private class p1{}
-					}
-					
-					public class P2{
-						private class p2{}
-					}
-					
-					public class P22{
-						private class p2{}
-						private pubpriv is p2;
-					}
-					
-					private class P33{
-						public class p3{}
-						private privpub is p3;
-					}
-					
-					private class P3{
-						public class p3{}
-					}
-					
-					public class P4{
-						public class p4{}
-		
-					}
-					
-					public class P44{
-						public class p4{}
-						public pubpub1 is p4;
-						private pubpub2 is p4;
-					}
-					
-					public class clazz{
-						protected class Protect{
-							public class publicc{}
-						}
-						packaged class Package{
-							public class publicc{}
-						}
-						
-						public class Public{
-							protected class protect{}
-							packaged class packagee{}
-						}
-					}
-					
-					public publicClass{}
-					
-					private privateClass{}
-					}''', rs)
-			return rs
-	}
+//	def ResourceSetImpl getDependencyPrivate(){
+//		val rs= resourceSetProvider.get
+//		parseHelper.parse(
+//		'''package testt {
+//					private class P1{
+//						private class p1{}
+//					}
+//					
+//					public class P2{
+//						private class p2{}
+//					}
+//					
+//					public class P22{
+//						private class p2{}
+//						private pubpriv is p2;
+//					}
+//					
+//					private class P33{
+//						public class p3{}
+//						private privpub is p3;
+//					}
+//					
+//					private class P3{
+//						public class p3{}
+//					}
+//					
+//					public class P4{
+//						public class p4{}
+//		
+//					}
+//					
+//					public class P44{
+//						public class p4{}
+//						public pubpub1 is p4;
+//						private pubpub2 is p4;
+//					}
+//					
+//					public class clazz{
+//						protected class Protect{
+//							public class publicc{}
+//						}
+//						packaged class Package{
+//							public class publicc{}
+//						}
+//						
+//						public class Public{
+//							protected class protect{}
+//							packaged class packagee{}
+//						}
+//					}
+//					
+//					public publicClass{}
+//					
+//					private privateClass{}
+//					}''', rs)
+//			return rs
+//	}
 	
 	/*
 	 * Tests starts
@@ -211,98 +211,7 @@ class ImportTest {
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	
-	@Test
-	def void testPublicImportAlias(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P4::p4 as aliass;
-							import testt::publicClass as Aliass;
-							class Try{
-								feature feature4 : aliass;
-								feature featurepublic : Aliass;
-							}
-						}
 
-		''', rs)
-		
-		
-		EcoreUtil2.resolveAll(result)
-		
-		Assert.assertNotNull(result)
-		
-		result.assertNoErrors
-		
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-	
-	@Test
-	def void testPublicImport(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P4::p4 ;
-							import testt::publicClass ;
-							class Try{
-								feature feature4 : p4;
-								feature featurepublic : publicClass;
-							}
-						}
-
-		''', rs)
-		
-		
-		EcoreUtil2.resolveAll(result)
-		
-		Assert.assertNotNull(result)
-		
-		result.assertNoErrors
-		
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-	
-	
-	
-	@Test
-	def void testImportInheritanceAlias(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P4 as aliass;
-							class Try is aliass{
-								feature feature4 : p4;
-							}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-	
-	
-	@Test
-	def void testImportInheritance(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P4;
-							class Try is P4{
-								feature feature4 : p4;
-							}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
 	
 	
 	@Test
@@ -343,6 +252,37 @@ class ImportTest {
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	
+	//test that the visibility is ok in a package without import
+	@Test
+	def void testWorkingWithPackage(){
+		val rs = dependency
+		val result = parseHelper.parse('''
+						package Classes {
+							
+							feature f: A {
+								
+							}
+							public class A {
+								feature b: B;
+								protected feature c: C::y; 
+							}
+							abstract class B{
+								packaged x: C;
+								package P { }
+							}
+							
+							private class C specializes B {
+								private y: B;
+							}
+							
+						}
+
+		''', rs)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 	
 
 	
@@ -425,292 +365,11 @@ class ImportTest {
 	}
 	
 	
-	@Test
-	def void testImportInheritanceBad(){
-		val rs = dependencyPrivate
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt;
-							class Try is P4{
-								feature feature4 : p4;
-							}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC/* ,47,2*/)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC/* ,72,4*/)
-		Assert.assertTrue(result.eResource.errors.length ==2)
-	}
-	
-		
-	
-	//import from private class private class
-	@Test
-	def void testPrivateImport1(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P1::p1 as aliass;
-							class Try{
-								feature feature1 : aliass;
-							}
-						}
-		''', rs)
-		
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-	//import from public class private class
-	@Test
-	def void testPrivateImport2(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P2::p2 as aliass;
-							class Try{
-								feature feature1 : aliass;
-							}
-						}
-		''', rs)
-		
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-	//import from private class public class
-	@Test
-	def void testPrivateImport3(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P3::p3 as aliass;
-							class Try{
-								feature feature3 : aliass;
-							}
-							
-						}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-	@Test
-	def void testPrivateImport4(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-									import testt::P2;
-									class package_public is P2::p2{}
-								}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-		@Test
-	def void testImportPublicAndRefPrivateClass(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::P2;
-							class Try{
-								feature feature1 : P2::p1;
-							}
-						}
-		''', rs)
-		
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-	@Test
-	def void testProtectImport1(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-		package Classes {
-			import testt::clazz;
-			
-			class public_protect is clazz::Public::protect{}
-		}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-		@Test
-	def void testProtectImport2(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-		package Classes {
-			import testt::clazz;
-			class protect_public is clazz::Protect::publicc{}
-		}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-		@Test
-	def void testPackageImport1(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-		package Classes {
-			import testt::clazz::Public::packagee;
-			feature public_package : packagee;
-		}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-		@Test
-	def void testPackageImport2(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-		package Classes {
-			import testt::clazz;
-			class package_public is clazz::Package::publicc{}
-			feature vmi : clazz::Package::publicc;
-		}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		
-
-//		result.assertNoErrors
-//		Assert.assertTrue(result.eResource.errors.empty)
-		
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==2)
-	}
-	
-			@Test
-	def void testPackageImport3(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-		package Classes {
-			import testt::P1;
-			class package_public is P1::p1{}
-			feature vmi : P1::p1;
-		}
-		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-
-//		result.assertNoErrors
-//		Assert.assertTrue(result.eResource.errors.empty)
-		
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==2)
-	}
 	
 	
-	//private class
-	@Test
-	def void testImort3(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::*;
-							class Try is P1{}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-	//private class in a public class
-	@Test
-	def void testImort4(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::*;
-							class Try is P2{
-								class try is p2{}
-							}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-
-	@Test
-	def void testImort5(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::*;
-							class Try is P3::p3{}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
-	
-
-	@Test
-	def void testImort6(){
-		val rs = dependencyPrivate
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import testt::*;
-							feature vmi : P2::p2;
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length==1)
-	}
+//	package Classes {
+//			import testt::clazz::Public::packagee;
+//			feature public_package : packagee;
+//		}
 	
 }

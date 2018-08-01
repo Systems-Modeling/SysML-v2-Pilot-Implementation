@@ -26,6 +26,7 @@ package org.omg.sysml.scoping
 
 import com.google.common.base.Predicates
 import com.google.inject.Inject
+import java.util.Map
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.QualifiedName
@@ -39,7 +40,6 @@ import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.VisibilityKind
 
 /**
  * This class contains custom scoping description.
@@ -52,6 +52,22 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 	
+	private def Map<String,Element> getElements(Package pack){
+		pack.ownedMembership.toMap([m|
+			if (m.name !== null){
+				m.name
+			} else{
+				m.ownedMemberElement.name
+			}
+		],[m|
+			if (m.memberElement !== null) {
+				m.memberElement
+			} else {
+				m.ownedMemberElement
+			}
+		])
+	}
+	
 	override getScope(EObject context, EReference reference) {
 		if (reference === SysMLPackage.eINSTANCE.feature_ReferencedType ) {
 			return scope_Feature_referencedType(context as Feature, reference)
@@ -59,144 +75,88 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			if(context instanceof Generalization)
 			return scope_Generalization_general(context as Generalization,reference)
 		}
-			
 		super.getScope(context, reference)
 	}
 
-	private def void accept(Package pack, QualifiedName qn, (QualifiedName, Element)=>void visitor, Package c) {
+	private def void accept(Package pack, QualifiedName qn, (QualifiedName, Element)=>void visitor) {
+//		pack.elements.forEach[n, e|
+//			val elementqn = qn.append(n)
+//			visitor.apply(elementqn, e)
+//			if (e instanceof Package){
+//				accept(e, elementqn, visitor)
+//			}
+//		]
+		
+		
 		pack.ownedMembership.forEach [ m |
-			//probably it's  not good, if I use alias for private package, then it won't be visible
-			if (m.memberName !== null && m.memberElement.isVisibleFromContext(c)) {
+			if (m.memberName !== null) {
 				val elementqn = qn.append(m.memberName)
 				val memberElement = m.memberElement
 				visitor.apply(elementqn, memberElement)
 				if (memberElement instanceof Package) {
-					accept(memberElement, elementqn, visitor, c)
+					accept(memberElement, elementqn, visitor)
 				}			
-			}else if(m.memberElement?.name!==null && m.memberElement.isVisibleFromContext(c)){
+			}else if(m.memberElement?.name!==null){
 				val elementqn = QualifiedName.create(m.memberElement.name)
 				val memberElement = m.memberElement
 				visitor.apply(elementqn, memberElement)
 				if (memberElement instanceof Package) {
-					accept(memberElement, elementqn, visitor, c)
+					accept(memberElement, elementqn, visitor)
 				}
-			} else {
-				
-				if (m.ownedMemberElement?.name !== null) {
-					if(m.ownedMemberElement.owner===m){
-						val memberElement = m.ownedMemberElement
-						val pqn = qn.append(memberElement.name)
-						visitor.apply(pqn, memberElement)
-						if (memberElement instanceof Package) {
-							accept(memberElement, pqn, visitor,c)
-						}
-					}
-					else if(m.ownedMemberElement.isGlobalPublic){
-						val memberElement = m.ownedMemberElement
-						val pqn = qn.append(memberElement.name)
-						visitor.apply(pqn, memberElement)
-						if (memberElement instanceof Package) {
-							accept(memberElement, pqn, visitor,c)
-						}
-					}
+			} else if(m.ownedMemberElement?.name !== null) {
+				val memberElement = m.ownedMemberElement
+				val pqn = qn.append(memberElement.name)
+				visitor.apply(pqn, memberElement)
+				if (memberElement instanceof Package) {
+					accept(memberElement, pqn, visitor)
 				}
 			}
 		]
 	}
 	
-	private def void acceptImport(Package pack, QualifiedName qn, (QualifiedName, Element)=>void visitor, Package c) {
-		pack.ownedMembership.forEach [ m |
-			//probably it's  not good, if I use alias for private package, then it won't be visible
-			if (m.memberName !== null && m.memberElement.isVisibleFromContext(c)) {
-				val elementqn = qn.append(m.memberName)
-				val memberElement = m.memberElement
-				visitor.apply(elementqn, memberElement)
-				if (memberElement instanceof Package) {
-					acceptImport(memberElement, elementqn, visitor, c)
-				}
-			}else if(m.memberElement?.name!==null && m.memberElement.isVisibleFromContext(c)){
-				val elementqn = QualifiedName.create(m.memberElement.name)
-				val memberElement = m.memberElement
-				visitor.apply(elementqn, memberElement)
-				if (memberElement instanceof Package) {
-					acceptImport(memberElement, elementqn, visitor, c)
-				}
-			} else {
-				
-				if (m.ownedMemberElement?.name !== null && m.ownedMemberElement.isGlobalPublic) {
-					val memberElement = m.ownedMemberElement
-					val pqn = qn.append(memberElement.name)
-					visitor.apply(pqn, memberElement)
-					if (memberElement instanceof Package) {
-						acceptImport(memberElement, pqn, visitor,c)
-					}
-				}
-			}
-		]
-	}
-	
-	/**
-	 * Checks whether element p is visible from the given context. That is if
-	 * it's globally visible or contained by the given context.
-	 */
-	protected def boolean isVisibleFromContext(Element p, EObject cont){
-		var EObject c = p
-		while( c!==null){
-			if(cont===c){
-				return true
-			}
-			c=c.eContainer
-		}
-		return p.isGlobalPublic
-	}
-	
-	/**
-	 * Checks whether the given element is globally public, by checking all
-	 * of its containing Memberships
-	 */
-	protected def boolean isGlobalPublic(Element p){
-		var EObject c=p
-		while(c!==null){
-			if(c instanceof Membership)
-				if(c.visibility!==VisibilityKind.PUBLIC)
-					return false
-			c=c.eContainer
-		}
-		return true
-	}
-	
-	
-	def  IScope scope_Package(Package pack, EReference reference/*, java.lang.Class<? extends Element> E*/) {
+	def  IScope scope_Package(Package pack, EReference reference) {
 		val elements = <Element, QualifiedName>newHashMap()
 
-	
 		val visitor = [QualifiedName qn, Element el | 
 					if (reference.EReferenceType.isInstance(el)) {
 						elements.put(el, qn)
 					}
 					return
 				]
-				
 
-		
-		pack.accept(QualifiedName.create(), visitor, pack)
+		pack.accept(QualifiedName.create(), visitor)
 		
 		if(pack instanceof Class){
 			val c= pack as Class
 			c.ownedElement.filter(Generalization).forEach[e|
-				if(e.general?.name!==null && e.general.isGlobalPublic){
+				if(e.general?.name!==null){
+					//Idea
+//					val packs=scope_Package( e.general,reference).allElements.filter[i|i.EClass.eContainer.eContainer===e.general].map(i|i.EClass).filter(Package).filter[i|!elements.entrySet.contains(i.name)]
+//					packs.forEach[i|
+//						val qn = QualifiedName.create()
+//						visitor.apply(qn, i)
+//						i.accept(qn, visitor)
+//					]
 					val qn = QualifiedName.create()
 					visitor.apply(qn, e.general)
-					e.general.acceptImport(qn, visitor, pack)
+					e.general.accept(qn, visitor)
 				}
 			]
 		}
 
-		pack.ownedImport.forEach[i|
-			if(i.importedPackage?.name!==null && i.importedPackage.isGlobalPublic){
+		pack.ownedImport.forEach[e|
+			if(e.importedPackage?.name!==null){
+				//Idea
+//				val packs=scope_Package( e.importedPackage,reference).allElements.filter[i|i.EClass.eContainer.eContainer===e.importedPackage].map(i|i.EClass).filter(Package).filter[i|!elements.entrySet.contains(i.name)]
+//					packs.forEach[i|
+//						val qn = QualifiedName.create()
+//						visitor.apply(qn, i)
+//						i.accept(qn, visitor)
+//					]
+				
 				val qn = QualifiedName.create()
-				visitor.apply(qn, i.importedPackage)
-				i.importedPackage.acceptImport(qn, visitor, pack)
+				visitor.apply(qn, e.importedPackage)
+				e.importedPackage.accept(qn, visitor)
 			}
 		]
 
@@ -205,7 +165,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			} else {
 				scope_Package(pack.parentPackage, reference/*, E */)
 			}
-
 		
 		return Scopes.scopeFor(elements.keySet, [element|elements.get(element)], outerscope)
 	}
@@ -217,7 +176,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	def IScope scope_Feature_referencedType(Feature feature, EReference reference) {
 		val fmembership = feature.eContainer as Membership
 		val clazz = fmembership.eContainer as Package
-		return clazz.scope_Package(reference /* , Package */)
+		return clazz.scope_Package(reference)
 	}
 	
 	def IScope scope_Generalization_general(Generalization general, EReference reference) {
@@ -226,7 +185,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if(memb===null)
 			return super.getScope(general,reference)
 		val clazz1 = memb.eContainer as Package
-		return clazz1.scope_Package(reference /* , Class */)
+		return clazz1.scope_Package(reference)
 	}
 
 }

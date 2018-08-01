@@ -163,7 +163,6 @@ class AlfParsingTest {
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
 					feature b: Test3::A..a;
 				}
@@ -193,8 +192,8 @@ class AlfParsingTest {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 117, -1)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
@@ -215,9 +214,8 @@ class AlfParsingTest {
 		''')
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
-
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 116, -1)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 }

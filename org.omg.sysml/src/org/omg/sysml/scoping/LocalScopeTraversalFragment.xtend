@@ -1,0 +1,46 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018 IncQuery Labs Ltd.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Zoltan Kiss
+ *  Balazs Grill
+ * 
+ *****************************************************************************/
+package org.omg.sysml.scoping
+
+import org.omg.sysml.scoping.IScopeTraversalFragment
+import org.omg.sysml.lang.sysml.Element
+import org.eclipse.xtext.naming.QualifiedName
+
+class LocalScopeTraversalFragment implements IScopeTraversalFragment {
+	
+	override traverseScope(Element context, (QualifiedName, Element)=>void visitor, (QualifiedName, Element)=>void follow) {
+		if (context instanceof org.omg.sysml.lang.sysml.Package){
+			context.ownedMembership.forEach[m|
+				val element = m.ownedMemberElement
+				if (element !== null){
+					val qn = QualifiedName.create(element.name)
+					visitor.apply(qn, element)
+					follow.apply(qn, element)
+				}
+			]
+		}
+	}
+	
+}

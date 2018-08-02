@@ -124,41 +124,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					return
 				]
 
-		pack.accept(QualifiedName.create(), visitor)
-		
-		if(pack instanceof Class){
-			val c= pack as Class
-			c.ownedElement.filter(Generalization).forEach[e|
-				if(e.general?.name!==null){
-					//Idea
-//					val packs=scope_Package( e.general,reference).allElements.filter[i|i.EClass.eContainer.eContainer===e.general].map(i|i.EClass).filter(Package).filter[i|!elements.entrySet.contains(i.name)]
-//					packs.forEach[i|
-//						val qn = QualifiedName.create()
-//						visitor.apply(qn, i)
-//						i.accept(qn, visitor)
-//					]
-					val qn = QualifiedName.create()
-					visitor.apply(qn, e.general)
-					e.general.accept(qn, visitor)
-				}
-			]
-		}
-
-		pack.ownedImport.forEach[e|
-			if(e.importedPackage?.name!==null){
-				//Idea
-//				val packs=scope_Package( e.importedPackage,reference).allElements.filter[i|i.EClass.eContainer.eContainer===e.importedPackage].map(i|i.EClass).filter(Package).filter[i|!elements.entrySet.contains(i.name)]
-//					packs.forEach[i|
-//						val qn = QualifiedName.create()
-//						visitor.apply(qn, i)
-//						i.accept(qn, visitor)
-//					]
-				
-				val qn = QualifiedName.create()
-				visitor.apply(qn, e.importedPackage)
-				e.importedPackage.accept(qn, visitor)
-			}
-		]
+		ScopeTraverser.create.accept(pack, visitor)
 
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)

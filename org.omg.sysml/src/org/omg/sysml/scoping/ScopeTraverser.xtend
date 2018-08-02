@@ -31,8 +31,19 @@ class ScopeTraverser {
 	
 	public static def ScopeTraverser create(){
 		new ScopeTraverser(
+			new InheritanceScopeTraversalFragment,
 			new LocalScopeTraversalFragment,
 			new ImportScopeTraversalFragment
+			
+		)
+	}
+	
+	public static def ScopeTraverser create2(){
+		new ScopeTraverser(
+			new LocalScopeTraversalFragment,
+			//new InheritanceScopeTraversalFragment
+			new ImportScopeTraversalFragment
+			//new InheritanceScopeTraversalFragment
 		)
 	}
 	

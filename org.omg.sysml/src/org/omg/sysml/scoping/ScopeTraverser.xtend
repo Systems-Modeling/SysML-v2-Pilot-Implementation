@@ -24,6 +24,7 @@
  *****************************************************************************/
 package org.omg.sysml.scoping
 
+import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.naming.QualifiedName
 import org.omg.sysml.lang.sysml.Element
 
@@ -72,20 +73,29 @@ class ScopeTraverser {
 		this.traversalFragment = new CompositeTraversalFragment(traversalFragments)
 	}
 	
+	@Data
+	static class TraversalEntry{
+		QualifiedName qualifiedName
+		Element element
+		Iterable<Element> path
+	}
+	
+	private def <E> boolean contains(Iterable<E> iterable, E element){
+		return iterable.exists[equals(element)]
+	}
+	
 	def accept(Element element, (QualifiedName, Element)=>void visitor){
 		val queue = newLinkedList()
-		queue += (QualifiedName.create() -> element)
-		val visited = newHashSet()
+		queue += new TraversalEntry(QualifiedName.create(), element, #{element})
 		
 		while(!queue.isEmpty){
 			val context = queue.pop
-			visited.add(context)
 			
-			traversalFragment.traverseScope(context.value, [qn, e |
-				visitor.apply(context.key.append(qn), e)
+			traversalFragment.traverseScope(context.element, [qn, e |
+				visitor.apply(context.qualifiedName.append(qn), e)
 			], [qn, e |
-				if (!visited.contains(e)){
-					queue += (context.key.append(qn) -> e)
+				if (!context.path.contains(e)){
+					queue += new TraversalEntry(context.qualifiedName.append(qn), e, context.path + #{e})
 				}
 			])
 		}

@@ -34,20 +34,12 @@ class ScopeTraverser {
 		new ScopeTraverser(
 			new InheritanceScopeTraversalFragment,
 			new LocalScopeTraversalFragment,
-			new ImportScopeTraversalFragment
-			
+			new ImportScopeTraversalFragment,
+			new MembershipScopeTraversalFragment
 		)
 	}
 	
-	public static def ScopeTraverser create2(){
-		new ScopeTraverser(
-			new LocalScopeTraversalFragment,
-			//new InheritanceScopeTraversalFragment
-			new ImportScopeTraversalFragment
-			//new InheritanceScopeTraversalFragment
-		)
-	}
-	
+
 	private static class CompositeTraversalFragment implements IScopeTraversalFragment{
 		val IScopeTraversalFragment[] fragments;
 		

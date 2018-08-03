@@ -7,7 +7,20 @@ import org.eclipse.xtext.naming.QualifiedName
 class MembershipScopeTraversalFragment implements IScopeTraversalFragment {
 	
 	override traverseScope(Element context, (QualifiedName, Element)=>void visitor, (QualifiedName, Element)=>void follow) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		if (context instanceof org.omg.sysml.lang.sysml.Package){
+			context.ownedMembership.forEach[m|
+				val element = m.memberElement
+				if (element !== null){
+					val name = if (m.memberName === null) element.name else m.memberName
+					//there was a test where name was null
+					if(name===null)
+						println(".")
+					val qn = QualifiedName.create(name)
+					visitor.apply(qn, element)
+					follow.apply(qn, element)
+				} 
+			]
+		}
 	}
 	
 }

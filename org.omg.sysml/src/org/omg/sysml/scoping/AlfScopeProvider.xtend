@@ -52,22 +52,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 	
-	private def Map<String,Element> getElements(Package pack){
-		pack.ownedMembership.toMap([m|
-			if (m.name !== null){
-				m.name
-			} else{
-				m.ownedMemberElement.name
-			}
-		],[m|
-			if (m.memberElement !== null) {
-				m.memberElement
-			} else {
-				m.ownedMemberElement
-			}
-		])
-	}
-	
 	override getScope(EObject context, EReference reference) {
 		if (reference === SysMLPackage.eINSTANCE.feature_ReferencedType ) {
 			return scope_Feature_referencedType(context as Feature, reference)
@@ -99,26 +83,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		return Scopes.scopeFor(elements.keySet, [element|elements.get(element)], outerscope)
 	}
 	
-	def  IScope scope_Package2(Package pack, EReference reference) {
-		val elements = <Element, QualifiedName>newHashMap()
 
-		val visitor = [QualifiedName qn, Element el | 
-					if (reference.EReferenceType.isInstance(el)) {
-						elements.put(el, qn)
-					}
-					return
-				]
-
-		ScopeTraverser.create2.accept(pack, visitor)
-
-		val outerscope = if ( /* Root package */ pack.eContainer === null) {
-				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-			} else {
-				scope_Package(pack.parentPackage, reference/*, E */)
-			}
-		
-		return Scopes.scopeFor(elements.keySet, [element|elements.get(element)], outerscope)
-	}
 
 	private def Package getParentPackage(Package pack) {
 		pack.eContainer.eContainer as Package
@@ -136,7 +101,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if(memb===null)
 			return super.getScope(general,reference)
 		val clazz1 = memb.eContainer as Package
-		return clazz1.scope_Package2(reference)
+		return clazz1.scope_Package(reference)
 	}
 
 }

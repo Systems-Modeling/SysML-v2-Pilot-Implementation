@@ -33,6 +33,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (member.memberName !== null) {
 				text += ' ' + member.memberName
 			} else if (member.ownedMemberElement !== null) {
+				text += ' owns'
 				if (member.ownedMemberElement.name !== null) {
 					text += ' ' + member.ownedMemberElement.name;
 				}
@@ -40,6 +41,15 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				if (member.memberElement.name !== null) {
 					text += ' ' + member.memberElement.name;
 				}
+			}
+		} else if (element instanceof Import) {
+			var import = element as Import
+			if (import.visibility !== null) {
+				text += ' ' + import.visibility
+			}
+			if (import.importedPackage !== null && 
+				import.importedPackage.name !== null) {
+				text += ' ' + import.importedPackage.name
 			}
 		}
 		text 
@@ -53,32 +63,30 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var memberElement = membership.memberElement;
 		if (membership.ownedMemberElement === null && 
 				memberElement !== null) {
-			createEStructuralFeatureNode(parentNode, membership, 
-				SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, 
-				_image(memberElement), "imports " + memberElement._text, 
-				memberElement._isLeaf
+			createEObjectNode(parentNode, memberElement, 
+				memberElement._image, memberElement._text, 
+				membership.owningPackage == memberElement || memberElement._isLeaf
 			)
 		}
 		super._createChildren(parentNode, membership)
 	}
 	
 	def boolean _isLeaf(Import _import) {
-		false
+		_import.importedPackage !== null
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Import _import) {
 		var importedPackage = _import.importedPackage;
 		if (importedPackage !== null) {
-			createEStructuralFeatureNode(parentNode, _import, 
-				SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, 
-				_image(importedPackage), "imports " + importedPackage._text, 
-				importedPackage._isLeaf
+			createEObjectNode(parentNode, importedPackage, 
+				importedPackage._image, importedPackage._text, 
+				_import.importingPackage == importedPackage || importedPackage._isLeaf
 			)
 		}
 	}
 	
 	def boolean _isLeaf(Feature feature) {
-		false
+		super._isLeaf(feature) && feature.referencedType.isEmpty
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
@@ -86,51 +94,48 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (!referencedTypes.isEmpty) {
 			createEStructuralFeatureNode(parentNode, feature, 
 				SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, 
-				_image(referencedTypes), "type " + referencedTypes.get(0)._text, 
-				referencedTypes.get(0)._isLeaf
+				referencedTypes._image, "type " + referencedTypes.get(0)._text, 
+				referencedTypes.get(0) == feature || referencedTypes.get(0)._isLeaf
 			)
 		}
 		super._createChildren(parentNode, feature)
 	}
 
 	def boolean _isLeaf(Generalization generalization) {
-		generalization === null
+		generalization.general === null
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		if (generalization.general !== null) {
-			createEStructuralFeatureNode(parentNode, generalization, 
-				SysMLPackage.Literals.GENERALIZATION__GENERAL, 
-				_image(generalization.general), "general " + generalization.general._text, 
-				generalization.general._isLeaf
+			createEObjectNode(parentNode, generalization.general, 
+				generalization.general._image, generalization.general._text, 
+				generalization.owner == generalization.general || generalization.general._isLeaf
 			)
 		}
 	}
 	
 	def boolean _isLeaf(Redefinition redefinition) {
-		redefinition === null
+		redefinition.redefinedFeature === null
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
 		if (redefinition.redefinedFeature !== null) {
-			createEStructuralFeatureNode(parentNode, redefinition, 
-				SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, 
-				_image(redefinition.redefinedFeature), "redefines " + redefinition.redefinedFeature._text, 
-				redefinition.redefinedFeature._isLeaf
+			createEObjectNode(parentNode, redefinition.redefinedFeature, 
+				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
+				redefinition.owner == redefinition.redefinedFeature || redefinition.redefinedFeature._isLeaf
 			)
 		}
 	}
 
 	def boolean _isLeaf(Subset subset) {
-		subset === null
+		subset.subsettedFeature === null
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Subset subset) {
 		if (subset.subsettedFeature !== null) {
-			createEStructuralFeatureNode(parentNode, subset, 
-				SysMLPackage.Literals.SUBSET__SUBSETTED_FEATURE, 
-				_image(subset.subsettedFeature), "subsets " + subset.subsettedFeature._text, 
-				subset.subsettedFeature._isLeaf
+			createEObjectNode(parentNode, subset.subsettedFeature, 
+				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
+				subset.owner == subset.subsettedFeature || subset.subsettedFeature._isLeaf
 			)
 		}
 	}

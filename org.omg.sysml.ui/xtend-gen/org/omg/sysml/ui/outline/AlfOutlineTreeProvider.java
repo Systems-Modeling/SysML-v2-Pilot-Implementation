@@ -3,6 +3,7 @@
  */
 package org.omg.sysml.ui.outline;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -57,13 +58,15 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
             Element _ownedMemberElement = member.getOwnedMemberElement();
             boolean _tripleNotEquals_3 = (_ownedMemberElement != null);
             if (_tripleNotEquals_3) {
+              String _text_3 = text;
+              text = (_text_3 + " owns");
               String _name_2 = member.getOwnedMemberElement().getName();
               boolean _tripleNotEquals_4 = (_name_2 != null);
               if (_tripleNotEquals_4) {
-                String _text_3 = text;
+                String _text_4 = text;
                 String _name_3 = member.getOwnedMemberElement().getName();
                 String _plus_3 = (" " + _name_3);
-                text = (_text_3 + _plus_3);
+                text = (_text_4 + _plus_3);
               }
             } else {
               Element _memberElement = member.getMemberElement();
@@ -72,12 +75,31 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
                 String _name_4 = member.getMemberElement().getName();
                 boolean _tripleNotEquals_6 = (_name_4 != null);
                 if (_tripleNotEquals_6) {
-                  String _text_4 = text;
+                  String _text_5 = text;
                   String _name_5 = member.getMemberElement().getName();
                   String _plus_4 = (" " + _name_5);
-                  text = (_text_4 + _plus_4);
+                  text = (_text_5 + _plus_4);
                 }
               }
+            }
+          }
+        } else {
+          if ((element instanceof Import)) {
+            Import import_ = ((Import) element);
+            VisibilityKind _visibility_2 = import_.getVisibility();
+            boolean _tripleNotEquals_7 = (_visibility_2 != null);
+            if (_tripleNotEquals_7) {
+              String _text_6 = text;
+              VisibilityKind _visibility_3 = import_.getVisibility();
+              String _plus_5 = (" " + _visibility_3);
+              text = (_text_6 + _plus_5);
+            }
+            if (((import_.getImportedPackage() != null) && 
+              (import_.getImportedPackage().getName() != null))) {
+              String _text_7 = text;
+              String _name_6 = import_.getImportedPackage().getName();
+              String _plus_6 = (" " + _name_6);
+              text = (_text_7 + _plus_6);
             }
           }
         }
@@ -97,16 +119,15 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
       (memberElement != null))) {
       Image __image = this._image(memberElement);
       String __text = this._text(memberElement);
-      String _plus = ("imports " + __text);
-      this.createEStructuralFeatureNode(parentNode, membership, 
-        SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, __image, _plus, 
-        this._isLeaf(memberElement));
+      this.createEObjectNode(parentNode, memberElement, __image, __text, 
+        (Objects.equal(membership.getOwningPackage(), memberElement) || this._isLeaf(memberElement)));
     }
     super._createChildren(parentNode, membership);
   }
   
   public boolean _isLeaf(final Import _import) {
-    return false;
+    org.omg.sysml.lang.sysml.Package _importedPackage = _import.getImportedPackage();
+    return (_importedPackage != null);
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Import _import) {
@@ -114,15 +135,13 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
     if ((importedPackage != null)) {
       Image __image = this._image(importedPackage);
       String __text = this._text(importedPackage);
-      String _plus = ("imports " + __text);
-      this.createEStructuralFeatureNode(parentNode, _import, 
-        SysMLPackage.Literals.IMPORT__IMPORTED_PACKAGE, __image, _plus, 
-        this._isLeaf(importedPackage));
+      this.createEObjectNode(parentNode, importedPackage, __image, __text, 
+        (Objects.equal(_import.getImportingPackage(), importedPackage) || this._isLeaf(importedPackage)));
     }
   }
   
   public boolean _isLeaf(final Feature feature) {
-    return false;
+    return (super._isLeaf(feature) && feature.getReferencedType().isEmpty());
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Feature feature) {
@@ -135,59 +154,59 @@ public class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
       String _plus = ("type " + __text);
       this.createEStructuralFeatureNode(parentNode, feature, 
         SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, __image, _plus, 
-        this._isLeaf(referencedTypes.get(0)));
+        (Objects.equal(referencedTypes.get(0), feature) || this._isLeaf(referencedTypes.get(0))));
     }
     super._createChildren(parentNode, feature);
   }
   
   public boolean _isLeaf(final Generalization generalization) {
-    return (generalization == null);
+    org.omg.sysml.lang.sysml.Class _general = generalization.getGeneral();
+    return (_general == null);
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Generalization generalization) {
     org.omg.sysml.lang.sysml.Class _general = generalization.getGeneral();
     boolean _tripleNotEquals = (_general != null);
     if (_tripleNotEquals) {
+      org.omg.sysml.lang.sysml.Class _general_1 = generalization.getGeneral();
       Image __image = this._image(generalization.getGeneral());
       String __text = this._text(generalization.getGeneral());
-      String _plus = ("general " + __text);
-      this.createEStructuralFeatureNode(parentNode, generalization, 
-        SysMLPackage.Literals.GENERALIZATION__GENERAL, __image, _plus, 
-        this._isLeaf(generalization.getGeneral()));
+      this.createEObjectNode(parentNode, _general_1, __image, __text, 
+        (Objects.equal(generalization.getOwner(), generalization.getGeneral()) || this._isLeaf(generalization.getGeneral())));
     }
   }
   
   public boolean _isLeaf(final Redefinition redefinition) {
-    return (redefinition == null);
+    Feature _redefinedFeature = redefinition.getRedefinedFeature();
+    return (_redefinedFeature == null);
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Redefinition redefinition) {
     Feature _redefinedFeature = redefinition.getRedefinedFeature();
     boolean _tripleNotEquals = (_redefinedFeature != null);
     if (_tripleNotEquals) {
+      Feature _redefinedFeature_1 = redefinition.getRedefinedFeature();
       Image __image = this._image(redefinition.getRedefinedFeature());
       String __text = this._text(redefinition.getRedefinedFeature());
-      String _plus = ("redefines " + __text);
-      this.createEStructuralFeatureNode(parentNode, redefinition, 
-        SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, __image, _plus, 
-        this._isLeaf(redefinition.getRedefinedFeature()));
+      this.createEObjectNode(parentNode, _redefinedFeature_1, __image, __text, 
+        (Objects.equal(redefinition.getOwner(), redefinition.getRedefinedFeature()) || this._isLeaf(redefinition.getRedefinedFeature())));
     }
   }
   
   public boolean _isLeaf(final Subset subset) {
-    return (subset == null);
+    Feature _subsettedFeature = subset.getSubsettedFeature();
+    return (_subsettedFeature == null);
   }
   
   public void _createChildren(final IOutlineNode parentNode, final Subset subset) {
     Feature _subsettedFeature = subset.getSubsettedFeature();
     boolean _tripleNotEquals = (_subsettedFeature != null);
     if (_tripleNotEquals) {
+      Feature _subsettedFeature_1 = subset.getSubsettedFeature();
       Image __image = this._image(subset.getSubsettedFeature());
       String __text = this._text(subset.getSubsettedFeature());
-      String _plus = ("subsets " + __text);
-      this.createEStructuralFeatureNode(parentNode, subset, 
-        SysMLPackage.Literals.SUBSET__SUBSETTED_FEATURE, __image, _plus, 
-        this._isLeaf(subset.getSubsettedFeature()));
+      this.createEObjectNode(parentNode, _subsettedFeature_1, __image, __text, 
+        (Objects.equal(subset.getOwner(), subset.getSubsettedFeature()) || this._isLeaf(subset.getSubsettedFeature())));
     }
   }
 }

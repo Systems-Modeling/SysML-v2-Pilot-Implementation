@@ -27,17 +27,20 @@ package org.omg.sysml.scoping
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.naming.QualifiedName
 import org.omg.sysml.lang.sysml.Element
+import java.util.LinkedList
 
 class ScopeTraverser {
 	
 	public static def ScopeTraverser create(){
 		new ScopeTraverser(
-			new InheritanceScopeTraversalFragment,
 			new LocalScopeTraversalFragment,
-			new ImportScopeTraversalFragment,
-			new MembershipScopeTraversalFragment
+			new MembershipScopeTraversalFragment,
+			new InheritanceScopeTraversalFragment,
+			new ImportScopeTraversalFragment
 		)
 	}
+	
+	private val LinkedList<TraversalEntry> added ;
 	
 
 	private static class CompositeTraversalFragment implements IScopeTraversalFragment{
@@ -55,14 +58,17 @@ class ScopeTraverser {
 		
 	}
 	
+	
 	private val IScopeTraversalFragment traversalFragment;
 	
 	private new(IScopeTraversalFragment traversalFragment){
 		this.traversalFragment = traversalFragment
+		this.added= newLinkedList()
 	}
 	
 	new(IScopeTraversalFragment... traversalFragments){
 		this.traversalFragment = new CompositeTraversalFragment(traversalFragments)
+		this.added= newLinkedList()
 	}
 	
 	@Data
@@ -82,14 +88,16 @@ class ScopeTraverser {
 		
 		while(!queue.isEmpty){
 			val context = queue.pop
-			
-			traversalFragment.traverseScope(context.element, [qn, e |
-				visitor.apply(context.qualifiedName.append(qn), e)
-			], [qn, e |
-				if (!context.path.contains(e)){
-					queue += new TraversalEntry(context.qualifiedName.append(qn), e, context.path + #{e})
-				}
-			])
+			if(!added.contains(context)){
+				added.add(context)
+				traversalFragment.traverseScope(context.element, [qn, e |
+					visitor.apply(context.qualifiedName.append(qn), e)
+				], [qn, e |
+					if (!context.path.contains(e)){
+						queue += new TraversalEntry(context.qualifiedName.append(qn), e, context.path + #{e})
+					}
+				])
+			}
 		}
 	}
 	

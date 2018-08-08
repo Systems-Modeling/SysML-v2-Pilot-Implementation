@@ -43,6 +43,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class ImportTest {
+	
+	@Inject
+	HelperFillIndex hfi
+	
 	@Inject
 	ParseHelper<Package> parseHelper
 	
@@ -153,7 +157,8 @@ class ImportTest {
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)  
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -171,7 +176,8 @@ class ImportTest {
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -188,7 +194,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -205,7 +212,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -227,7 +235,8 @@ class ImportTest {
 
 		''', rs)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
@@ -247,7 +256,8 @@ class ImportTest {
 
 		''', rs)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
@@ -279,7 +289,8 @@ class ImportTest {
 
 		''', rs)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
@@ -306,7 +317,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length==1)
@@ -324,7 +336,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length==1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
@@ -341,7 +354,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length==1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
@@ -358,7 +372,8 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
+		hfi.IndexInit(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length==1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)

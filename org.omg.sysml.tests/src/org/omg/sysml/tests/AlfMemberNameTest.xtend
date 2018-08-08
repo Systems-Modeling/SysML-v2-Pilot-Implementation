@@ -102,28 +102,10 @@ class AlfMemberNameTest {
 		result.assertNoErrors
 	}
 	
-	@Test
-	def void testNamedMemberFromOtherPackageBadUseage() {
-		val rs = resourceSetProvider.get
-		val result = parseHelper.parse('''
-			package Test{
-				package P{
-					class A {}
-					A1 is A;
-				}
-				P1 is P;
-				feature a: P1::A;
-			}
-		''', rs)
-		Assert.assertNotNull(result)
-		
-		EcoreUtil.resolveAll(rs)
-		Assert.assertTrue(result.eResource.errors.length==1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-	}
+
 	
 		@Test
-	def void testNamedMemberFromOtherPackageBadUseage2() {
+	def void testNamedMemberFromOtherPackageBadUseage() {
 		val rs = resourceSetProvider.get
 		val result = parseHelper.parse('''
 			package Test{
@@ -154,6 +136,28 @@ class AlfMemberNameTest {
 				class B is A{
 					feature b: aa;
 					b1 is b;
+				}
+			}
+		''')
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+	}
+	
+	@Test
+	def void testMultipleInheritance(){
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A{
+					class a {}
+				}
+				class B is A{
+					class b is a {}
+				}
+				
+				class C is B{
+					class c is a {}
 				}
 			}
 		''')

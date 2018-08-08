@@ -134,34 +134,6 @@ class ImportVisibility {
 			return rs
 	}
 	
-	
-//	//test that the visibility is ok in a package without import
-//	@Test
-//	def void testWorkingWithPackage(){
-//		val result = parseHelper.parse('''
-//						package Classes {
-//							
-//							feature f: A {
-//							}
-//							public class A {
-//								feature b: B;
-//								protected feature c: C::y; 
-//							}
-//							abstract class B{
-//								packaged x: C;
-//								package P { }
-//							}
-//							private class C specializes B {
-//								private y: B;
-//							}
-//						}
-//		''')
-//		EcoreUtil2.resolveAll(result)
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//		Assert.assertTrue(result.eResource.errors.empty)
-//	}
-	
 		@Test
 	def void testPublicImportAlias(){
 		val rs = dependencyPrivate
@@ -261,7 +233,8 @@ class ImportVisibility {
 		
 		val result = parseHelper.parse('''
 			package Test3{
-				import testt::P2::*;
+				import testt::P4::*;
+				feature vmi : p4;
 			}
 		''', rs)
 		EcoreUtil2.resolveAll(result)
@@ -515,12 +488,13 @@ class ImportVisibility {
 			feature vmi : clazz::Package::publicc;
 		}
 		''', rs)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
 		tester.validate(result).assertAll(
 			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE),
 			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
 		)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
+		
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	

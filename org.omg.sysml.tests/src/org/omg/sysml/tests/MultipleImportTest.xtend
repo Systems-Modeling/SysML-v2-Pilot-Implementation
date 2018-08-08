@@ -5,6 +5,7 @@ import com.google.inject.Provider
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
@@ -13,10 +14,12 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class MultipleImportTest {
+	
 	@Inject
 	ParseHelper<Package> parseHelper
 	
@@ -68,7 +71,7 @@ class MultipleImportTest {
 	}
 	
 	def ResourceSetImpl getDependencyMembership2(){
-		val rs= resourceSetProvider.get
+		val rs= dependencyMembership
 		parseHelper.parse('''
 			package Test3{
 				import Test2::C;
@@ -80,9 +83,6 @@ class MultipleImportTest {
 		return rs
 	}
 	
-	
-	
-	
 	@Test
 	def void testImportClass() {
 		val rs = dependencyMembership
@@ -90,12 +90,11 @@ class MultipleImportTest {
 			package test{
 				import Test2::C;
 				class D is C{
-					feature try is b;
+					feature try : b;
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -104,20 +103,22 @@ class MultipleImportTest {
 	@Test
 	def void testImportClassWithAlias(){
 		val rs = dependencyMembership
+		Assert.assertNotNull(rs)
+		EcoreUtil2.resolveAll(rs)
 		val result = parseHelper.parse('''
 			package test{
 				import Test2::C as CC;
 				class D is CC{
-					feature try is b;
+					feature try : b;
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	
 	@Test
 	def void testImportFeature(){
@@ -130,29 +131,31 @@ class MultipleImportTest {
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
+		result.assertError(SysMLPackage.eINSTANCE.element, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size == 2)
 	}
+	
 	
 	@Test
 	def void testImportFeatureWithAlias(){
 		val rs = dependencyMembership
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C::b as bb;
+				import Test2::C ;
+				B as bb;
 				class D{
 					feature try : bb;
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertTrue(result.eResource.errors.size==1)
+		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC/* ,47,2*/)
+
 	}
 	
 	@Test
@@ -161,34 +164,36 @@ class MultipleImportTest {
 		val result = parseHelper.parse('''
 			package test{
 				import Test3::D;
-				class E is D{
+				class EE is D{
 					feature try : b;
 				}
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	
 	@Test
 	def void testImportFeatureMoreTimes() {
 		val rs = getDependencyMembership2
 		val result = parseHelper.parse('''
 			package test{
-				import Test3::D::b;
-				class E {
+				import Test3::D;
+				class EE is B{
 					feature try : b;
 				}
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC/* ,47,2*/)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==2)
 	}
 	
 	
@@ -205,7 +210,7 @@ class MultipleImportTest {
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -224,7 +229,7 @@ class MultipleImportTest {
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -243,7 +248,7 @@ class MultipleImportTest {
 			}
 		''', rs)
 		
-		Assert.assertNotNull(result)
+		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)

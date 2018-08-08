@@ -10,7 +10,9 @@ class MembershipScopeTraversalFragment implements IScopeTraversalFragment {
 		if (context instanceof org.omg.sysml.lang.sysml.Package){
 			context.ownedMembership.forEach[m|
 				val element = m.memberElement
-				if (element !== null){
+				
+				//val superclass = m.owningPackage
+				if (element !== null && !element.eIsProxy){
 					val name = if (m.memberName === null) element.name else m.memberName
 					//there was a test where name was null
 					if(name===null)

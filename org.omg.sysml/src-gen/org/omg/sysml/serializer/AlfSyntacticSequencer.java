@@ -22,7 +22,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ConnectorDefinition_IsKeyword_0_0_2_q;
-	protected AbstractElementAlias match_ConnectorEnd_ColonKeyword_0_1_0_or_EqualsSignGreaterThanSignKeyword_0_1_1;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_a;
@@ -32,7 +31,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_ConnectorDefinition_IsKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getConnectorDefinitionAccess().getIsKeyword_0_0_2());
-		match_ConnectorEnd_ColonKeyword_0_1_0_or_EqualsSignGreaterThanSignKeyword_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConnectorEndAccess().getColonKeyword_0_1_0()), new TokenAlias(false, false, grammarAccess.getConnectorEndAccess().getEqualsSignGreaterThanSignKeyword_0_1_1()));
 		match_FeaturePackageMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_0_0());
 		match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_2_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_2_0_1_1()));
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
@@ -41,9 +39,21 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getNameRule())
+			return getNameToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * Name :
+	 * 	ID | UNRESTRICTED_NAME
+	 * ;
+	 */
+	protected String getNameToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -53,8 +63,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ConnectorDefinition_IsKeyword_0_0_2_q.equals(syntax))
 				emit_ConnectorDefinition_IsKeyword_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectorEnd_ColonKeyword_0_1_0_or_EqualsSignGreaterThanSignKeyword_0_1_1.equals(syntax))
-				emit_ConnectorEnd_ColonKeyword_0_1_0_or_EqualsSignGreaterThanSignKeyword_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeaturePackageMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_FeaturePackageMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1.equals(syntax))
@@ -75,17 +83,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) connectorEnd+=ConnectorEnd
 	 */
 	protected void emit_ConnectorDefinition_IsKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':' | '=>'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     end=[Feature|QualifiedName] (ambiguity) feature=[Feature|QualifiedName]
-	 */
-	protected void emit_ConnectorEnd_ColonKeyword_0_1_0_or_EqualsSignGreaterThanSignKeyword_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

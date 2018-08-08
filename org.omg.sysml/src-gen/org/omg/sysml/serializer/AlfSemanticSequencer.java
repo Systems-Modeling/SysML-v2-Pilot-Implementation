@@ -91,7 +91,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_ConnectorDefinition(context, (Connector) semanticObject); 
 				return; 
 			case SysMLPackage.CONNECTOR_END:
-				sequence_ConnectorEnd(context, (ConnectorEnd) semanticObject); 
+				sequence_ConnectorEnd_ConnectorEndMultiplicity(context, (ConnectorEnd) semanticObject); 
 				return; 
 			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION:
 				sequence_ElementReferenceExpression(context, (ElementReferenceExpression) semanticObject); 
@@ -140,7 +140,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_PackageImport(context, (Import) semanticObject); 
 				return; 
 			case SysMLPackage.INSTANCE_CREATION_EXPRESSION:
-				sequence_InstanceCreationExpression(context, (InstanceCreationExpression) semanticObject); 
+				sequence_InstanceCreationExpression_NamedTuple_PositionalTuple(context, (InstanceCreationExpression) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_BOOLEAN:
 				sequence_BooleanLiteralExpression(context, (LiteralBoolean) semanticObject); 
@@ -232,8 +232,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedElement+=Comment? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -380,8 +379,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedElement+=Comment? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -481,8 +479,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedElement+=Comment? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
@@ -562,9 +559,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ConnectorEnd returns ConnectorEnd
 	 *
 	 * Constraint:
-	 *     (end=[Feature|QualifiedName]? feature=[Feature|QualifiedName] (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression)?)
+	 *     (
+	 *         (
+	 *             ((end=[Feature|QualifiedName]? feature=[Feature|QualifiedName]) | end=[Feature|QualifiedName]) 
+	 *             lower=NaturalLiteralExpression? 
+	 *             upper=UnlimitedNaturalLiteralExpression 
+	 *             feature=[Feature|QualifiedName]?
+	 *         ) | 
+	 *         (end=[Feature|QualifiedName]? feature=[Feature|QualifiedName]) | 
+	 *         (end=[Feature|QualifiedName] feature=[Feature|QualifiedName]?)
+	 *     )
 	 */
-	protected void sequence_ConnectorEnd(ISerializationContext context, ConnectorEnd semanticObject) {
+	protected void sequence_ConnectorEnd_ConnectorEndMultiplicity(ISerializationContext context, ConnectorEnd semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -685,9 +691,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     InstanceCreationExpression returns InstanceCreationExpression
 	 *
 	 * Constraint:
-	 *     (class=[Class|QualifiedName] (argument+=Expression argument+=Expression*)?)
+	 *     (class=[Class|QualifiedName] ((argument+=Expression argument+=Expression*) | (argument+=Expression argument+=Expression*))?)
 	 */
-	protected void sequence_InstanceCreationExpression(ISerializationContext context, InstanceCreationExpression semanticObject) {
+	protected void sequence_InstanceCreationExpression_NamedTuple_PositionalTuple(ISerializationContext context, InstanceCreationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

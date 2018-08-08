@@ -15,14 +15,14 @@ package Base {
 		end sourceEnd: Anything[0..*];
 	    end targetEnd: Anything[0..*];     
 
-		feature participant: Anything[2] redefines Link::participant;
+	    feature participant: Anything[2] redefines Link::participant;
 		
-	    feature sourceParticipant subsets participant = participant[1];
-	    feature targetParticipant subsets participant = participant[2];
+	    feature sourceParticipant: Anything[1..1] subsets participant = participant[1];
+	    feature targetParticipant: Anything[1..1] subsets participant = participant[2];
 	
-	    connector :BinaryLink
-	    	(sourceEnd => sourceParticipant,
-	         targetEnd => targetParticipant);	
+	    private connector linkage: BinaryLink
+	    	(sourceEnd[1..1] => sourceParticipant,
+	         targetEnd[1..1] => targetParticipant);	
 	}
 	
 }

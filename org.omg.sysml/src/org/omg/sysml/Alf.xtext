@@ -314,8 +314,15 @@ ConnectorDefinition returns SysML::Connector:
 ;
 
 ConnectorEnd returns SysML::ConnectorEnd :
-	( end = [SysML::Feature | QualifiedName] ( ':' | '=>' ) )? feature = [SysML::Feature | QualifiedName] 
-    ( '[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']' )?
+	  ( end = [SysML::Feature | QualifiedName] ':' )? 
+	  feature = [SysML::Feature | QualifiedName] ConnectorEndMultiplicity?
+	| ( end = [SysML::Feature | QualifiedName] ConnectorEndMultiplicity? '=>' ) 
+	  feature = [SysML::Feature | QualifiedName] 
+      
+;
+
+fragment ConnectorEndMultiplicity returns SysML::ConnectorEnd :
+	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
 /* EXPRESSIONS */
@@ -354,23 +361,35 @@ PrimaryExpression returns SysML::Expression:
 	| '(' Expression ')'
 ;
 
-ElementReferenceExpression returns SysML::ElementReferenceExpression:
+ElementReferenceExpression returns SysML::ElementReferenceExpression :
 	referent = [SysML::Element | QualifiedName]
 ;
 
-InstanceCreationExpression returns SysML::InstanceCreationExpression:
-	class = [SysML::Class  | QualifiedName] '(' ( argument += Expression ( ',' argument += Expression )* )? ')'
+InstanceCreationExpression returns SysML::InstanceCreationExpression :
+	class = [SysML::Class  | QualifiedName] '(' Tuple? ')'
+;
+
+fragment Tuple returns SysML::InstanceCreationExpression :
+	PositionalTuple | NamedTuple
+;
+
+fragment PositionalTuple returns SysML::InstanceCreationExpression :
+	argument += Expression ( ',' argument += Expression )*
+;
+
+fragment NamedTuple returns SysML::InstanceCreationExpression :
+	Name '=>' argument += Expression ( ',' Name '=>' argument += Expression )*
 ;
 
 SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
 	{SysML::SequenceConstructionExpression} '{' ( element += Expression ( ',' element += Expression )* )? '}'
 ;
 
-LiteralExpression returns SysML::Expression:
+LiteralExpression returns SysML::Expression :
 	NullLiteralExpression | BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
 ;
 
-NullLiteralExpression returns SysML::LiteralNull:
+NullLiteralExpression returns SysML::LiteralNull :
 	{SysML::LiteralNull} 'null'
 ;
 

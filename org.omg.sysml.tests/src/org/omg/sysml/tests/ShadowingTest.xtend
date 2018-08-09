@@ -510,5 +510,130 @@ class ShadowingTest {
 		Assert.assertTrue(result.eResource.errors.size==1)
 	}
 	
+	/*
+	 * 
+	 * Alias
+	 * 
+	 */
+	 
+	def ResourceSetImpl getDependencyAlias(){
+		val rs= resourceSetProvider.get
+		parseHelper.parse('''
+			package PackageAlias1{
+				A_alias is A;
+				class A{
+					class a{}
+					a_alias is a;
+				}
+				AA_alias is AA;
+				class AA{
+					class aa{}
+					aa_alias is aa;
+				}
+			}
+		''', rs)
+		parseHelper.parse('''
+			package PackageAlias2{
+				import PackageAlias1::*;
+				class B is A_alias{
+					class b is a_alias{}
+				}
+			}
+		''', rs)
+		return rs
+	}
+	 
+	@Test
+	def void testAliasImportInMembership() {
+		val rs= getDependencyAlias
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				import PackageAlias1::A_alias;
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertError(SysMLPackage.eINSTANCE.membership,XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==1)
+	}
+	
+	@Test
+	def void testImportAlias() {
+		val rs= getDependencyAlias
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				import PackageAlias1::A_alias::*;
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertError(SysMLPackage.eINSTANCE.import,XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==1)
+	}
+	
+	@Test
+	def void testImportPackageAlias1() {
+		val rs= getDependencyAlias
+		
+		val result = parseHelper.parse('''
+			package test{
+				import PackageAlias1::*;
+				class A{}
+				class test_A is A{}
+				class test_alias is A_alias{}
+			}
+		''', rs)
+		
+		val class_A=result.ownedMembership.get(0).ownedMemberElement as Class
+		val class_test_A= result.ownedMembership.get(1).ownedMemberElement as Class
+		val class_test_alias= result.ownedMembership.get(2).ownedMemberElement as Class
+		val gen_test_A=class_test_A.ownedElement.head as Generalization
+		val gen_test_alias= class_test_alias.ownedElement.head as Generalization
+		val imported_A=(result.ownedImport.get(0).importedPackage as Package).ownedMembership.get(1).ownedMemberElement as Class
+		
+		Assert.assertEquals( gen_test_A.general,class_A)
+		Assert.assertNotEquals(gen_test_A,gen_test_alias)
+		Assert.assertEquals(imported_A,gen_test_alias.general)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+		@Test
+	def void testImportPackageAlias2() {
+		val rs= getDependencyAlias
+		
+		val result = parseHelper.parse('''
+			package test{
+				import PackageAlias1::*;
+				class A{}
+				A_alias is A;
+				class test_A is A_alias{}
+			}
+		''', rs)
+		
+		val class_A=result.ownedMembership.get(0).ownedMemberElement as Class
+		val class_test_A= result.ownedMembership.get(2).ownedMemberElement as Class
+		val A_alias= result.ownedMembership.get(1).memberElement as Class
+		val gen_test_A=class_test_A.ownedElement.head as Generalization
+		//val gen_test_alias= class_test_alias.ownedElement.head as Generalization
+		val imported_A=(result.ownedImport.get(0).importedPackage as Package).ownedMembership.get(1).ownedMemberElement as Class
+		
+		Assert.assertEquals( gen_test_A.general,class_A)
+		Assert.assertNotEquals(A_alias,imported_A)
+		Assert.assertEquals( A_alias,class_A)
+		Assert.assertEquals(class_A,gen_test_A.general)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 	
 }

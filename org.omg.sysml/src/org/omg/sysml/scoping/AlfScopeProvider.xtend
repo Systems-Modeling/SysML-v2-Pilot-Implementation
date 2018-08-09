@@ -125,12 +125,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 	}
 	
-	private def boolean isContaining(Package p1, Package p2){
-		var parent= p2
-		
-		return false
-	}
-	
 	private def gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit ){
 		val visited = visit
 		if(pack instanceof Class){
@@ -210,9 +204,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		
 		//it could be good if debug 
-		println(pack)
-		elements.forEach[p1, p2|println(" "+p1+ " -> "+ p2)]
-		
+//		println(pack)
+//		elements.forEach[p1, p2|println(" "+p1+ " -> "+ p2)]
+//		
 		return new SimpleScope(outerscope, elements.entrySet.map[entry|
 			EObjectDescription.create(entry.key, entry.value)
 		])

@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subset
+import java.util.HashSet
 
 /**
  * This class contains custom scoping description.
@@ -55,21 +56,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 	
-	private def Map<String,Element> getElements(Package pack){
-		pack.ownedMembership.toMap([m|
-			if (m.name !== null){
-				m.name
-			} else{
-				m.ownedMemberElement.name
-			}
-		],[m|
-			if (m.memberElement !== null) {
-				m.memberElement
-			} else {
-				m.ownedMemberElement
-			}
-		])
-	}
+
 	
 	protected def EObject filePackage(Element e){
 		var EObject pack=e
@@ -138,7 +125,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 	}
 	
-	private def gen(Package pack, (QualifiedName, Element)=>void visitor){
+	private def boolean isContaining(Package p1, Package p2){
+		var parent= p2
+		
+		return false
+	}
+	
+	private def gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit ){
+		val visited = visit
 		if(pack instanceof Class){
 			val c= pack as Class
 			c.ownedElement.filter(Generalization).forEach [ e |
@@ -148,12 +142,15 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						val container = containerMembership.owningPackage
 						if (container !== null && container instanceof Package) {
 							val p = container as Package
-							p.gen(visitor)
-							p.imp(visitor)
+							if(!visited.contains(p)){
+								visited.add(p)
+								p.gen(visitor,visit)
+								p.imp(visitor,visit)
+							}
 						}
 					}
-					e.general.gen(visitor)
-					e.general.imp(visitor)
+					e.general.gen(visitor,visit)
+					e.general.imp(visitor,visit)
 					val qn = QualifiedName.create()
 					visitor.apply(qn, e.general)
 					e.general.accept(qn,visitor)
@@ -162,8 +159,8 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		}
 	}
 	
-	
-	private def imp(Package pack, (QualifiedName, Element)=>void visitor){
+	private def imp(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit){
+		val visited = visit
 		pack.ownedImport.forEach[e|
 			if(e.importedPackage?.name!==null){
 				val containerMembership= e.importedPackage.owningMembership
@@ -171,12 +168,15 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					val container= containerMembership.owningPackage
 					if(container!== null && container instanceof Package){
 						val p= container as Package
-						p.imp(visitor)
-						p.gen(visitor)
+						if(!visited.contains(p)){
+							visited.add(p)
+							p.imp(visitor,visit)
+							p.gen(visitor,visit)
+						}
 					}
 				}
-				e.importedPackage.imp(visitor)
-				e.importedPackage.gen(visitor)
+				e.importedPackage.imp(visitor,visit)
+				e.importedPackage.gen(visitor,visit)
 				
 				val qn = QualifiedName.create()
 				visitor.apply(qn, e.importedPackage)
@@ -186,12 +186,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 	
-	
 	def  IScope scope_Package(Package pack, EReference reference) {
 		val elements = < QualifiedName, Element>newHashMap()
 
 		val visitor = [QualifiedName qn, Element el | 
-					
 					if (reference.EReferenceType.isInstance(el)) {
 						if(!elements.containsKey(qn))
 							elements.put(qn,el)
@@ -201,9 +199,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 		pack.accept(QualifiedName.create(), visitor)
 		
-		pack.gen(visitor)
+		pack.gen(visitor, newHashSet)
 		
-		pack.imp(visitor)
+		pack.imp(visitor,newHashSet)
 		
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
@@ -211,7 +209,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				scope_Package(pack.parentPackage, reference/*, E */)
 			}
 		
-		//it could be good if debug what is added
+		//it could be good if debug 
 		println(pack)
 		elements.forEach[p1, p2|println(" "+p1+ " -> "+ p2)]
 		

@@ -113,7 +113,7 @@ class ShadowingTest {
 	 */
 	
 	@Test
-	def void ASK4/*testSameNamesInnerClassAndOuterClassWithAlias*/() {
+	def void testSameNamesInnerClassAndOuterClassWithAlias() {
 		val result = parseHelper.parse('''
 			package test{
 				A is A1;
@@ -125,22 +125,23 @@ class ShadowingTest {
 			}
 		''')		
 		
-//		val outerA=result.ownedMembership.head.ownedMemberElement as Class
-//		val innerA= outerA.ownedMembership.head.ownedMemberElement as Class
-//		val B= innerA.ownedMembership.head.ownedMemberElement as Class
-//		val gen= B.ownedElement.head as Generalization
-		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
+		
+		val classA1=result.ownedMembership.get(1).ownedMemberElement as Class
+		val classA= classA1.ownedMembership.head.ownedMemberElement as Class
+		val B= classA.ownedMembership.head.ownedMemberElement as Class
+		val gen= B.ownedElement.head as Generalization
+		Assert.assertEquals( gen.general,classA)
+		
 		result.assertNoErrors
-		//Assert.assertEquals( gen.general,innerA)
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	
 	
 	//first will be used
 	@Test
-	def void ASK5/*testSameNamesGoodCaseWithAlias*/() {
+	def void testSameNamesGoodCaseWithAlias() {
 		val result = parseHelper.parse('''
 			package test{
 				A1 is A;
@@ -158,6 +159,12 @@ class ShadowingTest {
 		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
+		
+		val class_a1=(result.ownedMembership.get(1).ownedMemberElement as Class).ownedMembership.head.ownedMemberElement as Class
+		val class_b= (result.ownedMembership.get(3).ownedMemberElement as Class).ownedMembership.head.ownedMemberElement as Class
+		val gen= class_b.ownedElement.head as Generalization
+		Assert.assertEquals( gen.general,class_a1)
+		
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
@@ -270,7 +277,7 @@ class ShadowingTest {
 	
 	
 	@Test
-	def void ASK1/*testImportAndInnerClassesNamesAreTheSameBadCase1*/() {
+	def void testImportAndInnerClassesNamesAreTheSameBadCase1() {
 		val rs= dependencyImportAndInnerClass
 		
 		val result = parseHelper.parse('''
@@ -285,7 +292,6 @@ class ShadowingTest {
 		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		//only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length==1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
@@ -328,7 +334,6 @@ class ShadowingTest {
 		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		//only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length==1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
@@ -356,7 +361,7 @@ class ShadowingTest {
 	}
 	
 	@Test
-	def void ASK2/*testImportAndInnerClassesNamesAreTheSameBadCase3*/() {
+	def void testImportAndInnerClassesNamesAreTheSameBadCase3() {
 		val rs= dependencyImportAndInnerClass
 		
 		val result = parseHelper.parse('''
@@ -376,13 +381,12 @@ class ShadowingTest {
 		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
-		//only one of the packages is imported
-		Assert.assertTrue(result.eResource.errors.length==1)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	
 	@Test
-	def void ASK3/*testImportAndInnerClassesNamesAreTheSameGoodCase3*/() {
+	def void testImportAndInnerClassesNamesAreTheSameGoodCase3() {
 		val rs= dependencyImportAndInnerClass
 		
 		val result = parseHelper.parse('''
@@ -401,10 +405,110 @@ class ShadowingTest {
 		
 		Assert.assertNotNull(result) 
 		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	//(expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	@Test
+	def void CircleInheritance() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A is A.B{
+					class B is A{}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertError(SysMLPackage.eINSTANCE.generalization,XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==1)
+	}
+	
+	
+	//(expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	@Test
+	def void CircleProblem2() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A {
+					import B::*;
+					class B is A{}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertError(SysMLPackage.eINSTANCE.generalization,XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==1)
+	}
+	@Test
+	def void CircleProblem3() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A {
+					import B::*;
+					class B {
+						import A::*;
+					}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 	
+	@Test
+	def void CircleProblem4() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A is A.B {
+					class B {
+						import A::*;
+					}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	//(expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	@Test
+	def void CircleProblem5() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package Test1{
+				class A is D{
+					class B is C{}
+				}
+				class C is A{}
+				class D is A.B{}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertError(SysMLPackage.eINSTANCE.generalization,XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.size==1)
+	}
 	
 	
 }

@@ -1,0 +1,410 @@
+package org.omg.sysml.tests
+
+import com.google.inject.Inject
+import com.google.inject.Provider
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.testing.util.ParseHelper
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
+import org.junit.Assert
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.omg.sysml.lang.sysml.Class
+import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.Package
+import org.omg.sysml.lang.sysml.SysMLPackage
+
+@RunWith(XtextRunner)
+@InjectWith(AlfInjectorProvider)
+class ShadowingTest {
+	
+	@Inject
+	ParseHelper<Package> parseHelper
+	
+	@Inject
+	private Provider<XtextResourceSet> resourceSetProvider;
+	
+	@Inject extension ValidationTestHelper
+	
+	/*
+	 * 
+	 * 	Tests for same names in same file
+	 * 
+	 */
+	
+	@Test
+	def void testSameNamesInnerClassAndOuterClass() {
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class A{
+						class B is A{}
+					}
+				}
+			}
+		''')
+		val outerA=result.ownedMembership.head.ownedMemberElement as Class
+		val innerA= outerA.ownedMembership.head.ownedMemberElement as Class
+		val B= innerA.ownedMembership.head.ownedMemberElement as Class
+		val gen= B.ownedElement.head as Generalization
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertEquals( gen.general,innerA)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	
+	//first will be used
+	@Test
+	def void testSameNamesGoodCase() {
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a1{}
+				}
+				class A{
+					class a2{}
+				}
+				class B is A{
+					class b is a1{}
+				}
+			}
+		''')
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testSameNamesBadCase() {
+	
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a1{}
+				}
+				class A{
+					class a2{}
+				}
+				class B is A{
+					class b is a2{}
+				}
+			}
+		''')
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	
+	/*
+	 * 
+	 * 	Tests for same names in same file with alias
+	 * 
+	 */
+	
+	@Test
+	def void ASK4/*testSameNamesInnerClassAndOuterClassWithAlias*/() {
+		val result = parseHelper.parse('''
+			package test{
+				A is A1;
+				class A1{
+					class A{
+						class B is A{}
+					}
+				}
+			}
+		''')		
+		
+//		val outerA=result.ownedMembership.head.ownedMemberElement as Class
+//		val innerA= outerA.ownedMembership.head.ownedMemberElement as Class
+//		val B= innerA.ownedMembership.head.ownedMemberElement as Class
+//		val gen= B.ownedElement.head as Generalization
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		//Assert.assertEquals( gen.general,innerA)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	
+	//first will be used
+	@Test
+	def void ASK5/*testSameNamesGoodCaseWithAlias*/() {
+		val result = parseHelper.parse('''
+			package test{
+				A1 is A;
+				class A{
+					class a1{}
+				}
+				class A{
+					class a2{}
+				}
+				class B is A{
+					class b is a1{}
+				}
+			}
+		''')
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testSameNamesBadCaseWithAlias() {
+	
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a1{}
+				}
+				class A{
+					class a2{}
+				}
+				class B is A{
+					class b is a2{}
+				}
+			}
+		''')
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	
+	
+	/*
+	 * 
+	 * 	Tests for import if there are more possibility for import package,
+	 * 
+	 */
+	
+	def ResourceSetImpl getDependencySameNamesImport(){
+		val rs= resourceSetProvider.get
+		parseHelper.parse('''
+			package SamePackage{
+				class container{
+					class A{}
+				}
+			}
+		''', rs)
+		parseHelper.parse('''
+			package SamePackage{
+				class container{
+					class B{}
+				}
+			}
+		''', rs)
+		return rs
+	}
+	
+	@Test
+	def void testSameNamesImport() {
+		val rs= dependencySameNamesImport
+		
+		val result = parseHelper.parse('''
+			package test{
+				import SamePackage::container::*;
+				class something1 is A{}
+				class something2 is B{}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		//only one of the packages is imported
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	@Test
+	def void testSameNamesImportAsFeature() {
+		val rs= dependencySameNamesImport
+		
+		val result = parseHelper.parse('''
+			package test{
+				import SamePackage::container;
+				class something1 is container::A{}
+				class something2 is container::B{}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		//only one of the packages is imported
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	/*
+	 * 
+	 * import class name and inner class name are the same
+	 * 
+	 */
+	 
+	 def ResourceSetImpl getDependencyImportAndInnerClass(){
+		val rs= resourceSetProvider.get
+		parseHelper.parse('''
+			package importPackage{
+				class A{
+					class a1{}
+				}
+			}
+		''', rs)
+		return rs
+	}
+	
+	
+	
+	@Test
+	def void ASK1/*testImportAndInnerClassesNamesAreTheSameBadCase1*/() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				import importPackage::*;
+				class A{
+					class a2{}
+				}
+				class B is A::a1 {}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		//only one of the packages is imported
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	@Test
+	def void testImportAndInnerClassesNamesAreTheSameGoodCase1() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				import importPackage::*;
+				class A{
+					class a2{}
+				}
+				class B is A::a2 {}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testImportAndInnerClassesNamesAreTheSameBadCase2() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				import importPackage::*;
+				class A{
+					class a2{}
+				}
+				class B is A {
+					class b is a1{}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		//only one of the packages is imported
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	@Test
+	def void testImportAndInnerClassesNamesAreTheSameGoodCase2() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				import importPackage::*;
+				class A{
+					class a2{}
+				}
+				class B is A {
+					class b is a2 {}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void ASK2/*testImportAndInnerClassesNamesAreTheSameBadCase3*/() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				
+				class A{
+					class a2{}
+				}
+				class inner{
+					import importPackage::*;
+					class B is A {
+						class b is a1{}
+					}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		//only one of the packages is imported
+		Assert.assertTrue(result.eResource.errors.length==1)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+	}
+	
+	@Test
+	def void ASK3/*testImportAndInnerClassesNamesAreTheSameGoodCase3*/() {
+		val rs= dependencyImportAndInnerClass
+		
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a2{}
+				}
+				class inner{
+					import importPackage::*;
+					class B is A {
+						class b is a2{}
+					}
+				}
+			}
+		''', rs)
+		
+		Assert.assertNotNull(result) 
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	
+	
+}

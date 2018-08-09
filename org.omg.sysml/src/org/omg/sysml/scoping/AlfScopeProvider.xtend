@@ -193,6 +193,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		val visitor = [QualifiedName qn, Element el | 
 					
 					if (reference.EReferenceType.isInstance(el)) {
+						if(!elements.containsKey(qn))
 							elements.put(qn,el)
 					}
 					return
@@ -211,8 +212,8 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		
 		//it could be good if debug what is added
-//		println(pack)
-//		elements.forEach[p1, p2|println(" "+p1+ " -> "+ p2)]
+		println(pack)
+		elements.forEach[p1, p2|println(" "+p1+ " -> "+ p2)]
 		
 		return new SimpleScope(outerscope, elements.entrySet.map[entry|
 			EObjectDescription.create(entry.key, entry.value)

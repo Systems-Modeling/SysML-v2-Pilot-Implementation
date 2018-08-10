@@ -77,6 +77,20 @@ class AlfParsingTest {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
+	@Test
+	def void testUseFullQualifiedNameInTheSamePackage() {
+		val result = parseHelper.parse('''
+			package Test{
+				class A {}
+				class B is Test::A{}
+			}
+		''')
+		
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 
 	@Test
 	def void testScopeWithDotAndFourDot() {

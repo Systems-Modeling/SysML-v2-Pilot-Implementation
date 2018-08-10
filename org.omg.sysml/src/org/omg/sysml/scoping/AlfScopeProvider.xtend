@@ -142,6 +142,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						}
 					}
 					if (!visited.contains(e.general)) {
+						visited.add(e.general)
 						e.general.gen(visitor, visit)
 						e.general.imp(visitor, visit)
 					}
@@ -172,6 +173,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 			}
 			if (!visited.contains(e.importedPackage)) {
+				visited.add(e.importedPackage)
 				e.importedPackage.imp(visitor, visit)
 				e.importedPackage.gen(visitor, visit)
 			}
@@ -200,6 +202,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		pack.imp(visitor, newHashSet)
 
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
+				pack.accept(QualifiedName.create().append(pack.name),visitor)
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 			} else {
 				scope_Package(pack.parentPackage, reference /*, E */ )
@@ -211,7 +214,11 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 
 	private def Package getParentPackage(Package pack) {
-		pack.eContainer.eContainer as Package
+		var EObject container=pack.eContainer
+		while(!(container instanceof Package)){
+			container=container.eContainer
+		}
+		return (container as Package)
 	}
 
 	def IScope scope_Feature_referencedType(Feature feature, EReference reference) {

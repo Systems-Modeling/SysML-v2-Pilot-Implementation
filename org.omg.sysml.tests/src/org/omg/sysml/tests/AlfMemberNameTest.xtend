@@ -69,6 +69,8 @@ class AlfMemberNameTest {
 		return rs
 	}
 
+	
+
 	@Test
 	def void testLocalNamedMember() {
 		val rs = resourceSetProvider.get
@@ -77,6 +79,22 @@ class AlfMemberNameTest {
 				class A {}
 				A1 is A;
 				feature a: A1;
+			}
+		''', rs)
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testUseFullQualifiedNameInTheSamePackage() {
+		val rs = resourceSetProvider.get
+		val result = parseHelper.parse('''
+			package Test{
+				class A {}
+				class B is Test::A{}
 			}
 		''', rs)
 
@@ -115,7 +133,6 @@ class AlfMemberNameTest {
 					class A {}
 					A1 is A;
 				}
-				
 				feature a: P1::A1;
 			}
 		''', rs)

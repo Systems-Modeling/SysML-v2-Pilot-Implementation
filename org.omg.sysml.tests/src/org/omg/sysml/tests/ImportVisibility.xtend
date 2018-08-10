@@ -75,55 +75,41 @@ class ImportVisibility {
 		val rs = resourceSetProvider.get
 		parseHelper.parse('''
 		package testt {
-			private class P1{
-				private class p1{}
+			private class c_Private{
+				private class c_private{}
+				public class c_public{}
 			}
 			
-			public class P2{
-				private class p2{}
+			public class c_Public{
+				private class c_private{}
+				public class c_public{}
 			}
 			
-			public class P22{
-				private class p2{}
-				private pubpriv is p2;
+			public class c_Public_alias{
+				public class c_public{}
+				private alias_private is c_public;
+				public alias_public is c_public;
 			}
 			
-			private class P33{
-				public class p3{}
-				private privpub is p3;
+			private class c_Private_alias{
+				public class c_public{}
+				private alias_private is c_public;
+				public alias_public is c_public;
 			}
 			
-			private class P3{
-				public class p3{}
-			}
-			
-			public class P4{
-				public class p4{}
-			}
-			
-			public class P44{
-				public class p4{}
-				public pubpub1 is p4;
-				private pubpub2 is p4;
-			}
-			
-			public class clazz{
-				protected class Protect{
-					public class publicc{}
+			public class c_clazz{
+				protected class c_Protect{
+					public class c_publicc{}
 				}
-				packaged class Package{
-					public class publicc{}
+				packaged class c_Package{
+					public class c_publicc{}
 				}
 				
-				public class Public{
-					protected class protect{}
-					packaged class packagee{}
+				public class c_Public{
+					protected class c_protect{}
+					packaged class c_packagee{}
 				}
 			}
-			
-			public publicClass{}
-			
-			private privateClass{}
 		}''', rs)
 		return rs
 	}
@@ -134,8 +120,8 @@ class ImportVisibility {
 
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P4::p4 as aliass;
-				import testt::publicClass as Aliass;
+				import testt::c_Public::c_public as aliass;
+				import testt::c_Public as Aliass;
 				class Try{
 					feature feature4 : aliass;
 					feature featurepublic : Aliass;
@@ -154,11 +140,11 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P4::p4 ;
-				import testt::publicClass ;
+				import testt::c_Public::c_public ;
+				import testt::c_Public ;
 				class Try{
-					feature feature4 : p4;
-					feature featurepublic : publicClass;
+					feature feature4 : c_public;
+					feature featurepublic : c_Public;
 				}
 			}
 			
@@ -175,9 +161,9 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P4 as aliass;
+				import testt::c_Public as aliass;
 				class Try is aliass{
-					feature feature4 : p4;
+					feature feature4 : c_public;
 				}
 			}
 			
@@ -193,9 +179,9 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P4;
-				class Try is P4{
-					feature feature4 : p4;
+				import testt::c_Public;
+				class Try is c_Public{
+					feature feature4 : c_public;
 				}
 			}
 			
@@ -211,8 +197,8 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Test3{
-				import testt::P4::*;
-				feature vmi : p4;
+				import testt::c_Public::*;
+				feature f : c_public;
 			}
 		''', rs)
 		EcoreUtil2.resolveAll(result)
@@ -230,7 +216,7 @@ class ImportVisibility {
 
 		val result = parseHelper.parse('''
 			package Test3{
-				import testt::P1::*;
+				import testt::c_Private::*;
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -247,8 +233,8 @@ class ImportVisibility {
 		val result = parseHelper.parse('''
 			package Classes {
 				import testt;
-				class Try is P4{
-					feature feature4 : p4;
+				class Try is c_Public{
+					feature feature4 : c_public;
 				}
 			}
 			
@@ -265,9 +251,9 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P1::p1;
+				import testt::c_Private::c_private;
 				class Try{
-					feature feature1 : p1;
+					feature feature1 : c_private;
 				}
 			}
 		''', rs)
@@ -285,7 +271,7 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P1::p1 as aliass;
+				import testt::c_Private::c_private as aliass;
 				class Try{
 					feature feature1 : aliass;
 				}
@@ -306,7 +292,7 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P2::p2 as aliass;
+				import testt::c_Public::c_private as aliass;
 				class Try{
 					feature feature1 : aliass;
 				}
@@ -326,7 +312,7 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P3::p3 as aliass;
+				import testt::c_Private::c_public as aliass;
 				class Try{
 					feature feature3 : aliass;
 				}
@@ -347,8 +333,8 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-						import testt::P2;
-						class package_public is P2::p2{}
+						import testt::c_Public;
+						class try is c_Public::c_private{}
 					}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -364,27 +350,29 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P2;
+				import testt::c_Public;
 				class Try{
-					feature feature1 : P2::p1;
+					feature try : c_Public::c_private;
 				}
 			}
 		''', rs)
-
+		
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.length == 1)
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
 	@Test
-	def void testProtectImport1() {
+	def void testc_ProtectImport1() {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::clazz;
+				import testt::c_clazz;
 				
-				class public_protect is clazz::Public::protect{}
+				class try is c_clazz::c_Public::c_protect{}
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -396,12 +384,12 @@ class ImportVisibility {
 	}
 
 	@Test
-	def void testProtectImport2() {
+	def void testc_ProtectImport2() {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::clazz;
-				class protect_public is clazz::Protect::publicc{}
+				import testt::c_clazz;
+				class try is c_clazz::c_Protect::c_publicc{}
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -417,8 +405,8 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::clazz::Public::packagee;
-				feature public_package : packagee;
+				import testt::c_clazz::c_Public::c_packagee;
+				feature try : c_packagee;
 			}
 		''', rs)
 
@@ -436,9 +424,9 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::clazz;
-				class package_public is clazz::Package::publicc{}
-				feature vmi : clazz::Package::publicc;
+				import testt::c_clazz;
+				class try is c_clazz::c_Package::c_publicc{}
+				feature f : c_clazz::c_Package::c_publicc;
 			}
 		''', rs)
 		Assert.assertNotNull(result)
@@ -456,9 +444,9 @@ class ImportVisibility {
 		val rs = dependencyPrivate
 		val result = parseHelper.parse('''
 			package Classes {
-				import testt::P1;
-				class package_public is P1::p1{}
-				feature vmi : P1::p1;
+				import testt::c_Private;
+				class try is c_Private::c_private{}
+				feature f : c_Private::c_private;
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -478,7 +466,7 @@ class ImportVisibility {
 		val result = parseHelper.parse('''
 			package Classes {
 				import testt::*;
-				class Try is P1{}
+				class Try is c_Private{}
 			}
 			
 		''', rs)
@@ -496,8 +484,8 @@ class ImportVisibility {
 		val result = parseHelper.parse('''
 			package Classes {
 				import testt::*;
-				class Try is P2{
-					class try is p2{}
+				class Try is c_Public{
+					class try is c_private{}
 				}
 			}
 			
@@ -516,7 +504,7 @@ class ImportVisibility {
 		val result = parseHelper.parse('''
 			package Classes {
 				import testt::*;
-				class Try is P3::p3{}
+				class Try is c_Private::c_public{}
 			}
 			
 		''', rs)
@@ -535,7 +523,82 @@ class ImportVisibility {
 		val result = parseHelper.parse('''
 			package Classes {
 				import testt::*;
-				feature vmi : P2::p2;
+				feature f : c_Public::c_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testImportClassAndUseAlias1() {
+		val rs = dependencyPrivate
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import testt::*;
+				feature f : c_Public_alias::alias_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	
+	@Test
+	def void testImportClassAndUseAlias2() {
+		val rs = dependencyPrivate
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import testt::*;
+				feature f : c_Public_alias::alias_public;
+			}
+			
+		''', rs)
+		
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	@Test
+	def void testImportClassAndUseAlias3() {
+		val rs = dependencyPrivate
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import testt::*;
+				feature f : c_Private_alias::alias_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+		@Test
+	def void testImportClassAndUseAlias4() {
+		val rs = dependencyPrivate
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import testt::*;
+				feature f : c_Private_alias::alias_public;
 			}
 			
 		''', rs)
@@ -550,5 +613,9 @@ class ImportVisibility {
 	protected def DiagnosticPredicate getErrorCode(String issueId) {
 		return AssertableDiagnostics.errorCode(issueId)
 	}
+	
+
+
+	
 
 }

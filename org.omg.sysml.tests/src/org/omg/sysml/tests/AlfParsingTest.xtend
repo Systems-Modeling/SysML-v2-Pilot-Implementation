@@ -64,9 +64,7 @@ class AlfParsingTest {
 
 	@Test
 	def void testScopeWithOnlyDot() {
-
 		val rs = dependency
-
 		val result = parseHelper.parse('''
 			package Test2{
 				class C{
@@ -74,18 +72,15 @@ class AlfParsingTest {
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
-
 		result.assertNoErrors
-
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
 	@Test
 	def void testScopeWithDotAndFourDot() {
-
 		val rs = dependency
-
 		val result = parseHelper.parse('''
 			package Test2{
 				class C{
@@ -93,6 +88,7 @@ class AlfParsingTest {
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -100,9 +96,7 @@ class AlfParsingTest {
 
 	@Test
 	def void testScopeWithFourDotAndDot() {
-
 		val rs = dependency
-
 		val result = parseHelper.parse('''
 			package Test2{
 				class C{
@@ -110,6 +104,7 @@ class AlfParsingTest {
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -117,9 +112,7 @@ class AlfParsingTest {
 
 	@Test
 	def void testScopeWithOnlyFourDot() {
-
 		val rs = dependency
-
 		val result = parseHelper.parse('''
 			package Test2{
 				class C{
@@ -127,6 +120,7 @@ class AlfParsingTest {
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -134,7 +128,6 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoDotAtTheEnd() {
-
 		val result = parseHelper.parse('''
 			package Test3{
 				class non{}
@@ -142,12 +135,12 @@ class AlfParsingTest {
 					feature aa is non;
 					feature a: A;
 				}
-			
 				class B{
-				feature b: Test3::A:a;
+					feature b: Test3::A:a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -155,7 +148,6 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDotAtTheEnd() {
-
 		val result = parseHelper.parse('''
 			package Test3{
 				class non{}
@@ -168,6 +160,7 @@ class AlfParsingTest {
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -175,7 +168,6 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDot() {
-
 		val result = parseHelper.parse('''
 			package Test3{
 				class non{}
@@ -183,22 +175,20 @@ class AlfParsingTest {
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
 					feature b: Test3..A::a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
-
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
 	def void testBadScopeWithOnlyTwoDot() {
-
 		val result = parseHelper.parse('''
 			package Test3{
 				class non{}
@@ -206,12 +196,12 @@ class AlfParsingTest {
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
 					feature b: Test3:A::a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)

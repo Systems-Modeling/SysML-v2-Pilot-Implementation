@@ -43,18 +43,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class ImportTest {
-	
 
 	@Inject
 	ParseHelper<Package> parseHelper
-	
+
 	@Inject
 	private Provider<XtextResourceSet> resourceSetProvider;
-	
+
 	@Inject extension ValidationTestHelper
-		
-	def ResourceSetImpl getDependency(){
-		val rs= resourceSetProvider.get
+
+	def ResourceSetImpl getDependency() {
+		val rs = resourceSetProvider.get
 		parseHelper.parse('''
 			package Test1{
 				class A{}
@@ -65,84 +64,10 @@ class ImportTest {
 		''', rs)
 		return rs
 	}
-	
-	
-	// P1::p1 private class in private class
-	// P2::p2 private class in public class
-	// P3::p3 public class in private class
-	// P4::p4 public class in public class
-	// publicClass is public class
-	// privateClass is private class
-	//
-//	def ResourceSetImpl getDependencyPrivate(){
-//		val rs= resourceSetProvider.get
-//		parseHelper.parse(
-//		'''package testt {
-//					private class P1{
-//						private class p1{}
-//					}
-//					
-//					public class P2{
-//						private class p2{}
-//					}
-//					
-//					public class P22{
-//						private class p2{}
-//						private pubpriv is p2;
-//					}
-//					
-//					private class P33{
-//						public class p3{}
-//						private privpub is p3;
-//					}
-//					
-//					private class P3{
-//						public class p3{}
-//					}
-//					
-//					public class P4{
-//						public class p4{}
-//		
-//					}
-//					
-//					public class P44{
-//						public class p4{}
-//						public pubpub1 is p4;
-//						private pubpub2 is p4;
-//					}
-//					
-//					public class clazz{
-//						protected class Protect{
-//							public class publicc{}
-//						}
-//						packaged class Package{
-//							public class publicc{}
-//						}
-//						
-//						public class Public{
-//							protected class protect{}
-//							packaged class packagee{}
-//						}
-//					}
-//					
-//					public publicClass{}
-//					
-//					private privateClass{}
-//					}''', rs)
-//			return rs
-//	}
-	
+
 	/*
-	 * Tests starts
+	 * Tests for good cases
 	 */
-	 
-	 
-	 /*
-	  * 
-	  * 
-	  * Tests for good cases
-	  * 
-	  */
 	@Test
 	def void testImportClassAlias() {
 		val rs = dependency
@@ -154,14 +79,13 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result) 
-		  
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 	@Test
 	def void testImportClass() {
 		val rs = dependency
@@ -173,17 +97,16 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 	@Test
 	def void testImportFeatureAlias() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1.B.b as aliass;
@@ -192,16 +115,16 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 	@Test
 	def void testImportFeature() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1.B.b;
@@ -210,103 +133,56 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
 
-	
-	
 	@Test
-	def void testImort(){
-		val rs = dependency
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import Test1::*;
-							class Try is A{}
-							feature try : B::b;
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result) 
-		
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-	
-	
-	@Test
-	def void testImort2(){
-		val rs = dependency
-		
-		val result = parseHelper.parse('''
-						package Classes {
-							import Test1::*;
-							class Try is B{
-								feature try : b;
-							}
-						}
-
-		''', rs)
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result) 
-		
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-	
-	//test that the visibility is ok in a package without import
-	@Test
-	def void testWorkingWithPackage(){
+	def void testImort() {
 		val rs = dependency
 		val result = parseHelper.parse('''
-						package Classes {
-							
-							feature f: A {
-								
-							}
-							public class A {
-								feature b: B;
-								protected feature c: C::y; 
-							}
-							abstract class B{
-								packaged x: C;
-								package P { }
-							}
-							
-							private class C specializes B {
-								private y: B;
-							}
-							
-						}
-
+			package Classes {
+				import Test1::*;
+				class Try is A{}
+				feature try : B::b;
+			}
+			
 		''', rs)
+
 		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result) 
-		
+		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
 
-	
+	@Test
+	def void testImort2() {
+		val rs = dependency
+		val result = parseHelper.parse('''
+			package Classes {
+				import Test1::*;
+				class Try is B{
+					feature try : b;
+				}
+			}
+			
+		''', rs)
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
 	/*
-	 * 
-	 * 
 	 * Tests for bad cases
-	 * 
-	 * 
 	 */
-	 
-	 
 	@Test
 	def void testBadImportFeature() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1.B;
@@ -315,17 +191,16 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.length==1)
+		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
-	
-		@Test
+
+	@Test
 	def void testBadImportFeature2() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1;
@@ -334,16 +209,16 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.length==1)
+		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
-	
+
 	@Test
 	def void testBadImportClass() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1;
@@ -352,16 +227,16 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.length==1)
+		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
-	
+
 	@Test
 	def void testBadImportClass2() {
-		val rs= dependency
+		val rs = dependency
 		val result = parseHelper.parse('''
 			package Test2{
 				import Test1.B.b;
@@ -370,19 +245,11 @@ class ImportTest {
 				}
 			}
 		''', rs)
-		Assert.assertNotNull(result) 
-		
+
+		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.length==1)
+		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
-	
-	
-	
-	
-//	package Classes {
-//			import testt::clazz::Public::packagee;
-//			feature public_package : packagee;
-//		}
-	
+
 }

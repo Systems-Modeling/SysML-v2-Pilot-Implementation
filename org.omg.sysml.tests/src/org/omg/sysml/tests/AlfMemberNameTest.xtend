@@ -44,7 +44,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class AlfMemberNameTest {
-	
+
 	@Inject
 	ParseHelper<Package> parseHelper
 
@@ -52,9 +52,9 @@ class AlfMemberNameTest {
 
 	@Inject
 	private Provider<XtextResourceSet> resourceSetProvider;
-	
-	def ResourceSetImpl getDependency(){
-		val rs= resourceSetProvider.get
+
+	def ResourceSetImpl getDependency() {
+		val rs = resourceSetProvider.get
 		parseHelper.parse('''
 			package Test1{
 				class A{}
@@ -68,7 +68,7 @@ class AlfMemberNameTest {
 		''', rs)
 		return rs
 	}
-	
+
 	@Test
 	def void testLocalNamedMember() {
 		val rs = resourceSetProvider.get
@@ -79,9 +79,11 @@ class AlfMemberNameTest {
 				feature a: A1;
 			}
 		''', rs)
+
+		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
-		EcoreUtil.resolveAll(rs)
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
 	@Test
@@ -97,14 +99,14 @@ class AlfMemberNameTest {
 				feature a: P1::A1;
 			}
 		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil.resolveAll(rs)
-		result.assertNoErrors
-	}
-	
 
-	
-		@Test
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
 	def void testNamedMemberFromOtherPackageBadUseage() {
 		val rs = resourceSetProvider.get
 		val result = parseHelper.parse('''
@@ -117,16 +119,15 @@ class AlfMemberNameTest {
 				feature a: P1::A1;
 			}
 		''', rs)
+
+		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
-		
-		EcoreUtil.resolveAll(rs)
-		Assert.assertTrue(result.eResource.errors.length==1)
+		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
-	
+
 	@Test
-	def void testNamedMemberFromInheritance(){
-		
+	def void testNamedMemberFromInheritance() {
 		val result = parseHelper.parse('''
 			package Test1{
 				class A{
@@ -139,14 +140,15 @@ class AlfMemberNameTest {
 				}
 			}
 		''')
-		Assert.assertNotNull(result)
+
 		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 	@Test
-	def void testMultipleInheritance(){
-		
+	def void testMultipleInheritance() {
 		val result = parseHelper.parse('''
 			package Test1{
 				class A{
@@ -155,20 +157,20 @@ class AlfMemberNameTest {
 				class B is A{
 					class b is a {}
 				}
-				
 				class C is B{
 					class c is a {}
 				}
 			}
 		''')
-		Assert.assertNotNull(result)
+
 		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 	@Test
-	def void testNamedMemberFromInheritance2(){
-		
+	def void testNamedMemberFromInheritance2() {
 		val result = parseHelper.parse('''
 			package Test1{
 				class A{
@@ -182,14 +184,15 @@ class AlfMemberNameTest {
 				}
 			}
 		''')
-		Assert.assertNotNull(result)
+
 		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
 	@Test
-	def void testNamedMemberForPrivate(){
-		
+	def void testNamedMemberForPrivate() {
 		val result = parseHelper.parse('''
 			package Testt {
 				private class something{}
@@ -199,9 +202,11 @@ class AlfMemberNameTest {
 				}
 			}
 		''')
-		Assert.assertNotNull(result)
+
 		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 	}
-	
+
 }

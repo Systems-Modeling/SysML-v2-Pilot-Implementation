@@ -40,10 +40,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.tests.AlfInjectorProvider
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
-class MultipleImportTest {
+class MultipleImportTests {
 
 	@Inject
 	ParseHelper<Package> parseHelper
@@ -53,53 +54,13 @@ class MultipleImportTest {
 
 	@Inject extension ValidationTestHelper
 
-	def ResourceSetImpl getDependencyImport() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse('''
-			package Test1{
-				class A{}
-				class B{
-					feature b: A;
-				}
-			}
-		''', rs)
-		parseHelper.parse('''
-			package Test2{
-				import Test1::*;
-				class C is B{
-					feature c;
-				}
-			}
-		''', rs)
-		return rs
-	}
-
-	def ResourceSetImpl getDependencyMembership() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse('''
-			package Test1{
-				class A{}
-				class B{
-					feature b: A;
-				}
-			}
-		''', rs)
-		parseHelper.parse('''
-			package Test2{
-				import Test1::B;
-				class C is B{
-					feature c;
-				}
-			}
-		''', rs)
-		return rs
-	}
+	@Inject extension Dependency
 
 	def ResourceSetImpl getDependencyMembership2() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		parseHelper.parse('''
-			package Test3{
-				import Test2::C;
+			package OuterPackage3{
+				import OuterPackage2::C;
 				class D is C{
 					feature f : b;
 				}
@@ -110,10 +71,10 @@ class MultipleImportTest {
 
 	@Test
 	def void testImportClass() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C;
+				import OuterPackage2::C;
 				class D is C{
 					feature try : b;
 				}
@@ -127,12 +88,12 @@ class MultipleImportTest {
 
 	@Test
 	def void testImportClassWithAlias() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		Assert.assertNotNull(rs)
 		EcoreUtil2.resolveAll(rs)
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C as CC;
+				import OuterPackage2::C as CC;
 				class D is CC{
 					feature try : b;
 				}
@@ -146,10 +107,10 @@ class MultipleImportTest {
 
 	@Test
 	def void testImportFeature() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C::b;
+				import OuterPackage2::C::b;
 				class D{
 					feature try : b;
 				}
@@ -164,10 +125,10 @@ class MultipleImportTest {
 
 	@Test
 	def void testImportFeatureWithAlias() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C ;
+				import OuterPackage2::C ;
 				B as bb;
 				class D{
 					feature try : bb;
@@ -186,7 +147,7 @@ class MultipleImportTest {
 		val rs = getDependencyMembership2
 		val result = parseHelper.parse('''
 			package test{
-				import Test3::D;
+				import OuterPackage3::D;
 				class EE is D{
 					feature try : b;
 				}
@@ -204,7 +165,7 @@ class MultipleImportTest {
 		val rs = getDependencyMembership2
 		val result = parseHelper.parse('''
 			package test{
-				import Test3::D;
+				import OuterPackage3::D;
 				class EE is B{
 					feature try : b;
 				}
@@ -221,10 +182,10 @@ class MultipleImportTest {
 	// import::* => import ::*
 	@Test
 	def void testImportImportImp() {
-		val rs = getDependencyImport
+		val rs = getDependencyMultipleImport
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::*;
+				import OuterPackage2::*;
 				class Test is C {
 					feature try : b;
 				}
@@ -240,10 +201,10 @@ class MultipleImportTest {
 	// import::* => import ::C;
 	@Test
 	def void testImportMembershipImp() {
-		val rs = getDependencyImport
+		val rs = getDependencyMultipleImport
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::C;
+				import OuterPackage2::C;
 				class Test is C {
 					feature try : b;
 				}
@@ -259,13 +220,29 @@ class MultipleImportTest {
 	// import::B => import ::*;
 	@Test
 	def void testMembershipImportImp() {
-		val rs = dependencyMembership
+		val rs = getDependencyMultipleMembership
 		val result = parseHelper.parse('''
 			package test{
-				import Test2::*;
+				import OuterPackage2::*;
 				class Test is C {
 					feature try : b;
 				}
+			}
+		''', rs)
+
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testUseSuperClassParameter() {
+		val rs = getDependencyMultipleMembership
+		val result = parseHelper.parse('''
+			package test{
+				import OuterPackage2::*;
+				feature try : C::b;
 			}
 		''', rs)
 

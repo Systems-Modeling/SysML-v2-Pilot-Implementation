@@ -56,22 +56,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 
-	protected def EObject filePackage(Element e) {
-		var EObject pack = e
-		while (pack.eContainer !== null) {
-			pack = pack.eContainer
-		}
-		return pack
-	}
-
-	var Package ScopePackage
-
-	protected def boolean isInTheSamePackage(Element e1) {
-		if (e1.filePackage === ScopePackage)
-			return true
-		return false
-	}
-
 	override getScope(EObject context, EReference reference) {
 		switch (reference) {
 			case SysMLPackage.eINSTANCE.feature_ReferencedType: {
@@ -224,7 +208,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	def IScope scope_Feature_referencedType(Feature feature, EReference reference) {
 		val fmembership = feature.eContainer as Membership
 		val clazz = fmembership.eContainer as Package
-		ScopePackage = clazz
 		return clazz.scope_Package(reference)
 	}
 
@@ -234,7 +217,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (memb === null)
 			return super.getScope(general, reference)
 		val clazz1 = memb.eContainer as Package
-		ScopePackage = clazz1
 		return clazz1.scope_Package(reference)
 	}
 
@@ -244,7 +226,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (memb === null)
 			return super.getScope(feature, reference)
 		val clazz1 = memb.eContainer as Package
-		ScopePackage = clazz1
 		return clazz1.scope_Package(reference)
 	}
 
@@ -254,7 +235,6 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (memb === null)
 			return super.getScope(feature, reference)
 		val clazz1 = memb.eContainer as Package
-		ScopePackage = clazz1
 		return clazz1.scope_Package(reference)
 	}
 }

@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Class
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.tests.AlfInjectorProvider
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
@@ -50,8 +51,7 @@ class ShadowingTest {
 	@Inject
 	ParseHelper<Package> parseHelper
 
-	@Inject
-	private Provider<XtextResourceSet> resourceSetProvider;
+	@Inject extension Dependency
 
 	@Inject extension ValidationTestHelper
 
@@ -209,25 +209,6 @@ class ShadowingTest {
 	/*
 	 * 	Tests for import if there are more possibility for import package,
 	 */
-	def ResourceSetImpl getDependencySameNamesImport() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse('''
-			package SamePackage{
-				class container{
-					class A{}
-				}
-			}
-		''', rs)
-		parseHelper.parse('''
-			package SamePackage{
-				class container{
-					class B{}
-				}
-			}
-		''', rs)
-		return rs
-	}
-
 	@Test
 	def void testSameNamesImport() {
 		val rs = dependencySameNamesImport
@@ -264,27 +245,12 @@ class ShadowingTest {
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
-	/*
-	 * import class name and inner class name are the same
-	 */
-	def ResourceSetImpl getDependencyImportAndInnerClass() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse('''
-			package importPackage{
-				class A{
-					class a1{}
-				}
-			}
-		''', rs)
-		return rs
-	}
-
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameBadCase1() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
-				import importPackage::*;
+				import OuterPackage::*;
 				class A{
 					class a2{}
 				}
@@ -300,10 +266,10 @@ class ShadowingTest {
 
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase1() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
-				import importPackage::*;
+				import OuterPackage::*;
 				class A{
 					class a2{}
 				}
@@ -319,10 +285,10 @@ class ShadowingTest {
 
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameBadCase2() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
-				import importPackage::*;
+				import OuterPackage::*;
 				class A{
 					class a2{}
 				}
@@ -340,10 +306,10 @@ class ShadowingTest {
 
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase2() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
-				import importPackage::*;
+				import OuterPackage::*;
 				class A{
 					class a2{}
 				}
@@ -361,7 +327,7 @@ class ShadowingTest {
 
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameBadCase3() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
 				
@@ -369,7 +335,7 @@ class ShadowingTest {
 					class a2{}
 				}
 				class inner{
-					import importPackage::*;
+					import OuterPackage::*;
 					class B is A {
 						class b is a1{}
 					}
@@ -385,14 +351,14 @@ class ShadowingTest {
 
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase3() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
 					class a2{}
 				}
 				class inner{
-					import importPackage::*;
+					import OuterPackage::*;
 					class B is A {
 						class b is a2{}
 					}
@@ -410,7 +376,7 @@ class ShadowingTest {
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
 	@Test
 	def void CircleInheritance() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 
 		val result = parseHelper.parse('''
 			package Test1{
@@ -430,7 +396,7 @@ class ShadowingTest {
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
 	@Test
 	def void CircleProblem2() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 
 		val result = parseHelper.parse('''
 			package Test1{
@@ -449,7 +415,7 @@ class ShadowingTest {
 
 	@Test
 	def void CircleProblem3() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 
 		val result = parseHelper.parse('''
 			package Test1{
@@ -470,7 +436,7 @@ class ShadowingTest {
 
 	@Test
 	def void CircleProblem4() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 
 		val result = parseHelper.parse('''
 			package Test1{
@@ -492,7 +458,7 @@ class ShadowingTest {
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
 	@Test
 	def void CircleProblem5() {
-		val rs = dependencyImportAndInnerClass
+		val rs = getDependencyOuterPackage
 
 		val result = parseHelper.parse('''
 			package Test1{
@@ -508,36 +474,6 @@ class ShadowingTest {
 		EcoreUtil2.resolveAll(result)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		Assert.assertTrue(result.eResource.errors.size == 1)
-	}
-
-	/*
-	 * Alias
-	 */
-	def ResourceSetImpl getDependencyAlias() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse('''
-			package PackageAlias1{
-				A_alias is A;
-				class A{
-					class a{}
-					a_alias is a;
-				}
-				AA_alias is AA;
-				class AA{
-					class aa{}
-					aa_alias is aa;
-				}
-			}
-		''', rs)
-		parseHelper.parse('''
-			package PackageAlias2{
-				import PackageAlias1::*;
-				class B is A_alias{
-					class b is a_alias{}
-				}
-			}
-		''', rs)
-		return rs
 	}
 
 	@Test

@@ -37,27 +37,27 @@ import org.omg.sysml.lang.sysml.Package
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
-class SimpleImportTests {
+class SimpleImportTestsFromOtherFile {
 
 	@Inject
 	ParseHelper<Package> parseHelper
 
 	@Inject extension ValidationTestHelper
 
-	@Test
-	def void testDoubleImportInHierarchy() {
+	@Inject extension Dependency
 
+	@Test
+	def void testImort() {
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package test{
-				class A{
-					import test::*;
-					class b{
-						import A::*;
-						class d is d{}
-					}
-				}
+			package test {
+				import OuterPackage::*;
+				class Try is A{}
+				feature try : B::b;
 			}
-		''')
+			
+		''', rs)
+
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -65,76 +65,18 @@ class SimpleImportTests {
 	}
 
 	@Test
-	def void testImportInHierarchy() {
-
+	def void testImort2() {
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package test{
-				class A{
-					import test::*;
-					class a{}
+			package test {
+				import OuterPackage::*;
+				class Try is B{
+					feature try : b;
 				}
 			}
-		''')
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
+			
+		''', rs)
 
-	@Test
-	def void testCircleImport() {
-
-		val result = parseHelper.parse('''
-			package test{
-				class A{
-					import B::*;
-					class a{}
-				}
-				
-				class B{
-					import A::*;
-					class b{}
-				}
-			}
-		''')
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-
-	@Test
-	def void testCircleInheritanceInCircleImport() {
-
-		val result = parseHelper.parse('''
-			package test{
-				class A{
-					import test::B::*;
-					class a is b{}
-				}
-				class B {
-					import test::A::*;
-					class b is a{}
-				}
-			}
-		''')
-		EcoreUtil2.resolveAll(result)
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		Assert.assertTrue(result.eResource.errors.empty)
-	}
-
-	@Test
-	def void testImportPackageAndInheritahceFromContainer() {
-
-		val result = parseHelper.parse('''
-			package test{
-				class A {
-					import test::*;
-					class a is A{}
-				}
-			}
-		''')
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors

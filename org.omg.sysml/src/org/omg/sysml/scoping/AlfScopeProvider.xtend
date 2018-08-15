@@ -129,10 +129,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						visited.add(e.general)
 						e.general.gen(visitor, visit)
 						e.general.imp(visitor, visit)
+						val qn = QualifiedName.create()
+						visitor.apply(qn, e.general)
+						e.general.accept(qn, visitor)
 					}
-					val qn = QualifiedName.create()
-					visitor.apply(qn, e.general)
-					e.general.accept(qn, visitor)
 				}
 			]
 		}
@@ -160,11 +160,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				visited.add(e.importedPackage)
 				e.importedPackage.imp(visitor, visit)
 				e.importedPackage.gen(visitor, visit)
+				val qn = QualifiedName.create()
+				visitor.apply(qn, e.importedPackage)
+				e.importedPackage.accept(qn, visitor)
 			}
-			val qn = QualifiedName.create()
-			visitor.apply(qn, e.importedPackage)
-			e.importedPackage.accept(qn, visitor)
-
 		]
 	}
 

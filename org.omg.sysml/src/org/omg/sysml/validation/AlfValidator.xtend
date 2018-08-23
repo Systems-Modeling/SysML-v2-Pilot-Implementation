@@ -48,7 +48,7 @@ class AlfValidator extends AbstractAlfValidator {
 		val membershipPack = membership.filePackage
 		if (membership.memberElement !== null && elemPack !== membershipPack &&
 			!membership.memberElement.isGlobalPublic) {
-			error("Not public import from other package", membership, SysMLPackage.eINSTANCE.membership_MemberElement,
+			error("Referenced element is not visible in this scope", membership, SysMLPackage.eINSTANCE.membership_MemberElement,
 				NOT_PUBLIC_MEMBERSHIP)
 		}
 	}
@@ -61,7 +61,7 @@ class AlfValidator extends AbstractAlfValidator {
 		val ownerrPack = ownerr.filePackage
 		val generalPack = gen.general.filePackage
 		if (ownerrPack !== generalPack && !gen.general.isGlobalPublic) {
-			error("Not public inheritance from other package", gen, SysMLPackage.eINSTANCE.generalization_General,
+			error("Inherited import is not visible in this scope", gen, SysMLPackage.eINSTANCE.generalization_General,
 				NOT_PUBLIC_INHERITANCE)
 		}
 	}
@@ -75,7 +75,7 @@ class AlfValidator extends AbstractAlfValidator {
 		refs.forEach [ e |
 			val refPack = e.filePackage
 			if (featurePack !== refPack && !e.isGlobalPublic) {
-				error("Not public reference type from other package", feature,
+				error("Referenced type is not visible in this scope", feature,
 					SysMLPackage.eINSTANCE.feature_ReferencedType, NOT_PUBLIC_FEATURE_TYPE)
 			}
 		]
@@ -88,7 +88,7 @@ class AlfValidator extends AbstractAlfValidator {
 		val importedPack = imported.filePackage
 		val importingPack = imp.filePackage
 		if (importedPack !== importingPack && !imported.isGlobalPublic) {
-			error("Not public import from other package", imp, SysMLPackage.eINSTANCE.import_ImportedPackage,
+			error("Imported package is not visible from this context", imp, SysMLPackage.eINSTANCE.import_ImportedPackage,
 				NOT_PUBLIC_IMPORT)
 		}
 	}

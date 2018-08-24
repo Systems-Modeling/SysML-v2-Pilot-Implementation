@@ -1,0 +1,572 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018 IncQuery Labs Ltd.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Zoltan Kiss
+ *  Balazs Grill
+ * 
+ *****************************************************************************/
+
+package org.omg.sysml.tests
+
+import com.google.inject.Inject
+import com.google.inject.Injector
+import com.google.inject.Provider
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
+import org.eclipse.xtext.junit4.validation.AssertableDiagnostics.DiagnosticPredicate
+import org.eclipse.xtext.junit4.validation.ValidatorTester
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.testing.util.ParseHelper
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.omg.sysml.lang.sysml.Package
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.tests.AlfInjectorProvider
+import org.omg.sysml.validation.AlfValidator
+
+@RunWith(XtextRunner)
+@InjectWith(AlfInjectorProvider)
+class VisibilityTests {
+	@Inject
+	ParseHelper<Package> parseHelper
+
+	@Inject
+	AlfValidator validator
+
+	@Inject
+	Injector injector
+
+	ValidatorTester<AlfValidator> tester
+
+	@Before
+	def void initialize() {
+		tester = new ValidatorTester(validator, injector)
+	}
+
+	@Inject extension Dependency
+
+	@Inject extension ValidationTestHelper
+
+	@Test
+	def void testPublicImportAsFeatureAlias() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public::c_public as aliass;
+				import VisibilityPackage::c_Public as Aliass;
+				class Try{
+					feature feature4 : aliass;
+					feature featurepublic : Aliass;
+				}
+			}
+		''', rs)
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPublicImportAsFeature() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public::c_public ;
+				import VisibilityPackage::c_Public ;
+				class Try{
+					feature feature4 : c_public;
+					feature featurepublic : c_Public;
+				}
+			}
+			
+		''', rs)
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportAsFeatureInheritanceAlias() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public as aliass;
+				class Try is aliass{
+					feature feature4 : c_public;
+				}
+			}
+			
+		''', rs)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportAsFeatureInheritance() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public;
+				class Try is c_Public{
+					feature feature4 : c_public;
+				}
+			}
+			
+		''', rs)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPublicPackImport() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Test3{
+				import VisibilityPackage::c_Public::*;
+				feature f : c_public;
+			}
+		''', rs)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	/*
+	 * 	tests for bad cases
+	 */
+	@Test
+	def void testPrivatePackImport() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Test3{
+				import VisibilityPackage::c_Private::*;
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_IMPORT)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportInheritanceBad() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage;
+				class Try is c_Public{
+					feature feature4 : c_public;
+				}
+			}
+			
+		''', rs)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertTrue(result.eResource.errors.length == 2)
+	}
+
+	@Test
+	def void testPrivateImportAsFeatureWithoutAlias() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Private::c_private;
+				class Try{
+					feature feature1 : c_private;
+				}
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPrivateImportAsFeature1() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Private::c_private as aliass;
+				class Try{
+					feature feature1 : aliass;
+				}
+			}
+		''', rs)
+
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPrivateImportAsFeature2() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public::c_private as aliass;
+				class Try{
+					feature feature1 : aliass;
+				}
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPrivateImportAsFeature3() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Private::c_public as aliass;
+				class Try{
+					feature feature3 : aliass;
+				}
+				
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPrivateImportAsFeature4() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+						import VisibilityPackage::c_Public;
+						class try is c_Public::c_private{}
+					}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportAsFeaturePublicAndRefPrivateClass() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Public;
+				class Try{
+					feature try : c_Public::c_private;
+				}
+			}
+		''', rs)
+
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testc_ProtectImportAsFeature1() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_clazz;
+				
+				class try is c_clazz::c_Public::c_protect{}
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testc_ProtectImportAsFeature2() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				class try is c_clazz::c_Protect::c_publicc{}
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPackageImportAsFeature1() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_clazz::c_Public::c_packagee;
+				feature try : c_packagee;
+			}
+		''', rs)
+
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPackageImportAsFeature2() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_clazz;
+				class try is c_clazz::c_Package::c_publicc{}
+				feature f : c_clazz::c_Package::c_publicc;
+			}
+		''', rs)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testPackageImportAsFeature3() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::c_Private;
+				class try is c_Private::c_private{}
+				feature f : c_Private::c_private;
+			}
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE),
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImort3() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				class Try is c_Private{}
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImort4() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				class Try is c_Public{
+					class try is c_private{}
+				}
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImort5() {
+		val rs = getDependencyVisibilityPackage
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				class Try is c_Private::c_public{}
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImort6() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Public::c_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportClassAndUseAlias1() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Public_alias::alias_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportClassAndUseAlias2() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Public_alias::alias_public;
+			}
+			
+		''', rs)
+
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportClassAndUseAlias3() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Private_alias::alias_private;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImportClassAndUseAlias4() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Private_alias::alias_public;
+			}
+			
+		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
+		)
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	protected def DiagnosticPredicate getErrorCode(String issueId) {
+		return AssertableDiagnostics.errorCode(issueId)
+	}
+
+}

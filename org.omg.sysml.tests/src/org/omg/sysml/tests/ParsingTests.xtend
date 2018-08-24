@@ -25,6 +25,7 @@
 package org.omg.sysml.tests
 
 import com.google.inject.Inject
+import com.google.inject.Provider
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
@@ -37,62 +38,59 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
-import com.google.inject.Provider
+import org.omg.sysml.tests.AlfInjectorProvider
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
-class AlfParsingTest {
+class ParsingTests {
 	@Inject
 	ParseHelper<Package> parseHelper
 
 	@Inject extension ValidationTestHelper
 
-	@Inject
-	private Provider<XtextResourceSet> resourceSetProvider;
-
-	private def ResourceSetImpl getDependency() {
-		val rs = resourceSetProvider.get
-		parseHelper.parse(
-		'''package Test1{
-				class A{}
-				class B{
-					feature b: A;
-				}
-			}''', rs)
-		return rs
-	}
+	@Inject extension Dependency
 
 	@Test
 	def void testScopeWithOnlyDot() {
-
-		val rs = dependency
-
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package Test2{
+			package test{
 				class C{
-					feature c : Test1.B.b;
+					feature c : OuterPackage.B.b;
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
-
 		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 
+	@Test
+	def void testUseFullQualifiedName1() {
+		val result = parseHelper.parse('''
+			package test{
+				class A {}
+				class B is test::A{}
+			}
+		''')
+
+		Assert.assertNotNull(result)
+		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
 	@Test
 	def void testScopeWithDotAndFourDot() {
-
-		val rs = dependency
-
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package Test2{
+			package test{
 				class C{
-					feature c : Test1.B::b;
+					feature c : OuterPackage.B::b;
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -100,33 +98,31 @@ class AlfParsingTest {
 
 	@Test
 	def void testScopeWithFourDotAndDot() {
-
-		val rs = dependency
-
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package Test2{
+			package test{
 				class C{
-					feature c : Test1::B.b;
+					feature c : OuterPackage::B.b;
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
-	def void testScopeWithOnlyFourDot() {
-
-		val rs = dependency
-
+	def void testUseFullQualifiedNameFourDot() {
+		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
-			package Test2{
+			package test{
 				class C{
-					feature c : Test1::B::b;
+					feature c : OuterPackage::B::b;
 				}
 			}
 		''', rs)
+
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -134,20 +130,19 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoDotAtTheEnd() {
-
 		val result = parseHelper.parse('''
-			package Test3{
+			package test{
 				class non{}
 				class A{
 					feature aa is non;
 					feature a: A;
 				}
-			
 				class B{
-				feature b: Test3::A:a;
+					feature b: Test3::A:a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -155,20 +150,19 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDotAtTheEnd() {
-
 		val result = parseHelper.parse('''
-			package Test3{
+			package test{
 				class non{}
 				class A{
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
-					feature b: Test3::A..a;
+					feature b: test::A..a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.package, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -176,48 +170,43 @@ class AlfParsingTest {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDot() {
-
 		val result = parseHelper.parse('''
-			package Test3{
+			package test{
 				class non{}
 				class A{
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
-					feature b: Test3..A::a;
+					feature b: test..A::a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
-
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 117, -1)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
 	def void testBadScopeWithOnlyTwoDot() {
-
 		val result = parseHelper.parse('''
-			package Test3{
+			package test{
 				class non{}
 				class A{
 					feature aa is non;
 					feature a: A;
 				}
-
 				class B{
-					feature b: Test3:A::a;
+					feature b: test:A::a;
 				}
 			}
 		''')
+
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
-
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 110, -1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC, 116, -1)
+		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
-
 }

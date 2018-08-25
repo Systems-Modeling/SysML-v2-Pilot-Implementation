@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
@@ -82,6 +82,7 @@ Comment returns SysML::Comment :
 /* IMPORTS */
 
 PackageImport returns SysML::Import :
+	( ownedElement += Comment )*
 	( visibility = PackageElementVisibilityIndicator )?  
 	'import' (
 	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
@@ -91,7 +92,7 @@ PackageImport returns SysML::Import :
 ;
 
 ElementImport returns SysML::Membership :
-	( visibility = PackageElementVisibilityIndicator )? 
+	PackageMemberPrefix	
 	'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 ;
 
@@ -113,12 +114,16 @@ fragment PackageDefinition returns SysML::Package:
 /* PACKAGE MEMBERSHIPS */
 
 PackageMember returns SysML::Membership : 
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = PackageElementVisibilityIndicator )?	
+	PackageMemberPrefix	
 	( NonFeatureMemberElement 
 	| FeaturePackageMemberElement
 	)
+;
+
+fragment PackageMemberPrefix returns SysML::Membership :
+	( ownedElement += Comment )*
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = PackageElementVisibilityIndicator )?		
 ;
 
 fragment NonFeatureMemberElement returns SysML::Membership :
@@ -174,22 +179,24 @@ ClassMember returns SysML::Membership :
 ;
 
 NonFeatureClassMember returns SysML::Membership : 
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = VisibilityIndicator )?
-	NonFeatureMemberElement
+	ClassMemberPrefix NonFeatureMemberElement
 ;
 
 FeatureClassMember returns SysML::FeatureMembership : 
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = VisibilityIndicator )?
-    ( FeatureMemberElement
+	ClassMemberPrefix
+	( FeatureMemberElement
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
     | ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
 	| memberName = Name 'is' memberElement = [SysML::Feature|QualifiedName] ';'	
+	
 	)
+;
+
+fragment ClassMemberPrefix returns SysML::Membership :
+	( ownedElement += Comment )*
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
 ;
 
 fragment FeatureMemberElement returns SysML::FeatureMembership :
@@ -230,16 +237,11 @@ AssociationMember returns SysML::Membership :
 ;
 
 AssociationFeatureMember returns SysML::FeatureMembership :
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = VisibilityIndicator )?
-    FeatureMemberElement
+	ClassMemberPrefix FeatureMemberElement
 ;
 
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
-	( ownedElement += Comment )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = VisibilityIndicator )?
+	ClassMemberPrefix
     (
       'end' ( direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
 	| 'end' ( memberName = Name )? 'is' memberElement = [SysML::Feature|QualifiedName] ';'
@@ -247,6 +249,7 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	// These alternatives are provided for legacy Alf backwards compatibilty;
     | ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
 	| memberName = Name 'is' memberElement = [SysML::Feature|QualifiedName] ';'
+	
 	)
 ;
 

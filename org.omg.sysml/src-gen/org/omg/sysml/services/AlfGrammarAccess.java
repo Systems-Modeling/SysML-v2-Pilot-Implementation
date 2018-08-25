@@ -192,125 +192,133 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class PackageImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Keyword cImportKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cImportedPackageAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_2_0_0_0 = (CrossReference)cImportedPackageAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageNameParserRuleCall_2_0_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_2_0_0_0.eContents().get(1);
-		private final Alternatives cAlternatives_2_0_1 = (Alternatives)cGroup_2_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_2_0_1_0 = (Keyword)cAlternatives_2_0_1.eContents().get(0);
-		private final Keyword cFullStopKeyword_2_0_1_1 = (Keyword)cAlternatives_2_0_1.eContents().get(1);
-		private final Keyword cAsteriskKeyword_2_0_2 = (Keyword)cGroup_2_0.eContents().get(2);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cImportedPackageAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_2_1_0_0 = (CrossReference)cImportedPackageAssignment_2_1_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageColonQualifiedNameParserRuleCall_2_1_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_2_1_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
-		private final Keyword cAsteriskKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
-		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
-		private final Assignment cImportedPackageAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_2_2_0_0 = (CrossReference)cImportedPackageAssignment_2_2_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageDotQualifiedNameParserRuleCall_2_2_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_2_2_0_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_2_2_1 = (Keyword)cGroup_2_2.eContents().get(1);
-		private final Keyword cAsteriskKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
+		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
+		private final Keyword cImportKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
+		private final Assignment cImportedPackageAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
+		private final CrossReference cImportedPackagePackageCrossReference_3_0_0_0 = (CrossReference)cImportedPackageAssignment_3_0_0.eContents().get(0);
+		private final RuleCall cImportedPackagePackageNameParserRuleCall_3_0_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_0_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_3_0_1 = (Alternatives)cGroup_3_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_3_0_1_0 = (Keyword)cAlternatives_3_0_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_3_0_1_1 = (Keyword)cAlternatives_3_0_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_3_0_2 = (Keyword)cGroup_3_0.eContents().get(2);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cImportedPackageAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final CrossReference cImportedPackagePackageCrossReference_3_1_0_0 = (CrossReference)cImportedPackageAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_1_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_3_1_2 = (Keyword)cGroup_3_1.eContents().get(2);
+		private final Group cGroup_3_2 = (Group)cAlternatives_3.eContents().get(2);
+		private final Assignment cImportedPackageAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
+		private final CrossReference cImportedPackagePackageCrossReference_3_2_0_0 = (CrossReference)cImportedPackageAssignment_3_2_0.eContents().get(0);
+		private final RuleCall cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_2_0_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_3_2_1 = (Keyword)cGroup_3_2.eContents().get(1);
+		private final Keyword cAsteriskKeyword_3_2_2 = (Keyword)cGroup_3_2.eContents().get(2);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		///* IMPORTS */ PackageImport SysML::Import:
+		//	ownedElement+=Comment*
 		//	visibility=PackageElementVisibilityIndicator?
 		//	'import' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
 		//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
 		//	| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=PackageElementVisibilityIndicator? 'import' (importedPackage=[SysML::Package|Name] ('::' | '.') '*' |
-		//importedPackage=[SysML::Package|ColonQualifiedName] '::' '*' | importedPackage=[SysML::Package|DotQualifiedName] '.'
-		//'*') ';'
+		//ownedElement+=Comment* visibility=PackageElementVisibilityIndicator? 'import' (importedPackage=[SysML::Package|Name]
+		//('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*' |
+		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';'
 		public Group getGroup() { return cGroup; }
 		
+		//ownedElement+=Comment*
+		public Assignment getOwnedElementAssignment_0() { return cOwnedElementAssignment_0; }
+		
+		//Comment
+		public RuleCall getOwnedElementCommentParserRuleCall_0_0() { return cOwnedElementCommentParserRuleCall_0_0; }
+		
 		//visibility=PackageElementVisibilityIndicator?
-		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
+		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
 		
 		//PackageElementVisibilityIndicator
-		public RuleCall getVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0; }
+		public RuleCall getVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0; }
 		
 		//'import'
-		public Keyword getImportKeyword_1() { return cImportKeyword_1; }
+		public Keyword getImportKeyword_2() { return cImportKeyword_2; }
 		
 		//importedPackage=[SysML::Package|Name] ('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*' |
 		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*'
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//importedPackage=[SysML::Package|Name] ('::' | '.') '*'
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		public Group getGroup_3_0() { return cGroup_3_0; }
 		
 		//importedPackage=[SysML::Package|Name]
-		public Assignment getImportedPackageAssignment_2_0_0() { return cImportedPackageAssignment_2_0_0; }
+		public Assignment getImportedPackageAssignment_3_0_0() { return cImportedPackageAssignment_3_0_0; }
 		
 		//[SysML::Package|Name]
-		public CrossReference getImportedPackagePackageCrossReference_2_0_0_0() { return cImportedPackagePackageCrossReference_2_0_0_0; }
+		public CrossReference getImportedPackagePackageCrossReference_3_0_0_0() { return cImportedPackagePackageCrossReference_3_0_0_0; }
 		
 		//Name
-		public RuleCall getImportedPackagePackageNameParserRuleCall_2_0_0_0_1() { return cImportedPackagePackageNameParserRuleCall_2_0_0_0_1; }
+		public RuleCall getImportedPackagePackageNameParserRuleCall_3_0_0_0_1() { return cImportedPackagePackageNameParserRuleCall_3_0_0_0_1; }
 		
 		//'::' | '.'
-		public Alternatives getAlternatives_2_0_1() { return cAlternatives_2_0_1; }
+		public Alternatives getAlternatives_3_0_1() { return cAlternatives_3_0_1; }
 		
 		//'::'
-		public Keyword getColonColonKeyword_2_0_1_0() { return cColonColonKeyword_2_0_1_0; }
+		public Keyword getColonColonKeyword_3_0_1_0() { return cColonColonKeyword_3_0_1_0; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_2_0_1_1() { return cFullStopKeyword_2_0_1_1; }
+		public Keyword getFullStopKeyword_3_0_1_1() { return cFullStopKeyword_3_0_1_1; }
 		
 		//'*'
-		public Keyword getAsteriskKeyword_2_0_2() { return cAsteriskKeyword_2_0_2; }
+		public Keyword getAsteriskKeyword_3_0_2() { return cAsteriskKeyword_3_0_2; }
 		
 		//importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//importedPackage=[SysML::Package|ColonQualifiedName]
-		public Assignment getImportedPackageAssignment_2_1_0() { return cImportedPackageAssignment_2_1_0; }
+		public Assignment getImportedPackageAssignment_3_1_0() { return cImportedPackageAssignment_3_1_0; }
 		
 		//[SysML::Package|ColonQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_2_1_0_0() { return cImportedPackagePackageCrossReference_2_1_0_0; }
+		public CrossReference getImportedPackagePackageCrossReference_3_1_0_0() { return cImportedPackagePackageCrossReference_3_1_0_0; }
 		
 		//ColonQualifiedName
-		public RuleCall getImportedPackagePackageColonQualifiedNameParserRuleCall_2_1_0_0_1() { return cImportedPackagePackageColonQualifiedNameParserRuleCall_2_1_0_0_1; }
+		public RuleCall getImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1() { return cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1; }
 		
 		//'::'
-		public Keyword getColonColonKeyword_2_1_1() { return cColonColonKeyword_2_1_1; }
+		public Keyword getColonColonKeyword_3_1_1() { return cColonColonKeyword_3_1_1; }
 		
 		//'*'
-		public Keyword getAsteriskKeyword_2_1_2() { return cAsteriskKeyword_2_1_2; }
+		public Keyword getAsteriskKeyword_3_1_2() { return cAsteriskKeyword_3_1_2; }
 		
 		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*'
-		public Group getGroup_2_2() { return cGroup_2_2; }
+		public Group getGroup_3_2() { return cGroup_3_2; }
 		
 		//importedPackage=[SysML::Package|DotQualifiedName]
-		public Assignment getImportedPackageAssignment_2_2_0() { return cImportedPackageAssignment_2_2_0; }
+		public Assignment getImportedPackageAssignment_3_2_0() { return cImportedPackageAssignment_3_2_0; }
 		
 		//[SysML::Package|DotQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_2_2_0_0() { return cImportedPackagePackageCrossReference_2_2_0_0; }
+		public CrossReference getImportedPackagePackageCrossReference_3_2_0_0() { return cImportedPackagePackageCrossReference_3_2_0_0; }
 		
 		//DotQualifiedName
-		public RuleCall getImportedPackagePackageDotQualifiedNameParserRuleCall_2_2_0_0_1() { return cImportedPackagePackageDotQualifiedNameParserRuleCall_2_2_0_0_1; }
+		public RuleCall getImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1() { return cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_2_2_1() { return cFullStopKeyword_2_2_1; }
+		public Keyword getFullStopKeyword_3_2_1() { return cFullStopKeyword_3_2_1; }
 		
 		//'*'
-		public Keyword getAsteriskKeyword_2_2_2() { return cAsteriskKeyword_2_2_2; }
+		public Keyword getAsteriskKeyword_3_2_2() { return cAsteriskKeyword_3_2_2; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 	public class ElementImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ElementImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final RuleCall cPackageMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cImportKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cMemberElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cMemberElementElementCrossReference_2_0 = (CrossReference)cMemberElementAssignment_2.eContents().get(0);
@@ -322,19 +330,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ElementImport SysML::Membership:
-		//	visibility=PackageElementVisibilityIndicator?
+		//	PackageMemberPrefix
 		//	'import' memberElement=[SysML::Element|QualifiedName] ('as' memberName=Name)? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=PackageElementVisibilityIndicator? 'import' memberElement=[SysML::Element|QualifiedName] ('as'
-		//memberName=Name)? ';'
+		//PackageMemberPrefix 'import' memberElement=[SysML::Element|QualifiedName] ('as' memberName=Name)? ';'
 		public Group getGroup() { return cGroup; }
 		
-		//visibility=PackageElementVisibilityIndicator?
-		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
-		
-		//PackageElementVisibilityIndicator
-		public RuleCall getVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_0_0; }
+		//PackageMemberPrefix
+		public RuleCall getPackageMemberPrefixParserRuleCall_0() { return cPackageMemberPrefixParserRuleCall_0; }
 		
 		//'import'
 		public Keyword getImportKeyword_1() { return cImportKeyword_1; }
@@ -453,23 +457,47 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class PackageMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPackageMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cNonFeatureMemberElementParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cFeaturePackageMemberElementParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		
+		///* PACKAGE MEMBERSHIPS */ PackageMember SysML::Membership:
+		//	PackageMemberPrefix (NonFeatureMemberElement
+		//	| FeaturePackageMemberElement);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PackageMemberPrefix (NonFeatureMemberElement | FeaturePackageMemberElement)
+		public Group getGroup() { return cGroup; }
+		
+		//PackageMemberPrefix
+		public RuleCall getPackageMemberPrefixParserRuleCall_0() { return cPackageMemberPrefixParserRuleCall_0; }
+		
+		//NonFeatureMemberElement | FeaturePackageMemberElement
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//NonFeatureMemberElement
+		public RuleCall getNonFeatureMemberElementParserRuleCall_1_0() { return cNonFeatureMemberElementParserRuleCall_1_0; }
+		
+		//FeaturePackageMemberElement
+		public RuleCall getFeaturePackageMemberElementParserRuleCall_1_1() { return cFeaturePackageMemberElementParserRuleCall_1_1; }
+	}
+	public class PackageMemberPrefixElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageMemberPrefix");
+		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
 		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final RuleCall cNonFeatureMemberElementParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
-		private final RuleCall cFeaturePackageMemberElementParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
 		
-		///* PACKAGE MEMBERSHIPS */ PackageMember SysML::Membership:
+		//fragment PackageMemberPrefix returns SysML::Membership:
 		//	ownedElement+=Comment*
 		//	//  ( annotation += StereotypeAnnotation )*
-		//	visibility=PackageElementVisibilityIndicator? (NonFeatureMemberElement
-		//	| FeaturePackageMemberElement);
+		//	visibility=PackageElementVisibilityIndicator?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
-		//visibility=PackageElementVisibilityIndicator? (NonFeatureMemberElement | FeaturePackageMemberElement)
+		//visibility=PackageElementVisibilityIndicator?
 		public Group getGroup() { return cGroup; }
 		
 		//ownedElement+=Comment*
@@ -484,15 +512,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PackageElementVisibilityIndicator
 		public RuleCall getVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0; }
-		
-		//NonFeatureMemberElement | FeaturePackageMemberElement
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-		
-		//NonFeatureMemberElement
-		public RuleCall getNonFeatureMemberElementParserRuleCall_2_0() { return cNonFeatureMemberElementParserRuleCall_2_0; }
-		
-		//FeaturePackageMemberElement
-		public RuleCall getFeaturePackageMemberElementParserRuleCall_2_1() { return cFeaturePackageMemberElementParserRuleCall_2_1; }
 	}
 	public class NonFeatureMemberElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NonFeatureMemberElement");
@@ -946,75 +965,120 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class NonFeatureClassMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NonFeatureClassMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final RuleCall cNonFeatureMemberElementParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cClassMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cNonFeatureMemberElementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//NonFeatureClassMember SysML::Membership:
-		//	ownedElement+=Comment*
-		//	//  ( annotation += StereotypeAnnotation )*
-		//	visibility=VisibilityIndicator?
-		//	NonFeatureMemberElement;
+		//	ClassMemberPrefix NonFeatureMemberElement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator? NonFeatureMemberElement
+		//ClassMemberPrefix NonFeatureMemberElement
 		public Group getGroup() { return cGroup; }
 		
-		//ownedElement+=Comment*
-		public Assignment getOwnedElementAssignment_0() { return cOwnedElementAssignment_0; }
-		
-		//Comment
-		public RuleCall getOwnedElementCommentParserRuleCall_0_0() { return cOwnedElementCommentParserRuleCall_0_0; }
-		
-		////  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		//ClassMemberPrefix
+		public RuleCall getClassMemberPrefixParserRuleCall_0() { return cClassMemberPrefixParserRuleCall_0; }
 		
 		//NonFeatureMemberElement
-		public RuleCall getNonFeatureMemberElementParserRuleCall_2() { return cNonFeatureMemberElementParserRuleCall_2; }
+		public RuleCall getNonFeatureMemberElementParserRuleCall_1() { return cNonFeatureMemberElementParserRuleCall_1; }
 	}
 	public class FeatureClassMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureClassMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final RuleCall cFeatureMemberElementParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cDirectionAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_2_1_0_0 = (RuleCall)cDirectionAssignment_2_1_0.eContents().get(0);
-		private final Assignment cOwnedMemberElementAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_1_1_0 = (RuleCall)cOwnedMemberElementAssignment_2_1_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
-		private final Assignment cMemberNameAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final RuleCall cMemberNameNameParserRuleCall_2_2_0_0 = (RuleCall)cMemberNameAssignment_2_2_0.eContents().get(0);
-		private final Keyword cIsKeyword_2_2_1 = (Keyword)cGroup_2_2.eContents().get(1);
-		private final Assignment cMemberElementAssignment_2_2_2 = (Assignment)cGroup_2_2.eContents().get(2);
-		private final CrossReference cMemberElementFeatureCrossReference_2_2_2_0 = (CrossReference)cMemberElementAssignment_2_2_2.eContents().get(0);
-		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_2_2_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_2_2_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_2_2_3 = (Keyword)cGroup_2_2.eContents().get(3);
+		private final RuleCall cClassMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cFeatureMemberElementParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cDirectionAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_1_0_0 = (RuleCall)cDirectionAssignment_1_1_0.eContents().get(0);
+		private final Assignment cOwnedMemberElementAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberElementAssignment_1_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
+		private final Assignment cMemberNameAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_1_2_0_0 = (RuleCall)cMemberNameAssignment_1_2_0.eContents().get(0);
+		private final Keyword cIsKeyword_1_2_1 = (Keyword)cGroup_1_2.eContents().get(1);
+		private final Assignment cMemberElementAssignment_1_2_2 = (Assignment)cGroup_1_2.eContents().get(2);
+		private final CrossReference cMemberElementFeatureCrossReference_1_2_2_0 = (CrossReference)cMemberElementAssignment_1_2_2.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_1_2_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_1_2_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_2_3 = (Keyword)cGroup_1_2.eContents().get(3);
 		
 		//FeatureClassMember SysML::FeatureMembership:
-		//	ownedElement+=Comment*
-		//	//  ( annotation += StereotypeAnnotation )*
-		//	visibility=VisibilityIndicator? (FeatureMemberElement
+		//	ClassMemberPrefix (FeatureMemberElement
 		//	// These alternatives are provided for legacy Alf backwards compatibility.	
 		//	| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
 		//	| memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator? (FeatureMemberElement // These alternatives are provided for legacy Alf backwards compatibility.	
+		//ClassMemberPrefix (FeatureMemberElement // These alternatives are provided for legacy Alf backwards compatibility.	
 		//| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | memberName=Name 'is'
 		//memberElement=[SysML::Feature|QualifiedName] ';')
+		public Group getGroup() { return cGroup; }
+		
+		//ClassMemberPrefix
+		public RuleCall getClassMemberPrefixParserRuleCall_0() { return cClassMemberPrefixParserRuleCall_0; }
+		
+		//FeatureMemberElement // These alternatives are provided for legacy Alf backwards compatibility.	
+		//| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | memberName=Name 'is'
+		//memberElement=[SysML::Feature|QualifiedName] ';'
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//FeatureMemberElement
+		public RuleCall getFeatureMemberElementParserRuleCall_1_0() { return cFeatureMemberElementParserRuleCall_1_0; }
+		
+		//direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_1_0() { return cDirectionAssignment_1_1_0; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_1_0_0() { return cDirectionFeatureDirectionEnumRuleCall_1_1_0_0; }
+		
+		//ownedMemberElement=NamedFeatureDefinition
+		public Assignment getOwnedMemberElementAssignment_1_1_1() { return cOwnedMemberElementAssignment_1_1_1; }
+		
+		//NamedFeatureDefinition
+		public RuleCall getOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_1_1_0() { return cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_1_1_0; }
+		
+		//memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';'
+		public Group getGroup_1_2() { return cGroup_1_2; }
+		
+		//memberName=Name
+		public Assignment getMemberNameAssignment_1_2_0() { return cMemberNameAssignment_1_2_0; }
+		
+		//Name
+		public RuleCall getMemberNameNameParserRuleCall_1_2_0_0() { return cMemberNameNameParserRuleCall_1_2_0_0; }
+		
+		//'is'
+		public Keyword getIsKeyword_1_2_1() { return cIsKeyword_1_2_1; }
+		
+		//memberElement=[SysML::Feature|QualifiedName]
+		public Assignment getMemberElementAssignment_1_2_2() { return cMemberElementAssignment_1_2_2; }
+		
+		//[SysML::Feature|QualifiedName]
+		public CrossReference getMemberElementFeatureCrossReference_1_2_2_0() { return cMemberElementFeatureCrossReference_1_2_2_0; }
+		
+		//QualifiedName
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_1_2_2_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_1_2_2_0_1; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_1_2_3() { return cSemicolonKeyword_1_2_3; }
+	}
+	public class ClassMemberPrefixElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ClassMemberPrefix");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
+		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
+		
+		//fragment ClassMemberPrefix returns SysML::Membership:
+		//	ownedElement+=Comment*
+		//	//  ( annotation += StereotypeAnnotation )*
+		//	visibility=VisibilityIndicator?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
+		//visibility=VisibilityIndicator?
 		public Group getGroup() { return cGroup; }
 		
 		//ownedElement+=Comment*
@@ -1029,53 +1093,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//VisibilityIndicator
 		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
-		
-		//FeatureMemberElement // These alternatives are provided for legacy Alf backwards compatibility.	
-		//| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | memberName=Name 'is'
-		//memberElement=[SysML::Feature|QualifiedName] ';'
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-		
-		//FeatureMemberElement
-		public RuleCall getFeatureMemberElementParserRuleCall_2_0() { return cFeatureMemberElementParserRuleCall_2_0; }
-		
-		//direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
-		public Group getGroup_2_1() { return cGroup_2_1; }
-		
-		//direction=FeatureDirection?
-		public Assignment getDirectionAssignment_2_1_0() { return cDirectionAssignment_2_1_0; }
-		
-		//FeatureDirection
-		public RuleCall getDirectionFeatureDirectionEnumRuleCall_2_1_0_0() { return cDirectionFeatureDirectionEnumRuleCall_2_1_0_0; }
-		
-		//ownedMemberElement=NamedFeatureDefinition
-		public Assignment getOwnedMemberElementAssignment_2_1_1() { return cOwnedMemberElementAssignment_2_1_1; }
-		
-		//NamedFeatureDefinition
-		public RuleCall getOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_1_1_0() { return cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_1_1_0; }
-		
-		//memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';'
-		public Group getGroup_2_2() { return cGroup_2_2; }
-		
-		//memberName=Name
-		public Assignment getMemberNameAssignment_2_2_0() { return cMemberNameAssignment_2_2_0; }
-		
-		//Name
-		public RuleCall getMemberNameNameParserRuleCall_2_2_0_0() { return cMemberNameNameParserRuleCall_2_2_0_0; }
-		
-		//'is'
-		public Keyword getIsKeyword_2_2_1() { return cIsKeyword_2_2_1; }
-		
-		//memberElement=[SysML::Feature|QualifiedName]
-		public Assignment getMemberElementAssignment_2_2_2() { return cMemberElementAssignment_2_2_2; }
-		
-		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberElementFeatureCrossReference_2_2_2_0() { return cMemberElementFeatureCrossReference_2_2_2_0; }
-		
-		//QualifiedName
-		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_2_2_2_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_2_2_2_0_1; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_2_2_3() { return cSemicolonKeyword_2_2_3; }
 	}
 	public class FeatureMemberElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureMemberElement");
@@ -1400,195 +1417,162 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class AssociationFeatureMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.AssociationFeatureMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final RuleCall cFeatureMemberElementParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cClassMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cFeatureMemberElementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//AssociationFeatureMember SysML::FeatureMembership:
-		//	ownedElement+=Comment*
-		//	//  ( annotation += StereotypeAnnotation )*
-		//	visibility=VisibilityIndicator?
-		//	FeatureMemberElement;
+		//	ClassMemberPrefix FeatureMemberElement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator? FeatureMemberElement
+		//ClassMemberPrefix FeatureMemberElement
 		public Group getGroup() { return cGroup; }
 		
-		//ownedElement+=Comment*
-		public Assignment getOwnedElementAssignment_0() { return cOwnedElementAssignment_0; }
-		
-		//Comment
-		public RuleCall getOwnedElementCommentParserRuleCall_0_0() { return cOwnedElementCommentParserRuleCall_0_0; }
-		
-		////  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		//ClassMemberPrefix
+		public RuleCall getClassMemberPrefixParserRuleCall_0() { return cClassMemberPrefixParserRuleCall_0; }
 		
 		//FeatureMemberElement
-		public RuleCall getFeatureMemberElementParserRuleCall_2() { return cFeatureMemberElementParserRuleCall_2; }
+		public RuleCall getFeatureMemberElementParserRuleCall_1() { return cFeatureMemberElementParserRuleCall_1; }
 	}
 	public class AssociationEndFeatureMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.AssociationEndFeatureMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedElementCommentParserRuleCall_0_0 = (RuleCall)cOwnedElementAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cEndKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cDirectionAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_2_0_1_0 = (RuleCall)cDirectionAssignment_2_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberElementAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
-		private final RuleCall cOwnedMemberElementFeatureDefinitionParserRuleCall_2_0_2_0 = (RuleCall)cOwnedMemberElementAssignment_2_0_2.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cEndKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cMemberNameAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cMemberNameNameParserRuleCall_2_1_1_0 = (RuleCall)cMemberNameAssignment_2_1_1.eContents().get(0);
-		private final Keyword cIsKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
-		private final Assignment cMemberElementAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
-		private final CrossReference cMemberElementFeatureCrossReference_2_1_3_0 = (CrossReference)cMemberElementAssignment_2_1_3.eContents().get(0);
-		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_2_1_3_0_1 = (RuleCall)cMemberElementFeatureCrossReference_2_1_3_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_2_1_4 = (Keyword)cGroup_2_1.eContents().get(4);
-		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
-		private final Assignment cDirectionAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_2_2_0_0 = (RuleCall)cDirectionAssignment_2_2_0.eContents().get(0);
-		private final Assignment cOwnedMemberElementAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_2_1_0 = (RuleCall)cOwnedMemberElementAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_2_3 = (Group)cAlternatives_2.eContents().get(3);
-		private final Assignment cMemberNameAssignment_2_3_0 = (Assignment)cGroup_2_3.eContents().get(0);
-		private final RuleCall cMemberNameNameParserRuleCall_2_3_0_0 = (RuleCall)cMemberNameAssignment_2_3_0.eContents().get(0);
-		private final Keyword cIsKeyword_2_3_1 = (Keyword)cGroup_2_3.eContents().get(1);
-		private final Assignment cMemberElementAssignment_2_3_2 = (Assignment)cGroup_2_3.eContents().get(2);
-		private final CrossReference cMemberElementFeatureCrossReference_2_3_2_0 = (CrossReference)cMemberElementAssignment_2_3_2.eContents().get(0);
-		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_2_3_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_2_3_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_2_3_3 = (Keyword)cGroup_2_3.eContents().get(3);
+		private final RuleCall cClassMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cEndKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_0_1_0 = (RuleCall)cDirectionAssignment_1_0_1.eContents().get(0);
+		private final Assignment cOwnedMemberElementAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cOwnedMemberElementFeatureDefinitionParserRuleCall_1_0_2_0 = (RuleCall)cOwnedMemberElementAssignment_1_0_2.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cEndKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cMemberNameAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cMemberNameNameParserRuleCall_1_1_1_0 = (RuleCall)cMemberNameAssignment_1_1_1.eContents().get(0);
+		private final Keyword cIsKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Assignment cMemberElementAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final CrossReference cMemberElementFeatureCrossReference_1_1_3_0 = (CrossReference)cMemberElementAssignment_1_1_3.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_1_1_3_0_1 = (RuleCall)cMemberElementFeatureCrossReference_1_1_3_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_1_4 = (Keyword)cGroup_1_1.eContents().get(4);
+		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
+		private final Assignment cDirectionAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_2_0_0 = (RuleCall)cDirectionAssignment_1_2_0.eContents().get(0);
+		private final Assignment cOwnedMemberElementAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_2_1_0 = (RuleCall)cOwnedMemberElementAssignment_1_2_1.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cAlternatives_1.eContents().get(3);
+		private final Assignment cMemberNameAssignment_1_3_0 = (Assignment)cGroup_1_3.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_1_3_0_0 = (RuleCall)cMemberNameAssignment_1_3_0.eContents().get(0);
+		private final Keyword cIsKeyword_1_3_1 = (Keyword)cGroup_1_3.eContents().get(1);
+		private final Assignment cMemberElementAssignment_1_3_2 = (Assignment)cGroup_1_3.eContents().get(2);
+		private final CrossReference cMemberElementFeatureCrossReference_1_3_2_0 = (CrossReference)cMemberElementAssignment_1_3_2.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_1_3_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_1_3_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_3_3 = (Keyword)cGroup_1_3.eContents().get(3);
 		
 		//AssociationEndFeatureMember SysML::EndFeatureMembership:
-		//	ownedElement+=Comment*
-		//	//  ( annotation += StereotypeAnnotation )*
-		//	visibility=VisibilityIndicator? ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition
+		//	ClassMemberPrefix ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition
 		//	| 'end' memberName=Name? 'is' memberElement=[SysML::Feature|QualifiedName] ';'
 		//	// These alternatives are provided for legacy Alf backwards compatibilty;
 		//	| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
 		//	| memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedElement+=Comment* //  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator? ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition | 'end'
-		//memberName=Name? 'is' memberElement=[SysML::Feature|QualifiedName] ';' // These alternatives are provided for legacy Alf backwards compatibilty;
+		//ClassMemberPrefix ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition | 'end' memberName=Name? 'is'
+		//memberElement=[SysML::Feature|QualifiedName] ';' // These alternatives are provided for legacy Alf backwards compatibilty;
 		//| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | memberName=Name 'is'
 		//memberElement=[SysML::Feature|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
 		
-		//ownedElement+=Comment*
-		public Assignment getOwnedElementAssignment_0() { return cOwnedElementAssignment_0; }
-		
-		//Comment
-		public RuleCall getOwnedElementCommentParserRuleCall_0_0() { return cOwnedElementCommentParserRuleCall_0_0; }
-		
-		////  ( annotation += StereotypeAnnotation )*
-		//visibility=VisibilityIndicator?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		//ClassMemberPrefix
+		public RuleCall getClassMemberPrefixParserRuleCall_0() { return cClassMemberPrefixParserRuleCall_0; }
 		
 		//'end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition | 'end' memberName=Name? 'is'
 		//memberElement=[SysML::Feature|QualifiedName] ';' // These alternatives are provided for legacy Alf backwards compatibilty;
 		//| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition | memberName=Name 'is'
 		//memberElement=[SysML::Feature|QualifiedName] ';'
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//'end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//'end'
-		public Keyword getEndKeyword_2_0_0() { return cEndKeyword_2_0_0; }
+		public Keyword getEndKeyword_1_0_0() { return cEndKeyword_1_0_0; }
 		
 		//direction=FeatureDirection?
-		public Assignment getDirectionAssignment_2_0_1() { return cDirectionAssignment_2_0_1; }
+		public Assignment getDirectionAssignment_1_0_1() { return cDirectionAssignment_1_0_1; }
 		
 		//FeatureDirection
-		public RuleCall getDirectionFeatureDirectionEnumRuleCall_2_0_1_0() { return cDirectionFeatureDirectionEnumRuleCall_2_0_1_0; }
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_0_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_0_1_0; }
 		
 		//ownedMemberElement=FeatureDefinition
-		public Assignment getOwnedMemberElementAssignment_2_0_2() { return cOwnedMemberElementAssignment_2_0_2; }
+		public Assignment getOwnedMemberElementAssignment_1_0_2() { return cOwnedMemberElementAssignment_1_0_2; }
 		
 		//FeatureDefinition
-		public RuleCall getOwnedMemberElementFeatureDefinitionParserRuleCall_2_0_2_0() { return cOwnedMemberElementFeatureDefinitionParserRuleCall_2_0_2_0; }
+		public RuleCall getOwnedMemberElementFeatureDefinitionParserRuleCall_1_0_2_0() { return cOwnedMemberElementFeatureDefinitionParserRuleCall_1_0_2_0; }
 		
 		//'end' memberName=Name? 'is' memberElement=[SysML::Feature|QualifiedName] ';'
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//'end'
-		public Keyword getEndKeyword_2_1_0() { return cEndKeyword_2_1_0; }
+		public Keyword getEndKeyword_1_1_0() { return cEndKeyword_1_1_0; }
 		
 		//memberName=Name?
-		public Assignment getMemberNameAssignment_2_1_1() { return cMemberNameAssignment_2_1_1; }
+		public Assignment getMemberNameAssignment_1_1_1() { return cMemberNameAssignment_1_1_1; }
 		
 		//Name
-		public RuleCall getMemberNameNameParserRuleCall_2_1_1_0() { return cMemberNameNameParserRuleCall_2_1_1_0; }
+		public RuleCall getMemberNameNameParserRuleCall_1_1_1_0() { return cMemberNameNameParserRuleCall_1_1_1_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_2_1_2() { return cIsKeyword_2_1_2; }
+		public Keyword getIsKeyword_1_1_2() { return cIsKeyword_1_1_2; }
 		
 		//memberElement=[SysML::Feature|QualifiedName]
-		public Assignment getMemberElementAssignment_2_1_3() { return cMemberElementAssignment_2_1_3; }
+		public Assignment getMemberElementAssignment_1_1_3() { return cMemberElementAssignment_1_1_3; }
 		
 		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberElementFeatureCrossReference_2_1_3_0() { return cMemberElementFeatureCrossReference_2_1_3_0; }
+		public CrossReference getMemberElementFeatureCrossReference_1_1_3_0() { return cMemberElementFeatureCrossReference_1_1_3_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_2_1_3_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_2_1_3_0_1; }
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_1_1_3_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_1_1_3_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_2_1_4() { return cSemicolonKeyword_2_1_4; }
+		public Keyword getSemicolonKeyword_1_1_4() { return cSemicolonKeyword_1_1_4; }
 		
 		//direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
-		public Group getGroup_2_2() { return cGroup_2_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//direction=FeatureDirection?
-		public Assignment getDirectionAssignment_2_2_0() { return cDirectionAssignment_2_2_0; }
+		public Assignment getDirectionAssignment_1_2_0() { return cDirectionAssignment_1_2_0; }
 		
 		//FeatureDirection
-		public RuleCall getDirectionFeatureDirectionEnumRuleCall_2_2_0_0() { return cDirectionFeatureDirectionEnumRuleCall_2_2_0_0; }
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_2_0_0() { return cDirectionFeatureDirectionEnumRuleCall_1_2_0_0; }
 		
 		//ownedMemberElement=NamedFeatureDefinition
-		public Assignment getOwnedMemberElementAssignment_2_2_1() { return cOwnedMemberElementAssignment_2_2_1; }
+		public Assignment getOwnedMemberElementAssignment_1_2_1() { return cOwnedMemberElementAssignment_1_2_1; }
 		
 		//NamedFeatureDefinition
-		public RuleCall getOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_2_1_0() { return cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_2_2_1_0; }
+		public RuleCall getOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_2_1_0() { return cOwnedMemberElementNamedFeatureDefinitionParserRuleCall_1_2_1_0; }
 		
 		//memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';'
-		public Group getGroup_2_3() { return cGroup_2_3; }
+		public Group getGroup_1_3() { return cGroup_1_3; }
 		
 		//memberName=Name
-		public Assignment getMemberNameAssignment_2_3_0() { return cMemberNameAssignment_2_3_0; }
+		public Assignment getMemberNameAssignment_1_3_0() { return cMemberNameAssignment_1_3_0; }
 		
 		//Name
-		public RuleCall getMemberNameNameParserRuleCall_2_3_0_0() { return cMemberNameNameParserRuleCall_2_3_0_0; }
+		public RuleCall getMemberNameNameParserRuleCall_1_3_0_0() { return cMemberNameNameParserRuleCall_1_3_0_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_2_3_1() { return cIsKeyword_2_3_1; }
+		public Keyword getIsKeyword_1_3_1() { return cIsKeyword_1_3_1; }
 		
 		//memberElement=[SysML::Feature|QualifiedName]
-		public Assignment getMemberElementAssignment_2_3_2() { return cMemberElementAssignment_2_3_2; }
+		public Assignment getMemberElementAssignment_1_3_2() { return cMemberElementAssignment_1_3_2; }
 		
 		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberElementFeatureCrossReference_2_3_2_0() { return cMemberElementFeatureCrossReference_2_3_2_0; }
+		public CrossReference getMemberElementFeatureCrossReference_1_3_2_0() { return cMemberElementFeatureCrossReference_1_3_2_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_2_3_2_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_2_3_2_0_1; }
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_1_3_2_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_1_3_2_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_2_3_3() { return cSemicolonKeyword_2_3_3; }
+		public Keyword getSemicolonKeyword_1_3_3() { return cSemicolonKeyword_1_3_3; }
 	}
 	public class FeatureDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureDefinition");
@@ -3147,6 +3131,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final PackageDefinitionOrStubElements pPackageDefinitionOrStub;
 	private final PackageDefinitionElements pPackageDefinition;
 	private final PackageMemberElements pPackageMember;
+	private final PackageMemberPrefixElements pPackageMemberPrefix;
 	private final NonFeatureMemberElementElements pNonFeatureMemberElement;
 	private final FeaturePackageMemberElementElements pFeaturePackageMemberElement;
 	private final ClassDefinitionOrStubElements pClassDefinitionOrStub;
@@ -3157,6 +3142,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final ClassMemberElements pClassMember;
 	private final NonFeatureClassMemberElements pNonFeatureClassMember;
 	private final FeatureClassMemberElements pFeatureClassMember;
+	private final ClassMemberPrefixElements pClassMemberPrefix;
 	private final FeatureMemberElementElements pFeatureMemberElement;
 	private final FeatureDirectionElements eFeatureDirection;
 	private final AssociationDefinitionOrStubElements pAssociationDefinitionOrStub;
@@ -3237,6 +3223,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPackageDefinitionOrStub = new PackageDefinitionOrStubElements();
 		this.pPackageDefinition = new PackageDefinitionElements();
 		this.pPackageMember = new PackageMemberElements();
+		this.pPackageMemberPrefix = new PackageMemberPrefixElements();
 		this.pNonFeatureMemberElement = new NonFeatureMemberElementElements();
 		this.pFeaturePackageMemberElement = new FeaturePackageMemberElementElements();
 		this.pClassDefinitionOrStub = new ClassDefinitionOrStubElements();
@@ -3247,6 +3234,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pClassMember = new ClassMemberElements();
 		this.pNonFeatureClassMember = new NonFeatureClassMemberElements();
 		this.pFeatureClassMember = new FeatureClassMemberElements();
+		this.pClassMemberPrefix = new ClassMemberPrefixElements();
 		this.pFeatureMemberElement = new FeatureMemberElementElements();
 		this.eFeatureDirection = new FeatureDirectionElements();
 		this.pAssociationDefinitionOrStub = new AssociationDefinitionOrStubElements();
@@ -3427,6 +3415,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* IMPORTS */ PackageImport SysML::Import:
+	//	ownedElement+=Comment*
 	//	visibility=PackageElementVisibilityIndicator?
 	//	'import' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
 	//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
@@ -3440,7 +3429,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ElementImport SysML::Membership:
-	//	visibility=PackageElementVisibilityIndicator?
+	//	PackageMemberPrefix
 	//	'import' memberElement=[SysML::Element|QualifiedName] ('as' memberName=Name)? ';';
 	public ElementImportElements getElementImportAccess() {
 		return pElementImport;
@@ -3483,9 +3472,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* PACKAGE MEMBERSHIPS */ PackageMember SysML::Membership:
-	//	ownedElement+=Comment*
-	//	//  ( annotation += StereotypeAnnotation )*
-	//	visibility=PackageElementVisibilityIndicator? (NonFeatureMemberElement
+	//	PackageMemberPrefix (NonFeatureMemberElement
 	//	| FeaturePackageMemberElement);
 	public PackageMemberElements getPackageMemberAccess() {
 		return pPackageMember;
@@ -3493,6 +3480,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPackageMemberRule() {
 		return getPackageMemberAccess().getRule();
+	}
+	
+	//fragment PackageMemberPrefix returns SysML::Membership:
+	//	ownedElement+=Comment*
+	//	//  ( annotation += StereotypeAnnotation )*
+	//	visibility=PackageElementVisibilityIndicator?;
+	public PackageMemberPrefixElements getPackageMemberPrefixAccess() {
+		return pPackageMemberPrefix;
+	}
+	
+	public ParserRule getPackageMemberPrefixRule() {
+		return getPackageMemberPrefixAccess().getRule();
 	}
 	
 	//fragment NonFeatureMemberElement returns SysML::Membership:
@@ -3588,10 +3587,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NonFeatureClassMember SysML::Membership:
-	//	ownedElement+=Comment*
-	//	//  ( annotation += StereotypeAnnotation )*
-	//	visibility=VisibilityIndicator?
-	//	NonFeatureMemberElement;
+	//	ClassMemberPrefix NonFeatureMemberElement;
 	public NonFeatureClassMemberElements getNonFeatureClassMemberAccess() {
 		return pNonFeatureClassMember;
 	}
@@ -3601,9 +3597,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FeatureClassMember SysML::FeatureMembership:
-	//	ownedElement+=Comment*
-	//	//  ( annotation += StereotypeAnnotation )*
-	//	visibility=VisibilityIndicator? (FeatureMemberElement
+	//	ClassMemberPrefix (FeatureMemberElement
 	//	// These alternatives are provided for legacy Alf backwards compatibility.	
 	//	| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition
 	//	| memberName=Name 'is' memberElement=[SysML::Feature|QualifiedName] ';');
@@ -3613,6 +3607,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFeatureClassMemberRule() {
 		return getFeatureClassMemberAccess().getRule();
+	}
+	
+	//fragment ClassMemberPrefix returns SysML::Membership:
+	//	ownedElement+=Comment*
+	//	//  ( annotation += StereotypeAnnotation )*
+	//	visibility=VisibilityIndicator?;
+	public ClassMemberPrefixElements getClassMemberPrefixAccess() {
+		return pClassMemberPrefix;
+	}
+	
+	public ParserRule getClassMemberPrefixRule() {
+		return getClassMemberPrefixAccess().getRule();
 	}
 	
 	//fragment FeatureMemberElement returns SysML::FeatureMembership:
@@ -3692,10 +3698,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AssociationFeatureMember SysML::FeatureMembership:
-	//	ownedElement+=Comment*
-	//	//  ( annotation += StereotypeAnnotation )*
-	//	visibility=VisibilityIndicator?
-	//	FeatureMemberElement;
+	//	ClassMemberPrefix FeatureMemberElement;
 	public AssociationFeatureMemberElements getAssociationFeatureMemberAccess() {
 		return pAssociationFeatureMember;
 	}
@@ -3705,9 +3708,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AssociationEndFeatureMember SysML::EndFeatureMembership:
-	//	ownedElement+=Comment*
-	//	//  ( annotation += StereotypeAnnotation )*
-	//	visibility=VisibilityIndicator? ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition
+	//	ClassMemberPrefix ('end' direction=FeatureDirection? ownedMemberElement=FeatureDefinition
 	//	| 'end' memberName=Name? 'is' memberElement=[SysML::Feature|QualifiedName] ';'
 	//	// These alternatives are provided for legacy Alf backwards compatibilty;
 	//	| direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition

@@ -23,7 +23,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ConnectorDefinition_IsKeyword_0_0_2_q;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_0_0_q;
-	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1;
+	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_p;
 	
@@ -32,7 +32,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_ConnectorDefinition_IsKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getConnectorDefinitionAccess().getIsKeyword_0_0_2());
 		match_FeaturePackageMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_0_0());
-		match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_2_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_2_0_1_1()));
+		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
 	}
@@ -65,8 +65,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ConnectorDefinition_IsKeyword_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeaturePackageMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_FeaturePackageMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1.equals(syntax))
-				emit_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
+				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
@@ -106,7 +106,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     importedPackage=[Package|Name] (ambiguity) '*' ';' (rule end)
 	 */
-	protected void emit_PackageImport_ColonColonKeyword_2_0_1_0_or_FullStopKeyword_2_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

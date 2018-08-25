@@ -60,6 +60,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Membership membership) {
+		super._createChildren(parentNode, membership)
 		var memberElement = membership.memberElement;
 		if (membership.ownedMemberElement === null && 
 				memberElement !== null) {
@@ -68,14 +69,14 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				membership.owningPackage == memberElement || memberElement._isLeaf
 			)
 		}
-		super._createChildren(parentNode, membership)
 	}
 	
 	def boolean _isLeaf(Import _import) {
-		_import.importedPackage !== null
+		_import.importedPackage === null && _import.ownedElement.isEmpty
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Import _import) {
+		super._createChildren(parentNode, _import)
 		var importedPackage = _import.importedPackage;
 		if (importedPackage !== null) {
 			createEObjectNode(parentNode, importedPackage, 
@@ -90,6 +91,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
+		super._createChildren(parentNode, feature)
 		var referencedTypes = feature.referencedType
 		if (!referencedTypes.isEmpty) {
 			createEStructuralFeatureNode(parentNode, feature, 
@@ -98,7 +100,6 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				referencedTypes.get(0) == feature || referencedTypes.get(0)._isLeaf
 			)
 		}
-		super._createChildren(parentNode, feature)
 	}
 
 	def boolean _isLeaf(Generalization generalization) {

@@ -1,9 +1,7 @@
 // Sample Alf code
 package Classes {
 	
-	feature f: A {
-		
-	}
+	feature f: A;
 
 	public class A {
 		feature b: B;

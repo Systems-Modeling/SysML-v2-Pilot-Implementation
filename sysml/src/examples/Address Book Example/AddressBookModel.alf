@@ -1,8 +1,9 @@
+import ScalarValues::*;
 package AddressBookModel {
 	
 	class Entry {
-		name: PrimitiveTypes.String;
-		address: PrimitiveTypes.String;
+		name: String;
+		address: String;
 	}
 	
 	class AddressBook {

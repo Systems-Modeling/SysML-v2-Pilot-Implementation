@@ -2,25 +2,28 @@
  * Example vehicle definitions model.
  **/
 package VehicleDefinitions {
+	import ScalarValues::*;
+	import Quantities::*;
+	import ISQ::*;
 	
 	/* VALUE TYPES */
 	
 	/** Torque unit value type defined as a force unit times a length unit. **/
-	class TorqueUnit specializes Quantities::DerivedUnit {
-		feature unitFactor1 subsets Quantities::DerivedUnit::unitFactor {
-			feature unit: ISQ::ForceUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
-			feature exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
+	class TorqueUnit specializes DerivedUnit {
+		feature unitFactor1 subsets unitFactor {
+			feature unit: ForceUnit redefines MeasurementUnitPowerFactor::unit;
+			feature exponent redefines MeasurementUnitPowerFactor::exponent = 1;
 		}
-		feature unitFactor2 subsets Quantities::DerivedUnit::unitFactor {
-			feature unit: ISQ::LengthUnit redefines Quantities.MeasurementUnitPowerFactor.unit;
-			feature exponent redefines Quantities.MeasurementUnitPowerFactor.exponent = 1;
+		feature unitFactor2 subsets unitFactor {
+			feature unit: LengthUnit redefines MeasurementUnitPowerFactor::unit;
+			feature exponent redefines MeasurementUnitPowerFactor::exponent = 1;
 		}
 	}
 	
 	/** Torque quantity value type defined as a real value with a torque unit. **/
-	class Torque specializes Quantities.Quantity {
-		feature numericValue: ScalarValues::Real redefines Quantities::Quantity::numericValue;
-		feature unit: TorqueUnit redefines Quantities::Quantity::unit;
+	class Torque specializes Quantity {
+		feature numericValue: Real redefines Quantity::numericValue;
+		feature unit: TorqueUnit redefines Quantity::unit;
 	}
 	
 	/* BLOCKS */

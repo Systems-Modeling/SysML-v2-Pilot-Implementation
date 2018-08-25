@@ -8,29 +8,29 @@ package VehicleUsages {
 
 	/* VALUES */
 	 
-	'N・m': VehicleDefinitions::TorqueUnit = SI::N * SI::m;
+	'N・m': VehicleDefinitions::TorqueUnit = N * m;
 	
-	T1: VehicleDefinitions::Torque = 10.0@['N・m']; // VehicleDefinitions::Torque(10.0, 'N・m')
-	T2: VehicleDefinitions::Torque = 20.0@['N・m']; // VehicleDefinitions::Torque(20.0, 'N・m')
+	T1: Torque = 10.0@['N・m']; // Torque(10.0, 'N・m')
+	T2: Torque = 20.0@['N・m']; // Torque(20.0, 'N・m')
 	
 	/* PARTS */
 	
 	/** Narrow-rim wheel configuration with 4 to 5 lugbolts. **/
-	narrowRimWheel: VehicleDefinitions::Wheel {
-		part lugbolt: VehicleDefinitions::Lugbolt[4..5];
+	narrowRimWheel: Wheel {
+		part lugbolt: Lugbolt[4..5];
 	}
 	
 	/** Wide-rim wheel configuration with 4 to 6 lugbolts. **/	
-	wideRimWheel: VehicleDefinitions::Wheel {
-		part lugbolt: VehicleDefinitions::Lugbolt[4..6];
+	wideRimWheel: Wheel {
+		part lugbolt: Lugbolt[4..6];
 	}
 
 	/** Basic Vehicle configuration showing a part hierarchy. **/
-	vehicle_C1: VehicleDefinitions::Vehicle {
-		part frontAxleAssembly: VehicleDefinitions::AxleAssembly {
+	vehicle_C1: Vehicle {
+		part frontAxleAssembly: AxleAssembly {
 			part frontWheel[2] redefines narrowRimWheel {
 				part lugbolt[4] redefines narrowRimWheel::lugbolt {
-					feature tighteningTorque redefines VehicleDefinitions::Lugbolt::tighteningTorque = T1;
+					feature tighteningTorque redefines Lugbolt::tighteningTorque = T1;
 				}
 			}
 			part frontAxle: VehicleDefinitions::Axle;
@@ -39,10 +39,10 @@ package VehicleUsages {
 		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
 			part rearWheel[2] redefines wideRimWheel {
 				part lugbolt[6] redefines wideRimWheel::lugbolt {
-					feature tighteningTorque redefines VehicleDefinitions::Lugbolt::tighteningTorque = T2;
+					feature tighteningTorque redefines Lugbolt::tighteningTorque = T2;
 				}
 			}
-			part rearAxle: VehicleDefinitions::Axle;			
+			part rearAxle: Axle;			
 		}
 	}
 	
@@ -57,47 +57,47 @@ package VehicleUsages {
 			}
 			
 			part frontAxle redefines vehicle_C1::frontAxleAssembly::frontAxle {
-				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
-				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
+				port leftMountingPoint: AxleMountIF;
+				port rightMountingPoint: AxleMountIF;
 			}
 		
-			connector leftFrontMount: VehicleDefinitions::Mounting is 
+			connector leftFrontMount: Mounting is 
 				frontAxle::leftMountingPoint to leftFrontWheel::hub;
 				
-			connector rightFrontMount: VehicleDefinitions::Mounting is 
+			connector rightFrontMount: Mounting is 
 				frontAxle::rightMountingPoint to rightFrontWheel::hub;
 		}
 		
 		part rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
 			part leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[1] {
-				port hub: VehicleDefinitions::WheelHubIF;
+				port hub: WheelHubIF;
 			}
 			part rightRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[2] {
-				port hub: VehicleDefinitions::WheelHubIF;
+				port hub: WheelHubIF;
 			}
 
 			part rearAxle redefines vehicle_C1::rearAxleAssembly::rearAxle {
-				port leftMountingPoint: VehicleDefinitions::AxleMountIF;
-				port rightMountingPoint: VehicleDefinitions::AxleMountIF;
+				port leftMountingPoint: AxleMountIF;
+				port rightMountingPoint: AxleMountIF;
 			}
 			
-			connector leftRearMount: VehicleDefinitions::Mounting is 
+			connector leftRearMount: Mounting is 
 				rearAxle::leftMountingPoint to leftRearWheel::hub;
 				
-			connector rightRearMount: VehicleDefinitions::Mounting is 
+			connector rightRearMount: Mounting is 
 				rearAxle::rightMountingPoint to rightRearWheel::hub;
 		}		
 	}
 	
 	/** Further specialized configuration with a connector to a deeply-nested port. **/
 	vehicle_C3 redefines vehicle_C2 {
-		part transmission: VehicleDefinitions::Transmission {
-			port out drive: VehicleDefinitions::DriveIF;
+		part transmission: Transmission {
+			port out drive: DriveIF;
 		}
 		
 		part rearAxleAssembly redefines vehicle_C2::rearAxleAssembly {
 			part rearAxle redefines vehicle_C2::rearAxleAssembly::rearAxle {
-				port in drive: VehicleDefinitions::DriveIF;
+				port in drive: DriveIF;
 			}
 		}
 		

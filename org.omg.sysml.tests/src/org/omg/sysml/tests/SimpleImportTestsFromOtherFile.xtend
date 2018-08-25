@@ -52,7 +52,7 @@ class SimpleImportTestsFromOtherFile {
 		val result = parseHelper.parse('''
 			package test {
 				import OuterPackage::*;
-				class Try is A{}
+				class Try specializes A{}
 				feature try : B::b;
 			}
 			
@@ -70,7 +70,7 @@ class SimpleImportTestsFromOtherFile {
 		val result = parseHelper.parse('''
 			package test {
 				import OuterPackage::*;
-				class Try is B{
+				class Try specializes B{
 					feature try : b;
 				}
 			}

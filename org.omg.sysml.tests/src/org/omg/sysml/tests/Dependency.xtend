@@ -60,7 +60,7 @@ class Dependency {
 		parseHelper.parse('''
 			package OuterPackage2{
 				import OuterPackage::*;
-				class C is B{
+				class C specializes B{
 					feature c;
 				}
 			}
@@ -75,7 +75,7 @@ class Dependency {
 		parseHelper.parse('''
 			package OuterPackage2{
 				import OuterPackage::B;
-				class C is B{
+				class C specializes B{
 					feature c;
 				}
 			}
@@ -89,7 +89,7 @@ class Dependency {
 		parseHelper.parse('''
 			package OuterPackage3{
 				import OuterPackage2::C;
-				class D is C{
+				class D specializes C{
 					feature f : b;
 				}
 			}
@@ -117,7 +117,7 @@ class Dependency {
 		parseHelper.parse('''
 			package PackageAlias2{
 				import PackageAlias1::*;
-				class B is A_alias{
+				class B specializes A_alias{
 					class b is a_alias{}
 				}
 			}

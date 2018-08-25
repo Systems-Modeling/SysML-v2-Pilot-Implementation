@@ -1,3 +1,12 @@
 /.AlfParsingTest.java._trace
 /.AlfParsingTest.xtendbin
 /AlfParsingTest.java
+/.Dependency.java._trace
+/.MemberNameTests.java._trace
+/.MultipleImportTests.java._trace
+/.ParsingTests.java._trace
+/.ShadowingTest.java._trace
+/.SimpleImportAsFeatureTests.java._trace
+/.SimpleImportTests.java._trace
+/.SimpleImportTestsFromOtherFile.java._trace
+/.VisibilityTests.java._trace

@@ -53,7 +53,7 @@ class SimpleImportTests {
 					import test::*;
 					class b{
 						import A::*;
-						class d is d{}
+						class d specializes d{}
 					}
 				}
 			}
@@ -110,11 +110,11 @@ class SimpleImportTests {
 			package test{
 				class A{
 					import test::B::*;
-					class a is b{}
+					class a specializes b{}
 				}
 				class B {
 					import test::A::*;
-					class b is a{}
+					class b specializes a{}
 				}
 			}
 		''')
@@ -125,13 +125,13 @@ class SimpleImportTests {
 	}
 
 	@Test
-	def void testImportPackageAndInheritahceFromContainer() {
+	def void testImportPackageAndInheritanceFromContainer() {
 
 		val result = parseHelper.parse('''
 			package test{
 				class A {
 					import test::*;
-					class a is A{}
+					class a specializes A{}
 				}
 			}
 		''')

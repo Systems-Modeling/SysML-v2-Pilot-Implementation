@@ -50,7 +50,7 @@ class MemberNameTests {
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
-				A_alias is A;
+				class A_alias is A;
 				feature a: A_alias;
 			}
 		''')
@@ -66,7 +66,7 @@ class MemberNameTests {
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
-				class B is test::A{}
+				class B specializes test::A{}
 			}
 		''')
 
@@ -82,9 +82,9 @@ class MemberNameTests {
 			package test{
 				package P{
 					class A {}
-					A_alias is A;
+					class A_alias is A;
 				}
-				P1 is P;
+				package P1 is P;
 				feature a: P1::A_alias;
 			}
 		''')
@@ -101,7 +101,7 @@ class MemberNameTests {
 			package test{
 				package P{
 					class A {}
-					A_alias is A;
+					class A_alias is A;
 				}
 				feature a: P1::A_alias;
 			}
@@ -119,9 +119,9 @@ class MemberNameTests {
 			package test{
 				class A{
 					class a {}
-					aa is a;
+					class aa is a;
 				}
-				class B is A{
+				class B specializes A{
 					feature b: aa;
 					b_alias is b;
 				}
@@ -141,11 +141,11 @@ class MemberNameTests {
 				class A{
 					class a {}
 				}
-				class B is A{
-					class b is a {}
+				class B specializes A{
+					class b specializes a {}
 				}
-				class C is B{
-					class c is a {}
+				class C specializes B{
+					class c specializes a {}
 				}
 			}
 		''')
@@ -162,13 +162,13 @@ class MemberNameTests {
 				class A{
 					class a {}
 				}
-				class B is A{
-					class b is a {}
+				class B specializes A{
+					class b specializes a {}
 				}
-				class C is B{
-					class c is a {}
+				class C specializes B{
+					class c specializes a {}
 				}
-				class D is C::a{}
+				class D specializes C::a{}
 			}
 		''')
 		EcoreUtil2.resolveAll(result)
@@ -186,15 +186,15 @@ class MemberNameTests {
 						class aa{}		
 					}
 				}
-				class B is A{
-					class b is a {}
+				class B specializes A{
+					class b specializes a {}
 				}
-				class C is B{
-					class c2 is a {}
-					class c2 is b {}
+				class C specializes B{
+					class c2 specializes a {}
+					class c2 specializes b {}
 				}
-				class D is C::a{
-					class d is aa  {}
+				class D specializes C::a{
+					class d specializes aa  {}
 				}
 			}
 		''')
@@ -210,10 +210,10 @@ class MemberNameTests {
 			package test{
 				class A{
 					class a {}
-					aa is a;
+					class aa is a;
 				}
 				AA is A;
-				class B is AA{
+				class B specializes AA{
 					feature b: aa;
 					b_alias is b;
 				}
@@ -231,9 +231,9 @@ class MemberNameTests {
 		val result = parseHelper.parse('''
 			package test {
 				private class something{}
-				private k is something;
+				private class k is something;
 				class hello{
-					class test is k{}
+					class test specializes k{}
 				}
 			}
 		''')

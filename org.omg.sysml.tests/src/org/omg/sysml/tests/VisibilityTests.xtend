@@ -118,7 +118,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::c_Public as aliass;
-				class Try is aliass{
+				class Try specializes aliass{
 					feature feature4 : c_public;
 				}
 			}
@@ -136,7 +136,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::c_Public;
-				class Try is c_Public{
+				class Try specializes c_Public{
 					feature feature4 : c_public;
 				}
 			}
@@ -189,7 +189,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage;
-				class Try is c_Public{
+				class Try specializes c_Public{
 					feature feature4 : c_public;
 				}
 			}
@@ -290,7 +290,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 						import VisibilityPackage::c_Public;
-						class try is c_Public::c_private{}
+						class try specializes c_Public::c_private{}
 					}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -328,7 +328,7 @@ class VisibilityTests {
 			package Classes {
 				import VisibilityPackage::c_clazz;
 				
-				class try is c_clazz::c_Public::c_protect{}
+				class try specializes c_clazz::c_Public::c_protect{}
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -345,7 +345,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
-				class try is c_clazz::c_Protect::c_publicc{}
+				class try specializes c_clazz::c_Protect::c_publicc{}
 			}
 		''', rs)
 		tester.validate(result).assertAll(
@@ -381,7 +381,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::c_clazz;
-				class try is c_clazz::c_Package::c_publicc{}
+				class try specializes c_clazz::c_Package::c_publicc{}
 				feature f : c_clazz::c_Package::c_publicc;
 			}
 		''', rs)
@@ -401,7 +401,7 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::c_Private;
-				class try is c_Private::c_private{}
+				class try specializes c_Private::c_private{}
 				feature f : c_Private::c_private;
 			}
 		''', rs)
@@ -416,13 +416,13 @@ class VisibilityTests {
 	}
 
 	@Test
-	def void testImort3() {
+	def void testImport3() {
 		val rs = getDependencyVisibilityPackage
 
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
-				class Try is c_Private{}
+				class Try specializes c_Private{}
 			}
 			
 		''', rs)
@@ -435,13 +435,13 @@ class VisibilityTests {
 	}
 
 	@Test
-	def void testImort4() {
+	def void testImport4() {
 		val rs = getDependencyVisibilityPackage
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
-				class Try is c_Public{
-					class try is c_private{}
+				class Try specializes c_Public{
+					class try specializes c_private{}
 				}
 			}
 			
@@ -455,12 +455,12 @@ class VisibilityTests {
 	}
 
 	@Test
-	def void testImort5() {
+	def void testImport5() {
 		val rs = getDependencyVisibilityPackage
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
-				class Try is c_Private::c_public{}
+				class Try specializes c_Private::c_public{}
 			}
 			
 		''', rs)
@@ -473,7 +473,7 @@ class VisibilityTests {
 	}
 
 	@Test
-	def void testImort6() {
+	def void testImport6() {
 		val rs = getDependencyVisibilityPackage
 
 		val result = parseHelper.parse('''

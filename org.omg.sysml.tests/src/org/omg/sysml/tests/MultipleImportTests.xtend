@@ -61,7 +61,7 @@ class MultipleImportTests {
 		parseHelper.parse('''
 			package OuterPackage3{
 				import OuterPackage2::C;
-				class D is C{
+				class D specializes C{
 					feature f : b;
 				}
 			}
@@ -75,7 +75,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage2::C;
-				class D is C{
+				class D specializes C{
 					feature try : b;
 				}
 			}
@@ -94,7 +94,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage2::C as CC;
-				class D is CC{
+				class D specializes CC{
 					feature try : b;
 				}
 			}
@@ -148,7 +148,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage3::D;
-				class EE is D{
+				class EE specializes D{
 					feature try : b;
 				}
 			}
@@ -166,7 +166,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage3::D;
-				class EE is B{
+				class EE specializes B{
 					feature try : b;
 				}
 			}
@@ -186,7 +186,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage2::*;
-				class Test is C {
+				class Test specializes C {
 					feature try : b;
 				}
 			}
@@ -205,7 +205,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage2::C;
-				class Test is C {
+				class Test specializes C {
 					feature try : b;
 				}
 			}
@@ -224,7 +224,7 @@ class MultipleImportTests {
 		val result = parseHelper.parse('''
 			package test{
 				import OuterPackage2::*;
-				class Test is C {
+				class Test specializes C {
 					feature try : b;
 				}
 			}

@@ -71,7 +71,7 @@ class ParsingTests {
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
-				class B is test::A{}
+				class B specializes test::A{}
 			}
 		''')
 

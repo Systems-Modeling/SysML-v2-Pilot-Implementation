@@ -64,7 +64,7 @@ class ShadowingTest {
 			package test{
 				class A{
 					class A{
-						class B is A{}
+						class B specializes A{}
 					}
 				}
 			}
@@ -92,8 +92,8 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A{
-					class b is a1{}
+				class B specializes A{
+					class b specializes a1{}
 				}
 			}
 		''')
@@ -115,8 +115,8 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A{
-					class b is a2{}
+				class B specializes A{
+					class b specializes a2{}
 				}
 			}
 		''')
@@ -133,10 +133,10 @@ class ShadowingTest {
 	def void testSameNamesInnerClassAndOuterClassWithAlias() {
 		val result = parseHelper.parse('''
 			package test{
-				A is A1;
+				class A is A1;
 				class A1{
 					class A{
-						class B is A{}
+						class B specializes A{}
 					}
 				}
 			}
@@ -159,15 +159,15 @@ class ShadowingTest {
 	def void testSameNamesGoodCaseWithAlias() {
 		val result = parseHelper.parse('''
 			package test{
-				A1 is A;
+				class A1 is A;
 				class A{
 					class a1{}
 				}
 				class A{
 					class a2{}
 				}
-				class B is A{
-					class b is a1{}
+				class B specializes A{
+					class b specializes a1{}
 				}
 			}
 		''')
@@ -195,8 +195,8 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A{
-					class b is a2{}
+				class B specializes A{
+					class b specializes a2{}
 				}
 			}
 		''')
@@ -216,8 +216,8 @@ class ShadowingTest {
 		val result = parseHelper.parse('''
 			package test{
 				import SamePackage::container::*;
-				class something1 is A{}
-				class something2 is B{}
+				class something1 specializes A{}
+				class something2 specializes B{}
 			}
 		''', rs)
 
@@ -234,8 +234,8 @@ class ShadowingTest {
 		val result = parseHelper.parse('''
 			package test{
 				import SamePackage::container;
-				class something1 is container::A{}
-				class something2 is container::B{}
+				class something1 specializes container::A{}
+				class something2 specializes container::B{}
 			}
 		''', rs)
 		Assert.assertNotNull(result)
@@ -254,7 +254,7 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A::a1 {}
+				class B specializes A::a1 {}
 			}
 		''', rs)
 
@@ -273,7 +273,7 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A::a2 {}
+				class B specializes A::a2 {}
 			}
 		''', rs)
 
@@ -292,8 +292,8 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A {
-					class b is a1{}
+				class B specializes A {
+					class b specializes a1{}
 				}
 			}
 		''', rs)
@@ -313,8 +313,8 @@ class ShadowingTest {
 				class A{
 					class a2{}
 				}
-				class B is A {
-					class b is a2 {}
+				class B specializes A {
+					class b specializes a2 {}
 				}
 			}
 		''', rs)
@@ -336,8 +336,8 @@ class ShadowingTest {
 				}
 				class inner{
 					import OuterPackage::*;
-					class B is A {
-						class b is a1{}
+					class B specializes A {
+						class b specializes a1{}
 					}
 				}
 			}
@@ -359,8 +359,8 @@ class ShadowingTest {
 				}
 				class inner{
 					import OuterPackage::*;
-					class B is A {
-						class b is a2{}
+					class B specializes A {
+						class b specializes a2{}
 					}
 				}
 			}
@@ -380,8 +380,8 @@ class ShadowingTest {
 
 		val result = parseHelper.parse('''
 			package Test1{
-				class A is A.B{
-					class B is A{}
+				class A specializes A.B{
+					class B specializes A{}
 				}
 			}
 		''', rs)
@@ -402,7 +402,7 @@ class ShadowingTest {
 			package Test1{
 				class A {
 					import B::*;
-					class B is A{}
+					class B specializes A{}
 				}
 			}
 		''', rs)
@@ -440,7 +440,7 @@ class ShadowingTest {
 
 		val result = parseHelper.parse('''
 			package Test1{
-				class A is A.B {
+				class A specializes A.B {
 					class B {
 						import A::*;
 					}
@@ -462,11 +462,11 @@ class ShadowingTest {
 
 		val result = parseHelper.parse('''
 			package Test1{
-				class A is D{
-					class B is C{}
+				class A specializes D{
+					class B specializes C{}
 				}
-				class C is A{}
-				class D is A.B{}
+				class C specializes A{}
+				class D specializes A.B{}
 			}
 		''', rs)
 
@@ -515,8 +515,8 @@ class ShadowingTest {
 			package test{
 				import PackageAlias1::*;
 				class A{}
-				class test_A is A{}
-				class test_alias is A_alias{}
+				class test_A specializes A{}
+				class test_alias specializes A_alias{}
 			}
 		''', rs)
 
@@ -545,8 +545,8 @@ class ShadowingTest {
 			package test{
 				import PackageAlias1::*;
 				class A{}
-				A_alias is A;
-				class test_A is A_alias{}
+				class A_alias is A;
+				class test_A specializes A_alias{}
 			}
 		''', rs)
 

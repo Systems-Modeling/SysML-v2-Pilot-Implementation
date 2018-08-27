@@ -4,6 +4,28 @@
 
 ### Development Environment
 
+#### Install using oomph
+
+The project provides a configuration file for the [Eclipse Installer](https://wiki.eclipse.org/Eclipse_Installer) which eases the creation of reproducible development environments. 
+
+1. Clone our GitHub repository from the URL below.
+   * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
+   
+2. Open Eclipse Installer and switch to Advanced mode:
+![switch to advanced mode](http://www.vogella.com/tutorials/Oomph/img/xoomph-installer.png.pagespeed.ic.nXWhT84AWo.webp)
+
+3. In the product list, select "Eclipse Modeling Tools" with Oxygen version
+
+4. Add the Sysml2 project as user project by selecting the setup file from the local git repository
+  * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
+
+5. Make sure it's selected:
+![oomph projects](oomph-projects.png)
+
+6. On the next page, set the location of the local git repository, then press finish
+
+#### Manual installation
+
 1. Install Eclipse 4.7 (Oxygen) and Xtext.
    * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
       * http://www.eclipse.org/downloads/packages/eclipse-ide-java-and-dsl-developers/oxygen2

@@ -17,7 +17,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. In the product list, select "Eclipse Modeling Tools" with Oxygen version
 
 4. Add the Sysml2 project as user project by selecting the setup file from the local git repository
-  * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
+   * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
 
 5. Make sure it's selected:
 ![oomph projects](oomph-projects.png)

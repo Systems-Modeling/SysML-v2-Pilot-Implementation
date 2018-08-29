@@ -213,7 +213,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
-	 * @model derived="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getReferencedType();

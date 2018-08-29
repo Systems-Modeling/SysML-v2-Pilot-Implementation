@@ -67,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
         eType="#//Class" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedType" ordered="false"
-        upperBound="-1" eType="#//Class" derived="true"/>
+        upperBound="-1" eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
         upperBound="-1" eType="#//Class" derived="true" eOpposite="#//Class/owningFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeature" ordered="false"

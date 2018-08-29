@@ -1,0 +1,163 @@
+package 'Parts Tree' {
+	
+	package 'Create Generic Hierarchical Structure' {
+		
+		/* Definitions */
+		
+		class Vehicle {
+			feature mass;
+		}
+		
+		class AxleAssembly { }
+		
+		class Axle { }
+		
+		class Wheel { }
+		
+		/* Usages */
+		
+		/** 
+		 * vehicle is a package-owned feature of type Vehicle.
+		 * It is not marked as a "part", because that is only
+		 * valid in the context of a nested feature.
+		 */
+		feature vehicle: Vehicle {
+			
+			/**
+			 * frontAxleAssembly is a nested feature of feature vehicle.
+			 * It is marked as a "part", which indicates that it is a
+			 * composite part of the containing feature.
+			 * 
+			 * (And similarly for rearAxleAssembly.)
+			 */
+			part frontAxleAssembly: AxleAssembly {
+				part frontAxle: Axle;
+				
+				/** 
+				 * frontWheel is a nested feature of type Wheel with
+				 * multiplicity "2". This means that this axle assembly
+				 * must have exactly two wheels. However, there is still
+				 * only one frontWheel feature. The feature is "oredered",
+				 * so that the first wheel can be distinguished from the
+				 * second.
+				 */
+				part frontWheel: Wheel[2] ordered;
+			}
+			
+			part rearAxleAssembly: AxleAssembly {
+				part rearAxle: Axle;
+				part rearWheel: Wheel[2] ordered;
+			}
+			
+		}
+	}
+	
+	package 'Copy of Generic Hierarchical Structure' {
+		import 'Create Generic Hierarchical Structure'::*;
+		
+		/* Usages */
+		
+		/**
+		 * vehicle_c1 is a redefinition of vehicle. It is effectively
+		 * a "virtual copy". However, any change to the original
+		 * will also be propagated to the "copy".
+		 * 
+		 * Even though the part structure does not appear in the
+		 * redefinition, the parts of 'vehicle' are inherited as
+		 * members of 'vehicle_c1'. Thus, vehicle_c1::frontAxleAssembly
+		 * names the same (M1) model element as vehicle::frontAxleAssembly,
+		 * but vehicle_c1.frontAxleAssembly will be a distinct (M0) object
+		 * from vehicle.frontAxleAssembly.
+		 */
+		feature vehicle_c1 redefines vehicle;
+	}
+	
+	package 'Create Localized Usages' {
+		import 'Create Generic Hierarchical Structure'::*;
+		
+		/* Definitions */
+		
+		class FrontAxle specializes Axle { }		
+		class RearAxle specializes Axle { }
+		
+		/* Usages */
+		
+		/**
+		 * 'vehicle_c1' is a physical copy of the original feature 'vehicle'
+		 * from the 'Create Generic Hierarchical Structure' package, with
+		 * local changes applied (i.e., using FrontAxle and RearAxle as types). 
+		 * Any changes to the original will NOT be propagated to the copy.
+		 * There is also no link from the copy back to the original, or
+		 * any versioning metadata.
+		 * 
+		 * Note that, since it is in a different namespace, the same name
+		 * can be used as 'vehicle_c1' in 'Copy of Generic Hierarchical Structure'.
+		 */
+		feature vehicle_c1: Vehicle {
+			
+			part frontAxleAssembly: AxleAssembly {
+				part frontAxle: FrontAxle;
+				part frontWheel: Wheel[2] ordered;
+			}
+			
+			part rearAxleAssembly: AxleAssembly {
+				part rearAxle: RearAxle;
+				part rearWheel: Wheel[2] ordered;
+			}
+			
+		}
+	}
+	
+	package 'Create Unambiguous Deeply Nested Structure' {
+		import 'Create Generic Hierarchical Structure'::*;
+		import 'Create Localized Usages'::*;
+		
+		/* Usages */
+		
+		/**
+		 * 'vehicle_c2' is a redefinition of 'vehicle_c1' in 'Create Localized Usages',
+		 * not a physical copy. It introduces shorthand naming for each of the wheels
+		 * in the front and rear axle assemblies.
+		 */
+		feature vehicle_c2 redefines vehicle_c1 {
+			
+			/**
+			 * The structure of the 'frontAxleAssembly' part from 'vehicle_c1' is
+			 * redefined, without changing the name or type of the part. The
+			 * 'axle' and 'frontWheel' parts of 'frontAxleAssembly' are inherited
+			 * from 'vehicle_c1'.
+			 * 
+			 * (And similarly for 'rearAxleAssembly'.)
+			 */
+			part redefines vehicle_c1::frontAxleAssembly {
+				/*
+				 * NOTE: It is currently necessary to use qualified names for 
+				 * the inherited members here. The feature 'frontWheel" is
+				 * introduced solely to provide allow a non-qualified name to
+				 * be used in the following declarations.
+				 */
+				part frontWheel redefines vehicle_c1::frontAxleAssembly::frontWheel;
+				
+				/**
+				 * 'frontWheel_1' is a separate feature from 'frontWheel',
+				 * but it essentially provides an alternate name specifically
+				 * for the first of the two front wheels, as given by the
+				 * expression frontWheel[1].
+				 * 
+				 * (And similarly for 'frontWheel_2'.)
+				 */
+				part frontWheel_1 subsets frontWheel = frontWheel[1];
+				part frontWheel_2 subsets frontWheel = frontWheel[2];
+			}
+			
+			part redefines vehicle_c1::rearAxleAssembly {
+				part rearWheel redefines vehicle_c1::rearAxleAssembly::rearWheel;
+				
+				part rearWheel_1 subsets rearWheel = rearWheel[1];
+				part rearWheel_2 subsets rearWheel = rearWheel[2];
+			}
+			
+		}
+		
+	}
+}

@@ -1,0 +1,233 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+/*******************************************************************************
+ * Transform an Ecore model into a UML instance model representing the Ecore model
+ * as an instantiation of a UML model of the metamodel of the Ecore model.
+ *******************************************************************************/
+transformation Ecore2UML(in metaModel : UML, in ecore : Ecore, out instanceModel : UML);
+
+main() {
+	loadClassifiers(metaModel);
+	ecore.objects()[EObject]->map toInstanceSpecification();
+	var elements := instanceModel.rootObjects()[PackageableElement];
+	object Model {
+		name := "Model";
+		packagedElement := elements;
+	};
+	var metamodelRoot := metaModel.rootObjects()![Model];
+	object Model {
+		name := metamodelRoot.name;
+		packagedElement := metamodelRoot.packagedElement;		
+	}
+}
+
+/* Global State */
+
+property classifierDictionary : Dict(String, Classifier);
+property associationDictionary : Dict(String, Association);
+
+helper loadClassifiers(in model : UML) {
+	var objects = model.objects();
+	objects[Classifier]->forEach(c) {
+		classifierDictionary->put(c.name, c);
+	};
+	objects[Association]->forEach(a) {
+		var navigableEnd: Property;
+		var oppositeEnd: Property;
+	    if a.ownedEnd->includes(a.memberEnd->at(2)) then {
+	     	navigableEnd := a.memberEnd->at(1);
+	     	oppositeEnd := a.memberEnd->at(2);
+		} else { 
+	     	navigableEnd := a.memberEnd->at(2);
+	     	oppositeEnd := a.memberEnd->at(1);
+		} endif ;
+//		log("Load association: " + oppositeEnd.type.name + "." + navigableEnd.name);
+		associationDictionary->put(oppositeEnd.type.name + "." + navigableEnd.name, a);
+	}
+}
+
+query getClassifier(in name : String) : Classifier {
+	return classifierDictionary->get(name);
+}
+
+query getAssociation(in owner : String, in role : String) : Association {
+//	log ("Get association: " + owner + "." + role);
+	return associationDictionary->get(owner + "." + role);
+}
+
+property counter : Integer = 0;
+
+helper getNextCounter() : Integer {
+	counter := counter + 1;
+	return counter;
+}
+
+/* EObject */
+
+mapping EObject::toInstanceSpecification() : InstanceSpecification {
+	var objectName = self.name();
+	log("Mapping EObject " + objectName + " to InstanceSpecification");
+	var type := getClassifier(self.metaClassName());
+	log ("  type: " + if type = null then "<null>" else type.name endif);
+	if type <> null then {
+		name := objectName;
+		classifier := type;
+		slot := self.eClass().eAllAttributes.mapToSlot(objectName, self, type);
+		self.eClass().eAllReferences->mapToLink(objectName, self, type);
+	} endif;
+}
+
+helper EObject::name() : String {
+    var name := self.metaClassName();
+	var nameFeature := self.eClass().eAllStructuralFeatures![name = "name"];
+	if nameFeature <> null then {
+		var obj := self.eGet(nameFeature);
+		if obj <> null then {
+			name := obj.toString();
+		} endif;
+	} endif;
+	return name + "_" + getNextCounter().toString();
+}
+
+helper EObject::mapToLink(in associationName: String, in association : Association, in end1 : Property, in end2 : Property, in type : Classifier, in eObject : EObject) : InstanceSpecification {
+	var instance := eObject.mapToInstanceValue();
+	var val := self.mapToValueSpecification(type);
+	return object InstanceSpecification {
+		name := instance.name + "-" + associationName + "-" + val.name;
+		classifier := association;
+		slot += object Slot {
+			definingFeature := end1;
+			value := val;
+		};
+		slot += object Slot {
+			definingFeature := end2;
+			value := instance;
+		};
+	}
+}
+
+helper EObject::mapToInstanceValue() : InstanceValue {
+	return
+		object InstanceValue {
+			instance := self.map toInstanceSpecification();
+			name := instance.name;
+			type := instance.classifier![true];
+		};
+}
+
+/* EStructuralFeature */
+
+helper EStructuralFeature::mapToSlot(in objectName: String, in eObject: EObject, in type: Classifier) : Slot {
+	log("Mapping EStructuralFeature " + objectName + "." + self.name + " to Slot");
+	var feature := type.getAllAttributes()![name = self.name];
+	log("  definingFeature: " + if feature = null then "<null>" else feature.name endif);
+	return object Slot {
+		definingFeature := feature;
+		value := eObject.eGet(self).mapToValueSpecification(getClassifier(self.eType.name));
+	}
+}
+
+/* EReference */
+
+helper EReference::mapToLink(in objectName: String, in eObject: EObject, in type : Classifier)  {	
+	log("Mapping EReference " + objectName + "." + self.name + " to Link");
+	var association := getAssociation(type.name, self.name);
+	if association = null then {
+		log(" association: <null>");
+	} else {
+		var associationName := association.name();
+		log("  association: " + associationName);
+
+		var end1: Property;
+		var end2: Property;
+		if association.memberEnd->at(1).name = self.name then {
+			end1 := association.memberEnd->at(1);
+			end2 := association.memberEnd->at(2);
+		} else {
+			end1 := association.memberEnd->at(2);
+			end2 := association.memberEnd->at(1);
+		} endif;
+		log("  end1: " + end1.name);
+		log("  end2: " + end2.name);
+		
+		var classifier := getClassifier(self.eType.name);
+		var value := eObject.eGet(self);
+		if self.upperBound = 1 then {
+			value.oclAsType(EObject).mapToLink(associationName, association, end1, end2, classifier, eObject);
+		} else {
+			value.oclAsType(Sequence(EObject))->mapToLink(associationName, association, end1, end2, classifier, eObject);
+		} endif;
+	} endif;
+}
+
+
+query Association::name(): String {
+	var associationName := self.name;
+	if associationName = null or associationName = "" then {
+		associationName := "A_" + self.memberEnd->at(1).name + "_" + self.memberEnd->at(2).name;
+	} endif;
+	return associationName;
+}
+
+/* OclAny */
+
+helper OclAny::umlOpaqueExpression(in classifier : Type) : OpaqueExpression {
+	var image := self.toString();
+	log("  value: " + image);
+	log("  type: " + 
+		if classifier = null then "<null>" else 
+		if classifier.name = null then "<anonymous>" 
+		else classifier.name endif endif);
+	return
+		object OpaqueExpression {
+			body := image;
+			type := classifier;
+		}
+}
+
+helper OclAny::mapToValueSpecification(in classifier : Type) : ValueSpecification {
+	return
+	 	if classifier <> null and classifier.oclIsKindOf(Enumeration) then
+			self.mapToEnumerationValue(classifier.oclAsType(Enumeration))
+		else if self.oclIsKindOf(EObject) then
+			self.oclAsType(EObject).mapToInstanceValue()
+		else
+			self.umlOpaqueExpression(classifier)
+		endif endif;
+}
+
+helper OclAny::mapToEnumerationValue(in enumeration : Enumeration) : InstanceValue {
+	log("  enumeration literal: " + self.toString());
+	log("  enumeration: " + enumeration.name);
+	return
+		object InstanceValue {
+			instance := enumeration.member[EnumerationLiteral]![name = self.toString()];
+			name := self.toString();
+			type := enumeration;
+		}
+}

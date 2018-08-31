@@ -8,8 +8,7 @@
 
 The project provides a configuration file for the [Eclipse Installer](https://wiki.eclipse.org/Eclipse_Installer) which eases the creation of reproducible development environments. 
 
-1. Install [Eclipse 4.7 (Oxygen)](https://www.eclipse.org/downloads/packages/release/oxygen/3a), if you don't already have it installed,
-and the [Eclipse Installer](https://wiki.eclipse.org/Eclipse_Installer).
+1. Download the Eclipse Installer from https://www.eclipse.org/downloads/packages/installer.
 
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git

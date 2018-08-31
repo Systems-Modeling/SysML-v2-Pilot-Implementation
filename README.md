@@ -12,7 +12,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
    
 2. Open Eclipse Installer and switch to Advanced mode:
-![switch to advanced mode](http://www.vogella.com/tutorials/Oomph/img/xoomph-installer.png.pagespeed.ic.nXWhT84AWo.webp)
+![switch to advanced mode](installer-advanced.png)
 
 3. In the product list, select "Eclipse Modeling Tools" with Oxygen version
 

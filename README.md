@@ -8,21 +8,24 @@
 
 The project provides a configuration file for the [Eclipse Installer](https://wiki.eclipse.org/Eclipse_Installer) which eases the creation of reproducible development environments. 
 
-1. Clone our GitHub repository from the URL below.
+1. Install [Eclipse 4.7 (Oxygen)](https://www.eclipse.org/downloads/packages/release/oxygen/3a), if you don't already have it installed,
+and the [Eclipse Installer](https://wiki.eclipse.org/Eclipse_Installer).
+
+2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
    
-2. Open Eclipse Installer and switch to Advanced mode:
+3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-3. In the product list, select "Eclipse Modeling Tools" with Oxygen version
+4. In the product list, select "Eclipse Modeling Tools" with Oxygen version
 
-4. Add the Sysml2 project as user project by selecting the setup file from the local git repository
+5. Add the Sysml2 project as user project by selecting the setup file from the local git repository
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
 
-5. Make sure it's selected:
+6. Make sure it's selected:
 ![oomph projects](oomph-projects.png)
 
-6. On the next page, set the location of the local git repository, then press finish
+7. On the next page, set the location of the local git repository, then press finish
 
 #### Manual installation
 

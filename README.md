@@ -16,15 +16,20 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Oxygen version
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: Oxygen.
 
-5. Add the Sysml2 project as user project by selecting the setup file from the local git repository
+5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Category: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
 
-6. Make sure it's selected:
+6. Select SysML2 in the Projects list:
 ![oomph projects](oomph-projects.png)
 
-7. On the next page, set the location of the local git repository, then press finish
+7. On the next page, update the following variables, then press Next.
+   * Git clone location rule: Select "Located in specific absolute folder location" and browse to the directory for the SysML git repository.
+   * Root install folder: Change this if you wish the installation to be under a specific folder.
+   * Workspace location rule: Change this if you wish to place the workspace at a specific location.
+   
+8. On the Confirmation page, press Finish. 
 
 #### Manual installation
 

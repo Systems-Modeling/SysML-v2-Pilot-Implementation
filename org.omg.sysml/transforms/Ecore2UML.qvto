@@ -75,9 +75,13 @@ query getClassifier(in name : String) : Classifier {
 	return classifierDictionary->get(name);
 }
 
-query getAssociation(in owner : String, in role : String) : Association {
+query getAssociation(in owner : Classifier, in role : String) : Association {
 //	log ("Get association: " + owner + "." + role);
-	return associationDictionary->get(owner + "." + role);
+	var association := associationDictionary->get(owner.name + "." + role);
+	if association = null then {
+		association := owner.general->collect(super | getAssociation(super, role))![true];
+	} endif;
+	return association;
 }
 
 property counter : Integer = 0;
@@ -97,7 +101,7 @@ mapping EObject::toInstanceSpecification() : InstanceSpecification {
 	if type <> null then {
 		name := objectName;
 		classifier := type;
-		slot := self.eClass().eAllAttributes.mapToSlot(objectName, self, type);
+		slot += self.eClass().eAllStructuralFeatures[notEmpty(self)]->mapToSlot(objectName, self, type);
 		self.eClass().eAllReferences->mapToLink(objectName, self, type);
 	} endif;
 }
@@ -128,7 +132,7 @@ helper EObject::mapToLink(in associationName: String, in association : Associati
 			definingFeature := end2;
 			value := instance;
 		};
-	}
+	};
 }
 
 helper EObject::mapToInstanceValue() : InstanceValue {
@@ -142,9 +146,17 @@ helper EObject::mapToInstanceValue() : InstanceValue {
 
 /* EStructuralFeature */
 
+query Classifier::getAttribute(in attributeName: String): Property {
+	var attr := self.getAllAttributes()![name = attributeName];
+	if attr = null then {
+		attr := self.general->getAttribute(attributeName)![true];
+	} endif;
+	return attr;
+}
+
 helper EStructuralFeature::mapToSlot(in objectName: String, in eObject: EObject, in type: Classifier) : Slot {
 	log("Mapping EStructuralFeature " + objectName + "." + self.name + " to Slot");
-	var feature := type.getAllAttributes()![name = self.name];
+	var feature := type.getAttribute(self.name);
 	log("  definingFeature: " + if feature = null then "<null>" else feature.name endif);
 	return object Slot {
 		definingFeature := feature;
@@ -152,11 +164,16 @@ helper EStructuralFeature::mapToSlot(in objectName: String, in eObject: EObject,
 	}
 }
 
+query EStructuralFeature::notEmpty(in eObject: EObject): Boolean {
+	var value := eObject.eGet(self);
+	return value <> null and (self.upperBound = 1 or value.oclAsType(Sequence(EObject))->size() > 0);
+}
+
 /* EReference */
 
 helper EReference::mapToLink(in objectName: String, in eObject: EObject, in type : Classifier)  {	
 	log("Mapping EReference " + objectName + "." + self.name + " to Link");
-	var association := getAssociation(type.name, self.name);
+	var association := getAssociation(type, self.name);
 	if association = null then {
 		log(" association: <null>");
 	} else {
@@ -177,10 +194,13 @@ helper EReference::mapToLink(in objectName: String, in eObject: EObject, in type
 		
 		var classifier := getClassifier(self.eType.name);
 		var value := eObject.eGet(self);
-		if self.upperBound = 1 then {
-			value.oclAsType(EObject).mapToLink(associationName, association, end1, end2, classifier, eObject);
-		} else {
-			value.oclAsType(Sequence(EObject))->mapToLink(associationName, association, end1, end2, classifier, eObject);
+		log("  value: " + if value = null then "<null>" else value.toString() endif);
+		if value <> null then {
+			if self.upperBound = 1 then {
+				value.oclAsType(EObject).mapToLink(associationName, association, end1, end2, classifier, eObject);
+			} else {
+				value.oclAsType(Sequence(EObject))->mapToLink(associationName, association, end1, end2, classifier, eObject);
+			} endif;
 		} endif;
 	} endif;
 }

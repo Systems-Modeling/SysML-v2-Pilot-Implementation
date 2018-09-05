@@ -35,14 +35,16 @@ main() {
 	loadClassifiers(metaModel);
 	ecore.objects()[EObject]->map toInstanceSpecification();
 	var elements := instanceModel.rootObjects()[PackageableElement];
-	object Model {
-		name := "Model";
-		packagedElement := elements;
+	var model := object Model {
+		name := "InstanceModel";
+		packagedElement += elements;
 	};
+	model.applyStereotype(model.getApplicableStereotype("Metamodel"));
 	var metamodelRoot := metaModel.rootObjects()![Model];
 	object Model {
-		name := metamodelRoot.name;
-		packagedElement := metamodelRoot.packagedElement;		
+		name := "Model";
+		packagedElement += model;	
+		packagedElement += metamodelRoot.packagedElement;	
 	}
 }
 
@@ -107,15 +109,15 @@ mapping EObject::toInstanceSpecification() : InstanceSpecification {
 }
 
 helper EObject::name() : String {
-    var name := self.metaClassName();
-	var nameFeature := self.eClass().eAllStructuralFeatures![name = "name"];
+    var name := "(" + self.metaClassName() + ")";
+	var nameFeature := self.eClass().getEStructuralFeature('name');
 	if nameFeature <> null then {
 		var obj := self.eGet(nameFeature);
 		if obj <> null then {
 			name := obj.toString();
 		} endif;
 	} endif;
-	return name + "_" + getNextCounter().toString();
+	return name + "@" + getNextCounter().toString();
 }
 
 helper EObject::mapToLink(in associationName: String, in association : Association, in end1 : Property, in end2 : Property, in type : Classifier, in eObject : EObject) : InstanceSpecification {
@@ -158,10 +160,21 @@ helper EStructuralFeature::mapToSlot(in objectName: String, in eObject: EObject,
 	log("Mapping EStructuralFeature " + objectName + "." + self.name + " to Slot");
 	var feature := type.getAttribute(self.name);
 	log("  definingFeature: " + if feature = null then "<null>" else feature.name endif);
-	return object Slot {
-		definingFeature := feature;
-		value := eObject.eGet(self).mapToValueSpecification(getClassifier(self.eType.name));
-	}
+	var slot:Slot = null;
+	if feature <> null then {
+		var featureValue := eObject.eGet(self);
+		var classifier := getClassifier(self.eType.name);
+		slot :=
+			object Slot {
+				definingFeature := feature;
+				if self.upperBound = 1 then {
+					value := featureValue.mapToValueSpecification(classifier)
+				} else {
+					value := featureValue.oclAsType(Sequence(EObject))->mapToValueSpecification(classifier)
+				} endif;
+			}
+	} endif;
+	return slot;
 }
 
 query EStructuralFeature::notEmpty(in eObject: EObject): Boolean {
@@ -217,15 +230,13 @@ query Association::name(): String {
 /* OclAny */
 
 helper OclAny::umlOpaqueExpression(in classifier : Type) : OpaqueExpression {
-	var image := self.toString();
-	log("  value: " + image);
 	log("  type: " + 
 		if classifier = null then "<null>" else 
 		if classifier.name = null then "<anonymous>" 
 		else classifier.name endif endif);
 	return
 		object OpaqueExpression {
-			body := image;
+			body := self.toString();
 			type := classifier;
 		}
 }
@@ -236,8 +247,8 @@ helper OclAny::mapToValueSpecification(in classifier : Type) : ValueSpecificatio
 			self.mapToEnumerationValue(classifier.oclAsType(Enumeration))
 		else if self.oclIsKindOf(EObject) then
 			self.oclAsType(EObject).mapToInstanceValue()
-		else
-			self.umlOpaqueExpression(classifier)
+		else 
+			self.mapToExpression(classifier)
 		endif endif;
 }
 
@@ -250,4 +261,28 @@ helper OclAny::mapToEnumerationValue(in enumeration : Enumeration) : InstanceVal
 			name := self.toString();
 			type := enumeration;
 		}
+}
+
+helper OclAny::mapToExpression(in classifier: Type): ValueSpecification {
+	log("  value: " + self.toString());
+	return
+		if self.oclIsKindOf(Boolean) then
+			object LiteralBoolean {
+				value := self.oclAsType(Boolean);
+			}
+		else if self.oclIsKindOf(String) then
+			object LiteralString {
+				value := self.oclAsType(String);
+			}
+		else if self.oclIsKindOf(Integer) then
+			object LiteralInteger {
+				value := self.oclAsType(Integer);
+			}
+		else if self.oclIsKindOf(Real) then
+			object LiteralReal {
+				value := self.oclAsType(Real);
+			}
+		else
+			self.umlOpaqueExpression(classifier)
+		endif endif endif endif;
 }

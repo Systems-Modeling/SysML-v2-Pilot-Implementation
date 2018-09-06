@@ -58,18 +58,20 @@ package 'Parts Tree' {
 		/* Usages */
 		
 		/**
-		 * 'vehicle1-c1-v1_0' is a redefinition of 'vehicle1'. It is 
+		 * 'vehicle1_c1' is a redefinition of 'vehicle1'. It is 
 		 * effectively a "virtual copy". Any change to the original will
 		 * also be propagated to the "copy".
 		 * 
 		 * Even though the part structure does not appear in the
 		 * redefinition, the parts of 'vehicle1' are inherited as
-		 * members of 'vehicle1-c1-v1_0'. Thus, 'vehicle1-c1-v1_0'::frontAxleAssembly
+		 * members of 'vehicle1-c1'. Thus, vehicle1_c1::frontAxleAssembly
 		 * names the same (M1) model element as vehicle1::frontAxleAssembly,
-		 * but 'vehicle1-c1-v1_0'.frontAxleAssembly will be a distinct (M0) object
+		 * but vehicle1_c1.frontAxleAssembly will be a distinct (M0) object
 		 * from vehicle1.frontAxleAssembly.
+		 *
+		 * @Version 1.0
 		 */
-		 'vehicle1-c1-v1_0' redefines vehicle1;
+		 vehicle1_c1 redefines vehicle1;
 	}
 	
 	package 'Create Localized Usages' {
@@ -91,16 +93,16 @@ package 'Parts Tree' {
 		/* Usages */
 		
 		/**
-		 * 'vehicle1-c1-v1_1' is a physical copy of 'vehicle1-c2_v1_0' from
-		 * the 'Copy of Generic Hierarchical Structure' package. This copy
-		 * was then modified to redefine vehicle1::frontAxleAssembly::frontAxle
-		 * to have type 'FrontAxle' and vehicle1::rearAxleAssembly::rearAxle
-		 * to have type 'RearAxle'.
-		 * 
-		 * (Note: "Versioning" is captured here in the naming. There is no
-		 * actual versioning metadata.)
+		 * 'vehicle1_c1' is a redefinition of 'vehicle1'. This redefinition has 
+		 * been further refined so that vehicle1_c1::frontAxleAssembly::frontAxle 
+		 * is redefined to have the specialized type FrontAxle, and 
+		 * vehicle1_c1::rearAxleAssembly::rearAxle has been redefined to have the 
+		 * specialized type RearAxle. Any parts that are not explicitly redefined 
+		 * are inherited as defined in the original 'vehicle1'.
+		 *
+		 * @Version 1.1
 		 */
-		 'vehicle1-c1-v1_1' redefines vehicle1 {
+		 vehicle1_c1 redefines vehicle1 {
 			
 			/**
 			 * 'frontAxleAssembly' must be redefined in order to redefine one
@@ -117,7 +119,7 @@ package 'Parts Tree' {
 				part redefines frontAxle: FrontAxle;
 			}
 			
-			part redefines rearAxleAssembly: AxleAssembly {
+			part redefines rearAxleAssembly {
 				part redefines rearAxle: RearAxle;
 			}
 			
@@ -143,12 +145,17 @@ package 'Parts Tree' {
 		/* Usages */
 		
 		/**
-		 * 'vehicle1-c1-v1_2' is a physical copy of 'vehicle1-c2_v1_1' from
-		 * the 'Create Localized Usages' package. In addition to the redefinitions
-		 * of 'frontAxle' and 'rearAxle', this copy also defines additional features
-		 * in each axle assembly to distinguish each of the front and rear wheels.
+		 * 'vehicle1_c1' is a redefinition of 'vehicle1'. This redefinition has 
+		 * been further refined so that vehicle1_c1::frontAxleAssembly::frontAxle 
+		 * is redefined to have the specialized type FrontAxle, and 
+		 * vehicle1_c1::rearAxleAssembly::rearAxle has been redefined to have the 
+		 * specialized type RearAxle. In addition, additional features have been
+		 * defined in each axle assembly to distinguish each of the front and rear
+		 * wheels.
+		 *
+		 * @Version 1.2
 		 */
-		 'vehicle1-c1-v1_2' redefines vehicle1 {
+		 vehicle1_c1 redefines vehicle1 {
 			
 			/**
 			 * 'frontAxleAssembly' must be redefined in order to redefine and

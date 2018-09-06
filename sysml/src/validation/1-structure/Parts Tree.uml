@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lAT4ELFKEeilsLpNPC4ngw" name="Model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_pt58oLIbEeiU47lGHImLSA" name="Model">
   <packagedElement xmi:type="uml:Model" xmi:id="InstanceModel" name="InstanceModel">
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="Parts_Tree@1" name="'Parts Tree'@1" classifier="d92c5aa8-5885-454a-8bb6-dc187f4cc1c1">
       <slot xmi:id="Parts_Tree@1.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
@@ -934,7 +934,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@36.visibility.public" name="public" type="e5d6e619-d861-4afc-8bc8-cde6157ac0a6" instance="bb8d71ba-c708-4796-841f-ea6d2276742c"/>
       </slot>
       <slot xmi:id="_Membership_@36.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@36.ownedMemberElement.vehicle1-c1-v1_0@38" name="'vehicle1-c1-v1_0'@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_0@38"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@36.ownedMemberElement.vehicle1_c1@38" name="vehicle1_c1@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@38"/>
       </slot>
       <slot xmi:id="_Membership_@36.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@36.owningPackage.Copy_of_Generic_Hierarchical_Structure@34" name="'Copy of Generic Hierarchical Structure'@34" type="d92c5aa8-5885-454a-8bb6-dc187f4cc1c1" instance="Copy_of_Generic_Hierarchical_Structure@34"/>
@@ -945,7 +945,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@37.owner._Membership_@36" name="(Membership)@36" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@36"/>
       </slot>
       <slot xmi:id="_Comment_@37.body" definingFeature="db4b3fab-dcd9-48e7-bef9-c96e832c12f2">
-        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@37.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1-c1-v1_0' is a redefinition of 'vehicle1'. It is &#xA;&#x9;&#x9; * effectively a &quot;virtual copy&quot;. Any change to the original will&#xA;&#x9;&#x9; * also be propagated to the &quot;copy&quot;.&#xA;&#x9;&#x9; * &#xA;&#x9;&#x9; * Even though the part structure does not appear in the&#xA;&#x9;&#x9; * redefinition, the parts of 'vehicle1' are inherited as&#xA;&#x9;&#x9; * members of 'vehicle1-c1-v1_0'. Thus, 'vehicle1-c1-v1_0'::frontAxleAssembly&#xA;&#x9;&#x9; * names the same (M1) model element as vehicle1::frontAxleAssembly,&#xA;&#x9;&#x9; * but 'vehicle1-c1-v1_0'.frontAxleAssembly will be a distinct (M0) object&#xA;&#x9;&#x9; * from vehicle1.frontAxleAssembly.&#xA;&#x9;&#x9; */"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@37.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1_c1' is a redefinition of 'vehicle1'. It is &#xA;&#x9;&#x9; * effectively a &quot;virtual copy&quot;. Any change to the original will&#xA;&#x9;&#x9; * also be propagated to the &quot;copy&quot;.&#xA;&#x9;&#x9; * &#xA;&#x9;&#x9; * Even though the part structure does not appear in the&#xA;&#x9;&#x9; * redefinition, the parts of 'vehicle1' are inherited as&#xA;&#x9;&#x9; * members of 'vehicle1-c1'. Thus, vehicle1_c1::frontAxleAssembly&#xA;&#x9;&#x9; * names the same (M1) model element as vehicle1::frontAxleAssembly,&#xA;&#x9;&#x9; * but vehicle1_c1.frontAxleAssembly will be a distinct (M0) object&#xA;&#x9;&#x9; * from vehicle1.frontAxleAssembly.&#xA;&#x9;&#x9; *&#xA;&#x9;&#x9; * @Version 1.0&#xA;&#x9;&#x9; */"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Comment_@37-A_ownedElement_owner-_Membership_@36" name="(Comment)@37-A_ownedElement_owner-(Membership)@36" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
@@ -956,43 +956,43 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@37-A_ownedElement_owner-_Membership_@36.ownedElement._Comment_@37" name="(Comment)@37" type="83aa0f46-d481-4b06-9748-64ae94bfa9aa" instance="_Comment_@37"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_0@38" name="'vehicle1-c1-v1_0'@38" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
-      <slot xmi:id="vehicle1-c1-v1_0@38.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_0@38.ownedElement._Redefinition_@39" name="(Redefinition)@39" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@39"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@38" name="vehicle1_c1@38" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
+      <slot xmi:id="vehicle1_c1@38.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@38.ownedElement._Redefinition_@39" name="(Redefinition)@39" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@39"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
-        <value xmi:type="uml:LiteralString" xmi:id="vehicle1-c1-v1_0@38.name.1" value="'vehicle1-c1-v1_0'"/>
+      <slot xmi:id="vehicle1_c1@38.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
+        <value xmi:type="uml:LiteralString" xmi:id="vehicle1_c1@38.name.1" value="vehicle1_c1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_0@38.owningMembership._Membership_@36" name="(Membership)@36" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@36"/>
+      <slot xmi:id="vehicle1_c1@38.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@38.owningMembership._Membership_@36" name="(Membership)@36" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@36"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_0@38.isAbstract.1"/>
+      <slot xmi:id="vehicle1_c1@38.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@38.isAbstract.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_0@38.isUnique.1"/>
+      <slot xmi:id="vehicle1_c1@38.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@38.isUnique.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_0@38.isOrdered.1"/>
+      <slot xmi:id="vehicle1_c1@38.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@38.isOrdered.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_0@38.isComposite.1"/>
+      <slot xmi:id="vehicle1_c1@38.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@38.isComposite.1"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@39" name="(Redefinition)@39" classifier="8261ea02-bc51-408c-8e12-dc67128729c5">
       <slot xmi:id="_Redefinition_@39.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39.owner.vehicle1-c1-v1_0@38" name="'vehicle1-c1-v1_0'@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_0@38"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39.owner.vehicle1_c1@38" name="vehicle1_c1@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@38"/>
       </slot>
       <slot xmi:id="_Redefinition_@39.redefinedFeature" definingFeature="67cba13f-f866-49c5-910a-c13e1da4bcca">
         <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39.redefinedFeature.vehicle1@16" name="vehicle1@16" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1@16"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1-c1-v1_0@38" name="(Redefinition)@39-A_ownedElement_owner-'vehicle1-c1-v1_0'@38" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
-      <slot xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1-c1-v1_0@38.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1-c1-v1_0@38.owner.vehicle1-c1-v1_0@38" name="'vehicle1-c1-v1_0'@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_0@38"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1_c1@38" name="(Redefinition)@39-A_ownedElement_owner-vehicle1_c1@38" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
+      <slot xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1_c1@38.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1_c1@38.owner.vehicle1_c1@38" name="vehicle1_c1@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@38"/>
       </slot>
-      <slot xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1-c1-v1_0@38.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1-c1-v1_0@38.ownedElement._Redefinition_@39" name="(Redefinition)@39" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@39"/>
+      <slot xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1_c1@38.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39-A_ownedElement_owner-vehicle1_c1@38.ownedElement._Redefinition_@39" name="(Redefinition)@39" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@39"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@39-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" name="(Redefinition)@39-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" classifier="de484da0-2457-45ac-9695-dd4cb4439cbe">
@@ -1003,12 +1003,12 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@39-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16.redefinedOfRedefintion._Redefinition_@39" name="(Redefinition)@39" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@39"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_0@38-A_ownedMemberElement_owningMembership-_Membership_@36" name="'vehicle1-c1-v1_0'@38-A_ownedMemberElement_owningMembership-(Membership)@36" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
-      <slot xmi:id="vehicle1-c1-v1_0@38-A_ownedMemberElement_owningMembership-_Membership_@36.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_0@38-A_ownedMemberElement_owningMembership-_Membership_@36.owningMembership._Membership_@36" name="(Membership)@36" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@36"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@38-A_ownedMemberElement_owningMembership-_Membership_@36" name="vehicle1_c1@38-A_ownedMemberElement_owningMembership-(Membership)@36" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
+      <slot xmi:id="vehicle1_c1@38-A_ownedMemberElement_owningMembership-_Membership_@36.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@38-A_ownedMemberElement_owningMembership-_Membership_@36.owningMembership._Membership_@36" name="(Membership)@36" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@36"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_0@38-A_ownedMemberElement_owningMembership-_Membership_@36.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_0@38-A_ownedMemberElement_owningMembership-_Membership_@36.ownedMemberElement.vehicle1-c1-v1_0@38" name="'vehicle1-c1-v1_0'@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_0@38"/>
+      <slot xmi:id="vehicle1_c1@38-A_ownedMemberElement_owningMembership-_Membership_@36.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@38-A_ownedMemberElement_owningMembership-_Membership_@36.ownedMemberElement.vehicle1_c1@38" name="vehicle1_c1@38" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@38"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Membership_@36-A_ownedMembership_owningPackage-Copy_of_Generic_Hierarchical_Structure@34" name="(Membership)@36-A_ownedMembership_owningPackage-'Copy of Generic Hierarchical Structure'@34" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
@@ -1311,7 +1311,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@52.visibility.public" name="public" type="e5d6e619-d861-4afc-8bc8-cde6157ac0a6" instance="bb8d71ba-c708-4796-841f-ea6d2276742c"/>
       </slot>
       <slot xmi:id="_Membership_@52.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@52.ownedMemberElement.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@52.ownedMemberElement.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
       <slot xmi:id="_Membership_@52.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@52.owningPackage.Create_Localized_Usages@41" name="'Create Localized Usages'@41" type="d92c5aa8-5885-454a-8bb6-dc187f4cc1c1" instance="Create_Localized_Usages@41"/>
@@ -1322,7 +1322,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@53.owner._Membership_@52" name="(Membership)@52" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@52"/>
       </slot>
       <slot xmi:id="_Comment_@53.body" definingFeature="db4b3fab-dcd9-48e7-bef9-c96e832c12f2">
-        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@53.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1-c1-v1_1' is a physical copy of 'vehicle1-c2_v1_0' from&#xA;&#x9;&#x9; * the 'Copy of Generic Hierarchical Structure' package. This copy&#xA;&#x9;&#x9; * was then modified to redefine vehicle1::frontAxleAssembly::frontAxle&#xA;&#x9;&#x9; * to have type 'FrontAxle' and vehicle1::rearAxleAssembly::rearAxle&#xA;&#x9;&#x9; * to have type 'RearAxle'.&#xA;&#x9;&#x9; * &#xA;&#x9;&#x9; * (Note: &quot;Versioning&quot; is captured here in the naming. There is no&#xA;&#x9;&#x9; * actual versioning metadata.)&#xA;&#x9;&#x9; */"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@53.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1_c1' is a redefinition of 'vehicle1'. This redefinition has &#xA;&#x9;&#x9; * been further refined so that vehicle1_c1::frontAxleAssembly::frontAxle &#xA;&#x9;&#x9; * is redefined to have the specialized type FrontAxle, and &#xA;&#x9;&#x9; * vehicle1_c1::rearAxleAssembly::rearAxle has been redefined to have the &#xA;&#x9;&#x9; * specialized type RearAxle. Any parts that are not explicitly redefined &#xA;&#x9;&#x9; * are inherited as defined in the original 'vehicle1'.&#xA;&#x9;&#x9; *&#xA;&#x9;&#x9; * @Version 1.1&#xA;&#x9;&#x9; */"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Comment_@53-A_ownedElement_owner-_Membership_@52" name="(Comment)@53-A_ownedElement_owner-(Membership)@52" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
@@ -1333,47 +1333,47 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@53-A_ownedElement_owner-_Membership_@52.ownedElement._Comment_@53" name="(Comment)@53" type="83aa0f46-d481-4b06-9748-64ae94bfa9aa" instance="_Comment_@53"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
-      <slot xmi:id="vehicle1-c1-v1_1@54.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54.ownedElement._Redefinition_@55" name="(Redefinition)@55" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@55"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@54" name="vehicle1_c1@54" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
+      <slot xmi:id="vehicle1_c1@54.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54.ownedElement._Redefinition_@55" name="(Redefinition)@55" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@55"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
-        <value xmi:type="uml:LiteralString" xmi:id="vehicle1-c1-v1_1@54.name.1" value="'vehicle1-c1-v1_1'"/>
+      <slot xmi:id="vehicle1_c1@54.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
+        <value xmi:type="uml:LiteralString" xmi:id="vehicle1_c1@54.name.1" value="vehicle1_c1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54.owningMembership._Membership_@52" name="(Membership)@52" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@52"/>
+      <slot xmi:id="vehicle1_c1@54.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54.owningMembership._Membership_@52" name="(Membership)@52" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@52"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54.ownedMembership._FeatureMembership_@56" name="(FeatureMembership)@56" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@56"/>
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54.ownedMembership._FeatureMembership_@64" name="(FeatureMembership)@64" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@64"/>
+      <slot xmi:id="vehicle1_c1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54.ownedMembership._FeatureMembership_@56" name="(FeatureMembership)@56" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@56"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54.ownedMembership._FeatureMembership_@64" name="(FeatureMembership)@64" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@64"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_1@54.isAbstract.1"/>
+      <slot xmi:id="vehicle1_c1@54.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@54.isAbstract.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_1@54.isUnique.1"/>
+      <slot xmi:id="vehicle1_c1@54.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@54.isUnique.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_1@54.isOrdered.1"/>
+      <slot xmi:id="vehicle1_c1@54.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@54.isOrdered.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_1@54.isComposite.1"/>
+      <slot xmi:id="vehicle1_c1@54.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@54.isComposite.1"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@55" name="(Redefinition)@55" classifier="8261ea02-bc51-408c-8e12-dc67128729c5">
       <slot xmi:id="_Redefinition_@55.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55.owner.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55.owner.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
       <slot xmi:id="_Redefinition_@55.redefinedFeature" definingFeature="67cba13f-f866-49c5-910a-c13e1da4bcca">
         <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55.redefinedFeature.vehicle1@16" name="vehicle1@16" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1@16"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1-c1-v1_1@54" name="(Redefinition)@55-A_ownedElement_owner-'vehicle1-c1-v1_1'@54" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
-      <slot xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1-c1-v1_1@54.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1-c1-v1_1@54.owner.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1_c1@54" name="(Redefinition)@55-A_ownedElement_owner-vehicle1_c1@54" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
+      <slot xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1_c1@54.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1_c1@54.owner.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
-      <slot xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1-c1-v1_1@54.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1-c1-v1_1@54.ownedElement._Redefinition_@55" name="(Redefinition)@55" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@55"/>
+      <slot xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1_c1@54.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@55-A_ownedElement_owner-vehicle1_c1@54.ownedElement._Redefinition_@55" name="(Redefinition)@55" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@55"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@55-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" name="(Redefinition)@55-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" classifier="de484da0-2457-45ac-9695-dd4cb4439cbe">
@@ -1395,7 +1395,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56.ownedMemberElement._Feature_@58" name="(Feature)@58" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@58"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@56.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56.owningPackage.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56.owningPackage.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@56.isDerived" definingFeature="0df553ed-f46c-41cb-9cc2-5c4ebcc05f5f">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_FeatureMembership_@56.isDerived.1"/>
@@ -1600,12 +1600,12 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@58-A_ownedMemberElement_owningMembership-_FeatureMembership_@56.ownedMemberElement._Feature_@58" name="(Feature)@58" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@58"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54" name="(FeatureMembership)@56-A_ownedMembership_owningPackage-'vehicle1-c1-v1_1'@54" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
-      <slot xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.owningPackage.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1_c1@54" name="(FeatureMembership)@56-A_ownedMembership_owningPackage-vehicle1_c1@54" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
+      <slot xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1_c1@54.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1_c1@54.owningPackage.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
-      <slot xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.ownedMembership._FeatureMembership_@56" name="(FeatureMembership)@56" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@56"/>
+      <slot xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1_c1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@56-A_ownedMembership_owningPackage-vehicle1_c1@54.ownedMembership._FeatureMembership_@56" name="(FeatureMembership)@56" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@56"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@64" name="(FeatureMembership)@64" classifier="6ea3ef5e-2a22-450f-ac50-931da96e70b4">
@@ -1616,7 +1616,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64.ownedMemberElement._Feature_@65" name="(Feature)@65" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@65"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@64.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64.owningPackage.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64.owningPackage.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@64.isDerived" definingFeature="0df553ed-f46c-41cb-9cc2-5c4ebcc05f5f">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_FeatureMembership_@64.isDerived.1"/>
@@ -1652,9 +1652,6 @@
       </slot>
       <slot xmi:id="_Feature_@65.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_Feature_@65.isOrdered.1"/>
-      </slot>
-      <slot xmi:id="_Feature_@65.referencedType" definingFeature="1f3754c4-a5d7-4203-897c-cd5adab7d046">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@65.referencedType.AxleAssembly@9" name="AxleAssembly@9" type="f493490b-300a-4697-a128-43c41b1c046e" instance="AxleAssembly@9"/>
       </slot>
       <slot xmi:id="_Feature_@65.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_Feature_@65.isComposite.1"/>
@@ -1789,28 +1786,20 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@65-A_ownedMemberElement_owningMembership-_FeatureMembership_@64.ownedMemberElement._Feature_@65" name="(Feature)@65" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@65"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Feature_@65-A_referencedType_referencingFeature-AxleAssembly@9" name="(Feature)@65-A_referencedType_referencingFeature-AxleAssembly@9" classifier="cf793bba-db60-4e9a-a0b7-4aa8fa254089">
-      <slot xmi:id="_Feature_@65-A_referencedType_referencingFeature-AxleAssembly@9.referencedType" definingFeature="1f3754c4-a5d7-4203-897c-cd5adab7d046">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@65-A_referencedType_referencingFeature-AxleAssembly@9.referencedType.AxleAssembly@9" name="AxleAssembly@9" type="f493490b-300a-4697-a128-43c41b1c046e" instance="AxleAssembly@9"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1_c1@54" name="(FeatureMembership)@64-A_ownedMembership_owningPackage-vehicle1_c1@54" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
+      <slot xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1_c1@54.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1_c1@54.owningPackage.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
-      <slot xmi:id="_Feature_@65-A_referencedType_referencingFeature-AxleAssembly@9.referencingFeature" definingFeature="7a8c5dc2-e2ad-462b-bc3c-b3fa07082c3d">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@65-A_referencedType_referencingFeature-AxleAssembly@9.referencingFeature._Feature_@65" name="(Feature)@65" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@65"/>
-      </slot>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54" name="(FeatureMembership)@64-A_ownedMembership_owningPackage-'vehicle1-c1-v1_1'@54" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
-      <slot xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.owningPackage.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
-      </slot>
-      <slot xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1-c1-v1_1@54.ownedMembership._FeatureMembership_@64" name="(FeatureMembership)@64" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@64"/>
+      <slot xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1_c1@54.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@64-A_ownedMembership_owningPackage-vehicle1_c1@54.ownedMembership._FeatureMembership_@64" name="(FeatureMembership)@64" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@64"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_1@54-A_ownedMemberElement_owningMembership-_Membership_@52" name="'vehicle1-c1-v1_1'@54-A_ownedMemberElement_owningMembership-(Membership)@52" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
-      <slot xmi:id="vehicle1-c1-v1_1@54-A_ownedMemberElement_owningMembership-_Membership_@52.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54-A_ownedMemberElement_owningMembership-_Membership_@52.owningMembership._Membership_@52" name="(Membership)@52" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@52"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@54-A_ownedMemberElement_owningMembership-_Membership_@52" name="vehicle1_c1@54-A_ownedMemberElement_owningMembership-(Membership)@52" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
+      <slot xmi:id="vehicle1_c1@54-A_ownedMemberElement_owningMembership-_Membership_@52.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54-A_ownedMemberElement_owningMembership-_Membership_@52.owningMembership._Membership_@52" name="(Membership)@52" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@52"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_1@54-A_ownedMemberElement_owningMembership-_Membership_@52.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_1@54-A_ownedMemberElement_owningMembership-_Membership_@52.ownedMemberElement.vehicle1-c1-v1_1@54" name="'vehicle1-c1-v1_1'@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_1@54"/>
+      <slot xmi:id="vehicle1_c1@54-A_ownedMemberElement_owningMembership-_Membership_@52.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@54-A_ownedMemberElement_owningMembership-_Membership_@52.ownedMemberElement.vehicle1_c1@54" name="vehicle1_c1@54" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@54"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Membership_@52-A_ownedMembership_owningPackage-Create_Localized_Usages@41" name="(Membership)@52-A_ownedMembership_owningPackage-'Create Localized Usages'@41" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
@@ -2113,7 +2102,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@82.visibility.public" name="public" type="e5d6e619-d861-4afc-8bc8-cde6157ac0a6" instance="bb8d71ba-c708-4796-841f-ea6d2276742c"/>
       </slot>
       <slot xmi:id="_Membership_@82.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@82.ownedMemberElement.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@82.ownedMemberElement.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
       <slot xmi:id="_Membership_@82.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
         <value xmi:type="uml:InstanceValue" xmi:id="_Membership_@82.owningPackage.Create_Unambiguous_Deeply_Nested_Structure@71" name="'Create Unambiguous Deeply Nested Structure'@71" type="d92c5aa8-5885-454a-8bb6-dc187f4cc1c1" instance="Create_Unambiguous_Deeply_Nested_Structure@71"/>
@@ -2124,7 +2113,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@83.owner._Membership_@82" name="(Membership)@82" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@82"/>
       </slot>
       <slot xmi:id="_Comment_@83.body" definingFeature="db4b3fab-dcd9-48e7-bef9-c96e832c12f2">
-        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@83.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1-c1-v1_2' is a physical copy of 'vehicle1-c2_v1_1' from&#xA;&#x9;&#x9; * the 'Create Localized Usages' package. In addition to the redefinitions&#xA;&#x9;&#x9; * of 'frontAxle' and 'rearAxle', this copy also defines additional features&#xA;&#x9;&#x9; * in each axle assembly to distinguish each of the front and rear wheels.&#xA;&#x9;&#x9; */"/>
+        <value xmi:type="uml:LiteralString" xmi:id="_Comment_@83.body.1" value="/**&#xA;&#x9;&#x9; * 'vehicle1_c1' is a redefinition of 'vehicle1'. This redefinition has &#xA;&#x9;&#x9; * been further refined so that vehicle1_c1::frontAxleAssembly::frontAxle &#xA;&#x9;&#x9; * is redefined to have the specialized type FrontAxle, and &#xA;&#x9;&#x9; * vehicle1_c1::rearAxleAssembly::rearAxle has been redefined to have the &#xA;&#x9;&#x9; * specialized type RearAxle. In addition, additional features have been&#xA;&#x9;&#x9; * defined in each axle assembly to distinguish each of the front and rear&#xA;&#x9;&#x9; * wheels.&#xA;&#x9;&#x9; *&#xA;&#x9;&#x9; * @Version 1.2&#xA;&#x9;&#x9; */"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Comment_@83-A_ownedElement_owner-_Membership_@82" name="(Comment)@83-A_ownedElement_owner-(Membership)@82" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
@@ -2135,47 +2124,47 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Comment_@83-A_ownedElement_owner-_Membership_@82.ownedElement._Comment_@83" name="(Comment)@83" type="83aa0f46-d481-4b06-9748-64ae94bfa9aa" instance="_Comment_@83"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
-      <slot xmi:id="vehicle1-c1-v1_2@84.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84.ownedElement._Redefinition_@85" name="(Redefinition)@85" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@85"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@84" name="vehicle1_c1@84" classifier="b36a668c-1792-427c-8524-dc2318486d6d">
+      <slot xmi:id="vehicle1_c1@84.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84.ownedElement._Redefinition_@85" name="(Redefinition)@85" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@85"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
-        <value xmi:type="uml:LiteralString" xmi:id="vehicle1-c1-v1_2@84.name.1" value="'vehicle1-c1-v1_2'"/>
+      <slot xmi:id="vehicle1_c1@84.name" definingFeature="8249e62c-427c-4446-88ef-5fb8a65c65f5">
+        <value xmi:type="uml:LiteralString" xmi:id="vehicle1_c1@84.name.1" value="vehicle1_c1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84.owningMembership._Membership_@82" name="(Membership)@82" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@82"/>
+      <slot xmi:id="vehicle1_c1@84.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84.owningMembership._Membership_@82" name="(Membership)@82" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@82"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84.ownedMembership._FeatureMembership_@86" name="(FeatureMembership)@86" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@86"/>
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84.ownedMembership._FeatureMembership_@106" name="(FeatureMembership)@106" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@106"/>
+      <slot xmi:id="vehicle1_c1@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84.ownedMembership._FeatureMembership_@86" name="(FeatureMembership)@86" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@86"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84.ownedMembership._FeatureMembership_@106" name="(FeatureMembership)@106" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@106"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_2@84.isAbstract.1"/>
+      <slot xmi:id="vehicle1_c1@84.isAbstract" definingFeature="0680e2d6-a882-4ad4-95bb-9a95ae370047">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@84.isAbstract.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_2@84.isUnique.1"/>
+      <slot xmi:id="vehicle1_c1@84.isUnique" definingFeature="6b7b7856-c625-427f-921d-07b3793e680d">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@84.isUnique.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_2@84.isOrdered.1"/>
+      <slot xmi:id="vehicle1_c1@84.isOrdered" definingFeature="0dd2bc27-9f7d-4f76-a66a-d15a50c2cd65">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@84.isOrdered.1"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
-        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1-c1-v1_2@84.isComposite.1"/>
+      <slot xmi:id="vehicle1_c1@84.isComposite" definingFeature="1c78a552-5f9b-445c-bf45-8f805e6170a2">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="vehicle1_c1@84.isComposite.1"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@85" name="(Redefinition)@85" classifier="8261ea02-bc51-408c-8e12-dc67128729c5">
       <slot xmi:id="_Redefinition_@85.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85.owner.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85.owner.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
       <slot xmi:id="_Redefinition_@85.redefinedFeature" definingFeature="67cba13f-f866-49c5-910a-c13e1da4bcca">
         <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85.redefinedFeature.vehicle1@16" name="vehicle1@16" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1@16"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1-c1-v1_2@84" name="(Redefinition)@85-A_ownedElement_owner-'vehicle1-c1-v1_2'@84" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
-      <slot xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1-c1-v1_2@84.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1-c1-v1_2@84.owner.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1_c1@84" name="(Redefinition)@85-A_ownedElement_owner-vehicle1_c1@84" classifier="87178d9e-071c-4498-b8dc-99c01cc2580e">
+      <slot xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1_c1@84.owner" definingFeature="60801230-2e24-43ed-b8a6-12649871f934">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1_c1@84.owner.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
-      <slot xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1-c1-v1_2@84.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
-        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1-c1-v1_2@84.ownedElement._Redefinition_@85" name="(Redefinition)@85" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@85"/>
+      <slot xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1_c1@84.ownedElement" definingFeature="c254f599-0fb5-4b03-af48-0e31533afc07">
+        <value xmi:type="uml:InstanceValue" xmi:id="_Redefinition_@85-A_ownedElement_owner-vehicle1_c1@84.ownedElement._Redefinition_@85" name="(Redefinition)@85" type="8261ea02-bc51-408c-8e12-dc67128729c5" instance="_Redefinition_@85"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Redefinition_@85-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" name="(Redefinition)@85-A_redefinedFeature_redefinedOfRedefintion-vehicle1@16" classifier="de484da0-2457-45ac-9695-dd4cb4439cbe">
@@ -2197,7 +2186,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86.ownedMemberElement._Feature_@88" name="(Feature)@88" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@88"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@86.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86.owningPackage.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86.owningPackage.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@86.isDerived" definingFeature="0df553ed-f46c-41cb-9cc2-5c4ebcc05f5f">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_FeatureMembership_@86.isDerived.1"/>
@@ -2706,12 +2695,12 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@88-A_ownedMemberElement_owningMembership-_FeatureMembership_@86.ownedMemberElement._Feature_@88" name="(Feature)@88" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@88"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84" name="(FeatureMembership)@86-A_ownedMembership_owningPackage-'vehicle1-c1-v1_2'@84" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
-      <slot xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.owningPackage.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1_c1@84" name="(FeatureMembership)@86-A_ownedMembership_owningPackage-vehicle1_c1@84" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
+      <slot xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1_c1@84.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1_c1@84.owningPackage.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
-      <slot xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.ownedMembership._FeatureMembership_@86" name="(FeatureMembership)@86" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@86"/>
+      <slot xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1_c1@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@86-A_ownedMembership_owningPackage-vehicle1_c1@84.ownedMembership._FeatureMembership_@86" name="(FeatureMembership)@86" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@86"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@106" name="(FeatureMembership)@106" classifier="6ea3ef5e-2a22-450f-ac50-931da96e70b4">
@@ -2722,7 +2711,7 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106.ownedMemberElement._Feature_@107" name="(Feature)@107" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@107"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@106.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106.owningPackage.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106.owningPackage.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
       <slot xmi:id="_FeatureMembership_@106.isDerived" definingFeature="0df553ed-f46c-41cb-9cc2-5c4ebcc05f5f">
         <value xmi:type="uml:LiteralBoolean" xmi:id="_FeatureMembership_@106.isDerived.1"/>
@@ -3196,20 +3185,20 @@
         <value xmi:type="uml:InstanceValue" xmi:id="_Feature_@107-A_ownedMemberElement_owningMembership-_FeatureMembership_@106.ownedMemberElement._Feature_@107" name="(Feature)@107" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="_Feature_@107"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84" name="(FeatureMembership)@106-A_ownedMembership_owningPackage-'vehicle1-c1-v1_2'@84" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
-      <slot xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.owningPackage.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1_c1@84" name="(FeatureMembership)@106-A_ownedMembership_owningPackage-vehicle1_c1@84" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">
+      <slot xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1_c1@84.owningPackage" definingFeature="621ff5ab-741a-4e90-83bc-b20a5f458acd">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1_c1@84.owningPackage.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
-      <slot xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
-        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1-c1-v1_2@84.ownedMembership._FeatureMembership_@106" name="(FeatureMembership)@106" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@106"/>
+      <slot xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1_c1@84.ownedMembership" definingFeature="1939c520-e0f5-4752-b917-dde66024c1b3">
+        <value xmi:type="uml:InstanceValue" xmi:id="_FeatureMembership_@106-A_ownedMembership_owningPackage-vehicle1_c1@84.ownedMembership._FeatureMembership_@106" name="(FeatureMembership)@106" type="6ea3ef5e-2a22-450f-ac50-931da96e70b4" instance="_FeatureMembership_@106"/>
       </slot>
     </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1-c1-v1_2@84-A_ownedMemberElement_owningMembership-_Membership_@82" name="'vehicle1-c1-v1_2'@84-A_ownedMemberElement_owningMembership-(Membership)@82" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
-      <slot xmi:id="vehicle1-c1-v1_2@84-A_ownedMemberElement_owningMembership-_Membership_@82.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84-A_ownedMemberElement_owningMembership-_Membership_@82.owningMembership._Membership_@82" name="(Membership)@82" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@82"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="vehicle1_c1@84-A_ownedMemberElement_owningMembership-_Membership_@82" name="vehicle1_c1@84-A_ownedMemberElement_owningMembership-(Membership)@82" classifier="8688a4cc-aa53-4088-9b14-377955fb191d">
+      <slot xmi:id="vehicle1_c1@84-A_ownedMemberElement_owningMembership-_Membership_@82.owningMembership" definingFeature="ed5a2f85-581b-4534-a2d0-c08a72cf552a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84-A_ownedMemberElement_owningMembership-_Membership_@82.owningMembership._Membership_@82" name="(Membership)@82" type="da0c4ddf-edc1-43e9-a9ef-33de9a738f0e" instance="_Membership_@82"/>
       </slot>
-      <slot xmi:id="vehicle1-c1-v1_2@84-A_ownedMemberElement_owningMembership-_Membership_@82.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
-        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1-c1-v1_2@84-A_ownedMemberElement_owningMembership-_Membership_@82.ownedMemberElement.vehicle1-c1-v1_2@84" name="'vehicle1-c1-v1_2'@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1-c1-v1_2@84"/>
+      <slot xmi:id="vehicle1_c1@84-A_ownedMemberElement_owningMembership-_Membership_@82.ownedMemberElement" definingFeature="18ddbc51-ca77-45fe-8dcb-8d29dab9cd4a">
+        <value xmi:type="uml:InstanceValue" xmi:id="vehicle1_c1@84-A_ownedMemberElement_owningMembership-_Membership_@82.ownedMemberElement.vehicle1_c1@84" name="vehicle1_c1@84" type="b36a668c-1792-427c-8524-dc2318486d6d" instance="vehicle1_c1@84"/>
       </slot>
     </packagedElement>
     <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Membership_@82-A_ownedMembership_owningPackage-Create_Unambiguous_Deeply_Nested_Structure@71" name="(Membership)@82-A_ownedMembership_owningPackage-'Create Unambiguous Deeply Nested Structure'@71" classifier="92a3ff58-b7a6-45bd-b544-94a3b5502cff">

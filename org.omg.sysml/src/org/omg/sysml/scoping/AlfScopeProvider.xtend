@@ -26,7 +26,7 @@ package org.omg.sysml.scoping
 
 import com.google.common.base.Predicates
 import com.google.inject.Inject
-import java.util.Map
+import java.util.HashSet
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.QualifiedName
@@ -40,10 +40,9 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Package
-import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subset
-import java.util.HashSet
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 /**
  * This class contains custom scoping description.
@@ -80,31 +79,43 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		super.getScope(context, reference)
 	}
 
-	private def void accept(Package pack, QualifiedName qn, (QualifiedName, Element)=>void visitor) {
-		pack.ownedMembership.forEach [ m |
-			if (m.memberName !== null) {
-				val elementqn = qn.append(m.memberName)
-				val memberElement = m.memberElement
-				visitor.apply(elementqn, memberElement)
-				if (memberElement instanceof Package) {
-					accept(memberElement, elementqn, visitor)
-				}
-			} else if (m.memberElement?.name !== null) {
-				val elementqn = QualifiedName.create(m.memberElement.name)
-				val memberElement = m.memberElement
-				visitor.apply(elementqn, memberElement)
-				if (memberElement instanceof Package) {
-					accept(memberElement, elementqn, visitor)
-				}
-			} else if (m.ownedMemberElement?.name !== null) {
-				val memberElement = m.ownedMemberElement
-				val pqn = qn.append(memberElement.name)
-				visitor.apply(pqn, memberElement)
-				if (memberElement instanceof Package) {
-					accept(memberElement, pqn, visitor)
-				}
+	private def void accept(Package rootpack, QualifiedName rootqn, (QualifiedName, Element)=>void visitor) {
+		val visited = newHashSet()
+		val queue = newLinkedList(rootpack -> rootqn)
+		
+		while(!queue.empty){
+			val next = queue.pop
+			val pack = next.key
+			val qn = next.value 
+			if (!visited.contains(pack)){
+				visited += pack
+				pack.ownedMembership.forEach[m|
+					if (m.memberName !== null) {
+						val elementqn = qn.append(m.memberName)
+						val memberElement = m.memberElement
+						visitor.apply(elementqn, memberElement)
+						if (memberElement instanceof Package) {
+							queue.push(memberElement -> elementqn)
+						}
+					} else if (m.memberElement?.name !== null) {
+						val elementqn = QualifiedName.create(m.memberElement.name)
+						val memberElement = m.memberElement
+						visitor.apply(elementqn, memberElement)
+						if (memberElement instanceof Package) {
+							queue.push(memberElement -> elementqn)
+						}
+					} else if (m.ownedMemberElement?.name !== null) {
+						val memberElement = m.ownedMemberElement
+						val pqn = qn.append(memberElement.name)
+						visitor.apply(pqn, memberElement)
+						if (memberElement instanceof Package) {
+							queue.push(memberElement -> pqn)
+						}
+					}
+				]
 			}
-		]
+		}
+		
 	}
 
 	private def gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {

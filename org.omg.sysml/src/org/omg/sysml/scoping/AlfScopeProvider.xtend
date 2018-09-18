@@ -95,21 +95,21 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						val memberElement = m.memberElement
 						visitor.apply(elementqn, memberElement)
 						if (memberElement instanceof Package) {
-							queue.push(memberElement -> elementqn)
+							queue += memberElement -> elementqn
 						}
 					} else if (m.memberElement?.name !== null) {
 						val elementqn = QualifiedName.create(m.memberElement.name)
 						val memberElement = m.memberElement
 						visitor.apply(elementqn, memberElement)
 						if (memberElement instanceof Package) {
-							queue.push(memberElement -> elementqn)
+							queue += memberElement -> elementqn
 						}
 					} else if (m.ownedMemberElement?.name !== null) {
 						val memberElement = m.ownedMemberElement
 						val pqn = qn.append(memberElement.name)
 						visitor.apply(pqn, memberElement)
 						if (memberElement instanceof Package) {
-							queue.push(memberElement -> pqn)
+							queue += memberElement -> pqn
 						}
 					}
 				]
@@ -118,7 +118,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		
 	}
 
-	private def gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
+	private def void gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
 		val visited = visit
 		if (pack instanceof Class) {
 			val c = pack as Class
@@ -149,7 +149,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		}
 	}
 
-	private def imp(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
+	private def void imp(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
 		val visited = visit
 		pack.ownedImport.forEach [ e |
 			if (e.importedPackage?.name !== null) {
@@ -183,8 +183,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 		val visitor = [ QualifiedName qn, Element el |
 			if (reference.EReferenceType.isInstance(el)) {
-				if (!elements.containsKey(qn))
+				if (!elements.containsKey(qn)){
 					elements.put(qn, el)
+				}
 			}
 			return
 		]

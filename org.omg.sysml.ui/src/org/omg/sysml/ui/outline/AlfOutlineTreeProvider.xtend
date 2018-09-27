@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subset
 import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.ConnectorEnd
 
 /**
  * Customization of the default outline structure.
@@ -136,6 +137,25 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createEObjectNode(parentNode, subset.subsettedFeature, 
 				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
 				subset.owner == subset.subsettedFeature || subset.subsettedFeature._isLeaf
+			)
+		}
+	}
+	
+	def boolean _isLeaf(ConnectorEnd connectorEnd) {
+		connectorEnd.end === null && connectorEnd.feature === null;
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, ConnectorEnd connectorEnd) {
+		if (connectorEnd.end !== null) {
+			createEObjectNode(parentNode, connectorEnd.end, 
+				_image(connectorEnd.end), "end " + connectorEnd.end._text, 
+				connectorEnd.end.owner == connectorEnd.end || connectorEnd.end._isLeaf
+			)
+		}
+		if (connectorEnd.feature !== null) {
+			createEObjectNode(parentNode, connectorEnd.feature, 
+				_image(connectorEnd.feature), "feature " + connectorEnd.feature._text, 
+				connectorEnd.feature.owner == connectorEnd.feature || connectorEnd.feature._isLeaf
 			)
 		}
 	}

@@ -1,5 +1,5 @@
-package 'Parts Interconnection' {
-	import 'Parts Tree'::'Create Generic Hierarchical Structure'::*;
+package '2-Parts Interconnection' {
+	import '1a-Parts Tree'::*;
 	
 	/* DEFINITIONS */
 

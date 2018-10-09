@@ -1,0 +1,41 @@
+package 'Parts Tree Demo' {
+	
+	package 'Create Generic Hierarchical Structure' {
+		
+		/* Definitions */
+		
+		class Vehicle {
+			feature mass;
+		}		
+		class AxleAssembly { }		
+		class Axle { }		
+		class Wheel { }
+		
+		/* Usages */
+		
+		vehicle1: Vehicle {
+			part frontAxleAssembly: AxleAssembly {
+				part frontAxle: Axle;			
+				part frontWheel: Wheel[2] ordered;
+			}
+						
+			part rearAxleAssembly: AxleAssembly {
+				part rearAxle: Axle;
+				part rearWheel: Wheel[2] ordered;
+			}			
+		}
+		
+	}
+	
+	package 'Copy Generic Hierarchical Structure' {
+		import 'Create Generic Hierarchical Structure'::*;
+		import 'Create Generic Hierarchical Structure'::vehicle1::*;
+		import 'Create Generic Hierarchical Structure'::vehicle1::frontAxleAssembly::*;
+		import 'Create Generic Hierarchical Structure'::vehicle1::rearAxleAssembly::*;
+		
+		/* Definitions */
+				
+		/* Usages */
+		
+	}
+}

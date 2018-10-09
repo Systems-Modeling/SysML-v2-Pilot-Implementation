@@ -1,0 +1,140 @@
+package 'Parts Interconnection Demo' {
+	import 'Parts Tree'::'Create Generic Hierarchical Structure'::*;
+	
+	/* DEFINITIONS */
+
+	// Blocks
+	
+	class VehicleA specializes Vehicle { 
+		port fuelCmdPort: FuelCmdPort;
+		port vehicleToRoadPort: VehicleToRoadPort;
+	}
+	
+	class RearAxleAssembly specializes AxleAssembly { }
+	
+	class FrontAxle specializes Axle { }
+	class RearAxle specializes Axle { }
+	
+	class Engine { }	
+	class Transmission { }	
+	class Driveshaft { }	
+	class Differential { }
+	
+	// Port Types
+	
+	class FuelCmdPort { }
+	
+	class DrivePwrPort { }
+	class ClutchPort { }
+	
+	class ShaftPort_a { }
+	class ShaftPort_b { }
+	class ShaftPort_c { }
+	class ShaftPort_d { }
+	
+	class DiffPort { }
+	class AxlePort { }
+	class AxleToWheelPort { }
+	class WheelToAxlePort { }
+	class WheelToRoadPort { }
+	
+	class VehicleToRoadPort { 
+		port wheelToRoadPort: WheelToRoadPort[2];
+	}
+
+	// Interfaces
+	
+	assoc EngineToTransmissionInterface {
+		end drivePwrPort: DrivePwrPort;
+		end clutchPort: ClutchPort;
+	}
+	
+	assoc DriveshaftInterface {
+		end port shaftPort_a: ShaftPort_a;
+		end port shaftPort_d: ShaftPort_d;
+		
+		part driveShaft: Driveshaft {
+			port shaftPort_b: ShaftPort_b;
+			port shaftPort_c: ShaftPort_c;
+		}
+		
+		connector shaftPort_a to driveShaft::shaftPort_b;
+		connector driveShaft::shaftPort_c to shaftPort_d;
+	}
+		
+	/* USAGES */
+	
+	vehicle1_c1: VehicleA {
+		port fuelCmdPort redefines VehicleA::fuelCmdPort;
+		
+		port vehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
+			import VehicleToRoadPort::*;
+			
+			port wheelToRoadPort_1 subsets wheelToRoadPort = wheelToRoadPort[1];
+			port wheelToRoadPort_2 subsets wheelToRoadPort = wheelToRoadPort[2];
+		}
+		
+		part engine: Engine {
+			port fuelCmdPort: FuelCmdPort;
+			port drivePwrPort: DrivePwrPort;
+		}
+		
+		part transmission: Transmission {
+			port clutchPort: ClutchPort;
+			port shaftPort_a: ShaftPort_a;	
+		}
+		
+		part rearAxleAssembly_c1: RearAxleAssembly {
+			port shaftPort_d: ShaftPort_d;
+
+			part differential: Differential {
+				port shaftPort_d: ShaftPort_d;
+				port leftDiffPort: DiffPort;
+				port rightDiffPort: DiffPort;
+			}
+			
+			part rearAxle: RearAxle {
+				part leftAxle: Axle {
+					port axleToDiffPort: AxlePort;
+					port axleToWheelPort: AxleToWheelPort;
+				}
+				part rightAxle: Axle  {
+					port axleToDiffPort: AxlePort;
+					port axleToWheelPort: AxleToWheelPort;
+				}
+			}
+			
+			part rearWheel_1: Wheel {
+				port wheelToAxlePort: WheelToAxlePort;
+				port wheelToRoadPort: WheelToRoadPort;
+			}
+			
+			part rearWheel_2: Wheel {
+				port wheelToAxlePort: WheelToAxlePort;
+				port wheelToRoadPort: WheelToRoadPort;
+			}
+			
+			connector shaftPort_d to differential::shaftPort_d;
+			
+			connector differential::leftDiffPort to rearAxle::leftAxle::axleToDiffPort;
+			connector differential::rightDiffPort to rearAxle::rightAxle::axleToDiffPort;
+			connector rearAxle::leftAxle::axleToWheelPort to rearWheel_1::wheelToAxlePort;
+			connector rearAxle::rightAxle::axleToWheelPort to rearWheel_2::wheelToAxlePort;
+		}
+		
+		connector fuelCmdPort to engine::fuelCmdPort;
+		
+		connector :EngineToTransmissionInterface is 
+			engine::drivePwrPort to transmission::clutchPort;
+		
+		connector :DriveshaftInterface is
+			transmission::shaftPort_a to rearAxleAssembly_c1::shaftPort_d;
+
+		connector rearAxleAssembly_c1::rearWheel_1::wheelToRoadPort to 
+			vehicleToRoadPort::wheelToRoadPort_1;
+		connector rearAxleAssembly_c1::rearWheel_2::wheelToRoadPort to 
+			vehicleToRoadPort::wheelToRoadPort_2;
+			
+	}
+	
+}

@@ -14,22 +14,43 @@ package 'Parts Interconnection' {
 		port shaftPort_d: ShaftPort_d;
 	}
 	
-	class FrontAxle specializes Axle { }
 	class RearAxle specializes Axle { }
 	
-	class Engine { }	
-	class Transmission { }	
-	class DriveShaft { }	
+	/**
+	 * Note: This class is used for both the left and
+	 * right axles within a RearAxle.
+	 */
+	class WheelAxle { 
+		port axleToDiffPort: AxlePort;
+		port axleToWheelPort: AxleToWheelPort;
+	}
+	
+	class Engine { 
+		port fuelCmdPort: FuelCmdPort;
+		port drivePwrPort: DrivePwrPort;
+	}
+	
+	/**
+	 * Class Transmission has one of the two parts its usage has.
+	 */	
+	class Transmission { 
+		port clutchPort: ClutchPort;
+	}	
+	class Driveshaft { 
+		port shaftPort_b: ShaftPort_b;
+		port shaftPort_c: ShaftPort_c;
+	}	
 	class Differential { }
+	
+	/**
+	 * Class Wheel does not include the ports its usages have.
+	 */
+	class Wheel is 'Parts Tree'::'Create Generic Hierarchical Structure'::Wheel;
 	
 	// Port Types
 	
 	class FuelCmdPort { }
 	
-	class VehicleToRoadPort { 
-		port wheelToRoadPort: WheelToRoadPort[2];
-	}
-
 	class DrivePwrPort { }
 	class ClutchPort { }
 	
@@ -44,11 +65,36 @@ package 'Parts Interconnection' {
 	class WheelToAxlePort { }
 	class WheelToRoadPort { }
 	
+	class VehicleToRoadPort { 
+		port wheelToRoadPort: WheelToRoadPort[2];
+	}
+
 	// Interfaces
 	
 	assoc EngineToTransmissionInterface {
 		end drivePwrPort: DrivePwrPort;
 		end clutchPort: ClutchPort;
+	}
+	
+	assoc DriveshaftInterface {
+		end port shaftPort_a: ShaftPort_a;
+		end port shaftPort_d: ShaftPort_d;
+		
+		/**
+		 * The driveshaft part is the "interface medium".
+		 * 
+		 * Note: It would be better if this was a reference rather
+		 * than a part, but it is not obvious how to fill in the
+		 * actual driveshaft when the association is used to type
+		 * a connector.
+		 */
+		part driveshaft: Driveshaft {
+			port shaftPort_b redefines Driveshaft::shaftPort_b;
+			port shaftPort_c redefines Driveshaft::shaftPort_c;
+		}
+		
+		connector shaftPort_a to driveshaft::shaftPort_b;
+		connector driveshaft::shaftPort_c to shaftPort_d;
 	}
 		
 	/* USAGES */
@@ -59,51 +105,51 @@ package 'Parts Interconnection' {
 		port vehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
 			import VehicleToRoadPort::*;
 			
-			port wheelToRoadPort_1 subsets wheelToRoadPort = wheelToRoadPort[1];
-			port wheelToRoadPort_2 subsets wheelToRoadPort = wheelToRoadPort[2];
+			port leftWheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[1];
+			port rightWheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[2];
 		}
 		
 		part engine: Engine {
-			port fuelCmdPort: FuelCmdPort;
-			port drivePwrPort: DrivePwrPort;
+			port fuelCmdPort redefines Engine::fuelCmdPort;
+			port drivePwrPort redefines Engine::drivePwrPort;
 		}
 		
 		part transmission: Transmission {
-			port clutchPort: ClutchPort;
+			port clutchPort redefines Transmission::clutchPort;
 			port shaftPort_a: ShaftPort_a;	
-		}
-		
-		part driveShaft: DriveShaft {
-			port shaftPort_b: ShaftPort_b;
-			port shaftPort_c: ShaftPort_c;
 		}
 		
 		part rearAxleAssembly_c1: RearAxleAssembly {
 			port shaftPort_d redefines RearAxleAssembly::shaftPort_d;
 
-			part differential: Differential {
+			/**
+			 * Untyped part.
+			 */
+			part differential {
 				port shaftPort_d: ShaftPort_d;
 				port leftDiffPort: DiffPort;
 				port rightDiffPort: DiffPort;
 			}
 			
 			part rearAxle: RearAxle {
-				part leftAxle: Axle {
-					port axleToDiffPort: AxlePort;
-					port axleToWheelPort: AxleToWheelPort;
+				part leftAxle: WheelAxle {
+					port axleToDiffPort redefines WheelAxle::axleToDiffPort;
+					port axleToWheelPort redefines WheelAxle::axleToWheelPort;
 				}
-				part rightAxle  {
-					port axleToDiffPort: AxlePort;
-					port axleToWheelPort: AxleToWheelPort;
+				part rightAxle: WheelAxle  {
+					port axleToDiffPort redefines WheelAxle::axleToDiffPort;
+					port axleToWheelPort redefines WheelAxle::axleToWheelPort;
 				}
 			}
 			
-			part rearWheel_1: Wheel {
+			part rearWheel: Wheel[2] ordered;
+			
+			part leftWheel = rearWheel[1] {
 				port wheelToAxlePort: WheelToAxlePort;
 				port wheelToRoadPort: WheelToRoadPort;
 			}
 			
-			part rearWheel_2: Wheel {
+			part rightWheel = rearWheel[2] {
 				port wheelToAxlePort: WheelToAxlePort;
 				port wheelToRoadPort: WheelToRoadPort;
 			}
@@ -112,23 +158,23 @@ package 'Parts Interconnection' {
 			
 			connector differential::leftDiffPort to rearAxle::leftAxle::axleToDiffPort;
 			connector differential::rightDiffPort to rearAxle::rightAxle::axleToDiffPort;
-			connector rearAxle::leftAxle::axleToWheelPort to rearWheel_1::wheelToAxlePort;
-			connector rearAxle::rightAxle::axleToWheelPort to rearWheel_2::wheelToAxlePort;
+			connector rearAxle::leftAxle::axleToWheelPort to leftWheel::wheelToAxlePort;
+			connector rearAxle::rightAxle::axleToWheelPort to rightWheel::wheelToAxlePort;
 		}
 		
 		connector fuelCmdPort to engine::fuelCmdPort;
 		
-		connector :EngineToTransmissionInterface ( 
-			EngineToTransmissionInterface::clutchPort => transmission::clutchPort,
-			EngineToTransmissionInterface::drivePwrPort => engine::drivePwrPort);
-
-		connector transmission::shaftPort_a to driveShaft::shaftPort_b;
-		connector driveShaft::shaftPort_c to rearAxleAssembly_c1::shaftPort_d; 
+		connector :EngineToTransmissionInterface is 
+			engine::drivePwrPort to transmission::clutchPort;
 		
-		connector rearAxleAssembly_c1::rearWheel_1::wheelToRoadPort to 
-			vehicleToRoadPort::wheelToRoadPort_1;
-		connector rearAxleAssembly_c1::rearWheel_2::wheelToRoadPort to 
-			vehicleToRoadPort::wheelToRoadPort_2;
+		connector :DriveshaftInterface is
+			transmission::shaftPort_a to rearAxleAssembly_c1::shaftPort_d;
+
+		connector rearAxleAssembly_c1::leftWheel::wheelToRoadPort to 
+			vehicleToRoadPort::leftWheelToRoadPort;
+		connector rearAxleAssembly_c1::rightWheel::wheelToRoadPort to 
+			vehicleToRoadPort::rightWheelToRoadPort;
+			
 	}
 	
 }

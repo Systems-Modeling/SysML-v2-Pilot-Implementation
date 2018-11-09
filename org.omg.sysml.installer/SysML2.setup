@@ -37,7 +37,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="Oxygen"
+      defaultValue="Photon"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
@@ -46,7 +46,7 @@
     <requirement
         name="org.eclipse.xtend.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/oxygen/"/>
+        url="http://download.eclipse.org/releases/2018-09/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -70,13 +70,13 @@
           rootFolder="${git.clone.sysml2.location}"
           locateNestedProjects="true"/>
       <repositoryList
-          name="Oxygen">
+          name="Photon">
         <repository
-            url="http://download.eclipse.org/releases/oxygen"/>
+            url="http://download.eclipse.org/releases/2018-09"/>
         <repository
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="http://download.eclipse.org/eclipse/updates/4.7/"/>
+            url="http://download.eclipse.org/eclipse/updates/4.9/"/>
       </repositoryList>
     </targlet>
   </setupTask>

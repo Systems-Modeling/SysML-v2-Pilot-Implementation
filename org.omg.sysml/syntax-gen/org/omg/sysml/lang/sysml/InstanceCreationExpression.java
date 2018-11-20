@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getArgument <em>Argument</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getInstanceCreationExpression()

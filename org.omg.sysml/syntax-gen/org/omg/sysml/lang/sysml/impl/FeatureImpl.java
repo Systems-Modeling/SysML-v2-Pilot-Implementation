@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -33,13 +34,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsOrdered <em>Is Ordered</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getNestedFeature <em>Nested Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getNestingFeature <em>Nesting Feature</em>}</li>
@@ -48,12 +49,33 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isIsNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FeatureImpl extends ClassImpl implements Feature {
+public class FeatureImpl extends CategoryImpl implements Feature {
+	/**
+	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Category> referencedType;
+
+	/**
+	 * The cached value of the '{@link #getOwningCategory() <em>Owning Category</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected Category owningCategory;
+
 	/**
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -115,16 +137,6 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	protected boolean isOrdered = IS_ORDERED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected org.omg.sysml.lang.sysml.Class owningClass;
-
-	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,17 +144,7 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> type;
-
-	/**
-	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferencedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> referencedType;
+	protected EList<Category> type;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' reference list.
@@ -152,7 +154,7 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> ownedType;
+	protected EList<Category> ownedType;
 
 	/**
 	 * The cached value of the '{@link #getNestedFeature() <em>Nested Feature</em>}' reference list.
@@ -223,6 +225,26 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MULTIPLICITY_EDEFAULT = "[0..*]";
+
+	/**
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String multiplicity = MULTIPLICITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
@@ -396,16 +418,52 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getOwningClass() {
-		if (owningClass != null && owningClass.eIsProxy()) {
-			InternalEObject oldOwningClass = (InternalEObject)owningClass;
-			owningClass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldOwningClass);
-			if (owningClass != oldOwningClass) {
+	public EList<Category> getType() {
+		if (type == null) {
+			type = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
+		}
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Category> getOwnedType() {
+		if (ownedType == null) {
+			ownedType = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
+		}
+		return ownedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Category> getReferencedType() {
+		if (referencedType == null) {
+			referencedType = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
+		}
+		return referencedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Category getOwningCategory() {
+		if (owningCategory != null && owningCategory.eIsProxy()) {
+			InternalEObject oldOwningCategory = (InternalEObject)owningCategory;
+			owningCategory = (Category)eResolveProxy(oldOwningCategory);
+			if (owningCategory != oldOwningCategory) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__OWNING_CLASS, oldOwningClass, owningClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__OWNING_CATEGORY, oldOwningCategory, owningCategory));
 			}
 		}
-		return owningClass;
+		return owningCategory;
 	}
 
 	/**
@@ -413,8 +471,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetOwningClass() {
-		return owningClass;
+	public Category basicGetOwningCategory() {
+		return owningCategory;
 	}
 
 	/**
@@ -422,11 +480,11 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass, NotificationChain msgs) {
-		org.omg.sysml.lang.sysml.Class oldOwningClass = owningClass;
-		owningClass = newOwningClass;
+	public NotificationChain basicSetOwningCategory(Category newOwningCategory, NotificationChain msgs) {
+		Category oldOwningCategory = owningCategory;
+		owningCategory = newOwningCategory;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__OWNING_CLASS, oldOwningClass, newOwningClass);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__OWNING_CATEGORY, oldOwningCategory, newOwningCategory);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -437,54 +495,18 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass) {
-		if (newOwningClass != owningClass) {
+	public void setOwningCategory(Category newOwningCategory) {
+		if (newOwningCategory != owningCategory) {
 			NotificationChain msgs = null;
-			if (owningClass != null)
-				msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-			if (newOwningClass != null)
-				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-			msgs = basicSetOwningClass(newOwningClass, msgs);
+			if (owningCategory != null)
+				msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+			if (newOwningCategory != null)
+				msgs = ((InternalEObject)newOwningCategory).eInverseAdd(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+			msgs = basicSetOwningCategory(newOwningCategory, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__OWNING_CLASS, newOwningClass, newOwningClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getType() {
-		if (type == null) {
-			type = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.FEATURE__TYPE);
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getOwnedType() {
-		if (ownedType == null) {
-			ownedType = new EObjectWithInverseResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.FEATURE__OWNED_TYPE, SysMLPackage.CLASS__OWNING_FEATURE);
-		}
-		return ownedType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getReferencedType() {
-		if (referencedType == null) {
-			referencedType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
-		}
-		return referencedType;
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__OWNING_CATEGORY, newOwningCategory, newOwningCategory));
 	}
 
 	/**
@@ -645,6 +667,27 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMultiplicity() {
+		return multiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplicity(String newMultiplicity) {
+		String oldMultiplicity = multiplicity;
+		multiplicity = newMultiplicity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__MULTIPLICITY, oldMultiplicity, multiplicity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isIsNonunique() {
 		return isNonunique;
 	}
@@ -670,12 +713,10 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				if (owningClass != null)
-					msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-				return basicSetOwningClass((org.omg.sysml.lang.sysml.Class)otherEnd, msgs);
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				if (owningCategory != null)
+					msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+				return basicSetOwningCategory((Category)otherEnd, msgs);
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.FEATURE__NESTING_FEATURE:
@@ -698,14 +739,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				return basicSetOwningCategory(null, msgs);
 			case SysMLPackage.FEATURE__LOWER:
 				return basicSetLower(null, msgs);
 			case SysMLPackage.FEATURE__UPPER:
 				return basicSetUpper(null, msgs);
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				return basicSetOwningClass(null, msgs);
-			case SysMLPackage.FEATURE__OWNED_TYPE:
-				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				return ((InternalEList<?>)getNestedFeature()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__NESTING_FEATURE:
@@ -742,6 +781,11 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				return getReferencedType();
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				if (resolve) return getOwningCategory();
+				return basicGetOwningCategory();
 			case SysMLPackage.FEATURE__LOWER:
 				return getLower();
 			case SysMLPackage.FEATURE__UPPER:
@@ -750,13 +794,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return isIsUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				return isIsOrdered();
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				if (resolve) return getOwningClass();
-				return basicGetOwningClass();
 			case SysMLPackage.FEATURE__TYPE:
 				return getType();
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				return getReferencedType();
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				return getOwnedType();
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
@@ -773,6 +812,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return getOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isIsComposite();
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				return getMultiplicity();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isIsNonunique();
 		}
@@ -788,6 +829,13 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				getReferencedType().clear();
+				getReferencedType().addAll((Collection<? extends Category>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				setOwningCategory((Category)newValue);
+				return;
 			case SysMLPackage.FEATURE__LOWER:
 				setLower((Expression)newValue);
 				return;
@@ -800,20 +848,13 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
 			case SysMLPackage.FEATURE__TYPE:
 				getType().clear();
-				getType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
-				return;
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				getReferencedType().clear();
-				getReferencedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getType().addAll((Collection<? extends Category>)newValue);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getOwnedType().addAll((Collection<? extends Category>)newValue);
 				return;
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
 				getNestedFeature().clear();
@@ -840,6 +881,9 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				setMultiplicity((String)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -855,6 +899,12 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				getReferencedType().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				setOwningCategory((Category)null);
+				return;
 			case SysMLPackage.FEATURE__LOWER:
 				setLower((Expression)null);
 				return;
@@ -867,14 +917,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
-				return;
 			case SysMLPackage.FEATURE__TYPE:
 				getType().clear();
-				return;
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				getReferencedType().clear();
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				getOwnedType().clear();
@@ -900,6 +944,9 @@ public class FeatureImpl extends ClassImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				setMultiplicity(MULTIPLICITY_EDEFAULT);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -915,6 +962,10 @@ public class FeatureImpl extends ClassImpl implements Feature {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				return referencedType != null && !referencedType.isEmpty();
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				return owningCategory != null;
 			case SysMLPackage.FEATURE__LOWER:
 				return lower != null;
 			case SysMLPackage.FEATURE__UPPER:
@@ -923,12 +974,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
-			case SysMLPackage.FEATURE__OWNING_CLASS:
-				return owningClass != null;
 			case SysMLPackage.FEATURE__TYPE:
 				return type != null && !type.isEmpty();
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				return referencedType != null && !referencedType.isEmpty();
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
 			case SysMLPackage.FEATURE__NESTED_FEATURE:
@@ -945,6 +992,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 				return getOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 		}
@@ -967,6 +1016,8 @@ public class FeatureImpl extends ClassImpl implements Feature {
 		result.append(isOrdered);
 		result.append(", isComposite: ");
 		result.append(isComposite);
+		result.append(", multiplicity: ");
+		result.append(multiplicity);
 		result.append(", isNonunique: ");
 		result.append(isNonunique);
 		result.append(')');

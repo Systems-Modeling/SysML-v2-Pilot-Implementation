@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()
@@ -108,7 +108,7 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Member Element</em>' reference.
 	 * @see #setMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberElement()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Element getMemberElement();
@@ -152,32 +152,32 @@ public interface Membership extends Relationship {
 	void setOwnedMemberElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Membership Owning Package</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Package</em>' container reference.
-	 * @see #setOwningPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwningPackage()
+	 * @return the value of the '<em>Membership Owning Package</em>' container reference.
+	 * @see #setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership
 	 * @model opposite="ownedMembership" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getOwningPackage();
+	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwningPackage <em>Owning Package</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Package</em>' container reference.
-	 * @see #getOwningPackage()
+	 * @param value the new value of the '<em>Membership Owning Package</em>' container reference.
+	 * @see #getMembershipOwningPackage()
 	 * @generated
 	 */
-	void setOwningPackage(org.omg.sysml.lang.sysml.Package value);
+	void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
 	 * <!-- begin-user-doc -->

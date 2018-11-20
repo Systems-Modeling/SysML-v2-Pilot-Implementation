@@ -20,23 +20,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getRedefinedFeature <em>Redefined Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getRedefiningFeature <em>Redefining Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RedefinitionImpl#getRedefinedFeature <em>Redefined Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RedefinitionImpl extends SubsetImpl implements Redefinition {
-	/**
-	 * The cached value of the '{@link #getRedefinedFeature() <em>Redefined Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRedefinedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature redefinedFeature;
-
 	/**
 	 * The cached value of the '{@link #getRedefiningFeature() <em>Redefining Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -46,6 +36,16 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	 * @ordered
 	 */
 	protected Feature redefiningFeature;
+
+	/**
+	 * The cached value of the '{@link #getRedefinedFeature() <em>Redefined Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRedefinedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature redefinedFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,12 +150,12 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
-				if (resolve) return getRedefinedFeature();
-				return basicGetRedefinedFeature();
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				if (resolve) return getRedefiningFeature();
 				return basicGetRedefiningFeature();
+			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
+				if (resolve) return getRedefinedFeature();
+				return basicGetRedefinedFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,11 +168,11 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
-				setRedefinedFeature((Feature)newValue);
-				return;
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				setRedefiningFeature((Feature)newValue);
+				return;
+			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
+				setRedefinedFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,11 +186,11 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
-				setRedefinedFeature((Feature)null);
-				return;
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				setRedefiningFeature((Feature)null);
+				return;
+			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
+				setRedefinedFeature((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -204,10 +204,10 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
-				return redefinedFeature != null;
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
 				return redefiningFeature != null;
+			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
+				return redefinedFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

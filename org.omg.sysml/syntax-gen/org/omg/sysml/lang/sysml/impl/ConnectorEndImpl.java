@@ -2,14 +2,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.omg.sysml.lang.sysml.Connector;
@@ -26,26 +29,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getEnd <em>End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getConnector <em>Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getEnd <em>End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getPath <em>Path</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
-	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature feature;
-
 	/**
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -67,6 +61,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	protected Expression upper;
 
 	/**
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature feature;
+
+	/**
 	 * The cached value of the '{@link #getEnd() <em>End</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,6 +79,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @ordered
 	 */
 	protected Feature end;
+
+	/**
+	 * The cached value of the '{@link #getPath() <em>Path</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> path;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -262,6 +276,18 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Feature> getPath() {
+		if (path == null) {
+			path = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR_END__PATH);
+		}
+		return path;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Connector getConnector() {
 		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR) return null;
 		return (Connector)eInternalContainer();
@@ -354,18 +380,20 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
 			case SysMLPackage.CONNECTOR_END__LOWER:
 				return getLower();
 			case SysMLPackage.CONNECTOR_END__UPPER:
 				return getUpper();
+			case SysMLPackage.CONNECTOR_END__CONNECTOR:
+				return getConnector();
+			case SysMLPackage.CONNECTOR_END__FEATURE:
+				if (resolve) return getFeature();
+				return basicGetFeature();
 			case SysMLPackage.CONNECTOR_END__END:
 				if (resolve) return getEnd();
 				return basicGetEnd();
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return getConnector();
+			case SysMLPackage.CONNECTOR_END__PATH:
+				return getPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -375,23 +403,28 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__FEATURE:
-				setFeature((Feature)newValue);
-				return;
 			case SysMLPackage.CONNECTOR_END__LOWER:
 				setLower((Expression)newValue);
 				return;
 			case SysMLPackage.CONNECTOR_END__UPPER:
 				setUpper((Expression)newValue);
 				return;
+			case SysMLPackage.CONNECTOR_END__CONNECTOR:
+				setConnector((Connector)newValue);
+				return;
+			case SysMLPackage.CONNECTOR_END__FEATURE:
+				setFeature((Feature)newValue);
+				return;
 			case SysMLPackage.CONNECTOR_END__END:
 				setEnd((Feature)newValue);
 				return;
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				setConnector((Connector)newValue);
+			case SysMLPackage.CONNECTOR_END__PATH:
+				getPath().clear();
+				getPath().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -405,20 +438,23 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__FEATURE:
-				setFeature((Feature)null);
-				return;
 			case SysMLPackage.CONNECTOR_END__LOWER:
 				setLower((Expression)null);
 				return;
 			case SysMLPackage.CONNECTOR_END__UPPER:
 				setUpper((Expression)null);
 				return;
+			case SysMLPackage.CONNECTOR_END__CONNECTOR:
+				setConnector((Connector)null);
+				return;
+			case SysMLPackage.CONNECTOR_END__FEATURE:
+				setFeature((Feature)null);
+				return;
 			case SysMLPackage.CONNECTOR_END__END:
 				setEnd((Feature)null);
 				return;
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				setConnector((Connector)null);
+			case SysMLPackage.CONNECTOR_END__PATH:
+				getPath().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -432,16 +468,18 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__FEATURE:
-				return feature != null;
 			case SysMLPackage.CONNECTOR_END__LOWER:
 				return lower != null;
 			case SysMLPackage.CONNECTOR_END__UPPER:
 				return upper != null;
-			case SysMLPackage.CONNECTOR_END__END:
-				return end != null;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				return getConnector() != null;
+			case SysMLPackage.CONNECTOR_END__FEATURE:
+				return feature != null;
+			case SysMLPackage.CONNECTOR_END__END:
+				return end != null;
+			case SysMLPackage.CONNECTOR_END__PATH:
+				return path != null && !path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

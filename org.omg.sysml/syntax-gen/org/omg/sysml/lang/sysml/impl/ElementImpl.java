@@ -31,12 +31,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  * </ul>
  *
  * @generated
@@ -326,6 +326,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningMembership((Membership)otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNER:
@@ -336,10 +340,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				if (owningNamespace != null)
 					msgs = ((InternalEObject)owningNamespace).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBER, org.omg.sysml.lang.sysml.Package.class, msgs);
 				return basicSetOwningNamespace((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningMembership((Membership)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -352,14 +352,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return basicSetOwningMembership(null, msgs);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return ((InternalEList<?>)getOwnedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNER:
 				return basicSetOwner(null, msgs);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return basicSetOwningNamespace(null, msgs);
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return basicSetOwningMembership(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -372,10 +372,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.ELEMENT__OWNER:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
+			case SysMLPackage.ELEMENT__OWNER:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -388,6 +388,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership();
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return getOwnedElement();
 			case SysMLPackage.ELEMENT__OWNER:
@@ -399,8 +401,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwningNamespace();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return getOwningMembership();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -414,6 +414,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)newValue);
+				return;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				getOwnedElement().clear();
 				getOwnedElement().addAll((Collection<? extends Element>)newValue);
@@ -430,9 +433,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				setOwningMembership((Membership)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -445,6 +445,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)null);
+				return;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				getOwnedElement().clear();
 				return;
@@ -460,9 +463,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				setOwningMembership((Membership)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -475,6 +475,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership() != null;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return ownedElement != null && !ownedElement.isEmpty();
 			case SysMLPackage.ELEMENT__OWNER:
@@ -485,8 +487,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return owningNamespace != null;
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return getOwningMembership() != null;
 		}
 		return super.eIsSet(featureID);
 	}

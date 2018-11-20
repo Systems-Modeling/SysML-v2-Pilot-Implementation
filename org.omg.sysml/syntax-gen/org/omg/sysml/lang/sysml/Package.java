@@ -45,7 +45,7 @@ public interface Package extends Element {
 	/**
 	 * Returns the value of the '<em><b>Owned Import</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportingPackage <em>Importing Package</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Import</em>' containment reference list isn't clear,
@@ -54,8 +54,8 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Import</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport()
-	 * @see org.omg.sysml.lang.sysml.Import#getImportingPackage
-	 * @model opposite="importingPackage" containment="true"
+	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningPackage
+	 * @model opposite="importOwningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
@@ -97,7 +97,7 @@ public interface Package extends Element {
 	/**
 	 * Returns the value of the '<em><b>Owned Membership</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwningPackage <em>Owning Package</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Membership</em>' containment reference list isn't clear,
@@ -106,8 +106,8 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Membership</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
-	 * @see org.omg.sysml.lang.sysml.Membership#getOwningPackage
-	 * @model opposite="owningPackage" containment="true"
+	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage
+	 * @model opposite="membershipOwningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

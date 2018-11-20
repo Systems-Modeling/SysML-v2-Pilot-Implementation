@@ -140,7 +140,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	public EList<Import> getOwnedImport() {
 		if (ownedImport == null) {
-			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORTING_PACKAGE);
+			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
 		}
 		return ownedImport;
 	}
@@ -176,7 +176,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	public EList<Membership> getOwnedMembership() {
 		if (ownedMembership == null) {
-			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__OWNING_PACKAGE);
+			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
 		}
 		return ownedMembership;
 	}

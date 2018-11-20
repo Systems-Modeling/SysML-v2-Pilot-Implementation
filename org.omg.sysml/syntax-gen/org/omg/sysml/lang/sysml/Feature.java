@@ -13,13 +13,13 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsOrdered <em>Is Ordered</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getNestedFeature <em>Nested Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getNestingFeature <em>Nesting Feature</em>}</li>
@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isIsNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -35,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Feature extends org.omg.sysml.lang.sysml.Class {
+public interface Feature extends Category {
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -99,7 +100,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @return the value of the '<em>Is Unique</em>' attribute.
 	 * @see #setIsUnique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
-	 * @model required="true" ordered="false"
+	 * @model required="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsUnique();
@@ -141,36 +142,8 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	void setIsOrdered(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwnedFeature <em>Owned Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' reference.
-	 * @see #setOwningClass(org.omg.sysml.lang.sysml.Class)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningClass()
-	 * @see org.omg.sysml.lang.sysml.Class#getOwnedFeature
-	 * @model opposite="ownedFeature" derived="true" ordered="false"
-	 * @generated
-	 */
-	org.omg.sysml.lang.sysml.Class getOwningClass();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningClass <em>Owning Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Class</em>' reference.
-	 * @see #getOwningClass()
-	 * @generated
-	 */
-	void setOwningClass(org.omg.sysml.lang.sysml.Class value);
-
-	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference list isn't clear,
@@ -179,15 +152,14 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model derived="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getType();
+	EList<Category> getType();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwningFeature <em>Owning Feature</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Type</em>' reference list isn't clear,
@@ -196,15 +168,14 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedType()
-	 * @see org.omg.sysml.lang.sysml.Class#getOwningFeature
-	 * @model opposite="owningFeature" derived="true" ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getOwnedType();
+	EList<Category> getOwnedType();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Type</em>' reference list isn't clear,
@@ -213,10 +184,38 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
-	 * @model ordered="false"
+	 * @model derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getReferencedType();
+	EList<Category> getReferencedType();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Category</em>' reference.
+	 * @see #setOwningCategory(Category)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningCategory()
+	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeature
+	 * @model opposite="ownedFeature" derived="true" ordered="false"
+	 * @generated
+	 */
+	Category getOwningCategory();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Category</em>' reference.
+	 * @see #getOwningCategory()
+	 * @generated
+	 */
+	void setOwningCategory(Category value);
 
 	/**
 	 * Returns the value of the '<em><b>Nested Feature</b></em>' reference list.
@@ -369,7 +368,35 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	void setIsComposite(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' attribute.
+	 * The default value is <code>"[0..*]"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Multiplicity</em>' attribute.
+	 * @see #setMultiplicity(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
+	 * @model default="[0..*]" required="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	String getMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Multiplicity</em>' attribute.
+	 * @see #getMultiplicity()
+	 * @generated
+	 */
+	void setMultiplicity(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Nonunique</em>' attribute isn't clear,
@@ -379,7 +406,7 @@ public interface Feature extends org.omg.sysml.lang.sysml.Class {
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
-	 * @model required="true" derived="true" ordered="false"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsNonunique();

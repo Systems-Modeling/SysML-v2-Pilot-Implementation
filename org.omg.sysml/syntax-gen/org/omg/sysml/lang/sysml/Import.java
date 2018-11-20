@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportingPackage <em>Importing Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportedPackage <em>Imported Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getVisibility <em>Visibility</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport()
@@ -24,34 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Import extends Relationship {
-	/**
-	 * Returns the value of the '<em><b>Importing Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Importing Package</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Importing Package</em>' container reference.
-	 * @see #setImportingPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportingPackage()
-	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport
-	 * @model opposite="ownedImport" required="true" transient="false" ordered="false"
-	 * @generated
-	 */
-	org.omg.sysml.lang.sysml.Package getImportingPackage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportingPackage <em>Importing Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Importing Package</em>' container reference.
-	 * @see #getImportingPackage()
-	 * @generated
-	 */
-	void setImportingPackage(org.omg.sysml.lang.sysml.Package value);
-
 	/**
 	 * Returns the value of the '<em><b>Imported Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -132,6 +104,34 @@ public interface Import extends Relationship {
 	 * @generated
 	 */
 	void setSelecter(Predicate value);
+
+	/**
+	 * Returns the value of the '<em><b>Import Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Import Owning Package</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Import Owning Package</em>' container reference.
+	 * @see #setImportOwningPackage(org.omg.sysml.lang.sysml.Package)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()
+	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport
+	 * @model opposite="ownedImport" required="true" transient="false" ordered="false"
+	 * @generated
+	 */
+	org.omg.sysml.lang.sysml.Package getImportOwningPackage();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Import Owning Package</em>' container reference.
+	 * @see #getImportOwningPackage()
+	 * @generated
+	 */
+	void setImportOwningPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
 	 * <!-- begin-user-doc -->

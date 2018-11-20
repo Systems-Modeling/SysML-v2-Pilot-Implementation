@@ -33,7 +33,7 @@ public interface Subset extends Generalization {
 	 * @return the value of the '<em>Subsetted Feature</em>' reference.
 	 * @see #setSubsettedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettedFeature()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Feature getSubsettedFeature();
@@ -59,7 +59,7 @@ public interface Subset extends Generalization {
 	 * @return the value of the '<em>Subsetting Feature</em>' reference.
 	 * @see #setSubsettingFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettingFeature()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Feature getSubsettingFeature();

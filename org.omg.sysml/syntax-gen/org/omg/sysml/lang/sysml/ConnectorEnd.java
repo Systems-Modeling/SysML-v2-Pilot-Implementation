@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,11 +14,12 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getEnd <em>End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getEnd <em>End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getPath <em>Path</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd()
@@ -113,7 +116,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @return the value of the '<em>End</em>' reference.
 	 * @see #setEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_End()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Feature getEnd();
@@ -127,6 +130,22 @@ public interface ConnectorEnd extends Relationship {
 	 * @generated
 	 */
 	void setEnd(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Path</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Path</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Path()
+	 * @model required="true" derived="true"
+	 * @generated
+	 */
+	EList<Feature> getPath();
 
 	/**
 	 * Returns the value of the '<em><b>Connector</b></em>' container reference.

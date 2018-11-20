@@ -34,7 +34,7 @@ public interface Relationship extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Related()
-	 * @model derived="true" ordered="false"
+	 * @model lower="2" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Element> getRelated();

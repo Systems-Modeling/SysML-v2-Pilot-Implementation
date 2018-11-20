@@ -126,7 +126,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				if (e.general?.name !== null) {
 					val containerMembership = e.general.owningMembership
 					if (containerMembership !== null) {
-						val container = containerMembership.owningPackage
+						val container = containerMembership.membershipOwningPackage
 						if (container !== null && container instanceof Package) {
 							val p = container as Package
 							if (!visited.contains(p)) {
@@ -155,7 +155,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			if (e.importedPackage?.name !== null) {
 				val containerMembership = e.importedPackage.owningMembership
 				if (containerMembership !== null) {
-					val container = containerMembership.owningPackage
+					val container = containerMembership.membershipOwningPackage
 					if (container !== null && container instanceof Package) {
 						val p = container as Package
 						if (!visited.contains(p)) {

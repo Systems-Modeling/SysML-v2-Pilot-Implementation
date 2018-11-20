@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
@@ -50,21 +51,20 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOutput <em>Output</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningFeature <em>Owning Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsOrdered <em>Is Ordered</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getNestedFeature <em>Nested Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getNestingFeature <em>Nesting Feature</em>}</li>
@@ -73,11 +73,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsNonunique <em>Is Nonunique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeatures <em>Related Features</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isIsDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -144,24 +146,24 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected EList<Membership> importedMembership;
 
 	/**
-	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * The cached value of the '{@link #getOwnedGeneralization() <em>Owned Generalization</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAbstract()
+	 * @see #getOwnedGeneralization()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+	protected EList<Generalization> ownedGeneralization;
 
 	/**
-	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * The cached value of the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAbstract()
+	 * @see #getOwnedFeatureMembership()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+	protected EList<FeatureMembership> ownedFeatureMembership;
 
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference list.
@@ -184,16 +186,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected EList<Feature> ownedFeature;
 
 	/**
-	 * The cached value of the '{@link #getOwnedGeneralization() <em>Owned Generalization</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedGeneralization()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Generalization> ownedGeneralization;
-
-	/**
 	 * The cached value of the '{@link #getInput() <em>Input</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,24 +206,44 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected EList<Feature> output;
 
 	/**
-	 * The cached value of the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeatureMembership()
+	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FeatureMembership> ownedFeatureMembership;
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwningFeature()
+	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature owningFeature;
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Category> referencedType;
+
+	/**
+	 * The cached value of the '{@link #getOwningCategory() <em>Owning Category</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected Category owningCategory;
 
 	/**
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
@@ -294,16 +306,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected boolean isOrdered = IS_ORDERED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected org.omg.sysml.lang.sysml.Class owningClass;
-
-	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,17 +313,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> type;
-
-	/**
-	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferencedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> referencedType;
+	protected EList<Category> type;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' reference list.
@@ -331,7 +323,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> ownedType;
+	protected EList<Category> ownedType;
 
 	/**
 	 * The cached value of the '{@link #getNestedFeature() <em>Nested Feature</em>}' reference list.
@@ -404,6 +396,26 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MULTIPLICITY_EDEFAULT = "[0..*]";
+
+	/**
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String multiplicity = MULTIPLICITY_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #isIsNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,6 +486,16 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	protected EList<ConnectorEnd> connectorEnd;
 
 	/**
+	 * The cached value of the '{@link #getOwnedAssociationType() <em>Owned Association Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAssociationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Association ownedAssociationType;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -511,7 +533,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<Import> getOwnedImport() {
 		if (ownedImport == null) {
-			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.CONNECTOR__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORTING_PACKAGE);
+			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.CONNECTOR__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
 		}
 		return ownedImport;
 	}
@@ -547,7 +569,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<Membership> getOwnedMembership() {
 		if (ownedMembership == null) {
-			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__OWNING_PACKAGE);
+			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
 		}
 		return ownedMembership;
 	}
@@ -604,7 +626,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<Feature> getOwnedFeature() {
 		if (ownedFeature == null) {
-			ownedFeature = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR__OWNED_FEATURE, SysMLPackage.FEATURE__OWNING_CLASS);
+			ownedFeature = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR__OWNED_FEATURE, SysMLPackage.FEATURE__OWNING_CATEGORY);
 		}
 		return ownedFeature;
 	}
@@ -616,7 +638,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		if (ownedGeneralization == null) {
-			ownedGeneralization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, SysMLPackage.CONNECTOR__OWNED_GENERALIZATION, SysMLPackage.GENERALIZATION__OWNING_CLASS);
+			ownedGeneralization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, SysMLPackage.CONNECTOR__OWNED_GENERALIZATION, SysMLPackage.GENERALIZATION__OWNING_CATEGORY);
 		}
 		return ownedGeneralization;
 	}
@@ -652,69 +674,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 */
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
 		if (ownedFeatureMembership == null) {
-			ownedFeatureMembership = new EObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CLASS);
+			ownedFeatureMembership = new EObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY);
 		}
 		return ownedFeatureMembership;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature getOwningFeature() {
-		if (owningFeature != null && owningFeature.eIsProxy()) {
-			InternalEObject oldOwningFeature = (InternalEObject)owningFeature;
-			owningFeature = (Feature)eResolveProxy(oldOwningFeature);
-			if (owningFeature != oldOwningFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__OWNING_FEATURE, oldOwningFeature, owningFeature));
-			}
-		}
-		return owningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetOwningFeature() {
-		return owningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningFeature(Feature newOwningFeature, NotificationChain msgs) {
-		Feature oldOwningFeature = owningFeature;
-		owningFeature = newOwningFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_FEATURE, oldOwningFeature, newOwningFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningFeature(Feature newOwningFeature) {
-		if (newOwningFeature != owningFeature) {
-			NotificationChain msgs = null;
-			if (owningFeature != null)
-				msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
-			if (newOwningFeature != null)
-				msgs = ((InternalEObject)newOwningFeature).eInverseAdd(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
-			msgs = basicSetOwningFeature(newOwningFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_FEATURE, newOwningFeature, newOwningFeature));
 	}
 
 	/**
@@ -850,16 +812,40 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getOwningClass() {
-		if (owningClass != null && owningClass.eIsProxy()) {
-			InternalEObject oldOwningClass = (InternalEObject)owningClass;
-			owningClass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldOwningClass);
-			if (owningClass != oldOwningClass) {
+	public EList<Category> getType() {
+		if (type == null) {
+			type = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.CONNECTOR__TYPE);
+		}
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Category> getReferencedType() {
+		if (referencedType == null) {
+			referencedType = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.CONNECTOR__REFERENCED_TYPE);
+		}
+		return referencedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Category getOwningCategory() {
+		if (owningCategory != null && owningCategory.eIsProxy()) {
+			InternalEObject oldOwningCategory = (InternalEObject)owningCategory;
+			owningCategory = (Category)eResolveProxy(oldOwningCategory);
+			if (owningCategory != oldOwningCategory) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__OWNING_CLASS, oldOwningClass, owningClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__OWNING_CATEGORY, oldOwningCategory, owningCategory));
 			}
 		}
-		return owningClass;
+		return owningCategory;
 	}
 
 	/**
@@ -867,8 +853,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetOwningClass() {
-		return owningClass;
+	public Category basicGetOwningCategory() {
+		return owningCategory;
 	}
 
 	/**
@@ -876,11 +862,11 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass, NotificationChain msgs) {
-		org.omg.sysml.lang.sysml.Class oldOwningClass = owningClass;
-		owningClass = newOwningClass;
+	public NotificationChain basicSetOwningCategory(Category newOwningCategory, NotificationChain msgs) {
+		Category oldOwningCategory = owningCategory;
+		owningCategory = newOwningCategory;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_CLASS, oldOwningClass, newOwningClass);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_CATEGORY, oldOwningCategory, newOwningCategory);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -891,18 +877,18 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass) {
-		if (newOwningClass != owningClass) {
+	public void setOwningCategory(Category newOwningCategory) {
+		if (newOwningCategory != owningCategory) {
 			NotificationChain msgs = null;
-			if (owningClass != null)
-				msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-			if (newOwningClass != null)
-				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-			msgs = basicSetOwningClass(newOwningClass, msgs);
+			if (owningCategory != null)
+				msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+			if (newOwningCategory != null)
+				msgs = ((InternalEObject)newOwningCategory).eInverseAdd(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+			msgs = basicSetOwningCategory(newOwningCategory, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_CLASS, newOwningClass, newOwningClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_CATEGORY, newOwningCategory, newOwningCategory));
 	}
 
 	/**
@@ -910,33 +896,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getType() {
-		if (type == null) {
-			type = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTOR__TYPE);
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getReferencedType() {
-		if (referencedType == null) {
-			referencedType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTOR__REFERENCED_TYPE);
-		}
-		return referencedType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.omg.sysml.lang.sysml.Class> getOwnedType() {
+	public EList<Category> getOwnedType() {
 		if (ownedType == null) {
-			ownedType = new EObjectWithInverseResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTOR__OWNED_TYPE, SysMLPackage.CLASS__OWNING_FEATURE);
+			ownedType = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.CONNECTOR__OWNED_TYPE);
 		}
 		return ownedType;
 	}
@@ -1099,6 +1061,27 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMultiplicity() {
+		return multiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplicity(String newMultiplicity) {
+		String oldMultiplicity = multiplicity;
+		multiplicity = newMultiplicity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__MULTIPLICITY, oldMultiplicity, multiplicity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isIsNonunique() {
 		return isNonunique;
 	}
@@ -1203,6 +1186,66 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Association getOwnedAssociationType() {
+		if (ownedAssociationType != null && ownedAssociationType.eIsProxy()) {
+			InternalEObject oldOwnedAssociationType = (InternalEObject)ownedAssociationType;
+			ownedAssociationType = (Association)eResolveProxy(oldOwnedAssociationType);
+			if (ownedAssociationType != oldOwnedAssociationType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, oldOwnedAssociationType, ownedAssociationType));
+			}
+		}
+		return ownedAssociationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association basicGetOwnedAssociationType() {
+		return ownedAssociationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedAssociationType(Association newOwnedAssociationType, NotificationChain msgs) {
+		Association oldOwnedAssociationType = ownedAssociationType;
+		ownedAssociationType = newOwnedAssociationType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, oldOwnedAssociationType, newOwnedAssociationType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedAssociationType(Association newOwnedAssociationType) {
+		if (newOwnedAssociationType != ownedAssociationType) {
+			NotificationChain msgs = null;
+			if (ownedAssociationType != null)
+				msgs = ((InternalEObject)ownedAssociationType).eInverseRemove(this, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, Association.class, msgs);
+			if (newOwnedAssociationType != null)
+				msgs = ((InternalEObject)newOwnedAssociationType).eInverseAdd(this, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, Association.class, msgs);
+			msgs = basicSetOwnedAssociationType(newOwnedAssociationType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, newOwnedAssociationType, newOwnedAssociationType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String nameOf(Element element) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -1235,22 +1278,16 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMember()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedGeneralization()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeatureMembership()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				if (owningFeature != null)
-					msgs = ((InternalEObject)owningFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNED_TYPE, Feature.class, msgs);
-				return basicSetOwningFeature((Feature)otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				if (owningClass != null)
-					msgs = ((InternalEObject)owningClass).eInverseRemove(this, SysMLPackage.CLASS__OWNED_FEATURE, org.omg.sysml.lang.sysml.Class.class, msgs);
-				return basicSetOwningClass((org.omg.sysml.lang.sysml.Class)otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeature()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				if (owningCategory != null)
+					msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE, Category.class, msgs);
+				return basicSetOwningCategory((Category)otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__NESTED_FEATURE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedFeature()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__NESTING_FEATURE:
@@ -1263,6 +1300,10 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return basicSetOwningFeatureMembership((FeatureMembership)otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectorEnd()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				if (ownedAssociationType != null)
+					msgs = ((InternalEObject)ownedAssociationType).eInverseRemove(this, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, Association.class, msgs);
+				return basicSetOwnedAssociationType((Association)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1281,22 +1322,18 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ((InternalEList<?>)getOwnedMember()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP:
 				return ((InternalEList<?>)getOwnedMembership()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
-				return ((InternalEList<?>)getOwnedFeature()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
 				return ((InternalEList<?>)getOwnedGeneralization()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
 				return ((InternalEList<?>)getOwnedFeatureMembership()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				return basicSetOwningFeature(null, msgs);
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
+				return ((InternalEList<?>)getOwnedFeature()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				return basicSetOwningCategory(null, msgs);
 			case SysMLPackage.CONNECTOR__LOWER:
 				return basicSetLower(null, msgs);
 			case SysMLPackage.CONNECTOR__UPPER:
 				return basicSetUpper(null, msgs);
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				return basicSetOwningClass(null, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_TYPE:
-				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__NESTED_FEATURE:
 				return ((InternalEList<?>)getNestedFeature()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__NESTING_FEATURE:
@@ -1309,6 +1346,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return basicSetOwningFeatureMembership(null, msgs);
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return ((InternalEList<?>)getConnectorEnd()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				return basicSetOwnedAssociationType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1347,23 +1386,25 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getOwnedMembership();
 			case SysMLPackage.CONNECTOR__IMPORTED_MEMBERSHIP:
 				return getImportedMembership();
-			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
-				return isIsAbstract();
+			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
+				return getOwnedGeneralization();
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
+				return getOwnedFeatureMembership();
 			case SysMLPackage.CONNECTOR__FEATURE:
 				return getFeature();
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
 				return getOwnedFeature();
-			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
-				return getOwnedGeneralization();
 			case SysMLPackage.CONNECTOR__INPUT:
 				return getInput();
 			case SysMLPackage.CONNECTOR__OUTPUT:
 				return getOutput();
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
-				return getOwnedFeatureMembership();
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				if (resolve) return getOwningFeature();
-				return basicGetOwningFeature();
+			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
+				return isIsAbstract();
+			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
+				return getReferencedType();
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				if (resolve) return getOwningCategory();
+				return basicGetOwningCategory();
 			case SysMLPackage.CONNECTOR__LOWER:
 				return getLower();
 			case SysMLPackage.CONNECTOR__UPPER:
@@ -1372,13 +1413,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return isIsUnique();
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				return isIsOrdered();
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				if (resolve) return getOwningClass();
-				return basicGetOwningClass();
 			case SysMLPackage.CONNECTOR__TYPE:
 				return getType();
-			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
-				return getReferencedType();
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
 				return getOwnedType();
 			case SysMLPackage.CONNECTOR__NESTED_FEATURE:
@@ -1395,6 +1431,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getOwningFeatureMembership();
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				return isIsComposite();
+			case SysMLPackage.CONNECTOR__MULTIPLICITY:
+				return getMultiplicity();
 			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
 				return isIsNonunique();
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
@@ -1406,6 +1444,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return isIsDirected();
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return getConnectorEnd();
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				if (resolve) return getOwnedAssociationType();
+				return basicGetOwnedAssociationType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1443,8 +1484,13 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				getImportedMembership().clear();
 				getImportedMembership().addAll((Collection<? extends Membership>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
+			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
+				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
+				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__FEATURE:
 				getFeature().clear();
@@ -1454,10 +1500,6 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				getOwnedFeature().clear();
 				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__INPUT:
 				getInput().clear();
 				getInput().addAll((Collection<? extends Feature>)newValue);
@@ -1466,12 +1508,15 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				getOutput().clear();
 				getOutput().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
-				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
+			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				setOwningFeature((Feature)newValue);
+			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
+				getReferencedType().clear();
+				getReferencedType().addAll((Collection<? extends Category>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				setOwningCategory((Category)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__LOWER:
 				setLower((Expression)newValue);
@@ -1485,20 +1530,13 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__TYPE:
 				getType().clear();
-				getType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
-				getReferencedType().clear();
-				getReferencedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getType().addAll((Collection<? extends Category>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
 				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getOwnedType().addAll((Collection<? extends Category>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__NESTED_FEATURE:
 				getNestedFeature().clear();
@@ -1525,6 +1563,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
+			case SysMLPackage.CONNECTOR__MULTIPLICITY:
+				setMultiplicity((String)newValue);
+				return;
 			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -1541,6 +1582,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends ConnectorEnd>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				setOwnedAssociationType((Association)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1572,8 +1616,11 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
 				return;
-			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
 				return;
 			case SysMLPackage.CONNECTOR__FEATURE:
 				getFeature().clear();
@@ -1581,20 +1628,20 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
 				getOwnedFeature().clear();
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				return;
 			case SysMLPackage.CONNECTOR__INPUT:
 				getInput().clear();
 				return;
 			case SysMLPackage.CONNECTOR__OUTPUT:
 				getOutput().clear();
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
+			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				setOwningFeature((Feature)null);
+			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
+				getReferencedType().clear();
+				return;
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				setOwningCategory((Category)null);
 				return;
 			case SysMLPackage.CONNECTOR__LOWER:
 				setLower((Expression)null);
@@ -1608,14 +1655,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
-				return;
 			case SysMLPackage.CONNECTOR__TYPE:
 				getType().clear();
-				return;
-			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
-				getReferencedType().clear();
 				return;
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
 				getOwnedType().clear();
@@ -1641,6 +1682,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
+			case SysMLPackage.CONNECTOR__MULTIPLICITY:
+				setMultiplicity(MULTIPLICITY_EDEFAULT);
+				return;
 			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -1655,6 +1699,9 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				setOwnedAssociationType((Association)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1680,22 +1727,24 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return ownedMembership != null && !ownedMembership.isEmpty();
 			case SysMLPackage.CONNECTOR__IMPORTED_MEMBERSHIP:
 				return importedMembership != null && !importedMembership.isEmpty();
-			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
-				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
+				return ownedGeneralization != null && !ownedGeneralization.isEmpty();
+			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
+				return ownedFeatureMembership != null && !ownedFeatureMembership.isEmpty();
 			case SysMLPackage.CONNECTOR__FEATURE:
 				return feature != null && !feature.isEmpty();
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
 				return ownedFeature != null && !ownedFeature.isEmpty();
-			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
-				return ownedGeneralization != null && !ownedGeneralization.isEmpty();
 			case SysMLPackage.CONNECTOR__INPUT:
 				return input != null && !input.isEmpty();
 			case SysMLPackage.CONNECTOR__OUTPUT:
 				return output != null && !output.isEmpty();
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
-				return ownedFeatureMembership != null && !ownedFeatureMembership.isEmpty();
-			case SysMLPackage.CONNECTOR__OWNING_FEATURE:
-				return owningFeature != null;
+			case SysMLPackage.CONNECTOR__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
+				return referencedType != null && !referencedType.isEmpty();
+			case SysMLPackage.CONNECTOR__OWNING_CATEGORY:
+				return owningCategory != null;
 			case SysMLPackage.CONNECTOR__LOWER:
 				return lower != null;
 			case SysMLPackage.CONNECTOR__UPPER:
@@ -1704,12 +1753,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.CONNECTOR__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
-			case SysMLPackage.CONNECTOR__OWNING_CLASS:
-				return owningClass != null;
 			case SysMLPackage.CONNECTOR__TYPE:
 				return type != null && !type.isEmpty();
-			case SysMLPackage.CONNECTOR__REFERENCED_TYPE:
-				return referencedType != null && !referencedType.isEmpty();
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
 			case SysMLPackage.CONNECTOR__NESTED_FEATURE:
@@ -1726,6 +1771,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return getOwningFeatureMembership() != null;
 			case SysMLPackage.CONNECTOR__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.CONNECTOR__MULTIPLICITY:
+				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
 			case SysMLPackage.CONNECTOR__IS_NONUNIQUE:
 				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 			case SysMLPackage.CONNECTOR__RELATED_FEATURES:
@@ -1736,6 +1783,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return connectorEnd != null && !connectorEnd.isEmpty();
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				return ownedAssociationType != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1758,28 +1807,27 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				default: return -1;
 			}
 		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+		if (baseClass == Category.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.CONNECTOR__IS_ABSTRACT: return SysMLPackage.CLASS__IS_ABSTRACT;
-				case SysMLPackage.CONNECTOR__FEATURE: return SysMLPackage.CLASS__FEATURE;
-				case SysMLPackage.CONNECTOR__OWNED_FEATURE: return SysMLPackage.CLASS__OWNED_FEATURE;
-				case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION: return SysMLPackage.CLASS__OWNED_GENERALIZATION;
-				case SysMLPackage.CONNECTOR__INPUT: return SysMLPackage.CLASS__INPUT;
-				case SysMLPackage.CONNECTOR__OUTPUT: return SysMLPackage.CLASS__OUTPUT;
-				case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP;
-				case SysMLPackage.CONNECTOR__OWNING_FEATURE: return SysMLPackage.CLASS__OWNING_FEATURE;
+				case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION: return SysMLPackage.CATEGORY__OWNED_GENERALIZATION;
+				case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP;
+				case SysMLPackage.CONNECTOR__FEATURE: return SysMLPackage.CATEGORY__FEATURE;
+				case SysMLPackage.CONNECTOR__OWNED_FEATURE: return SysMLPackage.CATEGORY__OWNED_FEATURE;
+				case SysMLPackage.CONNECTOR__INPUT: return SysMLPackage.CATEGORY__INPUT;
+				case SysMLPackage.CONNECTOR__OUTPUT: return SysMLPackage.CATEGORY__OUTPUT;
+				case SysMLPackage.CONNECTOR__IS_ABSTRACT: return SysMLPackage.CATEGORY__IS_ABSTRACT;
 				default: return -1;
 			}
 		}
 		if (baseClass == Feature.class) {
 			switch (derivedFeatureID) {
+				case SysMLPackage.CONNECTOR__REFERENCED_TYPE: return SysMLPackage.FEATURE__REFERENCED_TYPE;
+				case SysMLPackage.CONNECTOR__OWNING_CATEGORY: return SysMLPackage.FEATURE__OWNING_CATEGORY;
 				case SysMLPackage.CONNECTOR__LOWER: return SysMLPackage.FEATURE__LOWER;
 				case SysMLPackage.CONNECTOR__UPPER: return SysMLPackage.FEATURE__UPPER;
 				case SysMLPackage.CONNECTOR__IS_UNIQUE: return SysMLPackage.FEATURE__IS_UNIQUE;
 				case SysMLPackage.CONNECTOR__IS_ORDERED: return SysMLPackage.FEATURE__IS_ORDERED;
-				case SysMLPackage.CONNECTOR__OWNING_CLASS: return SysMLPackage.FEATURE__OWNING_CLASS;
 				case SysMLPackage.CONNECTOR__TYPE: return SysMLPackage.FEATURE__TYPE;
-				case SysMLPackage.CONNECTOR__REFERENCED_TYPE: return SysMLPackage.FEATURE__REFERENCED_TYPE;
 				case SysMLPackage.CONNECTOR__OWNED_TYPE: return SysMLPackage.FEATURE__OWNED_TYPE;
 				case SysMLPackage.CONNECTOR__NESTED_FEATURE: return SysMLPackage.FEATURE__NESTED_FEATURE;
 				case SysMLPackage.CONNECTOR__NESTING_FEATURE: return SysMLPackage.FEATURE__NESTING_FEATURE;
@@ -1788,6 +1836,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.CONNECTOR__VALUE: return SysMLPackage.FEATURE__VALUE;
 				case SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP;
 				case SysMLPackage.CONNECTOR__IS_COMPOSITE: return SysMLPackage.FEATURE__IS_COMPOSITE;
+				case SysMLPackage.CONNECTOR__MULTIPLICITY: return SysMLPackage.FEATURE__MULTIPLICITY;
 				case SysMLPackage.CONNECTOR__IS_NONUNIQUE: return SysMLPackage.FEATURE__IS_NONUNIQUE;
 				default: return -1;
 			}
@@ -1813,28 +1862,27 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				default: return -1;
 			}
 		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+		if (baseClass == Category.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.CLASS__IS_ABSTRACT: return SysMLPackage.CONNECTOR__IS_ABSTRACT;
-				case SysMLPackage.CLASS__FEATURE: return SysMLPackage.CONNECTOR__FEATURE;
-				case SysMLPackage.CLASS__OWNED_FEATURE: return SysMLPackage.CONNECTOR__OWNED_FEATURE;
-				case SysMLPackage.CLASS__OWNED_GENERALIZATION: return SysMLPackage.CONNECTOR__OWNED_GENERALIZATION;
-				case SysMLPackage.CLASS__INPUT: return SysMLPackage.CONNECTOR__INPUT;
-				case SysMLPackage.CLASS__OUTPUT: return SysMLPackage.CONNECTOR__OUTPUT;
-				case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
-				case SysMLPackage.CLASS__OWNING_FEATURE: return SysMLPackage.CONNECTOR__OWNING_FEATURE;
+				case SysMLPackage.CATEGORY__OWNED_GENERALIZATION: return SysMLPackage.CONNECTOR__OWNED_GENERALIZATION;
+				case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+				case SysMLPackage.CATEGORY__FEATURE: return SysMLPackage.CONNECTOR__FEATURE;
+				case SysMLPackage.CATEGORY__OWNED_FEATURE: return SysMLPackage.CONNECTOR__OWNED_FEATURE;
+				case SysMLPackage.CATEGORY__INPUT: return SysMLPackage.CONNECTOR__INPUT;
+				case SysMLPackage.CATEGORY__OUTPUT: return SysMLPackage.CONNECTOR__OUTPUT;
+				case SysMLPackage.CATEGORY__IS_ABSTRACT: return SysMLPackage.CONNECTOR__IS_ABSTRACT;
 				default: return -1;
 			}
 		}
 		if (baseClass == Feature.class) {
 			switch (baseFeatureID) {
+				case SysMLPackage.FEATURE__REFERENCED_TYPE: return SysMLPackage.CONNECTOR__REFERENCED_TYPE;
+				case SysMLPackage.FEATURE__OWNING_CATEGORY: return SysMLPackage.CONNECTOR__OWNING_CATEGORY;
 				case SysMLPackage.FEATURE__LOWER: return SysMLPackage.CONNECTOR__LOWER;
 				case SysMLPackage.FEATURE__UPPER: return SysMLPackage.CONNECTOR__UPPER;
 				case SysMLPackage.FEATURE__IS_UNIQUE: return SysMLPackage.CONNECTOR__IS_UNIQUE;
 				case SysMLPackage.FEATURE__IS_ORDERED: return SysMLPackage.CONNECTOR__IS_ORDERED;
-				case SysMLPackage.FEATURE__OWNING_CLASS: return SysMLPackage.CONNECTOR__OWNING_CLASS;
 				case SysMLPackage.FEATURE__TYPE: return SysMLPackage.CONNECTOR__TYPE;
-				case SysMLPackage.FEATURE__REFERENCED_TYPE: return SysMLPackage.CONNECTOR__REFERENCED_TYPE;
 				case SysMLPackage.FEATURE__OWNED_TYPE: return SysMLPackage.CONNECTOR__OWNED_TYPE;
 				case SysMLPackage.FEATURE__NESTED_FEATURE: return SysMLPackage.CONNECTOR__NESTED_FEATURE;
 				case SysMLPackage.FEATURE__NESTING_FEATURE: return SysMLPackage.CONNECTOR__NESTING_FEATURE;
@@ -1843,6 +1891,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				case SysMLPackage.FEATURE__VALUE: return SysMLPackage.CONNECTOR__VALUE;
 				case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP: return SysMLPackage.CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
 				case SysMLPackage.FEATURE__IS_COMPOSITE: return SysMLPackage.CONNECTOR__IS_COMPOSITE;
+				case SysMLPackage.FEATURE__MULTIPLICITY: return SysMLPackage.CONNECTOR__MULTIPLICITY;
 				case SysMLPackage.FEATURE__IS_NONUNIQUE: return SysMLPackage.CONNECTOR__IS_NONUNIQUE;
 				default: return -1;
 			}
@@ -1864,7 +1913,7 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 				default: return -1;
 			}
 		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+		if (baseClass == Category.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -1912,6 +1961,8 @@ public class ConnectorImpl extends RelationshipImpl implements Connector {
 		result.append(isOrdered);
 		result.append(", isComposite: ");
 		result.append(isComposite);
+		result.append(", multiplicity: ");
+		result.append(multiplicity);
 		result.append(", isNonunique: ");
 		result.append(isNonunique);
 		result.append(", isDirected: ");

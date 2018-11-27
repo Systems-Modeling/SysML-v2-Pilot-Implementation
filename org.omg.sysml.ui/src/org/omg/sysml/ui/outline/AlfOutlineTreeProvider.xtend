@@ -67,7 +67,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				memberElement !== null) {
 			createEObjectNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
-				membership.owningPackage == memberElement || memberElement._isLeaf
+				membership.membershipOwningPackage == memberElement || memberElement._isLeaf
 			)
 		}
 	}
@@ -82,7 +82,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (importedPackage !== null) {
 			createEObjectNode(parentNode, importedPackage, 
 				importedPackage._image, importedPackage._text, 
-				_import.importingPackage == importedPackage || importedPackage._isLeaf
+				_import.importOwningPackage == importedPackage || importedPackage._isLeaf
 			)
 		}
 	}

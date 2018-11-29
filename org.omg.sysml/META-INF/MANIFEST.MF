@@ -16,11 +16,12 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.common;visibility:=reexport,
  org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",
  org.eclipse.xtext.xtext.generator;bundle-version="2.12.0",
  org.eclipse.m2m.qvt.oml,
- org.eclipse.uml2.uml.resources,
- org.eclipse.ocl.xtext.completeocl;bundle-version="1.3.0"
+ org.eclipse.uml2.uml.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml,
  org.omg.sysml.generator,

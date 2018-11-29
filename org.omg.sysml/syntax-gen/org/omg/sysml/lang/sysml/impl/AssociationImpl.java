@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,21 +14,21 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEObjectWithInverseResolvingEList;
+
 import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -41,176 +39,37 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedImport <em>Owned Import</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedMember <em>Owned Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getInput <em>Input</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOutput <em>Output</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedEndFeatureMembership <em>Owned End Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningConnector <em>Owning Connector</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationImpl extends RelationshipImpl implements Association {
+public class AssociationImpl extends ClassImpl implements Association {
 	/**
-	 * The cached value of the '{@link #getMembership() <em>Membership</em>}' reference list.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMembership()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Membership> membership;
+	protected EList<Element> target;
 
 	/**
-	 * The cached value of the '{@link #getOwnedImport() <em>Owned Import</em>}' containment reference list.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedImport()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Import> ownedImport;
-
-	/**
-	 * The cached value of the '{@link #getMember() <em>Member</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMember()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> member;
-
-	/**
-	 * The cached value of the '{@link #getOwnedMember() <em>Owned Member</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMember()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> ownedMember;
-
-	/**
-	 * The cached value of the '{@link #getOwnedMembership() <em>Owned Membership</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Membership> ownedMembership;
-
-	/**
-	 * The cached value of the '{@link #getImportedMembership() <em>Imported Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImportedMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Membership> importedMembership;
-
-	/**
-	 * The cached value of the '{@link #getOwnedGeneralization() <em>Owned Generalization</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedGeneralization()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Generalization> ownedGeneralization;
-
-	/**
-	 * The cached value of the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeatureMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FeatureMembership> ownedFeatureMembership;
-
-	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> feature;
-
-	/**
-	 * The cached value of the '{@link #getOwnedFeature() <em>Owned Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> ownedFeature;
-
-	/**
-	 * The cached value of the '{@link #getInput() <em>Input</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInput()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> input;
-
-	/**
-	 * The cached value of the '{@link #getOutput() <em>Output</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOutput()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> output;
-
-	/**
-	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> relatedType;
+	protected EList<Element> source;
 
 	/**
 	 * The cached value of the '{@link #getOwnedEndFeatureMembership() <em>Owned End Feature Membership</em>}' reference list.
@@ -221,16 +80,6 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * @ordered
 	 */
 	protected EList<EndFeatureMembership> ownedEndFeatureMembership;
-
-	/**
-	 * The cached value of the '{@link #getOwningConnector() <em>Owning Connector</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningConnector()
-	 * @generated
-	 * @ordered
-	 */
-	protected Connector owningConnector;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,11 +105,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Membership> getMembership() {
-		if (membership == null) {
-			membership = new EObjectResolvingEList<Membership>(Membership.class, this, SysMLPackage.ASSOCIATION__MEMBERSHIP);
+	public EList<Element> getTarget() {
+		if (target == null) {
+			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__TARGET);
 		}
-		return membership;
+		return target;
 	}
 
 	/**
@@ -268,152 +117,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Import> getOwnedImport() {
-		if (ownedImport == null) {
-			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.ASSOCIATION__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
+	public EList<Element> getSource() {
+		if (source == null) {
+			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__SOURCE);
 		}
-		return ownedImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getMember() {
-		if (member == null) {
-			member = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__MEMBER);
-		}
-		return member;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getOwnedMember() {
-		if (ownedMember == null) {
-			ownedMember = new EObjectWithInverseResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_MEMBER, SysMLPackage.ELEMENT__OWNING_NAMESPACE);
-		}
-		return ownedMember;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Membership> getOwnedMembership() {
-		if (ownedMembership == null) {
-			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
-		}
-		return ownedMembership;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Membership> getImportedMembership() {
-		if (importedMembership == null) {
-			importedMembership = new EObjectResolvingEList<Membership>(Membership.class, this, SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP);
-		}
-		return importedMembership;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsAbstract() {
-		return isAbstract;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsAbstract(boolean newIsAbstract) {
-		boolean oldIsAbstract = isAbstract;
-		isAbstract = newIsAbstract;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__IS_ABSTRACT, oldIsAbstract, isAbstract));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getFeature() {
-		if (feature == null) {
-			feature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__FEATURE);
-		}
-		return feature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getOwnedFeature() {
-		if (ownedFeature == null) {
-			ownedFeature = new EObjectWithInverseResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__OWNED_FEATURE, SysMLPackage.FEATURE__OWNING_CATEGORY);
-		}
-		return ownedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Generalization> getOwnedGeneralization() {
-		if (ownedGeneralization == null) {
-			ownedGeneralization = new EObjectWithInverseResolvingEList<Generalization>(Generalization.class, this, SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION, SysMLPackage.GENERALIZATION__OWNING_CATEGORY);
-		}
-		return ownedGeneralization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getInput() {
-		if (input == null) {
-			input = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__INPUT);
-		}
-		return input;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getOutput() {
-		if (output == null) {
-			output = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ASSOCIATION__OUTPUT);
-		}
-		return output;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		if (ownedFeatureMembership == null) {
-			ownedFeatureMembership = new EObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY);
-		}
-		return ownedFeatureMembership;
+		return source;
 	}
 
 	/**
@@ -422,10 +130,7 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * @generated
 	 */
 	public EList<org.omg.sysml.lang.sysml.Class> getRelatedType() {
-		if (relatedType == null) {
-			relatedType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ASSOCIATION__RELATED_TYPE);
-		}
-		return relatedType;
+		return new DerivedUnionEObjectEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ASSOCIATION__RELATED_TYPE, null);
 	}
 
 	/**
@@ -433,11 +138,8 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EndFeatureMembership> getOwnedEndFeatureMembership() {
-		if (ownedEndFeatureMembership == null) {
-			ownedEndFeatureMembership = new EObjectWithInverseResolvingEList<EndFeatureMembership>(EndFeatureMembership.class, this, SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP, SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION);
-		}
-		return ownedEndFeatureMembership;
+	public boolean isSetRelatedType() {
+		return !getRelatedType().isEmpty();
 	}
 
 	/**
@@ -445,38 +147,57 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Connector getOwningConnector() {
-		if (owningConnector != null && owningConnector.eIsProxy()) {
-			InternalEObject oldOwningConnector = (InternalEObject)owningConnector;
-			owningConnector = (Connector)eResolveProxy(oldOwningConnector);
-			if (owningConnector != oldOwningConnector) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, oldOwningConnector, owningConnector));
+	@Override
+	public EList<FeatureMembership> getOwnedFeatureMembership() {
+		if (ownedFeatureMembership == null) {
+			ownedFeatureMembership = new SubsetSupersetEObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP, OWNED_FEATURE_MEMBERSHIP_ESUPERSETS, OWNED_FEATURE_MEMBERSHIP_ESUBSETS, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY);
+		}
+		return ownedFeatureMembership;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_FEATURE_MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP};
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_FEATURE_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwner() {
+		if (eContainerFeatureID() != SysMLPackage.ASSOCIATION__OWNER) return null;
+		return (Element)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, SysMLPackage.ASSOCIATION__OWNER, msgs);
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (owningMembership != null && owningMembership != newOwner) {
+				setOwningMembership(null);
 			}
-		}
-		return owningConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Connector basicGetOwningConnector() {
-		return owningConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningConnector(Connector newOwningConnector, NotificationChain msgs) {
-		Connector oldOwningConnector = owningConnector;
-		owningConnector = newOwningConnector;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, oldOwningConnector, newOwningConnector);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -486,18 +207,20 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningConnector(Connector newOwningConnector) {
-		if (newOwningConnector != owningConnector) {
+	public void setOwner(Element newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ASSOCIATION__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (owningConnector != null)
-				msgs = ((InternalEObject)owningConnector).eInverseRemove(this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, Connector.class, msgs);
-			if (newOwningConnector != null)
-				msgs = ((InternalEObject)newOwningConnector).eInverseAdd(this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, Connector.class, msgs);
-			msgs = basicSetOwningConnector(newOwningConnector, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__OWNING_CONNECTOR, newOwningConnector, newOwningConnector));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -505,8 +228,41 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String nameOf(Element element) {
-		// TODO: implement this method
+	public EList<EndFeatureMembership> getOwnedEndFeatureMembership() {
+		if (ownedEndFeatureMembership == null) {
+			ownedEndFeatureMembership = new SubsetSupersetEObjectWithInverseResolvingEList<EndFeatureMembership>(EndFeatureMembership.class, this, SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP, OWNED_END_FEATURE_MEMBERSHIP_ESUPERSETS, null, SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION);
+		}
+		return ownedEndFeatureMembership;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedEndFeatureMembership() <em>Owned End Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEndFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_END_FEATURE_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Connector getOwningConnector() {
+		Connector owningConnector = basicGetOwningConnector();
+		return owningConnector != null && owningConnector.eIsProxy() ? (Connector)eResolveProxy((InternalEObject)owningConnector) : owningConnector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Connector basicGetOwningConnector() {
+		// TODO: implement this method to return the 'Owning Connector' reference
+		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
@@ -516,8 +272,8 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Membership> excludeCollisions(EList<Membership> mem) {
-		// TODO: implement this method
+	public void setOwningConnector(Connector newOwningConnector) {
+		// TODO: implement this method to set the 'Owning Connector' reference
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
@@ -531,24 +287,14 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedImport()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMember()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedGeneralization()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeatureMembership()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeature()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((Element)otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedEndFeatureMembership()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				if (owningConnector != null)
-					msgs = ((InternalEObject)owningConnector).eInverseRemove(this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE, Connector.class, msgs);
-				return basicSetOwningConnector((Connector)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -561,22 +307,12 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				return ((InternalEList<?>)getOwnedImport()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				return ((InternalEList<?>)getOwnedMember()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				return ((InternalEList<?>)getOwnedMembership()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				return ((InternalEList<?>)getOwnedGeneralization()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
 				return ((InternalEList<?>)getOwnedFeatureMembership()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				return ((InternalEList<?>)getOwnedFeature()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNER:
+				return basicSetOwner(null, msgs);
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
 				return ((InternalEList<?>)getOwnedEndFeatureMembership()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				return basicSetOwningConnector(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -587,34 +323,28 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.ASSOCIATION__OWNER:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__MEMBERSHIP:
-				return getMembership();
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				return getOwnedImport();
-			case SysMLPackage.ASSOCIATION__MEMBER:
-				return getMember();
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				return getOwnedMember();
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				return getOwnedMembership();
-			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
-				return getImportedMembership();
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				return getOwnedGeneralization();
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
-				return getOwnedFeatureMembership();
-			case SysMLPackage.ASSOCIATION__FEATURE:
-				return getFeature();
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				return getOwnedFeature();
-			case SysMLPackage.ASSOCIATION__INPUT:
-				return getInput();
-			case SysMLPackage.ASSOCIATION__OUTPUT:
-				return getOutput();
-			case SysMLPackage.ASSOCIATION__IS_ABSTRACT:
-				return isIsAbstract();
+			case SysMLPackage.ASSOCIATION__RELATED:
+				return getRelated();
+			case SysMLPackage.ASSOCIATION__TARGET:
+				return getTarget();
+			case SysMLPackage.ASSOCIATION__SOURCE:
+				return getSource();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
@@ -635,60 +365,13 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__MEMBERSHIP:
-				getMembership().clear();
-				getMembership().addAll((Collection<? extends Membership>)newValue);
+			case SysMLPackage.ASSOCIATION__TARGET:
+				getTarget().clear();
+				getTarget().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				getOwnedImport().clear();
-				getOwnedImport().addAll((Collection<? extends Import>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__MEMBER:
-				getMember().clear();
-				getMember().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				getOwnedMember().clear();
-				getOwnedMember().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
-				getImportedMembership().clear();
-				getImportedMembership().addAll((Collection<? extends Membership>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
-				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__FEATURE:
-				getFeature().clear();
-				getFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__INPUT:
-				getInput().clear();
-				getInput().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OUTPUT:
-				getOutput().clear();
-				getOutput().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				getRelatedType().clear();
-				getRelatedType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+			case SysMLPackage.ASSOCIATION__SOURCE:
+				getSource().clear();
+				getSource().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
 				getOwnedEndFeatureMembership().clear();
@@ -709,47 +392,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__MEMBERSHIP:
-				getMembership().clear();
+			case SysMLPackage.ASSOCIATION__TARGET:
+				getTarget().clear();
 				return;
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				getOwnedImport().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__MEMBER:
-				getMember().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				getOwnedMember().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
-				getImportedMembership().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__FEATURE:
-				getFeature().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__INPUT:
-				getInput().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OUTPUT:
-				getOutput().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
-				return;
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				getRelatedType().clear();
+			case SysMLPackage.ASSOCIATION__SOURCE:
+				getSource().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
 				getOwnedEndFeatureMembership().clear();
@@ -769,38 +416,22 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__MEMBERSHIP:
-				return membership != null && !membership.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNED_IMPORT:
-				return ownedImport != null && !ownedImport.isEmpty();
-			case SysMLPackage.ASSOCIATION__MEMBER:
-				return member != null && !member.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBER:
-				return ownedMember != null && !ownedMember.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
-				return ownedMembership != null && !ownedMembership.isEmpty();
-			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
-				return importedMembership != null && !importedMembership.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
-				return ownedGeneralization != null && !ownedGeneralization.isEmpty();
+			case SysMLPackage.ASSOCIATION__RELATED:
+				return isSetRelated();
+			case SysMLPackage.ASSOCIATION__TARGET:
+				return target != null && !target.isEmpty();
+			case SysMLPackage.ASSOCIATION__SOURCE:
+				return source != null && !source.isEmpty();
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				return isSetRelatedType();
 			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
 				return ownedFeatureMembership != null && !ownedFeatureMembership.isEmpty();
-			case SysMLPackage.ASSOCIATION__FEATURE:
-				return feature != null && !feature.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				return ownedFeature != null && !ownedFeature.isEmpty();
-			case SysMLPackage.ASSOCIATION__INPUT:
-				return input != null && !input.isEmpty();
-			case SysMLPackage.ASSOCIATION__OUTPUT:
-				return output != null && !output.isEmpty();
-			case SysMLPackage.ASSOCIATION__IS_ABSTRACT:
-				return isAbstract != IS_ABSTRACT_EDEFAULT;
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				return relatedType != null && !relatedType.isEmpty();
+			case SysMLPackage.ASSOCIATION__OWNER:
+				return getOwner() != null;
 			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
 				return ownedEndFeatureMembership != null && !ownedEndFeatureMembership.isEmpty();
 			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				return owningConnector != null;
+				return basicGetOwningConnector() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -812,31 +443,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.omg.sysml.lang.sysml.Package.class) {
+		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION__MEMBERSHIP: return SysMLPackage.PACKAGE__MEMBERSHIP;
-				case SysMLPackage.ASSOCIATION__OWNED_IMPORT: return SysMLPackage.PACKAGE__OWNED_IMPORT;
-				case SysMLPackage.ASSOCIATION__MEMBER: return SysMLPackage.PACKAGE__MEMBER;
-				case SysMLPackage.ASSOCIATION__OWNED_MEMBER: return SysMLPackage.PACKAGE__OWNED_MEMBER;
-				case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP: return SysMLPackage.PACKAGE__OWNED_MEMBERSHIP;
-				case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP: return SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP;
-				default: return -1;
-			}
-		}
-		if (baseClass == Category.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION: return SysMLPackage.CATEGORY__OWNED_GENERALIZATION;
-				case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP;
-				case SysMLPackage.ASSOCIATION__FEATURE: return SysMLPackage.CATEGORY__FEATURE;
-				case SysMLPackage.ASSOCIATION__OWNED_FEATURE: return SysMLPackage.CATEGORY__OWNED_FEATURE;
-				case SysMLPackage.ASSOCIATION__INPUT: return SysMLPackage.CATEGORY__INPUT;
-				case SysMLPackage.ASSOCIATION__OUTPUT: return SysMLPackage.CATEGORY__OUTPUT;
-				case SysMLPackage.ASSOCIATION__IS_ABSTRACT: return SysMLPackage.CATEGORY__IS_ABSTRACT;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
-			switch (derivedFeatureID) {
+				case SysMLPackage.ASSOCIATION__RELATED: return SysMLPackage.RELATIONSHIP__RELATED;
+				case SysMLPackage.ASSOCIATION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
+				case SysMLPackage.ASSOCIATION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
 				default: return -1;
 			}
 		}
@@ -850,31 +461,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.omg.sysml.lang.sysml.Package.class) {
+		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.PACKAGE__MEMBERSHIP: return SysMLPackage.ASSOCIATION__MEMBERSHIP;
-				case SysMLPackage.PACKAGE__OWNED_IMPORT: return SysMLPackage.ASSOCIATION__OWNED_IMPORT;
-				case SysMLPackage.PACKAGE__MEMBER: return SysMLPackage.ASSOCIATION__MEMBER;
-				case SysMLPackage.PACKAGE__OWNED_MEMBER: return SysMLPackage.ASSOCIATION__OWNED_MEMBER;
-				case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP: return SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP;
-				case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP: return SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP;
-				default: return -1;
-			}
-		}
-		if (baseClass == Category.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.CATEGORY__OWNED_GENERALIZATION: return SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION;
-				case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP: return SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
-				case SysMLPackage.CATEGORY__FEATURE: return SysMLPackage.ASSOCIATION__FEATURE;
-				case SysMLPackage.CATEGORY__OWNED_FEATURE: return SysMLPackage.ASSOCIATION__OWNED_FEATURE;
-				case SysMLPackage.CATEGORY__INPUT: return SysMLPackage.ASSOCIATION__INPUT;
-				case SysMLPackage.CATEGORY__OUTPUT: return SysMLPackage.ASSOCIATION__OUTPUT;
-				case SysMLPackage.CATEGORY__IS_ABSTRACT: return SysMLPackage.ASSOCIATION__IS_ABSTRACT;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
-			switch (baseFeatureID) {
+				case SysMLPackage.RELATIONSHIP__RELATED: return SysMLPackage.ASSOCIATION__RELATED;
+				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.ASSOCIATION__TARGET;
+				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION__SOURCE;
 				default: return -1;
 			}
 		}
@@ -886,59 +477,29 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == org.omg.sysml.lang.sysml.Package.class) {
-			switch (baseOperationID) {
-				case SysMLPackage.PACKAGE___NAME_OF__ELEMENT: return SysMLPackage.ASSOCIATION___NAME_OF__ELEMENT;
-				case SysMLPackage.PACKAGE___EXCLUDE_COLLISIONS__ELIST: return SysMLPackage.ASSOCIATION___EXCLUDE_COLLISIONS__ELIST;
-				default: return -1;
-			}
-		}
-		if (baseClass == Category.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
+	public EList<Element> getRelated() {
+		@SuppressWarnings("unchecked")
+		EList<Element> relatedType = (EList<Element>)((EList<?>)getRelatedType());
+		return relatedType;
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getRelated() <em>Related</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__TARGET, SysMLPackage.ASSOCIATION__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case SysMLPackage.ASSOCIATION___NAME_OF__ELEMENT:
-				return nameOf((Element)arguments.get(0));
-			case SysMLPackage.ASSOCIATION___EXCLUDE_COLLISIONS__ELIST:
-				return excludeCollisions((EList<Membership>)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isAbstract: ");
-		result.append(isAbstract);
-		result.append(')');
-		return result.toString();
+	public boolean isSetRelated() {
+  		return false;
 	}
 
 } //AssociationImpl

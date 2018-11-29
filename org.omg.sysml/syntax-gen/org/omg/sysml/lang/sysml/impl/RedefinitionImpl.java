@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -71,6 +72,53 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Feature getRedefiningFeature() {
+		if (redefiningFeature != null && redefiningFeature.eIsProxy()) {
+			InternalEObject oldRedefiningFeature = (InternalEObject)redefiningFeature;
+			redefiningFeature = (Feature)eResolveProxy(oldRedefiningFeature);
+			if (redefiningFeature != oldRedefiningFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.REDEFINITION__REDEFINING_FEATURE, oldRedefiningFeature, redefiningFeature));
+			}
+		}
+		return redefiningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetRedefiningFeature() {
+		return redefiningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRedefiningFeature(Feature newRedefiningFeature) {
+		Feature oldRedefiningFeature = redefiningFeature;
+		redefiningFeature = newRedefiningFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.REDEFINITION__REDEFINING_FEATURE, oldRedefiningFeature, redefiningFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRedefiningFeature() {
+		return redefiningFeature != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Feature getRedefinedFeature() {
 		if (redefinedFeature != null && redefinedFeature.eIsProxy()) {
 			InternalEObject oldRedefinedFeature = (InternalEObject)redefinedFeature;
@@ -109,37 +157,8 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getRedefiningFeature() {
-		if (redefiningFeature != null && redefiningFeature.eIsProxy()) {
-			InternalEObject oldRedefiningFeature = (InternalEObject)redefiningFeature;
-			redefiningFeature = (Feature)eResolveProxy(oldRedefiningFeature);
-			if (redefiningFeature != oldRedefiningFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.REDEFINITION__REDEFINING_FEATURE, oldRedefiningFeature, redefiningFeature));
-			}
-		}
-		return redefiningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetRedefiningFeature() {
-		return redefiningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRedefiningFeature(Feature newRedefiningFeature) {
-		Feature oldRedefiningFeature = redefiningFeature;
-		redefiningFeature = newRedefiningFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.REDEFINITION__REDEFINING_FEATURE, oldRedefiningFeature, redefiningFeature));
+	public boolean isSetRedefinedFeature() {
+		return redefinedFeature != null;
 	}
 
 	/**
@@ -204,12 +223,92 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.REDEFINITION__SUBSETTING_FEATURE:
+				return isSetSubsettingFeature();
+			case SysMLPackage.REDEFINITION__SUBSETTED_FEATURE:
+				return isSetSubsettedFeature();
 			case SysMLPackage.REDEFINITION__REDEFINING_FEATURE:
-				return redefiningFeature != null;
+				return isSetRedefiningFeature();
 			case SysMLPackage.REDEFINITION__REDEFINED_FEATURE:
-				return redefinedFeature != null;
+				return isSetRedefinedFeature();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSubsettingFeature() {
+		return getRedefiningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetSubsettingFeature() {
+		return basicGetRedefiningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSubsettingFeature(Feature newSubsettingFeature) {
+		setRedefiningFeature(newSubsettingFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsettingFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSubsettedFeature() {
+		return getRedefinedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetSubsettedFeature() {
+		return basicGetRedefinedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSubsettedFeature(Feature newSubsettedFeature) {
+		setRedefinedFeature(newSubsettedFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsettedFeature() {
+  		return false;
 	}
 
 } //RedefinitionImpl

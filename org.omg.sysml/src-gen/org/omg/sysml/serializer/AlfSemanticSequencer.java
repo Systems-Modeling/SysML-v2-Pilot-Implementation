@@ -238,7 +238,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedElement+=Comment? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -363,7 +364,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedElement+=Comment? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -428,8 +430,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         value=Expression? 
-	 *         ownedImport+=PackageImport? 
-	 *         (ownedMembership+=CategoryMember? ownedImport+=PackageImport?)*
+	 *         ownedMembership+=CategoryMember? 
+	 *         (ownedImport+=PackageImport? ownedMembership+=CategoryMember?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Multiplicity_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -463,7 +465,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedElement+=Comment? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
@@ -471,8 +474,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             lower=NaturalLiteralExpression? 
 	 *             upper=UnlimitedNaturalLiteralExpression 
-	 *             isOrdered?='ordered'? 
-	 *             (isNonunique?='nonunique'? isOrdered?='ordered'?)*
+	 *             isNonunique?='nonunique'? 
+	 *             (isOrdered?='ordered'? isNonunique?='nonunique'?)*
 	 *         )? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*

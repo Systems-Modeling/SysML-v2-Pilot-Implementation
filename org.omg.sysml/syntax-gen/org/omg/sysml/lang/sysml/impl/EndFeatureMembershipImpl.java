@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -122,6 +123,15 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetOwningAssociation() {
+		return owningAssociation != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -200,10 +210,65 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				return isSetOwningCategory();
 			case SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION:
-				return owningAssociation != null;
+				return isSetOwningAssociation();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Category getOwningCategory() {
+		return getOwningAssociation();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Category basicGetOwningCategory() {
+		return basicGetOwningAssociation();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningCategory(Category newOwningCategory, NotificationChain msgs) {
+		if (newOwningCategory != null && !(newOwningCategory instanceof Association)) {
+			throw new IllegalArgumentException("newOwningCategory must be an instance of Association");
+		}
+		return basicSetOwningAssociation((Association) newOwningCategory, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningCategory(Category newOwningCategory) {
+		if (newOwningCategory != null && !(newOwningCategory instanceof Association)) {
+			throw new IllegalArgumentException("newOwningCategory must be an instance of Association");
+		}
+		setOwningAssociation((Association) newOwningCategory);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningCategory() {
+  		return false;
 	}
 
 } //EndFeatureMembershipImpl

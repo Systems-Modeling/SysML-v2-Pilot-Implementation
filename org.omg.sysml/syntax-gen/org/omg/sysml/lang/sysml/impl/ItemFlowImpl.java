@@ -5,12 +5,17 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.uml2.common.util.UnionEObjectEList;
+
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Step;
@@ -102,6 +107,15 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			behavior = new EObjectResolvingEList<Behavior>(Behavior.class, this, SysMLPackage.ITEM_FLOW__BEHAVIOR);
 		}
 		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
+		return behavior != null && !behavior.isEmpty();
 	}
 
 	/**
@@ -221,8 +235,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__TYPE:
+				return isSetType();
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
-				return behavior != null && !behavior.isEmpty();
+				return isSetBehavior();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return itemType != null && !itemType.isEmpty();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -263,6 +279,30 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Category> getType() {
+		EList<Category> type = new UniqueEList<Category>();
+		Association association = getAssociation();
+		if (association != null) {
+			type.add(association);
+		}
+		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 } //ItemFlowImpl

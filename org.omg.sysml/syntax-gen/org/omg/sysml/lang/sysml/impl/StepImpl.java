@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -74,6 +75,15 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetBehavior() {
+		return behavior != null && !behavior.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -123,10 +133,33 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.STEP__TYPE:
+				return isSetType();
 			case SysMLPackage.STEP__BEHAVIOR:
-				return behavior != null && !behavior.isEmpty();
+				return isSetBehavior();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Category> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Category> behavior = (EList<Category>)((EList<?>)getBehavior());
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 } //StepImpl

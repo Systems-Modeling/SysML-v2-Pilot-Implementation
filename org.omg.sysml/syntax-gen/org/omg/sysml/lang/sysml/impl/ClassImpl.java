@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**

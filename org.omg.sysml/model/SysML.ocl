@@ -17,7 +17,7 @@ else owningNamespace.nameOf(self) endif
 
 context Import
 def: importedMembership(): Set(Membership) =
-	importedPackage.membership->asSet() -- Should be ordered set!
+	importedPackage.membership->select(visibility = VisibilityKind::public)->asSet() -- Should be ordered set!
 	
 -- Membership --
 
@@ -33,7 +33,7 @@ def: nameOf(element: Element): String =
 	else
 		null
 	endif
-def: excludeCollisions(mem: Set(Membership)): Set(Membership) = Set{}
+def: excludeCollisions(mem: Set(Membership)): Set(Membership) = mem
 	
 context Package::membership: OrderedSet(Membership) derive membershipDerivation:
 ownedMembership->union(importedMembership)
@@ -75,10 +75,14 @@ context Category::ownedFeature: OrderedSet(Feature) derive categoryOwnedFeatureS
 ownedMember->select(oclIsKindOf(Feature)).oclAsType(Feature)
 
 context Category::input: OrderedSet(Feature) derive categoryInputDerivation:
-ownedFeatureMembership->select(direction = FeatureDirectionKind::_'in').memberFeature
+ownedFeatureMembership->
+	select(direction = FeatureDirectionKind::_'in' or direction = FeatureDirectionKind::_'inout').
+	memberFeature
 
 context Category::output: OrderedSet(Feature) derive categoryOutputDerivation:
-ownedFeatureMembership->select(direction = FeatureDirectionKind::_'out').memberFeature
+ownedFeatureMembership->
+	select(direction = FeatureDirectionKind::_'out' or direction = FeatureDirectionKind::_'inout').
+	memberFeature
 
 -- Connector
 

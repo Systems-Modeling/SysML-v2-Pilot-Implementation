@@ -3,10 +3,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
@@ -36,6 +39,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 * @ordered
 	 */
 	protected EList<Step> takesStep;
+
 	/**
 	 * The cached value of the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -75,6 +79,15 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 			takesStep = new EObjectResolvingEList<Step>(Step.class, this, SysMLPackage.BEHAVIOR__TAKES_STEP);
 		}
 		return takesStep;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTakesStep() {
+		return takesStep != null && !takesStep.isEmpty();
 	}
 
 	/**
@@ -152,12 +165,35 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.BEHAVIOR__FEATURE:
+				return isSetFeature();
 			case SysMLPackage.BEHAVIOR__TAKES_STEP:
-				return takesStep != null && !takesStep.isEmpty();
+				return isSetTakesStep();
 			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
 				return involvesFeature != null && !involvesFeature.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Feature> getFeature() {
+		@SuppressWarnings("unchecked")
+		EList<Feature> takesStep = (EList<Feature>)((EList<?>)getTakesStep());
+		return takesStep;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFeature() {
+  		return false;
 	}
 
 } //BehaviorImpl

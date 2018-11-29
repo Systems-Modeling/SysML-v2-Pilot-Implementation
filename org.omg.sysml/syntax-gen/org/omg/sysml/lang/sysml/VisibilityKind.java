@@ -36,7 +36,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIVATE(0, "private", "private"),
+	PRIVATE(1, "private", "private"),
 
 	/**
 	 * The '<em><b>Protected</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROTECTED(0, "protected", "protected"),
+	PROTECTED(2, "protected", "protected"),
 
 	/**
 	 * The '<em><b>Package</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PACKAGE(0, "package", "package");
+	PACKAGE(3, "package", "package");
 
 	/**
 	 * The '<em><b>Public</b></em>' literal value.
@@ -86,7 +86,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRIVATE_VALUE = 0;
+	public static final int PRIVATE_VALUE = 1;
 
 	/**
 	 * The '<em><b>Protected</b></em>' literal value.
@@ -101,7 +101,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROTECTED_VALUE = 0;
+	public static final int PROTECTED_VALUE = 2;
 
 	/**
 	 * The '<em><b>Package</b></em>' literal value.
@@ -116,7 +116,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PACKAGE_VALUE = 0;
+	public static final int PACKAGE_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Visibility Kind</b></em>' enumerators.
@@ -187,6 +187,9 @@ public enum VisibilityKind implements Enumerator {
 	public static VisibilityKind get(int value) {
 		switch (value) {
 			case PUBLIC_VALUE: return PUBLIC;
+			case PRIVATE_VALUE: return PRIVATE;
+			case PROTECTED_VALUE: return PROTECTED;
+			case PACKAGE_VALUE: return PACKAGE;
 		}
 		return null;
 	}

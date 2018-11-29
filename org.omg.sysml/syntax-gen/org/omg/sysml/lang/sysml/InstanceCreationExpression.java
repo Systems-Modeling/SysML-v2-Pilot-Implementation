@@ -23,22 +23,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface InstanceCreationExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Argument</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInstanceCreationExpression_Argument()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Expression> getArgument();
-
-	/**
 	 * Returns the value of the '<em><b>Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -47,7 +31,7 @@ public interface InstanceCreationExpression extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(org.omg.sysml.lang.sysml.Class)
+	 * @see #setClass_(org.omg.sysml.lang.sysml.Class)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInstanceCreationExpression_Class()
 	 * @model required="true" ordered="false"
 	 * @generated
@@ -62,6 +46,23 @@ public interface InstanceCreationExpression extends Expression {
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass(org.omg.sysml.lang.sysml.Class value);
+	void setClass_(org.omg.sysml.lang.sysml.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Argument</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInstanceCreationExpression_Argument()
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='instanceCreationExpression'"
+	 * @generated
+	 */
+	EList<Expression> getArgument();
 
 } // InstanceCreationExpression

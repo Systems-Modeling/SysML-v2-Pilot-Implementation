@@ -6,8 +6,9 @@
 
 <plugin>
 
+
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML -->
+      <!-- @generated sysml -->
       <package
             uri="http://www.omg.org/spec/SysML/2.0"
             class="org.omg.sysml.lang.sysml.SysMLPackage"

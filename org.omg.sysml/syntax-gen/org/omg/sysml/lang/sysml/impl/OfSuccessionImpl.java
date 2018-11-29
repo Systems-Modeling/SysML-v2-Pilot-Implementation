@@ -10,25 +10,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.omg.sysml.lang.sysml.OFSuccession;
+import org.omg.sysml.lang.sysml.OfSuccession;
 import org.omg.sysml.lang.sysml.OrderedFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>OF Succession</b></em>'.
+ * An implementation of the model object '<em><b>Of Succession</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OFSuccessionImpl#getTo <em>To</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OFSuccessionImpl#getFrom <em>From</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getTo <em>To</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getFrom <em>From</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class OFSuccessionImpl extends MinimalEObjectImpl.Container implements OFSuccession {
+public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements OfSuccession {
 	/**
 	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class OFSuccessionImpl extends MinimalEObjectImpl.Container implements OF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OFSuccessionImpl() {
+	protected OfSuccessionImpl() {
 		super();
 	}
 
@@ -214,4 +214,4 @@ public class OFSuccessionImpl extends MinimalEObjectImpl.Container implements OF
 		return super.eIsSet(featureID);
 	}
 
-} //OFSuccessionImpl
+} //OfSuccessionImpl

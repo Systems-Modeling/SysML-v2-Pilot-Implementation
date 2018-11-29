@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
@@ -13,5 +14,4 @@ package org.omg.sysml.lang.sysml;
  * @generated
  */
 public interface Class extends Category {
-
 } // Class

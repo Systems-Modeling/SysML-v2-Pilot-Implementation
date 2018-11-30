@@ -487,12 +487,13 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isDistinguishableFrom(Membership other) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// TODO Implement full distinguishibility test.
+		String name = this.getMemberName();
+		String otherName = other.getMemberName();
+		return name == null? otherName != null: !name.equals(otherName);
 	}
 
 	/**

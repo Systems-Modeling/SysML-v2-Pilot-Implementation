@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -249,12 +249,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getRelatedFeatures() {
-		// TODO: implement this method to return the 'Related Features' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> features = new BasicEList<Feature>();
+		for (ConnectorEnd connectorEnd: this.getConnectorEnd()) {
+			features.add(connectorEnd.getFeature());
+		}
+		return features;
 	}
 
 	/**
@@ -316,10 +318,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated
 	 */
 	public Association basicGetOwnedAssociationType() {
-		// TODO: implement this method to return the 'Owned Association Type' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Association association = this.getAssociation();
+		return association.getOwner().equals(this)? association: null;
 	}
 
 	/**
@@ -328,9 +328,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated
 	 */
 	public void setOwnedAssociationType(Association newOwnedAssociationType) {
-		// TODO: implement this method to set the 'Owned Association Type' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		newOwnedAssociationType.setOwner(this);
+		this.setAssociation(newOwnedAssociationType);
 	}
 
 	/**

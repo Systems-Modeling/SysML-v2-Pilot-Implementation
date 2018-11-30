@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subset;
@@ -240,12 +241,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Category> getReferencedType() {
-		// TODO: implement this method to return the 'Referenced Type' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Category> referencedTypes = this.getType();
+		referencedTypes.removeAll(this.getOwnedElement());
+		return referencedTypes;
 	}
 
 	/**
@@ -271,23 +272,19 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Category basicGetOwningCategory() {
-		// TODO: implement this method to return the 'Owning Category' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		org.omg.sysml.lang.sysml.Package namespace = this.getOwningNamespace();
+		return namespace instanceof Category? (Category)namespace: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningCategory(Category newOwningCategory) {
-		// TODO: implement this method to set the 'Owning Category' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -430,12 +427,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Category> getOwnedType() {
-		// TODO: implement this method to return the 'Owned Type' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Category> ownedTypes = this.getType();
+		ownedTypes.removeAll(this.getReferencedType());
+		return ownedTypes;
 	}
 
 	/**
@@ -451,12 +448,10 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getNestedFeature() {
-		// TODO: implement this method to return the 'Nested Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return this.getFeature();
 	}
 
 	/**
@@ -474,31 +469,38 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated
 	 */
 	public EList<Feature> getNestingFeature() {
-		// TODO: implement this method to return the 'Nesting Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
+		// Note: This cannot be implemented, because featuringCategory is not navigable.
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Redefinition> getOwnedRedefinition() {
-		// TODO: implement this method to return the 'Owned Redefinition' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Redefinition> redefinitions = new BasicEList<Redefinition>();
+		for (Subset subset: this.getOwnedSubset()) {
+			if (subset instanceof Redefinition) {
+				redefinitions.add((Redefinition)subset);
+			}
+		}
+		return redefinitions;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Subset> getOwnedSubset() {
-		// TODO: implement this method to return the 'Owned Subset' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Subset> subsets = new BasicEList<Subset>();
+		for (Generalization generalization: this.getOwnedGeneralization()) {
+			if (generalization instanceof Subset) {
+				subsets.add((Subset)generalization);
+			}
+		}
+		return subsets;
 	}
 
 	/**
@@ -601,66 +603,61 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isComposite() {
-		// TODO: implement this method to return the 'Is Composite' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		FeatureMembership featureMembership = this.getOwningFeatureMembership();
+		return featureMembership != null && featureMembership.isPart();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setIsComposite(boolean newIsComposite) {
-		// TODO: implement this method to set the 'Is Composite' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		FeatureMembership featureMembership = this.getOwningFeatureMembership();
+		if (featureMembership != null) {
+			featureMembership.setIsPart(newIsComposite);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getMultiplicity() {
-		// TODO: implement this method to return the 'Multiplicity' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
+		// TODO Implement Feature.getMultiplicity()?
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setMultiplicity(String newMultiplicity) {
-		// TODO: implement this method to set the 'Multiplicity' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
+		// TODO Implement Feature.setMultiplicity()?
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isNonunique() {
-		return isNonunique;
+		return !isUnique;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setIsNonunique(boolean newIsNonunique) {
-		boolean oldIsNonunique = isNonunique;
-		isNonunique = newIsNonunique;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_NONUNIQUE, oldIsNonunique, isNonunique));
+		this.setIsUnique(!newIsNonunique);
 	}
 
 	/**

@@ -181,23 +181,19 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Category basicGetOwningCategory() {
-		// TODO: implement this method to return the 'Owning Category' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		org.omg.sysml.lang.sysml.Package namespace = this.getOwningNamespace();
+		return namespace instanceof Category? (Category)namespace: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningCategory(Category newOwningCategory) {
-		// TODO: implement this method to set the 'Owning Category' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

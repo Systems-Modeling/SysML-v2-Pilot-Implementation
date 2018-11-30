@@ -248,7 +248,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Connector getOwningConnector() {
 		Connector owningConnector = basicGetOwningConnector();
@@ -258,13 +258,11 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Connector basicGetOwningConnector() {
-		// TODO: implement this method to return the 'Owning Connector' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Element owner = this.getOwner();
+		return owner instanceof Connector? (Connector)owner: null;
 	}
 
 	/**
@@ -273,9 +271,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 * @generated
 	 */
 	public void setOwningConnector(Connector newOwningConnector) {
-		// TODO: implement this method to set the 'Owning Connector' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.setOwner(newOwningConnector);
 	}
 
 	/**

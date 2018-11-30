@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -105,10 +105,14 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> getMember() {
-		return new DerivedUnionEObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER, MEMBER_ESUBSETS);
+		EList<Element> members = new BasicEList<Element>();
+		for (Membership membership: this.getMembership()) {
+			members.add(membership.getMemberElement());
+		}
+		return members;
 	}
 
 	/**
@@ -169,12 +173,17 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> getOwnedMember() {
-		// TODO: implement this method to return the 'Owned Member' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Element> ownedMembers = new BasicEList<Element>();
+		for (Membership membership: this.getOwnedMembership()) {
+			Element element = membership.getOwnedMemberElement();
+			if (element != null) {
+				ownedMembers.add(element);
+			}
+		}
+		return ownedMembers;
 	}
 
 	/**
@@ -183,9 +192,23 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated
 	 */
 	public EList<Membership> getImportedMembership() {
-		// TODO: implement this method to return the 'Imported Membership' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Membership> importedMembership = new BasicEList<Membership>();
+		for (Import _import: this.getOwnedImport()) {
+			importedMembership.addAll(_import.importedMembership());
+		}
+		this.excludeCollisions(importedMembership);
+		EList<Membership> ownedMembership = this.getOwnedMembership();
+		for (int i = 0; i < importedMembership.size(); i++) {
+			Membership m1 = importedMembership.get(i);
+			for (Membership m2: ownedMembership ) {
+				if (!m1.isDistinguishableFrom(m2)) {
+					importedMembership.remove(i);
+					i--;
+					break;
+				}
+			}
+		}
+		return importedMembership;
 	}
 
 	/**
@@ -213,23 +236,40 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String nameOf(Element element) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for (Membership membership: this.getMembership()) {
+			if (membership.getMemberElement() == element) {
+				return membership.getMemberName();
+			}
+		}
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Membership> excludeCollisions(EList<Membership> mem) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for (int i = 0; i < mem.size(); i++) {
+			String name1 = mem.get(i).getMemberName();
+			boolean isCollision = false;
+			for (int j = i + 1; j < mem.size(); j++) {
+				String name2 = mem.get(j).getMemberName();
+				if (name1 == null? name2 == null: name1.equals(name2)) {
+					isCollision = true;
+					mem.remove(j);
+					j--;
+				}
+			}
+			if (isCollision) {
+				mem.remove(i);
+				i--;
+			}
+		}
+		return mem;
 	}
 
 	/**

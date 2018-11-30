@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -376,12 +376,20 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getPath() {
-		// TODO: implement this method to return the 'Path' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> path = new BasicEList<Feature>();
+		getPath(path, this.getConnector().getOwningNamespace(), this.getFeature());
+		return path;
+	}
+	
+	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
+		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
+		if (owningNamespace != null && owningNamespace != start && owningNamespace instanceof Feature) {
+			getPath(path, start, (Feature)owningNamespace);
+		}
+		path.add(end);
 	}
 
 	/**

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectWithInverseResolvingEList;
 
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
@@ -101,11 +101,12 @@ public class CategoryImpl extends PackageImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getMember() {
-		return new DerivedUnionEObjectEList<Element>(Element.class, this, SysMLPackage.CATEGORY__MEMBER, MEMBER_ESUBSETS);
+		// TODO: Fix this.
+		return super.getMember();
 	}
 
 	/**
@@ -157,9 +158,14 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
-		// TODO: implement this method to return the 'Owned Generalization' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Generalization> generalizations = new BasicEList<Generalization>();
+		for (Element member: this.getOwnedMember()) {
+			if (member instanceof Generalization &&
+					((Generalization)member).getSpecific().equals(this)) {
+				generalizations.add(((Generalization)member));
+			}
+		}
+		return generalizations;
 	}
 
 	/**
@@ -187,45 +193,71 @@ public class CategoryImpl extends PackageImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getOwnedFeature() {
-		// TODO: implement this method to return the 'Owned Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> features = new BasicEList<Feature>();
+		for (Element member: this.getOwnedMember()) {
+			if (member instanceof Feature) {
+				features.add((Feature)member);
+			}
+		}
+		return features;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getFeature() {
-		// TODO: implement this method to return the 'Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> features = new BasicEList<Feature>();
+		for (Element member: this.getMember()) {
+			if (member instanceof Feature) {
+				features.add((Feature)member);
+			}
+		}
+		return features;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getInput() {
-		// TODO: implement this method to return the 'Input' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> inputs = new BasicEList<Feature>();
+		for (Membership membership: this.getMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.IN.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					inputs.add(featureMembership.getMemberFeature());
+				}
+			}
+		}
+		return inputs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getOutput() {
-		// TODO: implement this method to return the 'Output' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> outputs = new BasicEList<Feature>();
+		for (Membership membership: this.getMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.OUT.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					outputs.add(featureMembership.getMemberFeature());
+				}
+			}
+		}
+		return outputs;
 	}
 
 	/**

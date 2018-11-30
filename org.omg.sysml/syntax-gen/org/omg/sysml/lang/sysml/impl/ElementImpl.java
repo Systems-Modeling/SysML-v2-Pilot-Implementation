@@ -263,23 +263,19 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
-		// TODO: implement this method to return the 'Owning Namespace' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Membership membership = this.getOwningMembership();
+		return membership == null? null: membership.getMembershipOwningPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
-		// TODO: implement this method to set the 'Owning Namespace' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -316,12 +312,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IDENTIFIER, oldIdentifier, identifier));
 	}
 	
+	String name = null; // TODO: Remove this!
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
+		if (name != null) {
+			return name;
+		}
 		Membership owningMembership = this.getOwningMembership();
 		return owningMembership == null? null: owningMembership.getName(); 
 	}
@@ -329,13 +330,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setName(String newName) {
-		Membership owningMembership = this.getOwningMembership();
-		if (owningMembership != null) {
-			owningMembership.setMemberName(newName);
-		}
+		name = newName;
+//		Membership owningMembership = this.getOwningMembership();
+//		if (owningMembership != null) {
+//			owningMembership.setMemberName(newName);
+//		}
 	}
 
 	/**

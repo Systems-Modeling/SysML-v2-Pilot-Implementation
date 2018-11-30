@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -388,12 +388,20 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Membership> importedMembership() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// TODO Implement predicate-based selection of importMembership.
+		EList<Membership> importedMembership = new BasicEList<Membership>();
+		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
+		if (importedPackage != null) {
+			for (Membership membership: this.getImportedPackage().getMembership()) {
+				if (VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
+					importedMembership.add(membership);
+				}
+			}
+		}
+		return importedMembership;
 	}
 
 	/**

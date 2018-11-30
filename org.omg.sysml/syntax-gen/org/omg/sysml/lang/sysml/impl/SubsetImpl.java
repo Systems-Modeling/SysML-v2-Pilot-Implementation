@@ -176,23 +176,19 @@ public class SubsetImpl extends GeneralizationImpl implements Subset {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetOwningFeature() {
-		// TODO: implement this method to return the 'Owning Feature' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Category owningCategory = super.getOwningCategory();
+		return owningCategory instanceof Feature? (Feature)owningCategory: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningFeature(Feature newOwningFeature) {
-		// TODO: implement this method to set the 'Owning Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

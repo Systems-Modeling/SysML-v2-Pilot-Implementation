@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='packageNameUniqueness packageDistinguishibility packageMembers packageOwnedMembers packageImportedMembership'"
+ * @model
  * @generated
  */
 public interface Package extends Element {
@@ -53,25 +53,19 @@ public interface Package extends Element {
 	EList<Membership> getMembership();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Import</b></em>' reference list.
+	 * Returns the value of the '<em><b>Owned Import</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Import</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Import</em>' reference list.
+	 * @return the value of the '<em>Owned Import</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport()
 	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningPackage
-	 * @model opposite="importOwningPackage"
+	 * @model opposite="importOwningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
@@ -142,7 +136,7 @@ public interface Package extends Element {
 	EList<Membership> getImportedMembership();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Membership</b></em>' reference list.
+	 * Returns the value of the '<em><b>Owned Membership</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}'.
 	 * <p>
@@ -150,7 +144,6 @@ public interface Package extends Element {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMembership() <em>Membership</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -158,10 +151,10 @@ public interface Package extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Membership</em>' reference list.
+	 * @return the value of the '<em>Owned Membership</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage
-	 * @model opposite="membershipOwningPackage"
+	 * @model opposite="membershipOwningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

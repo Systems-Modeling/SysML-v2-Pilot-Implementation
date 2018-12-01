@@ -6,26 +6,20 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -38,8 +32,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getOwnedElement <em>Owned Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getFeature <em>Feature</em>}</li>
@@ -52,7 +44,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' reference.
+	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLower()
@@ -62,7 +54,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	protected Expression lower;
 
 	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' reference.
+	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpper()
@@ -92,16 +84,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	protected Feature end;
 
 	/**
-	 * The cached value of the '{@link #getConnector() <em>Connector</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnector()
-	 * @generated
-	 * @ordered
-	 */
-	protected Connector connector;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -125,33 +107,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Element> getOwnedElement() {
-		if (ownedElement == null) {
-			ownedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__OWNED_ELEMENT, null, OWNED_ELEMENT_ESUBSETS, SysMLPackage.ELEMENT__OWNER);
-		}
-		return ownedElement;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedElement() <em>Owned Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__LOWER, SysMLPackage.CONNECTOR_END__UPPER};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwner() {
-		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__OWNER) return null;
-		return (Element)eInternalContainer();
+	public Expression getLower() {
+		return lower;
 	}
 
 	/**
@@ -159,16 +116,12 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwner(Element newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, SysMLPackage.CONNECTOR_END__OWNER, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (owningMembership != null && owningMembership != newOwner) {
-				setOwningMembership(null);
-			}
-			if (connector != null && connector != newOwner) {
-				setConnector(null);
-			}
+	public NotificationChain basicSetLower(Expression newLower, NotificationChain msgs) {
+		Expression oldLower = lower;
+		lower = newLower;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__LOWER, oldLower, newLower);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -178,67 +131,18 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwner(Element newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+	public void setLower(Expression newLower) {
+		if (newLower != lower) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
+			if (lower != null)
+				msgs = ((InternalEObject)lower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__LOWER, null, msgs);
+			if (newLower != null)
+				msgs = ((InternalEObject)newLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__LOWER, null, msgs);
+			msgs = basicSetLower(newLower, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__OWNER, newOwner, newOwner));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getLower() {
-		if (lower != null && lower.eIsProxy()) {
-			InternalEObject oldLower = (InternalEObject)lower;
-			lower = (Expression)eResolveProxy(oldLower);
-			if (lower != oldLower) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR_END__LOWER, oldLower, lower));
-			}
-		}
-		return lower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression basicGetLower() {
-		return lower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLower(Expression newLower) {
-		Expression oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__LOWER, oldLower, lower));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newLower != null) {
-				EList<Element> ownedElement = getOwnedElement();
-				if (!ownedElement.contains(newLower)) {
-					ownedElement.add(newLower);
-				}
-			}
-		}
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__LOWER, newLower, newLower));
 	}
 
 	/**
@@ -247,14 +151,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public Expression getUpper() {
-		if (upper != null && upper.eIsProxy()) {
-			InternalEObject oldUpper = (InternalEObject)upper;
-			upper = (Expression)eResolveProxy(oldUpper);
-			if (upper != oldUpper) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR_END__UPPER, oldUpper, upper));
-			}
-		}
 		return upper;
 	}
 
@@ -263,8 +159,14 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression basicGetUpper() {
-		return upper;
+	public NotificationChain basicSetUpper(Expression newUpper, NotificationChain msgs) {
+		Expression oldUpper = upper;
+		upper = newUpper;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__UPPER, oldUpper, newUpper);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -273,19 +175,17 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public void setUpper(Expression newUpper) {
-		Expression oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__UPPER, oldUpper, upper));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newUpper != null) {
-				EList<Element> ownedElement = getOwnedElement();
-				if (!ownedElement.contains(newUpper)) {
-					ownedElement.add(newUpper);
-				}
-			}
+		if (newUpper != upper) {
+			NotificationChain msgs = null;
+			if (upper != null)
+				msgs = ((InternalEObject)upper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__UPPER, null, msgs);
+			if (newUpper != null)
+				msgs = ((InternalEObject)newUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__UPPER, null, msgs);
+			msgs = basicSetUpper(newUpper, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__UPPER, newUpper, newUpper));
 	}
 
 	/**
@@ -355,9 +255,22 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetEnd() {
+		if (end == null) {
+			Connector connector = this.getConnector();
+			if (connector != null) {
+				Association association = connector.getAssociation();
+				if (association != null) {
+					EList<EndFeatureMembership> endMembership = association.getOwnedEndFeatureMembership();
+					int i = connector.getConnectorEnd().indexOf(this);
+					if (i < endMembership.size()) {
+						end = endMembership.get(i).getMemberFeature();
+					}
+				}
+			}
+		}
 		return end;
 	}
 
@@ -379,7 +292,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated NOT
 	 */
 	public EList<Feature> getPath() {
-		EList<Feature> path = new BasicEList<Feature>();
+		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
 		getPath(path, this.getConnector().getOwningNamespace(), this.getFeature());
 		return path;
 	}
@@ -398,24 +311,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public Connector getConnector() {
-		if (connector != null && connector.eIsProxy()) {
-			InternalEObject oldConnector = (InternalEObject)connector;
-			connector = (Connector)eResolveProxy(oldConnector);
-			if (connector != oldConnector) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONNECTOR_END__CONNECTOR, oldConnector, connector));
-			}
-		}
-		return connector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Connector basicGetConnector() {
-		return connector;
+		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR) return null;
+		return (Connector)eInternalContainer();
 	}
 
 	/**
@@ -424,21 +321,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public NotificationChain basicSetConnector(Connector newConnector, NotificationChain msgs) {
-		Connector oldConnector = connector;
-		connector = newConnector;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__CONNECTOR, oldConnector, newConnector);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newConnector != null) {
-				Element owner = getOwner();
-				if (newConnector != owner) {
-					setOwner(newConnector);
-				}
-			}
-		}
+		msgs = eBasicSetContainer((InternalEObject)newConnector, SysMLPackage.CONNECTOR_END__CONNECTOR, msgs);
 		return msgs;
 	}
 
@@ -448,10 +331,12 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public void setConnector(Connector newConnector) {
-		if (newConnector != connector) {
+		if (newConnector != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR && newConnector != null)) {
+			if (EcoreUtil.isAncestor(this, newConnector))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (connector != null)
-				msgs = ((InternalEObject)connector).eInverseRemove(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newConnector != null)
 				msgs = ((InternalEObject)newConnector).eInverseAdd(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
 			msgs = basicSetConnector(newConnector, msgs);
@@ -467,7 +352,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 */
 	public boolean isSetConnector() {
-		return connector != null;
+		return getConnector() != null;
 	}
 
 	/**
@@ -475,19 +360,12 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__OWNED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedElement()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR_END__OWNER:
+			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((Element)otherEnd, msgs);
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				if (connector != null)
-					msgs = ((InternalEObject)connector).eInverseRemove(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
 				return basicSetConnector((Connector)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -501,10 +379,10 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__OWNED_ELEMENT:
-				return ((InternalEList<?>)getOwnedElement()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.CONNECTOR_END__OWNER:
-				return basicSetOwner(null, msgs);
+			case SysMLPackage.CONNECTOR_END__LOWER:
+				return basicSetLower(null, msgs);
+			case SysMLPackage.CONNECTOR_END__UPPER:
+				return basicSetUpper(null, msgs);
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				return basicSetConnector(null, msgs);
 		}
@@ -519,8 +397,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.CONNECTOR_END__OWNER:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ELEMENT, Element.class, msgs);
+			case SysMLPackage.CONNECTOR_END__CONNECTOR:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -534,11 +412,9 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR_END__LOWER:
-				if (resolve) return getLower();
-				return basicGetLower();
+				return getLower();
 			case SysMLPackage.CONNECTOR_END__UPPER:
-				if (resolve) return getUpper();
-				return basicGetUpper();
+				return getUpper();
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				if (resolve) return getFeature();
 				return basicGetFeature();
@@ -548,8 +424,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			case SysMLPackage.CONNECTOR_END__PATH:
 				return getPath();
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				if (resolve) return getConnector();
-				return basicGetConnector();
+				return getConnector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -624,10 +499,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__OWNED_ELEMENT:
-				return ownedElement != null && !ownedElement.isEmpty();
-			case SysMLPackage.CONNECTOR_END__OWNER:
-				return getOwner() != null;
 			case SysMLPackage.CONNECTOR_END__TARGET:
 				return isSetTarget();
 			case SysMLPackage.CONNECTOR_END__SOURCE:

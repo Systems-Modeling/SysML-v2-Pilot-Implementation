@@ -121,14 +121,8 @@ public interface Import extends Relationship {
 	void setVisibility(VisibilityKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Import Owning Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Import Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
-	 * </ul>
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -141,20 +135,20 @@ public interface Import extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Import Owning Package</em>' reference.
+	 * @return the value of the '<em>Import Owning Package</em>' container reference.
 	 * @see #setImportOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport
-	 * @model opposite="ownedImport" required="true" ordered="false"
+	 * @model opposite="ownedImport" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getImportOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Import Owning Package</em>' reference.
+	 * @param value the new value of the '<em>Import Owning Package</em>' container reference.
 	 * @see #getImportOwningPackage()
 	 * @generated
 	 */

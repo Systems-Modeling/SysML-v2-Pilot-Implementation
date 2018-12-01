@@ -56,7 +56,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Involves Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_InvolvesFeature()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Feature> getInvolvesFeature();

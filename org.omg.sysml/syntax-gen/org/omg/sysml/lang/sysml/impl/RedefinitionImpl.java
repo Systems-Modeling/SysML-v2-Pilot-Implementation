@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -86,10 +86,17 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Redefinition has a Feature as its owner, the use this as the default value of the redefiningFeature property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetRedefiningFeature() {
+		if (redefiningFeature == null) {
+			Element owner = getOwner();
+			if (owner instanceof Feature) {
+				redefiningFeature = (Feature)owner;
+			}
+		}
 		return redefiningFeature;
 	}
 

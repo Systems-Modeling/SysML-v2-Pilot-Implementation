@@ -10,7 +10,7 @@ package sysml
 -- Element --
 
 context Element::name: String derive elementNameDerivation:
-if owningNamespace = null then null
+if owningNamespace = null then null 
 else owningNamespace.nameOf(self) endif
 
 -- Import --

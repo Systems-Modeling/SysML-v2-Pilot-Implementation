@@ -6,23 +6,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectWithInverseResolvingEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
@@ -105,7 +101,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConnectorEnd() <em>Connector End</em>}' reference list.
+	 * The cached value of the '{@link #getConnectorEnd() <em>Connector End</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConnectorEnd()
@@ -231,20 +227,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public EList<Element> getOwnedElement() {
 		if (ownedElement == null) {
-			ownedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_ELEMENT, null, OWNED_ELEMENT_ESUBSETS, SysMLPackage.ELEMENT__OWNER);
+			ownedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_ELEMENT, SysMLPackage.ELEMENT__OWNER);
 		}
 		return ownedElement;
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedElement() <em>Owned Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__OWNED_IMPORT, SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP, SysMLPackage.CONNECTOR__LOWER, SysMLPackage.CONNECTOR__UPPER, SysMLPackage.CONNECTOR__VALUE, SysMLPackage.CONNECTOR__CONNECTOR_END};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -252,7 +238,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated NOT
 	 */
 	public EList<Feature> getRelatedFeatures() {
-		EList<Feature> features = new BasicEList<Feature>();
+		EList<Feature> features = new BasicInternalEList<Feature>(Feature.class);
 		for (ConnectorEnd connectorEnd: this.getConnectorEnd()) {
 			features.add(connectorEnd.getFeature());
 		}
@@ -287,20 +273,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<ConnectorEnd> getConnectorEnd() {
 		if (connectorEnd == null) {
-			connectorEnd = new SubsetSupersetEObjectWithInverseResolvingEList<ConnectorEnd>(ConnectorEnd.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END, CONNECTOR_END_ESUPERSETS, null, SysMLPackage.CONNECTOR_END__CONNECTOR);
+			connectorEnd = new EObjectContainmentWithInverseEList<ConnectorEnd>(ConnectorEnd.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END, SysMLPackage.CONNECTOR_END__CONNECTOR);
 		}
 		return connectorEnd;
 	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getConnectorEnd() <em>Connector End</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnectorEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] CONNECTOR_END_ESUPERSETS = new int[] {SysMLPackage.CONNECTOR__OWNED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -315,21 +291,30 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Association basicGetOwnedAssociationType() {
 		Association association = this.getAssociation();
-		return association.getOwner().equals(this)? association: null;
+		return association != null && this.equals(association.getOwner())? association: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwnedAssociationType(Association newOwnedAssociationType) {
 		newOwnedAssociationType.setOwner(this);
 		this.setAssociation(newOwnedAssociationType);
+	}
+	
+	// Additional subsetting
+	
+	@Override
+	public EList<Element> getAllOwnedElements() {
+		EList<Element> ownedElements = super.getAllOwnedElements();
+		ownedElements.addAll(this.getConnectorEnd());
+		return ownedElements;
 	}
 
 	/**

@@ -3,17 +3,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -140,10 +136,17 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Generalization has a Category as its owner, then use this as the default value for its specific property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Category basicGetSpecific() {
+		if (specific == null) {
+			Element owner = this.getOwner();
+			if (owner instanceof Category) {
+				specific = (Category)owner;
+			}
+		}
 		return specific;
 	}
 

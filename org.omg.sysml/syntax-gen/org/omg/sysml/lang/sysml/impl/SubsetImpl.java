@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subset;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -135,10 +136,17 @@ public class SubsetImpl extends GeneralizationImpl implements Subset {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Subset has a Feature as its owner, the use this as the default value for the subsettingFeature property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetSubsettingFeature() {
+		if (subsettingFeature == null) {
+			Element owner = getOwner();
+			if (owner instanceof Feature) {
+				subsettingFeature = (Feature)owner;
+			}
+		}
 		return subsettingFeature;
 	}
 
@@ -179,7 +187,7 @@ public class SubsetImpl extends GeneralizationImpl implements Subset {
 	 * @generated NOT
 	 */
 	public Feature basicGetOwningFeature() {
-		Category owningCategory = super.getOwningCategory();
+		Category owningCategory = super.basicGetOwningCategory();
 		return owningCategory instanceof Feature? (Feature)owningCategory: null;
 	}
 

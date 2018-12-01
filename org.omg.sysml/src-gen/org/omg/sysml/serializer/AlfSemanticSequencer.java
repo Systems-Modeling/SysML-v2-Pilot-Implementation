@@ -281,10 +281,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
-	 *             (isPart?='part' memberName=Name? memberElement=[Feature|QualifiedName]) | 
-	 *             (direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
-	 *             (memberName=Name memberElement=[Feature|QualifiedName])
+	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
+	 *             (isPart?='part' memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             (direction=FeatureDirection? ownedFeatureElement=NamedFeatureDefinition) | 
+	 *             (memberName=Name memberFeature=[Feature|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -405,7 +405,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         name=Name 
 	 *         isComposite?='compose'? 
-	 *         referencedType+=[Class|QualifiedName]? 
+	 *         type+=[Class|QualifiedName]? 
 	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         value=Expression? 
@@ -426,7 +426,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         (ownedElement+=SubsetOrRedefinition | name=Name) 
 	 *         isComposite?='compose'? 
-	 *         referencedType+=[Class|QualifiedName]? 
+	 *         type+=[Class|QualifiedName]? 
 	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         value=Expression? 
@@ -447,7 +447,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         ownedElement+=SubsetOrRedefinition 
 	 *         isComposite?='compose'? 
-	 *         referencedType+=[Class|QualifiedName]? 
+	 *         type+=[Class|QualifiedName]? 
 	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         value=Expression? 
 	 *         ownedMembership+=CategoryMember? 
@@ -470,7 +470,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedElement+=Comment? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
-	 *         referencedType+=[Class|QualifiedName]? 
+	 *         type+=[Class|QualifiedName]? 
 	 *         (
 	 *             lower=NaturalLiteralExpression? 
 	 *             upper=UnlimitedNaturalLiteralExpression 
@@ -499,7 +499,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	//         ownedElement+=Comment* 
 	//         name=Name 
 	//         isComposite?='compose'? 
-	//         referencedType+=[Class|QualifiedName]? 
+	//         type+=[Class|QualifiedName]? 
 	//         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	//         ownedElement+=SubsetOrRedefinition? 
 	//         ownedMembership+=CategoryMember? 
@@ -518,12 +518,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             (direction=FeatureDirection? ownedMemberElement=NamedFeatureDefinition) | 
-	 *             (memberName=Name memberElement=[Feature|QualifiedName]) | 
-	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
-	 *             (isPart?='part'? memberName=Name? memberElement=[Feature|QualifiedName]) | 
-	 *             ownedMemberElement=ConnectorDefinition | 
-	 *             (memberName=Name? memberElement=[Connector|QualifiedName])
+	 *             (direction=FeatureDirection? ownedFeatureElement=NamedFeatureDefinition) | 
+	 *             (memberName=Name memberFeature=[Feature|QualifiedName]) | 
+	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
+	 *             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             ownedFeatureElement=ConnectorDefinition | 
+	 *             (memberName=Name? memberFeature=[Connector|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -541,10 +541,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedElement+=Comment? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
-	 *             (isPart?='part'? memberName=Name? memberElement=[Feature|QualifiedName]) | 
-	 *             ownedMemberElement=ConnectorDefinition | 
-	 *             (memberName=Name? memberElement=[Connector|QualifiedName])
+	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
+	 *             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             ownedFeatureElement=ConnectorDefinition | 
+	 *             (memberName=Name? memberFeature=[Connector|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -565,10 +565,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	//         ownedElement+=Comment* 
 	//         visibility=VisibilityIndicator? 
 	//         (
-	//             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberElement=FeatureDefinition) | 
-	//             (isPart?='part'? memberName=Name? memberElement=[Feature|QualifiedName]) | 
-	//             ownedMemberElement=ConnectorDefinition | 
-	//             (memberName=Name? memberElement=[Connector|QualifiedName])
+	//             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
+	//             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	//             ownedFeatureElement=ConnectorDefinition | 
+	//             (memberName=Name? memberFeature=[Connector|QualifiedName])
 	//         )
 	//     )
 	//

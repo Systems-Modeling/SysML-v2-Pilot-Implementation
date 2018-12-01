@@ -255,13 +255,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ASSOCIATION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.ASSOCIATION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.ASSOCIATION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.ASSOCIATION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.ASSOCIATION__TARGET:
@@ -269,9 +263,6 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED);
-				break;
-			case SysMLPackage.ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 		}
 	}
@@ -377,13 +368,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.PREDICATE__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.PREDICATE__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.PREDICATE__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.PREDICATE__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -411,13 +396,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FUNCTION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.FUNCTION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.FUNCTION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.FUNCTION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -445,13 +424,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.BEHAVIOR__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.BEHAVIOR__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.BEHAVIOR__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.BEHAVIOR__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -479,13 +452,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CLASS__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.CLASS__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.CLASS__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.CLASS__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -513,13 +480,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.CATEGORY__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -585,13 +546,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FEATURE__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.FEATURE__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.FEATURE__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.FEATURE__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.FEATURE__OWNED_TYPE:
@@ -628,13 +583,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -700,13 +649,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.STEP__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.STEP__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.STEP__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.STEP__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.STEP__OWNED_TYPE:
@@ -762,13 +705,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CONNECTOR__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.CONNECTOR__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.CONNECTOR__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.CONNECTOR__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
@@ -833,13 +770,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -867,13 +798,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FEATURE_ACCESS_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.FEATURE_ACCESS_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.FEATURE_ACCESS_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.FEATURE_ACCESS_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -901,13 +826,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -935,13 +854,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ITEM_FLOW__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.ITEM_FLOW__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.ITEM_FLOW__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.ITEM_FLOW__OWNED_TYPE:
@@ -987,13 +900,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_BOOLEAN__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_BOOLEAN__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_BOOLEAN__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1021,13 +928,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1055,13 +956,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_INTEGER__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_INTEGER__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_INTEGER__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1089,13 +984,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_NULL__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_NULL__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_NULL__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_NULL__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1123,13 +1012,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_REAL__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_REAL__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_REAL__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1157,13 +1040,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_STRING__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_STRING__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_STRING__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1191,13 +1068,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.LITERAL_UNBOUNDED__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.LITERAL_UNBOUNDED__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.LITERAL_UNBOUNDED__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1225,13 +1096,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ORDERED_FEATURE__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.ORDERED_FEATURE__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.ORDERED_FEATURE__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.ORDERED_FEATURE__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.ORDERED_FEATURE__OWNED_TYPE:
@@ -1268,13 +1133,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.STRUCTURED_FEATURE__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.STRUCTURED_FEATURE__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.STRUCTURED_FEATURE__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.STRUCTURED_FEATURE__OWNED_TYPE:
@@ -1311,13 +1170,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.OPERATOR_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.OPERATOR_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.OPERATOR_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1345,13 +1198,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1379,13 +1226,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 		}
@@ -1413,13 +1254,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.SUCCESSION__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.SUCCESSION__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.SUCCESSION__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.SUCCESSION__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.SUCCESSION__OWNED_TYPE:
@@ -1465,13 +1300,7 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
-			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
-				break;
-			case SysMLPackage.SUCCESSION_ITEM_FLOW__FEATURE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBER);
 				break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_TYPE:

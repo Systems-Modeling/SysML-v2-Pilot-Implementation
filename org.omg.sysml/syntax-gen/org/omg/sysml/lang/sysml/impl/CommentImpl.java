@@ -117,10 +117,14 @@ public class CommentImpl extends ElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Comment has an owner, use this as the default value for its commentedElement property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Element basicGetCommentedElement() {
+		if (commentedElement == null) {
+			commentedElement = getOwner();
+		}
 		return commentedElement;
 	}
 

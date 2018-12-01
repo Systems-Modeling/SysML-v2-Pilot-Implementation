@@ -66,7 +66,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @return the value of the '<em>Owned End Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_OwnedEndFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation
-	 * @model opposite="owningAssociation" lower="2"
+	 * @model opposite="owningAssociation" lower="2" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<EndFeatureMembership> getOwnedEndFeatureMembership();

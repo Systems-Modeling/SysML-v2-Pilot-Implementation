@@ -118,12 +118,6 @@ public interface FeatureMembership extends Membership {
 	 * Returns the value of the '<em><b>Owned Feature Element</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature() <em>Member Feature</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
@@ -240,12 +234,6 @@ public interface FeatureMembership extends Membership {
 	/**
 	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
@@ -256,7 +244,7 @@ public interface FeatureMembership extends Membership {
 	 * @see #setOwningCategory(Category)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningCategory()
 	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership
-	 * @model opposite="ownedFeatureMembership" required="true" ordered="false"
+	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	Category getOwningCategory();

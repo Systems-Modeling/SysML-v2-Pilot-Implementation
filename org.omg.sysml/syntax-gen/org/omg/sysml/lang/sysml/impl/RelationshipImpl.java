@@ -4,14 +4,12 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -74,10 +72,12 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> getRelated() {
-		return new DerivedUnionEObjectEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__RELATED, RELATED_ESUBSETS);
+		EList<Element> related = new BasicInternalEList<Element>(Element.class, this.getSource());
+		related.addAll(this.getTarget());
+		return related;
 	}
 
 	/**

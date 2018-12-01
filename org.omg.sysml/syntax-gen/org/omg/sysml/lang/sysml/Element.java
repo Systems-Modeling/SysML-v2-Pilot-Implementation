@@ -29,39 +29,33 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='elementName'"
+ * @model
  * @generated
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Owning Membership</b></em>' reference.
+	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Membership</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Membership</em>' reference.
+	 * @return the value of the '<em>Owning Membership</em>' container reference.
 	 * @see #setOwningMembership(Membership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
-	 * @model opposite="ownedMemberElement" ordered="false"
+	 * @model opposite="ownedMemberElement" transient="false" ordered="false"
 	 * @generated
 	 */
 	Membership getOwningMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Membership</em>' reference.
+	 * @param value the new value of the '<em>Owning Membership</em>' container reference.
 	 * @see #getOwningMembership()
 	 * @generated
 	 */

@@ -65,7 +65,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 * @generated
 	 */
@@ -109,25 +109,19 @@ public interface Connector extends Feature, Relationship {
 	void setIsDirected(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Connector End</b></em>' reference list.
+	 * Returns the value of the '<em><b>Connector End</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorEnd}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connector End</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Connector End</em>' reference list.
+	 * @return the value of the '<em>Connector End</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
 	 * @see org.omg.sysml.lang.sysml.ConnectorEnd#getConnector
-	 * @model opposite="connector" lower="2"
+	 * @model opposite="connector" containment="true" lower="2"
 	 * @generated
 	 */
 	EList<ConnectorEnd> getConnectorEnd();

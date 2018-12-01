@@ -55,12 +55,6 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership() <em>Owned Membership</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Feature Membership</em>' reference list isn't clear,
@@ -70,7 +64,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory
-	 * @model opposite="owningCategory"
+	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();
@@ -103,12 +97,6 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMember() <em>Member</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature</em>' reference list isn't clear,

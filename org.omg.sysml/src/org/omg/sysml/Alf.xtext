@@ -168,8 +168,8 @@ FeatureCategoryMember returns SysML::FeatureMembership :
 	( FeatureMemberElement
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
-    | ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
-	| memberName = Name 'is' memberElement = [SysML::Feature|QualifiedName] ';'	
+    | ( direction = FeatureDirection )? ownedFeatureElement = NamedFeatureDefinition
+	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
 	
 	)
 ;
@@ -181,10 +181,10 @@ fragment CategoryMemberPrefix returns SysML::Membership :
 ;
 
 fragment FeatureMemberElement returns SysML::FeatureMembership :
-      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
-	| ( 'feature' | isPart ?= 'part' ) ( memberName = Name )? 'is' memberElement = [SysML::Feature|QualifiedName] ';'
-	| 'connector' ownedMemberElement = ConnectorDefinition
-	| 'connector' ( memberName = Name )? 'is' memberElement = [SysML::Connector|QualifiedName] ';' 
+      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedFeatureElement = FeatureDefinition
+	| ( 'feature' | isPart ?= 'part' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+	| 'connector' ownedFeatureElement = ConnectorDefinition
+	| 'connector' ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';' 
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -245,12 +245,12 @@ AssociationFeatureMember returns SysML::FeatureMembership :
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	CategoryMemberPrefix
     (
-      'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberElement = FeatureDefinition
-	| 'end' ( isPart ?= 'part') ( memberName = Name )? 'is' memberElement = [SysML::Feature|QualifiedName] ';'
+      'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedFeatureElement = FeatureDefinition
+	| 'end' ( isPart ?= 'part') ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 
 	// These alternatives are provided for legacy Alf backwards compatibility;
-    | ( direction = FeatureDirection )? ownedMemberElement = NamedFeatureDefinition
-	| memberName = Name 'is' memberElement = [SysML::Feature|QualifiedName] ';'
+    | ( direction = FeatureDirection )? ownedFeatureElement = NamedFeatureDefinition
+	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	
 	)
 ;
@@ -284,7 +284,7 @@ fragment FeatureCompletion returns SysML::Feature :
 ;
 
 fragment TypePart returns SysML::Feature :
-	':' ( isComposite ?= 'compose' )? ( referencedType += [SysML::Class | QualifiedName] | 'any' )
+	':' ( isComposite ?= 'compose' )? ( type += [SysML::Class | QualifiedName] | 'any' )
 ;
 
 fragment Multiplicity returns SysML::Feature :

@@ -92,10 +92,10 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
-		var referencedTypes = feature.referencedType
+		var referencedTypes = feature.type
 		if (!referencedTypes.isEmpty) {
 			createEStructuralFeatureNode(parentNode, feature, 
-				SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, 
+				SysMLPackage.Literals.FEATURE__TYPE, 
 				referencedTypes._image, "Type", false
 			)
 		}

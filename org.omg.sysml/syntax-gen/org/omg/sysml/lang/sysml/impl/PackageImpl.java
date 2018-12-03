@@ -5,6 +5,8 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
+import java.util.HashSet;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
@@ -18,6 +20,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -156,23 +159,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Membership> getImportedMembership() {
-		EList<Membership> importedMembership = new BasicInternalEList<Membership>(Membership.class);
-		for (Import _import: this.getOwnedImport()) {
-			importedMembership.addAll(_import.importedMembership());
-		}
-		this.excludeCollisions(importedMembership);
-		EList<Membership> ownedMembership = this.getOwnedMembership();
-		for (int i = 0; i < importedMembership.size(); i++) {
-			Membership m1 = importedMembership.get(i);
-			for (Membership m2: ownedMembership ) {
-				if (!m1.isDistinguishableFrom(m2)) {
-					importedMembership.remove(i);
-					i--;
-					break;
-				}
-			}
-		}
-		return importedMembership;
+		return this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), false);
 	}
 
 	/**
@@ -237,7 +224,44 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		}
 		return mem;
 	}
+	
+	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages) {
+		EList<Membership> publicMembership = new BasicInternalEList<Membership>(Membership.class);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
+				publicMembership.add(membership);
+			}
+		}
+		publicMembership.addAll(this.getImportedMembership(excludedPackages, true));
+		return publicMembership;
+	}
 
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, boolean onlyPublic) {
+		EList<Membership> importedMembership = new BasicInternalEList<Membership>(Membership.class);
+		Collection<Membership> nonpublicMembership = onlyPublic? new HashSet<Membership>(): null;
+		for (Import _import: this.getOwnedImport()) {
+			if (!excludedPackages.contains(_import.getImportedPackage())) {
+				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedPackages);
+			}
+		}
+		this.excludeCollisions(importedMembership);
+		EList<Membership> ownedMembership = this.getOwnedMembership();
+		for (int i = 0; i < importedMembership.size(); i++) {
+			Membership m1 = importedMembership.get(i);
+			for (Membership m2: ownedMembership ) {
+				if (!m1.isDistinguishableFrom(m2)) {
+					importedMembership.remove(i);
+					i--;
+					break;
+				}
+			}
+		}
+		if (onlyPublic) {
+			importedMembership.removeAll(nonpublicMembership);
+		}
+		return importedMembership;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

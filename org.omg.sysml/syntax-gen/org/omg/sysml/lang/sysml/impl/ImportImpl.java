@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -313,15 +315,21 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated NOT
 	 */
 	public EList<Membership> importedMembership() {
+		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null, new HashSet<org.omg.sysml.lang.sysml.Package>());
+	}
+	
+	public EList<Membership> importMembership(EList<Membership> importedMembership, Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages) {
 		// TODO Implement predicate-based selection of importMembership.
-		EList<Membership> importedMembership = new BasicInternalEList<Membership>(Membership.class);
 		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
-		if (importedPackage != null) {
-			for (Membership membership: this.getImportedPackage().getMembership()) {
-				if (VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
-					importedMembership.add(membership);
-				}
+		if (importedPackage != null && !excludedPackages.contains(importedPackage)) {
+			org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();
+			excludedPackages.add(owningPackage);
+			EList<Membership> packageMembership = ((PackageImpl)importedPackage).getPublicMembership(excludedPackages);
+			importedMembership.addAll(packageMembership);
+			if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
+				nonpublicMembership.addAll(packageMembership);
 			}
+			excludedPackages.remove(owningPackage);
 		}
 		return importedMembership;
 	}

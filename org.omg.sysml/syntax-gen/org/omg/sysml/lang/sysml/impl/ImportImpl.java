@@ -9,8 +9,8 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
@@ -512,16 +511,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		org.omg.sysml.lang.sysml.Package importedPackage = getImportedPackage();
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET);
+		// NOTE: The "importedPackage" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element importedPackage = basicGetImportedPackage();
 		if (importedPackage != null) {
 			target.add(importedPackage);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+		return target;
 	}
 
 	/**
@@ -540,12 +540,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		org.omg.sysml.lang.sysml.Package importOwningPackage = getImportOwningPackage();
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__SOURCE);
+		Element importOwningPackage = getImportOwningPackage();
 		if (importOwningPackage != null) {
 			source.add(importOwningPackage);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+		return source;
 	}
 
 	/**

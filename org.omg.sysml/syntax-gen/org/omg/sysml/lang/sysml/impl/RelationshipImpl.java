@@ -4,11 +4,10 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -75,7 +74,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * @generated NOT
 	 */
 	public EList<Element> getRelated() {
-		EList<Element> related = new BasicInternalEList<Element>(Element.class, this.getSource());
+		EList<Element> related = new BasicInternalEList<Element>(Element.class);
+		related.addAll(this.getSource());
 		related.addAll(this.getTarget());
 		return related;
 	}

@@ -5,7 +5,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -85,7 +85,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
-		EList<Generalization> generalizations = new BasicInternalEList<Generalization>(Generalization.class);
+		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.CATEGORY__OWNED_GENERALIZATION);
 		for (Element member: this.getOwnedMember()) {
 			if (member instanceof Generalization &&
 					((Generalization)member).getSpecific().equals(this)) {
@@ -104,13 +104,6 @@ public class CategoryImpl extends PackageImpl implements Category {
 		return new DerivedEObjectEList<FeatureMembership>(
 				FeatureMembership.class, this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, 
 				new int[]{SysMLPackage.PACKAGE__OWNED_MEMBERSHIP});
-//		EList<FeatureMembership> featureMembership = new BasicInternalEList<FeatureMembership>();
-//		for (Membership membership: this.getOwnedMembership()) {
-//			if (membership instanceof FeatureMembership) {
-//				featureMembership.add((FeatureMembership)membership);
-//			}
-//		}
-//		return featureMembership;
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated NOT
 	 */
 	public EList<Feature> getInput() {
-		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
+		EList<Feature> inputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.CATEGORY__INPUT);
 		for (Membership membership: this.getMembership()) {
 			if (membership instanceof FeatureMembership) {
 				FeatureMembership featureMembership = (FeatureMembership)membership;
@@ -164,7 +157,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated NOT
 	 */
 	public EList<Feature> getOutput() {
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		EList<Feature> outputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.CATEGORY__OUTPUT);
 		for (Membership membership: this.getMembership()) {
 			if (membership instanceof FeatureMembership) {
 				FeatureMembership featureMembership = (FeatureMembership)membership;

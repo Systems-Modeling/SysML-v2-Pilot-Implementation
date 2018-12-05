@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
@@ -105,7 +107,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Element> getMember() {
-		EList<Element> members = new BasicInternalEList<Element>(Element.class);
+		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
 		for (Membership membership: this.getMembership()) {
 			Element memberElement = membership.getMemberElement();
 			if (memberElement != null) {
@@ -143,7 +145,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Element> getOwnedMember() {
-		EList<Element> ownedMembers = new BasicInternalEList<Element>(Element.class);
+		EList<Element> ownedMembers = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__OWNED_MEMBER);
 		for (Membership membership: this.getOwnedMembership()) {
 			Element element = membership.getOwnedMemberElement();
 			if (element != null) {
@@ -237,7 +239,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	}
 
 	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, boolean onlyPublic) {
-		EList<Membership> importedMembership = new BasicInternalEList<Membership>(Membership.class);
+		EList<Membership> importedMembership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP);
 		Collection<Membership> nonpublicMembership = onlyPublic? new HashSet<Membership>(): null;
 		for (Import _import: this.getOwnedImport()) {
 			if (!excludedPackages.contains(_import.getImportedPackage())) {

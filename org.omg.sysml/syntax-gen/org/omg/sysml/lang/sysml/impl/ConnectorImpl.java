@@ -6,19 +6,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
@@ -549,16 +546,17 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Category> getType() {
-		EList<Category> type = new UniqueEList<Category>();
-		Association association = getAssociation();
+		EList<Category> type = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.CONNECTOR__TYPE);
+		// NOTE: The "association" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Category association = basicGetAssociation();
 		if (association != null) {
 			type.add(association);
 		}
-		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+		return type;
 	}
 
 	/**

@@ -4,12 +4,11 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -288,16 +287,17 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Category general = getGeneral();
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__TARGET);
+		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element general = basicGetGeneral();
 		if (general != null) {
 			target.add(general);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+		return target;
 	}
 
 	/**
@@ -312,16 +312,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Category specific = getSpecific();
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__SOURCE);
+		Element specific = basicGetSpecific();
 		if (specific != null) {
 			source.add(specific);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+		return source;
 	}
 
 	/**

@@ -10,15 +10,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -578,16 +577,17 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Element memberElement = getMemberElement();
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__TARGET);
+		// NOTE: The "memberElement" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element memberElement = basicGetMemberElement();
 		if (memberElement != null) {
 			target.add(memberElement);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+		return target;
 	}
 
 	/**
@@ -602,16 +602,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		org.omg.sysml.lang.sysml.Package membershipOwningPackage = getMembershipOwningPackage();
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__SOURCE);
+		Element membershipOwningPackage = getMembershipOwningPackage();
 		if (membershipOwningPackage != null) {
 			source.add(membershipOwningPackage);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+		return source;
 	}
 
 	/**

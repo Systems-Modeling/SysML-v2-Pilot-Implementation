@@ -29,6 +29,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -119,19 +120,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		return SysMLPackage.Literals.ELEMENT;
 	}
 	
-	public Element getOwner() {
-		Element owner = this.getOwnerGen();
-		return owner != null? owner: this.getOwningMembership();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public Element getOwnerGen() {
-		if (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNER) return null;
-		return (Element)eInternalContainer();
+	public Element getOwner() {
+		EObject owner = eInternalContainer();
+		return owner instanceof Element? (Element)eInternalContainer(): null;
 	}
 
 	/**

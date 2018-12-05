@@ -6,15 +6,14 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
@@ -292,7 +291,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated NOT
 	 */
 	public EList<Feature> getPath() {
-		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
+		EList<Feature> path = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR_END__PATH);
 		getPath(path, this.getConnector().getOwningNamespace(), this.getFeature());
 		return path;
 	}
@@ -522,16 +521,17 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Feature feature = getFeature();
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__TARGET);
+		// NOTE: The "feature" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element feature = basicGetFeature();
 		if (feature != null) {
 			target.add(feature);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+		return target;
 	}
 
 	/**
@@ -546,16 +546,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Connector connector = getConnector();
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__SOURCE);
+		Element connector = getConnector();
 		if (connector != null) {
 			source.add(connector);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+		return source;
 	}
 
 	/**

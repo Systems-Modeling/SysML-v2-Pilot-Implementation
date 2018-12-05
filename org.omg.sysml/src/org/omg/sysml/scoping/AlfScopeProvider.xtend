@@ -177,18 +177,26 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 		pack.imp(visitor, newHashSet)
 
-		val parentPackage = pack.owningNamespace
-		val outerscope = if ( /* Root package */ parentPackage === null) {
+		val outerscope = if ( /* Root package */ pack.eContainer === null) {
 				pack.accept(QualifiedName.create().append(pack.name),visitor)
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 			} else {
-				scope_Package(parentPackage, reference /*, E */ )
+				scope_Package(pack.parentPackage, reference /*, E */ )
 			}
 			
 		return new SimpleScope(outerscope, elements.entrySet.map [ entry |
 			EObjectDescription.create(entry.key, entry.value)
 		])
 	}
+	
+	private def Package getParentPackage(Package pack) {
+		var EObject container=pack.eContainer
+		while(!(container instanceof Package)){
+			container=container.eContainer
+		}
+		return (container as Package)
+	}
+	
 
 	def IScope scope_Feature_type(Feature feature, EReference reference) {
 		val clazz = feature.owningNamespace

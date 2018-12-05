@@ -6,13 +6,13 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Category;
@@ -200,7 +200,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Category> getReferencedType() {
-		EList<Category> referencedTypes = new BasicInternalEList<Category>(Category.class);
+		EList<Category> referencedTypes = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
 	    referencedTypes.addAll(this.getType());
 		referencedTypes.removeAll(this.getOwnedElement());
 		return referencedTypes;
@@ -379,7 +379,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Category> getOwnedType() {
-		EList<Category> ownedTypes = new BasicInternalEList<Category>(Category.class);
+		EList<Category> ownedTypes = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
 		ownedTypes.addAll(this.getType());
 		ownedTypes.removeAll(this.getReferencedType());
 		return ownedTypes;
@@ -401,7 +401,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Redefinition> getOwnedRedefinition() {
-		EList<Redefinition> redefinitions = new BasicInternalEList<Redefinition>(Redefinition.class);
+		EList<Redefinition> redefinitions = new EObjectEList<Redefinition>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION);
 		for (Subset subset: this.getOwnedSubset()) {
 			if (subset instanceof Redefinition) {
 				redefinitions.add((Redefinition)subset);
@@ -416,7 +416,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subset> getOwnedSubset() {
-		EList<Subset> subsets = new BasicInternalEList<Subset>(Subset.class);
+		EList<Subset> subsets = new EObjectEList<Subset>(Subset.class, this, SysMLPackage.FEATURE__OWNED_SUBSET);
 		for (Generalization generalization: this.getOwnedGeneralization()) {
 			if (generalization instanceof Subset) {
 				subsets.add((Subset)generalization);

@@ -27,13 +27,10 @@ package org.omg.sysml.tests
 
 import com.google.inject.Inject
 import com.google.inject.Injector
-import com.google.inject.Provider
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics.DiagnosticPredicate
 import org.eclipse.xtext.junit4.validation.ValidatorTester
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -45,7 +42,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.tests.AlfInjectorProvider
 import org.omg.sysml.validation.AlfValidator
 
 @RunWith(XtextRunner)

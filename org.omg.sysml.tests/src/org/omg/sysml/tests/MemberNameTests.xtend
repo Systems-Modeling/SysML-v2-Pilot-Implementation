@@ -110,7 +110,7 @@ class MemberNameTests {
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.category, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -252,8 +252,7 @@ class MemberNameTests {
 					feature a{}
 				}
 				feature B is A;
-				feature C;
-				C redefines B::a;
+				feature C redefines B::a;
 			}
 		''')
 

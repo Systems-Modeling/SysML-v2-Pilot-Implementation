@@ -44,11 +44,11 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 class AlfValidator extends AbstractAlfValidator {
 
 	protected def boolean isGlobalPublic(Element p) {
-		var Membership c = p.owningMembership
-		while (c !== null) {
-			if (c.visibility !== VisibilityKind.PUBLIC)
+		var m = p.owningMembership
+		while (m !== null) {
+			if (m.visibility !== VisibilityKind.PUBLIC)
 				return false
-			c = c.owningNamespace?.owningMembership
+			m = m.membershipOwningPackage?.owningMembership
 		}
 		return true
 	}

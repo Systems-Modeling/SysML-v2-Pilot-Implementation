@@ -65,7 +65,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningAssociation(Association newOwningAssociation) {
 		super.setOwningCategory(newOwningAssociation);

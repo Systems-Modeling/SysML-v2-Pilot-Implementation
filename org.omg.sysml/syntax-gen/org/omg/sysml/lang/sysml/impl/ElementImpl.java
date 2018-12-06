@@ -102,6 +102,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -264,14 +274,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IDENTIFIER, oldIdentifier, identifier));
 	}
 	
-	String name = null;
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
+		String name = this.basicGetName();
 		if (name != null) {
 			return name;
 		} else {
@@ -289,13 +298,28 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		Membership owningMembership = this.getOwningMembership();
 		if (owningMembership != null) {
 			owningMembership.setMemberName(newName);
-			name = null;
+			this.basicSetName(null);
 		} else {
-			name = newName;
+			this.basicSetName(newName);
 		}
 	}
 	
 	// Additional
+	
+	/**
+	 * Get the locally stored value for the element name.
+	 */
+	public String basicGetName() {
+		return name;
+	}
+	
+	/**
+	 * Set the locally stored value for the element name.
+	 */
+	public void basicSetName(String newName) {
+		name = newName;
+	}
+	
 	
 	/**
 	 * This operation may be overridden to provide an effective union property for all owned elements, without introducing explicit subsetting.
@@ -471,7 +495,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -488,6 +512,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

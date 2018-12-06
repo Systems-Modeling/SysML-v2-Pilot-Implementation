@@ -192,9 +192,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getMemberName() {
+		if (memberName == null) {
+			ElementImpl ownedMemberElement = (ElementImpl)this.getOwnedMemberElement();
+			if (ownedMemberElement != null) {
+				memberName = ownedMemberElement.basicGetName();
+				ownedMemberElement.basicSetName(null);
+			}
+		}
 		return memberName;
 	}
 

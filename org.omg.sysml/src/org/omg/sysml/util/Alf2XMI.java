@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -72,12 +73,13 @@ public class Alf2XMI {
 	
 	public void read(final String path) {
 		Resource resource = this.getResource(path);
+		EcoreUtil.resolveAll(resource);
 		this.contents = resource.getContents();
 	}
 	
 	public void write(final String path) throws IOException {
 		Resource resource = this.createResource(path);
-		resource.getContents().addAll(contents);
+		resource.getContents().addAll(this.contents);
 		resource.save(null);
 	}
 	

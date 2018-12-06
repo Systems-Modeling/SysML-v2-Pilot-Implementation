@@ -172,7 +172,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
-	 * @model dataType="org.eclipse.uml2.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getName();

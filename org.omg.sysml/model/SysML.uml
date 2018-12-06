@@ -172,7 +172,7 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a731e6ab-294b-4deb-80dc-f8ef1e241c22" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a7d4e4b9-e790-458b-8639-be65f0cfb2fd" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="b9415782-6e2d-4921-83e1-21a3a7fdd186" name="name" visibility="public" isDerived="true">
+    <ownedAttribute xmi:id="b9415782-6e2d-4921-83e1-21a3a7fdd186" name="name" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="24ca19b7-face-499b-a1ec-957ecd9cb531" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="6d3ba036-2a80-48c3-a4f7-3a032506a75f" name="" visibility="public" value="1"/>

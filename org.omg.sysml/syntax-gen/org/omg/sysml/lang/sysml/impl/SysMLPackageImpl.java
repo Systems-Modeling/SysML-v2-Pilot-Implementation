@@ -11,9 +11,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.uml2.types.TypesPackage;
-
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Category;
@@ -412,14 +409,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		TypesPackage.eINSTANCE.eClass();
+		// Obtain or create and register interdependencies
+		org.omg.sysml.lang.types.types.impl.TypesPackageImpl theTypesPackage = (org.omg.sysml.lang.types.types.impl.TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(org.omg.sysml.lang.types.types.TypesPackage.eNS_URI) instanceof org.omg.sysml.lang.types.types.impl.TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(org.omg.sysml.lang.types.types.TypesPackage.eNS_URI) : org.omg.sysml.lang.types.types.TypesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSysMLPackage.createPackageContents();
+		theTypesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theSysMLPackage.initializePackageContents();
+		theTypesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theSysMLPackage.freeze();
@@ -2016,7 +2015,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		org.omg.sysml.lang.types.types.TypesPackage theTypesPackage = (org.omg.sysml.lang.types.types.TypesPackage)EPackage.Registry.INSTANCE.getEPackage(org.omg.sysml.lang.types.types.TypesPackage.eNS_URI);
 
 		// Create type parameters
 

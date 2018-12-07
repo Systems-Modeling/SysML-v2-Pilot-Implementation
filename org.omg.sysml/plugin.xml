@@ -15,4 +15,12 @@
             genModel="model/SysML.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SysML -->
+      <package
+            uri="http://www.omg.org/spec/PrimitiveTypes"
+            class="org.omg.sysml.lang.types.types.TypesPackage"
+            genModel="model/SysML.genmodel"/>
+   </extension>
+
 </plugin>

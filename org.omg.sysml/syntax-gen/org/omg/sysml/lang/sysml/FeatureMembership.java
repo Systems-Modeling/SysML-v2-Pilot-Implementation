@@ -39,7 +39,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Derived</em>' attribute.
 	 * @see #setIsDerived(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsDerived()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDerived();
@@ -66,7 +66,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
 	 * @see #setIsReadOnly(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsReadOnly()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isReadOnly();
@@ -160,7 +160,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Part</em>' attribute.
 	 * @see #setIsPart(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPart()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isPart();
@@ -187,7 +187,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Port</em>' attribute.
 	 * @see #setIsPort(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPort()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isPort();

@@ -16,7 +16,6 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.common;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",
@@ -35,7 +34,9 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.validation,
  org.omg.sysml.lang.sysml,
  org.omg.sysml.lang.sysml.impl,
- org.omg.sysml.lang.sysml.util
+ org.omg.sysml.lang.sysml.util,
+ org.omg.sysml.lang.types.types,
+ org.omg.sysml.lang.types.types.impl
 Import-Package: com.ibm.icu.impl.text;version="58.2.0",
  org.apache.commons.logging,
  org.apache.log4j

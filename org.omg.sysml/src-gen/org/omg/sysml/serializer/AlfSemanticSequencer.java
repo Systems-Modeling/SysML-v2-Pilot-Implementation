@@ -127,11 +127,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getAssociationMemberRule()) {
-					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAssociationFeatureMemberRule()) {
+				else if (rule == grammarAccess.getAssociationMemberRule()
+						|| rule == grammarAccess.getAssociationFeatureMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -165,11 +162,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getCategoryMemberRule()
+						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()) {
-					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -430,8 +424,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (lower=NaturalLiteralExpression? upper=UnlimitedNaturalLiteralExpression (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         value=Expression? 
-	 *         ownedMembership+=CategoryMember? 
-	 *         (ownedImport+=PackageImport? ownedMembership+=CategoryMember?)*
+	 *         ownedImport+=PackageImport? 
+	 *         (ownedMembership+=CategoryMember? ownedImport+=PackageImport?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Multiplicity_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -474,8 +468,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             lower=NaturalLiteralExpression? 
 	 *             upper=UnlimitedNaturalLiteralExpression 
-	 *             isNonunique?='nonunique'? 
-	 *             (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             isOrdered?='ordered'? 
+	 *             (isNonunique?='nonunique'? isOrdered?='ordered'?)*
 	 *         )? 
 	 *         ownedElement+=SubsetOrRedefinition? 
 	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
@@ -535,10 +529,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     AssociationMember returns FeatureMembership
+	 *     AssociationFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedElement+=Comment? 
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
@@ -553,35 +548,15 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	}
 	
 	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     AssociationFeatureMember returns FeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedElement+=Comment* 
-	//         visibility=VisibilityIndicator? 
-	//         (
-	//             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedFeatureElement=FeatureDefinition) | 
-	//             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
-	//             ownedFeatureElement=ConnectorDefinition | 
-	//             (memberName=Name? memberFeature=[Connector|QualifiedName])
-	//         )
-	//     )
-	//
-	// protected void sequence_CategoryMemberPrefix_FeatureMemberElement(ISerializationContext context, FeatureMembership semanticObject) { }
-	
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
+	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedElement+=Comment? 
+	 *         ownedElement+=Comment* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
@@ -596,28 +571,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     NonFeatureCategoryMember returns Membership
-	//
-	// Constraint:
-	//     (
-	//         ownedElement+=Comment* 
-	//         visibility=VisibilityIndicator? 
-	//         (
-	//             ownedMemberElement=NonFeatureDefinition | 
-	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
-	//             (memberElement=[Element|QualifiedName] memberName=Name?)
-	//         )
-	//     )
-	//
-	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:

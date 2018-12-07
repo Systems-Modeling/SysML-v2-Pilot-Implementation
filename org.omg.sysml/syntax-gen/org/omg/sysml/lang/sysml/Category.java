@@ -156,7 +156,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
 	 * @see #setIsAbstract(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_IsAbstract()
-	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAbstract();

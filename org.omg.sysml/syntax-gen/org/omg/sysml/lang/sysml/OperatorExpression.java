@@ -50,7 +50,7 @@ public interface OperatorExpression extends Expression {
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operator()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getOperator();

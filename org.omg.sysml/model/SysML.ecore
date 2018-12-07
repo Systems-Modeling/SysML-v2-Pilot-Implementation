@@ -58,19 +58,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
         eType="#//Element" eOpposite="#//Element/ownedElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" ordered="false"
-        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        eType="ecore:EDataType types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Membership" eSuperTypes="#//Relationship">
-    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eParameters name="other" ordered="false" lowerBound="1" eType="#//Membership"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" ordered="false"
-        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        eType="ecore:EDataType types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
         lowerBound="1" eType="#//VisibilityKind" defaultValueLiteral="public"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliases" ordered="false"
-        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        upperBound="-1" eType="ecore:EDataType types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="memberElement" ordered="false"
         lowerBound="1" eType="#//Element">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
@@ -95,7 +95,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="membership->isUnique(name)&#xA;membership->forAll(m1 | membership->forAll(m2 | m1 &lt;> m2 implies m1.isDistinguishableFrom(m2)))&#xA;member = membership.memberElement&#xA;ownedMember = ownedMembership.ownedMemberElement&#xA;importedMembership = excludeCollisions(ownedImport.importedMembership())->select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))"/>
     </eAnnotations>
-    <eOperations name="nameOf" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+    <eOperations name="nameOf" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eOperations name="excludeCollisions" ordered="false" lowerBound="1" upperBound="-1"
@@ -205,7 +205,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Relationship">
     <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
@@ -229,11 +229,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureMembership" eSuperTypes="#//Membership">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="memberFeature" ordered="false"
         lowerBound="1" eType="#//Feature">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
@@ -246,11 +244,9 @@
       <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPart" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPort" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
         eType="#//FeatureDirectionKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningCategory" ordered="false"
@@ -282,11 +278,9 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="true"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
         eType="#//Category">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
@@ -321,14 +315,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/ownedFeatureElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        volatile="true" transient="true" defaultValueLiteral="false" derived="true"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
+        transient="true" defaultValueLiteral="false" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
-        volatile="true" transient="true" defaultValueLiteral="[0..*]" derived="true"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//String" volatile="true"
+        transient="true" defaultValueLiteral="[0..*]" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        volatile="true" transient="true" defaultValueLiteral="false" derived="true"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
+        transient="true" defaultValueLiteral="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="Redefinition" eSuperTypes="#//Subset">
@@ -405,8 +399,7 @@
       <eAnnotations source="redefines" references="#//Feature/type"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDirected" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnd" lowerBound="2"
         upperBound="-1" eType="#//ConnectorEnd" containment="true" eOpposite="#//ConnectorEnd/connector"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAssociationType" ordered="false"
@@ -452,7 +445,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" lowerBound="1"
-        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        eType="ecore:EDataType types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" ordered="false"
         lowerBound="1" eType="#//Element">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
@@ -490,12 +483,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralBoolean" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpression" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralNull" eSuperTypes="#//LiteralExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralReal" eSuperTypes="#//LiteralExpression">
@@ -504,7 +497,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralString" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralUnbounded" eSuperTypes="#//LiteralExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="OfSuccession">
@@ -526,7 +519,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceAccessExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="primary" ordered="false"

@@ -93,7 +93,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Is Directed</em>' attribute.
 	 * @see #setIsDirected(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_IsDirected()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDirected();

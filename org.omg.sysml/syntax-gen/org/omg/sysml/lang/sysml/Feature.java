@@ -158,7 +158,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Unique</em>' attribute.
 	 * @see #setIsUnique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
-	 * @model default="true" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="true" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -185,7 +185,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsOrdered()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -355,7 +355,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -382,7 +382,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Multiplicity</em>' attribute.
 	 * @see #setMultiplicity(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
-	 * @model default="[0..*]" dataType="org.eclipse.uml2.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model default="[0..*]" dataType="org.omg.sysml.lang.types.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	String getMultiplicity();
@@ -409,7 +409,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isNonunique();

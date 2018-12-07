@@ -37,7 +37,7 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Member Name</em>' attribute.
 	 * @see #setMemberName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberName()
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
 	 * @generated
 	 */
 	String getMemberName();
@@ -93,7 +93,7 @@ public interface Membership extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aliases</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_Aliases()
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getAliases();
@@ -196,7 +196,7 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(Membership other);

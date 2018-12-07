@@ -162,7 +162,7 @@ public interface Package extends Element {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false" elementRequired="true" elementOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated
 	 */
 	String nameOf(Element element);

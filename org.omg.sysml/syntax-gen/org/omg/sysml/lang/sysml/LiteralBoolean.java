@@ -31,7 +31,7 @@ public interface LiteralBoolean extends LiteralExpression {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getLiteralBoolean_Value()
-	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isValue();

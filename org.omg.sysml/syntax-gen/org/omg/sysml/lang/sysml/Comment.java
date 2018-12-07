@@ -32,7 +32,7 @@ public interface Comment extends Element {
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_Body()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getBody();

@@ -66,13 +66,17 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.REDEFINITION;
 	}
+	
+	public Feature getRedefiningFeature() {
+		return redefiningFeature == null? basicGetRedefiningFeature(): getRedefiningFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getRedefiningFeature() {
+	public Feature getRedefiningFeatureGen() {
 		if (redefiningFeature != null && redefiningFeature.eIsProxy()) {
 			InternalEObject oldRedefiningFeature = (InternalEObject)redefiningFeature;
 			redefiningFeature = (Feature)eResolveProxy(oldRedefiningFeature);
@@ -115,10 +119,10 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetRedefiningFeature() {
-		return redefiningFeature != null;
+		return basicGetRedefiningFeature() != null;
 	}
 
 	/**

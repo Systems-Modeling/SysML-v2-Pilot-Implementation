@@ -116,13 +116,17 @@ public class SubsetImpl extends GeneralizationImpl implements Subset {
 	public boolean isSetSubsettedFeature() {
 		return subsettedFeature != null;
 	}
+	
+	public Feature getSubsettingFeature() {
+		return subsettingFeature == null? basicGetSubsettingFeature(): getSubsettingFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getSubsettingFeature() {
+	public Feature getSubsettingFeatureGen() {
 		if (subsettingFeature != null && subsettingFeature.eIsProxy()) {
 			InternalEObject oldSubsettingFeature = (InternalEObject)subsettingFeature;
 			subsettingFeature = (Feature)eResolveProxy(oldSubsettingFeature);
@@ -165,10 +169,10 @@ public class SubsetImpl extends GeneralizationImpl implements Subset {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetSubsettingFeature() {
-		return subsettingFeature != null;
+		return basicGetSubsettingFeature() != null;
 	}
 
 	/**

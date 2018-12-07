@@ -137,7 +137,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public Element getOwner() {
 		EObject owner = eInternalContainer();
-		return owner instanceof Element? (Element)eInternalContainer(): null;
+		return owner instanceof Element? (Element)owner: null;
 	}
 
 	/**

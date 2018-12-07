@@ -132,14 +132,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	}
 	
 	public Element getMemberElement() {
-		if (memberElement == null) {
-			if (ownedMemberElement != null) {
-				this.setMemberElement(ownedMemberElement);
-			}
-			return ownedMemberElement;
-		} else {
-			return this.getMemberElementGen();
-		}
+		return memberElement == null? basicGetMemberElement(): getMemberElementGen();
 	}
 
 	/**
@@ -162,9 +155,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Element basicGetMemberElement() {
+		if (memberElement == null && ownedMemberElement != null) {
+			memberElement = ownedMemberElement;
+		}
 		return memberElement;
 	}
 
@@ -183,10 +179,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetMemberElement() {
-		return memberElement != null;
+		return basicGetMemberElement() != null;
 	}
 
 	/**

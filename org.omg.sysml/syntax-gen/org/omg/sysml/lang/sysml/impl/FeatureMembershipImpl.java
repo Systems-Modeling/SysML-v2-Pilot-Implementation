@@ -177,14 +177,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	}
 	
 	public Feature getMemberFeature() {
-		if (memberFeature == null) {
-			if (ownedFeatureElement != null) {
-				this.setMemberFeature(ownedFeatureElement);
-			}
-			return ownedFeatureElement;
-		} else {
-			return this.getMemberFeatureGen();
-		}
+		return memberFeature == null? basicGetMemberFeature(): getMemberFeatureGen();
 	}
 
 	/**
@@ -207,9 +200,12 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetMemberFeature() {
+		if (memberFeature == null && ownedFeatureElement != null) {
+			memberFeature = ownedFeatureElement;
+		}
 		return memberFeature;
 	}
 
@@ -228,10 +224,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetMemberFeature() {
-		return memberFeature != null;
+		return basicGetMemberFeature() != null;
 	}
 
 	/**

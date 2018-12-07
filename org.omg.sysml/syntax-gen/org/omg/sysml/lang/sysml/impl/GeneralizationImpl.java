@@ -115,13 +115,17 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public boolean isSetGeneral() {
 		return general != null;
 	}
+	
+	public Category getSpecific() {
+		return specific == null? basicGetSpecific(): getSpecificGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category getSpecific() {
+	public Category getSpecificGen() {
 		if (specific != null && specific.eIsProxy()) {
 			InternalEObject oldSpecific = (InternalEObject)specific;
 			specific = (Category)eResolveProxy(oldSpecific);
@@ -164,10 +168,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetSpecific() {
-		return specific != null;
+		return basicGetSpecific() != null;
 	}
 
 	/**

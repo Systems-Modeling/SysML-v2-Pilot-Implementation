@@ -146,12 +146,12 @@
         <ownedElement xsi:type="sysml:Comment" body="/**&#xA;&#x9;&#x9; * The driveshaft part is the &quot;interface medium&quot;.&#xA;&#x9;&#x9; * &#xA;&#x9;&#x9; * Note: It would be better if this was a reference rather&#xA;&#x9;&#x9; * than a part, but it is not obvious how to fill in the&#xA;&#x9;&#x9; * actual driveshaft when the association is used to type&#xA;&#x9;&#x9; * a connector.&#xA;&#x9;&#x9; */" commentedElement="//@ownedMembership.23/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement"/>
         <ownedFeatureElement type="//@ownedMembership.6/@ownedMemberElement">
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="shaftPort_b" memberFeature="//@ownedMembership.23/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.13/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.23/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.6/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="shaftPort_c" memberFeature="//@ownedMembership.23/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.14/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.23/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" redefinedFeature="//@ownedMembership.6/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
@@ -174,16 +174,16 @@
   <ownedMembership memberName="vehicle1_c1" memberElement="//@ownedMembership.24/@ownedMemberElement">
     <ownedMemberElement xsi:type="sysml:Feature" type="//@ownedMembership.0/@ownedMemberElement">
       <ownedMembership xsi:type="sysml:FeatureMembership" memberName="fuelCmdPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-        <ownedFeatureElement>
+        <ownedFeatureElement type="//@ownedMembership.9/@ownedMemberElement">
           <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.0/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
         </ownedFeatureElement>
       </ownedMembership>
       <ownedMembership xsi:type="sysml:FeatureMembership" memberName="vehicleToRoadPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-        <ownedFeatureElement>
+        <ownedFeatureElement type="//@ownedMembership.21/@ownedMemberElement">
           <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement" redefinedFeature="//@ownedMembership.0/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement"/>
           <ownedImport importedPackage="//@ownedMembership.21/@ownedMemberElement"/>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="leftWheelToRoadPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.20/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Subset" subsettedFeature="//@ownedMembership.21/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement" subsettingFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement"/>
               <value xsi:type="sysml:SequenceAccessExpression">
                 <primary xsi:type="sysml:ElementReferenceExpression" referent="//@ownedMembership.21/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
@@ -192,7 +192,7 @@
             </ownedFeatureElement>
           </ownedMembership>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rightWheelToRoadPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.20/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Subset" subsettedFeature="//@ownedMembership.21/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement" subsettingFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement"/>
               <value xsi:type="sysml:SequenceAccessExpression">
                 <primary xsi:type="sysml:ElementReferenceExpression" referent="//@ownedMembership.21/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
@@ -205,12 +205,12 @@
       <ownedMembership xsi:type="sysml:FeatureMembership" memberName="engine" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement" isPart="true">
         <ownedFeatureElement type="//@ownedMembership.4/@ownedMemberElement">
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="fuelCmdPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.9/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.4/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="drivePwrPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.10/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" redefinedFeature="//@ownedMembership.4/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
@@ -219,7 +219,7 @@
       <ownedMembership xsi:type="sysml:FeatureMembership" memberName="transmission" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.3/@ownedFeatureElement" isPart="true">
         <ownedFeatureElement type="//@ownedMembership.5/@ownedMemberElement">
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="clutchPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.3/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.11/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.3/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.5/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
@@ -228,10 +228,10 @@
           </ownedMembership>
         </ownedFeatureElement>
       </ownedMembership>
-      <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rearAxleAssembly_c1" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement" isPart="true">
+      <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rearAxleAssembly" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement" isPart="true">
         <ownedFeatureElement type="//@ownedMembership.1/@ownedMemberElement">
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="shaftPort_d" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-            <ownedFeatureElement>
+            <ownedFeatureElement type="//@ownedMembership.15/@ownedMemberElement">
               <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.1/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
             </ownedFeatureElement>
           </ownedMembership>
@@ -254,12 +254,12 @@
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="leftAxle" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPart="true">
                 <ownedFeatureElement type="//@ownedMembership.3/@ownedMemberElement">
                   <ownedMembership xsi:type="sysml:FeatureMembership" memberName="axleToDiffPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-                    <ownedFeatureElement>
+                    <ownedFeatureElement type="//@ownedMembership.17/@ownedMemberElement">
                       <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.3/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
                     </ownedFeatureElement>
                   </ownedMembership>
                   <ownedMembership xsi:type="sysml:FeatureMembership" memberName="axleToWheelPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-                    <ownedFeatureElement>
+                    <ownedFeatureElement type="//@ownedMembership.18/@ownedMemberElement">
                       <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" redefinedFeature="//@ownedMembership.3/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement"/>
                     </ownedFeatureElement>
                   </ownedMembership>
@@ -268,12 +268,12 @@
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rightAxle" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPart="true">
                 <ownedFeatureElement type="//@ownedMembership.3/@ownedMemberElement">
                   <ownedMembership xsi:type="sysml:FeatureMembership" memberName="axleToDiffPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
-                    <ownedFeatureElement>
+                    <ownedFeatureElement type="//@ownedMembership.17/@ownedMemberElement">
                       <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" redefinedFeature="//@ownedMembership.3/@ownedMemberElement/@ownedMembership.0/@ownedFeatureElement"/>
                     </ownedFeatureElement>
                   </ownedMembership>
                   <ownedMembership xsi:type="sysml:FeatureMembership" memberName="axleToWheelPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
-                    <ownedFeatureElement>
+                    <ownedFeatureElement type="//@ownedMembership.18/@ownedMemberElement">
                       <ownedElement xsi:type="sysml:Redefinition" redefiningFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.2/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" redefinedFeature="//@ownedMembership.3/@ownedMemberElement/@ownedMembership.1/@ownedFeatureElement"/>
                     </ownedFeatureElement>
                   </ownedMembership>
@@ -284,17 +284,19 @@
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rearWheel" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.3/@ownedFeatureElement" isPart="true">
             <ownedFeatureElement isOrdered="true">
               <upper xsi:type="sysml:LiteralInteger" value="2"/>
-              <type href="2-Parts%20Interconnection.alf#|53"/>
+              <type href="2-Parts%20Interconnection.alf#|67"/>
             </ownedFeatureElement>
           </ownedMembership>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="leftWheel" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.4/@ownedFeatureElement" isPart="true">
             <ownedFeatureElement>
+              <ownedElement xsi:type="sysml:Subset" subsettedFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.3/@ownedFeatureElement" subsettingFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.4/@ownedFeatureElement"/>
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="wheelToAxlePort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
                 <ownedFeatureElement type="//@ownedMembership.19/@ownedMemberElement"/>
               </ownedMembership>
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="wheelToRoadPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
                 <ownedFeatureElement type="//@ownedMembership.20/@ownedMemberElement"/>
               </ownedMembership>
+              <type href="2-Parts%20Interconnection.alf#|68"/>
               <value xsi:type="sysml:SequenceAccessExpression">
                 <primary xsi:type="sysml:ElementReferenceExpression" referent="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.3/@ownedFeatureElement"/>
                 <index xsi:type="sysml:LiteralInteger" value="1"/>
@@ -303,12 +305,14 @@
           </ownedMembership>
           <ownedMembership xsi:type="sysml:FeatureMembership" memberName="rightWheel" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.5/@ownedFeatureElement" isPart="true">
             <ownedFeatureElement>
+              <ownedElement xsi:type="sysml:Subset" subsettedFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.3/@ownedFeatureElement" subsettingFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.5/@ownedFeatureElement"/>
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="wheelToAxlePort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.5/@ownedFeatureElement/@ownedMembership.0/@ownedFeatureElement" isPort="true">
                 <ownedFeatureElement type="//@ownedMembership.19/@ownedMemberElement"/>
               </ownedMembership>
               <ownedMembership xsi:type="sysml:FeatureMembership" memberName="wheelToRoadPort" memberFeature="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.5/@ownedFeatureElement/@ownedMembership.1/@ownedFeatureElement" isPort="true">
                 <ownedFeatureElement type="//@ownedMembership.20/@ownedMemberElement"/>
               </ownedMembership>
+              <type href="2-Parts%20Interconnection.alf#|73"/>
               <value xsi:type="sysml:SequenceAccessExpression">
                 <primary xsi:type="sysml:ElementReferenceExpression" referent="//@ownedMembership.24/@ownedMemberElement/@ownedMembership.4/@ownedFeatureElement/@ownedMembership.3/@ownedFeatureElement"/>
                 <index xsi:type="sysml:LiteralInteger" value="2"/>

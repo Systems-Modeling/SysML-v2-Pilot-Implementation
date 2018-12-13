@@ -41,10 +41,14 @@ main() {
 	};
 	model.applyStereotype(model.getApplicableStereotype("Metamodel"));
 	var metamodelRoot := metaModel.rootObjects()![Model];
+	var metaModel := object Model {
+		name := "SysML";
+		packagedElement += metamodelRoot.packagedElement;
+	};
 	object Model {
 		name := "Model";
 		packagedElement += model;	
-		packagedElement += metamodelRoot.packagedElement;	
+		packagedElement += metaModel;	
 	}
 }
 

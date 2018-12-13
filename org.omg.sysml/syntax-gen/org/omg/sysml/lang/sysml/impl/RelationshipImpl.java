@@ -3,11 +3,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -28,16 +29,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class RelationshipImpl extends ElementImpl implements Relationship {
-	/**
-	 * The cached value of the '{@link #getRelated() <em>Related</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelated()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> related;
-
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -80,14 +71,24 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> getRelated() {
-		if (related == null) {
-			related = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__RELATED);
-		}
+		EList<Element> related = new BasicInternalEList<Element>(Element.class);
+		related.addAll(this.getSource());
+		related.addAll(this.getTarget());
 		return related;
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getRelated() <em>Related</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,10 +141,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__RELATED:
-				getRelated().clear();
-				getRelated().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				getTarget().clear();
 				getTarget().addAll((Collection<? extends Element>)newValue);
@@ -164,9 +161,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__RELATED:
-				getRelated().clear();
-				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				getTarget().clear();
 				return;
@@ -186,13 +180,23 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.RELATIONSHIP__RELATED:
-				return related != null && !related.isEmpty();
+				return isSetRelated();
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				return target != null && !target.isEmpty();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
 				return source != null && !source.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelated() {
+		return eIsSet(SysMLPackage.RELATIONSHIP__TARGET)
+			|| eIsSet(SysMLPackage.RELATIONSHIP__SOURCE);
 	}
 
 } //RelationshipImpl

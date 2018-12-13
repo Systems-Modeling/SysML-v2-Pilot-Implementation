@@ -14,7 +14,7 @@ package org.omg.sysml.lang.sysml;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Generalization#getGeneral <em>General</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Generalization#getSpecific <em>Specific</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Generalization#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Generalization#getOwningCategory <em>Owning Category</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization()
@@ -24,6 +24,12 @@ package org.omg.sysml.lang.sysml;
 public interface Generalization extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>General</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>General</em>' reference isn't clear,
@@ -31,12 +37,13 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>General</em>' reference.
-	 * @see #setGeneral(org.omg.sysml.lang.sysml.Class)
+	 * @see #setGeneral(Category)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_General()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='generalOfGeneralization'"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getGeneral();
+	Category getGeneral();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getGeneral <em>General</em>}' reference.
@@ -46,10 +53,16 @@ public interface Generalization extends Relationship {
 	 * @see #getGeneral()
 	 * @generated
 	 */
-	void setGeneral(org.omg.sysml.lang.sysml.Class value);
+	void setGeneral(Category value);
 
 	/**
 	 * Returns the value of the '<em><b>Specific</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Specific</em>' reference isn't clear,
@@ -57,12 +70,13 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specific</em>' reference.
-	 * @see #setSpecific(org.omg.sysml.lang.sysml.Class)
+	 * @see #setSpecific(Category)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_Specific()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='specificOfGeneralization'"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getSpecific();
+	Category getSpecific();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getSpecific <em>Specific</em>}' reference.
@@ -72,34 +86,41 @@ public interface Generalization extends Relationship {
 	 * @see #getSpecific()
 	 * @generated
 	 */
-	void setSpecific(org.omg.sysml.lang.sysml.Class value);
+	void setSpecific(Category value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwnedGeneralization <em>Owned Generalization</em>}'.
+	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedGeneralization <em>Owned Generalization</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getGeneral() <em>General</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' reference.
-	 * @see #setOwningClass(org.omg.sysml.lang.sysml.Class)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningClass()
-	 * @see org.omg.sysml.lang.sysml.Class#getOwnedGeneralization
-	 * @model opposite="ownedGeneralization" derived="true" ordered="false"
+	 * @return the value of the '<em>Owning Category</em>' reference.
+	 * @see #setOwningCategory(Category)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningCategory()
+	 * @see org.omg.sysml.lang.sysml.Category#getOwnedGeneralization
+	 * @model opposite="ownedGeneralization" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getOwningClass();
+	Category getOwningCategory();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningClass <em>Owning Class</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningCategory <em>Owning Category</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Class</em>' reference.
-	 * @see #getOwningClass()
+	 * @param value the new value of the '<em>Owning Category</em>' reference.
+	 * @see #getOwningCategory()
 	 * @generated
 	 */
-	void setOwningClass(org.omg.sysml.lang.sysml.Class value);
+	void setOwningCategory(Category value);
 
 } // Generalization

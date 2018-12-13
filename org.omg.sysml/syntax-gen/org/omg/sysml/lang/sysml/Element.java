@@ -11,16 +11,21 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * name = if owningNamespace = null then null
+ * else owningNamespace.nameOf(self) endif
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -28,6 +33,62 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Element extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Membership</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Membership</em>' container reference.
+	 * @see #setOwningMembership(Membership)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
+	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
+	 * @model opposite="ownedMemberElement" transient="false" ordered="false"
+	 * @generated
+	 */
+	Membership getOwningMembership();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Membership</em>' container reference.
+	 * @see #getOwningMembership()
+	 * @generated
+	 */
+	void setOwningMembership(Membership value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Namespace</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Namespace</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Namespace</em>' reference.
+	 * @see #setOwningNamespace(org.omg.sysml.lang.sysml.Package)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
+	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMember
+	 * @model opposite="ownedMember" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	org.omg.sysml.lang.sysml.Package getOwningNamespace();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Namespace</em>' reference.
+	 * @see #getOwningNamespace()
+	 * @generated
+	 */
+	void setOwningNamespace(org.omg.sysml.lang.sysml.Package value);
+
 	/**
 	 * Returns the value of the '<em><b>Owned Element</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
@@ -85,7 +146,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();
@@ -101,34 +162,6 @@ public interface Element extends EObject {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Namespace</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Namespace</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Namespace</em>' reference.
-	 * @see #setOwningNamespace(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
-	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMember
-	 * @model opposite="ownedMember" ordered="false"
-	 * @generated
-	 */
-	org.omg.sysml.lang.sysml.Package getOwningNamespace();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Namespace</em>' reference.
-	 * @see #getOwningNamespace()
-	 * @generated
-	 */
-	void setOwningNamespace(org.omg.sysml.lang.sysml.Package value);
-
-	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -139,7 +172,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
-	 * @model derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -153,33 +186,5 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Membership</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Membership</em>' container reference.
-	 * @see #setOwningMembership(Membership)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
-	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
-	 * @model opposite="ownedMemberElement" transient="false" ordered="false"
-	 * @generated
-	 */
-	Membership getOwningMembership();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Membership</em>' container reference.
-	 * @see #getOwningMembership()
-	 * @generated
-	 */
-	void setOwningMembership(Membership value);
 
 } // Element

@@ -34,6 +34,7 @@ public interface OperatorExpression extends Expression {
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
 	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
 	 * @generated
 	 */
 	EList<Expression> getOperand();
@@ -49,7 +50,7 @@ public interface OperatorExpression extends Expression {
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operator()
-	 * @model required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getOperator();

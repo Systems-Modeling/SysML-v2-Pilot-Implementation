@@ -147,8 +147,8 @@ helper SysML::Element::mapToDeclarations() {
 }
 
 mapping SysML::Element::toEntity(): OWL::Entity disjuncts
-	SysML::Class::toClass,
-	SysML::Feature::toObjectProperty;
+	SysML::Feature::toObjectProperty,
+	SysML::Class::toClass;
 
 // Namespace
 
@@ -157,7 +157,7 @@ query SysML::Package::URL(): String {
 }
 
 helper SysML::Package::mapToDeclarations() {
-	self.membership.ownedMemberElement->mapToDeclarations();
+	self.ownedMembership.ownedMemberElement->mapToDeclarations();
 }
 
 //mapping SysML::Package::toDeclaration(): Declaration {
@@ -206,7 +206,7 @@ query SysML::Class::IRI(): String {
 }
 
 query SysML::Class::ownedFeatures(): List(SysML::Feature) {
-	return self.membership.ownedMemberElement[SysML::Feature];
+	return self.ownedMembership.ownedMemberElement[SysML::Feature];
 }
 
 query SysML::Class::implicitSuperclass(): SysML::Class {
@@ -227,7 +227,7 @@ query SysML::Class::superclasses(): Bag(SysML::Class) {
 }
 
 query SysML::Class::feature(featureName: String): SysML::Feature {
-	var members := self.membership.ownedMemberElement->union(self.membership.memberElement);
+	var members := self.ownedMembership.ownedMemberElement->union(self.ownedMembership.memberElement);
 	var namedFeature := members[SysML::Feature]![name = featureName];
 	if namedFeature = null then {
 		namedFeature := self.superclasses().feature(featureName)![true];
@@ -237,7 +237,10 @@ query SysML::Class::feature(featureName: String): SysML::Feature {
 
 helper SysML::Class::mapToDeclarations() {
 	self.map toDeclaration();
-	self.membership.ownedMemberElement->mapToDeclarations();
+	self.ownedMembership.ownedMemberElement->forEach(element) {
+//		log('  ownedMember: ' + valueOf(element.name));
+		element.mapToDeclarations();
+	};
 }
 
 mapping SysML::Class::toClass(): OWL::Class 
@@ -276,16 +279,19 @@ query SysML::Feature::IRI(): String {
 
 query SysML::Feature::redefinedFeature(): SysML::Feature {
 	log('Feature ' + valueOf(self.name));
-	var feature := self.ownedRedefinition.redefinedFeature![true];
-	if feature = null and self.name <> null then {
+	var redefinedFeature := self.ownedElement[Redefinition].redefinedFeature![true];
+	if redefinedFeature = null and self.name <> null then {
 		var owner := self.owner();
 		if (owner <> null and owner.oclIsKindOf(SysML::Class)) then {
-			 feature := 
+			 redefinedFeature := 
 			 	owner.oclAsType(SysML::Class).superclasses().feature(self.name)![true];		
 	    } endif;
 	} endif;
-	log('  redefinedFeature: ' + if feature.oclIsInvalid() then "<invalid>" else if feature = null then "<none>" else valueOf(feature.name) endif endif);
-	return feature;
+	log('  redefinedFeature: ' + 
+			if redefinedFeature.oclIsInvalid() then "<invalid>" 
+			else if redefinedFeature = null then "<none>" 
+			else valueOf(redefinedFeature.name) endif endif);
+	return redefinedFeature;
 }
 
 query SysML::Feature::type(): SysML::Class {
@@ -313,6 +319,7 @@ query SysML::Feature::range(): SysML::Class {
 helper SysML::Feature::mapToDeclarations() {
 	self.map toDeclaration();
 	self.ownedType->mapToDeclarations();
+	self.ownedMembership.ownedMemberElement->mapToDeclarations();
 }
 
 helper newMinCardinality(cardinality: Integer, objectProperty: OWL::ObjectProperty, domain: OWL::Class) {

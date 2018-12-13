@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,10 +13,11 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getEnd <em>End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getPath <em>Path</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}</li>
  * </ul>
  *
@@ -25,36 +27,10 @@ package org.omg.sysml.lang.sysml;
  */
 public interface ConnectorEnd extends Relationship {
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Feature</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Feature()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	Feature getFeature();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
-	 * @see #getFeature()
-	 * @generated
-	 */
-	void setFeature(Feature value);
-
-	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Lower</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Lower</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -62,6 +38,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @see #setLower(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Lower()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
 	 * @generated
 	 */
 	Expression getLower();
@@ -80,7 +57,7 @@ public interface ConnectorEnd extends Relationship {
 	 * Returns the value of the '<em><b>Upper</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Upper</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Upper</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -88,6 +65,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @see #setUpper(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Upper()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
 	 * @generated
 	 */
 	Expression getUpper();
@@ -103,6 +81,39 @@ public interface ConnectorEnd extends Relationship {
 	void setUpper(Expression value);
 
 	/**
+	 * Returns the value of the '<em><b>Feature</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Feature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Feature</em>' reference.
+	 * @see #setFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Feature()
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
+	 * @generated
+	 */
+	Feature getFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getFeature <em>Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Feature</em>' reference.
+	 * @see #getFeature()
+	 * @generated
+	 */
+	void setFeature(Feature value);
+
+	/**
 	 * Returns the value of the '<em><b>End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -114,6 +125,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @see #setEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_End()
 	 * @model ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
 	 * @generated
 	 */
 	Feature getEnd();
@@ -129,11 +141,34 @@ public interface ConnectorEnd extends Relationship {
 	void setEnd(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>Connector</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}'.
+	 * Returns the value of the '<em><b>Path</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connector</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Path</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Path()
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
+	 * @generated
+	 */
+	EList<Feature> getPath();
+
+	/**
+	 * Returns the value of the '<em><b>Connector</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Connector</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

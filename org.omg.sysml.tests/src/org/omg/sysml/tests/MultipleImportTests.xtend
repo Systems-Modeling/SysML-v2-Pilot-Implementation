@@ -119,7 +119,7 @@ class MultipleImportTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertError(SysMLPackage.eINSTANCE.element, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.category, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		Assert.assertTrue(result.eResource.errors.size == 2)
 	}
 

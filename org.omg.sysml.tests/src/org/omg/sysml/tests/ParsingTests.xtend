@@ -25,9 +25,6 @@
 package org.omg.sysml.tests
 
 import com.google.inject.Inject
-import com.google.inject.Provider
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -186,7 +183,7 @@ class ParsingTests {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureMembership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 
 	@Test
@@ -207,6 +204,6 @@ class ParsingTests {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureMembership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
 	}
 }

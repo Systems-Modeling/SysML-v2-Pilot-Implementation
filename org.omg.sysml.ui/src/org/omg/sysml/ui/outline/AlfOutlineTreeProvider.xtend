@@ -67,7 +67,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				memberElement !== null) {
 			createEObjectNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
-				membership.owningPackage == memberElement || memberElement._isLeaf
+				membership.membershipOwningPackage == memberElement || memberElement._isLeaf
 			)
 		}
 	}
@@ -82,22 +82,25 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (importedPackage !== null) {
 			createEObjectNode(parentNode, importedPackage, 
 				importedPackage._image, importedPackage._text, 
-				_import.importingPackage == importedPackage || importedPackage._isLeaf
+				_import.importOwningPackage == importedPackage || importedPackage._isLeaf
 			)
 		}
 	}
 	
 	def boolean _isLeaf(Feature feature) {
-		super._isLeaf(feature) && feature.referencedType.isEmpty
+		super._isLeaf(feature) && feature.type.isEmpty
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
-		var referencedTypes = feature.referencedType
-		if (!referencedTypes.isEmpty) {
-			createEStructuralFeatureNode(parentNode, feature, 
-				SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, 
-				referencedTypes._image, "Type", false
+		var types = feature.type
+		if (!types.isEmpty) {
+			var node = createEStructuralFeatureNode(parentNode, feature, 
+				SysMLPackage.Literals.FEATURE__TYPE, 
+				types._image, "Type", true
 			)
+			for (type: types) {
+				createEObjectNode(node, type, type._image, type._text, true)
+			}
 		}
 		super._createChildren(parentNode, feature)
 	}
@@ -110,7 +113,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (generalization.general !== null) {
 			createEObjectNode(parentNode, generalization.general, 
 				generalization.general._image, generalization.general._text, 
-				generalization.owner == generalization.general || generalization.general._isLeaf
+				true
 			)
 		}
 	}
@@ -123,7 +126,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (redefinition.redefinedFeature !== null) {
 			createEObjectNode(parentNode, redefinition.redefinedFeature, 
 				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
-				redefinition.owner == redefinition.redefinedFeature || redefinition.redefinedFeature._isLeaf
+				true
 			)
 		}
 	}
@@ -136,7 +139,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (subset.subsettedFeature !== null) {
 			createEObjectNode(parentNode, subset.subsettedFeature, 
 				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
-				subset.owner == subset.subsettedFeature || subset.subsettedFeature._isLeaf
+				true
 			)
 		}
 	}
@@ -149,13 +152,13 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (connectorEnd.end !== null) {
 			createEObjectNode(parentNode, connectorEnd.end, 
 				_image(connectorEnd.end), "end " + connectorEnd.end._text, 
-				connectorEnd.end.owner == connectorEnd.end || connectorEnd.end._isLeaf
+				true
 			)
 		}
 		if (connectorEnd.feature !== null) {
 			createEObjectNode(parentNode, connectorEnd.feature, 
 				_image(connectorEnd.feature), "feature " + connectorEnd.feature._text, 
-				connectorEnd.feature.owner == connectorEnd.feature || connectorEnd.feature._isLeaf
+				true
 			)
 		}
 	}

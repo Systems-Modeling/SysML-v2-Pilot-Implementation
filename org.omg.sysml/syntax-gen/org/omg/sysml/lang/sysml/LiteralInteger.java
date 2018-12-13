@@ -31,7 +31,7 @@ public interface LiteralInteger extends LiteralExpression {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(int)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getLiteralInteger_Value()
-	 * @model required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Integer" required="true" ordered="false"
 	 * @generated
 	 */
 	int getValue();

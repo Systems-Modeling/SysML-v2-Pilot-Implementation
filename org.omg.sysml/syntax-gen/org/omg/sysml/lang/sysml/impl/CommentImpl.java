@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -98,12 +99,21 @@ public class CommentImpl extends ElementImpl implements Comment {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__BODY, oldBody, body));
 	}
 
+		/**
+	 * <!-- begin-user-doc -->
+	 * If the Comment has an owner, use this as the default value for its commentedElement property.
+	 * <!-- end-user-doc -->
+	 */
+	public Element getCommentedElement() {
+		return commentedElement == null? basicGetCommentedElement(): getCommentedElementGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getCommentedElement() {
+	public Element getCommentedElementGen() {
 		if (commentedElement != null && commentedElement.eIsProxy()) {
 			InternalEObject oldCommentedElement = (InternalEObject)commentedElement;
 			commentedElement = (Element)eResolveProxy(oldCommentedElement);
@@ -118,9 +128,18 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Element basicGetCommentedElement() {
+		if (commentedElement == null) {
+			commentedElement = getOwner();
+			if (commentedElement instanceof Membership) {
+				Element ownedElement = ((Membership)commentedElement).getOwnedMemberElement();
+				if (ownedElement != null) {
+					commentedElement = ownedElement;
+				}
+			}
+		}
 		return commentedElement;
 	}
 
@@ -134,6 +153,11 @@ public class CommentImpl extends ElementImpl implements Comment {
 		commentedElement = newCommentedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__COMMENTED_ELEMENT, oldCommentedElement, commentedElement));
+	}
+	
+	@Override
+	public void setOwner(Element newOwner) {
+		super.setOwner(newOwner);
 	}
 
 	/**
@@ -188,14 +212,20 @@ public class CommentImpl extends ElementImpl implements Comment {
 		}
 		super.eUnset(featureID);
 	}
+	
+	@Override 
+	public boolean eIsSet(int featureID) {
+		return featureID == SysMLPackage.COMMENT__COMMENTED_ELEMENT? 
+				basicGetCommentedElement() != null:
+				eIsSetGen(featureID);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSetGen(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.COMMENT__BODY:
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);

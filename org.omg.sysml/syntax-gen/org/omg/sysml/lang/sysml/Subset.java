@@ -24,6 +24,12 @@ package org.omg.sysml.lang.sysml;
 public interface Subset extends Generalization {
 	/**
 	 * Returns the value of the '<em><b>Subsetted Feature</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getGeneral() <em>General</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsetted Feature</em>' reference isn't clear,
@@ -33,7 +39,8 @@ public interface Subset extends Generalization {
 	 * @return the value of the '<em>Subsetted Feature</em>' reference.
 	 * @see #setSubsettedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettedFeature()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subsettedOfSubset'"
 	 * @generated
 	 */
 	Feature getSubsettedFeature();
@@ -50,6 +57,12 @@ public interface Subset extends Generalization {
 
 	/**
 	 * Returns the value of the '<em><b>Subsetting Feature</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getSpecific() <em>Specific</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsetting Feature</em>' reference isn't clear,
@@ -59,7 +72,8 @@ public interface Subset extends Generalization {
 	 * @return the value of the '<em>Subsetting Feature</em>' reference.
 	 * @see #setSubsettingFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_SubsettingFeature()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subsettingOfSubset'"
 	 * @generated
 	 */
 	Feature getSubsettingFeature();
@@ -77,6 +91,12 @@ public interface Subset extends Generalization {
 	/**
 	 * Returns the value of the '<em><b>Owning Feature</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset <em>Owned Subset</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getOwningCategory() <em>Owning Category</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Feature</em>' reference isn't clear,
@@ -87,7 +107,7 @@ public interface Subset extends Generalization {
 	 * @see #setOwningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubset_OwningFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedSubset
-	 * @model opposite="ownedSubset" derived="true" ordered="false"
+	 * @model opposite="ownedSubset" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	Feature getOwningFeature();

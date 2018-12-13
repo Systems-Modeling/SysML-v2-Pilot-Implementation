@@ -32,7 +32,7 @@ public interface Comment extends Element {
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_Body()
-	 * @model required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getBody();
@@ -58,7 +58,8 @@ public interface Comment extends Element {
 	 * @return the value of the '<em>Commented Element</em>' reference.
 	 * @see #setCommentedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_CommentedElement()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='comment'"
 	 * @generated
 	 */
 	Element getCommentedElement();

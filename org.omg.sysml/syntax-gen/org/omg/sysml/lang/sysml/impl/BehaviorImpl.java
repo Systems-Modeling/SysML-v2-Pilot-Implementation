@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -23,23 +24,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getTakesStep <em>Takes Step</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getStep <em>Step</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getInvolvesFeature <em>Involves Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class BehaviorImpl extends ClassImpl implements Behavior {
-	/**
-	 * The cached value of the '{@link #getTakesStep() <em>Takes Step</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTakesStep()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Step> takesStep;
-
 	/**
 	 * The cached value of the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -74,20 +66,10 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Step> getTakesStep() {
-		if (takesStep == null) {
-			takesStep = new EObjectResolvingEList<Step>(Step.class, this, SysMLPackage.BEHAVIOR__TAKES_STEP);
-		}
-		return takesStep;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTakesStep() {
-		return takesStep != null && !takesStep.isEmpty();
+	public EList<Step> getStep() {
+		// TODO: implement this method to return the 'Step' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -107,13 +89,26 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Parameter> getParameter() {
+		// TODO: implement this method to return the 'Parameter' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.BEHAVIOR__TAKES_STEP:
-				return getTakesStep();
+			case SysMLPackage.BEHAVIOR__STEP:
+				return getStep();
 			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
 				return getInvolvesFeature();
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				return getParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,13 +122,17 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.BEHAVIOR__TAKES_STEP:
-				getTakesStep().clear();
-				getTakesStep().addAll((Collection<? extends Step>)newValue);
+			case SysMLPackage.BEHAVIOR__STEP:
+				getStep().clear();
+				getStep().addAll((Collection<? extends Step>)newValue);
 				return;
 			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
 				getInvolvesFeature().clear();
 				getInvolvesFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -147,11 +146,14 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.BEHAVIOR__TAKES_STEP:
-				getTakesStep().clear();
+			case SysMLPackage.BEHAVIOR__STEP:
+				getStep().clear();
 				return;
 			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
 				getInvolvesFeature().clear();
+				return;
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				getParameter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,35 +167,14 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.BEHAVIOR__FEATURE:
-				return isSetFeature();
-			case SysMLPackage.BEHAVIOR__TAKES_STEP:
-				return isSetTakesStep();
+			case SysMLPackage.BEHAVIOR__STEP:
+				return !getStep().isEmpty();
 			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
 				return involvesFeature != null && !involvesFeature.isEmpty();
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				return !getParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getFeature() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> takesStep = (EList<Feature>)((EList<?>)getTakesStep());
-		return takesStep;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFeature() {
-  		return false;
 	}
 
 } //BehaviorImpl

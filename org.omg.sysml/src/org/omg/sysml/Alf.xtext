@@ -60,7 +60,7 @@ fragment UnitPrefix returns SysML::Package :
 	( ownedImport += PackageImport 
 	| ownedMembership += ElementImport
 	)*
-	( ownedElement += Comment )*
+	( ownedRelationship += Annotation )*
 ;
 
 /* VISIBILITY */
@@ -75,6 +75,10 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 
 /* COMMENTS */
 
+Annotation returns SysML::Annotation :
+	ownedRelatedElement += Comment
+;
+
 Comment returns SysML::Comment :
 	body = DOCUMENTATION_COMMENT
 ;
@@ -82,7 +86,7 @@ Comment returns SysML::Comment :
 /* IMPORTS */
 
 PackageImport returns SysML::Import :
-	( ownedElement += Comment )*
+	( ownedRelationship += Annotation )*
 	( visibility = PackageElementVisibilityIndicator )?  
 	'import' (
 	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
@@ -121,7 +125,7 @@ PackageMember returns SysML::Membership :
 ;
 
 fragment PackageMemberPrefix returns SysML::Membership :
-	( ownedElement += Comment )*
+	( ownedRelationship += Annotation )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = PackageElementVisibilityIndicator )?		
 ;
@@ -150,7 +154,7 @@ fragment FeaturePackageMemberElement returns SysML::Membership :
 /* CATEGORIES */
 
 fragment CategoryBody returns SysML::Category :
-	'{' ( ownedMembership += CategoryMember | ownedImport += PackageImport )* '}'
+	';' | '{' ( ownedMembership += CategoryMember | ownedImport += PackageImport )* '}'
 ;
 
 /* CATEGORY MEMBERSHIPS */
@@ -168,22 +172,22 @@ FeatureCategoryMember returns SysML::FeatureMembership :
 	( FeatureMemberElement
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
-    | ( direction = FeatureDirection )? ownedFeatureElement = NamedFeatureDefinition
+    | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
 	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
 	
 	)
 ;
 
 fragment CategoryMemberPrefix returns SysML::Membership :
-	( ownedElement += Comment )*
+	( ownedRelationship += Annotation )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 ;
 
 fragment FeatureMemberElement returns SysML::FeatureMembership :
-      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedFeatureElement = FeatureDefinition
+      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberFeature = FeatureDefinition
 	| ( 'feature' | isPart ?= 'part' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-	| 'connector' ownedFeatureElement = ConnectorDefinition
+	| 'connector' ownedMemberFeature = ConnectorDefinition
 	| 'connector' ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';' 
 ;
 
@@ -205,7 +209,7 @@ fragment ClassDefinition returns SysML::Class :
 fragment ClassDeclaration returns SysML::Class :
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( 'specializes' ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
+	( 'specializes' ownedRelationship += Generalization ( ',' ownedRelationship += Generalization )* )?
 ;
 
 Generalization returns SysML::Generalization:
@@ -225,11 +229,11 @@ fragment AssociationDefinition returns SysML::Association :
 
 fragment AssociationDeclaration returns SysML::Association :
 	( isAbstract ?= 'abstract' )? 'assoc' name = Name
-	( 'specializes' ownedElement += Generalization ( ',' ownedElement += Generalization )* )?
+	( 'specializes' ownedRelationship += Generalization ( ',' ownedRelationship += Generalization )* )?
 ;
 
 fragment AssociationBody returns SysML::Association :
-	'{' ( ownedMembership += AssociationMember | ownedImport += PackageImport )* '}'
+	';'| '{' ( ownedMembership += AssociationMember | ownedImport += PackageImport )* '}'
 ;
 
 /* ASSOCIATION MEMBERSHIPS */
@@ -245,11 +249,11 @@ AssociationFeatureMember returns SysML::FeatureMembership :
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	CategoryMemberPrefix
     (
-      'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedFeatureElement = FeatureDefinition
+      'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberFeature = FeatureDefinition
 	| 'end' ( isPart ?= 'part') ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 
 	// These alternatives are provided for legacy Alf backwards compatibility;
-    | ( direction = FeatureDirection )? ownedFeatureElement = NamedFeatureDefinition
+    | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
 	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	
 	)
@@ -266,33 +270,37 @@ NamedFeatureDefinition returns SysML::Feature :
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
-	ownedElement += SubsetOrRedefinition TypePart? Multiplicity?
+	ownedRelationship += SubsetOrRedefinition TypePart? ( multiplicity = Multiplicity )?
 	FeatureCompletion
 ;
 
 fragment FeatureBodyDefinition returns SysML::Feature :
-	'feature' FeatureDeclaration CategoryBody
+	'feature' FeatureDeclaration FeatureCompletion
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
-	name = Name TypePart? Multiplicity? 
-	( ownedElement += SubsetOrRedefinition )? 
+	name = Name TypePart? ( multiplicity = Multiplicity )? 
+	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
+	( ownedRelationship += SubsetOrRedefinition )? 
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
-	( '=' value = Expression )? ( ';' | CategoryBody )
+	( '=' valuation = FeatureValue )? CategoryBody
+;
+
+FeatureValue returns SysML::FeatureValue :
+	value = Expression
 ;
 
 fragment TypePart returns SysML::Feature :
 	':' ( isComposite ?= 'compose' )? ( type += [SysML::Class | QualifiedName] | 'any' )
 ;
 
-fragment Multiplicity returns SysML::Feature :
+Multiplicity returns SysML::Multiplicity :
 	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
-SubsetOrRedefinition returns SysML::Subset :
+SubsetOrRedefinition returns SysML::Subsetting :
 	( 'subsets' Subset
 	| 'redefines' Redefinition
 	)
@@ -302,7 +310,7 @@ Redefinition returns SysML::Redefinition:
 	redefinedFeature = [SysML::Feature|QualifiedName] 
 ;
 
-Subset returns SysML::Subset:
+Subset returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
 ;
 
@@ -310,24 +318,21 @@ Subset returns SysML::Subset:
 
 ConnectorDefinition returns SysML::Connector:	 
 	( ( ( name = Name )? ( ':' association = [SysML::Association | QualifiedName] )? 'is')?
-		  connectorEnd += ConnectorEnd 'to' connectorEnd += ConnectorEnd ';'
+		  connectorEnd += ConnectorEnd 'to' connectorEnd += ConnectorEnd
 	| ( name = Name )? ( ':' association = [SysML::Association | QualifiedName] )?
 	  '(' connectorEnd += ConnectorEnd ',' connectorEnd += ConnectorEnd
 	      ( ',' connectorEnd += ConnectorEnd )*
-	  ')' ';'
-	)	  
+	  ')'
+	)
+	CategoryBody	  
 ;
 
 ConnectorEnd returns SysML::ConnectorEnd :
 	  ( end = [SysML::Feature | QualifiedName] ':' )? 
-	  feature = [SysML::Feature | QualifiedName] ConnectorEndMultiplicity?
-	| ( end = [SysML::Feature | QualifiedName] ConnectorEndMultiplicity? '=>' ) 
+	  feature = [SysML::Feature | QualifiedName] ( multiplicity = Multiplicity )?
+	| ( end = [SysML::Feature | QualifiedName] ( multiplicity = Multiplicity )? '=>' ) 
 	  feature = [SysML::Feature | QualifiedName] 
       
-;
-
-fragment ConnectorEndMultiplicity returns SysML::ConnectorEnd :
-	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
 /* EXPRESSIONS */

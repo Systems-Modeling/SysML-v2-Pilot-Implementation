@@ -4,23 +4,23 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.omg.sysml.lang.sysml.StructuredFeature;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Structured Feature</b></em>'.
+ * An implementation of the model object '<em><b>Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeature {
+public class ParameterImpl extends FeatureImpl implements Parameter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StructuredFeatureImpl() {
+	protected ParameterImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeat
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.STRUCTURED_FEATURE;
+		return SysMLPackage.Literals.PARAMETER;
 	}
 
-} //StructuredFeatureImpl
+} //ParameterImpl

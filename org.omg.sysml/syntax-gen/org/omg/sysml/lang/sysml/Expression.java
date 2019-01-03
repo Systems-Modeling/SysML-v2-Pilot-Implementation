@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface Expression extends Function {
+public interface Expression extends Step {
 } // Expression

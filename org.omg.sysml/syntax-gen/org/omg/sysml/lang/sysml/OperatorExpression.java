@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression()
@@ -22,23 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OperatorExpression extends Expression {
-	/**
-	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operand</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
-	 * @generated
-	 */
-	EList<Expression> getOperand();
-
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,5 +47,21 @@ public interface OperatorExpression extends Expression {
 	 * @generated
 	 */
 	void setOperator(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operand</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operand</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Expression> getOperand();
 
 } // OperatorExpression

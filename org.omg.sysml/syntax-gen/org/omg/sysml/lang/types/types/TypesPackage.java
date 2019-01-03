@@ -37,7 +37,7 @@ public interface TypesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.omg.org/spec/PrimitiveTypes";
+	String eNS_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
 
 	/**
 	 * The package namespace name.
@@ -45,7 +45,7 @@ public interface TypesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "types";
+	String eNS_PREFIX = "primitives";
 
 	/**
 	 * The singleton instance of the package.

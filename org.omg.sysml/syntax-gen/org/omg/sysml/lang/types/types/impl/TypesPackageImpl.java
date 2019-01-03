@@ -6,11 +6,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.omg.sysml.lang.sysml.SysMLPackage;
-
 import org.omg.sysml.lang.sysml.impl.SysMLPackageImpl;
-
 import org.omg.sysml.lang.types.types.TypesFactory;
 import org.omg.sysml.lang.types.types.TypesPackage;
 

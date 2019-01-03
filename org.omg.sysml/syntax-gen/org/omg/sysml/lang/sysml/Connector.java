@@ -9,11 +9,15 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Connector</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * relatedFeature = connectorEnd.feature
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeatures <em>Related Features</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
@@ -26,27 +30,27 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Connector extends Feature, Relationship {
 	/**
-	 * Returns the value of the '<em><b>Related Features</b></em>' reference list.
+	 * Returns the value of the '<em><b>Related Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelated() <em>Related</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Related Features</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Related Feature</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Features</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeatures()
+	 * @return the value of the '<em>Related Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
 	 * @generated
 	 */
-	EList<Feature> getRelatedFeatures();
+	EList<Feature> getRelatedFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Association</b></em>' reference.
@@ -65,7 +69,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 * @generated
 	 */
@@ -130,11 +134,10 @@ public interface Connector extends Feature, Relationship {
 	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getAssociation() <em>Association</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedType() <em>Owned Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

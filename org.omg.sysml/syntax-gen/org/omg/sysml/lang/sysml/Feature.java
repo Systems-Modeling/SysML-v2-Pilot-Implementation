@@ -9,24 +9,32 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Feature</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * ownedRedefinition = ownedSubsetting->intersection(redefining)
+ * referencedType = type - ownedElement
+ * ownedSubsetting = ownedGeneralization->intersection(subsetting)
+ * isComposite = owningFeatureMembership <> null and owningFeatureMembership.isPart
+ * ownedType = type->intersection(ownedElement)
+ * type = typing.type
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getLower <em>Lower</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset <em>Owned Subset</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -93,60 +101,6 @@ public interface Feature extends Category {
 	void setOwningCategory(Category value);
 
 	/**
-	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Lower</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower</em>' containment reference.
-	 * @see #setLower(Expression)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Lower()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='feature'"
-	 * @generated
-	 */
-	Expression getLower();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getLower <em>Lower</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower</em>' containment reference.
-	 * @see #getLower()
-	 * @generated
-	 */
-	void setLower(Expression value);
-
-	/**
-	 * Returns the value of the '<em><b>Upper</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Upper</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper</em>' containment reference.
-	 * @see #setUpper(Expression)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Upper()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='feature'"
-	 * @generated
-	 */
-	Expression getUpper();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getUpper <em>Upper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper</em>' containment reference.
-	 * @see #getUpper()
-	 * @generated
-	 */
-	void setUpper(Expression value);
-
-	/**
 	 * Returns the value of the '<em><b>Is Unique</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
@@ -211,7 +165,7 @@ public interface Feature extends Category {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 * @generated
 	 */
@@ -225,7 +179,7 @@ public interface Feature extends Category {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -248,7 +202,7 @@ public interface Feature extends Category {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubset() <em>Owned Subset</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -265,9 +219,9 @@ public interface Feature extends Category {
 	EList<Redefinition> getOwnedRedefinition();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Subset</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subset}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subset#getOwningFeature <em>Owning Feature</em>}'.
+	 * Returns the value of the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subsetting}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -276,48 +230,27 @@ public interface Feature extends Category {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Subset</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Owned Subsetting</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Subset</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubset()
-	 * @see org.omg.sysml.lang.sysml.Subset#getOwningFeature
+	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
+	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
 	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<Subset> getOwnedSubset();
-
-	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(Expression)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Value()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='feature'"
-	 * @generated
-	 */
-	Expression getValue();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getValue <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(Expression value);
+	EList<Subsetting> getOwnedSubsetting();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement <em>Owned Feature Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningMembership() <em>Owning Membership</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Feature Membership</em>' container reference isn't clear,
@@ -327,8 +260,8 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedFeatureElement
-	 * @model opposite="ownedFeatureElement" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
+	 * @model opposite="ownedMemberFeature" transient="false" ordered="false"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();
@@ -345,7 +278,6 @@ public interface Feature extends Category {
 
 	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
@@ -355,7 +287,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -371,35 +303,81 @@ public interface Feature extends Category {
 	void setIsComposite(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' attribute.
-	 * The default value is <code>"[0..*]"</code>.
+	 * Returns the value of the '<em><b>Valuation</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue <em>Feature With Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valuation</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valuation</em>' containment reference.
+	 * @see #setValuation(FeatureValue)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation()
+	 * @see org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue
+	 * @model opposite="featureWithValue" containment="true" ordered="false"
+	 * @generated
+	 */
+	FeatureValue getValuation();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valuation</em>' containment reference.
+	 * @see #getValuation()
+	 * @generated
+	 */
+	void setValuation(FeatureValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplicity</em>' attribute.
-	 * @see #setMultiplicity(String)
+	 * @return the value of the '<em>Multiplicity</em>' containment reference.
+	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
-	 * @model default="[0..*]" dataType="org.omg.sysml.lang.types.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
+	 * @model opposite="FeatureWithMultiplicity" containment="true" ordered="false"
 	 * @generated
 	 */
-	String getMultiplicity();
+	Multiplicity getMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiplicity</em>' attribute.
+	 * @param value the new value of the '<em>Multiplicity</em>' containment reference.
 	 * @see #getMultiplicity()
 	 * @generated
 	 */
-	void setMultiplicity(String value);
+	void setMultiplicity(Multiplicity value);
+
+	/**
+	 * Returns the value of the '<em><b>Typing</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature <em>Typed Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Typing</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Typing</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Typing()
+	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature
+	 * @model opposite="typedFeature" required="true" ordered="false"
+	 * @generated
+	 */
+	EList<FeatureTyping> getTyping();
 
 	/**
 	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Nonunique</em>' attribute isn't clear,
@@ -409,7 +387,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isNonunique();

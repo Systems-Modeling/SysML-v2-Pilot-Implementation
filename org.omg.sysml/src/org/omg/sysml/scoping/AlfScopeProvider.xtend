@@ -42,8 +42,8 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.Subset
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Subsetting
 
 /**
  * This class contains custom scoping description.
@@ -69,9 +69,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				if (context instanceof Redefinition)
 					return scope_Redefinition_redefinedFeature(context as Redefinition, reference)
 			}
-			case SysMLPackage.eINSTANCE.subset_SubsettedFeature: {
-				if (context instanceof Subset)
-					return scope_Subset_subsettedFeature(context as Subset, reference)
+			case SysMLPackage.eINSTANCE.subsetting_SubsettedFeature: {
+				if (context instanceof Subsetting)
+					return scope_Subsetting_subsettedFeature(context as Subsetting, reference)
 			}
 		}
 		if (context instanceof Package) {
@@ -219,7 +219,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		return clazz1.scope_Package(reference)
 	}
 
-	def IScope scope_Subset_subsettedFeature(Subset subset, EReference reference) {
+	def IScope scope_Subsetting_subsettedFeature(Subsetting subset, EReference reference) {
 		val feature = subset.owner as Feature
 		val clazz1 = feature.owningNamespace
 		if (clazz1 === null)

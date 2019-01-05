@@ -22,6 +22,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -33,7 +34,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getEnd <em>End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getPath <em>Path</em>}</li>
@@ -211,6 +211,14 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		return path;
 	}
 	
+	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
+		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
+		if (owningNamespace != null && owningNamespace != start && owningNamespace instanceof Feature) {
+			getPath(path, start, (Feature)owningNamespace);
+		}
+		path.add(end);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,14 +262,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__MULTIPLICITY, newMultiplicity, newMultiplicity));
 	}
 
-	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
-		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
-		if (owningNamespace != null && owningNamespace != start && owningNamespace instanceof Feature) {
-			getPath(path, start, (Feature)owningNamespace);
-		}
-		path.add(end);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,15 +279,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 */
 	public NotificationChain basicSetConnector(Connector newConnector, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newConnector, SysMLPackage.CONNECTOR_END__CONNECTOR, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newConnector != null) {
-				Element owningRelatedElement = getOwningRelatedElement();
-				if (newConnector != owningRelatedElement) {
-					setOwningRelatedElement(newConnector);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -312,13 +303,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__CONNECTOR, newConnector, newConnector));
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConnector() {
-		return getConnector() != null;
+	// Additional subsetting
+	
+	@Override
+	public EList<Relationship> getAllOwnedRelationships() {
+		EList<Relationship> ownedRelationships = super.getAllOwnedRelationships();
+		Multiplicity multiplicity = getMultiplicity();
+		if (multiplicity != null) {
+			ownedRelationships.add(multiplicity);
+		}
+		return ownedRelationships;
 	}
 
 	/**
@@ -329,10 +323,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -349,8 +339,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT:
-				return basicSetOwningRelatedElement(null, msgs);
 			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
 				return basicSetMultiplicity(null, msgs);
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
@@ -367,8 +355,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
 		}
@@ -465,10 +451,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR_END__TARGET:
 				return target != null && !target.isEmpty();
-			case SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
-			case SysMLPackage.CONNECTOR_END__SOURCE:
-				return isSetSource();
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				return feature != null;
 			case SysMLPackage.CONNECTOR_END__END:
@@ -478,7 +460,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
 				return multiplicity != null;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return isSetConnector();
+				return getConnector() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -507,56 +489,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwningRelatedElement() {
-		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT) return null;
-		return (Element)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			Connector connector = getConnector();
-			if (connector != null && connector != newOwningRelatedElement) {
-				setConnector(null);
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -571,15 +504,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			source.add(connector);
 		}
 		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //ConnectorEndImpl

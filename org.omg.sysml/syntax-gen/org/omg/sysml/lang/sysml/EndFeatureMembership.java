@@ -23,12 +23,6 @@ public interface EndFeatureMembership extends FeatureMembership {
 	/**
 	 * Returns the value of the '<em><b>Owning Association</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership <em>Owned End Feature Membership</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory() <em>Owning Category</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Association</em>' reference isn't clear,

@@ -90,7 +90,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=Generalization (ambiguity) (rule end)
+	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -108,9 +108,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     multiplicity=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=Generalization (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=SubsetOrRedefinition (ambiguity) (rule end)
-	 *     type+=[Class|QualifiedName] (ambiguity) (rule end)
+	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 *     valuation=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

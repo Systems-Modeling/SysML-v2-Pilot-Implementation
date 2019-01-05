@@ -54,12 +54,6 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * Returns the value of the '<em><b>Owned End Feature Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EndFeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation <em>Owning Association</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership() <em>Owned Feature Membership</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned End Feature Membership</em>' reference list isn't clear,

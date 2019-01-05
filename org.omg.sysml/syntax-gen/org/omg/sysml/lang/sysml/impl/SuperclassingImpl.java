@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -114,13 +115,17 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	public boolean isSetSuperclass() {
 		return superclass != null;
 	}
+	
+	public org.omg.sysml.lang.sysml.Class getSubclass() {
+		return subclass == null? basicGetSubclass(): getSubclassGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getSubclass() {
+	public org.omg.sysml.lang.sysml.Class getSubclassGen() {
 		if (subclass != null && subclass.eIsProxy()) {
 			InternalEObject oldSubclass = (InternalEObject)subclass;
 			subclass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldSubclass);
@@ -134,10 +139,17 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Superclassing has a Class as its owner, the use this as the default value of the subclass property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Class basicGetSubclass() {
+		if (subclass == null) {
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof org.omg.sysml.lang.sysml.Class) {
+				subclass = (org.omg.sysml.lang.sysml.Class)owner;
+			}
+		}
 		return subclass;
 	}
 
@@ -175,24 +187,20 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Class basicGetOwningClass() {
-		// TODO: implement this method to return the 'Owning Class' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Category owningCategory = super.basicGetOwningCategory();
+		return owningCategory instanceof org.omg.sysml.lang.sysml.Class? (org.omg.sysml.lang.sysml.Class)owningCategory: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass) {
-		// TODO: implement this method to set the 'Owning Class' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		super.setOwningCategory(newOwningClass);
 	}
 
 	/**

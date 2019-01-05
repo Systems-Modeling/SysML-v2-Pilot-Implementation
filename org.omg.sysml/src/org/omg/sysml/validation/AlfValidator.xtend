@@ -66,12 +66,14 @@ class AlfValidator extends AbstractAlfValidator {
 	@Check
 	def checkMembershipVisibility(Membership membership) {
 		val elem = membership.memberElement
-		val elemPack = elem.filePackage
-		val membershipPack = membership.filePackage
-		if (membership.memberElement !== null && elemPack !== membershipPack &&
-			!membership.memberElement.isGlobalPublic) {
-			error("Referenced element is not visible in this scope", membership, SysMLPackage.eINSTANCE.membership_MemberElement,
-				NOT_PUBLIC_MEMBERSHIP)
+		if (elem !== membership.ownedMemberElement) {
+			val elemPack = elem.filePackage
+			val membershipPack = membership.filePackage
+			if (membership.memberElement !== null && elemPack !== membershipPack &&
+				!membership.memberElement.isGlobalPublic) {
+				error("Referenced element is not visible in this scope", membership, SysMLPackage.eINSTANCE.membership_MemberElement,
+					NOT_PUBLIC_MEMBERSHIP)
+			}
 		}
 	}
 
@@ -79,7 +81,7 @@ class AlfValidator extends AbstractAlfValidator {
 
 	@Check
 	def checkInheritanceVisibility(Generalization gen) {
-		val ownerr = gen.owner
+		val ownerr = gen.owningRelatedElement
 		val ownerrPack = ownerr.filePackage
 		val generalPack = gen.general.filePackage
 		if (ownerrPack !== generalPack && !gen.general.isGlobalPublic) {

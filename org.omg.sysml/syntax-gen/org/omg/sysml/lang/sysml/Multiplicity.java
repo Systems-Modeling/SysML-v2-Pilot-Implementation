@@ -24,12 +24,6 @@ package org.omg.sysml.lang.sysml;
 public interface Multiplicity extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' containment reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower</em>' reference isn't clear,
@@ -57,12 +51,6 @@ public interface Multiplicity extends Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Upper</b></em>' containment reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper</em>' reference isn't clear,
@@ -91,12 +79,6 @@ public interface Multiplicity extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Feature With Multiplicity</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>

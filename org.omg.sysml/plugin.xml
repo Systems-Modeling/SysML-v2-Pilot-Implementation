@@ -19,7 +19,7 @@
       <!-- @generated SysML -->
       <package
             uri="https://www.omg.org/spec/UML/20161101/PrimitiveTypes"
-            class="org.omg.sysml.lang.types.types.TypesPackage"
+            class="org.omg.sysml.lang.types.TypesPackage"
             genModel="model/SysML.genmodel"/>
    </extension>
 

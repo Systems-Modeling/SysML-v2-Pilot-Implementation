@@ -139,9 +139,13 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated NOT
 	 */
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		return new DerivedEObjectEList<FeatureMembership>(
-				FeatureMembership.class, this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, 
-				new int[]{SysMLPackage.PACKAGE__OWNED_MEMBERSHIP});
+		EList<FeatureMembership> featureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				featureMemberships.add(((FeatureMembership)membership));
+			}
+		}
+		return featureMemberships;
 	}
 
 	/**

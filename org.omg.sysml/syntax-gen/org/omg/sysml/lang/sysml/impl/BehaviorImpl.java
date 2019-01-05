@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -64,12 +64,12 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Step> getStep() {
-		// TODO: implement this method to return the 'Step' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<Step>(Step.class, this, 
+				SysMLPackage.BEHAVIOR__STEP, 
+				new int[] {SysMLPackage.CATEGORY__FEATURE});
 	}
 
 	/**
@@ -87,12 +87,12 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Parameter> getParameter() {
-		// TODO: implement this method to return the 'Parameter' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
+				SysMLPackage.BEHAVIOR__PARAMETER, 
+				new int[] {SysMLPackage.CATEGORY__FEATURE});
 	}
 
 	/**

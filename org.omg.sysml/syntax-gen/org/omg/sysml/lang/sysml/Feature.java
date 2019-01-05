@@ -112,7 +112,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Unique</em>' attribute.
 	 * @see #setIsUnique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
-	 * @model default="true" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="true" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -139,7 +139,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsOrdered()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -165,7 +165,7 @@ public interface Feature extends Category {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 * @generated
 	 */
@@ -287,7 +287,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
-	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -371,7 +371,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Typing()
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature
-	 * @model opposite="typedFeature" required="true" ordered="false"
+	 * @model opposite="typedFeature" ordered="false"
 	 * @generated
 	 */
 	EList<FeatureTyping> getTyping();
@@ -387,7 +387,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
-	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isNonunique();

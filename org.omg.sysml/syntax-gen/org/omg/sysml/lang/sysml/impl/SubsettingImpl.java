@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -89,7 +90,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetSubsettedFeature() {
 		return subsettedFeature;
@@ -115,13 +116,17 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	public boolean isSetSubsettedFeature() {
 		return subsettedFeature != null;
 	}
+	
+	public Feature getSubsettingFeature() {
+		return subsettingFeature == null? basicGetSubsettingFeature(): getSubsettingFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getSubsettingFeature() {
+	public Feature getSubsettingFeatureGen() {
 		if (subsettingFeature != null && subsettingFeature.eIsProxy()) {
 			InternalEObject oldSubsettingFeature = (InternalEObject)subsettingFeature;
 			subsettingFeature = (Feature)eResolveProxy(oldSubsettingFeature);
@@ -135,10 +140,17 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the Subsetting has a Feature as its owner, the use this as the default value of the subsettingFeature property.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetSubsettingFeature() {
+		if (subsettingFeature == null) {
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof Feature) {
+				subsettingFeature = (Feature)owner;
+			}
+		}
 		return subsettingFeature;
 	}
 
@@ -176,24 +188,20 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetOwningFeature() {
-		// TODO: implement this method to return the 'Owning Feature' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Category owningCategory = super.basicGetOwningCategory();
+		return owningCategory instanceof Feature? (Feature)owningCategory: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOwningFeature(Feature newOwningFeature) {
-		// TODO: implement this method to set the 'Owning Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		super.setOwningCategory(newOwningFeature);
 	}
 
 	/**

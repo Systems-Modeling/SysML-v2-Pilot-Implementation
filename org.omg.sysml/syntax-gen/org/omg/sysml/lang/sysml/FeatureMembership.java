@@ -39,7 +39,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Derived</em>' attribute.
 	 * @see #setIsDerived(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsDerived()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDerived();
@@ -66,7 +66,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
 	 * @see #setIsReadOnly(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsReadOnly()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isReadOnly();
@@ -126,7 +126,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Part</em>' attribute.
 	 * @see #setIsPart(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPart()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isPart();
@@ -153,7 +153,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Is Port</em>' attribute.
 	 * @see #setIsPort(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPort()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isPort();
@@ -200,12 +200,6 @@ public interface FeatureMembership extends Membership {
 	/**
 	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
@@ -234,12 +228,6 @@ public interface FeatureMembership extends Membership {
 	/**
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature() <em>Member Feature</em>}'</li>
-	 * </ul>
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>

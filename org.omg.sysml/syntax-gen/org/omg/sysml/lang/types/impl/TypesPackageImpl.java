@@ -1,15 +1,18 @@
 /**
  */
-package org.omg.sysml.lang.types.types.impl;
+package org.omg.sysml.lang.types.impl;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.omg.sysml.lang.sysml.SysMLPackage;
+
 import org.omg.sysml.lang.sysml.impl.SysMLPackageImpl;
-import org.omg.sysml.lang.types.types.TypesFactory;
-import org.omg.sysml.lang.types.types.TypesPackage;
+
+import org.omg.sysml.lang.types.TypesFactory;
+import org.omg.sysml.lang.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +67,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.omg.sysml.lang.types.types.TypesPackage#eNS_URI
+	 * @see org.omg.sysml.lang.types.TypesPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

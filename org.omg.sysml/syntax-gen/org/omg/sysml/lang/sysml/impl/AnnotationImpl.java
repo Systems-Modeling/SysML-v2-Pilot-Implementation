@@ -108,7 +108,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 */
 	public Element basicGetAnnotatedElement() {
 		if (annotatedElement == null) {
-			annotatedElement = getOwner();
+			annotatedElement = getOwningRelatedElement();
 			if (annotatedElement instanceof Membership) {
 				Element ownedElement = ((Membership)annotatedElement).getOwnedMemberElement();
 				if (ownedElement != null) {
@@ -139,13 +139,17 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public boolean isSetAnnotatedElement() {
 		return annotatedElement != null;
 	}
+	
+	public Comment getAnnotatingComment() {
+		return annotatingComment == null? basicGetAnnotatingComment(): getAnnotatingCommentGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Comment getAnnotatingComment() {
+	public Comment getAnnotatingCommentGen() {
 		if (annotatingComment != null && annotatingComment.eIsProxy()) {
 			InternalEObject oldAnnotatingComment = (InternalEObject)annotatingComment;
 			annotatingComment = (Comment)eResolveProxy(oldAnnotatingComment);
@@ -160,9 +164,18 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Comment basicGetAnnotatingComment() {
+		if (annotatingComment == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				Element ownedRelatedElement = ownedRelatedElements.get(0);
+				if (ownedRelatedElement instanceof Comment) {
+					annotatingComment = (Comment)ownedRelatedElement;
+				}
+			}
+		}
 		return annotatingComment;
 	}
 
@@ -209,6 +222,75 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		return annotatingComment != null;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Element annotatedElement = getAnnotatedElement();
+		if (annotatedElement != null) {
+			target.add(annotatedElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		Comment annotatingComment = getAnnotatingComment();
+		if (annotatingComment != null) {
+			source.add(annotatingComment);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT};
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,54 +393,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 				return isSetAnnotatingComment();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Element annotatedElement = getAnnotatedElement();
-		if (annotatedElement != null) {
-			target.add(annotatedElement);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Comment annotatingComment = getAnnotatingComment();
-		if (annotatingComment != null) {
-			source.add(annotatingComment);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //AnnotationImpl

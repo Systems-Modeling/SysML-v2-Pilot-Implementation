@@ -37,7 +37,7 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Member Name</em>' attribute.
 	 * @see #setMemberName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberName()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getMemberName();
@@ -93,7 +93,7 @@ public interface Membership extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aliases</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_Aliases()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getAliases();
@@ -135,12 +135,6 @@ public interface Membership extends Relationship {
 	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
@@ -174,18 +168,6 @@ public interface Membership extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Owned Member Element</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
-	 * </ul>
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Element</em>' reference isn't clear,
@@ -214,7 +196,7 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(Membership other);

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -115,13 +116,23 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	public boolean isSetType() {
 		return type != null;
 	}
+	
+	public Feature getTypedFeature() {
+		if (typedFeature == null) {
+			Element owningRelatedElement = getOwningRelatedElement();
+			if (owningRelatedElement instanceof Feature) {
+				setTypedFeature((Feature)owningRelatedElement);
+			}
+		}
+		return getTypedFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getTypedFeature() {
+	public Feature getTypedFeatureGen() {
 		if (typedFeature != null && typedFeature.eIsProxy()) {
 			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
 			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
@@ -136,9 +147,15 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetTypedFeature() {
+		if (typedFeature == null) {
+			Element owningRelatedElement = getOwningRelatedElement();
+			if (owningRelatedElement instanceof Feature) {
+				typedFeature = (Feature)owningRelatedElement;
+			}
+		}
 		return typedFeature;
 	}
 

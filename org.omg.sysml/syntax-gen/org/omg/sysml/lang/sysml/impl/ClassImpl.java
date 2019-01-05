@@ -5,7 +5,8 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -45,12 +46,16 @@ public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		// TODO: implement this method to return the 'Owned Superclassing' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Superclassing> superclassings = new EObjectEList<Superclassing>(Superclassing.class, this, SysMLPackage.CLASS__OWNED_SUPERCLASSING);
+		for (Generalization generalization: getOwnedGeneralization()) {
+			if (generalization instanceof Superclassing) {
+				superclassings.add((Superclassing)generalization);
+			}
+		}
+		return superclassings;
 	}
 
 	/**

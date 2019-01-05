@@ -138,7 +138,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 */
 	public Annotation getAnnotationForComment() {
-		return annotationForComment == null? basicGetAnnotationForComment(): getAnnotationForComment();
+		return annotationForComment == null? basicGetAnnotationForComment(): getAnnotationForCommentGen();
 	}
 	
 	/**
@@ -165,7 +165,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {
-			Element owner = this.getOwner();
+			Element owner = this.getOwningRelationship();
 			if (owner instanceof Annotation) {
 				annotationForComment = (Annotation)owner;
 			}

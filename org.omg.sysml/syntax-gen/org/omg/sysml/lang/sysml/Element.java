@@ -3,7 +3,7 @@
 package org.omg.sysml.lang.sysml;
 
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -40,12 +40,6 @@ public interface Element extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship() <em>Owning Relationship</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Membership</em>' reference isn't clear,
@@ -184,7 +178,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();
@@ -210,7 +204,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -242,5 +236,16 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	EList<Relationship> getOwnedRelationship();
+	
+	// Additional operations
+	
+	/**
+	 * This operation may be overridden to provide an effective union property for all owned Relationships, without introducing explicit subsetting.
+	 * The regular ownedRelationship property can then still be used to add otherwise undifferentiated owned Relationships.
+	 * @return the union of all owned relationships.
+	 */
+	default EList<Relationship> getAllOwnedRelationships() {
+		return new UniqueEList<Relationship>(getOwnedRelationship());
+	}
 
 } // Element

@@ -1971,9 +1971,9 @@ ruleClassDeclaration[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getClassDeclarationAccess().getOwnedRelationshipGeneralizationParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getClassDeclarationAccess().getOwnedRelationshipSuperclassingParserRuleCall_3_1_0());
 					}
-					lv_ownedRelationship_4_0=ruleGeneralization
+					lv_ownedRelationship_4_0=ruleSuperclassing
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getClassDeclarationRule());
@@ -1982,7 +1982,7 @@ ruleClassDeclaration[EObject in_current]  returns [EObject current=in_current]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_4_0,
-							"org.omg.sysml.Alf.Generalization");
+							"org.omg.sysml.Alf.Superclassing");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1995,9 +1995,9 @@ ruleClassDeclaration[EObject in_current]  returns [EObject current=in_current]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassDeclarationAccess().getOwnedRelationshipGeneralizationParserRuleCall_3_2_1_0());
+							newCompositeNode(grammarAccess.getClassDeclarationAccess().getOwnedRelationshipSuperclassingParserRuleCall_3_2_1_0());
 						}
-						lv_ownedRelationship_6_0=ruleGeneralization
+						lv_ownedRelationship_6_0=ruleSuperclassing
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getClassDeclarationRule());
@@ -2006,7 +2006,7 @@ ruleClassDeclaration[EObject in_current]  returns [EObject current=in_current]
 								$current,
 								"ownedRelationship",
 								lv_ownedRelationship_6_0,
-								"org.omg.sysml.Alf.Generalization");
+								"org.omg.sysml.Alf.Superclassing");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -2016,15 +2016,15 @@ ruleClassDeclaration[EObject in_current]  returns [EObject current=in_current]
 	)
 ;
 
-// Entry rule entryRuleGeneralization
-entryRuleGeneralization returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getGeneralizationRule()); }
-	iv_ruleGeneralization=ruleGeneralization
-	{ $current=$iv_ruleGeneralization.current; }
+// Entry rule entryRuleSuperclassing
+entryRuleSuperclassing returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSuperclassingRule()); }
+	iv_ruleSuperclassing=ruleSuperclassing
+	{ $current=$iv_ruleSuperclassing.current; }
 	EOF;
 
-// Rule Generalization
-ruleGeneralization returns [EObject current=null]
+// Rule Superclassing
+ruleSuperclassing returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2035,11 +2035,11 @@ ruleGeneralization returns [EObject current=null]
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getGeneralizationRule());
+					$current = createModelElement(grammarAccess.getSuperclassingRule());
 				}
 			}
 			{
-				newCompositeNode(grammarAccess.getGeneralizationAccess().getGeneralClassCrossReference_0());
+				newCompositeNode(grammarAccess.getSuperclassingAccess().getSuperclassClassCrossReference_0());
 			}
 			ruleQualifiedName
 			{
@@ -2167,9 +2167,9 @@ ruleAssociationDeclaration[EObject in_current]  returns [EObject current=in_curr
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssociationDeclarationAccess().getOwnedRelationshipGeneralizationParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getAssociationDeclarationAccess().getOwnedRelationshipSuperclassingParserRuleCall_3_1_0());
 					}
-					lv_ownedRelationship_4_0=ruleGeneralization
+					lv_ownedRelationship_4_0=ruleSuperclassing
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssociationDeclarationRule());
@@ -2178,7 +2178,7 @@ ruleAssociationDeclaration[EObject in_current]  returns [EObject current=in_curr
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_4_0,
-							"org.omg.sysml.Alf.Generalization");
+							"org.omg.sysml.Alf.Superclassing");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -2191,9 +2191,9 @@ ruleAssociationDeclaration[EObject in_current]  returns [EObject current=in_curr
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getAssociationDeclarationAccess().getOwnedRelationshipGeneralizationParserRuleCall_3_2_1_0());
+							newCompositeNode(grammarAccess.getAssociationDeclarationAccess().getOwnedRelationshipSuperclassingParserRuleCall_3_2_1_0());
 						}
-						lv_ownedRelationship_6_0=ruleGeneralization
+						lv_ownedRelationship_6_0=ruleSuperclassing
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationDeclarationRule());
@@ -2202,7 +2202,7 @@ ruleAssociationDeclaration[EObject in_current]  returns [EObject current=in_curr
 								$current,
 								"ownedRelationship",
 								lv_ownedRelationship_6_0,
-								"org.omg.sysml.Alf.Generalization");
+								"org.omg.sysml.Alf.Superclassing");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -3082,15 +3082,18 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
+						newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_2_0_0());
+					}
+					lv_ownedRelationship_2_0=ruleFeatureTyping
+					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTypePartRule());
+							$current = createModelElementForParent(grammarAccess.getTypePartRule());
 						}
-					}
-					{
-						newCompositeNode(grammarAccess.getTypePartAccess().getTypeClassCrossReference_2_0_0());
-					}
-					ruleQualifiedName
-					{
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.Alf.FeatureTyping");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -3099,6 +3102,39 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 			otherlv_3='any'
 			{
 				newLeafNode(otherlv_3, grammarAccess.getTypePartAccess().getAnyKeyword_2_1());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleFeatureTyping
+entryRuleFeatureTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFeatureTypingRule()); }
+	iv_ruleFeatureTyping=ruleFeatureTyping
+	{ $current=$iv_ruleFeatureTyping.current; }
+	EOF;
+
+// Rule FeatureTyping
+ruleFeatureTyping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFeatureTypingRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getFeatureTypingAccess().getTypeCategoryCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
 			}
 		)
 	)
@@ -3335,15 +3371,18 @@ ruleConnectorDefinition returns [EObject current=null]
 						(
 							(
 								{
+									newCompositeNode(grammarAccess.getConnectorDefinitionAccess().getOwnedRelationshipConnectorTypingParserRuleCall_0_0_0_1_1_0());
+								}
+								lv_ownedRelationship_2_0=ruleConnectorTyping
+								{
 									if ($current==null) {
-										$current = createModelElement(grammarAccess.getConnectorDefinitionRule());
+										$current = createModelElementForParent(grammarAccess.getConnectorDefinitionRule());
 									}
-								}
-								{
-									newCompositeNode(grammarAccess.getConnectorDefinitionAccess().getAssociationAssociationCrossReference_0_0_0_1_1_0());
-								}
-								ruleQualifiedName
-								{
+									add(
+										$current,
+										"ownedRelationship",
+										lv_ownedRelationship_2_0,
+										"org.omg.sysml.Alf.ConnectorTyping");
 									afterParserOrEnumRuleCall();
 								}
 							)
@@ -3426,15 +3465,18 @@ ruleConnectorDefinition returns [EObject current=null]
 					(
 						(
 							{
+								newCompositeNode(grammarAccess.getConnectorDefinitionAccess().getOwnedRelationshipConnectorTypingParserRuleCall_0_1_1_1_0());
+							}
+							lv_ownedRelationship_9_0=ruleConnectorTyping
+							{
 								if ($current==null) {
-									$current = createModelElement(grammarAccess.getConnectorDefinitionRule());
+									$current = createModelElementForParent(grammarAccess.getConnectorDefinitionRule());
 								}
-							}
-							{
-								newCompositeNode(grammarAccess.getConnectorDefinitionAccess().getAssociationAssociationCrossReference_0_1_1_1_0());
-							}
-							ruleQualifiedName
-							{
+								add(
+									$current,
+									"ownedRelationship",
+									lv_ownedRelationship_9_0,
+									"org.omg.sysml.Alf.ConnectorTyping");
 								afterParserOrEnumRuleCall();
 							}
 						)
@@ -3528,6 +3570,39 @@ ruleConnectorDefinition returns [EObject current=null]
 			$current = $this_CategoryBody_17.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleConnectorTyping
+entryRuleConnectorTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConnectorTypingRule()); }
+	iv_ruleConnectorTyping=ruleConnectorTyping
+	{ $current=$iv_ruleConnectorTyping.current; }
+	EOF;
+
+// Rule ConnectorTyping
+ruleConnectorTyping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getConnectorTypingRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getConnectorTypingAccess().getTypeAssociationCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

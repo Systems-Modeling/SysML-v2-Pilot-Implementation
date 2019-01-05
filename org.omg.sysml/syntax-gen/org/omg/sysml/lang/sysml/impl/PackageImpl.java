@@ -20,6 +20,7 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
@@ -165,16 +166,6 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		return ownedMembership;
 	}
 	
-	// Additional subsettings
-	
-	@Override
-	public EList<Element> getAllOwnedElements() {
-		EList<Element> ownedElements = super.getAllOwnedElements();
-		ownedElements.addAll(this.getOwnedMembership());
-		ownedElements.addAll(this.getOwnedImport());
-		return ownedElements;
-	}
-	
 	// Operations
 
 	/**
@@ -252,6 +243,16 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		}
 		return importedMembership;
 	}
+	
+	@Override
+	public EList<Relationship> getAllOwnedRelationships() {
+		EList<Relationship> ownedRelationships = super.getAllOwnedRelationships();
+		ownedRelationships.addAll(getOwnedMembership());
+		ownedRelationships.addAll(getOwnedImport());
+		return ownedRelationships;
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -69,7 +69,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 * @generated
 	 */
@@ -97,7 +97,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Is Directed</em>' attribute.
 	 * @see #setIsDirected(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_IsDirected()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDirected();

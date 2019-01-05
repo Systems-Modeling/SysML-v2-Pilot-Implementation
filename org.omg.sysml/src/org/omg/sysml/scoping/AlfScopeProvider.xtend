@@ -36,14 +36,14 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
-import org.omg.sysml.lang.sysml.Class
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.FeatureTyping
+import org.omg.sysml.lang.sysml.Category
 
 /**
  * This class contains custom scoping description.
@@ -58,10 +58,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	override getScope(EObject context, EReference reference) {
 		switch (reference) {
-			case SysMLPackage.eINSTANCE.feature_Type: {
-				return scope_Feature_type(context as Feature, reference)
+			case SysMLPackage.eINSTANCE.featureTyping_Type: {
+				return scope_FeatureTyping_type(context as FeatureTyping, reference)
 			}
-			case SysMLPackage.eINSTANCE.generalization_General: {
+			case SysMLPackage.eINSTANCE.generalization_General, case SysMLPackage.eINSTANCE.superclassing_Superclass: {
 				if (context instanceof Generalization)
 					return scope_Generalization_general(context as Generalization, reference)
 			}
@@ -108,9 +108,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	private def void gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
 		val visited = visit
-		if (pack instanceof Class) {
-			val c = pack as Class
-			c.ownedElement.filter(Generalization).forEach [ e |
+		if (pack instanceof Category) {
+			val c = pack as Category
+			c.ownedRelationship.filter(Generalization).forEach [ e |
 				if (e.general?.name !== null) {
 					val container = e.general.owningNamespace
 					if (container !== null && container instanceof Package) {
@@ -198,32 +198,32 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 
-	def IScope scope_Feature_type(Feature feature, EReference reference) {
-		val clazz = feature.owningNamespace
-		return clazz.scope_Package(reference)
+	def IScope scope_FeatureTyping_type(FeatureTyping featureTyping, EReference reference) {
+		val namespace = featureTyping.typedFeature.owningNamespace
+		return namespace.scope_Package(reference)
 	}
 
-	def IScope scope_Generalization_general(Generalization general, EReference reference) {
-		val clazz0 = general.owner as Class
-		val clazz1 = clazz0.owningNamespace
-		if (clazz1 === null)
-			return super.getScope(general, reference)
-		return clazz1.scope_Package(reference)
+	def IScope scope_Generalization_general(Generalization generalization, EReference reference) {
+		val category = generalization.specific;
+		val namespace = category.owningNamespace
+		if (namespace === null)
+			return super.getScope(category, reference)
+		return namespace.scope_Package(reference)
 	}
 
 	def IScope scope_Redefinition_redefinedFeature(Redefinition redefinition, EReference reference) {
-		val feature = redefinition.owner as Feature
-		val clazz1 = feature.owningNamespace
-		if (clazz1 === null)
+		val feature = redefinition.redefiningFeature
+		val namespace = feature.owningNamespace
+		if (namespace === null)
 			return super.getScope(feature, reference)
-		return clazz1.scope_Package(reference)
+		return namespace.scope_Package(reference)
 	}
 
 	def IScope scope_Subsetting_subsettedFeature(Subsetting subset, EReference reference) {
-		val feature = subset.owner as Feature
-		val clazz1 = feature.owningNamespace
-		if (clazz1 === null)
+		val feature = subset.subsettingFeature
+		val namespace = feature.owningNamespace
+		if (namespace === null)
 			return super.getScope(feature, reference)
-		return clazz1.scope_Package(reference)
+		return namespace.scope_Package(reference)
 	}
 }

@@ -1389,7 +1389,7 @@ public interface SysMLPackage extends EPackage {
 	int IMPORT__IMPORTED_PACKAGE = RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Selecter</b></em>' reference.
+	 * The feature id for the '<em><b>Selecter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13723,10 +13723,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getImport_ImportedPackage();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Selecter</em>'.
+	 * @return the meta object for the containment reference '<em>Selecter</em>'.
 	 * @see org.omg.sysml.lang.sysml.Import#getSelecter()
 	 * @see #getImport()
 	 * @generated
@@ -15421,7 +15421,7 @@ public interface SysMLPackage extends EPackage {
 		EReference IMPORT__IMPORTED_PACKAGE = eINSTANCE.getImport_ImportedPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Selecter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Selecter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

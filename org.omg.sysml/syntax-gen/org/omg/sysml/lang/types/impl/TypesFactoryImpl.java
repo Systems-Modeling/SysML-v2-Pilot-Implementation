@@ -1,6 +1,6 @@
 /**
  */
-package org.omg.sysml.lang.types.types.impl;
+package org.omg.sysml.lang.types.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.omg.sysml.lang.types.types.*;
+import org.omg.sysml.lang.types.*;
 
 /**
  * <!-- begin-user-doc -->

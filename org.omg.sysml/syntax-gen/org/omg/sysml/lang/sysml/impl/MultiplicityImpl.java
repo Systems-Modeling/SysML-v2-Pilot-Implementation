@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -12,11 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
@@ -33,8 +28,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}</li>
@@ -87,78 +80,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Element> getTarget() {
-		if (target == null) {
-			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MULTIPLICITY__TARGET, null, TARGET_ESUBSETS);
-		}
-		return target;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.MULTIPLICITY__LOWER, SysMLPackage.MULTIPLICITY__UPPER};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwningRelatedElement() {
-		if (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT) return null;
-		return (Element)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			Feature featureWithMultiplicity = getFeatureWithMultiplicity();
-			if (featureWithMultiplicity != null && featureWithMultiplicity != newOwningRelatedElement) {
-				setFeatureWithMultiplicity(null);
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Expression getLower() {
 		return lower;
 	}
@@ -174,15 +95,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__LOWER, oldLower, newLower);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newLower != null) {
-				EList<Element> target = getTarget();
-				if (!target.contains(newLower)) {
-					target.add(newLower);
-				}
-			}
 		}
 		return msgs;
 	}
@@ -227,15 +139,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__UPPER, oldUpper, newUpper);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newUpper != null) {
-				EList<Element> target = getTarget();
-				if (!target.contains(newUpper)) {
-					target.add(newUpper);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -275,15 +178,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 */
 	public NotificationChain basicSetFeatureWithMultiplicity(Feature newFeatureWithMultiplicity, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newFeatureWithMultiplicity, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newFeatureWithMultiplicity != null) {
-				Element owningRelatedElement = getOwningRelatedElement();
-				if (newFeatureWithMultiplicity != owningRelatedElement) {
-					setOwningRelatedElement(newFeatureWithMultiplicity);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -316,6 +210,70 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	public boolean isSetFeatureWithMultiplicity() {
 		return getFeatureWithMultiplicity() != null;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		Feature featureWithMultiplicity = getFeatureWithMultiplicity();
+		if (featureWithMultiplicity != null) {
+			source.add(featureWithMultiplicity);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
+	// Additional subsets
+	
+	@Override
+	public EList<Element> getAllOwnedRelatedElements() {
+		EList<Element> ownedRelatedElements = super.getAllOwnedRelatedElements();
+		Element upper = getUpper();
+		if (upper != null) {
+			ownedRelatedElements.add(upper);
+		}
+		Element lower = getLower();
+		if (lower != null) {
+			ownedRelatedElements.add(lower);
+		}
+		return ownedRelatedElements;
+	}
+	
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = super.getTarget();
+		Expression upper = getUpper();
+		if (upper != null) {
+			target.add(upper);
+		}
+		Expression lower = getLower();
+		if (lower != null) {
+			target.add(lower);
+		}
+		return target;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -325,10 +283,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -345,8 +299,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT:
-				return basicSetOwningRelatedElement(null, msgs);
 			case SysMLPackage.MULTIPLICITY__LOWER:
 				return basicSetLower(null, msgs);
 			case SysMLPackage.MULTIPLICITY__UPPER:
@@ -365,8 +317,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__MULTIPLICITY, Feature.class, msgs);
 		}
@@ -441,10 +391,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY__TARGET:
-				return target != null && !target.isEmpty();
-			case SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
 			case SysMLPackage.MULTIPLICITY__SOURCE:
 				return isSetSource();
 			case SysMLPackage.MULTIPLICITY__LOWER:
@@ -455,30 +401,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 				return isSetFeatureWithMultiplicity();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Feature featureWithMultiplicity = getFeatureWithMultiplicity();
-		if (featureWithMultiplicity != null) {
-			source.add(featureWithMultiplicity);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //MultiplicityImpl

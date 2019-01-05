@@ -8,12 +8,11 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Generalization
-import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.Subset
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.ConnectorEnd
+import org.omg.sysml.lang.sysml.Subsetting
 
 /**
  * Customization of the default outline structure.
@@ -87,21 +86,21 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Feature feature) {
-		super._isLeaf(feature) && feature.type.isEmpty
-	}
+//	def boolean _isLeaf(Feature feature) {
+//		super._isLeaf(feature) && feature.type.isEmpty
+//	}
 	
 	def void _createChildren(IOutlineNode parentNode, Feature feature) {
-		var types = feature.type
-		if (!types.isEmpty) {
-			var node = createEStructuralFeatureNode(parentNode, feature, 
-				SysMLPackage.Literals.FEATURE__TYPE, 
-				types._image, "Type", true
-			)
-			for (type: types) {
-				createEObjectNode(node, type, type._image, type._text, true)
-			}
-		}
+//		var types = feature.type
+//		if (!types.isEmpty) {
+//			var node = createEStructuralFeatureNode(parentNode, feature, 
+//				SysMLPackage.Literals.FEATURE__TYPE, 
+//				types._image, "Type", true
+//			)
+//			for (type: types) {
+//				createEObjectNode(node, type, type._image, type._text, true)
+//			}
+//		}
 		super._createChildren(parentNode, feature)
 	}
 
@@ -131,11 +130,11 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 
-	def boolean _isLeaf(Subset subset) {
+	def boolean _isLeaf(Subsetting subset) {
 		subset.subsettedFeature === null
 	}
 
-	def void _createChildren(IOutlineNode parentNode, Subset subset) {
+	def void _createChildren(IOutlineNode parentNode, Subsetting subset) {
 		if (subset.subsettedFeature !== null) {
 			createEObjectNode(parentNode, subset.subsettedFeature, 
 				_image(subset.subsettedFeature), subset.subsettedFeature._text, 

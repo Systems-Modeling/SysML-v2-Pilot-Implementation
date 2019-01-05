@@ -58,12 +58,6 @@ public interface FeatureValue extends Relationship {
 	 * Returns the value of the '<em><b>Feature With Value</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>

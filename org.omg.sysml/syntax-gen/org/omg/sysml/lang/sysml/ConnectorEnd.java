@@ -75,7 +75,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @return the value of the '<em>End</em>' reference.
 	 * @see #setEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_End()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
 	 * @generated
 	 */
@@ -138,18 +138,6 @@ public interface ConnectorEnd extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Connector</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connector</em>' reference isn't clear,

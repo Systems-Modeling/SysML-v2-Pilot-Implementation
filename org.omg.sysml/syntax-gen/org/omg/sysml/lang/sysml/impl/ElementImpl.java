@@ -26,17 +26,17 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
@@ -52,8 +52,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
@@ -141,13 +141,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public NotificationChain basicSetOwningRelationship(Relationship newOwningRelationship, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningRelationship, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			Membership owningMembership = getOwningMembership();
-			if (owningMembership != null && owningMembership != newOwningRelationship) {
-				setOwningMembership(null);
-			}
-		}
 		return msgs;
 	}
 
@@ -189,7 +182,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public Element basicGetOwner() {
 		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship == null? null: owningRelationship.getOwningRelatedElement();
+		return owningRelationship != null && owningRelationship.getAllOwnedRelatedElements().contains(this)? 
+						owningRelationship.getOwningRelatedElement(): null;
 	}
 
 	/**
@@ -220,15 +214,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningMembership, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwningMembership != null) {
-				Relationship owningRelationship = getOwningRelationship();
-				if (newOwningMembership != owningRelationship) {
-					setOwningRelationship(newOwningMembership);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -285,12 +270,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<Element> getOwnedElement() {
-		// TODO: implement this method to return the 'Owned Element' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public BasicEList<Element> getOwnedElement() {
+		BasicEList<Element> ownedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
+		for (Relationship ownedRelationship: getAllOwnedRelationships()) {
+			ownedElements.addAllUnique(((RelationshipImpl)ownedRelationship).getAllOwnedRelatedElements());
+		}
+		return ownedElements;
 	}
 
 	/**
@@ -376,12 +363,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	
 	
 	/**
-	 * This operation may be overridden to provide an effective union property for all owned elements, without introducing explicit subsetting.
-	 * The regular ownedElement property can then still be used to add otherwise undifferentiated owned elements.
+	 * This operation may be overridden to provide an effective union property for all owned Relationships, without introducing explicit subsetting.
+	 * The regular ownedRelationship property can then still be used to add otherwise undifferentiated owned Relationships.
 	 * @return
 	 */
-	public EList<Element> getAllOwnedElements() {
-		return new BasicInternalEList<Element>(Element.class, this.getOwnedElement());
+	public EList<Relationship> getAllOwnedRelationships() {
+		return new UniqueEList<Relationship>(this.getOwnedRelationship());
 	}
 	
 	//
@@ -395,14 +382,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelationship((Relationship)otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningMembership((Membership)otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelationship((Relationship)otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
 		}
@@ -417,10 +404,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return basicSetOwningRelationship(null, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return basicSetOwningMembership(null, msgs);
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				return basicSetOwningRelationship(null, msgs);
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
 		}
@@ -435,10 +422,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -451,10 +438,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return getOwningRelationship();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return getOwningMembership();
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				return getOwningRelationship();
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return getIdentifier();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
@@ -482,11 +469,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				setOwningRelationship((Relationship)newValue);
-				return;
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				setOwningRelationship((Relationship)newValue);
 				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier((String)newValue);
@@ -520,11 +507,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				setOwningRelationship((Relationship)null);
-				return;
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)null);
+				return;
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				setOwningRelationship((Relationship)null);
 				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
@@ -556,10 +543,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return getOwningRelationship() != null;
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return getOwningMembership() != null;
+			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
+				return getOwningRelationship() != null;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -19,9 +19,9 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Ed Seidewitz
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Ed Seidewitz, MDS
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
  * 
  *****************************************************************************/
 
@@ -209,11 +209,11 @@ fragment ClassDefinition returns SysML::Class :
 fragment ClassDeclaration returns SysML::Class :
 	( isAbstract ?= 'abstract' )? 'class' name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( 'specializes' ownedRelationship += Generalization ( ',' ownedRelationship += Generalization )* )?
+	( 'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )* )?
 ;
 
-Generalization returns SysML::Generalization:
-	general = [SysML::Class | QualifiedName]
+Superclassing returns SysML::Superclassing:
+	superclass = [SysML::Class | QualifiedName]
 ;
 
 /* ASSOCIATIONS */
@@ -229,7 +229,7 @@ fragment AssociationDefinition returns SysML::Association :
 
 fragment AssociationDeclaration returns SysML::Association :
 	( isAbstract ?= 'abstract' )? 'assoc' name = Name
-	( 'specializes' ownedRelationship += Generalization ( ',' ownedRelationship += Generalization )* )?
+	( 'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )* )?
 ;
 
 fragment AssociationBody returns SysML::Association :
@@ -293,7 +293,11 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	':' ( isComposite ?= 'compose' )? ( type += [SysML::Class | QualifiedName] | 'any' )
+	':' ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' )
+;
+
+FeatureTyping returns SysML::FeatureTyping :
+	type = [SysML::Category | QualifiedName]
 ;
 
 Multiplicity returns SysML::Multiplicity :
@@ -317,14 +321,18 @@ Subset returns SysML::Subsetting:
 /* CONNECTORS */
 
 ConnectorDefinition returns SysML::Connector:	 
-	( ( ( name = Name )? ( ':' association = [SysML::Association | QualifiedName] )? 'is')?
+	( ( ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )? 'is')?
 		  connectorEnd += ConnectorEnd 'to' connectorEnd += ConnectorEnd
-	| ( name = Name )? ( ':' association = [SysML::Association | QualifiedName] )?
+	| ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )?
 	  '(' connectorEnd += ConnectorEnd ',' connectorEnd += ConnectorEnd
 	      ( ',' connectorEnd += ConnectorEnd )*
 	  ')'
 	)
 	CategoryBody	  
+;
+
+ConnectorTyping returns SysML::FeatureTyping :
+	type = [SysML::Association | QualifiedName]
 ;
 
 ConnectorEnd returns SysML::ConnectorEnd :

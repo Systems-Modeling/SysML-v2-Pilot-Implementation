@@ -96,7 +96,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 */
 	public Feature basicGetRedefiningFeature() {
 		if (redefiningFeature == null) {
-			Element owner = getOwner();
+			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
 				redefiningFeature = (Feature)owner;
 			}

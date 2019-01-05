@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -25,11 +24,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPart <em>Is Part</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
@@ -38,16 +37,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FeatureMembershipImpl extends MembershipImpl implements FeatureMembership {
-	/**
-	 * The cached value of the '{@link #getMemberFeature() <em>Member Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMemberFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature memberFeature;
-
 	/**
 	 * The cached value of the '{@link #getOwningCategory() <em>Owning Category</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -107,6 +96,16 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMemberFeature() <em>Member Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature memberFeature;
 
 	/**
 	 * The default value of the '{@link #isPart() <em>Is Part</em>}' attribute.
@@ -230,12 +229,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		memberFeature = newMemberFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE, oldMemberFeature, memberFeature));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedMemberFeature != null && ownedMemberFeature != newMemberFeature) {
-				setOwnedMemberFeature(null);
-			}
-		}
 	}
 
 	/**
@@ -355,18 +348,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Category getOwningCategory() {
-		if (owningCategory != null && owningCategory.eIsProxy()) {
-			InternalEObject oldOwningCategory = (InternalEObject)owningCategory;
-			owningCategory = (Category)eResolveProxy(oldOwningCategory);
-			if (owningCategory != oldOwningCategory) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY, oldOwningCategory, owningCategory));
-			}
-		}
-		return owningCategory;
+		return basicGetOwningCategory();
 	}
 
 	/**
@@ -375,23 +360,17 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated NOT
 	 */
 	public Category basicGetOwningCategory() {
-		org.omg.sysml.lang.sysml.Package owningPackage = super.getMembershipOwningPackage();
+		org.omg.sysml.lang.sysml.Package owningPackage = getMembershipOwningPackage();
 		return owningPackage instanceof Category? (Category)owningPackage: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public NotificationChain basicSetOwningCategory(Category newOwningCategory, NotificationChain msgs) {
-		Category oldOwningCategory = owningCategory;
-		owningCategory = newOwningCategory;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY, oldOwningCategory, newOwningCategory);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return null;
 	}
 
 	/**
@@ -400,16 +379,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated NOT
 	 */
 	public void setOwningCategory(Category newOwningCategory) {
-		this.setMembershipOwningPackage(newOwningCategory);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningCategory() {
-		return owningCategory != null;
+		
 	}
 
 	/**
@@ -432,14 +402,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, oldOwnedMemberFeature, newOwnedMemberFeature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedMemberFeature != null) {
-				if (newOwnedMemberFeature != memberFeature) {
-					setMemberFeature(newOwnedMemberFeature);
-				}
-			}
 		}
 		return msgs;
 	}
@@ -516,9 +478,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
-				if (resolve) return getMemberFeature();
-				return basicGetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
 				if (resolve) return getOwningCategory();
 				return basicGetOwningCategory();
@@ -528,6 +487,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isDerived();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly();
+			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
+				if (resolve) return getMemberFeature();
+				return basicGetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -546,9 +508,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
-				setMemberFeature((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
 				setOwningCategory((Category)newValue);
 				return;
@@ -560,6 +519,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
+				setMemberFeature((Feature)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart((Boolean)newValue);
@@ -582,9 +544,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
-				setMemberFeature((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
 				setOwningCategory((Category)null);
 				return;
@@ -596,6 +555,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
+				setMemberFeature((Feature)null);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart(IS_PART_EDEFAULT);
@@ -618,22 +580,20 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
-				return isSetMemberFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				return isSetMembershipOwningPackage();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
-				return isSetOwningCategory();
+				return owningCategory != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				return isSetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
+				return isSetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart != IS_PART_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -666,49 +626,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		result.append(direction);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
-		return getOwningCategory();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage, NotificationChain msgs) {
-		if (newMembershipOwningPackage != null && !(newMembershipOwningPackage instanceof Category)) {
-			throw new IllegalArgumentException("newMembershipOwningPackage must be an instance of Category");
-		}
-		return basicSetOwningCategory((Category) newMembershipOwningPackage, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
-		if (newMembershipOwningPackage != null && !(newMembershipOwningPackage instanceof Category)) {
-			throw new IllegalArgumentException("newMembershipOwningPackage must be an instance of Category");
-		}
-		setOwningCategory((Category) newMembershipOwningPackage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMembershipOwningPackage() {
-  		return false;
 	}
 
 	/**

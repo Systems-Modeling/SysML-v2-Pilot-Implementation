@@ -180,12 +180,14 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Category> getType() {
-		// TODO: implement this method to return the 'Type' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
+		for (FeatureTyping typing: getTyping()) {
+			types.add(typing.getType());
+		}
+		return types;
 	}
 
 	/**
@@ -472,25 +474,30 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Initialize the Feature typing with any owned FeatureTypings.
 	 */
 	public EList<FeatureTyping> getTyping() {
-		if (typing == null) {
-			typing = new EObjectWithInverseResolvingEList<FeatureTyping>(FeatureTyping.class, this, SysMLPackage.FEATURE__TYPING, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE);
+		if (typing == null || typing.isEmpty()) {
+			EList<FeatureTyping> typing = getTypingGen();
+			for (Relationship relationship: getOwnedRelationship()) {
+				if (relationship instanceof FeatureTyping) {
+					typing.add((FeatureTyping)relationship);
+				}
+			}
 		}
-		return typing;
+		return getTypingGen();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void setMultiplicity(String newMultiplicity) {
-		// TODO Implement Feature.setMultiplicity()?
-		throw new UnsupportedOperationException();
+	public EList<FeatureTyping> getTypingGen() {
+		if (typing == null) {
+			typing = new EObjectWithInverseResolvingEList<FeatureTyping>(FeatureTyping.class, this, SysMLPackage.FEATURE__TYPING, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE);
+		}
+		return typing;
 	}
 
 	/**
@@ -511,12 +518,26 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		this.setIsUnique(!newIsNonunique);
 	}
 	
-	// Additional redefinitions
+	// Additional redefinitions and subsets
 
 	@Override
 	public Membership getOwningMembership() {
 		Membership owningFeatureMembership = getOwningFeatureMembership();
 		return owningFeatureMembership != null? owningFeatureMembership: super.getOwningMembership();
+	}
+	
+	@Override
+	public EList<Relationship> getAllOwnedRelationships() {
+		EList<Relationship> ownedRelationships = super.getAllOwnedRelationships();
+		Multiplicity multiplicity = getMultiplicity();
+		if (multiplicity != null) {
+			ownedRelationships.add(multiplicity);
+		}
+		FeatureValue valuation = getValuation();
+		if (valuation != null) {
+			ownedRelationships.add(valuation);
+		}
+		return ownedRelationships;
 	}
 	
 	/**
@@ -531,12 +552,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 			FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
 			if (owningFeatureMembership != null && owningFeatureMembership != newOwningMembership) {
 				setOwningFeatureMembership(null);
-			}
-			if (newOwningMembership != null) {
-				Relationship owningRelationship = getOwningRelationship();
-				if (newOwningMembership != owningRelationship) {
-					setOwningRelationship(newOwningMembership);
-				}
 			}
 		}
 		return msgs;

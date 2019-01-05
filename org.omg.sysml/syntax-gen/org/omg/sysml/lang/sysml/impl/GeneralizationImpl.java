@@ -139,13 +139,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Generalization has a Category as its owner, then use this as the default value for its specific property.
+	 * If the Generalization has a Category as its owningRelatedElement, then use this as the default value for its specific property.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Category basicGetSpecific() {
 		if (specific == null) {
-			Element owner = this.getOwner();
+			Element owner = getOwningRelatedElement();
 			if (owner instanceof Category) {
 				specific = (Category)owner;
 			}
@@ -200,7 +200,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated NOT
 	 */
 	public void setOwningCategory(Category newOwningCategory) {
-		throw new UnsupportedOperationException();
+		if (getSpecific() != newOwningCategory) {
+			setSpecific(newOwningCategory);
+		}
+		setOwningRelatedElement(newOwningCategory);
 	}
 
 	/**
@@ -305,6 +308,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.GENERALIZATION__OWNED_RELATED_ELEMENT};
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -327,6 +340,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		}
 		return source;
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->

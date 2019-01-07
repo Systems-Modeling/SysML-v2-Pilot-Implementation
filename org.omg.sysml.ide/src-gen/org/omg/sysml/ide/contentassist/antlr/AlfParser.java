@@ -64,9 +64,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 					put(grammarAccess.getTupleAccess().getAlternatives(), "rule__Tuple__Alternatives");
 					put(grammarAccess.getLiteralExpressionAccess().getAlternatives(), "rule__LiteralExpression__Alternatives");
-					put(grammarAccess.getRealValueAccess().getAlternatives_0(), "rule__RealValue__Alternatives_0");
-					put(grammarAccess.getRealValueAccess().getAlternatives_1_0(), "rule__RealValue__Alternatives_1_0");
-					put(grammarAccess.getRealValueAccess().getAlternatives_1_1(), "rule__RealValue__Alternatives_1_1");
+					put(grammarAccess.getRealValueAccess().getAlternatives(), "rule__RealValue__Alternatives");
+					put(grammarAccess.getRealValueAccess().getAlternatives_0_2(), "rule__RealValue__Alternatives_0_2");
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getAlternatives(), "rule__UnlimitedNaturalLiteralExpression__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getQualifiedNameAccess().getAlternatives(), "rule__QualifiedName__Alternatives");
@@ -161,10 +160,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2(), "rule__SequenceConstructionExpression__Group_2__0");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2_1(), "rule__SequenceConstructionExpression__Group_2_1__0");
 					put(grammarAccess.getNullLiteralExpressionAccess().getGroup(), "rule__NullLiteralExpression__Group__0");
-					put(grammarAccess.getRealValueAccess().getGroup(), "rule__RealValue__Group__0");
-					put(grammarAccess.getRealValueAccess().getGroup_0_0(), "rule__RealValue__Group_0_0__0");
-					put(grammarAccess.getRealValueAccess().getGroup_0_1(), "rule__RealValue__Group_0_1__0");
-					put(grammarAccess.getRealValueAccess().getGroup_1(), "rule__RealValue__Group_1__0");
+					put(grammarAccess.getRealValueAccess().getGroup_0(), "rule__RealValue__Group_0__0");
 					put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getGroup_1(), "rule__UnlimitedNaturalLiteralExpression__Group_1__0");
 					put(grammarAccess.getColonQualifiedNameAccess().getGroup(), "rule__ColonQualifiedName__Group__0");
 					put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");

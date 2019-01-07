@@ -44,6 +44,10 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subset
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import java.util.HashMap
+import org.eclipse.xtext.util.Strings
+import java.util.List
 
 /**
  * This class contains custom scoping description.
@@ -81,27 +85,33 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 
 	private def void accept(Package rootpack, QualifiedName rootqn, (QualifiedName, Element)=>void visitor) {
-		val visited = newHashSet()
+		//val visited = newHashSet()
+		val newvisited = <Element, HashSet>newHashMap()
 		val queue = newLinkedList(rootpack -> rootqn)
 		
 		while(!queue.empty){
 			val next = queue.pop
 			val pack = next.key
 			val qn = next.value 
-			if (!visited.contains(pack)){
-				visited += pack
+			//if (!visited.contains(pack)){
+				//visited += pack
+				val qns = newvisited.get(pack);
 				pack.ownedMembership.forEach[m|
 					var elementName = m.memberName ?: m.memberElement?.name;
 					if (elementName !== null) {
 						val elementqn = qn.append(elementName)
-						val memberElement = m.memberElement
-						visitor.apply(elementqn, memberElement)
-						if (memberElement instanceof Package) {
-							queue += memberElement -> elementqn
+						System.out.println(elementqn);
+						if(qns === null || !qns.contains(elementqn)){
+							val memberElement = m.memberElement
+							visitor.apply(elementqn, memberElement)
+							newvisited.put(pack, newHashSet(elementqn));
+							if (memberElement instanceof Package) {
+								queue += memberElement -> elementqn
+							}
 						}
 					}
 				]
-			}
+			//}
 		}
 		
 	}
@@ -133,7 +143,60 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			]
 		}
 	}
-
+	private def void gen2(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit, HashMap<QualifiedName, Element> elements) {
+		//??????????val visited = visit
+		if (pack instanceof Package){
+			System.out.println( "---------gen2 pack: " + pack)
+			pack.ownedMembership.forEach[m|
+				if (m.ownedMemberElement?.name !== null) {
+					val memberElement = m.ownedMemberElement
+					memberElement.ownedElement.filter(Generalization).forEach [ eg |
+						var specializesAsText = NodeModelUtils.findNodesForFeature(eg as Generalization, SysMLPackage.Literals.GENERALIZATION__GENERAL);
+						if ( specializesAsText.length !== 0 ){
+							//System.out.println("!" + (eg.eContainer as Class).name + " specializes " + specializesAsText.head.text.trim());
+							var generalQName = QualifiedName.create(Strings.split(specializesAsText.head.text.trim(), '::'))
+							//System.out.println(generalQName);
+							var newElements = getInherited(generalQName.toString(), elements, (eg.eContainer as Class).name ) //A's append to B
+							elements.putAll(newElements)	
+						}
+					]
+				}
+			]
+			System.out.println("pack's owned import");
+			pack.ownedImport.forEach [ e | 
+				System.out.println("e: " + e)
+				if (e.importedPackage?.name !== null) {
+					System.out.println("owningNamespace: " + e.importedPackage.owningNamespace)
+					e.importedPackage.ownedMembership.forEach[m|
+						if (m.ownedMemberElement?.name !== null) {
+							val memberElement = m.ownedMemberElement
+							memberElement.ownedElement.filter(Generalization).forEach [ eg |
+								var specializesAsText = NodeModelUtils.findNodesForFeature(eg as Generalization, SysMLPackage.Literals.GENERALIZATION__GENERAL);
+								System.out.println("!" + (eg.eContainer as Class).name + " specializes " + specializesAsText.head.text.trim());
+								var generalQName = QualifiedName.create(Strings.split(specializesAsText.head.text.trim(), '::'))
+								System.out.println("generalQname: " + generalQName);
+								var newElements = getInherited(generalQName.toString(), elements, (eg.eContainer as Class).name ) //A's append to B
+								elements.putAll(newElements)
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+	
+	private def HashMap<QualifiedName, Element> getInherited(String qnStartWith, HashMap<QualifiedName, Element> elements, String qnAppendTo){
+		var newElements = newHashMap()
+		var keys = elements.keySet;
+		for ( var i = 0; i < keys.size; i++){
+			if ( keys.get(i).toString().startsWith(qnStartWith + ".")){
+				var suffix = keys.get(i).toString().substring(keys.get(i).toString().indexOf(qnStartWith + ".") + (qnStartWith.length+ 1), keys.get(i).toString().length);
+				var value = elements.get(keys.get(i))
+				newElements.put(QualifiedName.create(qnAppendTo).append(suffix), value)
+			}
+		}
+		return newElements	
+	}
 	private def void imp(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
 		val visited = visit
 		pack.ownedImport.forEach [ e |
@@ -184,9 +247,25 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				scope_Package(pack.parentPackage, reference /*, E */ )
 			}
 			
+		//if repeated until elements size not change - to solve ordering problems
+		var int previousCount;
+		do {
+			previousCount = elements.size();
+			System.out.println(previousCount);
+			pack.gen2(visitor, newHashSet, elements)
+		} while( elements.size !== previousCount)
+		
+		
+		System.out.println("===== start ============");
+		elements.entrySet.forEach[ e | System.out.println(e.key);
+			return
+		]
+		System.out.println("===== end ============");
+		
 		return new SimpleScope(outerscope, elements.entrySet.map [ entry |
 			EObjectDescription.create(entry.key, entry.value)
 		])
+		
 	}
 	
 	private def Package getParentPackage(Package pack) {

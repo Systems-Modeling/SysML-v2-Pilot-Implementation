@@ -109,11 +109,11 @@ class AlfValidator extends AbstractAlfValidator {
 	@Check
 	def checkFeatureVisibility(FeatureTyping typing) {
 		val type = typing.type
-		val featurePack = typing.filePackage
+		val featurePack = typing.owningRelatedElement.filePackage
 		val refPack = type.filePackage
 		if (featurePack !== refPack && !type.isGlobalPublic) {
 			error("Referenced type is not visible in this scope", typing,
-				SysMLPackage.eINSTANCE.feature_ReferencedType, NOT_PUBLIC_FEATURE_TYPE)
+				SysMLPackage.eINSTANCE.featureTyping_Type, NOT_PUBLIC_FEATURE_TYPE)
 		}
 	}
 	public static val NOT_PUBLIC_IMPORT = 'notPublicImport'
@@ -122,7 +122,7 @@ class AlfValidator extends AbstractAlfValidator {
 	def checkImportVisibility(Import imp) {
 		val imported = imp.importedPackage
 		val importedPack = imported.filePackage
-		val importingPack = imp.filePackage
+		val importingPack = imp.owningRelatedElement.filePackage
 		if (importedPack !== importingPack && !imported.isGlobalPublic) {
 			error("Imported package is not visible from this context", imp, SysMLPackage.eINSTANCE.import_ImportedPackage,
 				NOT_PUBLIC_IMPORT)

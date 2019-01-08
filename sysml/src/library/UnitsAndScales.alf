@@ -62,9 +62,10 @@ package UnitsAndScales {
 	class ConversionByConvention specializes UnitConversion { }
 	
 	class ConversionByPrefix specializes UnitConversion {
-		feature prefix: UnitPrefix;
-		// TODO: The conversionFactor should be derived from the prefix -- but this is not yet supported
-		// feature conversionFactor redefines UnitConversion::conversionFactor = this.prefix.conversionFactor;		
+		feature prefix: UnitPrefix {
+			conversionFactor: ScalarValues::Real redefines UnitPrefix::conversionFactor;
+		}
+		feature conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
 	}
 	
 	class UnitPrefix specializes Base::Object {

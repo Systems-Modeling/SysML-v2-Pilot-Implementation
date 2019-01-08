@@ -14,6 +14,5 @@ package Quantities {
 	}
 	
 	// Quantity is defined as a self-standing feature
-	// TODO: Add capability to specialize a feature -- will appear when KerML M2 Feature specializes Category
-	feature Quantity: QuantityValue; // specializes Base::AnyFeature
+	feature Quantity: QuantityValue;
 }

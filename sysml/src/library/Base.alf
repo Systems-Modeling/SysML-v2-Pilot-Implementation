@@ -9,11 +9,9 @@ package Base {
 	 * Second level basic types.
 	 * Object represents a class of concepts with reference identity.
 	 * Value represents a class of concepts with value identity.
-	 * AnyFeature is the top generalization of feature.
 	 */
 	abstract class Object specializes Anything { }
 	abstract class Value specializes Anything { }
-	feature AnyFeature: Anything[0..*] { }
 
 	abstract class Enumeration specializes Value { }
 	

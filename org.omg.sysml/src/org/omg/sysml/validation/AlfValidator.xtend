@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,9 +19,9 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
- *  Ed Seidewitz
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.validation
@@ -29,12 +29,13 @@ package org.omg.sysml.validation
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.Superclassing
+import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.FeatureTyping
 
 /**
  * This class contains custom validation rules. 
@@ -53,7 +54,7 @@ class AlfValidator extends AbstractAlfValidator {
 		return true
 	}
 
-	public static val NOT_PUBLIC_MEMBERSHIP = 'notPublicImport'
+	public static val NOT_PUBLIC_MEMBERSHIP = 'notPublicMembership'
 
 	protected def EObject filePackage(Element e) {
 		var pack = e
@@ -68,7 +69,7 @@ class AlfValidator extends AbstractAlfValidator {
 		val elem = membership.memberElement
 		if (elem !== membership.ownedMemberElement) {
 			val elemPack = elem.filePackage
-			val membershipPack = membership.filePackage
+			val membershipPack = membership.membershipOwningPackage.filePackage
 			if (membership.memberElement !== null && elemPack !== membershipPack &&
 				!membership.memberElement.isGlobalPublic) {
 				error("Referenced element is not visible in this scope", membership, SysMLPackage.eINSTANCE.membership_MemberElement,
@@ -77,32 +78,43 @@ class AlfValidator extends AbstractAlfValidator {
 		}
 	}
 
-	public static val NOT_PUBLIC_INHERITANCE = 'notPublicImport'
+	public static val NOT_PUBLIC_SUPERCLASS = 'notPublicSuperclass'
 
 	@Check
-	def checkInheritanceVisibility(Generalization gen) {
-		val ownerr = gen.owningRelatedElement
+	def checkInheritanceVisibility(Superclassing sup) {
+		val ownerr = sup.owningRelatedElement
 		val ownerrPack = ownerr.filePackage
-		val generalPack = gen.general.filePackage
-		if (ownerrPack !== generalPack && !gen.general.isGlobalPublic) {
-			error("Inherited import is not visible in this scope", gen, SysMLPackage.eINSTANCE.generalization_General,
-				NOT_PUBLIC_INHERITANCE)
+		val superPack = sup.superclass.filePackage
+		if (ownerrPack !== superPack && !sup.superclass.isGlobalPublic) {
+			error("Superclass is not visible in this scope", sup, SysMLPackage.eINSTANCE.superclassing_Superclass,
+				org.omg.sysml.validation.AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		}
 	}
 
-	public static val NOT_PUBLIC_FEATURE_TYPE = 'notPublicFeature'
+	public static val NOT_PUBLIC_FEATURE = 'notPublicFeature'
 
 	@Check
-	def checkFeatureVisibility(Feature feature) {
-		val refs = feature.type.toSet
-		val featurePack = feature.filePackage
-		refs.forEach [ e |
-			val refPack = e.filePackage
-			if (featurePack !== refPack && !e.isGlobalPublic) {
-				error("Referenced type is not visible in this scope", feature,
-					SysMLPackage.eINSTANCE.feature_ReferencedType, NOT_PUBLIC_FEATURE_TYPE)
-			}
-		]
+	def checkSubsettingVisibility(Subsetting sub) {
+		val ownerr = sub.owningRelatedElement
+		val ownerrPack = ownerr.filePackage
+		val featurePack = sub.subsettedFeature.filePackage
+		if (ownerrPack !== featurePack && !sub.subsettedFeature.isGlobalPublic) {
+			error("Subsetted/redefined feature is not visible in this scope", sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature,
+				org.omg.sysml.validation.AlfValidator.NOT_PUBLIC_SUPERCLASS)
+		}
+	}
+
+	public static val NOT_PUBLIC_FEATURE_TYPE = 'notPublicType'
+
+	@Check
+	def checkFeatureVisibility(FeatureTyping typing) {
+		val type = typing.type
+		val featurePack = typing.filePackage
+		val refPack = type.filePackage
+		if (featurePack !== refPack && !type.isGlobalPublic) {
+			error("Referenced type is not visible in this scope", typing,
+				SysMLPackage.eINSTANCE.feature_ReferencedType, NOT_PUBLIC_FEATURE_TYPE)
+		}
 	}
 	public static val NOT_PUBLIC_IMPORT = 'notPublicImport'
 

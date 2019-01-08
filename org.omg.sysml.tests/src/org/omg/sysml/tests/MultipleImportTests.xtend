@@ -118,8 +118,8 @@ class MultipleImportTests {
 		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.element, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.category, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		Assert.assertTrue(result.eResource.errors.size == 2)
 	}
 
@@ -174,8 +174,8 @@ class MultipleImportTests {
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		Assert.assertTrue(result.eResource.errors.size == 2)
 	}
 

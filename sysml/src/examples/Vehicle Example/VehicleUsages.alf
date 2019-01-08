@@ -10,8 +10,8 @@ package VehicleUsages {
 	 
 	'N・m': VehicleDefinitions::TorqueUnit = N * m;
 	
-	T1: Torque = 10.0@['N・m']; // Torque(10.0, 'N・m')
-	T2: Torque = 20.0@['N・m']; // Torque(20.0, 'N・m')
+	T1: torque = 10.0@['N・m']; // torque(10.0, 'N・m')
+	T2: torque = 20.0@['N・m']; // torque(20.0, 'N・m')
 	
 	/* PARTS */
 	
@@ -26,7 +26,7 @@ package VehicleUsages {
 	}
 
 	/** Basic Vehicle configuration showing a part hierarchy. **/
-	vehicle_C1: Vehicle {
+	vehicle_C1: torque {
 		part frontAxleAssembly: AxleAssembly {
 			part frontWheel[2] redefines narrowRimWheel {
 				part lugbolt[4] redefines narrowRimWheel::lugbolt {

@@ -267,8 +267,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedImport+=PackageImport? 
-	 *         (ownedMembership+=ElementImport ownedImport+=PackageImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -393,8 +392,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedImport+=PackageImport? 
-	 *         (ownedMembership+=ElementImport ownedImport+=PackageImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -472,8 +470,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedImport+=PackageImport? 
-	 *         (ownedMembership+=ElementImport ownedImport+=PackageImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 

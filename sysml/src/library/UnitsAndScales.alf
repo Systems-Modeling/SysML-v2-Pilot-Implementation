@@ -1,0 +1,165 @@
+package UnitsAndScales {
+
+	/*
+	 * Top level representation of measurement scale
+	 * 
+	 * A MeasurementScale can have zero or more scaleValueDefinition that define 
+	 */
+	abstract class MeasurementScale specializes Base::Object {
+		feature name: ScalarValues::String; 
+		part scaleValueDefinition: ScaleValueDefinition[0..*];
+	}
+	
+	/*
+	 * Representation of a measurement unit
+	 * 
+	 * Note: MeasurementUnit specializes MeasurementScale in order to allow for efficient definition of a ratio scale.
+	 * 
+	 * A MeasurementUnit can be used in two ways:
+	 * 1. Directly as the reference scale in a QuantityValue, which implies that the measurement scale is a ratio scale.
+	 * 2. As the unit feature of a non-ratio scale, see specializations of NonRatioScale.
+	 * 
+	 * A MeasurementUnit specifies one or more UnitPowerFactor 
+	 */
+	abstract class MeasurementUnit specializes MeasurementScale { 
+		feature unitPowerFactor: UnitPowerFactor[1..*];
+		part unitConversion: UnitConversion[0..1];
+	}
+	
+	/*
+	 * Representation of a measurement unit that does not depend on any other measurement unit
+	 */
+	abstract class SimpleUnit specializes MeasurementUnit {
+		feature unitPowerFactor: UnitPowerFactor subsets MeasurementUnit::unitPowerFactor {
+			feature exponent redefines UnitsAndScales::UnitPowerFactor::exponent = 1;			
+		}
+	}
+	
+	/*
+	 * Representation of a measurement unit that does not depend on any other measurement unit
+	 */
+	abstract class DerivedUnit specializes MeasurementUnit {
+	}
+	
+	/*
+	 * Representation of a measurement unit power factor
+	 * 
+	 * Specifies a tuple of a referenced measurement unit and an exponent.
+	 */
+	class UnitPowerFactor specializes Base::Value {
+		feature unit: MeasurementUnit;
+		feature exponent: ScalarValues::Number;
+	}
+	
+	/*
+	 * 
+	 */
+	abstract class UnitConversion specializes Base::Object {
+		feature referenceUnit: MeasurementUnit;
+		feature conversionFactor: ScalarValues::Number;
+	}
+	
+	class ConversionByConvention specializes UnitConversion { }
+	
+	class ConversionByPrefix specializes UnitConversion {
+		feature prefix: UnitPrefix {
+			conversionFactor: ScalarValues::Real redefines UnitPrefix::conversionFactor;
+		}
+		feature conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
+	}
+	
+	class UnitPrefix specializes Base::Object {
+		feature name: ScalarValues::String;
+		feature symbol: ScalarValues::String;
+		feature conversionFactor: ScalarValues::Real;
+	}
+	
+	abstract class ConversionBasedUnit specializes MeasurementUnit {
+		feature conversionFactor: ScalarValues::Number;
+		feature unit: MeasurementUnit;
+	}
+		
+	/*
+	 * Representation of a non-ratio measurement scale as opposed to a ratio measurement scale.
+	 * 
+	 * A ratio scale is implied by direct use of a MeasurementUnit as the scale in a QuantityValue.
+	 */
+	abstract class NonRatioScale {
+		feature unit: MeasurementUnit;
+		part scaleValueMapping: ScaleValueMapping[0..1];	
+	}
+	
+	/*
+	 * Representation of an ordinal measurement scale.
+	 */
+	class OrdinalScale specializes NonRatioScale { }
+	
+	/*
+	 * Representation of an interval measurement scale.
+	 * 
+	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see NonRatioScale.
+	 */
+	class IntervalScale specializes NonRatioScale { }
+	
+	/*
+	 * Representation of a ratio measurement scale with a periodic cycle
+	 * 
+	 * Note: The magnitude of the periodic cycle is defined by the modulus of the scale.
+	 * Example: Planar angle with modulus 360 degree, therefore on such a cyclic ration scale 
+	 * an angle of 450 degree is equivalent to an angle of 90 degree, and -60 degree is equivalent to 300 degree.
+	 */
+	class CyclicRatioScale specializes NonRatioScale { 
+		feature modulus: ScalarValues::Number;
+	}
+
+	/*
+	 * Representation of a logarithmic measurement scale
+	 * 
+	 * The magnitude v of a ratio quantity value expressed on a logarithmic scale 
+	 * for a magnitude x of a quantity value expressed on a ratio scale is computed as follows:
+	 *   v = f · log_base( (x / x_ref )^a )
+     * where:
+	 *   f is a multiplication factor,
+     *   log_base is the log function for the given logarithm base,
+     *   x is the actual quantity,
+     *   x_ref is a reference quantity,
+     *   a is an exponent.
+	 */
+	class LogarithmicScale specializes NonRatioScale {
+		feature logarithmBase: ScalarValues::Number;
+		feature factor: ScalarValues::Number;
+		feature exponent: ScalarValues::Number;
+		feature referenceQuantity: Quantities::QuantityValue[0..1];
+	}
+	
+	/*
+	 * Representation of the mapping of equivalent quantity values expressed on two different measurement scales
+	 * 
+	 * Example: The mapping between 273.16 K on kelvin ratio scale and 0.01 degree Celsius on the celsius interval scale
+	 * would specify a referenceScaleValue referencing the ScaleValueDefinition (273.16, "absolute thermodynamic temperature of the triple point of water") of the kelvin ratio scale
+	 * and specify a mappedScaleValue referencing the ScaleValueDefinition (0.01, "absolute thermodynamic temperature of the triple point of water") of the celsius interval scale.
+	 */
+	class ScaleValueMapping specializes Base::Object {
+		feature referenceScaleValue: ScaleValueDefinition;	
+		feature mappedScaleValue: ScaleValueDefinition;
+	}
+	
+	/*
+	 * Representation of a particular value on a measurement scale
+	 * 
+	 * Typically such a particular value is defined by convention.
+	 * Example: A ScaleValueDefinition (273.16, "absolute temperature of the triple point of water") expressed as part of of the kelvin ratio scale
+	 */
+	class ScaleValueDefinition specializes Base::Object {
+		feature magnitude: ScalarValues::Number;
+		feature description: ScalarValues::String;
+	}
+	
+	/*
+	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units
+	 */
+	class QuantityDimension specializes Base::Value {
+		// Should be ordered or the order should be derived from an ordered set of base units
+		feature baseUnitPowerFactor: UnitPowerFactor[0..*];
+	}
+}

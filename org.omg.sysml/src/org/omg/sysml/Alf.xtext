@@ -424,7 +424,7 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	(NATURAL_VALUE '.' ( NATURAL_VALUE )? | '.' NATURAL_VALUE) (('e' | 'E') ('+' | '-')? NATURAL_VALUE)?
+	NATURAL_VALUE? '.' ( NATURAL_VALUE | EXP_VALUE ) | EXP_VALUE
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
@@ -463,6 +463,10 @@ terminal NATURAL_VALUE returns Ecore::EInt :
 	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
 	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
 	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+;
+
+terminal EXP_VALUE :
+	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

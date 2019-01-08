@@ -1,5 +1,5 @@
 package 'Parts Interconnection Demo' {
-	import 'Parts Tree'::'Create Generic Hierarchical Structure'::*;
+	import 'Parts Tree Demo'::'Create Generic Hierarchical Structure'::*;
 	
 	/* DEFINITIONS */
 

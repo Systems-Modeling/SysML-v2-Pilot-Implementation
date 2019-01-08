@@ -2865,78 +2865,42 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class RealValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.RealValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final RuleCall cNATURAL_VALUETerminalRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
-		private final RuleCall cNATURAL_VALUETerminalRuleCall_0_0_2 = (RuleCall)cGroup_0_0.eContents().get(2);
-		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final RuleCall cNATURAL_VALUETerminalRuleCall_0_1_1 = (RuleCall)cGroup_0_1.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cEKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cEKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
-		private final Keyword cPlusSignKeyword_1_1_0 = (Keyword)cAlternatives_1_1.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1_1_1 = (Keyword)cAlternatives_1_1.eContents().get(1);
-		private final RuleCall cNATURAL_VALUETerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cNATURAL_VALUETerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Keyword cFullStopKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
+		private final RuleCall cNATURAL_VALUETerminalRuleCall_0_2_0 = (RuleCall)cAlternatives_0_2.eContents().get(0);
+		private final RuleCall cEXP_VALUETerminalRuleCall_0_2_1 = (RuleCall)cAlternatives_0_2.eContents().get(1);
+		private final RuleCall cEXP_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//RealValue Ecore::EDouble:
-		//	(NATURAL_VALUE '.' NATURAL_VALUE? | '.' NATURAL_VALUE) (('e' | 'E') ('+' | '-')? NATURAL_VALUE)?;
+		//	NATURAL_VALUE? '.' (NATURAL_VALUE | EXP_VALUE) | EXP_VALUE;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(NATURAL_VALUE '.' NATURAL_VALUE? | '.' NATURAL_VALUE) (('e' | 'E') ('+' | '-')? NATURAL_VALUE)?
-		public Group getGroup() { return cGroup; }
+		//NATURAL_VALUE? '.' (NATURAL_VALUE | EXP_VALUE) | EXP_VALUE
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//NATURAL_VALUE '.' NATURAL_VALUE? | '.' NATURAL_VALUE
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
-		//NATURAL_VALUE '.' NATURAL_VALUE?
-		public Group getGroup_0_0() { return cGroup_0_0; }
-		
-		//NATURAL_VALUE
-		public RuleCall getNATURAL_VALUETerminalRuleCall_0_0_0() { return cNATURAL_VALUETerminalRuleCall_0_0_0; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_0_0_1() { return cFullStopKeyword_0_0_1; }
+		//NATURAL_VALUE? '.' (NATURAL_VALUE | EXP_VALUE)
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//NATURAL_VALUE?
-		public RuleCall getNATURAL_VALUETerminalRuleCall_0_0_2() { return cNATURAL_VALUETerminalRuleCall_0_0_2; }
-		
-		//'.' NATURAL_VALUE
-		public Group getGroup_0_1() { return cGroup_0_1; }
+		public RuleCall getNATURAL_VALUETerminalRuleCall_0_0() { return cNATURAL_VALUETerminalRuleCall_0_0; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_0_1_0() { return cFullStopKeyword_0_1_0; }
+		public Keyword getFullStopKeyword_0_1() { return cFullStopKeyword_0_1; }
+		
+		//NATURAL_VALUE | EXP_VALUE
+		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
 		
 		//NATURAL_VALUE
-		public RuleCall getNATURAL_VALUETerminalRuleCall_0_1_1() { return cNATURAL_VALUETerminalRuleCall_0_1_1; }
+		public RuleCall getNATURAL_VALUETerminalRuleCall_0_2_0() { return cNATURAL_VALUETerminalRuleCall_0_2_0; }
 		
-		//(('e' | 'E') ('+' | '-')? NATURAL_VALUE)?
-		public Group getGroup_1() { return cGroup_1; }
+		//EXP_VALUE
+		public RuleCall getEXP_VALUETerminalRuleCall_0_2_1() { return cEXP_VALUETerminalRuleCall_0_2_1; }
 		
-		//'e' | 'E'
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-		
-		//'e'
-		public Keyword getEKeyword_1_0_0() { return cEKeyword_1_0_0; }
-		
-		//'E'
-		public Keyword getEKeyword_1_0_1() { return cEKeyword_1_0_1; }
-		
-		//('+' | '-')?
-		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
-		
-		//'+'
-		public Keyword getPlusSignKeyword_1_1_0() { return cPlusSignKeyword_1_1_0; }
-		
-		//'-'
-		public Keyword getHyphenMinusKeyword_1_1_1() { return cHyphenMinusKeyword_1_1_1; }
-		
-		//NATURAL_VALUE
-		public RuleCall getNATURAL_VALUETerminalRuleCall_1_2() { return cNATURAL_VALUETerminalRuleCall_1_2; }
+		//EXP_VALUE
+		public RuleCall getEXP_VALUETerminalRuleCall_1() { return cEXP_VALUETerminalRuleCall_1; }
 	}
 	public class NaturalLiteralExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NaturalLiteralExpression");
@@ -3263,6 +3227,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final DotQualifiedNameElements pDotQualifiedName;
 	private final TerminalRule tBOOLEAN_VALUE;
 	private final TerminalRule tNATURAL_VALUE;
+	private final TerminalRule tEXP_VALUE;
 	private final TerminalRule tID;
 	private final TerminalRule tUNRESTRICTED_NAME;
 	private final TerminalRule tSTRING_VALUE;
@@ -3358,6 +3323,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDotQualifiedName = new DotQualifiedNameElements();
 		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BOOLEAN_VALUE");
 		this.tNATURAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NATURAL_VALUE");
+		this.tEXP_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.EXP_VALUE");
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ID");
 		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UNRESTRICTED_NAME");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.STRING_VALUE");
@@ -4161,7 +4127,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RealValue Ecore::EDouble:
-	//	(NATURAL_VALUE '.' NATURAL_VALUE? | '.' NATURAL_VALUE) (('e' | 'E') ('+' | '-')? NATURAL_VALUE)?;
+	//	NATURAL_VALUE? '.' (NATURAL_VALUE | EXP_VALUE) | EXP_VALUE;
 	public RealValueElements getRealValueAccess() {
 		return pRealValue;
 	}
@@ -4241,6 +4207,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
 	public TerminalRule getNATURAL_VALUERule() {
 		return tNATURAL_VALUE;
+	}
+	
+	//terminal EXP_VALUE:
+	//	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE;
+	public TerminalRule getEXP_VALUERule() {
+		return tEXP_VALUE;
 	}
 	
 	//terminal ID:

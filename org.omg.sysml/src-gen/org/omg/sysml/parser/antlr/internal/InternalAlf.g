@@ -4743,74 +4743,40 @@ ruleRealValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 					$current.merge(this_NATURAL_VALUE_0);
 				}
 				{
-					newLeafNode(this_NATURAL_VALUE_0, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_0_0());
+					newLeafNode(this_NATURAL_VALUE_0, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_0());
 				}
-				kw='.'
-				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_0_1());
-				}
-				(
-					this_NATURAL_VALUE_2=RULE_NATURAL_VALUE
-					{
-						$current.merge(this_NATURAL_VALUE_2);
-					}
-					{
-						newLeafNode(this_NATURAL_VALUE_2, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_0_2());
-					}
-				)?
-			)
-			    |
+			)?
+			kw='.'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_1());
+			}
 			(
-				kw='.'
+				this_NATURAL_VALUE_2=RULE_NATURAL_VALUE
 				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_1_0());
-				}
-				this_NATURAL_VALUE_4=RULE_NATURAL_VALUE
-				{
-					$current.merge(this_NATURAL_VALUE_4);
+					$current.merge(this_NATURAL_VALUE_2);
 				}
 				{
-					newLeafNode(this_NATURAL_VALUE_4, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_1_1());
+					newLeafNode(this_NATURAL_VALUE_2, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_2_0());
+				}
+				    |
+				this_EXP_VALUE_3=RULE_EXP_VALUE
+				{
+					$current.merge(this_EXP_VALUE_3);
+				}
+				{
+					newLeafNode(this_EXP_VALUE_3, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_0_2_1());
 				}
 			)
 		)
-		(
-			(
-				kw='e'
-				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getEKeyword_1_0_0());
-				}
-				    |
-				kw='E'
-				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getEKeyword_1_0_1());
-				}
-			)
-			(
-				kw='+'
-				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getPlusSignKeyword_1_1_0());
-				}
-				    |
-				kw='-'
-				{
-					$current.merge(kw);
-					newLeafNode(kw, grammarAccess.getRealValueAccess().getHyphenMinusKeyword_1_1_1());
-				}
-			)?
-			this_NATURAL_VALUE_9=RULE_NATURAL_VALUE
-			{
-				$current.merge(this_NATURAL_VALUE_9);
-			}
-			{
-				newLeafNode(this_NATURAL_VALUE_9, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_1_2());
-			}
-		)?
+		    |
+		this_EXP_VALUE_4=RULE_EXP_VALUE
+		{
+			$current.merge(this_EXP_VALUE_4);
+		}
+		{
+			newLeafNode(this_EXP_VALUE_4, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_1());
+		}
 	)
 ;
 
@@ -5175,6 +5141,8 @@ ruleFeatureDirection returns [Enumerator current=null]
 RULE_BOOLEAN_VALUE : ('true'|'false');
 
 RULE_NATURAL_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
+
+RULE_EXP_VALUE : RULE_NATURAL_VALUE ('e'|'E') ('+'|'-')? RULE_NATURAL_VALUE;
 
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -1,5 +1,5 @@
 package 'Parts Interconnection Demo' {
-	import 'Parts Tree'::'Create Generic Hierarchical Structure'::*;
+	import 'Parts Tree Demo'::'Create Generic Hierarchical Structure'::*;
 	
 	/* DEFINITIONS */
 
@@ -50,8 +50,8 @@ package 'Parts Interconnection Demo' {
 	}
 	
 	assoc DriveshaftInterface {
-		end port shaftPort_a: ShaftPort_a;
-		end port shaftPort_d: ShaftPort_d;
+		port shaftPort_a: ShaftPort_a;
+		port shaftPort_d: ShaftPort_d;
 		
 		part driveShaft: Driveshaft {
 			port shaftPort_b: ShaftPort_b;

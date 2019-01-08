@@ -5,17 +5,11 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -26,7 +20,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getSourceOutputFeature <em>Source Output Feature</em>}</li>
@@ -35,16 +28,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
-	/**
-	 * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehavior()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Behavior> behavior;
-
 	/**
 	 * The cached value of the '{@link #getItemType() <em>Item Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -99,27 +82,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Behavior> getBehavior() {
-		if (behavior == null) {
-			behavior = new EObjectResolvingEList<Behavior>(Behavior.class, this, SysMLPackage.ITEM_FLOW__BEHAVIOR);
-		}
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-		return behavior != null && !behavior.isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
 		if (itemType == null) {
 			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
@@ -159,8 +121,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
-				return getBehavior();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return getItemType();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -180,10 +140,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
-				getBehavior().clear();
-				getBehavior().addAll((Collection<? extends Behavior>)newValue);
-				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
 				getItemType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
@@ -208,9 +164,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
-				getBehavior().clear();
-				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
 				return;
@@ -232,10 +185,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_FLOW__TYPE:
-				return isSetType();
-			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
-				return isSetBehavior();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return itemType != null && !itemType.isEmpty();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -244,62 +193,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return sourceOutputFeature != null && !sourceOutputFeature.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Step.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.ITEM_FLOW__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Step.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.ITEM_FLOW__BEHAVIOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Category> getType() {
-		EList<Category> type = new UniqueEList<Category>();
-		Association association = getAssociation();
-		if (association != null) {
-			type.add(association);
-		}
-		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 } //ItemFlowImpl

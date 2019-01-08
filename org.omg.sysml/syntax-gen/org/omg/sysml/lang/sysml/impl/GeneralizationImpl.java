@@ -22,24 +22,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningCategory <em>Owning Category</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GeneralizationImpl extends RelationshipImpl implements Generalization {
-	/**
-	 * The cached value of the '{@link #getGeneral() <em>General</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeneral()
-	 * @generated
-	 * @ordered
-	 */
-	protected Category general;
-
 	/**
 	 * The cached value of the '{@link #getSpecific() <em>Specific</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -49,6 +39,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @ordered
 	 */
 	protected Category specific;
+
+	/**
+	 * The cached value of the '{@link #getGeneral() <em>General</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGeneral()
+	 * @generated
+	 * @ordered
+	 */
+	protected Category general;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,13 +139,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Generalization has a Category as its owner, then use this as the default value for its specific property.
+	 * If the Generalization has a Category as its owningRelatedElement, then use this as the default value for its specific property.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Category basicGetSpecific() {
 		if (specific == null) {
-			Element owner = this.getOwner();
+			Element owner = getOwningRelatedElement();
 			if (owner instanceof Category) {
 				specific = (Category)owner;
 			}
@@ -200,7 +200,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated NOT
 	 */
 	public void setOwningCategory(Category newOwningCategory) {
-		throw new UnsupportedOperationException();
+		if (getSpecific() != newOwningCategory) {
+			setSpecific(newOwningCategory);
+		}
+		setOwningRelatedElement(newOwningCategory);
 	}
 
 	/**
@@ -211,12 +214,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__GENERAL:
-				if (resolve) return getGeneral();
-				return basicGetGeneral();
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				if (resolve) return getSpecific();
 				return basicGetSpecific();
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				if (resolve) return getGeneral();
+				return basicGetGeneral();
 			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
 				if (resolve) return getOwningCategory();
 				return basicGetOwningCategory();
@@ -232,11 +235,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__GENERAL:
-				setGeneral((Category)newValue);
-				return;
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Category)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				setGeneral((Category)newValue);
 				return;
 			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
 				setOwningCategory((Category)newValue);
@@ -253,11 +256,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__GENERAL:
-				setGeneral((Category)null);
-				return;
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Category)null);
+				return;
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				setGeneral((Category)null);
 				return;
 			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
 				setOwningCategory((Category)null);
@@ -274,14 +277,14 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__GENERAL:
-				return isSetGeneral();
+			case SysMLPackage.GENERALIZATION__SPECIFIC:
+				return isSetSpecific();
 			case SysMLPackage.GENERALIZATION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.GENERALIZATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.GENERALIZATION__SPECIFIC:
-				return isSetSpecific();
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				return isSetGeneral();
 			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
 				return basicGetOwningCategory() != null;
 		}
@@ -303,6 +306,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		}
 		return target;
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.GENERALIZATION__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -327,6 +340,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		}
 		return source;
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->

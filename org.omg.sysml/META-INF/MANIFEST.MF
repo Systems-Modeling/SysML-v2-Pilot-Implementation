@@ -35,8 +35,8 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.lang.sysml,
  org.omg.sysml.lang.sysml.impl,
  org.omg.sysml.lang.sysml.util,
- org.omg.sysml.lang.types.types,
- org.omg.sysml.lang.types.types.impl
+ org.omg.sysml.lang.types,
+ org.omg.sysml.lang.types.impl
 Import-Package: com.ibm.icu.impl.text;version="58.2.0",
  org.apache.commons.logging,
  org.apache.log4j

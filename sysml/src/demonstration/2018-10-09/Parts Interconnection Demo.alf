@@ -50,8 +50,8 @@ package 'Parts Interconnection Demo' {
 	}
 	
 	assoc DriveshaftInterface {
-		port shaftPort_a: ShaftPort_a;
-		port shaftPort_d: ShaftPort_d;
+		end port shaftPort_a: ShaftPort_a;
+		end port shaftPort_d: ShaftPort_d;
 		
 		part driveShaft: Driveshaft {
 			port shaftPort_b: ShaftPort_b;

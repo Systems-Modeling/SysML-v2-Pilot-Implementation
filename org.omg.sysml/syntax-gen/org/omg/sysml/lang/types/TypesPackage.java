@@ -1,6 +1,6 @@
 /**
  */
-package org.omg.sysml.lang.types.types;
+package org.omg.sysml.lang.types;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.omg.sysml.lang.types.types.TypesFactory
+ * @see org.omg.sysml.lang.types.TypesFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='primitiveTypes'"
  * @generated
@@ -37,7 +37,7 @@ public interface TypesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.omg.org/spec/PrimitiveTypes";
+	String eNS_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
 
 	/**
 	 * The package namespace name.
@@ -45,7 +45,7 @@ public interface TypesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "types";
+	String eNS_PREFIX = "primitives";
 
 	/**
 	 * The singleton instance of the package.
@@ -53,13 +53,13 @@ public interface TypesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TypesPackage eINSTANCE = org.omg.sysml.lang.types.types.impl.TypesPackageImpl.init();
+	TypesPackage eINSTANCE = org.omg.sysml.lang.types.impl.TypesPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getBoolean()
+	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getBoolean()
 	 * @generated
 	 */
 	int BOOLEAN = 0;
@@ -68,7 +68,7 @@ public interface TypesPackage extends EPackage {
 	 * The meta object id for the '<em>Integer</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getInteger()
+	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getInteger()
 	 * @generated
 	 */
 	int INTEGER = 1;
@@ -77,7 +77,7 @@ public interface TypesPackage extends EPackage {
 	 * The meta object id for the '<em>Real</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getReal()
+	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getReal()
 	 * @generated
 	 */
 	int REAL = 2;
@@ -86,7 +86,7 @@ public interface TypesPackage extends EPackage {
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getUnlimitedNatural()
+	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
 	int UNLIMITED_NATURAL = 3;
@@ -96,7 +96,7 @@ public interface TypesPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.String
-	 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getString()
+	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getString()
 	 * @generated
 	 */
 	int STRING = 4;
@@ -180,7 +180,7 @@ public interface TypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Boolean</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getBoolean()
+		 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getBoolean()
 		 * @generated
 		 */
 		EDataType BOOLEAN = eINSTANCE.getBoolean();
@@ -189,7 +189,7 @@ public interface TypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Integer</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getInteger()
+		 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getInteger()
 		 * @generated
 		 */
 		EDataType INTEGER = eINSTANCE.getInteger();
@@ -198,7 +198,7 @@ public interface TypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Real</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getReal()
+		 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getReal()
 		 * @generated
 		 */
 		EDataType REAL = eINSTANCE.getReal();
@@ -207,7 +207,7 @@ public interface TypesPackage extends EPackage {
 		 * The meta object literal for the '<em>Unlimited Natural</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getUnlimitedNatural()
+		 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getUnlimitedNatural()
 		 * @generated
 		 */
 		EDataType UNLIMITED_NATURAL = eINSTANCE.getUnlimitedNatural();
@@ -217,7 +217,7 @@ public interface TypesPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.String
-		 * @see org.omg.sysml.lang.types.types.impl.TypesPackageImpl#getString()
+		 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getString()
 		 * @generated
 		 */
 		EDataType STRING = eINSTANCE.getString();

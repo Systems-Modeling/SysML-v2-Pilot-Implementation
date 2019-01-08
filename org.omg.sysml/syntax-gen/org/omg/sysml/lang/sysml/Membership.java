@@ -13,12 +13,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()
@@ -37,7 +37,7 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Member Name</em>' attribute.
 	 * @see #setMemberName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberName()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getMemberName();
@@ -93,7 +93,7 @@ public interface Membership extends Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aliases</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_Aliases()
-	 * @model dataType="org.omg.sysml.lang.types.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getAliases();
@@ -150,7 +150,7 @@ public interface Membership extends Relationship {
 	 * @see #setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership
-	 * @model opposite="ownedMembership" transient="false" ordered="false"
+	 * @model opposite="ownedMembership" required="true" transient="false" ordered="false"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();
@@ -196,7 +196,7 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(Membership other);

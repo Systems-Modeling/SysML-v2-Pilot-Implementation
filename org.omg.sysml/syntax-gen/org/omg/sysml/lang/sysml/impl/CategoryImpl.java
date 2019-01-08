@@ -5,12 +5,16 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -28,10 +32,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#isAbstract <em>Is Abstract</em>}</li>
@@ -40,6 +45,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class CategoryImpl extends PackageImpl implements Category {
+	/**
+	 * The cached value of the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FeatureMembership> ownedFeatureMembership;
+
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,6 +97,29 @@ public class CategoryImpl extends PackageImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Membership> getOwnedMembership() {
+		if (ownedMembership == null) {
+			ownedMembership = new SubsetSupersetEObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.CATEGORY__OWNED_MEMBERSHIP, null, OWNED_MEMBERSHIP_ESUBSETS, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
+		}
+		return ownedMembership;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
@@ -101,10 +139,24 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated NOT
 	 */
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		return new DerivedEObjectEList<FeatureMembership>(
-				FeatureMembership.class, this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, 
-				new int[]{SysMLPackage.PACKAGE__OWNED_MEMBERSHIP});
+		EList<FeatureMembership> featureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				featureMemberships.add(((FeatureMembership)membership));
+			}
+		}
+		return featureMemberships;
 	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_FEATURE_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.CATEGORY__OWNED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,6 +252,39 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_MEMBERSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeatureMembership()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_MEMBERSHIP:
+				return ((InternalEList<?>)getOwnedMembership()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
+				return ((InternalEList<?>)getOwnedFeatureMembership()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -207,10 +292,10 @@ public class CategoryImpl extends PackageImpl implements Category {
 				return getOwnedGeneralization();
 			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
 				return getOwnedFeatureMembership();
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				return getOwnedFeature();
 			case SysMLPackage.CATEGORY__FEATURE:
 				return getFeature();
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				return getOwnedFeature();
 			case SysMLPackage.CATEGORY__INPUT:
 				return getInput();
 			case SysMLPackage.CATEGORY__OUTPUT:
@@ -238,13 +323,13 @@ public class CategoryImpl extends PackageImpl implements Category {
 				getOwnedFeatureMembership().clear();
 				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
 				return;
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.CATEGORY__FEATURE:
 				getFeature().clear();
 				getFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				getOwnedFeature().clear();
+				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CATEGORY__INPUT:
 				getInput().clear();
@@ -275,11 +360,11 @@ public class CategoryImpl extends PackageImpl implements Category {
 			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				return;
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				return;
 			case SysMLPackage.CATEGORY__FEATURE:
 				getFeature().clear();
+				return;
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				getOwnedFeature().clear();
 				return;
 			case SysMLPackage.CATEGORY__INPUT:
 				getInput().clear();
@@ -302,14 +387,16 @@ public class CategoryImpl extends PackageImpl implements Category {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_MEMBERSHIP:
+				return ownedMembership != null && !ownedMembership.isEmpty();
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				return !getOwnedGeneralization().isEmpty();
 			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
-				return !getOwnedFeatureMembership().isEmpty();
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				return !getOwnedFeature().isEmpty();
+				return ownedFeatureMembership != null && !ownedFeatureMembership.isEmpty();
 			case SysMLPackage.CATEGORY__FEATURE:
 				return !getFeature().isEmpty();
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				return !getOwnedFeature().isEmpty();
 			case SysMLPackage.CATEGORY__INPUT:
 				return !getInput().isEmpty();
 			case SysMLPackage.CATEGORY__OUTPUT:

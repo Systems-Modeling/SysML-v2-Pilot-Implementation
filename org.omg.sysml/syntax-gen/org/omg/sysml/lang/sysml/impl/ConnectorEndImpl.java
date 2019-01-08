@@ -13,14 +13,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -31,37 +33,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getLower <em>Lower</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getEnd <em>End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorEndImpl#getConnector <em>Connector</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
-	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression lower;
-
-	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression upper;
-
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -83,6 +65,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	protected Feature end;
 
 	/**
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected Multiplicity multiplicity;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,92 +91,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONNECTOR_END;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getLower() {
-		return lower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLower(Expression newLower, NotificationChain msgs) {
-		Expression oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__LOWER, oldLower, newLower);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLower(Expression newLower) {
-		if (newLower != lower) {
-			NotificationChain msgs = null;
-			if (lower != null)
-				msgs = ((InternalEObject)lower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__LOWER, null, msgs);
-			if (newLower != null)
-				msgs = ((InternalEObject)newLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__LOWER, null, msgs);
-			msgs = basicSetLower(newLower, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__LOWER, newLower, newLower));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getUpper() {
-		return upper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetUpper(Expression newUpper, NotificationChain msgs) {
-		Expression oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__UPPER, oldUpper, newUpper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUpper(Expression newUpper) {
-		if (newUpper != upper) {
-			NotificationChain msgs = null;
-			if (upper != null)
-				msgs = ((InternalEObject)upper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__UPPER, null, msgs);
-			if (newUpper != null)
-				msgs = ((InternalEObject)newUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__UPPER, null, msgs);
-			msgs = basicSetUpper(newUpper, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__UPPER, newUpper, newUpper));
 	}
 
 	/**
@@ -223,15 +129,15 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		feature = newFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__FEATURE, oldFeature, feature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFeature() {
-		return feature != null;
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newFeature != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newFeature)) {
+					target.add(newFeature);
+				}
+			}
+		}
 	}
 
 	/**
@@ -283,6 +189,15 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		end = newEnd;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__END, oldEnd, end));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newEnd != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newEnd)) {
+					target.add(newEnd);
+				}
+			}
+		}
 	}
 
 	/**
@@ -302,6 +217,49 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			getPath(path, start, (Feature)owningNamespace);
 		}
 		path.add(end);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Multiplicity getMultiplicity() {
+		return multiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMultiplicity(Multiplicity newMultiplicity, NotificationChain msgs) {
+		Multiplicity oldMultiplicity = multiplicity;
+		multiplicity = newMultiplicity;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__MULTIPLICITY, oldMultiplicity, newMultiplicity);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplicity(Multiplicity newMultiplicity) {
+		if (newMultiplicity != multiplicity) {
+			NotificationChain msgs = null;
+			if (multiplicity != null)
+				msgs = ((InternalEObject)multiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__MULTIPLICITY, null, msgs);
+			if (newMultiplicity != null)
+				msgs = ((InternalEObject)newMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__MULTIPLICITY, null, msgs);
+			msgs = basicSetMultiplicity(newMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__MULTIPLICITY, newMultiplicity, newMultiplicity));
 	}
 
 	/**
@@ -345,13 +303,16 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__CONNECTOR, newConnector, newConnector));
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConnector() {
-		return getConnector() != null;
+	// Additional subsetting
+	
+	@Override
+	public EList<Relationship> getAllOwnedRelationships() {
+		EList<Relationship> ownedRelationships = super.getAllOwnedRelationships();
+		Multiplicity multiplicity = getMultiplicity();
+		if (multiplicity != null) {
+			ownedRelationships.add(multiplicity);
+		}
+		return ownedRelationships;
 	}
 
 	/**
@@ -378,10 +339,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__LOWER:
-				return basicSetLower(null, msgs);
-			case SysMLPackage.CONNECTOR_END__UPPER:
-				return basicSetUpper(null, msgs);
+			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
+				return basicSetMultiplicity(null, msgs);
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				return basicSetConnector(null, msgs);
 		}
@@ -410,10 +369,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__LOWER:
-				return getLower();
-			case SysMLPackage.CONNECTOR_END__UPPER:
-				return getUpper();
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				if (resolve) return getFeature();
 				return basicGetFeature();
@@ -422,6 +377,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 				return basicGetEnd();
 			case SysMLPackage.CONNECTOR_END__PATH:
 				return getPath();
+			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
+				return getMultiplicity();
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				return getConnector();
 		}
@@ -437,12 +394,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__LOWER:
-				setLower((Expression)newValue);
-				return;
-			case SysMLPackage.CONNECTOR_END__UPPER:
-				setUpper((Expression)newValue);
-				return;
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				setFeature((Feature)newValue);
 				return;
@@ -452,6 +403,9 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			case SysMLPackage.CONNECTOR_END__PATH:
 				getPath().clear();
 				getPath().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
+				setMultiplicity((Multiplicity)newValue);
 				return;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				setConnector((Connector)newValue);
@@ -468,12 +422,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__LOWER:
-				setLower((Expression)null);
-				return;
-			case SysMLPackage.CONNECTOR_END__UPPER:
-				setUpper((Expression)null);
-				return;
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				setFeature((Feature)null);
 				return;
@@ -482,6 +430,9 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 				return;
 			case SysMLPackage.CONNECTOR_END__PATH:
 				getPath().clear();
+				return;
+			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
+				setMultiplicity((Multiplicity)null);
 				return;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
 				setConnector((Connector)null);
@@ -499,21 +450,17 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR_END__TARGET:
-				return isSetTarget();
-			case SysMLPackage.CONNECTOR_END__SOURCE:
-				return isSetSource();
-			case SysMLPackage.CONNECTOR_END__LOWER:
-				return lower != null;
-			case SysMLPackage.CONNECTOR_END__UPPER:
-				return upper != null;
+				return target != null && !target.isEmpty();
 			case SysMLPackage.CONNECTOR_END__FEATURE:
-				return isSetFeature();
+				return feature != null;
 			case SysMLPackage.CONNECTOR_END__END:
 				return end != null;
 			case SysMLPackage.CONNECTOR_END__PATH:
 				return !getPath().isEmpty();
+			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
+				return multiplicity != null;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return isSetConnector();
+				return getConnector() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -535,13 +482,14 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	}
 
 	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getTarget()
 	 * @generated
+	 * @ordered
 	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -556,15 +504,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			source.add(connector);
 		}
 		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //ConnectorEndImpl

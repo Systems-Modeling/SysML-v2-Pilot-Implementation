@@ -1,6 +1,6 @@
 /**
  */
-package org.omg.sysml.lang.types.types;
+package org.omg.sysml.lang.types;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.omg.sysml.lang.types.types.TypesPackage
+ * @see org.omg.sysml.lang.types.TypesPackage
  * @generated
  */
 public interface TypesFactory extends EFactory {
@@ -19,7 +19,7 @@ public interface TypesFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TypesFactory eINSTANCE = org.omg.sysml.lang.types.types.impl.TypesFactoryImpl.init();
+	TypesFactory eINSTANCE = org.omg.sysml.lang.types.impl.TypesFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

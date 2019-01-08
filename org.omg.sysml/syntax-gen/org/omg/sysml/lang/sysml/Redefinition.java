@@ -20,14 +20,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface Redefinition extends Subset {
+public interface Redefinition extends Subsetting {
 	/**
 	 * Returns the value of the '<em><b>Redefining Feature</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Subset#getSubsettingFeature() <em>Subsetting Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettingFeature() <em>Subsetting Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,7 +39,7 @@ public interface Redefinition extends Subset {
 	 * @see #setRedefiningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefiningFeature()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefiningOfRedefinition'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefining'"
 	 * @generated
 	 */
 	Feature getRedefiningFeature();
@@ -60,7 +60,7 @@ public interface Redefinition extends Subset {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Subset#getSubsettedFeature() <em>Subsetted Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettedFeature() <em>Subsetted Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -72,7 +72,7 @@ public interface Redefinition extends Subset {
 	 * @see #setRedefinedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefinedFeature()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefinedOfRedefintion'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefinition'"
 	 * @generated
 	 */
 	Feature getRedefinedFeature();

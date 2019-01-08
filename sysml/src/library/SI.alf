@@ -7,12 +7,12 @@ package SI {
 	 * 
 	 * TODO: Complete SI prefixes
 	 */
-	nano = UnitPrefix(name => "nano", symbol => "n", conversionFactor => 1.0E-9);
-	micro = UnitPrefix(name => "micro", symbol => "μ", conversionFactor => 1.0E-6);
-	milli = UnitPrefix(name => "milli", symbol => "m", conversionFactor => 1.0E-3);
-	kilo = UnitPrefix(name => "kilo", symbol => "k", conversionFactor => 1.0E+3);
-	mega = UnitPrefix(name => "mega", symbol => "M", conversionFactor => 1.0E+6);
-	giga = UnitPrefix(name => "giga", symbol => "G", conversionFactor => 1.0E+9);
+	nano = UnitPrefix(name => "nano", symbol => "n", conversionFactor => 1E-9);
+	micro = UnitPrefix(name => "micro", symbol => "μ", conversionFactor => 1E-6);
+	milli = UnitPrefix(name => "milli", symbol => "m", conversionFactor => 1E-3);
+	kilo = UnitPrefix(name => "kilo", symbol => "k", conversionFactor => 1E3);
+	mega = UnitPrefix(name => "mega", symbol => "M", conversionFactor => 1E6);
+	giga = UnitPrefix(name => "giga", symbol => "G", conversionFactor => 1E9);
 	
 	/*
 	 * SI binary prefixes for multiples - see e.g. https://en.wikipedia.org/wiki/Binary_prefix

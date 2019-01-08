@@ -1,25 +1,76 @@
 package SI {
+	import UnitsAndScales::*;
+	import ISQ::*;
+
+	/*
+	 * SI decimal prefixes for multiples and sub-multiples
+	 * 
+	 * TODO: Should use scientific real number notation for conversionFactor -- but not supported yet
+	 * TODO: Complete SI prefixes
+	 */
+	nano = UnitPrefix(name => "nano", symbol => "n", conversionFactor => 0.000000001);
+	micro = UnitPrefix(name => "micro", symbol => "μ", conversionFactor => 0.000001);
+	milli = UnitPrefix(name => "milli", symbol => "m", conversionFactor => 0.001);
+	kilo = UnitPrefix(name => "kilo", symbol => "k", conversionFactor => 1000.0);
+	mega = UnitPrefix(name => "mega", symbol => "M", conversionFactor => 1000000.0);
+	giga = UnitPrefix(name => "giga", symbol => "G", conversionFactor => 1000000000.0);
 	
-	// Base Units
-	m: 	ISQ::LengthUnit;
-	kg: ISQ::MassUnit;
-	s: 	ISQ::TimeUnit;
-	A: 	ISQ::ElectricCurrentUnit;
-	K: 	ISQ::TemperatureUnit;
-	mol:ISQ::AmountOfSubstanceUnit;
-	cd:	ISQ::LuminousIntensityUnit;
+	/*
+	 * SI binary prefixes for multiples - see e.g. https://en.wikipedia.org/wiki/Binary_prefix
+	 */
+	kibi = UnitPrefix(name => "kibi", symbol => "Ki", conversionFactor => 1024);
+	mebi = UnitPrefix(name => "mebi", symbol => "Mi", conversionFactor => 1024^2);
+	gibi = UnitPrefix(name => "gibi", symbol => "Gi", conversionFactor => 1024^3);
+	tebi = UnitPrefix(name => "tebi", symbol => "Ti", conversionFactor => 1024^4);
+	pebi = UnitPrefix(name => "pebi", symbol => "Pi", conversionFactor => 1024^5);
+	exbi = UnitPrefix(name => "exbi", symbol => "Ei", conversionFactor => 1024^6);
+	zebi = UnitPrefix(name => "zebi", symbol => "Zi", conversionFactor => 1024^7);
+	yobi = UnitPrefix(name => "yobi", symbol => "Yi", conversionFactor => 1024^8);
+	
+	/*
+	 * SI simple units needed before creation of base units
+	 */
+	g = MassUnit(name => "gram");
+
+	/*
+	 * SI base units
+	 */	
+	m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
+	kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
+	s = TimeUnit(name => "second");
+	A = ElectricCurrentUnit(name => "ampere");
+	K = TemperatureUnit(name => "kelvin");
+	mol = AmountOfSubstanceUnit(name => "mol");
+	cd = LuminousIntensityUnit(name => "candela");
 	
 	// Derived Units
-	N: ISQ::ForceUnit = kg * m / s ^ 2;
+	N: ForceUnit = kg * m / s ^ 2;
+	// TODO: Add name assignment like N.name = "newton"; -- Not yet supported
 	/*
-	N: ISQ::ForceUnit = Quantities::DerivedUnit(
-		{ Quantities::MeasurementUnitPowerFactor(kg,1),
-		  Quantities::MeasurementUnitPowerFactor(m,1),
-		  Quantities::MeasurementUnitPowerFactor(s,-2)
+	N: ForceUnit = Quantities::DerivedUnit(
+		{ Quantities::MeasurementUnitPowerFactor(kg, 1),
+		  Quantities::MeasurementUnitPowerFactor(m, 1),
+		  Quantities::MeasurementUnitPowerFactor(s, -2)
 		}
 	);
 	*/
 	
-	//...
-		
+	'm/s': SpeedUnit = m / s;
+	
+	/*
+	 * Examples of conversion based non-standard units 
+	 */
+	min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
+	hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
+
+	/* 
+	 * Examples of additional prefixed units
+	 */
+	km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
+	mN = ForceUnit(name => "milliNewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
+	
+	/*
+	 * Examples of additional more complex derived units
+	 */
+	'km/hr': SpeedUnit = km / hr;
 }

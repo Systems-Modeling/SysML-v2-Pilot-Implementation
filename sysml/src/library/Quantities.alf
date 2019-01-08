@@ -1,25 +1,19 @@
 package Quantities {
 	
-	class Quantity specializes ScalarValues::Number {
-		numericValue: ScalarValues::Number;
-		unit: MeasurementUnit;
+	/*
+	 * Representation of the value of a Quantity
+	 * 
+	 * The value is a tuple of a magnitude (i.e. the mathematical number value) and a reference to a MeasurementScale.
+	 * The scale may directly reference a MeasurementUnit, which implies that the scale is a ratio scale.
+	 * 
+	 * TODO: Consider renaming scale to unitOrScale and MeasurementScale to MeasurementUnitOrScale for clarity.
+	 */
+	abstract class QuantityValue specializes ScalarValues::NumericalValue {
+		magnitude: ScalarValues::Number;
+		scale: UnitsAndScales::MeasurementScale;
 	}
 	
-	abstract class MeasurementUnit specializes Base::Value { }
-	
-	class SimpleUnit specializes MeasurementUnit { }
-	
-	class DerivedUnit specializes MeasurementUnit {
-		unitFactor: MeasurementUnitPowerFactor[1..*];
-	}
-	class MeasurementUnitPowerFactor specializes Base::Value {
-		unit: MeasurementUnit;
-		exponent: ScalarValues::Integer;
-	}
-	
-	abstract class ConversionBasedUnit specializes MeasurementUnit {
-		conversionFactor: ScalarValues::Number;
-		unit: MeasurementUnit;
-	}
-	
+	// Quantity is defined as a self-standing feature
+	// TODO: Add capability to specialize a feature -- will appear when KerML M2 Feature specializes Category
+	feature Quantity: QuantityValue; // specializes Base::AnyFeature
 }

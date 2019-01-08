@@ -5,15 +5,14 @@ package SI {
 	/*
 	 * SI decimal prefixes for multiples and sub-multiples
 	 * 
-	 * TODO: Should use scientific real number notation for conversionFactor -- but not supported yet
 	 * TODO: Complete SI prefixes
 	 */
-	nano = UnitPrefix(name => "nano", symbol => "n", conversionFactor => 0.000000001);
-	micro = UnitPrefix(name => "micro", symbol => "μ", conversionFactor => 0.000001);
-	milli = UnitPrefix(name => "milli", symbol => "m", conversionFactor => 0.001);
-	kilo = UnitPrefix(name => "kilo", symbol => "k", conversionFactor => 1000.0);
-	mega = UnitPrefix(name => "mega", symbol => "M", conversionFactor => 1000000.0);
-	giga = UnitPrefix(name => "giga", symbol => "G", conversionFactor => 1000000000.0);
+	nano = UnitPrefix(name => "nano", symbol => "n", conversionFactor => 1.0E-9);
+	micro = UnitPrefix(name => "micro", symbol => "μ", conversionFactor => 1.0E-6);
+	milli = UnitPrefix(name => "milli", symbol => "m", conversionFactor => 1.0E-3);
+	kilo = UnitPrefix(name => "kilo", symbol => "k", conversionFactor => 1.0E+3);
+	mega = UnitPrefix(name => "mega", symbol => "M", conversionFactor => 1.0E+6);
+	giga = UnitPrefix(name => "giga", symbol => "G", conversionFactor => 1.0E+9);
 	
 	/*
 	 * SI binary prefixes for multiples - see e.g. https://en.wikipedia.org/wiki/Binary_prefix

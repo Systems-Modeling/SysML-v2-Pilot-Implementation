@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import java.util.HashMap
 import org.eclipse.xtext.util.Strings
-import java.util.List
+
 
 /**
  * This class contains custom scoping description.
@@ -86,7 +86,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	private def void accept(Package rootpack, QualifiedName rootqn, (QualifiedName, Element)=>void visitor) {
 		//val visited = newHashSet()
-		val newvisited = <Element, HashSet>newHashMap()
+		val newvisited = <Element, HashSet<QualifiedName>>newHashMap()
 		val queue = newLinkedList(rootpack -> rootqn)
 		
 		while(!queue.empty){
@@ -100,8 +100,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					var elementName = m.memberName ?: m.memberElement?.name;
 					if (elementName !== null) {
 						val elementqn = qn.append(elementName)
-						System.out.println(elementqn);
+						System.out.println(elementqn + " ! " + m.memberElement );
+					
 						if(qns === null || !qns.contains(elementqn)){
+							System.out.print("Y ------")
 							val memberElement = m.memberElement
 							visitor.apply(elementqn, memberElement)
 							newvisited.put(pack, newHashSet(elementqn));
@@ -143,7 +145,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			]
 		}
 	}
-	private def void gen2(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit, HashMap<QualifiedName, Element> elements) {
+	private def void loop2(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit, HashMap<QualifiedName, Element> elements) {
 		//??????????val visited = visit
 		if (pack instanceof Package){
 			System.out.println( "---------gen2 pack: " + pack)
@@ -227,7 +229,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 		val visitor = [ QualifiedName qn, Element el |
 			if (reference.EReferenceType.isInstance(el)) {
-				if (!elements.containsKey(qn)){
+				if (!elements.containsKey(qn) ){
 					elements.put(qn, el)
 				}
 			}
@@ -252,20 +254,30 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		do {
 			previousCount = elements.size();
 			System.out.println(previousCount);
-			pack.gen2(visitor, newHashSet, elements)
+			pack.loop2(visitor, newHashSet, elements)
 		} while( elements.size !== previousCount)
+		
+		if ( pack.eContainer === null){
+			val newElements = <QualifiedName, Element>newHashMap()
+			elements.entrySet.forEach[ e| 
+				if ( !e.key.startsWith(QualifiedName.create(pack.name)))
+					newElements.put(QualifiedName.create().append(pack.name).append(e.key), e.value)
+			]
+			elements.putAll(newElements)	
+		}
 		
 		
 		System.out.println("===== start ============");
-		elements.entrySet.forEach[ e | System.out.println(e.key);
+		elements.entrySet.forEach[ e | System.out.println(e.key + "                             " + e.value);
 			return
 		]
 		System.out.println("===== end ============");
 		
+		
+		
 		return new SimpleScope(outerscope, elements.entrySet.map [ entry |
 			EObjectDescription.create(entry.key, entry.value)
 		])
-		
 	}
 	
 	private def Package getParentPackage(Package pack) {

@@ -4,7 +4,7 @@
 package org.omg.sysml
 
 import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.omg.sysml.scoping.AlfQualifiedNameConverter
+import org.omg.sysml.naming.AlfQualifiedNameConverter
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.

@@ -22,7 +22,7 @@
  *  Balazs Grill
  * 
  *****************************************************************************/
-package org.omg.sysml.scoping
+package org.omg.sysml.naming
 
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName

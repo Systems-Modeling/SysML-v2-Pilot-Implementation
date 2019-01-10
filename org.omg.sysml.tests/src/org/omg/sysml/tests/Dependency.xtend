@@ -53,6 +53,23 @@ class Dependency {
 			}''', rs)
 		return rs
 	}
+	
+	// Basic import file most of the tests use this
+	public def ResourceSetImpl getDependencyOuterPackage2() {
+		val rs = resourceSetProvider.get
+		parseHelper.parse(
+		'''package OuterPackage{
+				class A{
+					class a1{
+						class aa1{}
+					}
+				}
+				class B{
+					feature b: A;
+				}
+			}''', rs)
+		return rs
+	}
 
 	// It's for the multiple import tests
 	public def ResourceSetImpl getDependencyMultipleImport() {

@@ -103,6 +103,30 @@ class ShadowingTest {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	@Test
+	def void testSameNamesGoodCase2() {
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a1{ class a11{}}
+					class a3{}
+				}
+				class A{
+					class a2{}
+				}
+				class C specializes test::B::a2 {
+				}
+				class B specializes A{
+					class b specializes a1::a11{}
+				}
+			}
+		''')
+
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 
 	@Test
 	def void testSameNamesBadCase() {
@@ -243,6 +267,7 @@ class ShadowingTest {
 		// only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		System.out.println(result.eResource.errors.get(0).getMessage())//Couldn't resolve reference to Category 'container::B'.
 	}
 
 	@Test
@@ -261,6 +286,7 @@ class ShadowingTest {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
+		System.out.println(result.eResource.errors.get(0).getMessage())
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 

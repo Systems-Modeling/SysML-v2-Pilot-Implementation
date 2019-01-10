@@ -94,6 +94,28 @@ class MemberNameTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+@Test
+	def void testNamedMemberFromOtherPackage2() {
+		val result = parseHelper.parse('''
+			package test{
+				package P{
+					class A {
+						class AA{
+							class AAA{}
+						}
+					}
+					class A_alias is A;
+				}
+				package P1 is P;
+				feature a: P1::A_alias;
+			}
+		''')
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 
 	@Test
 	def void testNamedMemberFromOtherPackageBadUseage() {
@@ -133,7 +155,27 @@ class MemberNameTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	@Test
+	def void testNamedMemberFromInheritance_2() {
+		val result = parseHelper.parse('''
+			package test{
+				class EE {}
+				class A{
+					class a {}
+					class aa is a;
+				}
+				class B specializes A{
+					feature b: aa;
+					b_alias is b;
+				}
+			}
+		''')
 
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 	@Test
 	def void testMultipleInheritance() {
 		val result = parseHelper.parse('''
@@ -147,6 +189,32 @@ class MemberNameTests {
 				class C specializes B{
 					class c specializes a {}
 				}
+				class D specializes A::a{} 
+				class EE {}
+			}
+		''')
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	@Test
+	def void testMultipleInheritance_2() {
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a {
+						class aa{}
+					}
+				}
+				class B specializes A{
+					class b specializes a {}
+				}
+				class C specializes B{
+					class c specializes a {}
+				}
+				class D specializes A::a{} 
+				class EE {}
 			}
 		''')
 		EcoreUtil2.resolveAll(result)
@@ -169,6 +237,54 @@ class MemberNameTests {
 					class c specializes a {}
 				}
 				class D specializes C::a{}
+			}
+		''')
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+		@Test
+	def void testMultipleInheritance2_2() {
+		val result = parseHelper.parse('''
+			package test{
+				class A{
+					class a {
+						class aa{}
+					}
+				}
+				class B specializes A{
+					class b specializes a {}
+				}
+				class C specializes B{
+					class c specializes a {}
+				}
+				class D specializes C::a{}
+			}
+		''')
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+	
+	def void testMultipleInheritance2x() {
+		val result = parseHelper.parse('''
+			package test{
+				
+				class C specializes B{
+
+					class c specializes a {}
+				}
+				class B specializes A{
+					class b specializes a {}
+				}
+				class A{
+					class a {}
+				}
+				class EE{}
+				class D specializes C::a{}
+				
 			}
 		''')
 		EcoreUtil2.resolveAll(result)

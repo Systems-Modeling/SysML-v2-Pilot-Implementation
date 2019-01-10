@@ -2,14 +2,14 @@ package '1c-Parts Tree Redefinition' {
 	class Vehicle {
 		feature mass;
 	}
-	class AxleAssembly { }
+	class AxleAssembly;
 	class Axle { 
 		feature mass;
 	}
 	class FrontAxle specializes Axle {
 		feature steeringAngle;
 	}
-	class Wheel { }
+	class Wheel;
 	
 	vehicle1: Vehicle {
 		feature mass redefines Vehicle::mass = 1000;		

@@ -14,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class LiteralNullImpl extends LiteralExpressionImpl implements LiteralNull {
+public class LiteralNullImpl extends ExpressionImpl implements LiteralNull {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

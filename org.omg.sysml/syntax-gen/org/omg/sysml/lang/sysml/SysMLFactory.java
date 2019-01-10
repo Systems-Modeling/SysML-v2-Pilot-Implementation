@@ -22,13 +22,31 @@ public interface SysMLFactory extends EFactory {
 	SysMLFactory eINSTANCE = org.omg.sysml.lang.sysml.impl.SysMLFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Association</em>'.
+	 * Returns a new object of class '<em>End Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association</em>'.
+	 * @return a new object of class '<em>End Feature Membership</em>'.
 	 * @generated
 	 */
-	Association createAssociation();
+	EndFeatureMembership createEndFeatureMembership();
+
+	/**
+	 * Returns a new object of class '<em>Feature Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Membership</em>'.
+	 * @generated
+	 */
+	FeatureMembership createFeatureMembership();
+
+	/**
+	 * Returns a new object of class '<em>Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Membership</em>'.
+	 * @generated
+	 */
+	Membership createMembership();
 
 	/**
 	 * Returns a new object of class '<em>Relationship</em>'.
@@ -47,15 +65,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Element createElement();
-
-	/**
-	 * Returns a new object of class '<em>Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Membership</em>'.
-	 * @generated
-	 */
-	Membership createMembership();
 
 	/**
 	 * Returns a new object of class '<em>Package</em>'.
@@ -130,15 +139,6 @@ public interface SysMLFactory extends EFactory {
 	Generalization createGeneralization();
 
 	/**
-	 * Returns a new object of class '<em>Feature Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Membership</em>'.
-	 * @generated
-	 */
-	FeatureMembership createFeatureMembership();
-
-	/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,15 +146,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Feature createFeature();
-
-	/**
-	 * Returns a new object of class '<em>Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression</em>'.
-	 * @generated
-	 */
-	Expression createExpression();
 
 	/**
 	 * Returns a new object of class '<em>Redefinition</em>'.
@@ -166,13 +157,31 @@ public interface SysMLFactory extends EFactory {
 	Redefinition createRedefinition();
 
 	/**
-	 * Returns a new object of class '<em>Subset</em>'.
+	 * Returns a new object of class '<em>Subsetting</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subset</em>'.
+	 * @return a new object of class '<em>Subsetting</em>'.
 	 * @generated
 	 */
-	Subset createSubset();
+	Subsetting createSubsetting();
+
+	/**
+	 * Returns a new object of class '<em>Feature Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Value</em>'.
+	 * @generated
+	 */
+	FeatureValue createFeatureValue();
+
+	/**
+	 * Returns a new object of class '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression</em>'.
+	 * @generated
+	 */
+	Expression createExpression();
 
 	/**
 	 * Returns a new object of class '<em>Step</em>'.
@@ -184,13 +193,49 @@ public interface SysMLFactory extends EFactory {
 	Step createStep();
 
 	/**
-	 * Returns a new object of class '<em>End Feature Membership</em>'.
+	 * Returns a new object of class '<em>Multiplicity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>End Feature Membership</em>'.
+	 * @return a new object of class '<em>Multiplicity</em>'.
 	 * @generated
 	 */
-	EndFeatureMembership createEndFeatureMembership();
+	Multiplicity createMultiplicity();
+
+	/**
+	 * Returns a new object of class '<em>Feature Typing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Typing</em>'.
+	 * @generated
+	 */
+	FeatureTyping createFeatureTyping();
+
+	/**
+	 * Returns a new object of class '<em>Superclassing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Superclassing</em>'.
+	 * @generated
+	 */
+	Superclassing createSuperclassing();
+
+	/**
+	 * Returns a new object of class '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter</em>'.
+	 * @generated
+	 */
+	Parameter createParameter();
+
+	/**
+	 * Returns a new object of class '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association</em>'.
+	 * @generated
+	 */
+	Association createAssociation();
 
 	/**
 	 * Returns a new object of class '<em>Connector</em>'.
@@ -211,6 +256,24 @@ public interface SysMLFactory extends EFactory {
 	ConnectorEnd createConnectorEnd();
 
 	/**
+	 * Returns a new object of class '<em>Binding Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Binding Connector</em>'.
+	 * @generated
+	 */
+	BindingConnector createBindingConnector();
+
+	/**
+	 * Returns a new object of class '<em>Succession</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Succession</em>'.
+	 * @generated
+	 */
+	Succession createSuccession();
+
+	/**
 	 * Returns a new object of class '<em>Comment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,40 +283,22 @@ public interface SysMLFactory extends EFactory {
 	Comment createComment();
 
 	/**
-	 * Returns a new object of class '<em>Element Reference Expression</em>'.
+	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Reference Expression</em>'.
+	 * @return a new object of class '<em>Annotation</em>'.
 	 * @generated
 	 */
-	ElementReferenceExpression createElementReferenceExpression();
+	Annotation createAnnotation();
 
 	/**
-	 * Returns a new object of class '<em>Feature Access Expression</em>'.
+	 * Returns a new object of class '<em>Ownership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Access Expression</em>'.
+	 * @return a new object of class '<em>Ownership</em>'.
 	 * @generated
 	 */
-	FeatureAccessExpression createFeatureAccessExpression();
-
-	/**
-	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Creation Expression</em>'.
-	 * @generated
-	 */
-	InstanceCreationExpression createInstanceCreationExpression();
-
-	/**
-	 * Returns a new object of class '<em>Item Flow</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Item Flow</em>'.
-	 * @generated
-	 */
-	ItemFlow createItemFlow();
+	Ownership createOwnership();
 
 	/**
 	 * Returns a new object of class '<em>Literal Boolean</em>'.
@@ -274,6 +319,24 @@ public interface SysMLFactory extends EFactory {
 	LiteralExpression createLiteralExpression();
 
 	/**
+	 * Returns a new object of class '<em>Literal Real</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Real</em>'.
+	 * @generated
+	 */
+	LiteralReal createLiteralReal();
+
+	/**
+	 * Returns a new object of class '<em>Literal Unbounded</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Unbounded</em>'.
+	 * @generated
+	 */
+	LiteralUnbounded createLiteralUnbounded();
+
+	/**
 	 * Returns a new object of class '<em>Literal Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,15 +355,6 @@ public interface SysMLFactory extends EFactory {
 	LiteralNull createLiteralNull();
 
 	/**
-	 * Returns a new object of class '<em>Literal Real</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal Real</em>'.
-	 * @generated
-	 */
-	LiteralReal createLiteralReal();
-
-	/**
 	 * Returns a new object of class '<em>Literal String</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,58 +364,40 @@ public interface SysMLFactory extends EFactory {
 	LiteralString createLiteralString();
 
 	/**
-	 * Returns a new object of class '<em>Literal Unbounded</em>'.
+	 * Returns a new object of class '<em>Item Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal Unbounded</em>'.
+	 * @return a new object of class '<em>Item Flow</em>'.
 	 * @generated
 	 */
-	LiteralUnbounded createLiteralUnbounded();
+	ItemFlow createItemFlow();
 
 	/**
-	 * Returns a new object of class '<em>Of Succession</em>'.
+	 * Returns a new object of class '<em>Succession Item Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Of Succession</em>'.
+	 * @return a new object of class '<em>Succession Item Flow</em>'.
 	 * @generated
 	 */
-	OfSuccession createOfSuccession();
+	SuccessionItemFlow createSuccessionItemFlow();
 
 	/**
-	 * Returns a new object of class '<em>Ordered Feature</em>'.
+	 * Returns a new object of class '<em>Element Reference Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ordered Feature</em>'.
+	 * @return a new object of class '<em>Element Reference Expression</em>'.
 	 * @generated
 	 */
-	OrderedFeature createOrderedFeature();
+	ElementReferenceExpression createElementReferenceExpression();
 
 	/**
-	 * Returns a new object of class '<em>Structured Feature</em>'.
+	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Structured Feature</em>'.
+	 * @return a new object of class '<em>Instance Creation Expression</em>'.
 	 * @generated
 	 */
-	StructuredFeature createStructuredFeature();
-
-	/**
-	 * Returns a new object of class '<em>Operator Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operator Expression</em>'.
-	 * @generated
-	 */
-	OperatorExpression createOperatorExpression();
-
-	/**
-	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sequence Access Expression</em>'.
-	 * @generated
-	 */
-	SequenceAccessExpression createSequenceAccessExpression();
+	InstanceCreationExpression createInstanceCreationExpression();
 
 	/**
 	 * Returns a new object of class '<em>Sequence Construction Expression</em>'.
@@ -373,22 +409,22 @@ public interface SysMLFactory extends EFactory {
 	SequenceConstructionExpression createSequenceConstructionExpression();
 
 	/**
-	 * Returns a new object of class '<em>Succession</em>'.
+	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Succession</em>'.
+	 * @return a new object of class '<em>Sequence Access Expression</em>'.
 	 * @generated
 	 */
-	Succession createSuccession();
+	SequenceAccessExpression createSequenceAccessExpression();
 
 	/**
-	 * Returns a new object of class '<em>Succession Item Flow</em>'.
+	 * Returns a new object of class '<em>Operator Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Succession Item Flow</em>'.
+	 * @return a new object of class '<em>Operator Expression</em>'.
 	 * @generated
 	 */
-	SuccessionItemFlow createSuccessionItemFlow();
+	OperatorExpression createOperatorExpression();
 
 	/**
 	 * Returns the package supported by this factory.

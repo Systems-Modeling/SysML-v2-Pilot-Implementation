@@ -132,7 +132,7 @@ class MemberNameTests {
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.category, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test

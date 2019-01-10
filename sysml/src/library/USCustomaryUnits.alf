@@ -1,0 +1,16 @@
+package USCustomaryUnits {
+	
+	import SI::*;
+	
+	/*
+	 * Examples of US customary units defined w.r.t. SI units
+	 * Conversion factors are taken from NIST SP 811 Appendix B
+	 * See https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b
+	 */
+	ft = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => 1000.0/3048.0));
+	'in' = LengthUnit(name => "inch", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 1.0/12.0));
+    mi = LengthUnit(name => "mile", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 5280.0 ));	 
+
+    'mi/hr': SpeedUnit = mi / hr;
+	// TODO: Add name => "mile/hour"	
+}

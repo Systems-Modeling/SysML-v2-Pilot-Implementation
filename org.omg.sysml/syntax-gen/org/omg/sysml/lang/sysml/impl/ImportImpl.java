@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
@@ -36,7 +34,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getOwnedElement <em>Owned Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getSelecter <em>Selecter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getVisibility <em>Visibility</em>}</li>
@@ -57,7 +55,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	protected org.omg.sysml.lang.sysml.Package importedPackage;
 
 	/**
-	 * The cached value of the '{@link #getSelecter() <em>Selecter</em>}' reference.
+	 * The cached value of the '{@link #getSelecter() <em>Selecter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSelecter()
@@ -110,29 +108,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Element> getOwnedElement() {
-		if (ownedElement == null) {
-			ownedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.IMPORT__OWNED_ELEMENT, null, OWNED_ELEMENT_ESUBSETS, SysMLPackage.ELEMENT__OWNER);
-		}
-		return ownedElement;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedElement() <em>Owned Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.IMPORT__SELECTER};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public org.omg.sysml.lang.sysml.Package getImportedPackage() {
 		if (importedPackage != null && importedPackage.eIsProxy()) {
 			InternalEObject oldImportedPackage = (InternalEObject)importedPackage;
@@ -164,15 +139,15 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		importedPackage = newImportedPackage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORTED_PACKAGE, oldImportedPackage, importedPackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetImportedPackage() {
-		return importedPackage != null;
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newImportedPackage != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newImportedPackage)) {
+					target.add(newImportedPackage);
+				}
+			}
+		}
 	}
 
 	/**
@@ -181,14 +156,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	public Predicate getSelecter() {
-		if (selecter != null && selecter.eIsProxy()) {
-			InternalEObject oldSelecter = (InternalEObject)selecter;
-			selecter = (Predicate)eResolveProxy(oldSelecter);
-			if (selecter != oldSelecter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.IMPORT__SELECTER, oldSelecter, selecter));
-			}
-		}
 		return selecter;
 	}
 
@@ -197,8 +164,23 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Predicate basicGetSelecter() {
-		return selecter;
+	public NotificationChain basicSetSelecter(Predicate newSelecter, NotificationChain msgs) {
+		Predicate oldSelecter = selecter;
+		selecter = newSelecter;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__SELECTER, oldSelecter, newSelecter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newSelecter != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newSelecter)) {
+					target.add(newSelecter);
+				}
+			}
+		}
+		return msgs;
 	}
 
 	/**
@@ -207,19 +189,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	public void setSelecter(Predicate newSelecter) {
-		Predicate oldSelecter = selecter;
-		selecter = newSelecter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__SELECTER, oldSelecter, selecter));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newSelecter != null) {
-				EList<Element> ownedElement = getOwnedElement();
-				if (!ownedElement.contains(newSelecter)) {
-					ownedElement.add(newSelecter);
-				}
-			}
+		if (newSelecter != selecter) {
+			NotificationChain msgs = null;
+			if (selecter != null)
+				msgs = ((InternalEObject)selecter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.IMPORT__SELECTER, null, msgs);
+			if (newSelecter != null)
+				msgs = ((InternalEObject)newSelecter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.IMPORT__SELECTER, null, msgs);
+			msgs = basicSetSelecter(newSelecter, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__SELECTER, newSelecter, newSelecter));
 	}
 
 	/**
@@ -293,19 +273,16 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		return getImportOwningPackage() != null;
 	}
 	
-	// Additional redefinitions
+	// Additional subsets
 	
 	@Override
-	public Element getOwner() {
-		org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();
-		return owningPackage == null? super.getOwner(): owningPackage;
-	}
-	
-	@Override
-	public void setOwner(Element newElement) {
-		if (newElement instanceof org.omg.sysml.lang.sysml.Package) {
-			this.setImportOwningPackage((org.omg.sysml.lang.sysml.Package)newElement);
+	public EList<Element> getAllOwnedRelatedElements() {
+		EList<Element> ownedRelatedElements = super.getAllOwnedRelatedElements();
+		Element selecter = getSelecter();
+		if (selecter != null) {
+			ownedRelatedElements.add(selecter);
 		}
+		return ownedRelatedElements;
 	}
 	
 	// Operations
@@ -340,12 +317,9 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__OWNED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -362,8 +336,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__OWNED_ELEMENT:
-				return ((InternalEList<?>)getOwnedElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.IMPORT__SELECTER:
+				return basicSetSelecter(null, msgs);
 			case SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE:
 				return basicSetImportOwningPackage(null, msgs);
 		}
@@ -396,8 +370,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 				if (resolve) return getImportedPackage();
 				return basicGetImportedPackage();
 			case SysMLPackage.IMPORT__SELECTER:
-				if (resolve) return getSelecter();
-				return basicGetSelecter();
+				return getSelecter();
 			case SysMLPackage.IMPORT__VISIBILITY:
 				return getVisibility();
 			case SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE:
@@ -462,14 +435,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__OWNED_ELEMENT:
-				return ownedElement != null && !ownedElement.isEmpty();
 			case SysMLPackage.IMPORT__TARGET:
-				return isSetTarget();
+				return target != null && !target.isEmpty();
 			case SysMLPackage.IMPORT__SOURCE:
 				return isSetSource();
 			case SysMLPackage.IMPORT__IMPORTED_PACKAGE:
-				return isSetImportedPackage();
+				return importedPackage != null;
 			case SysMLPackage.IMPORT__SELECTER:
 				return selecter != null;
 			case SysMLPackage.IMPORT__VISIBILITY:
@@ -527,13 +498,14 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	}
 
 	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getTarget()
 	 * @generated
+	 * @ordered
 	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.IMPORT__OWNED_RELATED_ELEMENT, SysMLPackage.IMPORT__IMPORTED_PACKAGE, SysMLPackage.IMPORT__SELECTER};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -549,6 +521,16 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		}
 		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->

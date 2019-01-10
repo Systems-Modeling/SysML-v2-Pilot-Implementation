@@ -26,10 +26,7 @@
 package org.omg.sysml.tests
 
 import com.google.inject.Inject
-import com.google.inject.Provider
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -46,7 +43,7 @@ import org.omg.sysml.tests.AlfInjectorProvider
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
-class ShadowingTest {
+class ShadowingTests {
 
 	@Inject
 	ParseHelper<Package> parseHelper
@@ -72,7 +69,7 @@ class ShadowingTest {
 		val outerA = result.ownedMembership.head.ownedMemberElement as Class
 		val innerA = outerA.ownedMembership.head.ownedMemberElement as Class
 		val B = innerA.ownedMembership.head.ownedMemberElement as Class
-		val gen = B.ownedElement.head as Generalization
+		val gen = B.ownedRelationship.head as Generalization
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -171,7 +168,7 @@ class ShadowingTest {
 		val classA1 = result.ownedMembership.get(1).ownedMemberElement as Class
 		val classA = classA1.ownedMembership.head.ownedMemberElement as Class
 		val B = classA.ownedMembership.head.ownedMemberElement as Class
-		val gen = B.ownedElement.head as Generalization
+		val gen = B.ownedRelationship.head as Generalization
 		Assert.assertEquals(gen.general, classA)
 
 		result.assertNoErrors
@@ -202,7 +199,7 @@ class ShadowingTest {
 			ownedMemberElement as Class
 		val class_b = (result.ownedMembership.get(3).ownedMemberElement as Class).ownedMembership.head.
 			ownedMemberElement as Class
-		val gen = class_b.ownedElement.head as Generalization
+		val gen = class_b.ownedRelationship.head as Generalization
 		Assert.assertEquals(gen.general, class_a1)
 
 		result.assertNoErrors
@@ -549,8 +546,8 @@ class ShadowingTest {
 		val class_A = result.ownedMembership.get(0).ownedMemberElement as Class
 		val class_test_A = result.ownedMembership.get(1).ownedMemberElement as Class
 		val class_test_alias = result.ownedMembership.get(2).ownedMemberElement as Class
-		val gen_test_A = class_test_A.ownedElement.head as Generalization
-		val gen_test_alias = class_test_alias.ownedElement.head as Generalization
+		val gen_test_A = class_test_A.ownedRelationship.head as Generalization
+		val gen_test_alias = class_test_alias.ownedRelationship.head as Generalization
 		val imported_A = (result.ownedImport.get(0).importedPackage as Package).ownedMembership.get(1).
 			ownedMemberElement as Class
 
@@ -579,7 +576,7 @@ class ShadowingTest {
 		val class_A = result.ownedMembership.get(0).ownedMemberElement as Class
 		val class_test_A = result.ownedMembership.get(2).ownedMemberElement as Class
 		val A_alias = result.ownedMembership.get(1).memberElement as Class
-		val gen_test_A = class_test_A.ownedElement.head as Generalization
+		val gen_test_A = class_test_A.ownedRelationship.head as Generalization
 		val imported_A = (result.ownedImport.get(0).importedPackage as Package).ownedMembership.get(1).
 			ownedMemberElement as Class
 

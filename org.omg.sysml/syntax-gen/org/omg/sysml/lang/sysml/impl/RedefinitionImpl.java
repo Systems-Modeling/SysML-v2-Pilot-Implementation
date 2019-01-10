@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class RedefinitionImpl extends SubsetImpl implements Redefinition {
+public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	/**
 	 * The cached value of the '{@link #getRedefiningFeature() <em>Redefining Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public class RedefinitionImpl extends SubsetImpl implements Redefinition {
 	 */
 	public Feature basicGetRedefiningFeature() {
 		if (redefiningFeature == null) {
-			Element owner = getOwner();
+			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
 				redefiningFeature = (Feature)owner;
 			}

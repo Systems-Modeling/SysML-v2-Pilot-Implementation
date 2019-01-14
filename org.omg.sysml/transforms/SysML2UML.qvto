@@ -148,7 +148,7 @@ helper SysML::FeatureMembership::mapToFeature(): UML::Feature {
 		} endif;
 	} else {
 		umlFeature := feature.map toProperty();
-		if self.isComposite then {
+		if self.isPart then {
 			umlFeature.oclAsType(UML::Property).aggregation := UML::AggregationKind::composite;
 		} endif;
 	} endif endif;
@@ -168,9 +168,9 @@ query toVisibilityKind(visibility : SysML::VisibilityKind): UML::VisibilityKind 
 
 // CLASSIFICATION
 
-// Class
+// Category
 
-mapping SysML::Class::toClass(): UML::Class
+abstract mapping SysML::Category::toClass(): UML::Class
 	inherits SysML::Element::toNamedElement 
 	when { not self.oclIsKindOf(SysML::Connector) } {
 	var features := self.ownedFeatureMemberships()->mapToFeature();
@@ -179,6 +179,11 @@ mapping SysML::Class::toClass(): UML::Class
 	nestedClassifier := self.members()->map toClass();
 	generalization := self.ownedMembers()[SysML::Generalization]->map toGeneralization();
 }
+
+// Class
+
+mapping SysML::Class::toClass(): UML::Class
+	inherits SysML::Category::toClass { }
 
 // Association
 mapping SysML::Association::toAssociationClass(): UML::AssociationClass
@@ -196,7 +201,7 @@ mapping SysML::Generalization::toGeneralization(): UML::Generalization
 // Feature
 
 query SysML::Feature::subsettedFeatures(): Sequence(SysML::Feature) {
-	return self.ownedMembers()[SysML::Subset].subsettedFeature;
+	return self.ownedMembers()[SysML::Subsetting].subsettedFeature;
 }
 
 query SysML::Feature::redefinedFeatures(): Sequence(SysML::Feature) {
@@ -234,8 +239,8 @@ mapping SysML::Feature::toProperty(): UML::Property
 	if self.isComposite then {
 		aggregation := UML::AggregationKind::composite;
 	} endif;
-	if self.value <> null then {
-		defaultValue := self.value.map toValueSpecification();
+	if self.valuation <> null then {
+		defaultValue := self.valuation.value.map toValueSpecification();
 	} endif;
 }
 
@@ -250,7 +255,7 @@ mapping SysML::Feature::toInstanceSpecification(): UML::InstanceSpecification
 }
 
 mapping SysML::Feature::toClass(): UML::Class
-	inherits SysML::Class::toClass, SysML::Feature::toNamedElement
+	inherits SysML::Category::toClass, SysML::Feature::toNamedElement
 	when { 	not self.oclIsKindOf(SysML::Connector) and
 	        self.typeElement() = self } {
 	var typeElement := self.parentTypeElement();
@@ -276,20 +281,26 @@ mapping SysML::Feature::toClass(): UML::Class
 // Multiplicity
 
 helper SysML::Feature::mapMultiplicity(inout element: UML::MultiplicityElement) {
-	if self.upper <> null and self.upper.oclIsKindOf(SysML::LiteralUnbounded) then {
-		element.upper := -1;
-	} else if self.upper <> null then {
-		element.upper := self.upper.oclAsType(SysML::LiteralInteger).value;
-	} else {
+	if self.multiplicity = null then {
 		element.upper := 1;
-	} endif endif;
-	if self.lower <> null then {
-		element.lower := self.lower.oclAsType(SysML::LiteralInteger).value;
-	} else if element.upper = -1 then {
-		element.lower := 0;
+		element.lower := 1;
 	} else {
-		element.lower := element.upper;
-	} endif endif;
+		if self.multiplicity.upper <> null and 
+			self.multiplicity.upper.oclIsKindOf(SysML::LiteralUnbounded) then {
+			element.upper := -1;
+		} else if self.multiplicity.upper <> null then {
+			element.upper := self.multiplicity.upper.oclAsType(SysML::LiteralInteger).value;
+		} else {
+			element.upper := 1;
+		} endif endif;
+		if self.multiplicity.lower <> null then {
+			element.lower := self.multiplicity.lower.oclAsType(SysML::LiteralInteger).value;
+		} else if element.upper = -1 then {
+			element.lower := 0;
+		} else {
+			element.lower := element.upper;
+		} endif endif;
+	} endif;
 }
 
 // Connectors
@@ -307,8 +318,8 @@ mapping SysML::Connector::toConnector(): UML::Connector
 mapping SysML::ConnectorEnd::toConnectorEnd(): UML::ConnectorEnd {
 	role := self.feature.late resolveone(UML::Property);
 	if self.feature.owningMembership <> null and 
-		self.feature.owningMembership.owningPackage.oclIsKindOf(SysML::Feature) then {
-		partWithPort := self.feature.owningMembership.owningPackage.late resolveone(UML::Property);
+		self.feature.owningMembership.membershipOwningPackage.oclIsKindOf(SysML::Feature) then {
+		partWithPort := self.feature.owningMembership.membershipOwningPackage.late resolveone(UML::Property);
 	} endif;
 }
 
@@ -316,8 +327,8 @@ constructor UML::ConnectorEnd::ConnectorEnd(feature: SysML::Feature) {
 	role := feature.late resolveone(UML::Property);
 	var element: SysML::Element := feature;
 	if element.owningMembership <> null and 
-		element.owningMembership.owningPackage.oclIsKindOf(SysML::Feature) then {
-		partWithPort := element.owningMembership.owningPackage.late resolveone(UML::Property);
+		element.owningMembership.membershipOwningPackage.oclIsKindOf(SysML::Feature) then {
+		partWithPort := element.owningMembership.membershipOwningPackage.late resolveone(UML::Property);
 	} endif;
 }
 
@@ -328,7 +339,8 @@ constructor UML::ConnectorEnd::ConnectorEnd(feature: SysML::Feature) {
 mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
 	disjuncts
 		SysML::LiteralExpression::toLiteralSpecification,
-		SysML::OperatorExpression::toExpression,
+		SysML::LiteralNull::toLiteralNull,
+//		SysML::OperatorExpression::toExpression,
 		SysML::InstanceCreationExpression::toExpression,
 		SysML::SequenceAccessExpression::toExpression,
 		SysML::SequenceConstructionExpression::toExpression,
@@ -340,8 +352,7 @@ mapping SysML::LiteralExpression::toLiteralSpecification(): UML::LiteralSpecific
 		SysML::LiteralString::toLiteralString,
 		SysML::LiteralInteger::toLiteralInteger,
 		SysML::LiteralReal::toLiteralReal,
-		SysML::LiteralUnbounded::toLiteralUnlimitedNatural,
-		SysML::LiteralNull::toLiteralNull;
+		SysML::LiteralUnbounded::toLiteralUnlimitedNatural;
 
 mapping SysML::LiteralBoolean::toLiteralBoolean(): UML::LiteralBoolean
 	inherits SysML::Element::toNamedElement {
@@ -372,11 +383,13 @@ mapping SysML::LiteralNull::toLiteralNull(): UML::LiteralNull
 	inherits SysML::Element::toNamedElement {
 }
 
+/*
 mapping SysML::OperatorExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := self.operator;
 	operand := self.operand->map toValueSpecification();
 }
+*/
 
 mapping SysML::InstanceCreationExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
@@ -384,11 +397,13 @@ mapping SysML::InstanceCreationExpression::toExpression(): UML::Expression
 	operand := self.argument->map toValueSpecification();
 }
 
+/*
 mapping SysML::FeatureAccessExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := '.' + self.accessedFeature.name;
 	operand += self.expression.map toValueSpecification();
 }
+*/
 
 mapping SysML::SequenceAccessExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {

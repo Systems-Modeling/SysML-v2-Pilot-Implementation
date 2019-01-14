@@ -1,16 +1,30 @@
 package Base {
 		
+    /*
+     * Top level generalized type in the language. 
+     */
 	abstract class Anything { }
 	
+	/*
+	 * Second level basic types.
+	 * Object represents a class of concepts with reference identity.
+	 * Value represents a class of concepts with value identity.
+	 */
+	abstract class Object specializes Anything { }
 	abstract class Value specializes Anything { }
+
 	abstract class Enumeration specializes Value { }
 	
-	abstract class Object specializes Anything { }
-	
+	/*
+	 * Representation of a relationship between two or more things.
+	 */
 	class Link specializes Object {
 		feature participant: Anything[2..*] ordered;
 	}
 	
+	/*
+	 * Representation of a directed binary relationship between exactly two things, from source to target.
+	 */
 	assoc BinaryLink specializes Link {
 		end sourceEnd: Anything[0..*];
 	    end targetEnd: Anything[0..*];     
@@ -23,6 +37,5 @@ package Base {
 	    private connector linkage: BinaryLink
 	    	(sourceEnd[1..1] => sourceParticipant,
 	         targetEnd[1..1] => targetParticipant);	
-	}
-	
+	}	
 }

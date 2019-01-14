@@ -33,7 +33,7 @@ public interface EndFeatureMembership extends FeatureMembership {
 	 * @see #setOwningAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getEndFeatureMembership_OwningAssociation()
 	 * @see org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership
-	 * @model opposite="ownedEndFeatureMembership" ordered="false"
+	 * @model opposite="ownedEndFeatureMembership" required="true" ordered="false"
 	 * @generated
 	 */
 	Association getOwningAssociation();

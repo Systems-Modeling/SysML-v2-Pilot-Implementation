@@ -162,14 +162,14 @@ class Dependency {
 			
 			public class c_Public_alias{
 				public class c_public{}
-				private alias_private is c_public;
-				public alias_public is c_public;
+				private class alias_private is c_public;
+				public class alias_public is c_public;
 			}
 			
 			private class c_Private_alias{
 				public class c_public{}
-				private alias_private is c_public;
-				public alias_public is c_public;
+				private class alias_private is c_public;
+				public class alias_public is c_public;
 			}
 			
 			public class c_clazz{

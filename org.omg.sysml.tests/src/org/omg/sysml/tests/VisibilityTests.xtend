@@ -27,13 +27,10 @@ package org.omg.sysml.tests
 
 import com.google.inject.Inject
 import com.google.inject.Injector
-import com.google.inject.Provider
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
 import org.eclipse.xtext.junit4.validation.AssertableDiagnostics.DiagnosticPredicate
 import org.eclipse.xtext.junit4.validation.ValidatorTester
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -45,7 +42,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.tests.AlfInjectorProvider
 import org.omg.sysml.validation.AlfValidator
 
 @RunWith(XtextRunner)
@@ -197,8 +193,8 @@ class VisibilityTests {
 		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		Assert.assertTrue(result.eResource.errors.length == 2)
 	}
 
@@ -294,7 +290,7 @@ class VisibilityTests {
 					}
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -332,7 +328,7 @@ class VisibilityTests {
 			}
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -349,7 +345,7 @@ class VisibilityTests {
 			}
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -388,7 +384,7 @@ class VisibilityTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE),
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS),
 			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
 		)
 
@@ -407,7 +403,7 @@ class VisibilityTests {
 		''', rs)
 		tester.validate(result).assertAll(
 			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE),
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS),
 			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
 		)
 		Assert.assertNotNull(result)
@@ -427,7 +423,7 @@ class VisibilityTests {
 			
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -447,7 +443,7 @@ class VisibilityTests {
 			
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -465,7 +461,7 @@ class VisibilityTests {
 			
 		''', rs)
 		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_INHERITANCE)
+			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)

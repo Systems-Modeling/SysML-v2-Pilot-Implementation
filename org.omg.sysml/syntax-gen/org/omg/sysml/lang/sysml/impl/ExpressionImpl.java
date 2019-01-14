@@ -14,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ExpressionImpl extends FunctionImpl implements Expression {
+public class ExpressionImpl extends StepImpl implements Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

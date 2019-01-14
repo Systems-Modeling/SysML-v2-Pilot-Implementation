@@ -4,13 +4,11 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -60,27 +58,21 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Association getOwningAssociation() {
-		if (owningAssociation != null && owningAssociation.eIsProxy()) {
-			InternalEObject oldOwningAssociation = (InternalEObject)owningAssociation;
-			owningAssociation = (Association)eResolveProxy(oldOwningAssociation);
-			if (owningAssociation != oldOwningAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION, oldOwningAssociation, owningAssociation));
-			}
-		}
-		return owningAssociation;
+		Category category = super.getOwningCategory();
+		return category instanceof Association? (Association)category: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Association basicGetOwningAssociation() {
-		return owningAssociation;
+		Category category = super.basicGetOwningCategory();
+		return category instanceof Association? (Association)category: null;
 	}
 
 	/**
@@ -115,6 +107,16 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION, newOwningAssociation, newOwningAssociation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Category getOwningCategory() {
+		return getOwningAssociation();
 	}
 
 	/**

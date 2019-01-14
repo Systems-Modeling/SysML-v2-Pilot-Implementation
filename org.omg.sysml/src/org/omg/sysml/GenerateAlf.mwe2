@@ -7,7 +7,7 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup
 
 var rootPath = ".."
 var projectName = "org.omg.sysml"
-var genModel = "platform:/resource/${projectName}/model/SysML.genmodel"
+var genModel = "platform:/resource/${projectName}/model/SysML_.genmodel"
 var ePackage = "${projectName}.lang.sysml.SysMLPackage"
 
 Workflow {

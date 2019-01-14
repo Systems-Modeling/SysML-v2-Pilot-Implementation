@@ -9,39 +9,57 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Connector</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * relatedFeature = connectorEnd.feature
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeatures <em>Related Features</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#isIsDirected <em>Is Directed</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()
  * @model
  * @generated
  */
-public interface Connector extends Relationship, Feature {
+public interface Connector extends Feature, Relationship {
 	/**
-	 * Returns the value of the '<em><b>Related Features</b></em>' reference list.
+	 * Returns the value of the '<em><b>Related Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Related Features</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Related Feature</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Features</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeatures()
-	 * @model derived="true" ordered="false"
+	 * @return the value of the '<em>Related Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
+	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
 	 * @generated
 	 */
-	EList<Feature> getRelatedFeatures();
+	EList<Feature> getRelatedFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Association</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Association</em>' reference isn't clear,
@@ -51,7 +69,8 @@ public interface Connector extends Relationship, Feature {
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 * @generated
 	 */
 	Association getAssociation();
@@ -68,6 +87,7 @@ public interface Connector extends Relationship, Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Is Directed</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Directed</em>' attribute isn't clear,
@@ -77,17 +97,17 @@ public interface Connector extends Relationship, Feature {
 	 * @return the value of the '<em>Is Directed</em>' attribute.
 	 * @see #setIsDirected(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_IsDirected()
-	 * @model required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIsDirected();
+	boolean isDirected();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#isIsDirected <em>Is Directed</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Directed</em>' attribute.
-	 * @see #isIsDirected()
+	 * @see #isDirected()
 	 * @generated
 	 */
 	void setIsDirected(boolean value);
@@ -98,16 +118,50 @@ public interface Connector extends Relationship, Feature {
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connector End</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Connector End</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connector End</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
 	 * @see org.omg.sysml.lang.sysml.ConnectorEnd#getConnector
-	 * @model opposite="connector" containment="true"
+	 * @model opposite="connector" containment="true" lower="2"
 	 * @generated
 	 */
 	EList<ConnectorEnd> getConnectorEnd();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedType() <em>Owned Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Association Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Association Type</em>' reference.
+	 * @see #setOwnedAssociationType(Association)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_OwnedAssociationType()
+	 * @see org.omg.sysml.lang.sysml.Association#getOwningConnector
+	 * @model opposite="owningConnector" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	Association getOwnedAssociationType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Association Type</em>' reference.
+	 * @see #getOwnedAssociationType()
+	 * @generated
+	 */
+	void setOwnedAssociationType(Association value);
 
 } // Connector

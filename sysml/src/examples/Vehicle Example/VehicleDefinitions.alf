@@ -2,32 +2,38 @@
  * Example vehicle definitions model.
  **/
 package VehicleDefinitions {
-	/** Import ScalarValues library **/
+	// Import ScalarValues library
 	import ScalarValues::*;
 	
-	/** Import Quantities libraries **/
+	// Import Quantities libraries
 	import Quantities::*;
+	import UnitsAndScales::*;
 	import ISQ::*;
 	
-	/* VALUE TYPES */
+	/* LOCALLY DEFINED VALUE TYPES */
 	
-	/** Torque unit value type defined as a force unit times a length unit. **/
+	/* 
+	 * Torque measurement unit (and implied ratio scale) defined as a force unit times a length unit. 
+	 */
 	class TorqueUnit specializes DerivedUnit {
-		feature unitFactor1 subsets unitFactor {
-			feature unit: ForceUnit redefines MeasurementUnitPowerFactor::unit;
-			feature exponent redefines MeasurementUnitPowerFactor::exponent = 1;
+		feature unitPowerFactor1 subsets unitPowerFactor {
+			unit: ForceUnit redefines unit;
+			exponent redefines exponent = 1;
 		}
-		feature unitFactor2 subsets unitFactor {
-			feature unit: LengthUnit redefines MeasurementUnitPowerFactor::unit;
-			feature exponent redefines MeasurementUnitPowerFactor::exponent = 1;
+		unitPowerFactor2 subsets unitPowerFactor {
+			unit: LengthUnit redefines unit;
+			exponent redefines exponent = 1;
 		}
 	}
 	
-	/** Torque quantity value type defined as a real value with a torque unit. **/
-	class Torque specializes Quantity {
-		feature numericValue: Real redefines Quantity::numericValue;
-		feature unit: TorqueUnit redefines Quantity::unit;
+	/*
+	 * Torque quantity value and feature defined as a real  magnitude with a torque unit.
+	 */
+	class TorqueValue specializes QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: TorqueUnit redefines Quantities::QuantityValue::scale;
 	}
+	feature torque : TorqueValue;
 	
 	/* BLOCKS */
 	
@@ -42,21 +48,21 @@ package VehicleDefinitions {
 	class Wheel { }
 	
 	class Lugbolt {
-		feature tighteningTorque: Torque;
+		tighteningTorque: torque;
 	}
 	
 	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
-		feature in driveTorque: Torque;
+		feature in driveTorque: torque;
 	}
 	
 	class AxleMountIF { 
-		feature out transferredTorque: Torque;
+		feature out transferredTorque: torque;
 	}
 	
 	class WheelHubIF { 
-		feature in appliedTorque: Torque;
+		feature in appliedTorque: torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */

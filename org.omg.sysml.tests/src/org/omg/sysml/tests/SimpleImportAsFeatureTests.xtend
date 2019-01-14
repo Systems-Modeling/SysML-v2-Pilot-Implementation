@@ -135,7 +135,7 @@ class SimpleImportAsFeatureTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -153,7 +153,7 @@ class SimpleImportAsFeatureTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -171,7 +171,7 @@ class SimpleImportAsFeatureTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -189,6 +189,6 @@ class SimpleImportAsFeatureTests {
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
-		result.assertError(SysMLPackage.eINSTANCE.class_, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 }

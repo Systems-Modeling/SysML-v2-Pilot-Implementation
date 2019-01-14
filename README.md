@@ -64,7 +64,7 @@ and `org.omg.sysml.usage`, with associated `ide`, `tests`, `ui` and `ui.tests` p
 ## Copyright License Header
 
 #### For new code
-Set up a Jave code template as follows:
+Set up a Java code template as follows:
 1. Window > Preferences (Mac-OS: Eclipse > Preferences)
 2. Java > Code Style > Code Templates
 3. Code > New Java files > Edit

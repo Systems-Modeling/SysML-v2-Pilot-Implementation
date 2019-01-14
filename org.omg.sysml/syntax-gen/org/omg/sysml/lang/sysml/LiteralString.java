@@ -31,7 +31,7 @@ public interface LiteralString extends LiteralExpression {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getLiteralString_Value()
-	 * @model required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getValue();

@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LiteralNull extends LiteralExpression {
+public interface LiteralNull extends Expression {
 } // LiteralNull

@@ -1,69 +1,28 @@
 package '1c-Parts Tree Redefinition' {
-	
-	/* Definitions */
-	
 	class Vehicle {
 		feature mass;
 	}
-	
-	class AxleAssembly { }
-	
+	class AxleAssembly;
 	class Axle { 
 		feature mass;
 	}
-	
 	class FrontAxle specializes Axle {
 		feature steeringAngle;
 	}
+	class Wheel;
 	
-	class Wheel { }
-	
-	/* Usages */
-	
-	/** 
-	 * 'vehicle1' is a package-owned feature of type Vehicle.
-	 * It is not marked as a "part", because that is only
-	 * valid in the context of a nested feature.
-	 */
 	vehicle1: Vehicle {
-		/**
-		 * This redefines the 'mass' feature from Vehicle to give
-		 * it a fixed value.
-		 */		
-		feature mass redefines Vehicle::mass = 1000;
-		
-		/**
-		 * 'frontAxleAssembly' is a nested feature of feature 'vehicle1'.
-		 * It is marked as a "part", which indicates that it is a
-		 * composite part of the containing feature.
-		 * 
-		 * (And similarly for 'rearAxleAssembly'.)
-		 */
+		feature mass redefines Vehicle::mass = 1000;		
 		part frontAxleAssembly: AxleAssembly {
-			part frontAxle: Axle;
-			
-			/** 
-			 * 'frontWheel' is a nested feature of type 'Wheel' with
-			 * multiplicity "2". This means that this axle assembly
-			 * must have exactly two wheels. However, there is still
-			 * only one 'frontWheel' feature. The feature is "ordered",
-			 * so that the first wheel can be distinguished from the
-			 * second.
-			 */
+			part frontAxle: Axle;			
 			part frontWheel: Wheel[2] ordered;
-		}
-		
+		}		
 		part rearAxleAssembly: AxleAssembly {
 			part rearAxle: Axle;
 			part rearWheel: Wheel[2] ordered;
-		}
-		
+		}		
 	}
 
-
-	/**
-	 * 'vehicle1_c1' is a redefinition of 'vehicle1'.
-	 */
 	vehicle1_c1 redefines vehicle1 {
 		/*
 		 * Note: These imports are currently necessary because of qualified name
@@ -72,45 +31,17 @@ package '1c-Parts Tree Redefinition' {
 		import vehicle1::*;
 		import vehicle1::frontAxleAssembly::*;
 		import vehicle1::rearAxleAssembly::*;
-	
-		/**
-		 * The 'mass' value is redefined again to a new value.
-		 */		
-		feature mass redefines vehicle1::mass = 2000;
-		
-		/**
-		 * 'frontAxleAssembly' must be redefined in order to redefine and
-		 * subset its composite parts. 
-		 */
-		part redefines frontAxleAssembly {
-			
-			/**
-			 * This redefines the part 'frontAxle' to have type 'FrontAxle',
-			 * without changing the name of the part.
-			 */
-			part redefines frontAxle: FrontAxle;
-			
-			/**
-			 * 'frontWheel_1' is a separate feature from 'frontWheel',
-			 * but it essentially provides an alternate name specifically
-			 * for the first of the two front wheels, as given by the
-			 * expression frontWheel[1].
-			 * 
-			 * (And similarly for 'frontWheel_2'.)
-			 */
-			part frontWheel_1 subsets frontWheel = frontWheel[1];
-			part frontWheel_2 subsets frontWheel = frontWheel[2];
-		}
-		
-		/**
-		 * 'rearAxleAssembly' must be redefined in order to add new subsetted
-		 * features. However, 'rearAxle' is inherited without redefinition.
-		 */
-		part redefines rearAxleAssembly {			
-			part rearWheel_1 subsets rearWheel = rearWheel[1];
-			part rearWheel_2 subsets rearWheel = rearWheel[2];
-		}
-		
-	}
-	
+
+		feature mass redefines vehicle1::mass = 2000;		
+		part frontAxleAssembly_c1: AxleAssembly redefines frontAxleAssembly {			
+			part frontAxle_c1: FrontAxle redefines frontAxle;			
+			part frontWheel_1: Wheel subsets frontWheel = frontWheel[1];
+			part frontWheel_2: Wheel subsets frontWheel = frontWheel[2];
+		}		
+		part rearAxleAssembly_c1: AxleAssembly redefines rearAxleAssembly {			
+			part rearAxle_c1: Axle redefines rearAxle;		
+			part rearWheel_1: Wheel subsets rearWheel = rearWheel[1];
+			part rearWheel_2: Wheel subsets rearWheel = rearWheel[2];
+		}		
+	}	
 }

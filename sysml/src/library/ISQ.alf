@@ -1,59 +1,122 @@
 package ISQ {
+	import ScalarValues::Real;
+	import UnitsAndScales::*;
 	
-	// Base Quantity Kinds
-	class LengthUnit specializes Quantities::SimpleUnit { }
-	class MassUnit specializes Quantities::SimpleUnit { }
-	class TimeUnit specializes Quantities::SimpleUnit { }
-	class ElectricCurrentUnit specializes Quantities::SimpleUnit { }
-	class TemperatureUnit specializes Quantities::SimpleUnit { }
-	class AmountOfSubstanceUnit specializes Quantities::SimpleUnit { }
-	class LuminousIntensityUnit specializes Quantities::SimpleUnit { }	
+	// Seven base quantities defined as abstract base units that span the power space of the ISO/IEC 80000 system of quantities  
+	class LengthUnit specializes UnitsAndScales::SimpleUnit {
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: LengthUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}
+	class MassUnit specializes UnitsAndScales::SimpleUnit { 
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: MassUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}
+	class TimeUnit specializes UnitsAndScales::SimpleUnit { 
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: TimeUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}
+	class ElectricCurrentUnit specializes UnitsAndScales::SimpleUnit { 
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: ElectricCurrentUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}
+	class TemperatureUnit specializes UnitsAndScales::SimpleUnit {
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: TemperatureUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}
+	class AmountOfSubstanceUnit specializes UnitsAndScales::SimpleUnit { 
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: AmountOfSubstanceUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}		
+	}
+	class LuminousIntensityUnit specializes UnitsAndScales::SimpleUnit {
+		feature unitPowerFactor redefines UnitsAndScales::SimpleUnit::unitPowerFactor {
+			feature unit: LuminousIntensityUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+		}
+	}	
 	
-	// Derived Quantity Kinds		
-	class ForceUnit specializes Quantities::DerivedUnit {
-		unitFactor1 subsets Quantities::DerivedUnit::unitFactor {
-			unit: MassUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
-			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
+	// Derived Quantity Kinds
+	class ForceUnit specializes UnitsAndScales::DerivedUnit {
+		feature unitPowerFactor1 subsets UnitsAndScales::MeasurementUnit::unitPowerFactor {
+			unit: MassUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+			exponent redefines UnitsAndScales::UnitPowerFactor::exponent = 1;
 		}
-		unitFactor2 subsets Quantities::DerivedUnit::unitFactor {
-			unit: LengthUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
-			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = 1;
+		unitPowerFactor2 subsets UnitsAndScales::MeasurementUnit::unitPowerFactor {
+			unit: LengthUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+			exponent redefines UnitsAndScales::UnitPowerFactor::exponent = 1;
 		}
-		unitFactor3 subsets Quantities::DerivedUnit::unitFactor {
-			unit: TimeUnit redefines Quantities::MeasurementUnitPowerFactor::unit;
-			exponent redefines Quantities::MeasurementUnitPowerFactor::exponent = -2;
+		unitPowerFactor3 subsets UnitsAndScales::MeasurementUnit::unitPowerFactor {
+			unit: TimeUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+			exponent redefines UnitsAndScales::UnitPowerFactor::exponent = -2;
 		}
+	}
+	
+	class SpeedUnit specializes UnitsAndScales::DerivedUnit {
+		feature unitPowerFactor1 subsets UnitsAndScales::MeasurementUnit::unitPowerFactor {
+			unit: LengthUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+			exponent redefines UnitsAndScales::UnitPowerFactor::exponent = 1;
+		}
+		unitPowerFactor2 subsets UnitsAndScales::MeasurementUnit::unitPowerFactor {
+			unit: TimeUnit redefines UnitsAndScales::UnitPowerFactor::unit;
+			exponent redefines UnitsAndScales::UnitPowerFactor::exponent = -1;
+		}		
 	}
 	
 	// ...
 	
 	// Base Quantities
-	class Length specializes Quantities::Quantity {
-		unit: LengthUnit redefines Quantities::Quantity::unit;
+	class LengthValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: LengthUnit redefines Quantities::QuantityValue::scale;
 	}	
-	class Mass specializes Quantities::Quantity {
-		unit: MassUnit redefines Quantities::Quantity::unit;
-	}	
-	class Time specializes Quantities::Quantity {
-		unit: TimeUnit redefines Quantities::Quantity::unit;
-	}	
-	class ElectricCurrent specializes Quantities::Quantity {
-		unit: ElectricCurrentUnit redefines Quantities::Quantity::unit;
-	}	
-	class Temperature specializes Quantities::Quantity {
-		unit: TemperatureUnit redefines Quantities::Quantity::unit;
-	}		
-	class AmountOfSubstance specializes Quantities::Quantity {
-		unit: AmountOfSubstanceUnit redefines Quantities::Quantity::unit;
-	}		
-	class LuminousIntensity specializes Quantities::Quantity {
-		unit: LuminousIntensityUnit redefines Quantities::Quantity::unit;
+	feature length: LengthValue;
+	
+	class MassValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: MassUnit redefines Quantities::QuantityValue::scale;
 	}
+	feature mass: MassValue;
+	
+	class TimeValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: TimeUnit redefines Quantities::QuantityValue::scale;
+	}
+	feature time: TimeValue;
+	
+	class ElectricCurrentValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: ElectricCurrentUnit redefines Quantities::QuantityValue::scale;
+	}
+	feature electricCurrent: ElectricCurrentValue;
+	
+	class TemperatureValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: TemperatureUnit redefines Quantities::QuantityValue::scale;
+	}
+	feature temperature: TemperatureValue;
+	
+	class AmountOfSubstanceValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: AmountOfSubstanceUnit redefines Quantities::QuantityValue::scale;
+	}
+	feature amountOfSubstance: AmountOfSubstanceValue;
+			
+	class LuminousIntensityValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: LuminousIntensityUnit redefines Quantities::QuantityValue::scale;
+	}
+	feature luminousIntensity: LuminousIntensityValue;
 
 	// Derived Quantities
-	class Force specializes Quantities::Quantity {
-		unit: ForceUnit redefines Quantities::Quantity::unit;
+	class ForceValue specializes Quantities::QuantityValue {
+		magnitude: Real redefines Quantities::QuantityValue::magnitude;
+		scale: ForceUnit redefines Quantities::QuantityValue::scale;
 	}
+	feature force: ForceValue;
 	
 	// ...	
 				

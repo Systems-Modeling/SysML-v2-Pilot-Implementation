@@ -36,7 +36,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OUT(0, "out", "out"),
+	OUT(1, "out", "out"),
 
 	/**
 	 * The '<em><b>Inout</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INOUT(0, "inout", "inout");
+	INOUT(2, "inout", "inout");
 
 	/**
 	 * The '<em><b>In</b></em>' literal value.
@@ -76,7 +76,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OUT_VALUE = 0;
+	public static final int OUT_VALUE = 1;
 
 	/**
 	 * The '<em><b>Inout</b></em>' literal value.
@@ -91,7 +91,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INOUT_VALUE = 0;
+	public static final int INOUT_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Feature Direction Kind</b></em>' enumerators.
@@ -161,6 +161,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	public static FeatureDirectionKind get(int value) {
 		switch (value) {
 			case IN_VALUE: return IN;
+			case OUT_VALUE: return OUT;
+			case INOUT_VALUE: return INOUT;
 		}
 		return null;
 	}

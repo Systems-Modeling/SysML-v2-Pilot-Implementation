@@ -46,7 +46,7 @@
     <requirement
         name="org.eclipse.xtend.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2018-09/"/>
+        url="http://download.eclipse.org/releases/2018-12/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -70,9 +70,9 @@
           rootFolder="${git.clone.sysml2.location}"
           locateNestedProjects="true"/>
       <repositoryList
-          name="Photon">
+          name="Eclipse">
         <repository
-            url="http://download.eclipse.org/releases/2018-09"/>
+            url="http://download.eclipse.org/releases/2018-12"/>
         <repository
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository

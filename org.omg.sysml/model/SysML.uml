@@ -1112,4 +1112,10 @@ else owningNamespace.nameOf(self) endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-htwcA-qEemintoDOM84LQ" value="*"/>
     </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sMk3UCAgEem_3uhbGX2-zA" name="ObjectClass">
+    <generalization xmi:id="_4ngRgCAhEem_3uhbGX2-zA" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8qNR8CAhEem_3uhbGX2-zA" name="ValueClass">
+    <generalization xmi:id="_8qNR8SAhEem_3uhbGX2-zA" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
+  </packagedElement>
 </uml:Model>

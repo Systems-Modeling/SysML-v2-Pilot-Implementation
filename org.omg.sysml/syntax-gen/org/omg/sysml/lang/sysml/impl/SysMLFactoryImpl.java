@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -57,6 +58,7 @@ import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ValueClass;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
@@ -148,6 +150,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION: return createSequenceAccessExpression();
 			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
+			case SysMLPackage.OBJECT_CLASS: return createObjectClass();
+			case SysMLPackage.VALUE_CLASS: return createValueClass();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -635,6 +639,26 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public OperatorExpression createOperatorExpression() {
 		OperatorExpressionImpl operatorExpression = new OperatorExpressionImpl();
 		return operatorExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectClass createObjectClass() {
+		ObjectClassImpl objectClass = new ObjectClassImpl();
+		return objectClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueClass createValueClass() {
+		ValueClassImpl valueClass = new ValueClassImpl();
+		return valueClass;
 	}
 
 	/**

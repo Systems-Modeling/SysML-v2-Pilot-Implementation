@@ -616,4 +616,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
         upperBound="-1" eType="#//Expression" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectClass" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueClass" eSuperTypes="#//Class"/>
 </ecore:EPackage>

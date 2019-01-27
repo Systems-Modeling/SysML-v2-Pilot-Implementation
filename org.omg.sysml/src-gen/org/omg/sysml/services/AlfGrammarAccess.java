@@ -1676,26 +1676,38 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnnamedFeatureDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnnamedFeatureDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipSubsetOrRedefinitionParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
+		private final RuleCall cSubsetsParserRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
+		private final RuleCall cRedefinitionsParserRuleCall_0_0_1 = (RuleCall)cGroup_0_0.eContents().get(1);
+		private final RuleCall cRedefinitionsParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cTypePartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cMultiplicityAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cMultiplicityMultiplicityParserRuleCall_2_0 = (RuleCall)cMultiplicityAssignment_2.eContents().get(0);
 		private final RuleCall cFeatureCompletionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//UnnamedFeatureDefinition SysML::Feature:
-		//	ownedRelationship+=SubsetOrRedefinition TypePart? multiplicity=Multiplicity?
+		//	(Subsets Redefinitions | Redefinitions) TypePart? multiplicity=Multiplicity?
 		//	FeatureCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship+=SubsetOrRedefinition TypePart? multiplicity=Multiplicity? FeatureCompletion
+		//(Subsets Redefinitions | Redefinitions) TypePart? multiplicity=Multiplicity? FeatureCompletion
 		public Group getGroup() { return cGroup; }
 		
-		//ownedRelationship+=SubsetOrRedefinition
-		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
+		//Subsets Redefinitions | Redefinitions
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
-		//SubsetOrRedefinition
-		public RuleCall getOwnedRelationshipSubsetOrRedefinitionParserRuleCall_0_0() { return cOwnedRelationshipSubsetOrRedefinitionParserRuleCall_0_0; }
+		//Subsets Redefinitions
+		public Group getGroup_0_0() { return cGroup_0_0; }
+		
+		//Subsets
+		public RuleCall getSubsetsParserRuleCall_0_0_0() { return cSubsetsParserRuleCall_0_0_0; }
+		
+		//Redefinitions
+		public RuleCall getRedefinitionsParserRuleCall_0_0_1() { return cRedefinitionsParserRuleCall_0_0_1; }
+		
+		//Redefinitions
+		public RuleCall getRedefinitionsParserRuleCall_0_1() { return cRedefinitionsParserRuleCall_0_1; }
 		
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1() { return cTypePartParserRuleCall_1; }
@@ -1745,16 +1757,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsOrderedOrderedKeyword_3_0_0 = (Keyword)cIsOrderedAssignment_3_0.eContents().get(0);
 		private final Assignment cIsNonuniqueAssignment_3_1 = (Assignment)cUnorderedGroup_3.eContents().get(1);
 		private final Keyword cIsNonuniqueNonuniqueKeyword_3_1_0 = (Keyword)cIsNonuniqueAssignment_3_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedRelationshipSubsetOrRedefinitionParserRuleCall_4_0 = (RuleCall)cOwnedRelationshipAssignment_4.eContents().get(0);
+		private final RuleCall cRedefinitionsParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cSubsetsParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//fragment FeatureDeclaration returns SysML::Feature:
-		//	name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?)
-		//	ownedRelationship+=SubsetOrRedefinition?;
+		//	name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?) Redefinitions?
+		//	Subsets?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?)
-		//ownedRelationship+=SubsetOrRedefinition?
+		//name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?) Redefinitions?
+		//Subsets?
 		public Group getGroup() { return cGroup; }
 		
 		//name=Name
@@ -1787,11 +1799,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'nonunique'
 		public Keyword getIsNonuniqueNonuniqueKeyword_3_1_0() { return cIsNonuniqueNonuniqueKeyword_3_1_0; }
 		
-		//ownedRelationship+=SubsetOrRedefinition?
-		public Assignment getOwnedRelationshipAssignment_4() { return cOwnedRelationshipAssignment_4; }
+		//Redefinitions?
+		public RuleCall getRedefinitionsParserRuleCall_4() { return cRedefinitionsParserRuleCall_4; }
 		
-		//SubsetOrRedefinition
-		public RuleCall getOwnedRelationshipSubsetOrRedefinitionParserRuleCall_4_0() { return cOwnedRelationshipSubsetOrRedefinitionParserRuleCall_4_0; }
+		//Subsets?
+		public RuleCall getSubsetsParserRuleCall_5() { return cSubsetsParserRuleCall_5; }
 	}
 	public class FeatureCompletionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureCompletion");
@@ -1940,60 +1952,36 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//']'
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
-	public class SubsetOrRedefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.SubsetOrRedefinition");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cSubsetsKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsetParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cRedefinesKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cRedefinitionParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+	public class SubsetsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Subsets");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSubsetsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipSubsetParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipSubsetParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		
-		//SubsetOrRedefinition SysML::Subsetting:
-		//	'subsets' Subset
-		//	| 'redefines' Redefinition;
+		//fragment Subsets returns SysML::Feature:
+		//	'subsets' ownedRelationship+=Subset ownedRelationship+=Subset*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'subsets' Subset | 'redefines' Redefinition
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'subsets' Subset
-		public Group getGroup_0() { return cGroup_0; }
+		//'subsets' ownedRelationship+=Subset ownedRelationship+=Subset*
+		public Group getGroup() { return cGroup; }
 		
 		//'subsets'
-		public Keyword getSubsetsKeyword_0_0() { return cSubsetsKeyword_0_0; }
+		public Keyword getSubsetsKeyword_0() { return cSubsetsKeyword_0; }
+		
+		//ownedRelationship+=Subset
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
 		//Subset
-		public RuleCall getSubsetParserRuleCall_0_1() { return cSubsetParserRuleCall_0_1; }
+		public RuleCall getOwnedRelationshipSubsetParserRuleCall_1_0() { return cOwnedRelationshipSubsetParserRuleCall_1_0; }
 		
-		//'redefines' Redefinition
-		public Group getGroup_1() { return cGroup_1; }
+		//ownedRelationship+=Subset*
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
 		
-		//'redefines'
-		public Keyword getRedefinesKeyword_1_0() { return cRedefinesKeyword_1_0; }
-		
-		//Redefinition
-		public RuleCall getRedefinitionParserRuleCall_1_1() { return cRedefinitionParserRuleCall_1_1; }
-	}
-	public class RedefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Redefinition");
-		private final Assignment cRedefinedFeatureAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cRedefinedFeatureFeatureCrossReference_0 = (CrossReference)cRedefinedFeatureAssignment.eContents().get(0);
-		private final RuleCall cRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cRedefinedFeatureFeatureCrossReference_0.eContents().get(1);
-		
-		//Redefinition SysML::Redefinition:
-		//	redefinedFeature=[SysML::Feature|QualifiedName];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//redefinedFeature=[SysML::Feature|QualifiedName]
-		public Assignment getRedefinedFeatureAssignment() { return cRedefinedFeatureAssignment; }
-		
-		//[SysML::Feature|QualifiedName]
-		public CrossReference getRedefinedFeatureFeatureCrossReference_0() { return cRedefinedFeatureFeatureCrossReference_0; }
-		
-		//QualifiedName
-		public RuleCall getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1() { return cRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1; }
+		//Subset
+		public RuleCall getOwnedRelationshipSubsetParserRuleCall_2_0() { return cOwnedRelationshipSubsetParserRuleCall_2_0; }
 	}
 	public class SubsetElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Subset");
@@ -2013,6 +2001,56 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//QualifiedName
 		public RuleCall getSubsettedFeatureFeatureQualifiedNameParserRuleCall_0_1() { return cSubsettedFeatureFeatureQualifiedNameParserRuleCall_0_1; }
+	}
+	public class RedefinitionsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Redefinitions");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRedefinesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		
+		//fragment Redefinitions returns SysML::Feature:
+		//	'redefines' ownedRelationship+=Redefinition ownedRelationship+=Redefinition*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'redefines' ownedRelationship+=Redefinition ownedRelationship+=Redefinition*
+		public Group getGroup() { return cGroup; }
+		
+		//'redefines'
+		public Keyword getRedefinesKeyword_0() { return cRedefinesKeyword_0; }
+		
+		//ownedRelationship+=Redefinition
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		
+		//Redefinition
+		public RuleCall getOwnedRelationshipRedefinitionParserRuleCall_1_0() { return cOwnedRelationshipRedefinitionParserRuleCall_1_0; }
+		
+		//ownedRelationship+=Redefinition*
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		
+		//Redefinition
+		public RuleCall getOwnedRelationshipRedefinitionParserRuleCall_2_0() { return cOwnedRelationshipRedefinitionParserRuleCall_2_0; }
+	}
+	public class RedefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Redefinition");
+		private final Assignment cRedefinedFeatureAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cRedefinedFeatureFeatureCrossReference_0 = (CrossReference)cRedefinedFeatureAssignment.eContents().get(0);
+		private final RuleCall cRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cRedefinedFeatureFeatureCrossReference_0.eContents().get(1);
+		
+		//Redefinition SysML::Redefinition:
+		//	redefinedFeature=[SysML::Feature|QualifiedName];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//redefinedFeature=[SysML::Feature|QualifiedName]
+		public Assignment getRedefinedFeatureAssignment() { return cRedefinedFeatureAssignment; }
+		
+		//[SysML::Feature|QualifiedName]
+		public CrossReference getRedefinedFeatureFeatureCrossReference_0() { return cRedefinedFeatureFeatureCrossReference_0; }
+		
+		//QualifiedName
+		public RuleCall getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1() { return cRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1; }
 	}
 	public class ConnectorDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ConnectorDefinition");
@@ -3194,9 +3232,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypePartElements pTypePart;
 	private final FeatureTypingElements pFeatureTyping;
 	private final MultiplicityElements pMultiplicity;
-	private final SubsetOrRedefinitionElements pSubsetOrRedefinition;
-	private final RedefinitionElements pRedefinition;
+	private final SubsetsElements pSubsets;
 	private final SubsetElements pSubset;
+	private final RedefinitionsElements pRedefinitions;
+	private final RedefinitionElements pRedefinition;
 	private final ConnectorDefinitionElements pConnectorDefinition;
 	private final ConnectorTypingElements pConnectorTyping;
 	private final ConnectorEndElements pConnectorEnd;
@@ -3290,9 +3329,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypePart = new TypePartElements();
 		this.pFeatureTyping = new FeatureTypingElements();
 		this.pMultiplicity = new MultiplicityElements();
-		this.pSubsetOrRedefinition = new SubsetOrRedefinitionElements();
-		this.pRedefinition = new RedefinitionElements();
+		this.pSubsets = new SubsetsElements();
 		this.pSubset = new SubsetElements();
+		this.pRedefinitions = new RedefinitionsElements();
+		this.pRedefinition = new RedefinitionElements();
 		this.pConnectorDefinition = new ConnectorDefinitionElements();
 		this.pConnectorTyping = new ConnectorTypingElements();
 		this.pConnectorEnd = new ConnectorEndElements();
@@ -3792,7 +3832,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UnnamedFeatureDefinition SysML::Feature:
-	//	ownedRelationship+=SubsetOrRedefinition TypePart? multiplicity=Multiplicity?
+	//	(Subsets Redefinitions | Redefinitions) TypePart? multiplicity=Multiplicity?
 	//	FeatureCompletion;
 	public UnnamedFeatureDefinitionElements getUnnamedFeatureDefinitionAccess() {
 		return pUnnamedFeatureDefinition;
@@ -3813,8 +3853,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment FeatureDeclaration returns SysML::Feature:
-	//	name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?)
-	//	ownedRelationship+=SubsetOrRedefinition?;
+	//	name=Name TypePart? multiplicity=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?) Redefinitions?
+	//	Subsets?;
 	public FeatureDeclarationElements getFeatureDeclarationAccess() {
 		return pFeatureDeclaration;
 	}
@@ -3873,25 +3913,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicityAccess().getRule();
 	}
 	
-	//SubsetOrRedefinition SysML::Subsetting:
-	//	'subsets' Subset
-	//	| 'redefines' Redefinition;
-	public SubsetOrRedefinitionElements getSubsetOrRedefinitionAccess() {
-		return pSubsetOrRedefinition;
+	//fragment Subsets returns SysML::Feature:
+	//	'subsets' ownedRelationship+=Subset ownedRelationship+=Subset*;
+	public SubsetsElements getSubsetsAccess() {
+		return pSubsets;
 	}
 	
-	public ParserRule getSubsetOrRedefinitionRule() {
-		return getSubsetOrRedefinitionAccess().getRule();
-	}
-	
-	//Redefinition SysML::Redefinition:
-	//	redefinedFeature=[SysML::Feature|QualifiedName];
-	public RedefinitionElements getRedefinitionAccess() {
-		return pRedefinition;
-	}
-	
-	public ParserRule getRedefinitionRule() {
-		return getRedefinitionAccess().getRule();
+	public ParserRule getSubsetsRule() {
+		return getSubsetsAccess().getRule();
 	}
 	
 	//Subset SysML::Subsetting:
@@ -3902,6 +3931,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSubsetRule() {
 		return getSubsetAccess().getRule();
+	}
+	
+	//fragment Redefinitions returns SysML::Feature:
+	//	'redefines' ownedRelationship+=Redefinition ownedRelationship+=Redefinition*;
+	public RedefinitionsElements getRedefinitionsAccess() {
+		return pRedefinitions;
+	}
+	
+	public ParserRule getRedefinitionsRule() {
+		return getRedefinitionsAccess().getRule();
+	}
+	
+	//Redefinition SysML::Redefinition:
+	//	redefinedFeature=[SysML::Feature|QualifiedName];
+	public RedefinitionElements getRedefinitionAccess() {
+		return pRedefinition;
+	}
+	
+	public ParserRule getRedefinitionRule() {
+		return getRedefinitionAccess().getRule();
 	}
 	
 	///* CONNECTORS */ ConnectorDefinition SysML::Connector:

@@ -270,7 +270,7 @@ NamedFeatureDefinition returns SysML::Feature :
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
-	ownedRelationship += SubsetOrRedefinition TypePart? ( multiplicity = Multiplicity )?
+	( Subsets Redefinitions | Redefinitions ) TypePart? ( multiplicity = Multiplicity )?
 	FeatureCompletion
 ;
 
@@ -281,7 +281,7 @@ fragment FeatureBodyDefinition returns SysML::Feature :
 fragment FeatureDeclaration returns SysML::Feature :
 	name = Name TypePart? ( multiplicity = Multiplicity )? 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
-	( ownedRelationship += SubsetOrRedefinition )? 
+	Redefinitions? Subsets?
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
@@ -304,18 +304,20 @@ Multiplicity returns SysML::Multiplicity :
 	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
-SubsetOrRedefinition returns SysML::Subsetting :
-	( 'subsets' Subset
-	| 'redefines' Redefinition
-	)
-;
-
-Redefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature|QualifiedName] 
+fragment Subsets returns SysML::Feature :
+	'subsets' ownedRelationship += Subset ( ownedRelationship += Subset )*
 ;
 
 Subset returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
+fragment Redefinitions returns SysML::Feature :
+	'redefines' ownedRelationship += Redefinition ( ownedRelationship += Redefinition )*
+;
+
+Redefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature|QualifiedName] 
 ;
 
 /* CONNECTORS */

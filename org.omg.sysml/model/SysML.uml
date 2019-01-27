@@ -45,7 +45,7 @@
     </ownedRule>
     <generalization xmi:id="332599cd-67c3-4d3a-898f-b3c9e214405d" general="4e5f8972-c473-4bc0-8edf-bb508993d08e"/>
     <ownedAttribute xmi:id="f88318ca-67c0-4399-914e-2105cf31cb17" name="ownedSuperclassing" visibility="public" type="d57b0c8d-0740-490d-9e11-7dd559103ee2" isDerived="true" subsettedProperty="d65bfe47-3744-4fb9-a371-dc053aabfccd" association="d68af7ed-17cd-4fb0-afce-60e83cbfc73c">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="5a21d592-7ed7-4bfc-ade2-56baf3075957" name="" visibility="public"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="5a21d592-7ed7-4bfc-ade2-56baf3075957" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="2ab334e6-5c59-4d9c-b059-fbc05528127a" name="" visibility="public" value="*"/>
     </ownedAttribute>
   </packagedElement>

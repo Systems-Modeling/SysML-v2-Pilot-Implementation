@@ -211,7 +211,7 @@
       <details key="documentation" value="ownedSuperclassings = ownedGeneralizations->intersection(superclassing)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperclassing" ordered="false"
-        upperBound="-1" eType="#//Superclassing" volatile="true" transient="true"
+        lowerBound="1" upperBound="-1" eType="#//Superclassing" volatile="true" transient="true"
         derived="true" eOpposite="#//Superclassing/owningClass">
       <eAnnotations source="subsets" references="#//Category/ownedGeneralization"/>
     </eStructuralFeatures>

@@ -190,8 +190,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated NOT
 	 */
 	public Category basicGetOwningCategory() {
-		org.omg.sysml.lang.sysml.Package namespace = this.getOwningNamespace();
-		return namespace instanceof Category? (Category)namespace: null;
+		Element element = this.getOwningRelatedElement();
+		return element instanceof Category? (Category)element: null;
 	}
 
 	/**

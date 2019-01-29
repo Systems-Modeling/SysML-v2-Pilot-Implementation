@@ -2,9 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.omg.sysml.lang.sysml.ObjectClass;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +16,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ObjectClassImpl extends ClassImpl implements ObjectClass {
+	
+	public String OBJECT_CLASS_SUPERCLASS_DEFAULT = "Base::Object";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22,6 +26,14 @@ public class ObjectClassImpl extends ClassImpl implements ObjectClass {
 	 */
 	protected ObjectClassImpl() {
 		super();
+	}
+	
+	/**
+	 * If the ObjectClass has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(OBJECT_CLASS_SUPERCLASS_DEFAULT);
 	}
 
 	/**

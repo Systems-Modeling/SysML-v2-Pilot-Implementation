@@ -2,8 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ValueClass;
 
@@ -15,6 +16,8 @@ import org.omg.sysml.lang.sysml.ValueClass;
  * @generated
  */
 public class ValueClassImpl extends ClassImpl implements ValueClass {
+	public String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22,6 +25,14 @@ public class ValueClassImpl extends ClassImpl implements ValueClass {
 	 */
 	protected ValueClassImpl() {
 		super();
+	}
+
+	/**
+	 * If the ObjectClass has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(VALUE_CLASS_SUPERCLASS_DEFAULT);
 	}
 
 	/**

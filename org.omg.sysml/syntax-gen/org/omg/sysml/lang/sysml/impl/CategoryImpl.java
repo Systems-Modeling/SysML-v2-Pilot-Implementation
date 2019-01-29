@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.omg.sysml.lang.sysml.Category;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -124,10 +124,10 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.CATEGORY__OWNED_GENERALIZATION);
-		for (Element member: this.getOwnedMember()) {
-			if (member instanceof Generalization &&
-					((Generalization)member).getSpecific().equals(this)) {
-				generalizations.add(((Generalization)member));
+		for (Relationship relationship: this.getOwnedRelationship()) {
+			if (relationship instanceof Generalization &&
+					((Generalization)relationship).getSpecific().equals(this)) {
+				generalizations.add(((Generalization)relationship));
 			}
 		}
 		return generalizations;

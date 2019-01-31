@@ -190,7 +190,7 @@ class MemberNameTests {
 					class c specializes a {}
 				}
 				class D specializes A::a{} 
-				class EE {}
+				class E {} //added because E was causing parsing problem (confused with Exponent)
 			}
 		''')
 		EcoreUtil2.resolveAll(result)

@@ -78,8 +78,7 @@ class ShadowingTests {
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
-	//TODO: this has no errors.  But only first A is stored.
-	// 
+	//TODO: this is not legal, because all the member of a package must be distinguishable.
 	@Test
 	def void testSameNamesGoodCase() {
 		val result = parseHelper.parse('''

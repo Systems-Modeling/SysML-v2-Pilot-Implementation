@@ -35,6 +35,8 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 UnitDefinition returns SysML::Package :
 	  PackageUnitDefinition 
 	| ClassUnitDefinition 
+	| ObjectClassUnitDefinition
+	| ValueClassUnitDefinition
 	| AssociationUnitDefinition 
 	| FeatureUnitDefinition
 ;
@@ -47,8 +49,12 @@ ClassUnitDefinition returns SysML::ObjectClass :
 	UnitPrefix ClassDefinition
 ;
 
-DataTypeUnitDefinition returns SysML::ValueClass :
-	UnitPrefix DataTypeDefinition
+ObjectClassUnitDefinition returns SysML::ObjectClass:
+	UnitPrefix ObjectClassDefinition
+;
+
+ValueClassUnitDefinition returns SysML::ValueClass :
+	UnitPrefix ValueClassDefinition
 ;
 
 AssociationUnitDefinition returns SysML::Association :
@@ -109,7 +115,8 @@ ElementImport returns SysML::Membership :
 NonFeatureDefinition returns SysML::Package:
 	  PackageDefinitionOrStub 
 	| ClassDefinitionOrStub 
-	| DataTypeDefinitionOrStub 
+	| ObjectClassDefinitionOrStub
+	| ValueClassDefinitionOrStub 
 	| AssociationDefinitionOrStub
 ;
 
@@ -140,6 +147,7 @@ fragment PackageMemberPrefix returns SysML::Membership :
 fragment NonFeatureMemberElement returns SysML::Membership :
 	( ownedMemberElement = NonFeatureDefinition
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
+    | 'Class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
     | 'class' ( memberName = Name )? 'is' memberElement = [SysML::ObjectClass|QualifiedName] ';'
     | 'datatype' ( memberName = Name )? 'is' memberElement = [SysML::ValueClass|QualifiedName] ';'
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
@@ -209,17 +217,17 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 /* CLASSES */
 
-ClassDefinitionOrStub returns SysML::ObjectClass :
+ClassDefinitionOrStub returns SysML::Class :
 	ClassDefinition 
-//	ClassDeclaration ( isStub ?= ';' | ClassBody '}' )
+//	ClassDeclaration ( isStub ?= ';' | CategoryBody )
 ;
 
-fragment ClassDefinition returns SysML::ObjectClass : 
+fragment ClassDefinition returns SysML::Class : 
 	ClassDeclaration CategoryBody
 ;
 
-fragment ClassDeclaration returns SysML::ObjectClass :
-	( isAbstract ?= 'abstract' )? 'class' ClassDeclarationCompletion
+fragment ClassDeclaration returns SysML::Class :
+	( isAbstract ?= 'abstract' )? 'Class' ClassDeclarationCompletion
 ;
 
 fragment ClassDeclarationCompletion returns SysML::Class :	
@@ -232,17 +240,31 @@ Superclassing returns SysML::Superclassing:
 	superclass = [SysML::Class | QualifiedName]
 ;
 
-/* Data Types */
+/* OBJECT CLASSES */
 
-DataTypeDefinitionOrStub returns SysML::ValueClass :
-	DataTypeDefinition
+ObjectClassDefinitionOrStub returns SysML::ObjectClass :
+	ObjectClassDefinition
 ;
 
-fragment DataTypeDefinition returns SysML::ValueClass :
-	DataTypeDeclaration CategoryBody
+fragment ObjectClassDefinition returns SysML::ObjectClass : 
+	ObjectClassDeclaration CategoryBody
 ;
 
-fragment DataTypeDeclaration returns SysML::ValueClass :
+fragment ObjectClassDeclaration returns SysML::ObjectClass :
+	( isAbstract ?= 'abstract' )? 'class' ClassDeclarationCompletion
+;
+
+/* VALUE CLASSES (DATA TYPES) */
+
+ValueClassDefinitionOrStub returns SysML::ValueClass :
+	ValueClassDefinition
+;
+
+fragment ValueClassDefinition returns SysML::ValueClass :
+	ValueClassDeclaration CategoryBody
+;
+
+fragment ValueClassDeclaration returns SysML::ValueClass :
 	( isAbstract ?= 'abstract' )? 'datatype' ClassDeclarationCompletion
 ;
 

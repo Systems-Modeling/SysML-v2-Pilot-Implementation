@@ -76,7 +76,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
 					put(grammarAccess.getPackageUnitDefinitionAccess().getGroup(), "rule__PackageUnitDefinition__Group__0");
 					put(grammarAccess.getClassUnitDefinitionAccess().getGroup(), "rule__ClassUnitDefinition__Group__0");
-					put(grammarAccess.getDataTypeUnitDefinitionAccess().getGroup(), "rule__DataTypeUnitDefinition__Group__0");
+					put(grammarAccess.getObjectClassUnitDefinitionAccess().getGroup(), "rule__ObjectClassUnitDefinition__Group__0");
+					put(grammarAccess.getValueClassUnitDefinitionAccess().getGroup(), "rule__ValueClassUnitDefinition__Group__0");
 					put(grammarAccess.getAssociationUnitDefinitionAccess().getGroup(), "rule__AssociationUnitDefinition__Group__0");
 					put(grammarAccess.getFeatureUnitDefinitionAccess().getGroup(), "rule__FeatureUnitDefinition__Group__0");
 					put(grammarAccess.getUnitPrefixAccess().getGroup(), "rule__UnitPrefix__Group__0");
@@ -94,7 +95,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_3(), "rule__NonFeatureMemberElement__Group_3__0");
 					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_4(), "rule__NonFeatureMemberElement__Group_4__0");
 					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_5(), "rule__NonFeatureMemberElement__Group_5__0");
-					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_5_2(), "rule__NonFeatureMemberElement__Group_5_2__0");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_6(), "rule__NonFeatureMemberElement__Group_6__0");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_6_2(), "rule__NonFeatureMemberElement__Group_6_2__0");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getGroup_0(), "rule__FeaturePackageMemberElement__Group_0__0");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getGroup_1(), "rule__FeaturePackageMemberElement__Group_1__0");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getGroup_2(), "rule__FeaturePackageMemberElement__Group_2__0");
@@ -114,8 +116,10 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassDeclarationCompletionAccess().getGroup(), "rule__ClassDeclarationCompletion__Group__0");
 					put(grammarAccess.getClassDeclarationCompletionAccess().getGroup_1(), "rule__ClassDeclarationCompletion__Group_1__0");
 					put(grammarAccess.getClassDeclarationCompletionAccess().getGroup_1_2(), "rule__ClassDeclarationCompletion__Group_1_2__0");
-					put(grammarAccess.getDataTypeDefinitionAccess().getGroup(), "rule__DataTypeDefinition__Group__0");
-					put(grammarAccess.getDataTypeDeclarationAccess().getGroup(), "rule__DataTypeDeclaration__Group__0");
+					put(grammarAccess.getObjectClassDefinitionAccess().getGroup(), "rule__ObjectClassDefinition__Group__0");
+					put(grammarAccess.getObjectClassDeclarationAccess().getGroup(), "rule__ObjectClassDeclaration__Group__0");
+					put(grammarAccess.getValueClassDefinitionAccess().getGroup(), "rule__ValueClassDefinition__Group__0");
+					put(grammarAccess.getValueClassDeclarationAccess().getGroup(), "rule__ValueClassDeclaration__Group__0");
 					put(grammarAccess.getAssociationDefinitionAccess().getGroup(), "rule__AssociationDefinition__Group__0");
 					put(grammarAccess.getAssociationDeclarationAccess().getGroup(), "rule__AssociationDeclaration__Group__0");
 					put(grammarAccess.getAssociationDeclarationAccess().getGroup_3(), "rule__AssociationDeclaration__Group_3__0");
@@ -199,8 +203,10 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberElementAssignment_3_3(), "rule__NonFeatureMemberElement__MemberElementAssignment_3_3");
 					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberNameAssignment_4_1(), "rule__NonFeatureMemberElement__MemberNameAssignment_4_1");
 					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberElementAssignment_4_3(), "rule__NonFeatureMemberElement__MemberElementAssignment_4_3");
-					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberElementAssignment_5_1(), "rule__NonFeatureMemberElement__MemberElementAssignment_5_1");
-					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberNameAssignment_5_2_1(), "rule__NonFeatureMemberElement__MemberNameAssignment_5_2_1");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberNameAssignment_5_1(), "rule__NonFeatureMemberElement__MemberNameAssignment_5_1");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberElementAssignment_5_3(), "rule__NonFeatureMemberElement__MemberElementAssignment_5_3");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberElementAssignment_6_1(), "rule__NonFeatureMemberElement__MemberElementAssignment_6_1");
+					put(grammarAccess.getNonFeatureMemberElementAccess().getMemberNameAssignment_6_2_1(), "rule__NonFeatureMemberElement__MemberNameAssignment_6_2_1");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedMemberElementAssignment_0_1(), "rule__FeaturePackageMemberElement__OwnedMemberElementAssignment_0_1");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedMemberElementAssignment_1_1(), "rule__FeaturePackageMemberElement__OwnedMemberElementAssignment_1_1");
 					put(grammarAccess.getFeaturePackageMemberElementAccess().getMemberNameAssignment_2_0_0_1(), "rule__FeaturePackageMemberElement__MemberNameAssignment_2_0_0_1");
@@ -229,7 +235,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassDeclarationCompletionAccess().getOwnedRelationshipAssignment_1_1(), "rule__ClassDeclarationCompletion__OwnedRelationshipAssignment_1_1");
 					put(grammarAccess.getClassDeclarationCompletionAccess().getOwnedRelationshipAssignment_1_2_1(), "rule__ClassDeclarationCompletion__OwnedRelationshipAssignment_1_2_1");
 					put(grammarAccess.getSuperclassingAccess().getSuperclassAssignment(), "rule__Superclassing__SuperclassAssignment");
-					put(grammarAccess.getDataTypeDeclarationAccess().getIsAbstractAssignment_0(), "rule__DataTypeDeclaration__IsAbstractAssignment_0");
+					put(grammarAccess.getObjectClassDeclarationAccess().getIsAbstractAssignment_0(), "rule__ObjectClassDeclaration__IsAbstractAssignment_0");
+					put(grammarAccess.getValueClassDeclarationAccess().getIsAbstractAssignment_0(), "rule__ValueClassDeclaration__IsAbstractAssignment_0");
 					put(grammarAccess.getAssociationDeclarationAccess().getIsAbstractAssignment_0(), "rule__AssociationDeclaration__IsAbstractAssignment_0");
 					put(grammarAccess.getAssociationDeclarationAccess().getNameAssignment_2(), "rule__AssociationDeclaration__NameAssignment_2");
 					put(grammarAccess.getAssociationDeclarationAccess().getOwnedRelationshipAssignment_3_1(), "rule__AssociationDeclaration__OwnedRelationshipAssignment_3_1");

@@ -22,6 +22,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.Class {
+	public String CLASS_SUPERCLASS_DEFAULT = "Base::Anything";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,7 +49,7 @@ public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.
 	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedGeneralizationWithoutDefault(Superclassing.class, SysMLPackage.CLASS__OWNED_SUPERCLASSING);
+		return getOwnedSuperclassingWithDefault(CLASS_SUPERCLASS_DEFAULT);
 	}
 	
 	protected EList<Superclassing> getOwnedSuperclassingWithDefault(String superclassDefault) {

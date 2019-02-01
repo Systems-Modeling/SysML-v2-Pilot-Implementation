@@ -3,7 +3,7 @@ package Base {
     /*
      * Anything is the top level generalized type in the language. 
      */
-	abstract class Anything specializes Anything;
+	abstract Class Anything;
 	
 	/*
 	 * Object is the most general class of individuals with reference identity.

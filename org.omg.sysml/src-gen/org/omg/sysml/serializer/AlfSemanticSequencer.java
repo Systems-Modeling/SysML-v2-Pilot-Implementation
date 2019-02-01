@@ -78,6 +78,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.CLASS:
+				sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+				return; 
 			case SysMLPackage.COMMENT:
 				sequence_Comment(context, (Comment) semanticObject); 
 				return; 
@@ -191,12 +194,16 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.OBJECT_CLASS:
 				if (rule == grammarAccess.getNonFeatureDefinitionRule()
-						|| rule == grammarAccess.getClassDefinitionOrStubRule()) {
-					sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion(context, (ObjectClass) semanticObject); 
+						|| rule == grammarAccess.getObjectClassDefinitionOrStubRule()) {
+					sequence_CategoryBody_ClassDeclarationCompletion_ObjectClassDeclaration(context, (ObjectClass) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getObjectClassUnitDefinitionRule()) {
+					sequence_CategoryBody_ClassDeclarationCompletion_ObjectClassDeclaration_UnitPrefix(context, (ObjectClass) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitDefinitionRule()) {
-					sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_UnitPrefix(context, (ObjectClass) semanticObject); 
+					sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_ObjectClassDeclaration_UnitPrefix(context, (ObjectClass) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getClassUnitDefinitionRule()) {
@@ -235,13 +242,17 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Superclassing(context, (Superclassing) semanticObject); 
 				return; 
 			case SysMLPackage.VALUE_CLASS:
-				if (rule == grammarAccess.getDataTypeUnitDefinitionRule()) {
-					sequence_CategoryBody_ClassDeclarationCompletion_DataTypeDeclaration_UnitPrefix(context, (ValueClass) semanticObject); 
+				if (rule == grammarAccess.getUnitDefinitionRule()) {
+					sequence_CategoryBody_ClassDeclarationCompletion_UnitPrefix_ValueClassDeclaration(context, (ValueClass) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getValueClassUnitDefinitionRule()) {
+					sequence_CategoryBody_ClassDeclarationCompletion_UnitPrefix_ValueClassDeclaration(context, (ValueClass) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getNonFeatureDefinitionRule()
-						|| rule == grammarAccess.getDataTypeDefinitionOrStubRule()) {
-					sequence_CategoryBody_ClassDeclarationCompletion_DataTypeDeclaration(context, (ValueClass) semanticObject); 
+						|| rule == grammarAccess.getValueClassDefinitionOrStubRule()) {
+					sequence_CategoryBody_ClassDeclarationCompletion_ValueClassDeclaration(context, (ValueClass) semanticObject); 
 					return; 
 				}
 				else break;
@@ -286,7 +297,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -389,7 +401,25 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     DataTypeUnitDefinition returns ValueClass
+	 *     NonFeatureDefinition returns ObjectClass
+	 *     ObjectClassDefinitionOrStub returns ObjectClass
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_CategoryBody_ClassDeclarationCompletion_ObjectClassDeclaration(ISerializationContext context, ObjectClass semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ObjectClassUnitDefinition returns ObjectClass
 	 *
 	 * Constraint:
 	 *     (
@@ -401,54 +431,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
 	 *     )
 	 */
-	protected void sequence_CategoryBody_ClassDeclarationCompletion_DataTypeDeclaration_UnitPrefix(ISerializationContext context, ValueClass semanticObject) {
+	protected void sequence_CategoryBody_ClassDeclarationCompletion_ObjectClassDeclaration_UnitPrefix(ISerializationContext context, ObjectClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     NonFeatureDefinition returns ValueClass
-	 *     DataTypeDefinitionOrStub returns ValueClass
+	 *     UnitDefinition returns ValueClass
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
-	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
-	 *     )
-	 */
-	protected void sequence_CategoryBody_ClassDeclarationCompletion_DataTypeDeclaration(ISerializationContext context, ValueClass semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     NonFeatureDefinition returns ObjectClass
-	 *     ClassDefinitionOrStub returns ObjectClass
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
-	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
-	 *     )
-	 */
-	protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion(ISerializationContext context, ObjectClass semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     UnitDefinition returns ObjectClass
-	 *
-	 * Constraint:
-	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -456,7 +451,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
 	 *     )
 	 */
-	protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_UnitPrefix(ISerializationContext context, ObjectClass semanticObject) {
+	protected void sequence_CategoryBody_ClassDeclarationCompletion_UnitPrefix_ValueClassDeclaration(ISerializationContext context, ValueClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -466,7 +461,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     ClassUnitDefinition returns ObjectClass
+	//     ValueClassUnitDefinition returns ValueClass
 	//
 	// Constraint:
 	//     (
@@ -478,7 +473,82 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	//         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
 	//     )
 	//
-	// protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_UnitPrefix(ISerializationContext context, ObjectClass semanticObject) { }
+	// protected void sequence_CategoryBody_ClassDeclarationCompletion_UnitPrefix_ValueClassDeclaration(ISerializationContext context, ValueClass semanticObject) { }
+	
+	/**
+	 * Contexts:
+	 *     NonFeatureDefinition returns ValueClass
+	 *     ValueClassDefinitionOrStub returns ValueClass
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_CategoryBody_ClassDeclarationCompletion_ValueClassDeclaration(ISerializationContext context, ValueClass semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NonFeatureDefinition returns Class
+	 *     ClassDefinitionOrStub returns Class
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnitDefinition returns ObjectClass
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
+	 *         ownedRelationship+=Annotation? 
+	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_ObjectClassDeclaration_UnitPrefix(ISerializationContext context, ObjectClass semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ClassUnitDefinition returns ObjectClass
+	 *
+	 * Constraint:
+	 *     (
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedRelationship+=Annotation* 
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_UnitPrefix(ISerializationContext context, ObjectClass semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -527,7 +597,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedMembership+=ElementImport? 
+	 *         ownedImport+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
@@ -581,396 +652,109 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             (
 	 *                 (
 	 *                     (
-	 *                         (
-	 *                             name=Name | 
-	 *                             (ownedRelationship+=Subset ownedRelationship+=Subset* ownedRelationship+=Redefinition ownedRelationship+=Redefinition*) | 
-	 *                             (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)
-	 *                         ) 
+	 *                         name=Name 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         multiplicity=Multiplicity? 
 	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Subset 
-	 *                             ownedRelationship+=Subset* 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Subset 
-	 *                             ownedRelationship+=Subset* 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )*
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                     ) | 
-	 *                     (
-	 *                         (
-	 *                             name=Name | 
-	 *                             (ownedRelationship+=Subset ownedRelationship+=Subset* ownedRelationship+=Redefinition ownedRelationship+=Redefinition*) | 
-	 *                             (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)
-	 *                         ) 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Subset 
-	 *                             ownedRelationship+=Subset* 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Subset 
-	 *                             ownedRelationship+=Subset* 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )*
-	 *                     )
+	 *                     (ownedRelationship+=Subset ownedRelationship+=Subset*)
 	 *                 ) 
 	 *                 (
-	 *                     multiplicity=Multiplicity? 
-	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                     isOrdered?='ordered' 
 	 *                     ownedRelationship+=Redefinition 
 	 *                     ownedRelationship+=Redefinition* 
 	 *                     isComposite?='compose'? 
 	 *                     ownedRelationship+=FeatureTyping? 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping?
-	 *                     )* 
 	 *                     multiplicity=Multiplicity? 
 	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                     isOrdered?='ordered' 
-	 *                     ownedRelationship+=Subset 
-	 *                     ownedRelationship+=Subset* 
-	 *                     ownedRelationship+=Redefinition 
-	 *                     ownedRelationship+=Redefinition* 
-	 *                     isComposite?='compose'? 
-	 *                     ownedRelationship+=FeatureTyping? 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping?
-	 *                     )*
+	 *                     (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                 )* 
 	 *                 (
-	 *                     multiplicity=Multiplicity | 
 	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                     ) | 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         (
-	 *                             multiplicity=Multiplicity | 
-	 *                             (
-	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                             )
-	 *                         )
-	 *                     )
-	 *                 )?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     name=Name | 
-	 *                     (ownedRelationship+=Subset ownedRelationship+=Subset* ownedRelationship+=Redefinition ownedRelationship+=Redefinition*) | 
-	 *                     (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)
-	 *                 ) 
-	 *                 isComposite?='compose'? 
-	 *                 ownedRelationship+=FeatureTyping? 
-	 *                 (
-	 *                     multiplicity=Multiplicity | 
-	 *                     (
 	 *                         multiplicity=Multiplicity? 
 	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))? 
+	 *                         ownedRelationship+=Redefinition 
+	 *                         ownedRelationship+=Redefinition* 
+	 *                         isComposite?='compose'? 
+	 *                         ownedRelationship+=FeatureTyping? 
+	 *                         multiplicity=Multiplicity?
+	 *                     ) | 
+	 *                     (
+	 *                         ownedRelationship+=Redefinition 
+	 *                         ownedRelationship+=Redefinition* 
+	 *                         isComposite?='compose'? 
+	 *                         ownedRelationship+=FeatureTyping? 
+	 *                         multiplicity=Multiplicity? 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))? 
+	 *                         ownedRelationship+=Redefinition 
+	 *                         ownedRelationship+=Redefinition* 
+	 *                         isComposite?='compose'? 
+	 *                         ownedRelationship+=FeatureTyping? 
+	 *                         multiplicity=Multiplicity? 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))
 	 *                     )
 	 *                 )
 	 *             ) | 
 	 *             (
 	 *                 (
-	 *                     name=Name | 
-	 *                     (ownedRelationship+=Subset ownedRelationship+=Subset* ownedRelationship+=Redefinition ownedRelationship+=Redefinition*) | 
-	 *                     (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)
+	 *                     (
+	 *                         name=Name 
+	 *                         isComposite?='compose'? 
+	 *                         ownedRelationship+=FeatureTyping? 
+	 *                         multiplicity=Multiplicity? 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                     ) | 
+	 *                     (ownedRelationship+=Subset ownedRelationship+=Subset*)
 	 *                 ) 
-	 *                 isComposite?='compose'? 
-	 *                 ownedRelationship+=FeatureTyping? 
-	 *                 multiplicity=Multiplicity? 
-	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                 isOrdered?='ordered' 
 	 *                 ownedRelationship+=Redefinition 
 	 *                 ownedRelationship+=Redefinition* 
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
-	 *                 (
-	 *                     multiplicity=Multiplicity? 
-	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                     isOrdered?='ordered' 
-	 *                     ownedRelationship+=Redefinition 
-	 *                     ownedRelationship+=Redefinition* 
-	 *                     isComposite?='compose'? 
-	 *                     ownedRelationship+=FeatureTyping?
-	 *                 )* 
-	 *                 (
-	 *                     multiplicity=Multiplicity | 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                     ) | 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Subset 
-	 *                         ownedRelationship+=Subset* 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Subset 
-	 *                             ownedRelationship+=Subset* 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         (
-	 *                             multiplicity=Multiplicity | 
-	 *                             (
-	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                             ) | 
-	 *                             (
-	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                 isOrdered?='ordered' 
-	 *                                 ownedRelationship+=Redefinition 
-	 *                                 ownedRelationship+=Redefinition* 
-	 *                                 isComposite?='compose'? 
-	 *                                 ownedRelationship+=FeatureTyping? 
-	 *                                 (
-	 *                                     multiplicity=Multiplicity? 
-	 *                                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                     isOrdered?='ordered' 
-	 *                                     ownedRelationship+=Redefinition 
-	 *                                     ownedRelationship+=Redefinition* 
-	 *                                     isComposite?='compose'? 
-	 *                                     ownedRelationship+=FeatureTyping?
-	 *                                 )* 
-	 *                                 (
-	 *                                     multiplicity=Multiplicity | 
-	 *                                     (
-	 *                                         multiplicity=Multiplicity? 
-	 *                                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                                     )
-	 *                                 )
-	 *                             )
-	 *                         )
-	 *                     )
-	 *                 )
+	 *                 multiplicity=Multiplicity? 
+	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))
 	 *             ) | 
 	 *             (
-	 *                 (
-	 *                     name=Name | 
-	 *                     (ownedRelationship+=Subset ownedRelationship+=Subset* ownedRelationship+=Redefinition ownedRelationship+=Redefinition*) | 
-	 *                     (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)
-	 *                 ) 
+	 *                 name=Name 
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
 	 *                 multiplicity=Multiplicity? 
 	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                 isOrdered?='ordered' 
-	 *                 ownedRelationship+=Subset 
-	 *                 ownedRelationship+=Subset* 
+	 *                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))? 
 	 *                 ownedRelationship+=Redefinition 
 	 *                 ownedRelationship+=Redefinition* 
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
-	 *                 (
-	 *                     multiplicity=Multiplicity? 
-	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                     isOrdered?='ordered' 
-	 *                     ownedRelationship+=Subset 
-	 *                     ownedRelationship+=Subset* 
-	 *                     ownedRelationship+=Redefinition 
-	 *                     ownedRelationship+=Redefinition* 
-	 *                     isComposite?='compose'? 
-	 *                     ownedRelationship+=FeatureTyping?
-	 *                 )* 
-	 *                 (
-	 *                     multiplicity=Multiplicity | 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                     ) | 
-	 *                     (
-	 *                         multiplicity=Multiplicity? 
-	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                         isOrdered?='ordered' 
-	 *                         ownedRelationship+=Redefinition 
-	 *                         ownedRelationship+=Redefinition* 
-	 *                         isComposite?='compose'? 
-	 *                         ownedRelationship+=FeatureTyping? 
-	 *                         (
-	 *                             multiplicity=Multiplicity? 
-	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                             isOrdered?='ordered' 
-	 *                             ownedRelationship+=Redefinition 
-	 *                             ownedRelationship+=Redefinition* 
-	 *                             isComposite?='compose'? 
-	 *                             ownedRelationship+=FeatureTyping?
-	 *                         )* 
-	 *                         (
-	 *                             multiplicity=Multiplicity | 
-	 *                             (
-	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
-	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
-	 *                             )
-	 *                         )
-	 *                     )
-	 *                 )
+	 *                 multiplicity=Multiplicity?
 	 *             ) | 
-	 *             (ownedRelationship+=Subset ownedRelationship+=Subset*)
-	 *         ) 
+	 *             (name=Name isComposite?='compose'? ownedRelationship+=FeatureTyping? multiplicity=Multiplicity?) | 
+	 *             (
+	 *                 name=Name 
+	 *                 isComposite?='compose'? 
+	 *                 ownedRelationship+=FeatureTyping? 
+	 *                 multiplicity=Multiplicity? 
+	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))
+	 *             ) | 
+	 *             (ownedRelationship+=Subset ownedRelationship+=Subset*) | 
+	 *             (
+	 *                 (ownedRelationship+=Subset ownedRelationship+=Subset*) 
+	 *                 ownedRelationship+=Redefinition 
+	 *                 ownedRelationship+=Redefinition* 
+	 *                 isComposite?='compose'? 
+	 *                 ownedRelationship+=FeatureTyping? 
+	 *                 multiplicity=Multiplicity?
+	 *             )
+	 *         )? 
 	 *         valuation=FeatureValue? 
 	 *         (ownedMembership+=CategoryMember | ownedImport+=PackageImport)*
 	 *     )
@@ -1088,6 +872,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
 	 *             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Class|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 
@@ -1114,6 +899,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	//         (
 	//             ownedMemberElement=NonFeatureDefinition | 
 	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
 	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
 	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
 	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
@@ -1222,6 +1008,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
 	 *             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Class|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 

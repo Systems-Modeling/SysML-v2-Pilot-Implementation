@@ -3,6 +3,9 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,15 +17,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -58,6 +58,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FeatureImpl extends CategoryImpl implements Feature {
+	
+	private static final String FEATURE_SUBSETTING_DEFAULT = "Base::property";
+	
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,16 +132,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	protected Multiplicity multiplicity;
 
 	/**
-	 * The cached value of the '{@link #getTyping() <em>Typing</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTyping()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FeatureTyping> typing;
-
-	/**
 	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,10 +177,25 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 */
 	public EList<Category> getType() {
 		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
-		for (FeatureTyping typing: getTyping()) {
-			types.add(typing.getType());
-		}
+		getTypes(this, types, new HashSet<Feature>());
 		return types;
+	}
+	
+	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures) {
+		visitedFeatures.add(feature);
+		for (FeatureTyping typing: feature.getTyping()) {
+			Category type = typing.getType();
+			if (type != null) {
+				types.add(typing.getType());
+			}
+		}
+		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
+			Feature subsettedFeature = subsetting.getSubsettedFeature();
+			if (subsettedFeature != null && !subsettedFeature.eIsProxy() && 
+					!visitedFeatures.contains(subsettedFeature)) {
+				getTypes(subsettedFeature, types, visitedFeatures);
+			}
+		}		
 	}
 
 	/**
@@ -306,15 +314,13 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsets = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		for (Generalization generalization: this.getOwnedGeneralization()) {
-			if (generalization instanceof Subsetting) {
-				subsets.add((Subsetting)generalization);
-			}
-		}
-		return subsets;
+		return getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT);
 	}
 
+	protected EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
+		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,30 +480,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 
 	/**
-	 * Initialize the Feature typing with any owned FeatureTypings.
-	 */
-	public EList<FeatureTyping> getTyping() {
-		if (typing == null || typing.isEmpty()) {
-			EList<FeatureTyping> typing = getTypingGen();
-			for (Relationship relationship: getOwnedRelationship()) {
-				if (relationship instanceof FeatureTyping) {
-					typing.add((FeatureTyping)relationship);
-				}
-			}
-		}
-		return getTypingGen();
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<FeatureTyping> getTypingGen() {
-		if (typing == null) {
-			typing = new EObjectWithInverseResolvingEList<FeatureTyping>(FeatureTyping.class, this, SysMLPackage.FEATURE__TYPING, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE);
-		}
-		return typing;
+	public EList<FeatureTyping> getTyping() {
+		return getOwnedGeneralizationWithoutDefault(FeatureTyping.class, SysMLPackage.FEATURE__TYPING);
 	}
 
 	/**
@@ -585,7 +573,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -605,8 +592,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				if (multiplicity != null)
 					msgs = ((InternalEObject)multiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE__MULTIPLICITY, null, msgs);
 				return basicSetMultiplicity((Multiplicity)otherEnd, msgs);
-			case SysMLPackage.FEATURE__TYPING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTyping()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -627,8 +612,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				return basicSetValuation(null, msgs);
 			case SysMLPackage.FEATURE__MULTIPLICITY:
 				return basicSetMultiplicity(null, msgs);
-			case SysMLPackage.FEATURE__TYPING:
-				return ((InternalEList<?>)getTyping()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -840,7 +823,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 			case SysMLPackage.FEATURE__MULTIPLICITY:
 				return multiplicity != null;
 			case SysMLPackage.FEATURE__TYPING:
-				return typing != null && !typing.isEmpty();
+				return !getTyping().isEmpty();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 		}

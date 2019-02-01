@@ -1,33 +1,38 @@
 package Base {
 		
     /*
-     * Top level generalized type in the language. 
+     * Anything is the top level generalized type in the language. 
      */
-	abstract class Anything specializes Anything { 
-		feature _properties: Anything[0..*] nonunique;
-		feature _connections: Link[0..*] nonunique subsets _properties;
-		feature _bindings: SelfLink[0..*] nonunique subsets _connections;
-	}
+	abstract class Anything specializes Anything;
 	
 	/*
-	 * Second level basic types.
-	 * Object represents a class of concepts with reference identity.
-	 * Value represents a class of concepts with value identity.
+	 * Object is the most general class of individuals with reference identity.
+	 * BehaviorOccurrence and FunctionOccurrence are specializations representing the
+	 * occurrence (execution/evaluation) of behaviors and functions.
 	 */
 	abstract class Object specializes Anything;
-	abstract datatype Value specializes Anything;
+	abstract class BehaviorOccurrence specializes Object;
+	abstract class FunctionOccurrence specializes BehaviorOccurrence;
 
-	abstract datatype Enumeration specializes Value;
+	/*
+	 * Value is the most general class of individuals with value identity.
+	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
+	 */
+	abstract datatype Value specializes Anything;
+	abstract datatype EnumeratedValue specializes Value;
 	
 	/*
-	 * Representation of a relationship between two or more things.
+	 * Link is the most general association between two or more things.
+	 * (It is actually class, not an association, because an association
+	 * must have a specific number of ends.)
 	 */
 	class Link specializes Object {
 		feature participant: Anything[2..*] ordered;
 	}
 	
 	/*
-	 * Representation of a directed binary relationship between exactly two things, from source to target.
+	 * BinaryLink is the most general binary association between exactly two things, 
+	 * nominally directed from source to target.
 	 */
 	assoc BinaryLink specializes Link {
 		end sourceEnd: Anything[0..*];
@@ -43,6 +48,10 @@ package Base {
 	         targetEnd[1..1] => targetParticipant);	
 	}
 	
+	/*
+	 * SelfLink is a binary association in which the individuals at the two ends are asserted
+	 * to be the same.
+	 */
 	assoc SelfLink specializes Link {
 		end self: Anything[0..*] redefines BinaryLink::sourceEnd;
 		end myself: Anything[0..*] redefines BinaryLink::targetEnd;
@@ -50,4 +59,24 @@ package Base {
 		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
 		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
 	}
+	
+	/*
+	 * property is the top-level feature in the language.
+	 */
+	feature property: Anything[0..*] nonunique;
+	
+	/*
+	 * connection is the most general feature of links between indviduals.
+	 * binaryConnection and binding are specializations of binary links and self links.
+	 */
+	feature connection: Link[0..*] nonunique subsets property;
+	feature binaryConnection: BinaryLink[0..*] nonunique subsets connection;
+	feature binding: SelfLink[0..*] nonunique subsets binaryConnection;
+	
+	/*
+	 * execution is the most general feature of occurrences of behaviors.
+	 * evaluation is a specialization for occurrences of functions.
+	 */
+	feature execution: BehaviorOccurrence[0..*] nonunique subsets property;
+	feature evaluation: FunctionOccurrence[0..*] nonunique subsets execution;
 }

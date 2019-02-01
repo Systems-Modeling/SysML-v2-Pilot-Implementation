@@ -181,7 +181,7 @@ FeatureCategoryMember returns SysML::FeatureMembership :
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
     | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
-	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
+	| ( direction = FeatureDirection )? memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
 	
 	)
 ;
@@ -193,10 +193,14 @@ fragment CategoryMemberPrefix returns SysML::Membership :
 ;
 
 fragment FeatureMemberElement returns SysML::FeatureMembership :
-      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberFeature = FeatureDefinition
-	| ( 'feature' | isPart ?= 'part' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-	| 'connector' ownedMemberFeature = ConnectorDefinition
-	| 'connector' ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';' 
+      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
+      ( ownedMemberFeature = FeatureDefinition 
+      | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+      )
+	| 'connector' 
+	  ( ownedMemberFeature = ConnectorDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
+	  )
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:

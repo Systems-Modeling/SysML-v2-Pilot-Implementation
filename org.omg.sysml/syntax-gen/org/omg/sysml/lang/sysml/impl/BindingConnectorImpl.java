@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
+
+	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Base::binding";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +37,11 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
+	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(BINDING_CONNECTOR_SUBSETTING_DEFAULT);
 	}
 
 } //BindingConnectorImpl

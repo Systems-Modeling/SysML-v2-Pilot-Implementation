@@ -316,8 +316,8 @@
       <eAnnotations source="subsets" references="#//Feature/ownedSubsetting"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubsetting" ordered="false"
-        upperBound="-1" eType="#//Subsetting" volatile="true" transient="true" derived="true"
-        eOpposite="#//Subsetting/owningFeature">
+        lowerBound="1" upperBound="-1" eType="#//Subsetting" volatile="true" transient="true"
+        derived="true" eOpposite="#//Subsetting/owningFeature">
       <eAnnotations source="subsets" references="#//Category/ownedGeneralization"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
@@ -332,7 +332,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" ordered="false"
         eType="#//Multiplicity" containment="true" eOpposite="#//Multiplicity/FeatureWithMultiplicity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typing" ordered="false"
-        upperBound="-1" eType="#//FeatureTyping" eOpposite="#//FeatureTyping/typedFeature"/>
+        upperBound="-1" eType="#//FeatureTyping" volatile="true" transient="true"
+        derived="true" eOpposite="#//FeatureTyping/typedFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
   </eClassifiers>
@@ -417,7 +418,8 @@
       <eAnnotations source="redefines" references="#//Generalization/general"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typedFeature" ordered="false"
-        lowerBound="1" eType="#//Feature" eOpposite="#//Feature/typing">
+        lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true"
+        eOpposite="#//Feature/typing">
       <eAnnotations source="redefines" references="#//Generalization/specific"/>
     </eStructuralFeatures>
   </eClassifiers>

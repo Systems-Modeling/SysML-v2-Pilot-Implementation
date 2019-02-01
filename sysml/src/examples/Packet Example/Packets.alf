@@ -1,3 +1,4 @@
+private import Base::*;
 private import ScalarValues::*;
 private import Time::DateTime;
 package Packets {

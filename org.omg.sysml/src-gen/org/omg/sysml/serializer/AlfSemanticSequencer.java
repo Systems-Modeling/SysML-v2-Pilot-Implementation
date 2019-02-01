@@ -121,8 +121,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getAssociationMemberRule()
-						|| rule == grammarAccess.getAssociationFeatureMemberRule()) {
+				else if (rule == grammarAccess.getAssociationMemberRule()) {
+					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAssociationFeatureMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -166,8 +169,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getCategoryMemberRule()
-						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()) {
+					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -280,8 +286,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -443,8 +448,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -523,15 +527,14 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership+=ElementImport? 
-	 *         (ownedImport+=PackageImport ownedMembership+=ElementImport?)* 
+	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         multiplicity=Multiplicity? 
-	 *         isNonunique?='nonunique'? 
-	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*)? 
 	 *         (ownedRelationship+=Subset ownedRelationship+=Subset*)? 
 	 *         valuation=FeatureValue? 
@@ -586,24 +589,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Redefinition 
 	 *                             ownedRelationship+=Redefinition* 
 	 *                             isComposite?='compose'? 
 	 *                             ownedRelationship+=FeatureTyping?
 	 *                         )* 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -612,8 +615,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Subset 
 	 *                             ownedRelationship+=Subset* 
 	 *                             ownedRelationship+=Redefinition 
@@ -622,24 +625,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                             ownedRelationship+=FeatureTyping?
 	 *                         )* 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Redefinition 
 	 *                             ownedRelationship+=Redefinition* 
 	 *                             isComposite?='compose'? 
 	 *                             ownedRelationship+=FeatureTyping?
 	 *                         )* 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -648,8 +651,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Subset 
 	 *                             ownedRelationship+=Subset* 
 	 *                             ownedRelationship+=Redefinition 
@@ -667,8 +670,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -677,8 +680,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Subset 
 	 *                             ownedRelationship+=Subset* 
 	 *                             ownedRelationship+=Redefinition 
@@ -687,24 +690,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                             ownedRelationship+=FeatureTyping?
 	 *                         )* 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Redefinition 
 	 *                             ownedRelationship+=Redefinition* 
 	 *                             isComposite?='compose'? 
 	 *                             ownedRelationship+=FeatureTyping?
 	 *                         )* 
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -713,8 +716,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Subset 
 	 *                             ownedRelationship+=Subset* 
 	 *                             ownedRelationship+=Redefinition 
@@ -726,24 +729,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                 ) 
 	 *                 (
 	 *                     multiplicity=Multiplicity? 
-	 *                     (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                     isNonunique?='nonunique' 
+	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                     isOrdered?='ordered' 
 	 *                     ownedRelationship+=Redefinition 
 	 *                     ownedRelationship+=Redefinition* 
 	 *                     isComposite?='compose'? 
 	 *                     ownedRelationship+=FeatureTyping? 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping?
 	 *                     )* 
 	 *                     multiplicity=Multiplicity? 
-	 *                     (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                     isNonunique?='nonunique' 
+	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                     isOrdered?='ordered' 
 	 *                     ownedRelationship+=Subset 
 	 *                     ownedRelationship+=Subset* 
 	 *                     ownedRelationship+=Redefinition 
@@ -752,8 +755,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                     ownedRelationship+=FeatureTyping? 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -766,21 +769,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                     multiplicity=Multiplicity | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                     ) | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Redefinition 
 	 *                             ownedRelationship+=Redefinition* 
 	 *                             isComposite?='compose'? 
@@ -790,8 +793,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                             multiplicity=Multiplicity | 
 	 *                             (
 	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                 (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                             )
 	 *                         )
 	 *                     )
@@ -809,8 +812,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                     multiplicity=Multiplicity | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                     )
 	 *                 )
 	 *             ) | 
@@ -823,16 +826,16 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
 	 *                 multiplicity=Multiplicity? 
-	 *                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                 isNonunique?='nonunique' 
+	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                 isOrdered?='ordered' 
 	 *                 ownedRelationship+=Redefinition 
 	 *                 ownedRelationship+=Redefinition* 
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
 	 *                 (
 	 *                     multiplicity=Multiplicity? 
-	 *                     (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                     isNonunique?='nonunique' 
+	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                     isOrdered?='ordered' 
 	 *                     ownedRelationship+=Redefinition 
 	 *                     ownedRelationship+=Redefinition* 
 	 *                     isComposite?='compose'? 
@@ -842,13 +845,13 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                     multiplicity=Multiplicity | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                     ) | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Subset 
 	 *                         ownedRelationship+=Subset* 
 	 *                         ownedRelationship+=Redefinition 
@@ -857,8 +860,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Subset 
 	 *                             ownedRelationship+=Subset* 
 	 *                             ownedRelationship+=Redefinition 
@@ -870,21 +873,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                             multiplicity=Multiplicity | 
 	 *                             (
 	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                 (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                             ) | 
 	 *                             (
 	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                 isNonunique?='nonunique' 
+	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                 isOrdered?='ordered' 
 	 *                                 ownedRelationship+=Redefinition 
 	 *                                 ownedRelationship+=Redefinition* 
 	 *                                 isComposite?='compose'? 
 	 *                                 ownedRelationship+=FeatureTyping? 
 	 *                                 (
 	 *                                     multiplicity=Multiplicity? 
-	 *                                     (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                     isNonunique?='nonunique' 
+	 *                                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                     isOrdered?='ordered' 
 	 *                                     ownedRelationship+=Redefinition 
 	 *                                     ownedRelationship+=Redefinition* 
 	 *                                     isComposite?='compose'? 
@@ -894,8 +897,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                                     multiplicity=Multiplicity | 
 	 *                                     (
 	 *                                         multiplicity=Multiplicity? 
-	 *                                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                         (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                                     )
 	 *                                 )
 	 *                             )
@@ -912,8 +915,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                 isComposite?='compose'? 
 	 *                 ownedRelationship+=FeatureTyping? 
 	 *                 multiplicity=Multiplicity? 
-	 *                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                 isNonunique?='nonunique' 
+	 *                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                 isOrdered?='ordered' 
 	 *                 ownedRelationship+=Subset 
 	 *                 ownedRelationship+=Subset* 
 	 *                 ownedRelationship+=Redefinition 
@@ -922,8 +925,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                 ownedRelationship+=FeatureTyping? 
 	 *                 (
 	 *                     multiplicity=Multiplicity? 
-	 *                     (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                     isNonunique?='nonunique' 
+	 *                     (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                     isOrdered?='ordered' 
 	 *                     ownedRelationship+=Subset 
 	 *                     ownedRelationship+=Subset* 
 	 *                     ownedRelationship+=Redefinition 
@@ -935,21 +938,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                     multiplicity=Multiplicity | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                     ) | 
 	 *                     (
 	 *                         multiplicity=Multiplicity? 
-	 *                         (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                         isNonunique?='nonunique' 
+	 *                         (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                         isOrdered?='ordered' 
 	 *                         ownedRelationship+=Redefinition 
 	 *                         ownedRelationship+=Redefinition* 
 	 *                         isComposite?='compose'? 
 	 *                         ownedRelationship+=FeatureTyping? 
 	 *                         (
 	 *                             multiplicity=Multiplicity? 
-	 *                             (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                             isNonunique?='nonunique' 
+	 *                             (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                             isOrdered?='ordered' 
 	 *                             ownedRelationship+=Redefinition 
 	 *                             ownedRelationship+=Redefinition* 
 	 *                             isComposite?='compose'? 
@@ -959,8 +962,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *                             multiplicity=Multiplicity | 
 	 *                             (
 	 *                                 multiplicity=Multiplicity? 
-	 *                                 (isNonunique?='nonunique' isOrdered?='ordered'?)* 
-	 *                                 (isNonunique?='nonunique' | (isNonunique?='nonunique' ownedRelationship+=Subset ownedRelationship+=Subset*))?
+	 *                                 (isOrdered?='ordered' isNonunique?='nonunique'?)* 
+	 *                                 (isOrdered?='ordered' | (isOrdered?='ordered' ownedRelationship+=Subset ownedRelationship+=Subset*))?
 	 *                             )
 	 *                         )
 	 *                     )
@@ -1009,9 +1012,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (direction=FeatureDirection? ownedMemberFeature=NamedFeatureDefinition) | 
-	 *             (memberName=Name memberFeature=[Feature|QualifiedName]) | 
-	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberFeature=FeatureDefinition) | 
-	 *             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             (direction=FeatureDirection? memberName=Name memberFeature=[Feature|QualifiedName]) | 
+	 *             (
+	 *                 (isPart?='part' | isPort?='port')? 
+	 *                 direction=FeatureDirection? 
+	 *                 (ownedMemberFeature=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	 *             ) | 
 	 *             ownedMemberFeature=ConnectorDefinition | 
 	 *             (memberName=Name? memberFeature=[Connector|QualifiedName])
 	 *         )
@@ -1025,15 +1031,17 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     AssociationMember returns FeatureMembership
-	 *     AssociationFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPart?='part' | isPort?='port')? direction=FeatureDirection? ownedMemberFeature=FeatureDefinition) | 
-	 *             (isPart?='part'? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             (
+	 *                 (isPart?='part' | isPort?='port')? 
+	 *                 direction=FeatureDirection? 
+	 *                 (ownedMemberFeature=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	 *             ) | 
 	 *             ownedMemberFeature=ConnectorDefinition | 
 	 *             (memberName=Name? memberFeature=[Connector|QualifiedName])
 	 *         )
@@ -1044,15 +1052,38 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AssociationFeatureMember returns FeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             (
+	//                 (isPart?='part' | isPort?='port')? 
+	//                 direction=FeatureDirection? 
+	//                 (ownedMemberFeature=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	//             ) | 
+	//             ownedMemberFeature=ConnectorDefinition | 
+	//             (memberName=Name? memberFeature=[Connector|QualifiedName])
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_FeatureMemberElement(ISerializationContext context, FeatureMembership semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
-	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
@@ -1068,6 +1099,29 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NonFeatureCategoryMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedMemberElement=NonFeatureDefinition | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?)
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:

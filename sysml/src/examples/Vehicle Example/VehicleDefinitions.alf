@@ -2,67 +2,30 @@
  * Example vehicle definitions model.
  **/
 package VehicleDefinitions {
-	// Import ScalarValues library
-	import ScalarValues::*;
-	
-	// Import Quantities libraries
-	import Quantities::*;
-	import UnitsAndScales::*;
-	import ISQ::*;
-	
-	/* LOCALLY DEFINED VALUE TYPES */
-	
-	/* 
-	 * Torque measurement unit (and implied ratio scale) defined as a force unit times a length unit. 
-	 */
-	class TorqueUnit specializes DerivedUnit {
-		feature unitPowerFactor1 subsets unitPowerFactor {
-			unit: ForceUnit redefines unit;
-			exponent redefines exponent = 1;
-		}
-		unitPowerFactor2 subsets unitPowerFactor {
-			unit: LengthUnit redefines unit;
-			exponent redefines exponent = 1;
-		}
-	}
-	
-	/*
-	 * Torque quantity value and feature defined as a real  magnitude with a torque unit.
-	 */
-	class TorqueValue specializes QuantityValue {
-		magnitude: Real redefines Quantities::QuantityValue::magnitude;
-		scale: TorqueUnit redefines Quantities::QuantityValue::scale;
-	}
-	feature torque : TorqueValue;
 	
 	/* BLOCKS */
 	
-	class Vehicle { }
-	
-	class Transmission { }
-	
-	class AxleAssembly { }
-	
-	class Axle { }
-	
-	class Wheel { }
-	
+	class Vehicle;	
+	class Transmission;	
+	class AxleAssembly;
+	class Axle;	
+	class Wheel;
 	class Lugbolt {
-		tighteningTorque: torque;
+		tighteningTorque is torque;
 	}
 	
 	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
-		feature in driveTorque: torque;
+		in driveTorque is torque;
 	}
 	
 	class AxleMountIF { 
-		feature out transferredTorque: torque;
+		out transferredTorque is torque;
 	}
 	
 	class WheelHubIF { 
-		feature in appliedTorque: torque;
+		in appliedTorque is torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */
@@ -75,4 +38,37 @@ package VehicleDefinitions {
 		end hub: WheelHubIF;
 	}
 
+	/* LOCALLY DEFINED VALUE TYPES */
+		
+	// Import ScalarValues library
+	import ScalarValues::*;
+	
+	// Import Quantities libraries
+	import Quantities::*;
+	import UnitsAndScales::*;
+	import ISQ::*;
+
+	/* 
+	 * Torque measurement unit (and implied ratio scale) defined as a force unit times a length unit. 
+	 */
+	datatype TorqueUnit specializes DerivedUnit {
+		unitPowerFactor1 subsets unitPowerFactor {
+			unit: ForceUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		unitPowerFactor2 subsets unitPowerFactor {
+			unit: LengthUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+	}
+	
+	/*
+	 * Torque quantity value and feature defined as a real  magnitude with a torque unit.
+	 */
+	datatype TorqueValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: TorqueUnit redefines QuantityValue::scale;
+	}
+	torque : TorqueValue redefines Quantity;
+	
 }

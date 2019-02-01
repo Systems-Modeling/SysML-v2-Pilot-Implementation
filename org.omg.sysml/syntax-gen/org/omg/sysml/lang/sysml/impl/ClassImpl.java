@@ -5,13 +5,8 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,47 +47,13 @@ public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.
 	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithoutDefault();
-	}
-	
-	protected EList<Superclassing> getOwnedSuperclassingWithoutDefault() {
-		EList<Superclassing> superclassings = new EObjectEList<Superclassing>(Superclassing.class, this, SysMLPackage.CLASS__OWNED_SUPERCLASSING);
-		for (Generalization generalization: getOwnedGeneralization()) {
-			if (generalization instanceof Superclassing) {
-				superclassings.add((Superclassing)generalization);
-			}
-		}
-		return superclassings;
+		return getOwnedGeneralizationWithoutDefault(Superclassing.class, SysMLPackage.CLASS__OWNED_SUPERCLASSING);
 	}
 	
 	protected EList<Superclassing> getOwnedSuperclassingWithDefault(String superclassDefault) {
-		EList<Superclassing> superclassings = getOwnedSuperclassingWithoutDefault();
-		Superclassing superclassing = getDefaultSuperclassing(superclassings);
-		if (superclassing != null) {
-			EObject defaultSuperclass = SysMLLibraryUtil.getLibraryElement(
-					this, SysMLPackage.eINSTANCE.getSuperclassing_Superclass(), superclassDefault);
-			if (defaultSuperclass instanceof org.omg.sysml.lang.sysml.Class) {
-				superclassing.setSuperclass((org.omg.sysml.lang.sysml.Class)defaultSuperclass);
-				this.getOwnedRelationship().add(superclassing);
-			}
-		}
-		return superclassings;
+		return getOwnedGeneralizationWithDefault(Superclassing.class, SysMLPackage.CLASS__OWNED_SUPERCLASSING, SysMLPackage.eINSTANCE.getSuperclassing(), superclassDefault);
 	}
 	
-	private Superclassing getDefaultSuperclassing(EList<Superclassing> superclassings) {
-		Superclassing superclassing = null;
-		if (superclassings.isEmpty()) {
-			superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
-			superclassing.setSubclass(this);
-			superclassings.add(superclassing);
-		} else {
-			superclassing = superclassings.stream().
-					filter(s->s.getSuperclass() == null).
-					findFirst().orElse(null);
-		}
-		return superclassing;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -6,15 +6,11 @@ package VehicleUsages {
 	import SI::m;
 	import VehicleDefinitions::*;
 
-	/* VALUES */
-	 
-	'N・m': VehicleDefinitions::TorqueUnit = N * m;
+	/* VALUES */	 
+	T1 = 10.0@[N * m];
+	T2 = 20.0@[N * m];
 	
-	T1: torque = 10.0@['N・m']; // torque(10.0, 'N・m')
-	T2: torque = 20.0@['N・m']; // torque(20.0, 'N・m')
-	
-	/* PARTS */
-	
+	/* PARTS */	
 	/** Narrow-rim wheel configuration with 4 to 5 lugbolts. **/
 	narrowRimWheel: Wheel {
 		part lugbolt: Lugbolt[4..5];
@@ -26,16 +22,15 @@ package VehicleUsages {
 	}
 
 	/** Basic Vehicle configuration showing a part hierarchy. **/
-	vehicle_C1: torque {
+	vehicle_C1: Vehicle {
 		part frontAxleAssembly: AxleAssembly {
 			part frontWheel[2] redefines narrowRimWheel {
 				part lugbolt[4] redefines narrowRimWheel::lugbolt {
 					feature tighteningTorque redefines Lugbolt::tighteningTorque = T1;
 				}
 			}
-			part frontAxle: VehicleDefinitions::Axle;
-		}
-		
+			part frontAxle: Axle;
+		}		
 		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
 			part rearWheel[2] redefines wideRimWheel {
 				part lugbolt[6] redefines wideRimWheel::lugbolt {

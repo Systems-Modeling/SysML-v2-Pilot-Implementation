@@ -3,8 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -40,16 +38,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @ordered
 	 */
 	protected Category type;
-
-	/**
-	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature typedFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,31 +105,24 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 		return type != null;
 	}
 	
-	public Feature getTypedFeature() {
-		if (typedFeature == null) {
-			Element owningRelatedElement = getOwningRelatedElement();
-			if (owningRelatedElement instanceof Feature) {
-				setTypedFeature((Feature)owningRelatedElement);
-			}
-		}
-		return getTypedFeatureGen();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getTypedFeatureGen() {
-		if (typedFeature != null && typedFeature.eIsProxy()) {
-			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
-			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
-			if (typedFeature != oldTypedFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
-			}
-		}
-		return typedFeature;
+	public Feature getTypedFeature() {
+		Feature typedFeature = basicGetTypedFeature();
+		return typedFeature != null && typedFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)typedFeature) : typedFeature;
+	}
+
+/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature basicGetTypedFeature() {
+		Element owningRelatedElement = getOwningRelatedElement();
+		return owningRelatedElement instanceof Feature? (Feature)owningRelatedElement: null;
 	}
 
 	/**
@@ -149,48 +130,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Feature basicGetTypedFeature() {
-		if (typedFeature == null) {
-			Element owningRelatedElement = getOwningRelatedElement();
-			if (owningRelatedElement instanceof Feature) {
-				typedFeature = (Feature)owningRelatedElement;
-			}
-		}
-		return typedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTypedFeature(Feature newTypedFeature, NotificationChain msgs) {
-		Feature oldTypedFeature = typedFeature;
-		typedFeature = newTypedFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, newTypedFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public void setTypedFeature(Feature newTypedFeature) {
-		if (newTypedFeature != typedFeature) {
-			NotificationChain msgs = null;
-			if (typedFeature != null)
-				msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-			if (newTypedFeature != null)
-				msgs = ((InternalEObject)newTypedFeature).eInverseAdd(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-			msgs = basicSetTypedFeature(newTypedFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, newTypedFeature, newTypedFeature));
 	}
 
 	/**
@@ -199,37 +139,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	public boolean isSetTypedFeature() {
-		return typedFeature != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				if (typedFeature != null)
-					msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-				return basicSetTypedFeature((Feature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				return basicSetTypedFeature(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return basicGetTypedFeature() != null;
 	}
 
 	/**

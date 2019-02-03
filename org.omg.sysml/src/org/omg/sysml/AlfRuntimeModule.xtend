@@ -5,6 +5,8 @@ package org.omg.sysml
 
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.scoping.AlfQualifiedNameConverter
+import org.omg.sysml.lang.sysml.util.SysMLLibraryProvider
+import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -13,6 +15,10 @@ class AlfRuntimeModule extends AbstractAlfRuntimeModule {
 	
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
 		AlfQualifiedNameConverter
+	}
+	
+	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
+		SysMLLibraryProvider
 	}
 		
 }

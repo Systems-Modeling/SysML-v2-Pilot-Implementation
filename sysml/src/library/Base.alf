@@ -66,7 +66,7 @@ package Base {
 	feature property: Anything[0..*] nonunique;
 	
 	/*
-	 * connection is the most general feature of links between indviduals.
+	 * connection is the most general feature of links between individuals.
 	 * binaryConnection and binding are specializations of binary links and self links.
 	 */
 	feature connection: Link[0..*] nonunique subsets property;

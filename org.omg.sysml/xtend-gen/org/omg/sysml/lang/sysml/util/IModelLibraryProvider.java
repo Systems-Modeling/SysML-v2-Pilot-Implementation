@@ -23,27 +23,9 @@
 package org.omg.sysml.lang.sysml.util;
 
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryProvider;
 
 @SuppressWarnings("all")
-public class SysMLLibraryUtil {
-  private static SysMLLibraryProvider instance;
-  
-  public static SysMLLibraryProvider getInstance(final Resource resource) {
-    SysMLLibraryProvider _xblockexpression = null;
-    {
-      if ((SysMLLibraryUtil.instance == null)) {
-        SysMLLibraryUtil.instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI()).<SysMLLibraryProvider>get(SysMLLibraryProvider.class);
-      }
-      _xblockexpression = SysMLLibraryUtil.instance;
-    }
-    return _xblockexpression;
-  }
-  
-  public static Element getLibraryElement(final Element context, final EReference reference, final String name) {
-    return SysMLLibraryUtil.getInstance(context.eResource()).getElement(context, reference, name);
-  }
+public interface IModelLibraryProvider {
+  public abstract Element getElement(final Element context, final EReference reference, final String name);
 }

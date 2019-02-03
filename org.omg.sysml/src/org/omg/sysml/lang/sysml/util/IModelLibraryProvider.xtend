@@ -24,24 +24,11 @@
 
 package org.omg.sysml.lang.sysml.util
 
-import org.eclipse.xtext.resource.IResourceServiceProvider
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.Element
+import org.eclipse.emf.ecore.EReference
 
-class SysMLLibraryUtil {
+interface IModelLibraryProvider {
 	
-	private static SysMLLibraryProvider instance
-	
-	public def static SysMLLibraryProvider getInstance(Resource resource) {
-		if (instance === null) {
-			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI).get(SysMLLibraryProvider)
-		}
-		instance
-	}
-	
-	public def static Element getLibraryElement(Element context, EReference reference, String name) {		
-		return getInstance(context.eResource).getElement(context, reference, name)
-	}
+	def Element getElement(Element context, EReference reference, String name)
 	
 }

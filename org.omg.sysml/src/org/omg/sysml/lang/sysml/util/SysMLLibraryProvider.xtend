@@ -24,24 +24,34 @@
 
 package org.omg.sysml.lang.sysml.util
 
-import org.eclipse.xtext.resource.IResourceServiceProvider
+import com.google.inject.Inject
+import com.google.inject.Singleton
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.scoping.AlfScopeProvider
 
-class SysMLLibraryUtil {
+@Singleton
+class SysMLLibraryProvider implements IModelLibraryProvider {
 	
-	private static SysMLLibraryProvider instance
+	@Inject
+	private AlfScopeProvider scopeProvider
 	
-	public def static SysMLLibraryProvider getInstance(Resource resource) {
-		if (instance === null) {
-			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI).get(SysMLLibraryProvider)
+	@Inject
+	private IQualifiedNameConverter nameConverter
+	
+	protected def EObject filePackage(Element element) {
+		var pack = element
+		while (pack.owner !== null) {
+			pack = pack.owner
 		}
-		instance
+		return pack
 	}
 	
-	public def static Element getLibraryElement(Element context, EReference reference, String name) {		
-		return getInstance(context.eResource).getElement(context, reference, name)
+	public override Element getElement(Element context, EReference reference, String name) {
+		var element = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
+		return if (element === null) null else element.getEObjectOrProxy as Element		
 	}
 	
 }

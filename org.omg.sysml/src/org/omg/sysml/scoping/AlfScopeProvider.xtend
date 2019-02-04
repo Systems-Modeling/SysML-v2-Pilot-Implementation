@@ -1,7 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,9 +20,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
- *  Ed Seidewitz
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Ed Seidewitz, MDS
+ *  Miyako Wilson, JPL
  * 
  *****************************************************************************/
 package org.omg.sysml.scoping
@@ -84,40 +86,28 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		}
 		super.getScope(context, reference)
 	}
-
-	private def void accept(Package rootpack, QualifiedName rootqn, (QualifiedName, Element)=>void visitor, HashMap elements, boolean isInsideScope) {
-		val newvisited = <Element, HashSet<QualifiedName>>newHashMap() //change to handle element with redefined/subset (is) name. 
-		val queue = newLinkedList(rootpack -> rootqn)
-		
-		while(!queue.empty){
-			val next = queue.pop
-			val pack = next.key
-			val qn = next.value 
-			val qns = newvisited.get(pack);
+	
+	private def void accept(Package pack, QualifiedName qn, (QualifiedName, Element)=>boolean visitor, boolean checkIfAdded, boolean isInsideScope, HashSet<Package> visited) {
+		if (!visited.contains(pack)) {
+			visited.add(pack)
 			pack.ownedMembership.forEach[m|
-				var elementName = m.memberName ?: m.memberElement?.name;
-				if (elementName !== null && (isInsideScope && pack === rootpack|| m.visibility == VisibilityKind.PUBLIC)) {
+				val memberElement = m.memberElement
+				val elementName = m.memberName ?: memberElement?.name
+				if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 					val elementqn = qn.append(elementName)
-					newvisited.put(pack, newHashSet(elementqn));
-				
-					if(qns === null || !qns.contains(elementqn)){
-						val memberElement = m.memberElement
-						var originalsize = 0
-						if (elements !== null) { originalsize = elements.values.flatten.size()}
-						visitor.apply(elementqn, memberElement)
-						if ( elements === null || elements.values.flatten.size() > originalsize) {
-							if (memberElement instanceof Package) {
-								queue += memberElement -> elementqn
-							}
+					val added = visitor.apply(elementqn, memberElement)
+					if ( !checkIfAdded || added) {
+						if (memberElement instanceof Package) {
+							accept(memberElement, elementqn, visitor, checkIfAdded, false, visited)
 						}
 					}
 				}
-
 			]
+			visited.remove(pack)
 		}
 	}
 
-	private def void gen(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit) {
+	private def void gen(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit) {
 		val visited = visit
 		if (pack instanceof Category) {
 			val c = pack as Category
@@ -129,22 +119,22 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						if (!visited.contains(p)) {
 							visited.add(p)
 							p.gen(visitor, visit)
-							p.imp(visitor, visit, null)
+							p.imp(visitor, visit, false)
 						}
 					}
 					if (!visited.contains(e.general)) {
 						visited.add(e.general)
 						e.general.gen(visitor, visit)
-						e.general.imp(visitor, visit, null)
+						e.general.imp(visitor, visit, false)
 						val qn = QualifiedName.create()
 						visitor.apply(qn, e.general)
-						e.general.accept(qn, visitor, null, false)
+						e.general.accept(qn, visitor, false, false, newHashSet)
 					}
 				}
 			]
 		}
 	}
-	private def void loop2(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit, 
+	private def void loop2(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, 
 		HashMap<Element, HashSet<QualifiedName>> elements) {
 		
 		if ( !visit.contains(pack)){ //to prevent CircleImport
@@ -172,7 +162,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		}
 	}
-	private def void getInherited(QualifiedName generalQName, HashMap<Element, HashSet<QualifiedName>> elements, Element generalEContainer,	(QualifiedName, Element)=>void visitor	){
+	private def void getInherited(QualifiedName generalQName, HashMap<Element, HashSet<QualifiedName>> elements, Element generalEContainer,	(QualifiedName, Element)=>boolean visitor	){
 		val qnStartWith = generalQName.toString()
 		val qnAppendTo = generalEContainer.name
 		val newElements = newArrayList
@@ -188,7 +178,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 		newElements.forEach[ne| visitor.apply(ne.get(1) as QualifiedName, ne.get(0) as Element)]
 	}
-	private def void imp(Package pack, (QualifiedName, Element)=>void visitor, HashSet<Package> visit, HashMap elements) {
+	private def void imp(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, boolean checkIfAdded) {
 		val visited = visit
 		pack.ownedImport.forEach [ e |
 			if (e.importedPackage?.name !== null) {
@@ -197,18 +187,18 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					val p = container as Package
 					if (!visited.contains(p)) {
 						visited.add(p)
-						p.imp(visitor, visit, elements)
+						p.imp(visitor, visit, checkIfAdded)
 						p.gen(visitor, visit)
 					}
 				}
 			}
 			if (!visited.contains(e.importedPackage)) {
 				visited.add(e.importedPackage)
-				e.importedPackage.imp(visitor, visit, elements)
+				e.importedPackage.imp(visitor, visit, checkIfAdded)
 				e.importedPackage.gen(visitor, visit)
 				val qn = QualifiedName.create()
 				visitor.apply(qn, e.importedPackage)
-				e.importedPackage.accept(qn, visitor, elements, false)
+				e.importedPackage.accept(qn, visitor, checkIfAdded, false, newHashSet)
 			}
 		]
 	}
@@ -218,12 +208,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		val elements = <Element, HashSet<QualifiedName>>newHashMap()
 		val visited = newHashSet
 		val visitor = [ QualifiedName qn, Element el |
+			var added = false;
 			if (reference.EReferenceType.isInstance(el)) {
 				val qns = elements.get(el);
 				if ( qns === null ) { 
 					if ( !visited.contains(qn)){
 						elements.put(el, newHashSet(qn))
 						visited.add(qn)
+						added = true
 					}
 				}
 				else if ( !qns.contains(qn) ){ //elements contains more than one qualifiedName - test::A and test2::A have difference qns
@@ -231,17 +223,18 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 						qns.add(qn)
 						elements.put(el, qns)
 						visited.add(qn)
+						added = true
 					}
 				}				
 			}
-			return
+			added
 		]
-		pack.accept(QualifiedName.create(), visitor, null, true)
+		pack.accept(QualifiedName.create(), visitor, false, true, newHashSet)
 		pack.gen(visitor, newHashSet)
-		pack.imp(visitor, newHashSet, elements)
+		pack.imp(visitor, newHashSet, true)
 		
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
-				pack.accept(QualifiedName.create().append(pack.name), visitor, null, true)
+				pack.accept(QualifiedName.create().append(pack.name), visitor, false, true, newHashSet)
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 		} else {
 			scope_Package(pack.parentPackage, reference /*, E */ )

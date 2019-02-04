@@ -337,7 +337,8 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
 		List<Redefinition> emptyRedefinitions = ownedRedefinitions.stream().filter(r->r.getRedefinedFeature() == null).collect(Collectors.toList());
 		getOwnedRelationship().removeAll(emptyRedefinitions);
-		if (membership instanceof EndFeatureMembership && getOwnedRedefinitionsWithoutDefault().isEmpty()) {
+		ownedRedefinitions.removeAll(emptyRedefinitions);
+		if (membership instanceof EndFeatureMembership && ownedRedefinitions.isEmpty()) {
 			Association association = ((EndFeatureMembership)membership).getOwningAssociation();
 			if (association != null) {
 				int i = association.getOwnedEndFeatureMembership().indexOf(membership);

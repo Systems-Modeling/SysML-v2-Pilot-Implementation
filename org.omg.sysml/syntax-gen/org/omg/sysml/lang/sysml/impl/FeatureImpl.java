@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,7 +19,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -28,6 +31,8 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.Superclassing;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -314,11 +319,49 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT);
+		EList<Subsetting> endRedefinitions = getEndRedefinitions();
+		return endRedefinitions.isEmpty()? getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT): endRedefinitions;
 	}
-
+	
 	protected EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
 		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
+	}
+	
+	protected EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
+		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+	}
+
+	protected EList<Subsetting> getEndRedefinitions() {
+		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+		FeatureMembership membership = getOwningFeatureMembership();
+		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
+		List<Redefinition> emptyRedefinitions = ownedRedefinitions.stream().filter(r->r.getRedefinedFeature() == null).collect(Collectors.toList());
+		getOwnedRelationship().removeAll(emptyRedefinitions);
+		if (membership instanceof EndFeatureMembership && getOwnedRedefinitionsWithoutDefault().isEmpty()) {
+			Association association = ((EndFeatureMembership)membership).getOwningAssociation();
+			if (association != null) {
+				int i = association.getOwnedEndFeatureMembership().indexOf(membership);
+				if (i >= 0) {
+					for (Superclassing superclassing: association.getOwnedSuperclassing()) {
+						org.omg.sysml.lang.sysml.Class superclass = superclassing.getSuperclass();
+						if (superclass instanceof Association) {
+							EList<EndFeatureMembership> endFeatureMemberships = ((Association)superclass).getOwnedEndFeatureMembership();
+							if (i < endFeatureMemberships.size()) {
+								Feature redefinedFeature = endFeatureMemberships.get(i).getMemberFeature();
+								if (redefinedFeature != null) {
+									Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+									redefinition.setRedefinedFeature(redefinedFeature);
+									redefinition.setRedefiningFeature(this);
+									getOwnedRelationship().add(redefinition);
+									redefinitions.add(redefinition);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return redefinitions;
 	}
 	
 	/**

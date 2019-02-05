@@ -7,13 +7,9 @@ package Base {
 	
 	/*
 	 * Object is the most general class of individuals with reference identity.
-	 * BehaviorOccurrence and FunctionOccurrence are specializations representing the
-	 * occurrence (execution/evaluation) of behaviors and functions.
 	 */
 	abstract class Object specializes Anything;
-	abstract class BehaviorOccurrence specializes Object;
-	abstract class FunctionOccurrence specializes BehaviorOccurrence;
-
+	
 	/*
 	 * Value is the most general class of individuals with value identity.
 	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
@@ -43,9 +39,7 @@ package Base {
 	    feature sourceParticipant: Anything[1..1] subsets participant = participant[1];
 	    feature targetParticipant: Anything[1..1] subsets participant = participant[2];
 	
-	    private connector linkage: BinaryLink
-	    	(sourceEnd[1..1] => sourceParticipant,
-	         targetEnd[1..1] => targetParticipant);	
+	    private connector linkage: BinaryLink is sourceParticipant to targetParticipant;	
 	}
 	
 	/*
@@ -60,10 +54,23 @@ package Base {
 		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
 	}
 	
+	/*  
+	 * Occurrence is the most general class of entities that may occur over time.
+	 * BehaviorOccurrence and FunctionOccurrence are specializations representing the
+	 * occurrence (execution/evaluation) of behaviors and functions.
+	 */
+	abstract class Occurrence specializes Anything;
+	abstract class BehaviorOccurrence specializes Occurrence;
+	abstract class FunctionOccurrence specializes BehaviorOccurrence;
+
 	/*
 	 * property is the top-level feature in the language.
+	 * referenceProperty and valueProperty are specializations that restrict the feature type
+	 * to Objects and Values, respectively.
 	 */
 	feature property: Anything[0..*] nonunique;
+	feature referenceProperty: Object[0..*] nonunique subsets property;
+	feature valueProperty: Value[0..*] nonunique subsets property;
 	
 	/*
 	 * connection is the most general feature of links between individuals.

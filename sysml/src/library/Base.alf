@@ -61,7 +61,7 @@ package Base {
 	 */
 	abstract class Occurrence specializes Anything;
 	abstract class BehaviorOccurrence specializes Occurrence;
-	abstract class FunctionOccurrence specializes BehaviorOccurrence;
+	abstract class FunctionEvaluation specializes BehaviorOccurrence;
 
 	/*
 	 * property is the top-level feature in the language.
@@ -85,5 +85,5 @@ package Base {
 	 * evaluation is a specialization for occurrences of functions.
 	 */
 	feature execution: BehaviorOccurrence[0..*] nonunique subsets property;
-	feature evaluation: FunctionOccurrence[0..*] nonunique subsets execution;
+	feature evaluation: FunctionEvaluation[0..*] nonunique subsets execution;
 }

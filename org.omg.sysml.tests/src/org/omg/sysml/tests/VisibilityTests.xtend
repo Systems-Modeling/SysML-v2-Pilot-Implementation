@@ -252,6 +252,7 @@ class VisibilityTests {
 		''', rs)
 		tester.validate(result).assertAll(
 			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			//alias is public so included in scope, but validation check failed, because of c_private
 			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
 		)
 		Assert.assertNotNull(result)
@@ -273,6 +274,7 @@ class VisibilityTests {
 		''', rs)
 		tester.validate(result).assertAll(
 			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
+			//alias is public so it is included in scope, but validation check failed, because c_Private(alias's parent) is private
 			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
 		)
 		Assert.assertNotNull(result)
@@ -289,12 +291,10 @@ class VisibilityTests {
 						class try specializes c_Public::c_private{}
 					}
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_Public::c_private'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -309,12 +309,10 @@ class VisibilityTests {
 			}
 		''', rs)
 
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Public::c_private'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -327,12 +325,10 @@ class VisibilityTests {
 				class try specializes c_clazz::c_Public::c_protect{}
 			}
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_clazz::c_Public::c_protect'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -344,12 +340,10 @@ class VisibilityTests {
 				class try specializes c_clazz::c_Protect::c_publicc{}
 			}
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_clazz::c_Protect::c_publicc'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -381,14 +375,11 @@ class VisibilityTests {
 				feature f : c_clazz::c_Package::c_publicc;
 			}
 		''', rs)
-		Assert.assertNotNull(result)
-		EcoreUtil2.resolveAll(result)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS),
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
-
-		Assert.assertTrue(result.eResource.errors.empty)
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_clazz::c_Package::c_publicc'.", result.eResource.errors.get(0).getMessage())
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_clazz::c_Package::c_publicc'.", result.eResource.errors.get(1).getMessage())
+		Assert.assertTrue(result.eResource.errors.length == 2)
 	}
 
 	@Test
@@ -401,14 +392,13 @@ class VisibilityTests {
 				feature f : c_Private::c_private;
 			}
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP),
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS),
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_Private::c_private'.", result.eResource.errors.get(0).getMessage())
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Private::c_private'.", result.eResource.errors.get(1).getMessage())
+		Assert.assertTrue(result.eResource.errors.length == 2)
 	}
 
 	@Test
@@ -420,14 +410,12 @@ class VisibilityTests {
 				import VisibilityPackage::*;
 				class Try specializes c_Private{}
 			}
-			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_Private'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -442,12 +430,11 @@ class VisibilityTests {
 			}
 			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_private'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -460,12 +447,11 @@ class VisibilityTests {
 			}
 			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_SUPERCLASS)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		Assert.assertEquals("Couldn't resolve reference to Class 'c_Private::c_public'.", result.eResource.errors.get(0).getMessage())
+		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
 
 	@Test
@@ -479,14 +465,17 @@ class VisibilityTests {
 			}
 			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Public::c_private'.", result.eResource.errors.get(0).getMessage())
 	}
-
+	
+	/*
+	 * alias_private is c_public. alias_private is the abstract syntax and the name is stored.  So it was not possible to validate using AlfValidator.
+	 * The code is modified to use AlfScopeProvider to handle it.
+	 */
 	@Test
 	def void testImportClassAndUseAlias1() {
 		val rs = getDependencyVisibilityPackage
@@ -494,30 +483,26 @@ class VisibilityTests {
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
-				feature f : c_Public_alias::alias_private;
+				feature f  : c_Public_alias::alias_private;
 			}
 			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Public_alias::alias_private'.", result.eResource.errors.get(0).getMessage())		
 	}
 
 	@Test
 	def void testImportClassAndUseAlias2() {
 		val rs = getDependencyVisibilityPackage
-
 		val result = parseHelper.parse('''
 			package Classes {
 				import VisibilityPackage::*;
 				feature f : c_Public_alias::alias_public;
 			}
-			
 		''', rs)
-
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.empty)
@@ -534,12 +519,11 @@ class VisibilityTests {
 			}
 			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
-		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Private_alias::alias_private'.", result.eResource.errors.get(0).getMessage())
 	}
 
 	@Test
@@ -551,14 +535,30 @@ class VisibilityTests {
 				import VisibilityPackage::*;
 				feature f : c_Private_alias::alias_public;
 			}
-			
 		''', rs)
-		tester.validate(result).assertAll(
-			getErrorCode(AlfValidator.NOT_PUBLIC_FEATURE_TYPE)
-		)
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Private_alias::alias_public'.", result.eResource.errors.get(0).getMessage())
+	}
+	
+	
+	@Test
+	def void testImportClassAndUseAlias5() {
+		val rs = getDependencyVisibilityPackage
+
+		val result = parseHelper.parse('''
+			package Classes {
+				import VisibilityPackage::*;
+				feature f : c_Public_alias::alias_private;
+			}
+		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.empty)
+		Assert.assertTrue(result.eResource.errors.length == 1)
+		result.assertError(SysMLPackage.eINSTANCE.featureTyping, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Category 'c_Public_alias::alias_private'.", result.eResource.errors.get(0).getMessage())
 	}
 
 	protected def DiagnosticPredicate getErrorCode(String issueId) {

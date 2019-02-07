@@ -78,7 +78,7 @@ class ShadowingTests {
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
 
-	// first will be used
+	//TODO: this is not legal, because all the member of a package must be distinguishable.
 	@Test
 	def void testSameNamesGoodCase() {
 		val result = parseHelper.parse('''
@@ -100,7 +100,7 @@ class ShadowingTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-
+	
 	@Test
 	def void testSameNamesBadCase() {
 
@@ -240,8 +240,8 @@ class ShadowingTests {
 		// only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		System.out.println(result.eResource.errors.get(0).getMessage())//Couldn't resolve reference to Category 'container::B'.
 	}
-
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameBadCase1() {
 		val rs = getDependencyOuterPackage
@@ -251,16 +251,38 @@ class ShadowingTests {
 				class A{
 					class a2{}
 				}
-				class B specializes A::a1 {}
+				class B specializes A::a1 {} //A::a1 is in OutPackage is "indistinguishable" from an owned membership "A"
 			}
 		''', rs)
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
+		System.out.println("Error: " + result.eResource.errors.get(0).getMessage())
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
+	/*
+	 * The membership of A in OuterPackage is not imported into test, 
+	 * but it can still be referenced using a qualified name with its owning package (OuterPackage) as the qualifier.
+	 */
+	@Test
+	def void testImportAndInnerClassesNamesAreTheSameGoodCase1_2() {
+		val rs = getDependencyOuterPackage
+		val result = parseHelper.parse('''
+			package test{
+				import OuterPackage::*;
+				class A{
+					class a2{}
+				}
+				class B specializes OuterPackage::A::a1 {} 
+			}
+		''', rs)
 
+		Assert.assertNotNull(result)
+		EcoreUtil2.resolveAll(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase1() {
 		val rs = getDependencyOuterPackage
@@ -299,6 +321,7 @@ class ShadowingTests {
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		System.out.println(result.eResource.errors.get(0).getMessage())
 	}
 
 	@Test
@@ -345,7 +368,10 @@ class ShadowingTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-
+	/*
+	 If there was no import, then the class test::A would be visible from the outer scope of class “inner”. Class test::inner::B would then specialize test::A, and a2 would be inherited, making “b specializes a2” legal. 
+	 However, importing OuterPackage means that OuterPackage::A hides test::A in the scope of class B. Therefore, B specializes OuterPackage::A, not test::A, and it inherits OuterPackage::A::a1 instead of test::A::a2. Therefore, “b specializes a2” generates an error. 
+	*/
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase3() {
 		val rs = getDependencyOuterPackage
@@ -362,11 +388,11 @@ class ShadowingTests {
 				}
 			}
 		''', rs)
-
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Class 'a2'.", result.eResource.errors.get(0).getMessage())
 	}
 
 	// TODO: catch the exception

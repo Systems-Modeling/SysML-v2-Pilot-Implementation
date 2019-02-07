@@ -1,18 +1,18 @@
 package ScalarValues {
 	
-	abstract class ScalarValue specializes Base::Value {}
-	class Boolean specializes ScalarValue { }
-	class String specializes ScalarValue { }
-	abstract class NumericalValue specializes ScalarValue { }
+	abstract datatype ScalarValue specializes Base::Value;
+	datatype Boolean specializes ScalarValue;
+	datatype String specializes ScalarValue;
+	abstract datatype NumericalValue specializes ScalarValue;
 	
-    abstract class Number specializes NumericalValue { }
-	class Integer specializes Number { }
-	class UnlimitedNatural specializes Number { }
-	class Natural specializes Integer, Number { }
-	class Rational specializes Number { }
-	class Real specializes Number { }
+    abstract datatype Number specializes NumericalValue;
+	datatype Integer specializes Number;
+	datatype UnlimitedNatural specializes Number;
+	datatype Natural specializes Integer, Number;
+	datatype Rational specializes Number;
+	datatype Real specializes Number;
 	
-	class Complex specializes Number {
+	datatype Complex specializes Number {
 		re: Real;
 		im: Real;
 	}
@@ -22,7 +22,7 @@ package ScalarValues {
      * 
      * Example of a hyper-complex number representation. 
      */
-	class Quaternion specializes Number {
+	datatype Quaternion specializes Number {
 		a: Real;
 		b: Real;
 		c: Real;

@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -55,6 +56,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConnectorImpl extends FeatureImpl implements Connector {
+	
+	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Base::connection";
+	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Base::binaryConnection";
+	
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -428,6 +433,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public boolean isSetOwnedAssociationType() {
 		return basicGetOwnedAssociationType() != null;
+	}
+	
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(
+				getConnectorEnd().size() > 2? 
+					CONNECTOR_SUBSETTING_DEFAULT:
+					BINARY_CONNECTOR_SUBSETTING_DEFAULT);
 	}
 
 	// Additional subsetting

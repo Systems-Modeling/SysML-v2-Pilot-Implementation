@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -51,6 +52,7 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ValueClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -566,6 +568,26 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCategory(operatorExpression);
 				if (result == null) result = casePackage(operatorExpression);
 				if (result == null) result = caseElement(operatorExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.OBJECT_CLASS: {
+				ObjectClass objectClass = (ObjectClass)theEObject;
+				T result = caseObjectClass(objectClass);
+				if (result == null) result = caseClass(objectClass);
+				if (result == null) result = caseCategory(objectClass);
+				if (result == null) result = casePackage(objectClass);
+				if (result == null) result = caseElement(objectClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.VALUE_CLASS: {
+				ValueClass valueClass = (ValueClass)theEObject;
+				T result = caseValueClass(valueClass);
+				if (result == null) result = caseClass(valueClass);
+				if (result == null) result = caseCategory(valueClass);
+				if (result == null) result = casePackage(valueClass);
+				if (result == null) result = caseElement(valueClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1245,6 +1267,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOperatorExpression(OperatorExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectClass(ObjectClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueClass(ValueClass object) {
 		return null;
 	}
 

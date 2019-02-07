@@ -69,50 +69,50 @@ package ISQ {
 	// ...
 	
 	// Base Quantities
-	class LengthValue specializes Quantities::QuantityValue {
+	datatype LengthValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: LengthUnit redefines Quantities::QuantityValue::scale;
 	}	
 	feature length: LengthValue;
 	
-	class MassValue specializes Quantities::QuantityValue {
+	datatype MassValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: MassUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature mass: MassValue;
 	
-	class TimeValue specializes Quantities::QuantityValue {
+	datatype TimeValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: TimeUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature time: TimeValue;
 	
-	class ElectricCurrentValue specializes Quantities::QuantityValue {
+	datatype ElectricCurrentValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: ElectricCurrentUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature electricCurrent: ElectricCurrentValue;
 	
-	class TemperatureValue specializes Quantities::QuantityValue {
+	datatype TemperatureValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: TemperatureUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature temperature: TemperatureValue;
 	
-	class AmountOfSubstanceValue specializes Quantities::QuantityValue {
+	datatype AmountOfSubstanceValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: AmountOfSubstanceUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature amountOfSubstance: AmountOfSubstanceValue;
 			
-	class LuminousIntensityValue specializes Quantities::QuantityValue {
+	datatype LuminousIntensityValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: LuminousIntensityUnit redefines Quantities::QuantityValue::scale;
 	}
 	feature luminousIntensity: LuminousIntensityValue;
 
 	// Derived Quantities
-	class ForceValue specializes Quantities::QuantityValue {
+	datatype ForceValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: ForceUnit redefines Quantities::QuantityValue::scale;
 	}

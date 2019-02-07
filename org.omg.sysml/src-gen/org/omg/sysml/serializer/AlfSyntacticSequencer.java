@@ -109,7 +109,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     multiplicity=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship+=SubsetOrRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 *     valuation=FeatureValue (ambiguity) (rule end)
 	 */

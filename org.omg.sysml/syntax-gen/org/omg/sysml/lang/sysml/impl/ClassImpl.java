@@ -5,8 +5,6 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -24,6 +22,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.Class {
+	public String CLASS_SUPERCLASS_DEFAULT = "Base::Anything";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,15 +49,13 @@ public class ClassImpl extends CategoryImpl implements org.omg.sysml.lang.sysml.
 	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		EList<Superclassing> superclassings = new EObjectEList<Superclassing>(Superclassing.class, this, SysMLPackage.CLASS__OWNED_SUPERCLASSING);
-		for (Generalization generalization: getOwnedGeneralization()) {
-			if (generalization instanceof Superclassing) {
-				superclassings.add((Superclassing)generalization);
-			}
-		}
-		return superclassings;
+		return getOwnedSuperclassingWithDefault(CLASS_SUPERCLASS_DEFAULT);
 	}
-
+	
+	protected EList<Superclassing> getOwnedSuperclassingWithDefault(String superclassDefault) {
+		return getOwnedGeneralizationWithDefault(Superclassing.class, SysMLPackage.CLASS__OWNED_SUPERCLASSING, SysMLPackage.eINSTANCE.getSuperclassing(), superclassDefault);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

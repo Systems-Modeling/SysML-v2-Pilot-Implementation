@@ -13217,6 +13217,494 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ObjectClassImpl <em>Object Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ObjectClassImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getObjectClass()
+	 * @generated
+	 */
+	int OBJECT_CLASS = 45;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNER = CLASS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__MEMBER = CLASS__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__FEATURE = CLASS__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__INPUT = CLASS__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OUTPUT = CLASS__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+
+	/**
+	 * The number of structural features of the '<em>Object Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Object Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ValueClassImpl <em>Value Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ValueClassImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getValueClass()
+	 * @generated
+	 */
+	int VALUE_CLASS = 46;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNER = CLASS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__MEMBER = CLASS__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__FEATURE = CLASS__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__INPUT = CLASS__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OUTPUT = CLASS__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+
+	/**
+	 * The number of structural features of the '<em>Value Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Value Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13224,7 +13712,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 45;
+	int VISIBILITY_KIND = 47;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -13234,7 +13722,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 46;
+	int FEATURE_DIRECTION_KIND = 48;
 
 
 	/**
@@ -15004,6 +15492,26 @@ public interface SysMLPackage extends EPackage {
 	EReference getOperatorExpression_Operand();
 
 	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ObjectClass <em>Object Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Class</em>'.
+	 * @see org.omg.sysml.lang.sysml.ObjectClass
+	 * @generated
+	 */
+	EClass getObjectClass();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ValueClass <em>Value Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value Class</em>'.
+	 * @see org.omg.sysml.lang.sysml.ValueClass
+	 * @generated
+	 */
+	EClass getValueClass();
+
+	/**
 	 * Returns the meta object for enum '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16455,6 +16963,26 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR_EXPRESSION__OPERAND = eINSTANCE.getOperatorExpression_Operand();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ObjectClassImpl <em>Object Class</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.ObjectClassImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getObjectClass()
+		 * @generated
+		 */
+		EClass OBJECT_CLASS = eINSTANCE.getObjectClass();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ValueClassImpl <em>Value Class</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.ValueClassImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getValueClass()
+		 * @generated
+		 */
+		EClass VALUE_CLASS = eINSTANCE.getValueClass();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.

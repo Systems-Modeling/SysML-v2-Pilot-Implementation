@@ -46,7 +46,7 @@ package UnitsAndScales {
 	 * 
 	 * Specifies a tuple of a referenced measurement unit and an exponent.
 	 */
-	class UnitPowerFactor specializes Base::Value {
+	datatype UnitPowerFactor specializes Base::Value {
 		feature unit: MeasurementUnit;
 		feature exponent: ScalarValues::Number;
 	}
@@ -84,7 +84,7 @@ package UnitsAndScales {
 	 * 
 	 * A ratio scale is implied by direct use of a MeasurementUnit as the scale in a QuantityValue.
 	 */
-	abstract class NonRatioScale {
+	abstract class NonRatioScale specializes MeasurementScale {
 		feature unit: MeasurementUnit;
 		part scaleValueMapping: ScaleValueMapping[0..1];	
 	}
@@ -158,7 +158,7 @@ package UnitsAndScales {
 	/*
 	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units
 	 */
-	class QuantityDimension specializes Base::Value {
+	datatype QuantityDimension specializes Base::Value {
 		// Should be ordered or the order should be derived from an ordered set of base units
 		feature baseUnitPowerFactor: UnitPowerFactor[0..*];
 	}

@@ -8,7 +8,7 @@ package Quantities {
 	 * 
 	 * TODO: Consider renaming scale to unitOrScale and MeasurementScale to MeasurementUnitOrScale for clarity.
 	 */
-	abstract class QuantityValue specializes ScalarValues::NumericalValue {
+	abstract datatype QuantityValue specializes ScalarValues::NumericalValue {
 		magnitude: ScalarValues::Number;
 		scale: UnitsAndScales::MeasurementScale;
 	}

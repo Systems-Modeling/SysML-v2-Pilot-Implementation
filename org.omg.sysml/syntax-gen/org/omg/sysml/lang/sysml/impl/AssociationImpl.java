@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -48,6 +49,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AssociationImpl extends ClassImpl implements Association {
+	
+	public String ASSOCIATION_SUPERCLASS_DEFAULT = "Base::Link";
+	public String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Base::BinaryLink";
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -323,6 +328,17 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	public boolean isSetRelatedElement() {
   		return false;
+	}
+
+	/**
+	 * If the Association has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(
+				getOwnedEndFeatureMembership().size() > 2? 
+					ASSOCIATION_SUPERCLASS_DEFAULT: 
+					BINARY_ASSOCIATION_SUPERCLASS_DEFAULT);
 	}
 
 	/**

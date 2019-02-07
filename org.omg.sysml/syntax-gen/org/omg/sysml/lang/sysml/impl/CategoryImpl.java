@@ -11,18 +11,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.omg.sysml.lang.sysml.Category;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,15 +127,55 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.CATEGORY__OWNED_GENERALIZATION);
-		for (Element member: this.getOwnedMember()) {
-			if (member instanceof Generalization &&
-					((Generalization)member).getSpecific().equals(this)) {
-				generalizations.add(((Generalization)member));
+		for (Relationship relationship: this.getOwnedRelationship()) {
+			if (relationship instanceof Generalization &&
+					((Generalization)relationship).getSpecific().equals(this)) {
+				generalizations.add(((Generalization)relationship));
 			}
 		}
 		return generalizations;
 	}
 
+	@SuppressWarnings("unchecked")
+	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
+		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
+		for (Generalization generalization: getOwnedGeneralization()) {
+			if (kind.isInstance(generalization)) {
+				generalizations.add((T)generalization);
+			}
+		}
+		return generalizations;
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String defaultName) {
+		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
+		Generalization generalization = getDefaultGeneralization(generalizations, eClass);
+		if (generalization != null) {
+			EObject general = SysMLLibraryUtil.getLibraryElement(
+					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			if (general instanceof Category) {
+				generalization.setGeneral((Category)general);
+				generalizations.add((T)generalization);
+				getOwnedRelationship().add(generalization);
+			}
+		}
+		return generalizations;
+	}
+	
+	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass) {
+		Generalization generalization = null;
+		if (generalizations.isEmpty()) {
+			generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
+			generalization.setSpecific(this);
+		} else {
+			generalization = generalizations.stream().
+					filter(s->s.getGeneral() == null).
+					findFirst().orElse(null);
+		}
+		return generalization;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

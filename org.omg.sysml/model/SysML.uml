@@ -45,7 +45,7 @@
     </ownedRule>
     <generalization xmi:id="332599cd-67c3-4d3a-898f-b3c9e214405d" general="4e5f8972-c473-4bc0-8edf-bb508993d08e"/>
     <ownedAttribute xmi:id="f88318ca-67c0-4399-914e-2105cf31cb17" name="ownedSuperclassing" visibility="public" type="d57b0c8d-0740-490d-9e11-7dd559103ee2" isDerived="true" subsettedProperty="d65bfe47-3744-4fb9-a371-dc053aabfccd" association="d68af7ed-17cd-4fb0-afce-60e83cbfc73c">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="5a21d592-7ed7-4bfc-ade2-56baf3075957" name="" visibility="public"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="5a21d592-7ed7-4bfc-ade2-56baf3075957" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="2ab334e6-5c59-4d9c-b059-fbc05528127a" name="" visibility="public" value="*"/>
     </ownedAttribute>
   </packagedElement>
@@ -177,7 +177,7 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="25f4a0e0-3b01-4940-a18d-c1201a73e699" name="" visibility="public" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="f859c856-58ff-4e98-965d-c1366e9427f2" name="ownedSubsetting" visibility="public" type="d9dbfafc-fa14-4bd6-845e-ff8ce5511e56" isDerived="true" subsettedProperty="d65bfe47-3744-4fb9-a371-dc053aabfccd" association="992f3f49-a8bb-4c15-a718-7db7ca370255">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1e1e92bd-26fe-465f-900d-7490e9984e55" name="" visibility="public"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1e1e92bd-26fe-465f-900d-7490e9984e55" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5d5794b1-3628-42d6-b538-cc2df017ff33" name="" visibility="public" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="b2830939-3d87-40dc-8acf-ed3f043eba1a" name="owningFeatureMembership" visibility="public" type="387c1ace-4ad1-44eb-b8b5-bfe420975a97" subsettedProperty="4e9a7462-c2c0-42cd-a715-dc21395cc779 43e0366f-d9ec-4e33-8da7-80bba5bf6afb" association="77ec8e9e-dc35-45b5-b3ac-964b7e3114d3">
@@ -195,9 +195,10 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b658fdb7-4f88-4b69-a895-443fea50bc15" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5c48ffd1-046f-4cb9-b301-aecd773b9a5a" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="89301e23-4221-4e3e-9d33-5d1f1be4a0bd" name="typing" type="38d72c05-06ba-4112-bd58-c4519c98d654" subsettedProperty="4ed80006-8937-46a9-bea5-caf85682af75" association="7f60f971-3958-4bd6-a1db-4fb6df161220">
+    <ownedAttribute xmi:id="89301e23-4221-4e3e-9d33-5d1f1be4a0bd" name="typing" type="38d72c05-06ba-4112-bd58-c4519c98d654" isDerived="true" subsettedProperty="4ed80006-8937-46a9-bea5-caf85682af75" association="7f60f971-3958-4bd6-a1db-4fb6df161220">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="56b92a77-6067-43b1-99bf-81b804172493" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="82d5d922-48ea-4870-a996-37186caa5111" name="" visibility="public" value="*"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_HdwMgCTiEemDBe1LxV0Xdw" value=""/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_HcF2AA-hEemintoDOM84LQ" name="isNonunique">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -1111,5 +1112,11 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-NgbAA-qEemintoDOM84LQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-htwcA-qEemintoDOM84LQ" value="*"/>
     </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sMk3UCAgEem_3uhbGX2-zA" name="ObjectClass">
+    <generalization xmi:id="_4ngRgCAhEem_3uhbGX2-zA" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8qNR8CAhEem_3uhbGX2-zA" name="ValueClass">
+    <generalization xmi:id="_8qNR8SAhEem_3uhbGX2-zA" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
   </packagedElement>
 </uml:Model>

@@ -237,7 +237,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
 	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
-	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningFeature" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Subsetting> getOwnedSubsetting();
@@ -371,7 +371,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Typing()
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature
-	 * @model opposite="typedFeature" ordered="false"
+	 * @model opposite="typedFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<FeatureTyping> getTyping();

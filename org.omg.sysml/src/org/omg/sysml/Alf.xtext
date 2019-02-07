@@ -35,6 +35,8 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 UnitDefinition returns SysML::Package :
 	  PackageUnitDefinition 
 	| ClassUnitDefinition 
+	| ObjectClassUnitDefinition
+	| ValueClassUnitDefinition
 	| AssociationUnitDefinition 
 	| FeatureUnitDefinition
 ;
@@ -43,8 +45,16 @@ PackageUnitDefinition returns SysML::Package:
     UnitPrefix PackageDefinition 
 ;
 
-ClassUnitDefinition returns SysML::Class : 
+ClassUnitDefinition returns SysML::ObjectClass : 
 	UnitPrefix ClassDefinition
+;
+
+ObjectClassUnitDefinition returns SysML::ObjectClass:
+	UnitPrefix ObjectClassDefinition
+;
+
+ValueClassUnitDefinition returns SysML::ValueClass :
+	UnitPrefix ValueClassDefinition
 ;
 
 AssociationUnitDefinition returns SysML::Association :
@@ -103,7 +113,11 @@ ElementImport returns SysML::Membership :
 /* PACKAGES */
 
 NonFeatureDefinition returns SysML::Package:
-	PackageDefinitionOrStub | ClassDefinitionOrStub | AssociationDefinitionOrStub
+	  PackageDefinitionOrStub 
+	| ClassDefinitionOrStub 
+	| ObjectClassDefinitionOrStub
+	| ValueClassDefinitionOrStub 
+	| AssociationDefinitionOrStub
 ;
 
 PackageDefinitionOrStub returns SysML::Package :
@@ -133,7 +147,9 @@ fragment PackageMemberPrefix returns SysML::Membership :
 fragment NonFeatureMemberElement returns SysML::Membership :
 	( ownedMemberElement = NonFeatureDefinition
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
-    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+    | 'Class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::ObjectClass|QualifiedName] ';'
+    | 'datatype' ( memberName = Name )? 'is' memberElement = [SysML::ValueClass|QualifiedName] ';'
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
@@ -173,7 +189,7 @@ FeatureCategoryMember returns SysML::FeatureMembership :
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
     | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
-	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
+	| ( direction = FeatureDirection )? memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
 	
 	)
 ;
@@ -185,10 +201,14 @@ fragment CategoryMemberPrefix returns SysML::Membership :
 ;
 
 fragment FeatureMemberElement returns SysML::FeatureMembership :
-      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )? ownedMemberFeature = FeatureDefinition
-	| ( 'feature' | isPart ?= 'part' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-	| 'connector' ownedMemberFeature = ConnectorDefinition
-	| 'connector' ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';' 
+      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
+      ( ownedMemberFeature = FeatureDefinition 
+      | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+      )
+	| 'connector' 
+	  ( ownedMemberFeature = ConnectorDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
+	  )
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -199,7 +219,7 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 ClassDefinitionOrStub returns SysML::Class :
 	ClassDefinition 
-//	ClassDeclaration ( isStub ?= ';' | ClassBody '}' )
+//	ClassDeclaration ( isStub ?= ';' | CategoryBody )
 ;
 
 fragment ClassDefinition returns SysML::Class : 
@@ -207,13 +227,45 @@ fragment ClassDefinition returns SysML::Class :
 ;
 
 fragment ClassDeclaration returns SysML::Class :
-	( isAbstract ?= 'abstract' )? 'class' name = Name 
+	( isAbstract ?= 'abstract' )? 'Class' ClassDeclarationCompletion
+;
+
+fragment ClassDeclarationCompletion returns SysML::Class :	
+	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	( 'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )* )?
 ;
 
 Superclassing returns SysML::Superclassing:
 	superclass = [SysML::Class | QualifiedName]
+;
+
+/* OBJECT CLASSES */
+
+ObjectClassDefinitionOrStub returns SysML::ObjectClass :
+	ObjectClassDefinition
+;
+
+fragment ObjectClassDefinition returns SysML::ObjectClass : 
+	ObjectClassDeclaration CategoryBody
+;
+
+fragment ObjectClassDeclaration returns SysML::ObjectClass :
+	( isAbstract ?= 'abstract' )? 'class' ClassDeclarationCompletion
+;
+
+/* VALUE CLASSES (DATA TYPES) */
+
+ValueClassDefinitionOrStub returns SysML::ValueClass :
+	ValueClassDefinition
+;
+
+fragment ValueClassDefinition returns SysML::ValueClass :
+	ValueClassDeclaration CategoryBody
+;
+
+fragment ValueClassDeclaration returns SysML::ValueClass :
+	( isAbstract ?= 'abstract' )? 'datatype' ClassDeclarationCompletion
 ;
 
 /* ASSOCIATIONS */
@@ -270,7 +322,7 @@ NamedFeatureDefinition returns SysML::Feature :
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
-	ownedRelationship += SubsetOrRedefinition TypePart? ( multiplicity = Multiplicity )?
+	( Subsets Redefinitions | Redefinitions ) TypePart? ( multiplicity = Multiplicity )?
 	FeatureCompletion
 ;
 
@@ -281,7 +333,7 @@ fragment FeatureBodyDefinition returns SysML::Feature :
 fragment FeatureDeclaration returns SysML::Feature :
 	name = Name TypePart? ( multiplicity = Multiplicity )? 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
-	( ownedRelationship += SubsetOrRedefinition )? 
+	Redefinitions? Subsets?
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
@@ -304,18 +356,20 @@ Multiplicity returns SysML::Multiplicity :
 	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
-SubsetOrRedefinition returns SysML::Subsetting :
-	( 'subsets' Subset
-	| 'redefines' Redefinition
-	)
-;
-
-Redefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature|QualifiedName] 
+fragment Subsets returns SysML::Feature :
+	'subsets' ownedRelationship += Subset ( ownedRelationship += Subset )*
 ;
 
 Subset returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
+fragment Redefinitions returns SysML::Feature :
+	'redefines' ownedRelationship += Redefinition ( ownedRelationship += Redefinition )*
+;
+
+Redefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature|QualifiedName] 
 ;
 
 /* CONNECTORS */

@@ -427,6 +427,24 @@ public interface SysMLFactory extends EFactory {
 	OperatorExpression createOperatorExpression();
 
 	/**
+	 * Returns a new object of class '<em>Object Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Class</em>'.
+	 * @generated
+	 */
+	ObjectClass createObjectClass();
+
+	/**
+	 * Returns a new object of class '<em>Value Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Class</em>'.
+	 * @generated
+	 */
+	ValueClass createValueClass();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,6 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +20,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Miyako Wilson, JPL
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.tests
@@ -30,18 +34,28 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.testing.util.ParseHelper
 import org.omg.sysml.lang.sysml.Package
+import org.eclipse.emf.common.util.URI
 
 class Dependency {
+	
+	public static final String LIBRARY_BASE_PATH = "library/Base.alf";
 
 	@Inject
 	private Provider<XtextResourceSet> resourceSetProvider;
 
 	@Inject
 	ParseHelper<Package> parseHelper
+	
+	// Loads Base library file, which has elements that are needed for default specializations
+	public def ResourceSetImpl getLibraryBasePackage() {
+		val rs = resourceSetProvider.get
+		rs.getResource(URI.createFileURI(LIBRARY_BASE_PATH), true)
+		rs
+	}
 
 	// Basic import file most of the tests use this
 	public def ResourceSetImpl getDependencyOuterPackage() {
-		val rs = resourceSetProvider.get
+		val rs = getLibraryBasePackage
 		parseHelper.parse(
 		'''package OuterPackage{
 				class A{
@@ -56,7 +70,7 @@ class Dependency {
 	
 	// Basic import file most of the tests use this
 	public def ResourceSetImpl getDependencyOuterPackage2() {
-		val rs = resourceSetProvider.get
+		val rs = getLibraryBasePackage
 		parseHelper.parse(
 		'''package OuterPackage{
 				class A{
@@ -116,7 +130,7 @@ class Dependency {
 
 	// It's for the shadowing tests 
 	def ResourceSetImpl getDependencyAlias() {
-		val rs = resourceSetProvider.get
+		val rs = getLibraryBasePackage
 		parseHelper.parse('''
 			package PackageAlias1{
 				A_alias is A;
@@ -144,7 +158,7 @@ class Dependency {
 
 	// It's for the shadowing tests 
 	def ResourceSetImpl getDependencySameNamesImport() {
-		val rs = resourceSetProvider.get
+		val rs = getLibraryBasePackage
 		parseHelper.parse('''
 			package SamePackage{
 				class container{
@@ -164,7 +178,7 @@ class Dependency {
 
 	// The Visibility tests use this source
 	def ResourceSetImpl getDependencyVisibilityPackage() {
-		val rs = resourceSetProvider.get
+		val rs = getLibraryBasePackage
 		parseHelper.parse('''
 		package VisibilityPackage {
 			private class c_Private{

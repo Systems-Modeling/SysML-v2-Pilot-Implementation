@@ -1,6 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +20,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Miyako Wilson, JPL
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -57,6 +61,7 @@ class ShadowingTests {
 	 */
 	@Test
 	def void testSameNamesInnerClassAndOuterClass() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -65,7 +70,7 @@ class ShadowingTests {
 					}
 				}
 			}
-		''')
+		''', rs)
 		val outerA = result.ownedMembership.head.ownedMemberElement as Class
 		val innerA = outerA.ownedMembership.head.ownedMemberElement as Class
 		val B = innerA.ownedMembership.head.ownedMemberElement as Class
@@ -81,6 +86,7 @@ class ShadowingTests {
 	//TODO: this is not legal, because all the member of a package must be distinguishable.
 	@Test
 	def void testSameNamesGoodCase() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -93,7 +99,7 @@ class ShadowingTests {
 					class b specializes a1{}
 				}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -103,7 +109,7 @@ class ShadowingTests {
 	
 	@Test
 	def void testSameNamesBadCase() {
-
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -116,7 +122,7 @@ class ShadowingTests {
 					class b specializes a2{}
 				}
 			}
-		''')
+		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
@@ -128,6 +134,7 @@ class ShadowingTests {
 	 */
 	@Test
 	def void testSameNamesInnerClassAndOuterClassWithAlias() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A is A1;
@@ -137,7 +144,7 @@ class ShadowingTests {
 					}
 				}
 			}
-		''')
+		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 
@@ -154,6 +161,7 @@ class ShadowingTests {
 	// first will be used
 	@Test
 	def void testSameNamesGoodCaseWithAlias() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A1 is A;
@@ -167,7 +175,7 @@ class ShadowingTests {
 					class b specializes a1{}
 				}
 			}
-		''')
+		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 
@@ -184,6 +192,7 @@ class ShadowingTests {
 
 	@Test
 	def void testSameNamesBadCaseWithAlias() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -196,7 +205,7 @@ class ShadowingTests {
 					class b specializes a2{}
 				}
 			}
-		''')
+		''', rs)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
@@ -209,7 +218,6 @@ class ShadowingTests {
 	@Test
 	def void testSameNamesImport() {
 		val rs = dependencySameNamesImport
-
 		val result = parseHelper.parse('''
 			package test{
 				import SamePackage::container::*;
@@ -242,6 +250,7 @@ class ShadowingTests {
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 		System.out.println(result.eResource.errors.get(0).getMessage())//Couldn't resolve reference to Category 'container::B'.
 	}
+	
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameBadCase1() {
 		val rs = getDependencyOuterPackage
@@ -261,6 +270,7 @@ class ShadowingTests {
 		System.out.println("Error: " + result.eResource.errors.get(0).getMessage())
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
 	}
+	
 	/*
 	 * The membership of A in OuterPackage is not imported into test, 
 	 * but it can still be referenced using a qualified name with its owning package (OuterPackage) as the qualifier.
@@ -283,6 +293,7 @@ class ShadowingTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	@Test
 	def void testImportAndInnerClassesNamesAreTheSameGoodCase1() {
 		val rs = getDependencyOuterPackage
@@ -368,6 +379,7 @@ class ShadowingTests {
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	/*
 	 If there was no import, then the class test::A would be visible from the outer scope of class “inner”. Class test::inner::B would then specialize test::A, and a2 would be inherited, making “b specializes a2” legal. 
 	 However, importing OuterPackage means that OuterPackage::A hides test::A in the scope of class B. Therefore, B specializes OuterPackage::A, not test::A, and it inherits OuterPackage::A::a1 instead of test::A::a2. Therefore, “b specializes a2” generates an error. 
@@ -400,7 +412,6 @@ class ShadowingTests {
 	@Test
 	def void CircleInheritance() {
 		val rs = getDependencyOuterPackage
-
 		val result = parseHelper.parse('''
 			package Test1{
 				class A specializes A.B{
@@ -420,7 +431,6 @@ class ShadowingTests {
 	@Test
 	def void CircleProblem2() {
 		val rs = getDependencyOuterPackage
-
 		val result = parseHelper.parse('''
 			package Test1{
 				class A {
@@ -439,7 +449,6 @@ class ShadowingTests {
 	@Test
 	def void CircleProblem3() {
 		val rs = getDependencyOuterPackage
-
 		val result = parseHelper.parse('''
 			package Test1{
 				class A {
@@ -460,7 +469,6 @@ class ShadowingTests {
 	@Test
 	def void CircleProblem4() {
 		val rs = getDependencyOuterPackage
-
 		val result = parseHelper.parse('''
 			package Test1{
 				class A specializes A.B {
@@ -482,7 +490,6 @@ class ShadowingTests {
 	@Test
 	def void CircleProblem5() {
 		val rs = getDependencyOuterPackage
-
 		val result = parseHelper.parse('''
 			package Test1{
 				class A specializes D{
@@ -502,7 +509,6 @@ class ShadowingTests {
 	@Test
 	def void testAliasImportInMembership() {
 		val rs = getDependencyAlias
-
 		val result = parseHelper.parse('''
 			package Test1{
 				import PackageAlias1::A_alias;
@@ -518,7 +524,6 @@ class ShadowingTests {
 	@Test
 	def void testImportAlias() {
 		val rs = getDependencyAlias
-
 		val result = parseHelper.parse('''
 			package Test1{
 				import PackageAlias1::A_alias::*;

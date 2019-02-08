@@ -1,6 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +20,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Miyako Wilson, JPL
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.tests
@@ -65,12 +69,13 @@ class ParsingTests {
 
 	@Test
 	def void testUseFullQualifiedName1() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
 				class B specializes test::A{}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -127,6 +132,7 @@ class ParsingTests {
 
 	@Test
 	def void testBadScopeWithOnlyTwoDotAtTheEnd() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class non{}
@@ -138,7 +144,7 @@ class ParsingTests {
 					feature b: Test3::A:a;
 				}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
@@ -147,6 +153,7 @@ class ParsingTests {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDotAtTheEnd() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class non{}
@@ -158,7 +165,7 @@ class ParsingTests {
 					feature b: test::A..a;
 				}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 1)
@@ -167,6 +174,7 @@ class ParsingTests {
 
 	@Test
 	def void testBadScopeWithOnlyTwoSingleDot() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class non{}
@@ -178,7 +186,7 @@ class ParsingTests {
 					feature b: test..A::a;
 				}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)
@@ -188,6 +196,7 @@ class ParsingTests {
 
 	@Test
 	def void testBadScopeWithOnlyTwoDot() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class non{}
@@ -199,7 +208,7 @@ class ParsingTests {
 					feature b: test:A::a;
 				}
 			}
-		''')
+		''', rs)
 
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.length == 2)

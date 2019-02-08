@@ -1,6 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,18 +20,18 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Miyako Wilson, JPL
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
 package org.omg.sysml.tests
 
 import com.google.inject.Inject
-import com.google.inject.Provider
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -48,9 +50,6 @@ class MultipleImportTests {
 
 	@Inject
 	ParseHelper<Package> parseHelper
-
-	@Inject
-	private Provider<XtextResourceSet> resourceSetProvider;
 
 	@Inject extension ValidationTestHelper
 

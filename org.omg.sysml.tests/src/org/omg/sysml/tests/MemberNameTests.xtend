@@ -1,6 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +20,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss
- *  Balazs Grill
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Miyako Wilson, JPL
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.tests
@@ -45,15 +49,18 @@ class MemberNameTests {
 
 	@Inject extension ValidationTestHelper
 
+	@Inject extension Dependency
+
 	@Test
 	def void testLocalNamedMember() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
 				class A_alias is A;
 				feature a: A_alias;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -63,12 +70,13 @@ class MemberNameTests {
 
 	@Test
 	def void testUseFullQualifiedNameInTheSamePackage() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A {}
 				class B specializes test::A{}
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -78,6 +86,7 @@ class MemberNameTests {
 
 	@Test
 	def void testNamedMemberFromOtherPackage() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				package P{
@@ -87,7 +96,7 @@ class MemberNameTests {
 				package P1 is P;
 				feature a: P1::A_alias;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -96,6 +105,7 @@ class MemberNameTests {
 	}
 @Test
 	def void testNamedMemberFromOtherPackage2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				package P{
@@ -109,7 +119,7 @@ class MemberNameTests {
 				package P1 is P;
 				feature a: P1::A_alias;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -119,6 +129,7 @@ class MemberNameTests {
 
 	@Test
 	def void testNamedMemberFromOtherPackageBadUseage() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				package P{
@@ -127,7 +138,7 @@ class MemberNameTests {
 				}
 				feature a: P1::A_alias;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -137,6 +148,7 @@ class MemberNameTests {
 
 	@Test
 	def void testNamedMemberFromInheritance() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -148,7 +160,7 @@ class MemberNameTests {
 					b_alias is b;
 				}
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -157,6 +169,7 @@ class MemberNameTests {
 	}
 	@Test
 	def void testNamedMemberFromInheritance_2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class EE {}
@@ -169,15 +182,17 @@ class MemberNameTests {
 					b_alias is b;
 				}
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	@Test
 	def void testMultipleInheritance() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -192,14 +207,16 @@ class MemberNameTests {
 				class D specializes A::a{} 
 				class E {} //added because E was causing parsing problem (confused with Exponent)
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
+	
 	@Test
 	def void testMultipleInheritance_2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -216,7 +233,7 @@ class MemberNameTests {
 				class D specializes A::a{} 
 				class EE {}
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -225,6 +242,7 @@ class MemberNameTests {
 
 	@Test
 	def void testMultipleInheritance2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -238,14 +256,16 @@ class MemberNameTests {
 				}
 				class D specializes C::a{}
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		Assert.assertTrue(result.eResource.errors.empty)
 	}
-		@Test
+	
+	@Test
 	def void testMultipleInheritance2_2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -261,7 +281,7 @@ class MemberNameTests {
 				}
 				class D specializes C::a{}
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -269,6 +289,7 @@ class MemberNameTests {
 	}
 	
 	def void testMultipleInheritance2x() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				
@@ -286,7 +307,7 @@ class MemberNameTests {
 				class D specializes C::a{}
 				
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -295,6 +316,7 @@ class MemberNameTests {
 
 	@Test
 	def void testMultipleInheritance3() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -313,7 +335,7 @@ class MemberNameTests {
 					class d specializes aa  {}
 				}
 			}
-		''')
+		''', rs)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -322,6 +344,7 @@ class MemberNameTests {
 
 	@Test
 	def void testNamedMemberFromInheritance2() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test{
 				class A{
@@ -334,7 +357,7 @@ class MemberNameTests {
 					b_alias is b;
 				}
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -344,6 +367,7 @@ class MemberNameTests {
 
 	@Test
 	def void testNamedMemberForPrivate() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package test {
 				private class something{}
@@ -352,7 +376,7 @@ class MemberNameTests {
 					class test specializes k{}
 				}
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -362,6 +386,7 @@ class MemberNameTests {
 
 	@Test
 	def void testFeatureRedefinition() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package testt {
 				feature A{
@@ -370,7 +395,7 @@ class MemberNameTests {
 				feature B is A;
 				feature C redefines B::a;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)
@@ -380,6 +405,7 @@ class MemberNameTests {
 
 	@Test
 	def void testFeatureSubset() {
+		val rs = getLibraryBasePackage
 		val result = parseHelper.parse('''
 			package testt {
 				feature A{
@@ -388,7 +414,7 @@ class MemberNameTests {
 				feature B is A;
 				feature C subsets B.a;
 			}
-		''')
+		''', rs)
 
 		EcoreUtil2.resolveAll(result)
 		Assert.assertNotNull(result)

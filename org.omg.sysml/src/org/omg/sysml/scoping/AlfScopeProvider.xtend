@@ -208,8 +208,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		val elements = <Element, HashSet<QualifiedName>>newHashMap()
 		val visited = newHashSet
 		val visitor = [ QualifiedName qn, Element el |
-			var added = false;
+			var added = true;
 			if (reference.EReferenceType.isInstance(el)) {
+				added = false;
 				val qns = elements.get(el);
 				if ( qns === null ) { 
 					if ( !visited.contains(qn)){

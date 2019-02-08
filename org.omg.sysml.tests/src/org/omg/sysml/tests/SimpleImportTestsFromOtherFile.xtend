@@ -52,7 +52,7 @@ class SimpleImportTestsFromOtherFile {
 	@Inject extension Dependency
 
 	@Test
-	def void testImort() {
+	def void testImport1() {
 		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test {
@@ -70,13 +70,32 @@ class SimpleImportTestsFromOtherFile {
 	}
 
 	@Test
-	def void testImort2() {
+	def void testImport2() {
 		val rs = getDependencyOuterPackage
 		val result = parseHelper.parse('''
 			package test {
 				import OuterPackage::*;
 				class Try specializes B{
 					feature try : b;
+				}
+			}
+			
+		''', rs)
+
+		EcoreUtil2.resolveAll(result)
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+	}
+
+	@Test
+	def void testImport3() {
+		val rs = getDependencyOuterPackage
+		val result = parseHelper.parse('''
+			package test {
+				import OuterPackage::*;
+				class Try specializes B{
+					feature try : b redefines B::b;
 				}
 			}
 			

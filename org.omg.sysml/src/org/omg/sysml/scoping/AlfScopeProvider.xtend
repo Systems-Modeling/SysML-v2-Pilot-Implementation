@@ -235,7 +235,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		pack.imp(visitor, newHashSet, true)
 		
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
-				pack.accept(QualifiedName.create().append(pack.name), visitor, false, true, newHashSet)
+				if (pack.name !== null) {
+					pack.accept(QualifiedName.create().append(pack.name), visitor, false, true, newHashSet)
+				}
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 		} else {
 			scope_Package(pack.parentPackage, reference /*, E */ )
@@ -252,7 +254,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			elements.entrySet.forEach[ entry |
 				var qns = entry.value
 				qns.forEach[qn| 
-					if ( !qn.startsWith(QualifiedName.create(pack.name))) {
+					if ( pack.name !== null && !qn.startsWith(QualifiedName.create(pack.name))) {
 						newElements.add(newArrayList(entry.key, QualifiedName.create().append(pack.name).append(qn)))
 					}
 				]

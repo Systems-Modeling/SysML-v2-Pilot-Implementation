@@ -40,21 +40,20 @@ class Dependency {
 	
 	public static final String LIBRARY_BASE_PATH = "library/Base.alf";
 
-	@Inject
-	private Provider<XtextResourceSet> resourceSetProvider;
+	@Inject Provider<XtextResourceSet> resourceSetProvider;
 
 	@Inject
 	ParseHelper<Package> parseHelper
 	
 	// Loads Base library file, which has elements that are needed for default specializations
-	public def ResourceSetImpl getLibraryBasePackage() {
+	def ResourceSetImpl getLibraryBasePackage() {
 		val rs = resourceSetProvider.get
 		rs.getResource(URI.createFileURI(LIBRARY_BASE_PATH), true)
 		rs
 	}
 
 	// Basic import file most of the tests use this
-	public def ResourceSetImpl getDependencyOuterPackage() {
+	def ResourceSetImpl getDependencyOuterPackage() {
 		val rs = getLibraryBasePackage
 		parseHelper.parse(
 		'''package OuterPackage{
@@ -69,7 +68,7 @@ class Dependency {
 	}
 	
 	// Basic import file most of the tests use this
-	public def ResourceSetImpl getDependencyOuterPackage2() {
+	def ResourceSetImpl getDependencyOuterPackage2() {
 		val rs = getLibraryBasePackage
 		parseHelper.parse(
 		'''package OuterPackage{
@@ -86,7 +85,7 @@ class Dependency {
 	}
 
 	// It's for the multiple import tests
-	public def ResourceSetImpl getDependencyMultipleImport() {
+	def ResourceSetImpl getDependencyMultipleImport() {
 		val rs = getDependencyOuterPackage
 		parseHelper.parse('''
 			package OuterPackage2{

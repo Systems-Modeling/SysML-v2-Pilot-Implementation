@@ -69,6 +69,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getValue() {
 		return value;
 	}
@@ -78,6 +79,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(double newValue) {
 		double oldValue = value;
 		value = newValue;
@@ -152,7 +154,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");
 		result.append(value);
 		result.append(')');

@@ -84,7 +84,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TypesPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -98,12 +98,14 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		if (isInited) return (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TypesPackageImpl());
+		Object registeredTypesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TypesPackageImpl theTypesPackage = registeredTypesPackage instanceof TypesPackageImpl ? (TypesPackageImpl)registeredTypesPackage : new TypesPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		SysMLPackageImpl theSysMLPackage = (SysMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysMLPackage.eNS_URI) instanceof SysMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysMLPackage.eNS_URI) : SysMLPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SysMLPackage.eNS_URI);
+		SysMLPackageImpl theSysMLPackage = (SysMLPackageImpl)(registeredPackage instanceof SysMLPackageImpl ? registeredPackage : SysMLPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTypesPackage.createPackageContents();
@@ -116,7 +118,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		// Mark meta-data to indicate it can't be changed
 		theTypesPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TypesPackage.eNS_URI, theTypesPackage);
 		return theTypesPackage;
@@ -127,6 +128,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getBoolean() {
 		return booleanEDataType;
 	}
@@ -136,6 +138,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getInteger() {
 		return integerEDataType;
 	}
@@ -145,6 +148,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getReal() {
 		return realEDataType;
 	}
@@ -154,6 +158,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getUnlimitedNatural() {
 		return unlimitedNaturalEDataType;
 	}
@@ -163,6 +168,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getString() {
 		return stringEDataType;
 	}
@@ -172,6 +178,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypesFactory getTypesFactory() {
 		return (TypesFactory)getEFactoryInstance();
 	}
@@ -247,12 +254,12 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * @generated
 	 */
 	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML";	
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "originalName", "primitiveTypes"
+			   "originalName", "primitiveTypes"
 		   });
 	}
 

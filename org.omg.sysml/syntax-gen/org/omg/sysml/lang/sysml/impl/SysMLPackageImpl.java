@@ -442,7 +442,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SysMLPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -456,12 +456,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		if (isInited) return (SysMLPackage)EPackage.Registry.INSTANCE.getEPackage(SysMLPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SysMLPackageImpl theSysMLPackage = (SysMLPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SysMLPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SysMLPackageImpl());
+		Object registeredSysMLPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SysMLPackageImpl theSysMLPackage = registeredSysMLPackage instanceof SysMLPackageImpl ? (SysMLPackageImpl)registeredSysMLPackage : new SysMLPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(registeredPackage instanceof TypesPackageImpl ? registeredPackage : TypesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSysMLPackage.createPackageContents();
@@ -474,7 +476,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		// Mark meta-data to indicate it can't be changed
 		theSysMLPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, theSysMLPackage);
 		return theSysMLPackage;
@@ -485,6 +486,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEndFeatureMembership() {
 		return endFeatureMembershipEClass;
 	}
@@ -494,6 +496,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEndFeatureMembership_OwningAssociation() {
 		return (EReference)endFeatureMembershipEClass.getEStructuralFeatures().get(0);
 	}
@@ -503,6 +506,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureMembership() {
 		return featureMembershipEClass;
 	}
@@ -512,6 +516,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureMembership_OwningCategory() {
 		return (EReference)featureMembershipEClass.getEStructuralFeatures().get(0);
 	}
@@ -521,6 +526,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureMembership_OwnedMemberFeature() {
 		return (EReference)featureMembershipEClass.getEStructuralFeatures().get(1);
 	}
@@ -530,6 +536,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureMembership_IsDerived() {
 		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(2);
 	}
@@ -539,6 +546,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureMembership_IsReadOnly() {
 		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(3);
 	}
@@ -548,6 +556,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureMembership_MemberFeature() {
 		return (EReference)featureMembershipEClass.getEStructuralFeatures().get(4);
 	}
@@ -557,6 +566,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureMembership_IsPart() {
 		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(5);
 	}
@@ -566,6 +576,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureMembership_IsPort() {
 		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(6);
 	}
@@ -575,6 +586,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureMembership_Direction() {
 		return (EAttribute)featureMembershipEClass.getEStructuralFeatures().get(7);
 	}
@@ -584,6 +596,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMembership() {
 		return membershipEClass;
 	}
@@ -593,6 +606,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMembership_OwnedMemberElement() {
 		return (EReference)membershipEClass.getEStructuralFeatures().get(0);
 	}
@@ -602,6 +616,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMembership_MembershipOwningPackage() {
 		return (EReference)membershipEClass.getEStructuralFeatures().get(1);
 	}
@@ -611,6 +626,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMembership_MemberName() {
 		return (EAttribute)membershipEClass.getEStructuralFeatures().get(2);
 	}
@@ -620,6 +636,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMembership_Visibility() {
 		return (EAttribute)membershipEClass.getEStructuralFeatures().get(3);
 	}
@@ -629,6 +646,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMembership_Aliases() {
 		return (EAttribute)membershipEClass.getEStructuralFeatures().get(4);
 	}
@@ -638,6 +656,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMembership_MemberElement() {
 		return (EReference)membershipEClass.getEStructuralFeatures().get(5);
 	}
@@ -647,6 +666,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getMembership__IsDistinguishableFrom__Membership() {
 		return membershipEClass.getEOperations().get(0);
 	}
@@ -656,6 +676,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRelationship() {
 		return relationshipEClass;
 	}
@@ -665,6 +686,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRelationship_OwnedRelatedElement() {
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(0);
 	}
@@ -674,6 +696,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRelationship_OwningRelatedElement() {
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(1);
 	}
@@ -683,6 +706,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRelationship_RelatedElement() {
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(2);
 	}
@@ -692,6 +716,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRelationship_Target() {
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(3);
 	}
@@ -701,6 +726,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRelationship_Source() {
 		return (EReference)relationshipEClass.getEStructuralFeatures().get(4);
 	}
@@ -710,6 +736,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -719,6 +746,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwningMembership() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(0);
 	}
@@ -728,6 +756,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwningRelationship() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(1);
 	}
@@ -737,6 +766,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElement_Identifier() {
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(2);
 	}
@@ -746,6 +776,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwningNamespace() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(3);
 	}
@@ -755,6 +786,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElement_Name() {
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(4);
 	}
@@ -764,6 +796,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwnedRelationship() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(5);
 	}
@@ -773,6 +806,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_Owner() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(6);
 	}
@@ -782,6 +816,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwnedElement() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(7);
 	}
@@ -791,6 +826,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackage() {
 		return packageEClass;
 	}
@@ -800,6 +836,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_Membership() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(0);
 	}
@@ -809,6 +846,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedImport() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(1);
 	}
@@ -818,6 +856,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_Member() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(2);
 	}
@@ -827,6 +866,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedMembership() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
 	}
@@ -836,6 +876,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_ImportedMembership() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
 	}
@@ -845,6 +886,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedMember() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(5);
 	}
@@ -854,6 +896,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPackage__NameOf__Element() {
 		return packageEClass.getEOperations().get(0);
 	}
@@ -863,6 +906,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPackage__ExcludeCollisions__EList() {
 		return packageEClass.getEOperations().get(1);
 	}
@@ -872,6 +916,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImport() {
 		return importEClass;
 	}
@@ -881,6 +926,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImport_ImportedPackage() {
 		return (EReference)importEClass.getEStructuralFeatures().get(0);
 	}
@@ -890,6 +936,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImport_Selecter() {
 		return (EReference)importEClass.getEStructuralFeatures().get(1);
 	}
@@ -899,6 +946,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getImport_Visibility() {
 		return (EAttribute)importEClass.getEStructuralFeatures().get(2);
 	}
@@ -908,6 +956,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImport_ImportOwningPackage() {
 		return (EReference)importEClass.getEStructuralFeatures().get(3);
 	}
@@ -917,6 +966,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getImport__ImportedMembership() {
 		return importEClass.getEOperations().get(0);
 	}
@@ -926,6 +976,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPredicate() {
 		return predicateEClass;
 	}
@@ -935,6 +986,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFunction() {
 		return functionEClass;
 	}
@@ -944,6 +996,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunction_Expression() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(0);
 	}
@@ -953,6 +1006,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunction_Result() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(1);
 	}
@@ -962,6 +1016,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBehavior() {
 		return behaviorEClass;
 	}
@@ -971,6 +1026,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBehavior_Step() {
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(0);
 	}
@@ -980,6 +1036,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBehavior_InvolvesFeature() {
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(1);
 	}
@@ -989,6 +1046,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBehavior_Parameter() {
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(2);
 	}
@@ -998,6 +1056,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -1007,6 +1066,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwnedSuperclassing() {
 		return (EReference)classEClass.getEStructuralFeatures().get(0);
 	}
@@ -1016,6 +1076,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCategory() {
 		return categoryEClass;
 	}
@@ -1025,6 +1086,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_OwnedGeneralization() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(0);
 	}
@@ -1034,6 +1096,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_OwnedFeatureMembership() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(1);
 	}
@@ -1043,6 +1106,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_Feature() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(2);
 	}
@@ -1052,6 +1116,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_OwnedFeature() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(3);
 	}
@@ -1061,6 +1126,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_Input() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(4);
 	}
@@ -1070,6 +1136,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCategory_Output() {
 		return (EReference)categoryEClass.getEStructuralFeatures().get(5);
 	}
@@ -1079,6 +1146,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCategory_IsAbstract() {
 		return (EAttribute)categoryEClass.getEStructuralFeatures().get(6);
 	}
@@ -1088,6 +1156,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeneralization() {
 		return generalizationEClass;
 	}
@@ -1097,6 +1166,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeneralization_General() {
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1106,6 +1176,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeneralization_Specific() {
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(1);
 	}
@@ -1115,6 +1186,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeneralization_OwningCategory() {
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(2);
 	}
@@ -1124,6 +1196,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeature() {
 		return featureEClass;
 	}
@@ -1133,6 +1206,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_ReferencedType() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(0);
 	}
@@ -1142,6 +1216,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_OwningCategory() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(1);
 	}
@@ -1151,6 +1226,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_IsUnique() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
 	}
@@ -1160,6 +1236,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_IsOrdered() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(3);
 	}
@@ -1169,6 +1246,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_Type() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(4);
 	}
@@ -1178,6 +1256,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_OwnedType() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(5);
 	}
@@ -1187,6 +1266,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_OwnedRedefinition() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(6);
 	}
@@ -1196,6 +1276,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_OwnedSubsetting() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(7);
 	}
@@ -1205,6 +1286,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_OwningFeatureMembership() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(8);
 	}
@@ -1214,6 +1296,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_IsComposite() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(9);
 	}
@@ -1223,6 +1306,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_Valuation() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(10);
 	}
@@ -1232,6 +1316,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_Multiplicity() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(11);
 	}
@@ -1241,6 +1326,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_Typing() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(12);
 	}
@@ -1250,6 +1336,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_IsNonunique() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(13);
 	}
@@ -1259,6 +1346,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRedefinition() {
 		return redefinitionEClass;
 	}
@@ -1268,6 +1356,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRedefinition_RedefiningFeature() {
 		return (EReference)redefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1277,6 +1366,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRedefinition_RedefinedFeature() {
 		return (EReference)redefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1286,6 +1376,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSubsetting() {
 		return subsettingEClass;
 	}
@@ -1295,6 +1386,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSubsetting_SubsettedFeature() {
 		return (EReference)subsettingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1304,6 +1396,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSubsetting_SubsettingFeature() {
 		return (EReference)subsettingEClass.getEStructuralFeatures().get(1);
 	}
@@ -1313,6 +1406,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSubsetting_OwningFeature() {
 		return (EReference)subsettingEClass.getEStructuralFeatures().get(2);
 	}
@@ -1322,6 +1416,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureValue() {
 		return featureValueEClass;
 	}
@@ -1331,6 +1426,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureValue_Value() {
 		return (EReference)featureValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -1340,6 +1436,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureValue_FeatureWithValue() {
 		return (EReference)featureValueEClass.getEStructuralFeatures().get(1);
 	}
@@ -1349,6 +1446,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpression() {
 		return expressionEClass;
 	}
@@ -1358,6 +1456,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStep() {
 		return stepEClass;
 	}
@@ -1367,6 +1466,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultiplicity() {
 		return multiplicityEClass;
 	}
@@ -1376,6 +1476,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMultiplicity_Lower() {
 		return (EReference)multiplicityEClass.getEStructuralFeatures().get(0);
 	}
@@ -1385,6 +1486,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMultiplicity_Upper() {
 		return (EReference)multiplicityEClass.getEStructuralFeatures().get(1);
 	}
@@ -1394,6 +1496,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMultiplicity_FeatureWithMultiplicity() {
 		return (EReference)multiplicityEClass.getEStructuralFeatures().get(2);
 	}
@@ -1403,6 +1506,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureTyping() {
 		return featureTypingEClass;
 	}
@@ -1412,6 +1516,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureTyping_Type() {
 		return (EReference)featureTypingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1421,6 +1526,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureTyping_TypedFeature() {
 		return (EReference)featureTypingEClass.getEStructuralFeatures().get(1);
 	}
@@ -1430,6 +1536,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSuperclassing() {
 		return superclassingEClass;
 	}
@@ -1439,6 +1546,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSuperclassing_Superclass() {
 		return (EReference)superclassingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1448,6 +1556,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSuperclassing_Subclass() {
 		return (EReference)superclassingEClass.getEStructuralFeatures().get(1);
 	}
@@ -1457,6 +1566,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSuperclassing_OwningClass() {
 		return (EReference)superclassingEClass.getEStructuralFeatures().get(2);
 	}
@@ -1466,6 +1576,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -1475,6 +1586,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociation() {
 		return associationEClass;
 	}
@@ -1484,6 +1596,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociation_RelatedType() {
 		return (EReference)associationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1493,6 +1606,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociation_OwningConnector() {
 		return (EReference)associationEClass.getEStructuralFeatures().get(1);
 	}
@@ -1502,6 +1616,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociation_OwnedEndFeatureMembership() {
 		return (EReference)associationEClass.getEStructuralFeatures().get(2);
 	}
@@ -1511,6 +1626,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConnector() {
 		return connectorEClass;
 	}
@@ -1520,6 +1636,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnector_RelatedFeature() {
 		return (EReference)connectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1529,6 +1646,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnector_Association() {
 		return (EReference)connectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -1538,6 +1656,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConnector_IsDirected() {
 		return (EAttribute)connectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -1547,6 +1666,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnector_ConnectorEnd() {
 		return (EReference)connectorEClass.getEStructuralFeatures().get(3);
 	}
@@ -1556,6 +1676,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnector_OwnedAssociationType() {
 		return (EReference)connectorEClass.getEStructuralFeatures().get(4);
 	}
@@ -1565,6 +1686,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConnectorEnd() {
 		return connectorEndEClass;
 	}
@@ -1574,6 +1696,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectorEnd_Feature() {
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(0);
 	}
@@ -1583,6 +1706,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectorEnd_End() {
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(1);
 	}
@@ -1592,6 +1716,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectorEnd_Path() {
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(2);
 	}
@@ -1601,6 +1726,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectorEnd_Multiplicity() {
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(3);
 	}
@@ -1610,6 +1736,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectorEnd_Connector() {
 		return (EReference)connectorEndEClass.getEStructuralFeatures().get(4);
 	}
@@ -1619,6 +1746,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBindingConnector() {
 		return bindingConnectorEClass;
 	}
@@ -1628,6 +1756,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSuccession() {
 		return successionEClass;
 	}
@@ -1637,6 +1766,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getComment() {
 		return commentEClass;
 	}
@@ -1646,6 +1776,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getComment_Body() {
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
 	}
@@ -1655,6 +1786,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComment_CommentedElement() {
 		return (EReference)commentEClass.getEStructuralFeatures().get(1);
 	}
@@ -1664,6 +1796,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComment_AnnotationForComment() {
 		return (EReference)commentEClass.getEStructuralFeatures().get(2);
 	}
@@ -1673,6 +1806,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnnotation() {
 		return annotationEClass;
 	}
@@ -1682,6 +1816,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotation_AnnotatedElement() {
 		return (EReference)annotationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1691,6 +1826,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotation_AnnotatingComment() {
 		return (EReference)annotationEClass.getEStructuralFeatures().get(1);
 	}
@@ -1700,6 +1836,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOwnership() {
 		return ownershipEClass;
 	}
@@ -1709,6 +1846,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralBoolean() {
 		return literalBooleanEClass;
 	}
@@ -1718,6 +1856,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLiteralBoolean_Value() {
 		return (EAttribute)literalBooleanEClass.getEStructuralFeatures().get(0);
 	}
@@ -1727,6 +1866,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralExpression() {
 		return literalExpressionEClass;
 	}
@@ -1736,6 +1876,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralReal() {
 		return literalRealEClass;
 	}
@@ -1745,6 +1886,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLiteralReal_Value() {
 		return (EAttribute)literalRealEClass.getEStructuralFeatures().get(0);
 	}
@@ -1754,6 +1896,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralUnbounded() {
 		return literalUnboundedEClass;
 	}
@@ -1763,6 +1906,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralInteger() {
 		return literalIntegerEClass;
 	}
@@ -1772,6 +1916,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLiteralInteger_Value() {
 		return (EAttribute)literalIntegerEClass.getEStructuralFeatures().get(0);
 	}
@@ -1781,6 +1926,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralNull() {
 		return literalNullEClass;
 	}
@@ -1790,6 +1936,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralString() {
 		return literalStringEClass;
 	}
@@ -1799,6 +1946,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLiteralString_Value() {
 		return (EAttribute)literalStringEClass.getEStructuralFeatures().get(0);
 	}
@@ -1808,6 +1956,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getItemFlow() {
 		return itemFlowEClass;
 	}
@@ -1817,6 +1966,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getItemFlow_ItemType() {
 		return (EReference)itemFlowEClass.getEStructuralFeatures().get(0);
 	}
@@ -1826,6 +1976,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getItemFlow_TargetInputFeature() {
 		return (EReference)itemFlowEClass.getEStructuralFeatures().get(1);
 	}
@@ -1835,6 +1986,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getItemFlow_SourceOutputFeature() {
 		return (EReference)itemFlowEClass.getEStructuralFeatures().get(2);
 	}
@@ -1844,6 +1996,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSuccessionItemFlow() {
 		return successionItemFlowEClass;
 	}
@@ -1853,6 +2006,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementReferenceExpression() {
 		return elementReferenceExpressionEClass;
 	}
@@ -1862,6 +2016,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementReferenceExpression_Referent() {
 		return (EReference)elementReferenceExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1871,6 +2026,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInstanceCreationExpression() {
 		return instanceCreationExpressionEClass;
 	}
@@ -1880,6 +2036,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceCreationExpression_Class() {
 		return (EReference)instanceCreationExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1889,6 +2046,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceCreationExpression_Argument() {
 		return (EReference)instanceCreationExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1898,6 +2056,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequenceConstructionExpression() {
 		return sequenceConstructionExpressionEClass;
 	}
@@ -1907,6 +2066,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequenceConstructionExpression_Element() {
 		return (EReference)sequenceConstructionExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1916,6 +2076,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequenceAccessExpression() {
 		return sequenceAccessExpressionEClass;
 	}
@@ -1925,6 +2086,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequenceAccessExpression_Primary() {
 		return (EReference)sequenceAccessExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1934,6 +2096,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequenceAccessExpression_Index() {
 		return (EReference)sequenceAccessExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1943,6 +2106,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperatorExpression() {
 		return operatorExpressionEClass;
 	}
@@ -1952,6 +2116,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperatorExpression_Operator() {
 		return (EAttribute)operatorExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1961,6 +2126,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperatorExpression_Operand() {
 		return (EReference)operatorExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1970,6 +2136,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getObjectClass() {
 		return objectClassEClass;
 	}
@@ -1979,6 +2146,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValueClass() {
 		return valueClassEClass;
 	}
@@ -1988,6 +2156,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getVisibilityKind() {
 		return visibilityKindEEnum;
 	}
@@ -1997,6 +2166,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getFeatureDirectionKind() {
 		return featureDirectionKindEEnum;
 	}
@@ -2006,6 +2176,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SysMLFactory getSysMLFactory() {
 		return (SysMLFactory)getEFactoryInstance();
 	}
@@ -2587,210 +2758,210 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	protected void createRedefinesAnnotations() {
-		String source = "redefines";	
+		String source = "redefines";
 		addAnnotation
-		  (getFeatureMembership_OwnedMemberFeature(), 
-		   source, 
+		  (getFeatureMembership_OwnedMemberFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Membership/ownedMemberElement")
-		   });	
+		   });
 		addAnnotation
-		  (getFeatureMembership_MemberFeature(), 
-		   source, 
+		  (getFeatureMembership_MemberFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Membership/memberElement")
-		   });	
+		   });
 		addAnnotation
-		  (getMembership_MembershipOwningPackage(), 
-		   source, 
+		  (getMembership_MembershipOwningPackage(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getMembership_MemberElement(), 
-		   source, 
+		  (getMembership_MemberElement(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getImport_ImportOwningPackage(), 
-		   source, 
+		  (getImport_ImportOwningPackage(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getFunction_Expression(), 
-		   source, 
+		  (getFunction_Expression(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
-		   });	
+		   });
 		addAnnotation
-		  (getGeneralization_General(), 
-		   source, 
+		  (getGeneralization_General(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getGeneralization_Specific(), 
-		   source, 
+		  (getGeneralization_Specific(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getRedefinition_RedefiningFeature(), 
-		   source, 
+		  (getRedefinition_RedefiningFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettingFeature")
-		   });	
+		   });
 		addAnnotation
-		  (getRedefinition_RedefinedFeature(), 
-		   source, 
+		  (getRedefinition_RedefinedFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettedFeature")
-		   });	
+		   });
 		addAnnotation
-		  (getSubsetting_SubsettedFeature(), 
-		   source, 
+		  (getSubsetting_SubsettedFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/general")
-		   });	
+		   });
 		addAnnotation
-		  (getSubsetting_SubsettingFeature(), 
-		   source, 
+		  (getSubsetting_SubsettingFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/specific")
-		   });	
+		   });
 		addAnnotation
-		  (getSubsetting_OwningFeature(), 
-		   source, 
+		  (getSubsetting_OwningFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/owningCategory")
-		   });	
+		   });
 		addAnnotation
-		  (getFeatureValue_Value(), 
-		   source, 
+		  (getFeatureValue_Value(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getFeatureValue_FeatureWithValue(), 
-		   source, 
+		  (getFeatureValue_FeatureWithValue(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getMultiplicity_FeatureWithMultiplicity(), 
-		   source, 
+		  (getMultiplicity_FeatureWithMultiplicity(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getFeatureTyping_Type(), 
-		   source, 
+		  (getFeatureTyping_Type(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/general")
-		   });	
+		   });
 		addAnnotation
-		  (getFeatureTyping_TypedFeature(), 
-		   source, 
+		  (getFeatureTyping_TypedFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/specific")
-		   });	
+		   });
 		addAnnotation
-		  (getSuperclassing_Superclass(), 
-		   source, 
+		  (getSuperclassing_Superclass(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/general")
-		   });	
+		   });
 		addAnnotation
-		  (getSuperclassing_Subclass(), 
-		   source, 
+		  (getSuperclassing_Subclass(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/specific")
-		   });	
+		   });
 		addAnnotation
-		  (getSuperclassing_OwningClass(), 
-		   source, 
+		  (getSuperclassing_OwningClass(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/owningCategory")
-		   });	
+		   });
 		addAnnotation
-		  (getAssociation_RelatedType(), 
-		   source, 
+		  (getAssociation_RelatedType(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getConnector_Association(), 
-		   source, 
+		  (getConnector_Association(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/type")
-		   });	
+		   });
 		addAnnotation
-		  (getConnector_OwnedAssociationType(), 
-		   source, 
+		  (getConnector_OwnedAssociationType(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedType")
-		   });	
+		   });
 		addAnnotation
-		  (getAnnotation_AnnotatedElement(), 
-		   source, 
+		  (getAnnotation_AnnotatedElement(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getAnnotation_AnnotatingComment(), 
-		   source, 
+		  (getAnnotation_AnnotatingComment(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
@@ -2805,222 +2976,222 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets";	
+		String source = "subsets";
 		addAnnotation
-		  (getRelationship_OwnedRelatedElement(), 
-		   source, 
+		  (getRelationship_OwnedRelatedElement(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getRelationship_OwningRelatedElement(), 
-		   source, 
+		  (getRelationship_OwningRelatedElement(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });	
+		   });
 		addAnnotation
-		  (getRelationship_Target(), 
-		   source, 
+		  (getRelationship_Target(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getRelationship_Source(), 
-		   source, 
+		  (getRelationship_Source(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getPackage_OwnedMembership(), 
-		   source, 
+		  (getPackage_OwnedMembership(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Package/membership")
-		   });	
+		   });
 		addAnnotation
-		  (getPackage_ImportedMembership(), 
-		   source, 
+		  (getPackage_ImportedMembership(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Package/membership")
-		   });	
+		   });
 		addAnnotation
-		  (getPackage_OwnedMember(), 
-		   source, 
+		  (getPackage_OwnedMember(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Package/member")
-		   });	
+		   });
 		addAnnotation
-		  (getImport_ImportedPackage(), 
-		   source, 
+		  (getImport_ImportedPackage(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getImport_Selecter(), 
-		   source, 
+		  (getImport_Selecter(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getFunction_Result(), 
-		   source, 
+		  (getFunction_Result(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
 			 URI.createURI(eNS_URI).appendFragment("//Category/output")
-		   });	
+		   });
 		addAnnotation
-		  (getBehavior_Step(), 
-		   source, 
+		  (getBehavior_Step(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Category/feature")
-		   });	
+		   });
 		addAnnotation
-		  (getBehavior_Parameter(), 
-		   source, 
+		  (getBehavior_Parameter(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Category/feature")
-		   });	
+		   });
 		addAnnotation
-		  (getClass_OwnedSuperclassing(), 
-		   source, 
+		  (getClass_OwnedSuperclassing(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Category/ownedGeneralization")
-		   });	
+		   });
 		addAnnotation
-		  (getCategory_OwnedGeneralization(), 
-		   source, 
+		  (getCategory_OwnedGeneralization(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Element/ownedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getCategory_OwnedFeatureMembership(), 
-		   source, 
+		  (getCategory_OwnedFeatureMembership(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Package/ownedMembership")
-		   });	
+		   });
 		addAnnotation
-		  (getCategory_Feature(), 
-		   source, 
+		  (getCategory_Feature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Package/member")
-		   });	
+		   });
 		addAnnotation
-		  (getCategory_OwnedFeature(), 
-		   source, 
+		  (getCategory_OwnedFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Category/feature"),
 			 URI.createURI(eNS_URI).appendFragment("//Package/ownedMember")
-		   });	
+		   });
 		addAnnotation
-		  (getGeneralization_OwningCategory(), 
-		   source, 
+		  (getGeneralization_OwningCategory(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Generalization/specific"),
 			 URI.createURI(eNS_URI).appendFragment("//Element/owner")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_ReferencedType(), 
-		   source, 
+		  (getFeature_ReferencedType(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/type")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_OwningCategory(), 
-		   source, 
+		  (getFeature_OwningCategory(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Element/owningNamespace")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_OwnedType(), 
-		   source, 
+		  (getFeature_OwnedType(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/type"),
 			 URI.createURI(eNS_URI).appendFragment("//Element/ownedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_OwnedRedefinition(), 
-		   source, 
+		  (getFeature_OwnedRedefinition(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedSubsetting")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_OwnedSubsetting(), 
-		   source, 
+		  (getFeature_OwnedSubsetting(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Category/ownedGeneralization")
-		   });	
+		   });
 		addAnnotation
-		  (getFeature_OwningFeatureMembership(), 
-		   source, 
+		  (getFeature_OwningFeatureMembership(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Element/owningMembership")
-		   });	
+		   });
 		addAnnotation
-		  (getConnector_RelatedFeature(), 
-		   source, 
+		  (getConnector_RelatedFeature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
-		   });	
+		   });
 		addAnnotation
-		  (getConnectorEnd_Feature(), 
-		   source, 
+		  (getConnectorEnd_Feature(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });	
+		   });
 		addAnnotation
-		  (getConnectorEnd_End(), 
-		   source, 
+		  (getConnectorEnd_End(),
+		   source,
 		   new String[] {
 		   },
 		   new URI[] {
@@ -3035,258 +3206,258 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName";	
+		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName";
 		addAnnotation
-		  (getFeatureMembership_MemberFeature(), 
-		   source, 
+		  (getFeatureMembership_MemberFeature(),
+		   source,
 		   new String[] {
-			 "body", "featureMembership"
-		   });	
+			   "body", "featureMembership"
+		   });
 		addAnnotation
-		  (getMembership_MemberElement(), 
-		   source, 
+		  (getMembership_MemberElement(),
+		   source,
 		   new String[] {
-			 "body", "membership"
-		   });	
+			   "body", "membership"
+		   });
 		addAnnotation
-		  (getRelationship_RelatedElement(), 
-		   source, 
+		  (getRelationship_RelatedElement(),
+		   source,
 		   new String[] {
-			 "body", "relationship"
-		   });	
+			   "body", "relationship"
+		   });
 		addAnnotation
-		  (getRelationship_Target(), 
-		   source, 
+		  (getRelationship_Target(),
+		   source,
 		   new String[] {
-			 "body", "targetRelationship"
-		   });	
+			   "body", "targetRelationship"
+		   });
 		addAnnotation
-		  (getRelationship_Source(), 
-		   source, 
+		  (getRelationship_Source(),
+		   source,
 		   new String[] {
-			 "body", "sourceRelationship"
-		   });	
+			   "body", "sourceRelationship"
+		   });
 		addAnnotation
-		  (getPackage_Membership(), 
-		   source, 
+		  (getPackage_Membership(),
+		   source,
 		   new String[] {
-			 "body", "package"
-		   });	
+			   "body", "package"
+		   });
 		addAnnotation
-		  (getPackage_Member(), 
-		   source, 
+		  (getPackage_Member(),
+		   source,
 		   new String[] {
-			 "body", "namespace"
-		   });	
+			   "body", "namespace"
+		   });
 		addAnnotation
-		  (getPackage_ImportedMembership(), 
-		   source, 
+		  (getPackage_ImportedMembership(),
+		   source,
 		   new String[] {
-			 "body", "importingPackage"
-		   });	
+			   "body", "importingPackage"
+		   });
 		addAnnotation
-		  (getImport_ImportedPackage(), 
-		   source, 
+		  (getImport_ImportedPackage(),
+		   source,
 		   new String[] {
-			 "body", "import"
-		   });	
+			   "body", "import"
+		   });
 		addAnnotation
-		  (getImport_Selecter(), 
-		   source, 
+		  (getImport_Selecter(),
+		   source,
 		   new String[] {
-			 "body", "import"
-		   });	
+			   "body", "import"
+		   });
 		addAnnotation
-		  (getFunction_Expression(), 
-		   source, 
+		  (getFunction_Expression(),
+		   source,
 		   new String[] {
-			 "body", "computedFunction"
-		   });	
+			   "body", "computedFunction"
+		   });
 		addAnnotation
-		  (getBehavior_Step(), 
-		   source, 
+		  (getBehavior_Step(),
+		   source,
 		   new String[] {
-			 "body", "featuringBehavior"
-		   });	
+			   "body", "featuringBehavior"
+		   });
 		addAnnotation
-		  (getBehavior_Parameter(), 
-		   source, 
+		  (getBehavior_Parameter(),
+		   source,
 		   new String[] {
-			 "body", "parameteredBehavior"
-		   });	
+			   "body", "parameteredBehavior"
+		   });
 		addAnnotation
-		  (getCategory_Feature(), 
-		   source, 
+		  (getCategory_Feature(),
+		   source,
 		   new String[] {
-			 "body", "featuringCategory"
-		   });	
+			   "body", "featuringCategory"
+		   });
 		addAnnotation
-		  (getCategory_Input(), 
-		   source, 
+		  (getCategory_Input(),
+		   source,
 		   new String[] {
-			 "body", "inputOfCategory"
-		   });	
+			   "body", "inputOfCategory"
+		   });
 		addAnnotation
-		  (getCategory_Output(), 
-		   source, 
+		  (getCategory_Output(),
+		   source,
 		   new String[] {
-			 "body", "outputOfCategory"
-		   });	
+			   "body", "outputOfCategory"
+		   });
 		addAnnotation
-		  (getGeneralization_General(), 
-		   source, 
+		  (getGeneralization_General(),
+		   source,
 		   new String[] {
-			 "body", "generalOfGeneralization"
-		   });	
+			   "body", "generalOfGeneralization"
+		   });
 		addAnnotation
-		  (getGeneralization_Specific(), 
-		   source, 
+		  (getGeneralization_Specific(),
+		   source,
 		   new String[] {
-			 "body", "specificOfGeneralization"
-		   });	
+			   "body", "specificOfGeneralization"
+		   });
 		addAnnotation
-		  (getFeature_ReferencedType(), 
-		   source, 
+		  (getFeature_ReferencedType(),
+		   source,
 		   new String[] {
-			 "body", "referencingFeature"
-		   });	
+			   "body", "referencingFeature"
+		   });
 		addAnnotation
-		  (getFeature_Type(), 
-		   source, 
+		  (getFeature_Type(),
+		   source,
 		   new String[] {
-			 "body", "typedFeature"
-		   });	
+			   "body", "typedFeature"
+		   });
 		addAnnotation
-		  (getFeature_OwnedType(), 
-		   source, 
+		  (getFeature_OwnedType(),
+		   source,
 		   new String[] {
-			 "body", "owningFeature"
-		   });	
+			   "body", "owningFeature"
+		   });
 		addAnnotation
-		  (getFeature_OwnedRedefinition(), 
-		   source, 
+		  (getFeature_OwnedRedefinition(),
+		   source,
 		   new String[] {
-			 "body", "owningFeature"
-		   });	
+			   "body", "owningFeature"
+		   });
 		addAnnotation
-		  (getRedefinition_RedefiningFeature(), 
-		   source, 
+		  (getRedefinition_RedefiningFeature(),
+		   source,
 		   new String[] {
-			 "body", "redefining"
-		   });	
+			   "body", "redefining"
+		   });
 		addAnnotation
-		  (getRedefinition_RedefinedFeature(), 
-		   source, 
+		  (getRedefinition_RedefinedFeature(),
+		   source,
 		   new String[] {
-			 "body", "redefinition"
-		   });	
+			   "body", "redefinition"
+		   });
 		addAnnotation
-		  (getSubsetting_SubsettedFeature(), 
-		   source, 
+		  (getSubsetting_SubsettedFeature(),
+		   source,
 		   new String[] {
-			 "body", "supersetting"
-		   });	
+			   "body", "supersetting"
+		   });
 		addAnnotation
-		  (getSubsetting_SubsettingFeature(), 
-		   source, 
+		  (getSubsetting_SubsettingFeature(),
+		   source,
 		   new String[] {
-			 "body", "subsetting"
-		   });	
+			   "body", "subsetting"
+		   });
 		addAnnotation
-		  (getFeatureValue_Value(), 
-		   source, 
+		  (getFeatureValue_Value(),
+		   source,
 		   new String[] {
-			 "body", "expressedValuation"
-		   });	
+			   "body", "expressedValuation"
+		   });
 		addAnnotation
-		  (getMultiplicity_Lower(), 
-		   source, 
+		  (getMultiplicity_Lower(),
+		   source,
 		   new String[] {
-			 "body", "lowerMultiplicity"
-		   });	
+			   "body", "lowerMultiplicity"
+		   });
 		addAnnotation
-		  (getMultiplicity_Upper(), 
-		   source, 
+		  (getMultiplicity_Upper(),
+		   source,
 		   new String[] {
-			 "body", "upperMultiplicity"
-		   });	
+			   "body", "upperMultiplicity"
+		   });
 		addAnnotation
-		  (getFeatureTyping_Type(), 
-		   source, 
+		  (getFeatureTyping_Type(),
+		   source,
 		   new String[] {
-			 "body", "typingByCategory"
-		   });	
+			   "body", "typingByCategory"
+		   });
 		addAnnotation
-		  (getSuperclassing_Superclass(), 
-		   source, 
+		  (getSuperclassing_Superclass(),
+		   source,
 		   new String[] {
-			 "body", "superclassing"
-		   });	
+			   "body", "superclassing"
+		   });
 		addAnnotation
-		  (getSuperclassing_Subclass(), 
-		   source, 
+		  (getSuperclassing_Subclass(),
+		   source,
 		   new String[] {
-			 "body", "subclassing"
-		   });	
+			   "body", "subclassing"
+		   });
 		addAnnotation
-		  (getAssociation_RelatedType(), 
-		   source, 
+		  (getAssociation_RelatedType(),
+		   source,
 		   new String[] {
-			 "body", "association"
-		   });	
+			   "body", "association"
+		   });
 		addAnnotation
-		  (getConnector_RelatedFeature(), 
-		   source, 
+		  (getConnector_RelatedFeature(),
+		   source,
 		   new String[] {
-			 "body", "connector"
-		   });	
+			   "body", "connector"
+		   });
 		addAnnotation
-		  (getConnector_Association(), 
-		   source, 
+		  (getConnector_Association(),
+		   source,
 		   new String[] {
-			 "body", "typedConnector"
-		   });	
+			   "body", "typedConnector"
+		   });
 		addAnnotation
-		  (getConnectorEnd_Feature(), 
-		   source, 
+		  (getConnectorEnd_Feature(),
+		   source,
 		   new String[] {
-			 "body", "connectorEnd"
-		   });	
+			   "body", "connectorEnd"
+		   });
 		addAnnotation
-		  (getConnectorEnd_End(), 
-		   source, 
+		  (getConnectorEnd_End(),
+		   source,
 		   new String[] {
-			 "body", "connectorEnd"
-		   });	
+			   "body", "connectorEnd"
+		   });
 		addAnnotation
-		  (getConnectorEnd_Path(), 
-		   source, 
+		  (getConnectorEnd_Path(),
+		   source,
 		   new String[] {
-			 "body", "connectorEnd"
-		   });	
+			   "body", "connectorEnd"
+		   });
 		addAnnotation
-		  (getConnectorEnd_Multiplicity(), 
-		   source, 
+		  (getConnectorEnd_Multiplicity(),
+		   source,
 		   new String[] {
-			 "body", "connectorEndWith Multiplicity"
-		   });	
+			   "body", "connectorEndWith Multiplicity"
+		   });
 		addAnnotation
-		  (getComment_CommentedElement(), 
-		   source, 
+		  (getComment_CommentedElement(),
+		   source,
 		   new String[] {
-			 "body", "comment"
-		   });	
+			   "body", "comment"
+		   });
 		addAnnotation
-		  (getAnnotation_AnnotatedElement(), 
-		   source, 
+		  (getAnnotation_AnnotatedElement(),
+		   source,
 		   new String[] {
-			 "body", "annotation"
-		   });	
+			   "body", "annotation"
+		   });
 		addAnnotation
-		  (getInstanceCreationExpression_Argument(), 
-		   source, 
+		  (getInstanceCreationExpression_Argument(),
+		   source,
 		   new String[] {
-			 "body", "instanceCreationExpression"
+			   "body", "instanceCreationExpression"
 		   });
 	}
 
@@ -3297,15 +3468,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	protected void createUnionAnnotations() {
-		String source = "union";	
+		String source = "union";
 		addAnnotation
-		  (getRelationship_RelatedElement(), 
-		   source, 
+		  (getRelationship_RelatedElement(),
+		   source,
 		   new String[] {
-		   });	
+		   });
 		addAnnotation
-		  (getPackage_Membership(), 
-		   source, 
+		  (getPackage_Membership(),
+		   source,
 		   new String[] {
 		   });
 	}
@@ -3317,12 +3488,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML";	
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
 		addAnnotation
-		  (getMultiplicity_FeatureWithMultiplicity(), 
-		   source, 
+		  (getMultiplicity_FeatureWithMultiplicity(),
+		   source,
 		   new String[] {
-			 "originalName", " featureWith Multiplicity"
+			   "originalName", " featureWith Multiplicity"
 		   });
 	}
 

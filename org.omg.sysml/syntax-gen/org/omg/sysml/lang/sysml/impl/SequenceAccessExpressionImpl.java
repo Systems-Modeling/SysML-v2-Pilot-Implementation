@@ -73,6 +73,7 @@ public class SequenceAccessExpressionImpl extends ExpressionImpl implements Sequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getPrimary() {
 		return primary;
 	}
@@ -97,6 +98,7 @@ public class SequenceAccessExpressionImpl extends ExpressionImpl implements Sequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimary(Expression newPrimary) {
 		if (newPrimary != primary) {
 			NotificationChain msgs = null;
@@ -116,6 +118,7 @@ public class SequenceAccessExpressionImpl extends ExpressionImpl implements Sequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getIndex() {
 		return index;
 	}
@@ -140,6 +143,7 @@ public class SequenceAccessExpressionImpl extends ExpressionImpl implements Sequ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIndex(Expression newIndex) {
 		if (newIndex != index) {
 			NotificationChain msgs = null;

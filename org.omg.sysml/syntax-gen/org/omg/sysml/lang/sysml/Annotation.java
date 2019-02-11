@@ -40,6 +40,7 @@ public interface Annotation extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatedElement()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='annotation'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Element getAnnotatedElement();
@@ -74,6 +75,7 @@ public interface Annotation extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatingComment()
 	 * @see org.omg.sysml.lang.sysml.Comment#getAnnotationForComment
 	 * @model opposite="annotationForComment" required="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Comment getAnnotatingComment();

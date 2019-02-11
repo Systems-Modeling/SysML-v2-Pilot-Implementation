@@ -80,6 +80,7 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Class getClass_() {
 		if (class_ != null && class_.eIsProxy()) {
 			InternalEObject oldClass = (InternalEObject)class_;
@@ -106,6 +107,7 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClass_(org.omg.sysml.lang.sysml.Class newClass) {
 		org.omg.sysml.lang.sysml.Class oldClass = class_;
 		class_ = newClass;
@@ -118,6 +120,7 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getArgument() {
 		if (argument == null) {
 			argument = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT);

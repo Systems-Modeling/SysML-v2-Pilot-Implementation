@@ -117,6 +117,7 @@ public interface Membership extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberElement()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='membership'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Element getMemberElement();
@@ -151,6 +152,7 @@ public interface Membership extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership
 	 * @model opposite="ownedMembership" required="true" transient="false" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();

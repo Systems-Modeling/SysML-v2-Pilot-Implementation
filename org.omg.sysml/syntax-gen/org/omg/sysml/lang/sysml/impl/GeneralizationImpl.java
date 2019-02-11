@@ -74,6 +74,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Category getGeneral() {
 		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
@@ -100,6 +101,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGeneral(Category newGeneral) {
 		Category oldGeneral = general;
 		general = newGeneral;
@@ -158,6 +160,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecific(Category newSpecific) {
 		Category oldSpecific = specific;
 		specific = newSpecific;
@@ -179,6 +182,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Category getOwningCategory() {
 		Category owningCategory = basicGetOwningCategory();
 		return owningCategory != null && owningCategory.eIsProxy() ? (Category)eResolveProxy((InternalEObject)owningCategory) : owningCategory;

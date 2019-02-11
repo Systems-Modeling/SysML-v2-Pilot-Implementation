@@ -51,6 +51,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedGeneralization()
 	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningCategory
 	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Generalization> getOwnedGeneralization();
@@ -75,6 +76,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory
 	 * @model opposite="owningCategory"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();
@@ -100,6 +102,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningCategory
 	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getOwnedFeature();
@@ -123,6 +126,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_Feature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringCategory'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getFeature();

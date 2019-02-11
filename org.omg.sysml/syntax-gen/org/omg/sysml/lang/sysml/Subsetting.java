@@ -41,6 +41,7 @@ public interface Subsetting extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubsetting_SubsettedFeature()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='supersetting'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getSubsettedFeature();
@@ -74,6 +75,7 @@ public interface Subsetting extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubsetting_SubsettingFeature()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subsetting'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getSubsettingFeature();
@@ -108,6 +110,7 @@ public interface Subsetting extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubsetting_OwningFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting
 	 * @model opposite="ownedSubsetting" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getOwningFeature();

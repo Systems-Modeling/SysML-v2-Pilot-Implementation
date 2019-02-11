@@ -46,6 +46,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='association'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Category> getRelatedType();

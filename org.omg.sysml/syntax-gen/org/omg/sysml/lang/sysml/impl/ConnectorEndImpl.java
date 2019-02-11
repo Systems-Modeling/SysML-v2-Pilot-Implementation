@@ -98,6 +98,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -124,6 +125,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(Feature newFeature) {
 		Feature oldFeature = feature;
 		feature = newFeature;
@@ -145,6 +147,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getEnd() {
 		if (end != null && end.eIsProxy()) {
 			InternalEObject oldEnd = (InternalEObject)end;
@@ -184,6 +187,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnd(Feature newEnd) {
 		Feature oldEnd = end;
 		end = newEnd;
@@ -224,6 +228,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Multiplicity getMultiplicity() {
 		return multiplicity;
 	}
@@ -248,6 +253,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
 		if (newMultiplicity != multiplicity) {
 			NotificationChain msgs = null;
@@ -267,6 +273,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Connector getConnector() {
 		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR) return null;
 		return (Connector)eInternalContainer();
@@ -287,6 +294,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConnector(Connector newConnector) {
 		if (newConnector != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR && newConnector != null)) {
 			if (EcoreUtil.isAncestor(this, newConnector))

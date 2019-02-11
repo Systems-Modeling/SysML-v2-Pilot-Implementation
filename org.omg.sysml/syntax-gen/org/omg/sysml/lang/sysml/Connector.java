@@ -48,6 +48,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getRelatedFeature();
@@ -71,6 +72,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Association getAssociation();
@@ -150,6 +152,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_OwnedAssociationType()
 	 * @see org.omg.sysml.lang.sysml.Association#getOwningConnector
 	 * @model opposite="owningConnector" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Association getOwnedAssociationType();

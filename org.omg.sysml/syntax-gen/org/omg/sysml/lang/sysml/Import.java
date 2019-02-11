@@ -43,6 +43,7 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportedPackage()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getImportedPackage();
@@ -76,6 +77,7 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter()
 	 * @model containment="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Predicate getSelecter();
@@ -140,6 +142,7 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport
 	 * @model opposite="ownedImport" required="true" transient="false" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getImportOwningPackage();

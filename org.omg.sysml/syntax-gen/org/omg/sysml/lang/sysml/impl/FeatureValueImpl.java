@@ -69,6 +69,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getValue() {
 		return value;
 	}
@@ -93,6 +94,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Expression newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
@@ -121,6 +123,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeatureWithValue() {
 		if (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE) return null;
 		return (Feature)eInternalContainer();
@@ -141,6 +144,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
 		if (newFeatureWithValue != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE && newFeatureWithValue != null)) {
 			if (EcoreUtil.isAncestor(this, newFeatureWithValue))

@@ -176,6 +176,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMemberElement(Element newMemberElement) {
 		Element oldMemberElement = memberElement;
 		memberElement = newMemberElement;
@@ -213,6 +214,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMemberName(String newMemberName) {
 		String oldMemberName = memberName;
 		memberName = newMemberName;
@@ -225,6 +227,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VisibilityKind getVisibility() {
 		return visibility;
 	}
@@ -234,6 +237,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibility(VisibilityKind newVisibility) {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
@@ -246,6 +250,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getAliases() {
 		if (aliases == null) {
 			aliases = new EDataTypeUniqueEList<String>(String.class, this, SysMLPackage.MEMBERSHIP__ALIASES);
@@ -258,6 +263,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
 		if (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE) return null;
 		return (org.omg.sysml.lang.sysml.Package)eInternalContainer();
@@ -278,6 +284,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
 		if (newMembershipOwningPackage != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE && newMembershipOwningPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newMembershipOwningPackage))
@@ -308,6 +315,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getOwnedMemberElement() {
 		return ownedMemberElement;
 	}
@@ -332,6 +340,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedMemberElement(Element newOwnedMemberElement) {
 		if (newOwnedMemberElement != ownedMemberElement) {
 			NotificationChain msgs = null;
@@ -559,7 +568,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (memberName: ");
 		result.append(memberName);
 		result.append(", visibility: ");

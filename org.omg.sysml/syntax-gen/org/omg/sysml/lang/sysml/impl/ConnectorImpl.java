@@ -165,6 +165,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getOwnedRelatedElement() {
 		if (ownedRelatedElement == null) {
 			ownedRelatedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT, OWNED_RELATED_ELEMENT_ESUPERSETS, null, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
@@ -177,6 +178,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getOwningRelatedElement() {
 		if (eContainerFeatureID() != SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT) return null;
 		return (Element)eInternalContainer();
@@ -206,6 +208,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
 		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
@@ -227,6 +230,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getTarget() {
 		if (target == null) {
 			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__TARGET, null, TARGET_ESUBSETS);
@@ -239,6 +243,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getSource() {
 		if (source == null) {
 			source = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__SOURCE, null, SOURCE_ESUBSETS);
@@ -297,6 +302,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association getAssociation() {
 		Association association = basicGetAssociation();
 		return association != null && association.eIsProxy() ? (Association)eResolveProxy((InternalEObject)association) : association;
@@ -361,6 +367,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDirected() {
 		return isDirected;
 	}
@@ -370,6 +377,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsDirected(boolean newIsDirected) {
 		boolean oldIsDirected = isDirected;
 		isDirected = newIsDirected;
@@ -382,6 +390,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConnectorEnd> getConnectorEnd() {
 		if (connectorEnd == null) {
 			connectorEnd = new EObjectContainmentWithInverseEList<ConnectorEnd>(ConnectorEnd.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END, SysMLPackage.CONNECTOR_END__CONNECTOR);
@@ -394,6 +403,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association getOwnedAssociationType() {
 		Association ownedAssociationType = basicGetOwnedAssociationType();
 		return ownedAssociationType != null && ownedAssociationType.eIsProxy() ? (Association)eResolveProxy((InternalEObject)ownedAssociationType) : ownedAssociationType;
@@ -708,7 +718,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isDirected: ");
 		result.append(isDirected);
 		result.append(')');

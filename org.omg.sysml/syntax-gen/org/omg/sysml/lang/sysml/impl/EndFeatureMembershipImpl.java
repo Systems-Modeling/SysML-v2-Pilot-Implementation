@@ -95,6 +95,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningAssociation(Association newOwningAssociation) {
 		if (newOwningAssociation != owningAssociation) {
 			NotificationChain msgs = null;

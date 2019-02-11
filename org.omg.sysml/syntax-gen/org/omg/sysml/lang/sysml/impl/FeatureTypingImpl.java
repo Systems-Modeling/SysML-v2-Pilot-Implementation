@@ -63,6 +63,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Category getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
@@ -89,6 +90,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(Category newType) {
 		Category oldType = type;
 		type = newType;
@@ -110,6 +112,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getTypedFeature() {
 		Feature typedFeature = basicGetTypedFeature();
 		return typedFeature != null && typedFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)typedFeature) : typedFeature;

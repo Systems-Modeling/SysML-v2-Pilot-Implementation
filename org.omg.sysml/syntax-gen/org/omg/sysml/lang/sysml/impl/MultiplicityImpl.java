@@ -80,6 +80,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getLower() {
 		return lower;
 	}
@@ -104,6 +105,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLower(Expression newLower) {
 		if (newLower != lower) {
 			NotificationChain msgs = null;
@@ -123,6 +125,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getUpper() {
 		return upper;
 	}
@@ -147,6 +150,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpper(Expression newUpper) {
 		if (newUpper != upper) {
 			NotificationChain msgs = null;
@@ -166,6 +170,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeatureWithMultiplicity() {
 		if (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY) return null;
 		return (Feature)eInternalContainer();
@@ -186,6 +191,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureWithMultiplicity(Feature newFeatureWithMultiplicity) {
 		if (newFeatureWithMultiplicity != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY && newFeatureWithMultiplicity != null)) {
 			if (EcoreUtil.isAncestor(this, newFeatureWithMultiplicity))

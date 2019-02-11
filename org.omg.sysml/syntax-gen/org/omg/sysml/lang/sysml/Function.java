@@ -43,6 +43,7 @@ public interface Function extends Behavior {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Expression()
 	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computedFunction'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Expression> getExpression();
@@ -66,6 +67,7 @@ public interface Function extends Behavior {
 	 * @see #setResult(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()
 	 * @model required="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getResult();

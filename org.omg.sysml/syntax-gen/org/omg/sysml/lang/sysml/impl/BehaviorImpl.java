@@ -77,6 +77,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Feature> getInvolvesFeature() {
 		if (involvesFeature == null) {
 			involvesFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.BEHAVIOR__INVOLVES_FEATURE);

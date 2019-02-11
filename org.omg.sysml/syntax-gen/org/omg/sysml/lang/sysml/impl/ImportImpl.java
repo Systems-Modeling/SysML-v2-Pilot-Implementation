@@ -108,6 +108,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package getImportedPackage() {
 		if (importedPackage != null && importedPackage.eIsProxy()) {
 			InternalEObject oldImportedPackage = (InternalEObject)importedPackage;
@@ -134,6 +135,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImportedPackage(org.omg.sysml.lang.sysml.Package newImportedPackage) {
 		org.omg.sysml.lang.sysml.Package oldImportedPackage = importedPackage;
 		importedPackage = newImportedPackage;
@@ -155,6 +157,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Predicate getSelecter() {
 		return selecter;
 	}
@@ -188,6 +191,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelecter(Predicate newSelecter) {
 		if (newSelecter != selecter) {
 			NotificationChain msgs = null;
@@ -207,6 +211,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VisibilityKind getVisibility() {
 		return visibility;
 	}
@@ -216,6 +221,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibility(VisibilityKind newVisibility) {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
@@ -228,6 +234,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package getImportOwningPackage() {
 		if (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE) return null;
 		return (org.omg.sysml.lang.sysml.Package)eInternalContainer();
@@ -248,6 +255,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImportOwningPackage(org.omg.sysml.lang.sysml.Package newImportOwningPackage) {
 		if (newImportOwningPackage != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE && newImportOwningPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newImportOwningPackage))
@@ -474,7 +482,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (visibility: ");
 		result.append(visibility);
 		result.append(')');

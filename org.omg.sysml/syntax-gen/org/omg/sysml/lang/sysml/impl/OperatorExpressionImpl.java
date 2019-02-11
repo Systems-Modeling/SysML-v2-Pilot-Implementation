@@ -88,6 +88,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOperator() {
 		return operator;
 	}
@@ -97,6 +98,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperator(String newOperator) {
 		String oldOperator = operator;
 		operator = newOperator;
@@ -109,6 +111,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getOperand() {
 		if (operand == null) {
 			operand = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
@@ -209,7 +212,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (operator: ");
 		result.append(operator);
 		result.append(')');

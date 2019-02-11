@@ -196,6 +196,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EndFeatureMembership createEndFeatureMembership() {
 		EndFeatureMembershipImpl endFeatureMembership = new EndFeatureMembershipImpl();
 		return endFeatureMembership;
@@ -206,6 +207,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureMembership createFeatureMembership() {
 		FeatureMembershipImpl featureMembership = new FeatureMembershipImpl();
 		return featureMembership;
@@ -216,6 +218,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Membership createMembership() {
 		MembershipImpl membership = new MembershipImpl();
 		return membership;
@@ -226,6 +229,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Relationship createRelationship() {
 		RelationshipImpl relationship = new RelationshipImpl();
 		return relationship;
@@ -236,6 +240,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element createElement() {
 		ElementImpl element = new ElementImpl();
 		return element;
@@ -246,6 +251,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
@@ -256,6 +262,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Import createImport() {
 		ImportImpl import_ = new ImportImpl();
 		return import_;
@@ -266,6 +273,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
 		return predicate;
@@ -276,6 +284,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Function createFunction() {
 		FunctionImpl function = new FunctionImpl();
 		return function;
@@ -286,6 +295,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behavior createBehavior() {
 		BehaviorImpl behavior = new BehaviorImpl();
 		return behavior;
@@ -296,6 +306,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
@@ -306,6 +317,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Category createCategory() {
 		CategoryImpl category = new CategoryImpl();
 		return category;
@@ -316,6 +328,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Generalization createGeneralization() {
 		GeneralizationImpl generalization = new GeneralizationImpl();
 		return generalization;
@@ -326,6 +339,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
@@ -336,6 +350,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Redefinition createRedefinition() {
 		RedefinitionImpl redefinition = new RedefinitionImpl();
 		return redefinition;
@@ -346,6 +361,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Subsetting createSubsetting() {
 		SubsettingImpl subsetting = new SubsettingImpl();
 		return subsetting;
@@ -356,6 +372,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureValue createFeatureValue() {
 		FeatureValueImpl featureValue = new FeatureValueImpl();
 		return featureValue;
@@ -366,6 +383,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression createExpression() {
 		ExpressionImpl expression = new ExpressionImpl();
 		return expression;
@@ -376,6 +394,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Step createStep() {
 		StepImpl step = new StepImpl();
 		return step;
@@ -386,6 +405,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Multiplicity createMultiplicity() {
 		MultiplicityImpl multiplicity = new MultiplicityImpl();
 		return multiplicity;
@@ -396,6 +416,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureTyping createFeatureTyping() {
 		FeatureTypingImpl featureTyping = new FeatureTypingImpl();
 		return featureTyping;
@@ -406,6 +427,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Superclassing createSuperclassing() {
 		SuperclassingImpl superclassing = new SuperclassingImpl();
 		return superclassing;
@@ -416,6 +438,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
@@ -426,6 +449,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
@@ -436,6 +460,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Connector createConnector() {
 		ConnectorImpl connector = new ConnectorImpl();
 		return connector;
@@ -446,6 +471,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConnectorEnd createConnectorEnd() {
 		ConnectorEndImpl connectorEnd = new ConnectorEndImpl();
 		return connectorEnd;
@@ -456,6 +482,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BindingConnector createBindingConnector() {
 		BindingConnectorImpl bindingConnector = new BindingConnectorImpl();
 		return bindingConnector;
@@ -466,6 +493,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Succession createSuccession() {
 		SuccessionImpl succession = new SuccessionImpl();
 		return succession;
@@ -476,6 +504,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
@@ -486,6 +515,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Annotation createAnnotation() {
 		AnnotationImpl annotation = new AnnotationImpl();
 		return annotation;
@@ -496,6 +526,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Ownership createOwnership() {
 		OwnershipImpl ownership = new OwnershipImpl();
 		return ownership;
@@ -506,6 +537,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralBoolean createLiteralBoolean() {
 		LiteralBooleanImpl literalBoolean = new LiteralBooleanImpl();
 		return literalBoolean;
@@ -516,6 +548,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralExpression createLiteralExpression() {
 		LiteralExpressionImpl literalExpression = new LiteralExpressionImpl();
 		return literalExpression;
@@ -526,6 +559,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralReal createLiteralReal() {
 		LiteralRealImpl literalReal = new LiteralRealImpl();
 		return literalReal;
@@ -536,6 +570,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralUnbounded createLiteralUnbounded() {
 		LiteralUnboundedImpl literalUnbounded = new LiteralUnboundedImpl();
 		return literalUnbounded;
@@ -546,6 +581,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralInteger createLiteralInteger() {
 		LiteralIntegerImpl literalInteger = new LiteralIntegerImpl();
 		return literalInteger;
@@ -556,6 +592,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralNull createLiteralNull() {
 		LiteralNullImpl literalNull = new LiteralNullImpl();
 		return literalNull;
@@ -566,6 +603,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralString createLiteralString() {
 		LiteralStringImpl literalString = new LiteralStringImpl();
 		return literalString;
@@ -576,6 +614,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ItemFlow createItemFlow() {
 		ItemFlowImpl itemFlow = new ItemFlowImpl();
 		return itemFlow;
@@ -586,6 +625,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SuccessionItemFlow createSuccessionItemFlow() {
 		SuccessionItemFlowImpl successionItemFlow = new SuccessionItemFlowImpl();
 		return successionItemFlow;
@@ -596,6 +636,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementReferenceExpression createElementReferenceExpression() {
 		ElementReferenceExpressionImpl elementReferenceExpression = new ElementReferenceExpressionImpl();
 		return elementReferenceExpression;
@@ -606,6 +647,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InstanceCreationExpression createInstanceCreationExpression() {
 		InstanceCreationExpressionImpl instanceCreationExpression = new InstanceCreationExpressionImpl();
 		return instanceCreationExpression;
@@ -616,6 +658,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SequenceConstructionExpression createSequenceConstructionExpression() {
 		SequenceConstructionExpressionImpl sequenceConstructionExpression = new SequenceConstructionExpressionImpl();
 		return sequenceConstructionExpression;
@@ -626,6 +669,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SequenceAccessExpression createSequenceAccessExpression() {
 		SequenceAccessExpressionImpl sequenceAccessExpression = new SequenceAccessExpressionImpl();
 		return sequenceAccessExpression;
@@ -636,6 +680,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperatorExpression createOperatorExpression() {
 		OperatorExpressionImpl operatorExpression = new OperatorExpressionImpl();
 		return operatorExpression;
@@ -646,6 +691,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectClass createObjectClass() {
 		ObjectClassImpl objectClass = new ObjectClassImpl();
 		return objectClass;
@@ -656,6 +702,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueClass createValueClass() {
 		ValueClassImpl valueClass = new ValueClassImpl();
 		return valueClass;
@@ -706,6 +753,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SysMLPackage getSysMLPackage() {
 		return (SysMLPackage)getEPackage();
 	}

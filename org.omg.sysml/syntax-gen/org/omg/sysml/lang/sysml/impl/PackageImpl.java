@@ -87,6 +87,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Membership> getMembership() {
 		return new DerivedUnionEObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__MEMBERSHIP, MEMBERSHIP_ESUBSETS);
 	}
@@ -122,6 +123,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Import> getOwnedImport() {
 		if (ownedImport == null) {
 			ownedImport = new EObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
@@ -159,6 +161,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Membership> getOwnedMembership() {
 		if (ownedMembership == null) {
 			ownedMembership = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);

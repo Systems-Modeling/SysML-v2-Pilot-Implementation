@@ -46,6 +46,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
 	 * @model opposite="owningRelationship" containment="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Element> getOwnedRelatedElement();
@@ -70,6 +71,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwningRelatedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship
 	 * @model opposite="ownedRelationship" transient="false" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwningRelatedElement();
@@ -98,6 +100,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_RelatedElement()
 	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='relationship'"
+	 *        annotation="union"
 	 * @generated
 	 */
 	EList<Element> getRelatedElement();
@@ -121,6 +124,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Target()
 	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetRelationship'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Element> getTarget();
@@ -144,6 +148,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Source()
 	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sourceRelationship'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Element> getSource();

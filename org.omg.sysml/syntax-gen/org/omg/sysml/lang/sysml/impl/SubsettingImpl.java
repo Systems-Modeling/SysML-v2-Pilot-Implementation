@@ -75,6 +75,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getSubsettedFeature() {
 		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
 			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
@@ -101,6 +102,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubsettedFeature(Feature newSubsettedFeature) {
 		Feature oldSubsettedFeature = subsettedFeature;
 		subsettedFeature = newSubsettedFeature;
@@ -159,6 +161,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubsettingFeature(Feature newSubsettingFeature) {
 		Feature oldSubsettingFeature = subsettingFeature;
 		subsettingFeature = newSubsettingFeature;
@@ -180,6 +183,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getOwningFeature() {
 		Feature owningFeature = basicGetOwningFeature();
 		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;

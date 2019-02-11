@@ -220,6 +220,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Category getOwningCategory() {
 		Category owningCategory = basicGetOwningCategory();
 		return owningCategory != null && owningCategory.eIsProxy() ? (Category)eResolveProxy((InternalEObject)owningCategory) : owningCategory;
@@ -249,6 +250,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUnique() {
 		return isUnique;
 	}
@@ -258,6 +260,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsUnique(boolean newIsUnique) {
 		boolean oldIsUnique = isUnique;
 		isUnique = newIsUnique;
@@ -270,6 +273,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOrdered() {
 		return isOrdered;
 	}
@@ -279,6 +283,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsOrdered(boolean newIsOrdered) {
 		boolean oldIsOrdered = isOrdered;
 		isOrdered = newIsOrdered;
@@ -370,6 +375,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureMembership getOwningFeatureMembership() {
 		if (eContainerFeatureID() != SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP) return null;
 		return (FeatureMembership)eInternalContainer();
@@ -399,6 +405,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
 		if (newOwningFeatureMembership != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP && newOwningFeatureMembership != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningFeatureMembership))
@@ -442,6 +449,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureValue getValuation() {
 		return valuation;
 	}
@@ -466,6 +474,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValuation(FeatureValue newValuation) {
 		if (newValuation != valuation) {
 			NotificationChain msgs = null;
@@ -485,6 +494,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Multiplicity getMultiplicity() {
 		return multiplicity;
 	}
@@ -509,6 +519,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
 		if (newMultiplicity != multiplicity) {
 			NotificationChain msgs = null;
@@ -594,6 +605,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningMembership(Membership newOwningMembership) {
 		if (newOwningMembership != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE__OWNING_MEMBERSHIP && newOwningMembership != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningMembership))
@@ -883,7 +895,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isUnique: ");
 		result.append(isUnique);
 		result.append(", isOrdered: ");

@@ -44,6 +44,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Feature()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getFeature();
@@ -77,6 +78,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_End()
 	 * @model ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getEnd();

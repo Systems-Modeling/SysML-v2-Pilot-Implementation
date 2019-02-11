@@ -40,6 +40,7 @@ public interface FeatureValue extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_Value()
 	 * @model containment="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='expressedValuation'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Expression getValue();
@@ -74,6 +75,7 @@ public interface FeatureValue extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_FeatureWithValue()
 	 * @see org.omg.sysml.lang.sysml.Feature#getValuation
 	 * @model opposite="valuation" required="true" transient="false" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getFeatureWithValue();

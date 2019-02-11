@@ -61,6 +61,7 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getReferent() {
 		if (referent != null && referent.eIsProxy()) {
 			InternalEObject oldReferent = (InternalEObject)referent;
@@ -87,6 +88,7 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferent(Element newReferent) {
 		Element oldReferent = referent;
 		referent = newReferent;

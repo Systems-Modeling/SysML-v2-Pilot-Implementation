@@ -62,6 +62,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referencingFeature'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Category> getReferencedType();
@@ -86,6 +87,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningCategory()
 	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeature
 	 * @model opposite="ownedFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Category getOwningCategory();
@@ -191,6 +193,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedType()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Category> getOwnedType();
@@ -214,6 +217,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Redefinition> getOwnedRedefinition();
@@ -238,6 +242,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
 	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
 	 * @model opposite="owningFeature" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Subsetting> getOwnedSubsetting();
@@ -262,6 +267,7 @@ public interface Feature extends Category {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
 	 * @model opposite="ownedMemberFeature" transient="false" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();

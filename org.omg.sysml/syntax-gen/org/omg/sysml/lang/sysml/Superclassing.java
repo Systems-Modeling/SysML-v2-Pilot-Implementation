@@ -41,6 +41,7 @@ public interface Superclassing extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Superclass()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='superclassing'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Class getSuperclass();
@@ -74,6 +75,7 @@ public interface Superclassing extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Subclass()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subclassing'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Class getSubclass();
@@ -108,6 +110,7 @@ public interface Superclassing extends Generalization {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_OwningClass()
 	 * @see org.omg.sysml.lang.sysml.Class#getOwnedSuperclassing
 	 * @model opposite="ownedSuperclassing" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Class getOwningClass();

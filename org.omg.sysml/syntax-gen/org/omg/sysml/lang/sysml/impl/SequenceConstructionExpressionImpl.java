@@ -66,6 +66,7 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getElement() {
 		if (element == null) {
 			element = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT);

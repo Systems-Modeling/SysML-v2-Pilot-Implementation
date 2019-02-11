@@ -274,6 +274,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return isAbstract;
 	}
@@ -283,6 +284,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsAbstract(boolean newIsAbstract) {
 		boolean oldIsAbstract = isAbstract;
 		isAbstract = newIsAbstract;
@@ -459,7 +461,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isAbstract: ");
 		result.append(isAbstract);
 		result.append(')');

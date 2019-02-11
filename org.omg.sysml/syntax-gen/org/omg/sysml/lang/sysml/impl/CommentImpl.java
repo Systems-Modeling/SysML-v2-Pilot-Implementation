@@ -85,6 +85,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBody() {
 		return body;
 	}
@@ -94,6 +95,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
@@ -106,6 +108,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getCommentedElement() {
 		Element commentedElement = basicGetCommentedElement();
 		return commentedElement != null && commentedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)commentedElement) : commentedElement;
@@ -126,6 +129,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCommentedElement(Element newCommentedElement) {
 		// TODO: implement this method to set the 'Commented Element' reference
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -193,6 +197,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAnnotationForComment(Annotation newAnnotationForComment) {
 		if (newAnnotationForComment != annotationForComment) {
 			NotificationChain msgs = null;
@@ -337,7 +342,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (body: ");
 		result.append(body);
 		result.append(')');

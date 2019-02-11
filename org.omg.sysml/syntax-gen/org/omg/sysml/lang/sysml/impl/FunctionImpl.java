@@ -74,6 +74,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getExpression() {
 		if (expression == null) {
 			expression = new EObjectResolvingEList<Expression>(Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION);
@@ -95,6 +96,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getResult() {
 		if (result != null && result.eIsProxy()) {
 			InternalEObject oldResult = (InternalEObject)result;
@@ -121,6 +123,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResult(Feature newResult) {
 		Feature oldResult = result;
 		result = newResult;

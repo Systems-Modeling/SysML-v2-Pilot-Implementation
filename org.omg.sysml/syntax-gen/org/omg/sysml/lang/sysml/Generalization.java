@@ -41,6 +41,7 @@ public interface Generalization extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_General()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='generalOfGeneralization'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Category getGeneral();
@@ -74,6 +75,7 @@ public interface Generalization extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_Specific()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='specificOfGeneralization'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Category getSpecific();
@@ -109,6 +111,7 @@ public interface Generalization extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningCategory()
 	 * @see org.omg.sysml.lang.sysml.Category#getOwnedGeneralization
 	 * @model opposite="ownedGeneralization" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Category getOwningCategory();

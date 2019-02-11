@@ -149,6 +149,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningRelationship(Relationship newOwningRelationship) {
 		if (newOwningRelationship != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_RELATIONSHIP && newOwningRelationship != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningRelationship))
@@ -170,6 +171,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getOwner() {
 		Element owner = basicGetOwner();
 		return owner != null && owner.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owner) : owner;
@@ -191,6 +193,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwner(Element newOwner) {
 		// TODO: implement this method to set the 'Owner' reference
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -202,6 +205,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Membership getOwningMembership() {
 		if (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_MEMBERSHIP) return null;
 		return (Membership)eInternalContainer();
@@ -222,6 +226,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningMembership(Membership newOwningMembership) {
 		if (newOwningMembership != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_MEMBERSHIP && newOwningMembership != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningMembership))
@@ -243,6 +248,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
 		org.omg.sysml.lang.sysml.Package owningNamespace = basicGetOwningNamespace();
 		return owningNamespace != null && owningNamespace.eIsProxy() ? (org.omg.sysml.lang.sysml.Package)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
@@ -285,6 +291,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -294,6 +301,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -336,6 +344,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Relationship> getOwnedRelationship() {
 		if (ownedRelationship == null) {
 			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
@@ -572,7 +581,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(')');

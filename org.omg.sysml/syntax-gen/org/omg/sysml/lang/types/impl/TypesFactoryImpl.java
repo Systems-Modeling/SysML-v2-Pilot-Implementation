@@ -203,6 +203,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypesPackage getTypesPackage() {
 		return (TypesPackage)getEPackage();
 	}

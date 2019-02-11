@@ -82,6 +82,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
 		if (itemType == null) {
 			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
@@ -94,6 +95,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Feature> getTargetInputFeature() {
 		if (targetInputFeature == null) {
 			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
@@ -106,6 +108,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Feature> getSourceOutputFeature() {
 		if (sourceOutputFeature == null) {
 			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);

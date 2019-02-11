@@ -74,6 +74,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Class getSuperclass() {
 		if (superclass != null && superclass.eIsProxy()) {
 			InternalEObject oldSuperclass = (InternalEObject)superclass;
@@ -100,6 +101,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSuperclass(org.omg.sysml.lang.sysml.Class newSuperclass) {
 		org.omg.sysml.lang.sysml.Class oldSuperclass = superclass;
 		superclass = newSuperclass;
@@ -158,6 +160,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubclass(org.omg.sysml.lang.sysml.Class newSubclass) {
 		org.omg.sysml.lang.sysml.Class oldSubclass = subclass;
 		subclass = newSubclass;
@@ -179,6 +182,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Class getOwningClass() {
 		org.omg.sysml.lang.sysml.Class owningClass = basicGetOwningClass();
 		return owningClass != null && owningClass.eIsProxy() ? (org.omg.sysml.lang.sysml.Class)eResolveProxy((InternalEObject)owningClass) : owningClass;

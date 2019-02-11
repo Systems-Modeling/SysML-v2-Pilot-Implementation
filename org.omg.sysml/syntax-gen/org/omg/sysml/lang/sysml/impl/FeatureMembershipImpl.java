@@ -224,6 +224,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMemberFeature(Feature newMemberFeature) {
 		Feature oldMemberFeature = memberFeature;
 		memberFeature = newMemberFeature;
@@ -245,6 +246,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDerived() {
 		return isDerived;
 	}
@@ -254,6 +256,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsDerived(boolean newIsDerived) {
 		boolean oldIsDerived = isDerived;
 		isDerived = newIsDerived;
@@ -266,6 +269,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly() {
 		return isReadOnly;
 	}
@@ -275,6 +279,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsReadOnly(boolean newIsReadOnly) {
 		boolean oldIsReadOnly = isReadOnly;
 		isReadOnly = newIsReadOnly;
@@ -287,6 +292,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPart() {
 		return isPart;
 	}
@@ -296,6 +302,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPart(boolean newIsPart) {
 		boolean oldIsPart = isPart;
 		isPart = newIsPart;
@@ -308,6 +315,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPort() {
 		return isPort;
 	}
@@ -317,6 +325,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPort(boolean newIsPort) {
 		boolean oldIsPort = isPort;
 		isPort = newIsPort;
@@ -329,6 +338,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureDirectionKind getDirection() {
 		return direction;
 	}
@@ -338,6 +348,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDirection(FeatureDirectionKind newDirection) {
 		FeatureDirectionKind oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
@@ -387,6 +398,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getOwnedMemberFeature() {
 		return ownedMemberFeature;
 	}
@@ -411,6 +423,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
 		if (newOwnedMemberFeature != ownedMemberFeature) {
 			NotificationChain msgs = null;
@@ -613,7 +626,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isDerived: ");
 		result.append(isDerived);
 		result.append(", isReadOnly: ");

@@ -42,6 +42,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Step()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringBehavior'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Step> getStep();
@@ -81,6 +82,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredBehavior'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Parameter> getParameter();

@@ -48,6 +48,7 @@ public interface Package extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_Membership()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='package'"
+	 *        annotation="union"
 	 * @generated
 	 */
 	EList<Membership> getMembership();
@@ -107,6 +108,7 @@ public interface Package extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMember()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningNamespace
 	 * @model opposite="owningNamespace" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Element> getOwnedMember();
@@ -130,6 +132,7 @@ public interface Package extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_ImportedMembership()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='importingPackage'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getImportedMembership();
@@ -154,6 +157,7 @@ public interface Package extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage
 	 * @model opposite="membershipOwningPackage" containment="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

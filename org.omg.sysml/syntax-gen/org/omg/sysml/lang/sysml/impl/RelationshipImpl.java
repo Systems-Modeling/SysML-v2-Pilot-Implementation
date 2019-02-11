@@ -115,6 +115,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getOwnedRelatedElement() {
 		if (ownedRelatedElement == null) {
 			ownedRelatedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, OWNED_RELATED_ELEMENT_ESUPERSETS, null, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
@@ -156,6 +157,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
 		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
@@ -177,6 +179,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getTarget() {
 		if (target == null) {
 			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__TARGET, null, TARGET_ESUBSETS);
@@ -189,6 +192,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Element> getSource() {
 		if (source == null) {
 			source = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__SOURCE, null, SOURCE_ESUBSETS);

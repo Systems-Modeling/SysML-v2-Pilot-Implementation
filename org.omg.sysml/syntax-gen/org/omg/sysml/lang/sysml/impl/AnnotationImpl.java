@@ -124,6 +124,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAnnotatedElement(Element newAnnotatedElement) {
 		Element oldAnnotatedElement = annotatedElement;
 		annotatedElement = newAnnotatedElement;
@@ -199,6 +200,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAnnotatingComment(Comment newAnnotatingComment) {
 		if (newAnnotatingComment != annotatingComment) {
 			NotificationChain msgs = null;

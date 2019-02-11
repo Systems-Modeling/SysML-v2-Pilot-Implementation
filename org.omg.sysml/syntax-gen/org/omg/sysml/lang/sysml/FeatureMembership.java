@@ -100,6 +100,7 @@ public interface FeatureMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_MemberFeature()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureMembership'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getMemberFeature();
@@ -245,6 +246,7 @@ public interface FeatureMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwnedMemberFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
 	 * @model opposite="owningFeatureMembership" containment="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Feature getOwnedMemberFeature();

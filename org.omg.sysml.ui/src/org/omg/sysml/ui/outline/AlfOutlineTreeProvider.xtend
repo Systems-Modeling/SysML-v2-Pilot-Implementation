@@ -86,24 +86,18 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-//	def boolean _isLeaf(Feature feature) {
-//		super._isLeaf(feature) && feature.type.isEmpty
-//	}
-	
-	def void _createChildren(IOutlineNode parentNode, Feature feature) {
-//		var types = feature.type
-//		if (!types.isEmpty) {
-//			var node = createEStructuralFeatureNode(parentNode, feature, 
-//				SysMLPackage.Literals.FEATURE__TYPE, 
-//				types._image, "Type", true
-//			)
-//			for (type: types) {
-//				createEObjectNode(node, type, type._image, type._text, true)
-//			}
-//		}
-		super._createChildren(parentNode, feature)
+	def boolean _isLeaf(org.omg.sysml.lang.sysml.Class class_) {
+		// Ensure default subclassing
+		class_.ownedSuperclassing
+		super._isLeaf(class_)
 	}
-
+	
+	def boolean _isLeaf(Feature feature) {
+		// Ensure default redefinition/subsetting
+		feature.ownedRedefinition
+		super._isLeaf(feature)
+	}
+	
 	def boolean _isLeaf(Generalization generalization) {
 		generalization.general === null
 	}

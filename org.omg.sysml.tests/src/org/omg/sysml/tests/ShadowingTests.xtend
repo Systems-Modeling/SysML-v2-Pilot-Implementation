@@ -409,6 +409,8 @@ class ShadowingTests {
 
 	// TODO: catch the exception
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	// Note: Xtext logs the exception, but no longer reports it as an error.
+	// TODO: Decide if this should be a language constraint violation.
 	@Test
 	def void CircleInheritance() {
 		val rs = getDependencyOuterPackage
@@ -422,12 +424,16 @@ class ShadowingTests {
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.size == 1)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+//		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+//		Assert.assertTrue(result.eResource.errors.size == 1)
 	}
 
 	// TODO: catch the exception
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	// Note: Xtext logs the exception, but no longer reports it as an error.
+	// TODO: Decide if this should be a language constraint violation.
 	@Test
 	def void CircleProblem2() {
 		val rs = getDependencyOuterPackage
@@ -442,8 +448,10 @@ class ShadowingTests {
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.size == 1)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+//		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+//		Assert.assertTrue(result.eResource.errors.size == 1)
 	}
 
 	@Test
@@ -487,6 +495,8 @@ class ShadowingTests {
 
 	// TODO: catch the exception
 	// (expected = org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException)
+	// Note: Xtext logs the exception, but no longer reports it as an error.
+	// TODO: Decide if this should be a language constraint violation.
 	@Test
 	def void CircleProblem5() {
 		val rs = getDependencyOuterPackage
@@ -502,8 +512,10 @@ class ShadowingTests {
 
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		Assert.assertTrue(result.eResource.errors.size == 1)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
+//		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+//		Assert.assertTrue(result.eResource.errors.size == 1)
 	}
 
 	@Test

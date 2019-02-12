@@ -16,7 +16,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: Oxygen.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2018-12.
 
 5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Category: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
@@ -33,15 +33,15 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 #### Manual installation
 
-1. Install Eclipse 4.7 (Oxygen) and Xtext.
+1. Install Eclipse 4.10 (2018-12) and Xtext.
    * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
-      * http://www.eclipse.org/downloads/packages/eclipse-ide-java-and-dsl-developers/oxygen2
+      * https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-java-and-dsl-developers
       
    * Alternatively, you can install the “Eclipse Modeling Tools” package (which includes other modeling capabilities, like UML, that you don’t need now but will likely be useful in the future), and install Xtext into that (per below).
-      * http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/oxygen2
+      * https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-modeling-tools
       
-   * To install Xtext into an existing Eclipse 4.7 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/oxygen
+   * To install Xtext into an existing Eclipse 4.10 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
+      * http://download.eclipse.org/releases/2018-12
 
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
@@ -94,6 +94,7 @@ Set up a Java code template as follows:
 
 #### For existing code
 * When modifying existing code created by someone in a different organization, add a new copyright line, without changing anything else in the header.
+* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2019, "Copyright (C) 2018" becomes "Copyright (C) 2018-2019" and in 2020 it becomes "Copyright (C) 2018-2020".)
 
 #### Sources
 * [GNU GPL v3.0 - How to Apply These Terms to Your New Programs](https://www.gnu.org/licenses/gpl-3.0.en.html)

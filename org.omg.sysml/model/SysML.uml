@@ -580,7 +580,7 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a6ce4494-879f-435d-a79b-e1df1a0eb141" name="" visibility="public" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="c0294af9-25fb-420c-ab74-c37076bb923c" name="involvesFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" association="16d55f7c-8349-4f30-8508-7d10aa3fa01d">
-      <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="30bb8591-6aec-480c-885b-f4752e02a123" name="" visibility="public"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1WVWkDCGEemCUYGjLkOQcQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="40305387-f18a-43c3-9f3b-5e34c3512d38" name="" visibility="public" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="0dbfb406-bae0-4d85-8c9c-66c3c336f800" name="parameter" visibility="public" type="f25ebab5-c75a-4bce-b378-735e11853367" isDerived="true" subsettedProperty="8fe48f98-83c5-4f3f-a581-d91448105000" association="d135b5aa-dc0c-4d36-b3cc-192078dfe217">

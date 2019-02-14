@@ -103,6 +103,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 * @generated
 	 */
 	@Override
+	@Override
 	public EList<Membership> getOwnedMembership() {
 		if (ownedMembership == null) {
 			ownedMembership = new SubsetSupersetEObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.CATEGORY__OWNED_MEMBERSHIP, null, OWNED_MEMBERSHIP_ESUBSETS, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);

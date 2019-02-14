@@ -197,7 +197,7 @@
       <eAnnotations source="subsets" references="#//Category/feature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="involvesFeature" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Feature"/>
+        upperBound="-1" eType="#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" ordered="false"
         upperBound="-1" eType="#//Parameter" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">

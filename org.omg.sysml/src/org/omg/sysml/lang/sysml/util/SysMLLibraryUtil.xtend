@@ -31,16 +31,16 @@ import org.omg.sysml.lang.sysml.Element
 
 class SysMLLibraryUtil {
 	
-	private static SysMLLibraryProvider instance
+	static SysMLLibraryProvider instance
 	
-	public def static SysMLLibraryProvider getInstance(Resource resource) {
+	def static SysMLLibraryProvider getInstance(Resource resource) {
 		if (instance === null) {
 			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI).get(SysMLLibraryProvider)
 		}
 		instance
 	}
 	
-	public def static Element getLibraryElement(Element context, EReference reference, String name) {		
+	def static Element getLibraryElement(Element context, EReference reference, String name) {		
 		return getInstance(context.eResource).getElement(context, reference, name)
 	}
 	

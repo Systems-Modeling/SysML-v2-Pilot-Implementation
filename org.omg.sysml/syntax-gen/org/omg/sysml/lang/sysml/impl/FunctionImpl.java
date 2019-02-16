@@ -3,16 +3,16 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -40,16 +40,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @ordered
 	 */
 	protected EList<Expression> expression;
-	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResult()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature result;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,38 +87,38 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated
 	 */
 	@Override
-	public Feature getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (Feature)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FUNCTION__RESULT, oldResult, result));
-			}
-		}
-		return result;
+	public Parameter getResult() {
+		Parameter result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public Feature basicGetResult() {
-		return result;
+	public Parameter basicGetResult() {
+		EList<Parameter> parameters = getParameter();
+		if (parameters.isEmpty()) {
+			return null;
+		} else {
+			Parameter result = parameters.get(parameters.size() - 1);
+			FeatureMembership membership = result.getOwningFeatureMembership();
+			if (membership != null) {
+				membership.setDirection(FeatureDirectionKind.OUT);
+			}
+			return result;
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Feature newResult) {
-		Feature oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FUNCTION__RESULT, oldResult, result));
+	public void setResult(Parameter newResult) {
+		
 	}
 
 	/**
@@ -162,7 +152,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				getExpression().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.FUNCTION__RESULT:
-				setResult((Feature)newValue);
+				setResult((Parameter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,7 +170,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				getExpression().clear();
 				return;
 			case SysMLPackage.FUNCTION__RESULT:
-				setResult((Feature)null);
+				setResult((Parameter)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,7 +189,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 			case SysMLPackage.FUNCTION__EXPRESSION:
 				return isSetExpression();
 			case SysMLPackage.FUNCTION__RESULT:
-				return result != null;
+				return basicGetResult() != null;
 		}
 		return super.eIsSet(featureID);
 	}

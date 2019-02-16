@@ -64,13 +64,13 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
-	 * @see #setResult(Feature)
+	 * @see #setResult(Parameter)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Feature getResult();
+	Parameter getResult();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}' reference.
@@ -80,5 +80,5 @@ public interface Function extends Behavior {
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(Feature value);
+	void setResult(Parameter value);
 } // Function

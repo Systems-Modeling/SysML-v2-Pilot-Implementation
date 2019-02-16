@@ -184,7 +184,7 @@
       <eAnnotations source="redefines" references="#//Behavior/step"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" ordered="false"
-        lowerBound="1" eType="#//Feature">
+        lowerBound="1" eType="#//Parameter" volatile="true" transient="true" derived="true">
       <eAnnotations source="subsets" references="#//Behavior/parameter #//Category/output"/>
     </eStructuralFeatures>
   </eClassifiers>

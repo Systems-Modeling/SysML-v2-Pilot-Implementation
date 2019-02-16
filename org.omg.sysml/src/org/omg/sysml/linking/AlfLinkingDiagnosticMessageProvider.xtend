@@ -31,7 +31,7 @@ import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.linking.impl.LinkingDiagnosticMessageProvider
 
 
-public class AlfLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessageProvider  {
+class AlfLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessageProvider  {
 
 	override getIllegalCrossReferenceMessage(ILinkingDiagnosticContext context,
 			CrossReference reference) {

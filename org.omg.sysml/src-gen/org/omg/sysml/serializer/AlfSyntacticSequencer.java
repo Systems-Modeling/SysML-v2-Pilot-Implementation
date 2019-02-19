@@ -29,6 +29,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_4_0_p;
+	protected AbstractElementAlias match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -40,6 +41,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_4_0());
+		match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_2_1()));
 	}
 	
 	@Override
@@ -80,6 +82,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PrimaryExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q.equals(syntax))
+				emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -107,8 +111,10 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     multiplicity=Multiplicity (ambiguity) (rule end)
+	 *     name=Name (':' 'any')? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=Redefinition (':' 'any')? (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
@@ -186,6 +192,40 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {SequenceAccessExpression.primary=}
 	 */
 	protected void emit_PrimaryExpression_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (':' 'any')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     (rule start) (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     (rule start) (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) (ambiguity) isOrdered?='ordered'
+	 *     (rule start) (ambiguity) multiplicity=Multiplicity
+	 *     name=Name (ambiguity) '=' valuation=FeatureValue
+	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     name=Name (ambiguity) '{' ownedImport+=PackageImport
+	 *     name=Name (ambiguity) '{' ownedMembership+=CategoryMember
+	 *     name=Name (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     name=Name (ambiguity) isNonunique?='nonunique'
+	 *     name=Name (ambiguity) isOrdered?='ordered'
+	 *     name=Name (ambiguity) multiplicity=Multiplicity
+	 *     ownedRelationship+=Redefinition (ambiguity) '=' valuation=FeatureValue
+	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedImport+=PackageImport
+	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedMembership+=CategoryMember
+	 *     ownedRelationship+=Redefinition (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     ownedRelationship+=Redefinition (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=Redefinition (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=Redefinition (ambiguity) multiplicity=Multiplicity
+	 */
+	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

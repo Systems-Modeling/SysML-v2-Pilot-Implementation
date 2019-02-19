@@ -36,10 +36,10 @@ import org.omg.sysml.scoping.AlfScopeProvider
 class SysMLLibraryProvider implements IModelLibraryProvider {
 	
 	@Inject
-	private AlfScopeProvider scopeProvider
+	AlfScopeProvider scopeProvider
 	
 	@Inject
-	private IQualifiedNameConverter nameConverter
+	IQualifiedNameConverter nameConverter
 	
 	protected def EObject filePackage(Element element) {
 		var pack = element
@@ -49,7 +49,7 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 		return pack
 	}
 	
-	public override Element getElement(Element context, EReference reference, String name) {
+	override Element getElement(Element context, EReference reference, String name) {
 		var element = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
 		return if (element === null) null else element.getEObjectOrProxy as Element		
 	}

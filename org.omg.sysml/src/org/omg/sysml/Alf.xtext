@@ -118,6 +118,8 @@ NonFeatureDefinition returns SysML::Package:
 	| ObjectClassDefinitionOrStub
 	| ValueClassDefinitionOrStub 
 	| AssociationDefinitionOrStub
+	| BehaviorDefinitionOrStub
+	| FunctionDefinitionOrStub
 ;
 
 PackageDefinitionOrStub returns SysML::Package :
@@ -151,6 +153,8 @@ fragment NonFeatureMemberElement returns SysML::Membership :
     | 'class' ( memberName = Name )? 'is' memberElement = [SysML::ObjectClass|QualifiedName] ';'
     | 'datatype' ( memberName = Name )? 'is' memberElement = [SysML::ValueClass|QualifiedName] ';'
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
+    | 'behavior' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
+    | 'function' ( memberName = Name )? 'is' memberElement = [SysML::Function|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
 ;
@@ -233,7 +237,11 @@ fragment ClassDeclaration returns SysML::Class :
 fragment ClassDeclarationCompletion returns SysML::Class :	
 	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	( 'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )* )?
+	SpecializationList?
+;
+
+fragment SpecializationList returns SysML::Class :
+	'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )*
 ;
 
 Superclassing returns SysML::Superclassing:
@@ -280,8 +288,7 @@ fragment AssociationDefinition returns SysML::Association :
 ;
 
 fragment AssociationDeclaration returns SysML::Association :
-	( isAbstract ?= 'abstract' )? 'assoc' name = Name
-	( 'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )* )?
+	( isAbstract ?= 'abstract' )? 'assoc' ClassDeclarationCompletion
 ;
 
 fragment AssociationBody returns SysML::Association :
@@ -311,6 +318,48 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	)
 ;
 
+/* BEHAVIORS */
+
+BehaviorDefinitionOrStub returns SysML::Behavior :
+//	BehaviorDefinition |
+	BehaviorDeclaration ';'
+;
+
+fragment BehaviorDeclaration returns SysML::Behavior :
+	( isAbstract ?= 'abstract')? 'behavior' name = Name ParameterList SpecializationList?
+;
+
+fragment ParameterList returns SysML::Behavior :
+	'(' ( ownedMembership += ParameterMember ( ',' ownedMembership += ParameterMember )* )? ')'
+;
+
+/* BEHAVIOR MEMBERSHIPS */
+
+ParameterMember returns SysML::FeatureMembership :
+	( direction = FeatureDirection )? memberName = Name ownedMemberFeature = ParameterDefinition
+;
+
+/* FUNCTIONS */
+
+FunctionDefinitionOrStub returns SysML::Function :
+//	FunctionDefinition |
+	FunctionDeclaration ';'  
+;
+
+fragment FunctionDeclaration returns SysML::Function :
+	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList ReturnParameterPart SpecializationList?
+;
+
+fragment ReturnParameterPart returns SysML::Function :
+	ownedMembership += ReturnParameterMember
+;
+
+/* FUNCTION MEMBERSHIPS */
+
+ReturnParameterMember returns SysML::FeatureMembership :
+	( memberName = Name )? ownedMemberFeature = ParameterDefinition
+;
+
 /* FEATURES */
 
 FeatureDefinition returns SysML::Feature :
@@ -322,7 +371,7 @@ NamedFeatureDefinition returns SysML::Feature :
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
-	( Subsets Redefinitions | Redefinitions ) TypePart? ( multiplicity = Multiplicity )?
+	'redefines' ownedRelationship += Redefinition TypePart
 	FeatureCompletion
 ;
 
@@ -331,9 +380,7 @@ fragment FeatureBodyDefinition returns SysML::Feature :
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
-	name = Name TypePart? ( multiplicity = Multiplicity )? 
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
-	Redefinitions? Subsets?
+	name = Name TypePart SubsettingPart
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
@@ -345,7 +392,9 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	':' ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' )
+	( ':' ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' ) )?
+	( multiplicity = Multiplicity )? 
+	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
 FeatureTyping returns SysML::FeatureTyping :
@@ -356,16 +405,23 @@ Multiplicity returns SysML::Multiplicity :
 	'[' ( lower = NaturalLiteralExpression '..' )? upper = UnlimitedNaturalLiteralExpression ']'
 ;
 
+fragment SubsettingPart returns SysML::Feature :
+	  (  
+	  	Subsets ( ',' ownedRelationship += Subset )*
+	  | Redefines ( ',' ownedRelationship += Redefinition )*
+	  )*
+;
+
 fragment Subsets returns SysML::Feature :
-	'subsets' ownedRelationship += Subset ( ownedRelationship += Subset )*
+	'subsets' ownedRelationship += Subset 
 ;
 
 Subset returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
 ;
 
-fragment Redefinitions returns SysML::Feature :
-	'redefines' ownedRelationship += Redefinition ( ownedRelationship += Redefinition )*
+fragment Redefines returns SysML::Feature :
+	'redefines' ownedRelationship += Redefinition
 ;
 
 Redefinition returns SysML::Redefinition:
@@ -395,6 +451,12 @@ ConnectorEnd returns SysML::ConnectorEnd :
 	| ( end = [SysML::Feature | QualifiedName] ( multiplicity = Multiplicity )? '=>' ) 
 	  feature = [SysML::Feature | QualifiedName] 
       
+;
+
+/* PARAMETERS */
+
+ParameterDefinition returns SysML::Parameter :
+	TypePart ( Subsets | Redefines )*
 ;
 
 /* EXPRESSIONS */

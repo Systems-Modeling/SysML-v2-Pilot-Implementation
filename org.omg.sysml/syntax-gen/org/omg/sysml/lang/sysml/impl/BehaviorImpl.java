@@ -14,6 +14,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -32,6 +33,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BehaviorImpl extends ClassImpl implements Behavior {
+
+	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::BehaviorOccurrence";
+	
 	/**
 	 * The cached value of the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -94,6 +98,14 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
 				SysMLPackage.BEHAVIOR__PARAMETER, 
 				new int[] {SysMLPackage.CATEGORY__FEATURE});
+	}
+
+	/**
+	 * If the Behavior has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(BEHAVIOR_SUPERCLASS_DEFAULT);
 	}
 
 	/**

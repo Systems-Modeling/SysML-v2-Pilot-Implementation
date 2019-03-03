@@ -3,6 +3,12 @@ package ScalarFunctions {
 	import ScalarValues::*;
 	import BaseFunctions::*;
 	
+	// Generic functions without special expression notation.
+
+	abstract function Abs(x: ScalarValue): ScalarValue;
+	abstract function Max(x: ScalarValue, y: ScalarValue): ScalarValue;
+	abstract function Min(x: ScalarValue, y: ScalarValue): ScalarValue;
+	
 	// Functions that can be used with a prefix/infix notation in expressions.
 	
 	abstract function '+'(x: ScalarValue, y: ScalarValue[0..1]): ScalarValue;
@@ -42,7 +48,7 @@ package ScalarFunctions {
 		function '^'(x: Boolean, y: Boolean): Boolean specializes ScalarFunctions::'^';
 		function '&'(x: Boolean, y: Boolean): Boolean specializes ScalarFunctions::'&';
 		
-		function '='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'=';
+		function '='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'==';
 		function '/='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'/=';
 		
 		function ToString(x: Boolean): String specializes ScalarFunctions::ToString;
@@ -50,26 +56,24 @@ package ScalarFunctions {
 	}
 	
 	package IntegerFunctions {
-		function '+'(x: Integer): Integer specializes ScalarFunctions::'+';
-		function '-'(x: Integer): Integer specializes ScalarFunctions::'-';
-		function Abs(x: Integer): Natural;
+		function Abs(x: Integer): Natural specializes ScalarFunctions::Abs;
 		
-		function '+'(x: Integer, y: Integer): Integer specializes ScalarFunctions::'+';
-		function '-'(x: Integer, y: Integer): Integer specializes ScalarFunctions::'-';
+		function Max(x: Integer, y: Integer): Integer specializes ScalarFunctions::Max;
+		function Min(x: Integer, y: Integer): Integer specializes ScalarFunctions::Min;
+
+		function '+'(x: Integer, y: Integer[0..1]): Integer specializes ScalarFunctions::'+';
+		function '-'(x: Integer, y: Integer[0..1]): Integer specializes ScalarFunctions::'-';
 		function '*'(x: Integer, y: Integer): Integer specializes ScalarFunctions::'*';
 		function '/'(x: Integer, y: Integer): Integer specializes ScalarFunctions::'/';
 		function '**'(x: Integer, y: Natural): Integer specializes ScalarFunctions::'**';
 		function '%'(x: Integer, y: Integer): Integer specializes ScalarFunctions::'%';
 		
-		function Max(x: Integer, y: Integer): Integer;
-		function Min(x: Integer, y: Integer): Integer;
-
 		function '<'(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'<';
 		function '>'(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'>';
 		function '<='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'<=';
 		function '>='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'>=';
 	
-		function '='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'=';
+		function '='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'==';
 		function '/='(x: Integer, y: Integer): Boolean specializes ScalarFunctions::'/=';
 		
 		function ToString(x: Integer): String specializes ScalarFunctions::ToString;
@@ -87,7 +91,7 @@ package ScalarFunctions {
 		function '<='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes ScalarFunctions::'<=';
 		function '>='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes ScalarFunctions::'>=';	
 	
-		function '='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes ScalarFunctions::'=';
+		function '='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes ScalarFunctions::'==';
 		function '/='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes ScalarFunctions::'/=';
 		
 		function ToString(x: UnlimitedNatural): String specializes ScalarFunctions::ToString;
@@ -96,9 +100,7 @@ package ScalarFunctions {
 	}
 
 	package NaturalFunctions {
-		function '+'(x: Natural): Natural specializes IntegerFunctions::'+';
-		
-		function '+'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'+';
+		function '+'(x: Natural, y: Natural[0..1]): Natural specializes IntegerFunctions::'+';
 		function '*'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'*';
 		function '/'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'/';
 		function '%'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'%';
@@ -118,28 +120,26 @@ package ScalarFunctions {
 	}	
 
 	package RealFunctions {
-		function '+'(x: Real): Real specializes ScalarFunctions::'+';
-		function '-'(x: Real): Real specializes ScalarFunctions::'-';
-		function Abs(x: Real): Real;
-		function Floor(x: Real): Integer;
-		function Round(x: Real): Integer;
-		
-		function '+'(x: Real, y: Real): Real specializes ScalarFunctions::'+';
-		function '-'(x: Real, y: Real): Real specializes ScalarFunctions::'-';
+		function Abs(x: Real): Real specializes ScalarFunctions::Abs;
+		function Max(x: Real, y: Real): Real specializes ScalarFunctions::Max;
+		function Min(x: Real, y: Real): Real specializes ScalarFunctions::Min;
+
+		function '+'(x: Real, y: Real[0..1]): Real specializes ScalarFunctions::'+';
+		function '-'(x: Real, y: Real[0..1]): Real specializes ScalarFunctions::'-';
 		function '*'(x: Real, y: Real): Real specializes ScalarFunctions::'*';
 		function '/'(x: Real, y: Real): Real specializes ScalarFunctions::'/';
 		function '**'(x: Real, y: Real): Real specializes ScalarFunctions::'**';
 		
-		function Max(x: Real, y: Real): Real;
-		function Min(x: Real, y: Real): Real;
-
 		function '<'(x: Real, y: Real): Boolean specializes ScalarFunctions::'<';
 		function '>'(x: Real, y: Real): Boolean specializes ScalarFunctions::'>';
 		function '<='(x: Real, y: Real): Boolean specializes ScalarFunctions::'<=';
 		function '>='(x: Real, y: Real): Boolean specializes ScalarFunctions::'>=';
 	
-		function '='(x: Real, y: Real): Boolean specializes ScalarFunctions::'=';
+		function '='(x: Real, y: Real): Boolean specializes ScalarFunctions::'==';
 		function '/='(x: Real, y: Real): Boolean specializes ScalarFunctions::'/=';
+		
+		function Floor(x: Real): Integer;
+		function Round(x: Real): Integer;
 		
 		function ToString(x: Real): String specializes ScalarFunctions::ToString;
 		function ToInteger(x: Real): Integer;
@@ -153,22 +153,19 @@ package ScalarFunctions {
 		function Rect(re: Real, im: Real): Complex;
 		function Polar(abs: Real, arg: Real): Complex;
 		
-		function '+'(x: Complex): Complex specializes ScalarFunctions::'+';
-		function '-'(x: Complex): Complex specializes ScalarFunctions::'-';
-		
 		function Re(x: Complex): Real;
 		function Im(x: Complex): Real;
 		
-		function Abs(x: Complex): Real;
+		function Abs(x: Complex): Real specializes ScalarFunctions::Abs;
 		function Arg(x: Complex): Real;
 		
-		function '+'(x: Complex, y: Complex): Complex specializes ScalarFunctions::'+';
-		function '-'(x: Complex, y: Complex): Complex specializes ScalarFunctions::'-';
+		function '+'(x: Complex, y: Complex[0..1]): Complex specializes ScalarFunctions::'+';
+		function '-'(x: Complex, y: Complex[0..1]): Complex specializes ScalarFunctions::'-';
 		function '*'(x: Complex, y: Complex): Complex specializes ScalarFunctions::'*';
 		function '/'(x: Complex, y: Complex): Complex specializes ScalarFunctions::'/';
 		function '**'(x: Complex, y: Complex): Complex specializes ScalarFunctions::'**';
 		
-		function '='(x: Complex, y: Complex): Boolean specializes ScalarFunctions::'=';
+		function '='(x: Complex, y: Complex): Boolean specializes ScalarFunctions::'==';
 		function '/='(x: Complex, y: Complex): Boolean specializes ScalarFunctions::'/=';
 		
 		function ToString(x: Complex): String specializes ScalarFunctions::ToString;

@@ -14,6 +14,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -31,6 +32,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
+
+	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::FunctionEvaluation";
+	
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -119,6 +123,14 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	@Override
 	public void setResult(Parameter newResult) {
 		
+	}
+
+	/**
+	 * If the function has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(FUNCTION_SUPERCLASS_DEFAULT);
 	}
 
 	/**

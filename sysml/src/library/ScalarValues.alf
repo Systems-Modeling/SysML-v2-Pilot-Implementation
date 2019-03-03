@@ -8,24 +8,9 @@ package ScalarValues {
     abstract datatype Number specializes NumericalValue;
 	datatype Integer specializes Number;
 	datatype UnlimitedNatural specializes Number;
-	datatype Natural specializes Integer, Number;
+	datatype Natural specializes Integer, UnlimitedNatural;
 	datatype Rational specializes Number;
-	datatype Real specializes Number;
+	datatype Real specializes Number;	
+	datatype Complex specializes Number;
 	
-	datatype Complex specializes Number {
-		re: Real;
-		im: Real;
-	}
-	
-    /*
-     * Representation of a quaternion
-     * 
-     * Example of a hyper-complex number representation. 
-     */
-	datatype Quaternion specializes Number {
-		a: Real;
-		b: Real;
-		c: Real;
-		d: Real;
-	}
 }		

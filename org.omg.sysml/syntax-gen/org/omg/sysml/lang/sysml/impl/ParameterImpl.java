@@ -2,9 +2,16 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -24,6 +31,25 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 		super();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Subsetting> getOwnedSubsetting() {
+		EList<Subsetting> redefinitions = getComputedRedefinitions();
+		return redefinitions.isEmpty()? super.getOwnedSubsetting(): redefinitions;
+	}
+	
+	/**
+	 * Parameters redefine Parameters of superclass Behaviors. 
+	 */
+	@Override
+	public List<? extends Feature> getRelevantFeatures(Category category) {
+		return !(category instanceof Behavior)? Collections.emptyList():
+			((Behavior)category).getParameter();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

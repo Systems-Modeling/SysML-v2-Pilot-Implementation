@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,12 +27,12 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -324,8 +325,13 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> endRedefinitions = getEndRedefinitions();
-		return endRedefinitions.isEmpty()? getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT): endRedefinitions;
+		if (getOwningFeatureMembership() instanceof EndFeatureMembership) {
+			EList<Subsetting> endRedefinitions = getComputedRedefinitions();
+			if (!endRedefinitions.isEmpty()) {
+				return endRedefinitions;
+			}
+		}
+		return getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT);
 	}
 	
 	protected EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
@@ -335,39 +341,52 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	protected EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
 		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
 	}
-
-	protected EList<Subsetting> getEndRedefinitions() {
+	
+	/**
+	 * If this Feature has no redefinitions, compute relevant redefinitions, as appropriate, from generalizations of the owning Category
+	 * of the Feature.
+	 */
+	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		FeatureMembership membership = getOwningFeatureMembership();
 		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
 		List<Redefinition> emptyRedefinitions = ownedRedefinitions.stream().filter(r->r.getRedefinedFeature() == null).collect(Collectors.toList());
 		getOwnedRelationship().removeAll(emptyRedefinitions);
 		ownedRedefinitions.removeAll(emptyRedefinitions);
-		if (membership instanceof EndFeatureMembership && ownedRedefinitions.isEmpty()) {
-			Association association = ((EndFeatureMembership)membership).getOwningAssociation();
-			if (association != null) {
-				int i = association.getOwnedEndFeatureMembership().indexOf(membership);
-				if (i >= 0) {
-					for (Superclassing superclassing: association.getOwnedSuperclassing()) {
-						org.omg.sysml.lang.sysml.Class superclass = superclassing.getSuperclass();
-						if (superclass instanceof Association) {
-							EList<EndFeatureMembership> endFeatureMemberships = ((Association)superclass).getOwnedEndFeatureMembership();
-							if (i < endFeatureMemberships.size()) {
-								Feature redefinedFeature = endFeatureMemberships.get(i).getMemberFeature();
-								if (redefinedFeature != null) {
-									Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-									redefinition.setRedefinedFeature(redefinedFeature);
-									redefinition.setRedefiningFeature(this);
-									getOwnedRelationship().add(redefinition);
-									redefinitions.add(redefinition);
-								}
-							}
-						}
+		if (ownedRedefinitions.isEmpty()) {
+			addRedefinitions(redefinitions);
+		}
+		return redefinitions;
+	}
+
+	protected void addRedefinitions(EList<Subsetting> redefinitions) {
+		Category category = this.getOwningCategory();
+		int i = this.getRelevantFeatures(category).indexOf(this);
+		if (i >= 0) {
+			for (Generalization generalization: category.getOwnedGeneralization()) {
+				Category general = generalization.getGeneral();
+				List<? extends Feature> features = this.getRelevantFeatures(general);
+				if (i < features.size()) {
+					Feature redefinedFeature = features.get(i);
+					if (redefinedFeature != null) {
+						Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+						redefinition.setRedefinedFeature(redefinedFeature);
+						redefinition.setRedefiningFeature(this);
+						getOwnedRelationship().add(redefinition);
+						redefinitions.add(redefinition);
 					}
 				}
 			}
 		}
-		return redefinitions;
+	}
+	
+	/**
+	 * Get the relevant Features that may be redefined from the given Category.
+	 * (By default, these are the end Features if the Category is an Association.)
+	 */
+	protected List<? extends Feature> getRelevantFeatures(Category category) {
+		return !(category instanceof Association)? Collections.emptyList():
+			((Association)category).getOwnedEndFeatureMembership().stream().
+			map(m->m.getMemberFeature()).collect(Collectors.toList());
 	}
 	
 	/**

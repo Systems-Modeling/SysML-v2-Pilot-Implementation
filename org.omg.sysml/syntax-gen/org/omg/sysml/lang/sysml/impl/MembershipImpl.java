@@ -209,13 +209,17 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		return memberName;
 	}
 
+	@Override
+	public void setMemberName(String newMemberName) {
+		setMemberNameGen(unescapeString(newMemberName));
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setMemberName(String newMemberName) {
+	public void setMemberNameGen(String newMemberName) {
 		String oldMemberName = memberName;
 		memberName = newMemberName;
 		if (eNotificationRequired())

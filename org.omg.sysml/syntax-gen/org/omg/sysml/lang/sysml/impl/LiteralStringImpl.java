@@ -74,13 +74,17 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 		return value;
 	}
 
+	@Override
+	public void setValue(String newValue) {
+		setValueGen(unescapeString(newValue));
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setValue(String newValue) {
+	public void setValueGen(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())

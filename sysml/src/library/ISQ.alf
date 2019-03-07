@@ -73,7 +73,7 @@ package ISQ {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;
 		scale: LengthUnit redefines Quantities::QuantityValue::scale;
 	}	
-	feature length: LengthValue;
+	feature length: LengthValue[1..1];
 	
 	datatype MassValue specializes Quantities::QuantityValue {
 		magnitude: Real redefines Quantities::QuantityValue::magnitude;

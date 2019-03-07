@@ -44,6 +44,7 @@ package SI {
 	
 	// Derived Units
 	N: ForceUnit = kg * m / s ^ 2;
+	NN = kg * m / s ^ 2;
 	// TODO: Add name assignment like N.name = "newton"; -- Not yet supported
 	/*
 	N: ForceUnit = Quantities::DerivedUnit(

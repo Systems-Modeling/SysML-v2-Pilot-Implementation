@@ -23,7 +23,7 @@ package UnitsAndScales {
 	 * A MeasurementUnit specifies one or more UnitPowerFactor 
 	 */
 	abstract class MeasurementUnit specializes MeasurementScale { 
-		feature unitPowerFactor: UnitPowerFactor[1..*];
+		feature unitPowerFactor: UnitPowerFactor[1..*] ordered;
 		part unitConversion: UnitConversion[0..1];
 	}
 	
@@ -67,7 +67,7 @@ package UnitsAndScales {
 	
 	/*
 	 * Representation of a UnitConversion that is defined through reference to a named unit prefix associated to a conversion factor 
-	 * that is a decimal or binary multiple or sub-multiple, as defined in ISO/IEC 80000.
+	 * that is a decimal or binary multiple or sub-multiple, as defined in ISO/IEC 80000-1.
 	 * 
 	 * Note: The actual value of the conversion factor is derived from the definition of the unit prefix.
 	 * 
@@ -81,7 +81,7 @@ package UnitsAndScales {
 	}
 
 	/*
-	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000.
+	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000-1.
 	 */	
 	class UnitPrefix specializes Base::Object {
 		feature name: ScalarValues::String;
@@ -162,7 +162,7 @@ package UnitsAndScales {
 	 * 
 	 * Typically such a particular value is defined by convention.
 	 * Example: The 'kelvin' ratio scale for temperature could have a 
-	 * ScaleValueDefinition(magnitude => 273.16, description => "absolute temperature of the triple point of water")
+	 * ScaleValueDefinition(magnitude => 273.16, description => "absolute temperature of the triple point of pure water")
 	 * that is part of the definition of the scale.
 	 */
 	class ScaleValueDefinition specializes Base::Object {

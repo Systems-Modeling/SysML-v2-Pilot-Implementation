@@ -1,8 +1,9 @@
-package IsoIec80000UnitPrefixes {
+package SiUnitPrefixes {
 	import UnitsAndScales::*;
 
 	/*
 	 * ISO/IEC 80000-1 prefixes for decimal multiples and sub-multiples
+	 * 
 	 * See also https://en.wikipedia.org/wiki/Unit_prefix
 	 */
 	yocto = UnitPrefix(name => "yocto", symbol => "y",  conversionFactor => 1E-27);
@@ -28,7 +29,8 @@ package IsoIec80000UnitPrefixes {
 	yotta = UnitPrefix(name => "yotta", symbol => "Y",  conversionFactor => 1E24);
 	
 	/*
-	 * ISO/IEC 80000-1 prefixes for binary multiples, i.e. multiples of 2^10 = 1024
+	 * ISO/IEC 80000-1 prefixes for binary multiples, i.e. multiples of 1024 (= 2^10)
+	 * 
 	 * See also https://en.wikipedia.org/wiki/Binary_prefix
 	 */
 	kibi = UnitPrefix(name => "kibi", symbol => "Ki", conversionFactor => 1024);

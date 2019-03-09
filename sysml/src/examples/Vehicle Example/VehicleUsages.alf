@@ -2,8 +2,8 @@
  * Example usages of elements from the vehicle definitions model.
  **/
 package VehicleUsages {
-	import SI::N;
-	import SI::m;
+	import SiUnits::N;
+	import SiUnits::m;
 	import VehicleDefinitions::*;
 
 	/* VALUES */	 

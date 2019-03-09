@@ -1,0 +1,254 @@
+package InternationalSystemOfQuantities {
+	import ScalarValues::Real;
+	import Quantities::*;
+	import UnitsAndScales::*;
+	
+	/*
+	 * ISO/IEC 80000 system of quantities
+	 */
+	
+	/*
+	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
+	 * 
+	 * Define the following for each: abstract unit type, quantity value type, quantity feature
+	 */
+	 
+	 /*
+	  * length
+	  */
+	class LengthUnit specializes SimpleUnit {
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: LengthUnit redefines UnitPowerFactor::unit;
+		}
+	}
+	datatype LengthValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: LengthUnit redefines QuantityValue::scale;
+	}	
+	feature length: LengthValue[1..1] redefines quantity;
+	
+	 /*
+	  * mass
+	  */
+	class MassUnit specializes SimpleUnit { 
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: MassUnit redefines UnitPowerFactor::unit;
+		}
+	}
+	datatype MassValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: MassUnit redefines QuantityValue::scale;
+	}
+	feature mass: MassValue redefines quantity;
+
+	 /*
+	  * time
+	  */
+	class TimeUnit specializes SimpleUnit { 
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: TimeUnit redefines UnitPowerFactor::unit;
+		}
+	}
+	datatype TimeValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: TimeUnit redefines QuantityValue::scale;
+	}
+	feature time: TimeValue redefines quantity;
+	
+	 /*
+	  * electric current
+	  */
+	class ElectricCurrentUnit specializes SimpleUnit { 
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: ElectricCurrentUnit redefines UnitPowerFactor::unit;
+		}
+	}
+	datatype ElectricCurrentValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: ElectricCurrentUnit redefines QuantityValue::scale;
+	}
+	feature electricCurrent: ElectricCurrentValue redefines quantity;
+	
+	
+	 /*
+	  * thermodynamic temperature
+	  */
+	class TemperatureUnit specializes SimpleUnit {
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: TemperatureUnit redefines UnitPowerFactor::unit;
+		}
+	}
+	datatype TemperatureValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: TemperatureUnit redefines QuantityValue::scale;
+	}
+	feature temperature: TemperatureValue redefines quantity;
+	
+	 /*
+	  * amount of substance
+	  */
+	class AmountOfSubstanceUnit specializes SimpleUnit { 
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
+		}		
+	}
+	datatype AmountOfSubstanceValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: AmountOfSubstanceUnit redefines QuantityValue::scale;
+	}
+	feature amountOfSubstance: AmountOfSubstanceValue redefines quantity;
+			
+
+	 /*
+	  * luminous intensity
+	  */
+	class LuminousIntensityUnit specializes SimpleUnit {
+		feature unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+			feature unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
+		}
+	}	
+	datatype LuminousIntensityValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: LuminousIntensityUnit redefines QuantityValue::scale;
+	}
+	feature luminousIntensity: LuminousIntensityValue redefines quantity;
+	
+	/*
+	 * Definition of derived quantities and units
+	 */
+	 
+	/*
+	 * Define abstract super class for all derived units in ISO/IEC 80000
+	 * 
+	 * An SI derived unit is always defined in terms of powers of the SI base units.
+	 * As a default all unit power factor exponents are set to zero.
+	 */
+	 
+	abstract class SiDerivedUnit specializes DerivedUnit {
+		feature lengthPowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: LengthUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature massPowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: MassUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature timePowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: TimeUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature electricCurrentPowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: ElectricCurrentUnit  redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature temperaturePowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: TemperatureUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature amountOfSubstancePowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+		feature luminousIntensityPowerFactor subsets MeasurementUnit::unitPowerFactor {
+			unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
+			exponent redefines UnitPowerFactor::exponent = 0;
+		}
+	}	 
+	 
+	/*
+	 * Explicit definition of "unit of dimension one" aka "dimensionless unit"
+	 */
+	class UnitOfDimensionOne specializes DerivedUnit {
+		feature name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+	}
+	
+	/*
+	 * force
+	 */	
+	class ForceUnit specializes DerivedUnit {
+		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+			exponent redefines UnitPowerFactor::exponent = -2;
+		}
+	}
+	datatype ForceValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: ForceUnit redefines QuantityValue::scale;
+	}
+	feature force: ForceValue redefines quantity;
+	
+	/*
+	 * speed
+	 */
+	class SpeedUnit specializes DerivedUnit {
+		lengthPowerFactor subsets SiDerivedUnit::lengthPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		timePowerFactor subsets SiDerivedUnit::timePowerFactor {
+			exponent redefines UnitPowerFactor::exponent = -1;
+		}		
+	}
+	datatype SpeedValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: SpeedUnit redefines QuantityValue::scale;
+	}
+	feature speed: SpeedValue redefines quantity;
+	
+	/*
+	 * torque
+	 */
+	class TorqueUnit specializes DerivedUnit {
+		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 2;
+		}
+		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+			exponent redefines UnitPowerFactor::exponent = -2;
+		}
+	}
+	datatype TorqueValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: TorqueUnit redefines QuantityValue::scale;
+	}
+	feature torque: TorqueValue redefines quantity;
+	
+	/*
+	 * energy
+	 */
+	class EnergyUnit specializes DerivedUnit {
+		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 2;
+		}
+		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+			exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+			exponent redefines UnitPowerFactor::exponent = -2;
+		}
+	}
+	datatype EnergyValue specializes QuantityValue {
+		magnitude: Real redefines QuantityValue::magnitude;
+		scale: EnergyUnit redefines QuantityValue::scale;
+	}
+	feature energy: EnergyValue redefines quantity;
+	
+	/*
+	 * Example specializations of a basic feature, i.e. adding more specific semantics
+	 */
+	feature kineticEnergy is energy;
+	feature potentialEnergy is energy;
+	 	
+	/*
+	 * TODO: Consider a convenience factory method / macro to define to define derived quantities and units 
+	 * in terms of other derived quantities and units
+	 * e.g. EnergyUnit as ForceUnit^1 * LengthUnit^1
+	 * which is then auto-converted into LengthUnit^2 * MassUnit^1 * TimeUnit^-2
+	 */
+}

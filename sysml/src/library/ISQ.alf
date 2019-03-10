@@ -1,4 +1,5 @@
 package ISQ {
+	import ScalarFunctions::*;
 	import ScalarValues::Real;
 	import UnitsAndScales::*;
 	

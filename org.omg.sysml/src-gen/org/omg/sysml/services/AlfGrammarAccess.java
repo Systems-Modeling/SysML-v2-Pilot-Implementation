@@ -3046,18 +3046,37 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class BinaryOperatorExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BinaryOperatorExpression");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameBinaryOperatorParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipBinaryOperatorFunctionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//BinaryOperatorExpression SysML::Expression:
-		//	name=BinaryOperator;
+		//	ownedRelationship+=BinaryOperatorFunction;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=BinaryOperator
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//ownedRelationship+=BinaryOperatorFunction
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
+		
+		//BinaryOperatorFunction
+		public RuleCall getOwnedRelationshipBinaryOperatorFunctionParserRuleCall_0() { return cOwnedRelationshipBinaryOperatorFunctionParserRuleCall_0; }
+	}
+	public class BinaryOperatorFunctionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BinaryOperatorFunction");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeFunctionCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeFunctionBinaryOperatorParserRuleCall_0_1 = (RuleCall)cTypeFunctionCrossReference_0.eContents().get(1);
+		
+		//BinaryOperatorFunction SysML::FeatureTyping:
+		//	type=[SysML::Function|BinaryOperator];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[SysML::Function|BinaryOperator]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[SysML::Function|BinaryOperator]
+		public CrossReference getTypeFunctionCrossReference_0() { return cTypeFunctionCrossReference_0; }
 		
 		//BinaryOperator
-		public RuleCall getNameBinaryOperatorParserRuleCall_0() { return cNameBinaryOperatorParserRuleCall_0; }
+		public RuleCall getTypeFunctionBinaryOperatorParserRuleCall_0_1() { return cTypeFunctionBinaryOperatorParserRuleCall_0_1; }
 	}
 	public class BinaryOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BinaryOperator");
@@ -3132,18 +3151,48 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class UnitOperatorExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnitOperatorExpression");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Keyword cNameCommercialAtKeyword_0 = (Keyword)cNameAssignment.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipUnitOperatorFunctionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//UnitOperatorExpression SysML::Expression:
-		//	name='@';
+		//	ownedRelationship+=UnitOperatorFunction;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name='@'
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//ownedRelationship+=UnitOperatorFunction
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
+		
+		//UnitOperatorFunction
+		public RuleCall getOwnedRelationshipUnitOperatorFunctionParserRuleCall_0() { return cOwnedRelationshipUnitOperatorFunctionParserRuleCall_0; }
+	}
+	public class UnitOperatorFunctionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnitOperatorFunction");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeFunctionCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeFunctionUnitOperatorParserRuleCall_0_1 = (RuleCall)cTypeFunctionCrossReference_0.eContents().get(1);
+		
+		//UnitOperatorFunction SysML::FeatureTyping:
+		//	type=[SysML::Function|UnitOperator];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[SysML::Function|UnitOperator]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[SysML::Function|UnitOperator]
+		public CrossReference getTypeFunctionCrossReference_0() { return cTypeFunctionCrossReference_0; }
+		
+		//UnitOperator
+		public RuleCall getTypeFunctionUnitOperatorParserRuleCall_0_1() { return cTypeFunctionUnitOperatorParserRuleCall_0_1; }
+	}
+	public class UnitOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnitOperator");
+		private final Keyword cCommercialAtKeyword = (Keyword)rule.eContents().get(1);
+		
+		//UnitOperator:
+		//	'@';
+		@Override public ParserRule getRule() { return rule; }
 		
 		//'@'
-		public Keyword getNameCommercialAtKeyword_0() { return cNameCommercialAtKeyword_0; }
+		public Keyword getCommercialAtKeyword() { return cCommercialAtKeyword; }
 	}
 	public class UnaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnaryExpression");
@@ -3170,18 +3219,37 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class UnaryOperatorExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnaryOperatorExpression");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameUnaryOperatorParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipUnaryOperatorFunctionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//UnaryOperatorExpression SysML::Expression:
-		//	name=UnaryOperator;
+		//	ownedRelationship+=UnaryOperatorFunction;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=UnaryOperator
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//ownedRelationship+=UnaryOperatorFunction
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
+		
+		//UnaryOperatorFunction
+		public RuleCall getOwnedRelationshipUnaryOperatorFunctionParserRuleCall_0() { return cOwnedRelationshipUnaryOperatorFunctionParserRuleCall_0; }
+	}
+	public class UnaryOperatorFunctionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnaryOperatorFunction");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeFunctionCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeFunctionUnaryOperatorParserRuleCall_0_1 = (RuleCall)cTypeFunctionCrossReference_0.eContents().get(1);
+		
+		//UnaryOperatorFunction SysML::FeatureTyping:
+		//	type=[SysML::Function|UnaryOperator];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[SysML::Function|UnaryOperator]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[SysML::Function|UnaryOperator]
+		public CrossReference getTypeFunctionCrossReference_0() { return cTypeFunctionCrossReference_0; }
 		
 		//UnaryOperator
-		public RuleCall getNameUnaryOperatorParserRuleCall_0() { return cNameUnaryOperatorParserRuleCall_0; }
+		public RuleCall getTypeFunctionUnaryOperatorParserRuleCall_0_1() { return cTypeFunctionUnaryOperatorParserRuleCall_0_1; }
 	}
 	public class UnaryOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnaryOperator");
@@ -4073,10 +4141,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final BinaryExpressionElements pBinaryExpression;
 	private final BinaryTermElements pBinaryTerm;
 	private final BinaryOperatorExpressionElements pBinaryOperatorExpression;
+	private final BinaryOperatorFunctionElements pBinaryOperatorFunction;
 	private final BinaryOperatorElements pBinaryOperator;
 	private final UnitOperatorExpressionElements pUnitOperatorExpression;
+	private final UnitOperatorFunctionElements pUnitOperatorFunction;
+	private final UnitOperatorElements pUnitOperator;
 	private final UnaryExpressionElements pUnaryExpression;
 	private final UnaryOperatorExpressionElements pUnaryOperatorExpression;
+	private final UnaryOperatorFunctionElements pUnaryOperatorFunction;
 	private final UnaryOperatorElements pUnaryOperator;
 	private final SequenceAccessExpressionElements pSequenceAccessExpression;
 	private final SequenceAccessOperatorMemberElements pSequenceAccessOperatorMember;
@@ -4200,10 +4272,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBinaryExpression = new BinaryExpressionElements();
 		this.pBinaryTerm = new BinaryTermElements();
 		this.pBinaryOperatorExpression = new BinaryOperatorExpressionElements();
+		this.pBinaryOperatorFunction = new BinaryOperatorFunctionElements();
 		this.pBinaryOperator = new BinaryOperatorElements();
 		this.pUnitOperatorExpression = new UnitOperatorExpressionElements();
+		this.pUnitOperatorFunction = new UnitOperatorFunctionElements();
+		this.pUnitOperator = new UnitOperatorElements();
 		this.pUnaryExpression = new UnaryExpressionElements();
 		this.pUnaryOperatorExpression = new UnaryOperatorExpressionElements();
+		this.pUnaryOperatorFunction = new UnaryOperatorFunctionElements();
 		this.pUnaryOperator = new UnaryOperatorElements();
 		this.pSequenceAccessExpression = new SequenceAccessExpressionElements();
 		this.pSequenceAccessOperatorMember = new SequenceAccessOperatorMemberElements();
@@ -5104,13 +5180,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BinaryOperatorExpression SysML::Expression:
-	//	name=BinaryOperator;
+	//	ownedRelationship+=BinaryOperatorFunction;
 	public BinaryOperatorExpressionElements getBinaryOperatorExpressionAccess() {
 		return pBinaryOperatorExpression;
 	}
 	
 	public ParserRule getBinaryOperatorExpressionRule() {
 		return getBinaryOperatorExpressionAccess().getRule();
+	}
+	
+	//BinaryOperatorFunction SysML::FeatureTyping:
+	//	type=[SysML::Function|BinaryOperator];
+	public BinaryOperatorFunctionElements getBinaryOperatorFunctionAccess() {
+		return pBinaryOperatorFunction;
+	}
+	
+	public ParserRule getBinaryOperatorFunctionRule() {
+		return getBinaryOperatorFunctionAccess().getRule();
 	}
 	
 	//BinaryOperator:
@@ -5124,13 +5210,33 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UnitOperatorExpression SysML::Expression:
-	//	name='@';
+	//	ownedRelationship+=UnitOperatorFunction;
 	public UnitOperatorExpressionElements getUnitOperatorExpressionAccess() {
 		return pUnitOperatorExpression;
 	}
 	
 	public ParserRule getUnitOperatorExpressionRule() {
 		return getUnitOperatorExpressionAccess().getRule();
+	}
+	
+	//UnitOperatorFunction SysML::FeatureTyping:
+	//	type=[SysML::Function|UnitOperator];
+	public UnitOperatorFunctionElements getUnitOperatorFunctionAccess() {
+		return pUnitOperatorFunction;
+	}
+	
+	public ParserRule getUnitOperatorFunctionRule() {
+		return getUnitOperatorFunctionAccess().getRule();
+	}
+	
+	//UnitOperator:
+	//	'@';
+	public UnitOperatorElements getUnitOperatorAccess() {
+		return pUnitOperator;
+	}
+	
+	public ParserRule getUnitOperatorRule() {
+		return getUnitOperatorAccess().getRule();
 	}
 	
 	//fragment UnaryExpression returns SysML::Expression:
@@ -5144,13 +5250,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UnaryOperatorExpression SysML::Expression:
-	//	name=UnaryOperator;
+	//	ownedRelationship+=UnaryOperatorFunction;
 	public UnaryOperatorExpressionElements getUnaryOperatorExpressionAccess() {
 		return pUnaryOperatorExpression;
 	}
 	
 	public ParserRule getUnaryOperatorExpressionRule() {
 		return getUnaryOperatorExpressionAccess().getRule();
+	}
+	
+	//UnaryOperatorFunction SysML::FeatureTyping:
+	//	type=[SysML::Function|UnaryOperator];
+	public UnaryOperatorFunctionElements getUnaryOperatorFunctionAccess() {
+		return pUnaryOperatorFunction;
+	}
+	
+	public ParserRule getUnaryOperatorFunctionRule() {
+		return getUnaryOperatorFunctionAccess().getRule();
 	}
 	
 	//UnaryOperator:

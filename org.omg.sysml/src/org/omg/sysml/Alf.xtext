@@ -475,26 +475,42 @@ fragment BinaryTerm returns SysML::Expression :
 ;
 
 BinaryOperatorExpression returns SysML::Expression :
-	name = BinaryOperator
+	ownedRelationship += BinaryOperatorFunction
 ;
 
-BinaryOperator:
+BinaryOperatorFunction returns SysML::FeatureTyping :
+	type = [SysML::Function|BinaryOperator]
+;
+
+BinaryOperator :
 	'+' | '-' | '*' | '/' | '**' | '%' | '|' | '^' | '&' | '<' | '>' | '<=' | '>=' | '==' | '/='
 ;
 
 UnitOperatorExpression returns SysML::Expression :
-	name = '@'
+	ownedRelationship += UnitOperatorFunction
+;
+
+UnitOperatorFunction returns SysML::FeatureTyping :
+	type = [SysML::Function|UnitOperator]
+;
+
+UnitOperator : 
+	'@'
 ;
 
 fragment UnaryExpression returns SysML::Expression :
 	( ownedMembership += UnaryOperatorMember )* SequenceAccessExpression
 ;
 
-UnaryOperatorExpression returns SysML::Expression:
-	name = UnaryOperator
+UnaryOperatorExpression returns SysML::Expression :
+	ownedRelationship += UnaryOperatorFunction
 ;
 
-UnaryOperator:
+UnaryOperatorFunction returns SysML::FeatureTyping :
+	type = [SysML::Function|UnaryOperator]
+;
+
+UnaryOperator :
 	'+' | '-' | '!' | '~'
 ;
 

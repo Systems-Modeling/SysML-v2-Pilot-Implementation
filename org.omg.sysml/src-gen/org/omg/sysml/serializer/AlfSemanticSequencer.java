@@ -162,11 +162,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getAssociationMemberRule()) {
-					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAssociationFeatureMemberRule()) {
+				else if (rule == grammarAccess.getAssociationMemberRule()
+						|| rule == grammarAccess.getAssociationFeatureMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureMemberElement(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -196,12 +193,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.FEATURE_TYPING:
-				if (rule == grammarAccess.getConnectorTypingRule()) {
+				if (rule == grammarAccess.getBinaryOperatorFunctionRule()) {
+					sequence_BinaryOperatorFunction(context, (FeatureTyping) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConnectorTypingRule()) {
 					sequence_ConnectorTyping(context, (FeatureTyping) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureTypingRule()) {
 					sequence_FeatureTyping(context, (FeatureTyping) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnaryOperatorFunctionRule()) {
+					sequence_UnaryOperatorFunction(context, (FeatureTyping) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnitOperatorFunctionRule()) {
+					sequence_UnitOperatorFunction(context, (FeatureTyping) semanticObject); 
 					return; 
 				}
 				else break;
@@ -237,11 +246,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getCategoryMemberRule()
+						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()) {
-					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -463,15 +469,27 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     BinaryOperatorExpression returns Expression
 	 *
 	 * Constraint:
-	 *     name=BinaryOperator
+	 *     ownedRelationship+=BinaryOperatorFunction
 	 */
 	protected void sequence_BinaryOperatorExpression(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BinaryOperatorFunction returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     type=[Function|BinaryOperator]
+	 */
+	protected void sequence_BinaryOperatorFunction(ISerializationContext context, FeatureTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBinaryOperatorExpressionAccess().getNameBinaryOperatorParserRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getBinaryOperatorFunctionAccess().getTypeFunctionBinaryOperatorParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -842,8 +860,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         valuation=FeatureValue? 
-	 *         ownedMembership+=CategoryMember? 
-	 *         (ownedImport+=PackageImport? ownedMembership+=CategoryMember?)*
+	 *         ownedImport+=PackageImport? 
+	 *         (ownedMembership+=CategoryMember? ownedImport+=PackageImport?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -902,10 +920,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     AssociationMember returns FeatureMembership
+	 *     AssociationFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation? 
+	 *         ownedRelationship+=Annotation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (
@@ -923,38 +942,15 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	}
 	
 	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     AssociationFeatureMember returns FeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship+=Annotation* 
-	//         visibility=VisibilityIndicator? 
-	//         (
-	//             (
-	//                 (isPart?='part' | isPort?='port')? 
-	//                 direction=FeatureDirection? 
-	//                 (ownedMemberFeature=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
-	//             ) | 
-	//             ownedMemberFeature=ConnectorDefinition | 
-	//             (memberName=Name? memberFeature=[Connector|QualifiedName])
-	//         )
-	//     )
-	//
-	// protected void sequence_CategoryMemberPrefix_FeatureMemberElement(ISerializationContext context, FeatureMembership semanticObject) { }
-	
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
+	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation? 
+	 *         ownedRelationship+=Annotation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedMemberElement=NonFeatureDefinition | 
@@ -973,32 +969,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     NonFeatureCategoryMember returns Membership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship+=Annotation* 
-	//         visibility=VisibilityIndicator? 
-	//         (
-	//             ownedMemberElement=NonFeatureDefinition | 
-	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
-	//             (memberName=Name? memberElement=[Function|QualifiedName]) | 
-	//             (memberElement=[Element|QualifiedName] memberName=Name?)
-	//         )
-	//     )
-	//
-	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1474,15 +1444,27 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     UnaryOperatorExpression returns Expression
 	 *
 	 * Constraint:
-	 *     name=UnaryOperator
+	 *     ownedRelationship+=UnaryOperatorFunction
 	 */
 	protected void sequence_UnaryOperatorExpression(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnaryOperatorFunction returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     type=[Function|UnaryOperator]
+	 */
+	protected void sequence_UnaryOperatorFunction(ISerializationContext context, FeatureTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getUnaryOperatorExpressionAccess().getNameUnaryOperatorParserRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getUnaryOperatorFunctionAccess().getTypeFunctionUnaryOperatorParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -1510,15 +1492,27 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     UnitOperatorExpression returns Expression
 	 *
 	 * Constraint:
-	 *     name='@'
+	 *     ownedRelationship+=UnitOperatorFunction
 	 */
 	protected void sequence_UnitOperatorExpression(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnitOperatorFunction returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     type=[Function|UnitOperator]
+	 */
+	protected void sequence_UnitOperatorFunction(ISerializationContext context, FeatureTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getUnitOperatorExpressionAccess().getNameCommercialAtKeyword_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getUnitOperatorFunctionAccess().getTypeFunctionUnitOperatorParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
 		feeder.finish();
 	}
 	

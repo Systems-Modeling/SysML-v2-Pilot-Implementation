@@ -318,10 +318,13 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBinaryTermAccess().getOwnedMembershipAssignment_0_0(), "rule__BinaryTerm__OwnedMembershipAssignment_0_0");
 			builder.put(grammarAccess.getBinaryTermAccess().getOwnedMembershipAssignment_1_0(), "rule__BinaryTerm__OwnedMembershipAssignment_1_0");
 			builder.put(grammarAccess.getBinaryTermAccess().getOwnedMembershipAssignment_1_2(), "rule__BinaryTerm__OwnedMembershipAssignment_1_2");
-			builder.put(grammarAccess.getBinaryOperatorExpressionAccess().getNameAssignment(), "rule__BinaryOperatorExpression__NameAssignment");
-			builder.put(grammarAccess.getUnitOperatorExpressionAccess().getNameAssignment(), "rule__UnitOperatorExpression__NameAssignment");
+			builder.put(grammarAccess.getBinaryOperatorExpressionAccess().getOwnedRelationshipAssignment(), "rule__BinaryOperatorExpression__OwnedRelationshipAssignment");
+			builder.put(grammarAccess.getBinaryOperatorFunctionAccess().getTypeAssignment(), "rule__BinaryOperatorFunction__TypeAssignment");
+			builder.put(grammarAccess.getUnitOperatorExpressionAccess().getOwnedRelationshipAssignment(), "rule__UnitOperatorExpression__OwnedRelationshipAssignment");
+			builder.put(grammarAccess.getUnitOperatorFunctionAccess().getTypeAssignment(), "rule__UnitOperatorFunction__TypeAssignment");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOwnedMembershipAssignment_0(), "rule__UnaryExpression__OwnedMembershipAssignment_0");
-			builder.put(grammarAccess.getUnaryOperatorExpressionAccess().getNameAssignment(), "rule__UnaryOperatorExpression__NameAssignment");
+			builder.put(grammarAccess.getUnaryOperatorExpressionAccess().getOwnedRelationshipAssignment(), "rule__UnaryOperatorExpression__OwnedRelationshipAssignment");
+			builder.put(grammarAccess.getUnaryOperatorFunctionAccess().getTypeAssignment(), "rule__UnaryOperatorFunction__TypeAssignment");
 			builder.put(grammarAccess.getSequenceAccessExpressionAccess().getOwnedMembershipAssignment_0(), "rule__SequenceAccessExpression__OwnedMembershipAssignment_0");
 			builder.put(grammarAccess.getSequenceAccessExpressionAccess().getOwnedMembershipAssignment_1_0(), "rule__SequenceAccessExpression__OwnedMembershipAssignment_1_0");
 			builder.put(grammarAccess.getSequenceAccessExpressionAccess().getOwnedMembershipAssignment_1_1(), "rule__SequenceAccessExpression__OwnedMembershipAssignment_1_1");

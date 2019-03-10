@@ -5059,18 +5059,51 @@ ruleBinaryOperatorExpression returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getBinaryOperatorExpressionAccess().getNameBinaryOperatorParserRuleCall_0());
+				newCompositeNode(grammarAccess.getBinaryOperatorExpressionAccess().getOwnedRelationshipBinaryOperatorFunctionParserRuleCall_0());
 			}
-			lv_name_0_0=ruleBinaryOperator
+			lv_ownedRelationship_0_0=ruleBinaryOperatorFunction
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getBinaryOperatorExpressionRule());
 				}
-				set(
+				add(
 					$current,
-					"name",
-					lv_name_0_0,
-					"org.omg.sysml.Alf.BinaryOperator");
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.Alf.BinaryOperatorFunction");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleBinaryOperatorFunction
+entryRuleBinaryOperatorFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBinaryOperatorFunctionRule()); }
+	iv_ruleBinaryOperatorFunction=ruleBinaryOperatorFunction
+	{ $current=$iv_ruleBinaryOperatorFunction.current; }
+	EOF;
+
+// Rule BinaryOperatorFunction
+ruleBinaryOperatorFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getBinaryOperatorFunctionRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getBinaryOperatorFunctionAccess().getTypeFunctionCrossReference_0());
+			}
+			ruleBinaryOperator
+			{
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -5202,18 +5235,78 @@ ruleUnitOperatorExpression returns [EObject current=null]
 }:
 	(
 		(
-			lv_name_0_0='@'
 			{
-				newLeafNode(lv_name_0_0, grammarAccess.getUnitOperatorExpressionAccess().getNameCommercialAtKeyword_0());
+				newCompositeNode(grammarAccess.getUnitOperatorExpressionAccess().getOwnedRelationshipUnitOperatorFunctionParserRuleCall_0());
 			}
+			lv_ownedRelationship_0_0=ruleUnitOperatorFunction
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getUnitOperatorExpressionRule());
+					$current = createModelElementForParent(grammarAccess.getUnitOperatorExpressionRule());
 				}
-				setWithLastConsumed($current, "name", lv_name_0_0, "@");
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.Alf.UnitOperatorFunction");
+				afterParserOrEnumRuleCall();
 			}
 		)
 	)
+;
+
+// Entry rule entryRuleUnitOperatorFunction
+entryRuleUnitOperatorFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUnitOperatorFunctionRule()); }
+	iv_ruleUnitOperatorFunction=ruleUnitOperatorFunction
+	{ $current=$iv_ruleUnitOperatorFunction.current; }
+	EOF;
+
+// Rule UnitOperatorFunction
+ruleUnitOperatorFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getUnitOperatorFunctionRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getUnitOperatorFunctionAccess().getTypeFunctionCrossReference_0());
+			}
+			ruleUnitOperator
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleUnitOperator
+entryRuleUnitOperator returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getUnitOperatorRule()); }
+	iv_ruleUnitOperator=ruleUnitOperator
+	{ $current=$iv_ruleUnitOperator.current.getText(); }
+	EOF;
+
+// Rule UnitOperator
+ruleUnitOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	kw='@'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getUnitOperatorAccess().getCommercialAtKeyword());
+	}
 ;
 
 
@@ -5277,18 +5370,51 @@ ruleUnaryOperatorExpression returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getUnaryOperatorExpressionAccess().getNameUnaryOperatorParserRuleCall_0());
+				newCompositeNode(grammarAccess.getUnaryOperatorExpressionAccess().getOwnedRelationshipUnaryOperatorFunctionParserRuleCall_0());
 			}
-			lv_name_0_0=ruleUnaryOperator
+			lv_ownedRelationship_0_0=ruleUnaryOperatorFunction
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getUnaryOperatorExpressionRule());
 				}
-				set(
+				add(
 					$current,
-					"name",
-					lv_name_0_0,
-					"org.omg.sysml.Alf.UnaryOperator");
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.Alf.UnaryOperatorFunction");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleUnaryOperatorFunction
+entryRuleUnaryOperatorFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUnaryOperatorFunctionRule()); }
+	iv_ruleUnaryOperatorFunction=ruleUnaryOperatorFunction
+	{ $current=$iv_ruleUnaryOperatorFunction.current; }
+	EOF;
+
+// Rule UnaryOperatorFunction
+ruleUnaryOperatorFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getUnaryOperatorFunctionRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getUnaryOperatorFunctionAccess().getTypeFunctionCrossReference_0());
+			}
+			ruleUnaryOperator
+			{
 				afterParserOrEnumRuleCall();
 			}
 		)

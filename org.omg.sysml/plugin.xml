@@ -18,7 +18,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SysML -->
       <package
-            uri="http://www.eclipse.org/uml2/5.0.0/Types"
+            uri="https://www.omg.org/spec/UML/20161101/PrimitiveTypes"
             class="org.omg.sysml.lang.types.TypesPackage"
             genModel="model/SysML.genmodel"/>
    </extension>

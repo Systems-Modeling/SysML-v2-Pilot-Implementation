@@ -465,85 +465,44 @@ Expression returns SysML::Expression :
 	BinaryExpression
 ;
 
-BinaryExpression returns SysML::Expression :
-	UnaryExpression BinaryTerm*
+BinaryExpression returns SysML::Expression:
+	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
+		( operator = BinaryOperator operand += Expression | operator = '@' '[' operand += Expression ']' ) )?
 ;
 
-fragment BinaryTerm returns SysML::Expression :
-	  ownedMembership += BinaryOperatorMember UnaryExpression 
-	| ownedMembership += UnitOperatorMember '[' ownedMembership += ExpressionMember ']'
+BinaryOperator:
+	'+' | '-' | '*' | '/' | '**' | '&' | '|' | '^' | '==' | '!=' | '<' | '>' | '<=' | '>='
 ;
 
-BinaryOperatorExpression returns SysML::Expression :
-	ownedRelationship += BinaryOperatorFunction
+UnaryExpression returns SysML::Expression:
+	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
 ;
 
-BinaryOperatorFunction returns SysML::FeatureTyping :
-	type = [SysML::Function|BinaryOperator]
-;
-
-BinaryOperator :
-	'+' | '-' | '*' | '/' | '**' | '%' | '|' | '^' | '&' | '<' | '>' | '<=' | '>=' | '==' | '/='
-;
-
-UnitOperatorExpression returns SysML::Expression :
-	ownedRelationship += UnitOperatorFunction
-;
-
-UnitOperatorFunction returns SysML::FeatureTyping :
-	type = [SysML::Function|UnitOperator]
-;
-
-UnitOperator : 
-	'@'
-;
-
-fragment UnaryExpression returns SysML::Expression :
-	( ownedMembership += UnaryOperatorMember )* SequenceAccessExpression
-;
-
-UnaryOperatorExpression returns SysML::Expression :
-	ownedRelationship += UnaryOperatorFunction
-;
-
-UnaryOperatorFunction returns SysML::FeatureTyping :
-	type = [SysML::Function|UnaryOperator]
-;
-
-UnaryOperator :
+UnaryOperator:
 	'+' | '-' | '!' | '~'
 ;
 
-fragment SequenceAccessExpression returns SysML::Expression :
-	 ownedMembership += PrimaryExpressionMember 
-	 ( ownedMembership += SequenceAccessOperatorMember ownedMembership += ExpressionMember ']' )*
-;
-
-SequenceAccessOperatorMember returns SysML::FeatureMembership :
-	ownedMemberFeature = SequenceAccessOperatorExpression
-;
-
-SequenceAccessOperatorExpression returns SysML::Expression :
-	name = '['
-;
-
-PrimaryExpressionMember returns SysML::Membership :
-	  ownedMemberElement = PrimaryExpression
-	| memberElement = [SysML::Element | QualifiedName]
+SequenceAccessExpression returns SysML::Expression:
+	 PrimaryExpression 
+	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )*
 ;
 
 PrimaryExpression returns SysML::Expression:
 	  NullExpression
 	| LiteralExpression 
-//	| ElementReferenceExpression 
+	| FeatureReferenceExpression 
 	| InstanceCreationExpression 
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
 
-//ElementReferenceExpression returns SysML::ElementReferenceExpression :
-//	referent = [SysML::Element | QualifiedName]
-//;
+FeatureReferenceExpression returns SysML::Expression :
+	ownedMembership += FeatureReference
+;
+
+FeatureReference returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature | QualifiedName]
+;
 
 InstanceCreationExpression returns SysML::InstanceCreationExpression :
 	class = [SysML::Class  | QualifiedName] '(' Tuple? ')'
@@ -595,24 +554,6 @@ NaturalLiteralExpression returns SysML::LiteralInteger:
 
 UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 	NaturalLiteralExpression | {SysML::LiteralUnbounded} '*'
-;
-
-/* EXPRESSION MEMBERSHIPS */
-
-ExpressionMember returns SysML::FeatureMembership :
-	ownedMemberFeature = Expression
-;
-
-BinaryOperatorMember returns SysML::FeatureMembership :
-	ownedMemberFeature = BinaryOperatorExpression
-;
-
-UnitOperatorMember returns SysML::FeatureMembership :
-	ownedMemberFeature = UnitOperatorExpression
-;
-
-UnaryOperatorMember returns SysML::FeatureMembership :
-	ownedMemberFeature = UnaryOperatorExpression 
 ;
 
 /* NAMES */

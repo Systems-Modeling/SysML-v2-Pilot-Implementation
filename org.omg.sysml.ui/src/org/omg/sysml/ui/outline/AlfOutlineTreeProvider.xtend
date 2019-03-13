@@ -13,6 +13,8 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.ConnectorEnd
 import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.lang.sysml.Relationship
 
 /**
  * Customization of the default outline structure.
@@ -153,6 +155,18 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				_image(connectorEnd.feature), "feature " + connectorEnd.feature._text, 
 				true
 			)
+		}
+	}
+	
+	def boolean _isLeaf(OperatorExpression expression) {
+		// Ensure derivation of typing
+		expression.typing
+		_isLeaf(expression as Feature) && expression.ownedMembership.isEmpty
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
+		for (Relationship relationship : expression.allOwnedRelationships) {
+			createNode(parentNode, relationship);
 		}
 	}
 

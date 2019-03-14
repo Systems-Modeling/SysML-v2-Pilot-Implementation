@@ -484,40 +484,36 @@ UnaryOperator:
 
 SequenceAccessExpression returns SysML::Expression:
 	 PrimaryExpression 
-	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )*
+	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )?
 ;
 
 PrimaryExpression returns SysML::Expression:
 	  NullExpression
 	| LiteralExpression 
-	| FeatureReferenceExpression 
-	| InstanceCreationExpression 
+	| NameExpression 
+	| InvocationExpression 
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
 
-FeatureReferenceExpression returns SysML::Expression :
-	ownedMembership += FeatureReference
+NameExpression returns SysML::Expression :
+	ownedMembership += NamedFeatureReference
 ;
 
-FeatureReference returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature | QualifiedName]
+InvocationExpression returns SysML::Expression :
+	ownedRelationship += FeatureTyping '(' Tuple? ')'
 ;
 
-InstanceCreationExpression returns SysML::InstanceCreationExpression :
-	class = [SysML::Class  | QualifiedName] '(' Tuple? ')'
-;
-
-fragment Tuple returns SysML::InstanceCreationExpression :
+fragment Tuple returns SysML::Expression :
 	PositionalTuple | NamedTuple
 ;
 
-fragment PositionalTuple returns SysML::InstanceCreationExpression :
-	argument += Expression ( ',' argument += Expression )*
+fragment PositionalTuple returns SysML::Expression :
+	ownedMembership += ExpressionMember ( ',' ownedMembership += ExpressionMember )*
 ;
 
-fragment NamedTuple returns SysML::InstanceCreationExpression :
-	Name '=>' argument += Expression ( ',' Name '=>' argument += Expression )*
+fragment NamedTuple returns SysML::Expression :
+	ownedMembership += NamedExpressionMember ( ',' ownedMembership += NamedExpressionMember )*
 ;
 
 SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
@@ -554,6 +550,20 @@ NaturalLiteralExpression returns SysML::LiteralInteger:
 
 UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 	NaturalLiteralExpression | {SysML::LiteralUnbounded} '*'
+;
+
+/* EXPRESSION MEMBERSHIPS */
+
+ExpressionMember returns SysML::FeatureMembership :
+	ownedMemberFeature = Expression
+;
+
+NamedExpressionMember returns SysML::FeatureMembership :
+	memberName = Name '=>' ownedMemberFeature = Expression
+;
+
+NamedFeatureReference returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature | QualifiedName]
 ;
 
 /* NAMES */

@@ -46,21 +46,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getNameRule())
-			return getNameToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * Name :
-	 * 	ID | UNRESTRICTED_NAME
-	 * ;
-	 */
-	protected String getNameToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -168,9 +156,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' element+=Expression
-	 *     (rule start) (ambiguity) class=[Class|QualifiedName]
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedMembership+=FeatureReference
+	 *     (rule start) (ambiguity) ownedMembership+=NamedFeatureReference
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureTyping
 	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
 	 *     (rule start) (ambiguity) value=NATURAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue

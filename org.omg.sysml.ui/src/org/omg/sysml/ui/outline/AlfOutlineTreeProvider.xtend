@@ -15,6 +15,12 @@ import org.omg.sysml.lang.sysml.ConnectorEnd
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.LiteralString
+import org.omg.sysml.lang.sysml.LiteralBoolean
+import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.LiteralReal
+import org.omg.sysml.lang.sysml.LiteralUnbounded
+import org.omg.sysml.lang.sysml.LiteralNull
 
 /**
  * Customization of the default outline structure.
@@ -55,6 +61,30 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 		}
 		text 
+	}
+	
+	def String _text(LiteralString literal) {
+		"LiteralString " + literal.value
+	}
+	
+	def String _text(LiteralBoolean literal) {
+		"LiteralBoolean " + literal.value
+	}
+	
+	def String _text(LiteralInteger literal) {
+		"LiteralInteger " + literal.value
+	}
+	
+	def String _text(LiteralReal literal) {
+		"LiteralReal " + literal.value
+	}
+	
+	def String _text(LiteralUnbounded literal) {
+		"LiteralUnbounded *"
+	}
+	
+	def String _text(LiteralNull literal) {
+		"LiteralNull null"
 	}
 	
 	def boolean _isLeaf(Membership membership) {

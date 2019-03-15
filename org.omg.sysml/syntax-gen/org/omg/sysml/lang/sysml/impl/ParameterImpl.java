@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -30,7 +31,12 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	protected ParameterImpl() {
 		super();
 	}
-
+	
+	public boolean isResultParameter() {
+		Category category = getOwningCategory();
+		return category instanceof Function && ((Function)category).getResult() == this;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

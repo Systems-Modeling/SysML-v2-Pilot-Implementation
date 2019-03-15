@@ -21,6 +21,8 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.LiteralReal
 import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.LiteralNull
+import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.Expression
 
 /**
  * Customization of the default outline structure.
@@ -34,30 +36,28 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (element.name !== null) {
 			text += ' ' + element.name;
 		} else if (element instanceof Membership) {
-			var member = element as Membership;
-			if (member.visibility !== null) {
-				text += ' ' + member.visibility;
+			if (element.visibility !== null) {
+				text += ' ' + element.visibility;
 			}
-			if (member.memberName !== null) {
-				text += ' ' + member.memberName
-			} else if (member.ownedMemberElement !== null) {
+			if (element.ownedMemberElement !== null) {
 				text += ' owns'
-				if (member.ownedMemberElement.name !== null) {
-					text += ' ' + member.ownedMemberElement.name;
+			}
+			if (element instanceof FeatureMembership) {
+				if (element.direction !== null) {
+					text += ' ' + element.direction
 				}
-			} else if (member.memberElement !== null) {
-				if (member.memberElement.name !== null) {
-					text += ' ' + member.memberElement.name;
-				}
+			}
+			if (element.memberName !== null) {
+				text += ' ' + element.memberName
+			} else if (element.memberElement?.name !== null) {
+				text += ' ' + element.memberElement.name;
 			}
 		} else if (element instanceof Import) {
-			var import = element as Import
-			if (import.visibility !== null) {
-				text += ' ' + import.visibility
+			if (element.visibility !== null) {
+				text += ' ' + element.visibility
 			}
-			if (import.importedPackage !== null && 
-				import.importedPackage.name !== null) {
-				text += ' ' + import.importedPackage.name
+			if (element.importedPackage?.name !== null) {
+				text += ' ' + element.importedPackage.name
 			}
 		}
 		text 
@@ -188,15 +188,24 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(Expression expression) {
+		// Ensure derivation of inputs and outputs
+		expression.input
+		expression.output
+		return _isLeaf(expression as Feature)
+	}
+	
 	def boolean _isLeaf(OperatorExpression expression) {
 		// Ensure derivation of typing
 		expression.typing
-		_isLeaf(expression as Feature) && expression.ownedMembership.isEmpty
+		_isLeaf(expression as Expression) && expression.ownedMembership.isEmpty
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
 		for (Relationship relationship : expression.allOwnedRelationships) {
-			createNode(parentNode, relationship);
+			createEObjectNode(parentNode, relationship, 
+				_image(relationship), relationship._text, false
+			);
 		}
 	}
 

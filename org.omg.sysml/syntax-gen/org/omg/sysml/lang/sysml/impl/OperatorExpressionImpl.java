@@ -129,114 +129,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		String operator = getOperator();
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::" + operator).toArray(String[]::new);
 	}
-
 	
-	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		protected List<Expression> delegateList() {
-			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
-		}
-		
-		@Override
-		protected void delegateAdd(Expression object) {
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-			membership.setOwnedMemberFeature(object);
-			getOwnedMembership().add(membership);
-		}
-		
-		@Override
-		protected void delegateAdd(int i, Expression object) {
-			throw new UnsupportedOperationException();
-		}
-		
-		@Override
-		public Expression remove(int i) {
-			throw new UnsupportedOperationException();
-		}
-		
-		@Override
-		public boolean remove(Object object) {
-			throw new UnsupportedOperationException();
-		}
-		
-		@Override
-		public void clear() {
-			
-		}
-
-		@Override
-		public Object[] basicToArray() {
-			return delegateToArray();
-		}
-
-		@Override
-		public <T> T[] basicToArray(T[] array) {
-			return delegateToArray(array);
-		}
-
-		@Override
-		public int basicIndexOf(Object object) {
-			return delegateIndexOf(object);
-		}
-
-		@Override
-		public int basicLastIndexOf(Object object) {
-			return delegateLastIndexOf(object);
-		}
-
-		@Override
-		public boolean basicContains(Object object) {
-			return delegateContains(object);
-		}
-
-		@Override
-		public boolean basicContainsAll(Collection<?> collection) {
-			return delegateContainsAll(collection);
-		}
-
-		@Override
-		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
-			remove(object);
-			return notifications;
-		}
-
-		@Override
-		public NotificationChain basicAdd(Expression object, NotificationChain notifications) {
-			add(object);
-			return notifications;
-		}
-		
-		@Override
-		public Expression basicGet(int i) {
-			return super.basicGet(i);
-		}
-		
-		@Override
-		public List<Expression> basicList() {
-			return super.basicList();
-		}
-		
-		@Override
-		public Iterator<Expression> basicIterator()
-		{
-			return super.basicIterator();
-		}
-		
-		@Override
-		public ListIterator<Expression> basicListIterator()
-		{
-			return super.basicListIterator();
-		}
-		
-		@Override
-		public ListIterator<Expression> basicListIterator(int i)
-		{
-			return super.basicListIterator(i);
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -348,6 +241,112 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		result.append(operator);
 		result.append(')');
 		return result.toString();
+	}
+	
+	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		protected List<Expression> delegateList() {
+			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
+		}
+		
+		@Override
+		protected void delegateAdd(Expression object) {
+			FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+			membership.setOwnedMemberFeature(object);
+			getOwnedMembership().add(membership);
+		}
+		
+		@Override
+		protected void delegateAdd(int i, Expression object) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public Expression remove(int i) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public boolean remove(Object object) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public void clear() {
+			
+		}
+
+		@Override
+		public Object[] basicToArray() {
+			return delegateToArray();
+		}
+
+		@Override
+		public <T> T[] basicToArray(T[] array) {
+			return delegateToArray(array);
+		}
+
+		@Override
+		public int basicIndexOf(Object object) {
+			return delegateIndexOf(object);
+		}
+
+		@Override
+		public int basicLastIndexOf(Object object) {
+			return delegateLastIndexOf(object);
+		}
+
+		@Override
+		public boolean basicContains(Object object) {
+			return delegateContains(object);
+		}
+
+		@Override
+		public boolean basicContainsAll(Collection<?> collection) {
+			return delegateContainsAll(collection);
+		}
+
+		@Override
+		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
+			remove(object);
+			return notifications;
+		}
+
+		@Override
+		public NotificationChain basicAdd(Expression object, NotificationChain notifications) {
+			add(object);
+			return notifications;
+		}
+		
+		@Override
+		public Expression basicGet(int i) {
+			return super.basicGet(i);
+		}
+		
+		@Override
+		public List<Expression> basicList() {
+			return super.basicList();
+		}
+		
+		@Override
+		public Iterator<Expression> basicIterator()
+		{
+			return super.basicIterator();
+		}
+		
+		@Override
+		public ListIterator<Expression> basicListIterator()
+		{
+			return super.basicListIterator();
+		}
+		
+		@Override
+		public ListIterator<Expression> basicListIterator(int i)
+		{
+			return super.basicListIterator(i);
+		}
 	}
 
 } //OperatorExpressionImpl

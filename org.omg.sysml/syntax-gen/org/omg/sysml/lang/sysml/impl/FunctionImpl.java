@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
@@ -103,16 +101,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 */
 	public Parameter basicGetResult() {
 		EList<Parameter> parameters = getParameter();
-		if (parameters.isEmpty()) {
-			return null;
-		} else {
-			Parameter result = parameters.get(parameters.size() - 1);
-			FeatureMembership membership = result.getOwningFeatureMembership();
-			if (membership != null) {
-				membership.setDirection(FeatureDirectionKind.OUT);
-			}
-			return result;
-		}
+		return parameters.isEmpty()? null: parameters.get(parameters.size() - 1);
 	}
 
 	/**

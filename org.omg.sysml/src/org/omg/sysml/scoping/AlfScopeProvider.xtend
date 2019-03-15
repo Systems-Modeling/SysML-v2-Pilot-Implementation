@@ -286,8 +286,8 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		return new SimpleScope(outerscope, od)
 	}
 	
-	private def Package getParentPackage(Package pack) {
-		var EObject container=pack.eContainer
+	private def Package getParentPackage(Element element) {
+		var EObject container=element.eContainer
 		while(!(container instanceof Package)){
 			container=container.eContainer
 		}
@@ -301,7 +301,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 	def IScope scope_owningNamespace(Element element, EReference reference) {
-		return scope_Namespace(element, element?.owningNamespace, reference)
+		return scope_Namespace(element, element?.parentPackage, reference)
 	}
 
 	def IScope scope_FeatureTyping_type(FeatureTyping featureTyping, EReference reference) {

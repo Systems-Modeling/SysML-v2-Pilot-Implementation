@@ -120,32 +120,21 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 
 	private def void gen(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit) {
-		val visited = visit
 		if (pack instanceof Category) {
-			val c = pack as Category
-			c.ownedRelationship.filter(Generalization).forEach [ e |
+			pack.ownedGeneralization.forEach [ e |
 				if (e.general?.name !== null) {
-					val container = e.general.owningNamespace
-					if (container !== null && container instanceof Package) {
-						val p = container as Package
-						if (!visited.contains(p)) {
-							visited.add(p)
-							p.gen(visitor, visit)
-							p.imp(visitor, visit, false)
-						}
-					}
-					if (!visited.contains(e.general)) {
-						visited.add(e.general)
+					if (!visit.contains(e.general)) {
+						visit.add(e.general)
 						e.general.gen(visitor, visit)
 						e.general.imp(visitor, visit, false)
 						val qn = QualifiedName.create()
-						visitor.apply(qn, e.general)
 						e.general.accept(qn, visitor, false, false, newHashSet)
 					}
 				}
 			]
 		}
 	}
+	
 	private def void loop2(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, 
 		HashMap<Element, HashSet<QualifiedName>> elements) {
 		
@@ -174,6 +163,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		}
 	}
+	
 	private def void getInherited(QualifiedName generalQName, HashMap<Element, HashSet<QualifiedName>> elements, Element generalEContainer,	(QualifiedName, Element)=>boolean visitor	){
 		val qnStartWith = generalQName.toString()
 		val qnAppendTo = generalEContainer.name
@@ -190,26 +180,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 		newElements.forEach[ne| visitor.apply(ne.get(1) as QualifiedName, ne.get(0) as Element)]
 	}
+	
 	private def void imp(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, boolean checkIfAdded) {
-		val visited = visit
 		pack.ownedImport.forEach [ e |
-			if (e.importedPackage?.name !== null) {
-				val container = e.importedPackage.owningNamespace
-				if (container !== null && container instanceof Package) {
-					val p = container as Package
-					if (!visited.contains(p)) {
-						visited.add(p)
-						p.imp(visitor, visit, checkIfAdded)
-						p.gen(visitor, visit)
-					}
-				}
-			}
-			if (!visited.contains(e.importedPackage)) {
-				visited.add(e.importedPackage)
+			if (!visit.contains(e.importedPackage)) {
+				visit.add(e.importedPackage)
 				e.importedPackage.imp(visitor, visit, checkIfAdded)
 				e.importedPackage.gen(visitor, visit)
 				val qn = QualifiedName.create()
-				visitor.apply(qn, e.importedPackage)
 				e.importedPackage.accept(qn, visitor, checkIfAdded, false, newHashSet)
 			}
 		]

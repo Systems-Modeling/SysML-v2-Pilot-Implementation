@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -58,8 +59,18 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (inputs.isEmpty()) {
 			Function function = getFunction();
 			if (function != null) {
-				inputs.addAll(function.getParameter().stream().
-						map(f->createFeatureForParameter(f)).collect(Collectors.toList()));
+				inputs.addAll(function.getInput().stream().filter(f->f instanceof Parameter).
+						map(f->createFeatureForParameter((Parameter)f)).collect(Collectors.toList()));
+				List<Expression> arguments = getArguments();
+				int i = 0;
+				int n = arguments.size();
+				for (Feature input: inputs) {
+					if (i >= n) {
+						break;
+					}
+					addOwnedBindingConnector(((ExpressionImpl)arguments.get(i)).getResult(), input);
+					i++;
+				}
 			}
 		}
 		return inputs;
@@ -77,9 +88,14 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return outputs;
 	}
 	
+	public List<Expression> getArguments() {
+		return getOwnedFeature().stream().filter(f->f instanceof Expression).
+				map(f->(Expression)f).collect(Collectors.toList());
+	}
+	
 	public Feature getResult() {
 		EList<Feature> outputs = getOutput();
-		return outputs.isEmpty()? null: outputs.get(0);
+		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
 	}
 	
 	protected Feature createFeatureForParameter(Parameter parameter) {
@@ -93,13 +109,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			redefinition.setRedefinedFeature(parameter);
 			feature.getOwnedRelationship().add(redefinition);
 			
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-			membership.setOwnedMemberFeature(feature);
+			FeatureMembership membership = addOwnedFeature(feature);
 			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
 			if (parameterMembership != null) {
 				membership.setDirection(parameterMembership.getDirection());
 			}
-			getOwnedMembership().add(membership);
 			
 			return feature;
 		}

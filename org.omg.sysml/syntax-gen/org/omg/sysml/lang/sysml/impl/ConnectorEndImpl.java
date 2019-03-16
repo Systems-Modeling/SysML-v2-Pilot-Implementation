@@ -142,13 +142,17 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		}
 	}
 
+	@Override
+	public Feature getEnd() {
+		return end == null? basicGetEnd(): getEndGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getEnd() {
+	public Feature getEndGen() {
 		if (end != null && end.eIsProxy()) {
 			InternalEObject oldEnd = (InternalEObject)end;
 			end = (Feature)eResolveProxy(oldEnd);
@@ -217,7 +221,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	
 	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
 		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
-		if (owningNamespace != null && owningNamespace != start && owningNamespace instanceof Feature) {
+		if (owningNamespace instanceof Feature && owningNamespace != start) {
 			getPath(path, start, (Feature)owningNamespace);
 		}
 		path.add(end);

@@ -127,6 +127,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def boolean _isLeaf(Feature feature) {
 		// Ensure default redefinition/subsetting
 		feature.ownedRedefinition
+		// Ensure valuation connector
+		feature.valuation
 		super._isLeaf(feature)
 	}
 	

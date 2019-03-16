@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -245,7 +243,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	
 	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
 		private static final long serialVersionUID = 1L;
-
+		
 		@Override
 		protected List<Expression> delegateList() {
 			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
@@ -253,9 +251,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		
 		@Override
 		protected void delegateAdd(Expression object) {
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-			membership.setOwnedMemberFeature(object);
-			getOwnedMembership().add(membership);
+			addOwnedFeature(object);
 		}
 		
 		@Override

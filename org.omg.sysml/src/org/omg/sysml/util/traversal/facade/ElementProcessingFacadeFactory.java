@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,15 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
+package org.omg.sysml.util.traversal.facade;
 
-package org.omg.sysml.util;
+public interface ElementProcessingFacadeFactory {
 
-import java.io.IOException;
-
-public class Alf2XMI extends AlfUtil {
+	/**
+	 * Create a facade for processing the Elements of a model.
+	 * 
+	 * @return	an ElementProcessingFacade
+	 */
+	ElementProcessingFacade createFacade();
 	
-	public static void main(String[] args) {
-		try {
-			Alf2XMI util = new Alf2XMI();
-			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }

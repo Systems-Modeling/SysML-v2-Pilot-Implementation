@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,23 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
+package org.omg.sysml.util.traversal.visitor;
 
-package org.omg.sysml.util;
+import org.omg.sysml.lang.sysml.Element;
 
-import java.io.IOException;
-
-public class Alf2XMI extends AlfUtil {
+public interface ElementVisitor {
 	
-	public static void main(String[] args) {
-		try {
-			Alf2XMI util = new Alf2XMI();
-			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * Get the Element this ElementVisitor is visiting.
+	 * @return
+	 */
+	Element getElement();
+	
+	/**
+	 * Visit the Element for this ElementVisitor.
+	 * 
+	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it.
+	 */
+	String visit();
 
 }

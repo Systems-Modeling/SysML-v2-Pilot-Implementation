@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,27 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
+package org.omg.sysml.util.traversal.facade;
 
-package org.omg.sysml.util;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
 
-import java.io.IOException;
+public interface ElementProcessingFacade {
 
-public class Alf2XMI extends AlfUtil {
+	/**
+	 * Process the given Element, returning a unique identifier for that element.
+	 * 
+	 * @param 	element			the Element to be processed
+	 * @return	a unique identifier for the processed element
+	 */
+	String processElement(Element element);
 	
-	public static void main(String[] args) {
-		try {
-			Alf2XMI util = new Alf2XMI();
-			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * Process the given Relationsip, returning a unique identifier for that relationship.
+	 * 
+	 * @param 	relationship	the Relationsjip to be processed
+	 * @return	a unique identifier for the processed relationship
+	 */
+	String processRelationship(Relationship relationship);
+	
 }

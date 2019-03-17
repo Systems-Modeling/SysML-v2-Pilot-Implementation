@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,31 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
+package org.omg.sysml.util.traversal.visitor.impl;
 
-package org.omg.sysml.util;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.util.traversal.Traversal;
+import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
-import java.io.IOException;
+public class RelationshipVisitorImpl extends VisitorImpl<Relationship> {
 
-public class Alf2XMI extends AlfUtil {
+	public RelationshipVisitorImpl(Relationship relationship, Traversal traversal, ElementProcessingFacade facade) {
+		super(relationship, traversal, facade);
+	}
 	
-	public static void main(String[] args) {
-		try {
-			Alf2XMI util = new Alf2XMI();
-			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
-			e.printStackTrace();
+	@Override
+	public String visit() {
+		Traversal traversal = this.getTraversal();
+		for (Element element: this.getElement().getRelatedElement()) {
+			traversal.visit(element);
 		}
+		return super.visit();
+	}
+	
+	@Override
+	protected String process() {
+		return this.getFacade().processRelationship(this.getElement());
 	}
 
 }

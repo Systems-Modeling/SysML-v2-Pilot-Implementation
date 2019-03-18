@@ -67,6 +67,9 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		repositoryElement.setName(modelElement.getName());
 		repositoryElement.setType(modelElement.eClass().getName());
 		repositoryElement.setParentModel(this.parentModel.getIdentifier());
+//		System.out.println("... name = " + repositoryElement.getName() + 
+//				" type = " + repositoryElement.getType() + 
+//				" parentModel = " + repositoryElement.getParentModel());
 		return repositoryElement;
 	}
 	
@@ -79,13 +82,15 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		EList<Element> source = modelRelationship.getSource();
 		if (!source.isEmpty()) {
 			Object identifier = traversal.getIdentifier(modelRelationship.getSource().get(0));
-			repositoryRelationship.setSourceElementRole("source");
-			repositoryRelationship.setSourceElement((UUID)identifier);
+			if (identifier instanceof UUID) {
+				repositoryRelationship.setSourceElementRole("source");
+				repositoryRelationship.setSourceElement((UUID)identifier);
+			}
 		}
 		EList<Element> target = modelRelationship.getTarget();
 		if (!target.isEmpty()) {
 			Object identifier = traversal.getIdentifier(modelRelationship.getSource().get(0));
-			if (identifier != null) {
+			if (identifier instanceof UUID) {
 				repositoryRelationship.setTargetElementRole("target");
 				repositoryRelationship.setTargetElement((UUID)identifier);
 			}
@@ -96,20 +101,26 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object processElement(Element element) {
 		try {
-			return this.createElement(element).getIdentifier();
+			System.out.println("Saving element " + element);
+			UUID identifier = this.createElement(element).getIdentifier();
+			System.out.println("... saved as " + identifier);
+			return identifier;
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-			return null;
+			return Integer.toHexString(element.hashCode());
 		}
 	}
 
 	@Override
 	public Object processRelationship(Relationship relationship) {
 		try {
-			return this.createRelationship(relationship).getIdentifier();
+			System.out.println("Saving relationship " + relationship);
+			UUID identifier = this.createRelationship(relationship).getIdentifier();
+			System.out.println("... saved as " + identifier);
+			return identifier;
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-			return null;
+			return Integer.toHexString(relationship.hashCode());
 		}
 	}
 

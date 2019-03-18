@@ -21,48 +21,49 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.util.traversal.visitor.impl;
+package org.omg.sysml.util.traversal.impl;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.visitor.ElementVisitor;
 import org.omg.sysml.util.traversal.visitor.ElementVisitorFactory;
 
-/**
- * @author seidewitz
- *
- */
-public class ElementVisitorFactoryImpl implements ElementVisitorFactory {
+public class TraversalImpl implements Traversal {
 	
-	private Traversal traversal;
-	private final ElementProcessingFacade facade;
+	protected final ElementVisitorFactory visitorFactory;
+	protected final Map<Element, Object> elementMap = new HashMap<>();
 	
-	public ElementVisitorFactoryImpl(ElementProcessingFacade facade) {
-		this.facade = facade;
+	public TraversalImpl(ElementVisitorFactory visitorFactory) {
+		this.visitorFactory = visitorFactory;
 	}
 	
-	public Traversal getTraversal() { 
-		return this.traversal;
+	public Object getIdentifier(Element element) {
+		return this.elementMap.get(element);
 	}
 	
-	public void setTraversal(Traversal traversal) {
-		this.traversal = traversal;
+	public void putIdentifier(Element element, Object identifier) {
+		this.elementMap.put(element, identifier);
 	}
 	
-	public ElementProcessingFacade getFacade() {
-		return this.facade;
+	public void reset() {
+		this.elementMap.clear();
 	}
-
-	/* (non-Javadoc)
-	 * @see org.omg.sysml.util.traversal.visitor.ElementVisitorFactory#createVisitor(org.omg.sysml.lang.sysml.Element, org.omg.sysml.util.traversal.impl.AlfTraversalImpl)
-	 */
-	@Override
-	public ElementVisitor createVisitor(Element element) {
-		return element instanceof Relationship? 
-				new RelationshipVisitorImpl((Relationship)element, this.getTraversal(), this.getFacade()): 
-					new ElementVisitorImpl(element, this.getTraversal(), this.getFacade());
+	
+	protected Object visit(Element element, ElementVisitor visitor) {
+		Object identifier = visitor.visit();
+		if (identifier != null) {
+			this.putIdentifier(element, identifier);
+		}
+		return identifier;
 	}
-
+	
+	public Object visit(Element element) {
+		Object identifier = this.getIdentifier(element);
+		return identifier != null? identifier:
+				this.visit(element, this.visitorFactory.createVisitor(element));
+	}
+	
 }

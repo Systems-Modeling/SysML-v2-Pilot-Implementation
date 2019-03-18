@@ -10,7 +10,7 @@ public class ElementVisitorImpl extends VisitorImpl<Element> {
 		super(element, traversal, facade);
 	}
 
-	protected String process() {
+	protected Object process() {
 		return this.getFacade().processElement(this.getElement());
 	}
 

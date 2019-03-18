@@ -27,10 +27,12 @@ import org.omg.sysml.lang.sysml.Element;
 
 public interface Traversal {
 
-	public String getIdentifier(Element element);
+	public Object getIdentifier(Element element);
 	
-	public void putIdentifier(Element element, String identifier);
+	public void putIdentifier(Element element, Object identifier);
 	
-	public <T extends Element> String visit(T element);
+	public void reset();
+	
+	public Object visit(Element element);
 	
 }

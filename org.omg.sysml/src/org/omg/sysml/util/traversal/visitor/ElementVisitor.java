@@ -38,6 +38,6 @@ public interface ElementVisitor {
 	 * 
 	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it.
 	 */
-	String visit();
+	Object visit();
 
 }

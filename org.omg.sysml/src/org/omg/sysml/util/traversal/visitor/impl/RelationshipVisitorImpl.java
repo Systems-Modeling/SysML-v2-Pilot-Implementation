@@ -35,7 +35,7 @@ public class RelationshipVisitorImpl extends VisitorImpl<Relationship> {
 	}
 	
 	@Override
-	public String visit() {
+	public Object visit() {
 		Traversal traversal = this.getTraversal();
 		for (Element element: this.getElement().getRelatedElement()) {
 			traversal.visit(element);
@@ -44,7 +44,7 @@ public class RelationshipVisitorImpl extends VisitorImpl<Relationship> {
 	}
 	
 	@Override
-	protected String process() {
+	protected Object process() {
 		return this.getFacade().processRelationship(this.getElement());
 	}
 

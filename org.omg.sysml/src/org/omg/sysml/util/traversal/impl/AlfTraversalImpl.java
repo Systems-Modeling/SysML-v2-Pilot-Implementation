@@ -23,47 +23,37 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.AlfUtil;
 import org.omg.sysml.util.traversal.Traversal;
+import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
-import org.omg.sysml.util.traversal.visitor.ElementVisitor;
-import org.omg.sysml.util.traversal.visitor.ElementVisitorFactory;
 import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 
-public class AlfTraversalImpl extends AlfUtil implements Traversal {
+public class AlfTraversalImpl extends AlfUtil {
 	
-	protected ElementVisitorFactory visitorFactory = new ElementVisitorFactoryImpl(this, new DefaultElementProcessingFacadeImpl());
-	protected Map<Element, String> elementMap = new HashMap<>();
+	protected Traversal traversal;
 	
-	public String getIdentifier(Element element) {
-		return this.elementMap.get(element);
+	public AlfTraversalImpl(ElementProcessingFacade processingFacade) {
+		this.initialize(processingFacade);
 	}
 	
-	public void putIdentifier(Element element, String identifier) {
-		this.elementMap.put(element, identifier);
+	public AlfTraversalImpl() {
+		this(new DefaultElementProcessingFacadeImpl());
 	}
 	
-	protected String visit(Element element, ElementVisitor visitor) {
-		String identifier = visitor.visit();
-		this.putIdentifier(element, identifier);
-		return identifier;
-	}
-	
-	public String visit(Element element) {
-		String identifier = this.getIdentifier(element);
-		return identifier != null? identifier:
-				this.visit(element, this.visitorFactory.createVisitor(element));
+	protected Traversal initialize(ElementProcessingFacade processingFacade) {
+		ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
+		this.traversal = new TraversalImpl(visitorFactory);
+		visitorFactory.setTraversal(this.traversal);	
+		return this.traversal;
 	}
 	
 	public void process() {
 		for (EObject object: this.contents) {
 			if (object instanceof Element) {
-				this.visit((Element)object);
+				this.traversal.visit((Element)object);
 			}
 		}
 	}
@@ -75,7 +65,7 @@ public class AlfTraversalImpl extends AlfUtil implements Traversal {
 			System.out.println("Reading " + args[0] + "...");
 			traversal.read(args[0]);
 			
-			System.out.println("Traversing...");
+			System.out.println("Processing...");
 			traversal.process();
 		} catch (Exception e) {
 			e.printStackTrace();

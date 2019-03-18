@@ -56,8 +56,8 @@ public abstract class VisitorImpl<T extends Element> implements ElementVisitor {
 	}
 
 	@Override
-	public String visit() {
-		String identifier = this.process();
+	public Object visit() {
+		Object identifier = this.process();
 		Element element = this.getElement();
 		Traversal traversal = this.getTraversal();
 		traversal.putIdentifier(element, identifier);
@@ -67,6 +67,6 @@ public abstract class VisitorImpl<T extends Element> implements ElementVisitor {
 		return identifier;
 	}
 	
-	protected abstract String process();
+	protected abstract Object process();
 
 }

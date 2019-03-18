@@ -21,27 +21,33 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.util.traversal.facade;
+package org.omg.sysml.util.traversal.impl;
 
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Relationship;
+import java.util.Date;
 
-public interface ElementProcessingFacade {
+import org.omg.sysml.ApiException;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
-	/**
-	 * Process the given Element, returning a unique identifier for that element.
-	 * 
-	 * @param 	element			the Element to be processed
-	 * @return	a unique identifier for the processed element
-	 */
-	Object processElement(Element element);
+public class AlfRepositorySaveImpl extends AlfTraversalImpl {
 	
-	/**
-	 * Process the given Relationship, returning a unique identifier for that relationship.
-	 * 
-	 * @param 	relationship	the Relationship to be processed
-	 * @return	a unique identifier for the processed relationship
-	 */
-	Object processRelationship(Relationship relationship);
-	
+	public AlfRepositorySaveImpl(String modelName) throws ApiException {
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName);	
+		processingFacade.setTraversal(this.initialize(processingFacade));
+	}
+		
+	public static void main(String[] args) {
+		try {
+			String modelName = "Model " + new Date();
+			AlfRepositorySaveImpl save = new AlfRepositorySaveImpl(modelName);
+			
+			System.out.println("Reading " + args[0] + "...");
+			save.read(args[0]);
+			
+			System.out.println("Saving to " + modelName + "...");
+			save.process();
+		} catch (ApiException e) {
+			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
+		}
+	}
+
 }

@@ -1,7 +1,11 @@
-package SiUnits {
+package SI {
 	import UnitsAndScales::*;
-	import InternationalSystemOfQuantities::*;
-	import SiUnitPrefixes::*;
+	import ISQ::*;
+	import SIPrefixes::*;
+	
+	/*
+	 * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
+	 */
 
 	/*
 	 * SI simple units needed before creation of base units
@@ -53,7 +57,7 @@ package SiUnits {
 	hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
 
 	/* 
-	 * Examples of prefixed units
+	 * Prefixed units - incomplete list
 	 */
 	km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
 	mN = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
@@ -62,12 +66,12 @@ package SiUnits {
 	GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
 	
 	/*
-	 * Examples of additional more complex derived units
+	 * Derived units - incomplete list
 	 */
 	'km/hr': SpeedUnit = km / hr;
 	
 	/*
-	 * Interval scales
+	 * Interval scales - incomplete list
 	 */
 	 
 	/*

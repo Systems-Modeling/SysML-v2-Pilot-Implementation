@@ -1,10 +1,10 @@
-package InternationalSystemOfQuantities {
+package ISQ {
 	import ScalarValues::Real;
 	import Quantities::*;
 	import UnitsAndScales::*;
 	
 	/*
-	 * ISO/IEC 80000 system of quantities
+	 * International system of quantities (ISQ), as defined in ISO/IEC 80000
 	 */
 	
 	/*
@@ -156,7 +156,7 @@ package InternationalSystemOfQuantities {
 	}	 
 	 
 	/*
-	 * Explicit definition of "unit of dimension one" aka "dimensionless unit"
+	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit"
 	 */
 	class UnitOfDimensionOne specializes DerivedUnit {
 		feature name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
@@ -240,15 +240,8 @@ package InternationalSystemOfQuantities {
 	feature energy: EnergyValue redefines quantity;
 	
 	/*
-	 * Example specializations of a basic feature, i.e. adding more specific semantics
+	 * Qualified specializations of a basic features, i.e. features adding more specific semantics
 	 */
 	feature kineticEnergy is energy;
 	feature potentialEnergy is energy;
-	 	
-	/*
-	 * TODO: Consider a convenience factory method / macro to define to define derived quantities and units 
-	 * in terms of other derived quantities and units
-	 * e.g. EnergyUnit as ForceUnit^1 * LengthUnit^1
-	 * which is then auto-converted into LengthUnit^2 * MassUnit^1 * TimeUnit^-2
-	 */
 }

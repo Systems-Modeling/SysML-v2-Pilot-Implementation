@@ -1,6 +1,7 @@
 package ScalarValues {
+	import Base::*;
 	
-	abstract datatype ScalarValue specializes Base::Value;
+	abstract datatype ScalarValue specializes Value;
 	datatype Boolean specializes ScalarValue;
 	datatype String specializes ScalarValue;
 	abstract datatype NumericalValue specializes ScalarValue;

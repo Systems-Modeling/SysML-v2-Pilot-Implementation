@@ -1,9 +1,9 @@
-package UsCustomaryUnits {
+package USCustomaryUnits {
 	
-	import SiUnits::*;
+	import SI::*;
 	
 	/*
-	 * Examples of US customary units defined w.r.t. SI units
+	 * US customary units defined w.r.t. SI units
 	 * Conversion factors are taken from NIST SP 811 Appendix B
 	 * See https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b
 	 */
@@ -19,7 +19,7 @@ package UsCustomaryUnits {
     lbf = ForceUnit(name => "pound-force", unitConversion => ConversionByConvention(referenceUnit => N, conversionFactor => 4.448222 ));
 
     /*
-     * Example definition of an alias for mile per hour
+     * Definition of an alias for mile per hour
      */
     mph = 'mi/hr';
 }

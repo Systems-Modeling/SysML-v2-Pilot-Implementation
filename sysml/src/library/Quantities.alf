@@ -15,8 +15,6 @@ package Quantities {
 	 * Representation of a quantity
 	 * 
 	 * It is defined as a self-standing feature that is the 'super feature' of all quantities.
-	 * 
-	 * TODO: Consider the capability in ALF to declare a feature to be abstract
 	 */
 	feature quantity: QuantityValue;
 }

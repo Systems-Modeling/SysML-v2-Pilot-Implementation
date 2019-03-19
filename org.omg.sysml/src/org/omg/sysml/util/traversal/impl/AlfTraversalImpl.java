@@ -43,6 +43,10 @@ public class AlfTraversalImpl extends AlfUtil {
 		this(new DefaultElementProcessingFacadeImpl());
 	}
 	
+	public Traversal getTraversal() {
+		return this.traversal;
+	}
+	
 	protected Traversal initialize(ElementProcessingFacade processingFacade) {
 		ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
 		this.traversal = new TraversalImpl(visitorFactory);

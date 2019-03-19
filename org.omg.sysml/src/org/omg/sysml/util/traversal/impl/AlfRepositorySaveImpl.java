@@ -23,6 +23,7 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.impl;
 
+import java.nio.file.Paths;
 import java.util.Date;
 
 import org.omg.sysml.ApiException;
@@ -30,20 +31,34 @@ import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 public class AlfRepositorySaveImpl extends AlfTraversalImpl {
 	
+	private String modelId;
+	
 	public AlfRepositorySaveImpl(String modelName) throws ApiException {
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName);	
 		processingFacade.setTraversal(this.initialize(processingFacade));
+		this.modelId = processingFacade.getModelId();
+	}
+	
+	public String getModelId() {
+		return this.modelId;
 	}
 		
 	public static void main(String[] args) {
 		try {
-			String modelName = "Model " + new Date();
+			String modelName = Paths.get(args[0]).getFileName().toString();
+			int i = modelName.indexOf('.');
+			if (i >= 0) {
+				modelName = modelName.substring(0, i);
+			}
+			modelName += " " + new Date();
+			
 			AlfRepositorySaveImpl save = new AlfRepositorySaveImpl(modelName);
 			
 			System.out.println("Reading " + args[0] + "...");
 			save.read(args[0]);
 			
-			System.out.println("Saving to " + modelName + "...");
+			System.out.println("Saving model " + modelName + "...");
+			System.out.println("... model id is " + save.getModelId());
 			save.process();
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());

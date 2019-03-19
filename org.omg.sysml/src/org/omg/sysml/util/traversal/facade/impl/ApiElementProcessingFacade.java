@@ -63,6 +63,10 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		return this.traversal;
 	}
 	
+	public String getModelId() {
+		return this.parentModel.getIdentifier().toString();
+	}
+	
 	protected <T extends org.omg.sysml.model.Element> T initialize(T repositoryElement, Element modelElement) {
 		repositoryElement.setName(modelElement.getName());
 		repositoryElement.setType(modelElement.eClass().getName());
@@ -89,7 +93,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		}
 		EList<Element> target = modelRelationship.getTarget();
 		if (!target.isEmpty()) {
-			Object identifier = traversal.getIdentifier(modelRelationship.getSource().get(0));
+			Object identifier = traversal.getIdentifier(modelRelationship.getTarget().get(0));
 			if (identifier instanceof UUID) {
 				repositoryRelationship.setTargetElementRole("target");
 				repositoryRelationship.setTargetElement((UUID)identifier);
@@ -97,13 +101,26 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		}
 		return  relationshipApi.createRelationship(repositoryRelationship);
 	}
+	
+	public static String descriptionOf(Element element) {
+		String s = element.eClass().getName() + "@" + Integer.toHexString(element.hashCode());
+		String name = element.getName();
+		if (name != null) {
+			s += " (" + name + ")";
+		}
+		
+		if (element.eIsProxy()) {
+			s += " PROXY";
+		}
+		return s;
+	}
 
 	@Override
 	public Object processElement(Element element) {
 		try {
-			System.out.println("Saving element " + element);
+			System.out.println("Saving element " + descriptionOf(element));
 			UUID identifier = this.createElement(element).getIdentifier();
-			System.out.println("... saved as " + identifier);
+			System.out.println("... element id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
@@ -114,9 +131,9 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object processRelationship(Relationship relationship) {
 		try {
-			System.out.println("Saving relationship " + relationship);
+			System.out.println("Saving relationship " + descriptionOf(relationship));
 			UUID identifier = this.createRelationship(relationship).getIdentifier();
-			System.out.println("... saved as " + identifier);
+			System.out.println("... relationship id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());

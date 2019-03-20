@@ -175,6 +175,6 @@ package UnitsAndScales {
 	 */
 	datatype QuantityDimension specializes Base::Value {
 		// Should be ordered or the order should be derived from an ordered set of base units
-		feature baseUnitPowerFactor: UnitPowerFactor[0..*];
+		feature baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
 	}
 }

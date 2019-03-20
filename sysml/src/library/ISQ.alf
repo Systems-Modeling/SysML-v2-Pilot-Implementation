@@ -165,7 +165,7 @@ package ISQ {
 	/*
 	 * force
 	 */	
-	class ForceUnit specializes DerivedUnit {
+	class ForceUnit specializes SiDerivedUnit {
 		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
@@ -185,7 +185,7 @@ package ISQ {
 	/*
 	 * speed
 	 */
-	class SpeedUnit specializes DerivedUnit {
+	class SpeedUnit specializes SiDerivedUnit {
 		lengthPowerFactor subsets SiDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
@@ -202,7 +202,7 @@ package ISQ {
 	/*
 	 * torque
 	 */
-	class TorqueUnit specializes DerivedUnit {
+	class TorqueUnit specializes SiDerivedUnit {
 		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 2;
 		}
@@ -222,7 +222,7 @@ package ISQ {
 	/*
 	 * energy
 	 */
-	class EnergyUnit specializes DerivedUnit {
+	class EnergyUnit specializes SiDerivedUnit {
 		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 2;
 		}
@@ -242,6 +242,6 @@ package ISQ {
 	/*
 	 * Qualified specializations of a basic features, i.e. features adding more specific semantics
 	 */
-	feature kineticEnergy is energy;
-	feature potentialEnergy is energy;
+	feature kineticEnergy subsets energy;
+	feature potentialEnergy subsets energy;
 }

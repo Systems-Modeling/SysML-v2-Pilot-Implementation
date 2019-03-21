@@ -220,11 +220,13 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	}
 	
 	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
-		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
-		if (owningNamespace instanceof Feature && owningNamespace != start) {
-			getPath(path, start, (Feature)owningNamespace);
+		if (end != null) {
+			org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
+			if (owningNamespace instanceof Feature && owningNamespace != start) {
+				getPath(path, start, (Feature)owningNamespace);
+			}
+			path.add(end);
 		}
-		path.add(end);
 	}
 
 	/**

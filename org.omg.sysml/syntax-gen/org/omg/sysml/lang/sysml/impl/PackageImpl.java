@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -109,12 +110,9 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	public EList<Element> getMember() {
 		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
-		for (Membership membership: this.getMembership()) {
-			Element memberElement = membership.getMemberElement();
-			if (memberElement != null) {
-				members.add(memberElement);
-			}
-		}
+		members.addAll(getMembership().stream().
+				map(m->m.getMemberElement()).
+				filter(m->m != null).collect(Collectors.toList()));		
 		return members;
 	}
 

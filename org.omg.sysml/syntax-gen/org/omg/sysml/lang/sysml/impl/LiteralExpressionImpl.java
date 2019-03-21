@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.LiteralExpression;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpression {
+	
+	public static final String LITERAL_EXPRESSION_SUBSETTING_DEFAULT = "Base::literalEvaluation";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24,6 +29,11 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 		super();
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(LITERAL_EXPRESSION_SUBSETTING_DEFAULT);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

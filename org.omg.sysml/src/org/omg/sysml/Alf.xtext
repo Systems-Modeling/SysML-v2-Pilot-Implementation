@@ -496,7 +496,7 @@ PrimaryExpression returns SysML::Expression:
 	| '(' Expression ')'
 ;
 
-NameExpression returns SysML::Expression :
+NameExpression returns SysML::LiteralExpression :
 	ownedMembership += NamedFeatureReference
 ;
 

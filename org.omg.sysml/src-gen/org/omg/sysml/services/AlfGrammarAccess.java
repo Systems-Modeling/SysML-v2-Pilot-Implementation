@@ -3280,7 +3280,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMembershipAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedMembershipNamedFeatureReferenceParserRuleCall_0 = (RuleCall)cOwnedMembershipAssignment.eContents().get(0);
 		
-		//NameExpression SysML::Expression:
+		//NameExpression SysML::LiteralExpression:
 		//	ownedMembership+=NamedFeatureReference;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5040,7 +5040,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
-	//NameExpression SysML::Expression:
+	//NameExpression SysML::LiteralExpression:
 	//	ownedMembership+=NamedFeatureReference;
 	public NameExpressionElements getNameExpressionAccess() {
 		return pNameExpression;

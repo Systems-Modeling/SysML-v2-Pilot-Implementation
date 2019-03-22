@@ -124,7 +124,7 @@ package ISQ {
 	 * As a default all unit power factor exponents are set to zero.
 	 */
 	 
-	abstract class SiDerivedUnit specializes DerivedUnit {
+	abstract class SIDerivedUnit specializes DerivedUnit {
 		feature lengthPowerFactor subsets MeasurementUnit::unitPowerFactor {
 			unit: LengthUnit redefines UnitPowerFactor::unit;
 			exponent redefines UnitPowerFactor::exponent = 0;
@@ -165,14 +165,14 @@ package ISQ {
 	/*
 	 * force
 	 */	
-	class ForceUnit specializes SiDerivedUnit {
-		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+	class ForceUnit specializes SIDerivedUnit {
+		lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+		massPowerFactor redefines SIDerivedUnit::massPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+		timePowerFactor redefines SIDerivedUnit::timePowerFactor {
 			exponent redefines UnitPowerFactor::exponent = -2;
 		}
 	}
@@ -185,11 +185,11 @@ package ISQ {
 	/*
 	 * speed
 	 */
-	class SpeedUnit specializes SiDerivedUnit {
-		lengthPowerFactor subsets SiDerivedUnit::lengthPowerFactor {
+	class SpeedUnit specializes SIDerivedUnit {
+		lengthPowerFactor subsets SIDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		timePowerFactor subsets SiDerivedUnit::timePowerFactor {
+		timePowerFactor subsets SIDerivedUnit::timePowerFactor {
 			exponent redefines UnitPowerFactor::exponent = -1;
 		}		
 	}
@@ -202,14 +202,14 @@ package ISQ {
 	/*
 	 * torque
 	 */
-	class TorqueUnit specializes SiDerivedUnit {
-		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+	class TorqueUnit specializes SIDerivedUnit {
+		lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 2;
 		}
-		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+		massPowerFactor redefines SIDerivedUnit::massPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+		timePowerFactor redefines SIDerivedUnit::timePowerFactor {
 			exponent redefines UnitPowerFactor::exponent = -2;
 		}
 	}
@@ -222,14 +222,14 @@ package ISQ {
 	/*
 	 * energy
 	 */
-	class EnergyUnit specializes SiDerivedUnit {
-		lengthPowerFactor redefines SiDerivedUnit::lengthPowerFactor {
+	class EnergyUnit specializes SIDerivedUnit {
+		lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 2;
 		}
-		massPowerFactor redefines SiDerivedUnit::massPowerFactor {
+		massPowerFactor redefines SIDerivedUnit::massPowerFactor {
 			exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		timePowerFactor redefines SiDerivedUnit::timePowerFactor {
+		timePowerFactor redefines SIDerivedUnit::timePowerFactor {
 			exponent redefines UnitPowerFactor::exponent = -2;
 		}
 	}

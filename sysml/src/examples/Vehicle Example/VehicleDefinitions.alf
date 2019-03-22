@@ -2,6 +2,11 @@
  * Example vehicle definitions model.
  **/
 package VehicleDefinitions {
+	import ScalarValues::*;
+	import Quantities::*;
+	import UnitsAndScales::*;
+	import ISQ::*;
+	import SI::*;
 	
 	/* BLOCKS */
 	
@@ -11,21 +16,21 @@ package VehicleDefinitions {
 	class Axle;	
 	class Wheel;
 	class Lugbolt {
-		tighteningTorque is torque;
+		tighteningTorque is ISQ::torque;
 	}
 	
 	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
-		in driveTorque is torque;
+		in driveTorque is ISQ::torque;
 	}
 	
 	class AxleMountIF { 
-		out transferredTorque is torque;
+		out transferredTorque is ISQ::torque;
 	}
 	
 	class WheelHubIF { 
-		in appliedTorque is torque;
+		in appliedTorque is ISQ::torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */
@@ -37,38 +42,4 @@ package VehicleDefinitions {
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;
 	}
-
-	/* LOCALLY DEFINED VALUE TYPES */
-		
-	// Import ScalarValues library
-	import ScalarValues::*;
-	
-	// Import Quantities libraries
-	import Quantities::*;
-	import UnitsAndScales::*;
-	import ISQ::*;
-
-	/* 
-	 * Torque measurement unit (and implied ratio scale) defined as a force unit times a length unit. 
-	 */
-	datatype TorqueUnit specializes DerivedUnit {
-		unitPowerFactor1 subsets unitPowerFactor {
-			unit: ForceUnit redefines UnitPowerFactor::unit;
-			exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		unitPowerFactor2 subsets unitPowerFactor {
-			unit: LengthUnit redefines UnitPowerFactor::unit;
-			exponent redefines UnitPowerFactor::exponent = 1;
-		}
-	}
-	
-	/*
-	 * Torque quantity value and feature defined as a real  magnitude with a torque unit.
-	 */
-	datatype TorqueValue specializes QuantityValue {
-		magnitude: Real redefines QuantityValue::magnitude;
-		scale: TorqueUnit redefines QuantityValue::scale;
-	}
-	torque : TorqueValue redefines Quantity;
-	
 }

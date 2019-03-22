@@ -3,14 +3,23 @@ package USCustomaryUnits {
 	import SI::*;
 	
 	/*
-	 * Examples of US customary units defined w.r.t. SI units
+	 * US customary units defined w.r.t. SI units
 	 * Conversion factors are taken from NIST SP 811 Appendix B
 	 * See https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b
 	 */
-	ft = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => 1000.0/3048.0));
+	 
+	ft = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => 0.3048));
 	'in' = LengthUnit(name => "inch", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 1.0/12.0));
-    mi = LengthUnit(name => "mile", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 5280.0 ));	 
+    mi = LengthUnit(name => "mile", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 5280.0 ));	
 
-    'mi/hr': SpeedUnit = mi / hr;
-	// TODO: Add name => "mile/hour"	
+    lb = MassUnit(name => "pound (avoirdupois)", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 0.4535924 ));
+
+    'mi/hr': SpeedUnit = mi / hr { feature name redefines MeasurementScale::name = "mile per hour"; }
+    
+    lbf = ForceUnit(name => "pound-force", unitConversion => ConversionByConvention(referenceUnit => N, conversionFactor => 4.448222 ));
+
+    /*
+     * Definition of an alias for mile per hour
+     */
+    mph = 'mi/hr';
 }

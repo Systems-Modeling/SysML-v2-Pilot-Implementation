@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -122,6 +122,61 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ELEMENT;
+	}
+	
+	/**
+	 * Converts a string literal or unrestricted name with escaped characters 
+	 * into a string in which the escape sequences are replaced with the corresponding 
+	 * represented characters. If the input string starts with a single or double quote
+	 * character, it is assumed to be a lexically valid unrestricted name or string literal,
+	 * respectively. Otherwise, the input string is returned without change.
+	 */
+	public static String unescapeString(String literal) {
+		if (literal == null || literal.isEmpty() || 
+				literal.charAt(0) != '"' && literal.charAt(0) != '\'') {
+			return literal;
+		} else {
+			StringBuilder s = new StringBuilder();
+			int i = 1;
+			int j = literal.indexOf('\\', 1);
+			while (j >= 0) {
+				char c = literal.charAt(j + 1);
+				s.append(literal.substring(i, j));
+				s.append(
+					c == 'b'? '\b':
+					c == 't'? '\t':
+					c == 'n'? '\n':
+					c == 'f'? '\f':
+					c == 'r'? '\r':
+					c == '"'? '"':
+					c == '\''? '\'':
+					c == '\\'? '\\':
+					' ');
+				i = j + 2;
+				j = literal.indexOf('\\', i);
+			}
+			s.append(literal.substring(i, literal.length() - 1));
+			return s.toString();
+		}
+	}
+	
+	/**
+	 * Return a string that is the same as the input string,  but with escapable characters
+	 * replaced by appropriate escape sequences.
+	 */
+	public static String escapeString(String str) {
+		StringBuilder s = new StringBuilder();
+		int j = 0;
+		for (int i = 0; i < str.length(); i++) {
+			int c = "\b\t\n\f\r\"'\\".indexOf(str.charAt(i));
+			if (c > 0) {
+				s.append(str.substring(j, i));
+				s.append('\\');
+				s.append("btnfr\"'\\".charAt(c));
+			}
+			j++;
+		}
+		return s.toString();
 	}
 	
 	/**
@@ -335,7 +390,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			owningMembership.setMemberName(newName);
 			this.basicSetName(null);
 		} else {
-			this.basicSetName(newName);
+			this.basicSetName(unescapeString(newName));
 		}
 	}
 	

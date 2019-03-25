@@ -1,11 +1,11 @@
+/**
+ * International system of quantities (ISQ), as defined in ISO/IEC 80000
+ */
 package ISQ {
 	import ScalarValues::Real;
 	import Quantities::*;
 	import UnitsAndScales::*;
 	
-	/*
-	 * International system of quantities (ISQ), as defined in ISO/IEC 80000
-	 */
 	
 	/*
 	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
@@ -240,7 +240,7 @@ package ISQ {
 	feature energy: EnergyValue redefines quantity;
 	
 	/*
-	 * Qualified specializations of a basic features, i.e. features adding more specific semantics
+	 * Qualified specializations of basic features, i.e. features adding more specific semantics
 	 */
 	feature kineticEnergy subsets energy;
 	feature potentialEnergy subsets energy;

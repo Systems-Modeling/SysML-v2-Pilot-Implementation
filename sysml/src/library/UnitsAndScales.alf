@@ -1,6 +1,6 @@
 package UnitsAndScales {
 
-	/*
+	/**
 	 * Top-level representation of measurement scale.
 	 * 
 	 * A MeasurementScale can have zero or more scaleValueDefinition that define particular essential 
@@ -11,7 +11,7 @@ package UnitsAndScales {
 		part scaleValueDefinition: ScaleValueDefinition[0..*];
 	}
 	
-	/*
+	/**
 	 * Representation of a measurement unit.
 	 * 
 	 * Note: MeasurementUnit specializes MeasurementScale in order to allow for efficient and intuitive definition of a ratio scale.
@@ -27,7 +27,7 @@ package UnitsAndScales {
 		part unitConversion: UnitConversion[0..1];
 	}
 	
-	/*
+	/**
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
 	abstract class SimpleUnit specializes MeasurementUnit {
@@ -36,13 +36,13 @@ package UnitsAndScales {
 		}
 	}
 	
-	/*
+	/**
 	 * Representation of a measurement unit that depends on one or more powers of other measurement units.
 	 */
 	abstract class DerivedUnit specializes MeasurementUnit {
 	}
 	
-	/*
+	/**
 	 * Representation of a measurement unit power factor
 	 * 
 	 * Specifies a tuple of a referenced measurement unit and an exponent.
@@ -52,7 +52,7 @@ package UnitsAndScales {
 		feature exponent: ScalarValues::Number;
 	}
 	
-	/*
+	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.  
 	 */
 	abstract class UnitConversion specializes Base::Object {
@@ -60,12 +60,12 @@ package UnitsAndScales {
 		feature conversionFactor: ScalarValues::Number;
 	}
 	
-	/*
+	/**
 	 * Representation of a UnitConversion that is defined according to some convention.
 	 */
 	class ConversionByConvention specializes UnitConversion { }
 	
-	/*
+	/**
 	 * Representation of a UnitConversion that is defined through reference to a named unit prefix associated to a conversion factor 
 	 * that is a decimal or binary multiple or sub-multiple, as defined in ISO/IEC 80000-1.
 	 * 
@@ -80,7 +80,7 @@ package UnitsAndScales {
 		feature conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
 	}
 
-	/*
+	/**
 	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000-1.
 	 */	
 	class UnitPrefix specializes Base::Object {
@@ -90,7 +90,7 @@ package UnitsAndScales {
 	}
 	
 		
-	/*
+	/**
 	 * Representation of a non-ratio measurement scale as opposed to a ratio measurement scale.
 	 * 
 	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the scale in a QuantityValue.
@@ -100,19 +100,19 @@ package UnitsAndScales {
 		part scaleValueMapping: ScaleValueMapping[0..1];	
 	}
 	
-	/*
+	/**
 	 * Representation of an ordinal measurement scale.
 	 */
 	class OrdinalScale specializes NonRatioScale { }
 	
-	/*
+	/**
 	 * Representation of an interval measurement scale.
 	 * 
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see NonRatioScale.
 	 */
 	class IntervalScale specializes NonRatioScale { }
 	
-	/*
+	/**
 	 * Representation of a ratio measurement scale with a periodic cycle.
 	 * 
 	 * Note: The magnitude of the periodic cycle is defined by the modulus of the scale.
@@ -123,7 +123,7 @@ package UnitsAndScales {
 		feature modulus: ScalarValues::Number;
 	}
 
-	/*
+	/**
 	 * Representation of a logarithmic measurement scale
 	 * 
 	 * The magnitude v of a ratio quantity value expressed on a logarithmic scale 
@@ -143,7 +143,7 @@ package UnitsAndScales {
 		feature referenceQuantity: Quantities::QuantityValue[0..1];
 	}
 	
-	/*
+	/**
 	 * Representation of the mapping of equivalent quantity values expressed on two different measurement scales
 	 * 
 	 * Example: The mapping between the equivalent temperature quantity values of 273.16 K on kelvin ratio scale 
@@ -157,7 +157,7 @@ package UnitsAndScales {
 		feature mappedScaleValue: ScaleValueDefinition;
 	}
 	
-	/*
+	/**
 	 * Representation of a particular value on a measurement scale
 	 * 
 	 * Typically such a particular value is defined by convention.
@@ -170,7 +170,7 @@ package UnitsAndScales {
 		feature description: ScalarValues::String;
 	}
 	
-	/*
+	/**
 	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units
 	 */
 	datatype QuantityDimension specializes Base::Value {

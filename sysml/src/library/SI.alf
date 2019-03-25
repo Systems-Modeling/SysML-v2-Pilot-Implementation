@@ -1,12 +1,11 @@
+/**
+ * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
+ */
 package SI {
 	import UnitsAndScales::*;
 	import ISQ::*;
 	import SIPrefixes::*;
 	
-	/*
-	 * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
-	 */
-
 	/*
 	 * SI simple units needed before creation of base units
 	 */
@@ -44,11 +43,11 @@ package SI {
 	 *   Quantities::MeasurementUnitPowerFactor(s, -2)
 	 * });	 
 	 */
-	N: ForceUnit = kg * m / s ^ 2 {feature name redefines MeasurementScale::name = "newton"; }
+	N: ForceUnit = kg * m / s ^ 2 {name redefines MeasurementScale::name = "newton"; }
 	
-	'm/s': SpeedUnit = m / s { feature name redefines MeasurementScale::name = "metre per second"; }
-	J : EnergyUnit = N * m  { feature name redefines MeasurementScale::name = "joule"; }
-	'N.m': TorqueUnit = N * m { feature name redefines MeasurementScale::name = "newton metre"; }
+	'm/s': SpeedUnit = m / s {name redefines MeasurementScale::name = "metre per second"; }
+	J : EnergyUnit = N * m  {name redefines MeasurementScale::name = "joule"; }
+	'N.m': TorqueUnit = N * m {name redefines MeasurementScale::name = "newton metre"; }
 	
 	/*
 	 * Examples of other conversion based units that are accepted in SI, but not standard 

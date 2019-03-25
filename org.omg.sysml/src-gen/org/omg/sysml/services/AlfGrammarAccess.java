@@ -3277,18 +3277,22 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class NameExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NameExpression");
-		private final Assignment cOwnedMembershipAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedMembershipNamedFeatureReferenceParserRuleCall_0 = (RuleCall)cOwnedMembershipAssignment.eContents().get(0);
+		private final Assignment cReferentAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cReferentFeatureCrossReference_0 = (CrossReference)cReferentAssignment.eContents().get(0);
+		private final RuleCall cReferentFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cReferentFeatureCrossReference_0.eContents().get(1);
 		
-		//NameExpression SysML::LiteralExpression:
-		//	ownedMembership+=NamedFeatureReference;
+		//NameExpression SysML::ElementReferenceExpression:
+		//	referent=[SysML::Feature|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedMembership+=NamedFeatureReference
-		public Assignment getOwnedMembershipAssignment() { return cOwnedMembershipAssignment; }
+		//referent=[SysML::Feature|QualifiedName]
+		public Assignment getReferentAssignment() { return cReferentAssignment; }
 		
-		//NamedFeatureReference
-		public RuleCall getOwnedMembershipNamedFeatureReferenceParserRuleCall_0() { return cOwnedMembershipNamedFeatureReferenceParserRuleCall_0; }
+		//[SysML::Feature|QualifiedName]
+		public CrossReference getReferentFeatureCrossReference_0() { return cReferentFeatureCrossReference_0; }
+		
+		//QualifiedName
+		public RuleCall getReferentFeatureQualifiedNameParserRuleCall_0_1() { return cReferentFeatureQualifiedNameParserRuleCall_0_1; }
 	}
 	public class InvocationExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.InvocationExpression");
@@ -3679,25 +3683,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getOwnedMemberFeatureExpressionParserRuleCall_2_0() { return cOwnedMemberFeatureExpressionParserRuleCall_2_0; }
 	}
-	public class NamedFeatureReferenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.NamedFeatureReference");
-		private final Assignment cMemberFeatureAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cMemberFeatureFeatureCrossReference_0 = (CrossReference)cMemberFeatureAssignment.eContents().get(0);
-		private final RuleCall cMemberFeatureFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cMemberFeatureFeatureCrossReference_0.eContents().get(1);
-		
-		//NamedFeatureReference SysML::FeatureMembership:
-		//	memberFeature=[SysML::Feature|QualifiedName];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//memberFeature=[SysML::Feature|QualifiedName]
-		public Assignment getMemberFeatureAssignment() { return cMemberFeatureAssignment; }
-		
-		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberFeatureFeatureCrossReference_0() { return cMemberFeatureFeatureCrossReference_0; }
-		
-		//QualifiedName
-		public RuleCall getMemberFeatureFeatureQualifiedNameParserRuleCall_0_1() { return cMemberFeatureFeatureQualifiedNameParserRuleCall_0_1; }
-	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -3998,7 +3983,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final UnlimitedNaturalLiteralExpressionElements pUnlimitedNaturalLiteralExpression;
 	private final ExpressionMemberElements pExpressionMember;
 	private final NamedExpressionMemberElements pNamedExpressionMember;
-	private final NamedFeatureReferenceElements pNamedFeatureReference;
 	private final NameElements pName;
 	private final QualifiedNameElements pQualifiedName;
 	private final ColonQualifiedNameElements pColonQualifiedName;
@@ -4118,7 +4102,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUnlimitedNaturalLiteralExpression = new UnlimitedNaturalLiteralExpressionElements();
 		this.pExpressionMember = new ExpressionMemberElements();
 		this.pNamedExpressionMember = new NamedExpressionMemberElements();
-		this.pNamedFeatureReference = new NamedFeatureReferenceElements();
 		this.pName = new NameElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pColonQualifiedName = new ColonQualifiedNameElements();
@@ -5040,8 +5023,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
-	//NameExpression SysML::LiteralExpression:
-	//	ownedMembership+=NamedFeatureReference;
+	//NameExpression SysML::ElementReferenceExpression:
+	//	referent=[SysML::Feature|QualifiedName];
 	public NameExpressionElements getNameExpressionAccess() {
 		return pNameExpression;
 	}
@@ -5198,16 +5181,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getNamedExpressionMemberRule() {
 		return getNamedExpressionMemberAccess().getRule();
-	}
-	
-	//NamedFeatureReference SysML::FeatureMembership:
-	//	memberFeature=[SysML::Feature|QualifiedName];
-	public NamedFeatureReferenceElements getNamedFeatureReferenceAccess() {
-		return pNamedFeatureReference;
-	}
-	
-	public ParserRule getNamedFeatureReferenceRule() {
-		return getNamedFeatureReferenceAccess().getRule();
 	}
 	
 	///* NAMES */ Name:

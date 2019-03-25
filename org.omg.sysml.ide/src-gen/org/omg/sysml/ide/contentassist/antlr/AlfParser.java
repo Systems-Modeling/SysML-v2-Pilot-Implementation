@@ -325,7 +325,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperandAssignment_1_2(), "rule__UnaryExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getSequenceAccessExpressionAccess().getOperatorAssignment_1_1(), "rule__SequenceAccessExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getSequenceAccessExpressionAccess().getOperandAssignment_1_2(), "rule__SequenceAccessExpression__OperandAssignment_1_2");
-			builder.put(grammarAccess.getNameExpressionAccess().getOwnedMembershipAssignment(), "rule__NameExpression__OwnedMembershipAssignment");
+			builder.put(grammarAccess.getNameExpressionAccess().getReferentAssignment(), "rule__NameExpression__ReferentAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedMembershipAssignment_0(), "rule__PositionalTuple__OwnedMembershipAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedMembershipAssignment_1_1(), "rule__PositionalTuple__OwnedMembershipAssignment_1_1");
@@ -340,7 +340,6 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExpressionMemberAccess().getOwnedMemberFeatureAssignment(), "rule__ExpressionMember__OwnedMemberFeatureAssignment");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__NamedExpressionMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getOwnedMemberFeatureAssignment_2(), "rule__NamedExpressionMember__OwnedMemberFeatureAssignment_2");
-			builder.put(grammarAccess.getNamedFeatureReferenceAccess().getMemberFeatureAssignment(), "rule__NamedFeatureReference__MemberFeatureAssignment");
 			builder.put(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), "rule__TypePart__UnorderedGroup_2");
 		}
 	}

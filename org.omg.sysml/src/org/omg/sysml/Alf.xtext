@@ -496,8 +496,8 @@ PrimaryExpression returns SysML::Expression:
 	| '(' Expression ')'
 ;
 
-NameExpression returns SysML::LiteralExpression :
-	ownedMembership += NamedFeatureReference
+NameExpression returns SysML::ElementReferenceExpression :
+	referent = [SysML::Feature | QualifiedName]
 ;
 
 InvocationExpression returns SysML::Expression :
@@ -560,10 +560,6 @@ ExpressionMember returns SysML::FeatureMembership :
 
 NamedExpressionMember returns SysML::FeatureMembership :
 	memberName = Name '=>' ownedMemberFeature = Expression
-;
-
-NamedFeatureReference returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature | QualifiedName]
 ;
 
 /* NAMES */

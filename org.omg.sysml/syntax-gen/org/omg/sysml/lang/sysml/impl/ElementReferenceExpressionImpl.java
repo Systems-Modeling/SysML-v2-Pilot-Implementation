@@ -2,12 +2,18 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementReferenceExpression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -52,14 +58,32 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ELEMENT_REFERENCE_EXPRESSION;
 	}
+	
+	@Override
+	public Element getReferent() {
+		getReferentGen();
+		if (referent instanceof Feature) {
+			List<FeatureMembership> memberships = getOwnedFeatureMembership().stream().
+					filter(m->m.getOwnedMemberFeature() == null).collect(Collectors.toList());
+			FeatureMembership membership;
+			if (!memberships.isEmpty()) {
+				membership = memberships.get(0);
+			} else {
+				membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+				getOwnedMembership().add(membership);
+			}
+			membership.setMemberName(referent.getName());
+			membership.setMemberFeature((Feature)referent);
+		}
+		return referent;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Element getReferent() {
+	public Element getReferentGen() {
 		if (referent != null && referent.eIsProxy()) {
 			InternalEObject oldReferent = (InternalEObject)referent;
 			referent = (Element)eResolveProxy(oldReferent);
@@ -79,7 +103,7 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 	public Element basicGetReferent() {
 		return referent;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +115,12 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 		referent = newReferent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT_REFERENCE_EXPRESSION__REFERENT, oldReferent, referent));
+	}
+	
+	@Override
+	public Feature getResult() {
+		Element referent = getReferent();
+		return referent instanceof Feature? (Feature)referent: null;
 	}
 
 	/**

@@ -157,8 +157,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' element+=Expression
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedMembership+=NamedFeatureReference
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureTyping
+	 *     (rule start) (ambiguity) referent=[Feature|QualifiedName]
 	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
 	 *     (rule start) (ambiguity) value=NATURAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue

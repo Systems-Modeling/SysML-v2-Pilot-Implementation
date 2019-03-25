@@ -135,9 +135,11 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 							collect(Collectors.toList()).indexOf(connector);
 					if (i >= 0) {
 						if (this == connector.getConnectorEnd().get(0)) {
-							List<Expression> arguments = expression.getArguments();
+							List<Feature> arguments = expression.getArguments();
 							if (i < arguments.size()) {
-								feature = ((ExpressionImpl)arguments.get(i)).getResult();
+								Feature argument = arguments.get(i);
+								feature = argument instanceof Expression? 
+										((ExpressionImpl)argument).getResult(): argument;
 							}
 						} else {
 							EList<Feature> inputs = expression.getInput();

@@ -23,6 +23,7 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.LiteralNull
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.ElementReferenceExpression
 
 /**
  * Customization of the default outline structure.
@@ -195,6 +196,12 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		expression.input
 		expression.output
 		return _isLeaf(expression as Feature)
+	}
+	
+	def boolean _isLeaf(ElementReferenceExpression expression) {
+		// Ensure derivation of referent feature
+		expression.referent
+		_isLeaf(expression as Expression)
 	}
 	
 	def boolean _isLeaf(OperatorExpression expression) {

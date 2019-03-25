@@ -61,14 +61,19 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			if (function != null) {
 				inputs.addAll(function.getInput().stream().filter(f->f instanceof Parameter).
 						map(f->createFeatureForParameter((Parameter)f)).collect(Collectors.toList()));
-				List<Expression> arguments = getArguments();
+				List<Feature> arguments = getArguments();
 				int i = 0;
 				int n = arguments.size();
 				for (Feature input: inputs) {
 					if (i >= n) {
 						break;
 					}
-					addOwnedBindingConnector(((ExpressionImpl)arguments.get(i)).getResult(), input);
+					Feature argument = arguments.get(i);
+					addOwnedBindingConnector(
+							argument instanceof Expression? 
+									((ExpressionImpl)arguments.get(i)).getResult(): 
+									argument, 
+							input);
 					i++;
 				}
 			}
@@ -88,7 +93,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return outputs;
 	}
 	
-	public List<Expression> getArguments() {
+	public List<Feature> getArguments() {
 		return getOwnedFeature().stream().filter(f->f instanceof Expression).
 				map(f->(Expression)f).collect(Collectors.toList());
 	}

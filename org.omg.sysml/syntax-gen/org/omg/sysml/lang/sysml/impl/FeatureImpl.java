@@ -359,12 +359,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 
 	protected void addRedefinitions(EList<Subsetting> redefinitions) {
-		Category category = this.getOwningCategory();
-		int i = this.getRelevantFeatures(category).indexOf(this);
+		Category category = getOwningCategory();
+		int i = getRelevantFeatures(category).indexOf(this);
 		if (i >= 0) {
 			for (Generalization generalization: category.getOwnedGeneralization()) {
 				Category general = generalization.getGeneral();
-				List<? extends Feature> features = this.getRelevantFeatures(general);
+				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
 					if (redefinedFeature != null) {

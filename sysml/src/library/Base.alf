@@ -60,11 +60,11 @@ package Base {
 	 * occurrence (execution/evaluation) of behaviors and functions.
 	 */
 	abstract class Occurrence specializes Anything;
-	abstract class BehaviorOccurrence specializes Occurrence;
-	abstract class FunctionEvaluation specializes BehaviorOccurrence;
+	abstract behavior BehaviorOccurrence() specializes Occurrence;
+	abstract function FunctionEvaluation(): Anything[0..*] specializes BehaviorOccurrence;
 				
-	function LiteralEvaluation(): Anything;
-	function NullEvaluation(): Anything[0..0];
+	function LiteralEvaluation(): Anything specializes FunctionEvaluation;
+	function NullEvaluation(): Anything[0..0] specializes FunctionEvaluation;
 
 	/*
 	 * property is the top-level feature in the language.

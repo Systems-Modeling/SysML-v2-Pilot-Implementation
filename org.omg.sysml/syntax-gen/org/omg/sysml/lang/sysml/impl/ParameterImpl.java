@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -48,12 +49,15 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	}
 	
 	/**
-	 * Parameters redefine Parameters of superclass Behaviors. 
+	 * Parameters redefine Parameters of superclass Behaviors, with a result Parameter of a Function 
+	 * always redefining the result Parameter of superclass Functions. 
 	 */
 	@Override
 	public List<? extends Feature> getRelevantFeatures(Category category) {
 		return !(category instanceof Behavior)? Collections.emptyList():
-			((Behavior)category).getParameter();
+			(isResultParameter() && category instanceof Function)? Collections.singletonList(((Function)category).getResult()):
+			((Behavior)category).getParameter().stream().
+				filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
 	}
 	
 	/**

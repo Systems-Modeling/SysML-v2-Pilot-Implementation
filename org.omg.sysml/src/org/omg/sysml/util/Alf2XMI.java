@@ -25,20 +25,54 @@
 package org.omg.sysml.util;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class Alf2XMI extends AlfUtil {
+	
+	public Alf2XMI() {
+		super();
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("sysml", new XMIResourceFactoryImpl());
+	}
+	
+	public void writeResource(final Resource resource) throws IOException {
+		System.out.println("Writing " + resource.getURI().toFileString() + "...");
+		resource.save(null);
+	}
+	
+	public void write() throws IOException {
+		Set<Resource> outputResources = new HashSet<Resource>();
+		for (Object object: this.resourceSet.getResources().toArray()) {
+			Resource resource = (Resource)object;
+			Resource outputResource = this.createResource(this.getOutputPath(resource.getURI().toFileString()));
+			outputResource.getContents().addAll(resource.getContents());
+			if (this.isInputResource(resource)) {
+				outputResources.add(outputResource);
+			}
+		}
+		for (Resource resource: outputResources) {
+			this.writeResource(resource);
+		}
+	}
+	
+	protected String getOutputPath(String inputPath) {
+		String outputPath = inputPath;
+		if (outputPath.endsWith(".alf")) {
+			outputPath = inputPath.substring(0, outputPath.length() - 4);
+		}
+		return outputPath + ".sysml";
+	}
 	
 	public static void main(String[] args) {
 		try {
 			Alf2XMI util = new Alf2XMI();
 			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
+			util.read(args);			
+			util.write();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

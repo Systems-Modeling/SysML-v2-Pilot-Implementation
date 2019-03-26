@@ -54,7 +54,7 @@ public class ElementVisitorFactoryImpl implements ElementVisitorFactory {
 	public ElementProcessingFacade getFacade() {
 		return this.facade;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.omg.sysml.util.traversal.visitor.ElementVisitorFactory#createVisitor(org.omg.sysml.lang.sysml.Element, org.omg.sysml.util.traversal.impl.AlfTraversalImpl)
 	 */

@@ -30,20 +30,20 @@ import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.visitor.ElementVisitor;
 
-public abstract class VisitorImpl<T extends Element> implements ElementVisitor {
+public abstract class VisitorImpl implements ElementVisitor {
 	
-	private final T element;
+	private final Element element;
 	private final Traversal traversal;
 	private final ElementProcessingFacade facade;
 	
-	public VisitorImpl(T element, Traversal traversal, ElementProcessingFacade facade) {
+	public VisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		this.element = element;
 		this.traversal = traversal;
 		this.facade = facade;
 	}
 
 	@Override
-	public T getElement() {
+	public Element getElement() {
 		return this.element;
 	}
 	

@@ -28,10 +28,15 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
-public class RelationshipVisitorImpl extends VisitorImpl<Relationship> {
+public class RelationshipVisitorImpl extends VisitorImpl {
 
 	public RelationshipVisitorImpl(Relationship relationship, Traversal traversal, ElementProcessingFacade facade) {
 		super(relationship, traversal, facade);
+	}
+	
+	@Override
+	public Relationship getElement() {
+		return (Relationship)super.getElement();
 	}
 	
 	@Override

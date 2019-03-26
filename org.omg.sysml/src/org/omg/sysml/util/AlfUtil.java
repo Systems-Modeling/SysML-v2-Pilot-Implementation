@@ -24,33 +24,36 @@
 
 package org.omg.sysml.util;
 
-import java.io.IOException;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public abstract class AlfUtil {
 	
 	protected final ResourceSet resourceSet = new ResourceSetImpl();
-	protected EList<EObject> contents;
+	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	
 	protected AlfUtil() {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		AlfStandaloneSetup.doSetup();
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("sysml", new XMIResourceFactoryImpl());
+	}
+	
+	public boolean isInputResource(Resource resource) {
+		return inputResources.contains(resource);
 	}
 	
 	public Resource createResource(final String path) {
-		Resource resource = this.resourceSet.createResource(URI.createFileURI(path));
+		final Resource resource = this.resourceSet.createResource(URI.createFileURI(path));
 		if (resource == null) {
 			throw new RuntimeException("Error creating resource: " + path);
 		} else {
@@ -59,36 +62,45 @@ public abstract class AlfUtil {
 	}
 	
 	public Resource getResource(final String path) {
-	    final Resource resource = this.createResource(path);
-		if (resource != null) {
-			try {
-				resource.load(null);
-				return resource;
-			} catch (IOException e) {
-				e.printStackTrace();
+	    final Resource resource = this.resourceSet.getResource(URI.createFileURI(path), true);
+		if (resource == null) {
+			throw new RuntimeException("Error opening resource: " + path);
+		} else {
+			return resource;
+		}
+	}
+	
+	public Resource readResource(final String path) {
+		System.out.println("Reading " + path + "...");
+		return this.getResource(path);
+	}
+	
+	public void readAll(final File file, boolean isInput) {
+		if (!file.isDirectory()) {
+			final String path = file.getPath();
+			if (path.endsWith(".alf")) {
+				Resource resource = this.readResource(file.getPath());
+				if (isInput) {
+					this.inputResources.add(resource);
+				}
+			}
+		} else {
+			Stream.of(file.listFiles()).forEach(f->this.readAll(f, isInput));
+		}
+		EcoreUtil.resolveAll(this.resourceSet);
+	}
+	
+	public void readAll(final String path, boolean isInput) {
+		this.readAll(new File(path), isInput);
+	}
+	
+	public void read(final String... paths) {
+		if (paths.length > 0) {
+			this.readAll(paths[0], true);
+			for (int i = 1; i < paths.length; i++) {
+				this.readAll(paths[i], false);
 			}
 		}
-		throw new RuntimeException("Error opening resource: " + path);
-	}
-	
-	public void read(final String path) {
-		Resource resource = this.getResource(path);
-		EcoreUtil.resolveAll(resource);
-		this.contents = resource.getContents();
-	}
-	
-	public void write(final String path) throws IOException {
-		Resource resource = this.createResource(path);
-		resource.getContents().addAll(this.contents);
-		resource.save(null);
-	}
-	
-	protected String getOutputPath(String inputPath) {
-		String outputPath = inputPath;
-		if (outputPath.endsWith(".alf")) {
-			outputPath = inputPath.substring(0, outputPath.length() - 4);
-		}
-		return outputPath + ".sysml";
 	}
 	
 }

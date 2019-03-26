@@ -4,7 +4,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
-public class ElementVisitorImpl extends VisitorImpl<Element> {
+public class ElementVisitorImpl extends VisitorImpl {
 
 	public ElementVisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		super(element, traversal, facade);

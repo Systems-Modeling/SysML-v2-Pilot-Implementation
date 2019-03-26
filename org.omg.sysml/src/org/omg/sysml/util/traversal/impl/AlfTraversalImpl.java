@@ -24,6 +24,7 @@
 package org.omg.sysml.util.traversal.impl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.AlfUtil;
 import org.omg.sysml.util.traversal.Traversal;
@@ -48,26 +49,26 @@ public class AlfTraversalImpl extends AlfUtil {
 	}
 	
 	protected Traversal initialize(ElementProcessingFacade processingFacade) {
-		ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
+		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
 		this.traversal = new TraversalImpl(visitorFactory);
 		visitorFactory.setTraversal(this.traversal);	
 		return this.traversal;
 	}
 	
 	public void process() {
-		for (EObject object: this.contents) {
-			if (object instanceof Element) {
-				this.traversal.visit((Element)object);
-			}
+		for (Resource resource: this.inputResources) {
+			for (EObject object : resource.getContents()) {
+				if (object instanceof Element) {
+					this.traversal.visit((Element) object);
+				}
+			} 
 		}
 	}
 	
 	public static void main(String[] args) {
 		try {
-			AlfTraversalImpl traversal = new AlfTraversalImpl();
-			
-			System.out.println("Reading " + args[0] + "...");
-			traversal.read(args[0]);
+			final AlfTraversalImpl traversal = new AlfTraversalImpl();
+			traversal.read(args);
 			
 			System.out.println("Processing...");
 			traversal.process();

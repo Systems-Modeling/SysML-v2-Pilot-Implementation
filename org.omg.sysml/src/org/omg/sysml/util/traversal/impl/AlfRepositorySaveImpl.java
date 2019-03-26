@@ -54,11 +54,11 @@ public class AlfRepositorySaveImpl extends AlfTraversalImpl {
 			
 			AlfRepositorySaveImpl save = new AlfRepositorySaveImpl(modelName);
 			
-			System.out.println("Reading " + args[0] + "...");
-			save.read(args[0]);
+			save.read(args);
 			
 			System.out.println("Saving model " + modelName + "...");
 			System.out.println("... model id is " + save.getModelId());
+			
 			save.process();
 		} catch (ApiException e) {
 			System.out.println("Error: " + e.getCode() + " " + e.getMessage());

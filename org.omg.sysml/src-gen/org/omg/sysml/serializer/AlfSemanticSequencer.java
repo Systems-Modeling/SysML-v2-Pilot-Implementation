@@ -242,7 +242,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.OPERATOR_EXPRESSION:
-				sequence_BinaryExpression_SequenceAccessExpression_UnaryExpression(context, (OperatorExpression) semanticObject); 
+				sequence_AdditiveExpression_AndExpression_EqualityExpression_MultiplicativeExpression_OrExpression_RelationalExpression_SequenceAccessExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
 				return; 
 			case SysMLPackage.PACKAGE:
 				if (rule == grammarAccess.getNonFeatureDefinitionRule()
@@ -296,6 +296,49 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Expression returns OperatorExpression
+	 *     OrExpression returns OperatorExpression
+	 *     OrExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     XorExpression returns OperatorExpression
+	 *     XorExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     AndExpression returns OperatorExpression
+	 *     AndExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     EqualityExpression returns OperatorExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     RelationalExpression returns OperatorExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     AdditiveExpression returns OperatorExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     MultiplicativeExpression returns OperatorExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     UnitsExpression returns OperatorExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     UnaryExpression returns OperatorExpression
+	 *     SequenceAccessExpression returns OperatorExpression
+	 *     SequenceAccessExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     PrimaryExpression returns OperatorExpression
+	 *
+	 * Constraint:
+	 *     (
+	 *         (operand+=OrExpression_OperatorExpression_1_0 operator=OrOperator operand+=XorExpression) | 
+	 *         (operand+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand+=AndExpression) | 
+	 *         (operand+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand+=EqualityExpression) | 
+	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=RelationalExpression) | 
+	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=AdditiveExpression) | 
+	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
+	 *         (operand+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand+=UnitsExpression) | 
+	 *         (operand+=UnitsExpression_OperatorExpression_1_0 operator='@' operand+=Expression) | 
+	 *         (operator=UnaryOperator operand+=SequenceAccessExpression) | 
+	 *         (operand+=SequenceAccessExpression_OperatorExpression_1_0 operator='[' operand+=Expression)
+	 *     )
+	 */
+	protected void sequence_AdditiveExpression_AndExpression_EqualityExpression_MultiplicativeExpression_OrExpression_RelationalExpression_SequenceAccessExpression_UnaryExpression_UnitsExpression_XorExpression(ISerializationContext context, OperatorExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Annotation returns Annotation
 	 *
 	 * Constraint:
@@ -346,7 +389,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedImport+=PackageImport? 
+	 *         ownedMembership+=ElementImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -420,31 +464,23 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Expression returns OperatorExpression
-	 *     BinaryExpression returns OperatorExpression
-	 *     BinaryExpression.OperatorExpression_1_0 returns OperatorExpression
-	 *     UnaryExpression returns OperatorExpression
-	 *     SequenceAccessExpression returns OperatorExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns OperatorExpression
-	 *     PrimaryExpression returns OperatorExpression
-	 *
-	 * Constraint:
-	 *     (
-	 *         (operand+=BinaryExpression_OperatorExpression_1_0 ((operator=BinaryOperator operand+=Expression) | (operator='@' operand+=Expression))) | 
-	 *         (operator=UnaryOperator operand+=SequenceAccessExpression) | 
-	 *         (operand+=SequenceAccessExpression_OperatorExpression_1_0 operator='[' operand+=Expression)
-	 *     )
-	 */
-	protected void sequence_BinaryExpression_SequenceAccessExpression_UnaryExpression(ISerializationContext context, OperatorExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Expression returns LiteralBoolean
-	 *     BinaryExpression returns LiteralBoolean
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     OrExpression returns LiteralBoolean
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     XorExpression returns LiteralBoolean
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     AndExpression returns LiteralBoolean
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     EqualityExpression returns LiteralBoolean
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     RelationalExpression returns LiteralBoolean
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     AdditiveExpression returns LiteralBoolean
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     MultiplicativeExpression returns LiteralBoolean
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     UnitsExpression returns LiteralBoolean
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     UnaryExpression returns LiteralBoolean
 	 *     SequenceAccessExpression returns LiteralBoolean
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralBoolean
@@ -525,7 +561,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedImport+=PackageImport? 
+	 *         ownedMembership+=ElementImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -598,7 +635,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedImport+=PackageImport? 
-	 *         (ownedMembership+=ElementImport? ownedImport+=PackageImport?)* 
+	 *         ownedMembership+=ElementImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -710,7 +747,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=PackageImport | ownedMembership+=ElementImport)* 
+	 *         ownedImport+=PackageImport? 
+	 *         ownedMembership+=ElementImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         name=Name 
 	 *         isComposite?='compose'? 
@@ -1044,8 +1082,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns Expression
-	 *     BinaryExpression returns Expression
-	 *     BinaryExpression.OperatorExpression_1_0 returns Expression
+	 *     OrExpression returns Expression
+	 *     OrExpression.OperatorExpression_1_0 returns Expression
+	 *     XorExpression returns Expression
+	 *     XorExpression.OperatorExpression_1_0 returns Expression
+	 *     AndExpression returns Expression
+	 *     AndExpression.OperatorExpression_1_0 returns Expression
+	 *     EqualityExpression returns Expression
+	 *     EqualityExpression.OperatorExpression_1_0 returns Expression
+	 *     RelationalExpression returns Expression
+	 *     RelationalExpression.OperatorExpression_1_0 returns Expression
+	 *     AdditiveExpression returns Expression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns Expression
+	 *     MultiplicativeExpression returns Expression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns Expression
+	 *     UnitsExpression returns Expression
+	 *     UnitsExpression.OperatorExpression_1_0 returns Expression
 	 *     UnaryExpression returns Expression
 	 *     SequenceAccessExpression returns Expression
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns Expression
@@ -1081,8 +1133,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns ElementReferenceExpression
-	 *     BinaryExpression returns ElementReferenceExpression
-	 *     BinaryExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     OrExpression returns ElementReferenceExpression
+	 *     OrExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     XorExpression returns ElementReferenceExpression
+	 *     XorExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     AndExpression returns ElementReferenceExpression
+	 *     AndExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     EqualityExpression returns ElementReferenceExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     RelationalExpression returns ElementReferenceExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     AdditiveExpression returns ElementReferenceExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     MultiplicativeExpression returns ElementReferenceExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns ElementReferenceExpression
+	 *     UnitsExpression returns ElementReferenceExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns ElementReferenceExpression
 	 *     UnaryExpression returns ElementReferenceExpression
 	 *     SequenceAccessExpression returns ElementReferenceExpression
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns ElementReferenceExpression
@@ -1127,8 +1193,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns LiteralInteger
-	 *     BinaryExpression returns LiteralInteger
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     OrExpression returns LiteralInteger
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     XorExpression returns LiteralInteger
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     AndExpression returns LiteralInteger
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     EqualityExpression returns LiteralInteger
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     RelationalExpression returns LiteralInteger
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     AdditiveExpression returns LiteralInteger
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     MultiplicativeExpression returns LiteralInteger
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     UnitsExpression returns LiteralInteger
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     UnaryExpression returns LiteralInteger
 	 *     SequenceAccessExpression returns LiteralInteger
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralInteger
@@ -1154,8 +1234,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns LiteralNull
-	 *     BinaryExpression returns LiteralNull
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     OrExpression returns LiteralNull
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     XorExpression returns LiteralNull
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     AndExpression returns LiteralNull
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     EqualityExpression returns LiteralNull
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     RelationalExpression returns LiteralNull
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     AdditiveExpression returns LiteralNull
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     MultiplicativeExpression returns LiteralNull
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralNull
+	 *     UnitsExpression returns LiteralNull
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralNull
 	 *     UnaryExpression returns LiteralNull
 	 *     SequenceAccessExpression returns LiteralNull
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralNull
@@ -1232,8 +1326,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns LiteralReal
-	 *     BinaryExpression returns LiteralReal
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     OrExpression returns LiteralReal
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     XorExpression returns LiteralReal
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     AndExpression returns LiteralReal
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     EqualityExpression returns LiteralReal
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     RelationalExpression returns LiteralReal
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     AdditiveExpression returns LiteralReal
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     MultiplicativeExpression returns LiteralReal
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     UnitsExpression returns LiteralReal
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     UnaryExpression returns LiteralReal
 	 *     SequenceAccessExpression returns LiteralReal
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralReal
@@ -1307,8 +1415,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns SequenceConstructionExpression
-	 *     BinaryExpression returns SequenceConstructionExpression
-	 *     BinaryExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     OrExpression returns SequenceConstructionExpression
+	 *     OrExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     XorExpression returns SequenceConstructionExpression
+	 *     XorExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     AndExpression returns SequenceConstructionExpression
+	 *     AndExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     EqualityExpression returns SequenceConstructionExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     RelationalExpression returns SequenceConstructionExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     AdditiveExpression returns SequenceConstructionExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     MultiplicativeExpression returns SequenceConstructionExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
+	 *     UnitsExpression returns SequenceConstructionExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
 	 *     UnaryExpression returns SequenceConstructionExpression
 	 *     SequenceAccessExpression returns SequenceConstructionExpression
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns SequenceConstructionExpression
@@ -1326,8 +1448,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns LiteralString
-	 *     BinaryExpression returns LiteralString
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralString
+	 *     OrExpression returns LiteralString
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralString
+	 *     XorExpression returns LiteralString
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralString
+	 *     AndExpression returns LiteralString
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralString
+	 *     EqualityExpression returns LiteralString
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralString
+	 *     RelationalExpression returns LiteralString
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralString
+	 *     AdditiveExpression returns LiteralString
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralString
+	 *     MultiplicativeExpression returns LiteralString
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralString
+	 *     UnitsExpression returns LiteralString
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralString
 	 *     UnaryExpression returns LiteralString
 	 *     SequenceAccessExpression returns LiteralString
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralString
@@ -1388,8 +1524,22 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Expression returns LiteralUnbounded
-	 *     BinaryExpression returns LiteralUnbounded
-	 *     BinaryExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     OrExpression returns LiteralUnbounded
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     XorExpression returns LiteralUnbounded
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     AndExpression returns LiteralUnbounded
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     EqualityExpression returns LiteralUnbounded
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     RelationalExpression returns LiteralUnbounded
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     AdditiveExpression returns LiteralUnbounded
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     MultiplicativeExpression returns LiteralUnbounded
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     UnitsExpression returns LiteralUnbounded
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     UnaryExpression returns LiteralUnbounded
 	 *     SequenceAccessExpression returns LiteralUnbounded
 	 *     SequenceAccessExpression.OperatorExpression_1_0 returns LiteralUnbounded

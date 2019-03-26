@@ -462,32 +462,92 @@ ParameterDefinition returns SysML::Parameter :
 /* EXPRESSIONS */
 
 Expression returns SysML::Expression :
-	BinaryExpression
+	OrExpression
 ;
 
-BinaryExpression returns SysML::Expression:
-	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
-		( operator = BinaryOperator operand += Expression | operator = '@' '[' operand += Expression ']' ) )?
+OrExpression returns SysML::Expression :
+	XorExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = OrOperator operand += XorExpression )*
 ;
 
-BinaryOperator:
-	'+' | '-' | '*' | '/' | '**' | '&' | '|' | '^' | '==' | '!=' | '<' | '>' | '<=' | '>='
+OrOperator :
+	'|'
+;
+
+XorExpression returns SysML::Expression :
+	AndExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = XorOperator operand += AndExpression )*
+;
+
+XorOperator :
+	'^'
+;
+
+AndExpression returns SysML::Expression :
+	EqualityExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AndOperator operand += EqualityExpression )*
+;
+
+AndOperator :
+	'&'
+;
+
+EqualityExpression returns SysML::Expression :
+	RelationalExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = EqualityOperator operand += RelationalExpression )*
+	
+;
+
+EqualityOperator :
+	'==' | '!=' 
+;
+
+RelationalExpression returns SysML::Expression :
+	AdditiveExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = RelationalOperator operand += AdditiveExpression )*
+;
+
+RelationalOperator :
+	'<' | '>' | '<=' | '>='
+;
+
+AdditiveExpression returns SysML::Expression :
+	MultiplicativeExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AdditiveOperator operand += MultiplicativeExpression )*	
+;
+
+AdditiveOperator :
+	'+' | '-' 
+;
+
+MultiplicativeExpression returns SysML::Expression :
+	UnitsExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = MultiplicativeOperator operand += UnitsExpression )*	
+;
+
+MultiplicativeOperator :
+	'*' | '/' | '**' 
+;
+
+UnitsExpression returns SysML::Expression :
+	UnaryExpression ( {SysML::OperatorExpression.operand += current} 
+		operator = '@' '[' operand += Expression ']' )?		
 ;
 
 UnaryExpression returns SysML::Expression:
 	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
 ;
 
-UnaryOperator:
+UnaryOperator :
 	'+' | '-' | '!' | '~'
 ;
 
-SequenceAccessExpression returns SysML::Expression:
+SequenceAccessExpression returns SysML::Expression :
 	 PrimaryExpression 
 	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )?
 ;
 
-PrimaryExpression returns SysML::Expression:
+PrimaryExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| NameExpression 

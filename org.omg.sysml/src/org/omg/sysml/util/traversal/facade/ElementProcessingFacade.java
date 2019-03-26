@@ -26,13 +26,19 @@ package org.omg.sysml.util.traversal.facade;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 
+/**
+ * This interface defines the face for processing SysML Elements and Relationships.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public interface ElementProcessingFacade {
 
 	/**
 	 * Process the given Element, returning a unique identifier for that element.
 	 * 
 	 * @param 	element			the Element to be processed
-	 * @return	a unique identifier for the processed element
+	 * @return	a unique identifier for the processed Element
 	 */
 	Object processElement(Element element);
 	
@@ -40,7 +46,7 @@ public interface ElementProcessingFacade {
 	 * Process the given Relationship, returning a unique identifier for that relationship.
 	 * 
 	 * @param 	relationship	the Relationship to be processed
-	 * @return	a unique identifier for the processed relationship
+	 * @return	a unique identifier for the processed Relationship
 	 */
 	Object processRelationship(Relationship relationship);
 	

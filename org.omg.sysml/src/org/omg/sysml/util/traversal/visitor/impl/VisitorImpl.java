@@ -30,31 +30,77 @@ import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.visitor.ElementVisitor;
 
+/**
+ * This is an abstract base class that provides the general framework for the implementation of visitors for
+ * specific kinds of Elements.
+ *  
+ * @author Ed Seidewitz
+ *
+ */
 public abstract class VisitorImpl implements ElementVisitor {
 	
+	/**
+	 * The Element this visitor is visiting.
+	 */
 	private final Element element;
+	
+	/** 
+	 * The traversal object used to record which Elements have already been visited.
+	 */
 	private final Traversal traversal;
+	
+	/**
+	 * The Element-processing facade being used by this visitor.
+	 */
 	private final ElementProcessingFacade facade;
 	
+	/**
+	 * Create a visitor for the given Element, using the given traversal and facade objects.
+	 * 
+	 * @param 	element			the Element to be visited
+	 * @param 	traversal		the traversal object the be used to record a visit
+	 * @param 	facade			the facade to be used for Element processing
+	 */
 	public VisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		this.element = element;
 		this.traversal = traversal;
 		this.facade = facade;
 	}
 
+	/**
+	 * Get the Element this visitor is visiting.
+	 * 
+	 * @return	the Element is Element visitor is visiting
+	 */
 	@Override
 	public Element getElement() {
 		return this.element;
 	}
 	
+	/**
+	 * Get the traversal for this visitor.
+	 * 
+	 * @return	the traversal for this visitor
+	 */
 	public Traversal getTraversal() {
 		return this.traversal;
 	}
 	
+	/**
+	 * The facade for this visitor.
+	 * 
+	 * @return	the facade for this visitor
+	 */
 	public ElementProcessingFacade getFacade() {
 		return this.facade;
 	}
 
+	/**
+	 * Process the Element being visited and record with the traversal that the Element has been visited.
+	 * Then visit each of the Relationships owned by the Element.
+	 * 
+	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
+	 */
 	@Override
 	public Object visit() {
 		Object identifier = this.process();
@@ -67,6 +113,11 @@ public abstract class VisitorImpl implements ElementVisitor {
 		return identifier;
 	}
 	
+	/**
+	 * Process the Element being visited. This method is to be defined by subclasses.
+	 * 
+	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
+	 */
 	protected abstract Object process();
 
 }

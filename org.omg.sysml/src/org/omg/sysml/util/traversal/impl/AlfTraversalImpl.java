@@ -32,22 +32,53 @@ import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
 import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 
+/**
+ * This is a utility for traversing a SysML model graph and processing each Element that is 
+ * visited. The processing to be carried out is determined by a given element-processing facade. 
+ * By default, the processing consists of simply printing out a string representation of each 
+ * Element that is visited.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public class AlfTraversalImpl extends AlfUtil {
 	
+	/**
+	 * The traversal object used to manage the traversal of the model graph.
+	 */
 	protected Traversal traversal;
 	
+	/**
+	 * Create an Alf traversal using the given element-processing facade.
+	 * 
+	 * @param 	processingFacade	the facade for processing Elements and Relationships
+	 */
 	public AlfTraversalImpl(ElementProcessingFacade processingFacade) {
 		this.initialize(processingFacade);
 	}
 	
+	/**
+	 * Create an Alf traversal using the default element-processing facade.
+	 */
 	public AlfTraversalImpl() {
 		this(new DefaultElementProcessingFacadeImpl());
 	}
 	
+	/**
+	 * Get the traversal object for this model traversal.
+	 * 
+	 * @return	the traversal object.
+	 */
 	public Traversal getTraversal() {
 		return this.traversal;
 	}
 	
+	/**
+	 * Initialize the traversal with an element-visitor factor using the given element-processing facade.
+	 * 
+	 * @param 	processingFacade	the facade for processing Elements and Relationships
+	 * @return	the initialized traversal object
+	 */
 	protected Traversal initialize(ElementProcessingFacade processingFacade) {
 		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
 		this.traversal = new TraversalImpl(visitorFactory);
@@ -55,6 +86,9 @@ public class AlfTraversalImpl extends AlfUtil {
 		return this.traversal;
 	}
 	
+	/**
+	 * Visit each of the top-level model Elements in each of the current input Resources.
+	 */
 	public void process() {
 		for (Resource resource: this.inputResources) {
 			for (EObject object : resource.getContents()) {
@@ -65,6 +99,14 @@ public class AlfTraversalImpl extends AlfUtil {
 		}
 	}
 	
+	/**
+	 * The main program reads the Alf resources as given by its arguments and then processes all the input
+	 * resources. Elements from library resources are only traversed if they are referenced from an input
+	 * or are directly or indirectly related to another Element so referenced.
+	 * 
+	 * @param 	args	the first argument is a path for reading input resources, while other arguments
+	 * 					are paths for reading library resources
+	 */
 	public static void main(String[] args) {
 		try {
 			final AlfTraversalImpl traversal = new AlfTraversalImpl();

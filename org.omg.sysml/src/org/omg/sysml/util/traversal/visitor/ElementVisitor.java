@@ -25,18 +25,26 @@ package org.omg.sysml.util.traversal.visitor;
 
 import org.omg.sysml.lang.sysml.Element;
 
+/**
+ * This interface is implemented in order to provide the behavior required when visiting
+ * a specific SysML v2 model Element.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public interface ElementVisitor {
 	
 	/**
-	 * Get the Element this ElementVisitor is visiting.
-	 * @return
+	 * Get the Element this Element visitor is visiting.
+	 * 
+	 * @return	the Element is Element visitor is visiting
 	 */
 	Element getElement();
 	
 	/**
-	 * Visit the Element for this ElementVisitor.
+	 * Visit the Element for this Element visitor.
 	 * 
-	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it.
+	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
 	 */
 	Object visit();
 

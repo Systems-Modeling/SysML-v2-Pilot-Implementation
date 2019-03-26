@@ -25,14 +25,44 @@ package org.omg.sysml.util.traversal;
 
 import org.omg.sysml.lang.sysml.Element;
 
+/**
+ * This interface is used to traverse a graph of SysML Elements. An Element can be
+ * visited in order to carry out some processing and given an identifier in order
+ * to record that it has already been visited.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public interface Traversal {
 
+	/**
+	 * Get the identifier corresponding to the given Element (if any).
+	 * 
+	 * @param 	element			the Element to be identified
+	 * @return	the identifier for the given Element, or null if none has been recorded
+	 */
 	public Object getIdentifier(Element element);
 	
+	/**
+	 * Record an identifier for the given Element.
+	 * 
+	 * @param 	element			the Element to be identified
+	 * @param 	identifier		the identifier to be used for the given Element
+	 */
 	public void putIdentifier(Element element, Object identifier);
 	
-	public void reset();
-	
+	/**
+	 * Visit the given element and carry out any appropriate processing.
+	 * 
+	 * @param 	element			the Element to be visited
+	 * @return	the identifier to be used for that Element
+	 */
 	public Object visit(Element element);
+	
+	/**
+	 * Reset the Traversal object so that it can be used for a new traversal. At a minimum,
+	 * all Element identifier associations are removed.
+	 */
+	public void reset();
 	
 }

@@ -25,13 +25,19 @@ package org.omg.sysml.util.traversal.visitor;
 
 import org.omg.sysml.lang.sysml.Element;
 
+/**
+ * This is the interface for a factoru used to create Element visitors.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public interface ElementVisitorFactory {
 	
 	/**
-	 * Create an ElementVisitor specialized for the Element subclass T.
+	 * Create an Element visitor specialized for the given Element.
 	 * 
-	 * @return 	an ElementVisitor for Element subclass T
+	 * @return 	an Element visitor for the given Element
 	 */
-	ElementVisitor createVisitor(Element Element);
+	ElementVisitor createVisitor(Element element);
 	
 }

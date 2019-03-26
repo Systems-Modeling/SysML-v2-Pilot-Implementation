@@ -29,20 +29,52 @@ import java.util.Date;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
+/**
+ * This is a utility for traversing a SysML model graph and saving each Element that is 
+ * visited to a repository using the SysML v2 REST API.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public class AlfRepositorySaveImpl extends AlfTraversalImpl {
 	
+	/**
+	 * A string representation of the UUID of the Model in the repository to which Elements and
+	 * Relationships are being saved.
+	 */
 	private String modelId;
 	
+	/**
+	 * Create a traversal to save model Elements and Relationships into a repository Model with
+	 * the given name.
+	 *  
+	 * @param 	modelName			the name to be used for the repository model
+	 * @throws 	ApiException
+	 */
 	public AlfRepositorySaveImpl(String modelName) throws ApiException {
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName);	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		this.modelId = processingFacade.getModelId();
 	}
 	
+	/**
+	 * Return the identifier for the repository Model to which Elements and Relationships are being
+	 * saved.
+	 * 
+	 * @return	A string representation of the UUID of the Model in the repository
+	 */
 	public String getModelId() {
 		return this.modelId;
 	}
-		
+	
+	/**
+	 * The main program reads the Alf resources as given by its arguments and then processes all the input
+	 * resources. Elements from library resources are only saved to the repository if they are referenced
+	 * from an input resource or are directly or indirectly related to another Element so referenced.
+	 * 
+	 * @param 	args	the first argument is a path for reading input resources, while other arguments
+	 * 					are paths for reading library resources
+	 */
 	public static void main(String[] args) {
 		try {
 			String modelName = Paths.get(args[0]).getFileName().toString();

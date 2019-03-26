@@ -36,8 +36,17 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
+/**
+ * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public class ApiElementProcessingFacade implements ElementProcessingFacade {
 
+	/**
+	 * The base path to be used to access the REST end point.
+	 */
 	public final String BASE_PATH = "http://sysml2.intercax.com:9000";
 	
 	private final ApiClient apiClient = new ApiClient();
@@ -48,6 +57,13 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	private final org.omg.sysml.model.Model parentModel;
 	private Traversal traversal;
 
+	/**
+	 * Create a facade for processing the Elements of a model with the given name. A model with that name
+	 * is created in the repository, and subsequently processed Elements are added to that model.
+	 * 
+	 * @param 	modelName			the name of the model for which Elements are being saved
+	 * @throws 	ApiException
+	 */
 	public ApiElementProcessingFacade(String modelName) throws ApiException {
 		this.apiClient.setBasePath(BASE_PATH);
 		org.omg.sysml.model.Model model = new org.omg.sysml.model.Model();
@@ -55,32 +71,71 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		this.parentModel = modelApi.createModel(model);
 	}
 	
+	/**
+	 * Set the source SysML model traversal.
+	 * 
+	 * @param 	traversal			the source SysML model traversal from which Elements are being saved
+	 */
 	public void setTraversal(Traversal traversal) {
 		this.traversal = traversal;
 	}
 	
+	/**
+	 * Get the source SysML model traversal.
+	 * 
+	 * @return	the source SysML model traversal from which Elements are being saved
+	 */
 	public Traversal getTraversal() {
 		return this.traversal;
 	}
 	
+	/**
+	 * Get a string representation of the UUID of the model as it is saved in the repository.
+	 * 
+	 * @return	the UUID of the model saved in the repository
+	 */
 	public String getModelId() {
 		return this.parentModel.getIdentifier().toString();
 	}
 	
-	protected <T extends org.omg.sysml.model.Element> T initialize(T repositoryElement, Element modelElement) {
-		repositoryElement.setName(modelElement.getName());
-		repositoryElement.setType(modelElement.eClass().getName());
-		repositoryElement.setParentModel(this.parentModel.getIdentifier());
-//		System.out.println("... name = " + repositoryElement.getName() + 
-//				" type = " + repositoryElement.getType() + 
-//				" parentModel = " + repositoryElement.getParentModel());
-		return repositoryElement;
+	/**
+	 * Initialize the given API Element from the given source model Element.
+	 * 
+	 * @param 	apiElement			the Element as it is represented in the API
+	 * @param 	modelElement		the Element as it is represented in Ecore
+	 * @return	the repository Element
+	 */
+	protected <T extends org.omg.sysml.model.Element> T initialize(T apiElement, Element modelElement) {
+		apiElement.setName(modelElement.getName());
+		apiElement.setDescription(descriptionOf(modelElement));
+		apiElement.setType(modelElement.eClass().getName());
+		apiElement.setParentModel(this.parentModel.getIdentifier());
+//		System.out.println("... name = " + apiElement.getName() + 
+//				" type = " + apiElement.getType() + 
+//				" parentModel = " + apiElement.getParentModel());
+		return apiElement;
 	}
 	
+	/**
+	 * Use the API to save the given source model Element to the repository. Return the data for the Element
+	 * as it was saved in the repository. Note that the given model Element should not be a Relationship.
+	 * 
+	 * @param 	modelElement		the source model Element as it is represented in Ecore
+	 * @return	the Element as saved in the repository, as it is represented in the API
+	 * @throws 	ApiException
+	 */
 	protected org.omg.sysml.model.Element createElement(Element modelElement) throws ApiException {
 		return  elementApi.createElement(this.initialize(new org.omg.sysml.model.Element(), modelElement));
 	}
 
+	/**
+	 * Use the API to save the given source model Relationship to the repository. Return the data for the Relationship
+	 * as it was saved in the repository.
+	 * 
+	 * @param 	modelRelationship	the source model Relationship as it is represented in Ecore
+	 * @return	the Relationship as saved in the repository, as it is represented in the API
+	 * @throws 	ApiException
+	 */
 	protected org.omg.sysml.model.Relationship createRelationship(Relationship modelRelationship) throws ApiException {
 		org.omg.sysml.model.Relationship repositoryRelationship = this.initialize(new org.omg.sysml.model.Relationship(), modelRelationship);
 		EList<Element> source = modelRelationship.getSource();
@@ -102,6 +157,13 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		return  relationshipApi.createRelationship(repositoryRelationship);
 	}
 	
+	/**
+	 * Create a description of the given SysML model Element, for use in logging.
+	 * 
+	 * @param 	element				the Element to be described
+	 * @return	a description of the Element, in terms of its EClass name, hash code, Element name 
+	 * 			and whether it is a proxy.
+	 */
 	public static String descriptionOf(Element element) {
 		String s = element.eClass().getName() + "@" + Integer.toHexString(element.hashCode());
 		String name = element.getName();
@@ -115,6 +177,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		return s;
 	}
 
+	/**
+	 * Save the given Element to the repository and, if successful, return the UUID created for it.
+	 * If there is an exception while saving the element, return an identifier based on the
+	 * Element hash code, so that the Element can still be recorded as having been visited.
+	 * 
+	 * @param 	element				the Element to be processed (this should not be a Relationship)
+	 * @return	a unique identifier for the processed Element
+	 */
 	@Override
 	public Object processElement(Element element) {
 		try {
@@ -128,6 +198,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		}
 	}
 
+	/**
+	 * Save the given Relationship to the repository and, if successful, return the UUID created for it.
+	 * If there is an exception while saving the element, return an identifier based on the
+	 * Repository hash code, so that the Element can still be recorded as having been visited.
+	 * 
+	 * @param 	relationship	the Relationship to be processed
+	 * @return	a unique identifier for the processed Relationship
+	 */
 	@Override
 	public Object processRelationship(Relationship relationship) {
 		try {

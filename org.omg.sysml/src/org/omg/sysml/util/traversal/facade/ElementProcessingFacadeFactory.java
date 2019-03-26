@@ -23,6 +23,12 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade;
 
+/**
+ * This is an interface to be implemented by factories used to create element-processing facades.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public interface ElementProcessingFacadeFactory {
 
 	/**

@@ -31,32 +31,63 @@ import org.omg.sysml.util.traversal.visitor.ElementVisitor;
 import org.omg.sysml.util.traversal.visitor.ElementVisitorFactory;
 
 /**
- * @author seidewitz
+ * A factory for creating Element visitors that process Elements and Relationships using 
+ * a specific Element-processing facade.
+ * 
+ * @author Ed Seidewitz
  *
  */
 public class ElementVisitorFactoryImpl implements ElementVisitorFactory {
 	
+	/**
+	 * The traversal object used to record what Elements have already been visited.
+	 */
 	private Traversal traversal;
+	
+	/**
+	 * The facade used for processing Elements and Relationships.
+	 */
 	private final ElementProcessingFacade facade;
 	
+	/**
+	 * Create a factory for Element visitors using the given Element-processing facade.
+	 * 
+	 * @param 	facade			the Element-processing facade to be used
+	 */
 	public ElementVisitorFactoryImpl(ElementProcessingFacade facade) {
 		this.facade = facade;
 	}
 	
+	/**
+	 * Get the current traversal object.
+	 * 
+	 * @return	the current traversal object
+	 */
 	public Traversal getTraversal() { 
 		return this.traversal;
 	}
 	
+	/**
+	 * Set the current traversal object.
+	 * 
+	 * @param 	traversal		the traversal object to be used
+	 */
 	public void setTraversal(Traversal traversal) {
 		this.traversal = traversal;
 	}
 	
+	/**
+	 * Get the facade being used by the Element visitors created by this factory.
+	 * 
+	 * @return	the Element-processing facade
+	 */
 	public ElementProcessingFacade getFacade() {
 		return this.facade;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.omg.sysml.util.traversal.visitor.ElementVisitorFactory#createVisitor(org.omg.sysml.lang.sysml.Element, org.omg.sysml.util.traversal.impl.AlfTraversalImpl)
+	/**
+	 * Create an Element visitor for the given element. If the Element is a Relationship, then a specialized
+	 * Relationship visitor is created. Otherwise, a generic Element visitor is created.
 	 */
 	@Override
 	public ElementVisitor createVisitor(Element element) {

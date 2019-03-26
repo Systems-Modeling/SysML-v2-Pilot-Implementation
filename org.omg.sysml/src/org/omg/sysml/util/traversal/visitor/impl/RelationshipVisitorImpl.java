@@ -28,6 +28,12 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
+/**
+ * This class implements a generic visitor for any kind of SysML v2 model Relationship.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
 public class RelationshipVisitorImpl extends VisitorImpl {
 
 	public RelationshipVisitorImpl(Relationship relationship, Traversal traversal, ElementProcessingFacade facade) {
@@ -39,6 +45,10 @@ public class RelationshipVisitorImpl extends VisitorImpl {
 		return (Relationship)super.getElement();
 	}
 	
+	/**
+	 * Before visiting the Relationship as an Element itself, visit all the related Elements of the Relationship.
+	 * That is, carry out a depth-first traversal of the Relationship graph.
+	 */
 	@Override
 	public Object visit() {
 		Traversal traversal = this.getTraversal();
@@ -48,6 +58,9 @@ public class RelationshipVisitorImpl extends VisitorImpl {
 		return super.visit();
 	}
 	
+	/**
+	 * Process the Relationship being visited using the Element-processing facade for this visitor.
+	 */
 	@Override
 	protected Object process() {
 		return this.getFacade().processRelationship(this.getElement());

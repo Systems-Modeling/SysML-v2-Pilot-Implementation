@@ -1,18 +1,20 @@
 package Quantities {
 	
-	/*
-	 * Representation of the value of a Quantity
+	/**
+	 * Representation of the value of a quantity
 	 * 
 	 * The value is a tuple of a magnitude (i.e. the mathematical number value) and a reference to a MeasurementScale.
-	 * The scale may directly reference a MeasurementUnit, which implies that the scale is a ratio scale.
-	 * 
-	 * TODO: Consider renaming scale to unitOrScale and MeasurementScale to MeasurementUnitOrScale for clarity.
+	 * The scale may directly reference a MeasurementUnit, which implies an associated measurement scale that is a ratio scale.
 	 */
 	abstract datatype QuantityValue specializes ScalarValues::NumericalValue {
 		magnitude: ScalarValues::Number;
 		scale: UnitsAndScales::MeasurementScale;
 	}
 	
-	// Quantity is defined as a self-standing feature
-	feature Quantity: QuantityValue;
+	/**
+	 * Representation of a quantity
+	 * 
+	 * It is defined as a self-standing feature that is the 'super feature' of all quantities.
+	 */
+	feature quantity: QuantityValue;
 }

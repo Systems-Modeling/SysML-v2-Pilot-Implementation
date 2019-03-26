@@ -51,6 +51,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import java.util.HashMap
 import org.eclipse.xtext.util.Strings
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.Membership
 
 /**
  * This class contains custom scoping description.
@@ -63,12 +64,16 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 
+	var HashSet<Membership> scopedMemberships = newHashSet
+	
 	override getScope(EObject context, EReference reference) {
 		switch (reference) {
 			case SysMLPackage.eINSTANCE.featureTyping_Type: {
-				return scope_FeatureTyping_type(context as FeatureTyping, reference)
+				if (context instanceof FeatureTyping)
+					return scope_FeatureTyping_type(context as FeatureTyping, reference)
 			}
-			case SysMLPackage.eINSTANCE.generalization_General, case SysMLPackage.eINSTANCE.superclassing_Superclass: {
+			case SysMLPackage.eINSTANCE.generalization_General, 
+			case SysMLPackage.eINSTANCE.superclassing_Superclass: {
 				if (context instanceof Generalization)
 					return scope_Generalization_general(context as Generalization, reference)
 			}
@@ -79,6 +84,11 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			case SysMLPackage.eINSTANCE.subsetting_SubsettedFeature: {
 				if (context instanceof Subsetting)
 					return scope_Subsetting_subsettedFeature(context as Subsetting, reference)
+			}
+			case SysMLPackage.eINSTANCE.membership_MemberElement, 
+			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature: {
+				if (context instanceof Membership)
+					return scope_Membership_memberElement(context as Membership, reference)
 			}
 		}
 		if (context instanceof Package) {
@@ -91,14 +101,16 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (!visited.contains(pack)) {
 			visited.add(pack)
 			pack.ownedMembership.forEach[m|
-				val memberElement = m.memberElement
-				val elementName = m.memberName ?: memberElement?.name
-				if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
-					val elementqn = qn.append(elementName)
-					val added = visitor.apply(elementqn, memberElement)
-					if ( !checkIfAdded || added) {
-						if (memberElement instanceof Package) {
-							accept(memberElement, elementqn, visitor, checkIfAdded, false, visited)
+				if (!scopedMemberships.contains(m)) {
+					val memberElement = m.memberElement
+					val elementName = m.memberName ?: memberElement?.name
+					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
+						val elementqn = qn.append(elementName)
+						val added = visitor.apply(elementqn, memberElement)
+						if ( !checkIfAdded || added) {
+							if (memberElement instanceof Package) {
+								accept(memberElement, elementqn, visitor, checkIfAdded, false, visited)
+							}
 						}
 					}
 				}
@@ -108,32 +120,21 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 
 	private def void gen(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit) {
-		val visited = visit
 		if (pack instanceof Category) {
-			val c = pack as Category
-			c.ownedRelationship.filter(Generalization).forEach [ e |
+			pack.ownedGeneralization.forEach [ e |
 				if (e.general?.name !== null) {
-					val container = e.general.owningNamespace
-					if (container !== null && container instanceof Package) {
-						val p = container as Package
-						if (!visited.contains(p)) {
-							visited.add(p)
-							p.gen(visitor, visit)
-							p.imp(visitor, visit, false)
-						}
-					}
-					if (!visited.contains(e.general)) {
-						visited.add(e.general)
+					if (!visit.contains(e.general)) {
+						visit.add(e.general)
 						e.general.gen(visitor, visit)
 						e.general.imp(visitor, visit, false)
 						val qn = QualifiedName.create()
-						visitor.apply(qn, e.general)
 						e.general.accept(qn, visitor, false, false, newHashSet)
 					}
 				}
 			]
 		}
 	}
+	
 	private def void loop2(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, 
 		HashMap<Element, HashSet<QualifiedName>> elements) {
 		
@@ -162,6 +163,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		}
 	}
+	
 	private def void getInherited(QualifiedName generalQName, HashMap<Element, HashSet<QualifiedName>> elements, Element generalEContainer,	(QualifiedName, Element)=>boolean visitor	){
 		val qnStartWith = generalQName.toString()
 		val qnAppendTo = generalEContainer.name
@@ -178,26 +180,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 		newElements.forEach[ne| visitor.apply(ne.get(1) as QualifiedName, ne.get(0) as Element)]
 	}
+	
 	private def void imp(Package pack, (QualifiedName, Element)=>boolean visitor, HashSet<Package> visit, boolean checkIfAdded) {
-		val visited = visit
 		pack.ownedImport.forEach [ e |
-			if (e.importedPackage?.name !== null) {
-				val container = e.importedPackage.owningNamespace
-				if (container !== null && container instanceof Package) {
-					val p = container as Package
-					if (!visited.contains(p)) {
-						visited.add(p)
-						p.imp(visitor, visit, checkIfAdded)
-						p.gen(visitor, visit)
-					}
-				}
-			}
-			if (!visited.contains(e.importedPackage)) {
-				visited.add(e.importedPackage)
+			if (!visit.contains(e.importedPackage)) {
+				visit.add(e.importedPackage)
 				e.importedPackage.imp(visitor, visit, checkIfAdded)
 				e.importedPackage.gen(visitor, visit)
 				val qn = QualifiedName.create()
-				visitor.apply(qn, e.importedPackage)
 				e.importedPackage.accept(qn, visitor, checkIfAdded, false, newHashSet)
 			}
 		]
@@ -236,7 +226,9 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		
 		val outerscope = if ( /* Root package */ pack.eContainer === null) {
 				if (pack.name !== null) {
-					pack.accept(QualifiedName.create().append(pack.name), visitor, false, true, newHashSet)
+					val qn = QualifiedName.create().append(pack.name)
+					visitor.apply(qn, pack)
+					pack.accept(qn, visitor, false, true, newHashSet)
 				}
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 		} else {
@@ -272,41 +264,44 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		return new SimpleScope(outerscope, od)
 	}
 	
-	private def Package getParentPackage(Package pack) {
-		var EObject container=pack.eContainer
+	private def Package getParentPackage(Element element) {
+		var EObject container=element.eContainer
 		while(!(container instanceof Package)){
 			container=container.eContainer
 		}
 		return (container as Package)
 	}
 	
+	def IScope scope_Namespace(Element element, Package namespace, EReference reference) {
+		if (namespace === null)
+			return super.getScope(element, reference)		
+		return namespace.scope_Package(reference)
+	}
+	
+	def IScope scope_owningNamespace(Element element, EReference reference) {
+		return scope_Namespace(element, element?.parentPackage, reference)
+	}
 
 	def IScope scope_FeatureTyping_type(FeatureTyping featureTyping, EReference reference) {
-		val namespace = featureTyping.typedFeature.owningNamespace
-		return namespace.scope_Package(reference)
+		return scope_owningNamespace(featureTyping.typedFeature, reference)
 	}
 
 	def IScope scope_Generalization_general(Generalization generalization, EReference reference) {
-		val category = generalization.specific;
-		val namespace = category.owningNamespace
-		if (namespace === null)
-			return super.getScope(category, reference)
-		return namespace.scope_Package(reference)
+		return scope_owningNamespace(generalization.specific, reference)
 	}
 
 	def IScope scope_Redefinition_redefinedFeature(Redefinition redefinition, EReference reference) {
-		val feature = redefinition.redefiningFeature
-		val namespace = feature.owningNamespace
-		if (namespace === null)
-			return super.getScope(feature, reference)
-		return namespace.scope_Package(reference)
+		return scope_owningNamespace(redefinition.redefiningFeature, reference)
 	}
 
 	def IScope scope_Subsetting_subsettedFeature(Subsetting subset, EReference reference) {
-		val feature = subset.subsettingFeature
-		val namespace = feature.owningNamespace
-		if (namespace === null)
-			return super.getScope(feature, reference)
-		return namespace.scope_Package(reference)
+		return scope_owningNamespace(subset.subsettingFeature, reference)
+	}
+	
+	def IScope scope_Membership_memberElement(Membership membership, EReference reference) {
+		scopedMemberships.add(membership) 
+		val scope = scope_Namespace(membership, membership.membershipOwningPackage, reference)
+		scopedMemberships.remove(membership)
+		return scope
 	}
 }

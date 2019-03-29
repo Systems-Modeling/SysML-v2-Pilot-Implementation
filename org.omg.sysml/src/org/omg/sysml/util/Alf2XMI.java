@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,83 +25,96 @@
 package org.omg.sysml.util;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.omg.sysml.AlfStandaloneSetup;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class Alf2XMI {
+/**
+ * This is a utility program for reading one or more Alf source files and writing the corresponding SysML
+ * Ecore XMI files. The path for a file or root directory for the Alf source is given as the first argument,
+ * which is required. The XMI files are written with a ".sysml" extension in the same directory as the 
+ * corresponding Alf source file. Other arguments may be used to specify paths for library directories. Alf 
+ * source is read from these directories, in order to resolve cross-file proxy references, but no corresponding 
+ * XMI files are written for them.
+ * 
+ * @author Ed Seidewitz
+ *
+ */
+public class Alf2XMI extends AlfUtil {
 	
-	protected final ResourceSet resourceSet = new ResourceSetImpl();
-	protected EList<EObject> contents;
+	public static final String SYSML_EXTENSION = ".sysml";
 	
-	protected Alf2XMI() {
-		@SuppressWarnings("unused")
-		SysMLPackage sysml = SysMLPackage.eINSTANCE;
-		AlfStandaloneSetup.doSetup();
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("sysml", new XMIResourceFactoryImpl());
+	public Alf2XMI() {
+		super();
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(SYSML_EXTENSION, new XMIResourceFactoryImpl());
 	}
 	
-	public Resource createResource(final String path) {
-		Resource resource = this.resourceSet.createResource(URI.createFileURI(path));
-		if (resource == null) {
-			throw new RuntimeException("Error creating resource: " + path);
-		} else {
-			return resource;
-		}
-	}
-	
-	public Resource getResource(final String path) {
-	    final Resource resource = this.createResource(path);
-		if (resource != null) {
-			try {
-				resource.load(null);
-				return resource;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		throw new RuntimeException("Error opening resource: " + path);
-	}
-	
-	public void read(final String path) {
-		Resource resource = this.getResource(path);
-		EcoreUtil.resolveAll(resource);
-		this.contents = resource.getContents();
-	}
-	
-	public void write(final String path) throws IOException {
-		Resource resource = this.createResource(path);
-		resource.getContents().addAll(this.contents);
+	/**
+	 * Write the given resource, logging this to the console.
+	 * 
+	 * @param 	resource		the resource to be written
+	 * @throws 	IOException
+	 */
+	public void writeResource(final Resource resource) throws IOException {
+		System.out.println("Writing " + resource.getURI().toFileString() + "...");
 		resource.save(null);
 	}
 	
-	protected String getOutputPath(String inputPath) {
-		String outputPath = inputPath;
-		if (outputPath.endsWith(".alf")) {
-			outputPath = inputPath.substring(0, outputPath.length() - 4);
+	/**
+	 * Create SysML output resources for all resources that have been read, but only write out those
+	 * output resources that correspond to identified input resources, no those that correspond to
+	 * library resources. Note that, at the end of this method, all content has been removed from
+	 * the originally read resources.
+	 * 
+	 * @throws 	IOException
+	 */
+	public void write() throws IOException {
+		Set<Resource> outputResources = new HashSet<Resource>();
+		for (Object object: this.resourceSet.getResources().toArray()) {
+			Resource resource = (Resource)object;
+			Resource outputResource = this.createResource(this.getOutputPath(resource.getURI().toFileString()));
+			outputResource.getContents().addAll(resource.getContents());
+			if (this.isInputResource(resource)) {
+				outputResources.add(outputResource);
+			}
 		}
-		return outputPath + ".sysml";
+		for (Resource resource: outputResources) {
+			this.writeResource(resource);
+		}
 	}
 	
+	/**
+	 * Get an output path to be used for the given input path. By default, this method simply replaces the
+	 * Alf extension on the input path with a SysML extension on the output path. However, this behavior can
+	 * be overridden in subclasses.
+	 * 
+	 * @param 	inputPath		the path of a resource that is to be written to a corresponding output resource
+	 * @return	the path for the output resource
+	 */
+	protected String getOutputPath(String inputPath) {
+		String outputPath = inputPath;
+		if (outputPath.endsWith(ALF_EXTENSION)) {
+			outputPath = inputPath.substring(0, outputPath.length() - 4);
+		}
+		return outputPath + SYSML_EXTENSION;
+	}
+	
+	/**
+	 * The main program reads all the Alf resources rooted in the paths given as arguments and then
+	 * writes out SysML XMI files for the resources from the first argument path.
+	 * 
+	 * @param 	args	the first argument is a path for reading input resources, while other arguments
+	 * 					are paths for reading library resources
+	 */
 	public static void main(String[] args) {
 		try {
 			Alf2XMI util = new Alf2XMI();
 			
-			System.out.println("Reading " + args[0] + "...");
-			util.read(args[0]);
-			
-			String outputPath = util.getOutputPath(args[0]);
-			System.out.println("Writing " + outputPath + "...");
-			util.write(util.getOutputPath(args[0]));
-		} catch (IOException e) {
+			util.read(args);			
+			util.write();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

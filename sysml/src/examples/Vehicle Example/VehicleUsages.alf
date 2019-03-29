@@ -5,6 +5,7 @@ package VehicleUsages {
 	import SI::N;
 	import SI::m;
 	import VehicleDefinitions::*;
+	import ScalarFunctions::*;
 
 	/* VALUES */	 
 	T1 = 10.0@[N * m];

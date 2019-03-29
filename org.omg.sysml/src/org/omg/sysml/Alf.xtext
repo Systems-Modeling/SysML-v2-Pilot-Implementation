@@ -461,70 +461,131 @@ ParameterDefinition returns SysML::Parameter :
 
 /* EXPRESSIONS */
 
-Expression returns SysML::Expression:
-	BinaryExpression
+Expression returns SysML::Expression :
+	OrExpression
 ;
 
-BinaryExpression returns SysML::Expression:
-	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
-		( operator = BinaryOperator operand += Expression | operator = '@' '[' operand += Expression ']' ) )?
+OrExpression returns SysML::Expression :
+	XorExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = OrOperator operand += XorExpression )*
 ;
 
-BinaryOperator:
-	'+' | '-' | '*' | '/' | '^'
+OrOperator :
+	'|'
+;
+
+XorExpression returns SysML::Expression :
+	AndExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = XorOperator operand += AndExpression )*
+;
+
+XorOperator :
+	'^'
+;
+
+AndExpression returns SysML::Expression :
+	EqualityExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AndOperator operand += EqualityExpression )*
+;
+
+AndOperator :
+	'&'
+;
+
+EqualityExpression returns SysML::Expression :
+	RelationalExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = EqualityOperator operand += RelationalExpression )*
+	
+;
+
+EqualityOperator :
+	'==' | '!=' 
+;
+
+RelationalExpression returns SysML::Expression :
+	AdditiveExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = RelationalOperator operand += AdditiveExpression )*
+;
+
+RelationalOperator :
+	'<' | '>' | '<=' | '>='
+;
+
+AdditiveExpression returns SysML::Expression :
+	MultiplicativeExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AdditiveOperator operand += MultiplicativeExpression )*	
+;
+
+AdditiveOperator :
+	'+' | '-' 
+;
+
+MultiplicativeExpression returns SysML::Expression :
+	UnitsExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = MultiplicativeOperator operand += UnitsExpression )*	
+;
+
+MultiplicativeOperator :
+	'*' | '/' | '**' 
+;
+
+UnitsExpression returns SysML::Expression :
+	UnaryExpression ( {SysML::OperatorExpression.operand += current} 
+		operator = '@' '[' operand += Expression ']' )?		
 ;
 
 UnaryExpression returns SysML::Expression:
 	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
 ;
 
-UnaryOperator:
-	'+' | '-'
+UnaryOperator :
+	'+' | '-' | '!' | '~'
 ;
 
-SequenceAccessExpression returns SysML::Expression:
+SequenceAccessExpression returns SysML::Expression :
 	 PrimaryExpression 
-	 ( {SysML::SequenceAccessExpression.primary = current} '[' index = Expression ']' )*
+	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )?
 ;
 
-PrimaryExpression returns SysML::Expression:
-	  LiteralExpression 
-	| ElementReferenceExpression 
-	| InstanceCreationExpression 
+PrimaryExpression returns SysML::Expression :
+	  NullExpression
+	| LiteralExpression 
+	| NameExpression 
+	| InvocationExpression 
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
 
-ElementReferenceExpression returns SysML::ElementReferenceExpression :
-	referent = [SysML::Element | QualifiedName]
+NameExpression returns SysML::ElementReferenceExpression :
+	referent = [SysML::Feature | QualifiedName]
 ;
 
-InstanceCreationExpression returns SysML::InstanceCreationExpression :
-	class = [SysML::Class  | QualifiedName] '(' Tuple? ')'
+InvocationExpression returns SysML::Expression :
+	ownedRelationship += FeatureTyping '(' Tuple? ')'
 ;
 
-fragment Tuple returns SysML::InstanceCreationExpression :
+fragment Tuple returns SysML::Expression :
 	PositionalTuple | NamedTuple
 ;
 
-fragment PositionalTuple returns SysML::InstanceCreationExpression :
-	argument += Expression ( ',' argument += Expression )*
+fragment PositionalTuple returns SysML::Expression :
+	ownedMembership += ExpressionMember ( ',' ownedMembership += ExpressionMember )*
 ;
 
-fragment NamedTuple returns SysML::InstanceCreationExpression :
-	Name '=>' argument += Expression ( ',' Name '=>' argument += Expression )*
+fragment NamedTuple returns SysML::Expression :
+	ownedMembership += NamedExpressionMember ( ',' ownedMembership += NamedExpressionMember )*
 ;
 
 SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
 	{SysML::SequenceConstructionExpression} '{' ( element += Expression ( ',' element += Expression )* )? '}'
 ;
 
-LiteralExpression returns SysML::Expression :
-	NullLiteralExpression | BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
+NullExpression returns SysML::LiteralNull :
+	{SysML::LiteralNull} 'null'
 ;
 
-NullLiteralExpression returns SysML::LiteralNull :
-	{SysML::LiteralNull} 'null'
+LiteralExpression returns SysML::LiteralExpression :
+	BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
 ;
 
 BooleanLiteralExpression returns SysML::LiteralBoolean :
@@ -547,8 +608,18 @@ NaturalLiteralExpression returns SysML::LiteralInteger:
 	value = NATURAL_VALUE
 ;
 
-UnlimitedNaturalLiteralExpression returns SysML::Expression:
+UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 	NaturalLiteralExpression | {SysML::LiteralUnbounded} '*'
+;
+
+/* EXPRESSION MEMBERSHIPS */
+
+ExpressionMember returns SysML::FeatureMembership :
+	ownedMemberFeature = Expression
+;
+
+NamedExpressionMember returns SysML::FeatureMembership :
+	memberName = Name '=>' ownedMemberFeature = Expression
 ;
 
 /* NAMES */

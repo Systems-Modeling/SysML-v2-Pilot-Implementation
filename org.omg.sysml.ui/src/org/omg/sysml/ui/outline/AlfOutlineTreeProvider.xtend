@@ -13,6 +13,17 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.ConnectorEnd
 import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.LiteralString
+import org.omg.sysml.lang.sysml.LiteralBoolean
+import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.LiteralReal
+import org.omg.sysml.lang.sysml.LiteralUnbounded
+import org.omg.sysml.lang.sysml.LiteralNull
+import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.ElementReferenceExpression
 
 /**
  * Customization of the default outline structure.
@@ -26,33 +37,55 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (element.name !== null) {
 			text += ' ' + element.name;
 		} else if (element instanceof Membership) {
-			var member = element as Membership;
-			if (member.visibility !== null) {
-				text += ' ' + member.visibility;
+			if (element.visibility !== null) {
+				text += ' ' + element.visibility;
 			}
-			if (member.memberName !== null) {
-				text += ' ' + member.memberName
-			} else if (member.ownedMemberElement !== null) {
+			if (element.ownedMemberElement !== null) {
 				text += ' owns'
-				if (member.ownedMemberElement.name !== null) {
-					text += ' ' + member.ownedMemberElement.name;
+			}
+			if (element instanceof FeatureMembership) {
+				if (element.direction !== null) {
+					text += ' ' + element.direction
 				}
-			} else if (member.memberElement !== null) {
-				if (member.memberElement.name !== null) {
-					text += ' ' + member.memberElement.name;
-				}
+			}
+			if (element.memberName !== null) {
+				text += ' ' + element.memberName
+			} else if (element.memberElement?.name !== null) {
+				text += ' ' + element.memberElement.name;
 			}
 		} else if (element instanceof Import) {
-			var import = element as Import
-			if (import.visibility !== null) {
-				text += ' ' + import.visibility
+			if (element.visibility !== null) {
+				text += ' ' + element.visibility
 			}
-			if (import.importedPackage !== null && 
-				import.importedPackage.name !== null) {
-				text += ' ' + import.importedPackage.name
+			if (element.importedPackage?.name !== null) {
+				text += ' ' + element.importedPackage.name
 			}
 		}
 		text 
+	}
+	
+	def String _text(LiteralString literal) {
+		"LiteralString " + literal.value
+	}
+	
+	def String _text(LiteralBoolean literal) {
+		"LiteralBoolean " + literal.value
+	}
+	
+	def String _text(LiteralInteger literal) {
+		"LiteralInteger " + literal.value
+	}
+	
+	def String _text(LiteralReal literal) {
+		"LiteralReal " + literal.value
+	}
+	
+	def String _text(LiteralUnbounded literal) {
+		"LiteralUnbounded *"
+	}
+	
+	def String _text(LiteralNull literal) {
+		"LiteralNull null"
 	}
 	
 	def boolean _isLeaf(Membership membership) {
@@ -95,6 +128,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def boolean _isLeaf(Feature feature) {
 		// Ensure default redefinition/subsetting
 		feature.ownedRedefinition
+		// Ensure valuation connector
+		feature.feature
 		super._isLeaf(feature)
 	}
 	
@@ -153,6 +188,33 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				_image(connectorEnd.feature), "feature " + connectorEnd.feature._text, 
 				true
 			)
+		}
+	}
+	
+	def boolean _isLeaf(Expression expression) {
+		// Ensure derivation of inputs and outputs
+		expression.input
+		expression.output
+		return _isLeaf(expression as Feature)
+	}
+	
+	def boolean _isLeaf(ElementReferenceExpression expression) {
+		// Ensure derivation of referent feature
+		expression.referent
+		_isLeaf(expression as Expression)
+	}
+	
+	def boolean _isLeaf(OperatorExpression expression) {
+		// Ensure derivation of typing
+		expression.typing
+		_isLeaf(expression as Expression) && expression.ownedMembership.isEmpty
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
+		for (Relationship relationship : expression.allOwnedRelationships) {
+			createEObjectNode(parentNode, relationship, 
+				_image(relationship), relationship._text, false
+			);
 		}
 	}
 

@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -14,6 +13,8 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -152,10 +153,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDirection()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = FeatureDirectionKind.IN;
+	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
@@ -334,12 +335,22 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * If the member feature is a Parameter, then the default direction is IN, unless the Parameter is the result
+	 * Parameter of a function, in which case the default direction is OUT.
+	 * @generated NOT
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
+		if (direction == null) {
+			Feature member = getMemberFeature();
+			if (member instanceof Parameter) {
+				Category category = getOwningCategory();
+				direction = category instanceof Function && ((Function)category).getResult() == member? 
+						FeatureDirectionKind.OUT: 
+						FeatureDirectionKind.IN;
+				this.setDirection(direction);
+			}
+		}
 		return direction;
 	}
 
@@ -401,6 +412,28 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public Feature getOwnedMemberFeature() {
 		return ownedMemberFeature;
+	}
+	
+	@Override
+	public NotificationChain basicSetMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage, NotificationChain msgs) {
+//		if (getMemberFeature() instanceof Parameter) {
+//			if (this.getDirection() == null) {
+//				if (!(newMembershipOwningPackage instanceof Function)) {
+//					this.setDirection(FeatureDirectionKind.IN);
+//				} else {
+//					EList<Parameter> parameters = ((Function)newMembershipOwningPackage).getParameter();
+//					int n = parameters.size();
+//					if (n > 1) {
+//						FeatureMembership membership = parameters.get(n - 2).getOwningFeatureMembership();
+//						if (membership != null && membership.getDirection() == null) {
+//							membership.setDirection(FeatureDirectionKind.IN);
+//						}
+//					}
+//					this.setDirection(FeatureDirectionKind.OUT);
+//				}
+//			}
+//		}
+		return super.basicSetMembershipOwningPackage(newMembershipOwningPackage, msgs);
 	}
 
 	/**

@@ -21,8 +21,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -156,6 +158,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
+	
+	/**
+	 * The cached value of the BindingConnector from this Feature to the result a value Expression.
+	 */
+	protected BindingConnector valueConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -359,12 +366,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 
 	protected void addRedefinitions(EList<Subsetting> redefinitions) {
-		Category category = this.getOwningCategory();
-		int i = this.getRelevantFeatures(category).indexOf(this);
+		Category category = getOwningCategory();
+		int i = getRelevantFeatures(category).indexOf(this);
 		if (i >= 0) {
 			for (Generalization generalization: category.getOwnedGeneralization()) {
 				Category general = generalization.getGeneral();
-				List<? extends Feature> features = this.getRelevantFeatures(general);
+				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
 					if (redefinedFeature != null) {
@@ -466,11 +473,20 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public FeatureValue getValuation() {
 		return valuation;
+	}
+
+	public NotificationChain basicSetValuation(FeatureValue newValuation, NotificationChain msgs) {
+		msgs = basicSetValuationGen(newValuation, msgs);
+		if (newValuation == null && valueConnector != null) {
+			super.getOwnedMembership().remove(valueConnector.getOwningMembership());
+			valueConnector = null;
+		}
+		return msgs;
 	}
 
 	/**
@@ -478,7 +494,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValuation(FeatureValue newValuation, NotificationChain msgs) {
+	public NotificationChain basicSetValuationGen(FeatureValue newValuation, NotificationChain msgs) {
 		FeatureValue oldValuation = valuation;
 		valuation = newValuation;
 		if (eNotificationRequired()) {
@@ -582,6 +598,27 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	// Additional redefinitions and subsets
 
+	public BindingConnector getValueConnector() {
+		if (valuation != null) {
+			Expression value = valuation.getValue();
+			if (value != null) {
+				if (valueConnector == null) {
+					valueConnector = addOwnedBindingConnector(((ExpressionImpl)value).getResult(), this);
+				} else {
+					valueConnector.getConnectorEnd().get(0).setFeature(((ExpressionImpl)value).getResult());
+					valueConnector.getConnectorEnd().get(1).setFeature(this);
+				}
+			}
+		}
+		return valueConnector;
+	}
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getValueConnector();
+		return super.getFeature();
+	}
+	
 	@Override
 	public Membership getOwningMembership() {
 		Membership owningFeatureMembership = getOwningFeatureMembership();

@@ -3,19 +3,23 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -34,6 +38,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class OperatorExpressionImpl extends ExpressionImpl implements OperatorExpression {
+	
+	// TODO: Replace with single library package when global scope supports public re-export.
+	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions"};
+	
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,7 +104,7 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOperator(String newOperator) {
@@ -105,16 +113,30 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
-
+	
+	@Override
+	public EList<FeatureTyping> getTyping() {
+		String operator = getOperator();
+		return operator == null? super.getTyping():
+			getOwnedGeneralizationWithDefault(
+					FeatureTyping.class, SysMLPackage.FEATURE__TYPING, SysMLPackage.eINSTANCE.getFeatureTyping(), 
+					getOperatorQualifiedNames());
+	}
+	
+	protected String[] getOperatorQualifiedNames() {
+		String operator = getOperator();
+		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::" + operator).toArray(String[]::new);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getOperand() {
 		if (operand == null) {
-			operand = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
+			operand = new OperandEList();
 		}
 		return operand;
 	}
@@ -217,6 +239,110 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		result.append(operator);
 		result.append(')');
 		return result.toString();
+	}
+	
+	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		protected List<Expression> delegateList() {
+			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
+		}
+		
+		@Override
+		protected void delegateAdd(Expression object) {
+			addOwnedFeature(object);
+		}
+		
+		@Override
+		protected void delegateAdd(int i, Expression object) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public Expression remove(int i) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public boolean remove(Object object) {
+			throw new UnsupportedOperationException();
+		}
+		
+		@Override
+		public void clear() {
+			
+		}
+
+		@Override
+		public Object[] basicToArray() {
+			return delegateToArray();
+		}
+
+		@Override
+		public <T> T[] basicToArray(T[] array) {
+			return delegateToArray(array);
+		}
+
+		@Override
+		public int basicIndexOf(Object object) {
+			return delegateIndexOf(object);
+		}
+
+		@Override
+		public int basicLastIndexOf(Object object) {
+			return delegateLastIndexOf(object);
+		}
+
+		@Override
+		public boolean basicContains(Object object) {
+			return delegateContains(object);
+		}
+
+		@Override
+		public boolean basicContainsAll(Collection<?> collection) {
+			return delegateContainsAll(collection);
+		}
+
+		@Override
+		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
+			remove(object);
+			return notifications;
+		}
+
+		@Override
+		public NotificationChain basicAdd(Expression object, NotificationChain notifications) {
+			add(object);
+			return notifications;
+		}
+		
+		@Override
+		public Expression basicGet(int i) {
+			return super.basicGet(i);
+		}
+		
+		@Override
+		public List<Expression> basicList() {
+			return super.basicList();
+		}
+		
+		@Override
+		public Iterator<Expression> basicIterator()
+		{
+			return super.basicIterator();
+		}
+		
+		@Override
+		public ListIterator<Expression> basicListIterator()
+		{
+			return super.basicListIterator();
+		}
+		
+		@Override
+		public ListIterator<Expression> basicListIterator(int i)
+		{
+			return super.basicListIterator(i);
+		}
 	}
 
 } //OperatorExpressionImpl

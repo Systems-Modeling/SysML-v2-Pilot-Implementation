@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,10 +18,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -92,14 +96,18 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONNECTOR_END;
 	}
+	
+	@Override
+	public Feature getFeature() {
+		return feature == null? basicGetFeature(): getFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getFeature() {
+	public Feature getFeatureGen() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
 			feature = (Feature)eResolveProxy(oldFeature);
@@ -114,9 +122,35 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetFeature() {
+		if (feature == null) {
+			Connector connector = this.getConnector();
+			if (connector instanceof BindingConnector) {
+				Element owner = connector.getOwningNamespace();
+				if (owner instanceof ExpressionImpl) {
+					ExpressionImpl expression = (ExpressionImpl)owner;
+					int i = expression.getFeature().stream().filter(f->f instanceof Connector).
+							collect(Collectors.toList()).indexOf(connector);
+					if (i >= 0) {
+						if (this == connector.getConnectorEnd().get(0)) {
+							List<Feature> arguments = expression.getArguments();
+							if (i < arguments.size()) {
+								Feature argument = arguments.get(i);
+								feature = argument instanceof Expression? 
+										((ExpressionImpl)argument).getResult(): argument;
+							}
+						} else {
+							EList<Feature> inputs = expression.getInput();
+							if (i < inputs.size()) {
+								feature = inputs.get(i);
+							}
+						}
+					}
+				}
+			}
+		}
 		return feature;
 	}
 
@@ -142,13 +176,17 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		}
 	}
 
+	@Override
+	public Feature getEnd() {
+		return end == null? basicGetEnd(): getEndGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getEnd() {
+	public Feature getEndGen() {
 		if (end != null && end.eIsProxy()) {
 			InternalEObject oldEnd = (InternalEObject)end;
 			end = (Feature)eResolveProxy(oldEnd);
@@ -216,11 +254,13 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	}
 	
 	private static void getPath(EList<Feature> path, org.omg.sysml.lang.sysml.Package start, Feature end) {
-		org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
-		if (owningNamespace != null && owningNamespace != start && owningNamespace instanceof Feature) {
-			getPath(path, start, (Feature)owningNamespace);
+		if (end != null) {
+			org.omg.sysml.lang.sysml.Package owningNamespace = end.getOwningNamespace();
+			if (owningNamespace instanceof Feature && owningNamespace != start) {
+				getPath(path, start, (Feature)owningNamespace);
+			}
+			path.add(end);
 		}
-		path.add(end);
 	}
 
 	/**
@@ -311,7 +351,52 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__CONNECTOR, newConnector, newConnector));
 	}
 
-	// Additional subsetting
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__TARGET);
+		// NOTE: The "end" and "feature" objects must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element end = basicGetEnd();
+		if (end != null) {
+			target.add(end);
+		}
+		Element feature = basicGetFeature();
+		if (feature != null) {
+			target.add(feature);
+		}
+		return target;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__SOURCE);
+		Element connector = getConnector();
+		if (connector != null) {
+			source.add(connector);
+		}
+		return source;
+	}
+
+// Additional subsetting
 	
 	@Override
 	public EList<Relationship> getAllOwnedRelationships() {
@@ -471,47 +556,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 				return getConnector() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__TARGET);
-		// NOTE: The "feature" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element feature = basicGetFeature();
-		if (feature != null) {
-			target.add(feature);
-		}
-		return target;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR_END__SOURCE);
-		Element connector = getConnector();
-		if (connector != null) {
-			source.add(connector);
-		}
-		return source;
 	}
 
 } //ConnectorEndImpl

@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,7 +17,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConnectorEnd;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -148,13 +152,19 @@ public class CategoryImpl extends PackageImpl implements Category {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String defaultName) {
+	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
 		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
 		Generalization generalization = getDefaultGeneralization(generalizations, eClass);
 		if (generalization != null) {
-			EObject general = SysMLLibraryUtil.getLibraryElement(
-					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
-			if (general instanceof Category) {
+			EObject general = null;
+			for (String defaultName: defaultNames) {
+				general = SysMLLibraryUtil.getLibraryElement(
+						this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+				if (general instanceof Category) {
+					break;
+				}
+			}
+			if (general != null) {
 				generalization.setGeneral((Category)general);
 				generalizations.add((T)generalization);
 				getOwnedRelationship().add(generalization);
@@ -290,6 +300,33 @@ public class CategoryImpl extends PackageImpl implements Category {
 		isAbstract = newIsAbstract;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CATEGORY__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+	
+	// Utility Methods
+	
+	public FeatureMembership addOwnedFeature(Feature feature) {
+		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+		membership.setOwnedMemberFeature(feature);
+		getOwnedMembership().add(membership);
+		return membership;
+	}
+	
+	public BindingConnector addOwnedBindingConnector(Feature source, Feature target) {
+		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
+		EList<ConnectorEnd> ends = connector.getConnectorEnd();
+		ConnectorEnd end = SysMLFactory.eINSTANCE.createConnectorEnd();
+		end.setFeature(source);
+		ends.add(end);
+		end = SysMLFactory.eINSTANCE.createConnectorEnd();
+		end.setFeature(target);
+		ends.add(end);
+		addOwnedFeature(connector);
+		return connector;
+	}
+	
+	public Stream<Connector> getConnectors() {
+		return getFeature().stream().
+				filter(f->f instanceof Connector).map(f->(Connector)f);
 	}
 	
 	/**

@@ -6,4 +6,6 @@ package BaseFunctions {
 	function '/='(x: Anything, y: Anything): Boolean;
 	
 	function ToString(x: Anything): String;
+	
+	function '['(seq: Anything[*], index: Integer): Anything[0..1];
 }

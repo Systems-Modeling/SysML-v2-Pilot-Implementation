@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.omg.org/spec/SysML" targetURI="platform:/resource/org.omg.sysml.xtext/model/generated/SysML.ecore"/>
-</uriMap:MappingContainer>

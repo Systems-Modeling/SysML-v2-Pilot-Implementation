@@ -5,16 +5,18 @@ package Classes {
 
 	public class A {
 		feature b: B;
-		protected feature c: C;
+		protected port in c: C;
 	}
 	
 	abstract class B {
+		public abstract a: A;
 		packaged x: C;
 		package P { }
 	}
 	
 	private class C specializes B {
 		private y: B;
+		z is y;
 	}
 	
 }

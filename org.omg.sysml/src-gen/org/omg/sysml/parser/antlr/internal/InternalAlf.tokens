@@ -26,14 +26,14 @@
 '['=49
 ']'=51
 '^'=56
-'abstract'=36
+'abstract'=33
 'any'=46
 'as'=21
 'assoc'=29
 'behavior'=30
 'class'=27
 'compose'=45
-'connector'=35
+'connector'=36
 'datatype'=28
 'end'=39
 'feature'=32
@@ -48,8 +48,8 @@
 'out'=77
 'package'=22
 'packaged'=75
-'part'=33
-'port'=34
+'part'=34
+'port'=35
 'private'=73
 'protected'=74
 'public'=72

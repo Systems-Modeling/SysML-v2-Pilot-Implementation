@@ -71,17 +71,17 @@ package Base {
 	 * referenceProperty and valueProperty are specializations that restrict the feature type
 	 * to Objects and Values, respectively.
 	 */
-	feature property: Anything[0..*] nonunique;
-	feature referenceProperty: Object[0..*] nonunique subsets property;
-	feature valueProperty: Value[0..*] nonunique subsets property;
+	abstract feature property: Anything[0..*] nonunique;
+	abstract feature referenceProperty: Object[0..*] nonunique subsets property;
+	abstract feature valueProperty: Value[0..*] nonunique subsets property;
 	
 	/*
 	 * connection is the most general feature of links between individuals.
 	 * binaryConnection and binding are specializations of binary links and self links.
 	 */
-	feature connection: Link[0..*] nonunique subsets property;
-	feature binaryConnection: BinaryLink[0..*] nonunique subsets connection;
-	feature binding: SelfLink[0..*] nonunique subsets binaryConnection;
+	abstract feature connection: Link[0..*] nonunique subsets property;
+	abstract feature binaryConnection: BinaryLink[0..*] nonunique subsets connection;
+	abstract feature binding: SelfLink[0..*] nonunique subsets binaryConnection;
 	
 	/*
 	 * execution is the most general feature of occurrences of behaviors.

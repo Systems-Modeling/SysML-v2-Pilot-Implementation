@@ -1,0 +1,73 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation PrepareMetamodel(inout uml: UML);
+
+main() {
+	var model := uml.rootObjects()![Model];
+	model.map Namespace(model);
+	model.packagedElement[Package]->destroy();
+	model.name := "sysml";
+	model.URI := "http://www.omg.org/spec/SysML/2.0"
+}
+
+mapping Namespace::Namespace(inout model: Model) {
+	self.ownedMember[Property]->map Property();
+	self.ownedMember[Namespace]->map Namespace(model);
+}
+
+mapping Package::Namespace(inout model: Model)
+	inherits Namespace::Namespace {
+	if self <> model then {
+		model.packagedElement += self.packagedElement;
+	} endif
+}
+
+mapping inout Property::Property() {
+	log("Property " + nameOf(self.featuringClassifier![true]) + "::" + nameOf(self));
+	log("  isComposite: " + self.isComposite.toString());
+	if self.isComposite then {
+		var rejectedSubsettedProperties := self.subsettedProperty[isComposite];
+		var rejectedRedefinedProperties := self.redefinedProperty->reject(isComposite);
+		self.subsettedProperty := self.subsettedProperty - rejectedSubsettedProperties;
+		self.redefinedProperty := self.redefinedProperty - rejectedRedefinedProperties;
+		log("  opposite: " + nameOf(self.opposite));
+		if self.opposite <> null then {
+			self.opposite.lower := 0;
+			var rejectedProperties := rejectedSubsettedProperties->union(rejectedRedefinedProperties);
+			self.opposite.subsettedProperty := self.opposite.subsettedProperty->reject(rejectedProperties->includes(opposite));
+			self.opposite.redefinedProperty := self.opposite.redefinedProperty->reject(rejectedProperties->includes(opposite));
+		} endif;
+	} endif;
+}
+
+query nameOf(element: NamedElement): String {
+	return 
+		if element = null then "<null>"
+		else if element.name = null or element.name = "" then "<empty>"
+		else element.name
+		endif endif
+}

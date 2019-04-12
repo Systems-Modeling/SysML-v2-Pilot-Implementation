@@ -31,7 +31,16 @@ main() {
 	model.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 	model.name := "sysml";
-	model.URI := "http://www.omg.org/spec/SysML/2.0"
+	model.URI := "http://www.omg.org/spec/SysML/2.0";
+	removeComposition();
+}
+
+property compositeProperties: Set(Property);
+
+helper removeComposition() {
+	compositeProperties->forEach(prop) {
+		prop.isComposite := false;
+	}
 }
 
 mapping Namespace::Namespace(inout model: Model) {
@@ -50,16 +59,22 @@ mapping inout Property::Property() {
 	log("Property " + nameOf(self.featuringClassifier![true]) + "::" + nameOf(self));
 	log("  isComposite: " + self.isComposite.toString());
 	if self.isComposite then {
-		var rejectedSubsettedProperties := self.subsettedProperty[isComposite];
-		var rejectedRedefinedProperties := self.redefinedProperty->reject(isComposite);
-		self.subsettedProperty := self.subsettedProperty - rejectedSubsettedProperties;
-		self.redefinedProperty := self.redefinedProperty - rejectedRedefinedProperties;
-		log("  opposite: " + nameOf(self.opposite));
-		if self.opposite <> null then {
-			self.opposite.lower := 0;
-			var rejectedProperties := rejectedSubsettedProperties->union(rejectedRedefinedProperties);
-			self.opposite.subsettedProperty := self.opposite.subsettedProperty->reject(rejectedProperties->includes(opposite));
-			self.opposite.redefinedProperty := self.opposite.redefinedProperty->reject(rejectedProperties->includes(opposite));
+		var compositeSubsettedProperties := self.subsettedProperty[isComposite];
+		var compositeRedefinedProperties := self.redefinedProperty[isComposite];
+		log("  compositeSubsettedProperties: " + compositeSubsettedProperties->notEmpty().toString());
+		log("  compositeRedefinedProperties: " + compositeRedefinedProperties->notEmpty().toString());
+		if compositeSubsettedProperties->notEmpty() or compositeRedefinedProperties->notEmpty() then {
+			compositeProperties += self;
+			self.isDerived := true;
+			self.subsettedProperty := self.subsettedProperty - compositeSubsettedProperties;
+			self.redefinedProperty := self.redefinedProperty - compositeRedefinedProperties;
+			log("  opposite: " + nameOf(self.opposite));
+			if self.opposite <> null then {
+				self.opposite.isDerived := true;
+				var rejectedProperties := compositeSubsettedProperties->union(compositeRedefinedProperties);
+				self.opposite.subsettedProperty := self.opposite.subsettedProperty->reject(rejectedProperties->includes(opposite));
+				self.opposite.redefinedProperty := self.opposite.redefinedProperty->reject(rejectedProperties->includes(opposite));
+			} endif;
 		} endif;
 	} endif;
 }

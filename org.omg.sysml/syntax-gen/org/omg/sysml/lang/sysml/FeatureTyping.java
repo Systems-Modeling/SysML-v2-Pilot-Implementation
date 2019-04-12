@@ -74,7 +74,7 @@ public interface FeatureTyping extends Generalization {
 	 * @see #setTypedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_TypedFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getTyping
-	 * @model opposite="typing" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="typing" required="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */

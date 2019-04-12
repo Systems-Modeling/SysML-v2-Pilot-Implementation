@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.common.util.EList;
@@ -16,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
@@ -26,7 +24,6 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -67,16 +64,6 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @ordered
 	 */
 	protected Feature end;
-
-	/**
-	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected Multiplicity multiplicity;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,42 +257,28 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 */
 	@Override
 	public Multiplicity getMultiplicity() {
-		return multiplicity;
+		Multiplicity multiplicity = basicGetMultiplicity();
+		return multiplicity != null && multiplicity.eIsProxy() ? (Multiplicity)eResolveProxy((InternalEObject)multiplicity) : multiplicity;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetMultiplicity(Multiplicity newMultiplicity, NotificationChain msgs) {
-		Multiplicity oldMultiplicity = multiplicity;
-		multiplicity = newMultiplicity;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__MULTIPLICITY, oldMultiplicity, newMultiplicity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Multiplicity basicGetMultiplicity() {
+		return getFirstOwnedRelationship(Multiplicity.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
-		if (newMultiplicity != multiplicity) {
-			NotificationChain msgs = null;
-			if (multiplicity != null)
-				msgs = ((InternalEObject)multiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__MULTIPLICITY, null, msgs);
-			if (newMultiplicity != null)
-				msgs = ((InternalEObject)newMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.CONNECTOR_END__MULTIPLICITY, null, msgs);
-			msgs = basicSetMultiplicity(newMultiplicity, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__MULTIPLICITY, newMultiplicity, newMultiplicity));
+		// TODO: implement this method to set the 'Multiplicity' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -315,40 +288,37 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 */
 	@Override
 	public Connector getConnector() {
-		if (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR) return null;
-		return (Connector)eInternalContainer();
+		Connector connector = basicGetConnector();
+		return connector != null && connector.eIsProxy() ? (Connector)eResolveProxy((InternalEObject)connector) : connector;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetConnector(Connector newConnector, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newConnector, SysMLPackage.CONNECTOR_END__CONNECTOR, msgs);
-		return msgs;
+	public Connector basicGetConnector() {
+		return getOwningRelatedElement(Connector.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setConnector(Connector newConnector) {
-		if (newConnector != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTOR_END__CONNECTOR && newConnector != null)) {
-			if (EcoreUtil.isAncestor(this, newConnector))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newConnector != null)
-				msgs = ((InternalEObject)newConnector).eInverseAdd(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
-			msgs = basicSetConnector(newConnector, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_END__CONNECTOR, newConnector, newConnector));
+		// TODO: implement this method to set the 'Connector' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnector() {
+		return basicGetConnector() != null;
 	}
 
 	/**
@@ -379,7 +349,7 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
+	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_END__FEATURE, SysMLPackage.CONNECTOR_END__END};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -396,62 +366,13 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		return source;
 	}
 
-// Additional subsetting
-	
-	@Override
-	public EList<Relationship> getAllOwnedRelationships() {
-		EList<Relationship> ownedRelationships = super.getAllOwnedRelationships();
-		Multiplicity multiplicity = getMultiplicity();
-		if (multiplicity != null) {
-			ownedRelationships.add(multiplicity);
-		}
-		return ownedRelationships;
-	}
-
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetConnector((Connector)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
-				return basicSetMultiplicity(null, msgs);
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return basicSetConnector(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.CONNECTOR__CONNECTOR_END, Connector.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+	public boolean isSetSource() {
+  		return false;
 	}
 
 	/**
@@ -471,9 +392,11 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			case SysMLPackage.CONNECTOR_END__PATH:
 				return getPath();
 			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
-				return getMultiplicity();
+				if (resolve) return getMultiplicity();
+				return basicGetMultiplicity();
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return getConnector();
+				if (resolve) return getConnector();
+				return basicGetConnector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -544,6 +467,8 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR_END__TARGET:
 				return target != null && !target.isEmpty();
+			case SysMLPackage.CONNECTOR_END__SOURCE:
+				return isSetSource();
 			case SysMLPackage.CONNECTOR_END__FEATURE:
 				return feature != null;
 			case SysMLPackage.CONNECTOR_END__END:
@@ -551,9 +476,9 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			case SysMLPackage.CONNECTOR_END__PATH:
 				return !getPath().isEmpty();
 			case SysMLPackage.CONNECTOR_END__MULTIPLICITY:
-				return multiplicity != null;
+				return basicGetMultiplicity() != null;
 			case SysMLPackage.CONNECTOR_END__CONNECTOR:
-				return getConnector() != null;
+				return isSetConnector();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -46,7 +46,7 @@ public interface Class extends Category {
 	 * @return the value of the '<em>Owned Superclassing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClass_OwnedSuperclassing()
 	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClass
-	 * @model opposite="owningClass" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningClass" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */

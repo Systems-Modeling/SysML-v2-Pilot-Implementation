@@ -13,12 +13,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()
@@ -133,7 +133,7 @@ public interface Membership extends Relationship {
 	void setMemberElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' container reference.
+	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
@@ -147,49 +147,56 @@ public interface Membership extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Membership Owning Package</em>' container reference.
+	 * @return the value of the '<em>Membership Owning Package</em>' reference.
 	 * @see #setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership
-	 * @model opposite="ownedMembership" required="true" transient="false" ordered="false"
+	 * @model opposite="ownedMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Membership Owning Package</em>' container reference.
+	 * @param value the new value of the '<em>Membership Owning Package</em>' reference.
 	 * @see #getMembershipOwningPackage()
 	 * @generated
 	 */
 	void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Member Element</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Member Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Member Element</em>' containment reference.
+	 * @return the value of the '<em>Owned Member Element</em>' reference.
 	 * @see #setOwnedMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
-	 * @model opposite="owningMembership" containment="true" ordered="false"
+	 * @model opposite="owningMembership" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Member Element</em>' containment reference.
+	 * @param value the new value of the '<em>Owned Member Element</em>' reference.
 	 * @see #getOwnedMemberElement()
 	 * @generated
 	 */

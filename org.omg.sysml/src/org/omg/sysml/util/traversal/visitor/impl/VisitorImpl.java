@@ -107,7 +107,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 		Element element = this.getElement();
 		Traversal traversal = this.getTraversal();
 		traversal.putIdentifier(element, identifier);
-		for (Relationship relationship: ((ElementImpl)element).getAllOwnedRelationships()) {
+		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
 			traversal.visit(relationship);
 		}
 		return identifier;

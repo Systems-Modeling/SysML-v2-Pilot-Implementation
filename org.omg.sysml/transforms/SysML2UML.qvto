@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -338,13 +338,17 @@ constructor UML::ConnectorEnd::ConnectorEnd(feature: SysML::Feature) {
 
 mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
 	disjuncts
+		SysML::NullExpression::toLiteralNull,
 		SysML::LiteralExpression::toLiteralSpecification,
-		SysML::LiteralNull::toLiteralNull,
 //		SysML::OperatorExpression::toExpression,
 		SysML::InstanceCreationExpression::toExpression,
 		SysML::SequenceAccessExpression::toExpression,
 		SysML::SequenceConstructionExpression::toExpression,
 		SysML::ElementReferenceExpression::toExpression;
+
+mapping SysML::NullExpression::toLiteralNull(): UML::LiteralNull
+	inherits SysML::Element::toNamedElement {
+}
 
 mapping SysML::LiteralExpression::toLiteralSpecification(): UML::LiteralSpecification
 	disjuncts
@@ -379,17 +383,13 @@ mapping SysML::LiteralUnbounded::toLiteralUnlimitedNatural(): UML::LiteralUnlimi
 	value := -1;
 }
 
-mapping SysML::LiteralNull::toLiteralNull(): UML::LiteralNull
-	inherits SysML::Element::toNamedElement {
-}
 
-/*
 mapping SysML::OperatorExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := self.operator;
 	operand := self.operand->map toValueSpecification();
 }
-*/
+
 
 mapping SysML::InstanceCreationExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {

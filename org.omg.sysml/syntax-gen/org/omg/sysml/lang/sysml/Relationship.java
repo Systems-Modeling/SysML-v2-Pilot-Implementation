@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,11 +13,11 @@ import org.eclipse.emf.common.util.UniqueEList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement <em>Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getSource <em>Source</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship()
@@ -34,7 +33,7 @@ public interface Relationship extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -58,7 +57,7 @@ public interface Relationship extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -153,15 +152,4 @@ public interface Relationship extends Element {
 	 */
 	EList<Element> getSource();
 	
-	// Additional operations
-	
-	/**
-	 * This operation may be overridden to provide an effective union property for all owned related Elements, without introducing explicit subsetting.
-	 * The regular ownedRelatedElement property can then still be used to add otherwise undifferentiated owned Elements.
-	 * @return the union of all owned related Elements.
-	 */
-	default EList<Element> getAllOwnedRelatedElements() {
-		return new UniqueEList<Element>(getOwnedRelatedElement());
-	}
-
 } // Relationship

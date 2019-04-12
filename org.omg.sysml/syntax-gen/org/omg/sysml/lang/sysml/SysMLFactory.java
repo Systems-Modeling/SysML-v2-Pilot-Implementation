@@ -256,6 +256,51 @@ public interface SysMLFactory extends EFactory {
 	ConnectorEnd createConnectorEnd();
 
 	/**
+	 * Returns a new object of class '<em>Value Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Class</em>'.
+	 * @generated
+	 */
+	ValueClass createValueClass();
+
+	/**
+	 * Returns a new object of class '<em>Object Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Class</em>'.
+	 * @generated
+	 */
+	ObjectClass createObjectClass();
+
+	/**
+	 * Returns a new object of class '<em>Of Succession</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Of Succession</em>'.
+	 * @generated
+	 */
+	OfSuccession createOfSuccession();
+
+	/**
+	 * Returns a new object of class '<em>Ordered Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ordered Feature</em>'.
+	 * @generated
+	 */
+	OrderedFeature createOrderedFeature();
+
+	/**
+	 * Returns a new object of class '<em>Structured Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structured Feature</em>'.
+	 * @generated
+	 */
+	StructuredFeature createStructuredFeature();
+
+	/**
 	 * Returns a new object of class '<em>Binding Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,6 +335,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Annotation createAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>Atomic Interaction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Atomic Interaction</em>'.
+	 * @generated
+	 */
+	AtomicInteraction createAtomicInteraction();
+
+	/**
+	 * Returns a new object of class '<em>Interaction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interaction</em>'.
+	 * @generated
+	 */
+	Interaction createInteraction();
 
 	/**
 	 * Returns a new object of class '<em>Ownership</em>'.
@@ -346,13 +409,13 @@ public interface SysMLFactory extends EFactory {
 	LiteralInteger createLiteralInteger();
 
 	/**
-	 * Returns a new object of class '<em>Literal Null</em>'.
+	 * Returns a new object of class '<em>Operator Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal Null</em>'.
+	 * @return a new object of class '<em>Operator Expression</em>'.
 	 * @generated
 	 */
-	LiteralNull createLiteralNull();
+	OperatorExpression createOperatorExpression();
 
 	/**
 	 * Returns a new object of class '<em>Literal String</em>'.
@@ -400,6 +463,15 @@ public interface SysMLFactory extends EFactory {
 	InstanceCreationExpression createInstanceCreationExpression();
 
 	/**
+	 * Returns a new object of class '<em>Null Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Null Expression</em>'.
+	 * @generated
+	 */
+	NullExpression createNullExpression();
+
+	/**
 	 * Returns a new object of class '<em>Sequence Construction Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,33 +488,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	SequenceAccessExpression createSequenceAccessExpression();
-
-	/**
-	 * Returns a new object of class '<em>Operator Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operator Expression</em>'.
-	 * @generated
-	 */
-	OperatorExpression createOperatorExpression();
-
-	/**
-	 * Returns a new object of class '<em>Object Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Class</em>'.
-	 * @generated
-	 */
-	ObjectClass createObjectClass();
-
-	/**
-	 * Returns a new object of class '<em>Value Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Class</em>'.
-	 * @generated
-	 */
-	ValueClass createValueClass();
 
 	/**
 	 * Returns the package supported by this factory.

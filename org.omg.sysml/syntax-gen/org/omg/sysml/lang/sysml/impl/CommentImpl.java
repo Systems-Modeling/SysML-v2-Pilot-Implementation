@@ -127,13 +127,12 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setCommentedElement(Element newCommentedElement) {
 		// TODO: implement this method to set the 'Commented Element' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 	
 	/**
@@ -169,10 +168,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {
-			Element owner = this.getOwningRelationship();
-			if (owner instanceof Annotation) {
-				annotationForComment = (Annotation)owner;
-			}
+			annotationForComment = getOwningRelationship(Annotation.class);
 		}
 		return annotationForComment;
 	}

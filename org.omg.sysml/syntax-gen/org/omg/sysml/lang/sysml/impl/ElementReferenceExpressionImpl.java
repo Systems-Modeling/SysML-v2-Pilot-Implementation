@@ -70,7 +70,7 @@ public class ElementReferenceExpressionImpl extends ExpressionImpl implements El
 				membership = memberships.get(0);
 			} else {
 				membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-				getOwnedMembership().add(membership);
+				getOwnedRelationship().add(membership);
 			}
 			membership.setMemberName(referent.getName());
 			membership.setMemberFeature((Feature)referent);

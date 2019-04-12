@@ -243,9 +243,12 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
-		for (Relationship relationship : expression.allOwnedRelationships) {
+		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
-				_image(relationship), relationship._text, false
+				_image(relationship), 
+				if (relationship instanceof Membership) (relationship as Membership)._text 
+				else relationship._text, 
+				false
 			);
 		}
 	}

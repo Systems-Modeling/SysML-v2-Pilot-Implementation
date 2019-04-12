@@ -97,20 +97,20 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     connectorEnd+=ConnectorEnd ')' (ambiguity) (rule end)
-	 *     connectorEnd+=ConnectorEnd (ambiguity) (rule end)
 	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     multiplicity=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (':' 'any')? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEnd ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEnd (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (':' 'any')? (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
-	 *     valuation=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -121,7 +121,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'is'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) connectorEnd+=ConnectorEnd
+	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEnd
 	 */
 	protected void emit_ConnectorDeclaration_IsKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -132,9 +132,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedMemberElement=NamedFeatureDefinition
-	 *     ownedRelationship+=Annotation (ambiguity) ownedMemberElement=NamedFeatureDefinition
-	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedMemberElement=NamedFeatureDefinition
+	 *     (rule start) (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
+	 *     ownedRelationship+=Annotation (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
 	 */
 	protected void emit_FeaturePackageMemberElement_FeatureKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -145,9 +145,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'abstract' (ambiguity) ownedMemberElement=AbstractNamedFeatureDefinition
-	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedMemberElement=AbstractNamedFeatureDefinition
-	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedMemberElement=AbstractNamedFeatureDefinition
+	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
+	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
+	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
 	 */
 	protected void emit_FeaturePackageMemberElement_FeatureKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -208,29 +208,29 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
-	 *     (rule start) (ambiguity) multiplicity=Multiplicity
-	 *     name=Name (ambiguity) '=' valuation=FeatureValue
+	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
+	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
-	 *     name=Name (ambiguity) '{' ownedImport+=PackageImport
-	 *     name=Name (ambiguity) '{' ownedMembership+=CategoryMember
+	 *     name=Name (ambiguity) '{' ownedRelationship+=CategoryMember
+	 *     name=Name (ambiguity) '{' ownedRelationship+=PackageImport
 	 *     name=Name (ambiguity) (';' | ('{' '}')) (rule end)
 	 *     name=Name (ambiguity) isAbstract?=';'
 	 *     name=Name (ambiguity) isAbstract?='{'
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
-	 *     name=Name (ambiguity) multiplicity=Multiplicity
-	 *     ownedRelationship+=Redefinition (ambiguity) '=' valuation=FeatureValue
+	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
+	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset
-	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedImport+=PackageImport
-	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedMembership+=CategoryMember
+	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedRelationship+=CategoryMember
+	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedRelationship+=PackageImport
 	 *     ownedRelationship+=Redefinition (ambiguity) (';' | ('{' '}')) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) isAbstract?=';'
 	 *     ownedRelationship+=Redefinition (ambiguity) isAbstract?='{'
 	 *     ownedRelationship+=Redefinition (ambiguity) isNonunique?='nonunique'
 	 *     ownedRelationship+=Redefinition (ambiguity) isOrdered?='ordered'
-	 *     ownedRelationship+=Redefinition (ambiguity) multiplicity=Multiplicity
+	 *     ownedRelationship+=Redefinition (ambiguity) ownedRelationship+=Multiplicity
 	 */
 	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

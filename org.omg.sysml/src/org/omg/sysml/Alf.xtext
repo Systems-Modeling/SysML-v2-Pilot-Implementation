@@ -166,7 +166,9 @@ fragment NonFeatureMemberElement returns SysML::Membership :
 fragment FeaturePackageMemberElement returns SysML::Membership :
 	( 
 	  'feature'? ownedMemberElement = NamedFeatureDefinition
+	| 'abstract' 'feature'? ownedMemberElement = AbstractNamedFeatureDefinition
 	| 'feature' ownedMemberElement = UnnamedFeatureDefinition
+	| 'abstract' 'feature' ownedMemberElement = AbstractUnnamedFeatureDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
 	)
 ;
@@ -175,6 +177,10 @@ fragment FeaturePackageMemberElement returns SysML::Membership :
 
 fragment CategoryBody returns SysML::Category :
 	';' | '{' ( ownedMembership += CategoryMember | ownedImport += PackageImport )* '}'
+;
+
+fragment AbstractCategoryBody returns SysML::Category :
+	isAbstract ?= ';' | isAbstract ?= '{' ( ownedMembership += CategoryMember | ownedImport += PackageImport )* '}'
 ;
 
 /* CATEGORY MEMBERSHIPS */
@@ -193,6 +199,7 @@ FeatureCategoryMember returns SysML::FeatureMembership :
       
     // These alternatives are provided for legacy Alf backwards compatibility.	
     | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
+    | 'abstract' ( direction = FeatureDirection )? ownedMemberFeature = AbstractNamedFeatureDefinition
 	| ( direction = FeatureDirection )? memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
 	
 	)
@@ -209,10 +216,13 @@ fragment FeatureMemberElement returns SysML::FeatureMembership :
       ( ownedMemberFeature = FeatureDefinition 
       | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
       )
+    | 'abstract' ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?
+      ownedMemberFeature = AbstractFeatureDefinition
 	| 'connector' 
 	  ( ownedMemberFeature = ConnectorDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
+    | 'abstract' 'connector' ownedMemberFeature = AbstractConnectorDefinition
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -309,10 +319,12 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	CategoryMemberPrefix
     (
       'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberFeature = FeatureDefinition
+    | 'abstract' 'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedMemberFeature = AbstractFeatureDefinition
 	| 'end' ( isPart ?= 'part') ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 
 	// These alternatives are provided for legacy Alf backwards compatibility;
     | ( direction = FeatureDirection )? ownedMemberFeature = NamedFeatureDefinition
+    | 'abstract' ( direction = FeatureDirection )? ownedMemberFeature = AbstractNamedFeatureDefinition
 	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	
 	)
@@ -366,8 +378,16 @@ FeatureDefinition returns SysML::Feature :
 	NamedFeatureDefinition | UnnamedFeatureDefinition
 ;
 
+AbstractFeatureDefinition returns SysML::Feature :
+	AbstractNamedFeatureDefinition | AbstractUnnamedFeatureDefinition
+;
+
 NamedFeatureDefinition returns SysML::Feature :
 	FeatureDeclaration FeatureCompletion
+;
+
+AbstractNamedFeatureDefinition returns SysML::Feature :
+	FeatureDeclaration AbstractFeatureCompletion
 ;
 
 UnnamedFeatureDefinition returns SysML::Feature :
@@ -375,8 +395,13 @@ UnnamedFeatureDefinition returns SysML::Feature :
 	FeatureCompletion
 ;
 
+AbstractUnnamedFeatureDefinition returns SysML::Feature :
+	'redefines' ownedRelationship += Redefinition TypePart
+	AbstractFeatureCompletion
+;
+
 fragment FeatureBodyDefinition returns SysML::Feature :
-	'feature' FeatureDeclaration FeatureCompletion
+	( isAbstract ?= 'abstract' )? 'feature' FeatureDeclaration FeatureCompletion
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
@@ -385,6 +410,10 @@ fragment FeatureDeclaration returns SysML::Feature :
 
 fragment FeatureCompletion returns SysML::Feature :
 	( '=' valuation = FeatureValue )? CategoryBody
+;
+
+fragment AbstractFeatureCompletion returns SysML::Feature :
+	( '=' valuation = FeatureValue )? AbstractCategoryBody
 ;
 
 FeatureValue returns SysML::FeatureValue :
@@ -430,7 +459,15 @@ Redefinition returns SysML::Redefinition:
 
 /* CONNECTORS */
 
-ConnectorDefinition returns SysML::Connector:	 
+ConnectorDefinition returns SysML::Connector :	 
+	ConnectorDeclaration CategoryBody	  
+;
+
+AbstractConnectorDefinition returns SysML::Connector :
+	ConnectorDeclaration AbstractCategoryBody
+;
+
+fragment ConnectorDeclaration returns SysML::Connector :
 	( ( ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )? 'is')?
 		  connectorEnd += ConnectorEnd 'to' connectorEnd += ConnectorEnd
 	| ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )?
@@ -438,7 +475,6 @@ ConnectorDefinition returns SysML::Connector:
 	      ( ',' connectorEnd += ConnectorEnd )*
 	  ')'
 	)
-	CategoryBody	  
 ;
 
 ConnectorTyping returns SysML::FeatureTyping :

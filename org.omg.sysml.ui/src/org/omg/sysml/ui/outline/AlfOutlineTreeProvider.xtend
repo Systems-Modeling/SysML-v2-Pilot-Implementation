@@ -24,6 +24,8 @@ import org.omg.sysml.lang.sysml.LiteralNull
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.ElementReferenceExpression
+import org.omg.sysml.lang.sysml.Category
+import org.omg.sysml.lang.sysml.VisibilityKind
 
 /**
  * Customization of the default outline structure.
@@ -36,32 +38,62 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var text = element.eClass.name;
 		if (element.name !== null) {
 			text += ' ' + element.name;
-		} else if (element instanceof Membership) {
-			if (element.visibility !== null) {
-				text += ' ' + element.visibility;
-			}
-			if (element.ownedMemberElement !== null) {
-				text += ' owns'
-			}
-			if (element instanceof FeatureMembership) {
-				if (element.direction !== null) {
-					text += ' ' + element.direction
-				}
-			}
-			if (element.memberName !== null) {
-				text += ' ' + element.memberName
-			} else if (element.memberElement?.name !== null) {
-				text += ' ' + element.memberElement.name;
-			}
-		} else if (element instanceof Import) {
-			if (element.visibility !== null) {
-				text += ' ' + element.visibility
-			}
-			if (element.importedPackage?.name !== null) {
-				text += ' ' + element.importedPackage.name
-			}
 		}
 		text 
+	}
+	
+	def String _text(VisibilityKind visibility) {
+		if (visibility == VisibilityKind.PACKAGE) "packaged"
+		else visibility.toString
+	}
+	
+	def String _text(Membership membership) {
+		var text = membership.eClass.name;
+		if (membership.ownedMemberElement !== null) {
+			text += ' owns'
+		}
+		if (membership.visibility !== null) {
+			text += ' ' + membership.visibility._text;
+		}
+		if (membership instanceof FeatureMembership) {
+			if (membership.isPart) {
+				text += ' part'
+			}
+			if (membership.isPort) {
+				text += ' port'
+			}
+			if (membership.direction !== null) {
+				text += ' ' + membership.direction
+			}
+		}
+		if (membership.memberName !== null) {
+			text += ' ' + membership.memberName
+		} else if (membership.memberElement?.name !== null) {
+			text += ' ' + membership.memberElement.name;
+		}
+		text
+	}
+	
+	def String _text(Import import_) {
+		var text = import_.eClass.name;
+		if (import_.visibility !== null) {
+			text += ' ' + import_.visibility._text
+		}
+		if (import_.importedPackage?.name !== null) {
+			text += ' ' + import_.importedPackage.name
+		}
+		text
+	}
+	
+	def String _text(Category category) {
+		var text = category.eClass.name;
+		if (category.isAbstract) {
+			text += ' abstract'
+		}
+		if (category.name !== null) {
+			text += ' ' + category.name;
+		}
+		text
 	}
 	
 	def String _text(LiteralString literal) {

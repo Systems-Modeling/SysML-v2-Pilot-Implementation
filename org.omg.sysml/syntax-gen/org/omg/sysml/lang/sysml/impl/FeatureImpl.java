@@ -31,10 +31,12 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ValueClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +66,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureImpl extends CategoryImpl implements Feature {
 	
-	private static final String FEATURE_SUBSETTING_DEFAULT = "Base::property";
+	private static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
+	private static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
+	private static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
 	
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
@@ -325,7 +329,18 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				return endRedefinitions;
 			}
 		}
-		return getOwnedSubsettingWithDefault(FEATURE_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithDefault(
+				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+				FEATURE_SUBSETTING_DEFAULT);
+	}
+	
+	public boolean hasObjectType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ObjectClass);
+	}
+	
+	public boolean hasValueType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {

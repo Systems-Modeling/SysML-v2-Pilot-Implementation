@@ -2,8 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -14,6 +16,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StepImpl extends FeatureImpl implements Step {
+	
+	public static final String STEP_SUBSETTING_DEFAULT = "Base::behaviorOccurrences";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,4 +38,9 @@ public class StepImpl extends FeatureImpl implements Step {
 		return SysMLPackage.Literals.STEP;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(STEP_SUBSETTING_DEFAULT);
+	}
+	
 } //StepImpl

@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
 
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Base::binding";
+	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Base::selfLinks";
 	
 	/**
 	 * <!-- begin-user-doc -->

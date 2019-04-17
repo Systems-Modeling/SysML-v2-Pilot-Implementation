@@ -56,8 +56,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConnectorImpl extends FeatureImpl implements Connector {
 	
-	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Base::connection";
-	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Base::binaryConnection";
+	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Base::links";
+	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Base::binaryLinks";
 	
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.

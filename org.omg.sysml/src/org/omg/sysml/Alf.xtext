@@ -38,6 +38,8 @@ UnitDefinition returns SysML::Package :
 	| ObjectClassUnitDefinition
 	| ValueClassUnitDefinition
 	| AssociationUnitDefinition 
+	| BehaviorUnitDefinition
+	| FunctionUnitDefinition
 	| FeatureUnitDefinition
 ;
 
@@ -59,6 +61,14 @@ ValueClassUnitDefinition returns SysML::ValueClass :
 
 AssociationUnitDefinition returns SysML::Association :
 	UnitPrefix AssociationDefinition
+;
+
+BehaviorUnitDefinition returns SysML::Behavior :
+	UnitPrefix BehaviorDefinition
+;
+
+FunctionUnitDefinition returns SysML::Function :
+	UnitPrefix FunctionDefinition
 ;
 
 FeatureUnitDefinition returns SysML::Feature :
@@ -184,7 +194,7 @@ fragment AbstractCategoryBody returns SysML::Category :
 /* CATEGORY MEMBERSHIPS */
 
 CategoryMember returns SysML::Membership : 
-	NonFeatureCategoryMember | FeatureCategoryMember
+	NonFeatureCategoryMember | FeatureMember | FeatureCategoryMember
 ;
 
 NonFeatureCategoryMember returns SysML::Membership : 
@@ -193,23 +203,17 @@ NonFeatureCategoryMember returns SysML::Membership :
 
 FeatureCategoryMember returns SysML::FeatureMembership : 
 	CategoryMemberPrefix
-	( FeatureMemberElement
-      
+	(
     // These alternatives are provided for legacy Alf backwards compatibility.	
-    | ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
+      ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
     | 'abstract' ( direction = FeatureDirection )? ownedRelatedElement += AbstractNamedFeatureDefinition
-	| ( direction = FeatureDirection )? memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'	
-	
+	| ( direction = FeatureDirection )? memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'		
 	)
 ;
 
-fragment CategoryMemberPrefix returns SysML::Membership :
-	( ownedRelationship += Annotation )*
-//  ( annotation += StereotypeAnnotation )*
-    ( visibility = VisibilityIndicator )?
-;
-
-fragment FeatureMemberElement returns SysML::FeatureMembership :
+FeatureMember returns SysML::FeatureMembership :
+	CategoryMemberPrefix
+	(
       ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
       ( ownedRelatedElement += FeatureDefinition 
       | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
@@ -221,10 +225,17 @@ fragment FeatureMemberElement returns SysML::FeatureMembership :
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
+    )
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
+;
+
+fragment CategoryMemberPrefix returns SysML::Membership :
+	( ownedRelationship += Annotation )*
+//  ( annotation += StereotypeAnnotation )*
+    ( visibility = VisibilityIndicator )?
 ;
 
 /* CLASSES */
@@ -306,11 +317,7 @@ fragment AssociationBody returns SysML::Association :
 /* ASSOCIATION MEMBERSHIPS */
 
 AssociationMember returns SysML::Membership :
-	NonFeatureCategoryMember | AssociationFeatureMember | AssociationEndFeatureMember
-;
-
-AssociationFeatureMember returns SysML::FeatureMembership :
-	CategoryMemberPrefix FeatureMemberElement
+	NonFeatureCategoryMember | FeatureMember | AssociationEndFeatureMember
 ;
 
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
@@ -331,16 +338,23 @@ AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 /* BEHAVIORS */
 
 BehaviorDefinitionOrStub returns SysML::Behavior :
-//	BehaviorDefinition |
-	BehaviorDeclaration ';'
+	BehaviorDefinition
+;
+
+fragment BehaviorDefinition returns SysML::Behavior :
+	BehaviorDeclaration BehaviorBody
 ;
 
 fragment BehaviorDeclaration returns SysML::Behavior :
 	( isAbstract ?= 'abstract')? 'behavior' name = Name ParameterList SpecializationList?
 ;
 
-fragment ParameterList returns SysML::Behavior :
+fragment ParameterList returns SysML::Category :
 	'(' ( ownedRelationship += ParameterMember ( ',' ownedRelationship += ParameterMember )* )? ')'
+;
+
+fragment BehaviorBody returns SysML::Category :
+	';'| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* '}'
 ;
 
 /* BEHAVIOR MEMBERSHIPS */
@@ -349,25 +363,48 @@ ParameterMember returns SysML::FeatureMembership :
 	( direction = FeatureDirection )? memberName = Name ownedRelatedElement += ParameterDefinition
 ;
 
+BehaviorMember returns SysML::Membership :
+	NonFeatureCategoryMember | FeatureMember | BehaviorStepMember	
+;
+
+BehaviorStepMember returns SysML::FeatureMembership :
+	CategoryMemberPrefix
+	( ownedRelatedElement += ( StepDefinition | ExpressionDefinition )
+	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
+	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
+	)
+;
+
 /* FUNCTIONS */
 
 FunctionDefinitionOrStub returns SysML::Function :
-//	FunctionDefinition |
-	FunctionDeclaration ';'  
+	FunctionDefinition  
+;
+
+fragment FunctionDefinition returns SysML::Function :
+	FunctionDeclaration BehaviorBody
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
 	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList ReturnParameterPart SpecializationList?
 ;
 
-fragment ReturnParameterPart returns SysML::Function :
+fragment ReturnParameterPart returns SysML::Category :
 	ownedRelationship += ReturnParameterMember
+;
+
+fragment UnnamedReturnParameterPart returns SysML::Category :
+	ownedRelationship += UnnamedReturnParameterMember
 ;
 
 /* FUNCTION MEMBERSHIPS */
 
 ReturnParameterMember returns SysML::FeatureMembership :
 	( memberName = Name )? ownedRelatedElement += ParameterDefinition
+;
+
+UnnamedReturnParameterMember returns SysML::FeatureMembership:
+	ownedRelatedElement += ParameterDefinition
 ;
 
 /* FEATURES */
@@ -490,10 +527,32 @@ ConnectorEnd returns SysML::ConnectorEnd :
 /* PARAMETERS */
 
 ParameterDefinition returns SysML::Parameter :
-	TypePart ( Subsets | Redefines )*
+	TypePart // ( Subsets | Redefines )*
+;
+
+/* STEPS */
+
+StepDefinition returns SysML::Step :
+	( isAbstract ?= 'abstract')? 'step' 
+	( name = Name ParameterList SubsettingPart 
+	| 'redefines' ownedRelationship += Redefinition ParameterList?
+	)	
+	BehaviorBody
 ;
 
 /* EXPRESSIONS */
+
+ExpressionDefinition returns SysML::Expression :
+	( isAbstract ?= 'abstract')? 'expr' 
+	( name = Name ParameterList ReturnParameterPart SubsettingPart 
+	| 'redefines' ownedRelationship += Redefinition ( ParameterList ReturnParameterPart )?
+	) 
+	( '=' ownedRelationship += FeatureValue )? ';'
+;
+
+fragment ExpressionParameterPart returns SysML::Expression :
+	ParameterList? ReturnParameterPart?
+;
 
 Expression returns SysML::Expression :
 	OrExpression

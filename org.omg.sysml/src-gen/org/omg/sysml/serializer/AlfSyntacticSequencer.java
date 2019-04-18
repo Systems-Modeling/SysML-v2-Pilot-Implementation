@@ -23,6 +23,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
+	protected AbstractElementAlias match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ConnectorDeclaration_IsKeyword_0_0_2_q;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_0_0_q;
@@ -36,6 +37,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getSemicolonKeyword_0()));
+		match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0()));
 		match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getSemicolonKeyword_0()));
 		match_ConnectorDeclaration_IsKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getConnectorDeclarationAccess().getIsKeyword_0_0_2());
 		match_FeaturePackageMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_0_0());
@@ -60,6 +62,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+				emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConnectorDeclaration_IsKeyword_0_0_2_q.equals(syntax))
@@ -89,6 +93,22 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ';' | ('{' '}')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=Name '(' ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=Subset (ambiguity) (rule end)
+	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
+	 */
+	protected void emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -203,8 +223,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'redefines' ownedRelationship+=Redefinition
-	 *     (rule start) (ambiguity) 'subsets' ownedRelationship+=Subset
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'

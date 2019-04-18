@@ -13,13 +13,5 @@ package BooleanFunctions {
 	function ToString(x: Boolean): String specializes BaseFunctions::ToString;
 	function ToBoolean(x: String): Boolean;
 	
-	function '&&'(first: Boolean): Boolean {
-		abstract expr second():Boolean;
-	}
-	
-	function '||'(first: Boolean): Boolean {
-		abstract expr second():Boolean;
-	}
-	
 }
 	

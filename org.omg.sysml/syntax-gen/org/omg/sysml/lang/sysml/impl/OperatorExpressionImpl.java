@@ -40,7 +40,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class OperatorExpressionImpl extends ExpressionImpl implements OperatorExpression {
 	
 	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions"};
+	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions", "ControlFunctions"};
 	
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.

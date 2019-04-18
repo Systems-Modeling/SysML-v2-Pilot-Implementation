@@ -382,7 +382,7 @@ FunctionDefinitionOrStub returns SysML::Function :
 ;
 
 fragment FunctionDefinition returns SysML::Function :
-	FunctionDeclaration BehaviorBody
+	FunctionDeclaration FunctionBody
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
@@ -393,8 +393,10 @@ fragment ReturnParameterPart returns SysML::Category :
 	ownedRelationship += ReturnParameterMember
 ;
 
-fragment UnnamedReturnParameterPart returns SysML::Category :
-	ownedRelationship += UnnamedReturnParameterMember
+fragment FunctionBody returns SysML::Category :
+	  ';'
+	| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* 
+	      ( ownedRelationship += ExpressionMember )? '}'
 ;
 
 /* FUNCTION MEMBERSHIPS */
@@ -403,8 +405,8 @@ ReturnParameterMember returns SysML::FeatureMembership :
 	( memberName = Name )? ownedRelatedElement += ParameterDefinition
 ;
 
-UnnamedReturnParameterMember returns SysML::FeatureMembership:
-	ownedRelatedElement += ParameterDefinition
+ExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += Expression
 ;
 
 /* FEATURES */
@@ -536,7 +538,7 @@ StepDefinition returns SysML::Step :
 	( isAbstract ?= 'abstract')? 'step' 
 	( name = Name ParameterList SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition ParameterList?
-	)	
+	) 
 	BehaviorBody
 ;
 
@@ -547,15 +549,40 @@ ExpressionDefinition returns SysML::Expression :
 	( name = Name ParameterList ReturnParameterPart SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition ( ParameterList ReturnParameterPart )?
 	) 
-	( '=' ownedRelationship += FeatureValue )? ';'
-;
-
-fragment ExpressionParameterPart returns SysML::Expression :
-	ParameterList? ReturnParameterPart?
+	FunctionBody
 ;
 
 Expression returns SysML::Expression :
-	OrExpression
+	ConditionalTestExpression
+;
+
+ConditionalTestExpression returns SysML::Expression :
+	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalTestOperator operand += ConditionalOrExpression 
+		':' operand += ConditionalTestExpression
+	)?
+;
+
+ConditionalTestOperator: 
+	'?'
+;
+
+ConditionalOrExpression returns SysML::Expression :
+	ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalOrOperator operand += ConditionalAndExpression )*
+;
+
+ConditionalOrOperator :
+	'||'
+;
+
+ConditionalAndExpression returns SysML::Expression :
+	OrExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalAndOperator operand += OrExpression )*
+;
+
+ConditionalAndOperator :
+	'&&'
 ;
 
 OrExpression returns SysML::Expression :
@@ -641,6 +668,14 @@ SequenceAccessExpression returns SysML::Expression :
 ;
 
 PrimaryExpression returns SysML::Expression :
+	BaseExpression ( {SysML::OperatorExpression.operand += current} '->' operator = Name operand += BodyExpression )*
+;
+
+BodyExpression returns SysML::Expression :
+	ownedRelationship += BodyParameterMember '(' ownedRelationship += ExpressionMember ')'
+;
+
+BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| NameExpression 
@@ -707,12 +742,16 @@ UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 
 /* EXPRESSION MEMBERSHIPS */
 
-ExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += Expression
-;
-
 NamedExpressionMember returns SysML::FeatureMembership :
 	memberName = Name '=>' ownedRelatedElement += Expression
+;
+
+BodyParameterMember returns SysML::FeatureMembership :
+	ownedRelatedElement += BodyParameter
+;
+
+BodyParameter returns SysML::Parameter :
+	name = Name
 ;
 
 /* NAMES */

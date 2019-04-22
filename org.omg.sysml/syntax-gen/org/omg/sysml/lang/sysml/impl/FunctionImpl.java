@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -34,15 +34,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::FunctionEvaluation";
 	
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Expression> expression;
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -64,14 +55,13 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getExpression() {
-		if (expression == null) {
-			expression = new EObjectResolvingEList<Expression>(Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION);
-		}
-		return expression;
+		return new DerivedEObjectEList<Expression>(
+				Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION, 
+				new int[]{SysMLPackage.CATEGORY__FEATURE});
 	}
 
 	/**
@@ -80,7 +70,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated
 	 */
 	public boolean isSetExpression() {
-		return expression != null && !expression.isEmpty();
+		return !getExpression().isEmpty();
 	}
 
 	/**

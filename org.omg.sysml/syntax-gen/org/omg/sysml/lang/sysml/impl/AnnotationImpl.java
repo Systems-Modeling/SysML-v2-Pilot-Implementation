@@ -240,16 +240,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -272,17 +262,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		}
 		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT};
-
 
 	/**
 	 * <!-- begin-user-doc -->

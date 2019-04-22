@@ -2,16 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
@@ -28,6 +23,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityImpl#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}</li>
@@ -36,26 +32,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
-	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression lower;
-
-	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression upper;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,42 +58,30 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 */
 	@Override
 	public Expression getLower() {
-		return lower;
+		Expression lower = basicGetLower();
+		return lower != null && lower.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)lower) : lower;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetLower(Expression newLower, NotificationChain msgs) {
-		Expression oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__LOWER, oldLower, newLower);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Expression basicGetLower() {
+		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
+		int n = expressions.size();
+		return n < 2? null: expressions.get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setLower(Expression newLower) {
-		if (newLower != lower) {
-			NotificationChain msgs = null;
-			if (lower != null)
-				msgs = ((InternalEObject)lower).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MULTIPLICITY__LOWER, null, msgs);
-			if (newLower != null)
-				msgs = ((InternalEObject)newLower).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MULTIPLICITY__LOWER, null, msgs);
-			msgs = basicSetLower(newLower, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__LOWER, newLower, newLower));
+		// TODO: implement this method to set the 'Lower' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -127,42 +91,30 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 */
 	@Override
 	public Expression getUpper() {
-		return upper;
+		Expression upper = basicGetUpper();
+		return upper != null && upper.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)upper) : upper;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetUpper(Expression newUpper, NotificationChain msgs) {
-		Expression oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__UPPER, oldUpper, newUpper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Expression basicGetUpper() {
+		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
+		int n = expressions.size();
+		return n == 0? null: n == 1? expressions.get(0): expressions.get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setUpper(Expression newUpper) {
-		if (newUpper != upper) {
-			NotificationChain msgs = null;
-			if (upper != null)
-				msgs = ((InternalEObject)upper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MULTIPLICITY__UPPER, null, msgs);
-			if (newUpper != null)
-				msgs = ((InternalEObject)newUpper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MULTIPLICITY__UPPER, null, msgs);
-			msgs = basicSetUpper(newUpper, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__UPPER, newUpper, newUpper));
+		// TODO: implement this method to set the 'Upper' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -172,40 +124,28 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 */
 	@Override
 	public Feature getFeatureWithMultiplicity() {
-		if (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY) return null;
-		return (Feature)eInternalContainer();
+		Feature featureWithMultiplicity = basicGetFeatureWithMultiplicity();
+		return featureWithMultiplicity != null && featureWithMultiplicity.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)featureWithMultiplicity) : featureWithMultiplicity;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetFeatureWithMultiplicity(Feature newFeatureWithMultiplicity, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newFeatureWithMultiplicity, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, msgs);
-		return msgs;
+	public Feature basicGetFeatureWithMultiplicity() {
+		return getOwningRelatedElement(Feature.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setFeatureWithMultiplicity(Feature newFeatureWithMultiplicity) {
-		if (newFeatureWithMultiplicity != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY && newFeatureWithMultiplicity != null)) {
-			if (EcoreUtil.isAncestor(this, newFeatureWithMultiplicity))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newFeatureWithMultiplicity != null)
-				msgs = ((InternalEObject)newFeatureWithMultiplicity).eInverseAdd(this, SysMLPackage.FEATURE__MULTIPLICITY, Feature.class, msgs);
-			msgs = basicSetFeatureWithMultiplicity(newFeatureWithMultiplicity, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, newFeatureWithMultiplicity, newFeatureWithMultiplicity));
+		// TODO: implement this method to set the 'Feature With Multiplicity' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -214,7 +154,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * @generated
 	 */
 	public boolean isSetFeatureWithMultiplicity() {
-		return getFeatureWithMultiplicity() != null;
+		return basicGetFeatureWithMultiplicity() != null;
 	}
 	
 	/**
@@ -233,16 +173,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.MULTIPLICITY__OWNING_RELATED_ELEMENT};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -251,22 +181,6 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
   		return false;
 	}
 
-	// Additional subsets
-	
-	@Override
-	public EList<Element> getAllOwnedRelatedElements() {
-		EList<Element> ownedRelatedElements = super.getAllOwnedRelatedElements();
-		Element upper = getUpper();
-		if (upper != null) {
-			ownedRelatedElements.add(upper);
-		}
-		Element lower = getLower();
-		if (lower != null) {
-			ownedRelatedElements.add(lower);
-		}
-		return ownedRelatedElements;
-	}
-	
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = super.getTarget();
@@ -287,62 +201,17 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetFeatureWithMultiplicity((Feature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY__LOWER:
-				return basicSetLower(null, msgs);
-			case SysMLPackage.MULTIPLICITY__UPPER:
-				return basicSetUpper(null, msgs);
-			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
-				return basicSetFeatureWithMultiplicity(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__MULTIPLICITY, Feature.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.MULTIPLICITY__LOWER:
-				return getLower();
+				if (resolve) return getLower();
+				return basicGetLower();
 			case SysMLPackage.MULTIPLICITY__UPPER:
-				return getUpper();
+				if (resolve) return getUpper();
+				return basicGetUpper();
 			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
-				return getFeatureWithMultiplicity();
+				if (resolve) return getFeatureWithMultiplicity();
+				return basicGetFeatureWithMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -397,12 +266,14 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.MULTIPLICITY__TARGET:
+				return target != null && !target.isEmpty();
 			case SysMLPackage.MULTIPLICITY__SOURCE:
 				return isSetSource();
 			case SysMLPackage.MULTIPLICITY__LOWER:
-				return lower != null;
+				return basicGetLower() != null;
 			case SysMLPackage.MULTIPLICITY__UPPER:
-				return upper != null;
+				return basicGetUpper() != null;
 			case SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY:
 				return isSetFeatureWithMultiplicity();
 		}

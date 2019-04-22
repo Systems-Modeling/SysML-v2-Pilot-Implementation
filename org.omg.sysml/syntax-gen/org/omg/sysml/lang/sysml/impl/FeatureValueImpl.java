@@ -2,16 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
@@ -35,16 +30,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression value;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,42 +56,28 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 */
 	@Override
 	public Expression getValue() {
-		return value;
+		Expression value = basicGetValue();
+		return value != null && value.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)value) : value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs) {
-		Expression oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Expression basicGetValue() {
+		return getFirstOwnedRelatedElement(Expression.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setValue(Expression newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_VALUE__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_VALUE__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__VALUE, newValue, newValue));
+		// TODO: implement this method to set the 'Value' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -115,7 +86,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * @generated
 	 */
 	public boolean isSetValue() {
-		return value != null;
+		return basicGetValue() != null;
 	}
 
 	/**
@@ -125,40 +96,28 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 */
 	@Override
 	public Feature getFeatureWithValue() {
-		if (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE) return null;
-		return (Feature)eInternalContainer();
+		Feature featureWithValue = basicGetFeatureWithValue();
+		return featureWithValue != null && featureWithValue.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)featureWithValue) : featureWithValue;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetFeatureWithValue(Feature newFeatureWithValue, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newFeatureWithValue, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, msgs);
-		return msgs;
+	public Feature basicGetFeatureWithValue() {
+		return getOwningRelatedElement(Feature.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
-		if (newFeatureWithValue != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE && newFeatureWithValue != null)) {
-			if (EcoreUtil.isAncestor(this, newFeatureWithValue))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newFeatureWithValue != null)
-				msgs = ((InternalEObject)newFeatureWithValue).eInverseAdd(this, SysMLPackage.FEATURE__VALUATION, Feature.class, msgs);
-			msgs = basicSetFeatureWithValue(newFeatureWithValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, newFeatureWithValue, newFeatureWithValue));
+		// TODO: implement this method to set the 'Feature With Value' reference
+		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -167,67 +126,9 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	 * @generated
 	 */
 	public boolean isSetFeatureWithValue() {
-		return getFeatureWithValue() != null;
+		return basicGetFeatureWithValue() != null;
 	}
 	
-	// Additional subsetting
-	
-	@Override
-	public EList<Element> getAllOwnedRelatedElements() {
-		EList<Element> ownedRelatedElements = super.getAllOwnedRelatedElements();
-		Element value = getValue();
-		if (value != null) {
-			ownedRelatedElements.add(value);
-		}
-		return ownedRelatedElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetFeatureWithValue((Feature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__VALUE:
-				return basicSetValue(null, msgs);
-			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				return basicSetFeatureWithValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__VALUATION, Feature.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,9 +138,11 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_VALUE__VALUE:
-				return getValue();
+				if (resolve) return getValue();
+				return basicGetValue();
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				return getFeatureWithValue();
+				if (resolve) return getFeatureWithValue();
+				return basicGetFeatureWithValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -316,16 +219,6 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.FEATURE_VALUE__OWNED_RELATED_ELEMENT};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -348,16 +241,6 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 		}
 		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] SOURCE_ESUBSETS = new int[] {SysMLPackage.FEATURE_VALUE__OWNING_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->

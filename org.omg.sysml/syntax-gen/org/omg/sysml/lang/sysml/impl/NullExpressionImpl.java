@@ -4,27 +4,28 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Step;
+
+import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Step</b></em>'.
+ * An implementation of the model object '<em><b>Null Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class StepImpl extends FeatureImpl implements Step {
-	
-	public static final String STEP_SUBSETTING_DEFAULT = "Base::behaviorOccurrences";
+public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
+
+	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Base::nullEvaluations";
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StepImpl() {
+	protected NullExpressionImpl() {
 		super();
 	}
 
@@ -35,12 +36,12 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.STEP;
+		return SysMLPackage.Literals.NULL_EXPRESSION;
 	}
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(STEP_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithDefault(NULL_EXPRESSION_SUBSETTING_DEFAULT);
 	}
 	
-} //StepImpl
+} //NullExpressionImpl

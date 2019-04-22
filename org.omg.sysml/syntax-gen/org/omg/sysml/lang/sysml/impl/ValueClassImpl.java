@@ -16,7 +16,8 @@ import org.omg.sysml.lang.sysml.ValueClass;
  * @generated
  */
 public class ValueClassImpl extends ClassImpl implements ValueClass {
-	public String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
+	
+	public static final String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
-	public static final String EXPRESSION_SUBSETTING_DEFAULT = "Base::evaluation";
+	public static final String EXPRESSION_SUBSETTING_DEFAULT = "Base::functionEvaluations";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,25 +56,27 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override 
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = super.getInput();
-		if (inputs.isEmpty()) {
+		if (!inputs.stream().anyMatch(feature->feature.getOwner() == this)) {
 			Function function = getFunction();
 			if (function != null) {
-				inputs.addAll(function.getInput().stream().filter(f->f instanceof Parameter).
-						map(f->createFeatureForParameter((Parameter)f)).collect(Collectors.toList()));
 				List<Feature> arguments = getArguments();
 				int i = 0;
 				int n = arguments.size();
-				for (Feature input: inputs) {
-					if (i >= n) {
-						break;
+				for (Feature parameter: function.getInput()) {
+					if (parameter instanceof Parameter) {
+						inputs.remove(parameter);
+						Feature input = createFeatureForParameter(parameter);
+						inputs.add(input);
+						if (i < n) {
+							Feature argument = arguments.get(i);
+							addOwnedBindingConnector(
+									argument instanceof Expression? 
+											((ExpressionImpl)arguments.get(i)).getResult(): 
+											argument, 
+									input);							
+						}
+						i++;
 					}
-					Feature argument = arguments.get(i);
-					addOwnedBindingConnector(
-							argument instanceof Expression? 
-									((ExpressionImpl)arguments.get(i)).getResult(): 
-									argument, 
-							input);
-					i++;
 				}
 			}
 		}
@@ -84,15 +86,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = super.getOutput();
-		if (outputs.isEmpty()) {
+		if (!outputs.stream().anyMatch(feature->feature.getOwner() == this)) {
 			Function function = getFunction();
 			if (function != null) {
-				outputs.add(createFeatureForParameter(function.getResult()));
+				Parameter result = function.getResult();
+				outputs.remove(result);
+				outputs.add(createFeatureForParameter(result));
 			}
 		}
 		return outputs;
 	}
-	
+		
 	public List<Feature> getArguments() {
 		return getOwnedFeature().stream().filter(f->f instanceof Expression).
 				map(f->(Expression)f).collect(Collectors.toList());
@@ -103,7 +107,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
 	}
 	
-	protected Feature createFeatureForParameter(Parameter parameter) {
+	protected Feature createFeatureForParameter(Feature parameter) {
 		if (parameter == null) {
 			return null;
 		} else {

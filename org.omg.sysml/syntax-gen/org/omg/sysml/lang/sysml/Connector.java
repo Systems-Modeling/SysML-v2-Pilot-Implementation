@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()
@@ -70,7 +70,7 @@ public interface Connector extends Feature, Relationship {
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(Association)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 *        annotation="redefines"
 	 * @generated
@@ -115,7 +115,7 @@ public interface Connector extends Feature, Relationship {
 	void setIsDirected(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Connector End</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Connector End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorEnd}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}'.
 	 * <!-- begin-user-doc -->
@@ -124,10 +124,10 @@ public interface Connector extends Feature, Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Connector End</em>' containment reference list.
+	 * @return the value of the '<em>Connector End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
 	 * @see org.omg.sysml.lang.sysml.ConnectorEnd#getConnector
-	 * @model opposite="connector" containment="true" lower="2"
+	 * @model opposite="connector" lower="2" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<ConnectorEnd> getConnectorEnd();

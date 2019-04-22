@@ -217,7 +217,7 @@ query SysML::Category::implicitSuperclass(): SysML::Category {
 		endif
 }
 
-query SysML::Category::superclasses(): Bag(SysML::Category) {
+query SysML::Category::superclasses(): Sequence(SysML::Category) {
 	var superclasses := self.ownedGeneralization.general;
 	var implicitSuperclass := self.implicitSuperclass();
 	if implicitSuperclass <> null then {

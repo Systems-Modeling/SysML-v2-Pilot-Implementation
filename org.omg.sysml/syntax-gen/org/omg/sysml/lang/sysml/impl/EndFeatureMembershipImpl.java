@@ -113,11 +113,51 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningAssociation() {
+		return owningAssociation != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public Category getOwningCategory() {
 		return getOwningAssociation();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Category basicGetOwningCategory() {
+		return basicGetOwningAssociation();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningCategory(Category newOwningCategory) {
+		if (newOwningCategory != null && !(newOwningCategory instanceof Association)) {
+			throw new IllegalArgumentException("newOwningCategory must be an instance of Association");
+		}
+		setOwningAssociation((Association) newOwningCategory);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningCategory() {
+  		return false;
 	}
 
 	/**
@@ -203,8 +243,10 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				return isSetOwningCategory();
 			case SysMLPackage.END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION:
-				return owningAssociation != null;
+				return isSetOwningAssociation();
 		}
 		return super.eIsSet(featureID);
 	}

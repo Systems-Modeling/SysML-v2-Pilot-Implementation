@@ -76,7 +76,7 @@ public interface ConnectorEnd extends Relationship {
 	 * @return the value of the '<em>End</em>' reference.
 	 * @see #setEnd(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_End()
-	 * @model ordered="false"
+	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEnd'"
 	 *        annotation="subsets"
 	 * @generated
@@ -111,55 +111,62 @@ public interface ConnectorEnd extends Relationship {
 	EList<Feature> getPath();
 
 	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplicity</em>' containment reference.
+	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Multiplicity()
-	 * @model containment="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectorEndWith Multiplicity'"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getMultiplicity <em>Multiplicity</em>}' containment reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getMultiplicity <em>Multiplicity</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiplicity</em>' containment reference.
+	 * @param value the new value of the '<em>Multiplicity</em>' reference.
 	 * @see #getMultiplicity()
 	 * @generated
 	 */
 	void setMultiplicity(Multiplicity value);
 
 	/**
-	 * Returns the value of the '<em><b>Connector</b></em>' container reference.
+	 * Returns the value of the '<em><b>Connector</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connector</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Connector</em>' container reference.
+	 * @return the value of the '<em>Connector</em>' reference.
 	 * @see #setConnector(Connector)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectorEnd_Connector()
 	 * @see org.omg.sysml.lang.sysml.Connector#getConnectorEnd
-	 * @model opposite="connectorEnd" required="true" transient="false" ordered="false"
+	 * @model opposite="connectorEnd" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Connector getConnector();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Connector</em>' container reference.
+	 * @param value the new value of the '<em>Connector</em>' reference.
 	 * @see #getConnector()
 	 * @generated
 	 */

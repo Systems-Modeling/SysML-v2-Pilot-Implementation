@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  * </ul>
@@ -38,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
+	 * Returns the value of the '<em><b>Owning Membership</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -46,20 +45,20 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Membership</em>' container reference.
+	 * @return the value of the '<em>Owning Membership</em>' reference.
 	 * @see #setOwningMembership(Membership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
-	 * @model opposite="ownedMemberElement" transient="false" ordered="false"
+	 * @model opposite="ownedMemberElement" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	Membership getOwningMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Membership</em>' container reference.
+	 * @param value the new value of the '<em>Owning Membership</em>' reference.
 	 * @see #getOwningMembership()
 	 * @generated
 	 */
@@ -237,15 +236,4 @@ public interface Element extends EObject {
 	 */
 	EList<Relationship> getOwnedRelationship();
 	
-	// Additional operations
-	
-	/**
-	 * This operation may be overridden to provide an effective union property for all owned Relationships, without introducing explicit subsetting.
-	 * The regular ownedRelationship property can then still be used to add otherwise undifferentiated owned Relationships.
-	 * @return the union of all owned relationships.
-	 */
-	default EList<Relationship> getAllOwnedRelationships() {
-		return new UniqueEList<Relationship>(getOwnedRelationship());
-	}
-
 } // Element

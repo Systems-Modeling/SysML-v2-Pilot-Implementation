@@ -41,7 +41,7 @@ public interface Function extends Behavior {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Expression()
-	 * @model ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computedFunction'"
 	 *        annotation="redefines"
 	 * @generated
@@ -67,6 +67,7 @@ public interface Function extends Behavior {
 	 * @see #setResult(Parameter)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingFunction'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

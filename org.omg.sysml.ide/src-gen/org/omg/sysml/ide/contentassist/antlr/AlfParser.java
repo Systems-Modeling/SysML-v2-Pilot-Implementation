@@ -451,7 +451,6 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_2(), "rule__BodyExpression__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getNameExpressionAccess().getReferentAssignment(), "rule__NameExpression__ReferentAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");
-			builder.put(grammarAccess.getPrimaryMemberAccess().getOwnedRelatedElementAssignment(), "rule__PrimaryMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_0(), "rule__PositionalTuple__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_1_1(), "rule__PositionalTuple__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_0(), "rule__NamedTuple__OwnedRelationshipAssignment_0");

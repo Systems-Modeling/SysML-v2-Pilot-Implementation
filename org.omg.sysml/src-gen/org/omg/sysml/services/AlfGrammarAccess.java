@@ -3769,7 +3769,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnParameterPartParserRuleCall_2_1_2_1 = (RuleCall)cGroup_2_1_2.eContents().get(1);
 		private final RuleCall cFunctionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		///* EXPRESSIONS */ ExpressionDefinition SysML::Expression:
+		///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
 		//	isAbstract?='abstract'? 'expr' (name=Name ParameterList ReturnParameterPart SubsettingPart
 		//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?) FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
@@ -4728,7 +4728,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//InvocationExpression SysML::Expression:
+		//InvocationExpression SysML::InvocationExpression:
 		//	ownedRelationship+=FeatureTyping '(' Tuple? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4749,21 +4749,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
-	}
-	public class PrimaryMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PrimaryMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementPrimaryExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//PrimaryMember SysML::FeatureMembership:
-		//	ownedRelatedElement+=PrimaryExpression;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement+=PrimaryExpression
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//PrimaryExpression
-		public RuleCall getOwnedRelatedElementPrimaryExpressionParserRuleCall_0() { return cOwnedRelatedElementPrimaryExpressionParserRuleCall_0; }
 	}
 	public class TupleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Tuple");
@@ -5462,7 +5447,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final BaseExpressionElements pBaseExpression;
 	private final NameExpressionElements pNameExpression;
 	private final InvocationExpressionElements pInvocationExpression;
-	private final PrimaryMemberElements pPrimaryMember;
 	private final TupleElements pTuple;
 	private final PositionalTupleElements pPositionalTuple;
 	private final NamedTupleElements pNamedTuple;
@@ -5621,7 +5605,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBaseExpression = new BaseExpressionElements();
 		this.pNameExpression = new NameExpressionElements();
 		this.pInvocationExpression = new InvocationExpressionElements();
-		this.pPrimaryMember = new PrimaryMemberElements();
 		this.pTuple = new TupleElements();
 		this.pPositionalTuple = new PositionalTupleElements();
 		this.pNamedTuple = new NamedTupleElements();
@@ -6658,7 +6641,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStepDefinitionAccess().getRule();
 	}
 	
-	///* EXPRESSIONS */ ExpressionDefinition SysML::Expression:
+	///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
 	//	isAbstract?='abstract'? 'expr' (name=Name ParameterList ReturnParameterPart SubsettingPart
 	//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?) FunctionBody;
 	public ExpressionDefinitionElements getExpressionDefinitionAccess() {
@@ -6971,7 +6954,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameExpressionAccess().getRule();
 	}
 	
-	//InvocationExpression SysML::Expression:
+	//InvocationExpression SysML::InvocationExpression:
 	//	ownedRelationship+=FeatureTyping '(' Tuple? ')';
 	public InvocationExpressionElements getInvocationExpressionAccess() {
 		return pInvocationExpression;
@@ -6979,16 +6962,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInvocationExpressionRule() {
 		return getInvocationExpressionAccess().getRule();
-	}
-	
-	//PrimaryMember SysML::FeatureMembership:
-	//	ownedRelatedElement+=PrimaryExpression;
-	public PrimaryMemberElements getPrimaryMemberAccess() {
-		return pPrimaryMember;
-	}
-	
-	public ParserRule getPrimaryMemberRule() {
-		return getPrimaryMemberAccess().getRule();
 	}
 	
 	//fragment Tuple returns SysML::Expression:

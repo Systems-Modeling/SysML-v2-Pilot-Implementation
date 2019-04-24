@@ -17,6 +17,7 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorEnd;
@@ -29,6 +30,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralReal;
@@ -95,6 +97,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.BLOCK_EXPRESSION:
+				sequence_ExpressionDefinition_FunctionBody_ParameterList_Redefines_ReturnParameterPart_Subsets_SubsettingPart(context, (BlockExpression) semanticObject); 
+				return; 
 			case SysMLPackage.CLASS:
 				sequence_CategoryBody_ClassDeclaration_ClassDeclarationCompletion_SpecializationList(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 				return; 
@@ -121,48 +126,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_AssociationEndFeatureMember_CategoryMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 				return; 
 			case SysMLPackage.EXPRESSION:
-				if (rule == grammarAccess.getBodyExpressionRule()) {
-					sequence_BodyExpression(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionDefinitionRule()) {
-					sequence_ExpressionDefinition_FunctionBody_ParameterList_Redefines_ReturnParameterPart_Subsets_SubsettingPart(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getConditionalTestExpressionRule()
-						|| action == grammarAccess.getConditionalTestExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getConditionalOrExpressionRule()
-						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getConditionalAndExpressionRule()
-						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getOrExpressionRule()
-						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getXorExpressionRule()
-						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAndExpressionRule()
-						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getEqualityExpressionRule()
-						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getRelationalExpressionRule()
-						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAdditiveExpressionRule()
-						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getMultiplicativeExpressionRule()
-						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnitsExpressionRule()
-						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnaryExpressionRule()
-						|| rule == grammarAccess.getSequenceAccessExpressionRule()
-						|| action == grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getInvocationExpressionRule()) {
-					sequence_InvocationExpression_NamedTuple_PositionalTuple(context, (Expression) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_BodyExpression(context, (Expression) semanticObject); 
+				return; 
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getAbstractFeatureDefinitionRule()) {
 					sequence_AbstractCategoryBody_AbstractFeatureCompletion_AbstractUnnamedFeatureDefinition_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypePart(context, (Feature) semanticObject); 
@@ -238,10 +203,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ParameterMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getPrimaryMemberRule()) {
-					sequence_PrimaryMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getReturnParameterMemberRule()) {
 					sequence_ReturnParameterMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -277,6 +238,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case SysMLPackage.IMPORT:
 				sequence_PackageImport(context, (Import) semanticObject); 
+				return; 
+			case SysMLPackage.INVOCATION_EXPRESSION:
+				sequence_InvocationExpression_NamedTuple_PositionalTuple(context, (InvocationExpression) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_BOOLEAN:
 				sequence_BooleanLiteralExpression(context, (LiteralBoolean) semanticObject); 
@@ -576,7 +540,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -658,7 +622,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -896,7 +860,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -953,7 +917,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1028,7 +992,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1108,8 +1072,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
-	 *         ownedRelationship+=PackageImport? 
-	 *         (ownedRelationship+=CategoryMember? ownedRelationship+=PackageImport?)*
+	 *         ownedRelationship+=CategoryMember? 
+	 *         (ownedRelationship+=PackageImport? ownedRelationship+=CategoryMember?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -1358,7 +1322,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ExpressionDefinition returns Expression
+	 *     ExpressionDefinition returns BlockExpression
 	 *
 	 * Constraint:
 	 *     (
@@ -1376,7 +1340,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedRelationship+=ExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ExpressionDefinition_FunctionBody_ParameterList_Redefines_ReturnParameterPart_Subsets_SubsettingPart(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_ExpressionDefinition_FunctionBody_ParameterList_Redefines_ReturnParameterPart_Subsets_SubsettingPart(ISerializationContext context, BlockExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1482,7 +1446,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1522,36 +1486,36 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Expression returns Expression
-	 *     ConditionalTestExpression returns Expression
-	 *     ConditionalTestExpression.OperatorExpression_1_0 returns Expression
-	 *     ConditionalOrExpression returns Expression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns Expression
-	 *     ConditionalAndExpression returns Expression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns Expression
-	 *     OrExpression returns Expression
-	 *     OrExpression.OperatorExpression_1_0 returns Expression
-	 *     XorExpression returns Expression
-	 *     XorExpression.OperatorExpression_1_0 returns Expression
-	 *     AndExpression returns Expression
-	 *     AndExpression.OperatorExpression_1_0 returns Expression
-	 *     EqualityExpression returns Expression
-	 *     EqualityExpression.OperatorExpression_1_0 returns Expression
-	 *     RelationalExpression returns Expression
-	 *     RelationalExpression.OperatorExpression_1_0 returns Expression
-	 *     AdditiveExpression returns Expression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns Expression
-	 *     MultiplicativeExpression returns Expression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns Expression
-	 *     UnitsExpression returns Expression
-	 *     UnitsExpression.OperatorExpression_1_0 returns Expression
-	 *     UnaryExpression returns Expression
-	 *     SequenceAccessExpression returns Expression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns Expression
-	 *     PrimaryExpression returns Expression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns Expression
-	 *     BaseExpression returns Expression
-	 *     InvocationExpression returns Expression
+	 *     Expression returns InvocationExpression
+	 *     ConditionalTestExpression returns InvocationExpression
+	 *     ConditionalTestExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     ConditionalOrExpression returns InvocationExpression
+	 *     ConditionalOrExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     ConditionalAndExpression returns InvocationExpression
+	 *     ConditionalAndExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     OrExpression returns InvocationExpression
+	 *     OrExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     XorExpression returns InvocationExpression
+	 *     XorExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     AndExpression returns InvocationExpression
+	 *     AndExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     EqualityExpression returns InvocationExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     RelationalExpression returns InvocationExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     AdditiveExpression returns InvocationExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     MultiplicativeExpression returns InvocationExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     UnitsExpression returns InvocationExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     UnaryExpression returns InvocationExpression
+	 *     SequenceAccessExpression returns InvocationExpression
+	 *     SequenceAccessExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     PrimaryExpression returns InvocationExpression
+	 *     PrimaryExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     BaseExpression returns InvocationExpression
+	 *     InvocationExpression returns InvocationExpression
 	 *
 	 * Constraint:
 	 *     (
@@ -1562,7 +1526,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_InvocationExpression_NamedTuple_PositionalTuple(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_InvocationExpression_NamedTuple_PositionalTuple(ISerializationContext context, InvocationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1783,18 +1747,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (direction=FeatureDirection? memberName=Name ownedRelatedElement+=ParameterDefinition)
 	 */
 	protected void sequence_ParameterMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PrimaryMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=PrimaryExpression
-	 */
-	protected void sequence_PrimaryMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

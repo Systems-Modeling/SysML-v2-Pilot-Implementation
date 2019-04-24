@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class OperatorExpressionImpl extends ExpressionImpl implements OperatorExpression {
+public class OperatorExpressionImpl extends InvocationExpressionImpl implements OperatorExpression {
 	
 	// TODO: Replace with single library package when global scope supports public re-export.
 	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions", "ControlFunctions"};

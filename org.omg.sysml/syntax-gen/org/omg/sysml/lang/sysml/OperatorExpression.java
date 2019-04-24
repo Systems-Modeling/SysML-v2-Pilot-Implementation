@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OperatorExpression extends Expression {
+public interface OperatorExpression extends InvocationExpression {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->

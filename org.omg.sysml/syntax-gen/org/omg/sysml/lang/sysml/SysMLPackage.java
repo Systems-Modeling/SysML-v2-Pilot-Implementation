@@ -446,7 +446,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralExpression()
 	 * @generated
 	 */
-	int LITERAL_EXPRESSION = 46;
+	int LITERAL_EXPRESSION = 47;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralBooleanImpl <em>Literal Boolean</em>}' class.
@@ -456,7 +456,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralBoolean()
 	 * @generated
 	 */
-	int LITERAL_BOOLEAN = 51;
+	int LITERAL_BOOLEAN = 52;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralRealImpl <em>Literal Real</em>}' class.
@@ -466,7 +466,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralReal()
 	 * @generated
 	 */
-	int LITERAL_REAL = 48;
+	int LITERAL_REAL = 49;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralUnboundedImpl <em>Literal Unbounded</em>}' class.
@@ -476,7 +476,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralUnbounded()
 	 * @generated
 	 */
-	int LITERAL_UNBOUNDED = 50;
+	int LITERAL_UNBOUNDED = 51;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl <em>Literal Integer</em>}' class.
@@ -486,7 +486,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralInteger()
 	 * @generated
 	 */
-	int LITERAL_INTEGER = 45;
+	int LITERAL_INTEGER = 46;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralStringImpl <em>Literal String</em>}' class.
@@ -496,7 +496,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralString()
 	 * @generated
 	 */
-	int LITERAL_STRING = 47;
+	int LITERAL_STRING = 48;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl <em>Item Flow</em>}' class.
@@ -546,7 +546,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getNullExpression()
 	 * @generated
 	 */
-	int NULL_EXPRESSION = 49;
+	int NULL_EXPRESSION = 50;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SequenceConstructionExpressionImpl <em>Sequence Construction Expression</em>}' class.
@@ -12441,13 +12441,23 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_ACCESS_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl <em>Invocation Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInvocationExpression()
+	 * @generated
+	 */
+	int INVOCATION_EXPRESSION = 45;
+
+	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -12456,7 +12466,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+	int INVOCATION_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -12465,7 +12475,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+	int INVOCATION_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -12474,7 +12484,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+	int INVOCATION_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -12483,7 +12493,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+	int INVOCATION_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12492,7 +12502,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__NAME = EXPRESSION__NAME;
+	int INVOCATION_EXPRESSION__NAME = EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -12501,7 +12511,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNER = EXPRESSION__OWNER;
+	int INVOCATION_EXPRESSION__OWNER = EXPRESSION__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -12510,7 +12520,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+	int INVOCATION_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -12519,7 +12529,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -12528,7 +12538,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+	int INVOCATION_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -12537,7 +12547,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+	int INVOCATION_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -12546,7 +12556,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+	int INVOCATION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -12555,7 +12565,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+	int INVOCATION_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -12564,7 +12574,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -12573,7 +12583,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+	int INVOCATION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -12582,7 +12592,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -12591,7 +12601,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+	int INVOCATION_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -12600,7 +12610,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+	int INVOCATION_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -12609,7 +12619,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__INPUT = EXPRESSION__INPUT;
+	int INVOCATION_EXPRESSION__INPUT = EXPRESSION__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -12618,7 +12628,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+	int INVOCATION_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -12627,7 +12637,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+	int INVOCATION_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -12636,7 +12646,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
@@ -12645,7 +12655,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
@@ -12654,7 +12664,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+	int INVOCATION_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
@@ -12663,7 +12673,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+	int INVOCATION_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -12672,7 +12682,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+	int INVOCATION_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -12681,7 +12691,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+	int INVOCATION_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -12690,7 +12700,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__TYPE = EXPRESSION__TYPE;
+	int INVOCATION_EXPRESSION__TYPE = EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
@@ -12699,7 +12709,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+	int INVOCATION_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -12708,7 +12718,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+	int INVOCATION_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
@@ -12717,7 +12727,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+	int INVOCATION_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -12726,7 +12736,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+	int INVOCATION_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
@@ -12735,7 +12745,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+	int INVOCATION_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -12744,7 +12754,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+	int INVOCATION_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Typing</b></em>' reference list.
@@ -12753,7 +12763,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__TYPING = EXPRESSION__TYPING;
+	int INVOCATION_EXPRESSION__TYPING = EXPRESSION__TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -12762,34 +12772,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+	int INVOCATION_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
 
 	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * The number of structural features of the '<em>Invocation Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OPERAND = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Operator Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int INVOCATION_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -12798,7 +12790,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+	int INVOCATION_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -12807,7 +12799,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+	int INVOCATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -12816,7 +12808,394 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+	int INVOCATION_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Invocation Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNING_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_RELATIONSHIP = INVOCATION_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNING_RELATIONSHIP = INVOCATION_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IDENTIFIER = INVOCATION_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNING_NAMESPACE = INVOCATION_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__NAME = INVOCATION_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNER = INVOCATION_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_ELEMENT = INVOCATION_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_MEMBER = INVOCATION_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__MEMBERSHIP = INVOCATION_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__MEMBER = INVOCATION_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IMPORTED_MEMBERSHIP = INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__FEATURE = INVOCATION_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_FEATURE = INVOCATION_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__INPUT = INVOCATION_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OUTPUT = INVOCATION_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IS_ABSTRACT = INVOCATION_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__INHERITED_MEMBERSHIP = INVOCATION_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNING_CATEGORY = INVOCATION_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__REFERENCED_TYPE = INVOCATION_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IS_UNIQUE = INVOCATION_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IS_ORDERED = INVOCATION_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__TYPE = INVOCATION_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_TYPE = INVOCATION_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IS_COMPOSITE = INVOCATION_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__VALUATION = INVOCATION_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__MULTIPLICITY = INVOCATION_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__TYPING = INVOCATION_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__IS_NONUNIQUE = INVOCATION_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OPERATOR = INVOCATION_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operand</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OPERAND = INVOCATION_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Operator Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION_FEATURE_COUNT = INVOCATION_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION___NAME_OF__ELEMENT = INVOCATION_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = INVOCATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION___PUBLIC_MEMBERSHIPS = INVOCATION_EXPRESSION___PUBLIC_MEMBERSHIPS;
 
 	/**
 	 * The number of operations of the '<em>Operator Expression</em>' class.
@@ -12825,7 +13204,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+	int OPERATOR_EXPRESSION_OPERATION_COUNT = INVOCATION_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -15447,6 +15826,385 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.BlockExpressionImpl <em>Block Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.BlockExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getBlockExpression()
+	 * @generated
+	 */
+	int BLOCK_EXPRESSION = 53;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The number of structural features of the '<em>Block Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Block Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15454,7 +16212,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 52;
+	int VISIBILITY_KIND = 54;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -15464,7 +16222,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 53;
+	int FEATURE_DIRECTION_KIND = 55;
 
 
 	/**
@@ -17085,6 +17843,26 @@ public interface SysMLPackage extends EPackage {
 	EAttribute getLiteralBoolean_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.InvocationExpression <em>Invocation Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Invocation Expression</em>'.
+	 * @see org.omg.sysml.lang.sysml.InvocationExpression
+	 * @generated
+	 */
+	EClass getInvocationExpression();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.BlockExpression <em>Block Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Block Expression</em>'.
+	 * @see org.omg.sysml.lang.sysml.BlockExpression
+	 * @generated
+	 */
+	EClass getBlockExpression();
+
+	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.LiteralExpression <em>Literal Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18696,6 +19474,26 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LITERAL_BOOLEAN__VALUE = eINSTANCE.getLiteralBoolean_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl <em>Invocation Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInvocationExpression()
+		 * @generated
+		 */
+		EClass INVOCATION_EXPRESSION = eINSTANCE.getInvocationExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.BlockExpressionImpl <em>Block Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.BlockExpressionImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getBlockExpression()
+		 * @generated
+		 */
+		EClass BLOCK_EXPRESSION = eINSTANCE.getBlockExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.LiteralExpressionImpl <em>Literal Expression</em>}' class.

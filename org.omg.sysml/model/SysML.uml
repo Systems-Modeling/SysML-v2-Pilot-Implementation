@@ -1102,7 +1102,7 @@ else owningNamespace.nameOf(self) endif</body>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_aIo_IFzZEemR3PZX_TlKkg" name="OperatorExpression">
-    <generalization xmi:id="_Pi9H8FzbEemR3PZX_TlKkg" general="b32c4dd3-88a2-4418-b414-e75ceb0bb432"/>
+    <generalization xmi:id="_Pi9H8FzbEemR3PZX_TlKkg" general="_WOApsGaqEemgLqyvA3GWJw"/>
     <ownedAttribute xmi:id="_dKQ9EFzZEemR3PZX_TlKkg" name="operator">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
@@ -1179,5 +1179,11 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="3a47e1ed-20f9-4a80-abec-010317356af0" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="db9619f0-2820-41a8-a6d4-d1d29354ed48" name="" visibility="public" value="1"/>
     </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_WOApsGaqEemgLqyvA3GWJw" name="InvocationExpression">
+    <generalization xmi:id="_jo79wGaqEemgLqyvA3GWJw" general="b32c4dd3-88a2-4418-b414-e75ceb0bb432"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vBBQUGaqEemgLqyvA3GWJw" name="BlockExpression">
+    <generalization xmi:id="_zubaoGaqEemgLqyvA3GWJw" general="b32c4dd3-88a2-4418-b414-e75ceb0bb432"/>
   </packagedElement>
 </uml:Model>

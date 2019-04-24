@@ -640,12 +640,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
         lowerBound="1" eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperatorExpression" eSuperTypes="#//Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorExpression" eSuperTypes="#//InvocationExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
         upperBound="-1" eType="#//Expression" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvocationExpression" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//LiteralExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
@@ -665,4 +666,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockExpression" eSuperTypes="#//Expression"/>
 </ecore:EPackage>

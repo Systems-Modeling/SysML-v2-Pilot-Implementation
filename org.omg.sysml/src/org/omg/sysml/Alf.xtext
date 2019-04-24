@@ -544,7 +544,7 @@ StepDefinition returns SysML::Step :
 
 /* EXPRESSIONS */
 
-ExpressionDefinition returns SysML::Expression :
+ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
 	( name = Name ParameterList ReturnParameterPart SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition ( ParameterList ReturnParameterPart )?
@@ -688,7 +688,7 @@ NameExpression returns SysML::ElementReferenceExpression :
 	referent = [SysML::Feature | QualifiedName]
 ;
 
-InvocationExpression returns SysML::Expression :
+InvocationExpression returns SysML::InvocationExpression :
 	ownedRelationship += FeatureTyping '(' Tuple? ')'
 ;
 

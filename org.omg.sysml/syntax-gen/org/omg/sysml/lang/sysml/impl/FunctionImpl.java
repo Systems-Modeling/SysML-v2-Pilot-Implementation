@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -90,7 +92,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT
 	 */
 	public Parameter basicGetResult() {
-		EList<Parameter> parameters = getParameter();
+		List<Parameter> parameters = getOwnedParameter();
 		return parameters.isEmpty()? null: parameters.get(parameters.size() - 1);
 	}
 

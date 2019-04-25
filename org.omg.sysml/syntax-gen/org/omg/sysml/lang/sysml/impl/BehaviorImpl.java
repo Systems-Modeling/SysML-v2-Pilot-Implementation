@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -98,6 +100,11 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
 				SysMLPackage.BEHAVIOR__PARAMETER, 
 				new int[] {SysMLPackage.CATEGORY__FEATURE});
+	}
+	
+	public List<Parameter> getOwnedParameter() {
+		return getOwnedFeature().stream().
+				filter(feature->feature instanceof Parameter).map(feature->(Parameter)feature).collect(Collectors.toList());
 	}
 
 	/**

@@ -6277,7 +6277,7 @@ ruleExpressionDefinition returns [EObject current=null]
 							afterParserOrEnumRuleCall();
 						}
 					)
-				)
+				)?
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getExpressionDefinitionRule());
@@ -6362,7 +6362,7 @@ ruleExpressionDefinition returns [EObject current=null]
 					}
 				)?
 			)
-		)
+		)?
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getExpressionDefinitionRule());
@@ -6393,24 +6393,24 @@ ruleExpression returns [EObject current=null]
 	leaveRule();
 }:
 	{
-		newCompositeNode(grammarAccess.getExpressionAccess().getConditionalTestExpressionParserRuleCall());
+		newCompositeNode(grammarAccess.getExpressionAccess().getConditionalExpressionParserRuleCall());
 	}
-	this_ConditionalTestExpression_0=ruleConditionalTestExpression
+	this_ConditionalExpression_0=ruleConditionalExpression
 	{
-		$current = $this_ConditionalTestExpression_0.current;
+		$current = $this_ConditionalExpression_0.current;
 		afterParserOrEnumRuleCall();
 	}
 ;
 
-// Entry rule entryRuleConditionalTestExpression
-entryRuleConditionalTestExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConditionalTestExpressionRule()); }
-	iv_ruleConditionalTestExpression=ruleConditionalTestExpression
-	{ $current=$iv_ruleConditionalTestExpression.current; }
+// Entry rule entryRuleConditionalExpression
+entryRuleConditionalExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionalExpressionRule()); }
+	iv_ruleConditionalExpression=ruleConditionalExpression
+	{ $current=$iv_ruleConditionalExpression.current; }
 	EOF;
 
-// Rule ConditionalTestExpression
-ruleConditionalTestExpression returns [EObject current=null]
+// Rule ConditionalExpression
+ruleConditionalExpression returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -6419,7 +6419,7 @@ ruleConditionalTestExpression returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getConditionalTestExpressionAccess().getConditionalOrExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getConditionalOrExpressionParserRuleCall_0());
 		}
 		this_ConditionalOrExpression_0=ruleConditionalOrExpression
 		{
@@ -6430,69 +6430,71 @@ ruleConditionalTestExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getConditionalTestExpressionAccess().getOperatorExpressionOperandAction_1_0(),
+						grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0(),
 						$current);
 				}
 			)
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getConditionalTestExpressionAccess().getOperatorConditionalTestOperatorParserRuleCall_1_1_0());
-					}
-					lv_operator_2_0=ruleConditionalTestOperator
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalTestExpressionRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalTestOperatorParserRuleCall_1_1_0_0());
 						}
-						set(
-							$current,
-							"operator",
-							lv_operator_2_0,
-							"org.omg.sysml.Alf.ConditionalTestOperator");
-						afterParserOrEnumRuleCall();
-					}
+						lv_operator_2_0=ruleConditionalTestOperator
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+							}
+							set(
+								$current,
+								"operator",
+								lv_operator_2_0,
+								"org.omg.sysml.Alf.ConditionalTestOperator");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
-			)
-			(
 				(
-					{
-						newCompositeNode(grammarAccess.getConditionalTestExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0());
-					}
-					lv_operand_3_0=ruleConditionalOrExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalTestExpressionRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_1_1_0());
 						}
-						add(
-							$current,
-							"operand",
-							lv_operand_3_0,
-							"org.omg.sysml.Alf.ConditionalOrExpression");
-						afterParserOrEnumRuleCall();
-					}
+						lv_operand_3_0=ruleConditionalOrExpression
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+							}
+							add(
+								$current,
+								"operand",
+								lv_operand_3_0,
+								"org.omg.sysml.Alf.ConditionalOrExpression");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
-			)
-			otherlv_4=':'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getConditionalTestExpressionAccess().getColonKeyword_1_3());
-			}
-			(
+				otherlv_4=':'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_1_2());
+				}
 				(
-					{
-						newCompositeNode(grammarAccess.getConditionalTestExpressionAccess().getOperandConditionalTestExpressionParserRuleCall_1_4_0());
-					}
-					lv_operand_5_0=ruleConditionalTestExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalTestExpressionRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_1_3_0());
 						}
-						add(
-							$current,
-							"operand",
-							lv_operand_5_0,
-							"org.omg.sysml.Alf.ConditionalTestExpression");
-						afterParserOrEnumRuleCall();
-					}
+						lv_operand_5_0=ruleConditionalExpression
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+							}
+							add(
+								$current,
+								"operand",
+								lv_operand_5_0,
+								"org.omg.sysml.Alf.ConditionalExpression");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
 			)
 		)?
@@ -7740,43 +7742,235 @@ rulePrimaryExpression returns [EObject current=null]
 			}
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperatorNameParserRuleCall_1_2_0());
-					}
-					lv_operator_3_0=ruleName
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
-						}
-						set(
-							$current,
-							"operator",
-							lv_operator_3_0,
-							"org.omg.sysml.Alf.Name");
-						afterParserOrEnumRuleCall();
-					}
+					(
+						(
+							lv_operator_3_0='while'
+							{
+								newLeafNode(lv_operator_3_0, grammarAccess.getPrimaryExpressionAccess().getOperatorWhileKeyword_1_2_0_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getPrimaryExpressionRule());
+								}
+								setWithLastConsumed($current, "operator", lv_operator_3_0, "while");
+							}
+						)
+					)
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandBodyExpressionParserRuleCall_1_2_0_1_0());
+							}
+							lv_operand_4_0=ruleBodyExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+								}
+								add(
+									$current,
+									"operand",
+									lv_operand_4_0,
+									"org.omg.sysml.Alf.BodyExpression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandBlockExpressionParserRuleCall_1_2_0_2_0());
+							}
+							lv_operand_5_0=ruleBlockExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+								}
+								add(
+									$current,
+									"operand",
+									lv_operand_5_0,
+									"org.omg.sysml.Alf.BlockExpression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
 				)
-			)
-			(
+				    |
 				(
-					{
-						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandBodyExpressionParserRuleCall_1_3_0());
-					}
-					lv_operand_4_0=ruleBodyExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
-						}
-						add(
-							$current,
-							"operand",
-							lv_operand_4_0,
-							"org.omg.sysml.Alf.BodyExpression");
-						afterParserOrEnumRuleCall();
-					}
+					(
+						(
+							lv_operator_6_0='reduce'
+							{
+								newLeafNode(lv_operator_6_0, grammarAccess.getPrimaryExpressionAccess().getOperatorReduceKeyword_1_2_1_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getPrimaryExpressionRule());
+								}
+								setWithLastConsumed($current, "operator", lv_operator_6_0, "reduce");
+							}
+						)
+					)
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandReducerExpressionParserRuleCall_1_2_1_1_0());
+							}
+							lv_operand_7_0=ruleReducerExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+								}
+								add(
+									$current,
+									"operand",
+									lv_operand_7_0,
+									"org.omg.sysml.Alf.ReducerExpression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)
+				    |
+				(
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperatorNameParserRuleCall_1_2_2_0_0());
+							}
+							lv_operator_8_0=ruleName
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+								}
+								set(
+									$current,
+									"operator",
+									lv_operator_8_0,
+									"org.omg.sysml.Alf.Name");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandBodyExpressionParserRuleCall_1_2_2_1_0());
+							}
+							lv_operand_9_0=ruleBodyExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+								}
+								add(
+									$current,
+									"operand",
+									lv_operand_9_0,
+									"org.omg.sysml.Alf.BodyExpression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
 				)
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleBlockExpression
+entryRuleBlockExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBlockExpressionRule()); }
+	iv_ruleBlockExpression=ruleBlockExpression
+	{ $current=$iv_ruleBlockExpression.current; }
+	EOF;
+
+// Rule BlockExpression
+ruleBlockExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getBlockExpressionRule());
+		}
+		newCompositeNode(grammarAccess.getBlockExpressionAccess().getFunctionBodyParserRuleCall());
+	}
+	this_FunctionBody_0=ruleFunctionBody[$current]
+	{
+		$current = $this_FunctionBody_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleReducerExpression
+entryRuleReducerExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReducerExpressionRule()); }
+	iv_ruleReducerExpression=ruleReducerExpression
+	{ $current=$iv_ruleReducerExpression.current; }
+	EOF;
+
+// Rule ReducerExpression
+ruleReducerExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getReducerExpressionAccess().getOwnedRelationshipExpressionTypingParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=ruleExpressionTyping
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getReducerExpressionRule());
+				}
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.Alf.ExpressionTyping");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleExpressionTyping
+entryRuleExpressionTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExpressionTypingRule()); }
+	iv_ruleExpressionTyping=ruleExpressionTyping
+	{ $current=$iv_ruleExpressionTyping.current; }
+	EOF;
+
+// Rule ExpressionTyping
+ruleExpressionTyping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getExpressionTypingRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getExpressionTypingAccess().getTypeFunctionCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

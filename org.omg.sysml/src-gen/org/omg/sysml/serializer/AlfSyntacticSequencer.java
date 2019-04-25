@@ -215,6 +215,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'expr' (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) (rule start)
+	 *     isAbstract?='abstract' 'expr' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)

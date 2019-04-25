@@ -522,8 +522,7 @@ ConnectorEnd returns SysML::ConnectorEnd :
 	  ( end = [SysML::Feature | QualifiedName] ':' )? 
 	  feature = [SysML::Feature | QualifiedName] ( ownedRelationship += Multiplicity )?
 	| ( end = [SysML::Feature | QualifiedName] ( ownedRelationship += Multiplicity )? '=>' ) 
-	  feature = [SysML::Feature | QualifiedName] 
-      
+	  feature = [SysML::Feature | QualifiedName]       
 ;
 
 /* PARAMETERS */
@@ -546,20 +545,21 @@ StepDefinition returns SysML::Step :
 
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
-	( name = Name ParameterList ReturnParameterPart SubsettingPart 
+	( ( name = Name )? ParameterList ReturnParameterPart SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition ( ParameterList ReturnParameterPart )?
-	) 
+	)?
 	FunctionBody
 ;
 
 Expression returns SysML::Expression :
-	ConditionalTestExpression
+	 ConditionalExpression
 ;
 
-ConditionalTestExpression returns SysML::Expression :
+ConditionalExpression returns SysML::Expression :
 	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalTestOperator operand += ConditionalOrExpression 
-		':' operand += ConditionalTestExpression
+		( operator = ConditionalTestOperator operand += ConditionalOrExpression ':' operand += ConditionalExpression
+//		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
+		)
 	)?
 ;
 
@@ -668,10 +668,27 @@ SequenceAccessExpression returns SysML::Expression :
 ;
 
 PrimaryExpression returns SysML::Expression :
-	BaseExpression ( {SysML::OperatorExpression.operand += current} '->' operator = Name operand += BodyExpression )*
+	BaseExpression ( {SysML::OperatorExpression.operand += current} '->'
+		( operator = 'while' operand += BodyExpression operand += BlockExpression
+		| operator = 'reduce' operand += ReducerExpression
+		| operator = Name operand += BodyExpression
+		)
+	)*
 ;
 
-BodyExpression returns SysML::Expression :
+BlockExpression returns SysML::BlockExpression :
+	FunctionBody
+;
+
+ReducerExpression returns SysML::BlockExpression :
+	ownedRelationship += ExpressionTyping
+;
+
+ExpressionTyping returns SysML::FeatureTyping :
+	type = [SysML::Function|QualifiedName]
+;
+
+BodyExpression returns SysML::BlockExpression :
 	ownedRelationship += BodyParameterMember '(' ownedRelationship += ExpressionMember ')'
 ;
 

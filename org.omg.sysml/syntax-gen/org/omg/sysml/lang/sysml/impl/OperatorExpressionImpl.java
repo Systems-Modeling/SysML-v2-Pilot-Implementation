@@ -17,7 +17,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
@@ -122,6 +124,13 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 					FeatureTyping.class, SysMLPackage.FEATURE__TYPING, SysMLPackage.eINSTANCE.getFeatureTyping(), 
 					getOperatorQualifiedNames());
 	}
+	
+	@Override
+	public EList<Category> getType() {
+		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
+		getFeatureTypes(this, types);
+		return types;
+	}	
 	
 	protected String[] getOperatorQualifiedNames() {
 		String operator = getOperator();

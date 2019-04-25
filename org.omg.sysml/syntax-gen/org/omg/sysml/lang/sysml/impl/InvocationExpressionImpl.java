@@ -2,8 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -50,7 +50,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		if (!inputs.stream().anyMatch(feature->feature.getOwner() == this)) {
 			Function function = getFunction();
 			if (function != null) {
-				List<Feature> arguments = getArguments();
+				List<? extends Feature> arguments = getArguments();
 				int i = 0;
 				int n = arguments.size();
 				for (Feature parameter: function.getInput()) {
@@ -88,9 +88,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return outputs;
 	}
 		
-	public List<Feature> getArguments() {
-		return getOwnedFeature().stream().filter(f->f instanceof Expression).
-				map(f->(Expression)f).collect(Collectors.toList());
+	public List<? extends Feature> getArguments() {
+		return super.getSubexpressions();
 	}
 	
 	protected Feature createFeatureForParameter(Feature parameter) {
@@ -112,6 +111,15 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			
 			return feature;
 		}
+	}
+	
+	@Override
+	public List<Expression> getSubexpressions() {
+		Function function = getFunction();
+		int m = function == null? 0: function.getInput().size();
+		List<Expression> subexpressions = super.getSubexpressions();
+		int n = subexpressions.size();
+		return m >= n? Collections.emptyList(): subexpressions.subList(m, n);
 	}
 	
 } //InvocationExpressionImpl

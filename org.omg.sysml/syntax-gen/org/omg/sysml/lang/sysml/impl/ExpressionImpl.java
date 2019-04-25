@@ -2,12 +2,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -43,7 +48,22 @@ public class ExpressionImpl extends StepImpl implements Expression {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(EXPRESSION_SUBSETTING_DEFAULT);
+		EList<Subsetting> redefinitions = getComputedRedefinitions();
+		return redefinitions.isEmpty()? getOwnedSubsettingWithDefault(EXPRESSION_SUBSETTING_DEFAULT): redefinitions;
+	}
+	
+	/**
+	 * If the given Category is a Function, then return the abstract expressions of that Behavior.
+	 * If the given Category is an Expression, return the subexpressions not used as arguments.
+	 */
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Category category) {
+		return (category instanceof Function)? 
+					((Function)category).getExpression().stream().
+						filter(expr->expr.isAbstract()).collect(Collectors.toList()):
+			   (category instanceof OperatorExpression)? 
+					   ((ExpressionImpl)category).getSubexpressions():
+				Collections.emptyList();
 	}
 	
 	public Feature getResult() {
@@ -60,4 +80,10 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			return type instanceof Function? (Function)type: null;
 		}
 	}
+
+	public List<Expression> getSubexpressions() {
+		return getOwnedFeature().stream().filter(f->f instanceof Expression).
+				map(f->(Expression)f).collect(Collectors.toList());
+	}
+	
 } //ExpressionImpl

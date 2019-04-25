@@ -3770,12 +3770,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
-		//	isAbstract?='abstract'? 'expr' (name=Name ParameterList ReturnParameterPart SubsettingPart
-		//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?) FunctionBody;
+		//	isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart
+		//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)?
+		//	FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? 'expr' (name=Name ParameterList ReturnParameterPart SubsettingPart | 'redefines'
-		//ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?) FunctionBody
+		//isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart | 'redefines'
+		//ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)? FunctionBody
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -3787,14 +3788,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'expr'
 		public Keyword getExprKeyword_1() { return cExprKeyword_1; }
 		
-		//name=Name ParameterList ReturnParameterPart SubsettingPart | 'redefines' ownedRelationship+=Redefinition (ParameterList
-		//ReturnParameterPart)?
+		//(name=Name? ParameterList ReturnParameterPart SubsettingPart | 'redefines' ownedRelationship+=Redefinition
+		//(ParameterList ReturnParameterPart)?)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//name=Name ParameterList ReturnParameterPart SubsettingPart
+		//name=Name? ParameterList ReturnParameterPart SubsettingPart
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
-		//name=Name
+		//name=Name?
 		public Assignment getNameAssignment_2_0_0() { return cNameAssignment_2_0_0; }
 		
 		//Name
@@ -3835,69 +3836,76 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Expression");
-		private final RuleCall cConditionalTestExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final RuleCall cConditionalExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Expression SysML::Expression:
-		//	ConditionalTestExpression;
+		//	ConditionalExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConditionalTestExpression
-		public RuleCall getConditionalTestExpressionParserRuleCall() { return cConditionalTestExpressionParserRuleCall; }
+		//ConditionalExpression
+		public RuleCall getConditionalExpressionParserRuleCall() { return cConditionalExpressionParserRuleCall; }
 	}
-	public class ConditionalTestExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ConditionalTestExpression");
+	public class ConditionalExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ConditionalExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConditionalOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorConditionalTestOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
-		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandConditionalOrExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
-		private final Keyword cColonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final Assignment cOperandAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
-		private final RuleCall cOperandConditionalTestExpressionParserRuleCall_1_4_0 = (RuleCall)cOperandAssignment_1_4.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Assignment cOperatorAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cOperatorConditionalTestOperatorParserRuleCall_1_1_0_0 = (RuleCall)cOperatorAssignment_1_1_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOperandConditionalOrExpressionParserRuleCall_1_1_1_0 = (RuleCall)cOperandAssignment_1_1_1.eContents().get(0);
+		private final Keyword cColonKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Assignment cOperandAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cOperandConditionalExpressionParserRuleCall_1_1_3_0 = (RuleCall)cOperandAssignment_1_1_3.eContents().get(0);
 		
-		//ConditionalTestExpression SysML::Expression:
-		//	ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} operator=ConditionalTestOperator
-		//	operand+=ConditionalOrExpression
-		//	':' operand+=ConditionalTestExpression)?;
+		//ConditionalExpression SysML::Expression:
+		//	ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} (operator=ConditionalTestOperator
+		//	operand+=ConditionalOrExpression ':' operand+=ConditionalExpression
+		//	//		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
+		//))?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} operator=ConditionalTestOperator
-		//operand+=ConditionalOrExpression ':' operand+=ConditionalTestExpression)?
+		//ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} (operator=ConditionalTestOperator
+		//operand+=ConditionalOrExpression ':' operand+=ConditionalExpression //		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
+		//))?
 		public Group getGroup() { return cGroup; }
 		
 		//ConditionalOrExpression
 		public RuleCall getConditionalOrExpressionParserRuleCall_0() { return cConditionalOrExpressionParserRuleCall_0; }
 		
-		//({SysML::OperatorExpression.operand+=current} operator=ConditionalTestOperator operand+=ConditionalOrExpression ':'
-		//operand+=ConditionalTestExpression)?
+		//({SysML::OperatorExpression.operand+=current} (operator=ConditionalTestOperator operand+=ConditionalOrExpression ':'
+		//operand+=ConditionalExpression //		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
+		//))?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand+=current}
 		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
 		
+		//operator=ConditionalTestOperator operand+=ConditionalOrExpression ':' operand+=ConditionalExpression
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
 		//operator=ConditionalTestOperator
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		public Assignment getOperatorAssignment_1_1_0() { return cOperatorAssignment_1_1_0; }
 		
 		//ConditionalTestOperator
-		public RuleCall getOperatorConditionalTestOperatorParserRuleCall_1_1_0() { return cOperatorConditionalTestOperatorParserRuleCall_1_1_0; }
+		public RuleCall getOperatorConditionalTestOperatorParserRuleCall_1_1_0_0() { return cOperatorConditionalTestOperatorParserRuleCall_1_1_0_0; }
 		
 		//operand+=ConditionalOrExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		public Assignment getOperandAssignment_1_1_1() { return cOperandAssignment_1_1_1; }
 		
 		//ConditionalOrExpression
-		public RuleCall getOperandConditionalOrExpressionParserRuleCall_1_2_0() { return cOperandConditionalOrExpressionParserRuleCall_1_2_0; }
+		public RuleCall getOperandConditionalOrExpressionParserRuleCall_1_1_1_0() { return cOperandConditionalOrExpressionParserRuleCall_1_1_1_0; }
 		
 		//':'
-		public Keyword getColonKeyword_1_3() { return cColonKeyword_1_3; }
+		public Keyword getColonKeyword_1_1_2() { return cColonKeyword_1_1_2; }
 		
-		//operand+=ConditionalTestExpression
-		public Assignment getOperandAssignment_1_4() { return cOperandAssignment_1_4; }
+		//operand+=ConditionalExpression
+		public Assignment getOperandAssignment_1_1_3() { return cOperandAssignment_1_1_3; }
 		
-		//ConditionalTestExpression
-		public RuleCall getOperandConditionalTestExpressionParserRuleCall_1_4_0() { return cOperandConditionalTestExpressionParserRuleCall_1_4_0; }
+		//ConditionalExpression
+		public RuleCall getOperandConditionalExpressionParserRuleCall_1_1_3_0() { return cOperandConditionalExpressionParserRuleCall_1_1_3_0; }
 	}
 	public class ConditionalTestOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ConditionalTestOperator");
@@ -4576,22 +4584,41 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cOperatorAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperatorNameParserRuleCall_1_2_0 = (RuleCall)cOperatorAssignment_1_2.eContents().get(0);
-		private final Assignment cOperandAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cOperandBodyExpressionParserRuleCall_1_3_0 = (RuleCall)cOperandAssignment_1_3.eContents().get(0);
+		private final Alternatives cAlternatives_1_2 = (Alternatives)cGroup_1.eContents().get(2);
+		private final Group cGroup_1_2_0 = (Group)cAlternatives_1_2.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_2_0_0 = (Assignment)cGroup_1_2_0.eContents().get(0);
+		private final Keyword cOperatorWhileKeyword_1_2_0_0_0 = (Keyword)cOperatorAssignment_1_2_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_2_0_1 = (Assignment)cGroup_1_2_0.eContents().get(1);
+		private final RuleCall cOperandBodyExpressionParserRuleCall_1_2_0_1_0 = (RuleCall)cOperandAssignment_1_2_0_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_2_0_2 = (Assignment)cGroup_1_2_0.eContents().get(2);
+		private final RuleCall cOperandBlockExpressionParserRuleCall_1_2_0_2_0 = (RuleCall)cOperandAssignment_1_2_0_2.eContents().get(0);
+		private final Group cGroup_1_2_1 = (Group)cAlternatives_1_2.eContents().get(1);
+		private final Assignment cOperatorAssignment_1_2_1_0 = (Assignment)cGroup_1_2_1.eContents().get(0);
+		private final Keyword cOperatorReduceKeyword_1_2_1_0_0 = (Keyword)cOperatorAssignment_1_2_1_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_2_1_1 = (Assignment)cGroup_1_2_1.eContents().get(1);
+		private final RuleCall cOperandReducerExpressionParserRuleCall_1_2_1_1_0 = (RuleCall)cOperandAssignment_1_2_1_1.eContents().get(0);
+		private final Group cGroup_1_2_2 = (Group)cAlternatives_1_2.eContents().get(2);
+		private final Assignment cOperatorAssignment_1_2_2_0 = (Assignment)cGroup_1_2_2.eContents().get(0);
+		private final RuleCall cOperatorNameParserRuleCall_1_2_2_0_0 = (RuleCall)cOperatorAssignment_1_2_2_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_2_2_1 = (Assignment)cGroup_1_2_2.eContents().get(1);
+		private final RuleCall cOperandBodyExpressionParserRuleCall_1_2_2_1_0 = (RuleCall)cOperandAssignment_1_2_2_1.eContents().get(0);
 		
 		//PrimaryExpression SysML::Expression:
-		//	BaseExpression ({SysML::OperatorExpression.operand+=current} '->' operator=Name operand+=BodyExpression)*;
+		//	BaseExpression ({SysML::OperatorExpression.operand+=current} '->' (operator='while' operand+=BodyExpression
+		//	operand+=BlockExpression
+		//	| operator='reduce' operand+=ReducerExpression
+		//	| operator=Name operand+=BodyExpression))*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//BaseExpression ({SysML::OperatorExpression.operand+=current} '->' operator=Name operand+=BodyExpression)*
+		//BaseExpression ({SysML::OperatorExpression.operand+=current} '->' (operator='while' operand+=BodyExpression
+		//operand+=BlockExpression | operator='reduce' operand+=ReducerExpression | operator=Name operand+=BodyExpression))*
 		public Group getGroup() { return cGroup; }
 		
 		//BaseExpression
 		public RuleCall getBaseExpressionParserRuleCall_0() { return cBaseExpressionParserRuleCall_0; }
 		
-		//({SysML::OperatorExpression.operand+=current} '->' operator=Name operand+=BodyExpression)*
+		//({SysML::OperatorExpression.operand+=current} '->' (operator='while' operand+=BodyExpression operand+=BlockExpression |
+		//operator='reduce' operand+=ReducerExpression | operator=Name operand+=BodyExpression))*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand+=current}
@@ -4600,17 +4627,105 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'->'
 		public Keyword getHyphenMinusGreaterThanSignKeyword_1_1() { return cHyphenMinusGreaterThanSignKeyword_1_1; }
 		
-		//operator=Name
-		public Assignment getOperatorAssignment_1_2() { return cOperatorAssignment_1_2; }
+		//operator='while' operand+=BodyExpression operand+=BlockExpression | operator='reduce' operand+=ReducerExpression |
+		//operator=Name operand+=BodyExpression
+		public Alternatives getAlternatives_1_2() { return cAlternatives_1_2; }
 		
-		//Name
-		public RuleCall getOperatorNameParserRuleCall_1_2_0() { return cOperatorNameParserRuleCall_1_2_0; }
+		//operator='while' operand+=BodyExpression operand+=BlockExpression
+		public Group getGroup_1_2_0() { return cGroup_1_2_0; }
+		
+		//operator='while'
+		public Assignment getOperatorAssignment_1_2_0_0() { return cOperatorAssignment_1_2_0_0; }
+		
+		//'while'
+		public Keyword getOperatorWhileKeyword_1_2_0_0_0() { return cOperatorWhileKeyword_1_2_0_0_0; }
 		
 		//operand+=BodyExpression
-		public Assignment getOperandAssignment_1_3() { return cOperandAssignment_1_3; }
+		public Assignment getOperandAssignment_1_2_0_1() { return cOperandAssignment_1_2_0_1; }
 		
 		//BodyExpression
-		public RuleCall getOperandBodyExpressionParserRuleCall_1_3_0() { return cOperandBodyExpressionParserRuleCall_1_3_0; }
+		public RuleCall getOperandBodyExpressionParserRuleCall_1_2_0_1_0() { return cOperandBodyExpressionParserRuleCall_1_2_0_1_0; }
+		
+		//operand+=BlockExpression
+		public Assignment getOperandAssignment_1_2_0_2() { return cOperandAssignment_1_2_0_2; }
+		
+		//BlockExpression
+		public RuleCall getOperandBlockExpressionParserRuleCall_1_2_0_2_0() { return cOperandBlockExpressionParserRuleCall_1_2_0_2_0; }
+		
+		//operator='reduce' operand+=ReducerExpression
+		public Group getGroup_1_2_1() { return cGroup_1_2_1; }
+		
+		//operator='reduce'
+		public Assignment getOperatorAssignment_1_2_1_0() { return cOperatorAssignment_1_2_1_0; }
+		
+		//'reduce'
+		public Keyword getOperatorReduceKeyword_1_2_1_0_0() { return cOperatorReduceKeyword_1_2_1_0_0; }
+		
+		//operand+=ReducerExpression
+		public Assignment getOperandAssignment_1_2_1_1() { return cOperandAssignment_1_2_1_1; }
+		
+		//ReducerExpression
+		public RuleCall getOperandReducerExpressionParserRuleCall_1_2_1_1_0() { return cOperandReducerExpressionParserRuleCall_1_2_1_1_0; }
+		
+		//operator=Name operand+=BodyExpression
+		public Group getGroup_1_2_2() { return cGroup_1_2_2; }
+		
+		//operator=Name
+		public Assignment getOperatorAssignment_1_2_2_0() { return cOperatorAssignment_1_2_2_0; }
+		
+		//Name
+		public RuleCall getOperatorNameParserRuleCall_1_2_2_0_0() { return cOperatorNameParserRuleCall_1_2_2_0_0; }
+		
+		//operand+=BodyExpression
+		public Assignment getOperandAssignment_1_2_2_1() { return cOperandAssignment_1_2_2_1; }
+		
+		//BodyExpression
+		public RuleCall getOperandBodyExpressionParserRuleCall_1_2_2_1_0() { return cOperandBodyExpressionParserRuleCall_1_2_2_1_0; }
+	}
+	public class BlockExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BlockExpression");
+		private final RuleCall cFunctionBodyParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//BlockExpression SysML::BlockExpression:
+		//	FunctionBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//FunctionBody
+		public RuleCall getFunctionBodyParserRuleCall() { return cFunctionBodyParserRuleCall; }
+	}
+	public class ReducerExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ReducerExpression");
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipExpressionTypingParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
+		
+		//ReducerExpression SysML::BlockExpression:
+		//	ownedRelationship+=ExpressionTyping;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelationship+=ExpressionTyping
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
+		
+		//ExpressionTyping
+		public RuleCall getOwnedRelationshipExpressionTypingParserRuleCall_0() { return cOwnedRelationshipExpressionTypingParserRuleCall_0; }
+	}
+	public class ExpressionTypingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ExpressionTyping");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeFunctionCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeFunctionQualifiedNameParserRuleCall_0_1 = (RuleCall)cTypeFunctionCrossReference_0.eContents().get(1);
+		
+		//ExpressionTyping SysML::FeatureTyping:
+		//	type=[SysML::Function|QualifiedName];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[SysML::Function|QualifiedName]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[SysML::Function|QualifiedName]
+		public CrossReference getTypeFunctionCrossReference_0() { return cTypeFunctionCrossReference_0; }
+		
+		//QualifiedName
+		public RuleCall getTypeFunctionQualifiedNameParserRuleCall_0_1() { return cTypeFunctionQualifiedNameParserRuleCall_0_1; }
 	}
 	public class BodyExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BodyExpression");
@@ -4622,7 +4737,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedRelationshipExpressionMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//BodyExpression SysML::Expression:
+		//BodyExpression SysML::BlockExpression:
 		//	ownedRelationship+=BodyParameterMember '(' ownedRelationship+=ExpressionMember ')';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5418,7 +5533,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final StepDefinitionElements pStepDefinition;
 	private final ExpressionDefinitionElements pExpressionDefinition;
 	private final ExpressionElements pExpression;
-	private final ConditionalTestExpressionElements pConditionalTestExpression;
+	private final ConditionalExpressionElements pConditionalExpression;
 	private final ConditionalTestOperatorElements pConditionalTestOperator;
 	private final ConditionalOrExpressionElements pConditionalOrExpression;
 	private final ConditionalOrOperatorElements pConditionalOrOperator;
@@ -5443,6 +5558,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final UnaryOperatorElements pUnaryOperator;
 	private final SequenceAccessExpressionElements pSequenceAccessExpression;
 	private final PrimaryExpressionElements pPrimaryExpression;
+	private final BlockExpressionElements pBlockExpression;
+	private final ReducerExpressionElements pReducerExpression;
+	private final ExpressionTypingElements pExpressionTyping;
 	private final BodyExpressionElements pBodyExpression;
 	private final BaseExpressionElements pBaseExpression;
 	private final NameExpressionElements pNameExpression;
@@ -5576,7 +5694,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pStepDefinition = new StepDefinitionElements();
 		this.pExpressionDefinition = new ExpressionDefinitionElements();
 		this.pExpression = new ExpressionElements();
-		this.pConditionalTestExpression = new ConditionalTestExpressionElements();
+		this.pConditionalExpression = new ConditionalExpressionElements();
 		this.pConditionalTestOperator = new ConditionalTestOperatorElements();
 		this.pConditionalOrExpression = new ConditionalOrExpressionElements();
 		this.pConditionalOrOperator = new ConditionalOrOperatorElements();
@@ -5601,6 +5719,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUnaryOperator = new UnaryOperatorElements();
 		this.pSequenceAccessExpression = new SequenceAccessExpressionElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
+		this.pBlockExpression = new BlockExpressionElements();
+		this.pReducerExpression = new ReducerExpressionElements();
+		this.pExpressionTyping = new ExpressionTypingElements();
 		this.pBodyExpression = new BodyExpressionElements();
 		this.pBaseExpression = new BaseExpressionElements();
 		this.pNameExpression = new NameExpressionElements();
@@ -6642,8 +6763,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
-	//	isAbstract?='abstract'? 'expr' (name=Name ParameterList ReturnParameterPart SubsettingPart
-	//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?) FunctionBody;
+	//	isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart
+	//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)?
+	//	FunctionBody;
 	public ExpressionDefinitionElements getExpressionDefinitionAccess() {
 		return pExpressionDefinition;
 	}
@@ -6653,7 +6775,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Expression SysML::Expression:
-	//	ConditionalTestExpression;
+	//	ConditionalExpression;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
 	}
@@ -6662,16 +6784,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 	
-	//ConditionalTestExpression SysML::Expression:
-	//	ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} operator=ConditionalTestOperator
-	//	operand+=ConditionalOrExpression
-	//	':' operand+=ConditionalTestExpression)?;
-	public ConditionalTestExpressionElements getConditionalTestExpressionAccess() {
-		return pConditionalTestExpression;
+	//ConditionalExpression SysML::Expression:
+	//	ConditionalOrExpression ({SysML::OperatorExpression.operand+=current} (operator=ConditionalTestOperator
+	//	operand+=ConditionalOrExpression ':' operand+=ConditionalExpression
+	//	//		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
+	//))?;
+	public ConditionalExpressionElements getConditionalExpressionAccess() {
+		return pConditionalExpression;
 	}
 	
-	public ParserRule getConditionalTestExpressionRule() {
-		return getConditionalTestExpressionAccess().getRule();
+	public ParserRule getConditionalExpressionRule() {
+		return getConditionalExpressionAccess().getRule();
 	}
 	
 	//ConditionalTestOperator:
@@ -6910,7 +7033,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimaryExpression SysML::Expression:
-	//	BaseExpression ({SysML::OperatorExpression.operand+=current} '->' operator=Name operand+=BodyExpression)*;
+	//	BaseExpression ({SysML::OperatorExpression.operand+=current} '->' (operator='while' operand+=BodyExpression
+	//	operand+=BlockExpression
+	//	| operator='reduce' operand+=ReducerExpression
+	//	| operator=Name operand+=BodyExpression))*;
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -6919,7 +7045,37 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
-	//BodyExpression SysML::Expression:
+	//BlockExpression SysML::BlockExpression:
+	//	FunctionBody;
+	public BlockExpressionElements getBlockExpressionAccess() {
+		return pBlockExpression;
+	}
+	
+	public ParserRule getBlockExpressionRule() {
+		return getBlockExpressionAccess().getRule();
+	}
+	
+	//ReducerExpression SysML::BlockExpression:
+	//	ownedRelationship+=ExpressionTyping;
+	public ReducerExpressionElements getReducerExpressionAccess() {
+		return pReducerExpression;
+	}
+	
+	public ParserRule getReducerExpressionRule() {
+		return getReducerExpressionAccess().getRule();
+	}
+	
+	//ExpressionTyping SysML::FeatureTyping:
+	//	type=[SysML::Function|QualifiedName];
+	public ExpressionTypingElements getExpressionTypingAccess() {
+		return pExpressionTyping;
+	}
+	
+	public ParserRule getExpressionTypingRule() {
+		return getExpressionTypingAccess().getRule();
+	}
+	
+	//BodyExpression SysML::BlockExpression:
 	//	ownedRelationship+=BodyParameterMember '(' ownedRelationship+=ExpressionMember ')';
 	public BodyExpressionElements getBodyExpressionAccess() {
 		return pBodyExpression;

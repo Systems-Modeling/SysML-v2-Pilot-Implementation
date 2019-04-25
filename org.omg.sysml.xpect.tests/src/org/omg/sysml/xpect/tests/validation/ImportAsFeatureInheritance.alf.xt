@@ -1,0 +1,27 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File "DependencyVisibilityPackage.alf" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File "DependencyVisibilityPackage.alf" {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Classes {
+	import VisibilityPackage::c_Public;
+	class Try specializes c_Public{
+		feature feature4 : c_public;
+	}
+}
+

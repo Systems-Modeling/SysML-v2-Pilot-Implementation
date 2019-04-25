@@ -1,0 +1,4 @@
+package Time {
+	datatype DateTime specializes ScalarValues::ScalarValue;
+}
+		

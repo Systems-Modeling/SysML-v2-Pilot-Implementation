@@ -1,0 +1,27 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test1{
+	class A specializes A.B {
+		class B {
+			import A::*;
+		}
+	}
+}

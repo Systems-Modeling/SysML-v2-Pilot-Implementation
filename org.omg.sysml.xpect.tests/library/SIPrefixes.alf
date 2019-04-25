@@ -1,0 +1,44 @@
+package SIPrefixes {
+	import UnitsAndScales::*;
+
+	/*
+	 * ISO/IEC 80000-1 prefixes for decimal multiples and sub-multiples
+	 * 
+	 * See also https://en.wikipedia.org/wiki/Unit_prefix
+	 */
+	yocto = UnitPrefix(name => "yocto", symbol => "y",  conversionFactor => 1E-27);
+	zepto = UnitPrefix(name => "zepto", symbol => "z",  conversionFactor => 1E-24);
+	atto  = UnitPrefix(name => "atto",  symbol => "a",  conversionFactor => 1E-21);
+	femto = UnitPrefix(name => "femto", symbol => "f",  conversionFactor => 1E-18);
+	nano  = UnitPrefix(name => "nano",  symbol => "n",  conversionFactor => 1E-15);
+	pico  = UnitPrefix(name => "pico",  symbol => "p",  conversionFactor => 1E-12);
+	nano  = UnitPrefix(name => "nano",  symbol => "n",  conversionFactor => 1E-9);
+	micro = UnitPrefix(name => "micro", symbol => "μ",  conversionFactor => 1E-6);
+	milli = UnitPrefix(name => "milli", symbol => "m",  conversionFactor => 1E-3);
+	centi = UnitPrefix(name => "centi", symbol => "c",  conversionFactor => 1E-2);
+	deci  = UnitPrefix(name => "deci",  symbol => "d",  conversionFactor => 1E-1);
+	deca  = UnitPrefix(name => "deca",  symbol => "da", conversionFactor => 1E1);
+	hecto = UnitPrefix(name => "hecto", symbol => "h",  conversionFactor => 1E2);
+	kilo  = UnitPrefix(name => "kilo",  symbol => "k",  conversionFactor => 1E3);
+	mega  = UnitPrefix(name => "mega",  symbol => "M",  conversionFactor => 1E6);
+	giga  = UnitPrefix(name => "giga",  symbol => "G",  conversionFactor => 1E9);
+	tera  = UnitPrefix(name => "tera",  symbol => "T",  conversionFactor => 1E12);
+	peta  = UnitPrefix(name => "peta",  symbol => "P",  conversionFactor => 1E15);
+	exa   = UnitPrefix(name => "exa",   symbol => "E",  conversionFactor => 1E18);
+	zetta = UnitPrefix(name => "zetta", symbol => "Z",  conversionFactor => 1E21);
+	yotta = UnitPrefix(name => "yotta", symbol => "Y",  conversionFactor => 1E24);
+	
+	/*
+	 * ISO/IEC 80000-1 prefixes for binary multiples, i.e. multiples of 1024 (= 2^10)
+	 * 
+	 * See also https://en.wikipedia.org/wiki/Binary_prefix
+	 */
+	kibi = UnitPrefix(name => "kibi", symbol => "Ki", conversionFactor => 1024);
+	mebi = UnitPrefix(name => "mebi", symbol => "Mi", conversionFactor => 1024^2);
+	gibi = UnitPrefix(name => "gibi", symbol => "Gi", conversionFactor => 1024^3);
+	tebi = UnitPrefix(name => "tebi", symbol => "Ti", conversionFactor => 1024^4);
+	pebi = UnitPrefix(name => "pebi", symbol => "Pi", conversionFactor => 1024^5);
+	exbi = UnitPrefix(name => "exbi", symbol => "Ei", conversionFactor => 1024^6);
+	zebi = UnitPrefix(name => "zebi", symbol => "Zi", conversionFactor => 1024^7);
+	yobi = UnitPrefix(name => "yobi", symbol => "Yi", conversionFactor => 1024^8);
+}

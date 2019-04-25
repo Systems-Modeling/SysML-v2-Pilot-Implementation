@@ -1,0 +1,29 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="DependencyOuterPackage.alf"}
+		File {from ="DependencyMultipleMembership.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="DependencyOuterPackage.alf"}
+				File {from ="DependencyMultipleMembership.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	// XPECT errors --> "Couldn't resolve reference to Element 'OuterPackage2::C::b'." at "OuterPackage2::C::b"
+	import OuterPackage2::C::b;
+	class D{
+		// XPECT errors --> "Couldn't resolve reference to Category 'b'." at "b"
+		feature try : b;
+	}
+}

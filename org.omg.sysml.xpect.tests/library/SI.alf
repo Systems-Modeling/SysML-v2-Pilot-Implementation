@@ -1,0 +1,90 @@
+/**
+ * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
+ */
+package SI {
+	import UnitsAndScales::*;
+	import ISQ::*;
+	import SIPrefixes::*;
+	
+	/*
+	 * SI simple units needed before creation of base units
+	 */
+	g = MassUnit(name => "gram");
+
+	/*
+	 * SI base units
+	 */	
+	m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
+	
+	kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
+
+	s = TimeUnit(name => "second");
+
+	A = ElectricCurrentUnit(name => "ampere");
+	
+	temperatureInKelvinTriplePointWater = ScaleValueDefinition(magnitude => 273.16, description => "temperature in kelvin of the triple point of pure water");
+	K = TemperatureUnit(name => "kelvin") {
+		scaleValueDefinition: ScaleValueDefinition subsets MeasurementScale::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
+	}
+	
+	mol = AmountOfSubstanceUnit(name => "mol");
+
+	cd = LuminousIntensityUnit(name => "candela");
+	
+	/*
+	 * SI derived units
+	 */ 
+
+	/*
+	 * newton
+	 * N: ForceUnit = Quantities::DerivedUnit({ 
+	 *   Quantities::MeasurementUnitPowerFactor(kg, 1), 
+	 *   Quantities::MeasurementUnitPowerFactor(m, 1), 
+	 *   Quantities::MeasurementUnitPowerFactor(s, -2)
+	 * });	 
+	 */
+	N: ForceUnit = kg * m / s ^ 2 {name redefines MeasurementScale::name = "newton"; }
+	
+	'm/s': SpeedUnit = m / s {name redefines MeasurementScale::name = "metre per second"; }
+	J : EnergyUnit = N * m  {name redefines MeasurementScale::name = "joule"; }
+	'N.m': TorqueUnit = N * m {name redefines MeasurementScale::name = "newton metre"; }
+	
+	/*
+	 * Examples of other conversion based units that are accepted in SI, but not standard 
+	 */
+	min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
+	hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
+
+	/* 
+	 * Prefixed units - incomplete list
+	 */
+	km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
+	mN = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
+	kJ = EnergyUnit(name => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
+	MJ = EnergyUnit(name => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
+	GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
+	
+	/*
+	 * Derived units - incomplete list
+	 */
+	'km/hr': SpeedUnit = km / hr;
+	
+	/*
+	 * Interval scales - incomplete list
+	 */
+	 
+	/*
+	 * The degree celsius unit and scale
+	 * 
+	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
+	 */
+	'°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
+	 
+	temperatureInCelsiusTriplePointWater = ScaleValueDefinition(magnitude => 0.01, description => "temperature in degree celsius of the triple point of pure water");
+	celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
+	'°C scale' = IntervalScale(name => "degree celsius scale") {
+		unit redefines NonRatioScale::unit = '°C';
+		scaleValueDefinition: ScaleValueDefinition subsets MeasurementScale::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
+		scaleValueMapping redefines NonRatioScale::scaleValueMapping = celsiusToKelvinScaleMapping;
+	}
+}

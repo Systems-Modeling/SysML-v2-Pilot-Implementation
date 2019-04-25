@@ -1,0 +1,61 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+/* XPECT ast ---
+Package {
+  ownedMembership = [
+    Membership {
+      ownedMemberElement = ObjectClass {
+        ownedRelationship = [
+          Superclassing {
+            superclass -> ObjectClass Base.alf#//@ownedMembership.1/@ownedMemberElement
+            subclass -> ObjectClass //@ownedMembership.0/@ownedMemberElement
+          }
+        ]
+        ownedMembership = [
+          FeatureMembership {
+            memberName = 'c'
+            ownedMemberFeature = Feature {
+              ownedRelationship = [
+                FeatureTyping {
+                  type -> Feature DependencyOuterPackage.alf#//@ownedMembership.1/@ownedMemberElement/@ownedMembership.0/@ownedMemberFeature
+                }
+                Subsetting {
+                  subsettedFeature -> Feature Base.alf#//@ownedMembership.12/@ownedMemberElement
+                  subsettingFeature -> Feature //@ownedMembership.0/@ownedMemberElement/@ownedMembership.0/@ownedMemberFeature
+                }
+              ]
+            }
+            memberFeature -> Feature //@ownedMembership.0/@ownedMemberElement/@ownedMembership.0/@ownedMemberFeature
+          }
+        ]
+      }
+      memberName = 'C'
+      memberElement -> ObjectClass //@ownedMembership.0/@ownedMemberElement
+    }
+  ]
+}
+--- */
+
+
+package test{
+	class C{
+		feature c : OuterPackage.B.b;
+	}
+}

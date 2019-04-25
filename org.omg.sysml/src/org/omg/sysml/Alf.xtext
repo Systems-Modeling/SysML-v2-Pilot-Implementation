@@ -557,9 +557,7 @@ Expression returns SysML::Expression :
 
 ConditionalExpression returns SysML::Expression :
 	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		( operator = ConditionalTestOperator operand += ConditionalOrExpression ':' operand += ConditionalExpression
-//		| '->' operator = 'while' operand += BodyExpression operand += ConditionalExpression
-		)
+		operator = ConditionalTestOperator operand += ConditionalOrExpression ':' operand += ConditionalExpression
 	)?
 ;
 
@@ -668,28 +666,22 @@ SequenceAccessExpression returns SysML::Expression :
 ;
 
 PrimaryExpression returns SysML::Expression :
-	BaseExpression ( {SysML::OperatorExpression.operand += current} '->'
-		( operator = 'while' operand += BodyExpression operand += BlockExpression
-		| operator = 'reduce' operand += ReducerExpression
-		| operator = Name operand += BodyExpression
-		)
+	BaseExpression ( {SysML::OperatorExpression.operand += current} '->' 
+		operator = Name ( ownedRelationship += BodyMember )+
 	)*
 ;
 
-BlockExpression returns SysML::BlockExpression :
-	FunctionBody
+BodyExpression returns SysML::BlockExpression :
+	  => ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')'
+	| ownedRelationship += ExpressionTyping
 ;
 
-ReducerExpression returns SysML::BlockExpression :
-	ownedRelationship += ExpressionTyping
+BodyParameter returns SysML::Parameter :
+	name = Name
 ;
 
 ExpressionTyping returns SysML::FeatureTyping :
-	type = [SysML::Function|QualifiedName]
-;
-
-BodyExpression returns SysML::BlockExpression :
-	ownedRelationship += BodyParameterMember '(' ownedRelationship += ExpressionMember ')'
+	type = [ SysML::Function | QualifiedName ]
 ;
 
 BaseExpression returns SysML::Expression :
@@ -763,12 +755,12 @@ NamedExpressionMember returns SysML::FeatureMembership :
 	memberName = Name '=>' ownedRelatedElement += Expression
 ;
 
-BodyParameterMember returns SysML::FeatureMembership :
-	ownedRelatedElement += BodyParameter
+BodyMember returns SysML::FeatureMembership :
+	ownedRelatedElement += BodyExpression
 ;
 
-BodyParameter returns SysML::Parameter :
-	name = Name
+BodyParameterMember returns SysML::FeatureMembership :
+	ownedRelatedElement += BodyParameter
 ;
 
 /* NAMES */

@@ -1007,6 +1007,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cMemberElementFeatureCrossReference_4_2_0 = (CrossReference)cMemberElementAssignment_4_2.eContents().get(0);
 		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_4_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_4_2_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
+		private final RuleCall cBehaviorStepMemberDefinitionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		////NonFeatureMemberKind :
 		////	'package' | 'class' | 'assoc'
@@ -1016,13 +1017,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	| 'abstract' 'feature'? ownedRelatedElement+=AbstractNamedFeatureDefinition
 		//	| 'feature' ownedRelatedElement+=UnnamedFeatureDefinition
 		//	| 'abstract' 'feature' ownedRelatedElement+=AbstractUnnamedFeatureDefinition
-		//	| ('feature' memberName=Name? | memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';';
+		//	| ('feature' memberName=Name? | memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';'
+		//	| BehaviorStepMemberDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'feature'? ownedRelatedElement+=NamedFeatureDefinition | 'abstract' 'feature'?
 		//ownedRelatedElement+=AbstractNamedFeatureDefinition | 'feature' ownedRelatedElement+=UnnamedFeatureDefinition |
 		//'abstract' 'feature' ownedRelatedElement+=AbstractUnnamedFeatureDefinition | ('feature' memberName=Name? |
-		//memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';'
+		//memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';' | BehaviorStepMemberDefinition
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'feature'? ownedRelatedElement+=NamedFeatureDefinition
@@ -1117,6 +1119,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//';'
 		public Keyword getSemicolonKeyword_4_3() { return cSemicolonKeyword_4_3; }
+		
+		//BehaviorStepMemberDefinition
+		public RuleCall getBehaviorStepMemberDefinitionParserRuleCall_5() { return cBehaviorStepMemberDefinitionParserRuleCall_5; }
 	}
 	public class CategoryBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.CategoryBody");
@@ -2505,114 +2510,124 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BehaviorStepMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cCategoryMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final Alternatives cOwnedRelatedElementAlternatives_1_0_0 = (Alternatives)cOwnedRelatedElementAssignment_1_0.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementStepDefinitionParserRuleCall_1_0_0_0 = (RuleCall)cOwnedRelatedElementAlternatives_1_0_0.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementExpressionDefinitionParserRuleCall_1_0_0_1 = (RuleCall)cOwnedRelatedElementAlternatives_1_0_0.eContents().get(1);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Keyword cStepKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cMemberNameAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cMemberNameNameParserRuleCall_1_1_1_0 = (RuleCall)cMemberNameAssignment_1_1_1.eContents().get(0);
-		private final Keyword cIsKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
-		private final Assignment cMemberFeatureAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
-		private final CrossReference cMemberFeatureStepCrossReference_1_1_3_0 = (CrossReference)cMemberFeatureAssignment_1_1_3.eContents().get(0);
-		private final RuleCall cMemberFeatureStepQualifiedNameParserRuleCall_1_1_3_0_1 = (RuleCall)cMemberFeatureStepCrossReference_1_1_3_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_1_1_4 = (Keyword)cGroup_1_1.eContents().get(4);
-		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
-		private final Keyword cExprKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cMemberNameAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cMemberNameNameParserRuleCall_1_2_1_0 = (RuleCall)cMemberNameAssignment_1_2_1.eContents().get(0);
-		private final Keyword cIsKeyword_1_2_2 = (Keyword)cGroup_1_2.eContents().get(2);
-		private final Assignment cMemberFeatureAssignment_1_2_3 = (Assignment)cGroup_1_2.eContents().get(3);
-		private final CrossReference cMemberFeatureExpressionCrossReference_1_2_3_0 = (CrossReference)cMemberFeatureAssignment_1_2_3.eContents().get(0);
-		private final RuleCall cMemberFeatureExpressionQualifiedNameParserRuleCall_1_2_3_0_1 = (RuleCall)cMemberFeatureExpressionCrossReference_1_2_3_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_1_2_4 = (Keyword)cGroup_1_2.eContents().get(4);
+		private final RuleCall cBehaviorStepMemberDefinitionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//BehaviorStepMember SysML::FeatureMembership:
-		//	CategoryMemberPrefix (ownedRelatedElement+=(StepDefinition | ExpressionDefinition) | 'step' memberName=Name? 'is'
-		//	memberFeature=[SysML::Step|QualifiedName] ';'
-		//	| 'expr' memberName=Name? 'is' memberFeature=[SysML::Expression|QualifiedName] ';');
+		//	CategoryMemberPrefix BehaviorStepMemberDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//CategoryMemberPrefix (ownedRelatedElement+=(StepDefinition | ExpressionDefinition) | 'step' memberName=Name? 'is'
-		//memberFeature=[SysML::Step|QualifiedName] ';' | 'expr' memberName=Name? 'is'
-		//memberFeature=[SysML::Expression|QualifiedName] ';')
+		//CategoryMemberPrefix BehaviorStepMemberDefinition
 		public Group getGroup() { return cGroup; }
 		
 		//CategoryMemberPrefix
 		public RuleCall getCategoryMemberPrefixParserRuleCall_0() { return cCategoryMemberPrefixParserRuleCall_0; }
 		
-		//ownedRelatedElement+=(StepDefinition | ExpressionDefinition) | 'step' memberName=Name? 'is'
-		//memberFeature=[SysML::Step|QualifiedName] ';' | 'expr' memberName=Name? 'is'
-		//memberFeature=[SysML::Expression|QualifiedName] ';'
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//BehaviorStepMemberDefinition
+		public RuleCall getBehaviorStepMemberDefinitionParserRuleCall_1() { return cBehaviorStepMemberDefinitionParserRuleCall_1; }
+	}
+	public class BehaviorStepMemberDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BehaviorStepMemberDefinition");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementStepDefinitionParserRuleCall_0_0 = (RuleCall)cOwnedRelatedElementAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cStepKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cMemberNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cMemberNameNameParserRuleCall_1_1_0 = (RuleCall)cMemberNameAssignment_1_1.eContents().get(0);
+		private final Keyword cIsKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cMemberElementAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final CrossReference cMemberElementStepCrossReference_1_3_0 = (CrossReference)cMemberElementAssignment_1_3.eContents().get(0);
+		private final RuleCall cMemberElementStepQualifiedNameParserRuleCall_1_3_0_1 = (RuleCall)cMemberElementStepCrossReference_1_3_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cOwnedRelatedElementExpressionDefinitionParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Keyword cExprKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cMemberNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cMemberNameNameParserRuleCall_3_1_0 = (RuleCall)cMemberNameAssignment_3_1.eContents().get(0);
+		private final Keyword cIsKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Assignment cMemberElementAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final CrossReference cMemberElementExpressionCrossReference_3_3_0 = (CrossReference)cMemberElementAssignment_3_3.eContents().get(0);
+		private final RuleCall cMemberElementExpressionQualifiedNameParserRuleCall_3_3_0_1 = (RuleCall)cMemberElementExpressionCrossReference_3_3_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		
-		//ownedRelatedElement+=(StepDefinition | ExpressionDefinition)
-		public Assignment getOwnedRelatedElementAssignment_1_0() { return cOwnedRelatedElementAssignment_1_0; }
+		//fragment BehaviorStepMemberDefinition returns SysML::Membership:
+		//	ownedRelatedElement+=StepDefinition
+		//	| 'step' memberName=Name? 'is' memberElement=[SysML::Step|QualifiedName] ';'
+		//	| ownedRelatedElement+=ExpressionDefinition
+		//	| 'expr' memberName=Name? 'is' memberElement=[SysML::Expression|QualifiedName] ';';
+		@Override public ParserRule getRule() { return rule; }
 		
-		//(StepDefinition | ExpressionDefinition)
-		public Alternatives getOwnedRelatedElementAlternatives_1_0_0() { return cOwnedRelatedElementAlternatives_1_0_0; }
+		//ownedRelatedElement+=StepDefinition | 'step' memberName=Name? 'is' memberElement=[SysML::Step|QualifiedName] ';' |
+		//ownedRelatedElement+=ExpressionDefinition | 'expr' memberName=Name? 'is'
+		//memberElement=[SysML::Expression|QualifiedName] ';'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ownedRelatedElement+=StepDefinition
+		public Assignment getOwnedRelatedElementAssignment_0() { return cOwnedRelatedElementAssignment_0; }
 		
 		//StepDefinition
-		public RuleCall getOwnedRelatedElementStepDefinitionParserRuleCall_1_0_0_0() { return cOwnedRelatedElementStepDefinitionParserRuleCall_1_0_0_0; }
+		public RuleCall getOwnedRelatedElementStepDefinitionParserRuleCall_0_0() { return cOwnedRelatedElementStepDefinitionParserRuleCall_0_0; }
 		
-		//ExpressionDefinition
-		public RuleCall getOwnedRelatedElementExpressionDefinitionParserRuleCall_1_0_0_1() { return cOwnedRelatedElementExpressionDefinitionParserRuleCall_1_0_0_1; }
-		
-		//'step' memberName=Name? 'is' memberFeature=[SysML::Step|QualifiedName] ';'
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		//'step' memberName=Name? 'is' memberElement=[SysML::Step|QualifiedName] ';'
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'step'
-		public Keyword getStepKeyword_1_1_0() { return cStepKeyword_1_1_0; }
+		public Keyword getStepKeyword_1_0() { return cStepKeyword_1_0; }
 		
 		//memberName=Name?
-		public Assignment getMemberNameAssignment_1_1_1() { return cMemberNameAssignment_1_1_1; }
+		public Assignment getMemberNameAssignment_1_1() { return cMemberNameAssignment_1_1; }
 		
 		//Name
-		public RuleCall getMemberNameNameParserRuleCall_1_1_1_0() { return cMemberNameNameParserRuleCall_1_1_1_0; }
+		public RuleCall getMemberNameNameParserRuleCall_1_1_0() { return cMemberNameNameParserRuleCall_1_1_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_1_1_2() { return cIsKeyword_1_1_2; }
+		public Keyword getIsKeyword_1_2() { return cIsKeyword_1_2; }
 		
-		//memberFeature=[SysML::Step|QualifiedName]
-		public Assignment getMemberFeatureAssignment_1_1_3() { return cMemberFeatureAssignment_1_1_3; }
+		//memberElement=[SysML::Step|QualifiedName]
+		public Assignment getMemberElementAssignment_1_3() { return cMemberElementAssignment_1_3; }
 		
 		//[SysML::Step|QualifiedName]
-		public CrossReference getMemberFeatureStepCrossReference_1_1_3_0() { return cMemberFeatureStepCrossReference_1_1_3_0; }
+		public CrossReference getMemberElementStepCrossReference_1_3_0() { return cMemberElementStepCrossReference_1_3_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberFeatureStepQualifiedNameParserRuleCall_1_1_3_0_1() { return cMemberFeatureStepQualifiedNameParserRuleCall_1_1_3_0_1; }
+		public RuleCall getMemberElementStepQualifiedNameParserRuleCall_1_3_0_1() { return cMemberElementStepQualifiedNameParserRuleCall_1_3_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_1_1_4() { return cSemicolonKeyword_1_1_4; }
+		public Keyword getSemicolonKeyword_1_4() { return cSemicolonKeyword_1_4; }
 		
-		//'expr' memberName=Name? 'is' memberFeature=[SysML::Expression|QualifiedName] ';'
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		//ownedRelatedElement+=ExpressionDefinition
+		public Assignment getOwnedRelatedElementAssignment_2() { return cOwnedRelatedElementAssignment_2; }
+		
+		//ExpressionDefinition
+		public RuleCall getOwnedRelatedElementExpressionDefinitionParserRuleCall_2_0() { return cOwnedRelatedElementExpressionDefinitionParserRuleCall_2_0; }
+		
+		//'expr' memberName=Name? 'is' memberElement=[SysML::Expression|QualifiedName] ';'
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//'expr'
-		public Keyword getExprKeyword_1_2_0() { return cExprKeyword_1_2_0; }
+		public Keyword getExprKeyword_3_0() { return cExprKeyword_3_0; }
 		
 		//memberName=Name?
-		public Assignment getMemberNameAssignment_1_2_1() { return cMemberNameAssignment_1_2_1; }
+		public Assignment getMemberNameAssignment_3_1() { return cMemberNameAssignment_3_1; }
 		
 		//Name
-		public RuleCall getMemberNameNameParserRuleCall_1_2_1_0() { return cMemberNameNameParserRuleCall_1_2_1_0; }
+		public RuleCall getMemberNameNameParserRuleCall_3_1_0() { return cMemberNameNameParserRuleCall_3_1_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_1_2_2() { return cIsKeyword_1_2_2; }
+		public Keyword getIsKeyword_3_2() { return cIsKeyword_3_2; }
 		
-		//memberFeature=[SysML::Expression|QualifiedName]
-		public Assignment getMemberFeatureAssignment_1_2_3() { return cMemberFeatureAssignment_1_2_3; }
+		//memberElement=[SysML::Expression|QualifiedName]
+		public Assignment getMemberElementAssignment_3_3() { return cMemberElementAssignment_3_3; }
 		
 		//[SysML::Expression|QualifiedName]
-		public CrossReference getMemberFeatureExpressionCrossReference_1_2_3_0() { return cMemberFeatureExpressionCrossReference_1_2_3_0; }
+		public CrossReference getMemberElementExpressionCrossReference_3_3_0() { return cMemberElementExpressionCrossReference_3_3_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberFeatureExpressionQualifiedNameParserRuleCall_1_2_3_0_1() { return cMemberFeatureExpressionQualifiedNameParserRuleCall_1_2_3_0_1; }
+		public RuleCall getMemberElementExpressionQualifiedNameParserRuleCall_3_3_0_1() { return cMemberElementExpressionQualifiedNameParserRuleCall_3_3_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_1_2_4() { return cSemicolonKeyword_1_2_4; }
+		public Keyword getSemicolonKeyword_3_4() { return cSemicolonKeyword_3_4; }
 	}
 	public class FunctionDefinitionOrStubElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FunctionDefinitionOrStub");
@@ -3684,22 +3699,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
-		private final RuleCall cSubsettingPartParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cTypePartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final RuleCall cParameterListParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cSubsettingPartParserRuleCall_2_0_3 = (RuleCall)cGroup_2_0.eContents().get(3);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final Keyword cRedefinesKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1_1.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_2_1_2 = (RuleCall)cGroup_2_1.eContents().get(2);
+		private final RuleCall cTypePartParserRuleCall_2_1_2 = (RuleCall)cGroup_2_1.eContents().get(2);
+		private final RuleCall cParameterListParserRuleCall_2_1_3 = (RuleCall)cGroup_2_1.eContents().get(3);
 		private final RuleCall cBehaviorBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* STEPS */ StepDefinition SysML::Step:
-		//	isAbstract?='abstract'? 'step' (name=Name ParameterList SubsettingPart
-		//	| 'redefines' ownedRelationship+=Redefinition ParameterList?) BehaviorBody;
+		//	isAbstract?='abstract'? 'step' (name=Name TypePart ParameterList? SubsettingPart
+		//	| 'redefines' ownedRelationship+=Redefinition TypePart ParameterList?) BehaviorBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? 'step' (name=Name ParameterList SubsettingPart | 'redefines' ownedRelationship+=Redefinition
-		//ParameterList?) BehaviorBody
+		//isAbstract?='abstract'? 'step' (name=Name TypePart ParameterList? SubsettingPart | 'redefines'
+		//ownedRelationship+=Redefinition TypePart ParameterList?) BehaviorBody
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -3711,10 +3728,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'step'
 		public Keyword getStepKeyword_1() { return cStepKeyword_1; }
 		
-		//name=Name ParameterList SubsettingPart | 'redefines' ownedRelationship+=Redefinition ParameterList?
+		//name=Name TypePart ParameterList? SubsettingPart | 'redefines' ownedRelationship+=Redefinition TypePart ParameterList?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//name=Name ParameterList SubsettingPart
+		//name=Name TypePart ParameterList? SubsettingPart
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//name=Name
@@ -3723,13 +3740,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0_0_0() { return cNameNameParserRuleCall_2_0_0_0; }
 		
-		//ParameterList
-		public RuleCall getParameterListParserRuleCall_2_0_1() { return cParameterListParserRuleCall_2_0_1; }
+		//TypePart
+		public RuleCall getTypePartParserRuleCall_2_0_1() { return cTypePartParserRuleCall_2_0_1; }
+		
+		//ParameterList?
+		public RuleCall getParameterListParserRuleCall_2_0_2() { return cParameterListParserRuleCall_2_0_2; }
 		
 		//SubsettingPart
-		public RuleCall getSubsettingPartParserRuleCall_2_0_2() { return cSubsettingPartParserRuleCall_2_0_2; }
+		public RuleCall getSubsettingPartParserRuleCall_2_0_3() { return cSubsettingPartParserRuleCall_2_0_3; }
 		
-		//'redefines' ownedRelationship+=Redefinition ParameterList?
+		//'redefines' ownedRelationship+=Redefinition TypePart ParameterList?
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//'redefines'
@@ -3741,8 +3761,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Redefinition
 		public RuleCall getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0() { return cOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0; }
 		
+		//TypePart
+		public RuleCall getTypePartParserRuleCall_2_1_2() { return cTypePartParserRuleCall_2_1_2; }
+		
 		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_2_1_2() { return cParameterListParserRuleCall_2_1_2; }
+		public RuleCall getParameterListParserRuleCall_2_1_3() { return cParameterListParserRuleCall_2_1_3; }
 		
 		//BehaviorBody
 		public RuleCall getBehaviorBodyParserRuleCall_3() { return cBehaviorBodyParserRuleCall_3; }
@@ -5454,6 +5477,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final ParameterMemberElements pParameterMember;
 	private final BehaviorMemberElements pBehaviorMember;
 	private final BehaviorStepMemberElements pBehaviorStepMember;
+	private final BehaviorStepMemberDefinitionElements pBehaviorStepMemberDefinition;
 	private final FunctionDefinitionOrStubElements pFunctionDefinitionOrStub;
 	private final FunctionDefinitionElements pFunctionDefinition;
 	private final FunctionDeclarationElements pFunctionDeclaration;
@@ -5614,6 +5638,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pParameterMember = new ParameterMemberElements();
 		this.pBehaviorMember = new BehaviorMemberElements();
 		this.pBehaviorStepMember = new BehaviorStepMemberElements();
+		this.pBehaviorStepMemberDefinition = new BehaviorStepMemberDefinitionElements();
 		this.pFunctionDefinitionOrStub = new FunctionDefinitionOrStubElements();
 		this.pFunctionDefinition = new FunctionDefinitionElements();
 		this.pFunctionDeclaration = new FunctionDeclarationElements();
@@ -5996,7 +6021,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	| 'abstract' 'feature'? ownedRelatedElement+=AbstractNamedFeatureDefinition
 	//	| 'feature' ownedRelatedElement+=UnnamedFeatureDefinition
 	//	| 'abstract' 'feature' ownedRelatedElement+=AbstractUnnamedFeatureDefinition
-	//	| ('feature' memberName=Name? | memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';';
+	//	| ('feature' memberName=Name? | memberName=Name) 'is' memberElement=[SysML::Feature|QualifiedName] ';'
+	//	| BehaviorStepMemberDefinition;
 	public FeaturePackageMemberElementElements getFeaturePackageMemberElementAccess() {
 		return pFeaturePackageMemberElement;
 	}
@@ -6361,15 +6387,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BehaviorStepMember SysML::FeatureMembership:
-	//	CategoryMemberPrefix (ownedRelatedElement+=(StepDefinition | ExpressionDefinition) | 'step' memberName=Name? 'is'
-	//	memberFeature=[SysML::Step|QualifiedName] ';'
-	//	| 'expr' memberName=Name? 'is' memberFeature=[SysML::Expression|QualifiedName] ';');
+	//	CategoryMemberPrefix BehaviorStepMemberDefinition;
 	public BehaviorStepMemberElements getBehaviorStepMemberAccess() {
 		return pBehaviorStepMember;
 	}
 	
 	public ParserRule getBehaviorStepMemberRule() {
 		return getBehaviorStepMemberAccess().getRule();
+	}
+	
+	//fragment BehaviorStepMemberDefinition returns SysML::Membership:
+	//	ownedRelatedElement+=StepDefinition
+	//	| 'step' memberName=Name? 'is' memberElement=[SysML::Step|QualifiedName] ';'
+	//	| ownedRelatedElement+=ExpressionDefinition
+	//	| 'expr' memberName=Name? 'is' memberElement=[SysML::Expression|QualifiedName] ';';
+	public BehaviorStepMemberDefinitionElements getBehaviorStepMemberDefinitionAccess() {
+		return pBehaviorStepMemberDefinition;
+	}
+	
+	public ParserRule getBehaviorStepMemberDefinitionRule() {
+		return getBehaviorStepMemberDefinitionAccess().getRule();
 	}
 	
 	///* FUNCTIONS */ FunctionDefinitionOrStub SysML::Function:
@@ -6706,8 +6743,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* STEPS */ StepDefinition SysML::Step:
-	//	isAbstract?='abstract'? 'step' (name=Name ParameterList SubsettingPart
-	//	| 'redefines' ownedRelationship+=Redefinition ParameterList?) BehaviorBody;
+	//	isAbstract?='abstract'? 'step' (name=Name TypePart ParameterList? SubsettingPart
+	//	| 'redefines' ownedRelationship+=Redefinition TypePart ParameterList?) BehaviorBody;
 	public StepDefinitionElements getStepDefinitionAccess() {
 		return pStepDefinition;
 	}

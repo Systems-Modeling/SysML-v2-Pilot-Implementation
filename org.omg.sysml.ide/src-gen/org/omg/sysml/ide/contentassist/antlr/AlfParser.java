@@ -61,8 +61,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBehaviorBodyAccess().getAlternatives(), "rule__BehaviorBody__Alternatives");
 			builder.put(grammarAccess.getBehaviorBodyAccess().getAlternatives_1_1(), "rule__BehaviorBody__Alternatives_1_1");
 			builder.put(grammarAccess.getBehaviorMemberAccess().getAlternatives(), "rule__BehaviorMember__Alternatives");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getAlternatives_1(), "rule__BehaviorStepMember__Alternatives_1");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getOwnedRelatedElementAlternatives_1_0_0(), "rule__BehaviorStepMember__OwnedRelatedElementAlternatives_1_0_0");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getAlternatives(), "rule__BehaviorStepMemberDefinition__Alternatives");
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives(), "rule__FunctionBody__Alternatives");
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives_1_1(), "rule__FunctionBody__Alternatives_1_1");
 			builder.put(grammarAccess.getFeatureDefinitionAccess().getAlternatives(), "rule__FeatureDefinition__Alternatives");
@@ -166,8 +165,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBehaviorBodyAccess().getGroup_1(), "rule__BehaviorBody__Group_1__0");
 			builder.put(grammarAccess.getParameterMemberAccess().getGroup(), "rule__ParameterMember__Group__0");
 			builder.put(grammarAccess.getBehaviorStepMemberAccess().getGroup(), "rule__BehaviorStepMember__Group__0");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getGroup_1_1(), "rule__BehaviorStepMember__Group_1_1__0");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getGroup_1_2(), "rule__BehaviorStepMember__Group_1_2__0");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getGroup_1(), "rule__BehaviorStepMemberDefinition__Group_1__0");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getGroup_3(), "rule__BehaviorStepMemberDefinition__Group_3__0");
 			builder.put(grammarAccess.getFunctionDefinitionAccess().getGroup(), "rule__FunctionDefinition__Group__0");
 			builder.put(grammarAccess.getFunctionDeclarationAccess().getGroup(), "rule__FunctionDeclaration__Group__0");
 			builder.put(grammarAccess.getFunctionBodyAccess().getGroup_1(), "rule__FunctionBody__Group_1__0");
@@ -363,11 +362,12 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterMemberAccess().getDirectionAssignment_0(), "rule__ParameterMember__DirectionAssignment_0");
 			builder.put(grammarAccess.getParameterMemberAccess().getMemberNameAssignment_1(), "rule__ParameterMember__MemberNameAssignment_1");
 			builder.put(grammarAccess.getParameterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__ParameterMember__OwnedRelatedElementAssignment_2");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getOwnedRelatedElementAssignment_1_0(), "rule__BehaviorStepMember__OwnedRelatedElementAssignment_1_0");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getMemberNameAssignment_1_1_1(), "rule__BehaviorStepMember__MemberNameAssignment_1_1_1");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getMemberFeatureAssignment_1_1_3(), "rule__BehaviorStepMember__MemberFeatureAssignment_1_1_3");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getMemberNameAssignment_1_2_1(), "rule__BehaviorStepMember__MemberNameAssignment_1_2_1");
-			builder.put(grammarAccess.getBehaviorStepMemberAccess().getMemberFeatureAssignment_1_2_3(), "rule__BehaviorStepMember__MemberFeatureAssignment_1_2_3");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_0(), "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getMemberNameAssignment_1_1(), "rule__BehaviorStepMemberDefinition__MemberNameAssignment_1_1");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getMemberElementAssignment_1_3(), "rule__BehaviorStepMemberDefinition__MemberElementAssignment_1_3");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_2(), "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getMemberNameAssignment_3_1(), "rule__BehaviorStepMemberDefinition__MemberNameAssignment_3_1");
+			builder.put(grammarAccess.getBehaviorStepMemberDefinitionAccess().getMemberElementAssignment_3_3(), "rule__BehaviorStepMemberDefinition__MemberElementAssignment_3_3");
 			builder.put(grammarAccess.getFunctionDeclarationAccess().getIsAbstractAssignment_0(), "rule__FunctionDeclaration__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getFunctionDeclarationAccess().getNameAssignment_2(), "rule__FunctionDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getReturnParameterPartAccess().getOwnedRelationshipAssignment(), "rule__ReturnParameterPart__OwnedRelationshipAssignment");

@@ -172,13 +172,12 @@ fragment NonFeatureMemberElement returns SysML::Membership :
 //;
 
 fragment FeaturePackageMemberElement returns SysML::Membership :
-	( 
 	  'feature'? ownedRelatedElement +=NamedFeatureDefinition
 	| 'abstract' 'feature'? ownedRelatedElement +=AbstractNamedFeatureDefinition
 	| 'feature' ownedRelatedElement +=UnnamedFeatureDefinition
 	| 'abstract' 'feature' ownedRelatedElement +=AbstractUnnamedFeatureDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
-	)
+	| BehaviorStepMemberDefinition
 ;
 
 /* CATEGORIES */
@@ -368,11 +367,14 @@ BehaviorMember returns SysML::Membership :
 ;
 
 BehaviorStepMember returns SysML::FeatureMembership :
-	CategoryMemberPrefix
-	( ownedRelatedElement += ( StepDefinition | ExpressionDefinition )
-	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
-	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
-	)
+	CategoryMemberPrefix BehaviorStepMemberDefinition
+;
+
+fragment BehaviorStepMemberDefinition returns SysML::Membership :
+	  ownedRelatedElement += StepDefinition
+	| 'step' ( memberName = Name )? 'is' memberElement = [SysML::Step|QualifiedName] ';'
+	| ownedRelatedElement += ExpressionDefinition
+	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'	
 ;
 
 /* FUNCTIONS */
@@ -535,8 +537,8 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( isAbstract ?= 'abstract')? 'step' 
-	( name = Name ParameterList SubsettingPart 
-	| 'redefines' ownedRelationship += Redefinition ParameterList?
+	( name = Name TypePart ParameterList? SubsettingPart 
+	| 'redefines' ownedRelationship += Redefinition TypePart ParameterList?
 	) 
 	BehaviorBody
 ;

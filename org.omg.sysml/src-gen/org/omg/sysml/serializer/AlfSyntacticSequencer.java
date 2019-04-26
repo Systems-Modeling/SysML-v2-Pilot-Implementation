@@ -139,7 +139,13 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
+	 *     isNonunique?='nonunique' (ambiguity) (rule end)
+	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name '(' ')' (ambiguity) (rule end)
+	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)

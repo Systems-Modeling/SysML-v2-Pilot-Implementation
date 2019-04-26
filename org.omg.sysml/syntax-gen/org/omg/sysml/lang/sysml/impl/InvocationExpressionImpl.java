@@ -96,14 +96,16 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		if (parameter == null) {
 			return null;
 		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createFeature();
-			feature.setName(parameter.getName());
+			Feature feature = SysMLFactory.eINSTANCE.createParameter();
 			
 			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 			redefinition.setRedefinedFeature(parameter);
 			feature.getOwnedRelationship().add(redefinition);
 			
-			FeatureMembership membership = addOwnedFeature(feature);
+			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
+			membership.getOwnedRelatedElement().add(feature);
+			membership.setMemberName("$" + parameter.getName());
+			getOwnedRelationship().add(membership);
 			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
 			if (parameterMembership != null) {
 				membership.setDirection(parameterMembership.getDirection());

@@ -2453,7 +2453,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedRelatedElementParameterDefinitionParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
 		
-		///* BEHAVIOR MEMBERSHIPS */ ParameterMember SysML::FeatureMembership:
+		///* BEHAVIOR MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
 		//	direction=FeatureDirection? memberName=Name ownedRelatedElement+=ParameterDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2768,7 +2768,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementParameterDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
-		///* FUNCTION MEMBERSHIPS */ ReturnParameterMember SysML::FeatureMembership:
+		///* FUNCTION MEMBERSHIPS */ ReturnParameterMember SysML::ReturnParameterMembership:
 		//	memberName=Name? ownedRelatedElement+=ParameterDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5172,7 +5172,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementBodyParameterParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
-		//BodyParameterMember SysML::FeatureMembership:
+		//BodyParameterMember SysML::ParameterMembership:
 		//	ownedRelatedElement+=BodyParameter;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -6328,7 +6328,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getBehaviorBodyAccess().getRule();
 	}
 	
-	///* BEHAVIOR MEMBERSHIPS */ ParameterMember SysML::FeatureMembership:
+	///* BEHAVIOR MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
 	//	direction=FeatureDirection? memberName=Name ownedRelatedElement+=ParameterDefinition;
 	public ParameterMemberElements getParameterMemberAccess() {
 		return pParameterMember;
@@ -6412,7 +6412,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionBodyAccess().getRule();
 	}
 	
-	///* FUNCTION MEMBERSHIPS */ ReturnParameterMember SysML::FeatureMembership:
+	///* FUNCTION MEMBERSHIPS */ ReturnParameterMember SysML::ReturnParameterMembership:
 	//	memberName=Name? ownedRelatedElement+=ParameterDefinition;
 	public ReturnParameterMemberElements getReturnParameterMemberAccess() {
 		return pReturnParameterMember;
@@ -7190,7 +7190,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getBodyMemberAccess().getRule();
 	}
 	
-	//BodyParameterMember SysML::FeatureMembership:
+	//BodyParameterMember SysML::ParameterMembership:
 	//	ownedRelatedElement+=BodyParameter;
 	public BodyParameterMemberElements getBodyParameterMemberAccess() {
 		return pBodyParameterMember;

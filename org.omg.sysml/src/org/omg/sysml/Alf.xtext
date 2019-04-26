@@ -359,7 +359,7 @@ fragment BehaviorBody returns SysML::Category :
 
 /* BEHAVIOR MEMBERSHIPS */
 
-ParameterMember returns SysML::FeatureMembership :
+ParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? memberName = Name ownedRelatedElement += ParameterDefinition
 ;
 
@@ -401,7 +401,7 @@ fragment FunctionBody returns SysML::Category :
 
 /* FUNCTION MEMBERSHIPS */
 
-ReturnParameterMember returns SysML::FeatureMembership :
+ReturnParameterMember returns SysML::ReturnParameterMembership :
 	( memberName = Name )? ownedRelatedElement += ParameterDefinition
 ;
 
@@ -759,7 +759,7 @@ BodyMember returns SysML::FeatureMembership :
 	ownedRelatedElement += BodyExpression
 ;
 
-BodyParameterMember returns SysML::FeatureMembership :
+BodyParameterMember returns SysML::ParameterMembership :
 	ownedRelatedElement += BodyParameter
 ;
 

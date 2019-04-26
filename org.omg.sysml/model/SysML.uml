@@ -1186,4 +1186,10 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Class" xmi:id="_vBBQUGaqEemgLqyvA3GWJw" name="BlockExpression">
     <generalization xmi:id="_zubaoGaqEemgLqyvA3GWJw" general="b32c4dd3-88a2-4418-b414-e75ceb0bb432"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BHfVsGfYEemgLqyvA3GWJw" name="ParameterMembership">
+    <generalization xmi:id="_FiGf0GfYEemgLqyvA3GWJw" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_U6j3kGfYEemgLqyvA3GWJw" name="ReturnParameterMembership">
+    <generalization xmi:id="_U6j3kWfYEemgLqyvA3GWJw" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
+  </packagedElement>
 </uml:Model>

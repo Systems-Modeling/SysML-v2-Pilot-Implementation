@@ -40,7 +40,9 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -178,10 +180,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_BodyMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getBodyParameterMemberRule()) {
-					sequence_BodyParameterMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember_FeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -201,14 +199,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
 					sequence_NamedExpressionMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getParameterMemberRule()) {
-					sequence_ParameterMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getReturnParameterMemberRule()) {
-					sequence_ReturnParameterMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -332,8 +322,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.PARAMETER_MEMBERSHIP:
+				if (rule == grammarAccess.getBodyParameterMemberRule()) {
+					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getParameterMemberRule()) {
+					sequence_ParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.REDEFINITION:
 				sequence_Redefinition(context, (Redefinition) semanticObject); 
+				return; 
+			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
+				sequence_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
 				return; 
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
 				sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
@@ -544,7 +547,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -625,7 +629,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -758,12 +763,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     BodyParameterMember returns FeatureMembership
+	 *     BodyParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=BodyParameter
 	 */
-	protected void sequence_BodyParameterMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_BodyParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -877,7 +882,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -934,7 +940,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PackageImport? 
-	 *         (ownedRelationship+=ElementImport? ownedRelationship+=PackageImport?)* 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1008,7 +1014,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1429,7 +1436,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1724,12 +1732,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ParameterMember returns FeatureMembership
+	 *     ParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
 	 *     (direction=FeatureDirection? memberName=Name ownedRelatedElement+=ParameterDefinition)
 	 */
-	protected void sequence_ParameterMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_ParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1802,12 +1810,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ReturnParameterMember returns FeatureMembership
+	 *     ReturnParameterMember returns ReturnParameterMembership
 	 *
 	 * Constraint:
 	 *     (memberName=Name? ownedRelatedElement+=ParameterDefinition)
 	 */
-	protected void sequence_ReturnParameterMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_ReturnParameterMember(ISerializationContext context, ReturnParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

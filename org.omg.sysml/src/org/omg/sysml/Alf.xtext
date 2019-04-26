@@ -545,8 +545,8 @@ StepDefinition returns SysML::Step :
 
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
-	( ( name = Name )? ParameterList ReturnParameterPart SubsettingPart 
-	| 'redefines' ownedRelationship += Redefinition ( ParameterList ReturnParameterPart )?
+	( name = Name TypePart ( ParameterList ReturnParameterPart )? SubsettingPart 
+	| 'redefines' ownedRelationship += Redefinition TypePart ( ParameterList ReturnParameterPart )?
 	)?
 	FunctionBody
 ;

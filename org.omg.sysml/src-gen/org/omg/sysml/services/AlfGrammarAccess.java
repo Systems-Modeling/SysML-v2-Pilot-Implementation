@@ -3757,26 +3757,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
-		private final RuleCall cReturnParameterPartParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cTypePartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final Group cGroup_2_0_2 = (Group)cGroup_2_0.eContents().get(2);
+		private final RuleCall cParameterListParserRuleCall_2_0_2_0 = (RuleCall)cGroup_2_0_2.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_2_0_2_1 = (RuleCall)cGroup_2_0_2.eContents().get(1);
 		private final RuleCall cSubsettingPartParserRuleCall_2_0_3 = (RuleCall)cGroup_2_0.eContents().get(3);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final Keyword cRedefinesKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1_1.eContents().get(0);
-		private final Group cGroup_2_1_2 = (Group)cGroup_2_1.eContents().get(2);
-		private final RuleCall cParameterListParserRuleCall_2_1_2_0 = (RuleCall)cGroup_2_1_2.eContents().get(0);
-		private final RuleCall cReturnParameterPartParserRuleCall_2_1_2_1 = (RuleCall)cGroup_2_1_2.eContents().get(1);
+		private final RuleCall cTypePartParserRuleCall_2_1_2 = (RuleCall)cGroup_2_1.eContents().get(2);
+		private final Group cGroup_2_1_3 = (Group)cGroup_2_1.eContents().get(3);
+		private final RuleCall cParameterListParserRuleCall_2_1_3_0 = (RuleCall)cGroup_2_1_3.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_2_1_3_1 = (RuleCall)cGroup_2_1_3.eContents().get(1);
 		private final RuleCall cFunctionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
-		//	isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart
-		//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)?
+		//	isAbstract?='abstract'? 'expr' (name=Name TypePart (ParameterList ReturnParameterPart)? SubsettingPart
+		//	| 'redefines' ownedRelationship+=Redefinition TypePart (ParameterList ReturnParameterPart)?)?
 		//	FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart | 'redefines'
-		//ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)? FunctionBody
+		//isAbstract?='abstract'? 'expr' (name=Name TypePart (ParameterList ReturnParameterPart)? SubsettingPart | 'redefines'
+		//ownedRelationship+=Redefinition TypePart (ParameterList ReturnParameterPart)?)? FunctionBody
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -3788,29 +3791,35 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'expr'
 		public Keyword getExprKeyword_1() { return cExprKeyword_1; }
 		
-		//(name=Name? ParameterList ReturnParameterPart SubsettingPart | 'redefines' ownedRelationship+=Redefinition
-		//(ParameterList ReturnParameterPart)?)?
+		//(name=Name TypePart (ParameterList ReturnParameterPart)? SubsettingPart | 'redefines' ownedRelationship+=Redefinition
+		//TypePart (ParameterList ReturnParameterPart)?)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//name=Name? ParameterList ReturnParameterPart SubsettingPart
+		//name=Name TypePart (ParameterList ReturnParameterPart)? SubsettingPart
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
-		//name=Name?
+		//name=Name
 		public Assignment getNameAssignment_2_0_0() { return cNameAssignment_2_0_0; }
 		
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0_0_0() { return cNameNameParserRuleCall_2_0_0_0; }
 		
+		//TypePart
+		public RuleCall getTypePartParserRuleCall_2_0_1() { return cTypePartParserRuleCall_2_0_1; }
+		
+		//(ParameterList ReturnParameterPart)?
+		public Group getGroup_2_0_2() { return cGroup_2_0_2; }
+		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_2_0_1() { return cParameterListParserRuleCall_2_0_1; }
+		public RuleCall getParameterListParserRuleCall_2_0_2_0() { return cParameterListParserRuleCall_2_0_2_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_2_0_2() { return cReturnParameterPartParserRuleCall_2_0_2; }
+		public RuleCall getReturnParameterPartParserRuleCall_2_0_2_1() { return cReturnParameterPartParserRuleCall_2_0_2_1; }
 		
 		//SubsettingPart
 		public RuleCall getSubsettingPartParserRuleCall_2_0_3() { return cSubsettingPartParserRuleCall_2_0_3; }
 		
-		//'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?
+		//'redefines' ownedRelationship+=Redefinition TypePart (ParameterList ReturnParameterPart)?
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//'redefines'
@@ -3822,14 +3831,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Redefinition
 		public RuleCall getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0() { return cOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0; }
 		
+		//TypePart
+		public RuleCall getTypePartParserRuleCall_2_1_2() { return cTypePartParserRuleCall_2_1_2; }
+		
 		//(ParameterList ReturnParameterPart)?
-		public Group getGroup_2_1_2() { return cGroup_2_1_2; }
+		public Group getGroup_2_1_3() { return cGroup_2_1_3; }
 		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_2_1_2_0() { return cParameterListParserRuleCall_2_1_2_0; }
+		public RuleCall getParameterListParserRuleCall_2_1_3_0() { return cParameterListParserRuleCall_2_1_3_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_2_1_2_1() { return cReturnParameterPartParserRuleCall_2_1_2_1; }
+		public RuleCall getReturnParameterPartParserRuleCall_2_1_3_1() { return cReturnParameterPartParserRuleCall_2_1_3_1; }
 		
 		//FunctionBody
 		public RuleCall getFunctionBodyParserRuleCall_3() { return cFunctionBodyParserRuleCall_3; }
@@ -6705,8 +6717,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* EXPRESSIONS */ ExpressionDefinition SysML::BlockExpression:
-	//	isAbstract?='abstract'? 'expr' (name=Name? ParameterList ReturnParameterPart SubsettingPart
-	//	| 'redefines' ownedRelationship+=Redefinition (ParameterList ReturnParameterPart)?)?
+	//	isAbstract?='abstract'? 'expr' (name=Name TypePart (ParameterList ReturnParameterPart)? SubsettingPart
+	//	| 'redefines' ownedRelationship+=Redefinition TypePart (ParameterList ReturnParameterPart)?)?
 	//	FunctionBody;
 	public ExpressionDefinitionElements getExpressionDefinitionAccess() {
 		return pExpressionDefinition;

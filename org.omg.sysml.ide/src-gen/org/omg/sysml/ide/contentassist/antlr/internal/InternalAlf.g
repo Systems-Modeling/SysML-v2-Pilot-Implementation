@@ -14317,7 +14317,7 @@ rule__ExpressionDefinition__Group_2_0__0__Impl
 :
 (
 	{ before(grammarAccess.getExpressionDefinitionAccess().getNameAssignment_2_0_0()); }
-	(rule__ExpressionDefinition__NameAssignment_2_0_0)?
+	(rule__ExpressionDefinition__NameAssignment_2_0_0)
 	{ after(grammarAccess.getExpressionDefinitionAccess().getNameAssignment_2_0_0()); }
 )
 ;
@@ -14343,9 +14343,9 @@ rule__ExpressionDefinition__Group_2_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_0_1()); }
-	ruleParameterList
-	{ after(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_0_1()); }
+	{ before(grammarAccess.getExpressionDefinitionAccess().getTypePartParserRuleCall_2_0_1()); }
+	ruleTypePart
+	{ after(grammarAccess.getExpressionDefinitionAccess().getTypePartParserRuleCall_2_0_1()); }
 )
 ;
 finally {
@@ -14370,9 +14370,9 @@ rule__ExpressionDefinition__Group_2_0__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_0_2()); }
-	ruleReturnParameterPart
-	{ after(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_0_2()); }
+	{ before(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0_2()); }
+	(rule__ExpressionDefinition__Group_2_0_2__0)?
+	{ after(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0_2()); }
 )
 ;
 finally {
@@ -14399,6 +14399,60 @@ rule__ExpressionDefinition__Group_2_0__3__Impl
 	{ before(grammarAccess.getExpressionDefinitionAccess().getSubsettingPartParserRuleCall_2_0_3()); }
 	ruleSubsettingPart
 	{ after(grammarAccess.getExpressionDefinitionAccess().getSubsettingPartParserRuleCall_2_0_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__ExpressionDefinition__Group_2_0_2__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ExpressionDefinition__Group_2_0_2__0__Impl
+	rule__ExpressionDefinition__Group_2_0_2__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ExpressionDefinition__Group_2_0_2__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_0_2_0()); }
+	ruleParameterList
+	{ after(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_0_2_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ExpressionDefinition__Group_2_0_2__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ExpressionDefinition__Group_2_0_2__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ExpressionDefinition__Group_2_0_2__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_0_2_1()); }
+	ruleReturnParameterPart
+	{ after(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_0_2_1()); }
 )
 ;
 finally {
@@ -14466,6 +14520,7 @@ rule__ExpressionDefinition__Group_2_1__2
 	}
 :
 	rule__ExpressionDefinition__Group_2_1__2__Impl
+	rule__ExpressionDefinition__Group_2_1__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -14477,9 +14532,35 @@ rule__ExpressionDefinition__Group_2_1__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_2()); }
-	(rule__ExpressionDefinition__Group_2_1_2__0)?
-	{ after(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_2()); }
+	{ before(grammarAccess.getExpressionDefinitionAccess().getTypePartParserRuleCall_2_1_2()); }
+	ruleTypePart
+	{ after(grammarAccess.getExpressionDefinitionAccess().getTypePartParserRuleCall_2_1_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ExpressionDefinition__Group_2_1__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ExpressionDefinition__Group_2_1__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ExpressionDefinition__Group_2_1__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_3()); }
+	(rule__ExpressionDefinition__Group_2_1_3__0)?
+	{ after(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_3()); }
 )
 ;
 finally {
@@ -14487,53 +14568,53 @@ finally {
 }
 
 
-rule__ExpressionDefinition__Group_2_1_2__0
+rule__ExpressionDefinition__Group_2_1_3__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ExpressionDefinition__Group_2_1_2__0__Impl
-	rule__ExpressionDefinition__Group_2_1_2__1
+	rule__ExpressionDefinition__Group_2_1_3__0__Impl
+	rule__ExpressionDefinition__Group_2_1_3__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ExpressionDefinition__Group_2_1_2__0__Impl
+rule__ExpressionDefinition__Group_2_1_3__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_1_2_0()); }
+	{ before(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_1_3_0()); }
 	ruleParameterList
-	{ after(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_1_2_0()); }
+	{ after(grammarAccess.getExpressionDefinitionAccess().getParameterListParserRuleCall_2_1_3_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ExpressionDefinition__Group_2_1_2__1
+rule__ExpressionDefinition__Group_2_1_3__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ExpressionDefinition__Group_2_1_2__1__Impl
+	rule__ExpressionDefinition__Group_2_1_3__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ExpressionDefinition__Group_2_1_2__1__Impl
+rule__ExpressionDefinition__Group_2_1_3__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_1_2_1()); }
+	{ before(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_1_3_1()); }
 	ruleReturnParameterPart
-	{ after(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_1_2_1()); }
+	{ after(grammarAccess.getExpressionDefinitionAccess().getReturnParameterPartParserRuleCall_2_1_3_1()); }
 )
 ;
 finally {

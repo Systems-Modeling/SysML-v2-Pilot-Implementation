@@ -209,8 +209,9 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepDefinitionAccess().getGroup_2_1(), "rule__StepDefinition__Group_2_1__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup(), "rule__ExpressionDefinition__Group__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0(), "rule__ExpressionDefinition__Group_2_0__0");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0_2(), "rule__ExpressionDefinition__Group_2_0_2__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1(), "rule__ExpressionDefinition__Group_2_1__0");
-			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_2(), "rule__ExpressionDefinition__Group_2_1_2__0");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_3(), "rule__ExpressionDefinition__Group_2_1_3__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getConditionalOrExpressionAccess().getGroup(), "rule__ConditionalOrExpression__Group__0");

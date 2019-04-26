@@ -1,0 +1,26 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File "DependencyVisibilityPackage.alf" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File "DependencyVisibilityPackage.alf" {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Classes {
+	import VisibilityPackage::*;
+	// XPECT errors --> "Couldn't resolve reference to Category 'c_Private_alias::alias_public'." at "c_Private_alias::alias_public"
+	feature f : c_Private_alias::alias_public;
+}
+

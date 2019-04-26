@@ -314,9 +314,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	}
 
 	/**
-	 * If the member feature is a Parameter, then the default direction is IN, unless the Parameter is the result
-	 * Parameter of a function, in which case the default direction is OUT.
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {

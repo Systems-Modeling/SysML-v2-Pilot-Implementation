@@ -151,7 +151,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
 	
 	/**
-	 * The cached value of the BindingConnector from this Feature to the result a value Expression.
+	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
 	protected BindingConnector valueConnector = null;
 
@@ -371,21 +371,23 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		if (i >= 0) {
 			for (Generalization generalization: category.getOwnedGeneralization()) {
 				Category general = generalization.getGeneral();
-				List<? extends Feature> features = getRelevantFeatures(general);
-				if (i < features.size()) {
-					Feature redefinedFeature = features.get(i);
-					if (redefinedFeature != null) {
-						Redefinition redefinition;
-						if (j < n) {
-							redefinition = emptyRedefinitions.get(j);
-							j++;
-						} else {
-							redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-							redefinition.setRedefiningFeature(this);
-							getOwnedRelationship().add(redefinition);
+				if (general != null) {
+					List<? extends Feature> features = getRelevantFeatures(general);
+					if (i < features.size()) {
+						Feature redefinedFeature = features.get(i);
+						if (redefinedFeature != null) {
+							Redefinition redefinition;
+							if (j < n) {
+								redefinition = emptyRedefinitions.get(j);
+								j++;
+							} else {
+								redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+								redefinition.setRedefiningFeature(this);
+								getOwnedRelationship().add(redefinition);
+							}
+							redefinition.setRedefinedFeature(redefinedFeature);
+							redefinitions.add(redefinition);
 						}
-						redefinition.setRedefinedFeature(redefinedFeature);
-						redefinitions.add(redefinition);
 					}
 				}
 			}

@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -34,8 +34,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	}
 	
 	public boolean isResultParameter() {
-		Category category = getOwningCategory();
-		return category instanceof Function && ((Function)category).getResult() == this;
+		return ((CategoryImpl)getOwningCategory()).getResult() == this;
 	}
 	
 	/**
@@ -49,15 +48,16 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	}
 	
 	/**
-	 * Parameters redefine Parameters of superclass Behaviors, with a result Parameter of a Function 
-	 * always redefining the result Parameter of superclass Functions. 
+	 * Parameters redefine (owned) Parameters of general Categories, with a result Parameter always redefining
+	 * the result Parameter of a general Functions or Expression. 
 	 */
 	@Override
 	public List<? extends Feature> getRelevantFeatures(Category category) {
-		return !(category instanceof Behavior)? Collections.emptyList():
-			(isResultParameter() && category instanceof Function)? Collections.singletonList(((Function)category).getResult()):
-			((Behavior)category).getParameter().stream().
-				filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
+		return category == null? Collections.emptyList():
+			   (isResultParameter() && (category instanceof Function | category instanceof Expression))? 
+					Collections.singletonList(((CategoryImpl)category).getResult()):
+			   ((CategoryImpl)category).getOwnedParameters().stream().
+					filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
 	}
 	
 	/**

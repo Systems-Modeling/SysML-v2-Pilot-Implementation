@@ -2,9 +2,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +20,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BlockExpressionImpl extends ExpressionImpl implements BlockExpression {
+	
+	/**
+	 * The cached value of the BindingConnector from the resultof the last sub-Expression
+	 * to the result of this BindingExpression.
+	 */
+	protected BindingConnector resultConnector = null;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22,6 +34,28 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	 */
 	protected BlockExpressionImpl() {
 		super();
+	}
+	
+	// Additional redefinitions and subsets
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getResultConnector();
+		return super.getFeature();
+	}
+	
+	public BindingConnector getResultConnector() {
+		List<Expression> subexpressions = getSubexpressions();
+		if (!subexpressions.isEmpty()) {
+			Feature result = ((ExpressionImpl)subexpressions.get(subexpressions.size() - 1)).getResult();
+			if (resultConnector == null) {
+				resultConnector = addOwnedBindingConnector(result, getResult());
+			} else {
+				resultConnector.getConnectorEnd().get(0).setFeature(result);
+				resultConnector.getConnectorEnd().get(1).setFeature(getResult());
+			}
+		}
+		return resultConnector;
 	}
 
 	/**

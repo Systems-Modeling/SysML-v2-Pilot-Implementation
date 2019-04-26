@@ -92,7 +92,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT
 	 */
 	public Parameter basicGetResult() {
-		List<Parameter> parameters = getOwnedParameter();
+		List<Parameter> parameters = getOwnedParameters();
 		return parameters.isEmpty()? null: parameters.get(parameters.size() - 1);
 	}
 

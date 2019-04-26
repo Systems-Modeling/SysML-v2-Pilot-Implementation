@@ -32,7 +32,7 @@ package ControlFunctions {
 		abstract expr rejector(argument: Anything[1]): Boolean;
 	}
 	
-	abstract function 'reduce'(collection: Anything[0..*]): Anything[0..*] {
+	abstract function reduce(collection: Anything[0..*]): Anything[0..*] {
 		abstract expr reducer(first: Anything[1], second: Anything[1]): Anything[1];
 	}
 	

@@ -3,8 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -102,11 +100,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 				new int[] {SysMLPackage.CATEGORY__FEATURE});
 	}
 	
-	public List<Parameter> getOwnedParameter() {
-		return getOwnedFeature().stream().
-				filter(feature->feature instanceof Parameter).map(feature->(Parameter)feature).collect(Collectors.toList());
-	}
-
 	/**
 	 * If the Behavior has no Superclassings, then create one whose superclass is the appropriate default library class.
 	 */

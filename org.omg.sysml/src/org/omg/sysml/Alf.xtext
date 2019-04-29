@@ -558,13 +558,22 @@ Expression returns SysML::Expression :
 ;
 
 ConditionalExpression returns SysML::Expression :
-	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalTestOperator operand += ConditionalOrExpression ':' operand += ConditionalExpression
+	NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalTestOperator operand += Expression ':' operand += ConditionalExpression
 	)?
 ;
 
 ConditionalTestOperator: 
 	'?'
+;
+
+NullCoalescingExpression returns SysML::Expression :
+	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
+		operator = NullCoalescingOperator operand += ConditionalOrExpression )*
+;
+
+NullCoalescingOperator :
+	'??'
 ;
 
 ConditionalOrExpression returns SysML::Expression :

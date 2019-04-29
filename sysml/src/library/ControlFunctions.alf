@@ -7,11 +7,15 @@ package ControlFunctions {
 		abstract expr else[0..1] (): Anything[0..*];
 	}
 	
-	function '&&'(first: Boolean): Boolean {
+	abstract function '??'(first: Anything[0..*]) {
+		abstract expr second[0..1] (): Anything[0..*];
+	}
+	
+	abstract function '&&'(first: Boolean): Boolean {
 		abstract expr second[0..1] ():Boolean;
 	}
 	
-	function '||'(first: Boolean): Boolean {
+	abstract function '||'(first: Boolean): Boolean {
 		abstract expr second[0..1] ():Boolean;
 	}
 	

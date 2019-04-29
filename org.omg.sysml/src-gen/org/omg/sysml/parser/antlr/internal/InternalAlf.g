@@ -6503,11 +6503,11 @@ ruleConditionalExpression returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getConditionalOrExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0());
 		}
-		this_ConditionalOrExpression_0=ruleConditionalOrExpression
+		this_NullCoalescingExpression_0=ruleNullCoalescingExpression
 		{
-			$current = $this_ConditionalOrExpression_0.current;
+			$current = $this_NullCoalescingExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -6540,9 +6540,9 @@ ruleConditionalExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandExpressionParserRuleCall_1_2_0());
 					}
-					lv_operand_3_0=ruleConditionalOrExpression
+					lv_operand_3_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
@@ -6551,7 +6551,7 @@ ruleConditionalExpression returns [EObject current=null]
 							$current,
 							"operand",
 							lv_operand_3_0,
-							"org.omg.sysml.Alf.ConditionalOrExpression");
+							"org.omg.sysml.Alf.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -6602,6 +6602,102 @@ ruleConditionalTestOperator returns [AntlrDatatypeRuleToken current=new AntlrDat
 	{
 		$current.merge(kw);
 		newLeafNode(kw, grammarAccess.getConditionalTestOperatorAccess().getQuestionMarkKeyword());
+	}
+;
+
+// Entry rule entryRuleNullCoalescingExpression
+entryRuleNullCoalescingExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNullCoalescingExpressionRule()); }
+	iv_ruleNullCoalescingExpression=ruleNullCoalescingExpression
+	{ $current=$iv_ruleNullCoalescingExpression.current; }
+	EOF;
+
+// Rule NullCoalescingExpression
+ruleNullCoalescingExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getNullCoalescingExpressionAccess().getConditionalOrExpressionParserRuleCall_0());
+		}
+		this_ConditionalOrExpression_0=ruleConditionalOrExpression
+		{
+			$current = $this_ConditionalOrExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNullCoalescingExpressionAccess().getOperatorNullCoalescingOperatorParserRuleCall_1_1_0());
+					}
+					lv_operator_2_0=ruleNullCoalescingOperator
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNullCoalescingExpressionRule());
+						}
+						set(
+							$current,
+							"operator",
+							lv_operator_2_0,
+							"org.omg.sysml.Alf.NullCoalescingOperator");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNullCoalescingExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0());
+					}
+					lv_operand_3_0=ruleConditionalOrExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNullCoalescingExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_3_0,
+							"org.omg.sysml.Alf.ConditionalOrExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleNullCoalescingOperator
+entryRuleNullCoalescingOperator returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getNullCoalescingOperatorRule()); }
+	iv_ruleNullCoalescingOperator=ruleNullCoalescingOperator
+	{ $current=$iv_ruleNullCoalescingOperator.current.getText(); }
+	EOF;
+
+// Rule NullCoalescingOperator
+ruleNullCoalescingOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	kw='??'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getNullCoalescingOperatorAccess().getQuestionMarkQuestionMarkKeyword());
 	}
 ;
 

@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.scoping.AlfScopeProvider
+import java.util.Map
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
@@ -41,6 +42,8 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	@Inject
 	IQualifiedNameConverter nameConverter
 	
+	protected Map<String, Element> elementCache = newHashMap
+	
 	protected def EObject filePackage(Element element) {
 		var pack = element
 		while (pack.owner !== null) {
@@ -50,8 +53,15 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {
-		var element = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
-		return if (element === null) null else element.getEObjectOrProxy as Element		
+		var element = elementCache.get(name);
+		if (element === null) {
+			var description = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
+			if (description !== null) {
+				element = description.EObjectOrProxy as Element
+				elementCache.put(name, element)
+			}
+		}
+		return element		
 	}
 	
 }

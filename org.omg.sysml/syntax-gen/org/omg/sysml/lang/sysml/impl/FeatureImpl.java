@@ -322,13 +322,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		if (getOwningFeatureMembership() instanceof EndFeatureMembership) {
-			EList<Subsetting> endRedefinitions = getComputedRedefinitions();
-			if (!endRedefinitions.isEmpty()) {
-				return endRedefinitions;
-			}
-		}
-		return getOwnedSubsettingWithDefault(
+		return getOwnedSubsettingWithComputedRedefinitions(
 				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
 				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
 				FEATURE_SUBSETTING_DEFAULT);
@@ -340,6 +334,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	public boolean hasValueType() {
 		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
+	}
+	
+	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
+		EList<Subsetting> redefinitions = getComputedRedefinitions();
+		return redefinitions.isEmpty()? getOwnedSubsettingWithDefault(subsettingDefault): redefinitions;
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
@@ -400,9 +399,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * (By default, these are the end Features if the Category is an Association.)
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Category category) {
-		return !(category instanceof Association)? Collections.emptyList():
-			((Association)category).getOwnedEndFeatureMembership().stream().
-			map(m->m.getMemberFeature()).collect(Collectors.toList());
+		return getOwningFeatureMembership() instanceof EndFeatureMembership &&
+			   category instanceof Association?
+					((Association)category).getOwnedEndFeatureMembership().stream().
+					map(m->m.getMemberFeature()).collect(Collectors.toList()):
+			   Collections.emptyList();
 	}
 	
 	/**

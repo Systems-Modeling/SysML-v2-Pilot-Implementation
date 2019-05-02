@@ -133,8 +133,14 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}	
 	
 	protected String[] getOperatorQualifiedNames() {
-		String operator = getOperator();
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::" + operator).toArray(String[]::new);
+		final String op = getOperator();
+		
+		// NOTE: This is necessary because of how Xtext constructs the qualified name in the global scope for
+		// an element named '.'.
+		// TODO: Remove this if and when possible.
+		final String operator = ".".equals(op)? "": op;
+		
+		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::'" + operator +"'").toArray(String[]::new);
 	}
 	
 	/**

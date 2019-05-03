@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Custom UML Importer
+Bundle-SymbolicName: org.omg.sysml.uml.ecore.importer;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.omg.sysml.uml.ecore.importer
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.uml.ecore.importer,
+ org.eclipse.emf.importer,
+ org.eclipse.emf.codegen.ecore.ui
+Export-Package: org.omg.sysml.uml.ecore.importer

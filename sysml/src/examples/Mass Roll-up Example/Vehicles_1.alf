@@ -1,0 +1,37 @@
+package Vehicles_1 {
+	import MassRollup_1::*;
+
+	class Vehicle specializes Part {
+		feature m redefines partMass;
+	
+		feature engine: Engine subsets subparts;
+		feature transmission: Transmission subsets subparts;
+	}
+	
+	class Engine specializes Part {
+		feature m redefines partMass;
+		
+		// ...
+	}
+	
+	class Transmission specializes Part {
+		feature m redefines partMass;
+		
+		// ...
+	}
+	
+	// Example usage
+	
+	import SI::*;
+	v: Vehicle {
+		feature m redefines Vehicle::m = 1000@[kg];
+		feature engine redefines Vehicle::engine {
+			feature m redefines Engine::m = 100@[kg];
+		}
+		feature transmission redefines Vehicle::transmission {
+			feature m redefines Transmission::m = 50@[kg];
+		}
+	}
+
+	// v.totalMass evaluates to 1150.0@[kg]
+}

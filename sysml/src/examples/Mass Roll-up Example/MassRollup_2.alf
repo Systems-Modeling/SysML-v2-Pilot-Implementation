@@ -1,0 +1,15 @@
+package MassRollup_2 {
+	import ScalarFunctions::*;
+	import ISQ::*;
+	
+	class Part {
+		feature partMass subsets mass; 
+		feature totalMass subsets mass =
+			partMass + (subparts->collect p:Part (p.totalMass)->reduce '+') ?? 0.0;
+			
+		feature subparts is parts;	
+	}
+	
+	feature parts: Part[0..*];
+
+}

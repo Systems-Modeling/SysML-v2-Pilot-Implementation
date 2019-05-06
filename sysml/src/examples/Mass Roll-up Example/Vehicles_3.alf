@@ -1,0 +1,47 @@
+package Vehicles_2 {
+	import ScalarValues::*;
+	import MassRollup_2::*;
+	
+	class CarPart specializes Part {			
+		feature serialNumber: String;
+		feature m redefines partMass;
+		
+		feature subparts is carParts;	
+	}
+	
+	feature carParts: CarPart[0..*] redefines parts;
+	
+	feature vehicle: CarPart {	
+		feature vin redefines serialNumber;
+		
+		part is engine;
+		part is transmission;
+	}
+	
+	feature engine subsets carParts {
+		//...
+	}
+	
+	feature transmission subsets carParts {
+		//...
+	}
+
+	// Example usage
+	
+	import SI::*;
+	v: vehicle {
+		feature m redefines CarPart::m = 1000@[kg];
+		part engine is e;
+		part transmission is t;
+	}
+	
+	e subsets engine {
+		feature m redefines CarPart::m = 100@[kg];
+	}
+	
+	t subsets transmission {
+		feature m redefines CarPart::m = 50@[kg];
+	}
+	
+	// v.totalMass evaluates to 1150.0@[kg]
+}

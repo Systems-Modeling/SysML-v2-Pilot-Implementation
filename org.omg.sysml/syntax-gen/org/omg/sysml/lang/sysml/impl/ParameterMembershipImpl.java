@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -47,4 +48,13 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 		return direction;
 	}
 	
+	@Override
+	public Feature basicGetOwnedMemberFeature() {
+		Feature feature = getFirstOwnedRelatedElement(Feature.class);
+		if (feature instanceof Parameter && getOwningCategory() instanceof BlockExpression) {
+			((ParameterImpl)feature).addInheritedFeatureRedefinitions();
+		}
+		return feature;
+	}
+
 } //ParameterMembershipImpl

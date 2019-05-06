@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ObjectClass;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -403,6 +404,8 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 			   category instanceof Association?
 					((Association)category).getOwnedEndFeatureMembership().stream().
 					map(m->m.getMemberFeature()).collect(Collectors.toList()):
+			   getOwningCategory() instanceof Parameter?
+					   category.getOwnedFeature():
 			   Collections.emptyList();
 	}
 	

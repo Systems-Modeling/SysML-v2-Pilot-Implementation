@@ -2704,31 +2704,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleBodyParameter
-entryRuleBodyParameter
-:
-{ before(grammarAccess.getBodyParameterRule()); }
-	 ruleBodyParameter
-{ after(grammarAccess.getBodyParameterRule()); } 
-	 EOF 
-;
-
-// Rule BodyParameter
-ruleBodyParameter 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getBodyParameterAccess().getNameAssignment()); }
-		(rule__BodyParameter__NameAssignment)
-		{ after(grammarAccess.getBodyParameterAccess().getNameAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleExpressionTyping
 entryRuleExpressionTyping
 :
@@ -3171,9 +3146,9 @@ ruleBodyParameterMember
 	}
 	:
 	(
-		{ before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment()); }
-		(rule__BodyParameterMember__OwnedRelatedElementAssignment)
-		{ after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment()); }
+		{ before(grammarAccess.getBodyParameterMemberAccess().getGroup()); }
+		(rule__BodyParameterMember__Group__0)
+		{ after(grammarAccess.getBodyParameterMemberAccess().getGroup()); }
 	)
 ;
 finally {
@@ -17900,6 +17875,60 @@ finally {
 }
 
 
+rule__BodyParameterMember__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__BodyParameterMember__Group__0__Impl
+	rule__BodyParameterMember__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__BodyParameterMember__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_0()); }
+	(rule__BodyParameterMember__MemberNameAssignment_0)
+	{ after(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__BodyParameterMember__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__BodyParameterMember__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__BodyParameterMember__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1()); }
+	(rule__BodyParameterMember__OwnedRelatedElementAssignment_1)
+	{ after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__ColonQualifiedName__Group__0
 	@init {
 		int stackSize = keepStackSize();
@@ -21414,21 +21443,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__BodyParameter__NameAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0()); }
-		ruleName
-		{ after(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__ExpressionTyping__TypeAssignment
 	@init {
 		int stackSize = keepStackSize();
@@ -21677,15 +21691,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__BodyParameterMember__OwnedRelatedElementAssignment
+rule__BodyParameterMember__MemberNameAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementBodyParameterParserRuleCall_0()); }
-		ruleBodyParameter
-		{ after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementBodyParameterParserRuleCall_0()); }
+		{ before(grammarAccess.getBodyParameterMemberAccess().getMemberNameNameParserRuleCall_0_0()); }
+		ruleName
+		{ after(grammarAccess.getBodyParameterMemberAccess().getMemberNameNameParserRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__BodyParameterMember__OwnedRelatedElementAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); }
+		ruleParameterDefinition
+		{ after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); }
 	)
 ;
 finally {

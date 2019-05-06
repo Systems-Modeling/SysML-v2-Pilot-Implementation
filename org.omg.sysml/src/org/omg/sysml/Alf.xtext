@@ -683,12 +683,10 @@ PrimaryExpression returns SysML::Expression :
 ;
 
 BodyExpression returns SysML::BlockExpression :
-	  => ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')'
+	// TODO: Update syntax (if possible) to remove need for backtracking.
+	// (Backtracking is required if typing is allowed on body parameters. Otherwise, a "=>" on the first alternative is sufficient.)
+	  ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')'
 	| ownedRelationship += ExpressionTyping
-;
-
-BodyParameter returns SysML::Parameter :
-	name = Name
 ;
 
 ExpressionTyping returns SysML::FeatureTyping :
@@ -771,7 +769,7 @@ BodyMember returns SysML::FeatureMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += BodyParameter
+	memberName = Name ownedRelatedElement += ParameterDefinition
 ;
 
 /* NAMES */

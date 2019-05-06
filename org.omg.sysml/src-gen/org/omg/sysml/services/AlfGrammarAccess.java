@@ -4716,20 +4716,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedRelationshipExpressionTypingParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//BodyExpression SysML::BlockExpression:
-		//	=> ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '('
-		//	ownedRelationship+=ExpressionMember ')'
+		//	ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '(' ownedRelationship+=ExpressionMember
+		//	')'
 		//	| ownedRelationship+=ExpressionTyping;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//=> ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '('
-		//ownedRelationship+=ExpressionMember ')' | ownedRelationship+=ExpressionTyping
+		//// TODO: Update syntax to remove need for backtracking.
+		//// (Backtracking is required if typing is allowed on body parameters. Otherwise, a "=>" on the first alternative is sufficient.)
+		//ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '(' ownedRelationship+=ExpressionMember
+		//')' | ownedRelationship+=ExpressionTyping
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//=> ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '('
-		//ownedRelationship+=ExpressionMember ')'
+		//// TODO: Update syntax to remove need for backtracking.
+		//// (Backtracking is required if typing is allowed on body parameters. Otherwise, a "=>" on the first alternative is sufficient.)
+		//ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '(' ownedRelationship+=ExpressionMember
+		//')'
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//=> ownedRelationship+=BodyParameterMember
+		//// TODO: Update syntax to remove need for backtracking.
+		//// (Backtracking is required if typing is allowed on body parameters. Otherwise, a "=>" on the first alternative is sufficient.)
+		//ownedRelationship+=BodyParameterMember
 		public Assignment getOwnedRelationshipAssignment_0_0() { return cOwnedRelationshipAssignment_0_0; }
 		
 		//BodyParameterMember
@@ -4758,21 +4764,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ExpressionTyping
 		public RuleCall getOwnedRelationshipExpressionTypingParserRuleCall_1_0() { return cOwnedRelationshipExpressionTypingParserRuleCall_1_0; }
-	}
-	public class BodyParameterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BodyParameter");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//BodyParameter SysML::Parameter:
-		//	name=Name;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=Name
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//Name
-		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
 	}
 	public class ExpressionTypingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ExpressionTyping");
@@ -5256,18 +5247,30 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class BodyParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BodyParameterMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementBodyParameterParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cMemberNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_0_0 = (RuleCall)cMemberNameAssignment_0.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementParameterDefinitionParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//BodyParameterMember SysML::ParameterMembership:
-		//	ownedRelatedElement+=BodyParameter;
+		//	memberName=Name ownedRelatedElement+=ParameterDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelatedElement+=BodyParameter
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		//memberName=Name ownedRelatedElement+=ParameterDefinition
+		public Group getGroup() { return cGroup; }
 		
-		//BodyParameter
-		public RuleCall getOwnedRelatedElementBodyParameterParserRuleCall_0() { return cOwnedRelatedElementBodyParameterParserRuleCall_0; }
+		//memberName=Name
+		public Assignment getMemberNameAssignment_0() { return cMemberNameAssignment_0; }
+		
+		//Name
+		public RuleCall getMemberNameNameParserRuleCall_0_0() { return cMemberNameNameParserRuleCall_0_0; }
+		
+		//ownedRelatedElement+=ParameterDefinition
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//ParameterDefinition
+		public RuleCall getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0() { return cOwnedRelatedElementParameterDefinitionParserRuleCall_1_0; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
@@ -5593,7 +5596,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final SequenceAccessExpressionElements pSequenceAccessExpression;
 	private final PrimaryExpressionElements pPrimaryExpression;
 	private final BodyExpressionElements pBodyExpression;
-	private final BodyParameterElements pBodyParameter;
 	private final ExpressionTypingElements pExpressionTyping;
 	private final BaseExpressionElements pBaseExpression;
 	private final NameExpressionElements pNameExpression;
@@ -5756,7 +5758,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSequenceAccessExpression = new SequenceAccessExpressionElements();
 		this.pPrimaryExpression = new PrimaryExpressionElements();
 		this.pBodyExpression = new BodyExpressionElements();
-		this.pBodyParameter = new BodyParameterElements();
 		this.pExpressionTyping = new ExpressionTypingElements();
 		this.pBaseExpression = new BaseExpressionElements();
 		this.pNameExpression = new NameExpressionElements();
@@ -7110,8 +7111,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BodyExpression SysML::BlockExpression:
-	//	=> ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '('
-	//	ownedRelationship+=ExpressionMember ')'
+	//	ownedRelationship+=BodyParameterMember ownedRelationship+=BodyParameterMember* '(' ownedRelationship+=ExpressionMember
+	//	')'
 	//	| ownedRelationship+=ExpressionTyping;
 	public BodyExpressionElements getBodyExpressionAccess() {
 		return pBodyExpression;
@@ -7119,16 +7120,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getBodyExpressionRule() {
 		return getBodyExpressionAccess().getRule();
-	}
-	
-	//BodyParameter SysML::Parameter:
-	//	name=Name;
-	public BodyParameterElements getBodyParameterAccess() {
-		return pBodyParameter;
-	}
-	
-	public ParserRule getBodyParameterRule() {
-		return getBodyParameterAccess().getRule();
 	}
 	
 	//ExpressionTyping SysML::FeatureTyping:
@@ -7317,7 +7308,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BodyParameterMember SysML::ParameterMembership:
-	//	ownedRelatedElement+=BodyParameter;
+	//	memberName=Name ownedRelatedElement+=ParameterDefinition;
 	public BodyParameterMemberElements getBodyParameterMemberAccess() {
 		return pBodyParameterMember;
 	}

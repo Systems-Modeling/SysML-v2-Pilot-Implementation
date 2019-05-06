@@ -11,9 +11,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -24,6 +26,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ParameterImpl extends FeatureImpl implements Parameter {
+	
+	private boolean redefinitionsNotAdded = true;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,6 +38,16 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 		super();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.PARAMETER;
+	}
+
 	public boolean isResultParameter() {
 		return ((CategoryImpl)getOwningCategory()).getResult() == this;
 	}
@@ -60,14 +75,23 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 					filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.PARAMETER;
+	public void addInheritedFeatureRedefinitions() {
+		if (redefinitionsNotAdded) {
+			redefinitionsNotAdded = false;
+			EList<FeatureTyping> typing = getTyping();
+			if (!typing.isEmpty()) {
+				Category type = typing.get(0).getType();
+				if (type == null) {
+					redefinitionsNotAdded = true;
+				} else {
+					for (Feature inheritedFeature: type.getOwnedFeature()) {
+						Feature feature = SysMLFactory.eINSTANCE.createFeature();
+						feature.setName(inheritedFeature.getName());
+						addOwnedFeature(feature);
+					}
+				}
+			}
+		}
 	}
-
+	
 } //ParameterImpl

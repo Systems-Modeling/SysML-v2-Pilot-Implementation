@@ -40,6 +40,12 @@ Workflow {
 			fileExtensions = "alf"
 		    referencedResource = "${genModel}"
 		    
+		    parserGenerator = {
+		    	options = {
+		    		backtrack = true
+		    	}
+		    }
+		    
 			serializer = {
 				generateStub = false
 			}

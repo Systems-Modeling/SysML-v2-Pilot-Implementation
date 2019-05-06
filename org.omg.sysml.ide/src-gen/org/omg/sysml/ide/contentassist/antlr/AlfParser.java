@@ -254,6 +254,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRealValueAccess().getGroup_0(), "rule__RealValue__Group_0__0");
 			builder.put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getGroup_1(), "rule__UnlimitedNaturalLiteralExpression__Group_1__0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getGroup(), "rule__NamedExpressionMember__Group__0");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getGroup(), "rule__BodyParameterMember__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup(), "rule__ColonQualifiedName__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");
 			builder.put(grammarAccess.getDotQualifiedNameAccess().getGroup(), "rule__DotQualifiedName__Group__0");
@@ -457,7 +458,6 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_1(), "rule__BodyExpression__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_3(), "rule__BodyExpression__OwnedRelationshipAssignment_0_3");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_1(), "rule__BodyExpression__OwnedRelationshipAssignment_1");
-			builder.put(grammarAccess.getBodyParameterAccess().getNameAssignment(), "rule__BodyParameter__NameAssignment");
 			builder.put(grammarAccess.getExpressionTypingAccess().getTypeAssignment(), "rule__ExpressionTyping__TypeAssignment");
 			builder.put(grammarAccess.getNameExpressionAccess().getReferentAssignment(), "rule__NameExpression__ReferentAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");
@@ -474,7 +474,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__NamedExpressionMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyParameterMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_0(), "rule__BodyParameterMember__MemberNameAssignment_0");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__BodyParameterMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), "rule__TypePart__UnorderedGroup_2");
 		}
 	}

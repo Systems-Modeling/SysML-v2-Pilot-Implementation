@@ -1,4 +1,4 @@
-package Test4 {
+package Expressions {
 	import BaseFunctions::ToString;
 	
 	a: ScalarValues::Integer;

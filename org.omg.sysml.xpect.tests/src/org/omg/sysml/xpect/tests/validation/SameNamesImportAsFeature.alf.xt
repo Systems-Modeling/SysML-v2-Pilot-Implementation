@@ -21,7 +21,10 @@ END_SETUP
 
 package test{
 	import SamePackage::container;
+	//junit plug-in test
+	//XPECT errors -->"Couldn't resolve reference to Class 'container::A'." at "container::A"
 	class something1 specializes container::A{}
-	// XPECT errors --> "Couldn't resolve reference to Class 'container::B'." at "container::B"
+	//junit test
+	//"Couldn't resolve reference to Class 'container::B'." at "container::B"
 	class something2 specializes container::B{}
 }

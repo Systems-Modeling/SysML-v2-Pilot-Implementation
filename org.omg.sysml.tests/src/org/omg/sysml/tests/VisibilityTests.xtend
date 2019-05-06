@@ -175,8 +175,9 @@ class VisibilityTests {
 				import VisibilityPackage::c_Private::*;
 			}
 		''', rs)
-		tester.validate(result).assertAll(
+	    tester.validate(result).assertAll(
 			getErrorCode(AlfValidator.NOT_PUBLIC_IMPORT)
+			//Diagnostic ERROR code=notPublicImport "Imported package is not visible from this context" at Package'Test3'.ownedImport[0]->Import.importedPackage==((instanceof ObjectClass: org.omg.sysml.lang.sysml.impl.ObjectClassImpl@62418263 (identifier: null) (isAbstract: false))
 		)
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
@@ -396,6 +397,11 @@ class VisibilityTests {
 				feature f : c_Private::c_private;
 			}
 		''', rs)
+		tester.validate(result).assertAll(
+			getErrorCode(AlfValidator.NOT_PUBLIC_MEMBERSHIP)
+			//Referenced element is not visible in this scope" at "VisibilityPackage::c_Private
+		)
+		
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		result.assertError(SysMLPackage.eINSTANCE.superclassing, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)

@@ -1,21 +1,24 @@
 package Vehicles_1 {
 	import MassRollup_1::*;
 
-	class Vehicle specializes Part {
-		feature m redefines partMass;
+	class Vehicle specializes MassedThing {
+		feature vin: String;
+		feature m redefines mass;
 	
-		feature engine: Engine subsets subparts;
-		feature transmission: Transmission subsets subparts;
+		part engine: Engine subsets subcomponents;
+		part transmission: Transmission subsets subcomponents;
 	}
 	
-	class Engine specializes Part {
-		feature m redefines partMass;
+	class Engine specializes MassedThing {
+		feature serialNumber: String;
+		feature m redefines mass;
 		
 		// ...
 	}
 	
-	class Transmission specializes Part {
-		feature m redefines partMass;
+	class Transmission specializes MassedThing {
+		feature serialNumber: String;
+		feature m redefines mass;
 		
 		// ...
 	}
@@ -25,10 +28,10 @@ package Vehicles_1 {
 	import SI::*;
 	v: Vehicle {
 		feature m redefines Vehicle::m = 1000@[kg];
-		feature engine redefines Vehicle::engine {
+		part engine redefines Vehicle::engine {
 			feature m redefines Engine::m = 100@[kg];
 		}
-		feature transmission redefines Vehicle::transmission {
+		part transmission redefines Vehicle::transmission {
 			feature m redefines Transmission::m = 50@[kg];
 		}
 	}

@@ -2,16 +2,16 @@ package Vehicles_2 {
 	import ScalarValues::*;
 	import MassRollup_2::*;
 	
-	class CarPart specializes Part {			
+	class CarPart specializes MassedThing {			
 		feature serialNumber: String;
-		feature m redefines partMass;
+		feature m redefines MassedThing::mass;
 		
-		feature subparts is carParts;	
+		part subparts is carParts;	
 	}
 	
-	feature carParts: CarPart[0..*] redefines parts;
+	feature carParts: CarPart[0..*] redefines massedThings;
 	
-	feature vehicle: CarPart {	
+	feature vehicle subsets carParts {	
 		feature vin redefines serialNumber;
 		
 		part is engine;
@@ -35,11 +35,11 @@ package Vehicles_2 {
 		part transmission is t;
 	}
 	
-	e subsets engine {
+	e: engine {
 		feature m redefines CarPart::m = 100@[kg];
 	}
 	
-	t subsets transmission {
+	t: transmission {
 		feature m redefines CarPart::m = 50@[kg];
 	}
 	

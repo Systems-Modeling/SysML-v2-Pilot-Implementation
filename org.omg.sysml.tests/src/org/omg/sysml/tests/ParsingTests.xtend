@@ -222,7 +222,7 @@ class ParsingTests {
 		
 		Assert.assertNotNull(result)
 		//if not put EcoreUtil2.resolveAll(result), there are 2 errors.
-		//if include EcoreUtil2.resolveAll(result), there are 3 errors.
+		//if include EcoreUtil2.resolveAll(result), there are 3 errors.  The last error is added by including this.
 		EcoreUtil2.resolveAll(result);
 		Assert.assertTrue(result.eResource.errors.length == 3)
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
@@ -272,6 +272,8 @@ class ParsingTests {
 		//Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The required feature 'memberElement' of 'org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl@5b83c5c9{__synthetic0.alf#//@ownedMembership.2/@ownedMemberElement/@ownedMembership.2}' must be set data=[org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl@5b83c5c9 (identifier: null) (memberName: null, visibility: public, aliases: null) (isDerived: false, isReadOnly: false, isPart: false, isPort: false, direction: null), org.eclipse.emf.ecore.impl.EReferenceImpl@62c732d2 (name: memberElement) (ordered: false, unique: true, lowerBound: 1, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)]
 		//Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The required feature 'memberFeature' of 'org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl@5b83c5c9{__synthetic0.alf#//@ownedMembership.2/@ownedMemberElement/@ownedMembership.2}' must be set data=[org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl@5b83c5c9 (identifier: null) (memberName: null, visibility: public, aliases: null) (isDerived: false, isReadOnly: false, isPart: false, isPort: false, direction: null), org.eclipse.emf.ecore.impl.EReferenceImpl@7740d2c (name: memberFeature) (ordered: false, unique: true, lowerBound: 1, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)]
 		Assert.assertNotNull(result) 
+		//if not put EcoreUtil2.resolveAll(result), there are 2 errors.
+		//if include EcoreUtil2.resolveAll(result), there are 4 errors.  The last two errors are added by including this.
 		EcoreUtil2.resolveAll(result);
 		Assert.assertTrue(result.eResource.errors.length == 4)
 		result.assertError(SysMLPackage.eINSTANCE.feature, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)

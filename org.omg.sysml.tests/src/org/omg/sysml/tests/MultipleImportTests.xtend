@@ -43,17 +43,44 @@ import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.tests.AlfInjectorProvider
+import org.omg.sysml.validation.AlfValidator
+import com.google.inject.Injector
+import org.eclipse.xtext.junit4.validation.ValidatorTester
+import org.junit.Before
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
 class MultipleImportTests {
 
+	/* 
 	@Inject
 	ParseHelper<Package> parseHelper
 
 	@Inject extension ValidationTestHelper
 
 	@Inject extension Dependency
+	*/
+	
+	@Inject
+	ParseHelper<Package> parseHelper
+
+	@Inject
+	AlfValidator validator
+
+	@Inject
+	Injector injector
+
+	ValidatorTester<AlfValidator> tester
+
+	@Before
+	def void initialize() {
+		tester = new ValidatorTester(validator, injector)
+	}
+
+	@Inject extension Dependency
+
+	@Inject extension ValidationTestHelper
+	
 
 	def ResourceSetImpl getDependencyMembership2() {
 		val rs = getDependencyMultipleMembership
@@ -134,10 +161,20 @@ class MultipleImportTests {
 				}
 			}
 		''', rs)
+		
+		
+		/*
+		//if include tester.validate(result).toString() output below:
+		Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The feature 'relatedElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@7e4d2884{__synthetic2.alf#//@ownedMembership.1}' with 1 values must have at least 2 values data=[org.omg.sysml.lang.sysml.impl.MembershipImpl@7e4d2884 (identifier: null) (memberName: null, visibility: public, aliases: null), org.eclipse.emf.ecore.impl.EReferenceImpl@29fccabd (name: relatedElement) (ordered: false, unique: false, lowerBound: 2, upperBound: -1) (changeable: false, volatile: true, transient: true, defaultValueLiteral: null, unsettable: false, derived: true) (containment: false, resolveProxies: true)]
+		Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The required feature 'memberElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@7e4d2884{__synthetic2.alf#//@ownedMembership.1}' must be set data=[org.omg.sysml.lang.sysml.impl.MembershipImpl@7e4d2884 (identifier: null) (memberName: null, visibility: public, aliases: null), org.eclipse.emf.ecore.impl.EReferenceImpl@74d41fcf (name: memberElement) (ordered: false, unique: true, lowerBound: 1, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)]
+		Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The feature 'relatedElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@5aa786fc{__synthetic2.alf#//@ownedMembership.2}' with 1 values must have at least 2 values data=[org.omg.sysml.lang.sysml.impl.MembershipImpl@5aa786fc (identifier: null) (memberName: null, visibility: public, aliases: null), org.eclipse.emf.ecore.impl.EReferenceImpl@29fccabd (name: relatedElement) (ordered: false, unique: false, lowerBound: 2, upperBound: -1) (changeable: false, volatile: true, transient: true, defaultValueLiteral: null, unsettable: false, derived: true) (containment: false, resolveProxies: true)]
+		Diagnostic ERROR source=org.eclipse.emf.ecore code=1 The required feature 'memberElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@5aa786fc{__synthetic2.alf#//@ownedMembership.2}' must be set data=[org.omg.sysml.lang.sysml.impl.MembershipImpl@5aa786fc (identifier: null) (memberName: null, visibility: public, aliases: null), org.eclipse.emf.ecore.impl.EReferenceImpl@74d41fcf (name: memberElement) (ordered: false, unique: true, lowerBound: 1, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)]
+		*/
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
 		Assert.assertTrue(result.eResource.errors.size == 1)
 		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		Assert.assertEquals("no viable alternative at input 'B'", result.eResource.errors.get(0).getMessage());
 
 	}
 

@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,6 +31,7 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -350,6 +352,15 @@ public class CategoryImpl extends PackageImpl implements Category {
 	}
 	
 	// Utility Methods
+	
+	public List<Parameter> getOwnedParameters() {
+		return getOwnedFeature().stream().
+				filter(feature->feature instanceof Parameter).map(feature->(Parameter)feature).collect(Collectors.toList());
+	}
+	
+	public Feature getResult() {
+		return null;
+	}
 	
 	public FeatureMembership addOwnedFeature(Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();

@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ObjectClass;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -151,7 +152,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
 	
 	/**
-	 * The cached value of the BindingConnector from this Feature to the result a value Expression.
+	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
 	protected BindingConnector valueConnector = null;
 
@@ -187,19 +188,18 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(feature);
-		for (FeatureTyping typing: feature.getTyping()) {
-			Category type = typing.getType();
-			if (type != null) {
-				types.add(typing.getType());
-			}
-		}
+		getFeatureTypes(feature, types);
 		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
-			if (subsettedFeature != null && !subsettedFeature.eIsProxy() && 
-					!visitedFeatures.contains(subsettedFeature)) {
+			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
 				getTypes(subsettedFeature, types, visitedFeatures);
 			}
 		}		
+	}
+	
+	public static void getFeatureTypes(Feature feature, List<Category> types) {
+		types.addAll(feature.getTyping().stream().
+				map(typing->typing.getType()).filter(type->type != null).collect(Collectors.toList()));
 	}
 
 	/**
@@ -323,13 +323,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		if (getOwningFeatureMembership() instanceof EndFeatureMembership) {
-			EList<Subsetting> endRedefinitions = getComputedRedefinitions();
-			if (!endRedefinitions.isEmpty()) {
-				return endRedefinitions;
-			}
-		}
-		return getOwnedSubsettingWithDefault(
+		return getOwnedSubsettingWithComputedRedefinitions(
 				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
 				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
 				FEATURE_SUBSETTING_DEFAULT);
@@ -341,6 +335,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	public boolean hasValueType() {
 		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
+	}
+	
+	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
+		EList<Subsetting> redefinitions = getComputedRedefinitions();
+		return redefinitions.isEmpty()? getOwnedSubsettingWithDefault(subsettingDefault): redefinitions;
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
@@ -358,33 +357,41 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
 		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
-		List<Redefinition> emptyRedefinitions = ownedRedefinitions.stream().filter(r->r.getRedefinedFeature() == null).collect(Collectors.toList());
-		getOwnedRelationship().removeAll(emptyRedefinitions);
-		ownedRedefinitions.removeAll(emptyRedefinitions);
-		if (ownedRedefinitions.isEmpty()) {
-			addRedefinitions(redefinitions);
+		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
+			addRedefinitions(redefinitions, ownedRedefinitions);
 		}
 		return redefinitions;
 	}
 
-	protected void addRedefinitions(EList<Subsetting> redefinitions) {
+	protected void addRedefinitions(EList<Subsetting> redefinitions, List<Redefinition> emptyRedefinitions) {
 		Category category = getOwningCategory();
 		int i = getRelevantFeatures(category).indexOf(this);
+		int j = 0;
+		int n = emptyRedefinitions.size();
 		if (i >= 0) {
 			for (Generalization generalization: category.getOwnedGeneralization()) {
 				Category general = generalization.getGeneral();
-				List<? extends Feature> features = getRelevantFeatures(general);
-				if (i < features.size()) {
-					Feature redefinedFeature = features.get(i);
-					if (redefinedFeature != null) {
-						Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-						redefinition.setRedefinedFeature(redefinedFeature);
-						redefinition.setRedefiningFeature(this);
-						getOwnedRelationship().add(redefinition);
-						redefinitions.add(redefinition);
+				if (general != null) {
+					List<? extends Feature> features = getRelevantFeatures(general);
+					if (i < features.size()) {
+						Feature redefinedFeature = features.get(i);
+						if (redefinedFeature != null) {
+							Redefinition redefinition;
+							if (j < n) {
+								redefinition = emptyRedefinitions.get(j);
+								j++;
+							} else {
+								redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+								redefinition.setRedefiningFeature(this);
+								getOwnedRelationship().add(redefinition);
+							}
+							redefinition.setRedefinedFeature(redefinedFeature);
+							redefinitions.add(redefinition);
+						}
 					}
 				}
 			}
+			getOwnedRelationship().removeAll(emptyRedefinitions.subList(j, n));
 		}
 	}
 	
@@ -393,9 +400,13 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * (By default, these are the end Features if the Category is an Association.)
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Category category) {
-		return !(category instanceof Association)? Collections.emptyList():
-			((Association)category).getOwnedEndFeatureMembership().stream().
-			map(m->m.getMemberFeature()).collect(Collectors.toList());
+		return getOwningFeatureMembership() instanceof EndFeatureMembership &&
+			   category instanceof Association?
+					((Association)category).getOwnedEndFeatureMembership().stream().
+					map(m->m.getMemberFeature()).collect(Collectors.toList()):
+			   getOwningCategory() instanceof Parameter?
+					   category.getOwnedFeature():
+			   Collections.emptyList();
 	}
 	
 	/**

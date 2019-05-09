@@ -116,13 +116,13 @@ public class ConnectorEndImpl extends RelationshipImpl implements ConnectorEnd {
 			Connector connector = this.getConnector();
 			if (connector instanceof BindingConnector) {
 				Element owner = connector.getOwningNamespace();
-				if (owner instanceof ExpressionImpl) {
-					ExpressionImpl expression = (ExpressionImpl)owner;
+				if (owner instanceof InvocationExpressionImpl) {
+					InvocationExpressionImpl expression = (InvocationExpressionImpl)owner;
 					int i = expression.getFeature().stream().filter(f->f instanceof Connector).
 							collect(Collectors.toList()).indexOf(connector);
 					if (i >= 0) {
 						if (this == connector.getConnectorEnd().get(0)) {
-							List<Feature> arguments = expression.getArguments();
+							List<? extends Feature> arguments = expression.getArguments();
 							if (i < arguments.size()) {
 								Feature argument = arguments.get(i);
 								feature = argument instanceof Expression? 

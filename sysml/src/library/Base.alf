@@ -90,8 +90,8 @@ package Base {
 	 * literalEvaluations and nullEvaluations are specializations of functionEvaluations
 	 * that restrict the feature type to LiteralEvaluation and NullEvaluation, respectively.
 	 */
-	abstract feature behaviorOccurrences: BehaviorOccurrence[0..*] nonunique subsets things;
-	abstract feature functionEvaluations: FunctionEvaluation[0..*] nonunique subsets behaviorOccurrences;	
-	feature literalEvaluations: LiteralEvaluation[0..*] nonunique subsets functionEvaluations;
-	feature nullEvaluations: NullEvaluation[0..*] nonunique subsets functionEvaluations;
+	abstract step behaviorOccurrences: BehaviorOccurrence[0..*] nonunique subsets things;
+	abstract expr functionEvaluations: FunctionEvaluation[0..*] nonunique subsets behaviorOccurrences;	
+	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets functionEvaluations;
+	abstract expr nullEvaluations: NullEvaluation[0..*] nonunique subsets functionEvaluations;
 }

@@ -2,8 +2,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -40,7 +47,26 @@ public class StepImpl extends FeatureImpl implements Step {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(STEP_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(STEP_SUBSETTING_DEFAULT);
+	}
+	
+	/**
+	 * If the given Category is a Behavior, then return the abstract features of that Behavior.
+	 * If the given Category is a Step, return the substeps not used as arguments.
+	 */
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Category category) {
+		return (category instanceof Behavior)? 
+					((Behavior)category).getFeature().stream().
+						filter(step->step.isAbstract()).collect(Collectors.toList()):
+			   (category instanceof Step)? 
+					   ((StepImpl)category).getSubsteps():
+				Collections.emptyList();
+	}
+	
+	public List<Step> getSubsteps() {
+		return getOwnedFeature().stream().filter(f->f instanceof Step).
+				map(f->(Step)f).collect(Collectors.toList());
 	}
 	
 } //StepImpl

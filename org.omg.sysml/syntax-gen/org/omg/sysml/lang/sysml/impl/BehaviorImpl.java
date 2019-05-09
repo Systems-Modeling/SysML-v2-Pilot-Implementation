@@ -99,7 +99,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 				SysMLPackage.BEHAVIOR__PARAMETER, 
 				new int[] {SysMLPackage.CATEGORY__FEATURE});
 	}
-
+	
 	/**
 	 * If the Behavior has no Superclassings, then create one whose superclass is the appropriate default library class.
 	 */

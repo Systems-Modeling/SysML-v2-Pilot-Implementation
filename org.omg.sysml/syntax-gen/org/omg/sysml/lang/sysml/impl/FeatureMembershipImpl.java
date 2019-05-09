@@ -13,8 +13,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -316,22 +314,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	}
 
 	/**
-	 * If the member feature is a Parameter, then the default direction is IN, unless the Parameter is the result
-	 * Parameter of a function, in which case the default direction is OUT.
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
-		if (direction == null) {
-			Feature member = getMemberFeature();
-			if (member instanceof Parameter) {
-				Category category = getOwningCategory();
-				direction = category instanceof Function && ((Function)category).getResult() == member? 
-						FeatureDirectionKind.OUT: 
-						FeatureDirectionKind.IN;
-				this.setDirection(direction);
-			}
-		}
 		return direction;
 	}
 

@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -50,7 +52,21 @@ public class ExpressionImpl extends StepImpl implements Expression {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(EXPRESSION_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(EXPRESSION_SUBSETTING_DEFAULT);
+	}
+	
+	/**
+	 * If the given Category is a Function, then return the abstract expressions of that Function.
+	 * If the given Category is an InvocationExpression, return the subexpressions not used as arguments.
+	 */
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Category category) {
+		return (category instanceof Function)? 
+					((Function)category).getExpression().stream().
+						filter(expr->expr.isAbstract()).collect(Collectors.toList()):
+			   (category instanceof InvocationExpression)? 
+					   ((ExpressionImpl)category).getSubexpressions():
+				Collections.emptyList();
 	}
 	
 	@Override 
@@ -59,22 +75,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (!inputs.stream().anyMatch(feature->feature.getOwner() == this)) {
 			Function function = getFunction();
 			if (function != null) {
-				List<Feature> arguments = getArguments();
 				int i = 0;
-				int n = arguments.size();
 				for (Feature parameter: function.getInput()) {
-					if (parameter instanceof Parameter) {
+					if (parameter instanceof Parameter && parameter.getOwner() == function) {
 						inputs.remove(parameter);
-						Feature input = createFeatureForParameter(parameter);
+						Feature input = createFeatureForParameter(parameter, i);
 						inputs.add(input);
-						if (i < n) {
-							Feature argument = arguments.get(i);
-							addOwnedBindingConnector(
-									argument instanceof Expression? 
-											((ExpressionImpl)arguments.get(i)).getResult(): 
-											argument, 
-									input);							
-						}
 						i++;
 					}
 				}
@@ -87,38 +93,30 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = super.getOutput();
 		if (!outputs.stream().anyMatch(feature->feature.getOwner() == this)) {
-			Function function = getFunction();
-			if (function != null) {
-				Parameter result = function.getResult();
-				outputs.remove(result);
-				outputs.add(createFeatureForParameter(result));
-			}
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			FeatureMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			membership.getOwnedRelatedElement().add(parameter);
+			membership.setMemberName("$result");
+			getOwnedRelationship().add(membership);
+			outputs.add(parameter);
 		}
 		return outputs;
 	}
-		
-	public List<Feature> getArguments() {
-		return getOwnedFeature().stream().filter(f->f instanceof Expression).
-				map(f->(Expression)f).collect(Collectors.toList());
-	}
-	
-	public Feature getResult() {
-		EList<Feature> outputs = getOutput();
-		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
-	}
-	
-	protected Feature createFeatureForParameter(Feature parameter) {
+			
+	protected Feature createFeatureForParameter(Feature parameter, int i) {
 		if (parameter == null) {
 			return null;
 		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createFeature();
-			feature.setName(parameter.getName());
+			Feature feature = SysMLFactory.eINSTANCE.createParameter();
 			
 			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 			redefinition.setRedefinedFeature(parameter);
 			feature.getOwnedRelationship().add(redefinition);
 			
-			FeatureMembership membership = addOwnedFeature(feature);
+			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
+			membership.getOwnedRelatedElement().add(feature);
+			membership.setMemberName("$" + parameter.getName());
+			getOwnedRelationship().add(membership);
 			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
 			if (parameterMembership != null) {
 				membership.setDirection(parameterMembership.getDirection());
@@ -128,6 +126,19 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 	}
 	
+	@Override
+	public Feature getResult() {
+		List<Feature> outputs = getOutput().stream().
+				filter(feature->feature.getOwner() == this).collect(Collectors.toList());;
+		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
+	}
+	
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		getResult();
+		return super.getOwnedParameters();
+	}
+		
 	public Function getFunction() {
 		EList<Category> types = getType();
 		if (types.isEmpty()) {
@@ -138,4 +149,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 	}
 
+	public List<Expression> getSubexpressions() {
+		return getOwnedFeature().stream().filter(f->f instanceof Expression).
+				map(f->(Expression)f).collect(Collectors.toList());
+	}
+	
 } //ExpressionImpl

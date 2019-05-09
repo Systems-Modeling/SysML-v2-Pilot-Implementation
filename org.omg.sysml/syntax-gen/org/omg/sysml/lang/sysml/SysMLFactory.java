@@ -373,6 +373,42 @@ public interface SysMLFactory extends EFactory {
 	LiteralBoolean createLiteralBoolean();
 
 	/**
+	 * Returns a new object of class '<em>Invocation Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invocation Expression</em>'.
+	 * @generated
+	 */
+	InvocationExpression createInvocationExpression();
+
+	/**
+	 * Returns a new object of class '<em>Block Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block Expression</em>'.
+	 * @generated
+	 */
+	BlockExpression createBlockExpression();
+
+	/**
+	 * Returns a new object of class '<em>Parameter Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Membership</em>'.
+	 * @generated
+	 */
+	ParameterMembership createParameterMembership();
+
+	/**
+	 * Returns a new object of class '<em>Return Parameter Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Return Parameter Membership</em>'.
+	 * @generated
+	 */
+	ReturnParameterMembership createReturnParameterMembership();
+
+	/**
 	 * Returns a new object of class '<em>Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

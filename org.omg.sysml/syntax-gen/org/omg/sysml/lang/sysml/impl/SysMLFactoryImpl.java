@@ -16,6 +16,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AtomicInteraction;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -34,6 +35,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
@@ -50,9 +52,11 @@ import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OrderedFeature;
 import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SequenceAccessExpression;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
 import org.omg.sysml.lang.sysml.Step;
@@ -155,6 +159,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.ELEMENT_REFERENCE_EXPRESSION: return createElementReferenceExpression();
 			case SysMLPackage.SEQUENCE_ACCESS_EXPRESSION: return createSequenceAccessExpression();
 			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
+			case SysMLPackage.INVOCATION_EXPRESSION: return createInvocationExpression();
 			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
 			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
 			case SysMLPackage.LITERAL_STRING: return createLiteralString();
@@ -162,6 +167,9 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
 			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
 			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
+			case SysMLPackage.BLOCK_EXPRESSION: return createBlockExpression();
+			case SysMLPackage.PARAMETER_MEMBERSHIP: return createParameterMembership();
+			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP: return createReturnParameterMembership();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -628,6 +636,50 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public LiteralBoolean createLiteralBoolean() {
 		LiteralBooleanImpl literalBoolean = new LiteralBooleanImpl();
 		return literalBoolean;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InvocationExpression createInvocationExpression() {
+		InvocationExpressionImpl invocationExpression = new InvocationExpressionImpl();
+		return invocationExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BlockExpression createBlockExpression() {
+		BlockExpressionImpl blockExpression = new BlockExpressionImpl();
+		return blockExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ParameterMembership createParameterMembership() {
+		ParameterMembershipImpl parameterMembership = new ParameterMembershipImpl();
+		return parameterMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ReturnParameterMembership createReturnParameterMembership() {
+		ReturnParameterMembershipImpl returnParameterMembership = new ReturnParameterMembershipImpl();
+		return returnParameterMembership;
 	}
 
 	/**

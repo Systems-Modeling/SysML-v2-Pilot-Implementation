@@ -21,15 +21,9 @@ END_SETUP
 */
 
 package test{
-	//XPECT errors --->	"Couldn't resolve reference to Element 'OuterPackage2::C'." at "OuterPackage2::C"
-	import OuterPackage2::C ;
-	B as bb;
-	/* XPECT errors --- 	
- 	"no viable alternative at input 'B'"
-	"The feature 'relatedElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@302edb74{file:/C:/<install_dir>/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/validation/ImportFeatureWithAlias.alf.xt#//@ownedMembership.2}' with 1 values must have at least 2 values"
-	"The required feature 'memberElement' of 'org.omg.sysml.lang.sysml.impl.MembershipImpl@302edb74{file:/C:/<install_dir>/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/validation/ImportFeatureWithAlias.alf.xt#//@ownedMembership.2}' must be set"
-	--- */
+	//XPECT noErrors--->""
+	import OuterPackage::B::b as bb;
 	class D{
-		feature try : bb;
+		feature try is bb;
 	}
 }

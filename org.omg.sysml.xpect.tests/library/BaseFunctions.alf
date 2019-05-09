@@ -1,0 +1,11 @@
+package BaseFunctions {
+	import Base::*;
+	import ScalarValues::*;
+	
+	function '=='(x: Anything, y: Anything): Boolean;
+	function '/='(x: Anything, y: Anything): Boolean;
+	
+	function ToString(x: Anything): String;
+	
+	function '['(seq: Anything[*], index: Integer): Anything[0..1];
+}

@@ -1,0 +1,25 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="PackageAlias1.alf"}
+		File {from ="PackageAlias2.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="PackageAlias1.alf"}
+				File {from ="PackageAlias2.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Test1{
+	// XPECT errors ---> "Couldn't resolve reference to Package 'PackageAlias1::A_alias'." at "PackageAlias1::A_alias"
+	import PackageAlias1::A_alias::*;
+}

@@ -699,14 +699,14 @@ ExpressionTyping returns SysML::FeatureTyping :
 BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
-	| NameExpression 
+	| FeatureReferenceExpression 
 	| InvocationExpression 
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
 
-NameExpression returns SysML::FeatureReferenceExpression :
-	referent = [SysML::Feature | QualifiedName]
+FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
+	ownedRelationship += FeatureReference
 ;
 
 InvocationExpression returns SysML::InvocationExpression :
@@ -762,6 +762,10 @@ UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 ;
 
 /* EXPRESSION MEMBERSHIPS */
+
+FeatureReference returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature | QualifiedName ]
+;
 
 NamedExpressionMember returns SysML::FeatureMembership :
 	memberName = Name '=>' ownedRelatedElement += Expression

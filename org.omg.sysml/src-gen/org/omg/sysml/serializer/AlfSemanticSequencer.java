@@ -202,13 +202,17 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureReferenceRule()) {
+					sequence_FeatureReference(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
 					sequence_NamedExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				sequence_NameExpression(context, (FeatureReferenceExpression) semanticObject); 
+				sequence_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE_TYPING:
 				if (rule == grammarAccess.getConnectorTypingRule()) {
@@ -269,9 +273,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else if (rule == grammarAccess.getCategoryMemberRule()
-						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
 						|| rule == grammarAccess.getBehaviorMemberRule()) {
+					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -552,8 +559,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -634,8 +641,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -911,8 +918,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -968,8 +975,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1049,8 +1056,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1239,13 +1246,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
-	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *     BehaviorMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedRelatedElement+=NonFeatureDefinition | 
@@ -1264,6 +1270,32 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NonFeatureCategoryMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedRelatedElement+=NonFeatureDefinition | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Function|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?)
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1396,6 +1428,67 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Expression returns FeatureReferenceExpression
+	 *     ConditionalExpression returns FeatureReferenceExpression
+	 *     ConditionalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     NullCoalescingExpression returns FeatureReferenceExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ConditionalOrExpression returns FeatureReferenceExpression
+	 *     ConditionalOrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ConditionalAndExpression returns FeatureReferenceExpression
+	 *     ConditionalAndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     OrExpression returns FeatureReferenceExpression
+	 *     OrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     XorExpression returns FeatureReferenceExpression
+	 *     XorExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     AndExpression returns FeatureReferenceExpression
+	 *     AndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     EqualityExpression returns FeatureReferenceExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     RelationalExpression returns FeatureReferenceExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     AdditiveExpression returns FeatureReferenceExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     MultiplicativeExpression returns FeatureReferenceExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     UnitsExpression returns FeatureReferenceExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     UnaryExpression returns FeatureReferenceExpression
+	 *     SequenceAccessExpression returns FeatureReferenceExpression
+	 *     SequenceAccessExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression returns FeatureReferenceExpression
+	 *     PrimaryExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     BaseExpression returns FeatureReferenceExpression
+	 *     FeatureReferenceExpression returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=FeatureReference
+	 */
+	protected void sequence_FeatureReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureReference returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     memberFeature=[Feature|QualifiedName]
+	 */
+	protected void sequence_FeatureReference(ISerializationContext context, FeatureMembership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFeatureReferenceAccess().getMemberFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FeatureTyping returns FeatureTyping
 	 *
 	 * Constraint:
@@ -1451,8 +1544,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1548,55 +1641,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Multiplicity(ISerializationContext context, Multiplicity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Expression returns FeatureReferenceExpression
-	 *     ConditionalExpression returns FeatureReferenceExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     NullCoalescingExpression returns FeatureReferenceExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     ConditionalOrExpression returns FeatureReferenceExpression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     ConditionalAndExpression returns FeatureReferenceExpression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     OrExpression returns FeatureReferenceExpression
-	 *     OrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     XorExpression returns FeatureReferenceExpression
-	 *     XorExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     AndExpression returns FeatureReferenceExpression
-	 *     AndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     EqualityExpression returns FeatureReferenceExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     RelationalExpression returns FeatureReferenceExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     AdditiveExpression returns FeatureReferenceExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     MultiplicativeExpression returns FeatureReferenceExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     UnitsExpression returns FeatureReferenceExpression
-	 *     UnitsExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     UnaryExpression returns FeatureReferenceExpression
-	 *     SequenceAccessExpression returns FeatureReferenceExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression returns FeatureReferenceExpression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     BaseExpression returns FeatureReferenceExpression
-	 *     NameExpression returns FeatureReferenceExpression
-	 *
-	 * Constraint:
-	 *     referent=[Feature|QualifiedName]
-	 */
-	protected void sequence_NameExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION__REFERENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION__REFERENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNameExpressionAccess().getReferentFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION__REFERENT, false));
-		feeder.finish();
 	}
 	
 	

@@ -2,18 +2,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -58,22 +54,10 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION;
 	}
-
+	
 	@Override
 	public Feature getReferent() {
-		getReferentGen();
-		List<FeatureMembership> memberships = getOwnedFeatureMembership().stream().
-				filter(m->m.getOwnedMemberFeature() == null).collect(Collectors.toList());
-		FeatureMembership membership;
-		if (!memberships.isEmpty()) {
-			membership = memberships.get(0);
-		} else {
-			membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-			getOwnedRelationship().add(membership);
-		}
-		membership.setMemberName(referent.getName());
-		membership.setMemberFeature((Feature)referent);
-		return referent;
+		return referent == null? basicGetReferent(): getReferentGen();
 	}
 
 	/**
@@ -96,9 +80,15 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
+		if (referent == null) {
+			EList<Feature> feature = getFeature();
+			if (!feature.isEmpty()) {
+				referent = feature.get(0);
+			}
+		}
 		return referent;
 	}
 	

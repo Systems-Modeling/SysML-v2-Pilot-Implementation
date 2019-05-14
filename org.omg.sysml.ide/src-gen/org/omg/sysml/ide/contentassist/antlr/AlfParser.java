@@ -453,7 +453,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_3(), "rule__BodyExpression__OwnedRelationshipAssignment_0_3");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_1(), "rule__BodyExpression__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getExpressionTypingAccess().getTypeAssignment(), "rule__ExpressionTyping__TypeAssignment");
-			builder.put(grammarAccess.getNameExpressionAccess().getReferentAssignment(), "rule__NameExpression__ReferentAssignment");
+			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureReferenceExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_0(), "rule__PositionalTuple__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_1_1(), "rule__PositionalTuple__OwnedRelationshipAssignment_1_1");
@@ -465,6 +465,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStringLiteralExpressionAccess().getValueAssignment(), "rule__StringLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getRealLiteralExpressionAccess().getValueAssignment(), "rule__RealLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getNaturalLiteralExpressionAccess().getValueAssignment(), "rule__NaturalLiteralExpression__ValueAssignment");
+			builder.put(grammarAccess.getFeatureReferenceAccess().getMemberFeatureAssignment(), "rule__FeatureReference__MemberFeatureAssignment");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__NamedExpressionMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyMember__OwnedRelatedElementAssignment");

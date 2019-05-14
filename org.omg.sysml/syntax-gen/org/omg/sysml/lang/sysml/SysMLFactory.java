@@ -247,15 +247,6 @@ public interface SysMLFactory extends EFactory {
 	Connector createConnector();
 
 	/**
-	 * Returns a new object of class '<em>Connector End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connector End</em>'.
-	 * @generated
-	 */
-	ConnectorEnd createConnectorEnd();
-
-	/**
 	 * Returns a new object of class '<em>Value Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -481,15 +472,6 @@ public interface SysMLFactory extends EFactory {
 	SuccessionItemFlow createSuccessionItemFlow();
 
 	/**
-	 * Returns a new object of class '<em>Element Reference Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Reference Expression</em>'.
-	 * @generated
-	 */
-	ElementReferenceExpression createElementReferenceExpression();
-
-	/**
 	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,13 +499,13 @@ public interface SysMLFactory extends EFactory {
 	SequenceConstructionExpression createSequenceConstructionExpression();
 
 	/**
-	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
+	 * Returns a new object of class '<em>Feature Reference Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sequence Access Expression</em>'.
+	 * @return a new object of class '<em>Feature Reference Expression</em>'.
 	 * @generated
 	 */
-	SequenceAccessExpression createSequenceAccessExpression();
+	FeatureReferenceExpression createFeatureReferenceExpression();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -3,9 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -16,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ReturnParameterMembershipImpl extends FeatureMembershipImpl implements ReturnParameterMembership {
+public class ReturnParameterMembershipImpl extends ParameterMembershipImpl implements ReturnParameterMembership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,10 +37,7 @@ public class ReturnParameterMembershipImpl extends FeatureMembershipImpl impleme
 	@Override
 	public FeatureDirectionKind getDirection() {
 		if (direction == null) {
-			Feature member = getMemberFeature();
-			if (member instanceof Parameter) {
-				direction = FeatureDirectionKind.OUT;
-			}
+			direction = FeatureDirectionKind.OUT;
 		}
 		return direction;
 	}

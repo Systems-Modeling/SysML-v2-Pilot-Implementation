@@ -508,10 +508,10 @@ AbstractConnectorDefinition returns SysML::Connector :
 
 fragment ConnectorDeclaration returns SysML::Connector :
 	( ( ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )? 'is')?
-		  ownedRelationship += ConnectorEnd 'to' ownedRelationship += ConnectorEnd
+		  ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
 	| ( name = Name )? ( ':' ownedRelationship += ConnectorTyping )?
-	  '(' ownedRelationship += ConnectorEnd ',' ownedRelationship += ConnectorEnd
-	      ( ',' ownedRelationship += ConnectorEnd )*
+	  '(' ownedRelationship += ConnectorEndMember ',' ownedRelationship += ConnectorEndMember
+	      ( ',' ownedRelationship += ConnectorEndMember )*
 	  ')'
 	)
 ;
@@ -520,11 +520,14 @@ ConnectorTyping returns SysML::FeatureTyping :
 	type = [SysML::Association | QualifiedName]
 ;
 
-ConnectorEnd returns SysML::ConnectorEnd :
-	  ( end = [SysML::Feature | QualifiedName] ':' )? 
-	  feature = [SysML::Feature | QualifiedName] ( ownedRelationship += Multiplicity )?
-	| ( end = [SysML::Feature | QualifiedName] ( ownedRelationship += Multiplicity )? '=>' ) 
-	  feature = [SysML::Feature | QualifiedName]       
+ConnectorEnd returns SysML::Feature :
+	ownedRelationship += Subset
+;
+
+/* CONNECTOR MEMBERSHIPS */
+
+ConnectorEndMember returns SysML::EndFeatureMembership :
+	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
 ;
 
 /* PARAMETERS */
@@ -702,7 +705,7 @@ BaseExpression returns SysML::Expression :
 	| '(' Expression ')'
 ;
 
-NameExpression returns SysML::ElementReferenceExpression :
+NameExpression returns SysML::FeatureReferenceExpression :
 	referent = [SysML::Feature | QualifiedName]
 ;
 

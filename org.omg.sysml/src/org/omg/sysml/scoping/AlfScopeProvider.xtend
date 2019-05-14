@@ -86,7 +86,8 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					return scope_Subsetting_subsettedFeature(context as Subsetting, reference)
 			}
 			case SysMLPackage.eINSTANCE.membership_MemberElement, 
-			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature: {
+			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature,
+			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
 				if (context instanceof Membership)
 					return scope_Membership_memberElement(context as Membership, reference)
 			}

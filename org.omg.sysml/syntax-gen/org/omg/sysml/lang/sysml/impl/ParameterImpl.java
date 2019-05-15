@@ -58,8 +58,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> redefinitions = getComputedRedefinitions();
-		return redefinitions.isEmpty()? super.getOwnedSubsetting(): redefinitions;
+		return super.getOwnedSubsetting();
 	}
 	
 	/**

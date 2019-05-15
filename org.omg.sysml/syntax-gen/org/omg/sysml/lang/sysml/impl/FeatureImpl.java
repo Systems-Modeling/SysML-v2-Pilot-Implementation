@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
-import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -328,12 +326,16 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
-		EList<Subsetting> redefinitions = getComputedRedefinitions();
-		return redefinitions.isEmpty()? getOwnedSubsettingWithDefault(subsettingDefault): redefinitions;
+		getComputedRedefinitions();
+		return getOwnedSubsettingWithDefault(subsettingDefault);
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
 		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
+	}
+	
+	public EList<Subsetting> getOwnedSubsettingWithoutDefault() {
+		return getOwnedGeneralizationWithoutDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
 	}
 	
 	public EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
@@ -387,16 +389,13 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	/**
 	 * Get the relevant Features that may be redefined from the given Category.
-	 * (By default, these are the end Features if the Category is a Association or a Connector.)
+	 * (By default, these are the end Features of the Category.)
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Category category) {
 		return getOwningFeatureMembership() instanceof EndFeatureMembership?
-				   category instanceof Association?
-						((Association)category).getOwnedEndFeatureMembership().stream().
-						map(m->m.getMemberFeature()).collect(Collectors.toList()):
-				   category instanceof Connector?
-						((Connector)category).getConnectorEnd():
-				   Collections.emptyList():
+					category.getFeature().stream().
+						filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+						collect(Collectors.toList()):
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.

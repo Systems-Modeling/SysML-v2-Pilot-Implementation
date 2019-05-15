@@ -11,7 +11,6 @@ import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.ConnectorEnd
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.Relationship
@@ -158,7 +157,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def boolean _isLeaf(Feature feature) {
 		// Ensure default redefinition/subsetting
-		feature.ownedRedefinition
+		feature.ownedSubsetting
 		// Ensure valuation connector
 		feature.feature
 		super._isLeaf(feature)
@@ -198,25 +197,6 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (subset.subsettedFeature !== null) {
 			createEObjectNode(parentNode, subset.subsettedFeature, 
 				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
-				true
-			)
-		}
-	}
-	
-	def boolean _isLeaf(ConnectorEnd connectorEnd) {
-		connectorEnd.end === null && connectorEnd.feature === null;
-	}
-	
-	def void _createChildren(IOutlineNode parentNode, ConnectorEnd connectorEnd) {
-		if (connectorEnd.end !== null) {
-			createEObjectNode(parentNode, connectorEnd.end, 
-				_image(connectorEnd.end), "end " + connectorEnd.end._text, 
-				true
-			)
-		}
-		if (connectorEnd.feature !== null) {
-			createEObjectNode(parentNode, connectorEnd.feature, 
-				_image(connectorEnd.feature), "feature " + connectorEnd.feature._text, 
 				true
 			)
 		}

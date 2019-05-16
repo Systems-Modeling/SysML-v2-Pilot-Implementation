@@ -2,22 +2,12 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -29,32 +19,21 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl#getCategory <em>Category</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InstanceCreationExpressionImpl extends ExpressionImpl implements InstanceCreationExpression {
+public class InstanceCreationExpressionImpl extends InvocationExpressionImpl implements InstanceCreationExpression {
 	/**
-	 * The cached value of the '{@link #getClass_() <em>Class</em>}' reference.
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClass_()
+	 * @see #getCategory()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Class class_;
-
-	/**
-	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArgument()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Expression> argument;
+	protected Category category;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,16 +60,16 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Class getClass_() {
-		if (class_ != null && class_.eIsProxy()) {
-			InternalEObject oldClass = (InternalEObject)class_;
-			class_ = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldClass);
-			if (class_ != oldClass) {
+	public Category getCategory() {
+		if (category != null && category.eIsProxy()) {
+			InternalEObject oldCategory = (InternalEObject)category;
+			category = (Category)eResolveProxy(oldCategory);
+			if (category != oldCategory) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS, oldClass, class_));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY, oldCategory, category));
 			}
 		}
-		return class_;
+		return category;
 	}
 
 	/**
@@ -98,8 +77,8 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetClass_() {
-		return class_;
+	public Category basicGetCategory() {
+		return category;
 	}
 
 	/**
@@ -108,38 +87,11 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * @generated
 	 */
 	@Override
-	public void setClass_(org.omg.sysml.lang.sysml.Class newClass) {
-		org.omg.sysml.lang.sysml.Class oldClass = class_;
-		class_ = newClass;
+	public void setCategory(Category newCategory) {
+		Category oldCategory = category;
+		category = newCategory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS, oldClass, class_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Expression> getArgument() {
-		if (argument == null) {
-			argument = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT);
-		}
-		return argument;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY, oldCategory, category));
 	}
 
 	/**
@@ -150,11 +102,9 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT:
-				return getArgument();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
+				if (resolve) return getCategory();
+				return basicGetCategory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,16 +114,11 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS:
-				setClass_((org.omg.sysml.lang.sysml.Class)newValue);
-				return;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends Expression>)newValue);
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
+				setCategory((Category)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,11 +132,8 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS:
-				setClass_((org.omg.sysml.lang.sysml.Class)null);
-				return;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
+				setCategory((Category)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -205,10 +147,8 @@ public class InstanceCreationExpressionImpl extends ExpressionImpl implements In
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CLASS:
-				return class_ != null;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__ARGUMENT:
-				return argument != null && !argument.isEmpty();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
+				return category != null;
 		}
 		return super.eIsSet(featureID);
 	}

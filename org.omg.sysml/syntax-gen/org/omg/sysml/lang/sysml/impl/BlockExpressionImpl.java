@@ -51,8 +51,8 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 			if (resultConnector == null) {
 				resultConnector = addOwnedBindingConnector(result, getResult());
 			} else {
-				resultConnector.getConnectorEnd().get(0).setFeature(result);
-				resultConnector.getConnectorEnd().get(1).setFeature(getResult());
+				((ConnectorImpl)resultConnector).setRelatedFeature(0, result);
+				((ConnectorImpl)resultConnector).setRelatedFeature(1, getResult());
 			}
 		}
 		return resultConnector;

@@ -110,8 +110,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' element+=Expression
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReference
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureTyping
-	 *     (rule start) (ambiguity) referent=[Feature|QualifiedName]
 	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
 	 *     (rule start) (ambiguity) value=NATURAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -165,8 +165,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (':' 'any')? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=ConnectorEnd ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=ConnectorEnd (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
@@ -184,7 +184,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'is'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEnd
+	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_ConnectorDeclaration_IsKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

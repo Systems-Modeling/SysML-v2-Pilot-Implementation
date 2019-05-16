@@ -9,6 +9,11 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Membership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Membership is a relationship between a Package and an Element that helps manage how elements are described and made visible in different models.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

@@ -55,16 +55,16 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	public List<? extends Feature> getArguments() {
-		return super.getSubexpressions();
+		return super.getOwnedFeature();
 	}
 	
 	@Override
-	public List<Expression> getSubexpressions() {
+	public List<Feature> getRelevantFeatures() {
 		Function function = getFunction();
 		int m = function == null? 0: function.getInput().size();
-		List<Expression> subexpressions = super.getSubexpressions();
-		int n = subexpressions.size();
-		return m >= n? Collections.emptyList(): subexpressions.subList(m, n);
+		List<Feature> features = super.getOwnedFeature();
+		int n = features.size();
+		return m >= n? Collections.emptyList(): features.subList(m, n);
 	}
 	
 } //InvocationExpressionImpl

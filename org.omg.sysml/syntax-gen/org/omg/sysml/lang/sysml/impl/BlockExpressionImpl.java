@@ -45,9 +45,10 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	}
 	
 	public BindingConnector getResultConnector() {
-		List<Expression> subexpressions = getSubexpressions();
-		if (!subexpressions.isEmpty()) {
-			Feature result = ((ExpressionImpl)subexpressions.get(subexpressions.size() - 1)).getResult();
+		List<Feature> features = getOwnedFeature();
+		if (!features.isEmpty()) {
+			Feature feature = features.get(features.size() - 1);
+			Feature result = feature instanceof Expression? ((ExpressionImpl)feature).getResult(): feature;
 			if (resultConnector == null) {
 				resultConnector = addOwnedBindingConnector(result, getResult());
 			} else {

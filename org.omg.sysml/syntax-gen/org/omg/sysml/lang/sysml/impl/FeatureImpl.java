@@ -389,19 +389,20 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	/**
 	 * Get the relevant Features that may be redefined from the given Category.
-	 * (By default, these are the end Features of the Category.)
+	 * If this is an end Feature, return the end Features of the Category,
+	 * otherwise return the relavent features of the category.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Category category) {
 		return getOwningFeatureMembership() instanceof EndFeatureMembership?
-					category.getFeature().stream().
-						filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
-						collect(Collectors.toList()):
+						category.getFeature().stream().
+							filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+							collect(Collectors.toList()):
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.
-			   getOwningCategory() instanceof Parameter?
-					   category.getOwnedFeature():
+			   getOwningCategory() instanceof Parameter? category.getOwnedFeature():
 						   
+			   category != null? ((CategoryImpl)category).getRelevantFeatures():
 			   Collections.emptyList();
 	}
 	

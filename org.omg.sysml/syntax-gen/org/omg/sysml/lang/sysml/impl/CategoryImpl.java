@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -350,7 +352,23 @@ public class CategoryImpl extends PackageImpl implements Category {
 		return getNonPrivateMembership(excludedPackages, excludedCategories, false);
 	}
 	
+	/**
+	 * This method returns those features from this category that should be automatically overridden in its usages.
+	 * By default, there are none.
+	 * 
+	 * @return	Relevant features from the category that should be redefined in usages.
+	 */
+	public List<Feature> getRelevantFeatures() {
+		return Collections.emptyList();
+	}
+	
 	// Utility Methods
+	
+	public List<Feature> getEndFeatures() {
+		return getFeature().stream().
+				filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+				collect(Collectors.toList());
+	}
 	
 	public List<Parameter> getOwnedParameters() {
 		return getOwnedFeature().stream().

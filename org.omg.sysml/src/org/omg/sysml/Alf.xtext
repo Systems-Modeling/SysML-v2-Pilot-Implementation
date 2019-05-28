@@ -548,6 +548,8 @@ StepDefinition returns SysML::Step :
 
 /* EXPRESSIONS */
 
+// Block Expressions
+
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
 	( name = Name TypePart ( ParameterList ReturnParameterPart )? SubsettingPart 
@@ -560,6 +562,8 @@ Expression returns SysML::Expression :
 	 ConditionalExpression
 ;
 
+// Conditional Test Expressions
+
 ConditionalExpression returns SysML::Expression :
 	NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
 		operator = ConditionalTestOperator operand += Expression ':' operand += ConditionalExpression
@@ -570,6 +574,8 @@ ConditionalTestOperator:
 	'?'
 ;
 
+// Null Coalescing Expressions
+
 NullCoalescingExpression returns SysML::Expression :
 	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
 		operator = NullCoalescingOperator operand += ConditionalOrExpression )*
@@ -578,6 +584,8 @@ NullCoalescingExpression returns SysML::Expression :
 NullCoalescingOperator :
 	'??'
 ;
+
+// Conditional Logical Expressions
 
 ConditionalOrExpression returns SysML::Expression :
 	ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
@@ -602,6 +610,8 @@ OrExpression returns SysML::Expression :
 		operator = OrOperator operand += XorExpression )*
 ;
 
+// Logical Expressions
+
 OrOperator :
 	'|'
 ;
@@ -624,15 +634,30 @@ AndOperator :
 	'&'
 ;
 
+// Equality Expressions
+
 EqualityExpression returns SysML::Expression :
-	RelationalExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = EqualityOperator operand += RelationalExpression )*
+	ClassificationExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = EqualityOperator operand += ClassificationExpression )*
 	
 ;
 
 EqualityOperator :
 	'==' | '!=' 
 ;
+
+// Classification Expressions
+
+ClassificationExpression returns SysML::Expression :
+	RelationalExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+;
+
+ClassificationOperator :
+	'instanceof' | 'hastype'
+;
+
+// Relational Expressions
 
 RelationalExpression returns SysML::Expression :
 	AdditiveExpression ( {SysML::OperatorExpression.operand += current}  
@@ -642,6 +667,8 @@ RelationalExpression returns SysML::Expression :
 RelationalOperator :
 	'<' | '>' | '<=' | '>='
 ;
+
+// Arithmetic Expressions
 
 AdditiveExpression returns SysML::Expression :
 	MultiplicativeExpression ( {SysML::OperatorExpression.operand += current}  
@@ -661,10 +688,14 @@ MultiplicativeOperator :
 	'*' | '/' | '**' 
 ;
 
+// Units Expressions
+
 UnitsExpression returns SysML::Expression :
 	UnaryExpression ( {SysML::OperatorExpression.operand += current} 
 		operator = '@' '[' operand += Expression ']' )?		
 ;
+
+// Unary Expressions
 
 UnaryExpression returns SysML::Expression:
 	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
@@ -678,6 +709,8 @@ SequenceAccessExpression returns SysML::Expression :
 	 PrimaryExpression 
 	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )?
 ;
+
+// Primary Expressions
 
 PrimaryExpression returns SysML::Expression :
 	BaseExpression ( {SysML::OperatorExpression.operand += current} '->' 
@@ -696,11 +729,14 @@ ExpressionTyping returns SysML::FeatureTyping :
 	type = [ SysML::Function | QualifiedName ]
 ;
 
+// Base Expressions
+
 BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
+	| ClassExtentExpression
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
@@ -725,6 +761,14 @@ fragment NamedTuple returns SysML::Expression :
 	ownedRelationship += NamedExpressionMember ( ',' ownedRelationship += NamedExpressionMember )*
 ;
 
+ClassExtentExpression returns SysML::OperatorExpression :
+	ownedRelationship += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
+;
+
+TypeReference returns SysML::Feature :
+	ownedRelationship += FeatureTyping
+;
+
 SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
 	{SysML::SequenceConstructionExpression} '{' ( element += Expression ( ',' element += Expression )* )? '}'
 ;
@@ -732,6 +776,8 @@ SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
 NullExpression returns SysML::NullExpression :
 	{SysML::NullExpression} 'null'
 ;
+
+// Literal Expressions
 
 LiteralExpression returns SysML::LiteralExpression :
 	BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
@@ -765,6 +811,10 @@ UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 
 FeatureReference returns SysML::FeatureMembership :
 	memberFeature = [SysML::Feature | QualifiedName ]
+;
+
+TypeReferenceMember returns SysML::FeatureMembership :
+	ownedRelatedElement += TypeReference
 ;
 
 NamedExpressionMember returns SysML::FeatureMembership :

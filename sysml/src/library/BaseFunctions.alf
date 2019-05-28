@@ -8,4 +8,17 @@ package BaseFunctions {
 	function ToString(x: Anything): String;
 	
 	function '['(seq: Anything[*], index: Integer): Anything[0..1];
+
+	abstract function 'allInstances'(): type[0..*] {
+		abstract feature type;
+	}
+	
+	abstract function 'instanceof'(x: Anything): Boolean {
+		abstract feature type;
+	}
+	
+	abstract function 'hastype'(x: Anything): Boolean {
+		abstract feature type;
+	}
+	
 }

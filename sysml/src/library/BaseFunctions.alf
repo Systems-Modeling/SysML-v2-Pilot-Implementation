@@ -9,16 +9,16 @@ package BaseFunctions {
 	
 	function '['(seq: Anything[*], index: Integer): Anything[0..1];
 
-	abstract function 'allInstances'(): type[0..*] {
-		abstract feature type;
+	abstract function 'allInstances'(): Object[0..*] {
+		abstract feature type: Object;
 	}
 	
 	abstract function 'instanceof'(x: Anything): Boolean {
-		abstract feature type;
+		abstract feature type: Anything;
 	}
 	
 	abstract function 'hastype'(x: Anything): Boolean {
-		abstract feature type;
+		abstract feature type: Anything;
 	}
 	
 }

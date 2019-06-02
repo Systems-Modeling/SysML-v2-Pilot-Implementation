@@ -8,7 +8,7 @@ package MassRollup_1 {
 		feature totalMass subsets ISQ::mass = 
 			mass + (subcomponents->collect p:MassedThing (p.totalMass)->reduce '+' ?? 0.0);
 			
-		feature v = ./subcomponents[p:MassedThing (p > 50)]->reduce '+' ?? 0.0;
+		feature v = ./subcomponents/mass[p:ISQ::mass (p > 10.0)]->reduce '+' ?? 0.0;
 		
 	}	
 }

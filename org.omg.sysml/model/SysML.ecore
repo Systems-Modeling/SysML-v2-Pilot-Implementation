@@ -4,7 +4,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="StructuredFeature" eSuperTypes="#//Feature"/>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Category">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="ownedRedefinition = ownedSubsetting->intersection(redefining)&#xA;referencedType = type - ownedElement&#xA;ownedSubsetting = ownedGeneralization->intersection(subsetting)&#xA;isComposite = owningFeatureMembership &lt;> null and owningFeatureMembership.isPart&#xA;ownedType = type->intersection(ownedElement)&#xA;type = typing.type"/>
+      <details key="documentation" value="ownedRedefinition = ownedSubsetting->intersection(redefining)&#xD;&#xA;referencedType = type - ownedElement&#xD;&#xA;ownedSubsetting = ownedGeneralization->intersection(subsetting)&#xD;&#xA;isComposite = owningFeatureMembership &lt;> null and owningFeatureMembership.isPart&#xD;&#xA;ownedType = type->intersection(ownedElement)&#xD;&#xA;type = typing.type"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" volatile="true" transient="true"
@@ -109,7 +109,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="membership->isUnique(name)&#xA;membership->forAll(m1 | membership->forAll(m2 | m1 &lt;> m2 implies m1.isDistinguishableFrom(m2)))&#xA;member = membership.memberElement&#xA;ownedMember = ownedMembership.ownedMemberElement&#xA;importedMembership = excludeCollisions(ownedImport.importedMembership())->select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))"/>
+      <details key="documentation" value="membership->isUnique(name)&#xD;&#xA;membership->forAll(m1 | membership->forAll(m2 | m1 &lt;> m2 implies m1.isDistinguishableFrom(m2)))&#xD;&#xA;member = membership.memberElement&#xD;&#xA;ownedMember = ownedMembership.ownedMemberElement&#xD;&#xA;importedMembership = excludeCollisions(ownedImport.importedMembership())->select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))"/>
     </eAnnotations>
     <eOperations name="nameOf" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
@@ -152,7 +152,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="name = if owningNamespace = null then null&#xA;else owningNamespace.nameOf(self) endif&#xA;ownedElement = ownedRelationship.ownedRelatedElement&#xA;owner = owningRelationship.owningRelatedElement"/>
+      <details key="documentation" value="name = if owningNamespace = null then null&#xA;else owningNamespace.nameOf(self) endif&#xD;&#xA;ownedElement = ownedRelationship.ownedRelatedElement&#xD;&#xA;owner = owningRelationship.owningRelatedElement"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningMembership" ordered="false"
         eType="#//Membership" volatile="true" transient="true" derived="true" eOpposite="#//Membership/ownedMemberElement"/>
@@ -669,4 +669,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="BlockExpression" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterMembership" eSuperTypes="#//FeatureMembership"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnParameterMembership" eSuperTypes="#//FeatureMembership"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryPathStepExpression" eSuperTypes="#//OperatorExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryQualifierExpression" eSuperTypes="#//OperatorExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryPathExpression" eSuperTypes="#//ElementReferenceExpression"/>
 </ecore:EPackage>

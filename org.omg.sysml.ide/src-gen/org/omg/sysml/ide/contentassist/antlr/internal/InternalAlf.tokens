@@ -12,6 +12,7 @@
 '->'=78
 '.'=24
 '..'=74
+'./'=80
 '/'=37
 ':'=71
 '::'=23
@@ -25,7 +26,7 @@
 '>='=33
 '?'=16
 '??'=17
-'@'=85
+'@'=86
 'Class'=54
 '['=72
 ']'=73
@@ -36,7 +37,7 @@
 'assoc'=57
 'behavior'=58
 'class'=55
-'compose'=82
+'compose'=83
 'connector'=61
 'datatype'=56
 'end'=64
@@ -47,14 +48,14 @@
 'in'=45
 'inout'=47
 'is'=53
-'nonunique'=84
+'nonunique'=85
 'null'=79
-'ordered'=83
+'ordered'=84
 'out'=46
 'package'=50
 'packaged'=44
-'part'=80
-'port'=81
+'part'=81
+'port'=82
 'private'=42
 'protected'=43
 'public'=41
@@ -150,3 +151,4 @@ T__82=82
 T__83=83
 T__84=84
 T__85=85
+T__86=86

@@ -8711,11 +8711,11 @@ ruleBaseExpression returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getBaseExpressionAccess().getInvocationExpressionParserRuleCall_3());
+			newCompositeNode(grammarAccess.getBaseExpressionAccess().getQueryPathExpressionParserRuleCall_3());
 		}
-		this_InvocationExpression_3=ruleInvocationExpression
+		this_QueryPathExpression_3=ruleQueryPathExpression
 		{
-			$current = $this_InvocationExpression_3.current;
+			$current = $this_QueryPathExpression_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -8723,33 +8723,45 @@ ruleBaseExpression returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getBaseExpressionAccess().getSequenceConstructionExpressionParserRuleCall_4());
+			newCompositeNode(grammarAccess.getBaseExpressionAccess().getInvocationExpressionParserRuleCall_4());
 		}
-		this_SequenceConstructionExpression_4=ruleSequenceConstructionExpression
+		this_InvocationExpression_4=ruleInvocationExpression
 		{
-			$current = $this_SequenceConstructionExpression_4.current;
+			$current = $this_InvocationExpression_4.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getBaseExpressionAccess().getSequenceConstructionExpressionParserRuleCall_5());
+		}
+		this_SequenceConstructionExpression_5=ruleSequenceConstructionExpression
+		{
+			$current = $this_SequenceConstructionExpression_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		(
-			otherlv_5='('
+			otherlv_6='('
 			{
-				newLeafNode(otherlv_5, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+				newLeafNode(otherlv_6, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 			}
 			{
 				/* */
 			}
 			{
-				newCompositeNode(grammarAccess.getBaseExpressionAccess().getExpressionParserRuleCall_5_1());
+				newCompositeNode(grammarAccess.getBaseExpressionAccess().getExpressionParserRuleCall_6_1());
 			}
-			this_Expression_6=ruleExpression
+			this_Expression_7=ruleExpression
 			{
-				$current = $this_Expression_6.current;
+				$current = $this_Expression_7.current;
 				afterParserOrEnumRuleCall();
 			}
-			otherlv_7=')'
+			otherlv_8=')'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_5_2());
+				newLeafNode(otherlv_8, grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_6_2());
 			}
 		)
 	)
@@ -9590,6 +9602,241 @@ ruleBodyParameterMember returns [EObject current=null]
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleQueryPathExpression
+entryRuleQueryPathExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getQueryPathExpressionRule()); }
+	iv_ruleQueryPathExpression=ruleQueryPathExpression
+	{ $current=$iv_ruleQueryPathExpression.current; }
+	EOF;
+
+// Rule QueryPathExpression
+ruleQueryPathExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getQueryHeadExpressionParserRuleCall_0());
+		}
+		this_QueryHeadExpression_0=ruleQueryHeadExpression
+		{
+			$current = $this_QueryHeadExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					/* */
+				}
+				{
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_1_0(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_1_1_0());
+					}
+					lv_operand_2_0=ruleQueryNameExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_2_0,
+							"org.omg.sysml.Alf.QueryNameExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_3='['
+				{
+					newLeafNode(otherlv_3, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_1_2_0());
+				}
+				(
+					{
+						/* */
+					}
+					{
+						$current = forceCreateModelElementAndAdd(
+							grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_2_1(),
+							$current);
+					}
+				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_2_2_0());
+						}
+						lv_ownedRelationship_5_0=ruleBodyMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_5_0,
+								"org.omg.sysml.Alf.BodyMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_6=']'
+				{
+					newLeafNode(otherlv_6, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_1_2_3());
+				}
+			)?
+		)?
+		(
+			otherlv_7='/'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getQueryPathExpressionAccess().getSolidusKeyword_2_0());
+			}
+			(
+				{
+					/* */
+				}
+				{
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0());
+					}
+					lv_operand_9_0=ruleQueryNameExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_9_0,
+							"org.omg.sysml.Alf.QueryNameExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_10='['
+				{
+					newLeafNode(otherlv_10, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_2_3_0());
+				}
+				(
+					{
+						/* */
+					}
+					{
+						$current = forceCreateModelElementAndAdd(
+							grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1(),
+							$current);
+					}
+				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0());
+						}
+						lv_ownedRelationship_12_0=ruleBodyMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_12_0,
+								"org.omg.sysml.Alf.BodyMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_13=']'
+				{
+					newLeafNode(otherlv_13, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_2_3_3());
+				}
+			)?
+		)*
+	)
+;
+
+// Entry rule entryRuleQueryNameExpression
+entryRuleQueryNameExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getQueryNameExpressionRule()); }
+	iv_ruleQueryNameExpression=ruleQueryNameExpression
+	{ $current=$iv_ruleQueryNameExpression.current; }
+	EOF;
+
+// Rule QueryNameExpression
+ruleQueryNameExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		/* */
+	}
+	{
+		newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getNameExpressionParserRuleCall());
+	}
+	this_NameExpression_0=ruleNameExpression
+	{
+		$current = $this_NameExpression_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleQueryHeadExpression
+entryRuleQueryHeadExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getQueryHeadExpressionRule()); }
+	iv_ruleQueryHeadExpression=ruleQueryHeadExpression
+	{ $current=$iv_ruleQueryHeadExpression.current; }
+	EOF;
+
+// Rule QueryHeadExpression
+ruleQueryHeadExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getQueryHeadExpressionAccess().getQueryPathExpressionAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='./'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_1());
+		}
 	)
 ;
 

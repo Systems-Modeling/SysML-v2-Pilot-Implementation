@@ -55,6 +55,9 @@ import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.QueryPathExpression;
+import org.omg.sysml.lang.sysml.QueryPathStepExpression;
+import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -380,6 +383,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass returnParameterMembershipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass queryPathStepExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass queryQualifierExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass queryPathExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2109,6 +2133,36 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getQueryPathStepExpression() {
+		return queryPathStepExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getQueryQualifierExpression() {
+		return queryQualifierExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getQueryPathExpression() {
+		return queryPathExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getLiteralExpression() {
 		return literalExpressionEClass;
 	}
@@ -2660,6 +2714,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		returnParameterMembershipEClass = createEClass(RETURN_PARAMETER_MEMBERSHIP);
 
+		queryPathStepExpressionEClass = createEClass(QUERY_PATH_STEP_EXPRESSION);
+
+		queryQualifierExpressionEClass = createEClass(QUERY_QUALIFIER_EXPRESSION);
+
+		queryPathExpressionEClass = createEClass(QUERY_PATH_EXPRESSION);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -2754,6 +2814,9 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		blockExpressionEClass.getESuperTypes().add(this.getExpression());
 		parameterMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 		returnParameterMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		queryPathStepExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
+		queryQualifierExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
+		queryPathExpressionEClass.getESuperTypes().add(this.getElementReferenceExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(structuredFeatureEClass, StructuredFeature.class, "StructuredFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3001,6 +3064,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEClass(parameterMembershipEClass, ParameterMembership.class, "ParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(returnParameterMembershipEClass, ReturnParameterMembership.class, "ReturnParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(queryPathStepExpressionEClass, QueryPathStepExpression.class, "QueryPathStepExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(queryQualifierExpressionEClass, QueryQualifierExpression.class, "QueryQualifierExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(queryPathExpressionEClass, QueryPathExpression.class, "QueryPathExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

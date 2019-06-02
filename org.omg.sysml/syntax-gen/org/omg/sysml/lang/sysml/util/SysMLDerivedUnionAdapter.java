@@ -48,6 +48,9 @@ import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.QueryPathExpression;
+import org.omg.sysml.lang.sysml.QueryPathStepExpression;
+import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -272,6 +275,15 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
 				notifyReturnParameterMembershipChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
+				notifyQueryPathStepExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION:
+				notifyQueryQualifierExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_PATH_EXPRESSION:
+				notifyQueryPathExpressionChanged(notification, eClass);
 				break;
 		}
 	}
@@ -1293,6 +1305,72 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyQueryPathStepExpressionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(QueryPathStepExpression.class)) {
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyQueryQualifierExpressionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(QueryQualifierExpression.class)) {
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyQueryPathExpressionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(QueryPathExpression.class)) {
+			case SysMLPackage.QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_PATH_EXPRESSION__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.QUERY_PATH_EXPRESSION__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 		}
 	}

@@ -23,8 +23,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AlfGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
 	protected AbstractElementAlias match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ConnectorDeclaration_IsKeyword_0_0_2_q;
@@ -38,8 +38,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AlfGrammarAccess) access;
 		match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAssociationBodyAccess().getSemicolonKeyword_0()));
-		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
-		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 		match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0()));
 		match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getCategoryBodyAccess().getSemicolonKeyword_0()));
 		match_ConnectorDeclaration_IsKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getConnectorDeclarationAccess().getIsKeyword_0_0_2());
@@ -64,10 +64,10 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_6_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_6_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -106,6 +106,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) './' (rule start)
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' element+=Expression
@@ -117,8 +118,10 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -130,7 +133,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

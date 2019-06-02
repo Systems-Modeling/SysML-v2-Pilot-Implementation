@@ -366,6 +366,9 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//BlockExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ParameterMembership"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ReturnParameterMembership"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryPathStepExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryQualifierExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryPathExpression"/>
   </genPackages>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Types" basePackage="org.omg.sysml.lang"
       disposableProviderFactory="true" ecorePackage="types.ecore#/">

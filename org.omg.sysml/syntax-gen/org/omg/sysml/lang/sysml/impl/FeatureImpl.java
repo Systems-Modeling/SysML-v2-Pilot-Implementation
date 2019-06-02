@@ -558,12 +558,15 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				if (valueConnector == null) {
-					valueConnector = addOwnedBindingConnector(((ExpressionImpl)value).getResult(), this);
-				} else {
-					valueConnector.getConnectorEnd().get(0).setFeature(((ExpressionImpl)value).getResult());
-					valueConnector.getConnectorEnd().get(1).setFeature(this);
-				}
+                Feature result = ((ExpressionImpl) value).getResult();
+                if (result != null) {
+                    if (valueConnector == null) {
+                        valueConnector = addOwnedBindingConnector(result, this);
+                    } else {
+                        valueConnector.getConnectorEnd().get(0).setFeature(result);
+                        valueConnector.getConnectorEnd().get(1).setFeature(this);
+                    }
+                }
 			}
 		}
 		return valueConnector;

@@ -241,7 +241,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup(), "rule__PrimaryExpression__Group__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1(), "rule__PrimaryExpression__Group_1__0");
 			builder.put(grammarAccess.getBodyExpressionAccess().getGroup_0(), "rule__BodyExpression__Group_0__0");
-			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_5(), "rule__BaseExpression__Group_5__0");
+			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_6(), "rule__BaseExpression__Group_6__0");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getGroup(), "rule__InvocationExpression__Group__0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getGroup(), "rule__PositionalTuple__Group__0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getGroup_1(), "rule__PositionalTuple__Group_1__0");
@@ -255,6 +255,12 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getGroup_1(), "rule__UnlimitedNaturalLiteralExpression__Group_1__0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getGroup(), "rule__NamedExpressionMember__Group__0");
 			builder.put(grammarAccess.getBodyParameterMemberAccess().getGroup(), "rule__BodyParameterMember__Group__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup(), "rule__QueryPathExpression__Group__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_1(), "rule__QueryPathExpression__Group_1__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_1_2(), "rule__QueryPathExpression__Group_1_2__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2(), "rule__QueryPathExpression__Group_2__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2_3(), "rule__QueryPathExpression__Group_2_3__0");
+			builder.put(grammarAccess.getQueryHeadExpressionAccess().getGroup(), "rule__QueryHeadExpression__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup(), "rule__ColonQualifiedName__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");
 			builder.put(grammarAccess.getDotQualifiedNameAccess().getGroup(), "rule__DotQualifiedName__Group__0");
@@ -476,6 +482,10 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_0(), "rule__BodyParameterMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__BodyParameterMember__OwnedRelatedElementAssignment_1");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_1_1(), "rule__QueryPathExpression__OperandAssignment_1_1");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_1_2_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_1_2_2");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2(), "rule__QueryPathExpression__OperandAssignment_2_2");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2");
 			builder.put(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), "rule__TypePart__UnorderedGroup_2");
 		}
 	}

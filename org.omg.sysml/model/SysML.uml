@@ -1192,4 +1192,13 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Class" xmi:id="_U6j3kGfYEemgLqyvA3GWJw" name="ReturnParameterMembership">
     <generalization xmi:id="_U6j3kWfYEemgLqyvA3GWJw" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_qj8C4IL3EemK6to8uWVvQg" name="QueryPathStepExpression">
+    <generalization xmi:id="_0xVrAIL3EemK6to8uWVvQg" general="_aIo_IFzZEemR3PZX_TlKkg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_qL5YEIOAEemK6to8uWVvQg" name="QueryQualifierExpression">
+    <generalization xmi:id="_wsfXQIOAEemK6to8uWVvQg" general="_aIo_IFzZEemR3PZX_TlKkg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1gujsIO_EemmlvPPkubCUw" name="QueryPathExpression">
+    <generalization xmi:id="__uk3wIO_EemmlvPPkubCUw" general="a992e14b-0838-46e3-a486-3d4339717f13"/>
+  </packagedElement>
 </uml:Model>

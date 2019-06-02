@@ -697,8 +697,9 @@ BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| NameExpression 
+	| QueryPathExpression
 	| InvocationExpression 
-	| SequenceConstructionExpression 
+	| SequenceConstructionExpression
 	| '(' Expression ')'
 ;
 
@@ -771,6 +772,38 @@ BodyMember returns SysML::FeatureMembership :
 BodyParameterMember returns SysML::ParameterMembership :
 	memberName = Name ownedRelatedElement += ParameterDefinition
 ;
+
+/* QUERY PATH EXPRESSION */
+
+QueryPathExpression returns SysML::Expression :
+	QueryHeadExpression
+		({SysML::QueryPathStepExpression.operand += current}
+		 operand += QueryNameExpression
+		('[' {SysML::QueryQualifierExpression.operand += current}
+             ( ownedRelationship += BodyMember ) ']' )?
+
+		)?
+		('/' {SysML::QueryPathStepExpression.operand += current}
+		 operand += QueryNameExpression
+		('[' {SysML::QueryQualifierExpression.operand += current}
+             ( ownedRelationship += BodyMember ) ']' )?
+		)*
+;
+
+QueryNameExpression returns SysML::ElementReferenceExpression : // It should be FeatureReferenceExpression
+        /* isParent ?= '..'
+	| isDescendants ?= '/'
+        | @traversal
+        */
+        NameExpression
+;
+
+QueryHeadExpression returns SysML::QueryPathExpression : // It should be FeatureReferenceExpression
+	{SysML::QueryPathExpression}
+	('./')
+;
+
+        
 
 /* NAMES */
 

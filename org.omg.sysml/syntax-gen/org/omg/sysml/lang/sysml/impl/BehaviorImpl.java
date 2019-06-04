@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -106,6 +108,16 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(BEHAVIOR_SUPERCLASS_DEFAULT);
+	}
+	
+	/**
+	 * Return the non-parameter abstract features of the Behavior.
+	 */
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return getFeature().stream().
+				filter(feature->!(feature instanceof Parameter) && feature.isAbstract()).
+				collect(Collectors.toList());
 	}
 
 	/**

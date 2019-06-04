@@ -72,6 +72,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepDefinitionAccess().getAlternatives_2(), "rule__StepDefinition__Alternatives_2");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getAlternatives_2(), "rule__ExpressionDefinition__Alternatives_2");
 			builder.put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
+			builder.put(grammarAccess.getClassificationOperatorAccess().getAlternatives(), "rule__ClassificationOperator__Alternatives");
 			builder.put(grammarAccess.getRelationalOperatorAccess().getAlternatives(), "rule__RelationalOperator__Alternatives");
 			builder.put(grammarAccess.getAdditiveOperatorAccess().getAlternatives(), "rule__AdditiveOperator__Alternatives");
 			builder.put(grammarAccess.getMultiplicativeOperatorAccess().getAlternatives(), "rule__MultiplicativeOperator__Alternatives");
@@ -224,6 +225,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndExpressionAccess().getGroup_1(), "rule__AndExpression__Group_1__0");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getGroup(), "rule__EqualityExpression__Group__0");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getGroup_1(), "rule__EqualityExpression__Group_1__0");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup(), "rule__ClassificationExpression__Group__0");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup_1(), "rule__ClassificationExpression__Group_1__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup(), "rule__RelationalExpression__Group__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup_1(), "rule__RelationalExpression__Group_1__0");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getGroup(), "rule__AdditiveExpression__Group__0");
@@ -238,12 +241,13 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup(), "rule__PrimaryExpression__Group__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1(), "rule__PrimaryExpression__Group_1__0");
 			builder.put(grammarAccess.getBodyExpressionAccess().getGroup_0(), "rule__BodyExpression__Group_0__0");
-			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_5(), "rule__BaseExpression__Group_5__0");
+			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_6(), "rule__BaseExpression__Group_6__0");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getGroup(), "rule__InvocationExpression__Group__0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getGroup(), "rule__PositionalTuple__Group__0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getGroup_1(), "rule__PositionalTuple__Group_1__0");
 			builder.put(grammarAccess.getNamedTupleAccess().getGroup(), "rule__NamedTuple__Group__0");
 			builder.put(grammarAccess.getNamedTupleAccess().getGroup_1(), "rule__NamedTuple__Group_1__0");
+			builder.put(grammarAccess.getClassExtentExpressionAccess().getGroup(), "rule__ClassExtentExpression__Group__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup(), "rule__SequenceConstructionExpression__Group__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2(), "rule__SequenceConstructionExpression__Group_2__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2_1(), "rule__SequenceConstructionExpression__Group_2_1__0");
@@ -434,6 +438,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndExpressionAccess().getOperandAssignment_1_2(), "rule__AndExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getOperatorAssignment_1_1(), "rule__EqualityExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getOperandAssignment_1_2(), "rule__EqualityExpression__OperandAssignment_1_2");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_1_1(), "rule__ClassificationExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_1_2(), "rule__ClassificationExpression__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_1(), "rule__RelationalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperandAssignment_1_2(), "rule__RelationalExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getOperatorAssignment_1_1(), "rule__AdditiveExpression__OperatorAssignment_1_1");
@@ -459,6 +465,9 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_1_1(), "rule__PositionalTuple__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_0(), "rule__NamedTuple__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_1_1(), "rule__NamedTuple__OwnedRelationshipAssignment_1_1");
+			builder.put(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__ClassExtentExpression__OwnedRelationshipAssignment_0");
+			builder.put(grammarAccess.getClassExtentExpressionAccess().getOperatorAssignment_2(), "rule__ClassExtentExpression__OperatorAssignment_2");
+			builder.put(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipAssignment(), "rule__TypeReference__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_0(), "rule__SequenceConstructionExpression__ElementAssignment_2_0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_1_1(), "rule__SequenceConstructionExpression__ElementAssignment_2_1_1");
 			builder.put(grammarAccess.getBooleanLiteralExpressionAccess().getValueAssignment(), "rule__BooleanLiteralExpression__ValueAssignment");
@@ -466,6 +475,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRealLiteralExpressionAccess().getValueAssignment(), "rule__RealLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getNaturalLiteralExpressionAccess().getValueAssignment(), "rule__NaturalLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getFeatureReferenceAccess().getMemberFeatureAssignment(), "rule__FeatureReference__MemberFeatureAssignment");
+			builder.put(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementAssignment(), "rule__TypeReferenceMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__NamedExpressionMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyMember__OwnedRelatedElementAssignment");

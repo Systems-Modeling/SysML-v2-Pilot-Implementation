@@ -59,7 +59,8 @@ public interface OperatorExpression extends InvocationExpression {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
 	 * @generated
 	 */
 	EList<Expression> getOperand();

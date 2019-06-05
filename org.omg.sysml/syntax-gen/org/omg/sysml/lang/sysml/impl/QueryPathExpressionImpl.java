@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class QueryPathExpressionImpl extends ElementReferenceExpressionImpl implements QueryPathExpression {
+public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl implements QueryPathExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,12 +36,12 @@ public class QueryPathExpressionImpl extends ElementReferenceExpressionImpl impl
 	}
 
 	@Override
-	public Element getReferent() {
+	public Feature getReferent() {
         Element e = getReferentGen();
         if (e == null) {
             for (e = this; e != null; e = e.getOwner()) {
                 if (e instanceof Feature) {
-                    setReferent(e);
+                    setReferent((Feature)e);
                     break;
                 }
             }

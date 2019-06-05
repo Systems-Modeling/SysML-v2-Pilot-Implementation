@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ReturnParameterMembership extends FeatureMembership {
+public interface ReturnParameterMembership extends ParameterMembership {
 } // ReturnParameterMembership

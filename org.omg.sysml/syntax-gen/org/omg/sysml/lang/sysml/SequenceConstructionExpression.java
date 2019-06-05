@@ -33,6 +33,7 @@ public interface SequenceConstructionExpression extends Expression {
 	 * @return the value of the '<em>Element</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSequenceConstructionExpression_Element()
 	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sequenceConstructionExpression'"
 	 * @generated
 	 */
 	EList<Expression> getElement();

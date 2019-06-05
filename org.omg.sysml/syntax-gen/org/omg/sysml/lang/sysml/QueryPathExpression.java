@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface QueryPathExpression extends ElementReferenceExpression {
+public interface QueryPathExpression extends FeatureReferenceExpression {
 } // QueryPathExpression

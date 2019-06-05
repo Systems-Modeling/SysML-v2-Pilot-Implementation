@@ -309,17 +309,17 @@ mapping SysML::Connector::toConnector(): UML::Connector
 	inherits SysML::Element::toNamedElement {
 	// Note: This presumes that the connector ends are ordered the same as
 	// the association ends.
-	_end += self.connectorEnd->map toConnectorEnd();
+	_end += self.relatedFeature->map toConnectorEnd();
 	if self.association <> null then {
 		type := self.association.late resolveone(UML::Association);
 	} endif;
 }
 
-mapping SysML::ConnectorEnd::toConnectorEnd(): UML::ConnectorEnd {
-	role := self.feature.late resolveone(UML::Property);
-	if self.feature.owningMembership <> null and 
-		self.feature.owningMembership.membershipOwningPackage.oclIsKindOf(SysML::Feature) then {
-		partWithPort := self.feature.owningMembership.membershipOwningPackage.late resolveone(UML::Property);
+mapping SysML::Feature::toConnectorEnd(): UML::ConnectorEnd {
+	role := self.late resolveone(UML::Property);
+	if self.owningNamespace <> null and 
+		self.owningNamespace.oclIsKindOf(SysML::Feature) then {
+		partWithPort := self.owningNamespace.late resolveone(UML::Property);
 	} endif;
 }
 
@@ -340,11 +340,11 @@ mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
 	disjuncts
 		SysML::NullExpression::toLiteralNull,
 		SysML::LiteralExpression::toLiteralSpecification,
-//		SysML::OperatorExpression::toExpression,
+		SysML::OperatorExpression::toExpression,
 		SysML::InstanceCreationExpression::toExpression,
-		SysML::SequenceAccessExpression::toExpression,
+//		SysML::SequenceAccessExpression::toExpression,
 		SysML::SequenceConstructionExpression::toExpression,
-		SysML::ElementReferenceExpression::toExpression;
+		SysML::FeatureReferenceExpression::toExpression;
 
 mapping SysML::NullExpression::toLiteralNull(): UML::LiteralNull
 	inherits SysML::Element::toNamedElement {
@@ -393,8 +393,8 @@ mapping SysML::OperatorExpression::toExpression(): UML::Expression
 
 mapping SysML::InstanceCreationExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
-	symbol := 'new ' + self._class.name;
-	operand := self.argument->map toValueSpecification();
+	symbol := 'new ' + self.type![true].name;
+//	operand := self.argument->map toValueSpecification();
 }
 
 /*
@@ -405,12 +405,14 @@ mapping SysML::FeatureAccessExpression::toExpression(): UML::Expression
 }
 */
 
+/*
 mapping SysML::SequenceAccessExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := 'at';
 	operand += self.primary.map toValueSpecification();
 	operand += self.index.map toValueSpecification();
 }
+*/
 
 mapping SysML::SequenceConstructionExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
@@ -418,7 +420,7 @@ mapping SysML::SequenceConstructionExpression::toExpression(): UML::Expression
 	operand := self.element->map toValueSpecification();
 }
 
-mapping SysML::ElementReferenceExpression::toExpression(): UML::Expression
+mapping SysML::FeatureReferenceExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := self.referent.name;
 }

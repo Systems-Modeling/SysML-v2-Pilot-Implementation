@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -47,15 +46,15 @@ import org.omg.sysml.lang.sysml.ValueClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValuation <em>Valuation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
@@ -140,17 +139,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNonunique()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
-	
 	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
@@ -338,12 +326,16 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
-		EList<Subsetting> redefinitions = getComputedRedefinitions();
-		return redefinitions.isEmpty()? getOwnedSubsettingWithDefault(subsettingDefault): redefinitions;
+		getComputedRedefinitions();
+		return getOwnedSubsettingWithDefault(subsettingDefault);
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
 		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
+	}
+	
+	public EList<Subsetting> getOwnedSubsettingWithoutDefault() {
+		return getOwnedGeneralizationWithoutDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
 	}
 	
 	public EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
@@ -397,15 +389,20 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	
 	/**
 	 * Get the relevant Features that may be redefined from the given Category.
-	 * (By default, these are the end Features if the Category is an Association.)
+	 * If this is an end Feature, return the end Features of the Category,
+	 * otherwise return the relavent features of the category.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Category category) {
-		return getOwningFeatureMembership() instanceof EndFeatureMembership &&
-			   category instanceof Association?
-					((Association)category).getOwnedEndFeatureMembership().stream().
-					map(m->m.getMemberFeature()).collect(Collectors.toList()):
-			   getOwningCategory() instanceof Parameter?
-					   category.getOwnedFeature():
+		return getOwningFeatureMembership() instanceof EndFeatureMembership?
+						category.getFeature().stream().
+							filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+							collect(Collectors.toList()):
+					   
+			   // NOTE: This is a temporary measure until connecting to inherited features
+			   // is handled generally.
+			   getOwningCategory() instanceof Parameter? category.getOwnedFeature():
+						   
+			   category != null? ((CategoryImpl)category).getRelevantFeatures():
 			   Collections.emptyList();
 	}
 	
@@ -558,15 +555,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-                Feature result = ((ExpressionImpl) value).getResult();
-                if (result != null) {
-                    if (valueConnector == null) {
-                        valueConnector = addOwnedBindingConnector(result, this);
-                    } else {
-                        valueConnector.getConnectorEnd().get(0).setFeature(result);
-                        valueConnector.getConnectorEnd().get(1).setFeature(this);
-                    }
-                }
+				if (valueConnector == null) {
+					valueConnector = addOwnedBindingConnector(((ExpressionImpl)value).getResult(), this);
+				} else {
+					((ConnectorImpl)valueConnector).setRelatedFeature(0, ((ExpressionImpl)value).getResult());
+					((ConnectorImpl)valueConnector).setRelatedFeature(1, this);
+				}
 			}
 		}
 		return valueConnector;
@@ -621,14 +615,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				if (resolve) return getOwningFeatureMembership();
-				return basicGetOwningFeatureMembership();
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				return getReferencedType();
 			case SysMLPackage.FEATURE__OWNING_CATEGORY:
 				if (resolve) return getOwningCategory();
 				return basicGetOwningCategory();
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				return getReferencedType();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -641,6 +632,9 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				if (resolve) return getOwningFeatureMembership();
+				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
 			case SysMLPackage.FEATURE__VALUATION:
@@ -666,15 +660,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
-			case SysMLPackage.FEATURE__OWNING_CATEGORY:
-				setOwningCategory((Category)newValue);
-				return;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				getReferencedType().clear();
 				getReferencedType().addAll((Collection<? extends Category>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				setOwningCategory((Category)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
@@ -697,6 +688,9 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
@@ -726,14 +720,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				getReferencedType().clear();
 				return;
 			case SysMLPackage.FEATURE__OWNING_CATEGORY:
 				setOwningCategory((Category)null);
-				return;
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				getReferencedType().clear();
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
@@ -752,6 +743,9 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				return;
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
 				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
@@ -780,12 +774,10 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return basicGetOwningFeatureMembership() != null;
-			case SysMLPackage.FEATURE__OWNING_CATEGORY:
-				return basicGetOwningCategory() != null;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				return !getReferencedType().isEmpty();
+			case SysMLPackage.FEATURE__OWNING_CATEGORY:
+				return basicGetOwningCategory() != null;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -798,6 +790,8 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				return !getOwnedRedefinition().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return !getOwnedSubsetting().isEmpty();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return basicGetOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite() != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE__VALUATION:
@@ -807,7 +801,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 			case SysMLPackage.FEATURE__TYPING:
 				return typing != null && !typing.isEmpty();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique != IS_NONUNIQUE_EDEFAULT;
+				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -826,8 +820,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		result.append(isUnique);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
-		result.append(", isNonunique: ");
-		result.append(isNonunique);
 		result.append(')');
 		return result.toString();
 	}

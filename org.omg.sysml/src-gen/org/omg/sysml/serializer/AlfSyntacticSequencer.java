@@ -52,9 +52,20 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getQueryHeadExpressionRule())
+			return getQueryHeadExpressionToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * QueryHeadExpression :  	'./'
+	 * ;
+	 */
+	protected String getQueryHeadExpressionToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "./";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -106,10 +117,10 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' (rule start)
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' element+=Expression
+	 *     (rule start) (ambiguity) QueryHeadExpression operand+=QueryNameExpression
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReference
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureTyping

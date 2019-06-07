@@ -261,7 +261,6 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_1_2(), "rule__QueryPathExpression__Group_1_2__0");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2(), "rule__QueryPathExpression__Group_2__0");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2_3(), "rule__QueryPathExpression__Group_2_3__0");
-			builder.put(grammarAccess.getQueryHeadExpressionAccess().getGroup(), "rule__QueryHeadExpression__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup(), "rule__ColonQualifiedName__Group__0");
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");
 			builder.put(grammarAccess.getDotQualifiedNameAccess().getGroup(), "rule__DotQualifiedName__Group__0");

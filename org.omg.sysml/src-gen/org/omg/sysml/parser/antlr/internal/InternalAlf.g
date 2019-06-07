@@ -9870,9 +9870,8 @@ ruleQueryPathExpression returns [EObject current=null]
 		{
 			newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getQueryHeadExpressionParserRuleCall_0());
 		}
-		this_QueryHeadExpression_0=ruleQueryHeadExpression
+		ruleQueryHeadExpression
 		{
-			$current = $this_QueryHeadExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -9881,8 +9880,8 @@ ruleQueryPathExpression returns [EObject current=null]
 					/* */
 				}
 				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_1_0(),
+					$current = forceCreateModelElement(
+						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionAction_1_0(),
 						$current);
 				}
 			)
@@ -9944,7 +9943,7 @@ ruleQueryPathExpression returns [EObject current=null]
 					newLeafNode(otherlv_6, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_1_2_3());
 				}
 			)?
-		)?
+		)
 		(
 			otherlv_7='/'
 			{
@@ -10051,36 +10050,25 @@ ruleQueryNameExpression returns [EObject current=null]
 ;
 
 // Entry rule entryRuleQueryHeadExpression
-entryRuleQueryHeadExpression returns [EObject current=null]:
+entryRuleQueryHeadExpression returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getQueryHeadExpressionRule()); }
 	iv_ruleQueryHeadExpression=ruleQueryHeadExpression
-	{ $current=$iv_ruleQueryHeadExpression.current; }
+	{ $current=$iv_ruleQueryHeadExpression.current.getText(); }
 	EOF;
 
 // Rule QueryHeadExpression
-ruleQueryHeadExpression returns [EObject current=null]
+ruleQueryHeadExpression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 @init {
 	enterRule();
 }
 @after {
 	leaveRule();
 }:
-	(
-		(
-			{
-				/* */
-			}
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getQueryHeadExpressionAccess().getQueryPathExpressionAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='./'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_1());
-		}
-	)
+	kw='./'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword());
+	}
 ;
 
 // Entry rule entryRuleName

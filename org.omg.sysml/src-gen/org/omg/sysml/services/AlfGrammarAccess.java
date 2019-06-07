@@ -5395,7 +5395,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cQueryHeadExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cQueryPathStepExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cQueryPathStepExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandQueryNameExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
@@ -5417,14 +5417,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2_3_3 = (Keyword)cGroup_2_3.eContents().get(3);
 		
 		///* QUERY PATH EXPRESSION */ QueryPathExpression SysML::Expression:
-		//	QueryHeadExpression ({SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
-		//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)? ('/'
+		//	QueryHeadExpression ({SysML::QueryPathStepExpression} operand+=QueryNameExpression ('['
+		//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?) ('/'
 		//	{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
 		//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//QueryHeadExpression ({SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
-		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)? ('/'
+		//QueryHeadExpression ({SysML::QueryPathStepExpression} operand+=QueryNameExpression ('['
+		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?) ('/'
 		//{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
 		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*
 		public Group getGroup() { return cGroup; }
@@ -5432,12 +5432,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QueryHeadExpression
 		public RuleCall getQueryHeadExpressionParserRuleCall_0() { return cQueryHeadExpressionParserRuleCall_0; }
 		
-		//({SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
-		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)?
+		//{SysML::QueryPathStepExpression} operand+=QueryNameExpression ('[' {SysML::QueryQualifierExpression.operand+=current}
+		//ownedRelationship+=BodyMember ']')?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{SysML::QueryPathStepExpression.operand+=current}
-		public Action getQueryPathStepExpressionOperandAction_1_0() { return cQueryPathStepExpressionOperandAction_1_0; }
+		//{SysML::QueryPathStepExpression}
+		public Action getQueryPathStepExpressionAction_1_0() { return cQueryPathStepExpressionAction_1_0; }
 		
 		//operand+=QueryNameExpression
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -5505,7 +5505,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	FeatureReferenceExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//// It should be FeatureReferenceExpression
 		///* isParent ?= '..'
 		//	| isDescendants ?= '/'
 		//        | @traversal
@@ -5514,23 +5513,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class QueryHeadExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QueryHeadExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cQueryPathExpressionAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cFullStopSolidusKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cFullStopSolidusKeyword = (Keyword)rule.eContents().get(1);
 		
-		//QueryHeadExpression SysML::QueryPathExpression:
-		//	{SysML::QueryPathExpression}
+		//QueryHeadExpression: // Currently Syntactic Marker
 		//	'./';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::QueryPathExpression} './'
-		public Group getGroup() { return cGroup; }
-		
-		//{SysML::QueryPathExpression}
-		public Action getQueryPathExpressionAction_0() { return cQueryPathExpressionAction_0; }
-		
+		//// Currently Syntactic Marker
 		//'./'
-		public Keyword getFullStopSolidusKeyword_1() { return cFullStopSolidusKeyword_1; }
+		public Keyword getFullStopSolidusKeyword() { return cFullStopSolidusKeyword; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
@@ -7684,8 +7675,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* QUERY PATH EXPRESSION */ QueryPathExpression SysML::Expression:
-	//	QueryHeadExpression ({SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
-	//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)? ('/'
+	//	QueryHeadExpression ({SysML::QueryPathStepExpression} operand+=QueryNameExpression ('['
+	//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?) ('/'
 	//	{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
 	//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*;
 	public QueryPathExpressionElements getQueryPathExpressionAccess() {
@@ -7706,8 +7697,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getQueryNameExpressionAccess().getRule();
 	}
 	
-	//QueryHeadExpression SysML::QueryPathExpression:
-	//	{SysML::QueryPathExpression}
+	//QueryHeadExpression: // Currently Syntactic Marker
 	//	'./';
 	public QueryHeadExpressionElements getQueryHeadExpressionAccess() {
 		return pQueryHeadExpression;

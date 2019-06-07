@@ -3396,9 +3396,9 @@ ruleQueryHeadExpression
 	}
 	:
 	(
-		{ before(grammarAccess.getQueryHeadExpressionAccess().getGroup()); }
-		(rule__QueryHeadExpression__Group__0)
-		{ after(grammarAccess.getQueryHeadExpressionAccess().getGroup()); }
+		{ before(grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword()); }
+		'./'
+		{ after(grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword()); }
 	)
 ;
 finally {
@@ -18345,7 +18345,7 @@ rule__QueryPathExpression__Group__1__Impl
 :
 (
 	{ before(grammarAccess.getQueryPathExpressionAccess().getGroup_1()); }
-	(rule__QueryPathExpression__Group_1__0)?
+	(rule__QueryPathExpression__Group_1__0)
 	{ after(grammarAccess.getQueryPathExpressionAccess().getGroup_1()); }
 )
 ;
@@ -18398,9 +18398,9 @@ rule__QueryPathExpression__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_1_0()); }
+	{ before(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionAction_1_0()); }
 	()
-	{ after(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_1_0()); }
+	{ after(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionAction_1_0()); }
 )
 ;
 finally {
@@ -18778,60 +18778,6 @@ rule__QueryPathExpression__Group_2_3__3__Impl
 	{ before(grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_2_3_3()); }
 	']'
 	{ after(grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_2_3_3()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__QueryHeadExpression__Group__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__QueryHeadExpression__Group__0__Impl
-	rule__QueryHeadExpression__Group__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__QueryHeadExpression__Group__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getQueryHeadExpressionAccess().getQueryPathExpressionAction_0()); }
-	()
-	{ after(grammarAccess.getQueryHeadExpressionAccess().getQueryPathExpressionAction_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__QueryHeadExpression__Group__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__QueryHeadExpression__Group__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__QueryHeadExpression__Group__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_1()); }
-	'./'
-	{ after(grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_1()); }
 )
 ;
 finally {

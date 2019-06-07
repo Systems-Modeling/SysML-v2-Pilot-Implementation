@@ -40,7 +40,6 @@ import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.QueryPathExpression;
 import org.omg.sysml.lang.sysml.QueryPathStepExpression;
 import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -393,9 +392,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				sequence_QueryHeadExpression(context, (QueryPathExpression) semanticObject); 
-				return; 
 			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
 				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
@@ -670,8 +666,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -752,8 +748,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1031,8 +1027,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1088,8 +1084,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1169,8 +1165,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1250,8 +1246,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
-	 *         ownedRelationship+=PackageImport? 
-	 *         (ownedRelationship+=CategoryMember? ownedRelationship+=PackageImport?)*
+	 *         ownedRelationship+=CategoryMember? 
+	 *         (ownedRelationship+=PackageImport? ownedRelationship+=CategoryMember?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -1697,8 +1693,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1970,54 +1966,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Expression returns QueryPathExpression
-	 *     ConditionalExpression returns QueryPathExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     NullCoalescingExpression returns QueryPathExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ConditionalOrExpression returns QueryPathExpression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ConditionalAndExpression returns QueryPathExpression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     OrExpression returns QueryPathExpression
-	 *     OrExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     XorExpression returns QueryPathExpression
-	 *     XorExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     AndExpression returns QueryPathExpression
-	 *     AndExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     EqualityExpression returns QueryPathExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ClassificationExpression returns QueryPathExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     RelationalExpression returns QueryPathExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     AdditiveExpression returns QueryPathExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     MultiplicativeExpression returns QueryPathExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     UnitsExpression returns QueryPathExpression
-	 *     UnitsExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     UnaryExpression returns QueryPathExpression
-	 *     SequenceAccessExpression returns QueryPathExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     PrimaryExpression returns QueryPathExpression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     BaseExpression returns QueryPathExpression
-	 *     QueryPathExpression returns QueryPathExpression
-	 *     QueryPathExpression.QueryPathStepExpression_1_0 returns QueryPathExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathExpression
-	 *     QueryHeadExpression returns QueryPathExpression
-	 *
-	 * Constraint:
-	 *     {QueryPathExpression}
-	 */
-	protected void sequence_QueryHeadExpression(ISerializationContext context, QueryPathExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Expression returns QueryPathStepExpression
 	 *     ConditionalExpression returns QueryPathStepExpression
 	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathStepExpression
@@ -2055,10 +2003,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathStepExpression
 	 *
 	 * Constraint:
-	 *     (
-	 *         (operand+=QueryPathExpression_QueryPathStepExpression_1_0 operand+=QueryNameExpression) | 
-	 *         (operand+=QueryPathExpression_QueryPathStepExpression_2_1 operand+=QueryNameExpression)
-	 *     )
+	 *     (operand+=QueryNameExpression | (operand+=QueryPathExpression_QueryPathStepExpression_2_1 operand+=QueryNameExpression))
 	 */
 	protected void sequence_QueryPathExpression(ISerializationContext context, QueryPathStepExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2119,7 +2064,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     QueryPathExpression.QueryQualifierExpression_1_2_1 returns QueryPathStepExpression
 	 *
 	 * Constraint:
-	 *     (operand+=QueryPathExpression_QueryPathStepExpression_1_0 operand+=QueryNameExpression)
+	 *     operand+=QueryNameExpression
 	 */
 	protected void sequence_QueryPathExpression_QueryQualifierExpression_1_2_1(ISerializationContext context, QueryPathStepExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

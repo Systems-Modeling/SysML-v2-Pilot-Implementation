@@ -2,8 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.QueryPathExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -36,17 +38,11 @@ public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl impl
 	}
 
 	@Override
-	public Feature getReferent() {
-        Element e = getReferentGen();
-        if (e == null) {
-            for (e = this; e != null; e = e.getOwner()) {
-                if (e instanceof Feature) {
-                    setReferent((Feature)e);
-                    break;
-                }
-            }
-        }
-        return super.getReferent();
-    }
-
+	public Feature getResult() {
+		List<Feature> outputs = getOutput().stream().
+				filter(feature->feature.getOwner() == this).collect(Collectors.toList());;
+		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
+	}
+	
+	
 } //QueryPathExpressionImpl

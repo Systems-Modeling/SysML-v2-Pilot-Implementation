@@ -9870,84 +9870,54 @@ ruleQueryPathExpression returns [EObject current=null]
 		{
 			newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getQueryHeadExpressionParserRuleCall_0());
 		}
-		ruleQueryHeadExpression
+		this_QueryHeadExpression_0=ruleQueryHeadExpression
 		{
+			$current = $this_QueryHeadExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
+			otherlv_1='['
+			{
+				newLeafNode(otherlv_1, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_1_0());
+			}
 			(
 				{
 					/* */
 				}
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionAction_1_0(),
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1(),
 						$current);
 				}
 			)
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_2_0());
 					}
-					lv_operand_2_0=ruleQueryNameExpression
+					lv_ownedRelationship_3_0=ruleBodyMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
 						}
 						add(
 							$current,
-							"operand",
-							lv_operand_2_0,
-							"org.omg.sysml.Alf.QueryNameExpression");
+							"ownedRelationship",
+							lv_ownedRelationship_3_0,
+							"org.omg.sysml.Alf.BodyMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			(
-				otherlv_3='['
-				{
-					newLeafNode(otherlv_3, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_1_2_0());
-				}
-				(
-					{
-						/* */
-					}
-					{
-						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_2_1(),
-							$current);
-					}
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_2_2_0());
-						}
-						lv_ownedRelationship_5_0=ruleBodyMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_5_0,
-								"org.omg.sysml.Alf.BodyMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				otherlv_6=']'
-				{
-					newLeafNode(otherlv_6, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_1_2_3());
-				}
-			)?
-		)
-		(
-			otherlv_7='/'
+			otherlv_4=']'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getQueryPathExpressionAccess().getSolidusKeyword_2_0());
+				newLeafNode(otherlv_4, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_1_3());
+			}
+		)?
+		(
+			otherlv_5='/'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getQueryPathExpressionAccess().getSolidusKeyword_2_0());
 			}
 			(
 				{
@@ -9964,7 +9934,7 @@ ruleQueryPathExpression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0());
 					}
-					lv_operand_9_0=ruleQueryNameExpression
+					lv_operand_7_0=ruleQueryNameExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
@@ -9972,16 +9942,16 @@ ruleQueryPathExpression returns [EObject current=null]
 						add(
 							$current,
 							"operand",
-							lv_operand_9_0,
+							lv_operand_7_0,
 							"org.omg.sysml.Alf.QueryNameExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_10='['
+				otherlv_8='['
 				{
-					newLeafNode(otherlv_10, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_2_3_0());
+					newLeafNode(otherlv_8, grammarAccess.getQueryPathExpressionAccess().getLeftSquareBracketKeyword_2_3_0());
 				}
 				(
 					{
@@ -9998,7 +9968,7 @@ ruleQueryPathExpression returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0());
 						}
-						lv_ownedRelationship_12_0=ruleBodyMember
+						lv_ownedRelationship_10_0=ruleBodyMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
@@ -10006,15 +9976,15 @@ ruleQueryPathExpression returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_12_0,
+								lv_ownedRelationship_10_0,
 								"org.omg.sysml.Alf.BodyMember");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-				otherlv_13=']'
+				otherlv_11=']'
 				{
-					newLeafNode(otherlv_13, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_2_3_3());
+					newLeafNode(otherlv_11, grammarAccess.getQueryPathExpressionAccess().getRightSquareBracketKeyword_2_3_3());
 				}
 			)?
 		)*
@@ -10036,39 +10006,59 @@ ruleQueryNameExpression returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		/* */
-	}
-	{
-		newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getFeatureReferenceExpressionParserRuleCall());
-	}
-	this_FeatureReferenceExpression_0=ruleFeatureReferenceExpression
-	{
-		$current = $this_FeatureReferenceExpression_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=ruleFeatureReference
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getQueryNameExpressionRule());
+				}
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.Alf.FeatureReference");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
 ;
 
 // Entry rule entryRuleQueryHeadExpression
-entryRuleQueryHeadExpression returns [String current=null]:
+entryRuleQueryHeadExpression returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getQueryHeadExpressionRule()); }
 	iv_ruleQueryHeadExpression=ruleQueryHeadExpression
-	{ $current=$iv_ruleQueryHeadExpression.current.getText(); }
+	{ $current=$iv_ruleQueryHeadExpression.current; }
 	EOF;
 
 // Rule QueryHeadExpression
-ruleQueryHeadExpression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleQueryHeadExpression returns [EObject current=null]
 @init {
 	enterRule();
 }
 @after {
 	leaveRule();
 }:
-	kw='./'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword());
-	}
+	(
+		otherlv_0='./'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
+		}
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getFeatureReferenceExpressionParserRuleCall_1());
+		}
+		this_FeatureReferenceExpression_1=ruleFeatureReferenceExpression
+		{
+			$current = $this_FeatureReferenceExpression_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRuleName

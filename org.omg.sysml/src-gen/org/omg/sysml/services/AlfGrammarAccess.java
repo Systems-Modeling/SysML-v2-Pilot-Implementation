@@ -4812,27 +4812,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNullExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cLiteralExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cFeatureReferenceExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cInvocationExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cClassExtentExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cSequenceConstructionExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Keyword cLeftParenthesisKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final RuleCall cExpressionParserRuleCall_6_1 = (RuleCall)cGroup_6.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
+		private final RuleCall cQueryPathExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cInvocationExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cClassExtentExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cSequenceConstructionExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Keyword cLeftParenthesisKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
 		
 		//// Base Expressions
 		//BaseExpression SysML::Expression:
 		//	NullExpression
 		//	| LiteralExpression
 		//	| FeatureReferenceExpression
+		//	| QueryPathExpression
 		//	| InvocationExpression
 		//	| ClassExtentExpression
 		//	| SequenceConstructionExpression
 		//	| '(' Expression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//NullExpression | LiteralExpression | FeatureReferenceExpression | InvocationExpression | ClassExtentExpression |
-		//SequenceConstructionExpression | '(' Expression ')'
+		//NullExpression | LiteralExpression | FeatureReferenceExpression | QueryPathExpression | InvocationExpression |
+		//ClassExtentExpression | SequenceConstructionExpression | '(' Expression ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//NullExpression
@@ -4844,26 +4846,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FeatureReferenceExpression
 		public RuleCall getFeatureReferenceExpressionParserRuleCall_2() { return cFeatureReferenceExpressionParserRuleCall_2; }
 		
+		//QueryPathExpression
+		public RuleCall getQueryPathExpressionParserRuleCall_3() { return cQueryPathExpressionParserRuleCall_3; }
+		
 		//InvocationExpression
-		public RuleCall getInvocationExpressionParserRuleCall_3() { return cInvocationExpressionParserRuleCall_3; }
+		public RuleCall getInvocationExpressionParserRuleCall_4() { return cInvocationExpressionParserRuleCall_4; }
 		
 		//ClassExtentExpression
-		public RuleCall getClassExtentExpressionParserRuleCall_4() { return cClassExtentExpressionParserRuleCall_4; }
+		public RuleCall getClassExtentExpressionParserRuleCall_5() { return cClassExtentExpressionParserRuleCall_5; }
 		
 		//SequenceConstructionExpression
-		public RuleCall getSequenceConstructionExpressionParserRuleCall_5() { return cSequenceConstructionExpressionParserRuleCall_5; }
+		public RuleCall getSequenceConstructionExpressionParserRuleCall_6() { return cSequenceConstructionExpressionParserRuleCall_6; }
 		
 		//'(' Expression ')'
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_7() { return cGroup_7; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_6_0() { return cLeftParenthesisKeyword_6_0; }
+		public Keyword getLeftParenthesisKeyword_7_0() { return cLeftParenthesisKeyword_7_0; }
 		
 		//Expression
-		public RuleCall getExpressionParserRuleCall_6_1() { return cExpressionParserRuleCall_6_1; }
+		public RuleCall getExpressionParserRuleCall_7_1() { return cExpressionParserRuleCall_7_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_6_2() { return cRightParenthesisKeyword_6_2; }
+		public Keyword getRightParenthesisKeyword_7_2() { return cRightParenthesisKeyword_7_2; }
 	}
 	public class FeatureReferenceExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.FeatureReferenceExpression");
@@ -5385,6 +5390,131 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ParameterDefinition
 		public RuleCall getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0() { return cOwnedRelatedElementParameterDefinitionParserRuleCall_1_0; }
 	}
+	public class QueryPathExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QueryPathExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQueryHeadExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Action cQueryQualifierExpressionOperandAction_1_1 = (Action)cGroup_1.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOwnedRelationshipBodyMemberParserRuleCall_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cSolidusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Action cQueryPathStepExpressionOperandAction_2_1 = (Action)cGroup_2.eContents().get(1);
+		private final Assignment cOperandAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cOperandQueryNameExpressionParserRuleCall_2_2_0 = (RuleCall)cOperandAssignment_2_2.eContents().get(0);
+		private final Group cGroup_2_3 = (Group)cGroup_2.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
+		private final Action cQueryQualifierExpressionOperandAction_2_3_1 = (Action)cGroup_2_3.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_2_3_2 = (Assignment)cGroup_2_3.eContents().get(2);
+		private final RuleCall cOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0 = (RuleCall)cOwnedRelationshipAssignment_2_3_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2_3_3 = (Keyword)cGroup_2_3.eContents().get(3);
+		
+		///* QUERY PATH EXPRESSION */ QueryPathExpression SysML::Expression:
+		//	QueryHeadExpression ('[' {SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')? ('/'
+		//	{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
+		//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//QueryHeadExpression ('[' {SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')? ('/'
+		//{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
+		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*
+		public Group getGroup() { return cGroup; }
+		
+		//QueryHeadExpression
+		public RuleCall getQueryHeadExpressionParserRuleCall_0() { return cQueryHeadExpressionParserRuleCall_0; }
+		
+		//('[' {SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		
+		//{SysML::QueryQualifierExpression.operand+=current}
+		public Action getQueryQualifierExpressionOperandAction_1_1() { return cQueryQualifierExpressionOperandAction_1_1; }
+		
+		//ownedRelationship+=BodyMember
+		public Assignment getOwnedRelationshipAssignment_1_2() { return cOwnedRelationshipAssignment_1_2; }
+		
+		//BodyMember
+		public RuleCall getOwnedRelationshipBodyMemberParserRuleCall_1_2_0() { return cOwnedRelationshipBodyMemberParserRuleCall_1_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
+		
+		//('/' {SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
+		//{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'/'
+		public Keyword getSolidusKeyword_2_0() { return cSolidusKeyword_2_0; }
+		
+		//{SysML::QueryPathStepExpression.operand+=current}
+		public Action getQueryPathStepExpressionOperandAction_2_1() { return cQueryPathStepExpressionOperandAction_2_1; }
+		
+		//operand+=QueryNameExpression
+		public Assignment getOperandAssignment_2_2() { return cOperandAssignment_2_2; }
+		
+		//QueryNameExpression
+		public RuleCall getOperandQueryNameExpressionParserRuleCall_2_2_0() { return cOperandQueryNameExpressionParserRuleCall_2_2_0; }
+		
+		//('[' {SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?
+		public Group getGroup_2_3() { return cGroup_2_3; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_2_3_0() { return cLeftSquareBracketKeyword_2_3_0; }
+		
+		//{SysML::QueryQualifierExpression.operand+=current}
+		public Action getQueryQualifierExpressionOperandAction_2_3_1() { return cQueryQualifierExpressionOperandAction_2_3_1; }
+		
+		//ownedRelationship+=BodyMember
+		public Assignment getOwnedRelationshipAssignment_2_3_2() { return cOwnedRelationshipAssignment_2_3_2; }
+		
+		//BodyMember
+		public RuleCall getOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0() { return cOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2_3_3() { return cRightSquareBracketKeyword_2_3_3; }
+	}
+	public class QueryNameExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QueryNameExpression");
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipFeatureReferenceParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
+		
+		//QueryNameExpression SysML::QueryPathExpression:
+		//	ownedRelationship+=FeatureReference;
+		@Override public ParserRule getRule() { return rule; }
+		
+		///* isParent ?= '..'
+		//    | isDescendants ?= '/'
+		//    | @traversal
+		//    */ ownedRelationship+=FeatureReference
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
+		
+		//FeatureReference
+		public RuleCall getOwnedRelationshipFeatureReferenceParserRuleCall_0() { return cOwnedRelationshipFeatureReferenceParserRuleCall_0; }
+	}
+	public class QueryHeadExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QueryHeadExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cFullStopSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cFeatureReferenceExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		
+		//QueryHeadExpression SysML::FeatureReferenceExpression:
+		//	'./' FeatureReferenceExpression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'./' FeatureReferenceExpression
+		public Group getGroup() { return cGroup; }
+		
+		//'./'
+		public Keyword getFullStopSolidusKeyword_0() { return cFullStopSolidusKeyword_0; }
+		
+		//FeatureReferenceExpression
+		public RuleCall getFeatureReferenceExpressionParserRuleCall_1() { return cFeatureReferenceExpressionParserRuleCall_1; }
+	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -5735,6 +5865,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final NamedExpressionMemberElements pNamedExpressionMember;
 	private final BodyMemberElements pBodyMember;
 	private final BodyParameterMemberElements pBodyParameterMember;
+	private final QueryPathExpressionElements pQueryPathExpression;
+	private final QueryNameExpressionElements pQueryNameExpression;
+	private final QueryHeadExpressionElements pQueryHeadExpression;
 	private final NameElements pName;
 	private final QualifiedNameElements pQualifiedName;
 	private final ColonQualifiedNameElements pColonQualifiedName;
@@ -5904,6 +6037,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNamedExpressionMember = new NamedExpressionMemberElements();
 		this.pBodyMember = new BodyMemberElements();
 		this.pBodyParameterMember = new BodyParameterMemberElements();
+		this.pQueryPathExpression = new QueryPathExpressionElements();
+		this.pQueryNameExpression = new QueryNameExpressionElements();
+		this.pQueryHeadExpression = new QueryHeadExpressionElements();
 		this.pName = new NameElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pColonQualifiedName = new ColonQualifiedNameElements();
@@ -7306,6 +7442,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	NullExpression
 	//	| LiteralExpression
 	//	| FeatureReferenceExpression
+	//	| QueryPathExpression
 	//	| InvocationExpression
 	//	| ClassExtentExpression
 	//	| SequenceConstructionExpression
@@ -7527,6 +7664,38 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getBodyParameterMemberRule() {
 		return getBodyParameterMemberAccess().getRule();
+	}
+	
+	///* QUERY PATH EXPRESSION */ QueryPathExpression SysML::Expression:
+	//	QueryHeadExpression ('[' {SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')? ('/'
+	//	{SysML::QueryPathStepExpression.operand+=current} operand+=QueryNameExpression ('['
+	//	{SysML::QueryQualifierExpression.operand+=current} ownedRelationship+=BodyMember ']')?)*;
+	public QueryPathExpressionElements getQueryPathExpressionAccess() {
+		return pQueryPathExpression;
+	}
+	
+	public ParserRule getQueryPathExpressionRule() {
+		return getQueryPathExpressionAccess().getRule();
+	}
+	
+	//QueryNameExpression SysML::QueryPathExpression:
+	//	ownedRelationship+=FeatureReference;
+	public QueryNameExpressionElements getQueryNameExpressionAccess() {
+		return pQueryNameExpression;
+	}
+	
+	public ParserRule getQueryNameExpressionRule() {
+		return getQueryNameExpressionAccess().getRule();
+	}
+	
+	//QueryHeadExpression SysML::FeatureReferenceExpression:
+	//	'./' FeatureReferenceExpression;
+	public QueryHeadExpressionElements getQueryHeadExpressionAccess() {
+		return pQueryHeadExpression;
+	}
+	
+	public ParserRule getQueryHeadExpressionRule() {
+		return getQueryHeadExpressionAccess().getRule();
 	}
 	
 	///* NAMES */ Name:

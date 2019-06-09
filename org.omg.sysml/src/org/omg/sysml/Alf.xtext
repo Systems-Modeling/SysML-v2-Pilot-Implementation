@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
+ *  Hisahsi Miyashita, Maplesoft
  * 
  *****************************************************************************/
 
@@ -735,6 +737,7 @@ BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| FeatureReferenceExpression 
+	| QueryPathExpression
 	| InvocationExpression 
 	| ClassExtentExpression
 	| SequenceConstructionExpression 
@@ -828,6 +831,32 @@ BodyMember returns SysML::FeatureMembership :
 BodyParameterMember returns SysML::ParameterMembership :
 	memberName = Name ownedRelatedElement += ParameterDefinition
 ;
+
+/* QUERY PATH EXPRESSION */
+
+QueryPathExpression returns SysML::Expression :
+	QueryHeadExpression
+	( '[' {SysML::QueryQualifierExpression.operand += current}
+         ( ownedRelationship += BodyMember ) ']' )?
+	( '/' {SysML::QueryPathStepExpression.operand += current}
+		operand += QueryNameExpression
+		( '[' {SysML::QueryQualifierExpression.operand += current}
+	         ( ownedRelationship += BodyMember ) ']' )?
+	)*
+;
+
+QueryNameExpression returns SysML::QueryPathExpression :
+    /* isParent ?= '..'
+    | isDescendants ?= '/'
+    | @traversal
+    */
+    ownedRelationship += FeatureReference
+;
+
+QueryHeadExpression returns SysML::FeatureReferenceExpression :
+	'./' FeatureReferenceExpression
+;
+        
 
 /* NAMES */
 

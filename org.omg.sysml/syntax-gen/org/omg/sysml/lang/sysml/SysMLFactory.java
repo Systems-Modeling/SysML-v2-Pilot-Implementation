@@ -400,6 +400,33 @@ public interface SysMLFactory extends EFactory {
 	ReturnParameterMembership createReturnParameterMembership();
 
 	/**
+	 * Returns a new object of class '<em>Query Path Step Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Path Step Expression</em>'.
+	 * @generated
+	 */
+	QueryPathStepExpression createQueryPathStepExpression();
+
+	/**
+	 * Returns a new object of class '<em>Query Qualifier Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Qualifier Expression</em>'.
+	 * @generated
+	 */
+	QueryQualifierExpression createQueryQualifierExpression();
+
+	/**
+	 * Returns a new object of class '<em>Query Path Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Path Expression</em>'.
+	 * @generated
+	 */
+	QueryPathExpression createQueryPathExpression();
+
+	/**
 	 * Returns a new object of class '<em>Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

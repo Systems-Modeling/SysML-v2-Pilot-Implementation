@@ -53,6 +53,9 @@ import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.QueryPathExpression;
+import org.omg.sysml.lang.sysml.QueryPathStepExpression;
+import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -166,6 +169,9 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.OWNERSHIP: return createOwnership();
 			case SysMLPackage.COMMENT: return createComment();
 			case SysMLPackage.ANNOTATION: return createAnnotation();
+			case SysMLPackage.QUERY_PATH_EXPRESSION: return createQueryPathExpression();
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION: return createQueryPathStepExpression();
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION: return createQueryQualifierExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -665,6 +671,39 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public ReturnParameterMembership createReturnParameterMembership() {
 		ReturnParameterMembershipImpl returnParameterMembership = new ReturnParameterMembershipImpl();
 		return returnParameterMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public QueryPathStepExpression createQueryPathStepExpression() {
+		QueryPathStepExpressionImpl queryPathStepExpression = new QueryPathStepExpressionImpl();
+		return queryPathStepExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public QueryQualifierExpression createQueryQualifierExpression() {
+		QueryQualifierExpressionImpl queryQualifierExpression = new QueryQualifierExpressionImpl();
+		return queryQualifierExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public QueryPathExpression createQueryPathExpression() {
+		QueryPathExpressionImpl queryPathExpression = new QueryPathExpressionImpl();
+		return queryPathExpression;
 	}
 
 	/**

@@ -1164,4 +1164,13 @@ else owningNamespace.nameOf(self) endif</body>
     </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="4b79fb44-57d3-446f-a4cc-4fd50fbc2bfb" name="" visibility="public" memberEnd="3d9def15-9cea-4500-9f8e-6255b8653611 7f952a01-37c9-4a58-b3f4-24261885c2b4"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1M3YIIfTEemHeZjWGNSnNg" name="QueryPathExpression">
+    <generalization xmi:id="_4qq7wIfTEemHeZjWGNSnNg" general="a992e14b-0838-46e3-a486-3d4339717f13"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AJJfgIfUEemHeZjWGNSnNg" name="QueryPathStepExpression">
+    <generalization xmi:id="_bsuJQIfUEemHeZjWGNSnNg" general="3164fef9-064a-469f-9c1a-20e58415db72"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V9eHcIfUEemHeZjWGNSnNg" name="QueryQualifierExpression">
+    <generalization xmi:id="_b1viYIfUEemHeZjWGNSnNg" general="3164fef9-064a-469f-9c1a-20e58415db72"/>
+  </packagedElement>
 </uml:Model>

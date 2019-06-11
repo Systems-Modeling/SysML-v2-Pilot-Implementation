@@ -17,6 +17,7 @@ package org.omg.sysml.lang.sysml;
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
@@ -141,6 +142,33 @@ public interface FeatureMembership extends Membership {
 	 * @generated
 	 */
 	void setIsPart(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Portion</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Portion</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Portion</em>' attribute.
+	 * @see #setIsPortion(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPortion()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isPortion();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Portion</em>' attribute.
+	 * @see #isPortion()
+	 * @generated
+	 */
+	void setIsPortion(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Port</b></em>' attribute.

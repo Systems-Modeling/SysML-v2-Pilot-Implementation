@@ -106,7 +106,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getEndFeatureMembership()
 	 * @generated
 	 */
-	int END_FEATURE_MEMBERSHIP = 25;
+	int END_FEATURE_MEMBERSHIP = 26;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.PackageImpl <em>Package</em>}' class.
@@ -296,7 +296,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getAssociation()
 	 * @generated
 	 */
-	int ASSOCIATION = 24;
+	int ASSOCIATION = 25;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl <em>Connector</em>}' class.
@@ -306,7 +306,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getConnector()
 	 * @generated
 	 */
-	int CONNECTOR = 26;
+	int CONNECTOR = 24;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl <em>Of Succession</em>}' class.
@@ -316,7 +316,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getOfSuccession()
 	 * @generated
 	 */
-	int OF_SUCCESSION = 35;
+	int OF_SUCCESSION = 33;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.StructuredFeatureImpl <em>Structured Feature</em>}' class.
@@ -326,7 +326,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStructuredFeature()
 	 * @generated
 	 */
-	int STRUCTURED_FEATURE = 34;
+	int STRUCTURED_FEATURE = 35;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.OrderedFeatureImpl <em>Ordered Feature</em>}' class.
@@ -336,7 +336,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getOrderedFeature()
 	 * @generated
 	 */
-	int ORDERED_FEATURE = 33;
+	int ORDERED_FEATURE = 34;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.BindingConnectorImpl <em>Binding Connector</em>}' class.
@@ -346,7 +346,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getBindingConnector()
 	 * @generated
 	 */
-	int BINDING_CONNECTOR = 32;
+	int BINDING_CONNECTOR = 27;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ValueClassImpl <em>Value Class</em>}' class.
@@ -356,7 +356,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getValueClass()
 	 * @generated
 	 */
-	int VALUE_CLASS = 30;
+	int VALUE_CLASS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ObjectClassImpl <em>Object Class</em>}' class.
@@ -366,7 +366,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getObjectClass()
 	 * @generated
 	 */
-	int OBJECT_CLASS = 31;
+	int OBJECT_CLASS = 0;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SuccessionImpl <em>Succession</em>}' class.
@@ -376,7 +376,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSuccession()
 	 * @generated
 	 */
-	int SUCCESSION = 28;
+	int SUCCESSION = 36;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.CommentImpl <em>Comment</em>}' class.
@@ -386,7 +386,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getComment()
 	 * @generated
 	 */
-	int COMMENT = 52;
+	int COMMENT = 29;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -396,7 +396,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getAnnotation()
 	 * @generated
 	 */
-	int ANNOTATION = 53;
+	int ANNOTATION = 28;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AtomicInteractionImpl <em>Atomic Interaction</em>}' class.
@@ -406,7 +406,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getAtomicInteraction()
 	 * @generated
 	 */
-	int ATOMIC_INTERACTION = 0;
+	int ATOMIC_INTERACTION = 37;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.InteractionImpl <em>Interaction</em>}' class.
@@ -416,7 +416,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInteraction()
 	 * @generated
 	 */
-	int INTERACTION = 23;
+	int INTERACTION = 38;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl <em>Ownership</em>}' class.
@@ -426,7 +426,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getOwnership()
 	 * @generated
 	 */
-	int OWNERSHIP = 51;
+	int OWNERSHIP = 30;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralExpressionImpl <em>Literal Expression</em>}' class.
@@ -436,7 +436,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralExpression()
 	 * @generated
 	 */
-	int LITERAL_EXPRESSION = 45;
+	int LITERAL_EXPRESSION = 50;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralBooleanImpl <em>Literal Boolean</em>}' class.
@@ -446,7 +446,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralBoolean()
 	 * @generated
 	 */
-	int LITERAL_BOOLEAN = 49;
+	int LITERAL_BOOLEAN = 54;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralRealImpl <em>Literal Real</em>}' class.
@@ -456,7 +456,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralReal()
 	 * @generated
 	 */
-	int LITERAL_REAL = 46;
+	int LITERAL_REAL = 51;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralUnboundedImpl <em>Literal Unbounded</em>}' class.
@@ -466,7 +466,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralUnbounded()
 	 * @generated
 	 */
-	int LITERAL_UNBOUNDED = 48;
+	int LITERAL_UNBOUNDED = 52;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl <em>Literal Integer</em>}' class.
@@ -476,7 +476,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralInteger()
 	 * @generated
 	 */
-	int LITERAL_INTEGER = 44;
+	int LITERAL_INTEGER = 56;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralStringImpl <em>Literal String</em>}' class.
@@ -486,7 +486,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralString()
 	 * @generated
 	 */
-	int LITERAL_STRING = 50;
+	int LITERAL_STRING = 53;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl <em>Item Flow</em>}' class.
@@ -496,7 +496,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getItemFlow()
 	 * @generated
 	 */
-	int ITEM_FLOW = 29;
+	int ITEM_FLOW = 40;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SuccessionItemFlowImpl <em>Succession Item Flow</em>}' class.
@@ -506,7 +506,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSuccessionItemFlow()
 	 * @generated
 	 */
-	int SUCCESSION_ITEM_FLOW = 27;
+	int SUCCESSION_ITEM_FLOW = 39;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl <em>Instance Creation Expression</em>}' class.
@@ -516,7 +516,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInstanceCreationExpression()
 	 * @generated
 	 */
-	int INSTANCE_CREATION_EXPRESSION = 43;
+	int INSTANCE_CREATION_EXPRESSION = 45;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.NullExpressionImpl <em>Null Expression</em>}' class.
@@ -526,7 +526,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getNullExpression()
 	 * @generated
 	 */
-	int NULL_EXPRESSION = 47;
+	int NULL_EXPRESSION = 55;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SequenceConstructionExpressionImpl <em>Sequence Construction Expression</em>}' class.
@@ -546,34 +546,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getOperatorExpression()
 	 * @generated
 	 */
-	int OPERATOR_EXPRESSION = 39;
-
-	/**
-	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_INTERACTION__ITEM_TYPE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Atomic Interaction</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_INTERACTION_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Atomic Interaction</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATOMIC_INTERACTION_OPERATION_COUNT = 0;
+	int OPERATOR_EXPRESSION = 42;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -1330,6 +1303,258 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_OPERATION_COUNT = CATEGORY_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNER = CLASS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__MEMBER = CLASS__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__FEATURE = CLASS__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__INPUT = CLASS__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OUTPUT = CLASS__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+
+	/**
+	 * The number of structural features of the '<em>Object Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Object Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -4230,13 +4455,22 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__IS_PART = MEMBERSHIP_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MEMBERSHIP__IS_PORTION = MEMBERSHIP_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 5;
+	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -4245,7 +4479,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 6;
+	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
@@ -4254,7 +4488,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 7;
+	int FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Feature Membership</em>' class.
@@ -4263,7 +4497,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 8;
+	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -5712,7 +5946,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
+	int VALUE_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -5721,7 +5955,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
+	int VALUE_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -5730,7 +5964,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
+	int VALUE_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -5739,7 +5973,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__IDENTIFIER = CLASS__IDENTIFIER;
+	int VALUE_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -5748,7 +5982,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
+	int VALUE_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5757,7 +5991,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__NAME = CLASS__NAME;
+	int VALUE_CLASS__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -5766,7 +6000,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNER = CLASS__OWNER;
+	int VALUE_CLASS__OWNER = CLASS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -5775,7 +6009,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
+	int VALUE_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -5784,7 +6018,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
+	int VALUE_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -5793,7 +6027,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_MEMBER = CLASS__OWNED_MEMBER;
+	int VALUE_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -5802,7 +6036,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__MEMBERSHIP = CLASS__MEMBERSHIP;
+	int VALUE_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -5811,7 +6045,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+	int VALUE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -5820,7 +6054,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__MEMBER = CLASS__MEMBER;
+	int VALUE_CLASS__MEMBER = CLASS__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -5829,7 +6063,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
+	int VALUE_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -5838,7 +6072,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+	int VALUE_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -5847,7 +6081,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
+	int VALUE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -5856,7 +6090,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -5865,7 +6099,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__FEATURE = CLASS__FEATURE;
+	int VALUE_CLASS__FEATURE = CLASS__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -5874,7 +6108,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INPUT = CLASS__INPUT;
+	int VALUE_CLASS__INPUT = CLASS__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -5883,7 +6117,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OUTPUT = CLASS__OUTPUT;
+	int VALUE_CLASS__OUTPUT = CLASS__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -5892,7 +6126,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+	int VALUE_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -5901,7 +6135,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
+	int VALUE_CLASS__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -5910,88 +6144,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+	int VALUE_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
 
 	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * The number of structural features of the '<em>Value Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__RELATED_ELEMENT = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__TARGET = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__SOURCE = CLASS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNING_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Related Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__RELATED_TYPE = CLASS_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = CLASS_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Owning Connector</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNING_CONNECTOR = CLASS_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of structural features of the '<em>Association</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 8;
+	int VALUE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -6000,7 +6162,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+	int VALUE_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -6009,7 +6171,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+	int VALUE_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -6018,655 +6180,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
+	int VALUE_CLASS___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
 
 	/**
-	 * The number of operations of the '<em>Association</em>' class.
+	 * The number of operations of the '<em>Value Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNING_MEMBERSHIP = ASSOCIATION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_RELATIONSHIP = ASSOCIATION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNING_RELATIONSHIP = ASSOCIATION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__IDENTIFIER = ASSOCIATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNING_NAMESPACE = ASSOCIATION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__NAME = ASSOCIATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNER = ASSOCIATION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_ELEMENT = ASSOCIATION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_MEMBERSHIP = ASSOCIATION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_MEMBER = ASSOCIATION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__MEMBERSHIP = ASSOCIATION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_IMPORT = ASSOCIATION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__MEMBER = ASSOCIATION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__IMPORTED_MEMBERSHIP = ASSOCIATION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_FEATURE = ASSOCIATION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_GENERALIZATION = ASSOCIATION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__FEATURE = ASSOCIATION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__INPUT = ASSOCIATION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OUTPUT = ASSOCIATION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__IS_ABSTRACT = ASSOCIATION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__INHERITED_MEMBERSHIP = ASSOCIATION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_SUPERCLASSING = ASSOCIATION__OWNED_SUPERCLASSING;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__RELATED_ELEMENT = ASSOCIATION__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__TARGET = ASSOCIATION__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__SOURCE = ASSOCIATION__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNING_RELATED_ELEMENT = ASSOCIATION__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_RELATED_ELEMENT = ASSOCIATION__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__RELATED_TYPE = ASSOCIATION__RELATED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_END_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Connector</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNING_CONNECTOR = ASSOCIATION__OWNING_CONNECTOR;
-
-	/**
-	 * The feature id for the '<em><b>Step</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__STEP = ASSOCIATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Involves Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__INVOLVES_FEATURE = ASSOCIATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__PARAMETER = ASSOCIATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Participant Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__PARTICIPANT_FEATURE = ASSOCIATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Interaction</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION_FEATURE_COUNT = ASSOCIATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION___NAME_OF__ELEMENT = ASSOCIATION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION___EXCLUDE_COLLISIONS__ELIST = ASSOCIATION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION___PUBLIC_MEMBERSHIPS = ASSOCIATION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Interaction</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION_OPERATION_COUNT = ASSOCIATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__IDENTIFIER = FEATURE_MEMBERSHIP__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_NAMESPACE = FEATURE_MEMBERSHIP__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__NAME = FEATURE_MEMBERSHIP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNER = FEATURE_MEMBERSHIP__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__RELATED_ELEMENT = FEATURE_MEMBERSHIP__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__TARGET = FEATURE_MEMBERSHIP__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__SOURCE = FEATURE_MEMBERSHIP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__MEMBER_NAME = FEATURE_MEMBERSHIP__MEMBER_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__VISIBILITY = FEATURE_MEMBERSHIP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__ALIASES = FEATURE_MEMBERSHIP__ALIASES;
-
-	/**
-	 * The feature id for the '<em><b>Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__MEMBER_ELEMENT = FEATURE_MEMBERSHIP__MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_CATEGORY = FEATURE_MEMBERSHIP__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__IS_DERIVED = FEATURE_MEMBERSHIP__IS_DERIVED;
-
-	/**
-	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__IS_READ_ONLY = FEATURE_MEMBERSHIP__IS_READ_ONLY;
-
-	/**
-	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__IS_PART = FEATURE_MEMBERSHIP__IS_PART;
-
-	/**
-	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__IS_PORT = FEATURE_MEMBERSHIP__IS_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Direction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__DIRECTION = FEATURE_MEMBERSHIP__DIRECTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>End Feature Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
-
-	/**
-	 * The number of operations of the '<em>End Feature Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_FEATURE_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
+	int VALUE_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -7056,13 +6579,22 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__ASSOCIATION = FEATURE_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__OWNED_ASSOCIATION_TYPE = FEATURE_FEATURE_COUNT + 7;
+
+	/**
 	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_DIRECTED = FEATURE_FEATURE_COUNT + 7;
+	int CONNECTOR__IS_DIRECTED = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
@@ -7071,16 +6603,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__CONNECTOR_END = FEATURE_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_ASSOCIATION_TYPE = FEATURE_FEATURE_COUNT + 9;
+	int CONNECTOR__CONNECTOR_END = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -7143,7 +6666,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
+	int ASSOCIATION__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -7152,7 +6675,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_RELATIONSHIP = CONNECTOR__OWNED_RELATIONSHIP;
+	int ASSOCIATION__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -7161,7 +6684,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNING_RELATIONSHIP = CONNECTOR__OWNING_RELATIONSHIP;
+	int ASSOCIATION__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -7170,7 +6693,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__IDENTIFIER = CONNECTOR__IDENTIFIER;
+	int ASSOCIATION__IDENTIFIER = CLASS__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -7179,7 +6702,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNING_NAMESPACE = CONNECTOR__OWNING_NAMESPACE;
+	int ASSOCIATION__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7188,7 +6711,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__NAME = CONNECTOR__NAME;
+	int ASSOCIATION__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -7197,7 +6720,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNER = CONNECTOR__OWNER;
+	int ASSOCIATION__OWNER = CLASS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -7206,7 +6729,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_ELEMENT = CONNECTOR__OWNED_ELEMENT;
+	int ASSOCIATION__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -7215,7 +6738,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
+	int ASSOCIATION__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -7224,7 +6747,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_MEMBER = CONNECTOR__OWNED_MEMBER;
+	int ASSOCIATION__OWNED_MEMBER = CLASS__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -7233,7 +6756,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__MEMBERSHIP = CONNECTOR__MEMBERSHIP;
+	int ASSOCIATION__MEMBERSHIP = CLASS__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -7242,7 +6765,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
+	int ASSOCIATION__OWNED_IMPORT = CLASS__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -7251,7 +6774,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__MEMBER = CONNECTOR__MEMBER;
+	int ASSOCIATION__MEMBER = CLASS__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -7260,7 +6783,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__IMPORTED_MEMBERSHIP = CONNECTOR__IMPORTED_MEMBERSHIP;
+	int ASSOCIATION__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -7269,7 +6792,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
+	int ASSOCIATION__OWNED_FEATURE = CLASS__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -7278,7 +6801,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
+	int ASSOCIATION__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -7287,7 +6810,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -7296,7 +6819,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__FEATURE = CONNECTOR__FEATURE;
+	int ASSOCIATION__FEATURE = CLASS__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -7305,7 +6828,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__INPUT = CONNECTOR__INPUT;
+	int ASSOCIATION__INPUT = CLASS__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -7314,7 +6837,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OUTPUT = CONNECTOR__OUTPUT;
+	int ASSOCIATION__OUTPUT = CLASS__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -7323,7 +6846,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__IS_ABSTRACT = CONNECTOR__IS_ABSTRACT;
+	int ASSOCIATION__IS_ABSTRACT = CLASS__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -7332,1465 +6855,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__INHERITED_MEMBERSHIP = CONNECTOR__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__REFERENCED_TYPE = CONNECTOR__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNING_CATEGORY = CONNECTOR__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__IS_UNIQUE = CONNECTOR__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__IS_ORDERED = CONNECTOR__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__TYPE = CONNECTOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP = CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__VALUATION = CONNECTOR__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__TYPING = CONNECTOR__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__RELATED_ELEMENT = CONNECTOR__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__TARGET = CONNECTOR__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__SOURCE = CONNECTOR__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_RELATED_ELEMENT = CONNECTOR__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__RELATED_FEATURE = CONNECTOR__RELATED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__ASSOCIATION = CONNECTOR__ASSOCIATION;
-
-	/**
-	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__IS_DIRECTED = CONNECTOR__IS_DIRECTED;
-
-	/**
-	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__CONNECTOR_END = CONNECTOR__CONNECTOR_END;
-
-	/**
-	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__ITEM_TYPE = CONNECTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target Input Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__TARGET_INPUT_FEATURE = CONNECTOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Source Output Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__SOURCE_OUTPUT_FEATURE = CONNECTOR_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Item Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW___NAME_OF__ELEMENT = CONNECTOR___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST = CONNECTOR___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW___PUBLIC_MEMBERSHIPS = CONNECTOR___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The operation id for the '<em>Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW___PATH__FEATURE = CONNECTOR___PATH__FEATURE;
-
-	/**
-	 * The number of operations of the '<em>Item Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_MEMBERSHIP = ITEM_FLOW__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_RELATIONSHIP = ITEM_FLOW__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_RELATIONSHIP = ITEM_FLOW__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IDENTIFIER = ITEM_FLOW__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_NAMESPACE = ITEM_FLOW__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__NAME = ITEM_FLOW__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNER = ITEM_FLOW__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_ELEMENT = ITEM_FLOW__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_MEMBERSHIP = ITEM_FLOW__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_MEMBER = ITEM_FLOW__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__MEMBERSHIP = ITEM_FLOW__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT = ITEM_FLOW__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__MEMBER = ITEM_FLOW__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IMPORTED_MEMBERSHIP = ITEM_FLOW__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE = ITEM_FLOW__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION = ITEM_FLOW__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__FEATURE = ITEM_FLOW__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__INPUT = ITEM_FLOW__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OUTPUT = ITEM_FLOW__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_ABSTRACT = ITEM_FLOW__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__INHERITED_MEMBERSHIP = ITEM_FLOW__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__REFERENCED_TYPE = ITEM_FLOW__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_CATEGORY = ITEM_FLOW__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_UNIQUE = ITEM_FLOW__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_ORDERED = ITEM_FLOW__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__TYPE = ITEM_FLOW__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_TYPE = ITEM_FLOW__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_REDEFINITION = ITEM_FLOW__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_SUBSETTING = ITEM_FLOW__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_COMPOSITE = ITEM_FLOW__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__VALUATION = ITEM_FLOW__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__MULTIPLICITY = ITEM_FLOW__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__TYPING = ITEM_FLOW__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_NONUNIQUE = ITEM_FLOW__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__RELATED_ELEMENT = ITEM_FLOW__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__TARGET = ITEM_FLOW__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__SOURCE = ITEM_FLOW__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNING_RELATED_ELEMENT = ITEM_FLOW__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_RELATED_ELEMENT = ITEM_FLOW__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__RELATED_FEATURE = ITEM_FLOW__RELATED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__ASSOCIATION = ITEM_FLOW__ASSOCIATION;
-
-	/**
-	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__IS_DIRECTED = ITEM_FLOW__IS_DIRECTED;
-
-	/**
-	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__CONNECTOR_END = ITEM_FLOW__CONNECTOR_END;
-
-	/**
-	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_ASSOCIATION_TYPE = ITEM_FLOW__OWNED_ASSOCIATION_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__ITEM_TYPE = ITEM_FLOW__ITEM_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Target Input Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__TARGET_INPUT_FEATURE = ITEM_FLOW__TARGET_INPUT_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Source Output Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__SOURCE_OUTPUT_FEATURE = ITEM_FLOW__SOURCE_OUTPUT_FEATURE;
-
-	/**
-	 * The number of structural features of the '<em>Succession Item Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW_FEATURE_COUNT = ITEM_FLOW_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW___NAME_OF__ELEMENT = ITEM_FLOW___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST = ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW___PUBLIC_MEMBERSHIPS = ITEM_FLOW___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The operation id for the '<em>Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW___PATH__FEATURE = ITEM_FLOW___PATH__FEATURE;
-
-	/**
-	 * The number of operations of the '<em>Succession Item Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW_OPERATION_COUNT = ITEM_FLOW_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_RELATIONSHIP = CONNECTOR__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_RELATIONSHIP = CONNECTOR__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IDENTIFIER = CONNECTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_NAMESPACE = CONNECTOR__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__NAME = CONNECTOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNER = CONNECTOR__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_ELEMENT = CONNECTOR__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_MEMBER = CONNECTOR__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__MEMBERSHIP = CONNECTOR__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__MEMBER = CONNECTOR__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IMPORTED_MEMBERSHIP = CONNECTOR__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__FEATURE = CONNECTOR__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__INPUT = CONNECTOR__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OUTPUT = CONNECTOR__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_ABSTRACT = CONNECTOR__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__INHERITED_MEMBERSHIP = CONNECTOR__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__REFERENCED_TYPE = CONNECTOR__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_CATEGORY = CONNECTOR__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_UNIQUE = CONNECTOR__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_ORDERED = CONNECTOR__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__TYPE = CONNECTOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_FEATURE_MEMBERSHIP = CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__VALUATION = CONNECTOR__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__TYPING = CONNECTOR__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__RELATED_ELEMENT = CONNECTOR__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__TARGET = CONNECTOR__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__SOURCE = CONNECTOR__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_RELATED_ELEMENT = CONNECTOR__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__RELATED_FEATURE = CONNECTOR__RELATED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__ASSOCIATION = CONNECTOR__ASSOCIATION;
-
-	/**
-	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__IS_DIRECTED = CONNECTOR__IS_DIRECTED;
-
-	/**
-	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__CONNECTOR_END = CONNECTOR__CONNECTOR_END;
-
-	/**
-	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Succession</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION___NAME_OF__ELEMENT = CONNECTOR___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION___EXCLUDE_COLLISIONS__ELIST = CONNECTOR___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION___PUBLIC_MEMBERSHIPS = CONNECTOR___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The operation id for the '<em>Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION___PATH__FEATURE = CONNECTOR___PATH__FEATURE;
-
-	/**
-	 * The number of operations of the '<em>Succession</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNER = CLASS__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__MEMBER = CLASS__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__FEATURE = CLASS__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__INPUT = CLASS__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OUTPUT = CLASS__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
+	int ASSOCIATION__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -8799,16 +6864,88 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+	int ASSOCIATION__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
 
 	/**
-	 * The number of structural features of the '<em>Value Class</em>' class.
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+	int ASSOCIATION__RELATED_ELEMENT = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TARGET = CLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SOURCE = CLASS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNING_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Related Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__RELATED_TYPE = CLASS_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = CLASS_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Owning Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNING_CONNECTOR = CLASS_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Association</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -8817,7 +6954,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+	int ASSOCIATION___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -8826,7 +6963,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+	int ASSOCIATION___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -8835,16 +6972,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
+	int ASSOCIATION___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
 
 	/**
-	 * The number of operations of the '<em>Value Class</em>' class.
+	 * The number of operations of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+	int ASSOCIATION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -8853,7 +6990,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -8862,7 +6999,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
+	int END_FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -8871,7 +7008,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
+	int END_FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -8880,7 +7017,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
+	int END_FEATURE_MEMBERSHIP__IDENTIFIER = FEATURE_MEMBERSHIP__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -8889,7 +7026,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
+	int END_FEATURE_MEMBERSHIP__OWNING_NAMESPACE = FEATURE_MEMBERSHIP__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8898,7 +7035,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__NAME = CLASS__NAME;
+	int END_FEATURE_MEMBERSHIP__NAME = FEATURE_MEMBERSHIP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -8907,7 +7044,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNER = CLASS__OWNER;
+	int END_FEATURE_MEMBERSHIP__OWNER = FEATURE_MEMBERSHIP__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -8916,187 +7053,223 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
+	int END_FEATURE_MEMBERSHIP__OWNED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__RELATED_ELEMENT = FEATURE_MEMBERSHIP__RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
+	int END_FEATURE_MEMBERSHIP__TARGET = FEATURE_MEMBERSHIP__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__SOURCE = FEATURE_MEMBERSHIP__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+	int END_FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__MEMBER = CLASS__MEMBER;
+	int END_FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__MEMBER_NAME = FEATURE_MEMBERSHIP__MEMBER_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+	int END_FEATURE_MEMBERSHIP__VISIBILITY = FEATURE_MEMBERSHIP__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
+	int END_FEATURE_MEMBERSHIP__ALIASES = FEATURE_MEMBERSHIP__ALIASES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__MEMBER_ELEMENT = FEATURE_MEMBERSHIP__MEMBER_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__FEATURE = CLASS__FEATURE;
+	int END_FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__INPUT = CLASS__INPUT;
+	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OUTPUT = CLASS__OUTPUT;
+	int END_FEATURE_MEMBERSHIP__OWNING_CATEGORY = FEATURE_MEMBERSHIP__OWNING_CATEGORY;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+	int END_FEATURE_MEMBERSHIP__IS_DERIVED = FEATURE_MEMBERSHIP__IS_DERIVED;
 
 	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
+	int END_FEATURE_MEMBERSHIP__IS_READ_ONLY = FEATURE_MEMBERSHIP__IS_READ_ONLY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
+	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
+	int END_FEATURE_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
 
 	/**
-	 * The number of structural features of the '<em>Object Class</em>' class.
+	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+	int END_FEATURE_MEMBERSHIP__IS_PART = FEATURE_MEMBERSHIP__IS_PART;
 
 	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
+	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS___NAME_OF__ELEMENT = CLASS___NAME_OF__ELEMENT;
+	int END_FEATURE_MEMBERSHIP__IS_PORTION = FEATURE_MEMBERSHIP__IS_PORTION;
 
 	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
+	int END_FEATURE_MEMBERSHIP__IS_PORT = FEATURE_MEMBERSHIP__IS_PORT;
 
 	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
+	int END_FEATURE_MEMBERSHIP__DIRECTION = FEATURE_MEMBERSHIP__DIRECTION;
 
 	/**
-	 * The number of operations of the '<em>Object Class</em>' class.
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNING_ASSOCIATION = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>End Feature Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
+
+	/**
+	 * The number of operations of the '<em>End Feature Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -9486,6 +7659,15 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__ASSOCIATION = CONNECTOR__ASSOCIATION;
 
 	/**
+	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9502,15 +7684,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR__CONNECTOR_END = CONNECTOR__CONNECTOR_END;
-
-	/**
-	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Binding Connector</em>' class.
@@ -9565,6 +7738,1091 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.FeatureReferenceExpressionImpl <em>Feature Reference Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.FeatureReferenceExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureReferenceExpression()
+	 * @generated
+	 */
+	int FEATURE_REFERENCE_EXPRESSION = 46;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl <em>Invocation Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInvocationExpression()
+	 * @generated
+	 */
+	int INVOCATION_EXPRESSION = 43;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.BlockExpressionImpl <em>Block Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.BlockExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getBlockExpression()
+	 * @generated
+	 */
+	int BLOCK_EXPRESSION = 48;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl <em>Parameter Membership</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getParameterMembership()
+	 * @generated
+	 */
+	int PARAMETER_MEMBERSHIP = 32;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ReturnParameterMembershipImpl <em>Return Parameter Membership</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ReturnParameterMembershipImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getReturnParameterMembership()
+	 * @generated
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP = 31;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_RELATIONSHIP = RELATIONSHIP__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNING_RELATIONSHIP = RELATIONSHIP__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__IDENTIFIER = RELATIONSHIP__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNING_NAMESPACE = RELATIONSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__NAME = RELATIONSHIP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNER = RELATIONSHIP__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_ELEMENT = RELATIONSHIP__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__RELATED_ELEMENT = RELATIONSHIP__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__TARGET = RELATIONSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__SOURCE = RELATIONSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Annotating Comment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ANNOTATING_COMMENT = RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ANNOTATED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNING_MEMBERSHIP = ELEMENT__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNED_RELATIONSHIP = ELEMENT__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNING_RELATIONSHIP = ELEMENT__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__IDENTIFIER = ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNING_NAMESPACE = ELEMENT__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__NAME = ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNER = ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNED_ELEMENT = ELEMENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__BODY = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Commented Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__COMMENTED_ELEMENT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Annotation For Comment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__ANNOTATION_FOR_COMMENT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNED_RELATIONSHIP = RELATIONSHIP__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNING_RELATIONSHIP = RELATIONSHIP__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__IDENTIFIER = RELATIONSHIP__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNING_NAMESPACE = RELATIONSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__NAME = RELATIONSHIP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNER = RELATIONSHIP__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNED_ELEMENT = RELATIONSHIP__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__RELATED_ELEMENT = RELATIONSHIP__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__TARGET = RELATIONSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__SOURCE = RELATIONSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The number of structural features of the '<em>Ownership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Ownership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IDENTIFIER = FEATURE_MEMBERSHIP__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNING_NAMESPACE = FEATURE_MEMBERSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__NAME = FEATURE_MEMBERSHIP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNER = FEATURE_MEMBERSHIP__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__RELATED_ELEMENT = FEATURE_MEMBERSHIP__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__TARGET = FEATURE_MEMBERSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__SOURCE = FEATURE_MEMBERSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__MEMBER_NAME = FEATURE_MEMBERSHIP__MEMBER_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__VISIBILITY = FEATURE_MEMBERSHIP__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__ALIASES = FEATURE_MEMBERSHIP__ALIASES;
+
+	/**
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__MEMBER_ELEMENT = FEATURE_MEMBERSHIP__MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNING_CATEGORY = FEATURE_MEMBERSHIP__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IS_DERIVED = FEATURE_MEMBERSHIP__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IS_READ_ONLY = FEATURE_MEMBERSHIP__IS_READ_ONLY;
+
+	/**
+	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IS_PART = FEATURE_MEMBERSHIP__IS_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IS_PORTION = FEATURE_MEMBERSHIP__IS_PORTION;
+
+	/**
+	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__IS_PORT = FEATURE_MEMBERSHIP__IS_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__DIRECTION = FEATURE_MEMBERSHIP__DIRECTION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Member Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Parameter Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
+
+	/**
+	 * The number of operations of the '<em>Parameter Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP = PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP = PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IDENTIFIER = PARAMETER_MEMBERSHIP__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNING_NAMESPACE = PARAMETER_MEMBERSHIP__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__NAME = PARAMETER_MEMBERSHIP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNER = PARAMETER_MEMBERSHIP__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__RELATED_ELEMENT = PARAMETER_MEMBERSHIP__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__TARGET = PARAMETER_MEMBERSHIP__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__SOURCE = PARAMETER_MEMBERSHIP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_NAME = PARAMETER_MEMBERSHIP__MEMBER_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__VISIBILITY = PARAMETER_MEMBERSHIP__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__ALIASES = PARAMETER_MEMBERSHIP__ALIASES;
+
+	/**
+	 * The feature id for the '<em><b>Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_ELEMENT = PARAMETER_MEMBERSHIP__MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNING_CATEGORY = PARAMETER_MEMBERSHIP__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IS_DERIVED = PARAMETER_MEMBERSHIP__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IS_READ_ONLY = PARAMETER_MEMBERSHIP__IS_READ_ONLY;
+
+	/**
+	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_FEATURE = PARAMETER_MEMBERSHIP__MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IS_PART = PARAMETER_MEMBERSHIP__IS_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IS_PORTION = PARAMETER_MEMBERSHIP__IS_PORTION;
+
+	/**
+	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__IS_PORT = PARAMETER_MEMBERSHIP__IS_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__DIRECTION = PARAMETER_MEMBERSHIP__DIRECTION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE = PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Member Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = PARAMETER_MEMBERSHIP__MEMBER_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER;
+
+	/**
+	 * The number of structural features of the '<em>Return Parameter Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP_FEATURE_COUNT = PARAMETER_MEMBERSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
+
+	/**
+	 * The number of operations of the '<em>Return Parameter Membership</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP_OPERATION_COUNT = PARAMETER_MEMBERSHIP_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OF_SUCCESSION__TO = 0;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OF_SUCCESSION__FROM = 1;
+
+	/**
+	 * The number of structural features of the '<em>Of Succession</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OF_SUCCESSION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Of Succession</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OF_SUCCESSION_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -10305,89 +9563,13 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE_OPERATION_COUNT = STRUCTURED_FEATURE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>To</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OF_SUCCESSION__TO = 0;
-
-	/**
-	 * The feature id for the '<em><b>From</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OF_SUCCESSION__FROM = 1;
-
-	/**
-	 * The number of structural features of the '<em>Of Succession</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OF_SUCCESSION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Of Succession</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OF_SUCCESSION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.FeatureReferenceExpressionImpl <em>Feature Reference Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.FeatureReferenceExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureReferenceExpression()
-	 * @generated
-	 */
-	int FEATURE_REFERENCE_EXPRESSION = 42;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl <em>Invocation Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getInvocationExpression()
-	 * @generated
-	 */
-	int INVOCATION_EXPRESSION = 40;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.BlockExpressionImpl <em>Block Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.BlockExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getBlockExpression()
-	 * @generated
-	 */
-	int BLOCK_EXPRESSION = 38;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl <em>Parameter Membership</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getParameterMembership()
-	 * @generated
-	 */
-	int PARAMETER_MEMBERSHIP = 36;
-
-	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
+	int SUCCESSION__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -10396,7 +9578,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP;
+	int SUCCESSION__OWNED_RELATIONSHIP = CONNECTOR__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -10405,7 +9587,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP = FEATURE_MEMBERSHIP__OWNING_RELATIONSHIP;
+	int SUCCESSION__OWNING_RELATIONSHIP = CONNECTOR__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -10414,7 +9596,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__IDENTIFIER = FEATURE_MEMBERSHIP__IDENTIFIER;
+	int SUCCESSION__IDENTIFIER = CONNECTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -10423,7 +9605,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNING_NAMESPACE = FEATURE_MEMBERSHIP__OWNING_NAMESPACE;
+	int SUCCESSION__OWNING_NAMESPACE = CONNECTOR__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10432,7 +9614,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__NAME = FEATURE_MEMBERSHIP__NAME;
+	int SUCCESSION__NAME = CONNECTOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -10441,7 +9623,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNER = FEATURE_MEMBERSHIP__OWNER;
+	int SUCCESSION__OWNER = CONNECTOR__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -10450,593 +9632,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__RELATED_ELEMENT = FEATURE_MEMBERSHIP__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__TARGET = FEATURE_MEMBERSHIP__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__SOURCE = FEATURE_MEMBERSHIP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__MEMBER_NAME = FEATURE_MEMBERSHIP__MEMBER_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__VISIBILITY = FEATURE_MEMBERSHIP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__ALIASES = FEATURE_MEMBERSHIP__ALIASES;
-
-	/**
-	 * The feature id for the '<em><b>Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__MEMBER_ELEMENT = FEATURE_MEMBERSHIP__MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNING_CATEGORY = FEATURE_MEMBERSHIP__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__IS_DERIVED = FEATURE_MEMBERSHIP__IS_DERIVED;
-
-	/**
-	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__IS_READ_ONLY = FEATURE_MEMBERSHIP__IS_READ_ONLY;
-
-	/**
-	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__IS_PART = FEATURE_MEMBERSHIP__IS_PART;
-
-	/**
-	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__IS_PORT = FEATURE_MEMBERSHIP__IS_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Direction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__DIRECTION = FEATURE_MEMBERSHIP__DIRECTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Member Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Parameter Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = FEATURE_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
-
-	/**
-	 * The number of operations of the '<em>Parameter Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ReturnParameterMembershipImpl <em>Return Parameter Membership</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.ReturnParameterMembershipImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getReturnParameterMembership()
-	 * @generated
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP = 37;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP = PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP = PARAMETER_MEMBERSHIP__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__IDENTIFIER = PARAMETER_MEMBERSHIP__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNING_NAMESPACE = PARAMETER_MEMBERSHIP__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__NAME = PARAMETER_MEMBERSHIP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNER = PARAMETER_MEMBERSHIP__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__RELATED_ELEMENT = PARAMETER_MEMBERSHIP__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__TARGET = PARAMETER_MEMBERSHIP__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__SOURCE = PARAMETER_MEMBERSHIP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Member Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_NAME = PARAMETER_MEMBERSHIP__MEMBER_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__VISIBILITY = PARAMETER_MEMBERSHIP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Aliases</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__ALIASES = PARAMETER_MEMBERSHIP__ALIASES;
-
-	/**
-	 * The feature id for the '<em><b>Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_ELEMENT = PARAMETER_MEMBERSHIP__MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Membership Owning Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT = PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNING_CATEGORY = PARAMETER_MEMBERSHIP__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__IS_DERIVED = PARAMETER_MEMBERSHIP__IS_DERIVED;
-
-	/**
-	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__IS_READ_ONLY = PARAMETER_MEMBERSHIP__IS_READ_ONLY;
-
-	/**
-	 * The feature id for the '<em><b>Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_FEATURE = PARAMETER_MEMBERSHIP__MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__IS_PART = PARAMETER_MEMBERSHIP__IS_PART;
-
-	/**
-	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__IS_PORT = PARAMETER_MEMBERSHIP__IS_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Direction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__DIRECTION = PARAMETER_MEMBERSHIP__DIRECTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE = PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Member Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = PARAMETER_MEMBERSHIP__MEMBER_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER;
-
-	/**
-	 * The number of structural features of the '<em>Return Parameter Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP_FEATURE_COUNT = PARAMETER_MEMBERSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP = PARAMETER_MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP;
-
-	/**
-	 * The number of operations of the '<em>Return Parameter Membership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RETURN_PARAMETER_MEMBERSHIP_OPERATION_COUNT = PARAMETER_MEMBERSHIP_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__NAME = EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNER = EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+	int SUCCESSION__OWNED_ELEMENT = CONNECTOR__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -11045,7 +9641,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+	int SUCCESSION__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -11054,7 +9650,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+	int SUCCESSION__OWNED_MEMBER = CONNECTOR__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -11063,7 +9659,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+	int SUCCESSION__MEMBERSHIP = CONNECTOR__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -11072,7 +9668,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+	int SUCCESSION__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -11081,7 +9677,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+	int SUCCESSION__MEMBER = CONNECTOR__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -11090,7 +9686,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+	int SUCCESSION__IMPORTED_MEMBERSHIP = CONNECTOR__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -11099,7 +9695,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+	int SUCCESSION__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -11108,7 +9704,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+	int SUCCESSION__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -11117,7 +9713,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -11126,7 +9722,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+	int SUCCESSION__FEATURE = CONNECTOR__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -11135,7 +9731,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__INPUT = EXPRESSION__INPUT;
+	int SUCCESSION__INPUT = CONNECTOR__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -11144,7 +9740,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+	int SUCCESSION__OUTPUT = CONNECTOR__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -11153,7 +9749,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+	int SUCCESSION__IS_ABSTRACT = CONNECTOR__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -11162,7 +9758,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+	int SUCCESSION__INHERITED_MEMBERSHIP = CONNECTOR__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
@@ -11171,7 +9767,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+	int SUCCESSION__REFERENCED_TYPE = CONNECTOR__REFERENCED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
@@ -11180,7 +9776,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+	int SUCCESSION__OWNING_CATEGORY = CONNECTOR__OWNING_CATEGORY;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -11189,7 +9785,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+	int SUCCESSION__IS_UNIQUE = CONNECTOR__IS_UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -11198,7 +9794,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+	int SUCCESSION__IS_ORDERED = CONNECTOR__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -11207,7 +9803,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__TYPE = EXPRESSION__TYPE;
+	int SUCCESSION__TYPE = CONNECTOR__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
@@ -11216,7 +9812,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+	int SUCCESSION__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -11225,7 +9821,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+	int SUCCESSION__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
@@ -11234,7 +9830,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+	int SUCCESSION__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
@@ -11243,7 +9839,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+	int SUCCESSION__OWNING_FEATURE_MEMBERSHIP = CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -11252,7 +9848,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+	int SUCCESSION__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
 
 	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
@@ -11261,7 +9857,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+	int SUCCESSION__VALUATION = CONNECTOR__VALUATION;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -11270,7 +9866,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+	int SUCCESSION__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Typing</b></em>' reference list.
@@ -11279,7 +9875,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__TYPING = EXPRESSION__TYPING;
+	int SUCCESSION__TYPING = CONNECTOR__TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -11288,16 +9884,106 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+	int SUCCESSION__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
 
 	/**
-	 * The number of structural features of the '<em>Block Expression</em>' class.
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+	int SUCCESSION__RELATED_ELEMENT = CONNECTOR__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__TARGET = CONNECTOR__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__SOURCE = CONNECTOR__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_RELATED_ELEMENT = CONNECTOR__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__RELATED_FEATURE = CONNECTOR__RELATED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__ASSOCIATION = CONNECTOR__ASSOCIATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__IS_DIRECTED = CONNECTOR__IS_DIRECTED;
+
+	/**
+	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__CONNECTOR_END = CONNECTOR__CONNECTOR_END;
+
+	/**
+	 * The number of structural features of the '<em>Succession</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -11306,7 +9992,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+	int SUCCESSION___NAME_OF__ELEMENT = CONNECTOR___NAME_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -11315,7 +10001,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+	int SUCCESSION___EXCLUDE_COLLISIONS__ELIST = CONNECTOR___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -11324,16 +10010,1780 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+	int SUCCESSION___PUBLIC_MEMBERSHIPS = CONNECTOR___PUBLIC_MEMBERSHIPS;
 
 	/**
-	 * The number of operations of the '<em>Block Expression</em>' class.
+	 * The operation id for the '<em>Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+	int SUCCESSION___PATH__FEATURE = CONNECTOR___PATH__FEATURE;
+
+	/**
+	 * The number of operations of the '<em>Succession</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATOMIC_INTERACTION__ITEM_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Atomic Interaction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATOMIC_INTERACTION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Atomic Interaction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATOMIC_INTERACTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNING_MEMBERSHIP = ASSOCIATION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_RELATIONSHIP = ASSOCIATION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNING_RELATIONSHIP = ASSOCIATION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__IDENTIFIER = ASSOCIATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNING_NAMESPACE = ASSOCIATION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__NAME = ASSOCIATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNER = ASSOCIATION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_ELEMENT = ASSOCIATION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_MEMBERSHIP = ASSOCIATION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_MEMBER = ASSOCIATION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__MEMBERSHIP = ASSOCIATION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_IMPORT = ASSOCIATION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__MEMBER = ASSOCIATION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__IMPORTED_MEMBERSHIP = ASSOCIATION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_FEATURE = ASSOCIATION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_GENERALIZATION = ASSOCIATION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__FEATURE = ASSOCIATION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__INPUT = ASSOCIATION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OUTPUT = ASSOCIATION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__IS_ABSTRACT = ASSOCIATION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__INHERITED_MEMBERSHIP = ASSOCIATION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_SUPERCLASSING = ASSOCIATION__OWNED_SUPERCLASSING;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__RELATED_ELEMENT = ASSOCIATION__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__TARGET = ASSOCIATION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__SOURCE = ASSOCIATION__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNING_RELATED_ELEMENT = ASSOCIATION__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_RELATED_ELEMENT = ASSOCIATION__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__RELATED_TYPE = ASSOCIATION__RELATED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_END_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNING_CONNECTOR = ASSOCIATION__OWNING_CONNECTOR;
+
+	/**
+	 * The feature id for the '<em><b>Step</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__STEP = ASSOCIATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Involves Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__INVOLVES_FEATURE = ASSOCIATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__PARAMETER = ASSOCIATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Participant Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__PARTICIPANT_FEATURE = ASSOCIATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Interaction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_FEATURE_COUNT = ASSOCIATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION___NAME_OF__ELEMENT = ASSOCIATION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION___EXCLUDE_COLLISIONS__ELIST = ASSOCIATION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION___PUBLIC_MEMBERSHIPS = ASSOCIATION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Interaction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_OPERATION_COUNT = ASSOCIATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_RELATIONSHIP = CONNECTOR__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_RELATIONSHIP = CONNECTOR__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IDENTIFIER = CONNECTOR__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_NAMESPACE = CONNECTOR__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__NAME = CONNECTOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNER = CONNECTOR__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_ELEMENT = CONNECTOR__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_MEMBER = CONNECTOR__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__MEMBERSHIP = CONNECTOR__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__MEMBER = CONNECTOR__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IMPORTED_MEMBERSHIP = CONNECTOR__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__FEATURE = CONNECTOR__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__INPUT = CONNECTOR__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OUTPUT = CONNECTOR__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_ABSTRACT = CONNECTOR__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__INHERITED_MEMBERSHIP = CONNECTOR__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__REFERENCED_TYPE = CONNECTOR__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_CATEGORY = CONNECTOR__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_UNIQUE = CONNECTOR__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_ORDERED = CONNECTOR__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__TYPE = CONNECTOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP = CONNECTOR__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__VALUATION = CONNECTOR__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__TYPING = CONNECTOR__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__RELATED_ELEMENT = CONNECTOR__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__TARGET = CONNECTOR__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__SOURCE = CONNECTOR__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_RELATED_ELEMENT = CONNECTOR__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__RELATED_FEATURE = CONNECTOR__RELATED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__ASSOCIATION = CONNECTOR__ASSOCIATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_ASSOCIATION_TYPE = CONNECTOR__OWNED_ASSOCIATION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__IS_DIRECTED = CONNECTOR__IS_DIRECTED;
+
+	/**
+	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__CONNECTOR_END = CONNECTOR__CONNECTOR_END;
+
+	/**
+	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__ITEM_TYPE = CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Input Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__TARGET_INPUT_FEATURE = CONNECTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source Output Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__SOURCE_OUTPUT_FEATURE = CONNECTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Item Flow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW___NAME_OF__ELEMENT = CONNECTOR___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST = CONNECTOR___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW___PUBLIC_MEMBERSHIPS = CONNECTOR___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The operation id for the '<em>Path</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW___PATH__FEATURE = CONNECTOR___PATH__FEATURE;
+
+	/**
+	 * The number of operations of the '<em>Item Flow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_MEMBERSHIP = ITEM_FLOW__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_RELATIONSHIP = ITEM_FLOW__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_RELATIONSHIP = ITEM_FLOW__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IDENTIFIER = ITEM_FLOW__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_NAMESPACE = ITEM_FLOW__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__NAME = ITEM_FLOW__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNER = ITEM_FLOW__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_ELEMENT = ITEM_FLOW__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_MEMBERSHIP = ITEM_FLOW__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_MEMBER = ITEM_FLOW__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__MEMBERSHIP = ITEM_FLOW__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT = ITEM_FLOW__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__MEMBER = ITEM_FLOW__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IMPORTED_MEMBERSHIP = ITEM_FLOW__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE = ITEM_FLOW__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION = ITEM_FLOW__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__FEATURE = ITEM_FLOW__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__INPUT = ITEM_FLOW__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OUTPUT = ITEM_FLOW__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_ABSTRACT = ITEM_FLOW__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__INHERITED_MEMBERSHIP = ITEM_FLOW__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__REFERENCED_TYPE = ITEM_FLOW__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_CATEGORY = ITEM_FLOW__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_UNIQUE = ITEM_FLOW__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_ORDERED = ITEM_FLOW__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__TYPE = ITEM_FLOW__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_TYPE = ITEM_FLOW__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_REDEFINITION = ITEM_FLOW__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_SUBSETTING = ITEM_FLOW__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_COMPOSITE = ITEM_FLOW__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__VALUATION = ITEM_FLOW__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__MULTIPLICITY = ITEM_FLOW__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__TYPING = ITEM_FLOW__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_NONUNIQUE = ITEM_FLOW__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__RELATED_ELEMENT = ITEM_FLOW__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__TARGET = ITEM_FLOW__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__SOURCE = ITEM_FLOW__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNING_RELATED_ELEMENT = ITEM_FLOW__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_RELATED_ELEMENT = ITEM_FLOW__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__RELATED_FEATURE = ITEM_FLOW__RELATED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__ASSOCIATION = ITEM_FLOW__ASSOCIATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_ASSOCIATION_TYPE = ITEM_FLOW__OWNED_ASSOCIATION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__IS_DIRECTED = ITEM_FLOW__IS_DIRECTED;
+
+	/**
+	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__CONNECTOR_END = ITEM_FLOW__CONNECTOR_END;
+
+	/**
+	 * The feature id for the '<em><b>Item Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__ITEM_TYPE = ITEM_FLOW__ITEM_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Target Input Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__TARGET_INPUT_FEATURE = ITEM_FLOW__TARGET_INPUT_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Source Output Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__SOURCE_OUTPUT_FEATURE = ITEM_FLOW__SOURCE_OUTPUT_FEATURE;
+
+	/**
+	 * The number of structural features of the '<em>Succession Item Flow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW_FEATURE_COUNT = ITEM_FLOW_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW___NAME_OF__ELEMENT = ITEM_FLOW___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST = ITEM_FLOW___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW___PUBLIC_MEMBERSHIPS = ITEM_FLOW___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The operation id for the '<em>Path</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW___PATH__FEATURE = ITEM_FLOW___PATH__FEATURE;
+
+	/**
+	 * The number of operations of the '<em>Succession Item Flow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW_OPERATION_COUNT = ITEM_FLOW_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Sequence Construction Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Sequence Construction Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -12092,4164 +12542,6 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION_OPERATION_COUNT = INVOCATION_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__NAME = EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNER = EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__INPUT = EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__TYPE = EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__TYPING = EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Sequence Construction Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Sequence Construction Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__NAME = EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNER = EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__INPUT = EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__TYPE = EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__TYPING = EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Referent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__REFERENT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Feature Reference Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Feature Reference Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNING_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_RELATIONSHIP = INVOCATION_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNING_RELATIONSHIP = INVOCATION_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IDENTIFIER = INVOCATION_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNING_NAMESPACE = INVOCATION_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__NAME = INVOCATION_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNER = INVOCATION_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_ELEMENT = INVOCATION_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_MEMBER = INVOCATION_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__MEMBERSHIP = INVOCATION_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__MEMBER = INVOCATION_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IMPORTED_MEMBERSHIP = INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE = INVOCATION_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__FEATURE = INVOCATION_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__INPUT = INVOCATION_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OUTPUT = INVOCATION_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IS_ABSTRACT = INVOCATION_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__INHERITED_MEMBERSHIP = INVOCATION_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__REFERENCED_TYPE = INVOCATION_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNING_CATEGORY = INVOCATION_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IS_UNIQUE = INVOCATION_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IS_ORDERED = INVOCATION_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__TYPE = INVOCATION_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPE = INVOCATION_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IS_COMPOSITE = INVOCATION_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__VALUATION = INVOCATION_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__MULTIPLICITY = INVOCATION_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__TYPING = INVOCATION_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__IS_NONUNIQUE = INVOCATION_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__CATEGORY = INVOCATION_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Instance Creation Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION_FEATURE_COUNT = INVOCATION_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION___NAME_OF__ELEMENT = INVOCATION_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = INVOCATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION___PUBLIC_MEMBERSHIPS = INVOCATION_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Instance Creation Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION_OPERATION_COUNT = INVOCATION_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__NAME = EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNER = EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__INPUT = EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__TYPE = EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__TYPING = EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The number of structural features of the '<em>Literal Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__NAME = LITERAL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNER = LITERAL_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__MEMBER = LITERAL_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__FEATURE = LITERAL_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__INPUT = LITERAL_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__TYPE = LITERAL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__VALUATION = LITERAL_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__TYPING = LITERAL_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Literal Integer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal Integer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__NAME = LITERAL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNER = LITERAL_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__MEMBER = LITERAL_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__FEATURE = LITERAL_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__INPUT = LITERAL_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__TYPE = LITERAL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__VALUATION = LITERAL_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__TYPING = LITERAL_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Literal Real</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal Real</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__NAME = EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNER = EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__INPUT = EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__TYPE = EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__TYPING = EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The number of structural features of the '<em>Null Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Null Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__NAME = LITERAL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNER = LITERAL_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__MEMBER = LITERAL_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__FEATURE = LITERAL_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__INPUT = LITERAL_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__TYPE = LITERAL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__VALUATION = LITERAL_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__TYPING = LITERAL_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The number of structural features of the '<em>Literal Unbounded</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal Unbounded</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__NAME = LITERAL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNER = LITERAL_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__MEMBER = LITERAL_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__FEATURE = LITERAL_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__INPUT = LITERAL_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__TYPE = LITERAL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__VALUATION = LITERAL_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__TYPING = LITERAL_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Literal Boolean</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal Boolean</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__NAME = LITERAL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNER = LITERAL_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__MEMBER = LITERAL_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__FEATURE = LITERAL_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__INPUT = LITERAL_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__TYPE = LITERAL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__VALUATION = LITERAL_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__TYPING = LITERAL_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Literal String</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Literal String</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNED_RELATIONSHIP = RELATIONSHIP__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNING_RELATIONSHIP = RELATIONSHIP__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__IDENTIFIER = RELATIONSHIP__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNING_NAMESPACE = RELATIONSHIP__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__NAME = RELATIONSHIP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNER = RELATIONSHIP__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNED_ELEMENT = RELATIONSHIP__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__RELATED_ELEMENT = RELATIONSHIP__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__TARGET = RELATIONSHIP__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__SOURCE = RELATIONSHIP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The number of structural features of the '<em>Ownership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Ownership</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OWNERSHIP_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNING_MEMBERSHIP = ELEMENT__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNED_RELATIONSHIP = ELEMENT__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNING_RELATIONSHIP = ELEMENT__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__IDENTIFIER = ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNING_NAMESPACE = ELEMENT__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__NAME = ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNER = ELEMENT__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__OWNED_ELEMENT = ELEMENT__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Body</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__BODY = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Commented Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__COMMENTED_ELEMENT = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Annotation For Comment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__ANNOTATION_FOR_COMMENT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Comment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Comment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_RELATIONSHIP = RELATIONSHIP__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNING_RELATIONSHIP = RELATIONSHIP__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__IDENTIFIER = RELATIONSHIP__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNING_NAMESPACE = RELATIONSHIP__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__NAME = RELATIONSHIP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNER = RELATIONSHIP__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_ELEMENT = RELATIONSHIP__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__RELATED_ELEMENT = RELATIONSHIP__RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__TARGET = RELATIONSHIP__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__SOURCE = RELATIONSHIP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Annotated Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__ANNOTATED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotating Comment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__ANNOTATING_COMMENT = RELATIONSHIP_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.QueryPathStepExpressionImpl <em>Query Path Step Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16257,7 +12549,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getQueryPathStepExpression()
 	 * @generated
 	 */
-	int QUERY_PATH_STEP_EXPRESSION = 55;
+	int QUERY_PATH_STEP_EXPRESSION = 44;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.QueryQualifierExpressionImpl <em>Query Qualifier Expression</em>}' class.
@@ -16267,7 +12559,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getQueryQualifierExpression()
 	 * @generated
 	 */
-	int QUERY_QUALIFIER_EXPRESSION = 56;
+	int QUERY_QUALIFIER_EXPRESSION = 49;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.QueryPathExpressionImpl <em>Query Path Expression</em>}' class.
@@ -16277,385 +12569,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getQueryPathExpression()
 	 * @generated
 	 */
-	int QUERY_PATH_EXPRESSION = 54;
-
-	/**
-	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNING_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_RELATIONSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNING_RELATIONSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_RELATIONSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IDENTIFIER = FEATURE_REFERENCE_EXPRESSION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNING_NAMESPACE = FEATURE_REFERENCE_EXPRESSION__OWNING_NAMESPACE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__NAME = FEATURE_REFERENCE_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNER = FEATURE_REFERENCE_EXPRESSION__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_ELEMENT = FEATURE_REFERENCE_EXPRESSION__OWNED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_MEMBER = FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_IMPORT = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__MEMBER = FEATURE_REFERENCE_EXPRESSION__MEMBER;
-
-	/**
-	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IMPORTED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_FEATURE = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__FEATURE = FEATURE_REFERENCE_EXPRESSION__FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__INPUT = FEATURE_REFERENCE_EXPRESSION__INPUT;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OUTPUT = FEATURE_REFERENCE_EXPRESSION__OUTPUT;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IS_ABSTRACT = FEATURE_REFERENCE_EXPRESSION__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__INHERITED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__INHERITED_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__REFERENCED_TYPE = FEATURE_REFERENCE_EXPRESSION__REFERENCED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNING_CATEGORY = FEATURE_REFERENCE_EXPRESSION__OWNING_CATEGORY;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IS_UNIQUE = FEATURE_REFERENCE_EXPRESSION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IS_ORDERED = FEATURE_REFERENCE_EXPRESSION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__TYPE = FEATURE_REFERENCE_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_TYPE = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_REDEFINITION = FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_SUBSETTING = FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IS_COMPOSITE = FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Valuation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__VALUATION = FEATURE_REFERENCE_EXPRESSION__VALUATION;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__MULTIPLICITY = FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__TYPING = FEATURE_REFERENCE_EXPRESSION__TYPING;
-
-	/**
-	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__IS_NONUNIQUE = FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Referent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__REFERENT = FEATURE_REFERENCE_EXPRESSION__REFERENT;
-
-	/**
-	 * The number of structural features of the '<em>Query Path Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION_FEATURE_COUNT = FEATURE_REFERENCE_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Name Of</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION___NAME_OF__ELEMENT = FEATURE_REFERENCE_EXPRESSION___NAME_OF__ELEMENT;
-
-	/**
-	 * The operation id for the '<em>Exclude Collisions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = FEATURE_REFERENCE_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Public Memberships</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION___PUBLIC_MEMBERSHIPS = FEATURE_REFERENCE_EXPRESSION___PUBLIC_MEMBERSHIPS;
-
-	/**
-	 * The number of operations of the '<em>Query Path Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION_OPERATION_COUNT = FEATURE_REFERENCE_EXPRESSION_OPERATION_COUNT + 0;
+	int QUERY_PATH_EXPRESSION = 47;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -17051,6 +12965,1509 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNING_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_RELATIONSHIP = INVOCATION_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNING_RELATIONSHIP = INVOCATION_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IDENTIFIER = INVOCATION_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNING_NAMESPACE = INVOCATION_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__NAME = INVOCATION_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNER = INVOCATION_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_ELEMENT = INVOCATION_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_MEMBER = INVOCATION_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__MEMBERSHIP = INVOCATION_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__MEMBER = INVOCATION_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IMPORTED_MEMBERSHIP = INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE = INVOCATION_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__FEATURE = INVOCATION_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__INPUT = INVOCATION_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OUTPUT = INVOCATION_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IS_ABSTRACT = INVOCATION_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__INHERITED_MEMBERSHIP = INVOCATION_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__REFERENCED_TYPE = INVOCATION_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNING_CATEGORY = INVOCATION_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IS_UNIQUE = INVOCATION_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IS_ORDERED = INVOCATION_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__TYPE = INVOCATION_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPE = INVOCATION_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IS_COMPOSITE = INVOCATION_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__VALUATION = INVOCATION_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__MULTIPLICITY = INVOCATION_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__TYPING = INVOCATION_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__IS_NONUNIQUE = INVOCATION_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__CATEGORY = INVOCATION_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Instance Creation Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION_FEATURE_COUNT = INVOCATION_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION___NAME_OF__ELEMENT = INVOCATION_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = INVOCATION_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION___PUBLIC_MEMBERSHIPS = INVOCATION_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Instance Creation Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION_OPERATION_COUNT = INVOCATION_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Referent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__REFERENT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Feature Reference Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Feature Reference Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNING_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_RELATIONSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNING_RELATIONSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IDENTIFIER = FEATURE_REFERENCE_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNING_NAMESPACE = FEATURE_REFERENCE_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__NAME = FEATURE_REFERENCE_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNER = FEATURE_REFERENCE_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_ELEMENT = FEATURE_REFERENCE_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_MEMBER = FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_IMPORT = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__MEMBER = FEATURE_REFERENCE_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IMPORTED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_FEATURE = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__FEATURE = FEATURE_REFERENCE_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__INPUT = FEATURE_REFERENCE_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OUTPUT = FEATURE_REFERENCE_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IS_ABSTRACT = FEATURE_REFERENCE_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__INHERITED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__REFERENCED_TYPE = FEATURE_REFERENCE_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNING_CATEGORY = FEATURE_REFERENCE_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IS_UNIQUE = FEATURE_REFERENCE_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IS_ORDERED = FEATURE_REFERENCE_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__TYPE = FEATURE_REFERENCE_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_TYPE = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_REDEFINITION = FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_SUBSETTING = FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IS_COMPOSITE = FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__VALUATION = FEATURE_REFERENCE_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__MULTIPLICITY = FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__TYPING = FEATURE_REFERENCE_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__IS_NONUNIQUE = FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Referent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__REFERENT = FEATURE_REFERENCE_EXPRESSION__REFERENT;
+
+	/**
+	 * The number of structural features of the '<em>Query Path Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION_FEATURE_COUNT = FEATURE_REFERENCE_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION___NAME_OF__ELEMENT = FEATURE_REFERENCE_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = FEATURE_REFERENCE_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION___PUBLIC_MEMBERSHIPS = FEATURE_REFERENCE_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Query Path Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION_OPERATION_COUNT = FEATURE_REFERENCE_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The number of structural features of the '<em>Block Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Block Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int QUERY_QUALIFIER_EXPRESSION__OWNING_MEMBERSHIP = OPERATOR_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
@@ -17432,6 +14849,2625 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION_OPERATION_COUNT = OPERATOR_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The number of structural features of the '<em>Literal Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__NAME = LITERAL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNER = LITERAL_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__MEMBER = LITERAL_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__FEATURE = LITERAL_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__INPUT = LITERAL_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__TYPE = LITERAL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__TYPING = LITERAL_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal Real</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal Real</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__NAME = LITERAL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNER = LITERAL_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__MEMBER = LITERAL_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__FEATURE = LITERAL_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__INPUT = LITERAL_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__TYPE = LITERAL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__TYPING = LITERAL_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The number of structural features of the '<em>Literal Unbounded</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal Unbounded</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__NAME = LITERAL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNER = LITERAL_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__MEMBER = LITERAL_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__FEATURE = LITERAL_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__INPUT = LITERAL_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__TYPE = LITERAL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__TYPING = LITERAL_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal String</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal String</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__NAME = LITERAL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNER = LITERAL_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__MEMBER = LITERAL_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__FEATURE = LITERAL_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__INPUT = LITERAL_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__TYPE = LITERAL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__TYPING = LITERAL_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal Boolean</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal Boolean</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_RELATIONSHIP = EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNING_RELATIONSHIP = EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IDENTIFIER = EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNING_NAMESPACE = EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__NAME = EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_ELEMENT = EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_MEMBER = EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__MEMBERSHIP = EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__MEMBER = EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IMPORTED_MEMBERSHIP = EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__FEATURE = EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__INPUT = EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OUTPUT = EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IS_ABSTRACT = EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__INHERITED_MEMBERSHIP = EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__REFERENCED_TYPE = EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNING_CATEGORY = EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IS_UNIQUE = EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IS_ORDERED = EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP = EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__TYPING = EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The number of structural features of the '<em>Null Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION___NAME_OF__ELEMENT = EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST = EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION___PUBLIC_MEMBERSHIPS = EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Null Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__NAME = LITERAL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNER = LITERAL_EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__MEMBER = LITERAL_EXPRESSION__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__FEATURE = LITERAL_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__INPUT = LITERAL_EXPRESSION__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__REFERENCED_TYPE = LITERAL_EXPRESSION__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNING_CATEGORY = LITERAL_EXPRESSION__OWNING_CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__TYPE = LITERAL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Valuation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__TYPING = LITERAL_EXPRESSION__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER___NAME_OF__ELEMENT = LITERAL_EXPRESSION___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER___EXCLUDE_COLLISIONS__ELIST = LITERAL_EXPRESSION___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER___PUBLIC_MEMBERSHIPS = LITERAL_EXPRESSION___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The number of operations of the '<em>Literal Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17548,6 +17584,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFeatureMembership_IsPart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Portion</em>'.
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#isPortion()
+	 * @see #getFeatureMembership()
+	 * @generated
+	 */
+	EAttribute getFeatureMembership_IsPortion();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}'.
@@ -19465,6 +19512,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE_MEMBERSHIP__IS_PART = eINSTANCE.getFeatureMembership_IsPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Portion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_MEMBERSHIP__IS_PORTION = eINSTANCE.getFeatureMembership_IsPortion();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Port</b></em>' attribute feature.

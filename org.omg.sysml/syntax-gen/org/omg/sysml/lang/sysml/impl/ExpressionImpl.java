@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
-	public static final String EXPRESSION_SUBSETTING_DEFAULT = "Base::functionEvaluations";
+	public static final String EXPRESSION_SUBSETTING_DEFAULT = "Base::evaluations";
 	
 	/**
 	 * <!-- begin-user-doc -->

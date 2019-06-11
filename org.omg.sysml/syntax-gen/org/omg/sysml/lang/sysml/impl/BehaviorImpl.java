@@ -36,7 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class BehaviorImpl extends ClassImpl implements Behavior {
 
-	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::BehaviorOccurrence";
+	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::Performance";
 	
 	/**
 	 * The cached value of the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.

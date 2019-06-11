@@ -20,7 +20,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StepImpl extends FeatureImpl implements Step {
 	
-	public static final String STEP_SUBSETTING_DEFAULT = "Base::behaviorOccurrences";
+	public static final String STEP_SUBSETTING_DEFAULT = "Base::performances";
 	
 	/**
 	 * <!-- begin-user-doc -->

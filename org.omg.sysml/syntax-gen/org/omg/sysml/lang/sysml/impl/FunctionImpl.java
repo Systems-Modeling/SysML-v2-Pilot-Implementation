@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
 
-	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::FunctionEvaluation";
+	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::Evaluation";
 	
 	/**
 	 * <!-- begin-user-doc -->

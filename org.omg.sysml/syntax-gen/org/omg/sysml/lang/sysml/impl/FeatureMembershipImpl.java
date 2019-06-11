@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPart <em>Is Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
@@ -105,6 +106,26 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected boolean isPart = IS_PART_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PORTION_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPortion = IS_PORTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isPort() <em>Is Port</em>}' attribute.
@@ -296,6 +317,29 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
+	public boolean isPortion() {
+		return isPortion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsPortion(boolean newIsPortion) {
+		boolean oldIsPortion = isPortion;
+		isPortion = newIsPortion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION, oldIsPortion, isPortion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isPort() {
 		return isPort;
 	}
@@ -422,6 +466,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isReadOnly();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				return isPortion();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isPort();
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
@@ -455,6 +501,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				setIsPortion((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort((Boolean)newValue);
@@ -492,6 +541,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart(IS_PART_EDEFAULT);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				setIsPortion(IS_PORTION_EDEFAULT);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort(IS_PORT_EDEFAULT);
 				return;
@@ -525,6 +577,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart != IS_PART_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				return isPortion != IS_PORTION_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isPort != IS_PORT_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
@@ -551,6 +605,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		result.append(isReadOnly);
 		result.append(", isPart: ");
 		result.append(isPart);
+		result.append(", isPortion: ");
+		result.append(isPortion);
 		result.append(", isPort: ");
 		result.append(isPort);
 		result.append(", direction: ");

@@ -342,7 +342,7 @@ public interface Feature extends Category {
 	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
 	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
-	 * @model opposite="FeatureWithMultiplicity" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="featureWithMultiplicity" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();

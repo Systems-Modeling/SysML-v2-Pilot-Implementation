@@ -1,0 +1,36 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::c_Public::*;
+	//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
+	/* XPECT scope at c_public ---
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values, 
+		   Test3.c_public, Test3.f, 
+		   VisibilityPackage.c_Private, VisibilityPackage.c_Private.c_private, VisibilityPackage.c_Private.c_public, 
+		   VisibilityPackage.c_Private_alias, VisibilityPackage.c_Private_alias.c_public, 
+		   VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_private, VisibilityPackage.c_Public.c_public, 
+		   VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
+		   VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Package, VisibilityPackage.c_clazz.c_Package.c_publicc, VisibilityPackage.c_clazz.c_Protect,		   VisibilityPackage.c_clazz.c_Protect.c_publicc, VisibilityPackage.c_clazz.c_Public,		   VisibilityPackage.c_clazz.c_Public.c_packagee, VisibilityPackage.c_clazz.c_Public.c_protect, 
+		   c_public, f
+	--- */
+	feature f : c_public;
+}
+

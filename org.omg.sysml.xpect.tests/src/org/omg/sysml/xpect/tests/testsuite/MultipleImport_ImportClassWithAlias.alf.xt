@@ -1,0 +1,33 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import OuterPackage.A as aliass;
+	//XPECT linkedName at aliass --> OuterPackage.A
+	class C {
+			/* XPECT scope at aliass---
+		   C, C.c, aliass, aliass.a1, c, 
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b,
+		   test.C, test.C.c, test.aliass, test.aliass.a1, 
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
+	--- */
+		feature c: aliass;
+	}
+}

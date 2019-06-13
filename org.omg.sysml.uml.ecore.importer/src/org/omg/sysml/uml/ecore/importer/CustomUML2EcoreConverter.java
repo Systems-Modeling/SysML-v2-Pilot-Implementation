@@ -30,7 +30,7 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			normalReference.setLowerBound(containmentReference.getLowerBound());
 			normalReference.setUpperBound(containmentReference.getUpperBound());
 
-			containmentReference.setName("comp_" + containmentReference.getName()); // added "comp" prefix to avoid EMF warning
+			containmentReference.setName(containmentReference.getName() + "_comp");
 			EClass container = (EClass) ((EStructuralFeature) res).eContainer();
 			container.getEStructuralFeatures().add(normalReference);
 		}

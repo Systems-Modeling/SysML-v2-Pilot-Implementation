@@ -999,26 +999,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleAnnotation"
-    // InternalAlf.g:305:1: ruleAnnotation : ( ( rule__Annotation__OwnedRelatedElementAssignment ) ) ;
+    // InternalAlf.g:305:1: ruleAnnotation : ( ( rule__Annotation__OwnedRelatedElement_compAssignment ) ) ;
     public final void ruleAnnotation() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:309:2: ( ( ( rule__Annotation__OwnedRelatedElementAssignment ) ) )
-            // InternalAlf.g:310:2: ( ( rule__Annotation__OwnedRelatedElementAssignment ) )
+            // InternalAlf.g:309:2: ( ( ( rule__Annotation__OwnedRelatedElement_compAssignment ) ) )
+            // InternalAlf.g:310:2: ( ( rule__Annotation__OwnedRelatedElement_compAssignment ) )
             {
-            // InternalAlf.g:310:2: ( ( rule__Annotation__OwnedRelatedElementAssignment ) )
-            // InternalAlf.g:311:3: ( rule__Annotation__OwnedRelatedElementAssignment )
+            // InternalAlf.g:310:2: ( ( rule__Annotation__OwnedRelatedElement_compAssignment ) )
+            // InternalAlf.g:311:3: ( rule__Annotation__OwnedRelatedElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAnnotationAccess().getOwnedRelatedElementAssignment()); 
+               before(grammarAccess.getAnnotationAccess().getOwnedRelatedElement_compAssignment()); 
             }
-            // InternalAlf.g:312:3: ( rule__Annotation__OwnedRelatedElementAssignment )
-            // InternalAlf.g:312:4: rule__Annotation__OwnedRelatedElementAssignment
+            // InternalAlf.g:312:3: ( rule__Annotation__OwnedRelatedElement_compAssignment )
+            // InternalAlf.g:312:4: rule__Annotation__OwnedRelatedElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__Annotation__OwnedRelatedElementAssignment();
+            rule__Annotation__OwnedRelatedElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -1026,7 +1026,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAnnotationAccess().getOwnedRelatedElementAssignment()); 
+               after(grammarAccess.getAnnotationAccess().getOwnedRelatedElement_compAssignment()); 
             }
 
             }
@@ -4153,26 +4153,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleReturnParameterPart"
-    // InternalAlf.g:1297:1: ruleReturnParameterPart : ( ( rule__ReturnParameterPart__OwnedRelationshipAssignment ) ) ;
+    // InternalAlf.g:1297:1: ruleReturnParameterPart : ( ( rule__ReturnParameterPart__OwnedRelationship_compAssignment ) ) ;
     public final void ruleReturnParameterPart() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:1301:2: ( ( ( rule__ReturnParameterPart__OwnedRelationshipAssignment ) ) )
-            // InternalAlf.g:1302:2: ( ( rule__ReturnParameterPart__OwnedRelationshipAssignment ) )
+            // InternalAlf.g:1301:2: ( ( ( rule__ReturnParameterPart__OwnedRelationship_compAssignment ) ) )
+            // InternalAlf.g:1302:2: ( ( rule__ReturnParameterPart__OwnedRelationship_compAssignment ) )
             {
-            // InternalAlf.g:1302:2: ( ( rule__ReturnParameterPart__OwnedRelationshipAssignment ) )
-            // InternalAlf.g:1303:3: ( rule__ReturnParameterPart__OwnedRelationshipAssignment )
+            // InternalAlf.g:1302:2: ( ( rule__ReturnParameterPart__OwnedRelationship_compAssignment ) )
+            // InternalAlf.g:1303:3: ( rule__ReturnParameterPart__OwnedRelationship_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getReturnParameterPartAccess().getOwnedRelationshipAssignment()); 
+               before(grammarAccess.getReturnParameterPartAccess().getOwnedRelationship_compAssignment()); 
             }
-            // InternalAlf.g:1304:3: ( rule__ReturnParameterPart__OwnedRelationshipAssignment )
-            // InternalAlf.g:1304:4: rule__ReturnParameterPart__OwnedRelationshipAssignment
+            // InternalAlf.g:1304:3: ( rule__ReturnParameterPart__OwnedRelationship_compAssignment )
+            // InternalAlf.g:1304:4: rule__ReturnParameterPart__OwnedRelationship_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__ReturnParameterPart__OwnedRelationshipAssignment();
+            rule__ReturnParameterPart__OwnedRelationship_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -4180,7 +4180,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getReturnParameterPartAccess().getOwnedRelationshipAssignment()); 
+               after(grammarAccess.getReturnParameterPartAccess().getOwnedRelationship_compAssignment()); 
             }
 
             }
@@ -4374,26 +4374,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleExpressionMember"
-    // InternalAlf.g:1364:1: ruleExpressionMember : ( ( rule__ExpressionMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalAlf.g:1364:1: ruleExpressionMember : ( ( rule__ExpressionMember__OwnedRelatedElement_compAssignment ) ) ;
     public final void ruleExpressionMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:1368:2: ( ( ( rule__ExpressionMember__OwnedRelatedElementAssignment ) ) )
-            // InternalAlf.g:1369:2: ( ( rule__ExpressionMember__OwnedRelatedElementAssignment ) )
+            // InternalAlf.g:1368:2: ( ( ( rule__ExpressionMember__OwnedRelatedElement_compAssignment ) ) )
+            // InternalAlf.g:1369:2: ( ( rule__ExpressionMember__OwnedRelatedElement_compAssignment ) )
             {
-            // InternalAlf.g:1369:2: ( ( rule__ExpressionMember__OwnedRelatedElementAssignment ) )
-            // InternalAlf.g:1370:3: ( rule__ExpressionMember__OwnedRelatedElementAssignment )
+            // InternalAlf.g:1369:2: ( ( rule__ExpressionMember__OwnedRelatedElement_compAssignment ) )
+            // InternalAlf.g:1370:3: ( rule__ExpressionMember__OwnedRelatedElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElementAssignment()); 
+               before(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
-            // InternalAlf.g:1371:3: ( rule__ExpressionMember__OwnedRelatedElementAssignment )
-            // InternalAlf.g:1371:4: rule__ExpressionMember__OwnedRelatedElementAssignment
+            // InternalAlf.g:1371:3: ( rule__ExpressionMember__OwnedRelatedElement_compAssignment )
+            // InternalAlf.g:1371:4: rule__ExpressionMember__OwnedRelatedElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__ExpressionMember__OwnedRelatedElementAssignment();
+            rule__ExpressionMember__OwnedRelatedElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -4401,7 +4401,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElementAssignment()); 
+               after(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
 
             }
@@ -5173,26 +5173,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFeatureValue"
-    // InternalAlf.g:1607:1: ruleFeatureValue : ( ( rule__FeatureValue__OwnedRelatedElementAssignment ) ) ;
+    // InternalAlf.g:1607:1: ruleFeatureValue : ( ( rule__FeatureValue__OwnedRelatedElement_compAssignment ) ) ;
     public final void ruleFeatureValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:1611:2: ( ( ( rule__FeatureValue__OwnedRelatedElementAssignment ) ) )
-            // InternalAlf.g:1612:2: ( ( rule__FeatureValue__OwnedRelatedElementAssignment ) )
+            // InternalAlf.g:1611:2: ( ( ( rule__FeatureValue__OwnedRelatedElement_compAssignment ) ) )
+            // InternalAlf.g:1612:2: ( ( rule__FeatureValue__OwnedRelatedElement_compAssignment ) )
             {
-            // InternalAlf.g:1612:2: ( ( rule__FeatureValue__OwnedRelatedElementAssignment ) )
-            // InternalAlf.g:1613:3: ( rule__FeatureValue__OwnedRelatedElementAssignment )
+            // InternalAlf.g:1612:2: ( ( rule__FeatureValue__OwnedRelatedElement_compAssignment ) )
+            // InternalAlf.g:1613:3: ( rule__FeatureValue__OwnedRelatedElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementAssignment()); 
+               before(grammarAccess.getFeatureValueAccess().getOwnedRelatedElement_compAssignment()); 
             }
-            // InternalAlf.g:1614:3: ( rule__FeatureValue__OwnedRelatedElementAssignment )
-            // InternalAlf.g:1614:4: rule__FeatureValue__OwnedRelatedElementAssignment
+            // InternalAlf.g:1614:3: ( rule__FeatureValue__OwnedRelatedElement_compAssignment )
+            // InternalAlf.g:1614:4: rule__FeatureValue__OwnedRelatedElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureValue__OwnedRelatedElementAssignment();
+            rule__FeatureValue__OwnedRelatedElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -5200,7 +5200,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementAssignment()); 
+               after(grammarAccess.getFeatureValueAccess().getOwnedRelatedElement_compAssignment()); 
             }
 
             }
@@ -6126,26 +6126,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleConnectorEnd"
-    // InternalAlf.g:1892:1: ruleConnectorEnd : ( ( rule__ConnectorEnd__OwnedRelationshipAssignment ) ) ;
+    // InternalAlf.g:1892:1: ruleConnectorEnd : ( ( rule__ConnectorEnd__OwnedRelationship_compAssignment ) ) ;
     public final void ruleConnectorEnd() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:1896:2: ( ( ( rule__ConnectorEnd__OwnedRelationshipAssignment ) ) )
-            // InternalAlf.g:1897:2: ( ( rule__ConnectorEnd__OwnedRelationshipAssignment ) )
+            // InternalAlf.g:1896:2: ( ( ( rule__ConnectorEnd__OwnedRelationship_compAssignment ) ) )
+            // InternalAlf.g:1897:2: ( ( rule__ConnectorEnd__OwnedRelationship_compAssignment ) )
             {
-            // InternalAlf.g:1897:2: ( ( rule__ConnectorEnd__OwnedRelationshipAssignment ) )
-            // InternalAlf.g:1898:3: ( rule__ConnectorEnd__OwnedRelationshipAssignment )
+            // InternalAlf.g:1897:2: ( ( rule__ConnectorEnd__OwnedRelationship_compAssignment ) )
+            // InternalAlf.g:1898:3: ( rule__ConnectorEnd__OwnedRelationship_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment()); 
+               before(grammarAccess.getConnectorEndAccess().getOwnedRelationship_compAssignment()); 
             }
-            // InternalAlf.g:1899:3: ( rule__ConnectorEnd__OwnedRelationshipAssignment )
-            // InternalAlf.g:1899:4: rule__ConnectorEnd__OwnedRelationshipAssignment
+            // InternalAlf.g:1899:3: ( rule__ConnectorEnd__OwnedRelationship_compAssignment )
+            // InternalAlf.g:1899:4: rule__ConnectorEnd__OwnedRelationship_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorEnd__OwnedRelationshipAssignment();
+            rule__ConnectorEnd__OwnedRelationship_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -6153,7 +6153,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment()); 
+               after(grammarAccess.getConnectorEndAccess().getOwnedRelationship_compAssignment()); 
             }
 
             }
@@ -9274,26 +9274,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFeatureReferenceExpression"
-    // InternalAlf.g:2842:1: ruleFeatureReferenceExpression : ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) ;
+    // InternalAlf.g:2842:1: ruleFeatureReferenceExpression : ( ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment ) ) ;
     public final void ruleFeatureReferenceExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:2846:2: ( ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) )
-            // InternalAlf.g:2847:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
+            // InternalAlf.g:2846:2: ( ( ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment ) ) )
+            // InternalAlf.g:2847:2: ( ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment ) )
             {
-            // InternalAlf.g:2847:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
-            // InternalAlf.g:2848:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
+            // InternalAlf.g:2847:2: ( ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment ) )
+            // InternalAlf.g:2848:3: ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment()); 
+               before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationship_compAssignment()); 
             }
-            // InternalAlf.g:2849:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
-            // InternalAlf.g:2849:4: rule__FeatureReferenceExpression__OwnedRelationshipAssignment
+            // InternalAlf.g:2849:3: ( rule__FeatureReferenceExpression__OwnedRelationship_compAssignment )
+            // InternalAlf.g:2849:4: rule__FeatureReferenceExpression__OwnedRelationship_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureReferenceExpression__OwnedRelationshipAssignment();
+            rule__FeatureReferenceExpression__OwnedRelationship_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9301,7 +9301,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment()); 
+               after(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationship_compAssignment()); 
             }
 
             }
@@ -9682,26 +9682,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleTypeReference"
-    // InternalAlf.g:2968:1: ruleTypeReference : ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) ;
+    // InternalAlf.g:2968:1: ruleTypeReference : ( ( rule__TypeReference__OwnedRelationship_compAssignment ) ) ;
     public final void ruleTypeReference() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:2972:2: ( ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) )
-            // InternalAlf.g:2973:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
+            // InternalAlf.g:2972:2: ( ( ( rule__TypeReference__OwnedRelationship_compAssignment ) ) )
+            // InternalAlf.g:2973:2: ( ( rule__TypeReference__OwnedRelationship_compAssignment ) )
             {
-            // InternalAlf.g:2973:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
-            // InternalAlf.g:2974:3: ( rule__TypeReference__OwnedRelationshipAssignment )
+            // InternalAlf.g:2973:2: ( ( rule__TypeReference__OwnedRelationship_compAssignment ) )
+            // InternalAlf.g:2974:3: ( rule__TypeReference__OwnedRelationship_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipAssignment()); 
+               before(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compAssignment()); 
             }
-            // InternalAlf.g:2975:3: ( rule__TypeReference__OwnedRelationshipAssignment )
-            // InternalAlf.g:2975:4: rule__TypeReference__OwnedRelationshipAssignment
+            // InternalAlf.g:2975:3: ( rule__TypeReference__OwnedRelationship_compAssignment )
+            // InternalAlf.g:2975:4: rule__TypeReference__OwnedRelationship_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__TypeReference__OwnedRelationshipAssignment();
+            rule__TypeReference__OwnedRelationship_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9709,7 +9709,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipAssignment()); 
+               after(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compAssignment()); 
             }
 
             }
@@ -10617,26 +10617,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleTypeReferenceMember"
-    // InternalAlf.g:3243:1: ruleTypeReferenceMember : ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalAlf.g:3243:1: ruleTypeReferenceMember : ( ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment ) ) ;
     public final void ruleTypeReferenceMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3247:2: ( ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) )
-            // InternalAlf.g:3248:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalAlf.g:3247:2: ( ( ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment ) ) )
+            // InternalAlf.g:3248:2: ( ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment ) )
             {
-            // InternalAlf.g:3248:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
-            // InternalAlf.g:3249:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
+            // InternalAlf.g:3248:2: ( ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment ) )
+            // InternalAlf.g:3249:3: ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementAssignment()); 
+               before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
-            // InternalAlf.g:3250:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
-            // InternalAlf.g:3250:4: rule__TypeReferenceMember__OwnedRelatedElementAssignment
+            // InternalAlf.g:3250:3: ( rule__TypeReferenceMember__OwnedRelatedElement_compAssignment )
+            // InternalAlf.g:3250:4: rule__TypeReferenceMember__OwnedRelatedElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__TypeReferenceMember__OwnedRelatedElementAssignment();
+            rule__TypeReferenceMember__OwnedRelatedElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10644,7 +10644,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementAssignment()); 
+               after(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
 
             }
@@ -10787,26 +10787,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleBodyMember"
-    // InternalAlf.g:3293:1: ruleBodyMember : ( ( rule__BodyMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalAlf.g:3293:1: ruleBodyMember : ( ( rule__BodyMember__OwnedRelatedElement_compAssignment ) ) ;
     public final void ruleBodyMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3297:2: ( ( ( rule__BodyMember__OwnedRelatedElementAssignment ) ) )
-            // InternalAlf.g:3298:2: ( ( rule__BodyMember__OwnedRelatedElementAssignment ) )
+            // InternalAlf.g:3297:2: ( ( ( rule__BodyMember__OwnedRelatedElement_compAssignment ) ) )
+            // InternalAlf.g:3298:2: ( ( rule__BodyMember__OwnedRelatedElement_compAssignment ) )
             {
-            // InternalAlf.g:3298:2: ( ( rule__BodyMember__OwnedRelatedElementAssignment ) )
-            // InternalAlf.g:3299:3: ( rule__BodyMember__OwnedRelatedElementAssignment )
+            // InternalAlf.g:3298:2: ( ( rule__BodyMember__OwnedRelatedElement_compAssignment ) )
+            // InternalAlf.g:3299:3: ( rule__BodyMember__OwnedRelatedElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment()); 
+               before(grammarAccess.getBodyMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
-            // InternalAlf.g:3300:3: ( rule__BodyMember__OwnedRelatedElementAssignment )
-            // InternalAlf.g:3300:4: rule__BodyMember__OwnedRelatedElementAssignment
+            // InternalAlf.g:3300:3: ( rule__BodyMember__OwnedRelatedElement_compAssignment )
+            // InternalAlf.g:3300:4: rule__BodyMember__OwnedRelatedElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__BodyMember__OwnedRelatedElementAssignment();
+            rule__BodyMember__OwnedRelatedElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10814,7 +10814,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementAssignment()); 
+               after(grammarAccess.getBodyMemberAccess().getOwnedRelatedElement_compAssignment()); 
             }
 
             }
@@ -11042,26 +11042,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleQueryNameExpression"
-    // InternalAlf.g:3368:1: ruleQueryNameExpression : ( ( rule__QueryNameExpression__OwnedRelationshipAssignment ) ) ;
+    // InternalAlf.g:3368:1: ruleQueryNameExpression : ( ( rule__QueryNameExpression__OwnedRelationship_compAssignment ) ) ;
     public final void ruleQueryNameExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3372:2: ( ( ( rule__QueryNameExpression__OwnedRelationshipAssignment ) ) )
-            // InternalAlf.g:3373:2: ( ( rule__QueryNameExpression__OwnedRelationshipAssignment ) )
+            // InternalAlf.g:3372:2: ( ( ( rule__QueryNameExpression__OwnedRelationship_compAssignment ) ) )
+            // InternalAlf.g:3373:2: ( ( rule__QueryNameExpression__OwnedRelationship_compAssignment ) )
             {
-            // InternalAlf.g:3373:2: ( ( rule__QueryNameExpression__OwnedRelationshipAssignment ) )
-            // InternalAlf.g:3374:3: ( rule__QueryNameExpression__OwnedRelationshipAssignment )
+            // InternalAlf.g:3373:2: ( ( rule__QueryNameExpression__OwnedRelationship_compAssignment ) )
+            // InternalAlf.g:3374:3: ( rule__QueryNameExpression__OwnedRelationship_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment()); 
+               before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationship_compAssignment()); 
             }
-            // InternalAlf.g:3375:3: ( rule__QueryNameExpression__OwnedRelationshipAssignment )
-            // InternalAlf.g:3375:4: rule__QueryNameExpression__OwnedRelationshipAssignment
+            // InternalAlf.g:3375:3: ( rule__QueryNameExpression__OwnedRelationship_compAssignment )
+            // InternalAlf.g:3375:4: rule__QueryNameExpression__OwnedRelationship_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__QueryNameExpression__OwnedRelationshipAssignment();
+            rule__QueryNameExpression__OwnedRelationship_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -11069,7 +11069,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment()); 
+               after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationship_compAssignment()); 
             }
 
             }
@@ -11883,30 +11883,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitPrefix__Alternatives_0"
-    // InternalAlf.g:3613:1: rule__UnitPrefix__Alternatives_0 : ( ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 ) ) );
+    // InternalAlf.g:3613:1: rule__UnitPrefix__Alternatives_0 : ( ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 ) ) );
     public final void rule__UnitPrefix__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3617:1: ( ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 ) ) )
+            // InternalAlf.g:3617:1: ( ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 ) ) )
             int alt3=2;
             alt3 = dfa3.predict(input);
             switch (alt3) {
                 case 1 :
-                    // InternalAlf.g:3618:2: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 ) )
+                    // InternalAlf.g:3618:2: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 ) )
                     {
-                    // InternalAlf.g:3618:2: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 ) )
-                    // InternalAlf.g:3619:3: ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 )
+                    // InternalAlf.g:3618:2: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 ) )
+                    // InternalAlf.g:3619:3: ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_0()); 
+                       before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_0_0()); 
                     }
-                    // InternalAlf.g:3620:3: ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 )
-                    // InternalAlf.g:3620:4: rule__UnitPrefix__OwnedRelationshipAssignment_0_0
+                    // InternalAlf.g:3620:3: ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 )
+                    // InternalAlf.g:3620:4: rule__UnitPrefix__OwnedRelationship_compAssignment_0_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__UnitPrefix__OwnedRelationshipAssignment_0_0();
+                    rule__UnitPrefix__OwnedRelationship_compAssignment_0_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -11914,7 +11914,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_0()); 
+                       after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_0_0()); 
                     }
 
                     }
@@ -11923,19 +11923,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:3624:2: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 ) )
+                    // InternalAlf.g:3624:2: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 ) )
                     {
-                    // InternalAlf.g:3624:2: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 ) )
-                    // InternalAlf.g:3625:3: ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 )
+                    // InternalAlf.g:3624:2: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 ) )
+                    // InternalAlf.g:3625:3: ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_1()); 
+                       before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_0_1()); 
                     }
-                    // InternalAlf.g:3626:3: ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 )
-                    // InternalAlf.g:3626:4: rule__UnitPrefix__OwnedRelationshipAssignment_0_1
+                    // InternalAlf.g:3626:3: ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 )
+                    // InternalAlf.g:3626:4: rule__UnitPrefix__OwnedRelationship_compAssignment_0_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__UnitPrefix__OwnedRelationshipAssignment_0_1();
+                    rule__UnitPrefix__OwnedRelationship_compAssignment_0_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -11943,7 +11943,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_1()); 
+                       after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_0_1()); 
                     }
 
                     }
@@ -12537,30 +12537,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageDefinition__Alternatives_3"
-    // InternalAlf.g:3733:1: rule__PackageDefinition__Alternatives_3 : ( ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 ) ) );
+    // InternalAlf.g:3733:1: rule__PackageDefinition__Alternatives_3 : ( ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 ) ) );
     public final void rule__PackageDefinition__Alternatives_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3737:1: ( ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 ) ) )
+            // InternalAlf.g:3737:1: ( ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 ) ) )
             int alt7=2;
             alt7 = dfa7.predict(input);
             switch (alt7) {
                 case 1 :
-                    // InternalAlf.g:3738:2: ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 ) )
+                    // InternalAlf.g:3738:2: ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 ) )
                     {
-                    // InternalAlf.g:3738:2: ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 ) )
-                    // InternalAlf.g:3739:3: ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 )
+                    // InternalAlf.g:3738:2: ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 ) )
+                    // InternalAlf.g:3739:3: ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_0()); 
+                       before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compAssignment_3_0()); 
                     }
-                    // InternalAlf.g:3740:3: ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 )
-                    // InternalAlf.g:3740:4: rule__PackageDefinition__OwnedRelationshipAssignment_3_0
+                    // InternalAlf.g:3740:3: ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 )
+                    // InternalAlf.g:3740:4: rule__PackageDefinition__OwnedRelationship_compAssignment_3_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__PackageDefinition__OwnedRelationshipAssignment_3_0();
+                    rule__PackageDefinition__OwnedRelationship_compAssignment_3_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -12568,7 +12568,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_0()); 
+                       after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compAssignment_3_0()); 
                     }
 
                     }
@@ -12577,19 +12577,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:3744:2: ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 ) )
+                    // InternalAlf.g:3744:2: ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 ) )
                     {
-                    // InternalAlf.g:3744:2: ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 ) )
-                    // InternalAlf.g:3745:3: ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 )
+                    // InternalAlf.g:3744:2: ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 ) )
+                    // InternalAlf.g:3745:3: ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_1()); 
+                       before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compAssignment_3_1()); 
                     }
-                    // InternalAlf.g:3746:3: ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 )
-                    // InternalAlf.g:3746:4: rule__PackageDefinition__OwnedRelationshipAssignment_3_1
+                    // InternalAlf.g:3746:3: ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 )
+                    // InternalAlf.g:3746:4: rule__PackageDefinition__OwnedRelationship_compAssignment_3_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__PackageDefinition__OwnedRelationshipAssignment_3_1();
+                    rule__PackageDefinition__OwnedRelationship_compAssignment_3_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -12597,7 +12597,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_1()); 
+                       after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compAssignment_3_1()); 
                     }
 
                     }
@@ -12745,30 +12745,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonFeatureMemberElement__Alternatives"
-    // InternalAlf.g:3775:1: rule__NonFeatureMemberElement__Alternatives : ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) );
+    // InternalAlf.g:3775:1: rule__NonFeatureMemberElement__Alternatives : ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) );
     public final void rule__NonFeatureMemberElement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3779:1: ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) )
+            // InternalAlf.g:3779:1: ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) )
             int alt9=9;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // InternalAlf.g:3780:2: ( ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 ) )
+                    // InternalAlf.g:3780:2: ( ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 ) )
                     {
-                    // InternalAlf.g:3780:2: ( ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 ) )
-                    // InternalAlf.g:3781:3: ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 )
+                    // InternalAlf.g:3780:2: ( ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 ) )
+                    // InternalAlf.g:3781:3: ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElementAssignment_0()); 
+                       before(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElement_compAssignment_0()); 
                     }
-                    // InternalAlf.g:3782:3: ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 )
-                    // InternalAlf.g:3782:4: rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0
+                    // InternalAlf.g:3782:3: ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 )
+                    // InternalAlf.g:3782:4: rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0();
+                    rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -12776,7 +12776,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElementAssignment_0()); 
+                       after(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElement_compAssignment_0()); 
                     }
 
                     }
@@ -13420,30 +13420,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CategoryBody__Alternatives_1_1"
-    // InternalAlf.g:3925:1: rule__CategoryBody__Alternatives_1_1 : ( ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) );
+    // InternalAlf.g:3925:1: rule__CategoryBody__Alternatives_1_1 : ( ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) );
     public final void rule__CategoryBody__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3929:1: ( ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) )
+            // InternalAlf.g:3929:1: ( ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) )
             int alt13=2;
             alt13 = dfa13.predict(input);
             switch (alt13) {
                 case 1 :
-                    // InternalAlf.g:3930:2: ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 ) )
+                    // InternalAlf.g:3930:2: ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 ) )
                     {
-                    // InternalAlf.g:3930:2: ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 ) )
-                    // InternalAlf.g:3931:3: ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 )
+                    // InternalAlf.g:3930:2: ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 ) )
+                    // InternalAlf.g:3931:3: ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       before(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
-                    // InternalAlf.g:3932:3: ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 )
-                    // InternalAlf.g:3932:4: rule__CategoryBody__OwnedRelationshipAssignment_1_1_0
+                    // InternalAlf.g:3932:3: ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 )
+                    // InternalAlf.g:3932:4: rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__CategoryBody__OwnedRelationshipAssignment_1_1_0();
+                    rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13451,7 +13451,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       after(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
 
                     }
@@ -13460,19 +13460,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:3936:2: ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 ) )
+                    // InternalAlf.g:3936:2: ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 ) )
                     {
-                    // InternalAlf.g:3936:2: ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 ) )
-                    // InternalAlf.g:3937:3: ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 )
+                    // InternalAlf.g:3936:2: ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 ) )
+                    // InternalAlf.g:3937:3: ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       before(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
-                    // InternalAlf.g:3938:3: ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 )
-                    // InternalAlf.g:3938:4: rule__CategoryBody__OwnedRelationshipAssignment_1_1_1
+                    // InternalAlf.g:3938:3: ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 )
+                    // InternalAlf.g:3938:4: rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__CategoryBody__OwnedRelationshipAssignment_1_1_1();
+                    rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13480,7 +13480,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       after(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
 
                     }
@@ -13606,30 +13606,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AbstractCategoryBody__Alternatives_1_1"
-    // InternalAlf.g:3967:1: rule__AbstractCategoryBody__Alternatives_1_1 : ( ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) );
+    // InternalAlf.g:3967:1: rule__AbstractCategoryBody__Alternatives_1_1 : ( ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) );
     public final void rule__AbstractCategoryBody__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:3971:1: ( ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) )
+            // InternalAlf.g:3971:1: ( ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) )
             int alt15=2;
             alt15 = dfa15.predict(input);
             switch (alt15) {
                 case 1 :
-                    // InternalAlf.g:3972:2: ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 ) )
+                    // InternalAlf.g:3972:2: ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 ) )
                     {
-                    // InternalAlf.g:3972:2: ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 ) )
-                    // InternalAlf.g:3973:3: ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 )
+                    // InternalAlf.g:3972:2: ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 ) )
+                    // InternalAlf.g:3973:3: ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
-                    // InternalAlf.g:3974:3: ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 )
-                    // InternalAlf.g:3974:4: rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0
+                    // InternalAlf.g:3974:3: ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 )
+                    // InternalAlf.g:3974:4: rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0();
+                    rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13637,7 +13637,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
 
                     }
@@ -13646,19 +13646,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:3978:2: ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 ) )
+                    // InternalAlf.g:3978:2: ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 ) )
                     {
-                    // InternalAlf.g:3978:2: ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 ) )
-                    // InternalAlf.g:3979:3: ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 )
+                    // InternalAlf.g:3978:2: ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 ) )
+                    // InternalAlf.g:3979:3: ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
-                    // InternalAlf.g:3980:3: ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 )
-                    // InternalAlf.g:3980:4: rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1
+                    // InternalAlf.g:3980:3: ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 )
+                    // InternalAlf.g:3980:4: rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1();
+                    rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13666,7 +13666,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
 
                     }
@@ -14407,13 +14407,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Alternatives_1_0_2"
-    // InternalAlf.g:4102:1: rule__FeatureMember__Alternatives_1_0_2 : ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 ) ) | ( ( rule__FeatureMember__Group_1_0_2_1__0 ) ) );
+    // InternalAlf.g:4102:1: rule__FeatureMember__Alternatives_1_0_2 : ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 ) ) | ( ( rule__FeatureMember__Group_1_0_2_1__0 ) ) );
     public final void rule__FeatureMember__Alternatives_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4106:1: ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 ) ) | ( ( rule__FeatureMember__Group_1_0_2_1__0 ) ) )
+            // InternalAlf.g:4106:1: ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 ) ) | ( ( rule__FeatureMember__Group_1_0_2_1__0 ) ) )
             int alt20=2;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -14474,19 +14474,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
             switch (alt20) {
                 case 1 :
-                    // InternalAlf.g:4107:2: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 ) )
+                    // InternalAlf.g:4107:2: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 ) )
                     {
-                    // InternalAlf.g:4107:2: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 ) )
-                    // InternalAlf.g:4108:3: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 )
+                    // InternalAlf.g:4107:2: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 ) )
+                    // InternalAlf.g:4108:3: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_0_2_0()); 
+                       before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_0_2_0()); 
                     }
-                    // InternalAlf.g:4109:3: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 )
-                    // InternalAlf.g:4109:4: rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0
+                    // InternalAlf.g:4109:3: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 )
+                    // InternalAlf.g:4109:4: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0();
+                    rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -14494,7 +14494,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_0_2_0()); 
+                       after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_0_2_0()); 
                     }
 
                     }
@@ -14677,30 +14677,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Alternatives_1_2_1"
-    // InternalAlf.g:4150:1: rule__FeatureMember__Alternatives_1_2_1 : ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) );
+    // InternalAlf.g:4150:1: rule__FeatureMember__Alternatives_1_2_1 : ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) );
     public final void rule__FeatureMember__Alternatives_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4154:1: ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) )
+            // InternalAlf.g:4154:1: ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) )
             int alt22=2;
             alt22 = dfa22.predict(input);
             switch (alt22) {
                 case 1 :
-                    // InternalAlf.g:4155:2: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 ) )
+                    // InternalAlf.g:4155:2: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 ) )
                     {
-                    // InternalAlf.g:4155:2: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 ) )
-                    // InternalAlf.g:4156:3: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 )
+                    // InternalAlf.g:4155:2: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 ) )
+                    // InternalAlf.g:4156:3: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_2_1_0()); 
+                       before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_2_1_0()); 
                     }
-                    // InternalAlf.g:4157:3: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 )
-                    // InternalAlf.g:4157:4: rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0
+                    // InternalAlf.g:4157:3: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 )
+                    // InternalAlf.g:4157:4: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0();
+                    rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -14708,7 +14708,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_2_1_0()); 
+                       after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_2_1_0()); 
                     }
 
                     }
@@ -14853,30 +14853,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssociationBody__Alternatives_1_1"
-    // InternalAlf.g:4192:1: rule__AssociationBody__Alternatives_1_1 : ( ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 ) ) );
+    // InternalAlf.g:4192:1: rule__AssociationBody__Alternatives_1_1 : ( ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 ) ) );
     public final void rule__AssociationBody__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4196:1: ( ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 ) ) )
+            // InternalAlf.g:4196:1: ( ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 ) ) )
             int alt24=2;
             alt24 = dfa24.predict(input);
             switch (alt24) {
                 case 1 :
-                    // InternalAlf.g:4197:2: ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 ) )
+                    // InternalAlf.g:4197:2: ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 ) )
                     {
-                    // InternalAlf.g:4197:2: ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 ) )
-                    // InternalAlf.g:4198:3: ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 )
+                    // InternalAlf.g:4197:2: ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 ) )
+                    // InternalAlf.g:4198:3: ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       before(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
-                    // InternalAlf.g:4199:3: ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 )
-                    // InternalAlf.g:4199:4: rule__AssociationBody__OwnedRelationshipAssignment_1_1_0
+                    // InternalAlf.g:4199:3: ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 )
+                    // InternalAlf.g:4199:4: rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__AssociationBody__OwnedRelationshipAssignment_1_1_0();
+                    rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -14884,7 +14884,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       after(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
 
                     }
@@ -14893,19 +14893,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:4203:2: ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 ) )
+                    // InternalAlf.g:4203:2: ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 ) )
                     {
-                    // InternalAlf.g:4203:2: ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 ) )
-                    // InternalAlf.g:4204:3: ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 )
+                    // InternalAlf.g:4203:2: ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 ) )
+                    // InternalAlf.g:4204:3: ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       before(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
-                    // InternalAlf.g:4205:3: ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 )
-                    // InternalAlf.g:4205:4: rule__AssociationBody__OwnedRelationshipAssignment_1_1_1
+                    // InternalAlf.g:4205:3: ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 )
+                    // InternalAlf.g:4205:4: rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__AssociationBody__OwnedRelationshipAssignment_1_1_1();
+                    rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -14913,7 +14913,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       after(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
 
                     }
@@ -15528,30 +15528,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BehaviorBody__Alternatives_1_1"
-    // InternalAlf.g:4348:1: rule__BehaviorBody__Alternatives_1_1 : ( ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 ) ) );
+    // InternalAlf.g:4348:1: rule__BehaviorBody__Alternatives_1_1 : ( ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 ) ) );
     public final void rule__BehaviorBody__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4352:1: ( ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 ) ) )
+            // InternalAlf.g:4352:1: ( ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 ) ) )
             int alt30=2;
             alt30 = dfa30.predict(input);
             switch (alt30) {
                 case 1 :
-                    // InternalAlf.g:4353:2: ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 ) )
+                    // InternalAlf.g:4353:2: ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 ) )
                     {
-                    // InternalAlf.g:4353:2: ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 ) )
-                    // InternalAlf.g:4354:3: ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 )
+                    // InternalAlf.g:4353:2: ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 ) )
+                    // InternalAlf.g:4354:3: ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
-                    // InternalAlf.g:4355:3: ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 )
-                    // InternalAlf.g:4355:4: rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0
+                    // InternalAlf.g:4355:3: ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 )
+                    // InternalAlf.g:4355:4: rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0();
+                    rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15559,7 +15559,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
 
                     }
@@ -15568,19 +15568,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:4359:2: ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 ) )
+                    // InternalAlf.g:4359:2: ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 ) )
                     {
-                    // InternalAlf.g:4359:2: ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 ) )
-                    // InternalAlf.g:4360:3: ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 )
+                    // InternalAlf.g:4359:2: ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 ) )
+                    // InternalAlf.g:4360:3: ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
-                    // InternalAlf.g:4361:3: ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 )
-                    // InternalAlf.g:4361:4: rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1
+                    // InternalAlf.g:4361:3: ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 )
+                    // InternalAlf.g:4361:4: rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1();
+                    rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15588,7 +15588,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
 
                     }
@@ -15711,30 +15711,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BehaviorStepMemberDefinition__Alternatives"
-    // InternalAlf.g:4396:1: rule__BehaviorStepMemberDefinition__Alternatives : ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) );
+    // InternalAlf.g:4396:1: rule__BehaviorStepMemberDefinition__Alternatives : ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) );
     public final void rule__BehaviorStepMemberDefinition__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4400:1: ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) )
+            // InternalAlf.g:4400:1: ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) )
             int alt32=4;
             alt32 = dfa32.predict(input);
             switch (alt32) {
                 case 1 :
-                    // InternalAlf.g:4401:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 ) )
+                    // InternalAlf.g:4401:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 ) )
                     {
-                    // InternalAlf.g:4401:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 ) )
-                    // InternalAlf.g:4402:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 )
+                    // InternalAlf.g:4401:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 ) )
+                    // InternalAlf.g:4402:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_0()); 
+                       before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compAssignment_0()); 
                     }
-                    // InternalAlf.g:4403:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 )
-                    // InternalAlf.g:4403:4: rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0
+                    // InternalAlf.g:4403:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 )
+                    // InternalAlf.g:4403:4: rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0();
+                    rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15742,7 +15742,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_0()); 
+                       after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compAssignment_0()); 
                     }
 
                     }
@@ -15780,19 +15780,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalAlf.g:4413:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 ) )
+                    // InternalAlf.g:4413:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 ) )
                     {
-                    // InternalAlf.g:4413:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 ) )
-                    // InternalAlf.g:4414:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 )
+                    // InternalAlf.g:4413:2: ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 ) )
+                    // InternalAlf.g:4414:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_2()); 
+                       before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compAssignment_2()); 
                     }
-                    // InternalAlf.g:4415:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 )
-                    // InternalAlf.g:4415:4: rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2
+                    // InternalAlf.g:4415:3: ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 )
+                    // InternalAlf.g:4415:4: rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2();
+                    rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15800,7 +15800,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementAssignment_2()); 
+                       after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compAssignment_2()); 
                     }
 
                     }
@@ -15945,30 +15945,30 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionBody__Alternatives_1_1"
-    // InternalAlf.g:4450:1: rule__FunctionBody__Alternatives_1_1 : ( ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 ) ) );
+    // InternalAlf.g:4450:1: rule__FunctionBody__Alternatives_1_1 : ( ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 ) ) );
     public final void rule__FunctionBody__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4454:1: ( ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 ) ) )
+            // InternalAlf.g:4454:1: ( ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 ) ) )
             int alt34=2;
             alt34 = dfa34.predict(input);
             switch (alt34) {
                 case 1 :
-                    // InternalAlf.g:4455:2: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 ) )
+                    // InternalAlf.g:4455:2: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 ) )
                     {
-                    // InternalAlf.g:4455:2: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 ) )
-                    // InternalAlf.g:4456:3: ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 )
+                    // InternalAlf.g:4455:2: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 ) )
+                    // InternalAlf.g:4456:3: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
-                    // InternalAlf.g:4457:3: ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 )
-                    // InternalAlf.g:4457:4: rule__FunctionBody__OwnedRelationshipAssignment_1_1_0
+                    // InternalAlf.g:4457:3: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 )
+                    // InternalAlf.g:4457:4: rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionBody__OwnedRelationshipAssignment_1_1_0();
+                    rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15976,7 +15976,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_0()); 
+                       after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_1_0()); 
                     }
 
                     }
@@ -15985,19 +15985,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:4461:2: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 ) )
+                    // InternalAlf.g:4461:2: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 ) )
                     {
-                    // InternalAlf.g:4461:2: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 ) )
-                    // InternalAlf.g:4462:3: ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 )
+                    // InternalAlf.g:4461:2: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 ) )
+                    // InternalAlf.g:4462:3: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
-                    // InternalAlf.g:4463:3: ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 )
-                    // InternalAlf.g:4463:4: rule__FunctionBody__OwnedRelationshipAssignment_1_1_1
+                    // InternalAlf.g:4463:3: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 )
+                    // InternalAlf.g:4463:4: rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionBody__OwnedRelationshipAssignment_1_1_1();
+                    rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -16005,7 +16005,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_1()); 
+                       after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_1_1()); 
                     }
 
                     }
@@ -16207,13 +16207,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePart__Alternatives_0_2"
-    // InternalAlf.g:4513:1: rule__TypePart__Alternatives_0_2 : ( ( ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 ) ) | ( 'any' ) );
+    // InternalAlf.g:4513:1: rule__TypePart__Alternatives_0_2 : ( ( ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 ) ) | ( 'any' ) );
     public final void rule__TypePart__Alternatives_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4517:1: ( ( ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 ) ) | ( 'any' ) )
+            // InternalAlf.g:4517:1: ( ( ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 ) ) | ( 'any' ) )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -16232,19 +16232,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
             switch (alt37) {
                 case 1 :
-                    // InternalAlf.g:4518:2: ( ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 ) )
+                    // InternalAlf.g:4518:2: ( ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 ) )
                     {
-                    // InternalAlf.g:4518:2: ( ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 ) )
-                    // InternalAlf.g:4519:3: ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 )
+                    // InternalAlf.g:4518:2: ( ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 ) )
+                    // InternalAlf.g:4519:3: ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_0_2_0()); 
+                       before(grammarAccess.getTypePartAccess().getOwnedRelationship_compAssignment_0_2_0()); 
                     }
-                    // InternalAlf.g:4520:3: ( rule__TypePart__OwnedRelationshipAssignment_0_2_0 )
-                    // InternalAlf.g:4520:4: rule__TypePart__OwnedRelationshipAssignment_0_2_0
+                    // InternalAlf.g:4520:3: ( rule__TypePart__OwnedRelationship_compAssignment_0_2_0 )
+                    // InternalAlf.g:4520:4: rule__TypePart__OwnedRelationship_compAssignment_0_2_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__TypePart__OwnedRelationshipAssignment_0_2_0();
+                    rule__TypePart__OwnedRelationship_compAssignment_0_2_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -16252,7 +16252,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_0_2_0()); 
+                       after(grammarAccess.getTypePartAccess().getOwnedRelationship_compAssignment_0_2_0()); 
                     }
 
                     }
@@ -17389,13 +17389,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyExpression__Alternatives"
-    // InternalAlf.g:4795:1: rule__BodyExpression__Alternatives : ( ( ( rule__BodyExpression__Group_0__0 ) ) | ( ( rule__BodyExpression__OwnedRelationshipAssignment_1 ) ) );
+    // InternalAlf.g:4795:1: rule__BodyExpression__Alternatives : ( ( ( rule__BodyExpression__Group_0__0 ) ) | ( ( rule__BodyExpression__OwnedRelationship_compAssignment_1 ) ) );
     public final void rule__BodyExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:4799:1: ( ( ( rule__BodyExpression__Group_0__0 ) ) | ( ( rule__BodyExpression__OwnedRelationshipAssignment_1 ) ) )
+            // InternalAlf.g:4799:1: ( ( ( rule__BodyExpression__Group_0__0 ) ) | ( ( rule__BodyExpression__OwnedRelationship_compAssignment_1 ) ) )
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -17471,19 +17471,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:4806:2: ( ( rule__BodyExpression__OwnedRelationshipAssignment_1 ) )
+                    // InternalAlf.g:4806:2: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_1 ) )
                     {
-                    // InternalAlf.g:4806:2: ( ( rule__BodyExpression__OwnedRelationshipAssignment_1 ) )
-                    // InternalAlf.g:4807:3: ( rule__BodyExpression__OwnedRelationshipAssignment_1 )
+                    // InternalAlf.g:4806:2: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_1 ) )
+                    // InternalAlf.g:4807:3: ( rule__BodyExpression__OwnedRelationship_compAssignment_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_1()); 
+                       before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_1()); 
                     }
-                    // InternalAlf.g:4808:3: ( rule__BodyExpression__OwnedRelationshipAssignment_1 )
-                    // InternalAlf.g:4808:4: rule__BodyExpression__OwnedRelationshipAssignment_1
+                    // InternalAlf.g:4808:3: ( rule__BodyExpression__OwnedRelationship_compAssignment_1 )
+                    // InternalAlf.g:4808:4: rule__BodyExpression__OwnedRelationship_compAssignment_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__BodyExpression__OwnedRelationshipAssignment_1();
+                    rule__BodyExpression__OwnedRelationship_compAssignment_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -17491,7 +17491,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_1()); 
+                       after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_1()); 
                     }
 
                     }
@@ -20450,22 +20450,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitPrefix__Group__1__Impl"
-    // InternalAlf.g:5589:1: rule__UnitPrefix__Group__1__Impl : ( ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )* ) ;
+    // InternalAlf.g:5589:1: rule__UnitPrefix__Group__1__Impl : ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )* ) ;
     public final void rule__UnitPrefix__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5593:1: ( ( ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )* ) )
-            // InternalAlf.g:5594:1: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )* )
+            // InternalAlf.g:5593:1: ( ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )* ) )
+            // InternalAlf.g:5594:1: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )* )
             {
-            // InternalAlf.g:5594:1: ( ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )* )
-            // InternalAlf.g:5595:2: ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )*
+            // InternalAlf.g:5594:1: ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )* )
+            // InternalAlf.g:5595:2: ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:5596:2: ( rule__UnitPrefix__OwnedRelationshipAssignment_1 )*
+            // InternalAlf.g:5596:2: ( rule__UnitPrefix__OwnedRelationship_compAssignment_1 )*
             loop62:
             do {
                 int alt62=2;
@@ -20478,10 +20478,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt62) {
             	case 1 :
-            	    // InternalAlf.g:5596:3: rule__UnitPrefix__OwnedRelationshipAssignment_1
+            	    // InternalAlf.g:5596:3: rule__UnitPrefix__OwnedRelationship_compAssignment_1
             	    {
             	    pushFollow(FOLLOW_14);
-            	    rule__UnitPrefix__OwnedRelationshipAssignment_1();
+            	    rule__UnitPrefix__OwnedRelationship_compAssignment_1();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -20495,7 +20495,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -20557,22 +20557,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageImport__Group__0__Impl"
-    // InternalAlf.g:5617:1: rule__PackageImport__Group__0__Impl : ( ( rule__PackageImport__OwnedRelationshipAssignment_0 )* ) ;
+    // InternalAlf.g:5617:1: rule__PackageImport__Group__0__Impl : ( ( rule__PackageImport__OwnedRelationship_compAssignment_0 )* ) ;
     public final void rule__PackageImport__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5621:1: ( ( ( rule__PackageImport__OwnedRelationshipAssignment_0 )* ) )
-            // InternalAlf.g:5622:1: ( ( rule__PackageImport__OwnedRelationshipAssignment_0 )* )
+            // InternalAlf.g:5621:1: ( ( ( rule__PackageImport__OwnedRelationship_compAssignment_0 )* ) )
+            // InternalAlf.g:5622:1: ( ( rule__PackageImport__OwnedRelationship_compAssignment_0 )* )
             {
-            // InternalAlf.g:5622:1: ( ( rule__PackageImport__OwnedRelationshipAssignment_0 )* )
-            // InternalAlf.g:5623:2: ( rule__PackageImport__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:5622:1: ( ( rule__PackageImport__OwnedRelationship_compAssignment_0 )* )
+            // InternalAlf.g:5623:2: ( rule__PackageImport__OwnedRelationship_compAssignment_0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:5624:2: ( rule__PackageImport__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:5624:2: ( rule__PackageImport__OwnedRelationship_compAssignment_0 )*
             loop63:
             do {
                 int alt63=2;
@@ -20585,10 +20585,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt63) {
             	case 1 :
-            	    // InternalAlf.g:5624:3: rule__PackageImport__OwnedRelationshipAssignment_0
+            	    // InternalAlf.g:5624:3: rule__PackageImport__OwnedRelationship_compAssignment_0
             	    {
             	    pushFollow(FOLLOW_14);
-            	    rule__PackageImport__OwnedRelationshipAssignment_0();
+            	    rule__PackageImport__OwnedRelationship_compAssignment_0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -20602,7 +20602,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -22925,22 +22925,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageMemberPrefix__Group__0__Impl"
-    // InternalAlf.g:6373:1: rule__PackageMemberPrefix__Group__0__Impl : ( ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )* ) ;
+    // InternalAlf.g:6373:1: rule__PackageMemberPrefix__Group__0__Impl : ( ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )* ) ;
     public final void rule__PackageMemberPrefix__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:6377:1: ( ( ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )* ) )
-            // InternalAlf.g:6378:1: ( ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )* )
+            // InternalAlf.g:6377:1: ( ( ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )* ) )
+            // InternalAlf.g:6378:1: ( ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )* )
             {
-            // InternalAlf.g:6378:1: ( ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )* )
-            // InternalAlf.g:6379:2: ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:6378:1: ( ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )* )
+            // InternalAlf.g:6379:2: ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:6380:2: ( rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:6380:2: ( rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 )*
             loop67:
             do {
                 int alt67=2;
@@ -22953,10 +22953,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt67) {
             	case 1 :
-            	    // InternalAlf.g:6380:3: rule__PackageMemberPrefix__OwnedRelationshipAssignment_0
+            	    // InternalAlf.g:6380:3: rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0
             	    {
             	    pushFollow(FOLLOW_14);
-            	    rule__PackageMemberPrefix__OwnedRelationshipAssignment_0();
+            	    rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -22970,7 +22970,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -26670,26 +26670,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeaturePackageMemberElement__Group_0__1__Impl"
-    // InternalAlf.g:7560:1: rule__FeaturePackageMemberElement__Group_0__1__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 ) ) ;
+    // InternalAlf.g:7560:1: rule__FeaturePackageMemberElement__Group_0__1__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 ) ) ;
     public final void rule__FeaturePackageMemberElement__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:7564:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 ) ) )
-            // InternalAlf.g:7565:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 ) )
+            // InternalAlf.g:7564:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 ) ) )
+            // InternalAlf.g:7565:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 ) )
             {
-            // InternalAlf.g:7565:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 ) )
-            // InternalAlf.g:7566:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 )
+            // InternalAlf.g:7565:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 ) )
+            // InternalAlf.g:7566:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_0_1()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_0_1()); 
             }
-            // InternalAlf.g:7567:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 )
-            // InternalAlf.g:7567:3: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1
+            // InternalAlf.g:7567:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 )
+            // InternalAlf.g:7567:3: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1
             {
             pushFollow(FOLLOW_2);
-            rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1();
+            rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -26697,7 +26697,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_0_1()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_0_1()); 
             }
 
             }
@@ -26929,26 +26929,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeaturePackageMemberElement__Group_1__2__Impl"
-    // InternalAlf.g:7641:1: rule__FeaturePackageMemberElement__Group_1__2__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 ) ) ;
+    // InternalAlf.g:7641:1: rule__FeaturePackageMemberElement__Group_1__2__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 ) ) ;
     public final void rule__FeaturePackageMemberElement__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:7645:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 ) ) )
-            // InternalAlf.g:7646:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 ) )
+            // InternalAlf.g:7645:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 ) ) )
+            // InternalAlf.g:7646:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:7646:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 ) )
-            // InternalAlf.g:7647:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 )
+            // InternalAlf.g:7646:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 ) )
+            // InternalAlf.g:7647:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_1_2()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_1_2()); 
             }
-            // InternalAlf.g:7648:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 )
-            // InternalAlf.g:7648:3: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2
+            // InternalAlf.g:7648:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 )
+            // InternalAlf.g:7648:3: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2();
+            rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -26956,7 +26956,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_1_2()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_1_2()); 
             }
 
             }
@@ -27092,26 +27092,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeaturePackageMemberElement__Group_2__1__Impl"
-    // InternalAlf.g:7695:1: rule__FeaturePackageMemberElement__Group_2__1__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 ) ) ;
+    // InternalAlf.g:7695:1: rule__FeaturePackageMemberElement__Group_2__1__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 ) ) ;
     public final void rule__FeaturePackageMemberElement__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:7699:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 ) ) )
-            // InternalAlf.g:7700:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 ) )
+            // InternalAlf.g:7699:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 ) ) )
+            // InternalAlf.g:7700:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 ) )
             {
-            // InternalAlf.g:7700:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 ) )
-            // InternalAlf.g:7701:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 )
+            // InternalAlf.g:7700:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 ) )
+            // InternalAlf.g:7701:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_2_1()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_2_1()); 
             }
-            // InternalAlf.g:7702:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 )
-            // InternalAlf.g:7702:3: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1
+            // InternalAlf.g:7702:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 )
+            // InternalAlf.g:7702:3: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1
             {
             pushFollow(FOLLOW_2);
-            rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1();
+            rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -27119,7 +27119,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_2_1()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_2_1()); 
             }
 
             }
@@ -27334,26 +27334,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeaturePackageMemberElement__Group_3__2__Impl"
-    // InternalAlf.g:7776:1: rule__FeaturePackageMemberElement__Group_3__2__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 ) ) ;
+    // InternalAlf.g:7776:1: rule__FeaturePackageMemberElement__Group_3__2__Impl : ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 ) ) ;
     public final void rule__FeaturePackageMemberElement__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:7780:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 ) ) )
-            // InternalAlf.g:7781:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 ) )
+            // InternalAlf.g:7780:1: ( ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 ) ) )
+            // InternalAlf.g:7781:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 ) )
             {
-            // InternalAlf.g:7781:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 ) )
-            // InternalAlf.g:7782:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 )
+            // InternalAlf.g:7781:1: ( ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 ) )
+            // InternalAlf.g:7782:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_3_2()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_3_2()); 
             }
-            // InternalAlf.g:7783:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 )
-            // InternalAlf.g:7783:3: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2
+            // InternalAlf.g:7783:2: ( rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 )
+            // InternalAlf.g:7783:3: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2
             {
             pushFollow(FOLLOW_2);
-            rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2();
+            rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -27361,7 +27361,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAssignment_3_2()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAssignment_3_2()); 
             }
 
             }
@@ -28881,26 +28881,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureCategoryMember__Group_1_0__1__Impl"
-    // InternalAlf.g:8262:1: rule__FeatureCategoryMember__Group_1_0__1__Impl : ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 ) ) ;
+    // InternalAlf.g:8262:1: rule__FeatureCategoryMember__Group_1_0__1__Impl : ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 ) ) ;
     public final void rule__FeatureCategoryMember__Group_1_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:8266:1: ( ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 ) ) )
-            // InternalAlf.g:8267:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 ) )
+            // InternalAlf.g:8266:1: ( ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 ) ) )
+            // InternalAlf.g:8267:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 ) )
             {
-            // InternalAlf.g:8267:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 ) )
-            // InternalAlf.g:8268:2: ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 )
+            // InternalAlf.g:8267:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 ) )
+            // InternalAlf.g:8268:2: ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAssignment_1_0_1()); 
+               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAssignment_1_0_1()); 
             }
-            // InternalAlf.g:8269:2: ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 )
-            // InternalAlf.g:8269:3: rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1
+            // InternalAlf.g:8269:2: ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 )
+            // InternalAlf.g:8269:3: rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1();
+            rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -28908,7 +28908,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAssignment_1_0_1()); 
+               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAssignment_1_0_1()); 
             }
 
             }
@@ -29144,26 +29144,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureCategoryMember__Group_1_1__2__Impl"
-    // InternalAlf.g:8343:1: rule__FeatureCategoryMember__Group_1_1__2__Impl : ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 ) ) ;
+    // InternalAlf.g:8343:1: rule__FeatureCategoryMember__Group_1_1__2__Impl : ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 ) ) ;
     public final void rule__FeatureCategoryMember__Group_1_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:8347:1: ( ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 ) ) )
-            // InternalAlf.g:8348:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 ) )
+            // InternalAlf.g:8347:1: ( ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 ) ) )
+            // InternalAlf.g:8348:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 ) )
             {
-            // InternalAlf.g:8348:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 ) )
-            // InternalAlf.g:8349:2: ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 )
+            // InternalAlf.g:8348:1: ( ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 ) )
+            // InternalAlf.g:8349:2: ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAssignment_1_1_2()); 
+               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAssignment_1_1_2()); 
             }
-            // InternalAlf.g:8350:2: ( rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 )
-            // InternalAlf.g:8350:3: rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2
+            // InternalAlf.g:8350:2: ( rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 )
+            // InternalAlf.g:8350:3: rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2();
+            rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -29171,7 +29171,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAssignment_1_1_2()); 
+               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAssignment_1_1_2()); 
             }
 
             }
@@ -30709,26 +30709,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Group_1_1__3__Impl"
-    // InternalAlf.g:8829:1: rule__FeatureMember__Group_1_1__3__Impl : ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 ) ) ;
+    // InternalAlf.g:8829:1: rule__FeatureMember__Group_1_1__3__Impl : ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 ) ) ;
     public final void rule__FeatureMember__Group_1_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:8833:1: ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 ) ) )
-            // InternalAlf.g:8834:1: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 ) )
+            // InternalAlf.g:8833:1: ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 ) ) )
+            // InternalAlf.g:8834:1: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 ) )
             {
-            // InternalAlf.g:8834:1: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 ) )
-            // InternalAlf.g:8835:2: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 )
+            // InternalAlf.g:8834:1: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 ) )
+            // InternalAlf.g:8835:2: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_1_3()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_1_3()); 
             }
-            // InternalAlf.g:8836:2: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 )
-            // InternalAlf.g:8836:3: rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3
+            // InternalAlf.g:8836:2: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 )
+            // InternalAlf.g:8836:3: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3();
+            rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -30736,7 +30736,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_1_3()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_1_3()); 
             }
 
             }
@@ -31456,26 +31456,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Group_1_3__2__Impl"
-    // InternalAlf.g:9072:1: rule__FeatureMember__Group_1_3__2__Impl : ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 ) ) ;
+    // InternalAlf.g:9072:1: rule__FeatureMember__Group_1_3__2__Impl : ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 ) ) ;
     public final void rule__FeatureMember__Group_1_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:9076:1: ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 ) ) )
-            // InternalAlf.g:9077:1: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 ) )
+            // InternalAlf.g:9076:1: ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 ) ) )
+            // InternalAlf.g:9077:1: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 ) )
             {
-            // InternalAlf.g:9077:1: ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 ) )
-            // InternalAlf.g:9078:2: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 )
+            // InternalAlf.g:9077:1: ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 ) )
+            // InternalAlf.g:9078:2: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_3_2()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_3_2()); 
             }
-            // InternalAlf.g:9079:2: ( rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 )
-            // InternalAlf.g:9079:3: rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2
+            // InternalAlf.g:9079:2: ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 )
+            // InternalAlf.g:9079:3: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2();
+            rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -31483,7 +31483,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAssignment_1_3_2()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_3_2()); 
             }
 
             }
@@ -31545,22 +31545,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CategoryMemberPrefix__Group__0__Impl"
-    // InternalAlf.g:9100:1: rule__CategoryMemberPrefix__Group__0__Impl : ( ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )* ) ;
+    // InternalAlf.g:9100:1: rule__CategoryMemberPrefix__Group__0__Impl : ( ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )* ) ;
     public final void rule__CategoryMemberPrefix__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:9104:1: ( ( ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )* ) )
-            // InternalAlf.g:9105:1: ( ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )* )
+            // InternalAlf.g:9104:1: ( ( ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )* ) )
+            // InternalAlf.g:9105:1: ( ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )* )
             {
-            // InternalAlf.g:9105:1: ( ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )* )
-            // InternalAlf.g:9106:2: ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:9105:1: ( ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )* )
+            // InternalAlf.g:9106:2: ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:9107:2: ( rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 )*
+            // InternalAlf.g:9107:2: ( rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 )*
             loop89:
             do {
                 int alt89=2;
@@ -31573,10 +31573,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt89) {
             	case 1 :
-            	    // InternalAlf.g:9107:3: rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0
+            	    // InternalAlf.g:9107:3: rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0
             	    {
             	    pushFollow(FOLLOW_14);
-            	    rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0();
+            	    rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -31590,7 +31590,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -32428,26 +32428,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SpecializationList__Group__1__Impl"
-    // InternalAlf.g:9370:1: rule__SpecializationList__Group__1__Impl : ( ( rule__SpecializationList__OwnedRelationshipAssignment_1 ) ) ;
+    // InternalAlf.g:9370:1: rule__SpecializationList__Group__1__Impl : ( ( rule__SpecializationList__OwnedRelationship_compAssignment_1 ) ) ;
     public final void rule__SpecializationList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:9374:1: ( ( ( rule__SpecializationList__OwnedRelationshipAssignment_1 ) ) )
-            // InternalAlf.g:9375:1: ( ( rule__SpecializationList__OwnedRelationshipAssignment_1 ) )
+            // InternalAlf.g:9374:1: ( ( ( rule__SpecializationList__OwnedRelationship_compAssignment_1 ) ) )
+            // InternalAlf.g:9375:1: ( ( rule__SpecializationList__OwnedRelationship_compAssignment_1 ) )
             {
-            // InternalAlf.g:9375:1: ( ( rule__SpecializationList__OwnedRelationshipAssignment_1 ) )
-            // InternalAlf.g:9376:2: ( rule__SpecializationList__OwnedRelationshipAssignment_1 )
+            // InternalAlf.g:9375:1: ( ( rule__SpecializationList__OwnedRelationship_compAssignment_1 ) )
+            // InternalAlf.g:9376:2: ( rule__SpecializationList__OwnedRelationship_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecializationListAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:9377:2: ( rule__SpecializationList__OwnedRelationshipAssignment_1 )
-            // InternalAlf.g:9377:3: rule__SpecializationList__OwnedRelationshipAssignment_1
+            // InternalAlf.g:9377:2: ( rule__SpecializationList__OwnedRelationship_compAssignment_1 )
+            // InternalAlf.g:9377:3: rule__SpecializationList__OwnedRelationship_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__SpecializationList__OwnedRelationshipAssignment_1();
+            rule__SpecializationList__OwnedRelationship_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -32455,7 +32455,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecializationListAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -32693,26 +32693,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SpecializationList__Group_2__1__Impl"
-    // InternalAlf.g:9450:1: rule__SpecializationList__Group_2__1__Impl : ( ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 ) ) ;
+    // InternalAlf.g:9450:1: rule__SpecializationList__Group_2__1__Impl : ( ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 ) ) ;
     public final void rule__SpecializationList__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:9454:1: ( ( ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 ) ) )
-            // InternalAlf.g:9455:1: ( ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 ) )
+            // InternalAlf.g:9454:1: ( ( ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 ) ) )
+            // InternalAlf.g:9455:1: ( ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 ) )
             {
-            // InternalAlf.g:9455:1: ( ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 ) )
-            // InternalAlf.g:9456:2: ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 )
+            // InternalAlf.g:9455:1: ( ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 ) )
+            // InternalAlf.g:9456:2: ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecializationListAccess().getOwnedRelationshipAssignment_2_1()); 
+               before(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compAssignment_2_1()); 
             }
-            // InternalAlf.g:9457:2: ( rule__SpecializationList__OwnedRelationshipAssignment_2_1 )
-            // InternalAlf.g:9457:3: rule__SpecializationList__OwnedRelationshipAssignment_2_1
+            // InternalAlf.g:9457:2: ( rule__SpecializationList__OwnedRelationship_compAssignment_2_1 )
+            // InternalAlf.g:9457:3: rule__SpecializationList__OwnedRelationship_compAssignment_2_1
             {
             pushFollow(FOLLOW_2);
-            rule__SpecializationList__OwnedRelationshipAssignment_2_1();
+            rule__SpecializationList__OwnedRelationship_compAssignment_2_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -32720,7 +32720,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecializationListAccess().getOwnedRelationshipAssignment_2_1()); 
+               after(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compAssignment_2_1()); 
             }
 
             }
@@ -34737,26 +34737,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__Group_1_0__3__Impl"
-    // InternalAlf.g:10098:1: rule__AssociationEndFeatureMember__Group_1_0__3__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 ) ) ;
+    // InternalAlf.g:10098:1: rule__AssociationEndFeatureMember__Group_1_0__3__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 ) ) ;
     public final void rule__AssociationEndFeatureMember__Group_1_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:10102:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 ) ) )
-            // InternalAlf.g:10103:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 ) )
+            // InternalAlf.g:10102:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 ) ) )
+            // InternalAlf.g:10103:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 ) )
             {
-            // InternalAlf.g:10103:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 ) )
-            // InternalAlf.g:10104:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 )
+            // InternalAlf.g:10103:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 ) )
+            // InternalAlf.g:10104:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_0_3()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_0_3()); 
             }
-            // InternalAlf.g:10105:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 )
-            // InternalAlf.g:10105:3: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3
+            // InternalAlf.g:10105:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 )
+            // InternalAlf.g:10105:3: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3
             {
             pushFollow(FOLLOW_2);
-            rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3();
+            rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -34764,7 +34764,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_0_3()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_0_3()); 
             }
 
             }
@@ -35179,26 +35179,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__Group_1_1__4__Impl"
-    // InternalAlf.g:10233:1: rule__AssociationEndFeatureMember__Group_1_1__4__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 ) ) ;
+    // InternalAlf.g:10233:1: rule__AssociationEndFeatureMember__Group_1_1__4__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 ) ) ;
     public final void rule__AssociationEndFeatureMember__Group_1_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:10237:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 ) ) )
-            // InternalAlf.g:10238:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 ) )
+            // InternalAlf.g:10237:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 ) ) )
+            // InternalAlf.g:10238:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 ) )
             {
-            // InternalAlf.g:10238:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 ) )
-            // InternalAlf.g:10239:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 )
+            // InternalAlf.g:10238:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 ) )
+            // InternalAlf.g:10239:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_1_4()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_1_4()); 
             }
-            // InternalAlf.g:10240:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 )
-            // InternalAlf.g:10240:3: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4
+            // InternalAlf.g:10240:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 )
+            // InternalAlf.g:10240:3: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4
             {
             pushFollow(FOLLOW_2);
-            rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4();
+            rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35206,7 +35206,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_1_4()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_1_4()); 
             }
 
             }
@@ -35873,26 +35873,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__Group_1_3__1__Impl"
-    // InternalAlf.g:10449:1: rule__AssociationEndFeatureMember__Group_1_3__1__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 ) ) ;
+    // InternalAlf.g:10449:1: rule__AssociationEndFeatureMember__Group_1_3__1__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 ) ) ;
     public final void rule__AssociationEndFeatureMember__Group_1_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:10453:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 ) ) )
-            // InternalAlf.g:10454:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 ) )
+            // InternalAlf.g:10453:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 ) ) )
+            // InternalAlf.g:10454:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 ) )
             {
-            // InternalAlf.g:10454:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 ) )
-            // InternalAlf.g:10455:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 )
+            // InternalAlf.g:10454:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 ) )
+            // InternalAlf.g:10455:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_3_1()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_3_1()); 
             }
-            // InternalAlf.g:10456:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 )
-            // InternalAlf.g:10456:3: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1
+            // InternalAlf.g:10456:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 )
+            // InternalAlf.g:10456:3: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1();
+            rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35900,7 +35900,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_3_1()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_3_1()); 
             }
 
             }
@@ -36136,26 +36136,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__Group_1_4__2__Impl"
-    // InternalAlf.g:10530:1: rule__AssociationEndFeatureMember__Group_1_4__2__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 ) ) ;
+    // InternalAlf.g:10530:1: rule__AssociationEndFeatureMember__Group_1_4__2__Impl : ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 ) ) ;
     public final void rule__AssociationEndFeatureMember__Group_1_4__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:10534:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 ) ) )
-            // InternalAlf.g:10535:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 ) )
+            // InternalAlf.g:10534:1: ( ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 ) ) )
+            // InternalAlf.g:10535:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 ) )
             {
-            // InternalAlf.g:10535:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 ) )
-            // InternalAlf.g:10536:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 )
+            // InternalAlf.g:10535:1: ( ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 ) )
+            // InternalAlf.g:10536:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_4_2()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_4_2()); 
             }
-            // InternalAlf.g:10537:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 )
-            // InternalAlf.g:10537:3: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2
+            // InternalAlf.g:10537:2: ( rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 )
+            // InternalAlf.g:10537:3: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2
             {
             pushFollow(FOLLOW_2);
-            rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2();
+            rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -36163,7 +36163,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_4_2()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAssignment_1_4_2()); 
             }
 
             }
@@ -37416,26 +37416,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ParameterList__Group_1__0__Impl"
-    // InternalAlf.g:10936:1: rule__ParameterList__Group_1__0__Impl : ( ( rule__ParameterList__OwnedRelationshipAssignment_1_0 ) ) ;
+    // InternalAlf.g:10936:1: rule__ParameterList__Group_1__0__Impl : ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 ) ) ;
     public final void rule__ParameterList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:10940:1: ( ( ( rule__ParameterList__OwnedRelationshipAssignment_1_0 ) ) )
-            // InternalAlf.g:10941:1: ( ( rule__ParameterList__OwnedRelationshipAssignment_1_0 ) )
+            // InternalAlf.g:10940:1: ( ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 ) ) )
+            // InternalAlf.g:10941:1: ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 ) )
             {
-            // InternalAlf.g:10941:1: ( ( rule__ParameterList__OwnedRelationshipAssignment_1_0 ) )
-            // InternalAlf.g:10942:2: ( rule__ParameterList__OwnedRelationshipAssignment_1_0 )
+            // InternalAlf.g:10941:1: ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 ) )
+            // InternalAlf.g:10942:2: ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterListAccess().getOwnedRelationshipAssignment_1_0()); 
+               before(grammarAccess.getParameterListAccess().getOwnedRelationship_compAssignment_1_0()); 
             }
-            // InternalAlf.g:10943:2: ( rule__ParameterList__OwnedRelationshipAssignment_1_0 )
-            // InternalAlf.g:10943:3: rule__ParameterList__OwnedRelationshipAssignment_1_0
+            // InternalAlf.g:10943:2: ( rule__ParameterList__OwnedRelationship_compAssignment_1_0 )
+            // InternalAlf.g:10943:3: rule__ParameterList__OwnedRelationship_compAssignment_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__ParameterList__OwnedRelationshipAssignment_1_0();
+            rule__ParameterList__OwnedRelationship_compAssignment_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -37443,7 +37443,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterListAccess().getOwnedRelationshipAssignment_1_0()); 
+               after(grammarAccess.getParameterListAccess().getOwnedRelationship_compAssignment_1_0()); 
             }
 
             }
@@ -37681,26 +37681,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ParameterList__Group_1_1__1__Impl"
-    // InternalAlf.g:11016:1: rule__ParameterList__Group_1_1__1__Impl : ( ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 ) ) ;
+    // InternalAlf.g:11016:1: rule__ParameterList__Group_1_1__1__Impl : ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 ) ) ;
     public final void rule__ParameterList__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:11020:1: ( ( ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 ) ) )
-            // InternalAlf.g:11021:1: ( ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 ) )
+            // InternalAlf.g:11020:1: ( ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 ) ) )
+            // InternalAlf.g:11021:1: ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 ) )
             {
-            // InternalAlf.g:11021:1: ( ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 ) )
-            // InternalAlf.g:11022:2: ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 )
+            // InternalAlf.g:11021:1: ( ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 ) )
+            // InternalAlf.g:11022:2: ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterListAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               before(grammarAccess.getParameterListAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
-            // InternalAlf.g:11023:2: ( rule__ParameterList__OwnedRelationshipAssignment_1_1_1 )
-            // InternalAlf.g:11023:3: rule__ParameterList__OwnedRelationshipAssignment_1_1_1
+            // InternalAlf.g:11023:2: ( rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 )
+            // InternalAlf.g:11023:3: rule__ParameterList__OwnedRelationship_compAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ParameterList__OwnedRelationshipAssignment_1_1_1();
+            rule__ParameterList__OwnedRelationship_compAssignment_1_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -37708,7 +37708,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterListAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               after(grammarAccess.getParameterListAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
 
             }
@@ -38214,26 +38214,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ParameterMember__Group__2__Impl"
-    // InternalAlf.g:11178:1: rule__ParameterMember__Group__2__Impl : ( ( rule__ParameterMember__OwnedRelatedElementAssignment_2 ) ) ;
+    // InternalAlf.g:11178:1: rule__ParameterMember__Group__2__Impl : ( ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 ) ) ;
     public final void rule__ParameterMember__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:11182:1: ( ( ( rule__ParameterMember__OwnedRelatedElementAssignment_2 ) ) )
-            // InternalAlf.g:11183:1: ( ( rule__ParameterMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalAlf.g:11182:1: ( ( ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 ) ) )
+            // InternalAlf.g:11183:1: ( ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 ) )
             {
-            // InternalAlf.g:11183:1: ( ( rule__ParameterMember__OwnedRelatedElementAssignment_2 ) )
-            // InternalAlf.g:11184:2: ( rule__ParameterMember__OwnedRelatedElementAssignment_2 )
+            // InternalAlf.g:11183:1: ( ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 ) )
+            // InternalAlf.g:11184:2: ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterMemberAccess().getOwnedRelatedElementAssignment_2()); 
+               before(grammarAccess.getParameterMemberAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
-            // InternalAlf.g:11185:2: ( rule__ParameterMember__OwnedRelatedElementAssignment_2 )
-            // InternalAlf.g:11185:3: rule__ParameterMember__OwnedRelatedElementAssignment_2
+            // InternalAlf.g:11185:2: ( rule__ParameterMember__OwnedRelatedElement_compAssignment_2 )
+            // InternalAlf.g:11185:3: rule__ParameterMember__OwnedRelatedElement_compAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__ParameterMember__OwnedRelatedElementAssignment_2();
+            rule__ParameterMember__OwnedRelatedElement_compAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -38241,7 +38241,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterMemberAccess().getOwnedRelatedElementAssignment_2()); 
+               after(grammarAccess.getParameterMemberAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
 
             }
@@ -40182,22 +40182,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionBody__Group_1__2__Impl"
-    // InternalAlf.g:11800:1: rule__FunctionBody__Group_1__2__Impl : ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )? ) ;
+    // InternalAlf.g:11800:1: rule__FunctionBody__Group_1__2__Impl : ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )? ) ;
     public final void rule__FunctionBody__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:11804:1: ( ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )? ) )
-            // InternalAlf.g:11805:1: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )? )
+            // InternalAlf.g:11804:1: ( ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )? ) )
+            // InternalAlf.g:11805:1: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )? )
             {
-            // InternalAlf.g:11805:1: ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )? )
-            // InternalAlf.g:11806:2: ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )?
+            // InternalAlf.g:11805:1: ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )? )
+            // InternalAlf.g:11806:2: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_2()); 
+               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
-            // InternalAlf.g:11807:2: ( rule__FunctionBody__OwnedRelationshipAssignment_1_2 )?
+            // InternalAlf.g:11807:2: ( rule__FunctionBody__OwnedRelationship_compAssignment_1_2 )?
             int alt116=2;
             int LA116_0 = input.LA(1);
 
@@ -40206,10 +40206,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
             switch (alt116) {
                 case 1 :
-                    // InternalAlf.g:11807:3: rule__FunctionBody__OwnedRelationshipAssignment_1_2
+                    // InternalAlf.g:11807:3: rule__FunctionBody__OwnedRelationship_compAssignment_1_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionBody__OwnedRelationshipAssignment_1_2();
+                    rule__FunctionBody__OwnedRelationship_compAssignment_1_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -40220,7 +40220,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_2()); 
+               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
 
             }
@@ -40451,26 +40451,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ReturnParameterMember__Group__1__Impl"
-    // InternalAlf.g:11880:1: rule__ReturnParameterMember__Group__1__Impl : ( ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 ) ) ;
+    // InternalAlf.g:11880:1: rule__ReturnParameterMember__Group__1__Impl : ( ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 ) ) ;
     public final void rule__ReturnParameterMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:11884:1: ( ( ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 ) ) )
-            // InternalAlf.g:11885:1: ( ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 ) )
+            // InternalAlf.g:11884:1: ( ( ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 ) ) )
+            // InternalAlf.g:11885:1: ( ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 ) )
             {
-            // InternalAlf.g:11885:1: ( ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 ) )
-            // InternalAlf.g:11886:2: ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 )
+            // InternalAlf.g:11885:1: ( ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 ) )
+            // InternalAlf.g:11886:2: ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               before(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
-            // InternalAlf.g:11887:2: ( rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 )
-            // InternalAlf.g:11887:3: rule__ReturnParameterMember__OwnedRelatedElementAssignment_1
+            // InternalAlf.g:11887:2: ( rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 )
+            // InternalAlf.g:11887:3: rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ReturnParameterMember__OwnedRelatedElementAssignment_1();
+            rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40478,7 +40478,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               after(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
 
             }
@@ -40941,26 +40941,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnnamedFeatureDefinition__Group__1__Impl"
-    // InternalAlf.g:12043:1: rule__UnnamedFeatureDefinition__Group__1__Impl : ( ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) ) ;
+    // InternalAlf.g:12043:1: rule__UnnamedFeatureDefinition__Group__1__Impl : ( ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) ) ;
     public final void rule__UnnamedFeatureDefinition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12047:1: ( ( ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) ) )
-            // InternalAlf.g:12048:1: ( ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) )
+            // InternalAlf.g:12047:1: ( ( ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) ) )
+            // InternalAlf.g:12048:1: ( ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) )
             {
-            // InternalAlf.g:12048:1: ( ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) )
-            // InternalAlf.g:12049:2: ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 )
+            // InternalAlf.g:12048:1: ( ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) )
+            // InternalAlf.g:12049:2: ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:12050:2: ( rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 )
-            // InternalAlf.g:12050:3: rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1
+            // InternalAlf.g:12050:2: ( rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 )
+            // InternalAlf.g:12050:3: rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1();
+            rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40968,7 +40968,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -41270,26 +41270,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AbstractUnnamedFeatureDefinition__Group__1__Impl"
-    // InternalAlf.g:12151:1: rule__AbstractUnnamedFeatureDefinition__Group__1__Impl : ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) ) ;
+    // InternalAlf.g:12151:1: rule__AbstractUnnamedFeatureDefinition__Group__1__Impl : ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) ) ;
     public final void rule__AbstractUnnamedFeatureDefinition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12155:1: ( ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) ) )
-            // InternalAlf.g:12156:1: ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) )
+            // InternalAlf.g:12155:1: ( ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) ) )
+            // InternalAlf.g:12156:1: ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) )
             {
-            // InternalAlf.g:12156:1: ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 ) )
-            // InternalAlf.g:12157:2: ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 )
+            // InternalAlf.g:12156:1: ( ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 ) )
+            // InternalAlf.g:12157:2: ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:12158:2: ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 )
-            // InternalAlf.g:12158:3: rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1
+            // InternalAlf.g:12158:2: ( rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 )
+            // InternalAlf.g:12158:3: rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1();
+            rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -41297,7 +41297,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -42362,26 +42362,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureCompletion__Group_0__1__Impl"
-    // InternalAlf.g:12501:1: rule__FeatureCompletion__Group_0__1__Impl : ( ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 ) ) ;
+    // InternalAlf.g:12501:1: rule__FeatureCompletion__Group_0__1__Impl : ( ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 ) ) ;
     public final void rule__FeatureCompletion__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12505:1: ( ( ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 ) ) )
-            // InternalAlf.g:12506:1: ( ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 ) )
+            // InternalAlf.g:12505:1: ( ( ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 ) ) )
+            // InternalAlf.g:12506:1: ( ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 ) )
             {
-            // InternalAlf.g:12506:1: ( ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 ) )
-            // InternalAlf.g:12507:2: ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 )
+            // InternalAlf.g:12506:1: ( ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 ) )
+            // InternalAlf.g:12507:2: ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCompletionAccess().getOwnedRelationshipAssignment_0_1()); 
+               before(grammarAccess.getFeatureCompletionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
-            // InternalAlf.g:12508:2: ( rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 )
-            // InternalAlf.g:12508:3: rule__FeatureCompletion__OwnedRelationshipAssignment_0_1
+            // InternalAlf.g:12508:2: ( rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 )
+            // InternalAlf.g:12508:3: rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1
             {
             pushFollow(FOLLOW_2);
-            rule__FeatureCompletion__OwnedRelationshipAssignment_0_1();
+            rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -42389,7 +42389,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCompletionAccess().getOwnedRelationshipAssignment_0_1()); 
+               after(grammarAccess.getFeatureCompletionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
 
             }
@@ -42703,26 +42703,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AbstractFeatureCompletion__Group_0__1__Impl"
-    // InternalAlf.g:12609:1: rule__AbstractFeatureCompletion__Group_0__1__Impl : ( ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 ) ) ;
+    // InternalAlf.g:12609:1: rule__AbstractFeatureCompletion__Group_0__1__Impl : ( ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 ) ) ;
     public final void rule__AbstractFeatureCompletion__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12613:1: ( ( ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 ) ) )
-            // InternalAlf.g:12614:1: ( ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 ) )
+            // InternalAlf.g:12613:1: ( ( ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 ) ) )
+            // InternalAlf.g:12614:1: ( ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 ) )
             {
-            // InternalAlf.g:12614:1: ( ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 ) )
-            // InternalAlf.g:12615:2: ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 )
+            // InternalAlf.g:12614:1: ( ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 ) )
+            // InternalAlf.g:12615:2: ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationshipAssignment_0_1()); 
+               before(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
-            // InternalAlf.g:12616:2: ( rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 )
-            // InternalAlf.g:12616:3: rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1
+            // InternalAlf.g:12616:2: ( rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 )
+            // InternalAlf.g:12616:3: rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1
             {
             pushFollow(FOLLOW_2);
-            rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1();
+            rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -42730,7 +42730,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationshipAssignment_0_1()); 
+               after(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
 
             }
@@ -42892,22 +42892,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePart__Group__1__Impl"
-    // InternalAlf.g:12664:1: rule__TypePart__Group__1__Impl : ( ( rule__TypePart__OwnedRelationshipAssignment_1 )? ) ;
+    // InternalAlf.g:12664:1: rule__TypePart__Group__1__Impl : ( ( rule__TypePart__OwnedRelationship_compAssignment_1 )? ) ;
     public final void rule__TypePart__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12668:1: ( ( ( rule__TypePart__OwnedRelationshipAssignment_1 )? ) )
-            // InternalAlf.g:12669:1: ( ( rule__TypePart__OwnedRelationshipAssignment_1 )? )
+            // InternalAlf.g:12668:1: ( ( ( rule__TypePart__OwnedRelationship_compAssignment_1 )? ) )
+            // InternalAlf.g:12669:1: ( ( rule__TypePart__OwnedRelationship_compAssignment_1 )? )
             {
-            // InternalAlf.g:12669:1: ( ( rule__TypePart__OwnedRelationshipAssignment_1 )? )
-            // InternalAlf.g:12670:2: ( rule__TypePart__OwnedRelationshipAssignment_1 )?
+            // InternalAlf.g:12669:1: ( ( rule__TypePart__OwnedRelationship_compAssignment_1 )? )
+            // InternalAlf.g:12670:2: ( rule__TypePart__OwnedRelationship_compAssignment_1 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getTypePartAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:12671:2: ( rule__TypePart__OwnedRelationshipAssignment_1 )?
+            // InternalAlf.g:12671:2: ( rule__TypePart__OwnedRelationship_compAssignment_1 )?
             int alt122=2;
             int LA122_0 = input.LA(1);
 
@@ -42916,10 +42916,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
             switch (alt122) {
                 case 1 :
-                    // InternalAlf.g:12671:3: rule__TypePart__OwnedRelationshipAssignment_1
+                    // InternalAlf.g:12671:3: rule__TypePart__OwnedRelationship_compAssignment_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__TypePart__OwnedRelationshipAssignment_1();
+                    rule__TypePart__OwnedRelationship_compAssignment_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -42930,7 +42930,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getTypePartAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -43522,26 +43522,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplicity__Group__2__Impl"
-    // InternalAlf.g:12853:1: rule__Multiplicity__Group__2__Impl : ( ( rule__Multiplicity__OwnedRelatedElementAssignment_2 ) ) ;
+    // InternalAlf.g:12853:1: rule__Multiplicity__Group__2__Impl : ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 ) ) ;
     public final void rule__Multiplicity__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12857:1: ( ( ( rule__Multiplicity__OwnedRelatedElementAssignment_2 ) ) )
-            // InternalAlf.g:12858:1: ( ( rule__Multiplicity__OwnedRelatedElementAssignment_2 ) )
+            // InternalAlf.g:12857:1: ( ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 ) ) )
+            // InternalAlf.g:12858:1: ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 ) )
             {
-            // InternalAlf.g:12858:1: ( ( rule__Multiplicity__OwnedRelatedElementAssignment_2 ) )
-            // InternalAlf.g:12859:2: ( rule__Multiplicity__OwnedRelatedElementAssignment_2 )
+            // InternalAlf.g:12858:1: ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 ) )
+            // InternalAlf.g:12859:2: ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementAssignment_2()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
-            // InternalAlf.g:12860:2: ( rule__Multiplicity__OwnedRelatedElementAssignment_2 )
-            // InternalAlf.g:12860:3: rule__Multiplicity__OwnedRelatedElementAssignment_2
+            // InternalAlf.g:12860:2: ( rule__Multiplicity__OwnedRelatedElement_compAssignment_2 )
+            // InternalAlf.g:12860:3: rule__Multiplicity__OwnedRelatedElement_compAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__Multiplicity__OwnedRelatedElementAssignment_2();
+            rule__Multiplicity__OwnedRelatedElement_compAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -43549,7 +43549,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementAssignment_2()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
 
             }
@@ -43685,26 +43685,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplicity__Group_1__0__Impl"
-    // InternalAlf.g:12907:1: rule__Multiplicity__Group_1__0__Impl : ( ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 ) ) ;
+    // InternalAlf.g:12907:1: rule__Multiplicity__Group_1__0__Impl : ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 ) ) ;
     public final void rule__Multiplicity__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:12911:1: ( ( ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 ) ) )
-            // InternalAlf.g:12912:1: ( ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 ) )
+            // InternalAlf.g:12911:1: ( ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 ) ) )
+            // InternalAlf.g:12912:1: ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 ) )
             {
-            // InternalAlf.g:12912:1: ( ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 ) )
-            // InternalAlf.g:12913:2: ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 )
+            // InternalAlf.g:12912:1: ( ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 ) )
+            // InternalAlf.g:12913:2: ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementAssignment_1_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compAssignment_1_0()); 
             }
-            // InternalAlf.g:12914:2: ( rule__Multiplicity__OwnedRelatedElementAssignment_1_0 )
-            // InternalAlf.g:12914:3: rule__Multiplicity__OwnedRelatedElementAssignment_1_0
+            // InternalAlf.g:12914:2: ( rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 )
+            // InternalAlf.g:12914:3: rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__Multiplicity__OwnedRelatedElementAssignment_1_0();
+            rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -43712,7 +43712,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementAssignment_1_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compAssignment_1_0()); 
             }
 
             }
@@ -44107,26 +44107,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubsettingPart__Group_0_1__1__Impl"
-    // InternalAlf.g:13041:1: rule__SubsettingPart__Group_0_1__1__Impl : ( ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 ) ) ;
+    // InternalAlf.g:13041:1: rule__SubsettingPart__Group_0_1__1__Impl : ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 ) ) ;
     public final void rule__SubsettingPart__Group_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13045:1: ( ( ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 ) ) )
-            // InternalAlf.g:13046:1: ( ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 ) )
+            // InternalAlf.g:13045:1: ( ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 ) ) )
+            // InternalAlf.g:13046:1: ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 ) )
             {
-            // InternalAlf.g:13046:1: ( ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 ) )
-            // InternalAlf.g:13047:2: ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 )
+            // InternalAlf.g:13046:1: ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 ) )
+            // InternalAlf.g:13047:2: ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipAssignment_0_1_1()); 
+               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compAssignment_0_1_1()); 
             }
-            // InternalAlf.g:13048:2: ( rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 )
-            // InternalAlf.g:13048:3: rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1
+            // InternalAlf.g:13048:2: ( rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 )
+            // InternalAlf.g:13048:3: rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1();
+            rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -44134,7 +44134,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipAssignment_0_1_1()); 
+               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compAssignment_0_1_1()); 
             }
 
             }
@@ -44455,26 +44455,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SubsettingPart__Group_1_1__1__Impl"
-    // InternalAlf.g:13149:1: rule__SubsettingPart__Group_1_1__1__Impl : ( ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 ) ) ;
+    // InternalAlf.g:13149:1: rule__SubsettingPart__Group_1_1__1__Impl : ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 ) ) ;
     public final void rule__SubsettingPart__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13153:1: ( ( ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 ) ) )
-            // InternalAlf.g:13154:1: ( ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 ) )
+            // InternalAlf.g:13153:1: ( ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 ) ) )
+            // InternalAlf.g:13154:1: ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 ) )
             {
-            // InternalAlf.g:13154:1: ( ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 ) )
-            // InternalAlf.g:13155:2: ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 )
+            // InternalAlf.g:13154:1: ( ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 ) )
+            // InternalAlf.g:13155:2: ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
-            // InternalAlf.g:13156:2: ( rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 )
-            // InternalAlf.g:13156:3: rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1
+            // InternalAlf.g:13156:2: ( rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 )
+            // InternalAlf.g:13156:3: rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1();
+            rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -44482,7 +44482,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
 
             }
@@ -44618,26 +44618,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Subsets__Group__1__Impl"
-    // InternalAlf.g:13203:1: rule__Subsets__Group__1__Impl : ( ( rule__Subsets__OwnedRelationshipAssignment_1 ) ) ;
+    // InternalAlf.g:13203:1: rule__Subsets__Group__1__Impl : ( ( rule__Subsets__OwnedRelationship_compAssignment_1 ) ) ;
     public final void rule__Subsets__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13207:1: ( ( ( rule__Subsets__OwnedRelationshipAssignment_1 ) ) )
-            // InternalAlf.g:13208:1: ( ( rule__Subsets__OwnedRelationshipAssignment_1 ) )
+            // InternalAlf.g:13207:1: ( ( ( rule__Subsets__OwnedRelationship_compAssignment_1 ) ) )
+            // InternalAlf.g:13208:1: ( ( rule__Subsets__OwnedRelationship_compAssignment_1 ) )
             {
-            // InternalAlf.g:13208:1: ( ( rule__Subsets__OwnedRelationshipAssignment_1 ) )
-            // InternalAlf.g:13209:2: ( rule__Subsets__OwnedRelationshipAssignment_1 )
+            // InternalAlf.g:13208:1: ( ( rule__Subsets__OwnedRelationship_compAssignment_1 ) )
+            // InternalAlf.g:13209:2: ( rule__Subsets__OwnedRelationship_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsetsAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getSubsetsAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:13210:2: ( rule__Subsets__OwnedRelationshipAssignment_1 )
-            // InternalAlf.g:13210:3: rule__Subsets__OwnedRelationshipAssignment_1
+            // InternalAlf.g:13210:2: ( rule__Subsets__OwnedRelationship_compAssignment_1 )
+            // InternalAlf.g:13210:3: rule__Subsets__OwnedRelationship_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Subsets__OwnedRelationshipAssignment_1();
+            rule__Subsets__OwnedRelationship_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -44645,7 +44645,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsetsAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getSubsetsAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -44781,26 +44781,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Redefines__Group__1__Impl"
-    // InternalAlf.g:13257:1: rule__Redefines__Group__1__Impl : ( ( rule__Redefines__OwnedRelationshipAssignment_1 ) ) ;
+    // InternalAlf.g:13257:1: rule__Redefines__Group__1__Impl : ( ( rule__Redefines__OwnedRelationship_compAssignment_1 ) ) ;
     public final void rule__Redefines__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13261:1: ( ( ( rule__Redefines__OwnedRelationshipAssignment_1 ) ) )
-            // InternalAlf.g:13262:1: ( ( rule__Redefines__OwnedRelationshipAssignment_1 ) )
+            // InternalAlf.g:13261:1: ( ( ( rule__Redefines__OwnedRelationship_compAssignment_1 ) ) )
+            // InternalAlf.g:13262:1: ( ( rule__Redefines__OwnedRelationship_compAssignment_1 ) )
             {
-            // InternalAlf.g:13262:1: ( ( rule__Redefines__OwnedRelationshipAssignment_1 ) )
-            // InternalAlf.g:13263:2: ( rule__Redefines__OwnedRelationshipAssignment_1 )
+            // InternalAlf.g:13262:1: ( ( rule__Redefines__OwnedRelationship_compAssignment_1 ) )
+            // InternalAlf.g:13263:2: ( rule__Redefines__OwnedRelationship_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRedefinesAccess().getOwnedRelationshipAssignment_1()); 
+               before(grammarAccess.getRedefinesAccess().getOwnedRelationship_compAssignment_1()); 
             }
-            // InternalAlf.g:13264:2: ( rule__Redefines__OwnedRelationshipAssignment_1 )
-            // InternalAlf.g:13264:3: rule__Redefines__OwnedRelationshipAssignment_1
+            // InternalAlf.g:13264:2: ( rule__Redefines__OwnedRelationship_compAssignment_1 )
+            // InternalAlf.g:13264:3: rule__Redefines__OwnedRelationship_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Redefines__OwnedRelationshipAssignment_1();
+            rule__Redefines__OwnedRelationship_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -44808,7 +44808,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRedefinesAccess().getOwnedRelationshipAssignment_1()); 
+               after(grammarAccess.getRedefinesAccess().getOwnedRelationship_compAssignment_1()); 
             }
 
             }
@@ -45314,26 +45314,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_0__1__Impl"
-    // InternalAlf.g:13420:1: rule__ConnectorDeclaration__Group_0__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 ) ) ;
+    // InternalAlf.g:13420:1: rule__ConnectorDeclaration__Group_0__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 ) ) ;
     public final void rule__ConnectorDeclaration__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13424:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 ) ) )
-            // InternalAlf.g:13425:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 ) )
+            // InternalAlf.g:13424:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 ) ) )
+            // InternalAlf.g:13425:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 ) )
             {
-            // InternalAlf.g:13425:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 ) )
-            // InternalAlf.g:13426:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 )
+            // InternalAlf.g:13425:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 ) )
+            // InternalAlf.g:13426:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_1()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
-            // InternalAlf.g:13427:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 )
-            // InternalAlf.g:13427:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1
+            // InternalAlf.g:13427:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 )
+            // InternalAlf.g:13427:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -45341,7 +45341,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_1()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
 
             }
@@ -45477,26 +45477,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_0__3__Impl"
-    // InternalAlf.g:13473:1: rule__ConnectorDeclaration__Group_0__3__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 ) ) ;
+    // InternalAlf.g:13473:1: rule__ConnectorDeclaration__Group_0__3__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 ) ) ;
     public final void rule__ConnectorDeclaration__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13477:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 ) ) )
-            // InternalAlf.g:13478:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 ) )
+            // InternalAlf.g:13477:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 ) ) )
+            // InternalAlf.g:13478:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 ) )
             {
-            // InternalAlf.g:13478:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 ) )
-            // InternalAlf.g:13479:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 )
+            // InternalAlf.g:13478:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 ) )
+            // InternalAlf.g:13479:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_3()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_3()); 
             }
-            // InternalAlf.g:13480:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 )
-            // InternalAlf.g:13480:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3
+            // InternalAlf.g:13480:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 )
+            // InternalAlf.g:13480:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -45504,7 +45504,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_3()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_3()); 
             }
 
             }
@@ -45914,26 +45914,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_0_0_1__1__Impl"
-    // InternalAlf.g:13608:1: rule__ConnectorDeclaration__Group_0_0_1__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 ) ) ;
+    // InternalAlf.g:13608:1: rule__ConnectorDeclaration__Group_0_0_1__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 ) ) ;
     public final void rule__ConnectorDeclaration__Group_0_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13612:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 ) ) )
-            // InternalAlf.g:13613:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 ) )
+            // InternalAlf.g:13612:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 ) ) )
+            // InternalAlf.g:13613:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 ) )
             {
-            // InternalAlf.g:13613:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 ) )
-            // InternalAlf.g:13614:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 )
+            // InternalAlf.g:13613:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 ) )
+            // InternalAlf.g:13614:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_1()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_0_1_1()); 
             }
-            // InternalAlf.g:13615:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 )
-            // InternalAlf.g:13615:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1
+            // InternalAlf.g:13615:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 )
+            // InternalAlf.g:13615:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -45941,7 +45941,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_1()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_0_0_1_1()); 
             }
 
             }
@@ -46282,26 +46282,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_1__3__Impl"
-    // InternalAlf.g:13717:1: rule__ConnectorDeclaration__Group_1__3__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 ) ) ;
+    // InternalAlf.g:13717:1: rule__ConnectorDeclaration__Group_1__3__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 ) ) ;
     public final void rule__ConnectorDeclaration__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13721:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 ) ) )
-            // InternalAlf.g:13722:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 ) )
+            // InternalAlf.g:13721:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 ) ) )
+            // InternalAlf.g:13722:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 ) )
             {
-            // InternalAlf.g:13722:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 ) )
-            // InternalAlf.g:13723:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 )
+            // InternalAlf.g:13722:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 ) )
+            // InternalAlf.g:13723:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_3()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
-            // InternalAlf.g:13724:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 )
-            // InternalAlf.g:13724:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3
+            // InternalAlf.g:13724:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 )
+            // InternalAlf.g:13724:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -46309,7 +46309,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_3()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
 
             }
@@ -46450,26 +46450,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_1__5__Impl"
-    // InternalAlf.g:13771:1: rule__ConnectorDeclaration__Group_1__5__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 ) ) ;
+    // InternalAlf.g:13771:1: rule__ConnectorDeclaration__Group_1__5__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 ) ) ;
     public final void rule__ConnectorDeclaration__Group_1__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13775:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 ) ) )
-            // InternalAlf.g:13776:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 ) )
+            // InternalAlf.g:13775:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 ) ) )
+            // InternalAlf.g:13776:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 ) )
             {
-            // InternalAlf.g:13776:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 ) )
-            // InternalAlf.g:13777:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 )
+            // InternalAlf.g:13776:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 ) )
+            // InternalAlf.g:13777:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_5()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_5()); 
             }
-            // InternalAlf.g:13778:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 )
-            // InternalAlf.g:13778:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5
+            // InternalAlf.g:13778:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 )
+            // InternalAlf.g:13778:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -46477,7 +46477,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_5()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_5()); 
             }
 
             }
@@ -46794,26 +46794,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_1_1__1__Impl"
-    // InternalAlf.g:13878:1: rule__ConnectorDeclaration__Group_1_1__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 ) ) ;
+    // InternalAlf.g:13878:1: rule__ConnectorDeclaration__Group_1_1__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 ) ) ;
     public final void rule__ConnectorDeclaration__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13882:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 ) ) )
-            // InternalAlf.g:13883:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 ) )
+            // InternalAlf.g:13882:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 ) ) )
+            // InternalAlf.g:13883:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 ) )
             {
-            // InternalAlf.g:13883:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 ) )
-            // InternalAlf.g:13884:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 )
+            // InternalAlf.g:13883:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 ) )
+            // InternalAlf.g:13884:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
-            // InternalAlf.g:13885:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 )
-            // InternalAlf.g:13885:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1
+            // InternalAlf.g:13885:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 )
+            // InternalAlf.g:13885:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -46821,7 +46821,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_1_1()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_1_1()); 
             }
 
             }
@@ -46957,26 +46957,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorDeclaration__Group_1_6__1__Impl"
-    // InternalAlf.g:13932:1: rule__ConnectorDeclaration__Group_1_6__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 ) ) ;
+    // InternalAlf.g:13932:1: rule__ConnectorDeclaration__Group_1_6__1__Impl : ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 ) ) ;
     public final void rule__ConnectorDeclaration__Group_1_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13936:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 ) ) )
-            // InternalAlf.g:13937:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 ) )
+            // InternalAlf.g:13936:1: ( ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 ) ) )
+            // InternalAlf.g:13937:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 ) )
             {
-            // InternalAlf.g:13937:1: ( ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 ) )
-            // InternalAlf.g:13938:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 )
+            // InternalAlf.g:13937:1: ( ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 ) )
+            // InternalAlf.g:13938:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_6_1()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_6_1()); 
             }
-            // InternalAlf.g:13939:2: ( rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 )
-            // InternalAlf.g:13939:3: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1
+            // InternalAlf.g:13939:2: ( rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 )
+            // InternalAlf.g:13939:3: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1();
+            rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -46984,7 +46984,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_6_1()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compAssignment_1_6_1()); 
             }
 
             }
@@ -47152,26 +47152,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorEndMember__Group__1__Impl"
-    // InternalAlf.g:13986:1: rule__ConnectorEndMember__Group__1__Impl : ( ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 ) ) ;
+    // InternalAlf.g:13986:1: rule__ConnectorEndMember__Group__1__Impl : ( ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 ) ) ;
     public final void rule__ConnectorEndMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:13990:1: ( ( ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 ) ) )
-            // InternalAlf.g:13991:1: ( ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 ) )
+            // InternalAlf.g:13990:1: ( ( ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 ) ) )
+            // InternalAlf.g:13991:1: ( ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 ) )
             {
-            // InternalAlf.g:13991:1: ( ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 ) )
-            // InternalAlf.g:13992:2: ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 )
+            // InternalAlf.g:13991:1: ( ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 ) )
+            // InternalAlf.g:13992:2: ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               before(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
-            // InternalAlf.g:13993:2: ( rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 )
-            // InternalAlf.g:13993:3: rule__ConnectorEndMember__OwnedRelatedElementAssignment_1
+            // InternalAlf.g:13993:2: ( rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 )
+            // InternalAlf.g:13993:3: rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorEndMember__OwnedRelatedElementAssignment_1();
+            rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -47179,7 +47179,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               after(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
 
             }
@@ -48179,26 +48179,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StepDefinition__Group_2_1__1__Impl"
-    // InternalAlf.g:14311:1: rule__StepDefinition__Group_2_1__1__Impl : ( ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 ) ) ;
+    // InternalAlf.g:14311:1: rule__StepDefinition__Group_2_1__1__Impl : ( ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 ) ) ;
     public final void rule__StepDefinition__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:14315:1: ( ( ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 ) ) )
-            // InternalAlf.g:14316:1: ( ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 ) )
+            // InternalAlf.g:14315:1: ( ( ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 ) ) )
+            // InternalAlf.g:14316:1: ( ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 ) )
             {
-            // InternalAlf.g:14316:1: ( ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 ) )
-            // InternalAlf.g:14317:2: ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 )
+            // InternalAlf.g:14316:1: ( ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 ) )
+            // InternalAlf.g:14317:2: ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipAssignment_2_1_1()); 
+               before(grammarAccess.getStepDefinitionAccess().getOwnedRelationship_compAssignment_2_1_1()); 
             }
-            // InternalAlf.g:14318:2: ( rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 )
-            // InternalAlf.g:14318:3: rule__StepDefinition__OwnedRelationshipAssignment_2_1_1
+            // InternalAlf.g:14318:2: ( rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 )
+            // InternalAlf.g:14318:3: rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__StepDefinition__OwnedRelationshipAssignment_2_1_1();
+            rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -48206,7 +48206,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipAssignment_2_1_1()); 
+               after(grammarAccess.getStepDefinitionAccess().getOwnedRelationship_compAssignment_2_1_1()); 
             }
 
             }
@@ -49393,26 +49393,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionDefinition__Group_2_1__1__Impl"
-    // InternalAlf.g:14689:1: rule__ExpressionDefinition__Group_2_1__1__Impl : ( ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 ) ) ;
+    // InternalAlf.g:14689:1: rule__ExpressionDefinition__Group_2_1__1__Impl : ( ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 ) ) ;
     public final void rule__ExpressionDefinition__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:14693:1: ( ( ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 ) ) )
-            // InternalAlf.g:14694:1: ( ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 ) )
+            // InternalAlf.g:14693:1: ( ( ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 ) ) )
+            // InternalAlf.g:14694:1: ( ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 ) )
             {
-            // InternalAlf.g:14694:1: ( ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 ) )
-            // InternalAlf.g:14695:2: ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 )
+            // InternalAlf.g:14694:1: ( ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 ) )
+            // InternalAlf.g:14695:2: ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipAssignment_2_1_1()); 
+               before(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationship_compAssignment_2_1_1()); 
             }
-            // InternalAlf.g:14696:2: ( rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 )
-            // InternalAlf.g:14696:3: rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1
+            // InternalAlf.g:14696:2: ( rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 )
+            // InternalAlf.g:14696:3: rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1();
+            rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -49420,7 +49420,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipAssignment_2_1_1()); 
+               after(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationship_compAssignment_2_1_1()); 
             }
 
             }
@@ -50012,7 +50012,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:14884:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:14885:2: ()
             // InternalAlf.g:14885:3: 
@@ -50020,7 +50020,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -50167,26 +50167,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__2__Impl"
-    // InternalAlf.g:14932:1: rule__ConditionalExpression__Group_1__2__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:14932:1: rule__ConditionalExpression__Group_1__2__Impl : ( ( rule__ConditionalExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__ConditionalExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:14936:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:14937:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:14936:1: ( ( ( rule__ConditionalExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:14937:1: ( ( rule__ConditionalExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:14937:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:14938:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:14937:1: ( ( rule__ConditionalExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:14938:2: ( rule__ConditionalExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:14939:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:14939:3: rule__ConditionalExpression__OperandAssignment_1_2
+            // InternalAlf.g:14939:2: ( rule__ConditionalExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:14939:3: rule__ConditionalExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__OperandAssignment_1_2();
+            rule__ConditionalExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50194,7 +50194,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -50330,26 +50330,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__4__Impl"
-    // InternalAlf.g:14985:1: rule__ConditionalExpression__Group_1__4__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) ;
+    // InternalAlf.g:14985:1: rule__ConditionalExpression__Group_1__4__Impl : ( ( rule__ConditionalExpression__Operand_compAssignment_1_4 ) ) ;
     public final void rule__ConditionalExpression__Group_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:14989:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) )
-            // InternalAlf.g:14990:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
+            // InternalAlf.g:14989:1: ( ( ( rule__ConditionalExpression__Operand_compAssignment_1_4 ) ) )
+            // InternalAlf.g:14990:1: ( ( rule__ConditionalExpression__Operand_compAssignment_1_4 ) )
             {
-            // InternalAlf.g:14990:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
-            // InternalAlf.g:14991:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
+            // InternalAlf.g:14990:1: ( ( rule__ConditionalExpression__Operand_compAssignment_1_4 ) )
+            // InternalAlf.g:14991:2: ( rule__ConditionalExpression__Operand_compAssignment_1_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4()); 
+               before(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_4()); 
             }
-            // InternalAlf.g:14992:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
-            // InternalAlf.g:14992:3: rule__ConditionalExpression__OperandAssignment_1_4
+            // InternalAlf.g:14992:2: ( rule__ConditionalExpression__Operand_compAssignment_1_4 )
+            // InternalAlf.g:14992:3: rule__ConditionalExpression__Operand_compAssignment_1_4
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__OperandAssignment_1_4();
+            rule__ConditionalExpression__Operand_compAssignment_1_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50357,7 +50357,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4()); 
+               after(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_4()); 
             }
 
             }
@@ -50617,7 +50617,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15073:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15074:2: ()
             // InternalAlf.g:15074:3: 
@@ -50625,7 +50625,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -50767,26 +50767,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__2__Impl"
-    // InternalAlf.g:15120:1: rule__NullCoalescingExpression__Group_1__2__Impl : ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15120:1: rule__NullCoalescingExpression__Group_1__2__Impl : ( ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__NullCoalescingExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15124:1: ( ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15125:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15124:1: ( ( ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15125:1: ( ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15125:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15126:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15125:1: ( ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15126:2: ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNullCoalescingExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getNullCoalescingExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15127:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15127:3: rule__NullCoalescingExpression__OperandAssignment_1_2
+            // InternalAlf.g:15127:2: ( rule__NullCoalescingExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15127:3: rule__NullCoalescingExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__NullCoalescingExpression__OperandAssignment_1_2();
+            rule__NullCoalescingExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50794,7 +50794,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNullCoalescingExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getNullCoalescingExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -51054,7 +51054,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15208:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15209:2: ()
             // InternalAlf.g:15209:3: 
@@ -51062,7 +51062,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -51204,26 +51204,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConditionalOrExpression__Group_1__2__Impl"
-    // InternalAlf.g:15255:1: rule__ConditionalOrExpression__Group_1__2__Impl : ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15255:1: rule__ConditionalOrExpression__Group_1__2__Impl : ( ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__ConditionalOrExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15259:1: ( ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15260:1: ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15259:1: ( ( ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15260:1: ( ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15260:1: ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15261:2: ( rule__ConditionalOrExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15260:1: ( ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15261:2: ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalOrExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getConditionalOrExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15262:2: ( rule__ConditionalOrExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15262:3: rule__ConditionalOrExpression__OperandAssignment_1_2
+            // InternalAlf.g:15262:2: ( rule__ConditionalOrExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15262:3: rule__ConditionalOrExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__OperandAssignment_1_2();
+            rule__ConditionalOrExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -51231,7 +51231,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalOrExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getConditionalOrExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -51491,7 +51491,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15343:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15344:2: ()
             // InternalAlf.g:15344:3: 
@@ -51499,7 +51499,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -51641,26 +51641,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConditionalAndExpression__Group_1__2__Impl"
-    // InternalAlf.g:15390:1: rule__ConditionalAndExpression__Group_1__2__Impl : ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15390:1: rule__ConditionalAndExpression__Group_1__2__Impl : ( ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__ConditionalAndExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15394:1: ( ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15395:1: ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15394:1: ( ( ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15395:1: ( ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15395:1: ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15396:2: ( rule__ConditionalAndExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15395:1: ( ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15396:2: ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalAndExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getConditionalAndExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15397:2: ( rule__ConditionalAndExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15397:3: rule__ConditionalAndExpression__OperandAssignment_1_2
+            // InternalAlf.g:15397:2: ( rule__ConditionalAndExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15397:3: rule__ConditionalAndExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__OperandAssignment_1_2();
+            rule__ConditionalAndExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -51668,7 +51668,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalAndExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getConditionalAndExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -51928,7 +51928,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15478:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15479:2: ()
             // InternalAlf.g:15479:3: 
@@ -51936,7 +51936,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -52078,26 +52078,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group_1__2__Impl"
-    // InternalAlf.g:15525:1: rule__OrExpression__Group_1__2__Impl : ( ( rule__OrExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15525:1: rule__OrExpression__Group_1__2__Impl : ( ( rule__OrExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__OrExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15529:1: ( ( ( rule__OrExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15530:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15529:1: ( ( ( rule__OrExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15530:1: ( ( rule__OrExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15530:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15531:2: ( rule__OrExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15530:1: ( ( rule__OrExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15531:2: ( rule__OrExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getOrExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getOrExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15532:2: ( rule__OrExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15532:3: rule__OrExpression__OperandAssignment_1_2
+            // InternalAlf.g:15532:2: ( rule__OrExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15532:3: rule__OrExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__OrExpression__OperandAssignment_1_2();
+            rule__OrExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -52105,7 +52105,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getOrExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getOrExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -52365,7 +52365,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15613:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15614:2: ()
             // InternalAlf.g:15614:3: 
@@ -52373,7 +52373,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -52515,26 +52515,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XorExpression__Group_1__2__Impl"
-    // InternalAlf.g:15660:1: rule__XorExpression__Group_1__2__Impl : ( ( rule__XorExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15660:1: rule__XorExpression__Group_1__2__Impl : ( ( rule__XorExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__XorExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15664:1: ( ( ( rule__XorExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15665:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15664:1: ( ( ( rule__XorExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15665:1: ( ( rule__XorExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15665:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15666:2: ( rule__XorExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15665:1: ( ( rule__XorExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15666:2: ( rule__XorExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXorExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getXorExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15667:2: ( rule__XorExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15667:3: rule__XorExpression__OperandAssignment_1_2
+            // InternalAlf.g:15667:2: ( rule__XorExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15667:3: rule__XorExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__XorExpression__OperandAssignment_1_2();
+            rule__XorExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -52542,7 +52542,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXorExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getXorExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -52802,7 +52802,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15748:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15749:2: ()
             // InternalAlf.g:15749:3: 
@@ -52810,7 +52810,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -52952,26 +52952,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group_1__2__Impl"
-    // InternalAlf.g:15795:1: rule__AndExpression__Group_1__2__Impl : ( ( rule__AndExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15795:1: rule__AndExpression__Group_1__2__Impl : ( ( rule__AndExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__AndExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15799:1: ( ( ( rule__AndExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15800:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15799:1: ( ( ( rule__AndExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15800:1: ( ( rule__AndExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15800:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15801:2: ( rule__AndExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15800:1: ( ( rule__AndExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15801:2: ( rule__AndExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAndExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getAndExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15802:2: ( rule__AndExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15802:3: rule__AndExpression__OperandAssignment_1_2
+            // InternalAlf.g:15802:2: ( rule__AndExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15802:3: rule__AndExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__AndExpression__OperandAssignment_1_2();
+            rule__AndExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -52979,7 +52979,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAndExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getAndExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -53239,7 +53239,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:15883:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:15884:2: ()
             // InternalAlf.g:15884:3: 
@@ -53247,7 +53247,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -53389,26 +53389,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__2__Impl"
-    // InternalAlf.g:15930:1: rule__EqualityExpression__Group_1__2__Impl : ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:15930:1: rule__EqualityExpression__Group_1__2__Impl : ( ( rule__EqualityExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__EqualityExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:15934:1: ( ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:15935:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:15934:1: ( ( ( rule__EqualityExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:15935:1: ( ( rule__EqualityExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:15935:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:15936:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:15935:1: ( ( rule__EqualityExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:15936:2: ( rule__EqualityExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEqualityExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getEqualityExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:15937:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:15937:3: rule__EqualityExpression__OperandAssignment_1_2
+            // InternalAlf.g:15937:2: ( rule__EqualityExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:15937:3: rule__EqualityExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__EqualityExpression__OperandAssignment_1_2();
+            rule__EqualityExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -53416,7 +53416,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEqualityExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getEqualityExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -53669,7 +53669,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16018:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16019:2: ()
             // InternalAlf.g:16019:3: 
@@ -53677,7 +53677,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -53819,26 +53819,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__2__Impl"
-    // InternalAlf.g:16065:1: rule__ClassificationExpression__Group_1__2__Impl : ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 ) ) ;
+    // InternalAlf.g:16065:1: rule__ClassificationExpression__Group_1__2__Impl : ( ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 ) ) ;
     public final void rule__ClassificationExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16069:1: ( ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 ) ) )
-            // InternalAlf.g:16070:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 ) )
+            // InternalAlf.g:16069:1: ( ( ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16070:1: ( ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16070:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 ) )
-            // InternalAlf.g:16071:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 )
+            // InternalAlf.g:16070:1: ( ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 ) )
+            // InternalAlf.g:16071:2: ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_1_2()); 
+               before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16072:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 )
-            // InternalAlf.g:16072:3: rule__ClassificationExpression__OwnedRelationshipAssignment_1_2
+            // InternalAlf.g:16072:2: ( rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 )
+            // InternalAlf.g:16072:3: rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__ClassificationExpression__OwnedRelationshipAssignment_1_2();
+            rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -53846,7 +53846,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_1_2()); 
+               after(grammarAccess.getClassificationExpressionAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
 
             }
@@ -54106,7 +54106,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16153:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16154:2: ()
             // InternalAlf.g:16154:3: 
@@ -54114,7 +54114,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -54256,26 +54256,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__2__Impl"
-    // InternalAlf.g:16200:1: rule__RelationalExpression__Group_1__2__Impl : ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:16200:1: rule__RelationalExpression__Group_1__2__Impl : ( ( rule__RelationalExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__RelationalExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16204:1: ( ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:16205:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:16204:1: ( ( ( rule__RelationalExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16205:1: ( ( rule__RelationalExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16205:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:16206:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:16205:1: ( ( rule__RelationalExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:16206:2: ( rule__RelationalExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getRelationalExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16207:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:16207:3: rule__RelationalExpression__OperandAssignment_1_2
+            // InternalAlf.g:16207:2: ( rule__RelationalExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:16207:3: rule__RelationalExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__RelationalExpression__OperandAssignment_1_2();
+            rule__RelationalExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -54283,7 +54283,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getRelationalExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -54543,7 +54543,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16288:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16289:2: ()
             // InternalAlf.g:16289:3: 
@@ -54551,7 +54551,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -54693,26 +54693,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__2__Impl"
-    // InternalAlf.g:16335:1: rule__AdditiveExpression__Group_1__2__Impl : ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:16335:1: rule__AdditiveExpression__Group_1__2__Impl : ( ( rule__AdditiveExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__AdditiveExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16339:1: ( ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:16340:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:16339:1: ( ( ( rule__AdditiveExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16340:1: ( ( rule__AdditiveExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16340:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:16341:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:16340:1: ( ( rule__AdditiveExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:16341:2: ( rule__AdditiveExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAdditiveExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getAdditiveExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16342:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:16342:3: rule__AdditiveExpression__OperandAssignment_1_2
+            // InternalAlf.g:16342:2: ( rule__AdditiveExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:16342:3: rule__AdditiveExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__AdditiveExpression__OperandAssignment_1_2();
+            rule__AdditiveExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -54720,7 +54720,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAdditiveExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getAdditiveExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -54980,7 +54980,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16423:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16424:2: ()
             // InternalAlf.g:16424:3: 
@@ -54988,7 +54988,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -55130,26 +55130,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__2__Impl"
-    // InternalAlf.g:16470:1: rule__MultiplicativeExpression__Group_1__2__Impl : ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:16470:1: rule__MultiplicativeExpression__Group_1__2__Impl : ( ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16474:1: ( ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:16475:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:16474:1: ( ( ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16475:1: ( ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16475:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:16476:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:16475:1: ( ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:16476:2: ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicativeExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16477:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:16477:3: rule__MultiplicativeExpression__OperandAssignment_1_2
+            // InternalAlf.g:16477:2: ( rule__MultiplicativeExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:16477:3: rule__MultiplicativeExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__MultiplicativeExpression__OperandAssignment_1_2();
+            rule__MultiplicativeExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -55157,7 +55157,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicativeExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -55410,7 +55410,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16558:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16559:2: ()
             // InternalAlf.g:16559:3: 
@@ -55418,7 +55418,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -55644,26 +55644,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__3__Impl"
-    // InternalAlf.g:16633:1: rule__UnitsExpression__Group_1__3__Impl : ( ( rule__UnitsExpression__OperandAssignment_1_3 ) ) ;
+    // InternalAlf.g:16633:1: rule__UnitsExpression__Group_1__3__Impl : ( ( rule__UnitsExpression__Operand_compAssignment_1_3 ) ) ;
     public final void rule__UnitsExpression__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16637:1: ( ( ( rule__UnitsExpression__OperandAssignment_1_3 ) ) )
-            // InternalAlf.g:16638:1: ( ( rule__UnitsExpression__OperandAssignment_1_3 ) )
+            // InternalAlf.g:16637:1: ( ( ( rule__UnitsExpression__Operand_compAssignment_1_3 ) ) )
+            // InternalAlf.g:16638:1: ( ( rule__UnitsExpression__Operand_compAssignment_1_3 ) )
             {
-            // InternalAlf.g:16638:1: ( ( rule__UnitsExpression__OperandAssignment_1_3 ) )
-            // InternalAlf.g:16639:2: ( rule__UnitsExpression__OperandAssignment_1_3 )
+            // InternalAlf.g:16638:1: ( ( rule__UnitsExpression__Operand_compAssignment_1_3 ) )
+            // InternalAlf.g:16639:2: ( rule__UnitsExpression__Operand_compAssignment_1_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitsExpressionAccess().getOperandAssignment_1_3()); 
+               before(grammarAccess.getUnitsExpressionAccess().getOperand_compAssignment_1_3()); 
             }
-            // InternalAlf.g:16640:2: ( rule__UnitsExpression__OperandAssignment_1_3 )
-            // InternalAlf.g:16640:3: rule__UnitsExpression__OperandAssignment_1_3
+            // InternalAlf.g:16640:2: ( rule__UnitsExpression__Operand_compAssignment_1_3 )
+            // InternalAlf.g:16640:3: rule__UnitsExpression__Operand_compAssignment_1_3
             {
             pushFollow(FOLLOW_2);
-            rule__UnitsExpression__OperandAssignment_1_3();
+            rule__UnitsExpression__Operand_compAssignment_1_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -55671,7 +55671,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitsExpressionAccess().getOperandAssignment_1_3()); 
+               after(grammarAccess.getUnitsExpressionAccess().getOperand_compAssignment_1_3()); 
             }
 
             }
@@ -55970,26 +55970,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__Group_1__2__Impl"
-    // InternalAlf.g:16740:1: rule__UnaryExpression__Group_1__2__Impl : ( ( rule__UnaryExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:16740:1: rule__UnaryExpression__Group_1__2__Impl : ( ( rule__UnaryExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__UnaryExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16744:1: ( ( ( rule__UnaryExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:16745:1: ( ( rule__UnaryExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:16744:1: ( ( ( rule__UnaryExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16745:1: ( ( rule__UnaryExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16745:1: ( ( rule__UnaryExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:16746:2: ( rule__UnaryExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:16745:1: ( ( rule__UnaryExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:16746:2: ( rule__UnaryExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnaryExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getUnaryExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16747:2: ( rule__UnaryExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:16747:3: rule__UnaryExpression__OperandAssignment_1_2
+            // InternalAlf.g:16747:2: ( rule__UnaryExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:16747:3: rule__UnaryExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__UnaryExpression__OperandAssignment_1_2();
+            rule__UnaryExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -55997,7 +55997,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnaryExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getUnaryExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -56250,7 +56250,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16828:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16829:2: ()
             // InternalAlf.g:16829:3: 
@@ -56258,7 +56258,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -56405,26 +56405,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SequenceAccessExpression__Group_1__2__Impl"
-    // InternalAlf.g:16876:1: rule__SequenceAccessExpression__Group_1__2__Impl : ( ( rule__SequenceAccessExpression__OperandAssignment_1_2 ) ) ;
+    // InternalAlf.g:16876:1: rule__SequenceAccessExpression__Group_1__2__Impl : ( ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 ) ) ;
     public final void rule__SequenceAccessExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:16880:1: ( ( ( rule__SequenceAccessExpression__OperandAssignment_1_2 ) ) )
-            // InternalAlf.g:16881:1: ( ( rule__SequenceAccessExpression__OperandAssignment_1_2 ) )
+            // InternalAlf.g:16880:1: ( ( ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 ) ) )
+            // InternalAlf.g:16881:1: ( ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:16881:1: ( ( rule__SequenceAccessExpression__OperandAssignment_1_2 ) )
-            // InternalAlf.g:16882:2: ( rule__SequenceAccessExpression__OperandAssignment_1_2 )
+            // InternalAlf.g:16881:1: ( ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 ) )
+            // InternalAlf.g:16882:2: ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceAccessExpressionAccess().getOperandAssignment_1_2()); 
+               before(grammarAccess.getSequenceAccessExpressionAccess().getOperand_compAssignment_1_2()); 
             }
-            // InternalAlf.g:16883:2: ( rule__SequenceAccessExpression__OperandAssignment_1_2 )
-            // InternalAlf.g:16883:3: rule__SequenceAccessExpression__OperandAssignment_1_2
+            // InternalAlf.g:16883:2: ( rule__SequenceAccessExpression__Operand_compAssignment_1_2 )
+            // InternalAlf.g:16883:3: rule__SequenceAccessExpression__Operand_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__SequenceAccessExpression__OperandAssignment_1_2();
+            rule__SequenceAccessExpression__Operand_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -56432,7 +56432,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceAccessExpressionAccess().getOperandAssignment_1_2()); 
+               after(grammarAccess.getSequenceAccessExpressionAccess().getOperand_compAssignment_1_2()); 
             }
 
             }
@@ -56766,7 +56766,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:16990:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               before(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
             // InternalAlf.g:16991:2: ()
             // InternalAlf.g:16991:3: 
@@ -56774,7 +56774,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+               after(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperand_compAction_1_0()); 
             }
 
             }
@@ -56995,29 +56995,29 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1__3__Impl"
-    // InternalAlf.g:17064:1: rule__PrimaryExpression__Group_1__3__Impl : ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* ) ) ;
+    // InternalAlf.g:17064:1: rule__PrimaryExpression__Group_1__3__Impl : ( ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* ) ) ;
     public final void rule__PrimaryExpression__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17068:1: ( ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* ) ) )
-            // InternalAlf.g:17069:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* ) )
+            // InternalAlf.g:17068:1: ( ( ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* ) ) )
+            // InternalAlf.g:17069:1: ( ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* ) )
             {
-            // InternalAlf.g:17069:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* ) )
-            // InternalAlf.g:17070:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* )
+            // InternalAlf.g:17069:1: ( ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* ) )
+            // InternalAlf.g:17070:2: ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) ) ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* )
             {
-            // InternalAlf.g:17070:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 ) )
-            // InternalAlf.g:17071:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )
+            // InternalAlf.g:17070:2: ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 ) )
+            // InternalAlf.g:17071:3: ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3()); 
+               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
-            // InternalAlf.g:17072:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )
-            // InternalAlf.g:17072:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3
+            // InternalAlf.g:17072:3: ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )
+            // InternalAlf.g:17072:4: rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3
             {
             pushFollow(FOLLOW_102);
-            rule__PrimaryExpression__OwnedRelationshipAssignment_1_3();
+            rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -57025,18 +57025,18 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3()); 
+               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
 
             }
 
-            // InternalAlf.g:17075:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )* )
-            // InternalAlf.g:17076:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )*
+            // InternalAlf.g:17075:2: ( ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )* )
+            // InternalAlf.g:17076:3: ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3()); 
+               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
-            // InternalAlf.g:17077:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 )*
+            // InternalAlf.g:17077:3: ( rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 )*
             loop156:
             do {
                 int alt156=2;
@@ -57049,10 +57049,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt156) {
             	case 1 :
-            	    // InternalAlf.g:17077:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3
+            	    // InternalAlf.g:17077:4: rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3
             	    {
             	    pushFollow(FOLLOW_102);
-            	    rule__PrimaryExpression__OwnedRelationshipAssignment_1_3();
+            	    rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -57066,7 +57066,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3()); 
+               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compAssignment_1_3()); 
             }
 
             }
@@ -57131,26 +57131,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyExpression__Group_0__0__Impl"
-    // InternalAlf.g:17099:1: rule__BodyExpression__Group_0__0__Impl : ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 ) ) ;
+    // InternalAlf.g:17099:1: rule__BodyExpression__Group_0__0__Impl : ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 ) ) ;
     public final void rule__BodyExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17103:1: ( ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 ) ) )
-            // InternalAlf.g:17104:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 ) )
+            // InternalAlf.g:17103:1: ( ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 ) ) )
+            // InternalAlf.g:17104:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 ) )
             {
-            // InternalAlf.g:17104:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 ) )
-            // InternalAlf.g:17105:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 )
+            // InternalAlf.g:17104:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 ) )
+            // InternalAlf.g:17105:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_0()); 
             }
-            // InternalAlf.g:17106:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_0 )
-            // InternalAlf.g:17106:3: rule__BodyExpression__OwnedRelationshipAssignment_0_0
+            // InternalAlf.g:17106:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_0 )
+            // InternalAlf.g:17106:3: rule__BodyExpression__OwnedRelationship_compAssignment_0_0
             {
             pushFollow(FOLLOW_2);
-            rule__BodyExpression__OwnedRelationshipAssignment_0_0();
+            rule__BodyExpression__OwnedRelationship_compAssignment_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -57158,7 +57158,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_0()); 
             }
 
             }
@@ -57220,22 +57220,22 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyExpression__Group_0__1__Impl"
-    // InternalAlf.g:17126:1: rule__BodyExpression__Group_0__1__Impl : ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )* ) ;
+    // InternalAlf.g:17126:1: rule__BodyExpression__Group_0__1__Impl : ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )* ) ;
     public final void rule__BodyExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17130:1: ( ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )* ) )
-            // InternalAlf.g:17131:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )* )
+            // InternalAlf.g:17130:1: ( ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )* ) )
+            // InternalAlf.g:17131:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )* )
             {
-            // InternalAlf.g:17131:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )* )
-            // InternalAlf.g:17132:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )*
+            // InternalAlf.g:17131:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )* )
+            // InternalAlf.g:17132:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_1()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
-            // InternalAlf.g:17133:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_1 )*
+            // InternalAlf.g:17133:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_1 )*
             loop157:
             do {
                 int alt157=2;
@@ -57248,10 +57248,10 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
                 switch (alt157) {
             	case 1 :
-            	    // InternalAlf.g:17133:3: rule__BodyExpression__OwnedRelationshipAssignment_0_1
+            	    // InternalAlf.g:17133:3: rule__BodyExpression__OwnedRelationship_compAssignment_0_1
             	    {
             	    pushFollow(FOLLOW_102);
-            	    rule__BodyExpression__OwnedRelationshipAssignment_0_1();
+            	    rule__BodyExpression__OwnedRelationship_compAssignment_0_1();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -57265,7 +57265,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_1()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_1()); 
             }
 
             }
@@ -57406,26 +57406,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyExpression__Group_0__3__Impl"
-    // InternalAlf.g:17180:1: rule__BodyExpression__Group_0__3__Impl : ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 ) ) ;
+    // InternalAlf.g:17180:1: rule__BodyExpression__Group_0__3__Impl : ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 ) ) ;
     public final void rule__BodyExpression__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17184:1: ( ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 ) ) )
-            // InternalAlf.g:17185:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 ) )
+            // InternalAlf.g:17184:1: ( ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 ) ) )
+            // InternalAlf.g:17185:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 ) )
             {
-            // InternalAlf.g:17185:1: ( ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 ) )
-            // InternalAlf.g:17186:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 )
+            // InternalAlf.g:17185:1: ( ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 ) )
+            // InternalAlf.g:17186:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_3()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_3()); 
             }
-            // InternalAlf.g:17187:2: ( rule__BodyExpression__OwnedRelationshipAssignment_0_3 )
-            // InternalAlf.g:17187:3: rule__BodyExpression__OwnedRelationshipAssignment_0_3
+            // InternalAlf.g:17187:2: ( rule__BodyExpression__OwnedRelationship_compAssignment_0_3 )
+            // InternalAlf.g:17187:3: rule__BodyExpression__OwnedRelationship_compAssignment_0_3
             {
             pushFollow(FOLLOW_2);
-            rule__BodyExpression__OwnedRelationshipAssignment_0_3();
+            rule__BodyExpression__OwnedRelationship_compAssignment_0_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -57433,7 +57433,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_3()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_0_3()); 
             }
 
             }
@@ -57805,26 +57805,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InvocationExpression__Group__0__Impl"
-    // InternalAlf.g:17315:1: rule__InvocationExpression__Group__0__Impl : ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalAlf.g:17315:1: rule__InvocationExpression__Group__0__Impl : ( ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 ) ) ;
     public final void rule__InvocationExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17319:1: ( ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) )
-            // InternalAlf.g:17320:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
+            // InternalAlf.g:17319:1: ( ( ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 ) ) )
+            // InternalAlf.g:17320:1: ( ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 ) )
             {
-            // InternalAlf.g:17320:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
-            // InternalAlf.g:17321:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
+            // InternalAlf.g:17320:1: ( ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 ) )
+            // InternalAlf.g:17321:2: ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:17322:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
-            // InternalAlf.g:17322:3: rule__InvocationExpression__OwnedRelationshipAssignment_0
+            // InternalAlf.g:17322:2: ( rule__InvocationExpression__OwnedRelationship_compAssignment_0 )
+            // InternalAlf.g:17322:3: rule__InvocationExpression__OwnedRelationship_compAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__InvocationExpression__OwnedRelationshipAssignment_0();
+            rule__InvocationExpression__OwnedRelationship_compAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -57832,7 +57832,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -58147,26 +58147,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PositionalTuple__Group__0__Impl"
-    // InternalAlf.g:17423:1: rule__PositionalTuple__Group__0__Impl : ( ( rule__PositionalTuple__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalAlf.g:17423:1: rule__PositionalTuple__Group__0__Impl : ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 ) ) ;
     public final void rule__PositionalTuple__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17427:1: ( ( ( rule__PositionalTuple__OwnedRelationshipAssignment_0 ) ) )
-            // InternalAlf.g:17428:1: ( ( rule__PositionalTuple__OwnedRelationshipAssignment_0 ) )
+            // InternalAlf.g:17427:1: ( ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 ) ) )
+            // InternalAlf.g:17428:1: ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 ) )
             {
-            // InternalAlf.g:17428:1: ( ( rule__PositionalTuple__OwnedRelationshipAssignment_0 ) )
-            // InternalAlf.g:17429:2: ( rule__PositionalTuple__OwnedRelationshipAssignment_0 )
+            // InternalAlf.g:17428:1: ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 ) )
+            // InternalAlf.g:17429:2: ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:17430:2: ( rule__PositionalTuple__OwnedRelationshipAssignment_0 )
-            // InternalAlf.g:17430:3: rule__PositionalTuple__OwnedRelationshipAssignment_0
+            // InternalAlf.g:17430:2: ( rule__PositionalTuple__OwnedRelationship_compAssignment_0 )
+            // InternalAlf.g:17430:3: rule__PositionalTuple__OwnedRelationship_compAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__PositionalTuple__OwnedRelationshipAssignment_0();
+            rule__PositionalTuple__OwnedRelationship_compAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -58174,7 +58174,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -58412,26 +58412,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PositionalTuple__Group_1__1__Impl"
-    // InternalAlf.g:17503:1: rule__PositionalTuple__Group_1__1__Impl : ( ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 ) ) ;
+    // InternalAlf.g:17503:1: rule__PositionalTuple__Group_1__1__Impl : ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 ) ) ;
     public final void rule__PositionalTuple__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17507:1: ( ( ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 ) ) )
-            // InternalAlf.g:17508:1: ( ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 ) )
+            // InternalAlf.g:17507:1: ( ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 ) ) )
+            // InternalAlf.g:17508:1: ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 ) )
             {
-            // InternalAlf.g:17508:1: ( ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 ) )
-            // InternalAlf.g:17509:2: ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 )
+            // InternalAlf.g:17508:1: ( ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 ) )
+            // InternalAlf.g:17509:2: ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_1_1()); 
+               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compAssignment_1_1()); 
             }
-            // InternalAlf.g:17510:2: ( rule__PositionalTuple__OwnedRelationshipAssignment_1_1 )
-            // InternalAlf.g:17510:3: rule__PositionalTuple__OwnedRelationshipAssignment_1_1
+            // InternalAlf.g:17510:2: ( rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 )
+            // InternalAlf.g:17510:3: rule__PositionalTuple__OwnedRelationship_compAssignment_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__PositionalTuple__OwnedRelationshipAssignment_1_1();
+            rule__PositionalTuple__OwnedRelationship_compAssignment_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -58439,7 +58439,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipAssignment_1_1()); 
+               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compAssignment_1_1()); 
             }
 
             }
@@ -58501,26 +58501,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedTuple__Group__0__Impl"
-    // InternalAlf.g:17531:1: rule__NamedTuple__Group__0__Impl : ( ( rule__NamedTuple__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalAlf.g:17531:1: rule__NamedTuple__Group__0__Impl : ( ( rule__NamedTuple__OwnedRelationship_compAssignment_0 ) ) ;
     public final void rule__NamedTuple__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17535:1: ( ( ( rule__NamedTuple__OwnedRelationshipAssignment_0 ) ) )
-            // InternalAlf.g:17536:1: ( ( rule__NamedTuple__OwnedRelationshipAssignment_0 ) )
+            // InternalAlf.g:17535:1: ( ( ( rule__NamedTuple__OwnedRelationship_compAssignment_0 ) ) )
+            // InternalAlf.g:17536:1: ( ( rule__NamedTuple__OwnedRelationship_compAssignment_0 ) )
             {
-            // InternalAlf.g:17536:1: ( ( rule__NamedTuple__OwnedRelationshipAssignment_0 ) )
-            // InternalAlf.g:17537:2: ( rule__NamedTuple__OwnedRelationshipAssignment_0 )
+            // InternalAlf.g:17536:1: ( ( rule__NamedTuple__OwnedRelationship_compAssignment_0 ) )
+            // InternalAlf.g:17537:2: ( rule__NamedTuple__OwnedRelationship_compAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:17538:2: ( rule__NamedTuple__OwnedRelationshipAssignment_0 )
-            // InternalAlf.g:17538:3: rule__NamedTuple__OwnedRelationshipAssignment_0
+            // InternalAlf.g:17538:2: ( rule__NamedTuple__OwnedRelationship_compAssignment_0 )
+            // InternalAlf.g:17538:3: rule__NamedTuple__OwnedRelationship_compAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__NamedTuple__OwnedRelationshipAssignment_0();
+            rule__NamedTuple__OwnedRelationship_compAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -58528,7 +58528,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -58766,26 +58766,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedTuple__Group_1__1__Impl"
-    // InternalAlf.g:17611:1: rule__NamedTuple__Group_1__1__Impl : ( ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 ) ) ;
+    // InternalAlf.g:17611:1: rule__NamedTuple__Group_1__1__Impl : ( ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 ) ) ;
     public final void rule__NamedTuple__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17615:1: ( ( ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 ) ) )
-            // InternalAlf.g:17616:1: ( ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 ) )
+            // InternalAlf.g:17615:1: ( ( ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 ) ) )
+            // InternalAlf.g:17616:1: ( ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 ) )
             {
-            // InternalAlf.g:17616:1: ( ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 ) )
-            // InternalAlf.g:17617:2: ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 )
+            // InternalAlf.g:17616:1: ( ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 ) )
+            // InternalAlf.g:17617:2: ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_1_1()); 
+               before(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compAssignment_1_1()); 
             }
-            // InternalAlf.g:17618:2: ( rule__NamedTuple__OwnedRelationshipAssignment_1_1 )
-            // InternalAlf.g:17618:3: rule__NamedTuple__OwnedRelationshipAssignment_1_1
+            // InternalAlf.g:17618:2: ( rule__NamedTuple__OwnedRelationship_compAssignment_1_1 )
+            // InternalAlf.g:17618:3: rule__NamedTuple__OwnedRelationship_compAssignment_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__NamedTuple__OwnedRelationshipAssignment_1_1();
+            rule__NamedTuple__OwnedRelationship_compAssignment_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -58793,7 +58793,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedTupleAccess().getOwnedRelationshipAssignment_1_1()); 
+               after(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compAssignment_1_1()); 
             }
 
             }
@@ -58855,26 +58855,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassExtentExpression__Group__0__Impl"
-    // InternalAlf.g:17639:1: rule__ClassExtentExpression__Group__0__Impl : ( ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalAlf.g:17639:1: rule__ClassExtentExpression__Group__0__Impl : ( ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 ) ) ;
     public final void rule__ClassExtentExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17643:1: ( ( ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 ) ) )
-            // InternalAlf.g:17644:1: ( ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 ) )
+            // InternalAlf.g:17643:1: ( ( ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 ) ) )
+            // InternalAlf.g:17644:1: ( ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 ) )
             {
-            // InternalAlf.g:17644:1: ( ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 ) )
-            // InternalAlf.g:17645:2: ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 )
+            // InternalAlf.g:17644:1: ( ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 ) )
+            // InternalAlf.g:17645:2: ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationshipAssignment_0()); 
+               before(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationship_compAssignment_0()); 
             }
-            // InternalAlf.g:17646:2: ( rule__ClassExtentExpression__OwnedRelationshipAssignment_0 )
-            // InternalAlf.g:17646:3: rule__ClassExtentExpression__OwnedRelationshipAssignment_0
+            // InternalAlf.g:17646:2: ( rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 )
+            // InternalAlf.g:17646:3: rule__ClassExtentExpression__OwnedRelationship_compAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__ClassExtentExpression__OwnedRelationshipAssignment_0();
+            rule__ClassExtentExpression__OwnedRelationship_compAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -58882,7 +58882,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationshipAssignment_0()); 
+               after(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationship_compAssignment_0()); 
             }
 
             }
@@ -59597,26 +59597,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SequenceConstructionExpression__Group_2__0__Impl"
-    // InternalAlf.g:17882:1: rule__SequenceConstructionExpression__Group_2__0__Impl : ( ( rule__SequenceConstructionExpression__ElementAssignment_2_0 ) ) ;
+    // InternalAlf.g:17882:1: rule__SequenceConstructionExpression__Group_2__0__Impl : ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 ) ) ;
     public final void rule__SequenceConstructionExpression__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17886:1: ( ( ( rule__SequenceConstructionExpression__ElementAssignment_2_0 ) ) )
-            // InternalAlf.g:17887:1: ( ( rule__SequenceConstructionExpression__ElementAssignment_2_0 ) )
+            // InternalAlf.g:17886:1: ( ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 ) ) )
+            // InternalAlf.g:17887:1: ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 ) )
             {
-            // InternalAlf.g:17887:1: ( ( rule__SequenceConstructionExpression__ElementAssignment_2_0 ) )
-            // InternalAlf.g:17888:2: ( rule__SequenceConstructionExpression__ElementAssignment_2_0 )
+            // InternalAlf.g:17887:1: ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 ) )
+            // InternalAlf.g:17888:2: ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_0()); 
+               before(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compAssignment_2_0()); 
             }
-            // InternalAlf.g:17889:2: ( rule__SequenceConstructionExpression__ElementAssignment_2_0 )
-            // InternalAlf.g:17889:3: rule__SequenceConstructionExpression__ElementAssignment_2_0
+            // InternalAlf.g:17889:2: ( rule__SequenceConstructionExpression__Element_compAssignment_2_0 )
+            // InternalAlf.g:17889:3: rule__SequenceConstructionExpression__Element_compAssignment_2_0
             {
             pushFollow(FOLLOW_2);
-            rule__SequenceConstructionExpression__ElementAssignment_2_0();
+            rule__SequenceConstructionExpression__Element_compAssignment_2_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -59624,7 +59624,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_0()); 
+               after(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compAssignment_2_0()); 
             }
 
             }
@@ -59862,26 +59862,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SequenceConstructionExpression__Group_2_1__1__Impl"
-    // InternalAlf.g:17962:1: rule__SequenceConstructionExpression__Group_2_1__1__Impl : ( ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 ) ) ;
+    // InternalAlf.g:17962:1: rule__SequenceConstructionExpression__Group_2_1__1__Impl : ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 ) ) ;
     public final void rule__SequenceConstructionExpression__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:17966:1: ( ( ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 ) ) )
-            // InternalAlf.g:17967:1: ( ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 ) )
+            // InternalAlf.g:17966:1: ( ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 ) ) )
+            // InternalAlf.g:17967:1: ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 ) )
             {
-            // InternalAlf.g:17967:1: ( ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 ) )
-            // InternalAlf.g:17968:2: ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 )
+            // InternalAlf.g:17967:1: ( ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 ) )
+            // InternalAlf.g:17968:2: ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_1_1()); 
+               before(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compAssignment_2_1_1()); 
             }
-            // InternalAlf.g:17969:2: ( rule__SequenceConstructionExpression__ElementAssignment_2_1_1 )
-            // InternalAlf.g:17969:3: rule__SequenceConstructionExpression__ElementAssignment_2_1_1
+            // InternalAlf.g:17969:2: ( rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 )
+            // InternalAlf.g:17969:3: rule__SequenceConstructionExpression__Element_compAssignment_2_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__SequenceConstructionExpression__ElementAssignment_2_1_1();
+            rule__SequenceConstructionExpression__Element_compAssignment_2_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -59889,7 +59889,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceConstructionExpressionAccess().getElementAssignment_2_1_1()); 
+               after(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compAssignment_2_1_1()); 
             }
 
             }
@@ -60679,26 +60679,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__2__Impl"
-    // InternalAlf.g:18232:1: rule__NamedExpressionMember__Group__2__Impl : ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) ;
+    // InternalAlf.g:18232:1: rule__NamedExpressionMember__Group__2__Impl : ( ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 ) ) ;
     public final void rule__NamedExpressionMember__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:18236:1: ( ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) )
-            // InternalAlf.g:18237:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalAlf.g:18236:1: ( ( ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 ) ) )
+            // InternalAlf.g:18237:1: ( ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 ) )
             {
-            // InternalAlf.g:18237:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
-            // InternalAlf.g:18238:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
+            // InternalAlf.g:18237:1: ( ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 ) )
+            // InternalAlf.g:18238:2: ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2()); 
+               before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
-            // InternalAlf.g:18239:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
-            // InternalAlf.g:18239:3: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2
+            // InternalAlf.g:18239:2: ( rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 )
+            // InternalAlf.g:18239:3: rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__NamedExpressionMember__OwnedRelatedElementAssignment_2();
+            rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -60706,7 +60706,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2()); 
+               after(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElement_compAssignment_2()); 
             }
 
             }
@@ -60852,26 +60852,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__1__Impl"
-    // InternalAlf.g:18286:1: rule__BodyParameterMember__Group__1__Impl : ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 ) ) ;
+    // InternalAlf.g:18286:1: rule__BodyParameterMember__Group__1__Impl : ( ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 ) ) ;
     public final void rule__BodyParameterMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:18290:1: ( ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 ) ) )
-            // InternalAlf.g:18291:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 ) )
+            // InternalAlf.g:18290:1: ( ( ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 ) ) )
+            // InternalAlf.g:18291:1: ( ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 ) )
             {
-            // InternalAlf.g:18291:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 ) )
-            // InternalAlf.g:18292:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 )
+            // InternalAlf.g:18291:1: ( ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 ) )
+            // InternalAlf.g:18292:2: ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
-            // InternalAlf.g:18293:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_1 )
-            // InternalAlf.g:18293:3: rule__BodyParameterMember__OwnedRelatedElementAssignment_1
+            // InternalAlf.g:18293:2: ( rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 )
+            // InternalAlf.g:18293:3: rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__BodyParameterMember__OwnedRelatedElementAssignment_1();
+            rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -60879,7 +60879,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_1()); 
+               after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElement_compAssignment_1()); 
             }
 
             }
@@ -61335,7 +61335,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:18428:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_1_1()); 
             }
             // InternalAlf.g:18429:2: ()
             // InternalAlf.g:18429:3: 
@@ -61343,7 +61343,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_1_1()); 
             }
 
             }
@@ -61401,26 +61401,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QueryPathExpression__Group_1__2__Impl"
-    // InternalAlf.g:18449:1: rule__QueryPathExpression__Group_1__2__Impl : ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 ) ) ;
+    // InternalAlf.g:18449:1: rule__QueryPathExpression__Group_1__2__Impl : ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 ) ) ;
     public final void rule__QueryPathExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:18453:1: ( ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 ) ) )
-            // InternalAlf.g:18454:1: ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 ) )
+            // InternalAlf.g:18453:1: ( ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 ) ) )
+            // InternalAlf.g:18454:1: ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 ) )
             {
-            // InternalAlf.g:18454:1: ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 ) )
-            // InternalAlf.g:18455:2: ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 )
+            // InternalAlf.g:18454:1: ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 ) )
+            // InternalAlf.g:18455:2: ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_1_2()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
-            // InternalAlf.g:18456:2: ( rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 )
-            // InternalAlf.g:18456:3: rule__QueryPathExpression__OwnedRelationshipAssignment_1_2
+            // InternalAlf.g:18456:2: ( rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 )
+            // InternalAlf.g:18456:3: rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__QueryPathExpression__OwnedRelationshipAssignment_1_2();
+            rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -61428,7 +61428,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_1_2()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compAssignment_1_2()); 
             }
 
             }
@@ -61656,7 +61656,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:18536:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperand_compAction_2_1()); 
             }
             // InternalAlf.g:18537:2: ()
             // InternalAlf.g:18537:3: 
@@ -61664,7 +61664,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperand_compAction_2_1()); 
             }
 
             }
@@ -61722,26 +61722,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QueryPathExpression__Group_2__2__Impl"
-    // InternalAlf.g:18557:1: rule__QueryPathExpression__Group_2__2__Impl : ( ( rule__QueryPathExpression__OperandAssignment_2_2 ) ) ;
+    // InternalAlf.g:18557:1: rule__QueryPathExpression__Group_2__2__Impl : ( ( rule__QueryPathExpression__Operand_compAssignment_2_2 ) ) ;
     public final void rule__QueryPathExpression__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:18561:1: ( ( ( rule__QueryPathExpression__OperandAssignment_2_2 ) ) )
-            // InternalAlf.g:18562:1: ( ( rule__QueryPathExpression__OperandAssignment_2_2 ) )
+            // InternalAlf.g:18561:1: ( ( ( rule__QueryPathExpression__Operand_compAssignment_2_2 ) ) )
+            // InternalAlf.g:18562:1: ( ( rule__QueryPathExpression__Operand_compAssignment_2_2 ) )
             {
-            // InternalAlf.g:18562:1: ( ( rule__QueryPathExpression__OperandAssignment_2_2 ) )
-            // InternalAlf.g:18563:2: ( rule__QueryPathExpression__OperandAssignment_2_2 )
+            // InternalAlf.g:18562:1: ( ( rule__QueryPathExpression__Operand_compAssignment_2_2 ) )
+            // InternalAlf.g:18563:2: ( rule__QueryPathExpression__Operand_compAssignment_2_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOperand_compAssignment_2_2()); 
             }
-            // InternalAlf.g:18564:2: ( rule__QueryPathExpression__OperandAssignment_2_2 )
-            // InternalAlf.g:18564:3: rule__QueryPathExpression__OperandAssignment_2_2
+            // InternalAlf.g:18564:2: ( rule__QueryPathExpression__Operand_compAssignment_2_2 )
+            // InternalAlf.g:18564:3: rule__QueryPathExpression__Operand_compAssignment_2_2
             {
             pushFollow(FOLLOW_2);
-            rule__QueryPathExpression__OperandAssignment_2_2();
+            rule__QueryPathExpression__Operand_compAssignment_2_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -61749,7 +61749,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOperand_compAssignment_2_2()); 
             }
 
             }
@@ -61994,7 +61994,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:18644:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_2_3_1()); 
             }
             // InternalAlf.g:18645:2: ()
             // InternalAlf.g:18645:3: 
@@ -62002,7 +62002,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_2_3_1()); 
             }
 
             }
@@ -62060,26 +62060,26 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QueryPathExpression__Group_2_3__2__Impl"
-    // InternalAlf.g:18665:1: rule__QueryPathExpression__Group_2_3__2__Impl : ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 ) ) ;
+    // InternalAlf.g:18665:1: rule__QueryPathExpression__Group_2_3__2__Impl : ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 ) ) ;
     public final void rule__QueryPathExpression__Group_2_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:18669:1: ( ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 ) ) )
-            // InternalAlf.g:18670:1: ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 ) )
+            // InternalAlf.g:18669:1: ( ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 ) ) )
+            // InternalAlf.g:18670:1: ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 ) )
             {
-            // InternalAlf.g:18670:1: ( ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 ) )
-            // InternalAlf.g:18671:2: ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 )
+            // InternalAlf.g:18670:1: ( ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 ) )
+            // InternalAlf.g:18671:2: ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compAssignment_2_3_2()); 
             }
-            // InternalAlf.g:18672:2: ( rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 )
-            // InternalAlf.g:18672:3: rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2
+            // InternalAlf.g:18672:2: ( rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 )
+            // InternalAlf.g:18672:3: rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2
             {
             pushFollow(FOLLOW_2);
-            rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2();
+            rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -62087,7 +62087,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compAssignment_2_3_2()); 
             }
 
             }
@@ -63387,9 +63387,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypePart__UnorderedGroup_2__1"
 
 
-    // $ANTLR start "rule__UnitPrefix__OwnedRelationshipAssignment_0_0"
-    // InternalAlf.g:19074:1: rule__UnitPrefix__OwnedRelationshipAssignment_0_0 : ( rulePackageImport ) ;
-    public final void rule__UnitPrefix__OwnedRelationshipAssignment_0_0() throws RecognitionException {
+    // $ANTLR start "rule__UnitPrefix__OwnedRelationship_compAssignment_0_0"
+    // InternalAlf.g:19074:1: rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 : ( rulePackageImport ) ;
+    public final void rule__UnitPrefix__OwnedRelationship_compAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -63401,7 +63401,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19080:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipPackageImportParserRuleCall_0_0_0()); 
+               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compPackageImportParserRuleCall_0_0_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -63409,7 +63409,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipPackageImportParserRuleCall_0_0_0()); 
+               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compPackageImportParserRuleCall_0_0_0()); 
             }
 
             }
@@ -63429,12 +63429,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnitPrefix__OwnedRelationshipAssignment_0_0"
+    // $ANTLR end "rule__UnitPrefix__OwnedRelationship_compAssignment_0_0"
 
 
-    // $ANTLR start "rule__UnitPrefix__OwnedRelationshipAssignment_0_1"
-    // InternalAlf.g:19089:1: rule__UnitPrefix__OwnedRelationshipAssignment_0_1 : ( ruleElementImport ) ;
-    public final void rule__UnitPrefix__OwnedRelationshipAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__UnitPrefix__OwnedRelationship_compAssignment_0_1"
+    // InternalAlf.g:19089:1: rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 : ( ruleElementImport ) ;
+    public final void rule__UnitPrefix__OwnedRelationship_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -63446,7 +63446,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19095:3: ruleElementImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipElementImportParserRuleCall_0_1_0()); 
+               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compElementImportParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleElementImport();
@@ -63454,7 +63454,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipElementImportParserRuleCall_0_1_0()); 
+               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compElementImportParserRuleCall_0_1_0()); 
             }
 
             }
@@ -63474,12 +63474,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnitPrefix__OwnedRelationshipAssignment_0_1"
+    // $ANTLR end "rule__UnitPrefix__OwnedRelationship_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__UnitPrefix__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:19104:1: rule__UnitPrefix__OwnedRelationshipAssignment_1 : ( ruleAnnotation ) ;
-    public final void rule__UnitPrefix__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__UnitPrefix__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:19104:1: rule__UnitPrefix__OwnedRelationship_compAssignment_1 : ( ruleAnnotation ) ;
+    public final void rule__UnitPrefix__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -63491,7 +63491,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19110:3: ruleAnnotation
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_1_0()); 
+               before(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAnnotation();
@@ -63499,7 +63499,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_1_0()); 
+               after(grammarAccess.getUnitPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_1_0()); 
             }
 
             }
@@ -63519,12 +63519,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnitPrefix__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__UnitPrefix__OwnedRelationship_compAssignment_1"
 
 
-    // $ANTLR start "rule__Annotation__OwnedRelatedElementAssignment"
-    // InternalAlf.g:19119:1: rule__Annotation__OwnedRelatedElementAssignment : ( ruleComment ) ;
-    public final void rule__Annotation__OwnedRelatedElementAssignment() throws RecognitionException {
+    // $ANTLR start "rule__Annotation__OwnedRelatedElement_compAssignment"
+    // InternalAlf.g:19119:1: rule__Annotation__OwnedRelatedElement_compAssignment : ( ruleComment ) ;
+    public final void rule__Annotation__OwnedRelatedElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -63536,7 +63536,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19125:3: ruleComment
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAnnotationAccess().getOwnedRelatedElementCommentParserRuleCall_0()); 
+               before(grammarAccess.getAnnotationAccess().getOwnedRelatedElement_compCommentParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleComment();
@@ -63544,7 +63544,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAnnotationAccess().getOwnedRelatedElementCommentParserRuleCall_0()); 
+               after(grammarAccess.getAnnotationAccess().getOwnedRelatedElement_compCommentParserRuleCall_0()); 
             }
 
             }
@@ -63564,7 +63564,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Annotation__OwnedRelatedElementAssignment"
+    // $ANTLR end "rule__Annotation__OwnedRelatedElement_compAssignment"
 
 
     // $ANTLR start "rule__Comment__BodyAssignment"
@@ -63608,9 +63608,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Comment__BodyAssignment"
 
 
-    // $ANTLR start "rule__PackageImport__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:19149:1: rule__PackageImport__OwnedRelationshipAssignment_0 : ( ruleAnnotation ) ;
-    public final void rule__PackageImport__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageImport__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:19149:1: rule__PackageImport__OwnedRelationship_compAssignment_0 : ( ruleAnnotation ) ;
+    public final void rule__PackageImport__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -63622,7 +63622,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19155:3: ruleAnnotation
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               before(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAnnotation();
@@ -63630,7 +63630,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               after(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
 
             }
@@ -63650,7 +63650,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageImport__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__PackageImport__OwnedRelationship_compAssignment_0"
 
 
     // $ANTLR start "rule__PackageImport__VisibilityAssignment_1"
@@ -64016,9 +64016,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PackageDefinition__NameAssignment_1"
 
 
-    // $ANTLR start "rule__PackageDefinition__OwnedRelationshipAssignment_3_0"
-    // InternalAlf.g:19285:1: rule__PackageDefinition__OwnedRelationshipAssignment_3_0 : ( rulePackageMember ) ;
-    public final void rule__PackageDefinition__OwnedRelationshipAssignment_3_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageDefinition__OwnedRelationship_compAssignment_3_0"
+    // InternalAlf.g:19285:1: rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 : ( rulePackageMember ) ;
+    public final void rule__PackageDefinition__OwnedRelationship_compAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -64030,7 +64030,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19291:3: rulePackageMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipPackageMemberParserRuleCall_3_0_0()); 
+               before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compPackageMemberParserRuleCall_3_0_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageMember();
@@ -64038,7 +64038,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipPackageMemberParserRuleCall_3_0_0()); 
+               after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compPackageMemberParserRuleCall_3_0_0()); 
             }
 
             }
@@ -64058,12 +64058,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageDefinition__OwnedRelationshipAssignment_3_0"
+    // $ANTLR end "rule__PackageDefinition__OwnedRelationship_compAssignment_3_0"
 
 
-    // $ANTLR start "rule__PackageDefinition__OwnedRelationshipAssignment_3_1"
-    // InternalAlf.g:19300:1: rule__PackageDefinition__OwnedRelationshipAssignment_3_1 : ( rulePackageImport ) ;
-    public final void rule__PackageDefinition__OwnedRelationshipAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__PackageDefinition__OwnedRelationship_compAssignment_3_1"
+    // InternalAlf.g:19300:1: rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 : ( rulePackageImport ) ;
+    public final void rule__PackageDefinition__OwnedRelationship_compAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -64075,7 +64075,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19306:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipPackageImportParserRuleCall_3_1_0()); 
+               before(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compPackageImportParserRuleCall_3_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -64083,7 +64083,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipPackageImportParserRuleCall_3_1_0()); 
+               after(grammarAccess.getPackageDefinitionAccess().getOwnedRelationship_compPackageImportParserRuleCall_3_1_0()); 
             }
 
             }
@@ -64103,12 +64103,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageDefinition__OwnedRelationshipAssignment_3_1"
+    // $ANTLR end "rule__PackageDefinition__OwnedRelationship_compAssignment_3_1"
 
 
-    // $ANTLR start "rule__PackageMemberPrefix__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:19315:1: rule__PackageMemberPrefix__OwnedRelationshipAssignment_0 : ( ruleAnnotation ) ;
-    public final void rule__PackageMemberPrefix__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:19315:1: rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0 : ( ruleAnnotation ) ;
+    public final void rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -64120,7 +64120,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19321:3: ruleAnnotation
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               before(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAnnotation();
@@ -64128,7 +64128,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               after(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
 
             }
@@ -64148,7 +64148,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageMemberPrefix__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0"
 
 
     // $ANTLR start "rule__PackageMemberPrefix__VisibilityAssignment_1"
@@ -64196,9 +64196,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PackageMemberPrefix__VisibilityAssignment_1"
 
 
-    // $ANTLR start "rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0"
-    // InternalAlf.g:19345:1: rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 : ( ruleNonFeatureDefinition ) ;
-    public final void rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0"
+    // InternalAlf.g:19345:1: rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 : ( ruleNonFeatureDefinition ) ;
+    public final void rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -64210,7 +64210,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19351:3: ruleNonFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElementNonFeatureDefinitionParserRuleCall_0_0()); 
+               before(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElement_compNonFeatureDefinitionParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNonFeatureDefinition();
@@ -64218,7 +64218,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElementNonFeatureDefinitionParserRuleCall_0_0()); 
+               after(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElement_compNonFeatureDefinitionParserRuleCall_0_0()); 
             }
 
             }
@@ -64238,7 +64238,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0"
+    // $ANTLR end "rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0"
 
 
     // $ANTLR start "rule__NonFeatureMemberElement__MemberNameAssignment_1_1"
@@ -65057,9 +65057,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__NonFeatureMemberElement__MemberNameAssignment_8_2_1"
 
 
-    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1"
-    // InternalAlf.g:19632:1: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1 : ( ruleNamedFeatureDefinition ) ;
-    public final void rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1"
+    // InternalAlf.g:19632:1: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1 : ( ruleNamedFeatureDefinition ) ;
+    public final void rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65071,7 +65071,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19638:3: ruleNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_0_1_0()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNamedFeatureDefinition();
@@ -65079,7 +65079,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_0_1_0()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_0_1_0()); 
             }
 
             }
@@ -65099,12 +65099,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_0_1"
+    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2"
-    // InternalAlf.g:19647:1: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2 : ( ruleAbstractNamedFeatureDefinition ) ;
-    public final void rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2"
+    // InternalAlf.g:19647:1: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2 : ( ruleAbstractNamedFeatureDefinition ) ;
+    public final void rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65116,7 +65116,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19653:3: ruleAbstractNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractNamedFeatureDefinition();
@@ -65124,7 +65124,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -65144,12 +65144,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_1_2"
+    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_1_2"
 
 
-    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1"
-    // InternalAlf.g:19662:1: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1 : ( ruleUnnamedFeatureDefinition ) ;
-    public final void rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1"
+    // InternalAlf.g:19662:1: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1 : ( ruleUnnamedFeatureDefinition ) ;
+    public final void rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65161,7 +65161,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19668:3: ruleUnnamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementUnnamedFeatureDefinitionParserRuleCall_2_1_0()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compUnnamedFeatureDefinitionParserRuleCall_2_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleUnnamedFeatureDefinition();
@@ -65169,7 +65169,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementUnnamedFeatureDefinitionParserRuleCall_2_1_0()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compUnnamedFeatureDefinitionParserRuleCall_2_1_0()); 
             }
 
             }
@@ -65189,12 +65189,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_2_1"
+    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_2_1"
 
 
-    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2"
-    // InternalAlf.g:19677:1: rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2 : ( ruleAbstractUnnamedFeatureDefinition ) ;
-    public final void rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2() throws RecognitionException {
+    // $ANTLR start "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2"
+    // InternalAlf.g:19677:1: rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2 : ( ruleAbstractUnnamedFeatureDefinition ) ;
+    public final void rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65206,7 +65206,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19683:3: ruleAbstractUnnamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAbstractUnnamedFeatureDefinitionParserRuleCall_3_2_0()); 
+               before(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAbstractUnnamedFeatureDefinitionParserRuleCall_3_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractUnnamedFeatureDefinition();
@@ -65214,7 +65214,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElementAbstractUnnamedFeatureDefinitionParserRuleCall_3_2_0()); 
+               after(grammarAccess.getFeaturePackageMemberElementAccess().getOwnedRelatedElement_compAbstractUnnamedFeatureDefinitionParserRuleCall_3_2_0()); 
             }
 
             }
@@ -65234,7 +65234,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElementAssignment_3_2"
+    // $ANTLR end "rule__FeaturePackageMemberElement__OwnedRelatedElement_compAssignment_3_2"
 
 
     // $ANTLR start "rule__FeaturePackageMemberElement__MemberNameAssignment_4_0_0_1"
@@ -65384,9 +65384,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeaturePackageMemberElement__MemberElementAssignment_4_2"
 
 
-    // $ANTLR start "rule__CategoryBody__OwnedRelationshipAssignment_1_1_0"
-    // InternalAlf.g:19741:1: rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 : ( ruleCategoryMember ) ;
-    public final void rule__CategoryBody__OwnedRelationshipAssignment_1_1_0() throws RecognitionException {
+    // $ANTLR start "rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0"
+    // InternalAlf.g:19741:1: rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 : ( ruleCategoryMember ) ;
+    public final void rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65398,7 +65398,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19747:3: ruleCategoryMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipCategoryMemberParserRuleCall_1_1_0_0()); 
+               before(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compCategoryMemberParserRuleCall_1_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleCategoryMember();
@@ -65406,7 +65406,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipCategoryMemberParserRuleCall_1_1_0_0()); 
+               after(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compCategoryMemberParserRuleCall_1_1_0_0()); 
             }
 
             }
@@ -65426,12 +65426,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__CategoryBody__OwnedRelationshipAssignment_1_1_0"
+    // $ANTLR end "rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__CategoryBody__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:19756:1: rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 : ( rulePackageImport ) ;
-    public final void rule__CategoryBody__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:19756:1: rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 : ( rulePackageImport ) ;
+    public final void rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65443,7 +65443,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19762:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -65451,7 +65451,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCategoryBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getCategoryBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -65471,7 +65471,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__CategoryBody__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1"
 
 
     // $ANTLR start "rule__AbstractCategoryBody__IsAbstractAssignment_0"
@@ -65580,9 +65580,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AbstractCategoryBody__IsAbstractAssignment_1_0"
 
 
-    // $ANTLR start "rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0"
-    // InternalAlf.g:19809:1: rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 : ( ruleCategoryMember ) ;
-    public final void rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0() throws RecognitionException {
+    // $ANTLR start "rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0"
+    // InternalAlf.g:19809:1: rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 : ( ruleCategoryMember ) ;
+    public final void rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65594,7 +65594,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19815:3: ruleCategoryMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipCategoryMemberParserRuleCall_1_1_0_0()); 
+               before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compCategoryMemberParserRuleCall_1_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleCategoryMember();
@@ -65602,7 +65602,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipCategoryMemberParserRuleCall_1_1_0_0()); 
+               after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compCategoryMemberParserRuleCall_1_1_0_0()); 
             }
 
             }
@@ -65622,12 +65622,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0"
+    // $ANTLR end "rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:19824:1: rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 : ( rulePackageImport ) ;
-    public final void rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:19824:1: rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 : ( rulePackageImport ) ;
+    public final void rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65639,7 +65639,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19830:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -65647,7 +65647,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getAbstractCategoryBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -65667,7 +65667,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1"
 
 
     // $ANTLR start "rule__FeatureCategoryMember__DirectionAssignment_1_0_0"
@@ -65715,9 +65715,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureCategoryMember__DirectionAssignment_1_0_0"
 
 
-    // $ANTLR start "rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1"
-    // InternalAlf.g:19854:1: rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1 : ( ruleNamedFeatureDefinition ) ;
-    public final void rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1() throws RecognitionException {
+    // $ANTLR start "rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1"
+    // InternalAlf.g:19854:1: rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1 : ( ruleNamedFeatureDefinition ) ;
+    public final void rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65729,7 +65729,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19860:3: ruleNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_0_1_0()); 
+               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_1_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNamedFeatureDefinition();
@@ -65737,7 +65737,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_0_1_0()); 
+               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_1_0_1_0()); 
             }
 
             }
@@ -65757,7 +65757,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_0_1"
+    // $ANTLR end "rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_0_1"
 
 
     // $ANTLR start "rule__FeatureCategoryMember__DirectionAssignment_1_1_1"
@@ -65805,9 +65805,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureCategoryMember__DirectionAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2"
-    // InternalAlf.g:19884:1: rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2 : ( ruleAbstractNamedFeatureDefinition ) ;
-    public final void rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2() throws RecognitionException {
+    // $ANTLR start "rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2"
+    // InternalAlf.g:19884:1: rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2 : ( ruleAbstractNamedFeatureDefinition ) ;
+    public final void rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -65819,7 +65819,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:19890:3: ruleAbstractNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_1_2_0()); 
+               before(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractNamedFeatureDefinition();
@@ -65827,7 +65827,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_1_2_0()); 
+               after(grammarAccess.getFeatureCategoryMemberAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_1_2_0()); 
             }
 
             }
@@ -65847,7 +65847,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureCategoryMember__OwnedRelatedElementAssignment_1_1_2"
+    // $ANTLR end "rule__FeatureCategoryMember__OwnedRelatedElement_compAssignment_1_1_2"
 
 
     // $ANTLR start "rule__FeatureCategoryMember__DirectionAssignment_1_2_0"
@@ -66148,9 +66148,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureMember__DirectionAssignment_1_0_1"
 
 
-    // $ANTLR start "rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0"
-    // InternalAlf.g:20001:1: rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0 : ( ruleFeatureDefinition ) ;
-    public final void rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0"
+    // InternalAlf.g:20001:1: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0 : ( ruleFeatureDefinition ) ;
+    public final void rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66162,7 +66162,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20007:3: ruleFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_2_0_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compFeatureDefinitionParserRuleCall_1_0_2_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureDefinition();
@@ -66170,7 +66170,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_2_0_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compFeatureDefinitionParserRuleCall_1_0_2_0_0()); 
             }
 
             }
@@ -66190,7 +66190,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__OwnedRelatedElementAssignment_1_0_2_0"
+    // $ANTLR end "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_0_2_0"
 
 
     // $ANTLR start "rule__FeatureMember__MemberNameAssignment_1_0_2_1_0"
@@ -66446,9 +66446,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureMember__DirectionAssignment_1_1_2"
 
 
-    // $ANTLR start "rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3"
-    // InternalAlf.g:20103:1: rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3 : ( ruleAbstractFeatureDefinition ) ;
-    public final void rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3"
+    // InternalAlf.g:20103:1: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3 : ( ruleAbstractFeatureDefinition ) ;
+    public final void rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66460,7 +66460,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20109:3: ruleAbstractFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_3_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAbstractFeatureDefinitionParserRuleCall_1_1_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractFeatureDefinition();
@@ -66468,7 +66468,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_3_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAbstractFeatureDefinitionParserRuleCall_1_1_3_0()); 
             }
 
             }
@@ -66488,12 +66488,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__OwnedRelatedElementAssignment_1_1_3"
+    // $ANTLR end "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_1_3"
 
 
-    // $ANTLR start "rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0"
-    // InternalAlf.g:20118:1: rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 : ( ruleConnectorDefinition ) ;
-    public final void rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0"
+    // InternalAlf.g:20118:1: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 : ( ruleConnectorDefinition ) ;
+    public final void rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66505,7 +66505,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20124:3: ruleConnectorDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementConnectorDefinitionParserRuleCall_1_2_1_0_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compConnectorDefinitionParserRuleCall_1_2_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorDefinition();
@@ -66513,7 +66513,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementConnectorDefinitionParserRuleCall_1_2_1_0_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compConnectorDefinitionParserRuleCall_1_2_1_0_0()); 
             }
 
             }
@@ -66533,7 +66533,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0"
+    // $ANTLR end "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0"
 
 
     // $ANTLR start "rule__FeatureMember__MemberNameAssignment_1_2_1_1_0"
@@ -66638,9 +66638,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureMember__MemberFeatureAssignment_1_2_1_1_2"
 
 
-    // $ANTLR start "rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2"
-    // InternalAlf.g:20167:1: rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2 : ( ruleAbstractConnectorDefinition ) ;
-    public final void rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2"
+    // InternalAlf.g:20167:1: rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2 : ( ruleAbstractConnectorDefinition ) ;
+    public final void rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66652,7 +66652,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20173:3: ruleAbstractConnectorDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAbstractConnectorDefinitionParserRuleCall_1_3_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractConnectorDefinition();
@@ -66660,7 +66660,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElement_compAbstractConnectorDefinitionParserRuleCall_1_3_2_0()); 
             }
 
             }
@@ -66680,12 +66680,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__OwnedRelatedElementAssignment_1_3_2"
+    // $ANTLR end "rule__FeatureMember__OwnedRelatedElement_compAssignment_1_3_2"
 
 
-    // $ANTLR start "rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:20182:1: rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0 : ( ruleAnnotation ) ;
-    public final void rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:20182:1: rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0 : ( ruleAnnotation ) ;
+    public final void rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66697,7 +66697,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20188:3: ruleAnnotation
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               before(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAnnotation();
@@ -66705,7 +66705,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_0_0()); 
+               after(grammarAccess.getCategoryMemberPrefixAccess().getOwnedRelationship_compAnnotationParserRuleCall_0_0()); 
             }
 
             }
@@ -66725,7 +66725,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__CategoryMemberPrefix__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__CategoryMemberPrefix__OwnedRelationship_compAssignment_0"
 
 
     // $ANTLR start "rule__CategoryMemberPrefix__VisibilityAssignment_1"
@@ -66871,9 +66871,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassDeclarationCompletion__NameAssignment_0"
 
 
-    // $ANTLR start "rule__SpecializationList__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:20246:1: rule__SpecializationList__OwnedRelationshipAssignment_1 : ( ruleSuperclassing ) ;
-    public final void rule__SpecializationList__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__SpecializationList__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:20246:1: rule__SpecializationList__OwnedRelationship_compAssignment_1 : ( ruleSuperclassing ) ;
+    public final void rule__SpecializationList__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66885,7 +66885,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20252:3: ruleSuperclassing
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecializationListAccess().getOwnedRelationshipSuperclassingParserRuleCall_1_0()); 
+               before(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compSuperclassingParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSuperclassing();
@@ -66893,7 +66893,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecializationListAccess().getOwnedRelationshipSuperclassingParserRuleCall_1_0()); 
+               after(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compSuperclassingParserRuleCall_1_0()); 
             }
 
             }
@@ -66913,12 +66913,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SpecializationList__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__SpecializationList__OwnedRelationship_compAssignment_1"
 
 
-    // $ANTLR start "rule__SpecializationList__OwnedRelationshipAssignment_2_1"
-    // InternalAlf.g:20261:1: rule__SpecializationList__OwnedRelationshipAssignment_2_1 : ( ruleSuperclassing ) ;
-    public final void rule__SpecializationList__OwnedRelationshipAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__SpecializationList__OwnedRelationship_compAssignment_2_1"
+    // InternalAlf.g:20261:1: rule__SpecializationList__OwnedRelationship_compAssignment_2_1 : ( ruleSuperclassing ) ;
+    public final void rule__SpecializationList__OwnedRelationship_compAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -66930,7 +66930,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20267:3: ruleSuperclassing
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecializationListAccess().getOwnedRelationshipSuperclassingParserRuleCall_2_1_0()); 
+               before(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compSuperclassingParserRuleCall_2_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSuperclassing();
@@ -66938,7 +66938,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecializationListAccess().getOwnedRelationshipSuperclassingParserRuleCall_2_1_0()); 
+               after(grammarAccess.getSpecializationListAccess().getOwnedRelationship_compSuperclassingParserRuleCall_2_1_0()); 
             }
 
             }
@@ -66958,7 +66958,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SpecializationList__OwnedRelationshipAssignment_2_1"
+    // $ANTLR end "rule__SpecializationList__OwnedRelationship_compAssignment_2_1"
 
 
     // $ANTLR start "rule__Superclassing__SuperclassAssignment"
@@ -67177,9 +67177,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AssociationDeclaration__IsAbstractAssignment_0"
 
 
-    // $ANTLR start "rule__AssociationBody__OwnedRelationshipAssignment_1_1_0"
-    // InternalAlf.g:20352:1: rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 : ( ruleAssociationMember ) ;
-    public final void rule__AssociationBody__OwnedRelationshipAssignment_1_1_0() throws RecognitionException {
+    // $ANTLR start "rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0"
+    // InternalAlf.g:20352:1: rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 : ( ruleAssociationMember ) ;
+    public final void rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67191,7 +67191,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20358:3: ruleAssociationMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssociationMemberParserRuleCall_1_1_0_0()); 
+               before(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssociationMemberParserRuleCall_1_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAssociationMember();
@@ -67199,7 +67199,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipAssociationMemberParserRuleCall_1_1_0_0()); 
+               after(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compAssociationMemberParserRuleCall_1_1_0_0()); 
             }
 
             }
@@ -67219,12 +67219,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationBody__OwnedRelationshipAssignment_1_1_0"
+    // $ANTLR end "rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__AssociationBody__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:20367:1: rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 : ( rulePackageImport ) ;
-    public final void rule__AssociationBody__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:20367:1: rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 : ( rulePackageImport ) ;
+    public final void rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67236,7 +67236,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20373:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -67244,7 +67244,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getAssociationBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -67264,7 +67264,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationBody__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1"
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__IsPartAssignment_1_0_1_0"
@@ -67418,9 +67418,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AssociationEndFeatureMember__DirectionAssignment_1_0_2"
 
 
-    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3"
-    // InternalAlf.g:20435:1: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3 : ( ruleFeatureDefinition ) ;
-    public final void rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3() throws RecognitionException {
+    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3"
+    // InternalAlf.g:20435:1: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3 : ( ruleFeatureDefinition ) ;
+    public final void rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67432,7 +67432,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20441:3: ruleFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_3_0()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compFeatureDefinitionParserRuleCall_1_0_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureDefinition();
@@ -67440,7 +67440,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_3_0()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compFeatureDefinitionParserRuleCall_1_0_3_0()); 
             }
 
             }
@@ -67460,7 +67460,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_0_3"
+    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_0_3"
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__IsPartAssignment_1_1_2_0"
@@ -67614,9 +67614,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AssociationEndFeatureMember__DirectionAssignment_1_1_3"
 
 
-    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4"
-    // InternalAlf.g:20503:1: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4 : ( ruleAbstractFeatureDefinition ) ;
-    public final void rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4() throws RecognitionException {
+    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4"
+    // InternalAlf.g:20503:1: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4 : ( ruleAbstractFeatureDefinition ) ;
+    public final void rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67628,7 +67628,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20509:3: ruleAbstractFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_4_0()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAbstractFeatureDefinitionParserRuleCall_1_1_4_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractFeatureDefinition();
@@ -67636,7 +67636,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_4_0()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAbstractFeatureDefinitionParserRuleCall_1_1_4_0()); 
             }
 
             }
@@ -67656,7 +67656,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_1_4"
+    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_1_4"
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__IsPartAssignment_1_2_1"
@@ -67859,9 +67859,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AssociationEndFeatureMember__DirectionAssignment_1_3_0"
 
 
-    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1"
-    // InternalAlf.g:20586:1: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1 : ( ruleNamedFeatureDefinition ) ;
-    public final void rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1() throws RecognitionException {
+    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1"
+    // InternalAlf.g:20586:1: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1 : ( ruleNamedFeatureDefinition ) ;
+    public final void rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67873,7 +67873,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20592:3: ruleNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_3_1_0()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_1_3_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNamedFeatureDefinition();
@@ -67881,7 +67881,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_3_1_0()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compNamedFeatureDefinitionParserRuleCall_1_3_1_0()); 
             }
 
             }
@@ -67901,7 +67901,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_3_1"
+    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_3_1"
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__DirectionAssignment_1_4_1"
@@ -67949,9 +67949,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AssociationEndFeatureMember__DirectionAssignment_1_4_1"
 
 
-    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2"
-    // InternalAlf.g:20616:1: rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2 : ( ruleAbstractNamedFeatureDefinition ) ;
-    public final void rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2() throws RecognitionException {
+    // $ANTLR start "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2"
+    // InternalAlf.g:20616:1: rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2 : ( ruleAbstractNamedFeatureDefinition ) ;
+    public final void rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -67963,7 +67963,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20622:3: ruleAbstractNamedFeatureDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0()); 
+               before(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAbstractNamedFeatureDefinition();
@@ -67971,7 +67971,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0()); 
+               after(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElement_compAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0()); 
             }
 
             }
@@ -67991,7 +67991,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2"
+    // $ANTLR end "rule__AssociationEndFeatureMember__OwnedRelatedElement_compAssignment_1_4_2"
 
 
     // $ANTLR start "rule__AssociationEndFeatureMember__MemberNameAssignment_1_5_0"
@@ -68194,9 +68194,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__BehaviorDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start "rule__ParameterList__OwnedRelationshipAssignment_1_0"
-    // InternalAlf.g:20699:1: rule__ParameterList__OwnedRelationshipAssignment_1_0 : ( ruleParameterMember ) ;
-    public final void rule__ParameterList__OwnedRelationshipAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__ParameterList__OwnedRelationship_compAssignment_1_0"
+    // InternalAlf.g:20699:1: rule__ParameterList__OwnedRelationship_compAssignment_1_0 : ( ruleParameterMember ) ;
+    public final void rule__ParameterList__OwnedRelationship_compAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68208,7 +68208,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20705:3: ruleParameterMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterListAccess().getOwnedRelationshipParameterMemberParserRuleCall_1_0_0()); 
+               before(grammarAccess.getParameterListAccess().getOwnedRelationship_compParameterMemberParserRuleCall_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleParameterMember();
@@ -68216,7 +68216,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterListAccess().getOwnedRelationshipParameterMemberParserRuleCall_1_0_0()); 
+               after(grammarAccess.getParameterListAccess().getOwnedRelationship_compParameterMemberParserRuleCall_1_0_0()); 
             }
 
             }
@@ -68236,12 +68236,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ParameterList__OwnedRelationshipAssignment_1_0"
+    // $ANTLR end "rule__ParameterList__OwnedRelationship_compAssignment_1_0"
 
 
-    // $ANTLR start "rule__ParameterList__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:20714:1: rule__ParameterList__OwnedRelationshipAssignment_1_1_1 : ( ruleParameterMember ) ;
-    public final void rule__ParameterList__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ParameterList__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:20714:1: rule__ParameterList__OwnedRelationship_compAssignment_1_1_1 : ( ruleParameterMember ) ;
+    public final void rule__ParameterList__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68253,7 +68253,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20720:3: ruleParameterMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterListAccess().getOwnedRelationshipParameterMemberParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getParameterListAccess().getOwnedRelationship_compParameterMemberParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleParameterMember();
@@ -68261,7 +68261,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterListAccess().getOwnedRelationshipParameterMemberParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getParameterListAccess().getOwnedRelationship_compParameterMemberParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -68281,12 +68281,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ParameterList__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__ParameterList__OwnedRelationship_compAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0"
-    // InternalAlf.g:20729:1: rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 : ( ruleBehaviorMember ) ;
-    public final void rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0() throws RecognitionException {
+    // $ANTLR start "rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0"
+    // InternalAlf.g:20729:1: rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 : ( ruleBehaviorMember ) ;
+    public final void rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68298,7 +68298,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20735:3: ruleBehaviorMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipBehaviorMemberParserRuleCall_1_1_0_0()); 
+               before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compBehaviorMemberParserRuleCall_1_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBehaviorMember();
@@ -68306,7 +68306,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipBehaviorMemberParserRuleCall_1_1_0_0()); 
+               after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compBehaviorMemberParserRuleCall_1_1_0_0()); 
             }
 
             }
@@ -68326,12 +68326,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0"
+    // $ANTLR end "rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:20744:1: rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 : ( rulePackageImport ) ;
-    public final void rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:20744:1: rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 : ( rulePackageImport ) ;
+    public final void rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68343,7 +68343,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20750:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -68351,7 +68351,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getBehaviorBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -68371,7 +68371,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1"
 
 
     // $ANTLR start "rule__ParameterMember__DirectionAssignment_0"
@@ -68464,9 +68464,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ParameterMember__MemberNameAssignment_1"
 
 
-    // $ANTLR start "rule__ParameterMember__OwnedRelatedElementAssignment_2"
-    // InternalAlf.g:20789:1: rule__ParameterMember__OwnedRelatedElementAssignment_2 : ( ruleParameterDefinition ) ;
-    public final void rule__ParameterMember__OwnedRelatedElementAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ParameterMember__OwnedRelatedElement_compAssignment_2"
+    // InternalAlf.g:20789:1: rule__ParameterMember__OwnedRelatedElement_compAssignment_2 : ( ruleParameterDefinition ) ;
+    public final void rule__ParameterMember__OwnedRelatedElement_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68478,7 +68478,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20795:3: ruleParameterDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_2_0()); 
+               before(grammarAccess.getParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleParameterDefinition();
@@ -68486,7 +68486,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_2_0()); 
+               after(grammarAccess.getParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_2_0()); 
             }
 
             }
@@ -68506,12 +68506,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ParameterMember__OwnedRelatedElementAssignment_2"
+    // $ANTLR end "rule__ParameterMember__OwnedRelatedElement_compAssignment_2"
 
 
-    // $ANTLR start "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0"
-    // InternalAlf.g:20804:1: rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 : ( ruleStepDefinition ) ;
-    public final void rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0"
+    // InternalAlf.g:20804:1: rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 : ( ruleStepDefinition ) ;
+    public final void rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68523,7 +68523,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20810:3: ruleStepDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementStepDefinitionParserRuleCall_0_0()); 
+               before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compStepDefinitionParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleStepDefinition();
@@ -68531,7 +68531,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementStepDefinitionParserRuleCall_0_0()); 
+               after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compStepDefinitionParserRuleCall_0_0()); 
             }
 
             }
@@ -68551,7 +68551,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0"
+    // $ANTLR end "rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0"
 
 
     // $ANTLR start "rule__BehaviorStepMemberDefinition__MemberNameAssignment_1_1"
@@ -68656,9 +68656,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__BehaviorStepMemberDefinition__MemberElementAssignment_1_3"
 
 
-    // $ANTLR start "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2"
-    // InternalAlf.g:20853:1: rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 : ( ruleExpressionDefinition ) ;
-    public final void rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2"
+    // InternalAlf.g:20853:1: rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 : ( ruleExpressionDefinition ) ;
+    public final void rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68670,7 +68670,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20859:3: ruleExpressionDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementExpressionDefinitionParserRuleCall_2_0()); 
+               before(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compExpressionDefinitionParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionDefinition();
@@ -68678,7 +68678,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElementExpressionDefinitionParserRuleCall_2_0()); 
+               after(grammarAccess.getBehaviorStepMemberDefinitionAccess().getOwnedRelatedElement_compExpressionDefinitionParserRuleCall_2_0()); 
             }
 
             }
@@ -68698,7 +68698,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2"
+    // $ANTLR end "rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2"
 
 
     // $ANTLR start "rule__BehaviorStepMemberDefinition__MemberNameAssignment_3_1"
@@ -68901,9 +68901,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FunctionDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start "rule__ReturnParameterPart__OwnedRelationshipAssignment"
-    // InternalAlf.g:20936:1: rule__ReturnParameterPart__OwnedRelationshipAssignment : ( ruleReturnParameterMember ) ;
-    public final void rule__ReturnParameterPart__OwnedRelationshipAssignment() throws RecognitionException {
+    // $ANTLR start "rule__ReturnParameterPart__OwnedRelationship_compAssignment"
+    // InternalAlf.g:20936:1: rule__ReturnParameterPart__OwnedRelationship_compAssignment : ( ruleReturnParameterMember ) ;
+    public final void rule__ReturnParameterPart__OwnedRelationship_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68915,7 +68915,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20942:3: ruleReturnParameterMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getReturnParameterPartAccess().getOwnedRelationshipReturnParameterMemberParserRuleCall_0()); 
+               before(grammarAccess.getReturnParameterPartAccess().getOwnedRelationship_compReturnParameterMemberParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleReturnParameterMember();
@@ -68923,7 +68923,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getReturnParameterPartAccess().getOwnedRelationshipReturnParameterMemberParserRuleCall_0()); 
+               after(grammarAccess.getReturnParameterPartAccess().getOwnedRelationship_compReturnParameterMemberParserRuleCall_0()); 
             }
 
             }
@@ -68943,12 +68943,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ReturnParameterPart__OwnedRelationshipAssignment"
+    // $ANTLR end "rule__ReturnParameterPart__OwnedRelationship_compAssignment"
 
 
-    // $ANTLR start "rule__FunctionBody__OwnedRelationshipAssignment_1_1_0"
-    // InternalAlf.g:20951:1: rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 : ( ruleBehaviorMember ) ;
-    public final void rule__FunctionBody__OwnedRelationshipAssignment_1_1_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0"
+    // InternalAlf.g:20951:1: rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 : ( ruleBehaviorMember ) ;
+    public final void rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -68960,7 +68960,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20957:3: ruleBehaviorMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipBehaviorMemberParserRuleCall_1_1_0_0()); 
+               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compBehaviorMemberParserRuleCall_1_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBehaviorMember();
@@ -68968,7 +68968,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipBehaviorMemberParserRuleCall_1_1_0_0()); 
+               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compBehaviorMemberParserRuleCall_1_1_0_0()); 
             }
 
             }
@@ -68988,12 +68988,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionBody__OwnedRelationshipAssignment_1_1_0"
+    // $ANTLR end "rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__FunctionBody__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:20966:1: rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 : ( rulePackageImport ) ;
-    public final void rule__FunctionBody__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:20966:1: rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 : ( rulePackageImport ) ;
+    public final void rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69005,7 +69005,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20972:3: rulePackageImport
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePackageImport();
@@ -69013,7 +69013,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipPackageImportParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compPackageImportParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -69033,12 +69033,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionBody__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__FunctionBody__OwnedRelationshipAssignment_1_2"
-    // InternalAlf.g:20981:1: rule__FunctionBody__OwnedRelationshipAssignment_1_2 : ( ruleExpressionMember ) ;
-    public final void rule__FunctionBody__OwnedRelationshipAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionBody__OwnedRelationship_compAssignment_1_2"
+    // InternalAlf.g:20981:1: rule__FunctionBody__OwnedRelationship_compAssignment_1_2 : ( ruleExpressionMember ) ;
+    public final void rule__FunctionBody__OwnedRelationship_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69050,7 +69050,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:20987:3: ruleExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipExpressionMemberParserRuleCall_1_2_0()); 
+               before(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionMember();
@@ -69058,7 +69058,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipExpressionMemberParserRuleCall_1_2_0()); 
+               after(grammarAccess.getFunctionBodyAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_1_2_0()); 
             }
 
             }
@@ -69078,7 +69078,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionBody__OwnedRelationshipAssignment_1_2"
+    // $ANTLR end "rule__FunctionBody__OwnedRelationship_compAssignment_1_2"
 
 
     // $ANTLR start "rule__ReturnParameterMember__MemberNameAssignment_0"
@@ -69126,9 +69126,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ReturnParameterMember__MemberNameAssignment_0"
 
 
-    // $ANTLR start "rule__ReturnParameterMember__OwnedRelatedElementAssignment_1"
-    // InternalAlf.g:21011:1: rule__ReturnParameterMember__OwnedRelatedElementAssignment_1 : ( ruleParameterDefinition ) ;
-    public final void rule__ReturnParameterMember__OwnedRelatedElementAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1"
+    // InternalAlf.g:21011:1: rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1 : ( ruleParameterDefinition ) ;
+    public final void rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69140,7 +69140,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21017:3: ruleParameterDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); 
+               before(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleParameterDefinition();
@@ -69148,7 +69148,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); 
+               after(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_1_0()); 
             }
 
             }
@@ -69168,12 +69168,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ReturnParameterMember__OwnedRelatedElementAssignment_1"
+    // $ANTLR end "rule__ReturnParameterMember__OwnedRelatedElement_compAssignment_1"
 
 
-    // $ANTLR start "rule__ExpressionMember__OwnedRelatedElementAssignment"
-    // InternalAlf.g:21026:1: rule__ExpressionMember__OwnedRelatedElementAssignment : ( ruleExpression ) ;
-    public final void rule__ExpressionMember__OwnedRelatedElementAssignment() throws RecognitionException {
+    // $ANTLR start "rule__ExpressionMember__OwnedRelatedElement_compAssignment"
+    // InternalAlf.g:21026:1: rule__ExpressionMember__OwnedRelatedElement_compAssignment : ( ruleExpression ) ;
+    public final void rule__ExpressionMember__OwnedRelatedElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69185,7 +69185,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21032:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElementExpressionParserRuleCall_0()); 
+               before(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElement_compExpressionParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -69193,7 +69193,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElementExpressionParserRuleCall_0()); 
+               after(grammarAccess.getExpressionMemberAccess().getOwnedRelatedElement_compExpressionParserRuleCall_0()); 
             }
 
             }
@@ -69213,12 +69213,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ExpressionMember__OwnedRelatedElementAssignment"
+    // $ANTLR end "rule__ExpressionMember__OwnedRelatedElement_compAssignment"
 
 
-    // $ANTLR start "rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:21041:1: rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1 : ( ruleRedefinition ) ;
-    public final void rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:21041:1: rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 : ( ruleRedefinition ) ;
+    public final void rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69230,7 +69230,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21047:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               before(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -69238,7 +69238,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               after(grammarAccess.getUnnamedFeatureDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
 
             }
@@ -69258,12 +69258,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnnamedFeatureDefinition__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__UnnamedFeatureDefinition__OwnedRelationship_compAssignment_1"
 
 
-    // $ANTLR start "rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:21056:1: rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1 : ( ruleRedefinition ) ;
-    public final void rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:21056:1: rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1 : ( ruleRedefinition ) ;
+    public final void rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69275,7 +69275,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21062:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               before(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -69283,7 +69283,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               after(grammarAccess.getAbstractUnnamedFeatureDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
 
             }
@@ -69303,7 +69303,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AbstractUnnamedFeatureDefinition__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__AbstractUnnamedFeatureDefinition__OwnedRelationship_compAssignment_1"
 
 
     // $ANTLR start "rule__FeatureBodyDefinition__IsAbstractAssignment_0"
@@ -69404,9 +69404,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureDeclaration__NameAssignment_0"
 
 
-    // $ANTLR start "rule__FeatureCompletion__OwnedRelationshipAssignment_0_1"
-    // InternalAlf.g:21105:1: rule__FeatureCompletion__OwnedRelationshipAssignment_0_1 : ( ruleFeatureValue ) ;
-    public final void rule__FeatureCompletion__OwnedRelationshipAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1"
+    // InternalAlf.g:21105:1: rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1 : ( ruleFeatureValue ) ;
+    public final void rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69418,7 +69418,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21111:3: ruleFeatureValue
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureCompletionAccess().getOwnedRelationshipFeatureValueParserRuleCall_0_1_0()); 
+               before(grammarAccess.getFeatureCompletionAccess().getOwnedRelationship_compFeatureValueParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureValue();
@@ -69426,7 +69426,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureCompletionAccess().getOwnedRelationshipFeatureValueParserRuleCall_0_1_0()); 
+               after(grammarAccess.getFeatureCompletionAccess().getOwnedRelationship_compFeatureValueParserRuleCall_0_1_0()); 
             }
 
             }
@@ -69446,12 +69446,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureCompletion__OwnedRelationshipAssignment_0_1"
+    // $ANTLR end "rule__FeatureCompletion__OwnedRelationship_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1"
-    // InternalAlf.g:21120:1: rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1 : ( ruleFeatureValue ) ;
-    public final void rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1"
+    // InternalAlf.g:21120:1: rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1 : ( ruleFeatureValue ) ;
+    public final void rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69463,7 +69463,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21126:3: ruleFeatureValue
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationshipFeatureValueParserRuleCall_0_1_0()); 
+               before(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationship_compFeatureValueParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureValue();
@@ -69471,7 +69471,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationshipFeatureValueParserRuleCall_0_1_0()); 
+               after(grammarAccess.getAbstractFeatureCompletionAccess().getOwnedRelationship_compFeatureValueParserRuleCall_0_1_0()); 
             }
 
             }
@@ -69491,12 +69491,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AbstractFeatureCompletion__OwnedRelationshipAssignment_0_1"
+    // $ANTLR end "rule__AbstractFeatureCompletion__OwnedRelationship_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__FeatureValue__OwnedRelatedElementAssignment"
-    // InternalAlf.g:21135:1: rule__FeatureValue__OwnedRelatedElementAssignment : ( ruleExpression ) ;
-    public final void rule__FeatureValue__OwnedRelatedElementAssignment() throws RecognitionException {
+    // $ANTLR start "rule__FeatureValue__OwnedRelatedElement_compAssignment"
+    // InternalAlf.g:21135:1: rule__FeatureValue__OwnedRelatedElement_compAssignment : ( ruleExpression ) ;
+    public final void rule__FeatureValue__OwnedRelatedElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69508,7 +69508,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21141:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementExpressionParserRuleCall_0()); 
+               before(grammarAccess.getFeatureValueAccess().getOwnedRelatedElement_compExpressionParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -69516,7 +69516,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementExpressionParserRuleCall_0()); 
+               after(grammarAccess.getFeatureValueAccess().getOwnedRelatedElement_compExpressionParserRuleCall_0()); 
             }
 
             }
@@ -69536,7 +69536,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureValue__OwnedRelatedElementAssignment"
+    // $ANTLR end "rule__FeatureValue__OwnedRelatedElement_compAssignment"
 
 
     // $ANTLR start "rule__TypePart__IsCompositeAssignment_0_1"
@@ -69592,9 +69592,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypePart__IsCompositeAssignment_0_1"
 
 
-    // $ANTLR start "rule__TypePart__OwnedRelationshipAssignment_0_2_0"
-    // InternalAlf.g:21169:1: rule__TypePart__OwnedRelationshipAssignment_0_2_0 : ( ruleFeatureTyping ) ;
-    public final void rule__TypePart__OwnedRelationshipAssignment_0_2_0() throws RecognitionException {
+    // $ANTLR start "rule__TypePart__OwnedRelationship_compAssignment_0_2_0"
+    // InternalAlf.g:21169:1: rule__TypePart__OwnedRelationship_compAssignment_0_2_0 : ( ruleFeatureTyping ) ;
+    public final void rule__TypePart__OwnedRelationship_compAssignment_0_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69606,7 +69606,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21175:3: ruleFeatureTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0()); 
+               before(grammarAccess.getTypePartAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_2_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureTyping();
@@ -69614,7 +69614,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0()); 
+               after(grammarAccess.getTypePartAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_2_0_0()); 
             }
 
             }
@@ -69634,12 +69634,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypePart__OwnedRelationshipAssignment_0_2_0"
+    // $ANTLR end "rule__TypePart__OwnedRelationship_compAssignment_0_2_0"
 
 
-    // $ANTLR start "rule__TypePart__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:21184:1: rule__TypePart__OwnedRelationshipAssignment_1 : ( ruleMultiplicity ) ;
-    public final void rule__TypePart__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__TypePart__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:21184:1: rule__TypePart__OwnedRelationship_compAssignment_1 : ( ruleMultiplicity ) ;
+    public final void rule__TypePart__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69651,7 +69651,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21190:3: ruleMultiplicity
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypePartAccess().getOwnedRelationshipMultiplicityParserRuleCall_1_0()); 
+               before(grammarAccess.getTypePartAccess().getOwnedRelationship_compMultiplicityParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicity();
@@ -69659,7 +69659,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypePartAccess().getOwnedRelationshipMultiplicityParserRuleCall_1_0()); 
+               after(grammarAccess.getTypePartAccess().getOwnedRelationship_compMultiplicityParserRuleCall_1_0()); 
             }
 
             }
@@ -69679,7 +69679,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypePart__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__TypePart__OwnedRelationship_compAssignment_1"
 
 
     // $ANTLR start "rule__TypePart__IsOrderedAssignment_2_0"
@@ -69845,9 +69845,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureTyping__TypeAssignment"
 
 
-    // $ANTLR start "rule__Multiplicity__OwnedRelatedElementAssignment_1_0"
-    // InternalAlf.g:21256:1: rule__Multiplicity__OwnedRelatedElementAssignment_1_0 : ( ruleNaturalLiteralExpression ) ;
-    public final void rule__Multiplicity__OwnedRelatedElementAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0"
+    // InternalAlf.g:21256:1: rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0 : ( ruleNaturalLiteralExpression ) ;
+    public final void rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69859,7 +69859,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21262:3: ruleNaturalLiteralExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementNaturalLiteralExpressionParserRuleCall_1_0_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compNaturalLiteralExpressionParserRuleCall_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNaturalLiteralExpression();
@@ -69867,7 +69867,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementNaturalLiteralExpressionParserRuleCall_1_0_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compNaturalLiteralExpressionParserRuleCall_1_0_0()); 
             }
 
             }
@@ -69887,12 +69887,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Multiplicity__OwnedRelatedElementAssignment_1_0"
+    // $ANTLR end "rule__Multiplicity__OwnedRelatedElement_compAssignment_1_0"
 
 
-    // $ANTLR start "rule__Multiplicity__OwnedRelatedElementAssignment_2"
-    // InternalAlf.g:21271:1: rule__Multiplicity__OwnedRelatedElementAssignment_2 : ( ruleUnlimitedNaturalLiteralExpression ) ;
-    public final void rule__Multiplicity__OwnedRelatedElementAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Multiplicity__OwnedRelatedElement_compAssignment_2"
+    // InternalAlf.g:21271:1: rule__Multiplicity__OwnedRelatedElement_compAssignment_2 : ( ruleUnlimitedNaturalLiteralExpression ) ;
+    public final void rule__Multiplicity__OwnedRelatedElement_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69904,7 +69904,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21277:3: ruleUnlimitedNaturalLiteralExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementUnlimitedNaturalLiteralExpressionParserRuleCall_2_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compUnlimitedNaturalLiteralExpressionParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleUnlimitedNaturalLiteralExpression();
@@ -69912,7 +69912,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElementUnlimitedNaturalLiteralExpressionParserRuleCall_2_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedRelatedElement_compUnlimitedNaturalLiteralExpressionParserRuleCall_2_0()); 
             }
 
             }
@@ -69932,12 +69932,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Multiplicity__OwnedRelatedElementAssignment_2"
+    // $ANTLR end "rule__Multiplicity__OwnedRelatedElement_compAssignment_2"
 
 
-    // $ANTLR start "rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1"
-    // InternalAlf.g:21286:1: rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1 : ( ruleSubset ) ;
-    public final void rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1() throws RecognitionException {
+    // $ANTLR start "rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1"
+    // InternalAlf.g:21286:1: rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1 : ( ruleSubset ) ;
+    public final void rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69949,7 +69949,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21292:3: ruleSubset
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipSubsetParserRuleCall_0_1_1_0()); 
+               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compSubsetParserRuleCall_0_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSubset();
@@ -69957,7 +69957,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipSubsetParserRuleCall_0_1_1_0()); 
+               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compSubsetParserRuleCall_0_1_1_0()); 
             }
 
             }
@@ -69977,12 +69977,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SubsettingPart__OwnedRelationshipAssignment_0_1_1"
+    // $ANTLR end "rule__SubsettingPart__OwnedRelationship_compAssignment_0_1_1"
 
 
-    // $ANTLR start "rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:21301:1: rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1 : ( ruleRedefinition ) ;
-    public final void rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:21301:1: rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1 : ( ruleRedefinition ) ;
+    public final void rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -69994,7 +69994,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21307:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -70002,7 +70002,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getSubsettingPartAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -70022,12 +70022,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SubsettingPart__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__SubsettingPart__OwnedRelationship_compAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__Subsets__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:21316:1: rule__Subsets__OwnedRelationshipAssignment_1 : ( ruleSubset ) ;
-    public final void rule__Subsets__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Subsets__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:21316:1: rule__Subsets__OwnedRelationship_compAssignment_1 : ( ruleSubset ) ;
+    public final void rule__Subsets__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70039,7 +70039,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21322:3: ruleSubset
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSubsetsAccess().getOwnedRelationshipSubsetParserRuleCall_1_0()); 
+               before(grammarAccess.getSubsetsAccess().getOwnedRelationship_compSubsetParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSubset();
@@ -70047,7 +70047,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSubsetsAccess().getOwnedRelationshipSubsetParserRuleCall_1_0()); 
+               after(grammarAccess.getSubsetsAccess().getOwnedRelationship_compSubsetParserRuleCall_1_0()); 
             }
 
             }
@@ -70067,7 +70067,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Subsets__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__Subsets__OwnedRelationship_compAssignment_1"
 
 
     // $ANTLR start "rule__Subset__SubsettedFeatureAssignment"
@@ -70127,9 +70127,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Subset__SubsettedFeatureAssignment"
 
 
-    // $ANTLR start "rule__Redefines__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:21350:1: rule__Redefines__OwnedRelationshipAssignment_1 : ( ruleRedefinition ) ;
-    public final void rule__Redefines__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Redefines__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:21350:1: rule__Redefines__OwnedRelationship_compAssignment_1 : ( ruleRedefinition ) ;
+    public final void rule__Redefines__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70141,7 +70141,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21356:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRedefinesAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               before(grammarAccess.getRedefinesAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -70149,7 +70149,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRedefinesAccess().getOwnedRelationshipRedefinitionParserRuleCall_1_0()); 
+               after(grammarAccess.getRedefinesAccess().getOwnedRelationship_compRedefinitionParserRuleCall_1_0()); 
             }
 
             }
@@ -70169,7 +70169,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Redefines__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__Redefines__OwnedRelationship_compAssignment_1"
 
 
     // $ANTLR start "rule__Redefinition__RedefinedFeatureAssignment"
@@ -70274,9 +70274,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorDeclaration__NameAssignment_0_0_0"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1"
-    // InternalAlf.g:21399:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1 : ( ruleConnectorTyping ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1"
+    // InternalAlf.g:21399:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1 : ( ruleConnectorTyping ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70288,7 +70288,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21405:3: ruleConnectorTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorTypingParserRuleCall_0_0_1_1_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorTypingParserRuleCall_0_0_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorTyping();
@@ -70296,7 +70296,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorTypingParserRuleCall_0_0_1_1_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorTypingParserRuleCall_0_0_1_1_0()); 
             }
 
             }
@@ -70316,12 +70316,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_0_1_1"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1"
-    // InternalAlf.g:21414:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1 : ( ruleConnectorEndMember ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1"
+    // InternalAlf.g:21414:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1 : ( ruleConnectorEndMember ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70333,7 +70333,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21420:3: ruleConnectorEndMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEndMember();
@@ -70341,7 +70341,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_0_1_0()); 
             }
 
             }
@@ -70361,12 +70361,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3"
-    // InternalAlf.g:21429:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3 : ( ruleConnectorEndMember ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3"
+    // InternalAlf.g:21429:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3 : ( ruleConnectorEndMember ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70378,7 +70378,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21435:3: ruleConnectorEndMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_3_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_0_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEndMember();
@@ -70386,7 +70386,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_3_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_0_3_0()); 
             }
 
             }
@@ -70406,7 +70406,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_0_3"
 
 
     // $ANTLR start "rule__ConnectorDeclaration__NameAssignment_1_0"
@@ -70454,9 +70454,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorDeclaration__NameAssignment_1_0"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1"
-    // InternalAlf.g:21459:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1 : ( ruleConnectorTyping ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1"
+    // InternalAlf.g:21459:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1 : ( ruleConnectorTyping ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70468,7 +70468,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21465:3: ruleConnectorTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorTypingParserRuleCall_1_1_1_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorTypingParserRuleCall_1_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorTyping();
@@ -70476,7 +70476,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorTypingParserRuleCall_1_1_1_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorTypingParserRuleCall_1_1_1_0()); 
             }
 
             }
@@ -70496,12 +70496,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3"
-    // InternalAlf.g:21474:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3 : ( ruleConnectorEndMember ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3"
+    // InternalAlf.g:21474:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3 : ( ruleConnectorEndMember ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70513,7 +70513,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21480:3: ruleConnectorEndMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEndMember();
@@ -70521,7 +70521,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_3_0()); 
             }
 
             }
@@ -70541,12 +70541,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_3"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5"
-    // InternalAlf.g:21489:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5 : ( ruleConnectorEndMember ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5"
+    // InternalAlf.g:21489:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5 : ( ruleConnectorEndMember ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70558,7 +70558,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21495:3: ruleConnectorEndMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_5_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_5_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEndMember();
@@ -70566,7 +70566,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_5_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_5_0()); 
             }
 
             }
@@ -70586,12 +70586,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_5"
 
 
-    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1"
-    // InternalAlf.g:21504:1: rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1 : ( ruleConnectorEndMember ) ;
-    public final void rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1"
+    // InternalAlf.g:21504:1: rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1 : ( ruleConnectorEndMember ) ;
+    public final void rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70603,7 +70603,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21510:3: ruleConnectorEndMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_6_1_0()); 
+               before(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_6_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEndMember();
@@ -70611,7 +70611,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_6_1_0()); 
+               after(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationship_compConnectorEndMemberParserRuleCall_1_6_1_0()); 
             }
 
             }
@@ -70631,7 +70631,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1"
+    // $ANTLR end "rule__ConnectorDeclaration__OwnedRelationship_compAssignment_1_6_1"
 
 
     // $ANTLR start "rule__ConnectorTyping__TypeAssignment"
@@ -70691,9 +70691,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorTyping__TypeAssignment"
 
 
-    // $ANTLR start "rule__ConnectorEnd__OwnedRelationshipAssignment"
-    // InternalAlf.g:21538:1: rule__ConnectorEnd__OwnedRelationshipAssignment : ( ruleSubset ) ;
-    public final void rule__ConnectorEnd__OwnedRelationshipAssignment() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorEnd__OwnedRelationship_compAssignment"
+    // InternalAlf.g:21538:1: rule__ConnectorEnd__OwnedRelationship_compAssignment : ( ruleSubset ) ;
+    public final void rule__ConnectorEnd__OwnedRelationship_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70705,7 +70705,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21544:3: ruleSubset
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipSubsetParserRuleCall_0()); 
+               before(grammarAccess.getConnectorEndAccess().getOwnedRelationship_compSubsetParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSubset();
@@ -70713,7 +70713,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipSubsetParserRuleCall_0()); 
+               after(grammarAccess.getConnectorEndAccess().getOwnedRelationship_compSubsetParserRuleCall_0()); 
             }
 
             }
@@ -70733,7 +70733,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorEnd__OwnedRelationshipAssignment"
+    // $ANTLR end "rule__ConnectorEnd__OwnedRelationship_compAssignment"
 
 
     // $ANTLR start "rule__ConnectorEndMember__MemberNameAssignment_0_0"
@@ -70781,9 +70781,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorEndMember__MemberNameAssignment_0_0"
 
 
-    // $ANTLR start "rule__ConnectorEndMember__OwnedRelatedElementAssignment_1"
-    // InternalAlf.g:21568:1: rule__ConnectorEndMember__OwnedRelatedElementAssignment_1 : ( ruleConnectorEnd ) ;
-    public final void rule__ConnectorEndMember__OwnedRelatedElementAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1"
+    // InternalAlf.g:21568:1: rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1 : ( ruleConnectorEnd ) ;
+    public final void rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70795,7 +70795,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21574:3: ruleConnectorEnd
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementConnectorEndParserRuleCall_1_0()); 
+               before(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElement_compConnectorEndParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConnectorEnd();
@@ -70803,7 +70803,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementConnectorEndParserRuleCall_1_0()); 
+               after(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElement_compConnectorEndParserRuleCall_1_0()); 
             }
 
             }
@@ -70823,7 +70823,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorEndMember__OwnedRelatedElementAssignment_1"
+    // $ANTLR end "rule__ConnectorEndMember__OwnedRelatedElement_compAssignment_1"
 
 
     // $ANTLR start "rule__StepDefinition__IsAbstractAssignment_0"
@@ -70924,9 +70924,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StepDefinition__NameAssignment_2_0_0"
 
 
-    // $ANTLR start "rule__StepDefinition__OwnedRelationshipAssignment_2_1_1"
-    // InternalAlf.g:21617:1: rule__StepDefinition__OwnedRelationshipAssignment_2_1_1 : ( ruleRedefinition ) ;
-    public final void rule__StepDefinition__OwnedRelationshipAssignment_2_1_1() throws RecognitionException {
+    // $ANTLR start "rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1"
+    // InternalAlf.g:21617:1: rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1 : ( ruleRedefinition ) ;
+    public final void rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70938,7 +70938,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21623:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0()); 
+               before(grammarAccess.getStepDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_2_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -70946,7 +70946,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0()); 
+               after(grammarAccess.getStepDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_2_1_1_0()); 
             }
 
             }
@@ -70966,7 +70966,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StepDefinition__OwnedRelationshipAssignment_2_1_1"
+    // $ANTLR end "rule__StepDefinition__OwnedRelationship_compAssignment_2_1_1"
 
 
     // $ANTLR start "rule__ExpressionDefinition__IsAbstractAssignment_0"
@@ -71067,9 +71067,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ExpressionDefinition__NameAssignment_2_0_0"
 
 
-    // $ANTLR start "rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1"
-    // InternalAlf.g:21666:1: rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1 : ( ruleRedefinition ) ;
-    public final void rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1"
+    // InternalAlf.g:21666:1: rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1 : ( ruleRedefinition ) ;
+    public final void rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71081,7 +71081,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21672:3: ruleRedefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0()); 
+               before(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_2_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleRedefinition();
@@ -71089,7 +71089,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipRedefinitionParserRuleCall_2_1_1_0()); 
+               after(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationship_compRedefinitionParserRuleCall_2_1_1_0()); 
             }
 
             }
@@ -71109,7 +71109,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1"
+    // $ANTLR end "rule__ExpressionDefinition__OwnedRelationship_compAssignment_2_1_1"
 
 
     // $ANTLR start "rule__ConditionalExpression__OperatorAssignment_1_1"
@@ -71157,9 +71157,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConditionalExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21696:1: rule__ConditionalExpression__OperandAssignment_1_2 : ( ruleExpression ) ;
-    public final void rule__ConditionalExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21696:1: rule__ConditionalExpression__Operand_compAssignment_1_2 : ( ruleExpression ) ;
+    public final void rule__ConditionalExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71171,7 +71171,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21702:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalExpressionAccess().getOperandExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getConditionalExpressionAccess().getOperand_compExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -71179,7 +71179,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalExpressionAccess().getOperandExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getConditionalExpressionAccess().getOperand_compExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71199,12 +71199,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__ConditionalExpression__Operand_compAssignment_1_2"
 
 
-    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_4"
-    // InternalAlf.g:21711:1: rule__ConditionalExpression__OperandAssignment_1_4 : ( ruleConditionalExpression ) ;
-    public final void rule__ConditionalExpression__OperandAssignment_1_4() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Operand_compAssignment_1_4"
+    // InternalAlf.g:21711:1: rule__ConditionalExpression__Operand_compAssignment_1_4 : ( ruleConditionalExpression ) ;
+    public final void rule__ConditionalExpression__Operand_compAssignment_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71216,7 +71216,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21717:3: ruleConditionalExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_4_0()); 
+               before(grammarAccess.getConditionalExpressionAccess().getOperand_compConditionalExpressionParserRuleCall_1_4_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConditionalExpression();
@@ -71224,7 +71224,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_4_0()); 
+               after(grammarAccess.getConditionalExpressionAccess().getOperand_compConditionalExpressionParserRuleCall_1_4_0()); 
             }
 
             }
@@ -71244,7 +71244,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__OperandAssignment_1_4"
+    // $ANTLR end "rule__ConditionalExpression__Operand_compAssignment_1_4"
 
 
     // $ANTLR start "rule__NullCoalescingExpression__OperatorAssignment_1_1"
@@ -71292,9 +71292,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__NullCoalescingExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__NullCoalescingExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21741:1: rule__NullCoalescingExpression__OperandAssignment_1_2 : ( ruleConditionalOrExpression ) ;
-    public final void rule__NullCoalescingExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__NullCoalescingExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21741:1: rule__NullCoalescingExpression__Operand_compAssignment_1_2 : ( ruleConditionalOrExpression ) ;
+    public final void rule__NullCoalescingExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71306,7 +71306,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21747:3: ruleConditionalOrExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNullCoalescingExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getNullCoalescingExpressionAccess().getOperand_compConditionalOrExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConditionalOrExpression();
@@ -71314,7 +71314,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNullCoalescingExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getNullCoalescingExpressionAccess().getOperand_compConditionalOrExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71334,7 +71334,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__NullCoalescingExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__NullCoalescingExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__ConditionalOrExpression__OperatorAssignment_1_1"
@@ -71382,9 +71382,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConditionalOrExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__ConditionalOrExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21771:1: rule__ConditionalOrExpression__OperandAssignment_1_2 : ( ruleConditionalAndExpression ) ;
-    public final void rule__ConditionalOrExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalOrExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21771:1: rule__ConditionalOrExpression__Operand_compAssignment_1_2 : ( ruleConditionalAndExpression ) ;
+    public final void rule__ConditionalOrExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71396,7 +71396,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21777:3: ruleConditionalAndExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalOrExpressionAccess().getOperandConditionalAndExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getConditionalOrExpressionAccess().getOperand_compConditionalAndExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleConditionalAndExpression();
@@ -71404,7 +71404,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalOrExpressionAccess().getOperandConditionalAndExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getConditionalOrExpressionAccess().getOperand_compConditionalAndExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71424,7 +71424,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalOrExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__ConditionalOrExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__ConditionalAndExpression__OperatorAssignment_1_1"
@@ -71472,9 +71472,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConditionalAndExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21801:1: rule__ConditionalAndExpression__OperandAssignment_1_2 : ( ruleOrExpression ) ;
-    public final void rule__ConditionalAndExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalAndExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21801:1: rule__ConditionalAndExpression__Operand_compAssignment_1_2 : ( ruleOrExpression ) ;
+    public final void rule__ConditionalAndExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71486,7 +71486,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21807:3: ruleOrExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConditionalAndExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getConditionalAndExpressionAccess().getOperand_compOrExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleOrExpression();
@@ -71494,7 +71494,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConditionalAndExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getConditionalAndExpressionAccess().getOperand_compOrExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71514,7 +71514,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__ConditionalAndExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__OrExpression__OperatorAssignment_1_1"
@@ -71562,9 +71562,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__OrExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__OrExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21831:1: rule__OrExpression__OperandAssignment_1_2 : ( ruleXorExpression ) ;
-    public final void rule__OrExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__OrExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21831:1: rule__OrExpression__Operand_compAssignment_1_2 : ( ruleXorExpression ) ;
+    public final void rule__OrExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71576,7 +71576,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21837:3: ruleXorExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getOrExpressionAccess().getOperandXorExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getOrExpressionAccess().getOperand_compXorExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleXorExpression();
@@ -71584,7 +71584,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getOrExpressionAccess().getOperandXorExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getOrExpressionAccess().getOperand_compXorExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71604,7 +71604,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__OrExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__OrExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__XorExpression__OperatorAssignment_1_1"
@@ -71652,9 +71652,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__XorExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__XorExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21861:1: rule__XorExpression__OperandAssignment_1_2 : ( ruleAndExpression ) ;
-    public final void rule__XorExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__XorExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21861:1: rule__XorExpression__Operand_compAssignment_1_2 : ( ruleAndExpression ) ;
+    public final void rule__XorExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71666,7 +71666,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21867:3: ruleAndExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXorExpressionAccess().getOperandAndExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getXorExpressionAccess().getOperand_compAndExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAndExpression();
@@ -71674,7 +71674,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXorExpressionAccess().getOperandAndExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getXorExpressionAccess().getOperand_compAndExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71694,7 +71694,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__XorExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__XorExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__AndExpression__OperatorAssignment_1_1"
@@ -71742,9 +71742,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AndExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__AndExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21891:1: rule__AndExpression__OperandAssignment_1_2 : ( ruleEqualityExpression ) ;
-    public final void rule__AndExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__AndExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21891:1: rule__AndExpression__Operand_compAssignment_1_2 : ( ruleEqualityExpression ) ;
+    public final void rule__AndExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71756,7 +71756,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21897:3: ruleEqualityExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAndExpressionAccess().getOperandEqualityExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getAndExpressionAccess().getOperand_compEqualityExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleEqualityExpression();
@@ -71764,7 +71764,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAndExpressionAccess().getOperandEqualityExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getAndExpressionAccess().getOperand_compEqualityExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71784,7 +71784,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AndExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__AndExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__EqualityExpression__OperatorAssignment_1_1"
@@ -71832,9 +71832,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EqualityExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__EqualityExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21921:1: rule__EqualityExpression__OperandAssignment_1_2 : ( ruleClassificationExpression ) ;
-    public final void rule__EqualityExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__EqualityExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21921:1: rule__EqualityExpression__Operand_compAssignment_1_2 : ( ruleClassificationExpression ) ;
+    public final void rule__EqualityExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71846,7 +71846,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21927:3: ruleClassificationExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEqualityExpressionAccess().getOperandClassificationExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getEqualityExpressionAccess().getOperand_compClassificationExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleClassificationExpression();
@@ -71854,7 +71854,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEqualityExpressionAccess().getOperandClassificationExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getEqualityExpressionAccess().getOperand_compClassificationExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71874,7 +71874,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EqualityExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__EqualityExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__ClassificationExpression__OperatorAssignment_1_1"
@@ -71922,9 +71922,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassificationExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__ClassificationExpression__OwnedRelationshipAssignment_1_2"
-    // InternalAlf.g:21951:1: rule__ClassificationExpression__OwnedRelationshipAssignment_1_2 : ( ruleTypeReferenceMember ) ;
-    public final void rule__ClassificationExpression__OwnedRelationshipAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2"
+    // InternalAlf.g:21951:1: rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2 : ( ruleTypeReferenceMember ) ;
+    public final void rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -71936,7 +71936,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21957:3: ruleTypeReferenceMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_1_2_0()); 
+               before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationship_compTypeReferenceMemberParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleTypeReferenceMember();
@@ -71944,7 +71944,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_1_2_0()); 
+               after(grammarAccess.getClassificationExpressionAccess().getOwnedRelationship_compTypeReferenceMemberParserRuleCall_1_2_0()); 
             }
 
             }
@@ -71964,7 +71964,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ClassificationExpression__OwnedRelationshipAssignment_1_2"
+    // $ANTLR end "rule__ClassificationExpression__OwnedRelationship_compAssignment_1_2"
 
 
     // $ANTLR start "rule__RelationalExpression__OperatorAssignment_1_1"
@@ -72012,9 +72012,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RelationalExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__RelationalExpression__OperandAssignment_1_2"
-    // InternalAlf.g:21981:1: rule__RelationalExpression__OperandAssignment_1_2 : ( ruleAdditiveExpression ) ;
-    public final void rule__RelationalExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__RelationalExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:21981:1: rule__RelationalExpression__Operand_compAssignment_1_2 : ( ruleAdditiveExpression ) ;
+    public final void rule__RelationalExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72026,7 +72026,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:21987:3: ruleAdditiveExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getOperandAdditiveExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getRelationalExpressionAccess().getOperand_compAdditiveExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAdditiveExpression();
@@ -72034,7 +72034,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getOperandAdditiveExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getRelationalExpressionAccess().getOperand_compAdditiveExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -72054,7 +72054,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RelationalExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__RelationalExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__AdditiveExpression__OperatorAssignment_1_1"
@@ -72102,9 +72102,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AdditiveExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__AdditiveExpression__OperandAssignment_1_2"
-    // InternalAlf.g:22011:1: rule__AdditiveExpression__OperandAssignment_1_2 : ( ruleMultiplicativeExpression ) ;
-    public final void rule__AdditiveExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__AdditiveExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:22011:1: rule__AdditiveExpression__Operand_compAssignment_1_2 : ( ruleMultiplicativeExpression ) ;
+    public final void rule__AdditiveExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72116,7 +72116,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22017:3: ruleMultiplicativeExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAdditiveExpressionAccess().getOperandMultiplicativeExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getAdditiveExpressionAccess().getOperand_compMultiplicativeExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicativeExpression();
@@ -72124,7 +72124,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAdditiveExpressionAccess().getOperandMultiplicativeExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getAdditiveExpressionAccess().getOperand_compMultiplicativeExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -72144,7 +72144,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__AdditiveExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__AdditiveExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__MultiplicativeExpression__OperatorAssignment_1_1"
@@ -72192,9 +72192,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__MultiplicativeExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__MultiplicativeExpression__OperandAssignment_1_2"
-    // InternalAlf.g:22041:1: rule__MultiplicativeExpression__OperandAssignment_1_2 : ( ruleUnitsExpression ) ;
-    public final void rule__MultiplicativeExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__MultiplicativeExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:22041:1: rule__MultiplicativeExpression__Operand_compAssignment_1_2 : ( ruleUnitsExpression ) ;
+    public final void rule__MultiplicativeExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72206,7 +72206,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22047:3: ruleUnitsExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicativeExpressionAccess().getOperandUnitsExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compUnitsExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleUnitsExpression();
@@ -72214,7 +72214,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicativeExpressionAccess().getOperandUnitsExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compUnitsExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -72234,7 +72234,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__MultiplicativeExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__MultiplicativeExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__UnitsExpression__OperatorAssignment_1_1"
@@ -72290,9 +72290,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__UnitsExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__UnitsExpression__OperandAssignment_1_3"
-    // InternalAlf.g:22075:1: rule__UnitsExpression__OperandAssignment_1_3 : ( ruleExpression ) ;
-    public final void rule__UnitsExpression__OperandAssignment_1_3() throws RecognitionException {
+    // $ANTLR start "rule__UnitsExpression__Operand_compAssignment_1_3"
+    // InternalAlf.g:22075:1: rule__UnitsExpression__Operand_compAssignment_1_3 : ( ruleExpression ) ;
+    public final void rule__UnitsExpression__Operand_compAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72304,7 +72304,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22081:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitsExpressionAccess().getOperandExpressionParserRuleCall_1_3_0()); 
+               before(grammarAccess.getUnitsExpressionAccess().getOperand_compExpressionParserRuleCall_1_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -72312,7 +72312,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitsExpressionAccess().getOperandExpressionParserRuleCall_1_3_0()); 
+               after(grammarAccess.getUnitsExpressionAccess().getOperand_compExpressionParserRuleCall_1_3_0()); 
             }
 
             }
@@ -72332,7 +72332,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnitsExpression__OperandAssignment_1_3"
+    // $ANTLR end "rule__UnitsExpression__Operand_compAssignment_1_3"
 
 
     // $ANTLR start "rule__UnaryExpression__OperatorAssignment_1_1"
@@ -72380,9 +72380,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__UnaryExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__UnaryExpression__OperandAssignment_1_2"
-    // InternalAlf.g:22105:1: rule__UnaryExpression__OperandAssignment_1_2 : ( ruleSequenceAccessExpression ) ;
-    public final void rule__UnaryExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__UnaryExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:22105:1: rule__UnaryExpression__Operand_compAssignment_1_2 : ( ruleSequenceAccessExpression ) ;
+    public final void rule__UnaryExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72394,7 +72394,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22111:3: ruleSequenceAccessExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnaryExpressionAccess().getOperandSequenceAccessExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getUnaryExpressionAccess().getOperand_compSequenceAccessExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleSequenceAccessExpression();
@@ -72402,7 +72402,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnaryExpressionAccess().getOperandSequenceAccessExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getUnaryExpressionAccess().getOperand_compSequenceAccessExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -72422,7 +72422,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__UnaryExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__UnaryExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__SequenceAccessExpression__OperatorAssignment_1_1"
@@ -72478,9 +72478,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__SequenceAccessExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__SequenceAccessExpression__OperandAssignment_1_2"
-    // InternalAlf.g:22139:1: rule__SequenceAccessExpression__OperandAssignment_1_2 : ( ruleExpression ) ;
-    public final void rule__SequenceAccessExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__SequenceAccessExpression__Operand_compAssignment_1_2"
+    // InternalAlf.g:22139:1: rule__SequenceAccessExpression__Operand_compAssignment_1_2 : ( ruleExpression ) ;
+    public final void rule__SequenceAccessExpression__Operand_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72492,7 +72492,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22145:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceAccessExpressionAccess().getOperandExpressionParserRuleCall_1_2_0()); 
+               before(grammarAccess.getSequenceAccessExpressionAccess().getOperand_compExpressionParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -72500,7 +72500,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceAccessExpressionAccess().getOperandExpressionParserRuleCall_1_2_0()); 
+               after(grammarAccess.getSequenceAccessExpressionAccess().getOperand_compExpressionParserRuleCall_1_2_0()); 
             }
 
             }
@@ -72520,7 +72520,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SequenceAccessExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__SequenceAccessExpression__Operand_compAssignment_1_2"
 
 
     // $ANTLR start "rule__PrimaryExpression__OperatorAssignment_1_2"
@@ -72568,9 +72568,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PrimaryExpression__OperatorAssignment_1_2"
 
 
-    // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_3"
-    // InternalAlf.g:22169:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3 : ( ruleBodyMember ) ;
-    public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_3() throws RecognitionException {
+    // $ANTLR start "rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3"
+    // InternalAlf.g:22169:1: rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3 : ( ruleBodyMember ) ;
+    public final void rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72582,7 +72582,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22175:3: ruleBodyMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_3_0()); 
+               before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_1_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyMember();
@@ -72590,7 +72590,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_3_0()); 
+               after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_1_3_0()); 
             }
 
             }
@@ -72610,12 +72610,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimaryExpression__OwnedRelationshipAssignment_1_3"
+    // $ANTLR end "rule__PrimaryExpression__OwnedRelationship_compAssignment_1_3"
 
 
-    // $ANTLR start "rule__BodyExpression__OwnedRelationshipAssignment_0_0"
-    // InternalAlf.g:22184:1: rule__BodyExpression__OwnedRelationshipAssignment_0_0 : ( ruleBodyParameterMember ) ;
-    public final void rule__BodyExpression__OwnedRelationshipAssignment_0_0() throws RecognitionException {
+    // $ANTLR start "rule__BodyExpression__OwnedRelationship_compAssignment_0_0"
+    // InternalAlf.g:22184:1: rule__BodyExpression__OwnedRelationship_compAssignment_0_0 : ( ruleBodyParameterMember ) ;
+    public final void rule__BodyExpression__OwnedRelationship_compAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72627,7 +72627,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22190:3: ruleBodyParameterMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipBodyParameterMemberParserRuleCall_0_0_0()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compBodyParameterMemberParserRuleCall_0_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyParameterMember();
@@ -72635,7 +72635,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipBodyParameterMemberParserRuleCall_0_0_0()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compBodyParameterMemberParserRuleCall_0_0_0()); 
             }
 
             }
@@ -72655,12 +72655,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyExpression__OwnedRelationshipAssignment_0_0"
+    // $ANTLR end "rule__BodyExpression__OwnedRelationship_compAssignment_0_0"
 
 
-    // $ANTLR start "rule__BodyExpression__OwnedRelationshipAssignment_0_1"
-    // InternalAlf.g:22199:1: rule__BodyExpression__OwnedRelationshipAssignment_0_1 : ( ruleBodyParameterMember ) ;
-    public final void rule__BodyExpression__OwnedRelationshipAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__BodyExpression__OwnedRelationship_compAssignment_0_1"
+    // InternalAlf.g:22199:1: rule__BodyExpression__OwnedRelationship_compAssignment_0_1 : ( ruleBodyParameterMember ) ;
+    public final void rule__BodyExpression__OwnedRelationship_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72672,7 +72672,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22205:3: ruleBodyParameterMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipBodyParameterMemberParserRuleCall_0_1_0()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compBodyParameterMemberParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyParameterMember();
@@ -72680,7 +72680,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipBodyParameterMemberParserRuleCall_0_1_0()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compBodyParameterMemberParserRuleCall_0_1_0()); 
             }
 
             }
@@ -72700,12 +72700,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyExpression__OwnedRelationshipAssignment_0_1"
+    // $ANTLR end "rule__BodyExpression__OwnedRelationship_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__BodyExpression__OwnedRelationshipAssignment_0_3"
-    // InternalAlf.g:22214:1: rule__BodyExpression__OwnedRelationshipAssignment_0_3 : ( ruleExpressionMember ) ;
-    public final void rule__BodyExpression__OwnedRelationshipAssignment_0_3() throws RecognitionException {
+    // $ANTLR start "rule__BodyExpression__OwnedRelationship_compAssignment_0_3"
+    // InternalAlf.g:22214:1: rule__BodyExpression__OwnedRelationship_compAssignment_0_3 : ( ruleExpressionMember ) ;
+    public final void rule__BodyExpression__OwnedRelationship_compAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72717,7 +72717,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22220:3: ruleExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipExpressionMemberParserRuleCall_0_3_0()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_0_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionMember();
@@ -72725,7 +72725,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipExpressionMemberParserRuleCall_0_3_0()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_0_3_0()); 
             }
 
             }
@@ -72745,12 +72745,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyExpression__OwnedRelationshipAssignment_0_3"
+    // $ANTLR end "rule__BodyExpression__OwnedRelationship_compAssignment_0_3"
 
 
-    // $ANTLR start "rule__BodyExpression__OwnedRelationshipAssignment_1"
-    // InternalAlf.g:22229:1: rule__BodyExpression__OwnedRelationshipAssignment_1 : ( ruleExpressionTyping ) ;
-    public final void rule__BodyExpression__OwnedRelationshipAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BodyExpression__OwnedRelationship_compAssignment_1"
+    // InternalAlf.g:22229:1: rule__BodyExpression__OwnedRelationship_compAssignment_1 : ( ruleExpressionTyping ) ;
+    public final void rule__BodyExpression__OwnedRelationship_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72762,7 +72762,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22235:3: ruleExpressionTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipExpressionTypingParserRuleCall_1_0()); 
+               before(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compExpressionTypingParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionTyping();
@@ -72770,7 +72770,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipExpressionTypingParserRuleCall_1_0()); 
+               after(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compExpressionTypingParserRuleCall_1_0()); 
             }
 
             }
@@ -72790,7 +72790,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyExpression__OwnedRelationshipAssignment_1"
+    // $ANTLR end "rule__BodyExpression__OwnedRelationship_compAssignment_1"
 
 
     // $ANTLR start "rule__ExpressionTyping__TypeAssignment"
@@ -72850,9 +72850,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ExpressionTyping__TypeAssignment"
 
 
-    // $ANTLR start "rule__FeatureReferenceExpression__OwnedRelationshipAssignment"
-    // InternalAlf.g:22263:1: rule__FeatureReferenceExpression__OwnedRelationshipAssignment : ( ruleFeatureReference ) ;
-    public final void rule__FeatureReferenceExpression__OwnedRelationshipAssignment() throws RecognitionException {
+    // $ANTLR start "rule__FeatureReferenceExpression__OwnedRelationship_compAssignment"
+    // InternalAlf.g:22263:1: rule__FeatureReferenceExpression__OwnedRelationship_compAssignment : ( ruleFeatureReference ) ;
+    public final void rule__FeatureReferenceExpression__OwnedRelationship_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72864,7 +72864,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22269:3: ruleFeatureReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_0()); 
+               before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationship_compFeatureReferenceParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureReference();
@@ -72872,7 +72872,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_0()); 
+               after(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationship_compFeatureReferenceParserRuleCall_0()); 
             }
 
             }
@@ -72892,12 +72892,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureReferenceExpression__OwnedRelationshipAssignment"
+    // $ANTLR end "rule__FeatureReferenceExpression__OwnedRelationship_compAssignment"
 
 
-    // $ANTLR start "rule__InvocationExpression__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:22278:1: rule__InvocationExpression__OwnedRelationshipAssignment_0 : ( ruleFeatureTyping ) ;
-    public final void rule__InvocationExpression__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__InvocationExpression__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:22278:1: rule__InvocationExpression__OwnedRelationship_compAssignment_0 : ( ruleFeatureTyping ) ;
+    public final void rule__InvocationExpression__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72909,7 +72909,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22284:3: ruleFeatureTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_0()); 
+               before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureTyping();
@@ -72917,7 +72917,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_0()); 
+               after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_0()); 
             }
 
             }
@@ -72937,12 +72937,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InvocationExpression__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__InvocationExpression__OwnedRelationship_compAssignment_0"
 
 
-    // $ANTLR start "rule__PositionalTuple__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:22293:1: rule__PositionalTuple__OwnedRelationshipAssignment_0 : ( ruleExpressionMember ) ;
-    public final void rule__PositionalTuple__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__PositionalTuple__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:22293:1: rule__PositionalTuple__OwnedRelationship_compAssignment_0 : ( ruleExpressionMember ) ;
+    public final void rule__PositionalTuple__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72954,7 +72954,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22299:3: ruleExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipExpressionMemberParserRuleCall_0_0()); 
+               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionMember();
@@ -72962,7 +72962,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipExpressionMemberParserRuleCall_0_0()); 
+               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_0_0()); 
             }
 
             }
@@ -72982,12 +72982,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PositionalTuple__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__PositionalTuple__OwnedRelationship_compAssignment_0"
 
 
-    // $ANTLR start "rule__PositionalTuple__OwnedRelationshipAssignment_1_1"
-    // InternalAlf.g:22308:1: rule__PositionalTuple__OwnedRelationshipAssignment_1_1 : ( ruleExpressionMember ) ;
-    public final void rule__PositionalTuple__OwnedRelationshipAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__PositionalTuple__OwnedRelationship_compAssignment_1_1"
+    // InternalAlf.g:22308:1: rule__PositionalTuple__OwnedRelationship_compAssignment_1_1 : ( ruleExpressionMember ) ;
+    public final void rule__PositionalTuple__OwnedRelationship_compAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -72999,7 +72999,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22314:3: ruleExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipExpressionMemberParserRuleCall_1_1_0()); 
+               before(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpressionMember();
@@ -73007,7 +73007,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationshipExpressionMemberParserRuleCall_1_1_0()); 
+               after(grammarAccess.getPositionalTupleAccess().getOwnedRelationship_compExpressionMemberParserRuleCall_1_1_0()); 
             }
 
             }
@@ -73027,12 +73027,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PositionalTuple__OwnedRelationshipAssignment_1_1"
+    // $ANTLR end "rule__PositionalTuple__OwnedRelationship_compAssignment_1_1"
 
 
-    // $ANTLR start "rule__NamedTuple__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:22323:1: rule__NamedTuple__OwnedRelationshipAssignment_0 : ( ruleNamedExpressionMember ) ;
-    public final void rule__NamedTuple__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__NamedTuple__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:22323:1: rule__NamedTuple__OwnedRelationship_compAssignment_0 : ( ruleNamedExpressionMember ) ;
+    public final void rule__NamedTuple__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73044,7 +73044,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22329:3: ruleNamedExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedTupleAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_0_0()); 
+               before(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compNamedExpressionMemberParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNamedExpressionMember();
@@ -73052,7 +73052,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedTupleAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_0_0()); 
+               after(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compNamedExpressionMemberParserRuleCall_0_0()); 
             }
 
             }
@@ -73072,12 +73072,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__NamedTuple__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__NamedTuple__OwnedRelationship_compAssignment_0"
 
 
-    // $ANTLR start "rule__NamedTuple__OwnedRelationshipAssignment_1_1"
-    // InternalAlf.g:22338:1: rule__NamedTuple__OwnedRelationshipAssignment_1_1 : ( ruleNamedExpressionMember ) ;
-    public final void rule__NamedTuple__OwnedRelationshipAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__NamedTuple__OwnedRelationship_compAssignment_1_1"
+    // InternalAlf.g:22338:1: rule__NamedTuple__OwnedRelationship_compAssignment_1_1 : ( ruleNamedExpressionMember ) ;
+    public final void rule__NamedTuple__OwnedRelationship_compAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73089,7 +73089,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22344:3: ruleNamedExpressionMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedTupleAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_1_1_0()); 
+               before(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compNamedExpressionMemberParserRuleCall_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleNamedExpressionMember();
@@ -73097,7 +73097,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedTupleAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_1_1_0()); 
+               after(grammarAccess.getNamedTupleAccess().getOwnedRelationship_compNamedExpressionMemberParserRuleCall_1_1_0()); 
             }
 
             }
@@ -73117,12 +73117,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__NamedTuple__OwnedRelationshipAssignment_1_1"
+    // $ANTLR end "rule__NamedTuple__OwnedRelationship_compAssignment_1_1"
 
 
-    // $ANTLR start "rule__ClassExtentExpression__OwnedRelationshipAssignment_0"
-    // InternalAlf.g:22353:1: rule__ClassExtentExpression__OwnedRelationshipAssignment_0 : ( ruleTypeReferenceMember ) ;
-    public final void rule__ClassExtentExpression__OwnedRelationshipAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__ClassExtentExpression__OwnedRelationship_compAssignment_0"
+    // InternalAlf.g:22353:1: rule__ClassExtentExpression__OwnedRelationship_compAssignment_0 : ( ruleTypeReferenceMember ) ;
+    public final void rule__ClassExtentExpression__OwnedRelationship_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73134,7 +73134,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22359:3: ruleTypeReferenceMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_0_0()); 
+               before(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationship_compTypeReferenceMemberParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleTypeReferenceMember();
@@ -73142,7 +73142,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_0_0()); 
+               after(grammarAccess.getClassExtentExpressionAccess().getOwnedRelationship_compTypeReferenceMemberParserRuleCall_0_0()); 
             }
 
             }
@@ -73162,7 +73162,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ClassExtentExpression__OwnedRelationshipAssignment_0"
+    // $ANTLR end "rule__ClassExtentExpression__OwnedRelationship_compAssignment_0"
 
 
     // $ANTLR start "rule__ClassExtentExpression__OperatorAssignment_2"
@@ -73218,9 +73218,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassExtentExpression__OperatorAssignment_2"
 
 
-    // $ANTLR start "rule__TypeReference__OwnedRelationshipAssignment"
-    // InternalAlf.g:22387:1: rule__TypeReference__OwnedRelationshipAssignment : ( ruleFeatureTyping ) ;
-    public final void rule__TypeReference__OwnedRelationshipAssignment() throws RecognitionException {
+    // $ANTLR start "rule__TypeReference__OwnedRelationship_compAssignment"
+    // InternalAlf.g:22387:1: rule__TypeReference__OwnedRelationship_compAssignment : ( ruleFeatureTyping ) ;
+    public final void rule__TypeReference__OwnedRelationship_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73232,7 +73232,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22393:3: ruleFeatureTyping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0()); 
+               before(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureTyping();
@@ -73240,7 +73240,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0()); 
+               after(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0()); 
             }
 
             }
@@ -73260,12 +73260,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypeReference__OwnedRelationshipAssignment"
+    // $ANTLR end "rule__TypeReference__OwnedRelationship_compAssignment"
 
 
-    // $ANTLR start "rule__SequenceConstructionExpression__ElementAssignment_2_0"
-    // InternalAlf.g:22402:1: rule__SequenceConstructionExpression__ElementAssignment_2_0 : ( ruleExpression ) ;
-    public final void rule__SequenceConstructionExpression__ElementAssignment_2_0() throws RecognitionException {
+    // $ANTLR start "rule__SequenceConstructionExpression__Element_compAssignment_2_0"
+    // InternalAlf.g:22402:1: rule__SequenceConstructionExpression__Element_compAssignment_2_0 : ( ruleExpression ) ;
+    public final void rule__SequenceConstructionExpression__Element_compAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73277,7 +73277,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22408:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceConstructionExpressionAccess().getElementExpressionParserRuleCall_2_0_0()); 
+               before(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compExpressionParserRuleCall_2_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -73285,7 +73285,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceConstructionExpressionAccess().getElementExpressionParserRuleCall_2_0_0()); 
+               after(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compExpressionParserRuleCall_2_0_0()); 
             }
 
             }
@@ -73305,12 +73305,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SequenceConstructionExpression__ElementAssignment_2_0"
+    // $ANTLR end "rule__SequenceConstructionExpression__Element_compAssignment_2_0"
 
 
-    // $ANTLR start "rule__SequenceConstructionExpression__ElementAssignment_2_1_1"
-    // InternalAlf.g:22417:1: rule__SequenceConstructionExpression__ElementAssignment_2_1_1 : ( ruleExpression ) ;
-    public final void rule__SequenceConstructionExpression__ElementAssignment_2_1_1() throws RecognitionException {
+    // $ANTLR start "rule__SequenceConstructionExpression__Element_compAssignment_2_1_1"
+    // InternalAlf.g:22417:1: rule__SequenceConstructionExpression__Element_compAssignment_2_1_1 : ( ruleExpression ) ;
+    public final void rule__SequenceConstructionExpression__Element_compAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73322,7 +73322,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22423:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceConstructionExpressionAccess().getElementExpressionParserRuleCall_2_1_1_0()); 
+               before(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compExpressionParserRuleCall_2_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -73330,7 +73330,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceConstructionExpressionAccess().getElementExpressionParserRuleCall_2_1_1_0()); 
+               after(grammarAccess.getSequenceConstructionExpressionAccess().getElement_compExpressionParserRuleCall_2_1_1_0()); 
             }
 
             }
@@ -73350,7 +73350,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SequenceConstructionExpression__ElementAssignment_2_1_1"
+    // $ANTLR end "rule__SequenceConstructionExpression__Element_compAssignment_2_1_1"
 
 
     // $ANTLR start "rule__BooleanLiteralExpression__ValueAssignment"
@@ -73578,9 +73578,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureReference__MemberFeatureAssignment"
 
 
-    // $ANTLR start "rule__TypeReferenceMember__OwnedRelatedElementAssignment"
-    // InternalAlf.g:22511:1: rule__TypeReferenceMember__OwnedRelatedElementAssignment : ( ruleTypeReference ) ;
-    public final void rule__TypeReferenceMember__OwnedRelatedElementAssignment() throws RecognitionException {
+    // $ANTLR start "rule__TypeReferenceMember__OwnedRelatedElement_compAssignment"
+    // InternalAlf.g:22511:1: rule__TypeReferenceMember__OwnedRelatedElement_compAssignment : ( ruleTypeReference ) ;
+    public final void rule__TypeReferenceMember__OwnedRelatedElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73592,7 +73592,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22517:3: ruleTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementTypeReferenceParserRuleCall_0()); 
+               before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElement_compTypeReferenceParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleTypeReference();
@@ -73600,7 +73600,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementTypeReferenceParserRuleCall_0()); 
+               after(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElement_compTypeReferenceParserRuleCall_0()); 
             }
 
             }
@@ -73620,7 +73620,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypeReferenceMember__OwnedRelatedElementAssignment"
+    // $ANTLR end "rule__TypeReferenceMember__OwnedRelatedElement_compAssignment"
 
 
     // $ANTLR start "rule__NamedExpressionMember__MemberNameAssignment_0"
@@ -73668,9 +73668,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__NamedExpressionMember__MemberNameAssignment_0"
 
 
-    // $ANTLR start "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2"
-    // InternalAlf.g:22541:1: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 : ( ruleExpression ) ;
-    public final void rule__NamedExpressionMember__OwnedRelatedElementAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2"
+    // InternalAlf.g:22541:1: rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2 : ( ruleExpression ) ;
+    public final void rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73682,7 +73682,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22547:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementExpressionParserRuleCall_2_0()); 
+               before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElement_compExpressionParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpression();
@@ -73690,7 +73690,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementExpressionParserRuleCall_2_0()); 
+               after(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElement_compExpressionParserRuleCall_2_0()); 
             }
 
             }
@@ -73710,12 +73710,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2"
+    // $ANTLR end "rule__NamedExpressionMember__OwnedRelatedElement_compAssignment_2"
 
 
-    // $ANTLR start "rule__BodyMember__OwnedRelatedElementAssignment"
-    // InternalAlf.g:22556:1: rule__BodyMember__OwnedRelatedElementAssignment : ( ruleBodyExpression ) ;
-    public final void rule__BodyMember__OwnedRelatedElementAssignment() throws RecognitionException {
+    // $ANTLR start "rule__BodyMember__OwnedRelatedElement_compAssignment"
+    // InternalAlf.g:22556:1: rule__BodyMember__OwnedRelatedElement_compAssignment : ( ruleBodyExpression ) ;
+    public final void rule__BodyMember__OwnedRelatedElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73727,7 +73727,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22562:3: ruleBodyExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementBodyExpressionParserRuleCall_0()); 
+               before(grammarAccess.getBodyMemberAccess().getOwnedRelatedElement_compBodyExpressionParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyExpression();
@@ -73735,7 +73735,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyMemberAccess().getOwnedRelatedElementBodyExpressionParserRuleCall_0()); 
+               after(grammarAccess.getBodyMemberAccess().getOwnedRelatedElement_compBodyExpressionParserRuleCall_0()); 
             }
 
             }
@@ -73755,7 +73755,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyMember__OwnedRelatedElementAssignment"
+    // $ANTLR end "rule__BodyMember__OwnedRelatedElement_compAssignment"
 
 
     // $ANTLR start "rule__BodyParameterMember__MemberNameAssignment_0"
@@ -73803,9 +73803,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__BodyParameterMember__MemberNameAssignment_0"
 
 
-    // $ANTLR start "rule__BodyParameterMember__OwnedRelatedElementAssignment_1"
-    // InternalAlf.g:22586:1: rule__BodyParameterMember__OwnedRelatedElementAssignment_1 : ( ruleParameterDefinition ) ;
-    public final void rule__BodyParameterMember__OwnedRelatedElementAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1"
+    // InternalAlf.g:22586:1: rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1 : ( ruleParameterDefinition ) ;
+    public final void rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73817,7 +73817,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22592:3: ruleParameterDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); 
+               before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleParameterDefinition();
@@ -73825,7 +73825,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementParameterDefinitionParserRuleCall_1_0()); 
+               after(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElement_compParameterDefinitionParserRuleCall_1_0()); 
             }
 
             }
@@ -73845,12 +73845,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__BodyParameterMember__OwnedRelatedElementAssignment_1"
+    // $ANTLR end "rule__BodyParameterMember__OwnedRelatedElement_compAssignment_1"
 
 
-    // $ANTLR start "rule__QueryPathExpression__OwnedRelationshipAssignment_1_2"
-    // InternalAlf.g:22601:1: rule__QueryPathExpression__OwnedRelationshipAssignment_1_2 : ( ruleBodyMember ) ;
-    public final void rule__QueryPathExpression__OwnedRelationshipAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2"
+    // InternalAlf.g:22601:1: rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2 : ( ruleBodyMember ) ;
+    public final void rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73862,7 +73862,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22607:3: ruleBodyMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_2_0()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyMember();
@@ -73870,7 +73870,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_1_2_0()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_1_2_0()); 
             }
 
             }
@@ -73890,12 +73890,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__QueryPathExpression__OwnedRelationshipAssignment_1_2"
+    // $ANTLR end "rule__QueryPathExpression__OwnedRelationship_compAssignment_1_2"
 
 
-    // $ANTLR start "rule__QueryPathExpression__OperandAssignment_2_2"
-    // InternalAlf.g:22616:1: rule__QueryPathExpression__OperandAssignment_2_2 : ( ruleQueryNameExpression ) ;
-    public final void rule__QueryPathExpression__OperandAssignment_2_2() throws RecognitionException {
+    // $ANTLR start "rule__QueryPathExpression__Operand_compAssignment_2_2"
+    // InternalAlf.g:22616:1: rule__QueryPathExpression__Operand_compAssignment_2_2 : ( ruleQueryNameExpression ) ;
+    public final void rule__QueryPathExpression__Operand_compAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73907,7 +73907,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22622:3: ruleQueryNameExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOperand_compQueryNameExpressionParserRuleCall_2_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleQueryNameExpression();
@@ -73915,7 +73915,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOperand_compQueryNameExpressionParserRuleCall_2_2_0()); 
             }
 
             }
@@ -73935,12 +73935,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__QueryPathExpression__OperandAssignment_2_2"
+    // $ANTLR end "rule__QueryPathExpression__Operand_compAssignment_2_2"
 
 
-    // $ANTLR start "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2"
-    // InternalAlf.g:22631:1: rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2 : ( ruleBodyMember ) ;
-    public final void rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2() throws RecognitionException {
+    // $ANTLR start "rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2"
+    // InternalAlf.g:22631:1: rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2 : ( ruleBodyMember ) ;
+    public final void rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73952,7 +73952,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22637:3: ruleBodyMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0()); 
+               before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_2_3_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleBodyMember();
@@ -73960,7 +73960,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyMemberParserRuleCall_2_3_2_0()); 
+               after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationship_compBodyMemberParserRuleCall_2_3_2_0()); 
             }
 
             }
@@ -73980,12 +73980,12 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2"
+    // $ANTLR end "rule__QueryPathExpression__OwnedRelationship_compAssignment_2_3_2"
 
 
-    // $ANTLR start "rule__QueryNameExpression__OwnedRelationshipAssignment"
-    // InternalAlf.g:22646:1: rule__QueryNameExpression__OwnedRelationshipAssignment : ( ruleFeatureReference ) ;
-    public final void rule__QueryNameExpression__OwnedRelationshipAssignment() throws RecognitionException {
+    // $ANTLR start "rule__QueryNameExpression__OwnedRelationship_compAssignment"
+    // InternalAlf.g:22646:1: rule__QueryNameExpression__OwnedRelationship_compAssignment : ( ruleFeatureReference ) ;
+    public final void rule__QueryNameExpression__OwnedRelationship_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -73997,7 +73997,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:22652:3: ruleFeatureReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_0()); 
+               before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationship_compFeatureReferenceParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleFeatureReference();
@@ -74005,7 +74005,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_0()); 
+               after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationship_compFeatureReferenceParserRuleCall_0()); 
             }
 
             }
@@ -74025,7 +74025,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__QueryNameExpression__OwnedRelationshipAssignment"
+    // $ANTLR end "rule__QueryNameExpression__OwnedRelationship_compAssignment"
 
     // $ANTLR start synpred91_InternalAlf
     public final void synpred91_InternalAlf_fragment() throws RecognitionException {   
@@ -74420,7 +74420,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_12;
         }
         public String getDescription() {
-            return "3613:1: rule__UnitPrefix__Alternatives_0 : ( ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationshipAssignment_0_1 ) ) );";
+            return "3613:1: rule__UnitPrefix__Alternatives_0 : ( ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_0 ) ) | ( ( rule__UnitPrefix__OwnedRelationship_compAssignment_0_1 ) ) );";
         }
     }
     static final String dfa_13s = "\4\6\1\uffff\1\6\2\27\2\6\2\27\1\uffff\2\30\2\6\2\27\2\30";
@@ -74468,7 +74468,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_16;
         }
         public String getDescription() {
-            return "3733:1: rule__PackageDefinition__Alternatives_3 : ( ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationshipAssignment_3_1 ) ) );";
+            return "3733:1: rule__PackageDefinition__Alternatives_3 : ( ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_0 ) ) | ( ( rule__PackageDefinition__OwnedRelationship_compAssignment_3_1 ) ) );";
         }
     }
     static final String dfa_17s = "\37\uffff";
@@ -74531,7 +74531,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_22;
         }
         public String getDescription() {
-            return "3775:1: rule__NonFeatureMemberElement__Alternatives : ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) );";
+            return "3775:1: rule__NonFeatureMemberElement__Alternatives : ( ( ( rule__NonFeatureMemberElement__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__NonFeatureMemberElement__Group_1__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_2__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_3__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_4__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_5__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_6__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_7__0 ) ) | ( ( rule__NonFeatureMemberElement__Group_8__0 ) ) );";
         }
     }
     static final String dfa_23s = "\16\uffff";
@@ -74621,7 +74621,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_30;
         }
         public String getDescription() {
-            return "3925:1: rule__CategoryBody__Alternatives_1_1 : ( ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) );";
+            return "3925:1: rule__CategoryBody__Alternatives_1_1 : ( ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__CategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) );";
         }
     }
     static final String dfa_31s = "\4\6\1\uffff\1\6\2\27\2\6\1\uffff\2\30\2\27\2\6\2\30\2\27";
@@ -74669,7 +74669,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_34;
         }
         public String getDescription() {
-            return "3967:1: rule__AbstractCategoryBody__Alternatives_1_1 : ( ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationshipAssignment_1_1_1 ) ) );";
+            return "3967:1: rule__AbstractCategoryBody__Alternatives_1_1 : ( ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AbstractCategoryBody__OwnedRelationship_compAssignment_1_1_1 ) ) );";
         }
     }
     static final String dfa_35s = "\12\uffff";
@@ -74763,7 +74763,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_46;
         }
         public String getDescription() {
-            return "4150:1: rule__FeatureMember__Alternatives_1_2_1 : ( ( ( rule__FeatureMember__OwnedRelatedElementAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) );";
+            return "4150:1: rule__FeatureMember__Alternatives_1_2_1 : ( ( ( rule__FeatureMember__OwnedRelatedElement_compAssignment_1_2_1_0 ) ) | ( ( rule__FeatureMember__Group_1_2_1_1__0 ) ) );";
         }
     }
     static final String dfa_47s = "\4\6\1\uffff\1\6\2\27\2\6\1\uffff\2\27\2\30\2\6\2\27\2\30";
@@ -74807,7 +74807,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_48;
         }
         public String getDescription() {
-            return "4192:1: rule__AssociationBody__Alternatives_1_1 : ( ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationshipAssignment_1_1_1 ) ) );";
+            return "4192:1: rule__AssociationBody__Alternatives_1_1 : ( ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__AssociationBody__OwnedRelationship_compAssignment_1_1_1 ) ) );";
         }
     }
     static final String[] dfa_49s = {
@@ -74923,7 +74923,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_55;
         }
         public String getDescription() {
-            return "4348:1: rule__BehaviorBody__Alternatives_1_1 : ( ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1 ) ) );";
+            return "4348:1: rule__BehaviorBody__Alternatives_1_1 : ( ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__BehaviorBody__OwnedRelationship_compAssignment_1_1_1 ) ) );";
         }
     }
     static final String dfa_56s = "\2\10\4\32\1\uffff\1\32\2\uffff";
@@ -75000,7 +75000,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_63;
         }
         public String getDescription() {
-            return "4396:1: rule__BehaviorStepMemberDefinition__Alternatives : ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElementAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) );";
+            return "4396:1: rule__BehaviorStepMemberDefinition__Alternatives : ( ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_0 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_1__0 ) ) | ( ( rule__BehaviorStepMemberDefinition__OwnedRelatedElement_compAssignment_2 ) ) | ( ( rule__BehaviorStepMemberDefinition__Group_3__0 ) ) );";
         }
     }
 
@@ -75018,7 +75018,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_55;
         }
         public String getDescription() {
-            return "4450:1: rule__FunctionBody__Alternatives_1_1 : ( ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationshipAssignment_1_1_1 ) ) );";
+            return "4450:1: rule__FunctionBody__Alternatives_1_1 : ( ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_1 ) ) );";
         }
     }
     static final String dfa_64s = "\1\6\2\27\1\6\2\uffff\2\27\2\6\2\30\2\27\2\6\2\30\2\27";

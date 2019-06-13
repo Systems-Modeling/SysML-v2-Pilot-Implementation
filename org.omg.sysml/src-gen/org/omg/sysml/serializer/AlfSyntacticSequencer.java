@@ -98,7 +98,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_AssociationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -110,20 +110,20 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './'? ownedRelationship+=FeatureReference
+	 *     (rule start) (ambiguity) './'? ownedRelationship_comp+=FeatureReference
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
-	 *     (rule start) (ambiguity) '{' element+=Expression
+	 *     (rule start) (ambiguity) '{' element_comp+=Expression
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureTyping
-	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=FeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
 	 *     (rule start) (ambiguity) value=NATURAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
 	protected void emit_BaseExpression_LeftParenthesisKeyword_7_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -135,7 +135,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
 	 */
 	protected void emit_BaseExpression_LeftParenthesisKeyword_7_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -151,12 +151,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name '(' ')' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
-	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship+=Subset (ambiguity) (rule end)
-	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Multiplicity (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -172,15 +172,15 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (':' 'any')? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
-	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
-	 *     ownedRelationship+=Redefinition (':' 'any')? (ambiguity) (rule end)
-	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship+=Subset (ambiguity) (rule end)
-	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Multiplicity (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (':' 'any')? (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_CategoryBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -191,7 +191,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'is'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=ConnectorEndMember
 	 */
 	protected void emit_ConnectorDeclaration_IsKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -202,9 +202,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
-	 *     ownedRelationship+=Annotation (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
-	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedRelatedElement+=NamedFeatureDefinition
+	 *     (rule start) (ambiguity) ownedRelatedElement_comp+=NamedFeatureDefinition
+	 *     ownedRelationship_comp+=Annotation (ambiguity) ownedRelatedElement_comp+=NamedFeatureDefinition
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedRelatedElement_comp+=NamedFeatureDefinition
 	 */
 	protected void emit_FeaturePackageMemberElement_FeatureKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -215,9 +215,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
-	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
-	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement+=AbstractNamedFeatureDefinition
+	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement_comp+=AbstractNamedFeatureDefinition
+	 *     ownedRelationship_comp+=Annotation 'abstract' (ambiguity) ownedRelatedElement_comp+=AbstractNamedFeatureDefinition
+	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement_comp+=AbstractNamedFeatureDefinition
 	 */
 	protected void emit_FeaturePackageMemberElement_FeatureKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -234,12 +234,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
-	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
-	 *     ownedRelationship+=Subset (ambiguity) (rule end)
-	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Multiplicity (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=ReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -261,7 +261,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     './'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('* (ambiguity) ownedRelationship+=FeatureReference
+	 *     (rule start) '('* (ambiguity) ownedRelationship_comp+=FeatureReference
 	 */
 	protected void emit_QueryHeadExpression_FullStopSolidusKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -275,29 +275,29 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
-	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
-	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
-	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
-	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
-	 *     name=Name (ambiguity) '{' ownedRelationship+=CategoryMember
-	 *     name=Name (ambiguity) '{' ownedRelationship+=PackageImport
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=Multiplicity
+	 *     name=Name (ambiguity) '=' ownedRelationship_comp+=FeatureValue
+	 *     name=Name (ambiguity) 'redefines' ownedRelationship_comp+=Redefinition
+	 *     name=Name (ambiguity) 'subsets' ownedRelationship_comp+=Subset
+	 *     name=Name (ambiguity) '{' ownedRelationship_comp+=CategoryMember
+	 *     name=Name (ambiguity) '{' ownedRelationship_comp+=PackageImport
 	 *     name=Name (ambiguity) (';' | ('{' '}')) (rule end)
 	 *     name=Name (ambiguity) isAbstract?=';'
 	 *     name=Name (ambiguity) isAbstract?='{'
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
-	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
-	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
-	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
-	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset
-	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedRelationship+=CategoryMember
-	 *     ownedRelationship+=Redefinition (ambiguity) '{' ownedRelationship+=PackageImport
-	 *     ownedRelationship+=Redefinition (ambiguity) (';' | ('{' '}')) (rule end)
-	 *     ownedRelationship+=Redefinition (ambiguity) isAbstract?=';'
-	 *     ownedRelationship+=Redefinition (ambiguity) isAbstract?='{'
-	 *     ownedRelationship+=Redefinition (ambiguity) isNonunique?='nonunique'
-	 *     ownedRelationship+=Redefinition (ambiguity) isOrdered?='ordered'
-	 *     ownedRelationship+=Redefinition (ambiguity) ownedRelationship+=Multiplicity
+	 *     name=Name (ambiguity) ownedRelationship_comp+=Multiplicity
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) '=' ownedRelationship_comp+=FeatureValue
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) 'redefines' ownedRelationship_comp+=Redefinition
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) 'subsets' ownedRelationship_comp+=Subset
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) '{' ownedRelationship_comp+=CategoryMember
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) '{' ownedRelationship_comp+=PackageImport
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) isAbstract?=';'
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) isAbstract?='{'
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Multiplicity
 	 */
 	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

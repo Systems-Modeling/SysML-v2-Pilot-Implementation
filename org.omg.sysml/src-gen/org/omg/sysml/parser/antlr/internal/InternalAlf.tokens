@@ -7,7 +7,11 @@
 '*'=19
 '**'=77
 '+'=74
+<<<<<<< Upstream, based on origin/ST6RI-75
 ','=40
+=======
+','=39
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 '-'=75
 '->'=81
 '.'=18
@@ -41,7 +45,11 @@
 'compose'=49
 'connector'=37
 'datatype'=28
+<<<<<<< Upstream, based on origin/ST6RI-75
 'end'=41
+=======
+'end'=40
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 'expr'=45
 'feature'=32
 'function'=31
@@ -50,6 +58,10 @@
 'in'=89
 'inout'=91
 'instanceof'=68
+<<<<<<< Upstream, based on origin/ST6RI-75
+=======
+'interaction'=41
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 'is'=25
 'nonunique'=52
 'null'=83
@@ -64,10 +76,16 @@
 'protected'=87
 'public'=85
 'redefines'=46
+<<<<<<< Upstream, based on origin/ST6RI-75
 'specializes'=39
 'step'=44
 'subsets'=56
 'succession'=38
+=======
+'specializes'=38
+'step'=44
+'subsets'=56
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 'to'=57
 '{'=23
 '|'=63

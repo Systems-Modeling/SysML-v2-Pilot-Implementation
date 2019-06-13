@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -118,13 +119,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Comment(context, (Comment) semanticObject); 
 				return; 
 			case SysMLPackage.CONNECTOR:
+<<<<<<< Upstream, based on origin/ST6RI-75
 				if (rule == grammarAccess.getAbstractConnectorDefinitionRule()
 						|| rule == grammarAccess.getAbstractSuccessionDefinitionRule()) {
 					sequence_AbstractCategoryBody_ConnectorDeclaration(context, (Connector) semanticObject); 
+=======
+				if (rule == grammarAccess.getAbstractConnectorDefinitionRule()) {
+					sequence_AbstractCategoryBody_ConnectorDeclaration_ConnectorTypePart(context, (Connector) semanticObject); 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 					return; 
 				}
 				else if (rule == grammarAccess.getConnectorDefinitionRule()) {
-					sequence_CategoryBody_ConnectorDeclaration(context, (Connector) semanticObject); 
+					sequence_CategoryBody_ConnectorDeclaration_ConnectorTypePart(context, (Connector) semanticObject); 
 					return; 
 				}
 				else break;
@@ -202,8 +208,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureMemberRule()
-						|| rule == grammarAccess.getAssociationMemberRule()) {
+				else if (rule == grammarAccess.getFeatureMemberRule()) {
+					sequence_CategoryMemberPrefix_FeatureMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAssociationMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -262,6 +271,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case SysMLPackage.IMPORT:
 				sequence_PackageImport(context, (Import) semanticObject); 
 				return; 
+			case SysMLPackage.INTERACTION:
+				if (rule == grammarAccess.getNonFeatureDefinitionRule()
+						|| rule == grammarAccess.getInteractionDefinitionOrStubRule()) {
+					sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList(context, (Interaction) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
+					sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList_UnitPrefix(context, (Interaction) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInteractionUnitDefinitionRule()) {
+					sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList_UnitPrefix(context, (Interaction) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				sequence_InvocationExpression_NamedTuple_PositionalTuple(context, (InvocationExpression) semanticObject); 
 				return; 
@@ -286,9 +310,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else if (rule == grammarAccess.getCategoryMemberRule()
-						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
 						|| rule == grammarAccess.getBehaviorMemberRule()) {
+					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -509,20 +536,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         (name=Name | name=Name)? 
+	 *         ownedRelationship+=ConnectorTyping? 
+	 *         ownedRelationship+=Multiplicity? 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (
-	 *             (name=Name? ownedRelationship+=ConnectorTyping? ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember) | 
-	 *             (
-	 *                 name=Name? 
-	 *                 ownedRelationship+=ConnectorTyping? 
-	 *                 ownedRelationship+=ConnectorEndMember 
-	 *                 ownedRelationship+=ConnectorEndMember 
-	 *                 ownedRelationship+=ConnectorEndMember*
-	 *             )
+	 *             (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember) | 
+	 *             (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)
 	 *         ) 
 	 *         (isAbstract?=';' | (isAbstract?='{' (ownedRelationship+=CategoryMember | ownedRelationship+=PackageImport)*))
 	 *     )
 	 */
-	protected void sequence_AbstractCategoryBody_ConnectorDeclaration(ISerializationContext context, Connector semanticObject) {
+	protected void sequence_AbstractCategoryBody_ConnectorDeclaration_ConnectorTypePart(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -625,7 +651,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+=======
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -656,6 +687,63 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	//     )
 	//
 	// protected void sequence_AssociationBody_AssociationDeclaration_ClassDeclarationCompletion_SpecializationList_UnitPrefix(ISerializationContext context, Association semanticObject) { }
+	
+	/**
+	 * Contexts:
+	 *     NonFeatureDefinition returns Interaction
+	 *     InteractionDefinitionOrStub returns Interaction
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedRelationship+=AssociationMember | ownedRelationship+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList(ISerializationContext context, Interaction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnitDefinition returns Interaction
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+	 *         ownedRelationship+=Annotation? 
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	 *         (ownedRelationship+=AssociationMember | ownedRelationship+=PackageImport)*
+	 *     )
+	 */
+	protected void sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList_UnitPrefix(ISerializationContext context, Interaction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     InteractionUnitDefinition returns Interaction
+	//
+	// Constraint:
+	//     (
+	//         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	//         ownedRelationship+=Annotation* 
+	//         isAbstract?='abstract'? 
+	//         name=Name 
+	//         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	//         (ownedRelationship+=AssociationMember | ownedRelationship+=PackageImport)*
+	//     )
+	//
+	// protected void sequence_AssociationBody_ClassDeclarationCompletion_InteractionDeclaration_SpecializationList_UnitPrefix(ISerializationContext context, Interaction semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -706,7 +794,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+=======
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -987,7 +1080,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+=======
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1044,7 +1142,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PackageImport? 
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=ElementImport? ownedRelationship+=PackageImport?)* 
+=======
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1100,20 +1202,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         (name=Name | name=Name)? 
+	 *         ownedRelationship+=ConnectorTyping? 
+	 *         ownedRelationship+=Multiplicity? 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (
-	 *             (name=Name? ownedRelationship+=ConnectorTyping? ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember) | 
-	 *             (
-	 *                 name=Name? 
-	 *                 ownedRelationship+=ConnectorTyping? 
-	 *                 ownedRelationship+=ConnectorEndMember 
-	 *                 ownedRelationship+=ConnectorEndMember 
-	 *                 ownedRelationship+=ConnectorEndMember*
-	 *             )
+	 *             (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember) | 
+	 *             (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)
 	 *         ) 
 	 *         (ownedRelationship+=CategoryMember | ownedRelationship+=PackageImport)*
 	 *     )
 	 */
-	protected void sequence_CategoryBody_ConnectorDeclaration(ISerializationContext context, Connector semanticObject) {
+	protected void sequence_CategoryBody_ConnectorDeclaration_ConnectorTypePart(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1148,7 +1249,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+=======
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1228,8 +1334,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
-	 *         ownedRelationship+=CategoryMember? 
-	 *         (ownedRelationship+=PackageImport? ownedRelationship+=CategoryMember?)*
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=CategoryMember? ownedRelationship+=PackageImport?)*
 	 *     )
 	 */
 	protected void sequence_CategoryBody_FeatureCompletion_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnnamedFeatureDefinition(ISerializationContext context, Feature semanticObject) {
@@ -1313,7 +1419,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     FeatureMember returns FeatureMembership
-	 *     AssociationMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
@@ -1340,16 +1445,41 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AssociationMember returns FeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation? 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             (
+	//                 (isPart?='part' | isPortion?='portion' | isPort?='port')? 
+	//                 direction=FeatureDirection? 
+	//                 (ownedRelatedElement+=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	//             ) | 
+	//             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	//             ownedRelatedElement+=ConnectorDefinition | 
+	//             (memberName=Name? memberFeature=[Connector|QualifiedName]) | 
+	//             ownedRelatedElement+=AbstractConnectorDefinition
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_FeatureMember(ISerializationContext context, FeatureMembership semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
-	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *     BehaviorMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedRelatedElement+=NonFeatureDefinition | 
@@ -1368,6 +1498,32 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NonFeatureCategoryMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedRelatedElement+=NonFeatureDefinition | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Function|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?)
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1634,7 +1790,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+<<<<<<< Upstream, based on origin/ST6RI-75
 	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+=======
+	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
+>>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 

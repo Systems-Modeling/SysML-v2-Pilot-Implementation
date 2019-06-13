@@ -97,6 +97,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getObjectClassUnitDefinitionAccess().getGroup(), "rule__ObjectClassUnitDefinition__Group__0");
 			builder.put(grammarAccess.getValueClassUnitDefinitionAccess().getGroup(), "rule__ValueClassUnitDefinition__Group__0");
 			builder.put(grammarAccess.getAssociationUnitDefinitionAccess().getGroup(), "rule__AssociationUnitDefinition__Group__0");
+			builder.put(grammarAccess.getInteractionUnitDefinitionAccess().getGroup(), "rule__InteractionUnitDefinition__Group__0");
 			builder.put(grammarAccess.getBehaviorUnitDefinitionAccess().getGroup(), "rule__BehaviorUnitDefinition__Group__0");
 			builder.put(grammarAccess.getFunctionUnitDefinitionAccess().getGroup(), "rule__FunctionUnitDefinition__Group__0");
 			builder.put(grammarAccess.getFeatureUnitDefinitionAccess().getGroup(), "rule__FeatureUnitDefinition__Group__0");
@@ -162,6 +163,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getGroup_1_3(), "rule__AssociationEndFeatureMember__Group_1_3__0");
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getGroup_1_4(), "rule__AssociationEndFeatureMember__Group_1_4__0");
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getGroup_1_5(), "rule__AssociationEndFeatureMember__Group_1_5__0");
+			builder.put(grammarAccess.getInteractionDefinitionAccess().getGroup(), "rule__InteractionDefinition__Group__0");
+			builder.put(grammarAccess.getInteractionDeclarationAccess().getGroup(), "rule__InteractionDeclaration__Group__0");
 			builder.put(grammarAccess.getBehaviorDefinitionAccess().getGroup(), "rule__BehaviorDefinition__Group__0");
 			builder.put(grammarAccess.getBehaviorDeclarationAccess().getGroup(), "rule__BehaviorDeclaration__Group__0");
 			builder.put(grammarAccess.getParameterListAccess().getGroup(), "rule__ParameterList__Group__0");
@@ -200,10 +203,10 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAbstractConnectorDefinitionAccess().getGroup(), "rule__AbstractConnectorDefinition__Group__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_0(), "rule__ConnectorDeclaration__Group_0__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_0_0(), "rule__ConnectorDeclaration__Group_0_0__0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_0_0_1(), "rule__ConnectorDeclaration__Group_0_0_1__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1(), "rule__ConnectorDeclaration__Group_1__0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1_1(), "rule__ConnectorDeclaration__Group_1_1__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1_6(), "rule__ConnectorDeclaration__Group_1_6__0");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getGroup(), "rule__ConnectorTypePart__Group__0");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getGroup_0(), "rule__ConnectorTypePart__Group_0__0");
 			builder.put(grammarAccess.getConnectorEndAccess().getGroup(), "rule__ConnectorEnd__Group__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup(), "rule__ConnectorEndMember__Group__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup_0(), "rule__ConnectorEndMember__Group_0__0");
@@ -379,6 +382,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAssignment_1_4_2(), "rule__AssociationEndFeatureMember__OwnedRelatedElementAssignment_1_4_2");
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getMemberNameAssignment_1_5_0(), "rule__AssociationEndFeatureMember__MemberNameAssignment_1_5_0");
 			builder.put(grammarAccess.getAssociationEndFeatureMemberAccess().getMemberFeatureAssignment_1_5_2(), "rule__AssociationEndFeatureMember__MemberFeatureAssignment_1_5_2");
+			builder.put(grammarAccess.getInteractionDeclarationAccess().getIsAbstractAssignment_0(), "rule__InteractionDeclaration__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getBehaviorDeclarationAccess().getIsAbstractAssignment_0(), "rule__BehaviorDeclaration__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getBehaviorDeclarationAccess().getNameAssignment_2(), "rule__BehaviorDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getParameterListAccess().getOwnedRelationshipAssignment_1_0(), "rule__ParameterList__OwnedRelationshipAssignment_1_0");
@@ -425,14 +429,16 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRedefinesAccess().getOwnedRelationshipAssignment_1(), "rule__Redefines__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getRedefinitionAccess().getRedefinedFeatureAssignment(), "rule__Redefinition__RedefinedFeatureAssignment");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getNameAssignment_0_0_0(), "rule__ConnectorDeclaration__NameAssignment_0_0_0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_0_1_1");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_3(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getNameAssignment_1_0(), "rule__ConnectorDeclaration__NameAssignment_1_0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_1_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_1_1");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_3(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_5(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_6_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getOwnedRelationshipAssignment_0_1(), "rule__ConnectorTypePart__OwnedRelationshipAssignment_0_1");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getOwnedRelationshipAssignment_1(), "rule__ConnectorTypePart__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getIsOrderedAssignment_2_0(), "rule__ConnectorTypePart__IsOrderedAssignment_2_0");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getIsNonuniqueAssignment_2_1(), "rule__ConnectorTypePart__IsNonuniqueAssignment_2_1");
 			builder.put(grammarAccess.getConnectorTypingAccess().getTypeAssignment(), "rule__ConnectorTyping__TypeAssignment");
 			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment_0(), "rule__ConnectorEnd__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment_1(), "rule__ConnectorEnd__OwnedRelationshipAssignment_1");
@@ -509,6 +515,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2");
 			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__QueryNameExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), "rule__TypePart__UnorderedGroup_2");
+			builder.put(grammarAccess.getConnectorTypePartAccess().getUnorderedGroup_2(), "rule__ConnectorTypePart__UnorderedGroup_2");
 		}
 	}
 	

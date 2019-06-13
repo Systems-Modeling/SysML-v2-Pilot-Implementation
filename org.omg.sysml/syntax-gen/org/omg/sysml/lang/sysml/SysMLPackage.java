@@ -10364,22 +10364,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__PARAMETER = ASSOCIATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Participant Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__PARTICIPANT_FEATURE = ASSOCIATION_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Interaction</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERACTION_FEATURE_COUNT = ASSOCIATION_FEATURE_COUNT + 4;
+	int INTERACTION_FEATURE_COUNT = ASSOCIATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -19020,17 +19011,6 @@ public interface SysMLPackage extends EPackage {
 	EClass getInteraction();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Interaction#getParticipantFeature <em>Participant Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Participant Feature</em>'.
-	 * @see org.omg.sysml.lang.sysml.Interaction#getParticipantFeature()
-	 * @see #getInteraction()
-	 * @generated
-	 */
-	EReference getInteraction_ParticipantFeature();
-
-	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Ownership <em>Ownership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20652,14 +20632,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INTERACTION = eINSTANCE.getInteraction();
-
-		/**
-		 * The meta object literal for the '<em><b>Participant Feature</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERACTION__PARTICIPANT_FEATURE = eINSTANCE.getInteraction_ParticipantFeature();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl <em>Ownership</em>}' class.

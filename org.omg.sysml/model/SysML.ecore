@@ -596,12 +596,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemType" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interaction" eSuperTypes="#//Association #//Behavior">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="participantFeature" ordered="false"
-        lowerBound="2" upperBound="-1" eType="#//Feature">
-      <eAnnotations source="subsets" references="#//Behavior/involvesFeature"/>
-    </eStructuralFeatures>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interaction" eSuperTypes="#//Association #//Behavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="SuccessionItemFlow" eSuperTypes="#//ItemFlow #//Succession"/>
   <eClassifiers xsi:type="ecore:EClass" name="ItemFlow" eSuperTypes="#//Connector #//Step">
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemType" unique="false"

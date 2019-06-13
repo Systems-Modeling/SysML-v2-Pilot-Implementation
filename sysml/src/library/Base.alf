@@ -141,7 +141,7 @@ package Base {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end self: Anything[0..*] redefines source subsets myself;
+		end self: Anything[0..*] redefines source subsets myself redefines Base::'this';
 		end myself: Anything[0..*] redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
@@ -174,6 +174,12 @@ package Base {
 	/* 
 	 *** FEATURES ***
 	 */
+	
+	/**
+	 * 'this' is a feature that relates everything to itself.
+	 * (This is enforced by tying this feature to SelfLink::self.)
+	 */
+	feature 'this': Anything[1] subsets things;
 	 
 	/**
 	 * things is the top-level feature in the language.

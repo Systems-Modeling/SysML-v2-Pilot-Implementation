@@ -17,7 +17,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ObjectClassImpl extends ClassImpl implements ObjectClass {
 	
-	public String OBJECT_CLASS_SUPERCLASS_DEFAULT = "Base::Object";
+	public static final String OBJECT_CLASS_SUPERCLASS_DEFAULT = "Base::Object";
 	
 	/**
 	 * <!-- begin-user-doc -->

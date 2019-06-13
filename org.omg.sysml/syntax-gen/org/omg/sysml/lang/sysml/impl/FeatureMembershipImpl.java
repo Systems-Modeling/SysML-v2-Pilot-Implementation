@@ -13,8 +13,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -26,13 +24,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPart <em>Is Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningCategory <em>Owning Category</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -107,6 +106,26 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected boolean isPart = IS_PART_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PORTION_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPortion = IS_PORTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isPort() <em>Is Port</em>}' attribute.
@@ -298,6 +317,29 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
+	public boolean isPortion() {
+		return isPortion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsPortion(boolean newIsPortion) {
+		boolean oldIsPortion = isPortion;
+		isPortion = newIsPortion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION, oldIsPortion, isPortion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isPort() {
 		return isPort;
 	}
@@ -316,22 +358,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	}
 
 	/**
-	 * If the member feature is a Parameter, then the default direction is IN, unless the Parameter is the result
-	 * Parameter of a function, in which case the default direction is OUT.
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
-		if (direction == null) {
-			Feature member = getMemberFeature();
-			if (member instanceof Parameter) {
-				Category category = getOwningCategory();
-				direction = category instanceof Function && ((Function)category).getResult() == member? 
-						FeatureDirectionKind.OUT: 
-						FeatureDirectionKind.IN;
-				this.setDirection(direction);
-			}
-		}
 		return direction;
 	}
 
@@ -427,22 +457,24 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				if (resolve) return getMemberFeature();
 				return basicGetMemberFeature();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				if (resolve) return getOwningCategory();
+				return basicGetOwningCategory();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				if (resolve) return getOwnedMemberFeature();
-				return basicGetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				return isPortion();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isPort();
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				return getDirection();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
-				if (resolve) return getOwningCategory();
-				return basicGetOwningCategory();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				if (resolve) return getOwnedMemberFeature();
+				return basicGetOwnedMemberFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -458,17 +490,20 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)newValue);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				setOwningCategory((Category)newValue);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				setIsDerived((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				setIsPortion((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort((Boolean)newValue);
@@ -476,8 +511,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				setDirection((FeatureDirectionKind)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
-				setOwningCategory((Category)newValue);
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -494,17 +529,20 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)null);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				setOwningCategory((Category)null);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				setIsDerived(IS_DERIVED_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				setIsPart(IS_PART_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				setIsPortion(IS_PORTION_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				setIsPort(IS_PORT_EDEFAULT);
@@ -512,8 +550,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				setDirection(DIRECTION_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
-				setOwningCategory((Category)null);
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -531,20 +569,22 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isSetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
+				return basicGetOwningCategory() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				return basicGetOwnedMemberFeature() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart != IS_PART_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
+				return isPortion != IS_PORTION_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
 				return isPort != IS_PORT_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				return direction != DIRECTION_EDEFAULT;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
-				return basicGetOwningCategory() != null;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return basicGetOwnedMemberFeature() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -565,6 +605,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		result.append(isReadOnly);
 		result.append(", isPart: ");
 		result.append(isPart);
+		result.append(", isPortion: ");
+		result.append(isPortion);
 		result.append(", isPort: ");
 		result.append(isPort);
 		result.append(", direction: ");

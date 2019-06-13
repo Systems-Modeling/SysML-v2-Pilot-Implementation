@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.xpect.fileExtensions">
+      <fileExtension
+            fileExtension="alf"
+            xtextLanguageName="org.omg.sysml.Alf"
+            xtextRuntimeModule="org.omg.sysml.AlfRuntimeModule"
+            xtextUiModule="org.omg.sysml.ui.AlfUiModule">
+      </fileExtension>
+   </extension>
+
+</plugin>

@@ -3,7 +3,9 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,12 +26,13 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.ConnectorEnd;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -46,10 +49,10 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CategoryImpl#isAbstract <em>Is Abstract</em>}</li>
@@ -349,7 +352,32 @@ public class CategoryImpl extends PackageImpl implements Category {
 		return getNonPrivateMembership(excludedPackages, excludedCategories, false);
 	}
 	
+	/**
+	 * This method returns those features from this category that should be automatically overridden in its usages.
+	 * By default, there are none.
+	 * 
+	 * @return	Relevant features from the category that should be redefined in usages.
+	 */
+	public List<Feature> getRelevantFeatures() {
+		return Collections.emptyList();
+	}
+	
 	// Utility Methods
+	
+	public List<Feature> getEndFeatures() {
+		return getFeature().stream().
+				filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+				collect(Collectors.toList());
+	}
+	
+	public List<Parameter> getOwnedParameters() {
+		return getOwnedFeature().stream().
+				filter(feature->feature instanceof Parameter).map(feature->(Parameter)feature).collect(Collectors.toList());
+	}
+	
+	public Feature getResult() {
+		return null;
+	}
 	
 	public FeatureMembership addOwnedFeature(Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
@@ -360,13 +388,8 @@ public class CategoryImpl extends PackageImpl implements Category {
 	
 	public BindingConnector addOwnedBindingConnector(Feature source, Feature target) {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		EList<Relationship> ends = connector.getOwnedRelationship();
-		ConnectorEnd end = SysMLFactory.eINSTANCE.createConnectorEnd();
-		end.setFeature(source);
-		ends.add(end);
-		end = SysMLFactory.eINSTANCE.createConnectorEnd();
-		end.setFeature(target);
-		ends.add(end);
+		((ConnectorImpl)connector).addConnectorEnd(source);
+		((ConnectorImpl)connector).addConnectorEnd(target);
 		addOwnedFeature(connector);
 		return connector;
 	}
@@ -413,14 +436,14 @@ public class CategoryImpl extends PackageImpl implements Category {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				return getOwnedFeature();
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				return getOwnedGeneralization();
 			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
 				return getOwnedFeatureMembership();
 			case SysMLPackage.CATEGORY__FEATURE:
 				return getFeature();
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				return getOwnedFeature();
 			case SysMLPackage.CATEGORY__INPUT:
 				return getInput();
 			case SysMLPackage.CATEGORY__OUTPUT:
@@ -442,6 +465,10 @@ public class CategoryImpl extends PackageImpl implements Category {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				getOwnedFeature().clear();
+				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
@@ -453,10 +480,6 @@ public class CategoryImpl extends PackageImpl implements Category {
 			case SysMLPackage.CATEGORY__FEATURE:
 				getFeature().clear();
 				getFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CATEGORY__INPUT:
 				getInput().clear();
@@ -485,6 +508,9 @@ public class CategoryImpl extends PackageImpl implements Category {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				getOwnedFeature().clear();
+				return;
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				return;
@@ -493,9 +519,6 @@ public class CategoryImpl extends PackageImpl implements Category {
 				return;
 			case SysMLPackage.CATEGORY__FEATURE:
 				getFeature().clear();
-				return;
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				getOwnedFeature().clear();
 				return;
 			case SysMLPackage.CATEGORY__INPUT:
 				getInput().clear();
@@ -525,14 +548,14 @@ public class CategoryImpl extends PackageImpl implements Category {
 				return isSetMembership();
 			case SysMLPackage.CATEGORY__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.CATEGORY__OWNED_FEATURE:
+				return !getOwnedFeature().isEmpty();
 			case SysMLPackage.CATEGORY__OWNED_GENERALIZATION:
 				return !getOwnedGeneralization().isEmpty();
 			case SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP:
 				return !getOwnedFeatureMembership().isEmpty();
 			case SysMLPackage.CATEGORY__FEATURE:
 				return !getFeature().isEmpty();
-			case SysMLPackage.CATEGORY__OWNED_FEATURE:
-				return !getOwnedFeature().isEmpty();
 			case SysMLPackage.CATEGORY__INPUT:
 				return !getInput().isEmpty();
 			case SysMLPackage.CATEGORY__OUTPUT:

@@ -2,8 +2,13 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -14,6 +19,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StepImpl extends FeatureImpl implements Step {
+	
+	public static final String STEP_SUBSETTING_DEFAULT = "Base::behaviorOccurrences";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,4 +41,14 @@ public class StepImpl extends FeatureImpl implements Step {
 		return SysMLPackage.Literals.STEP;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(STEP_SUBSETTING_DEFAULT);
+	}
+	
+	public List<Step> getSubsteps() {
+		return getOwnedFeature().stream().filter(f->f instanceof Step).
+				map(f->(Step)f).collect(Collectors.toList());
+	}
+	
 } //StepImpl

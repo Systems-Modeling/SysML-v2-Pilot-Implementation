@@ -116,8 +116,13 @@ public interface Connector extends Feature, Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Connector End</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorEnd}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConnectorEnd#getConnector <em>Connector</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connector End</em>' reference list isn't clear,
@@ -126,11 +131,12 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connector End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
-	 * @see org.omg.sysml.lang.sysml.ConnectorEnd#getConnector
-	 * @model opposite="connector" lower="2" transient="true" volatile="true" derived="true"
+	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringConnector'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<ConnectorEnd> getConnectorEnd();
+	EList<Feature> getConnectorEnd();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference.
@@ -166,5 +172,13 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	void setOwnedAssociationType(Association value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" relatedFeatureRequired="true" relatedFeatureOrdered="false"
+	 * @generated
+	 */
+	EList<Feature> path(Feature relatedFeature);
 
 } // Connector

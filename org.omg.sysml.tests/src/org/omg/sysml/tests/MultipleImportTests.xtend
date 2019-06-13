@@ -43,6 +43,10 @@ import org.junit.runner.RunWith
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.tests.AlfInjectorProvider
+import org.omg.sysml.validation.AlfValidator
+import com.google.inject.Injector
+import org.eclipse.xtext.junit4.validation.ValidatorTester
+import org.junit.Before
 
 @RunWith(XtextRunner)
 @InjectWith(AlfInjectorProvider)
@@ -51,9 +55,23 @@ class MultipleImportTests {
 	@Inject
 	ParseHelper<Package> parseHelper
 
-	@Inject extension ValidationTestHelper
+	@Inject
+	AlfValidator validator
+
+	@Inject
+	Injector injector
+
+	ValidatorTester<AlfValidator> tester
+
+	@Before
+	def void initialize() {
+		tester = new ValidatorTester(validator, injector)
+	}
 
 	@Inject extension Dependency
+
+	@Inject extension ValidationTestHelper
+	
 
 	def ResourceSetImpl getDependencyMembership2() {
 		val rs = getDependencyMultipleMembership
@@ -127,17 +145,18 @@ class MultipleImportTests {
 		val rs = getDependencyMultipleMembership
 		val result = parseHelper.parse('''
 			package test{
-				import OuterPackage2::C ;
-				B as bb;
+				import OuterPackage::B::b as bb;
 				class D{
-					feature try : bb;
+					feature try is bb;
 				}
 			}
 		''', rs)
+		
+		
 		Assert.assertNotNull(result)
 		EcoreUtil2.resolveAll(result)
-		Assert.assertTrue(result.eResource.errors.size == 1)
-		result.assertError(SysMLPackage.eINSTANCE.membership, XtextSyntaxDiagnostic.SYNTAX_DIAGNOSTIC)
+		result.assertNoErrors
+		Assert.assertTrue(result.eResource.errors.empty)
 
 	}
 

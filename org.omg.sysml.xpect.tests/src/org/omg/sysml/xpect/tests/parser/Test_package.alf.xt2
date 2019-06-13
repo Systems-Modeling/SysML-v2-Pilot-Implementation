@@ -1,0 +1,73 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/library/BaseFunctions.alf"}
+		File {from ="/library/ISQ.alf"}
+		File {from ="/library/Quantities.alf"}
+		File {from ="/library/ScalarFunctions.alf"}
+		File {from ="/library/ScalarValues.alf"}
+		File {from ="/library/SI.alf"}
+		File {from ="/library/SIPrefixes.alf"}
+		File {from ="/library/Time.alf"}
+		File {from ="/library/UnitsAndScales.alf"}
+		File {from ="/library/USCustomaryUnits.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/library/BaseFunctions.alf"}
+				File {from ="/library/ISQ.alf"}
+				File {from ="/library/Quantities.alf"}
+				File {from ="/library/ScalarFunctions.alf"}
+				File {from ="/library/ScalarValues.alf"}
+				File {from ="/library/SI.alf"}
+				File {from ="/library/SIPrefixes.alf"}
+				File {from ="/library/Time.alf"}
+				File {from ="/library/UnitsAndScales.alf"}
+				File {from ="/library/USCustomaryUnits.alf"}
+			}
+		}
+	}	
+END_SETUP 
+*/
+
+
+/* XPECT ast ---
+Package {
+  ownedMembership = [
+    Membership {
+      ownedRelatedElement = ObjectClass {
+        ownedRelationship = [
+          Superclassing {
+            superclass -> ObjectClass Base.alf#//@ownedMembership.1/@ownedMemberElement
+            subclass -> ObjectClass //@ownedMembership.0/@ownedMemberElement
+          }
+        ]
+      }
+      memberName = 'A'
+      memberElement -> ObjectClass //@ownedMembership.0/@ownedMemberElement
+    }
+    Membership {
+      ownedRelatedElement = ObjectClass {
+        ownedRelationship = [
+          Superclassing {
+            superclass -> ObjectClass //@ownedMembership.0/@ownedMemberElement
+            subclass -> ObjectClass //@ownedMembership.1/@ownedMemberElement
+          }
+        ]
+      }
+      memberName = 'B'
+      memberElement -> ObjectClass //@ownedMembership.1/@ownedMemberElement
+    }
+  ]
+}
+--- */
+
+package test{
+	class A {}
+	class B specializes test::A{}
+}

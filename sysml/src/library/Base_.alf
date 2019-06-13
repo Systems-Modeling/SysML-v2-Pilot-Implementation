@@ -1,0 +1,100 @@
+package Base_ {
+		
+    /*
+     * Anything is the top level generalized type in the language. 
+     */
+	abstract Class Anything;
+	
+	/*
+	 * Object is the most general class of individuals with reference identity.
+	 */
+	abstract class Object specializes Anything;
+	
+	/*
+	 * Value is the most general class of individuals with value identity.
+	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
+	 */
+	abstract datatype Value specializes Anything;
+	abstract datatype EnumeratedValue specializes Value;
+	
+	/*
+	 * Link is the most general association between two or more things.
+	 * (It is actually class, not an association, because an association
+	 * must have a specific number of ends.)
+	 */
+	class Link specializes Object {
+		feature participant: Anything[2..*] ordered;
+	}
+	
+	/*
+	 * BinaryLink is the most general binary association between exactly two things, 
+	 * nominally directed from source to target.
+	 */
+	assoc BinaryLink specializes Link {
+
+	    feature participant: Anything[2] redefines Link::participant;
+		
+	    end sourceParticipant: Anything[0..*] subsets participant = participant[1] {
+	    	feature targetEnd: Anything[0..*] = targetParticipant;
+	    }
+	    end targetParticipant: Anything[0..*] subsets participant = participant[2] {
+	    	feature sourceEnd: Anything[0..*] = sourceParticipant;
+	    }
+	    
+	    /*
+	     * Constraint: 
+	     * this.sourceParticipant.targetEnd->includes(this.targetParticipant)
+	     * this.targetParticipant.sourceEnd->includes(this.sourceParticipant)
+	     */
+	
+	}
+	
+	/*
+	 * SelfLink is a binary association in which the individuals at the two ends are asserted
+	 * to be the same.
+	 */
+	assoc SelfLink specializes BinaryLink {
+		end self: Anything[0..*] redefines BinaryLink::sourceParticipant {
+			feature myself redefines targetEnd;
+		}
+		end myself: Anything[0..*] redefines BinaryLink::targetParticipant {
+			feature self redefines sourceEnd;
+		}
+	}
+	
+	/*  
+	 * Occurrence is the most general class of entities that may occur over time.
+	 * BehaviorOccurrence and FunctionOccurrence are specializations representing the
+	 * occurrence (execution/evaluation) of behaviors and functions.
+	 */
+	abstract class Occurrence specializes Anything;
+	abstract class BehaviorOccurrence specializes Occurrence;
+	abstract class FunctionEvaluation specializes BehaviorOccurrence;
+
+	/*
+	 * property is the top-level feature in the language.
+	 * referenceProperty and valueProperty are specializations that restrict the feature type
+	 * to Objects and Values, respectively.
+	 */
+	feature property: Anything[0..*] nonunique;
+	feature referenceProperty: Object[0..*] nonunique subsets property;
+	feature valueProperty: Value[0..*] nonunique subsets property;
+	
+	/*
+	 * connection is the most general feature of links between individuals.
+	 * binaryConnection and binding are specializations of binary links and self links.
+	 */
+	feature connection: Link[0..*] nonunique subsets property;
+	feature binaryConnection: BinaryLink[0..*] nonunique subsets connection;
+	feature binding: SelfLink[0..*] nonunique subsets binaryConnection;
+	
+	/*
+	 * execution is the most general feature of occurrences of behaviors.
+	 * evaluation is a specialization for occurrences of functions.
+	 */
+	feature execution: BehaviorOccurrence[0..*] nonunique subsets property;
+	feature evaluation: FunctionEvaluation[0..*] nonunique subsets execution;
+	
+	feature sourceEnd: Anything[0..*] nonunique subsets property;
+	feature targetEnd: Anything[0..*] nonunique subsets property;
+}

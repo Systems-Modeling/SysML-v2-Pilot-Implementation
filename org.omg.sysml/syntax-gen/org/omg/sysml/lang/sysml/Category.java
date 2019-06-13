@@ -17,10 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#isAbstract <em>Is Abstract</em>}</li>

@@ -49,8 +49,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AssociationImpl extends ClassImpl implements Association {
 	
-	public String ASSOCIATION_SUPERCLASS_DEFAULT = "Base::Link";
-	public String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Base::BinaryLink";
+	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Base::Link";
+	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Base::BinaryLink";
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.

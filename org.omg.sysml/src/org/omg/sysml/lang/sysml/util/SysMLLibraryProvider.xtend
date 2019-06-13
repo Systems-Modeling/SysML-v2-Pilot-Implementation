@@ -24,22 +24,27 @@
 
 package org.omg.sysml.lang.sysml.util
 
+import java.util.Map
+
 import com.google.inject.Inject
+import com.google.common.base.Predicates
 import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.scoping.AlfScopeProvider
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
 	
 	@Inject
-	AlfScopeProvider scopeProvider
+	IGlobalScopeProvider globalScope
 	
 	@Inject
 	IQualifiedNameConverter nameConverter
+	
+	protected Map<String, Element> elementCache = newHashMap
 	
 	protected def EObject filePackage(Element element) {
 		var pack = element
@@ -50,8 +55,16 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {
-		var element = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
-		return if (element === null) null else element.getEObjectOrProxy as Element		
+		var element = elementCache.get(name);
+		if (element === null) {
+			var description = globalScope.getScope(context.eResource, reference, Predicates.alwaysTrue).
+				getSingleElement(nameConverter.toQualifiedName(name))
+			if (description !== null) {
+				element = description.EObjectOrProxy as Element
+				elementCache.put(name, element)
+			}
+		}
+		return element		
 	}
 	
 }

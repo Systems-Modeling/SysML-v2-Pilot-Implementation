@@ -17,7 +17,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
@@ -37,10 +39,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class OperatorExpressionImpl extends ExpressionImpl implements OperatorExpression {
+public class OperatorExpressionImpl extends InvocationExpressionImpl implements OperatorExpression {
 	
 	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions"};
+	public static final String[] LIBRARY_PACKAGE_NAMES = {"BaseFunctions", "ScalarFunctions", "ControlFunctions"};
 	
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -120,12 +122,23 @@ public class OperatorExpressionImpl extends ExpressionImpl implements OperatorEx
 		return operator == null? super.getTyping():
 			getOwnedGeneralizationWithDefault(
 					FeatureTyping.class, SysMLPackage.FEATURE__TYPING, SysMLPackage.eINSTANCE.getFeatureTyping(), 
-					getOperatorQualifiedNames());
+					getOperatorQualifiedNames(operator));
 	}
 	
-	protected String[] getOperatorQualifiedNames() {
-		String operator = getOperator();
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::" + operator).toArray(String[]::new);
+	@Override
+	public EList<Category> getType() {
+		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
+		getFeatureTypes(this, types);
+		return types;
+	}	
+	
+	protected String[] getOperatorQualifiedNames(String op) {
+		// NOTE: This is necessary because of how Xtext constructs the qualified name in the global scope for
+		// an element named '.'.
+		// TODO: Remove this if and when possible.
+		final String operator = ".".equals(op)? "": op;
+		
+		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack->pack + "::'" + operator +"'").toArray(String[]::new);
 	}
 	
 	/**

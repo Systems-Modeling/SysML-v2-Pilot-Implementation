@@ -57,39 +57,41 @@ package Base {
 	/*  
 	 * Occurrence is the most general class of entities that may occur over time.
 	 * BehaviorOccurrence and FunctionOccurrence are specializations representing the
-	 * occurrence (execution/evaluation) of behaviors and functions.
+	 * occurrence (execution/evaluation) of behaviors and functions. LiteralEvaluation
+	 * and NullEvaluation are further specializations of FunctionOccurrence representing
+	 * literal and null expressions.
 	 */
 	abstract class Occurrence specializes Anything;
 	abstract behavior BehaviorOccurrence() specializes Occurrence;
-	abstract function FunctionEvaluation(): Anything[0..*] specializes BehaviorOccurrence;
-				
+	abstract function FunctionEvaluation(): Anything[0..*] specializes BehaviorOccurrence;				
 	function LiteralEvaluation(): Anything specializes FunctionEvaluation;
 	function NullEvaluation(): Anything[0..0] specializes FunctionEvaluation;
 
 	/*
-	 * property is the top-level feature in the language.
-	 * referenceProperty and valueProperty are specializations that restrict the feature type
-	 * to Objects and Values, respectively.
+	 * things is the top-level feature in the language.
+	 * objects and values are specializations that restrict the feature type
+	 * to Object and Value, respectively.
 	 */
-	abstract feature property: Anything[0..*] nonunique;
-	abstract feature referenceProperty: Object[0..*] nonunique subsets property;
-	abstract feature valueProperty: Value[0..*] nonunique subsets property;
+	abstract feature things: Anything[0..*] nonunique;
+	abstract feature objects: Object[0..*] nonunique subsets things;
+	abstract feature values: Value[0..*] nonunique subsets things;
 	
 	/*
-	 * connection is the most general feature of links between individuals.
-	 * binaryConnection and binding are specializations of binary links and self links.
-	 */
-	abstract feature connection: Link[0..*] nonunique subsets property;
-	abstract feature binaryConnection: BinaryLink[0..*] nonunique subsets connection;
-	abstract feature binding: SelfLink[0..*] nonunique subsets binaryConnection;
+	 * links is the most general feature of links between individuals.
+	 * binaryLinks and selfLinks are specializations of binary links and self links.
+	 */	
+	abstract feature links: Link[0..*] nonunique subsets objects;
+	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links;
+	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks;
 	
 	/*
-	 * execution is the most general feature of occurrences of behaviors.
-	 * evaluation is a specialization for occurrences of functions.
+	 * behaviorOccurrences is the most general feature of occurrences of behaviors.
+	 * functionEvaluations is a specialization for occurrences of functions.
+	 * literalEvaluations and nullEvaluations are specializations of functionEvaluations
+	 * that restrict the feature type to LiteralEvaluation and NullEvaluation, respectively.
 	 */
-	feature execution: BehaviorOccurrence[0..*] nonunique subsets property;
-	feature evaluation: FunctionEvaluation[0..*] nonunique subsets execution;
-	
-	feature literalEvaluation: LiteralEvaluation[0..*] nonunique subsets evaluation;
-	feature nullEvaluation: NullEvaluation[0..*] nonunique subsets evaluation;
+	abstract step behaviorOccurrences: BehaviorOccurrence[0..*] nonunique subsets things;
+	abstract expr functionEvaluations: FunctionEvaluation[0..*] nonunique subsets behaviorOccurrences;	
+	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets functionEvaluations;
+	abstract expr nullEvaluations: NullEvaluation[0..*] nonunique subsets functionEvaluations;
 }

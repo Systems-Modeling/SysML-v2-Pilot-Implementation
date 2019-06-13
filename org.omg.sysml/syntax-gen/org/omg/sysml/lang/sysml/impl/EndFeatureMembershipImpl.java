@@ -126,17 +126,17 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	 */
 	@Override
 	public Category getOwningCategory() {
-		return getOwningAssociation();
+		return super.getOwningCategory();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Category basicGetOwningCategory() {
-		return basicGetOwningAssociation();
+		return super.basicGetOwningCategory();
 	}
 
 	/**

@@ -17,8 +17,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedGeneralization <em>Owned Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Category#getInput <em>Input</em>}</li>
@@ -41,7 +42,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -59,9 +60,33 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	EList<Generalization> getOwnedGeneralization();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * Returns the value of the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Feature Membership comp</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Feature Membership comp</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeatureMembership_comp()
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory
+	 * @model opposite="owningCategory"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FeatureMembership> getOwnedFeatureMembership_comp();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Feature Membership</em>' reference list isn't clear,
@@ -70,8 +95,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory
-	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true"
+	 * @model
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();

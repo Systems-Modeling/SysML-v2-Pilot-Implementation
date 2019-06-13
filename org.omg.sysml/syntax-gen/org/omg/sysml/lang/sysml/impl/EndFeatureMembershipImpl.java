@@ -144,6 +144,18 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NotificationChain basicSetOwningCategory(Category newOwningCategory, NotificationChain msgs) {
+		if (newOwningCategory != null && !(newOwningCategory instanceof Association)) {
+			throw new IllegalArgumentException("newOwningCategory must be an instance of Association");
+		}
+		return basicSetOwningAssociation((Association) newOwningCategory, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void setOwningCategory(Category newOwningCategory) {
 		if (newOwningCategory != null && !(newOwningCategory instanceof Association)) {
 			throw new IllegalArgumentException("newOwningCategory must be an instance of Association");

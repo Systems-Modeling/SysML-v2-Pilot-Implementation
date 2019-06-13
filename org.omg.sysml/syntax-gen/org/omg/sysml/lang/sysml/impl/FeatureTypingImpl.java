@@ -173,9 +173,21 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setTypedFeature(Feature newTypedFeature) {
+		if (newTypedFeature != typedFeature) {
+			NotificationChain msgs = null;
+			if (typedFeature != null)
+				msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
+			if (newTypedFeature != null)
+				msgs = ((InternalEObject)newTypedFeature).eInverseAdd(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
+			msgs = basicSetTypedFeature(newTypedFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, newTypedFeature, newTypedFeature));
 	}
 
 	/**

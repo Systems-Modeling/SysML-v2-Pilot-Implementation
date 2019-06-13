@@ -5,12 +5,13 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -26,8 +27,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningCategory <em>Owning Category</em>}</li>
  * </ul>
  *
  * @generated
@@ -160,7 +161,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -230,6 +231,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
+	@Override
 	public Element getOwningRelatedElement() {
 		if (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT) return null;
 		return (Element)eInternalContainer();
@@ -259,7 +261,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -311,12 +313,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				if (resolve) return getSpecific();
 				return basicGetSpecific();
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				if (resolve) return getOwningCategory();
-				return basicGetOwningCategory();
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				if (resolve) return getGeneral();
 				return basicGetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
+				if (resolve) return getOwningCategory();
+				return basicGetOwningCategory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -332,11 +334,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Category)newValue);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				setOwningCategory((Category)newValue);
-				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				setGeneral((Category)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
+				setOwningCategory((Category)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -353,11 +355,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Category)null);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				setOwningCategory((Category)null);
-				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				setGeneral((Category)null);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
+				setOwningCategory((Category)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -379,29 +381,44 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 				return isSetTarget();
 			case SysMLPackage.GENERALIZATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				return basicGetOwningCategory() != null;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				return isSetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
+				return basicGetOwningCategory() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__TARGET);
-		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element general = basicGetGeneral();
+		EList<Element> target = new UniqueEList<Element>();
+		Category general = getGeneral();
 		if (general != null) {
 			target.add(general);
 		}
-		return target;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
 	}
+
+	//	/**
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated NOT
+//	 */
+//	@Override
+//	public EList<Element> getTarget() {
+//		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__TARGET);
+//		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+//		Element general = basicGetGeneral();
+//		if (general != null) {
+//			target.add(general);
+//		}
+//		return target;
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -412,20 +429,35 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
   		return false;
 	}
 
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__SOURCE);
-		Element specific = basicGetSpecific();
+		EList<Element> source = new UniqueEList<Element>();
+		Category specific = getSpecific();
 		if (specific != null) {
 			source.add(specific);
 		}
-		return source;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
+
+	//	/**
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated NOT
+//	 */
+//	@Override
+//	public EList<Element> getSource() {
+//		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__SOURCE);
+//		Element specific = basicGetSpecific();
+//		if (specific != null) {
+//			source.add(specific);
+//		}
+//		return source;
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->

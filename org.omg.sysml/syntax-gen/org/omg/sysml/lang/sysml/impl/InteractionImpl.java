@@ -7,9 +7,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
-
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Interaction;
@@ -28,7 +27,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getStep <em>Step</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getInvolvesFeature <em>Involves Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getParticipantFeature <em>Participant Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,16 +41,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 * @ordered
 	 */
 	protected EList<Feature> involvesFeature;
-
-	/**
-	 * The cached value of the '{@link #getParticipantFeature() <em>Participant Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParticipantFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> participantFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,20 +81,10 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	@Override
 	public EList<Feature> getInvolvesFeature() {
 		if (involvesFeature == null) {
-			involvesFeature = new SubsetSupersetEObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.INTERACTION__INVOLVES_FEATURE, null, INVOLVES_FEATURE_ESUBSETS);
+			involvesFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.INTERACTION__INVOLVES_FEATURE);
 		}
 		return involvesFeature;
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInvolvesFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] INVOLVES_FEATURE_ESUBSETS = new int[] {SysMLPackage.INTERACTION__PARTICIPANT_FEATURE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,29 +104,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 * @generated
 	 */
 	@Override
-	public EList<Feature> getParticipantFeature() {
-		if (participantFeature == null) {
-			participantFeature = new SubsetSupersetEObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.INTERACTION__PARTICIPANT_FEATURE, PARTICIPANT_FEATURE_ESUPERSETS, null);
-		}
-		return participantFeature;
-	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getParticipantFeature() <em>Participant Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParticipantFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] PARTICIPANT_FEATURE_ESUPERSETS = new int[] {SysMLPackage.INTERACTION__INVOLVES_FEATURE};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.INTERACTION__STEP:
@@ -157,8 +112,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 				return getInvolvesFeature();
 			case SysMLPackage.INTERACTION__PARAMETER:
 				return getParameter();
-			case SysMLPackage.INTERACTION__PARTICIPANT_FEATURE:
-				return getParticipantFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,10 +137,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 				getParameter().clear();
 				getParameter().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case SysMLPackage.INTERACTION__PARTICIPANT_FEATURE:
-				getParticipantFeature().clear();
-				getParticipantFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -209,9 +158,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 			case SysMLPackage.INTERACTION__PARAMETER:
 				getParameter().clear();
 				return;
-			case SysMLPackage.INTERACTION__PARTICIPANT_FEATURE:
-				getParticipantFeature().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,8 +176,6 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 				return involvesFeature != null && !involvesFeature.isEmpty();
 			case SysMLPackage.INTERACTION__PARAMETER:
 				return !getParameter().isEmpty();
-			case SysMLPackage.INTERACTION__PARTICIPANT_FEATURE:
-				return participantFeature != null && !participantFeature.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

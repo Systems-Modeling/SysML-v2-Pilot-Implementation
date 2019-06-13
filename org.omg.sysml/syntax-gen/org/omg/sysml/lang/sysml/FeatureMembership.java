@@ -12,15 +12,16 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership()
@@ -115,6 +116,48 @@ public interface FeatureMembership extends Membership {
 	 * @generated
 	 */
 	void setMemberFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Member Feature comp</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature() <em>Member Feature</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Member Feature comp</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Member Feature comp</em>' containment reference.
+	 * @see #setOwnedMemberFeature_comp(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwnedMemberFeature_comp()
+	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
+	 * @model opposite="owningFeatureMembership" containment="true" ordered="false"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Feature getOwnedMemberFeature_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Member Feature comp</em>' containment reference.
+	 * @see #getOwnedMemberFeature_comp()
+	 * @generated
+	 */
+	void setOwnedMemberFeature_comp(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Part</b></em>' attribute.
@@ -228,7 +271,13 @@ public interface FeatureMembership extends Membership {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
@@ -238,8 +287,9 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Owning Category</em>' reference.
 	 * @see #setOwningCategory(Category)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningCategory()
-	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership
-	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp
+	 * @model opposite="ownedFeatureMembership_comp" required="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Category getOwningCategory();
@@ -256,13 +306,6 @@ public interface FeatureMembership extends Membership {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature() <em>Member Feature</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Feature</em>' containment reference isn't clear,
@@ -272,9 +315,7 @@ public interface FeatureMembership extends Membership {
 	 * @return the value of the '<em>Owned Member Feature</em>' reference.
 	 * @see #setOwnedMemberFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwnedMemberFeature()
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
-	 * @model opposite="owningFeatureMembership" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
+	 * @model
 	 * @generated
 	 */
 	Feature getOwnedMemberFeature();

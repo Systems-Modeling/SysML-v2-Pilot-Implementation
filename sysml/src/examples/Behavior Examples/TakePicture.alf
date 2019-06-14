@@ -1,20 +1,36 @@
 behavior TakePicture() specializes Base::Performance {
+	import Base::*;
 	import Camera;
 	
-	feature camera: Camera[1] subsets involvedObjects {
+	feature camera: Camera[1] subsets Performance::involvedObjects {
 		// Note: In the future, these "connection point" redefinitions 
 		// will be automatic.
 		feature focusedState redefines Camera::focusedState;
 		feature shotState redefines Camera::shotState;
 	}
 	
-	behavior Focus();
-	behavior Shoot();
+	class Exposure;
 	
-	step step1: Focus[1] subsets suboccurrences;
-	step step2: Shoot[1] subsets suboccurrences;
+	behavior Focus(out xrsl: Exposure);
+	behavior Shoot(in xsf: Exposure);	
 	
-	succession step1 to step2;
+	step step1: Focus[1] (out xrsl) subsets Performance::suboccurrences;	
+	step step2: Shoot[1] (in xsf) subsets Performance::suboccurrences;
+	
+	flow Exposure[1] from step1::xrsl to step2::xsf;
+
+//	The above flow is equivalent to the following:
+//	
+//	feature succFlow subsets Transfers::flows {
+//		import Transfers::*;
+//		feature item: Exposure[1] redefines Transfer::item;
+//		feature transferSource redefines TransferBefore::transferSource subsets step1 {
+//			feature sourceOutput redefines Transfer::transferSource::sourceOutput, step1::xrsl;
+//		}
+//		feature transferTarget redefines TransferBefore::transferTarget subsets step2 {
+//			feature targetInput redefines Transfer::transferTarget::targetInput, step2::xsf;
+//		}
+//	}
 	
 	succession step1 to camera::focusedState;
 	succession step2 to camera::shotState;

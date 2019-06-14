@@ -2,8 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -15,6 +16,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionItemFlow {
+	
+	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_DEFAULT = "Transfers::flows";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +38,9 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 		return SysMLPackage.Literals.SUCCESSION_ITEM_FLOW;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(SUCCESSION_ITEM_FLOW_SUBSETTING_DEFAULT);
+	}
+	
 } //SuccessionItemFlowImpl

@@ -66,9 +66,12 @@ import org.omg.sysml.lang.sysml.ValueClass;
  */
 public class FeatureImpl extends CategoryImpl implements Feature {
 	
-	private static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
-	private static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
-	private static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
+	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
+	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	
+	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
+	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
 	
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.

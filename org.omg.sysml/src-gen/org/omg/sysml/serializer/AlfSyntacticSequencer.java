@@ -151,6 +151,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=StepParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
@@ -172,6 +173,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (':' 'any')? (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
@@ -257,10 +259,13 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
+	 *     name=Name (ambiguity) '(' ownedRelationship+=ParameterMember
+	 *     name=Name (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
@@ -272,6 +277,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
 	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
+	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=ParameterMember
+	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset

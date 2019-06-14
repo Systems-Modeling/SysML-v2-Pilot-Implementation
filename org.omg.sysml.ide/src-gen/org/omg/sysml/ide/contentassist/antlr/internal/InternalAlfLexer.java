@@ -59,12 +59,16 @@ public class InternalAlfLexer extends Lexer {
     public static final int T__42=42;
     public static final int T__43=43;
     public static final int T__91=91;
+    public static final int T__92=92;
+    public static final int T__93=93;
+    public static final int T__94=94;
     public static final int T__90=90;
     public static final int T__19=19;
     public static final int RULE_STATEMENT_ANNOTATION=11;
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
+    public static final int T__95=95;
     public static final int RULE_DOCUMENTATION_COMMENT=8;
     public static final int T__26=26;
     public static final int T__27=27;
@@ -1133,10 +1137,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:60:7: ( 'specializes' )
-            // InternalAlf.g:60:9: 'specializes'
+            // InternalAlf.g:60:7: ( 'stream' )
+            // InternalAlf.g:60:9: 'stream'
             {
-            match("specializes"); 
+            match("stream"); 
 
 
             }
@@ -1154,10 +1158,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:61:7: ( ',' )
-            // InternalAlf.g:61:9: ','
+            // InternalAlf.g:61:7: ( 'flow' )
+            // InternalAlf.g:61:9: 'flow'
             {
-            match(','); 
+            match("flow"); 
+
 
             }
 
@@ -1174,19 +1179,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:62:7: ( 'end' )
-            // InternalAlf.g:62:9: 'end'
-=======
-            // InternalAlf.g:62:7: ( 'interaction' )
-            // InternalAlf.g:62:9: 'interaction'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:62:7: ( 'specializes' )
+            // InternalAlf.g:62:9: 'specializes'
             {
-<<<<<<< Upstream, based on origin/ST6RI-75
-            match("end"); 
-=======
-            match("interaction"); 
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            match("specializes"); 
 
 
             }
@@ -1204,10 +1200,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:63:7: ( '(' )
-            // InternalAlf.g:63:9: '('
+            // InternalAlf.g:63:7: ( ',' )
+            // InternalAlf.g:63:9: ','
             {
-            match('('); 
+            match(','); 
 
             }
 
@@ -1224,10 +1220,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:64:7: ( ')' )
-            // InternalAlf.g:64:9: ')'
+            // InternalAlf.g:64:7: ( 'end' )
+            // InternalAlf.g:64:9: 'end'
             {
-            match(')'); 
+            match("end"); 
+
 
             }
 
@@ -1244,10 +1241,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:65:7: ( 'step' )
-            // InternalAlf.g:65:9: 'step'
+            // InternalAlf.g:65:7: ( 'interaction' )
+            // InternalAlf.g:65:9: 'interaction'
             {
-            match("step"); 
+            match("interaction"); 
 
 
             }
@@ -1265,11 +1262,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:66:7: ( 'expr' )
-            // InternalAlf.g:66:9: 'expr'
+            // InternalAlf.g:66:7: ( '(' )
+            // InternalAlf.g:66:9: '('
             {
-            match("expr"); 
-
+            match('('); 
 
             }
 
@@ -1286,11 +1282,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:67:7: ( 'redefines' )
-            // InternalAlf.g:67:9: 'redefines'
+            // InternalAlf.g:67:7: ( ')' )
+            // InternalAlf.g:67:9: ')'
             {
-            match("redefines"); 
-
+            match(')'); 
 
             }
 
@@ -1307,10 +1302,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:68:7: ( '=' )
-            // InternalAlf.g:68:9: '='
+            // InternalAlf.g:68:7: ( 'step' )
+            // InternalAlf.g:68:9: 'step'
             {
-            match('='); 
+            match("step"); 
+
 
             }
 
@@ -1327,10 +1323,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:69:7: ( ':' )
-            // InternalAlf.g:69:9: ':'
+            // InternalAlf.g:69:7: ( 'expr' )
+            // InternalAlf.g:69:9: 'expr'
             {
-            match(':'); 
+            match("expr"); 
+
 
             }
 
@@ -1347,10 +1344,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:70:7: ( '[' )
-            // InternalAlf.g:70:9: '['
+            // InternalAlf.g:70:7: ( 'redefines' )
+            // InternalAlf.g:70:9: 'redefines'
             {
-            match('['); 
+            match("redefines"); 
+
 
             }
 
@@ -1367,10 +1365,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:71:7: ( ']' )
-            // InternalAlf.g:71:9: ']'
+            // InternalAlf.g:71:7: ( '=' )
+            // InternalAlf.g:71:9: '='
             {
-            match(']'); 
+            match('='); 
 
             }
 
@@ -1387,11 +1385,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:72:7: ( '..' )
-            // InternalAlf.g:72:9: '..'
+            // InternalAlf.g:72:7: ( ':' )
+            // InternalAlf.g:72:9: ':'
             {
-            match(".."); 
-
+            match(':'); 
 
             }
 
@@ -1408,11 +1405,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:73:7: ( 'subsets' )
-            // InternalAlf.g:73:9: 'subsets'
+            // InternalAlf.g:73:7: ( '[' )
+            // InternalAlf.g:73:9: '['
             {
-            match("subsets"); 
-
+            match('['); 
 
             }
 
@@ -1429,11 +1425,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:74:7: ( 'to' )
-            // InternalAlf.g:74:9: 'to'
+            // InternalAlf.g:74:7: ( ']' )
+            // InternalAlf.g:74:9: ']'
             {
-            match("to"); 
-
+            match(']'); 
 
             }
 
@@ -1450,10 +1445,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:75:7: ( '=>' )
-            // InternalAlf.g:75:9: '=>'
+            // InternalAlf.g:75:7: ( '..' )
+            // InternalAlf.g:75:9: '..'
             {
-            match("=>"); 
+            match(".."); 
 
 
             }
@@ -1471,10 +1466,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:76:7: ( '->' )
-            // InternalAlf.g:76:9: '->'
+            // InternalAlf.g:76:7: ( 'subsets' )
+            // InternalAlf.g:76:9: 'subsets'
             {
-            match("->"); 
+            match("subsets"); 
 
 
             }
@@ -1492,10 +1487,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:77:7: ( 'null' )
-            // InternalAlf.g:77:9: 'null'
+            // InternalAlf.g:77:7: ( 'to' )
+            // InternalAlf.g:77:9: 'to'
             {
-            match("null"); 
+            match("to"); 
 
 
             }
@@ -1513,10 +1508,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:78:7: ( './' )
-            // InternalAlf.g:78:9: './'
+            // InternalAlf.g:78:7: ( '=>' )
+            // InternalAlf.g:78:9: '=>'
             {
-            match("./"); 
+            match("=>"); 
 
 
             }
@@ -1534,10 +1529,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:79:7: ( 'part' )
-            // InternalAlf.g:79:9: 'part'
+            // InternalAlf.g:79:7: ( 'from' )
+            // InternalAlf.g:79:9: 'from'
             {
-            match("part"); 
+            match("from"); 
 
 
             }
@@ -1555,10 +1550,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:80:7: ( 'portion' )
-            // InternalAlf.g:80:9: 'portion'
+            // InternalAlf.g:80:7: ( '->' )
+            // InternalAlf.g:80:9: '->'
             {
-            match("portion"); 
+            match("->"); 
 
 
             }
@@ -1576,10 +1571,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:81:7: ( 'port' )
-            // InternalAlf.g:81:9: 'port'
+            // InternalAlf.g:81:7: ( 'null' )
+            // InternalAlf.g:81:9: 'null'
             {
-            match("port"); 
+            match("null"); 
 
 
             }
@@ -1597,10 +1592,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:82:7: ( 'compose' )
-            // InternalAlf.g:82:9: 'compose'
+            // InternalAlf.g:82:7: ( './' )
+            // InternalAlf.g:82:9: './'
             {
-            match("compose"); 
+            match("./"); 
 
 
             }
@@ -1618,10 +1613,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:83:7: ( 'ordered' )
-            // InternalAlf.g:83:9: 'ordered'
+            // InternalAlf.g:83:7: ( 'part' )
+            // InternalAlf.g:83:9: 'part'
             {
-            match("ordered"); 
+            match("part"); 
 
 
             }
@@ -1639,10 +1634,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:84:7: ( 'nonunique' )
-            // InternalAlf.g:84:9: 'nonunique'
+            // InternalAlf.g:84:7: ( 'portion' )
+            // InternalAlf.g:84:9: 'portion'
             {
-            match("nonunique"); 
+            match("portion"); 
 
 
             }
@@ -1660,10 +1655,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:85:7: ( '@' )
-            // InternalAlf.g:85:9: '@'
+            // InternalAlf.g:85:7: ( 'port' )
+            // InternalAlf.g:85:9: 'port'
             {
-            match('@'); 
+            match("port"); 
+
 
             }
 
@@ -1680,10 +1676,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAlf.g:86:7: ( 'allInstances' )
-            // InternalAlf.g:86:9: 'allInstances'
+            // InternalAlf.g:86:7: ( 'compose' )
+            // InternalAlf.g:86:9: 'compose'
             {
-            match("allInstances"); 
+            match("compose"); 
 
 
             }
@@ -1696,24 +1692,98 @@ public class InternalAlfLexer extends Lexer {
     }
     // $ANTLR end "T__91"
 
+    // $ANTLR start "T__92"
+    public final void mT__92() throws RecognitionException {
+        try {
+            int _type = T__92;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAlf.g:87:7: ( 'ordered' )
+            // InternalAlf.g:87:9: 'ordered'
+            {
+            match("ordered"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__92"
+
+    // $ANTLR start "T__93"
+    public final void mT__93() throws RecognitionException {
+        try {
+            int _type = T__93;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAlf.g:88:7: ( 'nonunique' )
+            // InternalAlf.g:88:9: 'nonunique'
+            {
+            match("nonunique"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__93"
+
+    // $ANTLR start "T__94"
+    public final void mT__94() throws RecognitionException {
+        try {
+            int _type = T__94;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAlf.g:89:7: ( '@' )
+            // InternalAlf.g:89:9: '@'
+            {
+            match('@'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__94"
+
+    // $ANTLR start "T__95"
+    public final void mT__95() throws RecognitionException {
+        try {
+            int _type = T__95;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAlf.g:90:7: ( 'allInstances' )
+            // InternalAlf.g:90:9: 'allInstances'
+            {
+            match("allInstances"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__95"
+
     // $ANTLR start "RULE_BOOLEAN_VALUE"
     public final void mRULE_BOOLEAN_VALUE() throws RecognitionException {
         try {
             int _type = RULE_BOOLEAN_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23368:20: ( ( 'true' | 'false' ) )
-            // InternalAlf.g:23368:22: ( 'true' | 'false' )
-=======
-            // InternalAlf.g:23339:20: ( ( 'true' | 'false' ) )
-            // InternalAlf.g:23339:22: ( 'true' | 'false' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26024:20: ( ( 'true' | 'false' ) )
+            // InternalAlf.g:26024:22: ( 'true' | 'false' )
             {
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23368:22: ( 'true' | 'false' )
-=======
-            // InternalAlf.g:23339:22: ( 'true' | 'false' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26024:22: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1731,11 +1801,7 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23368:23: 'true'
-=======
-                    // InternalAlf.g:23339:23: 'true'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26024:23: 'true'
                     {
                     match("true"); 
 
@@ -1743,11 +1809,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23368:30: 'false'
-=======
-                    // InternalAlf.g:23339:30: 'false'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26024:30: 'false'
                     {
                     match("false"); 
 
@@ -1773,19 +1835,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_NATURAL_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23370:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // InternalAlf.g:23370:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
-=======
-            // InternalAlf.g:23341:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // InternalAlf.g:23341:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26026:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
+            // InternalAlf.g:26026:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             {
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23370:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
-=======
-            // InternalAlf.g:23341:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26026:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             int alt14=4;
             int LA14_0 = input.LA(1);
 
@@ -1831,17 +1884,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
-=======
-                    // InternalAlf.g:23341:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
-=======
-                    // InternalAlf.g:23341:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -1859,29 +1904,17 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:24: '0'
-=======
-                            // InternalAlf.g:23341:24: '0'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:24: '0'
                             {
                             match('0'); 
 
                             }
                             break;
                         case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
-=======
-                            // InternalAlf.g:23341:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
                             {
                             matchRange('1','9'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:37: ( ( '_' )? '0' .. '9' )*
-=======
-                            // InternalAlf.g:23341:37: ( ( '_' )? '0' .. '9' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:37: ( ( '_' )? '0' .. '9' )*
                             loop3:
                             do {
                                 int alt3=2;
@@ -1894,17 +1927,9 @@ public class InternalAlfLexer extends Lexer {
 
                                 switch (alt3) {
                             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            	    // InternalAlf.g:23370:38: ( '_' )? '0' .. '9'
-=======
-                            	    // InternalAlf.g:23341:38: ( '_' )? '0' .. '9'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            	    // InternalAlf.g:26026:38: ( '_' )? '0' .. '9'
                             	    {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            	    // InternalAlf.g:23370:38: ( '_' )?
-=======
-                            	    // InternalAlf.g:23341:38: ( '_' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            	    // InternalAlf.g:26026:38: ( '_' )?
                             	    int alt2=2;
                             	    int LA2_0 = input.LA(1);
 
@@ -1913,11 +1938,7 @@ public class InternalAlfLexer extends Lexer {
                             	    }
                             	    switch (alt2) {
                             	        case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            	            // InternalAlf.g:23370:38: '_'
-=======
-                            	            // InternalAlf.g:23341:38: '_'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            	            // InternalAlf.g:26026:38: '_'
                             	            {
                             	            match('_'); 
 
@@ -1946,17 +1967,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
-=======
-                    // InternalAlf.g:23341:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
                     {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:55: ( '0b' | '0B' )
-=======
-                    // InternalAlf.g:23341:55: ( '0b' | '0B' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:55: ( '0b' | '0B' )
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -1984,11 +1997,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:56: '0b'
-=======
-                            // InternalAlf.g:23341:56: '0b'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:56: '0b'
                             {
                             match("0b"); 
 
@@ -1996,11 +2005,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:61: '0B'
-=======
-                            // InternalAlf.g:23341:61: '0B'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:61: '0B'
                             {
                             match("0B"); 
 
@@ -2011,11 +2016,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','1'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:76: ( ( '_' )? '0' .. '1' )*
-=======
-                    // InternalAlf.g:23341:76: ( ( '_' )? '0' .. '1' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:76: ( ( '_' )? '0' .. '1' )*
                     loop7:
                     do {
                         int alt7=2;
@@ -2028,17 +2029,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:77: ( '_' )? '0' .. '1'
-=======
-                    	    // InternalAlf.g:23341:77: ( '_' )? '0' .. '1'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:77: ( '_' )? '0' .. '1'
                     	    {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:77: ( '_' )?
-=======
-                    	    // InternalAlf.g:23341:77: ( '_' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:77: ( '_' )?
                     	    int alt6=2;
                     	    int LA6_0 = input.LA(1);
 
@@ -2047,11 +2040,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt6) {
                     	        case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	            // InternalAlf.g:23370:77: '_'
-=======
-                    	            // InternalAlf.g:23341:77: '_'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	            // InternalAlf.g:26026:77: '_'
                     	            {
                     	            match('_'); 
 
@@ -2074,17 +2063,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 3 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
-=======
-                    // InternalAlf.g:23341:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:93: ( '0x' | '0X' )
-=======
-                    // InternalAlf.g:23341:93: ( '0x' | '0X' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:93: ( '0x' | '0X' )
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2112,11 +2093,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:94: '0x'
-=======
-                            // InternalAlf.g:23341:94: '0x'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:94: '0x'
                             {
                             match("0x"); 
 
@@ -2124,11 +2101,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:99: '0X'
-=======
-                            // InternalAlf.g:23341:99: '0X'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:99: '0X'
                             {
                             match("0X"); 
 
@@ -2147,11 +2120,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
-=======
-                    // InternalAlf.g:23341:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -2164,17 +2133,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
-=======
-                    	    // InternalAlf.g:23341:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
                     	    {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:135: ( '_' )?
-=======
-                    	    // InternalAlf.g:23341:135: ( '_' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:135: ( '_' )?
                     	    int alt9=2;
                     	    int LA9_0 = input.LA(1);
 
@@ -2183,11 +2144,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt9) {
                     	        case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	            // InternalAlf.g:23370:135: '_'
-=======
-                    	            // InternalAlf.g:23341:135: '_'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	            // InternalAlf.g:26026:135: '_'
                     	            {
                     	            match('_'); 
 
@@ -2218,18 +2175,10 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 4 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
-=======
-                    // InternalAlf.g:23341:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
                     {
                     match('0'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:175: ( '_' )?
-=======
-                    // InternalAlf.g:23341:175: ( '_' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:175: ( '_' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -2238,11 +2187,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23370:175: '_'
-=======
-                            // InternalAlf.g:23341:175: '_'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26026:175: '_'
                             {
                             match('_'); 
 
@@ -2252,11 +2197,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','7'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23370:189: ( ( '_' )? '0' .. '7' )*
-=======
-                    // InternalAlf.g:23341:189: ( ( '_' )? '0' .. '7' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26026:189: ( ( '_' )? '0' .. '7' )*
                     loop13:
                     do {
                         int alt13=2;
@@ -2269,17 +2210,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:190: ( '_' )? '0' .. '7'
-=======
-                    	    // InternalAlf.g:23341:190: ( '_' )? '0' .. '7'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:190: ( '_' )? '0' .. '7'
                     	    {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23370:190: ( '_' )?
-=======
-                    	    // InternalAlf.g:23341:190: ( '_' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26026:190: ( '_' )?
                     	    int alt12=2;
                     	    int LA12_0 = input.LA(1);
 
@@ -2288,11 +2221,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt12) {
                     	        case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	            // InternalAlf.g:23370:190: '_'
-=======
-                    	            // InternalAlf.g:23341:190: '_'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	            // InternalAlf.g:26026:190: '_'
                     	            {
                     	            match('_'); 
 
@@ -2333,13 +2262,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_EXP_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23372:16: ( RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE )
-            // InternalAlf.g:23372:18: RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE
-=======
-            // InternalAlf.g:23343:16: ( RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE )
-            // InternalAlf.g:23343:18: RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26028:16: ( RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE )
+            // InternalAlf.g:26028:18: RULE_NATURAL_VALUE ( 'e' | 'E' ) ( '+' | '-' )? RULE_NATURAL_VALUE
             {
             mRULE_NATURAL_VALUE(); 
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
@@ -2351,11 +2275,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23372:47: ( '+' | '-' )?
-=======
-            // InternalAlf.g:23343:47: ( '+' | '-' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26028:47: ( '+' | '-' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2398,13 +2318,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23374:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalAlf.g:23374:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-=======
-            // InternalAlf.g:23345:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalAlf.g:23345:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26030:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalAlf.g:26030:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2415,11 +2330,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23374:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-=======
-            // InternalAlf.g:23345:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26030:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop16:
             do {
                 int alt16=2;
@@ -2468,20 +2379,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_UNRESTRICTED_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23376:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // InternalAlf.g:23376:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
-=======
-            // InternalAlf.g:23347:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // InternalAlf.g:23347:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26032:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalAlf.g:26032:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23376:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
-=======
-            // InternalAlf.g:23347:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26032:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop17:
             do {
                 int alt17=3;
@@ -2497,11 +2399,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23376:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
-=======
-            	    // InternalAlf.g:23347:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26032:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2517,11 +2415,7 @@ public class InternalAlfLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23376:73: ~ ( ( '\\\\' | '\\'' ) )
-=======
-            	    // InternalAlf.g:23347:73: ~ ( ( '\\\\' | '\\'' ) )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26032:73: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2558,20 +2452,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_STRING_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23378:19: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // InternalAlf.g:23378:21: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
-=======
-            // InternalAlf.g:23349:19: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // InternalAlf.g:23349:21: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26034:19: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // InternalAlf.g:26034:21: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23378:25: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
-=======
-            // InternalAlf.g:23349:25: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26034:25: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop18:
             do {
                 int alt18=3;
@@ -2587,11 +2472,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23378:26: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
-=======
-            	    // InternalAlf.g:23349:26: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26034:26: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2607,11 +2488,7 @@ public class InternalAlfLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23378:67: ~ ( ( '\\\\' | '\"' ) )
-=======
-            	    // InternalAlf.g:23349:67: ~ ( ( '\\\\' | '\"' ) )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26034:67: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2648,21 +2525,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_DOCUMENTATION_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23380:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23380:30: '/**' ( options {greedy=false; } : . )* '*/'
-=======
-            // InternalAlf.g:23351:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23351:30: '/**' ( options {greedy=false; } : . )* '*/'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26036:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:26036:30: '/**' ( options {greedy=false; } : . )* '*/'
             {
             match("/**"); 
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23380:36: ( options {greedy=false; } : . )*
-=======
-            // InternalAlf.g:23351:36: ( options {greedy=false; } : . )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26036:36: ( options {greedy=false; } : . )*
             loop19:
             do {
                 int alt19=2;
@@ -2687,11 +2555,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23380:64: .
-=======
-            	    // InternalAlf.g:23351:64: .
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26036:64: .
             	    {
             	    matchAny(); 
 
@@ -2721,21 +2585,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_STATEMENT_ANNOTATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23382:27: ( '//@' ( options {greedy=false; } : . )* '\\n' )
-            // InternalAlf.g:23382:29: '//@' ( options {greedy=false; } : . )* '\\n'
-=======
-            // InternalAlf.g:23353:27: ( '//@' ( options {greedy=false; } : . )* '\\n' )
-            // InternalAlf.g:23353:29: '//@' ( options {greedy=false; } : . )* '\\n'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26038:27: ( '//@' ( options {greedy=false; } : . )* '\\n' )
+            // InternalAlf.g:26038:29: '//@' ( options {greedy=false; } : . )* '\\n'
             {
             match("//@"); 
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23382:35: ( options {greedy=false; } : . )*
-=======
-            // InternalAlf.g:23353:35: ( options {greedy=false; } : . )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26038:35: ( options {greedy=false; } : . )*
             loop20:
             do {
                 int alt20=2;
@@ -2751,11 +2606,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23382:63: .
-=======
-            	    // InternalAlf.g:23353:63: .
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26038:63: .
             	    {
             	    matchAny(); 
 
@@ -2784,21 +2635,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_INLINE_STATEMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23384:23: ( '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23384:25: '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/'
-=======
-            // InternalAlf.g:23355:23: ( '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23355:25: '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26040:23: ( '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:26040:25: '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/'
             {
             match("/*@inline("); 
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23384:38: ( RULE_ID | RULE_UNRESTRICTED_NAME )
-=======
-            // InternalAlf.g:23355:38: ( RULE_ID | RULE_UNRESTRICTED_NAME )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26040:38: ( RULE_ID | RULE_UNRESTRICTED_NAME )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2816,22 +2658,14 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23384:39: RULE_ID
-=======
-                    // InternalAlf.g:23355:39: RULE_ID
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26040:39: RULE_ID
                     {
                     mRULE_ID(); 
 
                     }
                     break;
                 case 2 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23384:47: RULE_UNRESTRICTED_NAME
-=======
-                    // InternalAlf.g:23355:47: RULE_UNRESTRICTED_NAME
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26040:47: RULE_UNRESTRICTED_NAME
                     {
                     mRULE_UNRESTRICTED_NAME(); 
 
@@ -2841,11 +2675,7 @@ public class InternalAlfLexer extends Lexer {
             }
 
             match(')'); 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23384:75: ( options {greedy=false; } : . )*
-=======
-            // InternalAlf.g:23355:75: ( options {greedy=false; } : . )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26040:75: ( options {greedy=false; } : . )*
             loop22:
             do {
                 int alt22=2;
@@ -2870,11 +2700,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23384:103: .
-=======
-            	    // InternalAlf.g:23355:103: .
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26040:103: .
             	    {
             	    matchAny(); 
 
@@ -2904,13 +2730,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23386:17: ( '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23386:19: '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/'
-=======
-            // InternalAlf.g:23357:17: ( '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/' )
-            // InternalAlf.g:23357:19: '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26042:17: ( '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:26042:19: '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -2923,11 +2744,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23386:37: ( options {greedy=false; } : . )*
-=======
-            // InternalAlf.g:23357:37: ( options {greedy=false; } : . )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26042:37: ( options {greedy=false; } : . )*
             loop23:
             do {
                 int alt23=2;
@@ -2952,11 +2769,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt23) {
             	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-            	    // InternalAlf.g:23386:65: .
-=======
-            	    // InternalAlf.g:23357:65: .
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            	    // InternalAlf.g:26042:65: .
             	    {
             	    matchAny(); 
 
@@ -2986,21 +2799,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23388:17: ( '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
-            // InternalAlf.g:23388:19: '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
-=======
-            // InternalAlf.g:23359:17: ( '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
-            // InternalAlf.g:23359:19: '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26044:17: ( '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
+            // InternalAlf.g:26044:19: '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23388:24: (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
-=======
-            // InternalAlf.g:23359:24: (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26044:24: (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3009,11 +2813,7 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt25) {
                 case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23388:25: ~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
-=======
-                    // InternalAlf.g:23359:25: ~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26044:25: ~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='?')||(input.LA(1)>='A' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -3024,11 +2824,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23388:44: (~ ( ( '\\n' | '\\r' ) ) )*
-=======
-                    // InternalAlf.g:23359:44: (~ ( ( '\\n' | '\\r' ) ) )*
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26044:44: (~ ( ( '\\n' | '\\r' ) ) )*
                     loop24:
                     do {
                         int alt24=2;
@@ -3041,11 +2837,7 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt24) {
                     	case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    	    // InternalAlf.g:23388:44: ~ ( ( '\\n' | '\\r' ) )
-=======
-                    	    // InternalAlf.g:23359:44: ~ ( ( '\\n' | '\\r' ) )
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    	    // InternalAlf.g:26044:44: ~ ( ( '\\n' | '\\r' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3071,11 +2863,7 @@ public class InternalAlfLexer extends Lexer {
 
             }
 
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23388:62: ( ( '\\r' )? '\\n' )?
-=======
-            // InternalAlf.g:23359:62: ( ( '\\r' )? '\\n' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26044:62: ( ( '\\r' )? '\\n' )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3084,17 +2872,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23388:63: ( '\\r' )? '\\n'
-=======
-                    // InternalAlf.g:23359:63: ( '\\r' )? '\\n'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26044:63: ( '\\r' )? '\\n'
                     {
-<<<<<<< Upstream, based on origin/ST6RI-75
-                    // InternalAlf.g:23388:63: ( '\\r' )?
-=======
-                    // InternalAlf.g:23359:63: ( '\\r' )?
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                    // InternalAlf.g:26044:63: ( '\\r' )?
                     int alt26=2;
                     int LA26_0 = input.LA(1);
 
@@ -3103,11 +2883,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt26) {
                         case 1 :
-<<<<<<< Upstream, based on origin/ST6RI-75
-                            // InternalAlf.g:23388:63: '\\r'
-=======
-                            // InternalAlf.g:23359:63: '\\r'
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+                            // InternalAlf.g:26044:63: '\\r'
                             {
                             match('\r'); 
 
@@ -3139,19 +2915,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23390:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalAlf.g:23390:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-=======
-            // InternalAlf.g:23361:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalAlf.g:23361:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26046:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalAlf.g:26046:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-<<<<<<< Upstream, based on origin/ST6RI-75
-            // InternalAlf.g:23390:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-=======
-            // InternalAlf.g:23361:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            // InternalAlf.g:26046:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt28=0;
             loop28:
             do {
@@ -3201,8 +2968,8 @@ public class InternalAlfLexer extends Lexer {
     // $ANTLR end "RULE_WS"
 
     public void mTokens() throws RecognitionException {
-        // InternalAlf.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
-        int alt29=88;
+        // InternalAlf.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
+        int alt29=92;
         alt29 = dfa29.predict(input);
         switch (alt29) {
             case 1 :
@@ -3738,84 +3505,112 @@ public class InternalAlfLexer extends Lexer {
                 }
                 break;
             case 77 :
-                // InternalAlf.g:1:466: RULE_BOOLEAN_VALUE
+                // InternalAlf.g:1:466: T__92
+                {
+                mT__92(); 
+
+                }
+                break;
+            case 78 :
+                // InternalAlf.g:1:472: T__93
+                {
+                mT__93(); 
+
+                }
+                break;
+            case 79 :
+                // InternalAlf.g:1:478: T__94
+                {
+                mT__94(); 
+
+                }
+                break;
+            case 80 :
+                // InternalAlf.g:1:484: T__95
+                {
+                mT__95(); 
+
+                }
+                break;
+            case 81 :
+                // InternalAlf.g:1:490: RULE_BOOLEAN_VALUE
                 {
                 mRULE_BOOLEAN_VALUE(); 
 
                 }
                 break;
-            case 78 :
-                // InternalAlf.g:1:485: RULE_NATURAL_VALUE
+            case 82 :
+                // InternalAlf.g:1:509: RULE_NATURAL_VALUE
                 {
                 mRULE_NATURAL_VALUE(); 
 
                 }
                 break;
-            case 79 :
-                // InternalAlf.g:1:504: RULE_EXP_VALUE
+            case 83 :
+                // InternalAlf.g:1:528: RULE_EXP_VALUE
                 {
                 mRULE_EXP_VALUE(); 
 
                 }
                 break;
-            case 80 :
-                // InternalAlf.g:1:519: RULE_ID
+            case 84 :
+                // InternalAlf.g:1:543: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 81 :
-                // InternalAlf.g:1:527: RULE_UNRESTRICTED_NAME
+            case 85 :
+                // InternalAlf.g:1:551: RULE_UNRESTRICTED_NAME
                 {
                 mRULE_UNRESTRICTED_NAME(); 
 
                 }
                 break;
-            case 82 :
-                // InternalAlf.g:1:550: RULE_STRING_VALUE
+            case 86 :
+                // InternalAlf.g:1:574: RULE_STRING_VALUE
                 {
                 mRULE_STRING_VALUE(); 
 
                 }
                 break;
-            case 83 :
-                // InternalAlf.g:1:568: RULE_DOCUMENTATION_COMMENT
+            case 87 :
+                // InternalAlf.g:1:592: RULE_DOCUMENTATION_COMMENT
                 {
                 mRULE_DOCUMENTATION_COMMENT(); 
 
                 }
                 break;
-            case 84 :
-                // InternalAlf.g:1:595: RULE_STATEMENT_ANNOTATION
+            case 88 :
+                // InternalAlf.g:1:619: RULE_STATEMENT_ANNOTATION
                 {
                 mRULE_STATEMENT_ANNOTATION(); 
 
                 }
                 break;
-            case 85 :
-                // InternalAlf.g:1:621: RULE_INLINE_STATEMENT
+            case 89 :
+                // InternalAlf.g:1:645: RULE_INLINE_STATEMENT
                 {
                 mRULE_INLINE_STATEMENT(); 
 
                 }
                 break;
-            case 86 :
-                // InternalAlf.g:1:643: RULE_ML_COMMENT
+            case 90 :
+                // InternalAlf.g:1:667: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 87 :
-                // InternalAlf.g:1:659: RULE_SL_COMMENT
+            case 91 :
+                // InternalAlf.g:1:683: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 88 :
-                // InternalAlf.g:1:675: RULE_WS
+            case 92 :
+                // InternalAlf.g:1:699: RULE_WS
                 {
                 mRULE_WS(); 
 
@@ -3829,41 +3624,17 @@ public class InternalAlfLexer extends Lexer {
 
     protected DFA29 dfa29 = new DFA29(this);
     static final String DFA29_eotS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\1\uffff\1\57\1\61\1\63\1\uffff\1\65\1\70\1\uffff\2\52\1\102\1\104\2\52\1\112\1\114\1\uffff\1\116\1\120\1\123\1\uffff\2\52\2\uffff\5\52\1\uffff\1\52\2\uffff\1\52\2\uffff\2\52\1\uffff\2\155\17\uffff\4\52\1\170\2\52\5\uffff\1\175\1\52\1\177\1\52\11\uffff\1\u0085\1\uffff\21\52\1\u009b\3\52\6\uffff\1\155\2\uffff\1\155\3\52\1\u00a6\1\52\1\uffff\4\52\1\uffff\1\52\1\uffff\1\52\5\uffff\6\52\1\u00b4\13\52\1\u00c0\2\52\1\uffff\3\52\2\155\1\uffff\1\155\3\52\1\uffff\13\52\1\u00d9\1\u00db\1\uffff\12\52\1\u00e6\1\uffff\1\u00e7\1\52\1\u00e9\1\u00ea\1\52\1\uffff\1\155\1\uffff\2\155\2\52\1\u00e9\1\u00f0\3\52\1\u00f4\6\52\1\uffff\1\52\1\uffff\1\52\1\u00fd\1\u00fe\7\52\2\uffff\1\52\2\uffff\1\52\2\155\2\52\1\uffff\3\52\1\uffff\1\u0113\1\52\1\u0115\5\52\2\uffff\11\52\2\155\1\uffff\1\155\1\uffff\1\155\1\u0127\4\52\1\uffff\1\u012c\1\uffff\1\u012d\1\52\1\u0130\1\u0131\1\u0132\1\52\1\u0134\3\52\1\u0138\3\52\1\155\1\uffff\1\155\1\uffff\1\u013e\1\u013f\2\52\2\uffff\1\52\1\u0143\3\uffff\1\52\1\uffff\1\u0145\1\u0146\1\52\1\uffff\3\52\1\uffff\1\155\2\uffff\2\52\1\u014d\1\uffff\1\u014e\2\uffff\2\52\1\u0151\1\u0152\1\52\1\u0154\2\uffff\1\u0155\1\52\2\uffff\1\52\2\uffff\1\u0158\1\u0159\2\uffff";
-=======
-        "\1\uffff\1\57\1\61\1\63\1\uffff\1\65\1\70\1\uffff\2\52\1\102\1\104\2\52\1\112\1\114\1\uffff\1\116\1\120\1\123\1\uffff\2\52\2\uffff\5\52\1\uffff\1\52\2\uffff\1\52\2\uffff\2\52\1\uffff\2\157\17\uffff\4\52\1\170\2\52\5\uffff\1\176\1\52\1\u0080\1\52\11\uffff\1\u0086\1\uffff\21\52\1\u009b\3\52\5\uffff\1\157\3\uffff\1\157\3\52\1\u00a6\1\52\1\uffff\5\52\1\uffff\1\52\1\uffff\1\52\5\uffff\6\52\1\u00b5\12\52\1\u00c0\2\52\1\uffff\3\52\2\157\1\uffff\1\157\3\52\1\uffff\14\52\1\u00da\1\u00dc\1\uffff\10\52\1\u00e5\1\52\1\uffff\1\u00e7\1\52\1\u00e9\1\u00ea\1\52\1\uffff\1\157\1\uffff\2\157\2\52\1\u00e9\1\u00f0\3\52\1\u00f4\7\52\1\uffff\1\52\1\uffff\1\52\1\u00fe\1\u00ff\5\52\1\uffff\1\52\1\uffff\1\52\2\uffff\1\52\2\157\2\52\1\uffff\3\52\1\uffff\1\52\1\u0114\1\52\1\u0116\5\52\2\uffff\10\52\2\157\1\uffff\1\157\1\uffff\1\157\1\u0127\5\52\1\uffff\1\u012d\1\uffff\1\u012e\1\52\1\u0131\1\u0132\1\u0133\1\52\1\u0135\3\52\1\u0139\2\52\1\157\1\uffff\1\157\1\uffff\1\u013e\1\u013f\3\52\2\uffff\1\52\1\u0144\3\uffff\1\52\1\uffff\1\u0146\1\u0147\1\52\1\uffff\2\52\1\uffff\1\157\2\uffff\3\52\1\u014e\1\uffff\1\u014f\2\uffff\1\52\1\u0151\1\u0152\1\52\1\u0154\1\52\2\uffff\1\52\2\uffff\1\52\1\uffff\1\u0158\1\u0159\1\u015a\3\uffff";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\1\uffff\1\57\1\61\1\63\1\uffff\1\65\1\70\1\uffff\2\52\1\104\1\106\2\52\1\114\1\116\1\uffff\1\120\1\122\1\125\1\uffff\2\52\2\uffff\5\52\1\uffff\1\52\2\uffff\1\52\2\uffff\2\52\1\uffff\2\161\17\uffff\6\52\1\174\2\52\5\uffff\1\u0082\1\52\1\u0084\1\52\11\uffff\1\u008a\1\uffff\21\52\1\u00a1\3\52\5\uffff\1\161\3\uffff\1\161\5\52\1\u00ae\1\52\1\uffff\5\52\1\uffff\1\52\1\uffff\1\52\5\uffff\6\52\1\u00bd\14\52\1\u00ca\2\52\1\uffff\3\52\2\161\1\uffff\1\161\2\52\1\u00d7\1\u00d8\1\52\1\uffff\14\52\1\u00e6\1\u00e8\1\uffff\12\52\1\u00f3\1\52\1\uffff\1\u00f5\1\52\1\u00f7\1\u00f8\1\52\1\uffff\1\161\1\uffff\2\161\2\52\2\uffff\1\u00f7\1\u00fe\3\52\1\u0102\7\52\1\uffff\1\52\1\uffff\1\52\1\u010c\1\u010d\7\52\1\uffff\1\52\1\uffff\1\52\2\uffff\1\52\2\161\2\52\1\uffff\3\52\1\uffff\1\52\1\u0124\1\52\1\u0126\5\52\2\uffff\6\52\1\u0132\3\52\2\161\1\uffff\1\161\1\uffff\1\161\1\u0139\5\52\1\uffff\1\u013f\1\uffff\1\u0140\1\52\1\u0143\1\u0144\1\u0145\1\52\1\u0147\3\52\1\u014b\1\uffff\3\52\1\161\1\uffff\1\161\1\uffff\1\u0151\1\u0152\3\52\2\uffff\1\52\1\u0157\3\uffff\1\52\1\uffff\1\u0159\1\u015a\1\52\1\uffff\3\52\1\uffff\1\161\2\uffff\3\52\1\u0162\1\uffff\1\u0163\2\uffff\2\52\1\u0166\1\u0167\1\52\1\u0169\1\52\2\uffff\1\u016b\1\52\2\uffff\1\52\1\uffff\1\u016e\1\uffff\1\u016f\1\u0170\3\uffff";
     static final String DFA29_eofS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\u015a\uffff";
-=======
-        "\u015b\uffff";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\u0171\uffff";
     static final String DFA29_minS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\1\11\1\77\1\174\1\46\1\uffff\1\72\1\56\1\uffff\1\141\1\142\2\75\1\155\1\141\2\75\1\uffff\1\76\2\52\1\uffff\1\141\1\162\2\uffff\2\154\1\141\1\145\1\160\1\uffff\1\156\2\uffff\1\145\2\uffff\2\157\1\uffff\2\60\17\uffff\1\141\1\156\1\154\1\171\1\60\1\163\1\154\5\uffff\1\60\1\160\1\60\1\163\10\uffff\1\0\1\100\1\uffff\1\142\1\151\1\143\1\162\1\164\1\144\2\141\1\155\1\164\1\150\1\142\2\145\1\144\1\160\1\144\1\60\1\165\1\154\1\156\4\60\1\uffff\2\60\1\uffff\2\60\1\164\1\143\1\163\1\60\1\157\1\uffff\1\164\1\111\1\164\1\165\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\60\1\145\2\163\1\156\1\160\2\141\1\143\1\163\1\143\1\160\1\60\1\162\1\145\1\uffff\1\145\1\154\1\165\4\60\1\165\1\164\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\1\162\1\171\1\151\1\141\1\145\1\141\2\60\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\2\145\1\151\1\60\1\uffff\1\60\1\146\2\60\1\156\3\60\1\53\1\60\1\162\1\151\2\60\1\141\1\163\1\156\1\60\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\60\1\143\1\163\1\171\1\151\1\163\1\164\1\141\2\uffff\1\151\2\uffff\1\151\2\60\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\60\1\145\1\60\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\2\163\1\154\1\156\1\161\7\60\1\156\1\164\1\141\1\145\1\uffff\1\60\1\uffff\1\60\1\145\3\60\1\157\1\60\1\145\1\162\1\151\1\60\1\151\1\145\1\165\3\60\1\uffff\2\60\1\156\1\157\2\uffff\1\144\1\60\3\uffff\1\162\1\uffff\2\60\1\157\1\uffff\1\172\1\163\1\145\2\60\2\uffff\1\143\1\146\1\60\1\uffff\1\60\2\uffff\1\156\1\145\2\60\1\145\1\60\2\uffff\1\60\1\163\2\uffff\1\163\2\uffff\2\60\2\uffff";
-=======
-        "\1\11\1\77\1\174\1\46\1\uffff\1\72\1\56\1\uffff\1\141\1\142\2\75\1\155\1\141\2\75\1\uffff\1\76\2\52\1\uffff\1\141\1\162\2\uffff\2\154\1\141\1\145\1\160\1\uffff\1\156\2\uffff\1\145\2\uffff\2\157\1\uffff\2\60\17\uffff\1\141\1\156\1\154\1\171\1\60\1\163\1\154\5\uffff\1\60\1\160\1\60\1\163\10\uffff\1\0\1\100\1\uffff\1\142\1\151\1\143\1\162\1\164\1\144\2\141\1\155\1\164\1\150\2\145\1\142\1\144\1\160\1\144\1\60\1\165\1\154\1\156\6\60\2\uffff\2\60\1\164\1\143\1\163\1\60\1\157\1\uffff\1\164\1\111\1\164\1\165\1\145\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\60\1\145\2\163\1\156\1\160\2\141\1\143\1\160\1\163\1\60\1\162\1\145\1\uffff\1\145\1\154\1\165\4\60\1\165\1\164\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\2\162\1\171\1\151\1\141\1\145\1\141\2\60\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\1\151\1\60\1\145\1\uffff\1\60\1\146\2\60\1\156\3\60\1\53\1\60\1\162\1\151\2\60\1\141\1\163\1\156\1\60\1\141\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\60\1\143\1\163\1\171\1\151\1\141\1\uffff\1\164\1\uffff\1\151\2\uffff\1\151\2\60\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\143\1\60\1\145\1\60\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\1\154\1\163\1\156\1\161\7\60\1\156\1\164\1\141\1\145\1\164\1\uffff\1\60\1\uffff\1\60\1\145\3\60\1\157\1\60\1\145\1\162\1\151\1\60\1\145\1\165\3\60\1\uffff\2\60\1\156\1\157\1\151\2\uffff\1\144\1\60\3\uffff\1\162\1\uffff\2\60\1\172\1\uffff\1\163\1\145\2\60\2\uffff\1\143\1\146\1\157\1\60\1\uffff\1\60\2\uffff\1\145\2\60\1\145\1\60\1\156\2\uffff\1\163\2\uffff\1\163\1\uffff\3\60\3\uffff";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\1\11\1\77\1\174\1\46\1\uffff\1\72\1\56\1\uffff\1\141\1\142\2\75\1\155\1\141\2\75\1\uffff\1\76\2\52\1\uffff\1\141\1\162\2\uffff\2\154\1\141\1\145\1\160\1\uffff\1\156\2\uffff\1\145\2\uffff\2\157\1\uffff\2\60\17\uffff\1\141\1\156\2\157\1\154\1\171\1\60\1\163\1\154\5\uffff\1\60\1\160\1\60\1\163\10\uffff\1\0\1\100\1\uffff\1\142\1\151\1\143\1\162\1\164\1\144\2\141\1\155\1\164\1\150\1\142\2\145\1\144\1\160\1\144\1\60\1\165\1\154\1\156\6\60\2\uffff\2\60\1\164\1\143\1\167\1\155\1\163\1\60\1\157\1\uffff\1\164\1\111\1\164\1\165\1\145\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\60\1\145\2\163\1\156\1\160\2\141\1\143\1\163\1\145\1\160\1\143\1\60\1\162\1\145\1\uffff\1\145\1\154\1\165\4\60\1\165\1\164\2\60\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\2\162\1\171\1\151\1\141\1\145\1\141\2\60\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\2\145\1\141\1\60\1\151\1\uffff\1\60\1\146\2\60\1\156\3\60\1\53\1\60\1\162\1\151\2\uffff\2\60\1\141\1\163\1\156\1\60\1\141\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\60\1\143\1\163\1\171\1\151\1\163\1\164\1\155\1\uffff\1\141\1\uffff\1\151\2\uffff\1\151\2\60\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\143\1\60\1\145\1\60\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\2\163\1\60\1\154\1\156\1\161\7\60\1\156\1\164\1\141\1\145\1\164\1\uffff\1\60\1\uffff\1\60\1\145\3\60\1\157\1\60\1\145\1\162\1\151\1\60\1\uffff\1\151\1\145\1\165\3\60\1\uffff\2\60\1\156\1\157\1\151\2\uffff\1\144\1\60\3\uffff\1\162\1\uffff\2\60\1\157\1\uffff\1\172\1\163\1\145\2\60\2\uffff\1\143\1\146\1\157\1\60\1\uffff\1\60\2\uffff\1\156\1\145\2\60\1\145\1\60\1\156\2\uffff\1\60\1\163\2\uffff\1\163\1\uffff\1\60\1\uffff\2\60\3\uffff";
     static final String DFA29_maxS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\1\176\1\77\1\174\1\46\1\uffff\1\72\1\57\1\uffff\1\165\1\163\1\76\1\75\1\163\1\141\2\75\1\uffff\1\76\1\52\1\57\1\uffff\2\165\2\uffff\1\154\1\157\1\141\1\145\1\165\1\uffff\1\170\2\uffff\1\145\2\uffff\1\162\1\165\1\uffff\1\170\1\145\17\uffff\1\141\1\156\1\154\1\171\1\172\1\163\1\154\5\uffff\1\172\1\160\1\172\1\163\10\uffff\1\uffff\1\100\1\uffff\1\142\1\157\2\162\1\164\1\144\2\141\1\156\1\164\1\150\1\143\2\145\1\144\1\160\1\144\1\172\1\165\1\154\1\156\2\61\2\146\1\uffff\1\67\1\145\1\uffff\1\71\1\145\1\164\1\143\1\163\1\172\1\157\1\uffff\1\164\1\111\1\164\1\165\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\172\1\145\2\163\1\156\1\160\2\141\1\143\1\163\1\143\1\160\1\172\1\162\1\145\1\uffff\1\145\1\154\1\165\1\145\1\146\1\67\1\145\1\165\1\164\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\1\162\1\171\1\151\1\141\1\145\1\141\2\172\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\2\145\1\151\1\172\1\uffff\1\172\1\146\2\172\1\156\1\61\1\145\3\146\1\162\1\151\2\172\1\141\1\163\1\156\1\172\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\172\1\143\1\163\1\171\1\151\1\163\1\164\1\141\2\uffff\1\151\2\uffff\1\151\1\170\1\146\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\172\1\145\1\172\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\2\163\1\154\1\156\1\161\6\146\1\172\1\156\1\164\1\141\1\145\1\uffff\1\172\1\uffff\1\172\1\145\3\172\1\157\1\172\1\145\1\162\1\151\1\172\1\151\1\145\1\165\3\146\1\uffff\2\172\1\156\1\157\2\uffff\1\144\1\172\3\uffff\1\162\1\uffff\2\172\1\157\1\uffff\1\172\1\163\1\145\2\146\2\uffff\1\143\1\146\1\172\1\uffff\1\172\2\uffff\1\156\1\145\2\172\1\145\1\172\2\uffff\1\172\1\163\2\uffff\1\163\2\uffff\2\172\2\uffff";
-=======
-        "\1\176\1\77\1\174\1\46\1\uffff\1\72\1\57\1\uffff\1\165\1\163\1\76\1\75\1\163\1\141\2\75\1\uffff\1\76\1\52\1\57\1\uffff\2\165\2\uffff\1\154\1\157\1\141\1\145\1\165\1\uffff\1\170\2\uffff\1\145\2\uffff\1\162\1\165\1\uffff\1\170\1\145\17\uffff\1\141\1\156\1\154\1\171\1\172\1\163\1\154\5\uffff\1\172\1\160\1\172\1\163\10\uffff\1\uffff\1\100\1\uffff\1\142\1\157\2\162\1\164\1\144\2\141\1\156\1\164\1\150\2\145\1\142\1\144\1\160\1\144\1\172\1\165\1\154\1\156\2\61\2\146\1\67\1\145\2\uffff\1\71\1\145\1\164\1\143\1\163\1\172\1\157\1\uffff\1\164\1\111\1\164\1\165\1\145\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\172\1\145\2\163\1\156\1\160\2\141\1\143\1\160\1\163\1\172\1\162\1\145\1\uffff\1\145\1\154\1\165\1\145\1\146\1\67\1\145\1\165\1\164\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\2\162\1\171\1\151\1\141\1\145\1\141\2\172\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\1\151\1\172\1\145\1\uffff\1\172\1\146\2\172\1\156\1\61\1\145\3\146\1\162\1\151\2\172\1\141\1\163\1\156\1\172\1\141\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\172\1\143\1\163\1\171\1\151\1\141\1\uffff\1\164\1\uffff\1\151\2\uffff\1\151\1\170\1\146\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\143\1\172\1\145\1\172\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\1\154\1\163\1\156\1\161\6\146\1\172\1\156\1\164\1\141\1\145\1\164\1\uffff\1\172\1\uffff\1\172\1\145\3\172\1\157\1\172\1\145\1\162\1\151\1\172\1\145\1\165\3\146\1\uffff\2\172\1\156\1\157\1\151\2\uffff\1\144\1\172\3\uffff\1\162\1\uffff\3\172\1\uffff\1\163\1\145\2\146\2\uffff\1\143\1\146\1\157\1\172\1\uffff\1\172\2\uffff\1\145\2\172\1\145\1\172\1\156\2\uffff\1\163\2\uffff\1\163\1\uffff\3\172\3\uffff";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\1\176\1\77\1\174\1\46\1\uffff\1\72\1\57\1\uffff\1\165\1\163\1\76\1\75\1\163\1\141\2\75\1\uffff\1\76\1\52\1\57\1\uffff\2\165\2\uffff\1\154\1\157\1\141\1\145\1\165\1\uffff\1\170\2\uffff\1\145\2\uffff\1\162\1\165\1\uffff\1\170\1\145\17\uffff\1\141\1\156\2\157\1\154\1\171\1\172\1\163\1\154\5\uffff\1\172\1\160\1\172\1\163\10\uffff\1\uffff\1\100\1\uffff\1\142\1\157\2\162\1\164\1\144\2\141\1\156\1\164\1\150\1\143\1\162\1\145\1\144\1\160\1\144\1\172\1\165\1\154\1\156\2\61\2\146\1\67\1\145\2\uffff\1\71\1\145\1\164\1\143\1\167\1\155\1\163\1\172\1\157\1\uffff\1\164\1\111\1\164\1\165\1\145\1\uffff\1\157\1\uffff\1\164\5\uffff\1\154\1\166\1\164\1\153\2\164\1\172\1\145\2\163\1\156\1\160\2\141\1\143\1\163\1\145\1\160\1\143\1\172\1\162\1\145\1\uffff\1\145\1\154\1\165\1\145\1\146\1\67\1\145\1\165\1\164\2\172\1\145\1\uffff\1\143\1\162\1\156\1\141\1\164\2\162\1\171\1\151\1\141\1\145\1\141\2\172\1\uffff\1\162\2\163\1\145\1\157\1\164\1\166\2\145\1\141\1\172\1\151\1\uffff\1\172\1\146\2\172\1\156\1\61\1\145\3\146\1\162\1\151\2\uffff\2\172\1\141\1\163\1\156\1\172\1\141\1\164\1\160\1\143\1\164\1\143\1\147\1\uffff\1\157\1\uffff\1\145\2\172\1\143\1\163\1\171\1\151\1\163\1\164\1\155\1\uffff\1\141\1\uffff\1\151\2\uffff\1\151\1\170\1\146\1\145\1\157\1\uffff\1\143\1\164\1\143\1\uffff\1\143\1\172\1\145\1\172\1\145\1\164\1\145\1\156\1\144\2\uffff\1\164\1\145\1\160\1\157\2\163\1\172\1\154\1\156\1\161\6\146\1\172\1\156\1\164\1\141\1\145\1\164\1\uffff\1\172\1\uffff\1\172\1\145\3\172\1\157\1\172\1\145\1\162\1\151\1\172\1\uffff\1\151\1\145\1\165\3\146\1\uffff\2\172\1\156\1\157\1\151\2\uffff\1\144\1\172\3\uffff\1\162\1\uffff\2\172\1\157\1\uffff\1\172\1\163\1\145\2\146\2\uffff\1\143\1\146\1\157\1\172\1\uffff\1\172\2\uffff\1\156\1\145\2\172\1\145\1\172\1\156\2\uffff\1\172\1\163\2\uffff\1\163\1\uffff\1\172\1\uffff\2\172\3\uffff";
     static final String DFA29_acceptS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\4\uffff\1\6\2\uffff\1\12\10\uffff\1\25\3\uffff\1\33\2\uffff\1\46\1\47\5\uffff\1\63\1\uffff\1\65\1\66\1\uffff\1\74\1\75\2\uffff\1\113\2\uffff\1\120\1\121\1\122\1\130\1\2\1\1\1\3\1\5\1\4\1\7\1\10\1\73\1\76\1\104\1\11\7\uffff\1\15\1\101\1\72\1\16\1\32\4\uffff\1\23\1\21\1\24\1\22\1\102\1\26\1\31\1\27\2\uffff\1\30\31\uffff\1\116\2\uffff\1\117\7\uffff\1\44\4\uffff\1\40\1\uffff\1\50\1\uffff\1\123\1\125\1\126\1\124\1\127\25\uffff\1\100\12\uffff\1\14\15\uffff\1\41\13\uffff\1\64\30\uffff\1\105\1\uffff\1\107\12\uffff\1\67\1\70\1\uffff\1\115\1\103\5\uffff\1\54\3\uffff\1\42\10\uffff\1\51\1\52\24\uffff\1\43\1\uffff\1\34\21\uffff\1\13\4\uffff\1\20\1\35\2\uffff\1\45\1\106\1\111\1\uffff\1\110\3\uffff\1\77\5\uffff\1\56\1\57\3\uffff\1\37\1\uffff\1\53\1\55\6\uffff\1\36\1\60\2\uffff\1\71\1\112\1\uffff\1\17\1\61\2\uffff\1\62\1\114";
-=======
-        "\4\uffff\1\6\2\uffff\1\12\10\uffff\1\25\3\uffff\1\33\2\uffff\1\46\1\47\5\uffff\1\62\1\uffff\1\65\1\66\1\uffff\1\74\1\75\2\uffff\1\113\2\uffff\1\120\1\121\1\122\1\130\1\2\1\1\1\3\1\5\1\4\1\7\1\10\1\73\1\76\1\104\1\11\7\uffff\1\15\1\101\1\72\1\16\1\32\4\uffff\1\23\1\21\1\24\1\22\1\102\1\26\1\31\1\27\2\uffff\1\30\33\uffff\1\116\1\117\7\uffff\1\44\5\uffff\1\40\1\uffff\1\50\1\uffff\1\123\1\125\1\126\1\124\1\127\24\uffff\1\100\12\uffff\1\14\16\uffff\1\41\12\uffff\1\63\31\uffff\1\105\1\uffff\1\107\10\uffff\1\67\1\uffff\1\70\1\uffff\1\115\1\103\5\uffff\1\54\3\uffff\1\42\11\uffff\1\51\1\52\24\uffff\1\43\1\uffff\1\34\20\uffff\1\13\5\uffff\1\20\1\35\2\uffff\1\45\1\106\1\111\1\uffff\1\110\3\uffff\1\77\4\uffff\1\56\1\57\4\uffff\1\37\1\uffff\1\53\1\55\6\uffff\1\36\1\60\1\uffff\1\71\1\112\1\uffff\1\17\3\uffff\1\64\1\61\1\114";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\4\uffff\1\6\2\uffff\1\12\10\uffff\1\25\3\uffff\1\33\2\uffff\1\46\1\47\5\uffff\1\65\1\uffff\1\70\1\71\1\uffff\1\77\1\100\2\uffff\1\117\2\uffff\1\124\1\125\1\126\1\134\1\2\1\1\1\3\1\5\1\4\1\7\1\10\1\76\1\101\1\110\1\11\11\uffff\1\15\1\104\1\75\1\16\1\32\4\uffff\1\23\1\21\1\24\1\22\1\106\1\26\1\31\1\27\2\uffff\1\30\33\uffff\1\122\1\123\11\uffff\1\44\5\uffff\1\40\1\uffff\1\50\1\uffff\1\127\1\131\1\132\1\130\1\133\26\uffff\1\103\14\uffff\1\14\16\uffff\1\41\14\uffff\1\66\14\uffff\1\63\1\105\15\uffff\1\111\1\uffff\1\113\12\uffff\1\72\1\uffff\1\73\1\uffff\1\121\1\107\5\uffff\1\54\3\uffff\1\42\11\uffff\1\51\1\52\26\uffff\1\43\1\uffff\1\34\13\uffff\1\62\6\uffff\1\13\5\uffff\1\20\1\35\2\uffff\1\45\1\112\1\115\1\uffff\1\114\3\uffff\1\102\5\uffff\1\56\1\57\4\uffff\1\37\1\uffff\1\53\1\55\7\uffff\1\36\1\60\2\uffff\1\74\1\116\1\uffff\1\17\1\uffff\1\61\2\uffff\1\67\1\64\1\120";
     static final String DFA29_specialS =
-<<<<<<< Upstream, based on origin/ST6RI-75
-        "\121\uffff\1\0\u0108\uffff}>";
-=======
-        "\121\uffff\1\0\u0109\uffff}>";
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+        "\123\uffff\1\0\u011d\uffff}>";
     static final String[] DFA29_transitionS = {
             "\2\55\2\uffff\1\55\22\uffff\1\55\1\13\1\54\3\uffff\1\3\1\53\1\40\1\41\1\22\1\20\1\36\1\21\1\6\1\23\1\50\11\51\1\5\1\7\1\16\1\12\1\17\1\1\1\47\2\52\1\31\27\52\1\43\1\uffff\1\44\1\4\1\52\1\uffff\1\11\1\34\1\32\1\33\1\37\1\10\1\52\1\15\1\14\4\52\1\46\1\26\1\25\1\52\1\42\1\35\1\45\6\52\1\27\1\2\1\30\1\24",
             "\1\56",
@@ -3873,43 +3644,40 @@ public class InternalAlfLexer extends Lexer {
             "\1\64",
             "\1\66\1\67",
             "",
-            "\1\73\3\uffff\1\71\17\uffff\1\72",
-            "\1\76\11\uffff\1\77\1\uffff\1\74\4\uffff\1\75",
-            "\1\100\1\101",
-            "\1\103",
-            "\1\106\1\105\4\uffff\1\107",
-            "\1\110",
-            "\1\111",
+            "\1\75\3\uffff\1\71\6\uffff\1\73\5\uffff\1\74\2\uffff\1\72",
+            "\1\100\11\uffff\1\101\1\uffff\1\76\4\uffff\1\77",
+            "\1\102\1\103",
+            "\1\105",
+            "\1\110\1\107\4\uffff\1\111",
+            "\1\112",
             "\1\113",
-            "",
             "\1\115",
+            "",
             "\1\117",
-            "\1\121\4\uffff\1\122",
+            "\1\121",
+            "\1\123\4\uffff\1\124",
             "",
-            "\1\126\15\uffff\1\127\2\uffff\1\125\2\uffff\1\124",
-            "\1\131\2\uffff\1\130",
-            "",
-            "",
-            "\1\132",
-            "\1\133\2\uffff\1\134",
-            "\1\135",
-            "\1\136",
-            "\1\140\3\uffff\1\141\1\137",
-            "",
-            "\1\142\11\uffff\1\143",
+            "\1\130\15\uffff\1\131\2\uffff\1\127\2\uffff\1\126",
+            "\1\133\2\uffff\1\132",
             "",
             "",
-            "\1\144",
+            "\1\134",
+            "\1\135\2\uffff\1\136",
+            "\1\137",
+            "\1\140",
+            "\1\143\3\uffff\1\142\1\141",
+            "",
+            "\1\144\11\uffff\1\145",
             "",
             "",
-            "\1\145\2\uffff\1\146",
-            "\1\150\5\uffff\1\147",
-            "",
-            "\10\157\12\uffff\1\152\2\uffff\1\160\22\uffff\1\154\6\uffff\1\156\2\uffff\1\151\2\uffff\1\160\22\uffff\1\153",
-            "\12\162\13\uffff\1\160\31\uffff\1\161\5\uffff\1\160",
+            "\1\146",
             "",
             "",
+            "\1\147\2\uffff\1\150",
+            "\1\152\5\uffff\1\151",
             "",
+            "\10\160\12\uffff\1\154\2\uffff\1\162\22\uffff\1\156\6\uffff\1\157\2\uffff\1\153\2\uffff\1\162\22\uffff\1\155",
+            "\12\164\13\uffff\1\162\31\uffff\1\163\5\uffff\1\162",
             "",
             "",
             "",
@@ -3922,158 +3690,130 @@ public class InternalAlfLexer extends Lexer {
             "",
             "",
             "",
-            "\1\163",
-            "\1\164",
+            "",
+            "",
+            "",
             "\1\165",
             "\1\166",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\22\52\1\167\7\52",
+            "\1\167",
+            "\1\170",
             "\1\171",
             "\1\172",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\22\52\1\173\7\52",
+            "\1\175",
+            "\1\176",
             "",
             "",
             "",
             "",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\16\52\1\174\3\52\1\173\1\175\6\52",
-            "\1\177",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\16\52\1\u0080\3\52\1\177\1\u0081\6\52",
+            "\1\u0083",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0081",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\52\u0084\1\u0082\25\u0084\1\u0083\uffbf\u0084",
             "\1\u0085",
             "",
-            "\1\u0087",
-            "\1\u0088\5\uffff\1\u0089",
-            "\1\u008a\16\uffff\1\u008b",
-            "\1\u008c",
-            "\1\u008d",
-            "\1\u008e",
-            "\1\u008f",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\52\u0088\1\u0086\25\u0088\1\u0087\uffbf\u0088",
+            "\1\u0089",
+            "",
+            "\1\u008b",
+            "\1\u008c\5\uffff\1\u008d",
+            "\1\u008e\16\uffff\1\u008f",
             "\1\u0090",
-            "\1\u0092\1\u0091",
+            "\1\u0091",
+            "\1\u0092",
             "\1\u0093",
-            "\1\u0095\1\u0094",
-            "\1\u0096",
+            "\1\u0094",
+            "\1\u0096\1\u0095",
             "\1\u0097",
             "\1\u0098",
-            "\1\u0099",
-            "\1\u009a",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u009c",
+            "\1\u009a\1\u0099",
+            "\1\u009c\14\uffff\1\u009b",
             "\1\u009d",
             "\1\u009e",
-            "\2\u009f",
-            "\2\u009f",
-            "\12\u00a0\7\uffff\6\u00a0\32\uffff\6\u00a0",
-            "\12\u00a0\7\uffff\6\u00a0\32\uffff\6\u00a0",
-<<<<<<< Upstream, based on origin/ST6RI-75
-=======
-            "\10\156",
-            "\10\u00a2\15\uffff\1\160\31\uffff\1\u00a1\5\uffff\1\160",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
-            "\10\157",
-            "\10\u00a2\15\uffff\1\160\31\uffff\1\u00a1\5\uffff\1\160",
-            "",
-            "\12\162",
-            "\12\162\13\uffff\1\160\31\uffff\1\161\5\uffff\1\160",
+            "\1\u009f",
+            "\1\u00a0",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00a2",
             "\1\u00a3",
             "\1\u00a4",
-            "\1\u00a5",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00a7",
+            "\2\u00a5",
+            "\2\u00a5",
+            "\12\u00a6\7\uffff\6\u00a6\32\uffff\6\u00a6",
+            "\12\u00a6\7\uffff\6\u00a6\32\uffff\6\u00a6",
+            "\10\160",
+            "\10\u00a8\15\uffff\1\162\31\uffff\1\u00a7\5\uffff\1\162",
             "",
-            "\1\u00a8",
+            "",
+            "\12\164",
+            "\12\164\13\uffff\1\162\31\uffff\1\163\5\uffff\1\162",
             "\1\u00a9",
             "\1\u00aa",
             "\1\u00ab",
             "\1\u00ac",
-            "",
             "\1\u00ad",
-            "",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "",
-            "",
-            "",
-            "",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "\1\u00ae",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00af",
+            "",
             "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
             "\1\u00b3",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00b5",
-=======
             "\1\u00b4",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "",
+            "\1\u00b5",
+            "",
             "\1\u00b6",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u00b7",
             "\1\u00b8",
             "\1\u00b9",
             "\1\u00ba",
             "\1\u00bb",
             "\1\u00bc",
-            "\1\u00bd",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00be",
             "\1\u00bf",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00c0",
             "\1\u00c1",
             "\1\u00c2",
-            "",
             "\1\u00c3",
             "\1\u00c4",
             "\1\u00c5",
-            "\2\u00c7\23\uffff\1\160\31\uffff\1\u00c6\5\uffff\1\160",
-            "\12\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u00c8\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\10\u00a2",
-            "\10\u00a2\15\uffff\1\160\31\uffff\1\u00a1\5\uffff\1\160",
+            "\1\u00c6",
+            "\1\u00c7",
+            "\1\u00c8",
+            "\1\u00c9",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00cb",
             "\1\u00cc",
-            "\1\u00cd",
             "",
+            "\1\u00cd",
             "\1\u00ce",
             "\1\u00cf",
-            "\1\u00d0",
-            "\1\u00d1",
-            "\1\u00d2",
-            "\1\u00d3",
-            "\1\u00d4",
+            "\2\u00d1\23\uffff\1\162\31\uffff\1\u00d0\5\uffff\1\162",
+            "\12\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u00d2\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\10\u00a8",
+            "\10\u00a8\15\uffff\1\162\31\uffff\1\u00a7\5\uffff\1\162",
             "\1\u00d5",
             "\1\u00d6",
-            "\1\u00d7",
-            "\1\u00d8",
-<<<<<<< Upstream, based on origin/ST6RI-75
-=======
-            "\1\u00d9",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\10\52\1\u00da\21\52",
-=======
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\10\52\1\u00db\21\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00d9",
             "",
-<<<<<<< Upstream, based on origin/ST6RI-75
+            "\1\u00da",
+            "\1\u00db",
             "\1\u00dc",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
             "\1\u00dd",
             "\1\u00de",
             "\1\u00df",
@@ -4082,253 +3822,184 @@ public class InternalAlfLexer extends Lexer {
             "\1\u00e2",
             "\1\u00e3",
             "\1\u00e4",
-<<<<<<< Upstream, based on origin/ST6RI-75
             "\1\u00e5",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-=======
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00e6",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\10\52\1\u00e7\21\52",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00e8",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00e9",
+            "\1\u00ea",
             "\1\u00eb",
-            "\2\u00c7",
-            "\2\u00c7\23\uffff\1\160\31\uffff\1\u00c6\5\uffff\1\160",
-            "\12\u00ca\7\uffff\6\u00ca\32\uffff\6\u00ca",
-            "\1\160\1\uffff\1\160\2\uffff\1\u00ec\11\u00ed\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u00c8\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\12\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u00c8\1\uffff\4\u00ca\1\u00c9\1\u00ca",
+            "\1\u00ec",
+            "\1\u00ed",
             "\1\u00ee",
             "\1\u00ef",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u00f0",
             "\1\u00f1",
             "\1\u00f2",
-            "\1\u00f3",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u00f5",
+            "\1\u00f4",
+            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00f6",
-            "\1\u00f7",
-            "\1\u00f8",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00f9",
-            "\1\u00fa",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "\1\u00fb",
-            "",
+            "\2\u00d1",
+            "\2\u00d1\23\uffff\1\162\31\uffff\1\u00d0\5\uffff\1\162",
+            "\12\u00d4\7\uffff\6\u00d4\32\uffff\6\u00d4",
+            "\1\162\1\uffff\1\162\2\uffff\1\u00fa\11\u00fb\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u00d2\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\12\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u00d2\1\uffff\4\u00d4\1\u00d3\1\u00d4",
             "\1\u00fc",
-<<<<<<< Upstream, based on origin/ST6RI-75
+            "\1\u00fd",
+            "",
+            "",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u00ff",
-=======
-            "",
-            "\1\u00fd",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
             "\1\u0100",
             "\1\u0101",
-            "\1\u0102",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u0103",
             "\1\u0104",
-<<<<<<< Upstream, based on origin/ST6RI-75
             "\1\u0105",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
-<<<<<<< Upstream, based on origin/ST6RI-75
-=======
-            "\1\u0105",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
             "\1\u0106",
-            "",
-            "",
             "\1\u0107",
-            "\10\u010b\2\u00ca\7\uffff\1\u00ca\1\u0109\2\u00ca\1\u00c9\1\u00ca\21\uffff\1\160\6\uffff\1\u010a\1\uffff\1\u00ca\1\u0108\2\u00ca\1\u00c9\1\u00ca\21\uffff\1\160",
-            "\12\u010d\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u010c\1\uffff\4\u00ca\1\u00c9\1\u00ca",
+            "\1\u0108",
+            "\1\u0109",
+            "",
+            "\1\u010a",
+            "",
+            "\1\u010b",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u010e",
             "\1\u010f",
-            "",
             "\1\u0110",
             "\1\u0111",
             "\1\u0112",
-            "",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0114",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0116",
-=======
             "\1\u0113",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u0114",
+            "",
             "\1\u0115",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "",
+            "\1\u0116",
+            "",
+            "",
             "\1\u0117",
-            "\1\u0118",
-            "\1\u0119",
-            "\1\u011a",
-            "",
-            "",
-            "\1\u011b",
-            "",
-            "",
-            "\1\u011c",
-            "\1\u011d",
+            "\10\u011b\2\u00d4\7\uffff\1\u00d4\1\u0119\2\u00d4\1\u00d3\1\u00d4\21\uffff\1\162\6\uffff\1\u011a\1\uffff\1\u00d4\1\u0118\2\u00d4\1\u00d3\1\u00d4\21\uffff\1\162",
+            "\12\u011d\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u011c\1\uffff\4\u00d4\1\u00d3\1\u00d4",
             "\1\u011e",
             "\1\u011f",
+            "",
             "\1\u0120",
             "\1\u0121",
             "\1\u0122",
+            "",
             "\1\u0123",
-            "\2\u0124\10\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u00c8\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\2\u0124\10\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u00c8\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\10\u010b\2\u00ca\7\uffff\6\u00ca\32\uffff\6\u00ca",
-            "\10\u0126\2\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u0125\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\12\u010d\7\uffff\6\u00ca\32\uffff\6\u00ca",
-            "\12\u010d\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u010c\1\uffff\4\u00ca\1\u00c9\1\u00ca",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u0125",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u0127",
             "\1\u0128",
             "\1\u0129",
             "\1\u012a",
             "\1\u012b",
-<<<<<<< Upstream, based on origin/ST6RI-75
-=======
+            "",
+            "",
             "\1\u012c",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-<<<<<<< Upstream, based on origin/ST6RI-75
+            "\1\u012d",
             "\1\u012e",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\3\52\1\u012f\26\52",
-=======
             "\1\u012f",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\3\52\1\u0130\26\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "\1\u0130",
+            "\1\u0131",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-<<<<<<< Upstream, based on origin/ST6RI-75
             "\1\u0133",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0135",
-            "\1\u0136",
-            "\1\u0137",
-=======
             "\1\u0134",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "\1\u0135",
+            "\2\u0136\10\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u00d2\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\2\u0136\10\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u00d2\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\10\u011b\2\u00d4\7\uffff\6\u00d4\32\uffff\6\u00d4",
+            "\10\u0138\2\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u0137\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\12\u011d\7\uffff\6\u00d4\32\uffff\6\u00d4",
+            "\12\u011d\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u011c\1\uffff\4\u00d4\1\u00d3\1\u00d4",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\1\u0139",
-=======
-            "\1\u0136",
-            "\1\u0137",
-            "\1\u0138",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
             "\1\u013a",
             "\1\u013b",
-            "\2\u013d\10\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u013c\1\uffff\4\u00ca\1\u00c9\1\u00ca",
-            "\10\u0126\2\u00ca\7\uffff\6\u00ca\32\uffff\6\u00ca",
-            "\10\u0126\2\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u0125\1\uffff\4\u00ca\1\u00c9\1\u00ca",
+            "\1\u013c",
+            "\1\u013d",
+            "\1\u013e",
             "",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0140",
             "\1\u0141",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "",
-            "",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "\1\u0142",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-=======
-            "",
-            "",
-            "\1\u0143",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
-            "",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\1\u0144",
-=======
-            "",
-            "\1\u0145",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\3\52\1\u0142\26\52",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\1\u0147",
-            "",
-=======
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "\1\u0146",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u0148",
-<<<<<<< Upstream, based on origin/ST6RI-75
-=======
-            "",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
             "\1\u0149",
             "\1\u014a",
-            "\2\u013d\10\u00ca\7\uffff\6\u00ca\32\uffff\6\u00ca",
-            "\2\u013d\10\u00ca\7\uffff\4\u00ca\1\u00c9\1\u00ca\30\uffff\1\u013c\1\uffff\4\u00ca\1\u00c9\1\u00ca",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "",
-            "",
-            "\1\u014b",
             "\1\u014c",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-            "",
-            "\1\u014f",
-            "\1\u0150",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0153",
-=======
             "\1\u014d",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u014e",
+            "\2\u0150\10\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u014f\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "\10\u0138\2\u00d4\7\uffff\6\u00d4\32\uffff\6\u00d4",
+            "\10\u0138\2\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u0137\1\uffff\4\u00d4\1\u00d3\1\u00d4",
             "",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
-            "",
-<<<<<<< Upstream, based on origin/ST6RI-75
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0156",
-            "",
-            "",
-            "\1\u0157",
-            "",
-=======
-            "\1\u0150",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\1\u0153",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u0154",
             "\1\u0155",
             "",
             "",
             "\1\u0156",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "",
             "",
-            "\1\u0157",
->>>>>>> a6f24c6 ST6RI-76 Added syntax for interactions to the textual notation.
+            "",
+            "\1\u0158",
             "",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u015b",
+            "",
+            "\1\u015c",
+            "\1\u015d",
+            "\1\u015e",
+            "\2\u0150\10\u00d4\7\uffff\6\u00d4\32\uffff\6\u00d4",
+            "\2\u0150\10\u00d4\7\uffff\4\u00d4\1\u00d3\1\u00d4\30\uffff\1\u014f\1\uffff\4\u00d4\1\u00d3\1\u00d4",
+            "",
+            "",
+            "\1\u015f",
+            "\1\u0160",
+            "\1\u0161",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "",
+            "",
+            "\1\u0164",
+            "\1\u0165",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u0168",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u016a",
+            "",
+            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\u016c",
+            "",
+            "",
+            "\1\u016d",
+            "",
+            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
             "",
@@ -4366,21 +4037,21 @@ public class InternalAlfLexer extends Lexer {
             this.transition = DFA29_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );";
+            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA29_81 = input.LA(1);
+                        int LA29_83 = input.LA(1);
 
                         s = -1;
-                        if ( (LA29_81=='*') ) {s = 130;}
+                        if ( (LA29_83=='*') ) {s = 134;}
 
-                        else if ( (LA29_81=='@') ) {s = 131;}
+                        else if ( (LA29_83=='@') ) {s = 135;}
 
-                        else if ( ((LA29_81>='\u0000' && LA29_81<=')')||(LA29_81>='+' && LA29_81<='?')||(LA29_81>='A' && LA29_81<='\uFFFF')) ) {s = 132;}
+                        else if ( ((LA29_83>='\u0000' && LA29_83<=')')||(LA29_83>='+' && LA29_83<='?')||(LA29_83>='A' && LA29_83<='\uFFFF')) ) {s = 136;}
 
                         if ( s>=0 ) return s;
                         break;

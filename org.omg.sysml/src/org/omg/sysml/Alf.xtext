@@ -237,6 +237,16 @@ FeatureMember returns SysML::FeatureMembership :
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
 	  )
     | 'abstract' 'succession' ownedRelatedElement += AbstractSuccessionDefinition
+	| 'stream' 
+	  ( ownedRelatedElement += ItemFlowDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
+	  )
+    | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlowDefinition
+	| 'flow' 
+	  ( ownedRelatedElement += SuccessionItemFlowDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
+	  )
+    | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlowDefinition
     )
 ;
 
@@ -573,6 +583,55 @@ AbstractSuccessionDefinition returns SysML::Connector :
 	ConnectorDeclaration AbstractCategoryBody
 ;
 
+/* ITEM FLOWS */
+
+ItemFlowDefinition returns SysML::ItemFlow :
+	ItemFlowDeclaration CategoryBody
+;
+
+AbstractItemFlowDefinition returns SysML::ItemFlow :
+	ItemFlowDeclaration AbstractCategoryBody
+;
+
+SuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
+	ItemFlowDeclaration CategoryBody
+;
+
+AbstractSuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
+	ItemFlowDeclaration AbstractCategoryBody
+;
+
+fragment ItemFlowDeclaration returns SysML::ItemFlow :
+	( ( name = Name )? ConnectorTypePart 'is' )? ( ownedRelationship += ItemTypeMember 'from' )? 
+	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
+;
+
+ItemTyping returns SysML::Feature :
+	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
+;
+
+ItemFlowEnd returns SysML::Feature :
+	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowFeature returns SysML::Feature :
+	ownedRelationship += Redefinition
+;
+
+/* ITEM FLOW MEMBERSHIPS */
+
+ItemTypeMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemTyping
+;
+
+ItemFlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += ItemFlowEnd
+;
+
+ItemFlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemFlowFeature
+;
+
 /* PARAMETERS */
 
 ParameterDefinition returns SysML::Parameter :
@@ -583,10 +642,24 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( isAbstract ?= 'abstract')? 'step' 
-	( name = Name TypePart ParameterList? SubsettingPart 
+	( name = Name TypePart StepParameterList? SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition TypePart ParameterList?
 	) 
 	BehaviorBody
+;
+
+fragment StepParameterList returns SysML::Category :
+	'(' ( ownedRelationship += StepParameterMember ( ',' ownedRelationship += StepParameterMember )* )? ')'
+;
+
+StepParameterDefinition returns SysML::Parameter :
+	TypePart ( '=' ownedRelationship += FeatureValue )?
+;
+
+/* STEP MEMBERSHIPS */
+
+StepParameterMember returns SysML::ParameterMembership :
+	( direction = FeatureDirection )? memberName = Name ownedRelatedElement += StepParameterDefinition
 ;
 
 /* EXPRESSIONS */
@@ -595,7 +668,7 @@ StepDefinition returns SysML::Step :
 
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
-	( name = Name TypePart ( ParameterList ReturnParameterPart )? SubsettingPart 
+	( name = Name TypePart ( StepParameterList ReturnParameterPart )? SubsettingPart 
 	| 'redefines' ownedRelationship += Redefinition TypePart ( ParameterList ReturnParameterPart )?
 	)?
 	FunctionBody

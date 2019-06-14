@@ -225,16 +225,17 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		pack.gen(visitor, newHashSet)
 		pack.imp(visitor, newHashSet, true)
 		
-		val outerscope = if ( /* Root package */ pack.eContainer === null) {
-				if (pack.name !== null) {
-					val qn = QualifiedName.create().append(pack.name)
-					visitor.apply(qn, pack)
-					pack.accept(qn, visitor, false, true, newHashSet)
-				}
-				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-		} else {
-			scope_Package(pack.parentPackage, reference /*, E */ )
-		}
+		val outerscope = 
+			if ( /* Root package */ pack.eContainer === null || pack.parentPackage === null) {
+					if (pack.name !== null) {
+						val qn = QualifiedName.create().append(pack.name)
+						visitor.apply(qn, pack)
+						pack.accept(qn, visitor, false, true, newHashSet)
+					}
+					globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+			} else {
+				scope_Package(pack.parentPackage, reference /*, E */ )
+			};
 
 		var int previousCount;
 		do {
@@ -267,7 +268,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	
 	private def Package getParentPackage(Element element) {
 		var EObject container=element.eContainer
-		while(!(container instanceof Package)){
+		while(container !== null && !(container instanceof Package)){
 			container=container.eContainer
 		}
 		return (container as Package)

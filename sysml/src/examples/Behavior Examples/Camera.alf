@@ -1,0 +1,8 @@
+class Camera specializes Base::Object {
+	import Occurrences::*;
+	
+	feature focusedState: Camera subsets portions;
+	feature shotState: Camera subsets portions;
+	
+	succession focusedState to shotState;
+}

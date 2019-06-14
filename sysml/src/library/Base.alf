@@ -106,7 +106,9 @@ package Base {
 	 * Object is the most general class of non-behavioral entities that have identity
 	 * and are mutable over time.
 	 */
-	abstract class Object specializes Occurrence;
+	abstract class Object specializes Occurrence {
+		feature involvingPerformances: Performance[0..*];
+	}
 	
 	/**
 	 * Link is the most general association between two or more things.
@@ -157,7 +159,9 @@ package Base {
 	/**
 	 * Performance is the most general class of behaviors that may be performed over time.
 	 */
-	abstract behavior Performance() specializes Occurrence;
+	abstract behavior Performance() specializes Occurrence {
+		feature involvedObjects: Object[0..*];
+	}
 	
 	/**
 	 * Evaluation is the most general class of functions that may be evaluated to compute

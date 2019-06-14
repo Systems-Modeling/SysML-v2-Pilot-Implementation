@@ -54,8 +54,8 @@ package Occurrences {
 	 * by the involvingPerformance.
 	 */
 	assoc Involvement {
-		end involvingPerformance: Performance[0..*];
-		end involvedObject: Object[0..*];
+		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances;
+		end involvedObject: Object[0..*] redefines Performance::involvedObjects;
 	}
 	
 	/**

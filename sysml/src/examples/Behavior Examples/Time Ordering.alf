@@ -1,0 +1,41 @@
+package 'Time Ordering' {
+	import Base::*;
+	import Occurrences::*;
+	
+	class Camera specializes Base::Object {
+		
+		feature focusedState: FocusedCamera subsets portions;
+		feature shotState: FocusedCamera subsets portions;
+		
+		succession focusedState to shotState;
+	}
+	
+	class FocusedCamera specializes Camera;
+	class ShotCamera specializes Camera;
+
+	behavior Focus(camera: Camera);
+	behavior Shoot(camera: Camera);
+	
+	behavior TakePicture() specializes Performance {
+		
+		feature camera: Camera {
+			// These redefinitions would not be necessary if
+			// inheritance worked right.
+			feature focusedState redefines Camera::focusedState;
+			feature shotState redefines Camera::shotState;
+		}
+		
+		// The following are very explicit notations for time
+		// ordering. Shorthand notations are still to be
+		// determined.
+		
+		step step1: Focus[1] (camera) subsets suboccurrences;
+		step step2: Shoot[1] (camera) subsets suboccurrences;
+		
+		succession step1 to step2;
+		
+		connector :HappensDuring (step1, camera::focusedState);
+		connector :HappensDuring (step2, camera::shotState);
+	}
+	
+}

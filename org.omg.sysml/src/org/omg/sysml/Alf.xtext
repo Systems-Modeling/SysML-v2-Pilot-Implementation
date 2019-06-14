@@ -226,6 +226,11 @@ FeatureMember returns SysML::FeatureMembership :
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
+	| 'succession' 
+	  ( ownedRelatedElement += SuccessionDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
+	  )
+    | 'abstract' 'succession' ownedRelatedElement += AbstractSuccessionDefinition
     )
 ;
 
@@ -530,6 +535,16 @@ ConnectorEnd returns SysML::Feature :
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
 	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+;
+
+/* SUCCESSIONS */
+
+SuccessionDefinition returns SysML::Succession :
+	ConnectorDeclaration CategoryBody
+;
+
+AbstractSuccessionDefinition returns SysML::Connector :
+	ConnectorDeclaration AbstractCategoryBody
 ;
 
 /* PARAMETERS */

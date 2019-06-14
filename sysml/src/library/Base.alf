@@ -40,12 +40,12 @@ package Base {
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence.
 		 */
-		feature encompassedOccurrences: Occurrence[0..*];
+		feature suboccurrences: Occurrence[0..*];
 		
 		/**
 		 * Occurrences that a portions of this occurrence.
 		 */
-		portion portions: Occurrence[0..*] subsets encompassedOccurrences;
+		portion portions: Occurrence[0..*] subsets suboccurrences;
 		
 		/**
 		 * Portions of an occurrence over some finite slice of time. 

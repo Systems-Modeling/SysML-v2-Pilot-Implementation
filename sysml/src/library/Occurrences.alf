@@ -13,7 +13,7 @@ package Occurrences {
 	 * "happens during" itself.
 	 */
 	assoc HappensDuring {
-		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::encompassedOccurrences;
+		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences;
 		end longerOccurrence: Occurrence[0..*];
 	}
 	
@@ -57,4 +57,10 @@ package Occurrences {
 		end involvingPerformance: Performance[0..*];
 		end involvedObject: Object[0..*];
 	}
+	
+	/**
+	 * successions is a specialization of binaryLinks restricted to type HappensBefore.
+	 * It is the default subsetting for succession connectors.
+	 */
+	 feature successions: HappensBefore[0..*] nonunique subsets binaryLinks;
 }

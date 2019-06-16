@@ -43,7 +43,7 @@ package Base {
 		feature suboccurrences: Occurrence[0..*];
 		
 		/**
-		 * Occurrences that a portions of this occurrence.
+		 * Occurrences that are portions of this occurrence.
 		 */
 		portion portions: Occurrence[0..*] subsets suboccurrences;
 		
@@ -80,26 +80,18 @@ package Base {
 		/**
 		 * snapshots have no duration.
 		 */
-		connector :HappensBeforeSelf ( // Note: Connectors are only allowed to have a single type.
-			earlierOccurrence => snapshots[1],
-			laterOccurrence => snapshots[1]
-		);
+		// Note: Connectors are only allowed to have a single type.
+		succession :HappensBeforeSelf is snapshots[1] to snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.
 		 */
-		connector :Occurrences::HappensBefore (
-			earlierOccurrence => startShot[1],
-			laterOccurrence => snapshots[0..*]
-		);
+		succession startShot[1] to snapshots[0..*];
 		
 		/**
 		 * The endShot happens after all snapshots.
 		 */
-		connector :Occurrences::HappensBefore (
-			earlierOccurrence => snapshots[0..*],
-			laterOccurrence => endShot[1]
-		);
+		succession snapshots[0..*] to endShot[1];
 	}
 
 	/**

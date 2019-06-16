@@ -29,29 +29,32 @@
 package org.omg.sysml.scoping
 
 import com.google.common.base.Predicates
+import com.google.common.collect.Lists
 import com.google.inject.Inject
+import java.util.HashMap
 import java.util.HashSet
+import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
+import org.eclipse.xtext.util.Strings
+import org.omg.sysml.lang.sysml.Category
 import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Subsetting
-import org.omg.sysml.lang.sysml.FeatureTyping
-import org.omg.sysml.lang.sysml.Category
-
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
-import java.util.HashMap
-import org.eclipse.xtext.util.Strings
+import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.VisibilityKind
-import org.omg.sysml.lang.sysml.Membership
 
 /**
  * This class contains custom scoping description.
@@ -194,7 +197,106 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		]
 	}
 
+	private def directlyOwned(Package pack) {
+		
+		Lists.<Element>newArrayList(pack.ownedMembership.map[it.memberElement].toList)
+			
+	}
+		
+	def List<Element> lambda (EObject p, EReference ref,  QualifiedName inital_qn, List<IEObjectDescription> obdescs) {
+		var work_qn = inital_qn
+		// When we are down to one, we are actually prepared to find elements
+		println("lambda --> "+inital_qn+" "+p+" "+ref)
+		try {
+		var pack = p as Package 
+		
+		while(work_qn.segmentCount > 0 ) {
+				println("Looping for " +work_qn)
+				var direct = Lists.<Element>newArrayList
+				if(ref.name != 'memberElement')
+					direct+= pack.directlyOwned
+				var directPackages = Lists.<Package>newArrayList
+				val qn = work_qn
+				println("QN: "+qn)
+				
+				if(qn.firstSegment == "#" || (!direct.exists[it.name == qn.firstSegment] && pack !== null)) {
+					val directByImport = // pack.ownedImport.map[importedPackage].map[directlyOwned].flatten.toList
+					pack.importedMembership.map[it.memberElement].toList
+					direct.addAll(directByImport)
+				}
+				
+				// Only check if no match found yet
+				if(!direct.exists[it.name == qn.firstSegment]) {
+					if(pack instanceof Category) {
+						val x = pack.inheritedMembership.map[memberElement].toList
+						direct.addAll(x.filter(Element))
+					
+//						println("Generals "+pack.ownedGeneralization.map[general].toList)
+						directPackages+= pack.ownedGeneralization.map[general]
+						direct.addAll(pack.ownedGeneralization.map[general])
+//						val directByGen = pack.ownedGeneralization.map[general].map[directlyOwned].flatten.toList
+//						direct.addAll(directByGen) 
+						
+					}
+				}
+				if(!direct.exists[it.name == qn.firstSegment] && pack.parentPackage !== null) {
+					direct.addAll(pack.parentPackage.directlyOwned)
+				}
+				
+		
+				
+				if(!direct.exists[it.name == qn.firstSegment] && pack !== null) {
+					println("Getting global scope")
+//					println(globalScope.getScope(pack.eResource, ref, Predicates.alwaysTrue).allElements)
+//					println(globalScope.getScope(pack.eResource, ref, Predicates.alwaysTrue).allElements.map[it.EObjectOrProxy].toList)
+					println(globalScope.getScope(pack.eResource, ref, Predicates.alwaysTrue).allElements.filter[it.qualifiedName == qn].toList)
+					obdescs += globalScope.getScope(pack.eResource, ref, Predicates.alwaysTrue).allElements.filter[it.qualifiedName == qn].toList
+					direct.addAll(globalScope.getScope(pack.eResource, ref, Predicates.alwaysTrue).allElements.map[it.EObjectOrProxy].
+						filter(Element).toList)
+					println(direct.map[name].toList)
+					
+				}
+				
+			if(qn.segmentCount == 1) {
+				val r = direct.filter[ref.EReferenceType.isInstance(it)].filter[qn.firstSegment=='#' || (!it.name.nullOrEmpty && it.name==qn.toString)].toList
+				println(" lambda <-- "+inital_qn+":"+r.map[it.name].toList)
+				return r;
+					
+			} else {
+				val seg1 = qn.firstSegment
+				println("XX "+ (direct + directPackages).map[it.name].toList)
+				pack = (direct + directPackages).filter[!it.name.nullOrEmpty && it.name==seg1].filter(Package).head
+				println("Set new pack "+pack)
+				if(pack == null) {
+					val r = Lists.<Element>newArrayList
+					println(" lambda <-- "+inital_qn+":"+r.map[it.name].toList)
+					return r;
+				}
+					
+				work_qn = qn.skipFirst(1)
+				
+			}
+		}
+		
+		} catch(Exception e) {
+			println("OOPSX")
+			e.printStackTrace
+		} 
+		return Lists.<Element>newArrayList
+	}
+	
+	val lambdaWrapper = [EObject p, EReference ref,  QualifiedName qn | 
+		val obdescs = Lists.<IEObjectDescription>newArrayList
+		lambda(p,ref,qn,obdescs).map[EObjectDescription.create(qn, it) ] + obdescs
+	]
+	
+
 	def IScope scope_Package(Package pack, EReference reference) {
+		println("PScope")
+		val r = new AlfLambdaScope(IScope.NULLSCOPE,  reference, pack, lambdaWrapper)
+		r
+	}
+	def IScope scope_Packagex(Package pack, EReference reference) {
 		
 		val elements = <Element, HashSet<QualifiedName>>newHashMap()
 		val visited = newHashSet
@@ -266,11 +368,15 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 	private def Package getParentPackage(Element element) {
-		var EObject container=element.eContainer
-		while(!(container instanceof Package)){
-			container=container.eContainer
-		}
-		return (container as Package)
+		if(element instanceof Package)
+			EcoreUtil2.getContainerOfType(element.eContainer,Package)
+		else
+			EcoreUtil2.getContainerOfType(element,Package)
+//		var EObject container=element.eContainer
+//		while(!(container instanceof Package)){
+//			container=container.eContainer
+//		}
+//		return (container as Package)
 	}
 	
 	def IScope scope_Namespace(Element element, Package namespace, EReference reference) {

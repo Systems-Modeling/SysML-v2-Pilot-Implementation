@@ -27,7 +27,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPart <em>Is Part</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPortion <em>Is Portion</em>}</li>
@@ -90,17 +89,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedMemberFeature_comp() <em>Owned Member Feature comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMemberFeature_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature ownedMemberFeature_comp;
-
-	/**
-	 * The cached value of the '{@link #getOwnedMemberFeature() <em>Owned Member Feature</em>}' reference.
+	 * The cached value of the '{@link #getOwnedMemberFeature() <em>Owned Member Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMemberFeature()
@@ -262,8 +251,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE, oldMemberFeature, memberFeature));
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedMemberFeature_comp != null && ownedMemberFeature_comp != newMemberFeature) {
-				setOwnedMemberFeature_comp(null);
+			if (ownedMemberFeature != null && ownedMemberFeature != newMemberFeature) {
+				setOwnedMemberFeature(null);
 			}
 		}
 	}
@@ -321,68 +310,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		isReadOnly = newIsReadOnly;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY, oldIsReadOnly, isReadOnly));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getOwnedMemberFeature_comp() {
-		return ownedMemberFeature_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp, NotificationChain msgs) {
-		Feature oldOwnedMemberFeature_comp = ownedMemberFeature_comp;
-		ownedMemberFeature_comp = newOwnedMemberFeature_comp;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP, oldOwnedMemberFeature_comp, newOwnedMemberFeature_comp);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedMemberFeature_comp != null) {
-				if (newOwnedMemberFeature_comp != memberFeature) {
-					setMemberFeature(newOwnedMemberFeature_comp);
-				}
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp) {
-		if (newOwnedMemberFeature_comp != ownedMemberFeature_comp) {
-			NotificationChain msgs = null;
-			if (ownedMemberFeature_comp != null)
-				msgs = ((InternalEObject)ownedMemberFeature_comp).eInverseRemove(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
-			if (newOwnedMemberFeature_comp != null)
-				msgs = ((InternalEObject)newOwnedMemberFeature_comp).eInverseAdd(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
-			msgs = basicSetOwnedMemberFeature_comp(newOwnedMemberFeature_comp, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP, newOwnedMemberFeature_comp, newOwnedMemberFeature_comp));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberFeature_comp() {
-		return ownedMemberFeature_comp != null;
 	}
 
 	/**
@@ -527,9 +454,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		if (newOwningCategory != owningCategory) {
 			NotificationChain msgs = null;
 			if (owningCategory != null)
-				msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP, Category.class, msgs);
+				msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, Category.class, msgs);
 			if (newOwningCategory != null)
-				msgs = ((InternalEObject)newOwningCategory).eInverseAdd(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP, Category.class, msgs);
+				msgs = ((InternalEObject)newOwningCategory).eInverseAdd(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, Category.class, msgs);
 			msgs = basicSetOwningCategory(newOwningCategory, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -554,13 +481,13 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				if (ownedMemberFeature_comp != null)
-					msgs = ((InternalEObject)ownedMemberFeature_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP, null, msgs);
-				return basicSetOwnedMemberFeature_comp((Feature)otherEnd, msgs);
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				if (ownedMemberFeature != null)
+					msgs = ((InternalEObject)ownedMemberFeature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, null, msgs);
+				return basicSetOwnedMemberFeature((Feature)otherEnd, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
 				if (owningCategory != null)
-					msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP, Category.class, msgs);
+					msgs = ((InternalEObject)owningCategory).eInverseRemove(this, SysMLPackage.CATEGORY__OWNED_FEATURE_MEMBERSHIP, Category.class, msgs);
 				return basicSetOwningCategory((Category)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -574,8 +501,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return basicSetOwnedMemberFeature_comp(null, msgs);
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return basicSetOwnedMemberFeature(null, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_CATEGORY:
 				return basicSetOwningCategory(null, msgs);
 		}
@@ -589,14 +516,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 */
 	@Override
 	public Feature getOwnedMemberFeature() {
-		if (ownedMemberFeature != null && ownedMemberFeature.eIsProxy()) {
-			InternalEObject oldOwnedMemberFeature = (InternalEObject)ownedMemberFeature;
-			ownedMemberFeature = (Feature)eResolveProxy(oldOwnedMemberFeature);
-			if (ownedMemberFeature != oldOwnedMemberFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, oldOwnedMemberFeature, ownedMemberFeature));
-			}
-		}
 		return ownedMemberFeature;
 	}
 	
@@ -605,8 +524,22 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetOwnedMemberFeature() {
-		return ownedMemberFeature;
+	public NotificationChain basicSetOwnedMemberFeature(Feature newOwnedMemberFeature, NotificationChain msgs) {
+		Feature oldOwnedMemberFeature = ownedMemberFeature;
+		ownedMemberFeature = newOwnedMemberFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, oldOwnedMemberFeature, newOwnedMemberFeature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newOwnedMemberFeature != null) {
+				if (newOwnedMemberFeature != memberFeature) {
+					setMemberFeature(newOwnedMemberFeature);
+				}
+			}
+		}
+		return msgs;
 	}
 
 	/**
@@ -616,10 +549,26 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 */
 	@Override
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
-		Feature oldOwnedMemberFeature = ownedMemberFeature;
-		ownedMemberFeature = newOwnedMemberFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, oldOwnedMemberFeature, ownedMemberFeature));
+		if (newOwnedMemberFeature != ownedMemberFeature) {
+			NotificationChain msgs = null;
+			if (ownedMemberFeature != null)
+				msgs = ((InternalEObject)ownedMemberFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
+			if (newOwnedMemberFeature != null)
+				msgs = ((InternalEObject)newOwnedMemberFeature).eInverseAdd(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
+			msgs = basicSetOwnedMemberFeature(newOwnedMemberFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, newOwnedMemberFeature, newOwnedMemberFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberFeature() {
+		return ownedMemberFeature != null;
 	}
 
 	/**
@@ -637,11 +586,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isDerived();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return getOwnedMemberFeature_comp();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				if (resolve) return getOwnedMemberFeature();
-				return basicGetOwnedMemberFeature();
+				return getOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
@@ -673,9 +619,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				setOwnedMemberFeature_comp((Feature)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)newValue);
@@ -716,9 +659,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				setOwnedMemberFeature_comp((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)null);
 				return;
@@ -753,18 +693,16 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isSetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
-				return isSetOwnedMemberElement_comp();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				return isSetMembershipOwningPackage();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return isSetOwnedMemberFeature_comp();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				return ownedMemberFeature != null;
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
 				return isPart != IS_PART_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
@@ -852,8 +790,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
-	public Element getOwnedMemberElement_comp() {
-		return getOwnedMemberFeature_comp();
+	public Element getOwnedMemberElement() {
+		return getOwnedMemberFeature();
 	}
 
 	/**
@@ -862,8 +800,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
-	public Element basicGetOwnedMemberElement_comp() {
-		return getOwnedMemberFeature_comp();
+	public Element basicGetOwnedMemberElement() {
+		return getOwnedMemberFeature();
 	}
 
 	/**
@@ -871,11 +809,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
-		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Feature)) {
-			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Feature");
+	public NotificationChain basicSetOwnedMemberElement(Element newOwnedMemberElement, NotificationChain msgs) {
+		if (newOwnedMemberElement != null && !(newOwnedMemberElement instanceof Feature)) {
+			throw new IllegalArgumentException("newOwnedMemberElement must be an instance of Feature");
 		}
-		return basicSetOwnedMemberFeature_comp((Feature) newOwnedMemberElement_comp, msgs);
+		return basicSetOwnedMemberFeature((Feature) newOwnedMemberElement, msgs);
 	}
 
 	/**
@@ -883,11 +821,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
-		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Feature)) {
-			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Feature");
+	public void setOwnedMemberElement(Element newOwnedMemberElement) {
+		if (newOwnedMemberElement != null && !(newOwnedMemberElement instanceof Feature)) {
+			throw new IllegalArgumentException("newOwnedMemberElement must be an instance of Feature");
 		}
-		setOwnedMemberFeature_comp((Feature) newOwnedMemberElement_comp);
+		setOwnedMemberFeature((Feature) newOwnedMemberElement);
 	}
 
 	/**
@@ -895,7 +833,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedMemberElement_comp() {
+	public boolean isSetOwnedMemberElement() {
   		return false;
 	}
 

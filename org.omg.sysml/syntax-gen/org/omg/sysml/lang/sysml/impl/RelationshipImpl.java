@@ -31,7 +31,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  * </ul>
  *
@@ -59,17 +58,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	protected EList<Element> source;
 
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> ownedRelatedElement_comp;
-
-	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedRelatedElement()
@@ -115,7 +104,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,7 +114,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
 		if (ownedRelatedElement == null) {
-			ownedRelatedElement = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
+			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
 		}
 		return ownedRelatedElement;
 	}
@@ -165,25 +154,12 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		if (ownedRelatedElement_comp == null) {
-			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement_comp;
 	}
 
 	/**
@@ -252,8 +228,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -268,8 +244,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 		switch (featureID) {
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -283,7 +259,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -304,8 +280,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return getSource();
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement();
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				return getOwnedRelatedElement_comp();
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				return getOwnedRelatedElement();
 		}
@@ -332,10 +306,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)newValue);
 				return;
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
@@ -361,9 +331,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)null);
 				return;
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				return;
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
@@ -387,8 +354,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return source != null && !source.isEmpty();
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP:
-				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 		}
@@ -404,7 +369,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 		return eIsSet(SysMLPackage.RELATIONSHIP__TARGET)
 			|| eIsSet(SysMLPackage.RELATIONSHIP__SOURCE)
 			|| eIsSet(SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT)
-			|| eIsSet(SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP);
+			|| eIsSet(SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
 	}
 
 } //RelationshipImpl

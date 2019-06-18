@@ -23,12 +23,12 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMember <em>Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getImportedMembership <em>Imported Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage()
@@ -63,7 +63,7 @@ public interface Package extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedImport() <em>Owned Import</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -83,6 +83,12 @@ public interface Package extends Element {
 	/**
 	 * Returns the value of the '<em><b>Owned Import</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Import</em>' reference list isn't clear,
@@ -91,7 +97,7 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Import</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport()
-	 * @model
+	 * @model annotation="subsets"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
@@ -171,7 +177,7 @@ public interface Package extends Element {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMembership() <em>Membership</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership() <em>Owned Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -191,6 +197,12 @@ public interface Package extends Element {
 	/**
 	 * Returns the value of the '<em><b>Owned Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Membership</em>' reference list isn't clear,
@@ -199,7 +211,7 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
-	 * @model
+	 * @model annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

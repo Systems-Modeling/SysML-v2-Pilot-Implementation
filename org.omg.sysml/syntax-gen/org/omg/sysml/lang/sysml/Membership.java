@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -181,43 +180,15 @@ public interface Membership extends Relationship {
 	void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Member Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
 	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Member Element comp</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Member Element comp</em>' reference.
-	 * @see #setOwnedMemberElement_comp(Element)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement_comp()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
-	 * @model opposite="owningMembership" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Element getOwnedMemberElement_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Member Element comp</em>' reference.
-	 * @see #getOwnedMemberElement_comp()
-	 * @generated
-	 */
-	void setOwnedMemberElement_comp(Element value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Element</em>' reference isn't clear,
@@ -227,7 +198,9 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Owned Member Element</em>' reference.
 	 * @see #setOwnedMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement()
-	 * @model
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
+	 * @model opposite="owningMembership" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();

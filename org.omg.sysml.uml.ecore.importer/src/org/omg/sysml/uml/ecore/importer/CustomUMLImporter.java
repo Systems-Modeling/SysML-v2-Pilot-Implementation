@@ -165,9 +165,6 @@ public class CustomUMLImporter extends UMLImporter {
 		super.adjustGenModel(monitor);
 		GenModel current = getGenModel();
 
-		current.setComplianceLevel(GenJDKLevel.JDK50_LITERAL);
-		current.setDynamicTemplates(true);
-		current.setTemplateDirectory("/" + getModelPluginID() + "/templates");
 		current.setModelDirectory("/" + getModelPluginID() + "/syntax-gen");
 
 		for (GenPackage genPackage : current.getGenPackages()) {

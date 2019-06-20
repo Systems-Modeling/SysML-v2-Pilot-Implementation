@@ -12,7 +12,9 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Multiplicity#getLower_comp <em>Lower comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Multiplicity#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Multiplicity#getUpper_comp <em>Upper comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Multiplicity#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}</li>
  * </ul>
@@ -23,14 +25,42 @@ package org.omg.sysml.lang.sysml;
  */
 public interface Multiplicity extends Relationship {
 	/**
-	 * Returns the value of the '<em><b>Lower</b></em>' reference.
+	 * Returns the value of the '<em><b>Lower comp</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
 	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Lower comp</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Lower comp</em>' reference.
+	 * @see #setLower_comp(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_Lower_comp()
+	 * @model ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='lowerMultiplicity'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Expression getLower_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Multiplicity#getLower_comp <em>Lower comp</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Lower comp</em>' reference.
+	 * @see #getLower_comp()
+	 * @generated
+	 */
+	void setLower_comp(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Lower</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower</em>' reference isn't clear,
@@ -40,9 +70,7 @@ public interface Multiplicity extends Relationship {
 	 * @return the value of the '<em>Lower</em>' reference.
 	 * @see #setLower(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_Lower()
-	 * @model ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='lowerMultiplicity'"
-	 *        annotation="subsets"
+	 * @model
 	 * @generated
 	 */
 	Expression getLower();
@@ -58,14 +86,42 @@ public interface Multiplicity extends Relationship {
 	void setLower(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Upper</b></em>' reference.
+	 * Returns the value of the '<em><b>Upper comp</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
 	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Upper comp</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Upper comp</em>' reference.
+	 * @see #setUpper_comp(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_Upper_comp()
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='upperMultiplicity'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Expression getUpper_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Multiplicity#getUpper_comp <em>Upper comp</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Upper comp</em>' reference.
+	 * @see #getUpper_comp()
+	 * @generated
+	 */
+	void setUpper_comp(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Upper</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper</em>' reference isn't clear,
@@ -75,9 +131,7 @@ public interface Multiplicity extends Relationship {
 	 * @return the value of the '<em>Upper</em>' reference.
 	 * @see #setUpper(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_Upper()
-	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='upperMultiplicity'"
-	 *        annotation="subsets"
+	 * @model required="true"
 	 * @generated
 	 */
 	Expression getUpper();
@@ -94,7 +148,7 @@ public interface Multiplicity extends Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Feature With Multiplicity</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp <em>Multiplicity comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -116,8 +170,8 @@ public interface Multiplicity extends Relationship {
 	 * @return the value of the '<em>Feature With Multiplicity</em>' reference.
 	 * @see #setFeatureWithMultiplicity(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_FeatureWithMultiplicity()
-	 * @see org.omg.sysml.lang.sysml.Feature#getMultiplicity
-	 * @model opposite="multiplicity" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp
+	 * @model opposite="multiplicity_comp" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated

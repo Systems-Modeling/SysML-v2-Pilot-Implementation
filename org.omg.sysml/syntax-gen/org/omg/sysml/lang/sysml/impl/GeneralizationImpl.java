@@ -161,7 +161,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -231,6 +231,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
+	@Override
 	public Element getOwningRelatedElement() {
 		if (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT) return null;
 		return (Element)eInternalContainer();
@@ -260,7 +261,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}

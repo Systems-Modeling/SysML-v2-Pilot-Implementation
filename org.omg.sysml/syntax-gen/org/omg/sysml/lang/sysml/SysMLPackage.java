@@ -558,13 +558,22 @@ public interface SysMLPackage extends EPackage {
 	int ELEMENT__OWNING_MEMBERSHIP = 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__OWNED_RELATIONSHIP = 1;
+	int ELEMENT__OWNED_RELATIONSHIP_COMP = 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__OWNED_RELATIONSHIP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -573,7 +582,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__OWNING_RELATIONSHIP = 2;
+	int ELEMENT__OWNING_RELATIONSHIP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -582,7 +591,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__OWNING_NAMESPACE = 3;
+	int ELEMENT__OWNING_NAMESPACE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -591,7 +600,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__IDENTIFIER = 4;
+	int ELEMENT__IDENTIFIER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -600,7 +609,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__NAME = 5;
+	int ELEMENT__NAME = 6;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -609,7 +618,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__OWNER = 6;
+	int ELEMENT__OWNER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -618,7 +627,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__OWNED_ELEMENT = 7;
+	int ELEMENT__OWNED_ELEMENT = 8;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class.
@@ -627,7 +636,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 8;
+	int ELEMENT_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -648,7 +657,16 @@ public interface SysMLPackage extends EPackage {
 	int RELATIONSHIP__OWNING_MEMBERSHIP = ELEMENT__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONSHIP__OWNED_RELATIONSHIP_COMP = ELEMENT__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -747,13 +765,22 @@ public interface SysMLPackage extends EPackage {
 	int RELATIONSHIP__OWNING_RELATED_ELEMENT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONSHIP__OWNED_RELATED_ELEMENT = ELEMENT_FEATURE_COUNT + 4;
+	int RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP = ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONSHIP__OWNED_RELATED_ELEMENT = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Relationship</em>' class.
@@ -762,7 +789,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
+	int RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Relationship</em>' class.
@@ -783,7 +810,16 @@ public interface SysMLPackage extends EPackage {
 	int MEMBERSHIP__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBERSHIP__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -882,7 +918,16 @@ public interface SysMLPackage extends EPackage {
 	int MEMBERSHIP__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -936,13 +981,22 @@ public interface SysMLPackage extends EPackage {
 	int MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = RELATIONSHIP_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBERSHIP__OWNED_MEMBER_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 5;
+	int MEMBERSHIP__OWNED_MEMBER_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Membership</em>' class.
@@ -951,7 +1005,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 6;
+	int MEMBERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -981,7 +1035,16 @@ public interface SysMLPackage extends EPackage {
 	int PACKAGE__OWNING_MEMBERSHIP = ELEMENT__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_RELATIONSHIP_COMP = ELEMENT__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1062,13 +1125,22 @@ public interface SysMLPackage extends EPackage {
 	int PACKAGE__OWNED_IMPORT_COMP = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_IMPORT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__MEMBER = ELEMENT_FEATURE_COUNT + 2;
+	int PACKAGE__MEMBER = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -1077,7 +1149,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_MEMBER = ELEMENT_FEATURE_COUNT + 3;
+	int PACKAGE__OWNED_MEMBER = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -1086,7 +1158,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__IMPORTED_MEMBERSHIP = ELEMENT_FEATURE_COUNT + 4;
+	int PACKAGE__IMPORTED_MEMBERSHIP = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership comp</b></em>' reference list.
@@ -1095,7 +1167,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_MEMBERSHIP_COMP = ELEMENT_FEATURE_COUNT + 5;
+	int PACKAGE__OWNED_MEMBERSHIP_COMP = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -1104,16 +1176,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_MEMBERSHIP = ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_IMPORT = ELEMENT_FEATURE_COUNT + 7;
+	int PACKAGE__OWNED_MEMBERSHIP = ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Package</em>' class.
@@ -1170,7 +1233,16 @@ public interface SysMLPackage extends EPackage {
 	int IMPORT__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1269,7 +1341,16 @@ public interface SysMLPackage extends EPackage {
 	int IMPORT__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1287,13 +1368,22 @@ public interface SysMLPackage extends EPackage {
 	int IMPORT__IMPORTED_PACKAGE = RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Selecter comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__SELECTER_COMP = RELATIONSHIP_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Selecter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT__SELECTER = RELATIONSHIP_FEATURE_COUNT + 1;
+	int IMPORT__SELECTER = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -1302,7 +1392,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT__VISIBILITY = RELATIONSHIP_FEATURE_COUNT + 2;
+	int IMPORT__VISIBILITY = RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Import Owning Package</b></em>' reference.
@@ -1311,7 +1401,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT__IMPORT_OWNING_PACKAGE = RELATIONSHIP_FEATURE_COUNT + 3;
+	int IMPORT__IMPORT_OWNING_PACKAGE = RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Import</em>' class.
@@ -1320,7 +1410,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 4;
+	int IMPORT_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Imported Membership</em>' operation.
@@ -1350,7 +1440,16 @@ public interface SysMLPackage extends EPackage {
 	int CATEGORY__OWNING_MEMBERSHIP = PACKAGE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATEGORY__OWNED_RELATIONSHIP_COMP = PACKAGE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1431,6 +1530,15 @@ public interface SysMLPackage extends EPackage {
 	int CATEGORY__OWNED_IMPORT_COMP = PACKAGE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATEGORY__OWNED_IMPORT = PACKAGE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1476,15 +1584,6 @@ public interface SysMLPackage extends EPackage {
 	int CATEGORY__OWNED_MEMBERSHIP = PACKAGE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__OWNED_IMPORT = PACKAGE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1494,13 +1593,13 @@ public interface SysMLPackage extends EPackage {
 	int CATEGORY__OWNED_GENERALIZATION = PACKAGE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__OWNED_FEATURE_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 1;
+	int CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP = PACKAGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -1512,13 +1611,22 @@ public interface SysMLPackage extends EPackage {
 	int CATEGORY__OWNED_FEATURE = PACKAGE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATEGORY__OWNED_FEATURE_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__FEATURE = PACKAGE_FEATURE_COUNT + 3;
+	int CATEGORY__FEATURE = PACKAGE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -1527,7 +1635,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__INPUT = PACKAGE_FEATURE_COUNT + 4;
+	int CATEGORY__INPUT = PACKAGE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -1536,7 +1644,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__OUTPUT = PACKAGE_FEATURE_COUNT + 5;
+	int CATEGORY__OUTPUT = PACKAGE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -1545,7 +1653,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__IS_ABSTRACT = PACKAGE_FEATURE_COUNT + 6;
+	int CATEGORY__IS_ABSTRACT = PACKAGE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -1554,7 +1662,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__INHERITED_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 7;
+	int CATEGORY__INHERITED_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Category</em>' class.
@@ -1563,7 +1671,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 8;
+	int CATEGORY_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -1611,7 +1719,16 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__OWNING_MEMBERSHIP = CATEGORY__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_RELATIONSHIP_COMP = CATEGORY__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1692,6 +1809,15 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__OWNED_IMPORT_COMP = CATEGORY__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_IMPORT = CATEGORY__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1737,15 +1863,6 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__OWNED_MEMBERSHIP = CATEGORY__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_IMPORT = CATEGORY__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1755,13 +1872,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__OWNED_GENERALIZATION = CATEGORY__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_FEATURE_MEMBERSHIP = CATEGORY__OWNED_FEATURE_MEMBERSHIP;
+	int CLASS__OWNED_FEATURE_MEMBERSHIP_COMP = CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -1771,6 +1888,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__OWNED_FEATURE = CATEGORY__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_FEATURE_MEMBERSHIP = CATEGORY__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -1881,7 +2007,16 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_RELATIONSHIP_COMP = CLASS__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1962,6 +2097,15 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__OWNED_IMPORT_COMP = CLASS__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2007,15 +2151,6 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_IMPORT = CLASS__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2025,13 +2160,13 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int BEHAVIOR__OWNED_FEATURE_MEMBERSHIP_COMP = CLASS__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -2041,6 +2176,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BEHAVIOR__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2178,7 +2322,16 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__OWNING_MEMBERSHIP = BEHAVIOR__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__OWNED_RELATIONSHIP_COMP = BEHAVIOR__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2259,6 +2412,15 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__OWNED_IMPORT_COMP = BEHAVIOR__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__OWNED_IMPORT = BEHAVIOR__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2304,15 +2466,6 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__OWNED_MEMBERSHIP = BEHAVIOR__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION__OWNED_IMPORT = BEHAVIOR__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2322,13 +2475,13 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__OWNED_GENERALIZATION = BEHAVIOR__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION__OWNED_FEATURE_MEMBERSHIP = BEHAVIOR__OWNED_FEATURE_MEMBERSHIP;
+	int FUNCTION__OWNED_FEATURE_MEMBERSHIP_COMP = BEHAVIOR__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -2338,6 +2491,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION__OWNED_FEATURE = BEHAVIOR__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__OWNED_FEATURE_MEMBERSHIP = BEHAVIOR__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2493,7 +2655,16 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__OWNING_MEMBERSHIP = FUNCTION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__OWNED_RELATIONSHIP_COMP = FUNCTION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2574,6 +2745,15 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__OWNED_IMPORT_COMP = FUNCTION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__OWNED_IMPORT = FUNCTION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2619,15 +2799,6 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__OWNED_MEMBERSHIP = FUNCTION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__OWNED_IMPORT = FUNCTION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2637,13 +2808,13 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__OWNED_GENERALIZATION = FUNCTION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__OWNED_FEATURE_MEMBERSHIP = FUNCTION__OWNED_FEATURE_MEMBERSHIP;
+	int PREDICATE__OWNED_FEATURE_MEMBERSHIP_COMP = FUNCTION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -2653,6 +2824,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE__OWNED_FEATURE = FUNCTION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__OWNED_FEATURE_MEMBERSHIP = FUNCTION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2808,7 +2988,16 @@ public interface SysMLPackage extends EPackage {
 	int GENERALIZATION__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERALIZATION__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2907,7 +3096,16 @@ public interface SysMLPackage extends EPackage {
 	int GENERALIZATION__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERALIZATION__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2970,7 +3168,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP = MEMBERSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP_COMP = MEMBERSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3069,7 +3276,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT = MEMBERSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP = MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3123,6 +3339,15 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3159,13 +3384,22 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_MEMBERSHIP__MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Feature comp</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 3;
+	int FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP = MEMBERSHIP_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE = MEMBERSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Is Part</b></em>' attribute.
@@ -3174,7 +3408,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__IS_PART = MEMBERSHIP_FEATURE_COUNT + 4;
+	int FEATURE_MEMBERSHIP__IS_PART = MEMBERSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
@@ -3183,7 +3417,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__IS_PORTION = MEMBERSHIP_FEATURE_COUNT + 5;
+	int FEATURE_MEMBERSHIP__IS_PORTION = MEMBERSHIP_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Port</b></em>' attribute.
@@ -3192,7 +3426,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 6;
+	int FEATURE_MEMBERSHIP__IS_PORT = MEMBERSHIP_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -3201,7 +3435,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 7;
+	int FEATURE_MEMBERSHIP__DIRECTION = MEMBERSHIP_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owning Category</b></em>' reference.
@@ -3210,7 +3444,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP__OWNING_CATEGORY = MEMBERSHIP_FEATURE_COUNT + 8;
+	int FEATURE_MEMBERSHIP__OWNING_CATEGORY = MEMBERSHIP_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Feature Membership</em>' class.
@@ -3219,7 +3453,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 9;
+	int FEATURE_MEMBERSHIP_FEATURE_COUNT = MEMBERSHIP_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -3249,7 +3483,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNING_MEMBERSHIP = CATEGORY__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_RELATIONSHIP_COMP = CATEGORY__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3330,6 +3573,15 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNED_IMPORT_COMP = CATEGORY__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_IMPORT = CATEGORY__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3375,15 +3627,6 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNED_MEMBERSHIP = CATEGORY__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_IMPORT = CATEGORY__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3393,13 +3636,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNED_GENERALIZATION = CATEGORY__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_FEATURE_MEMBERSHIP = CATEGORY__OWNED_FEATURE_MEMBERSHIP;
+	int FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -3409,6 +3652,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE__OWNED_FEATURE = CATEGORY__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_FEATURE_MEMBERSHIP = CATEGORY__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -3546,13 +3798,31 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__IS_COMPOSITE = CATEGORY_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__VALUATION_COMP = CATEGORY_FEATURE_COUNT + 10;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__VALUATION = CATEGORY_FEATURE_COUNT + 10;
+	int FEATURE__VALUATION = CATEGORY_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__MULTIPLICITY_COMP = CATEGORY_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -3561,7 +3831,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__MULTIPLICITY = CATEGORY_FEATURE_COUNT + 11;
+	int FEATURE__MULTIPLICITY = CATEGORY_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Typing</b></em>' reference list.
@@ -3570,7 +3840,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__TYPING = CATEGORY_FEATURE_COUNT + 12;
+	int FEATURE__TYPING = CATEGORY_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -3579,7 +3849,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_NONUNIQUE = CATEGORY_FEATURE_COUNT + 13;
+	int FEATURE__IS_NONUNIQUE = CATEGORY_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -3588,7 +3858,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = CATEGORY_FEATURE_COUNT + 14;
+	int FEATURE_FEATURE_COUNT = CATEGORY_FEATURE_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -3636,7 +3906,16 @@ public interface SysMLPackage extends EPackage {
 	int SUBSETTING__OWNING_MEMBERSHIP = GENERALIZATION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSETTING__OWNED_RELATIONSHIP_COMP = GENERALIZATION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3735,7 +4014,16 @@ public interface SysMLPackage extends EPackage {
 	int SUBSETTING__OWNING_RELATED_ELEMENT = GENERALIZATION__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSETTING__OWNED_RELATED_ELEMENT_COMP = GENERALIZATION__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3825,7 +4113,16 @@ public interface SysMLPackage extends EPackage {
 	int REDEFINITION__OWNING_MEMBERSHIP = SUBSETTING__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDEFINITION__OWNED_RELATIONSHIP_COMP = SUBSETTING__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3924,7 +4221,16 @@ public interface SysMLPackage extends EPackage {
 	int REDEFINITION__OWNING_RELATED_ELEMENT = SUBSETTING__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDEFINITION__OWNED_RELATED_ELEMENT_COMP = SUBSETTING__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4032,7 +4338,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_VALUE__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_VALUE__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4131,7 +4446,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_VALUE__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_VALUE__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4140,13 +4464,22 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_VALUE__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Value comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_VALUE__VALUE_COMP = RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VALUE__VALUE = RELATIONSHIP_FEATURE_COUNT + 0;
+	int FEATURE_VALUE__VALUE = RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Feature With Value</b></em>' reference.
@@ -4155,7 +4488,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VALUE__FEATURE_WITH_VALUE = RELATIONSHIP_FEATURE_COUNT + 1;
+	int FEATURE_VALUE__FEATURE_WITH_VALUE = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature Value</em>' class.
@@ -4164,7 +4497,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VALUE_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
+	int FEATURE_VALUE_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Feature Value</em>' class.
@@ -4185,7 +4518,16 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4266,6 +4608,15 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4311,15 +4662,6 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4329,13 +4671,13 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
+	int STEP__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -4345,6 +4687,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -4482,6 +4833,15 @@ public interface SysMLPackage extends EPackage {
 	int STEP__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__VALUATION_COMP = FEATURE__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4489,6 +4849,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__VALUATION = FEATURE__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__MULTIPLICITY_COMP = FEATURE__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -4572,7 +4941,16 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNING_MEMBERSHIP = STEP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__OWNED_RELATIONSHIP_COMP = STEP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4653,6 +5031,15 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNED_IMPORT_COMP = STEP__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__OWNED_IMPORT = STEP__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4698,15 +5085,6 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNED_MEMBERSHIP = STEP__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_IMPORT = STEP__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4716,13 +5094,13 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNED_GENERALIZATION = STEP__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_FEATURE_MEMBERSHIP = STEP__OWNED_FEATURE_MEMBERSHIP;
+	int EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = STEP__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -4732,6 +5110,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION__OWNED_FEATURE = STEP__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__OWNED_FEATURE_MEMBERSHIP = STEP__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -4869,6 +5256,15 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__IS_COMPOSITE = STEP__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__VALUATION_COMP = STEP__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4876,6 +5272,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION__VALUATION = STEP__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__MULTIPLICITY_COMP = STEP__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -4959,7 +5364,16 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5058,7 +5472,16 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5067,13 +5490,31 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Lower comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY__LOWER_COMP = RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Lower</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__LOWER = RELATIONSHIP_FEATURE_COUNT + 0;
+	int MULTIPLICITY__LOWER = RELATIONSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Upper comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY__UPPER_COMP = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' reference.
@@ -5082,7 +5523,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__UPPER = RELATIONSHIP_FEATURE_COUNT + 1;
+	int MULTIPLICITY__UPPER = RELATIONSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Feature With Multiplicity</b></em>' reference.
@@ -5091,7 +5532,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__FEATURE_WITH_MULTIPLICITY = RELATIONSHIP_FEATURE_COUNT + 2;
+	int MULTIPLICITY__FEATURE_WITH_MULTIPLICITY = RELATIONSHIP_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicity</em>' class.
@@ -5100,7 +5541,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+	int MULTIPLICITY_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Multiplicity</em>' class.
@@ -5121,7 +5562,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_TYPING__OWNING_MEMBERSHIP = GENERALIZATION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_TYPING__OWNED_RELATIONSHIP_COMP = GENERALIZATION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5220,7 +5670,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_TYPING__OWNING_RELATED_ELEMENT = GENERALIZATION__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_TYPING__OWNED_RELATED_ELEMENT_COMP = GENERALIZATION__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5301,7 +5760,16 @@ public interface SysMLPackage extends EPackage {
 	int SUPERCLASSING__OWNING_MEMBERSHIP = GENERALIZATION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASSING__OWNED_RELATIONSHIP_COMP = GENERALIZATION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5400,7 +5868,16 @@ public interface SysMLPackage extends EPackage {
 	int SUPERCLASSING__OWNING_RELATED_ELEMENT = GENERALIZATION__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASSING__OWNED_RELATED_ELEMENT_COMP = GENERALIZATION__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5490,7 +5967,16 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5571,6 +6057,15 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5616,15 +6111,6 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5634,13 +6120,13 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
+	int PARAMETER__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -5650,6 +6136,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -5787,6 +6282,15 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__VALUATION_COMP = FEATURE__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5794,6 +6298,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER__VALUATION = FEATURE__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__MULTIPLICITY_COMP = FEATURE__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -5927,7 +6440,16 @@ public interface SysMLPackage extends EPackage {
 	int ANNOTATION__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6026,7 +6548,16 @@ public interface SysMLPackage extends EPackage {
 	int ANNOTATION__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6080,7 +6611,16 @@ public interface SysMLPackage extends EPackage {
 	int COMMENT__OWNING_MEMBERSHIP = ELEMENT__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__OWNED_RELATIONSHIP_COMP = ELEMENT__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6197,7 +6737,16 @@ public interface SysMLPackage extends EPackage {
 	int OWNERSHIP__OWNING_MEMBERSHIP = RELATIONSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNED_RELATIONSHIP_COMP = RELATIONSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6296,7 +6845,16 @@ public interface SysMLPackage extends EPackage {
 	int OWNERSHIP__OWNING_RELATED_ELEMENT = RELATIONSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__OWNED_RELATED_ELEMENT_COMP = RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6305,13 +6863,31 @@ public interface SysMLPackage extends EPackage {
 	int OWNERSHIP__OWNED_RELATED_ELEMENT = RELATIONSHIP__OWNED_RELATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Source comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__SOURCE_COMP = RELATIONSHIP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNERSHIP__TARGET_COMP = RELATIONSHIP_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Ownership</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OWNERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 0;
+	int OWNERSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Ownership</em>' class.
@@ -6362,7 +6938,16 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6443,6 +7028,15 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6488,15 +7082,6 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6506,13 +7091,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -6522,6 +7107,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -6659,6 +7253,15 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6666,6 +7269,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_REFERENCE_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -6758,7 +7370,16 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNING_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_RELATIONSHIP_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6839,6 +7460,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNED_IMPORT_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_IMPORT = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6884,15 +7514,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_IMPORT = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6902,13 +7523,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -6918,6 +7539,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_EXPRESSION__OWNED_FEATURE = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -7055,6 +7685,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__IS_COMPOSITE = FEATURE_REFERENCE_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__VALUATION_COMP = FEATURE_REFERENCE_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7062,6 +7701,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_EXPRESSION__VALUATION = FEATURE_REFERENCE_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_EXPRESSION__MULTIPLICITY_COMP = FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -7154,7 +7802,16 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7235,6 +7892,15 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7280,15 +7946,6 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7298,13 +7955,13 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -7314,6 +7971,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -7451,6 +8117,15 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7458,6 +8133,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -7487,13 +8171,22 @@ public interface SysMLPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Element comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT = EXPRESSION_FEATURE_COUNT + 0;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Sequence Construction Expression</em>' class.
@@ -7502,7 +8195,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -7550,7 +8243,16 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7631,6 +8333,15 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7676,15 +8387,6 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7694,13 +8396,13 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -7710,6 +8412,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVOCATION_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -7847,6 +8558,15 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7854,6 +8574,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVOCATION_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -7937,7 +8666,16 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNING_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_RELATIONSHIP_COMP = INVOCATION_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8018,6 +8756,15 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNED_IMPORT_COMP = INVOCATION_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8063,15 +8810,6 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNED_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8081,13 +8819,13 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -8097,6 +8835,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_EXPRESSION__OWNED_FEATURE = INVOCATION_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -8234,6 +8981,15 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__IS_COMPOSITE = INVOCATION_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__VALUATION_COMP = INVOCATION_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8241,6 +8997,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_EXPRESSION__VALUATION = INVOCATION_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__MULTIPLICITY_COMP = INVOCATION_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -8279,13 +9044,22 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OPERATOR = INVOCATION_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operand comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OPERAND = INVOCATION_EXPRESSION_FEATURE_COUNT + 1;
+	int OPERATOR_EXPRESSION__OPERAND_COMP = INVOCATION_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operand</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXPRESSION__OPERAND = INVOCATION_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Operator Expression</em>' class.
@@ -8294,7 +9068,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION_FEATURE_COUNT = INVOCATION_EXPRESSION_FEATURE_COUNT + 2;
+	int OPERATOR_EXPRESSION_FEATURE_COUNT = INVOCATION_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -8342,7 +9116,16 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNING_MEMBERSHIP = INVOCATION_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_RELATIONSHIP_COMP = INVOCATION_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8423,6 +9206,15 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT_COMP = INVOCATION_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8468,15 +9260,6 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNED_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8486,13 +9269,13 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -8502,6 +9285,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE = INVOCATION_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -8639,6 +9431,15 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__IS_COMPOSITE = INVOCATION_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__VALUATION_COMP = INVOCATION_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8646,6 +9447,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_CREATION_EXPRESSION__VALUATION = INVOCATION_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION__MULTIPLICITY_COMP = INVOCATION_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -8738,7 +9548,16 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNING_MEMBERSHIP = OPERATOR_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_RELATIONSHIP_COMP = OPERATOR_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8819,6 +9638,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_IMPORT_COMP = OPERATOR_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8864,15 +9692,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8882,13 +9701,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -8898,6 +9717,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_FEATURE = OPERATOR_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -9035,6 +9863,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__IS_COMPOSITE = OPERATOR_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__VALUATION_COMP = OPERATOR_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9042,6 +9879,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_STEP_EXPRESSION__VALUATION = OPERATOR_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__MULTIPLICITY_COMP = OPERATOR_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -9080,7 +9926,16 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OPERATOR = OPERATOR_EXPRESSION__OPERATOR;
 
 	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operand comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_PATH_STEP_EXPRESSION__OPERAND_COMP = OPERATOR_EXPRESSION__OPERAND_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Operand</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9143,7 +9998,16 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNING_MEMBERSHIP = OPERATOR_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_RELATIONSHIP_COMP = OPERATOR_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9224,6 +10088,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_IMPORT_COMP = OPERATOR_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9269,15 +10142,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9287,13 +10151,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -9303,6 +10167,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_FEATURE = OPERATOR_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -9440,6 +10313,15 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__IS_COMPOSITE = OPERATOR_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__VALUATION_COMP = OPERATOR_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9447,6 +10329,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_QUALIFIER_EXPRESSION__VALUATION = OPERATOR_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__MULTIPLICITY_COMP = OPERATOR_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -9485,7 +10376,16 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OPERATOR = OPERATOR_EXPRESSION__OPERATOR;
 
 	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operand comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_QUALIFIER_EXPRESSION__OPERAND_COMP = OPERATOR_EXPRESSION__OPERAND_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Operand</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9548,7 +10448,16 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9629,6 +10538,15 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9674,15 +10592,6 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9692,13 +10601,13 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -9708,6 +10617,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -9845,6 +10763,15 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9852,6 +10779,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -9935,7 +10871,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10016,6 +10961,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10061,15 +11015,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10079,13 +11024,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -10095,6 +11040,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -10232,6 +11186,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10239,6 +11202,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -10322,7 +11294,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_RELATIONSHIP_COMP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10403,6 +11384,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_IMPORT_COMP = LITERAL_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10448,15 +11438,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10466,13 +11447,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP_COMP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -10482,6 +11463,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_INTEGER__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -10619,6 +11609,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__VALUATION_COMP = LITERAL_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10626,6 +11625,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_INTEGER__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_INTEGER__MULTIPLICITY_COMP = LITERAL_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -10718,7 +11726,16 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNING_MEMBERSHIP = EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_RELATIONSHIP_COMP = EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10799,6 +11816,15 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNED_IMPORT_COMP = EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10844,15 +11870,6 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNED_MEMBERSHIP = EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10862,13 +11879,13 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -10878,6 +11895,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_EXPRESSION__OWNED_FEATURE = EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -11015,6 +12041,15 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__IS_COMPOSITE = EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__VALUATION_COMP = EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11022,6 +12057,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_EXPRESSION__VALUATION = EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_EXPRESSION__MULTIPLICITY_COMP = EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -11105,7 +12149,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_RELATIONSHIP_COMP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11186,6 +12239,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_IMPORT_COMP = LITERAL_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11231,15 +12293,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11249,13 +12302,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP_COMP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -11265,6 +12318,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_UNBOUNDED__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -11402,6 +12464,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__VALUATION_COMP = LITERAL_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11409,6 +12480,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_UNBOUNDED__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_UNBOUNDED__MULTIPLICITY_COMP = LITERAL_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -11492,7 +12572,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_RELATIONSHIP_COMP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11573,6 +12662,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNED_IMPORT_COMP = LITERAL_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11618,15 +12716,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11636,13 +12725,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP_COMP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -11652,6 +12741,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_STRING__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -11789,6 +12887,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__VALUATION_COMP = LITERAL_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11796,6 +12903,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_STRING__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_STRING__MULTIPLICITY_COMP = LITERAL_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -11888,7 +13004,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_RELATIONSHIP_COMP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11969,6 +13094,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNED_IMPORT_COMP = LITERAL_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12014,15 +13148,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12032,13 +13157,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP_COMP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -12048,6 +13173,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_BOOLEAN__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -12185,6 +13319,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__VALUATION_COMP = LITERAL_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12192,6 +13335,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_BOOLEAN__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_BOOLEAN__MULTIPLICITY_COMP = LITERAL_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -12284,7 +13436,16 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_RELATIONSHIP_COMP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12365,6 +13526,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNED_IMPORT_COMP = LITERAL_EXPRESSION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12410,15 +13580,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12428,13 +13589,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP_COMP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -12444,6 +13605,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_REAL__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -12581,6 +13751,15 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__VALUATION_COMP = LITERAL_EXPRESSION__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12588,6 +13767,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_REAL__VALUATION = LITERAL_EXPRESSION__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_REAL__MULTIPLICITY_COMP = LITERAL_EXPRESSION__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -12680,7 +13868,16 @@ public interface SysMLPackage extends EPackage {
 	int STRUCTURED_FEATURE__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FEATURE__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12761,6 +13958,15 @@ public interface SysMLPackage extends EPackage {
 	int STRUCTURED_FEATURE__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12806,15 +14012,6 @@ public interface SysMLPackage extends EPackage {
 	int STRUCTURED_FEATURE__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURED_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12824,13 +14021,13 @@ public interface SysMLPackage extends EPackage {
 	int STRUCTURED_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
+	int STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -12840,6 +14037,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURED_FEATURE__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -12977,6 +14183,15 @@ public interface SysMLPackage extends EPackage {
 	int STRUCTURED_FEATURE__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FEATURE__VALUATION_COMP = FEATURE__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12984,6 +14199,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURED_FEATURE__VALUATION = FEATURE__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FEATURE__MULTIPLICITY_COMP = FEATURE__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -13067,7 +14291,16 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE__OWNING_MEMBERSHIP = STRUCTURED_FEATURE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_FEATURE__OWNED_RELATIONSHIP_COMP = STRUCTURED_FEATURE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13148,6 +14381,15 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE__OWNED_IMPORT_COMP = STRUCTURED_FEATURE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_FEATURE__OWNED_IMPORT = STRUCTURED_FEATURE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13193,15 +14435,6 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE__OWNED_MEMBERSHIP = STRUCTURED_FEATURE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_FEATURE__OWNED_IMPORT = STRUCTURED_FEATURE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13211,13 +14444,13 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE__OWNED_GENERALIZATION = STRUCTURED_FEATURE__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_FEATURE__OWNED_FEATURE_MEMBERSHIP = STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP;
+	int ORDERED_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -13227,6 +14460,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ORDERED_FEATURE__OWNED_FEATURE = STRUCTURED_FEATURE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_FEATURE__OWNED_FEATURE_MEMBERSHIP = STRUCTURED_FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -13364,6 +14606,15 @@ public interface SysMLPackage extends EPackage {
 	int ORDERED_FEATURE__IS_COMPOSITE = STRUCTURED_FEATURE__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_FEATURE__VALUATION_COMP = STRUCTURED_FEATURE__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13371,6 +14622,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ORDERED_FEATURE__VALUATION = STRUCTURED_FEATURE__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_FEATURE__MULTIPLICITY_COMP = STRUCTURED_FEATURE__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -13490,7 +14750,16 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP_COMP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13589,7 +14858,16 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13643,6 +14921,15 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13679,7 +14966,16 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Feature comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13742,13 +15038,22 @@ public interface SysMLPackage extends EPackage {
 	int PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Parameter comp</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER_COMP = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER = FEATURE_MEMBERSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Membership</em>' class.
@@ -13757,7 +15062,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 2;
+	int PARAMETER_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -13787,7 +15092,16 @@ public interface SysMLPackage extends EPackage {
 	int RETURN_PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP = PARAMETER_MEMBERSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP_COMP = PARAMETER_MEMBERSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13886,7 +15200,16 @@ public interface SysMLPackage extends EPackage {
 	int RETURN_PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT = PARAMETER_MEMBERSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP = PARAMETER_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13940,6 +15263,15 @@ public interface SysMLPackage extends EPackage {
 	int RETURN_PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = PARAMETER_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = PARAMETER_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13976,7 +15308,16 @@ public interface SysMLPackage extends EPackage {
 	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_FEATURE = PARAMETER_MEMBERSHIP__MEMBER_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Feature comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP = PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14039,7 +15380,16 @@ public interface SysMLPackage extends EPackage {
 	int RETURN_PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = PARAMETER_MEMBERSHIP__MEMBER_PARAMETER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Parameter comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER_COMP = PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14084,7 +15434,16 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14165,6 +15524,15 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14210,15 +15578,6 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14228,13 +15587,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
+	int CONNECTOR__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -14244,6 +15603,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -14381,6 +15749,15 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__VALUATION_COMP = FEATURE__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14388,6 +15765,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR__VALUATION = FEATURE__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__MULTIPLICITY_COMP = FEATURE__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -14453,13 +15839,22 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNING_RELATED_ELEMENT = FEATURE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_RELATED_ELEMENT = FEATURE_FEATURE_COUNT + 4;
+	int CONNECTOR__OWNED_RELATED_ELEMENT_COMP = FEATURE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__OWNED_RELATED_ELEMENT = FEATURE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Related Feature</b></em>' reference list.
@@ -14468,7 +15863,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__RELATED_FEATURE = FEATURE_FEATURE_COUNT + 5;
+	int CONNECTOR__RELATED_FEATURE = FEATURE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Association</b></em>' reference.
@@ -14477,7 +15872,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__ASSOCIATION = FEATURE_FEATURE_COUNT + 6;
+	int CONNECTOR__ASSOCIATION = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Association Type</b></em>' reference.
@@ -14486,7 +15881,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_ASSOCIATION_TYPE = FEATURE_FEATURE_COUNT + 7;
+	int CONNECTOR__OWNED_ASSOCIATION_TYPE = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Directed</b></em>' attribute.
@@ -14495,7 +15890,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__IS_DIRECTED = FEATURE_FEATURE_COUNT + 8;
+	int CONNECTOR__IS_DIRECTED = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Connector End</b></em>' reference list.
@@ -14504,7 +15899,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__CONNECTOR_END = FEATURE_FEATURE_COUNT + 9;
+	int CONNECTOR__CONNECTOR_END = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -14513,7 +15908,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 10;
+	int CONNECTOR_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -14570,7 +15965,16 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_RELATIONSHIP_COMP = CONNECTOR__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14651,6 +16055,15 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNED_IMPORT_COMP = CONNECTOR__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14696,15 +16109,6 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14714,13 +16118,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP_COMP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -14730,6 +16134,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -14867,6 +16280,15 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__VALUATION_COMP = CONNECTOR__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14874,6 +16296,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION__VALUATION = CONNECTOR__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__MULTIPLICITY_COMP = CONNECTOR__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -14939,7 +16370,16 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION__OWNED_RELATED_ELEMENT_COMP = CONNECTOR__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15056,7 +16496,16 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_RELATIONSHIP_COMP = CLASS__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15137,6 +16586,15 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNED_IMPORT_COMP = CLASS__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15182,15 +16640,6 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_IMPORT = CLASS__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15200,13 +16649,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP_COMP = CLASS__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -15216,6 +16665,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -15308,13 +16766,22 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNING_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 4;
+	int ASSOCIATION__OWNED_RELATED_ELEMENT_COMP = CLASS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__OWNED_RELATED_ELEMENT = CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Related Type</b></em>' reference list.
@@ -15323,7 +16790,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__RELATED_TYPE = CLASS_FEATURE_COUNT + 5;
+	int ASSOCIATION__RELATED_TYPE = CLASS_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned End Feature Membership</b></em>' reference list.
@@ -15332,7 +16799,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = CLASS_FEATURE_COUNT + 6;
+	int ASSOCIATION__OWNED_END_FEATURE_MEMBERSHIP = CLASS_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owning Connector</b></em>' reference.
@@ -15341,7 +16808,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNING_CONNECTOR = CLASS_FEATURE_COUNT + 7;
+	int ASSOCIATION__OWNING_CONNECTOR = CLASS_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -15350,7 +16817,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 8;
+	int ASSOCIATION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Name Of</em>' operation.
@@ -15398,7 +16865,16 @@ public interface SysMLPackage extends EPackage {
 	int END_FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP = FEATURE_MEMBERSHIP__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP_COMP = FEATURE_MEMBERSHIP__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15497,7 +16973,16 @@ public interface SysMLPackage extends EPackage {
 	int END_FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT = FEATURE_MEMBERSHIP__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP = FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15551,6 +17036,15 @@ public interface SysMLPackage extends EPackage {
 	int END_FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Member Element comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Owned Member Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15587,7 +17081,16 @@ public interface SysMLPackage extends EPackage {
 	int END_FEATURE_MEMBERSHIP__MEMBER_FEATURE = FEATURE_MEMBERSHIP__MEMBER_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member Feature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Member Feature comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15686,7 +17189,16 @@ public interface SysMLPackage extends EPackage {
 	int OBJECT_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_RELATIONSHIP_COMP = CLASS__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -15767,6 +17279,15 @@ public interface SysMLPackage extends EPackage {
 	int OBJECT_CLASS__OWNED_IMPORT_COMP = CLASS__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15812,15 +17333,6 @@ public interface SysMLPackage extends EPackage {
 	int OBJECT_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15830,13 +17342,13 @@ public interface SysMLPackage extends EPackage {
 	int OBJECT_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP_COMP = CLASS__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -15846,6 +17358,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -15956,7 +17477,16 @@ public interface SysMLPackage extends EPackage {
 	int VALUE_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_RELATIONSHIP_COMP = CLASS__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -16037,6 +17567,15 @@ public interface SysMLPackage extends EPackage {
 	int VALUE_CLASS__OWNED_IMPORT_COMP = CLASS__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16082,15 +17621,6 @@ public interface SysMLPackage extends EPackage {
 	int VALUE_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16100,13 +17630,13 @@ public interface SysMLPackage extends EPackage {
 	int VALUE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
+	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP_COMP = CLASS__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -16116,6 +17646,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -16226,7 +17765,16 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__OWNED_RELATIONSHIP_COMP = CONNECTOR__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -16307,6 +17855,15 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNED_IMPORT_COMP = CONNECTOR__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16352,15 +17909,6 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16370,13 +17918,13 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+	int BINDING_CONNECTOR__OWNED_FEATURE_MEMBERSHIP_COMP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -16386,6 +17934,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -16523,6 +18080,15 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__VALUATION_COMP = CONNECTOR__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16530,6 +18096,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR__VALUATION = CONNECTOR__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__MULTIPLICITY_COMP = CONNECTOR__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -16595,7 +18170,16 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_CONNECTOR__OWNED_RELATED_ELEMENT_COMP = CONNECTOR__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -16712,7 +18296,16 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNING_MEMBERSHIP = ASSOCIATION__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_RELATIONSHIP_COMP = ASSOCIATION__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -16793,6 +18386,15 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNED_IMPORT_COMP = ASSOCIATION__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_IMPORT = ASSOCIATION__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16838,15 +18440,6 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNED_MEMBERSHIP = ASSOCIATION__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_IMPORT = ASSOCIATION__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16856,13 +18449,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNED_GENERALIZATION = ASSOCIATION__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERACTION__OWNED_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
+	int INTERACTION__OWNED_FEATURE_MEMBERSHIP_COMP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -16872,6 +18465,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERACTION__OWNED_FEATURE = ASSOCIATION__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -16964,7 +18566,16 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNING_RELATED_ELEMENT = ASSOCIATION__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION__OWNED_RELATED_ELEMENT_COMP = ASSOCIATION__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -17108,7 +18719,16 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNING_MEMBERSHIP = CONNECTOR__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_RELATIONSHIP_COMP = CONNECTOR__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -17189,6 +18809,15 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNED_IMPORT_COMP = CONNECTOR__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17234,15 +18863,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNED_MEMBERSHIP = CONNECTOR__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17252,13 +18872,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
+	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP_COMP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -17268,6 +18888,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW__OWNED_FEATURE = CONNECTOR__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -17405,6 +19034,15 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__IS_COMPOSITE = CONNECTOR__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__VALUATION_COMP = CONNECTOR__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17412,6 +19050,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW__VALUATION = CONNECTOR__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__MULTIPLICITY_COMP = CONNECTOR__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -17477,7 +19124,16 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNING_RELATED_ELEMENT = CONNECTOR__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEM_FLOW__OWNED_RELATED_ELEMENT_COMP = CONNECTOR__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -17621,7 +19277,16 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNING_MEMBERSHIP = ITEM_FLOW__OWNING_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_RELATIONSHIP_COMP = ITEM_FLOW__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -17702,6 +19367,15 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT_COMP = ITEM_FLOW__OWNED_IMPORT_COMP;
 
 	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT = ITEM_FLOW__OWNED_IMPORT;
+
+	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17747,15 +19421,6 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNED_MEMBERSHIP = ITEM_FLOW__OWNED_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT = ITEM_FLOW__OWNED_IMPORT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17765,13 +19430,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION = ITEM_FLOW__OWNED_GENERALIZATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP;
+	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP_COMP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -17781,6 +19446,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE = ITEM_FLOW__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -17918,6 +19592,15 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__IS_COMPOSITE = ITEM_FLOW__IS_COMPOSITE;
 
 	/**
+	 * The feature id for the '<em><b>Valuation comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__VALUATION_COMP = ITEM_FLOW__VALUATION_COMP;
+
+	/**
 	 * The feature id for the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17925,6 +19608,15 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION_ITEM_FLOW__VALUATION = ITEM_FLOW__VALUATION;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity comp</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__MULTIPLICITY_COMP = ITEM_FLOW__MULTIPLICITY_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -17990,7 +19682,16 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNING_RELATED_ELEMENT = ITEM_FLOW__OWNING_RELATED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCESSION_ITEM_FLOW__OWNED_RELATED_ELEMENT_COMP = ITEM_FLOW__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -18188,10 +19889,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getFeatureMembership_OwningCategory();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Member Feature</em>'.
+	 * @return the meta object for the reference '<em>Owned Member Feature</em>'.
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature()
 	 * @see #getFeatureMembership()
 	 * @generated
@@ -18230,6 +19931,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureMembership_MemberFeature();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Member Feature comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp()
+	 * @see #getFeatureMembership()
+	 * @generated
+	 */
+	EReference getFeatureMembership_OwnedMemberFeature_comp();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}'.
@@ -18308,6 +20020,17 @@ public interface SysMLPackage extends EPackage {
 	EReference getMembership_MembershipOwningPackage();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owned Member Element comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp()
+	 * @see #getMembership()
+	 * @generated
+	 */
+	EReference getMembership_OwnedMemberElement_comp();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18372,10 +20095,10 @@ public interface SysMLPackage extends EPackage {
 	EClass getRelationship();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Related Element</em>'.
+	 * @return the meta object for the reference list '<em>Owned Related Element</em>'.
 	 * @see org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement()
 	 * @see #getRelationship()
 	 * @generated
@@ -18392,6 +20115,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRelationship_OwningRelatedElement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Related Element comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp()
+	 * @see #getRelationship()
+	 * @generated
+	 */
+	EReference getRelationship_OwnedRelatedElement_comp();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement <em>Related Element</em>}'.
@@ -18448,6 +20182,17 @@ public interface SysMLPackage extends EPackage {
 	EReference getElement_OwningMembership();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Relationship comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EReference getElement_OwnedRelationship_comp();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18492,10 +20237,10 @@ public interface SysMLPackage extends EPackage {
 	EAttribute getElement_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Relationship</em>'.
+	 * @return the meta object for the reference list '<em>Owned Relationship</em>'.
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship()
 	 * @see #getElement()
 	 * @generated
@@ -18674,6 +20419,17 @@ public interface SysMLPackage extends EPackage {
 	EReference getImport_ImportedPackage();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Import#getSelecter_comp <em>Selecter comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Selecter comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Import#getSelecter_comp()
+	 * @see #getImport()
+	 * @generated
+	 */
+	EReference getImport_Selecter_comp();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18842,6 +20598,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCategory_OwnedGeneralization();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Owned Feature Membership comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp()
+	 * @see #getCategory()
+	 * @generated
+	 */
+	EReference getCategory_OwnedFeatureMembership_comp();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
@@ -19084,6 +20851,17 @@ public interface SysMLPackage extends EPackage {
 	EAttribute getFeature_IsComposite();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getValuation_comp <em>Valuation comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Valuation comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Feature#getValuation_comp()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_Valuation_comp();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19093,6 +20871,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeature_Valuation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp <em>Multiplicity comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Multiplicity comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_Multiplicity_comp();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}'.
@@ -19213,6 +21002,17 @@ public interface SysMLPackage extends EPackage {
 	EClass getFeatureValue();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.FeatureValue#getValue_comp <em>Value comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.FeatureValue#getValue_comp()
+	 * @see #getFeatureValue()
+	 * @generated
+	 */
+	EReference getFeatureValue_Value_comp();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.FeatureValue#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19265,6 +21065,17 @@ public interface SysMLPackage extends EPackage {
 	EClass getMultiplicity();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Multiplicity#getLower_comp <em>Lower comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Lower comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Multiplicity#getLower_comp()
+	 * @see #getMultiplicity()
+	 * @generated
+	 */
+	EReference getMultiplicity_Lower_comp();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Multiplicity#getLower <em>Lower</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19274,6 +21085,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMultiplicity_Lower();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Multiplicity#getUpper_comp <em>Upper comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Upper comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Multiplicity#getUpper_comp()
+	 * @see #getMultiplicity()
+	 * @generated
+	 */
+	EReference getMultiplicity_Upper_comp();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Multiplicity#getUpper <em>Upper</em>}'.
@@ -19709,6 +21531,28 @@ public interface SysMLPackage extends EPackage {
 	EClass getOwnership();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.Ownership#getSource_comp <em>Source comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Ownership#getSource_comp()
+	 * @see #getOwnership()
+	 * @generated
+	 */
+	EReference getOwnership_Source_comp();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Ownership#getTarget_comp <em>Target comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.Ownership#getTarget_comp()
+	 * @see #getOwnership()
+	 * @generated
+	 */
+	EReference getOwnership_Target_comp();
+
+	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.LiteralBoolean <em>Literal Boolean</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19771,10 +21615,21 @@ public interface SysMLPackage extends EPackage {
 	EReference getParameterMembership_MemberParameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter <em>Owned Member Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter_comp <em>Owned Member Parameter comp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Member Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Owned Member Parameter comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter_comp()
+	 * @see #getParameterMembership()
+	 * @generated
+	 */
+	EReference getParameterMembership_OwnedMemberParameter_comp();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter <em>Owned Member Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owned Member Parameter</em>'.
 	 * @see org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter()
 	 * @see #getParameterMembership()
 	 * @generated
@@ -19905,10 +21760,21 @@ public interface SysMLPackage extends EPackage {
 	EAttribute getOperatorExpression_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand <em>Operand</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand_comp <em>Operand comp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operand</em>'.
+	 * @return the meta object for the containment reference list '<em>Operand comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.OperatorExpression#getOperand_comp()
+	 * @see #getOperatorExpression()
+	 * @generated
+	 */
+	EReference getOperatorExpression_Operand_comp();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand <em>Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Operand</em>'.
 	 * @see org.omg.sysml.lang.sysml.OperatorExpression#getOperand()
 	 * @see #getOperatorExpression()
 	 * @generated
@@ -20031,10 +21897,21 @@ public interface SysMLPackage extends EPackage {
 	EClass getSequenceConstructionExpression();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement <em>Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement_comp <em>Element comp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Element</em>'.
+	 * @return the meta object for the containment reference list '<em>Element comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement_comp()
+	 * @see #getSequenceConstructionExpression()
+	 * @generated
+	 */
+	EReference getSequenceConstructionExpression_Element_comp();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Element</em>'.
 	 * @see org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement()
 	 * @see #getSequenceConstructionExpression()
 	 * @generated
@@ -20142,7 +22019,7 @@ public interface SysMLPackage extends EPackage {
 		EReference FEATURE_MEMBERSHIP__OWNING_CATEGORY = eINSTANCE.getFeatureMembership_OwningCategory();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Member Feature</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Member Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -20172,6 +22049,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_MEMBERSHIP__MEMBER_FEATURE = eINSTANCE.getFeatureMembership_MemberFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Member Feature comp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP = eINSTANCE.getFeatureMembership_OwnedMemberFeature_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Part</b></em>' attribute feature.
@@ -20232,6 +22117,14 @@ public interface SysMLPackage extends EPackage {
 		EReference MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE = eINSTANCE.getMembership_MembershipOwningPackage();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Member Element comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP = eINSTANCE.getMembership_OwnedMemberElement_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Member Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20282,7 +22175,7 @@ public interface SysMLPackage extends EPackage {
 		EClass RELATIONSHIP = eINSTANCE.getRelationship();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Related Element</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Related Element</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -20296,6 +22189,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RELATIONSHIP__OWNING_RELATED_ELEMENT = eINSTANCE.getRelationship_OwningRelatedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Related Element comp</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP = eINSTANCE.getRelationship_OwnedRelatedElement_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Related Element</b></em>' reference list feature.
@@ -20340,6 +22241,14 @@ public interface SysMLPackage extends EPackage {
 		EReference ELEMENT__OWNING_MEMBERSHIP = eINSTANCE.getElement_OwningMembership();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Relationship comp</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__OWNED_RELATIONSHIP_COMP = eINSTANCE.getElement_OwnedRelationship_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Owning Relationship</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20372,7 +22281,7 @@ public interface SysMLPackage extends EPackage {
 		EAttribute ELEMENT__NAME = eINSTANCE.getElement_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Relationship</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Relationship</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -20512,6 +22421,14 @@ public interface SysMLPackage extends EPackage {
 		EReference IMPORT__IMPORTED_PACKAGE = eINSTANCE.getImport_ImportedPackage();
 
 		/**
+		 * The meta object literal for the '<em><b>Selecter comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPORT__SELECTER_COMP = eINSTANCE.getImport_Selecter_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Selecter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20648,6 +22565,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CATEGORY__OWNED_GENERALIZATION = eINSTANCE.getCategory_OwnedGeneralization();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Feature Membership comp</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CATEGORY__OWNED_FEATURE_MEMBERSHIP_COMP = eINSTANCE.getCategory_OwnedFeatureMembership_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Feature Membership</b></em>' reference list feature.
@@ -20830,12 +22755,28 @@ public interface SysMLPackage extends EPackage {
 		EAttribute FEATURE__IS_COMPOSITE = eINSTANCE.getFeature_IsComposite();
 
 		/**
+		 * The meta object literal for the '<em><b>Valuation comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__VALUATION_COMP = eINSTANCE.getFeature_Valuation_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Valuation</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FEATURE__VALUATION = eINSTANCE.getFeature_Valuation();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplicity comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__MULTIPLICITY_COMP = eINSTANCE.getFeature_Multiplicity_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Multiplicity</b></em>' reference feature.
@@ -20932,6 +22873,14 @@ public interface SysMLPackage extends EPackage {
 		EClass FEATURE_VALUE = eINSTANCE.getFeatureValue();
 
 		/**
+		 * The meta object literal for the '<em><b>Value comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_VALUE__VALUE_COMP = eINSTANCE.getFeatureValue_Value_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20978,12 +22927,28 @@ public interface SysMLPackage extends EPackage {
 		EClass MULTIPLICITY = eINSTANCE.getMultiplicity();
 
 		/**
+		 * The meta object literal for the '<em><b>Lower comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTIPLICITY__LOWER_COMP = eINSTANCE.getMultiplicity_Lower_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Lower</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MULTIPLICITY__LOWER = eINSTANCE.getMultiplicity_Lower();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTIPLICITY__UPPER_COMP = eINSTANCE.getMultiplicity_Upper_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Upper</b></em>' reference feature.
@@ -21348,6 +23313,22 @@ public interface SysMLPackage extends EPackage {
 		EClass OWNERSHIP = eINSTANCE.getOwnership();
 
 		/**
+		 * The meta object literal for the '<em><b>Source comp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OWNERSHIP__SOURCE_COMP = eINSTANCE.getOwnership_Source_comp();
+
+		/**
+		 * The meta object literal for the '<em><b>Target comp</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OWNERSHIP__TARGET_COMP = eINSTANCE.getOwnership_Target_comp();
+
+		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.LiteralBooleanImpl <em>Literal Boolean</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21404,7 +23385,15 @@ public interface SysMLPackage extends EPackage {
 		EReference PARAMETER_MEMBERSHIP__MEMBER_PARAMETER = eINSTANCE.getParameterMembership_MemberParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Member Parameter</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Member Parameter comp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER_COMP = eINSTANCE.getParameterMembership_OwnedMemberParameter_comp();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Member Parameter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -21526,7 +23515,15 @@ public interface SysMLPackage extends EPackage {
 		EAttribute OPERATOR_EXPRESSION__OPERATOR = eINSTANCE.getOperatorExpression_Operator();
 
 		/**
-		 * The meta object literal for the '<em><b>Operand</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operand comp</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXPRESSION__OPERAND_COMP = eINSTANCE.getOperatorExpression_Operand_comp();
+
+		/**
+		 * The meta object literal for the '<em><b>Operand</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -21634,7 +23631,15 @@ public interface SysMLPackage extends EPackage {
 		EClass SEQUENCE_CONSTRUCTION_EXPRESSION = eINSTANCE.getSequenceConstructionExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Element comp</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP = eINSTANCE.getSequenceConstructionExpression_Element_comp();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

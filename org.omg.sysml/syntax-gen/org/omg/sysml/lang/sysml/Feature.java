@@ -32,7 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValuation_comp <em>Valuation comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp <em>Multiplicity comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
@@ -249,7 +251,7 @@ public interface Feature extends Category {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -265,8 +267,8 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
-	 * @model opposite="ownedMemberFeature" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp
+	 * @model opposite="ownedMemberFeature_comp" transient="false" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -309,14 +311,42 @@ public interface Feature extends Category {
 	void setIsComposite(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Valuation</b></em>' reference.
+	 * Returns the value of the '<em><b>Valuation comp</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue <em>Feature With Value</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valuation comp</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valuation comp</em>' reference.
+	 * @see #setValuation_comp(FeatureValue)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation_comp()
+	 * @see org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue
+	 * @model opposite="featureWithValue" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	FeatureValue getValuation_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getValuation_comp <em>Valuation comp</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valuation comp</em>' reference.
+	 * @see #getValuation_comp()
+	 * @generated
+	 */
+	void setValuation_comp(FeatureValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Valuation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Valuation</em>' reference isn't clear,
@@ -326,9 +356,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Valuation</em>' reference.
 	 * @see #setValuation(FeatureValue)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation()
-	 * @see org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue
-	 * @model opposite="featureWithValue" ordered="false"
-	 *        annotation="subsets"
+	 * @model
 	 * @generated
 	 */
 	FeatureValue getValuation();
@@ -344,14 +372,42 @@ public interface Feature extends Category {
 	void setValuation(FeatureValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
+	 * Returns the value of the '<em><b>Multiplicity comp</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Multiplicity comp</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Multiplicity comp</em>' reference.
+	 * @see #setMultiplicity_comp(Multiplicity)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity_comp()
+	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
+	 * @model opposite="featureWithMultiplicity" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Multiplicity getMultiplicity_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity_comp <em>Multiplicity comp</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Multiplicity comp</em>' reference.
+	 * @see #getMultiplicity_comp()
+	 * @generated
+	 */
+	void setMultiplicity_comp(Multiplicity value);
+
+	/**
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
@@ -361,9 +417,7 @@ public interface Feature extends Category {
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
-	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
-	 * @model opposite="featureWithMultiplicity" ordered="false"
-	 *        annotation="subsets"
+	 * @model
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();

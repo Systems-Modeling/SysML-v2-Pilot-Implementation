@@ -60,7 +60,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership() <em>Owned Feature Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership_comp() <em>Owned Feature Membership comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

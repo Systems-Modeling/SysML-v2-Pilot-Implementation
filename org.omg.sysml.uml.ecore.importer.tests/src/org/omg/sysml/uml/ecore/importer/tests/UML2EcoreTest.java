@@ -3,15 +3,8 @@ package org.omg.sysml.uml.ecore.importer.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.common.util.BasicMonitor;
@@ -84,19 +77,9 @@ public class UML2EcoreTest {
 		options.put(XMLResource.OPTION_ENCODING, "UTF-8");
 		ecoreResource.save(options);
 
-		formatOutput();
-		
 		// compare with expected
 		assertEquals(FileUtils.readFileToString(new File(EXPECTED), "utf-8"),
 				FileUtils.readFileToString(new File(OUTPUT), "utf-8"));
-	}
-
-	private void formatOutput() throws IOException {
-		Path path = Paths.get(OUTPUT);
-        Stream <String> lines = Files.lines(path);
-        List <String> replaced = lines.map(line -> line.replaceAll(OUTPUT, "")).collect(Collectors.toList());
-        Files.write(path, replaced);
-        lines.close();
 	}
 
 }

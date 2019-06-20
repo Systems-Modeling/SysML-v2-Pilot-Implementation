@@ -13,6 +13,8 @@
 package org.omg.sysml.uml.ecore.importer.ui;
 
 import org.eclipse.emf.converter.ModelConverter;
+import org.eclipse.emf.importer.ui.contribution.base.ModelImporterPackagePage;
+import org.eclipse.uml2.uml.ecore.importer.ui.UMLImporterDetailPage;
 import org.eclipse.uml2.uml.ecore.importer.ui.UMLImporterWizard;
 import org.omg.sysml.uml.ecore.importer.CustomUMLImporter;
 
@@ -21,5 +23,18 @@ public class CustomUMLImporterWizard extends UMLImporterWizard {
 	@Override
 	protected ModelConverter createModelConverter() {
 		return new CustomUMLImporter();
+	}
+
+	@Override
+	public void addPages() {
+		UMLImporterDetailPage detailPage = new CustomUMLImporterDetailPage(getModelImporter(), "UMLImporterDetailPage"); //$NON-NLS-1$
+		addPage(detailPage);
+
+		ModelImporterPackagePage packagePage = new ModelImporterPackagePage(getModelImporter(),
+				"UMLImporterPackagePage") { //$NON-NLS-1$
+		};
+
+		packagePage.setShowReferencedGenModels(true);
+		addPage(packagePage);
 	}
 }

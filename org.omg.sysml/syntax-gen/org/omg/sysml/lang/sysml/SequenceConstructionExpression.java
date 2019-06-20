@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement_comp <em>Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.SequenceConstructionExpression#getElement <em>Element</em>}</li>
  * </ul>
  *
@@ -23,24 +22,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SequenceConstructionExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Element comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element comp</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSequenceConstructionExpression_Element_comp()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sequenceConstructionExpression'"
-	 * @generated
-	 */
-	EList<Expression> getElement_comp();
-
-	/**
-	 * Returns the value of the '<em><b>Element</b></em>' reference list.
+	 * Returns the value of the '<em><b>Element</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -48,9 +30,10 @@ public interface SequenceConstructionExpression extends Expression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' reference list.
+	 * @return the value of the '<em>Element</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSequenceConstructionExpression_Element()
-	 * @model
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sequenceConstructionExpression'"
 	 * @generated
 	 */
 	EList<Expression> getElement();

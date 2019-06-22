@@ -1181,4 +1181,13 @@ else owningNamespace.nameOf(self) endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7ab484a8-5b5f-43b5-b0b4-936df9d7d5d4" name="" visibility="public" value="*"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_UaIXcJTwEemass-JSOUDiw" name="ItemFlowEnd">
+    <generalization xmi:id="_afqLQJTwEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gBbxwJTwEemass-JSOUDiw" name="ItemFlowFeature">
+    <generalization xmi:id="_gBbxwZTwEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_26RJ4JUgEemass-JSOUDiw" name="ItemFeature">
+    <generalization xmi:id="_5ne-EJUgEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
 </uml:Model>

@@ -176,21 +176,25 @@ public class CategoryImpl extends PackageImpl implements Category {
 		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
 		Generalization generalization = getDefaultGeneralization(generalizations, eClass);
 		if (generalization != null) {
-			EObject general = null;
-			for (String defaultName: defaultNames) {
-				general = SysMLLibraryUtil.getLibraryElement(
-						this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
-				if (general instanceof Category) {
-					break;
-				}
-			}
+			Category general = getDefaultCategory(defaultNames);
 			if (general != null) {
-				generalization.setGeneral((Category)general);
+				generalization.setGeneral(general);
 				generalizations.add((T)generalization);
 				getOwnedRelationship().add(generalization);
 			}
 		}
 		return generalizations;
+	}
+	
+	protected Category getDefaultCategory(String... defaultNames) {
+		for (String defaultName: defaultNames) {
+			EObject element = SysMLLibraryUtil.getLibraryElement(
+					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			if (element instanceof Category) {
+				return (Category)element;
+			}
+		}
+		return null;
 	}
 	
 	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass) {

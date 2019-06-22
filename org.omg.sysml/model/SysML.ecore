@@ -656,4 +656,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemFlowEnd" eSuperTypes="#//Feature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemFlowFeature" eSuperTypes="#//Feature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemFeature" eSuperTypes="#//Feature"/>
 </ecore:EPackage>

@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -93,8 +95,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		}
 		if (itemType.isEmpty()) {
-			EList<Feature> ends = getConnectorEnd();
-			Feature feature = getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
+			Feature feature = getItemFeature();
 			if (feature != null) {
 				itemType.addAll(feature.getType().stream().
 						filter(t->t instanceof org.omg.sysml.lang.sysml.Class).
@@ -103,6 +104,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			}
 		}
 		return itemType;
+	}
+	
+	public Feature getItemFeature() {
+		EList<Feature> ends = getConnectorEnd();
+		return getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
 	}
 
 	/**
@@ -161,6 +167,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithDefault(ITEM_FLOW_SUBSETTING_DEFAULT);
+	}
+	
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return Collections.singletonList(getItemFeature());
 	}
 	
 	/**

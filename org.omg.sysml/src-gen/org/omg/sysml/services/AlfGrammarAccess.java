@@ -4236,7 +4236,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMultiplicityParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
-		//ItemTyping SysML::Feature:
+		//ItemTyping SysML::ItemFeature:
 		//	ownedRelationship+=FeatureTyping ownedRelationship+=Multiplicity?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4260,7 +4260,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelationshipItemFlowFeatureMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
-		//ItemFlowEnd SysML::Feature:
+		//ItemFlowEnd SysML::ItemFlowEnd:
 		//	ownedRelationship+=ItemFlowFeatureMember;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4275,7 +4275,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
-		//ItemFlowFeature SysML::Feature:
+		//ItemFlowFeature SysML::ItemFlowFeature:
 		//	ownedRelationship+=Redefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -8052,7 +8052,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getItemFlowDeclarationAccess().getRule();
 	}
 	
-	//ItemTyping SysML::Feature:
+	//ItemTyping SysML::ItemFeature:
 	//	ownedRelationship+=FeatureTyping ownedRelationship+=Multiplicity?;
 	public ItemTypingElements getItemTypingAccess() {
 		return pItemTyping;
@@ -8062,7 +8062,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getItemTypingAccess().getRule();
 	}
 	
-	//ItemFlowEnd SysML::Feature:
+	//ItemFlowEnd SysML::ItemFlowEnd:
 	//	ownedRelationship+=ItemFlowFeatureMember;
 	public ItemFlowEndElements getItemFlowEndAccess() {
 		return pItemFlowEnd;
@@ -8072,7 +8072,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getItemFlowEndAccess().getRule();
 	}
 	
-	//ItemFlowFeature SysML::Feature:
+	//ItemFlowFeature SysML::ItemFlowFeature:
 	//	ownedRelationship+=Redefinition;
 	public ItemFlowFeatureElements getItemFlowFeatureAccess() {
 		return pItemFlowFeature;

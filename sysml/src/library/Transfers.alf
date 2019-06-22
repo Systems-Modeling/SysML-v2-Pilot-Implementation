@@ -16,14 +16,14 @@ package Transfers {
 		/**
 		 * The entity whose output is the source of the items to be transferred.
 		 */
-		end transferSource: Occurrence[0..*] {
+		end transferSource: Occurrence[0..*] redefines BinaryLink::source {
 			out sourceOutput: Occurrence[0..*];
 		}
 		
 		/**
 		 * The entity whose input is the target of the items to be transferred.
 		 */
-		end transferTarget: Occurrence[0..*] {
+		end transferTarget: Occurrence[0..*] redefines BinaryLink::target {
 			in targetInput: Occurrence[0..*];
 		}
 		
@@ -100,8 +100,8 @@ package Transfers {
 	 * the transfer, which happens before the transferTarget.
 	 */
 	interaction TransferBefore specializes Transfer, HappensBefore {
-	 	end transferSource: Occurrence[0..*];
-	  	end transferTarget: Occurrence[0..*];
+	 	end transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
+	  	end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
 	  	feature self: TransferBefore redefines 'this';
 	  	

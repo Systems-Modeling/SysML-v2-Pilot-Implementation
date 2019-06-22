@@ -606,15 +606,15 @@ fragment ItemFlowDeclaration returns SysML::ItemFlow :
 	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
 ;
 
-ItemTyping returns SysML::Feature :
+ItemTyping returns SysML::ItemFeature :
 	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
 ;
 
-ItemFlowEnd returns SysML::Feature :
+ItemFlowEnd returns SysML::ItemFlowEnd :
 	ownedRelationship += ItemFlowFeatureMember
 ;
 
-ItemFlowFeature returns SysML::Feature :
+ItemFlowFeature returns SysML::ItemFlowFeature :
 	ownedRelationship += Redefinition
 ;
 

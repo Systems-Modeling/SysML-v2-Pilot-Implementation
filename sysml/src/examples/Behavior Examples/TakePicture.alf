@@ -19,16 +19,16 @@ behavior TakePicture() specializes Base::Performance {
 	
 	flow Exposure[1] from step1::xrsl to step2::xsf;
 
-//	The above flow is equivalent to the following:
+//	The above flow is semantically equivalent to the following:
 //	
 //	feature succFlow subsets Transfers::flows {
 //		import Transfers::*;
 //		feature item: Exposure[1] redefines Transfer::item;
-//		feature transferSource redefines TransferBefore::transferSource subsets step1 {
-//			feature sourceOutput redefines Transfer::transferSource::sourceOutput, step1::xrsl;
+//		feature transferSource subsets step1 redefines TransferBefore::transferSource {
+//			feature sourceOutput redefines step1::xrsl, Transfer::transferSource::sourceOutput;
 //		}
-//		feature transferTarget redefines TransferBefore::transferTarget subsets step2 {
-//			feature targetInput redefines Transfer::transferTarget::targetInput, step2::xsf;
+//		feature transferTarget subsets step2 redefines TransferBefore::transferTarget {
+//			feature targetInput redefines step2::xsf, Transfer::transferTarget::targetInput;
 //		}
 //	}
 	

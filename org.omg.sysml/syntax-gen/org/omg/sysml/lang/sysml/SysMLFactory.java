@@ -463,6 +463,33 @@ public interface SysMLFactory extends EFactory {
 	LiteralInteger createLiteralInteger();
 
 	/**
+	 * Returns a new object of class '<em>Item Flow End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Flow End</em>'.
+	 * @generated
+	 */
+	ItemFlowEnd createItemFlowEnd();
+
+	/**
+	 * Returns a new object of class '<em>Item Flow Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Flow Feature</em>'.
+	 * @generated
+	 */
+	ItemFlowFeature createItemFlowFeature();
+
+	/**
+	 * Returns a new object of class '<em>Item Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Feature</em>'.
+	 * @generated
+	 */
+	ItemFeature createItemFeature();
+
+	/**
 	 * Returns a new object of class '<em>Operator Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

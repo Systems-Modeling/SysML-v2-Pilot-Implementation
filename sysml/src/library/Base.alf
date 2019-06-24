@@ -141,7 +141,7 @@ package Base {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end self: Anything[0..*] redefines source subsets myself redefines Base::'this';
+		end self: Anything[0..*] redefines source subsets myself redefines Base::self;
 		end myself: Anything[0..*] redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
@@ -153,10 +153,10 @@ package Base {
 	 */
 	abstract behavior Performance() specializes Occurrence {
 		feature involvedObjects: Object[0..*];
-		step subperformances: compose Performance[0..*] nonunique subsets performances, suboccurrences;
-		expr subevaluations: compose Evaluation[0..*] nonunique subsets evaluations, subperformances;
-		feature subtransfers: compose Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
-		feature subflows: compose Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
+		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		feature subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		feature subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**
@@ -180,10 +180,10 @@ package Base {
 	 */
 	
 	/**
-	 * 'this' is a feature that relates everything to itself.
+	 * self is a feature that relates everything to itself.
 	 * (This is enforced by tying this feature to SelfLink::self.)
 	 */
-	feature 'this': Anything[1] subsets things;
+	feature self: Anything[1] subsets things;
 	 
 	/**
 	 * things is the top-level feature in the language.

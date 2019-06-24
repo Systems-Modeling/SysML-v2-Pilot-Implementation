@@ -485,11 +485,15 @@ fragment FeatureDeclaration returns SysML::Feature :
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
-	( '=' ownedRelationship += FeatureValue )? CategoryBody
+	ValuePart? CategoryBody
 ;
 
 fragment AbstractFeatureCompletion returns SysML::Feature :
-	( '=' ownedRelationship += FeatureValue )? AbstractCategoryBody
+	ValuePart? AbstractCategoryBody
+;
+
+fragment ValuePart returns SysML::Feature :
+	'=' ownedRelationship += FeatureValue
 ;
 
 FeatureValue returns SysML::FeatureValue :
@@ -642,8 +646,8 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( isAbstract ?= 'abstract')? 'step' 
-	( name = Name TypePart StepParameterList? SubsettingPart 
-	| 'redefines' ownedRelationship += Redefinition TypePart ParameterList?
+	( name = Name TypePart StepParameterList? SubsettingPart ValuePart?
+	| 'redefines' ownedRelationship += Redefinition TypePart StepParameterList? ValuePart?
 	) 
 	BehaviorBody
 ;
@@ -653,7 +657,7 @@ fragment StepParameterList returns SysML::Category :
 ;
 
 StepParameterDefinition returns SysML::Parameter :
-	TypePart ( '=' ownedRelationship += FeatureValue )?
+	TypePart ValuePart?
 ;
 
 /* STEP MEMBERSHIPS */
@@ -668,8 +672,8 @@ StepParameterMember returns SysML::ParameterMembership :
 
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
-	( name = Name TypePart ( StepParameterList ReturnParameterPart )? SubsettingPart 
-	| 'redefines' ownedRelationship += Redefinition TypePart ( ParameterList ReturnParameterPart )?
+	( name = Name TypePart ( StepParameterList ReturnParameterPart )? SubsettingPart ValuePart?
+	| 'redefines' ownedRelationship += Redefinition TypePart ( StepParameterList ReturnParameterPart )? ValuePart?
 	)?
 	FunctionBody
 ;

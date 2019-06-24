@@ -148,6 +148,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name '(' ')' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
@@ -222,6 +223,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
@@ -264,8 +266,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
-	 *     name=Name (ambiguity) '(' ownedRelationship+=ParameterMember
-	 *     name=Name (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
@@ -277,8 +277,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
 	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
-	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=ParameterMember
-	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset

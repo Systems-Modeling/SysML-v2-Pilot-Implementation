@@ -103,7 +103,7 @@ package Transfers {
 	 	end transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
 	  	end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
-	  	feature self: TransferBefore redefines 'this';
+	  	feature self: TransferBefore redefines Base::self;
 	  	
 	  	succession transferSource to self;
 	  	succession self to transferTarget;

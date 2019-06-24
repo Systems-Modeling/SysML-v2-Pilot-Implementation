@@ -291,10 +291,14 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isPart() {
+		if (!isPart) {
+			Feature memberFeature = getMemberFeature();
+			isPart = memberFeature != null && ((FeatureImpl)memberFeature).basicIsComposite( );
+		}
 		return isPart;
 	}
 

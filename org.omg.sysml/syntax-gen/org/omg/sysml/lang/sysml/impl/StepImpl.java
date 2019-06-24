@@ -44,6 +44,14 @@ public class StepImpl extends FeatureImpl implements Step {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.STEP;
 	}
+	
+	@Override
+	public boolean basicIsComposite() {
+		if (!isComposite && isSubperformance()) {
+			isComposite = true;;
+		}
+		return isComposite;
+	}
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {

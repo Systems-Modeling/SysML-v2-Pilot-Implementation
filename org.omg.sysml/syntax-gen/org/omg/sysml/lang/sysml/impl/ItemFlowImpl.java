@@ -166,6 +166,14 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 
 	@Override
+	public boolean basicIsComposite() {
+		if (!isComposite && isSubtransfer()) {
+			isComposite = true;
+		}
+		return isComposite;
+	}
+
+	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithDefault(
 				isSubtransfer()? 

@@ -454,6 +454,17 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		// TODO: implement this method to set the 'Owning Feature Membership' reference
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
+	
+	/**
+	 * Locally cached value for isComposite. This allows isComposite to be set directly
+	 * on a Feature, and then propagated back to the owningFeatureMembership, once this
+	 * is set.
+	 */
+	protected boolean isComposite = false;
+	
+	public boolean basicIsComposite() {
+		return isComposite;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -471,6 +482,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public void setIsComposite(boolean newIsComposite) {
+		isComposite = newIsComposite;
 		FeatureMembership featureMembership = this.getOwningFeatureMembership();
 		if (featureMembership != null) {
 			featureMembership.setIsPart(newIsComposite);

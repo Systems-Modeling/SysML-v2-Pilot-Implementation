@@ -33,7 +33,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
-	public static final String ITEM_FLOW_SUBSETTING_DEFAULT = "Transfers::transfers";
+	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
+	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subtransfers";
 
 	/**
 	 * The cached value of the '{@link #getItemType() <em>Item Type</em>}' reference list.
@@ -166,7 +167,14 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(ITEM_FLOW_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithDefault(
+				isSubtransfer()? 
+					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
+					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isSubtransfer() {
+		return StepImpl.isPerformanceFeature(this);
 	}
 	
 	@Override

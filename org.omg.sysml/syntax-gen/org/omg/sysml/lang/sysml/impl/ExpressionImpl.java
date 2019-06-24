@@ -27,7 +27,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
-	public static final String EXPRESSION_SUBSETTING_DEFAULT = "Base::evaluations";
+	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::evaluations";
+	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subevaluations";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,10 @@ public class ExpressionImpl extends StepImpl implements Expression {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(EXPRESSION_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()?
+					EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+					EXPRESSION_SUBSETTING_BASE_DEFAULT);
 	}
 	
 	@Override 

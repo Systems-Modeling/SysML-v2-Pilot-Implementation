@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -20,7 +23,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StepImpl extends FeatureImpl implements Step {
 	
-	public static final String STEP_SUBSETTING_DEFAULT = "Base::performances";
+	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Base::performances";
+	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,7 +47,19 @@ public class StepImpl extends FeatureImpl implements Step {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(STEP_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()? 
+					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+					STEP_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isSubperformance() {
+		return isPerformanceFeature(this);
+	}
+	
+	public static boolean isPerformanceFeature(Feature step) {
+		Category owningCategory = step.getOwningCategory();
+		return owningCategory instanceof Behavior || owningCategory instanceof Step;
 	}
 	
 	public List<Step> getSubsteps() {

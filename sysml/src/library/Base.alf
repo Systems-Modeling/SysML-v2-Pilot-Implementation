@@ -153,6 +153,10 @@ package Base {
 	 */
 	abstract behavior Performance() specializes Occurrence {
 		feature involvedObjects: Object[0..*];
+		step subperformances: compose Performance[0..*] nonunique subsets performances, suboccurrences;
+		expr subevaluations: compose Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		feature subtransfers: compose Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		feature subflows: compose Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**

@@ -1,0 +1,30 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package test{
+	class A {}
+	class A_alias is A;
+// besides "A_alias", we can reference...
+/* XPECT scope at A_alias ---
+	    A, A_alias, a, test.A, test.A_alias, test.a,
+	    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	    Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	    Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	    Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	    Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	    Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	    Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	    Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	    Base.selfLinks, Base.things, Base.values
+--- */
+	//XPECT linkedName at A_alias --> test.A
+	feature a: A_alias;
+	
+}

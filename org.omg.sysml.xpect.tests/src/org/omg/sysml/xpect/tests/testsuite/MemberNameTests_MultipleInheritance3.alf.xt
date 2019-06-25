@@ -1,0 +1,50 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package test{
+	class A{
+		class a {
+			class aa{}		
+		}
+	}
+	class B specializes A{
+		//if A:: RuntimeException:  OFSET 'A::a' not found
+		//if a Caused by RumtimeException: no EStructuralFeature found class b special...
+		//what is different from MultipleInheritance2 - A::a works fine...
+		class b specializes a {}
+	}
+	class C specializes B{
+		//original test had c2 listed twice here why?
+		//can not test scope at a because a is not directory inherited? 
+		/* XPECT scope at b ---
+ 		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, C, C.a, C.a.aa, C.b, C.c2, D, D.aa, D.d, 
+ 		a, a.aa, b, c2, c2.aa,
+ 		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.C, test.C.a, test.C.a.aa,
+		test.C.b, test.C.c2, test.D, test.D.aa, test.D.d,
+ 		Base.Anything, Base.BehaviorOccurrence,
+		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,
+		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value,
+	--- */
+		//linkedName at a --> test.A.a ----- xpect link test "a" test here will cause RuntimeException why?
+		class c2 specializes a {}
+		class c2 specializes b {}
+	}
+	class D specializes C::a{
+		//XPECT linkedName at aa --> test.A.a.aa
+		class d specializes aa  {}
+	}
+}

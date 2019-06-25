@@ -1,0 +1,31 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package test{
+	class A{
+		class A {
+			//XPECT linkedName at A --> test.A.A
+			/* XPECT scope at A ---
+		    A, A.A, A.A.B, A.B, B,
+		    test.A, test.A.A, test.A.A.B,
+		    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		  	Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		  	Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+		--- */
+			class B specializes A{}
+		}
+	}
+}

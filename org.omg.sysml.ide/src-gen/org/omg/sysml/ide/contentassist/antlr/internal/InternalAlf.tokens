@@ -7,7 +7,7 @@
 '*'=38
 '**'=40
 '+'=36
-','=68
+','=69
 '-'=37
 '->'=85
 '.'=24
@@ -41,7 +41,7 @@
 'compose'=91
 'connector'=63
 'datatype'=58
-'end'=69
+'end'=67
 'expr'=74
 'feature'=26
 'flow'=66
@@ -67,7 +67,7 @@
 'protected'=45
 'public'=43
 'redefines'=75
-'specializes'=67
+'specializes'=68
 'step'=73
 'stream'=65
 'subsets'=81

@@ -201,7 +201,7 @@ fragment AbstractCategoryBody returns SysML::Category :
 /* CATEGORY MEMBERSHIPS */
 
 CategoryMember returns SysML::Membership : 
-	NonFeatureCategoryMember | FeatureMember | FeatureCategoryMember
+	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | FeatureCategoryMember
 ;
 
 NonFeatureCategoryMember returns SysML::Membership : 
@@ -248,6 +248,15 @@ FeatureMember returns SysML::FeatureMembership :
 	  )
     | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlowDefinition
     )
+;
+
+EndFeatureMember returns SysML::EndFeatureMembership :
+	CategoryMemberPrefix
+    (
+      'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
+    | 'abstract' 'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
+	| 'end' ( isPart ?= 'part' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+	)
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -339,18 +348,14 @@ fragment AssociationBody returns SysML::Association :
 /* ASSOCIATION MEMBERSHIPS */
 
 AssociationMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | AssociationEndFeatureMember
+	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | AssociationEndFeatureMember
 ;
 
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	CategoryMemberPrefix
     (
-      'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
-    | 'abstract' 'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
-	| 'end' ( isPart ?= 'part' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-
 	// These alternatives are provided for legacy Alf backwards compatibility;
-    | ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
+      ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
     | 'abstract' ( direction = FeatureDirection )? ownedRelatedElement += AbstractNamedFeatureDefinition
 	| memberName = Name 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	
@@ -400,7 +405,7 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 BehaviorMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | BehaviorStepMember	
+	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | BehaviorStepMember	
 ;
 
 BehaviorStepMember returns SysML::FeatureMembership :

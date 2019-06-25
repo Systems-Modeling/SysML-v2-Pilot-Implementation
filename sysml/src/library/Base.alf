@@ -118,8 +118,8 @@ package Base {
 	assoc BinaryLink specializes Link {
 	    feature participant: Anything[2] ordered redefines Link::participant;
 		
-		end source: Anything[0..*] subsets participant;
-	    end target: Anything[0..*] subsets participant;
+		end source: Anything[0..*] nonunique subsets participant;
+	    end target: Anything[0..*] nonunique subsets participant;
 	    
 // Means:
 //	    feature sourceParticipant: Anything[1] subsets participant {
@@ -141,8 +141,8 @@ package Base {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end self: Anything[0..*] redefines source subsets myself redefines Base::self;
-		end myself: Anything[0..*] redefines target subsets self;
+		end self: Anything[0..*] nonunique redefines source subsets myself redefines Base::self;
+		end myself: Anything[0..*] nonunique redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
 //		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
@@ -208,12 +208,18 @@ package Base {
 	/**
 	 * binaryLinks is a specialization of links restricted to type BinaryLink.
 	 */
-	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links;
+	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links {
+		end source: Anything[0..*] nonunique redefines BinaryLink::source;
+		end target: Anything[0..*] nonunique redefines BinaryLink::target;
+	}
 	
 	/**
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
-	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks;
+	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
+		end source: Anything[0..*] nonunique redefines SelfLink::source, binaryLinks::source;
+		end target: Anything[0..*] nonunique redefines SelfLink::target, binaryLinks::target;
+	}
 	
 	/**
 	 * performances is the most general feature for performances of behaviors.

@@ -48,7 +48,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	public boolean basicIsComposite() {
 		if (!isComposite && isSubperformance()) {
-			isComposite = true;;
+			isComposite = true;
 		}
 		return isComposite;
 	}

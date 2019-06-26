@@ -52,6 +52,8 @@ import java.util.HashMap
 import org.eclipse.xtext.util.Strings
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Membership
+import java.util.Set
+import org.eclipse.xtext.EcoreUtil2
 
 /**
  * This class contains custom scoping description.
@@ -64,7 +66,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	@Inject
 	var IGlobalScopeProvider globalScope
 
-	var HashSet<Membership> scopedMemberships = newHashSet
+	var Set<Membership> scopedMemberships = newHashSet
 	
 	override getScope(EObject context, EReference reference) {
 		switch (reference) {
@@ -93,7 +95,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		}
 		if (context instanceof Package) {
-			return context.scope_Package(reference)
+			return new AlfScope(context, reference, scopedMemberships, this)
 		}
 		super.getScope(context, reference)
 	}
@@ -193,7 +195,18 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			}
 		]
 	}
-
+	
+	def IScope scope_Package(Package pack, EReference reference, Set<Membership> scopedMemberships) {
+		val temp = newHashSet
+		temp.addAll(this.scopedMemberships)
+		this.scopedMemberships.clear
+		this.scopedMemberships.addAll(scopedMemberships)
+		val scope = scope_Package(pack, reference)
+		this.scopedMemberships.clear
+		this.scopedMemberships.addAll(temp)
+		return scope
+	}
+	
 	def IScope scope_Package(Package pack, EReference reference) {
 		
 		val elements = <Element, HashSet<QualifiedName>>newHashMap()
@@ -233,7 +246,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				}
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 		} else {
-			scope_Package(pack.parentPackage, reference /*, E */ )
+			new AlfScope(pack.parentPackage, reference, scopedMemberships, this)
 		}
 
 		var int previousCount;
@@ -266,17 +279,13 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 	private def Package getParentPackage(Element element) {
-		var EObject container=element.eContainer
-		while(!(container instanceof Package)){
-			container=container.eContainer
-		}
-		return (container as Package)
+		EcoreUtil2.getContainerOfType(element.eContainer, Package)
 	}
 	
 	def IScope scope_Namespace(Element element, Package namespace, EReference reference) {
 		if (namespace === null)
 			return super.getScope(element, reference)		
-		return namespace.scope_Package(reference)
+		return new AlfScope(namespace, reference, scopedMemberships, this)
 	}
 	
 	def IScope scope_owningNamespace(Element element, EReference reference) {

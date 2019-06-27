@@ -137,7 +137,7 @@ class AlfScope extends AbstractScope {
 		if (!visited.contains(pack)) {
 			visited.add(pack)
 			pack.ownedMembership.forEach[m|
-				if (!scopeProvider.visitedMemberships.contains(m)) {
+				if (!visitedMemberships.contains(m)) {
 					val memberElement = m.memberElement
 					val elementName = m.memberName ?: memberElement?.name
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {

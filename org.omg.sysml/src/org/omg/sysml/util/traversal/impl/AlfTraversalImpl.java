@@ -74,7 +74,7 @@ public class AlfTraversalImpl extends AlfUtil {
 	}
 	
 	/**
-	 * Initialize the traversal with an element-visitor factor using the given element-processing facade.
+	 * Initialize the traversal with an element-visitor factory using the given element-processing facade.
 	 * 
 	 * @param 	processingFacade	the facade for processing Elements and Relationships
 	 * @return	the initialized traversal object

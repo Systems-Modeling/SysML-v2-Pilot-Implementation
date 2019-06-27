@@ -25,7 +25,6 @@ package org.omg.sysml.util.traversal.visitor.impl;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.visitor.ElementVisitor;
@@ -70,7 +69,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 	/**
 	 * Get the Element this visitor is visiting.
 	 * 
-	 * @return	the Element is Element visitor is visiting
+	 * @return	the Element this Element visitor is visiting
 	 */
 	@Override
 	public Element getElement() {
@@ -107,7 +106,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 		Element element = this.getElement();
 		Traversal traversal = this.getTraversal();
 		traversal.putIdentifier(element, identifier);
-		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
+		for (Relationship relationship: element.getOwnedRelationship()) {
 			traversal.visit(relationship);
 		}
 		return identifier;

@@ -65,7 +65,7 @@ public abstract class AlfUtil {
 	 * 
 	 * @param 	resource		the resource to check.
 	 * @return	true if the resource is an input resource and false otherwise (including if
-	 * 			the given resource has not been read
+	 * 			the given resource has not been read)
 	 */
 	public boolean isInputResource(Resource resource) {
 		return inputResources.contains(resource);
@@ -149,7 +149,7 @@ public abstract class AlfUtil {
 	}
 	
 	/**
-	 * If the given path identifies an Alf file, then read if. If the given path is for a directory,
+	 * If the given path identifies an Alf file, then read it. If the given path is for a directory,
 	 * then recursively read all the Alf files in it, directly or indirectly.
 	 * 
 	 * @param 	path			the path from which Alf resources are to be read

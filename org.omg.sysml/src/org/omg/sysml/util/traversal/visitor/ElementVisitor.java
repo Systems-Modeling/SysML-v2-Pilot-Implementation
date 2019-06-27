@@ -37,7 +37,7 @@ public interface ElementVisitor {
 	/**
 	 * Get the Element this Element visitor is visiting.
 	 * 
-	 * @return	the Element is Element visitor is visiting
+	 * @return	the Element this Element visitor is visiting
 	 */
 	Element getElement();
 	

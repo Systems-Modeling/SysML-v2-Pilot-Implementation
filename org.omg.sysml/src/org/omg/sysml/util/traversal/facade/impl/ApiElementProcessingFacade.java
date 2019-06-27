@@ -201,7 +201,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	/**
 	 * Save the given Relationship to the repository and, if successful, return the UUID created for it.
 	 * If there is an exception while saving the element, return an identifier based on the
-	 * Repository hash code, so that the Element can still be recorded as having been visited.
+	 * Relationship hash code, so that the Element can still be recorded as having been visited.
 	 * 
 	 * @param 	relationship	the Relationship to be processed
 	 * @return	a unique identifier for the processed Relationship

@@ -71,26 +71,26 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		switch (reference) {
 			case SysMLPackage.eINSTANCE.featureTyping_Type: {
 				if (context instanceof FeatureTyping)
-					return scope_FeatureTyping_type(context as FeatureTyping, reference)
+					return context.typedFeature.scope_owningNamespace(reference)
 			}
 			case SysMLPackage.eINSTANCE.generalization_General, 
 			case SysMLPackage.eINSTANCE.superclassing_Superclass: {
 				if (context instanceof Generalization)
-					return scope_Generalization_general(context as Generalization, reference)
+					return context.specific.scope_owningNamespace(reference)
 			}
 			case SysMLPackage.eINSTANCE.redefinition_RedefinedFeature: {
 				if (context instanceof Redefinition)
-					return scope_Redefinition_redefinedFeature(context as Redefinition, reference)
+					return context.redefiningFeature.scope_owningNamespace(reference)
 			}
 			case SysMLPackage.eINSTANCE.subsetting_SubsettedFeature: {
 				if (context instanceof Subsetting)
-					return scope_Subsetting_subsettedFeature(context as Subsetting, reference)
+					return context.subsettingFeature.scope_owningNamespace(reference)
 			}
 			case SysMLPackage.eINSTANCE.membership_MemberElement, 
 			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature,
 			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
 				if (context instanceof Membership)
-					return scope_Membership_memberElement(context as Membership, reference)
+					return context.scope_Namespace(context.membershipOwningPackage, reference)
 			}
 		}
 		return if (context instanceof Package) 
@@ -99,43 +99,22 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			super.getScope(context, reference)
 	}
 	
-	private def Package getParentPackage(Element element) {
+	def static Package getParentPackage(Element element) {
 		EcoreUtil2.getContainerOfType(element.eContainer, Package)
 	}
 	
+	def IScope scope_owningNamespace(Element element, EReference reference) {
+		return element.scope_Namespace(element?.parentPackage, reference)
+	}
+
 	def IScope scope_Namespace(Element element, Package namespace, EReference reference) {
 		if (namespace === null)
 			return super.getScope(element, reference)		
 		return namespace.alfScope(element, reference)
 	}
 	
-	def IScope scope_owningNamespace(Element element, EReference reference) {
-		return scope_Namespace(element, element?.parentPackage, reference)
-	}
-
-	def IScope scope_FeatureTyping_type(FeatureTyping featureTyping, EReference reference) {
-		return scope_owningNamespace(featureTyping.typedFeature, reference)
-	}
-
-	def IScope scope_Generalization_general(Generalization generalization, EReference reference) {
-		return scope_owningNamespace(generalization.specific, reference)
-	}
-
-	def IScope scope_Redefinition_redefinedFeature(Redefinition redefinition, EReference reference) {
-		return scope_owningNamespace(redefinition.redefiningFeature, reference)
-	}
-
-	def IScope scope_Subsetting_subsettedFeature(Subsetting subset, EReference reference) {
-		return scope_owningNamespace(subset.subsettingFeature, reference)
-	}
-	
-	def IScope scope_Membership_memberElement(Membership membership, EReference reference) {
-		val scope = scope_Namespace(membership, membership.membershipOwningPackage, reference)
-		return scope
-	}
-	
 	def IScope alfScope(Package pack, Element element, EReference reference) {
-		val outerscope = if ( /* Root package */ pack.eContainer === null) {
+		val outerscope = if (pack.eContainer === null) { // Root Package
 			globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 		} else {
 			pack.parentPackage.alfScope(element, reference)

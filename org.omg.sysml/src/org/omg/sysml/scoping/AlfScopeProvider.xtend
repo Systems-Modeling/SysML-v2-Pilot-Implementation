@@ -114,17 +114,19 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 	
 	def IScope alfScope(Package pack, Element element, EReference reference) {
-		val outerscope = if (pack.eContainer === null) { // Root Package
-			globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-		} else {
-			pack.parentPackage.alfScope(element, reference)
-		}		
-
 		val memberships = new HashSet(visitedMemberships)
 		if (element instanceof Membership) {
 			memberships.add(element)
 		}
 			
+		val outerscope = if (pack.eContainer === null) { // Root Package
+			 val global = globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+			 if (pack.name !== null) new AlfRootScope(global,pack, reference, memberships, this)
+			 else global
+		} else {
+			pack.parentPackage.alfScope(element, reference)
+		}		
+
 		return new AlfScope(outerscope, pack, reference, memberships, this)
 	}
 	

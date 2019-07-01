@@ -70,82 +70,93 @@ class AlfScope extends AbstractScope {
 		this.visitedMemberships = visitedMemberships;
 	}
 	
+	def getPackage() {
+		pack
+	}
+	
+	override getAllElements() {
+		super.getAllElements()
+	}
+	
 	override getAllLocalElements() {
 		val savedMemberships = scopeProvider.visitedMemberships
 		scopeProvider.visitedMemberships = new HashSet(visitedMemberships)
-		val elements = getLocalScopeElements()
+		val elements = resolveInScope(null)
 		scopeProvider.visitedMemberships = savedMemberships
 		return elements
 	}
 	
-	private def getLocalScopeElements() {
-		
-		val elements = <Element, Set<QualifiedName>>newHashMap()
-		val visited = newHashSet
-		
-		pack.owned(QualifiedName.create(), elements, false, true, newHashSet, visited)
-		pack.gen(elements, newHashSet, visited)
-		pack.imp(elements, true, newHashSet, visited)
-		
-		while(pack.loop2(elements, newHashSet, visited)) { }
-		
-		if (pack.name !== null && pack.eContainer === null) { // Root package
-			val packQn = QualifiedName.create(pack.name)
-			elements.addName(packQn, pack, visited)
-			
-			val newElements = <Pair<Element, QualifiedName>>newArrayList(
-				elements.entrySet.flatMap[entry |
-					entry.value.filter[!startsWith(packQn)].map[qn | 
-						new Pair(entry.key, packQn.append(qn))
-					]
-				])
-			
-			newElements.forEach[e | elements.addName(e.value, e.key, visited)]
-		}
-		
+	override getLocalElementsByName(QualifiedName name) {
+		resolveInScope(name)
+	}
+	
+	protected def resolveInScope(QualifiedName targetqn) {		
+		val elements = resolve(targetqn)		
 		return elements.keySet.flatMap[key |
 			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 		]
 	}
 	
-	private def boolean addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el, Set<QualifiedName> visited) {
+	protected def Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn) {
+		
+		val elements = <Element, Set<QualifiedName>>newHashMap()
+		val visited = newHashSet
+		
+		pack.resolve(QualifiedName.create(), elements, false, true, newHashSet, visited, targetqn)
+		while(pack.loop2(elements, newHashSet, visited, targetqn)) { }
+		
+		return elements		
+	}
+	
+	protected def void resolve(Package pack, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
+		Set<Package> visited, Set<QualifiedName> visitedqns, QualifiedName targetqn) {
+		pack.owned(qn, elements, checkIfAdded, isInsideScope, newHashSet, visitedqns, targetqn)
+		pack.gen(qn, elements, visited, visitedqns, targetqn)
+		pack.imp(qn, elements, visited, visitedqns, targetqn)
+	}
+	
+	protected def boolean addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el, Set<QualifiedName> visited, QualifiedName targetqn) {
 		var added = true;
 		if (reference.EReferenceType.isInstance(el)) {
 			added = false;
-			val qns = elements.get(el);
-			if (qns === null) { 
-				if (!visited.contains(qn)){
-					elements.put(el, newHashSet(qn))
-					visited.add(qn)
-					added = true
+			if (targetqn === null || targetqn.equals(qn)) {
+				val qns = elements.get(el);
+				if (qns === null) { 
+					if (!visited.contains(qn)){
+						elements.put(el, newHashSet(qn))
+						visited.add(qn)
+						added = true
+					}
 				}
-			}
-			else if (!qns.contains(qn)){ //elements contains more than one qualifiedName - test::A and test2::A have difference qns
-				if(!visited.contains(qn)){
-					qns.add(qn)
-					elements.put(el, qns)
-					visited.add(qn)
-					added = true
+				else if (!qns.contains(qn)){ //elements contains more than one qualifiedName - test::A and test2::A have difference qns
+					if(!visited.contains(qn)){
+						qns.add(qn)
+						elements.put(el, qns)
+						visited.add(qn)
+						added = true
+					}
 				}
-			}				
+			}			
 		}
 		return added
 	}
 	
 	private def void owned(Package pack, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
-		Set<Package> visited, Set<QualifiedName> visitedQns) {
+		Set<Package> visited, Set<QualifiedName> visitedQns, QualifiedName targetqn) {
 		if (!visited.contains(pack)) {
 			visited.add(pack)
 			pack.ownedMembership.forEach[m|
 				if (!visitedMemberships.contains(m)) {
-					val memberElement = m.memberElement
-					val elementName = m.memberName ?: memberElement?.name
+					val elementName = m.memberName
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 						val elementqn = qn.append(elementName)
-						val added = elements.addName(elementqn, memberElement, visitedQns)
-						if (!checkIfAdded || added) {
-							if (memberElement instanceof Package) {
-								memberElement.owned(elementqn, elements, checkIfAdded, false, visited, visitedQns)
+						if (targetqn === null || targetqn.startsWith(elementqn)) {
+							val memberElement = m.memberElement
+							val added = elements.addName(elementqn, memberElement, visitedQns, targetqn)
+							if ((!checkIfAdded || added) && !elementqn.equals(targetqn)) {
+								if (memberElement instanceof Package) {
+									memberElement.owned(elementqn, elements, checkIfAdded, false, visited, visitedQns, targetqn)
+								}
 							}
 						}
 					}
@@ -155,33 +166,36 @@ class AlfScope extends AbstractScope {
 		}
 	}
 
-	private def void gen(Package pack, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedQns) {
+	private def void gen(Package pack, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedQns, QualifiedName targetqn) {
 		if (pack instanceof Category) {
 			pack.ownedGeneralization.forEach [e |
 				if (e.general?.name !== null) {
 					if (!visited.contains(e.general)) {
 						visited.add(e.general)
-						e.general.gen(elements, visited, visitedQns)
-						e.general.imp(elements, false, visited, visitedQns)
-						e.general.owned(QualifiedName.create(), elements, false, false, newHashSet, visitedQns)
+						e.general.resolve(qn, elements, false, false, visited, visitedQns, targetqn)
+//						e.general.gen(qn, elements, visited, visitedQns, targetqn)
+//						e.general.imp(qn, elements, false, visited, visitedQns, targetqn)
+//						e.general.owned(qn, elements, false, false, newHashSet, visitedQns, targetqn)
 					}
 				}
 			]
 		}
 	}
 	
-	private def void imp(Package pack, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, Set<Package> visited, Set<QualifiedName> visitedQns) {
+	private def void imp(Package pack, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedQns, QualifiedName targetqn) {
 		pack.ownedImport.forEach [e |
 			if (!visited.contains(e.importedPackage)) {
 				visited.add(e.importedPackage)
-				e.importedPackage.imp(elements, checkIfAdded, visited, visitedQns)
-				e.importedPackage.gen(elements, visited, visitedQns)
-				e.importedPackage.owned(QualifiedName.create(), elements, checkIfAdded, false, newHashSet, visitedQns)
+				e.importedPackage.resolve(qn, elements, true, false, visited, visitedQns, targetqn)
+//				e.importedPackage.gen(qn, elements, visited, visitedQns, targetqn)
+//				e.importedPackage.imp(qn, elements, checkIfAdded, visited, visitedQns, targetqn)
+//				e.importedPackage.owned(qn, elements, checkIfAdded, false, newHashSet, visitedQns, targetqn)
 			}
 		]
 	}
 	
-	private def boolean loop2(Package pack, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedQns) {
+	private def boolean loop2(Package pack, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, 
+		Set<QualifiedName> visitedQns, QualifiedName targetqn) {
 		var isAdded = false;
 		
 		if (!visited.contains(pack)){ //to prevent CircleImport
@@ -196,7 +210,7 @@ class AlfScope extends AbstractScope {
 							if ( specializesAsText.length !== 0 ){
 								var generalQName = QualifiedName.create(Strings.split(specializesAsText.head.text.trim(), '::'))
 								//TODO: support multiple inheritance
-								if (getInherited(generalQName, elements, eg.eContainer as Element, visitedQns)) {  //A's append to B
+								if (getInherited(generalQName, elements, eg.eContainer as Element, visitedQns, targetqn)) {  //A's append to B
 									isAdded = true
 								}
 							}
@@ -205,7 +219,7 @@ class AlfScope extends AbstractScope {
 				}
 			}
 			for (e: pack.ownedImport) { 
-				if (loop2(e.importedPackage, elements, visited, visitedQns)) {
+				if (loop2(e.importedPackage, elements, visited, visitedQns, targetqn)) {
 					isAdded = true
 				}
 			}
@@ -214,7 +228,8 @@ class AlfScope extends AbstractScope {
 		return isAdded
 	}
 	
-	private def boolean getInherited(QualifiedName generalQName, Map<Element, Set<QualifiedName>> elements, Element generalEContainer, Set<QualifiedName> visitedQns){
+	private def boolean getInherited(QualifiedName generalQName, Map<Element, Set<QualifiedName>> elements, Element generalEContainer, 
+		Set<QualifiedName> visitedQns, QualifiedName targetqn){
 		val qnStartWith = generalQName.toString()
 		val qnAppendTo = generalEContainer.name
 		val newElements = newArrayList
@@ -230,7 +245,7 @@ class AlfScope extends AbstractScope {
 		]
 		var isAdded = false
 		for (ne: newElements) {
-			if (elements.addName(ne.value, ne.key, visitedQns)) {
+			if (elements.addName(ne.value, ne.key, visitedQns, targetqn)) {
 				isAdded = true
 			}
 		}

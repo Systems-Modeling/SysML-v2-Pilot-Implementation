@@ -38,31 +38,30 @@ class AlfRootScope extends AlfScope {
 		super(parent, pack, reference, visitedMemberships, scopeProvider)
 	}
 	
-	override protected Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn) {
-		
-		
-		val pack = getPackage()
-		val packQn = QualifiedName.create(pack.name)
-		if (targetqn !== null && !targetqn.startsWith(packQn)) {
-			return emptyMap
-		} else {
-			val effectiveqn = 
-				if (targetqn === null) null
-				else QualifiedName.create(targetqn.segments.subList(1, targetqn.segmentCount))
-	//		pack.resolve(packQn, elements, false, true, newHashSet, visited, targetqn)
-			val elements = newHashMap
-			val visited = newHashSet
-			super.resolve(effectiveqn).entrySet.forEach[entry | 
+	protected override Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn) {
+		val packqn = QualifiedName.create(package.name)		
+		val elements = newHashMap
+		if (targetqn === null) {
+			super.resolve(null).addQualifiedTo(elements, packqn)
+			elements.addName(packqn, package)		
+		} else if (targetqn == packqn) {
+			elements.addName(packqn, package)
+		} else if (targetqn.startsWith(packqn)) {
+			val effectiveqn = QualifiedName.create(targetqn.segments.subList(1, targetqn.segmentCount))
+			super.resolve(effectiveqn).addQualifiedTo(elements, packqn)
+		}
+		elements	
+	}
+	
+	protected def void addQualifiedTo(Map<Element, Set<QualifiedName>> unqualifiedElements, 
+		Map<Element, Set<QualifiedName>> elements, QualifiedName packqn) {
+		unqualifiedElements.entrySet.forEach[entry | 
 				entry.value.forEach[ qn |
 					elements.addName(
-						if (qn.startsWith(packQn)) qn else packQn.append(qn),
-						entry.key, visited, targetqn)
+						if (qn.startsWith(packqn)) qn else packqn.append(qn),
+						entry.key)
 				]		
 			]
-			elements.addName(packQn, pack, visited, targetqn)
-	
-			return elements	
-		}
 	}
 	
 }

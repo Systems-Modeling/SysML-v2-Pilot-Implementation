@@ -22,6 +22,7 @@ END_SETUP
 Package {
 ownedRelationship = [
     Membership {
+      memberName = 'C'
       memberElement -> ObjectClass DependencyMultipleMembership.alf#//@ownedRelationship.1/@ownedRelatedElement.0
     }
     Membership {

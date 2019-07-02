@@ -30,9 +30,9 @@ package test{
 	class D specializes C{
 		//XPECT linkedName at b --> OuterPackage.B.b
 		/* XPECT scope at b ---
-		   C, C.c, D, D.c, D.try, 
+		   C, C.b, C.c, D, D.b, D.c, D.try, 
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c, b, c,
-		   test.C, test.C.c, test.D, test.D.c, test.D.try, try,
+		   test.C, test.C.b, test.C.c, test.D, test.D.b, test.D.c, test.D.try, try,
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
 	--- */
 		feature try : b;

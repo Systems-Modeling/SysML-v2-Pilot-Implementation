@@ -180,10 +180,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	public String getMemberName() {
 		if (memberName == null) {
-			ElementImpl ownedMemberElement = (ElementImpl)this.getOwnedMemberElement();
-			if (ownedMemberElement != null) {
-				memberName = ownedMemberElement.basicGetName();
-				ownedMemberElement.basicSetName(null);
+			ElementImpl memberElement = (ElementImpl)this.getMemberElement();
+			if (memberElement != null) {
+				memberName = memberElement.basicGetName();
+				if (memberElement == getOwnedMemberElement()) {
+					memberElement.basicSetName(null);
+				}
 			}
 		}
 		return memberName;

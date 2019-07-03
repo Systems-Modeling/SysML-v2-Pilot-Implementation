@@ -41,12 +41,6 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 
-/**
- * This class contains custom scoping description.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
- * on how and when to use it.
- */
 class AlfScope extends AbstractScope {
 	
 	protected Package pack		
@@ -58,6 +52,8 @@ class AlfScope extends AbstractScope {
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
 	
+	boolean isShadowing = false;
+	
 	new(IScope parent, Package pack, EReference reference, AlfScopeProvider scopeProvider) {
 		super(parent, false)
 		this.pack = pack
@@ -65,25 +61,17 @@ class AlfScope extends AbstractScope {
 		this.scopeProvider = scopeProvider
 	}
 	
-	def getPackage() {
-		pack
-	}
-	
-	override protected isShadowed(IEObjectDescription input) {
-		isShadowed(input.name)
-	}
-
 	/**
 	 * A qualified name is shadowed if its first segment name is shadowed.
 	 */
-	protected def isShadowed(QualifiedName name) {
-		!getLocalElementsByName(QualifiedName.create(name.firstSegment)).isEmpty
+	protected override isShadowed(IEObjectDescription input) {
+		!resolveInScope(QualifiedName.create(input.name.firstSegment), true).isEmpty()
 	}
-	
+
 	override getSingleElement(QualifiedName name) {
 		val result = resolveInScope(name, true);
 		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowed(name)) parent.getSingleElement(name)
+		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
 		else null
 	}
 	
@@ -164,6 +152,7 @@ class AlfScope extends AbstractScope {
 								}
 								if (targetqn != elementqn) {
 									if (memberElement instanceof Package) {
+										isShadowing = true;
 										
 										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
 										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 

@@ -182,9 +182,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		if (memberName == null) {
 			ElementImpl memberElement = (ElementImpl)this.getMemberElement();
 			if (memberElement != null) {
-				memberName = memberElement.basicGetName();
 				if (memberElement == getOwnedMemberElement()) {
+					memberName = memberElement.basicGetName();
 					memberElement.basicSetName(null);
+				} else {
+					memberName = memberElement.getName();
 				}
 			}
 		}

@@ -27,28 +27,27 @@ import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Package
 import org.eclipse.emf.ecore.EReference
 import java.util.Set
-import org.omg.sysml.lang.sysml.Membership
 import org.eclipse.xtext.naming.QualifiedName
 import java.util.Map
 import org.omg.sysml.lang.sysml.Element
 
 class AlfRootScope extends AlfScope {
 	
-	new(IScope parent, Package pack, EReference reference, Set<Membership> visitedMemberships, AlfScopeProvider scopeProvider) {
-		super(parent, pack, reference, visitedMemberships, scopeProvider)
+	new(IScope parent, Package pack, EReference reference, AlfScopeProvider scopeProvider) {
+		super(parent, pack, reference, scopeProvider)
 	}
 	
-	protected override Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn) {
+	protected override Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn, boolean findFirst) {
 		val packqn = QualifiedName.create(package.name)		
 		val elements = newHashMap
 		if (targetqn === null) {
-			super.resolve(null).addQualifiedTo(elements, packqn)
+			super.resolve(null, false).addQualifiedTo(elements, packqn)
 			elements.addName(packqn, package)		
 		} else if (targetqn == packqn) {
 			elements.addName(packqn, package)
 		} else if (targetqn.startsWith(packqn)) {
 			val effectiveqn = QualifiedName.create(targetqn.segments.subList(1, targetqn.segmentCount))
-			super.resolve(effectiveqn).addQualifiedTo(elements, packqn)
+			super.resolve(effectiveqn, findFirst).addQualifiedTo(elements, packqn)
 		}
 		elements	
 	}

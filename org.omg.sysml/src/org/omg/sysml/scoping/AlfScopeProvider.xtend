@@ -44,20 +44,13 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
-import java.util.HashSet
 
-/**
- * This class contains custom scoping description.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
- * on how and when to use it.
- */
 class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	@Inject
-	var IGlobalScopeProvider globalScope
+	IGlobalScopeProvider globalScope
 
-	var Set<Membership> visitedMemberships = newHashSet
+	Set<Membership> visitedMemberships = newHashSet
 	
 	def getVisitedMemberships() {
 		visitedMemberships
@@ -65,6 +58,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	
 	def setVisitedMemberships(Set<Membership> visitedMemberships) {
 		this.visitedMemberships = visitedMemberships
+	}
+	
+	def addVisitedMembership(Membership membership) {
+		visitedMemberships.add(membership)
+	}
+	
+	def removeVisitedMembership(Membership membership) {
+		visitedMemberships.remove(membership)
 	}
 	
 	override getScope(EObject context, EReference reference) {
@@ -93,41 +94,44 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 					return context.scope_Namespace(context.membershipOwningPackage, reference)
 			}
 		}
-		return if (context instanceof Package) 
-			context.alfScope(context, reference)
-		else 
-			super.getScope(context, reference)
+		return
+			if (context instanceof Package) 
+				context.alfScope(context, reference)
+			else 
+				super.getScope(context, reference)		
 	}
 	
 	def static Package getParentPackage(Element element) {
 		EcoreUtil2.getContainerOfType(element.eContainer, Package)
 	}
 	
-	def IScope scope_owningNamespace(Element element, EReference reference) {
-		return element.scope_Namespace(element?.parentPackage, reference)
+	def scope_owningNamespace(Element element, EReference reference) {
+		element.scope_Namespace(element?.parentPackage, reference)
 	}
 
-	def IScope scope_Namespace(Element element, Package namespace, EReference reference) {
+	def scope_Namespace(Element element, Package namespace, EReference reference) {
 		if (namespace === null)
-			return super.getScope(element, reference)		
-		return namespace.alfScope(element, reference)
+			super.getScope(element, reference)		
+		else 
+			namespace.alfScope(element, reference)
 	}
 	
 	def IScope alfScope(Package pack, Element element, EReference reference) {
-		val memberships = new HashSet(visitedMemberships)
-		if (element instanceof Membership) {
-			memberships.add(element)
-		}
-			
-		val outerscope = if (pack.eContainer === null) { // Root Package
-			 val global = globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-			 if (pack.name !== null) new AlfRootScope(global,pack, reference, memberships, this)
-			 else global
-		} else {
-			pack.parentPackage.alfScope(element, reference)
-		}		
+		val parent = pack.parentPackage
+		val outerscope = 
+			if (parent === null) { // Root Package
+				 val global = globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+				 if (pack.name !== null) 
+				 	// The root scope includes qualified names whose first segment is the name
+				 	// of the root package.
+				 	new AlfRootScope(global, pack, reference, this)
+				 else 
+				 	global
+			} else {
+				parent.alfScope(element, reference)
+			}		
 
-		return new AlfScope(outerscope, pack, reference, memberships, this)
+		new AlfScope(outerscope, pack, reference, this)
 	}
 	
 }

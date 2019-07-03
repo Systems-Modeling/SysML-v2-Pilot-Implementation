@@ -3,14 +3,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
-		File {from ="/src/DependencyOuterPackage.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.alf"}
-				File {from ="/src/DependencyOuterPackage.alf"}
 			}
 		}
 	}
@@ -22,17 +20,23 @@ package Test1{
 	//XPECT linkedName at A.B --> Test1.A.B
 	/* XPECT scope at A.B ---
 		   A, A.B, Test1.A, Test1.A.B,
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,  
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		   Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		   Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 	--- */
 	class A specializes A.B {
 		class B {
 			import A::*;
 			/* XPECT scope at B ---
-		   A, A.B, A.B.b, A.b, B, B.b, 
-		   Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, 
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant,		   Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,		   Base.BinaryLink.targetParticipant, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		   Base.Link.participant, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence,		   Base.SelfLink, Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
+			   	A, A.B, A.B.b, A.b, B, B.b, 
+			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
+			   	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant,
+			   	Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,
+			   	Base.BinaryLink.targetParticipant, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,
+			   	Base.Link.participant, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence,
+		       	Base.SelfLink, Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,
+		       	Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,
+		       	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,
+		       	Base.selfLinks, Base.things, Base.values
 			--- */
 			feature b: B; //added this line to see the scope of B
 		}

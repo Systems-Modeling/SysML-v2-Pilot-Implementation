@@ -37,9 +37,7 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Category
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Package
-import org.omg.sysml.lang.sysml.Superclassing
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 
@@ -51,20 +49,15 @@ import org.eclipse.xtext.resource.IEObjectDescription
  */
 class AlfScope extends AbstractScope {
 	
-	Package pack	
-	
-	EReference reference
-	
-	Set<Membership> visitedMemberships;
-	
+	Package pack		
+	EReference reference	
 	AlfScopeProvider scopeProvider
 	
-	new(IScope parent, Package pack, EReference reference, Set<Membership> visitedMemberships, AlfScopeProvider scopeProvider) {
+	new(IScope parent, Package pack, EReference reference, AlfScopeProvider scopeProvider) {
 		super(parent, false)
 		this.pack = pack
 		this.reference = reference
 		this.scopeProvider = scopeProvider
-		this.visitedMemberships = visitedMemberships;
 	}
 	
 	def getPackage() {
@@ -82,42 +75,47 @@ class AlfScope extends AbstractScope {
 		!getLocalElementsByName(QualifiedName.create(name.firstSegment)).isEmpty
 	}
 	
-	override getAllLocalElements() {
-		val savedMemberships = scopeProvider.visitedMemberships
-		scopeProvider.visitedMemberships = newHashSet(visitedMemberships)
-		val elements = resolveInScope(null)
-		scopeProvider.visitedMemberships = savedMemberships
-		elements
-	}
-	
 	override getSingleElement(QualifiedName name) {
-		val result = getSingleLocalElementByName(name);
-		if (result !== null) result 
+		val result = resolveInScope(name, true);
+		if (!result.isEmpty) result.get(0)
 		else if (parent !== null && !isShadowed(name)) parent.getSingleElement(name)
 		else null
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
-		resolveInScope(name)
+		resolveInScope(name, false)
 	}
 	
-	protected def resolveInScope(QualifiedName targetqn) {		
-		val elements = resolve(targetqn)		
+	override getAllLocalElements() {
+		resolveInScope(null, false)
+	}
+	
+	/**
+	 * If targetqn is not null, resolve it in this local scope. If findFirst is true,
+	 * return the first matching element, if any. Otherwise return all matching elements.
+	 * 
+	 * If targetqn is null, return all elements in this local scope with all possible
+	 * qualified names by which they can be resolved (except that circularities are
+	 * truncated).
+	 */
+	protected def resolveInScope(QualifiedName targetqn, boolean findFirst) {		
+		val elements = resolve(targetqn, findFirst)		
 		elements.keySet.flatMap[key |
 			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 		]
 	}
 	
-	protected def Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn) {		
-		pack.resolve(targetqn, QualifiedName.create(), newHashMap, false, true, newHashSet, newHashSet)		
+	protected def Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn, boolean findFirst) {	
+		val elements = newHashMap	
+		pack.resolve(targetqn, QualifiedName.create(), elements, false, true, newHashSet, newHashSet, findFirst)
+		elements
 	}
 	
-	protected def resolve(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
-		Set<Package> visited, Set<QualifiedName> visitedqns) {
-		pack.owned(targetqn, qn, elements, checkIfAdded, isInsideScope, newHashSet, visitedqns)
-		pack.gen(targetqn, qn, elements, visited, visitedqns)
-		pack.imp(targetqn, qn, elements, visited, visitedqns)
-		elements
+	protected def boolean resolve(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
+		Set<Package> visited, Set<QualifiedName> visitedqns, boolean findFirst) {
+		pack.owned(targetqn, qn, elements, checkIfAdded, isInsideScope, newHashSet, visitedqns, findFirst) ||
+		pack.gen(targetqn, qn, elements, visited, visitedqns, findFirst) ||
+		pack.imp(targetqn, qn, elements, visited, visitedqns, findFirst)
 	}
 	
 	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
@@ -131,15 +129,22 @@ class AlfScope extends AbstractScope {
 		}
 	}
 	
-	private def void owned(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
-		Set<Package> visited, Set<QualifiedName> visitedqns) {
+	protected def boolean owned(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, boolean checkIfAdded, boolean isInsideScope, 
+		Set<Package> visited, Set<QualifiedName> visitedqns, boolean findFirst) {
 		if (!visited.contains(pack)) {
 			if (targetqn === null) {
 				visited.add(pack)		
 			}
-			pack.ownedMembership.forEach[m|
-				if (!visitedMemberships.contains(m)) {
+			for (m: pack.ownedMembership) {
+				if (!scopeProvider.visitedMemberships.contains(m)) {
+					
+					// Note: Getting the member name my require resolving a proxy for the memberElement,
+					// resulting in recursive name resolution. In this case, the membership m should
+					// be excluded from the scope, to avoid a cyclic linking error.
+					scopeProvider.addVisitedMembership(m)
 					val elementName = m.memberName 
+					scopeProvider.removeVisitedMembership(m)
+									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 						val elementqn = qn.append(elementName)
 						if (targetqn === null || targetqn.startsWith(elementqn)) {
@@ -148,13 +153,25 @@ class AlfScope extends AbstractScope {
 								visitedqns.add(elementqn)
 								if (targetqn === null || targetqn == elementqn) {
 									elements.addName(elementqn, memberElement)
+									if (findFirst && targetqn == elementqn) {
+										return true
+									}
 								}
 								if (targetqn != elementqn) {
 									if (memberElement instanceof Package) {
-										memberElement.owned(targetqn, elementqn, elements, checkIfAdded, false, visited, visitedqns)
-										for (eg: memberElement.ownedRelationship.filter(Superclassing)) {
-											if (!visited.contains(eg.superclass)) {
-												eg.superclass.resolve(targetqn, elementqn, elements, false, false, visited, visitedqns)
+										
+										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
+										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
+										// superclass requires proxy resolution.
+										if (memberElement.owned(targetqn, elementqn, elements, false, false, visited, visitedqns, findFirst)) {
+											return true
+										}
+										
+										if (memberElement instanceof org.omg.sysml.lang.sysml.Class) {								
+											for (eg: memberElement.ownedSuperclassing) {
+												if (!visited.contains(eg.superclass)) {
+													eg.superclass.resolve(targetqn, elementqn, elements, false, false, visited, visitedqns, findFirst)
+												}
 											}
 										}
 									}
@@ -163,33 +180,42 @@ class AlfScope extends AbstractScope {
 						}
 					}
 				}
-			]
+			}
 			visited.remove(pack)
 		}
+		return false
 	}
 
-	private def void gen(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedqns) {
+	protected def boolean gen(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, 
+		Set<Package> visited, Set<QualifiedName> visitedqns, boolean findFirst) {
 		if (pack instanceof Category) {
-			pack.ownedGeneralization.forEach [e |
-				if (e.general?.name !== null) {
-					if (!visited.contains(e.general)) {
-						visited.add(e.general)
-						e.general.resolve(targetqn, qn, elements, false, false, visited, visitedqns)
-						visited.remove(e.general)
+			for (e: pack.ownedGeneralization) {
+				if (!visited.contains(e.general)) {
+					visited.add(e.general)
+					val found = e.general.resolve(targetqn, qn, elements, false, false, visited, visitedqns, findFirst)
+					visited.remove(e.general)
+					if (found) {
+						return true
 					}
 				}
-			]
+			}
 		}
+		return false
 	}
 	
-	private def void imp(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, Set<Package> visited, Set<QualifiedName> visitedqns) {
-		pack.ownedImport.forEach [e |
+	protected def boolean imp(Package pack, QualifiedName targetqn, QualifiedName qn, Map<Element, Set<QualifiedName>> elements, 
+		Set<Package> visited, Set<QualifiedName> visitedqns, boolean findFirst) {
+		for (e: pack.ownedImport) {
 			if (!visited.contains(e.importedPackage)) {
 				visited.add(e.importedPackage)
-				e.importedPackage.resolve(targetqn, qn, elements, true, false, visited, visitedqns)
+				val found = e.importedPackage.resolve(targetqn, qn, elements, true, false, visited, visitedqns, findFirst)
 				visited.remove(e.importedPackage)
+				if (found) {
+					return true
+				}
 			}
-		]
+		}
+		return false
 	}
 	
 }

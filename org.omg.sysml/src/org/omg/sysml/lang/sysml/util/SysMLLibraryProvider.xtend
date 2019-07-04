@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.common.util.URI
-import java.util.Map
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
@@ -52,8 +51,6 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	@Inject
 	IQualifiedNameConverter nameConverter
 	
-	protected Map<String, Element> elementMap = newHashMap
-	
 	protected def fileName(URI uri) {
 		return uri.trimFileExtension.lastSegment
 	}
@@ -63,8 +60,9 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {
-		var element = elementMap.get(name);
-		if (element === null && context !== null) {
+		if (context === null) {
+			return null
+		} else {
 			val qname = nameConverter.toQualifiedName(name)
 			val resource = context.eResource();
 			val scope =
@@ -73,12 +71,9 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 				else 
 					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])
 			val description = scope.getSingleElement(qname)
-			if (description !== null) {
-				element = EcoreUtil.resolve(description.EObjectOrProxy, context) as Element
-				elementMap.put(name, element)
-			}
+			return if (description === null) null else
+				EcoreUtil.resolve(description.EObjectOrProxy, context) as Element
 		}
-		return element
 	}
 	
 }

@@ -23,13 +23,13 @@
  *****************************************************************************/
 package org.omg.sysml.scoping
 
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Package
-import org.eclipse.emf.ecore.EReference
-import java.util.Set
-import org.eclipse.xtext.naming.QualifiedName
 import java.util.Map
 import org.omg.sysml.lang.sysml.Element
+import java.util.Set
 
 class AlfRootScope extends AlfScope {
 	
@@ -37,30 +37,29 @@ class AlfRootScope extends AlfScope {
 		super(parent, pack, reference, scopeProvider)
 	}
 	
-	protected override Map<Element, Set<QualifiedName>> resolve(QualifiedName targetqn, boolean findFirst) {
-		val packqn = QualifiedName.create(package.name)		
-		val elements = newHashMap
+	protected override void resolve() {
+		val packqn = QualifiedName.create(pack.name)		
 		if (targetqn === null) {
-			super.resolve(null, false).addQualifiedTo(elements, packqn)
-			elements.addName(packqn, package)		
+			super.resolve()
+			elements = elements.addQualification(packqn)
+			elements.addName(packqn, pack)		
 		} else if (targetqn == packqn) {
-			elements.addName(packqn, package)
+			elements.addName(packqn, pack)
 		} else if (targetqn.startsWith(packqn)) {
-			val effectiveqn = QualifiedName.create(targetqn.segments.subList(1, targetqn.segmentCount))
-			super.resolve(effectiveqn, findFirst).addQualifiedTo(elements, packqn)
+			targetqn = QualifiedName.create(targetqn.segments.subList(1, targetqn.segmentCount))
+			super.resolve()
+			elements = elements.addQualification(packqn)
 		}
-		elements	
 	}
 	
-	protected def void addQualifiedTo(Map<Element, Set<QualifiedName>> unqualifiedElements, 
-		Map<Element, Set<QualifiedName>> elements, QualifiedName packqn) {
-		unqualifiedElements.entrySet.forEach[entry | 
+	protected def addQualification(Map<Element, Set<QualifiedName>> elements, QualifiedName packqn) {
+		val newElements = newHashMap
+		elements.entrySet.forEach[entry | 
 				entry.value.forEach[ qn |
-					elements.addName(
-						if (qn.startsWith(packqn)) qn else packqn.append(qn),
-						entry.key)
+					newElements.addName(packqn.append(qn),entry.key)
 				]		
 			]
+		newElements
 	}
 	
 }

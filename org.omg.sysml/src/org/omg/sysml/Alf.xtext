@@ -215,17 +215,22 @@ FeatureCategoryMember returns SysML::FeatureMembership :
 FeatureMember returns SysML::FeatureMembership :
 	CategoryMemberPrefix
 	(
-      ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
+      ( 'feature' | isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
       ( ownedRelatedElement += FeatureDefinition 
       | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
       )
-    | 'abstract' ( 'feature' | isPart ?= 'part' | isPort ?= 'port' ) ( direction = FeatureDirection )?
+    | 'abstract' ( 'feature' | isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?
       ownedRelatedElement += AbstractFeatureDefinition
 	| 'connector' 
 	  ( ownedRelatedElement += ConnectorDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
+	| 'succession' 
+	  ( ownedRelatedElement += SuccessionDefinition 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
+	  )
+    | 'abstract' 'succession' ownedRelatedElement += AbstractSuccessionDefinition
     )
 ;
 
@@ -324,9 +329,9 @@ AssociationMember returns SysML::Membership :
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
 	CategoryMemberPrefix
     (
-      'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
-    | 'abstract' 'end' ( isPart ?= 'part' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
-	| 'end' ( isPart ?= 'part') ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+      'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
+    | 'abstract' 'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
+	| 'end' ( isPart ?= 'part' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 
 	// These alternatives are provided for legacy Alf backwards compatibility;
     | ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
@@ -523,13 +528,23 @@ ConnectorTyping returns SysML::FeatureTyping :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship += Subset
+	ownedRelationship += Subset ( ownedRelationship += Multiplicity )?
 ;
 
 /* CONNECTOR MEMBERSHIPS */
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
 	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+;
+
+/* SUCCESSIONS */
+
+SuccessionDefinition returns SysML::Succession :
+	ConnectorDeclaration CategoryBody
+;
+
+AbstractSuccessionDefinition returns SysML::Connector :
+	ConnectorDeclaration AbstractCategoryBody
 ;
 
 /* PARAMETERS */
@@ -832,7 +847,7 @@ BodyParameterMember returns SysML::ParameterMembership :
 	memberName = Name ownedRelatedElement += ParameterDefinition
 ;
 
-/* QUERY PATH EXPRESSION */
+/* QUERY PATH EXPRESSIONS */
 
 QueryPathExpression returns SysML::Expression :
 	QueryHeadExpression
@@ -855,8 +870,7 @@ QueryNameExpression returns SysML::QueryPathExpression :
 
 QueryHeadExpression returns SysML::FeatureReferenceExpression :
 	'./' FeatureReferenceExpression
-;
-        
+;        
 
 /* NAMES */
 

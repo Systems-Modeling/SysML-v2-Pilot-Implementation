@@ -2463,9 +2463,24 @@ ruleFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPort_3_0='port'
+							lv_isPortion_3_0='portion'
 							{
-								newLeafNode(lv_isPort_3_0, grammarAccess.getFeatureMemberAccess().getIsPortPortKeyword_1_0_0_2_0());
+								newLeafNode(lv_isPortion_3_0, grammarAccess.getFeatureMemberAccess().getIsPortionPortionKeyword_1_0_0_2_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPortion", true, "portion");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_isPort_4_0='port'
+							{
+								newLeafNode(lv_isPort_4_0, grammarAccess.getFeatureMemberAccess().getIsPortPortKeyword_1_0_0_3_0());
 							}
 							{
 								if ($current==null) {
@@ -2481,7 +2496,7 @@ ruleFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_1_0());
 						}
-						lv_direction_4_0=ruleFeatureDirection
+						lv_direction_5_0=ruleFeatureDirection
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2489,7 +2504,7 @@ ruleFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"direction",
-								lv_direction_4_0,
+								lv_direction_5_0,
 								"org.omg.sysml.Alf.FeatureDirection");
 							afterParserOrEnumRuleCall();
 						}
@@ -2501,7 +2516,7 @@ ruleFeatureMember returns [EObject current=null]
 							{
 								newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_2_0_0());
 							}
-							lv_ownedRelatedElement_5_0=ruleFeatureDefinition
+							lv_ownedRelatedElement_6_0=ruleFeatureDefinition
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2509,7 +2524,7 @@ ruleFeatureMember returns [EObject current=null]
 								add(
 									$current,
 									"ownedRelatedElement",
-									lv_ownedRelatedElement_5_0,
+									lv_ownedRelatedElement_6_0,
 									"org.omg.sysml.Alf.FeatureDefinition");
 								afterParserOrEnumRuleCall();
 							}
@@ -2522,7 +2537,7 @@ ruleFeatureMember returns [EObject current=null]
 								{
 									newCompositeNode(grammarAccess.getFeatureMemberAccess().getMemberNameNameParserRuleCall_1_0_2_1_0_0());
 								}
-								lv_memberName_6_0=ruleName
+								lv_memberName_7_0=ruleName
 								{
 									if ($current==null) {
 										$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2530,15 +2545,15 @@ ruleFeatureMember returns [EObject current=null]
 									set(
 										$current,
 										"memberName",
-										lv_memberName_6_0,
+										lv_memberName_7_0,
 										"org.omg.sysml.Alf.Name");
 									afterParserOrEnumRuleCall();
 								}
 							)
 						)?
-						otherlv_7='is'
+						otherlv_8='is'
 						{
-							newLeafNode(otherlv_7, grammarAccess.getFeatureMemberAccess().getIsKeyword_1_0_2_1_1());
+							newLeafNode(otherlv_8, grammarAccess.getFeatureMemberAccess().getIsKeyword_1_0_2_1_1());
 						}
 						(
 							(
@@ -2559,30 +2574,30 @@ ruleFeatureMember returns [EObject current=null]
 								}
 							)
 						)
-						otherlv_9=';'
+						otherlv_10=';'
 						{
-							newLeafNode(otherlv_9, grammarAccess.getFeatureMemberAccess().getSemicolonKeyword_1_0_2_1_3());
+							newLeafNode(otherlv_10, grammarAccess.getFeatureMemberAccess().getSemicolonKeyword_1_0_2_1_3());
 						}
 					)
 				)
 			)
 			    |
 			(
-				otherlv_10='abstract'
+				otherlv_11='abstract'
 				{
-					newLeafNode(otherlv_10, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_1_0());
+					newLeafNode(otherlv_11, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_1_0());
 				}
 				(
-					otherlv_11='feature'
+					otherlv_12='feature'
 					{
-						newLeafNode(otherlv_11, grammarAccess.getFeatureMemberAccess().getFeatureKeyword_1_1_1_0());
+						newLeafNode(otherlv_12, grammarAccess.getFeatureMemberAccess().getFeatureKeyword_1_1_1_0());
 					}
 					    |
 					(
 						(
-							lv_isPart_12_0='part'
+							lv_isPart_13_0='part'
 							{
-								newLeafNode(lv_isPart_12_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0());
+								newLeafNode(lv_isPart_13_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0());
 							}
 							{
 								if ($current==null) {
@@ -2595,9 +2610,24 @@ ruleFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPort_13_0='port'
+							lv_isPortion_14_0='portion'
 							{
-								newLeafNode(lv_isPort_13_0, grammarAccess.getFeatureMemberAccess().getIsPortPortKeyword_1_1_1_2_0());
+								newLeafNode(lv_isPortion_14_0, grammarAccess.getFeatureMemberAccess().getIsPortionPortionKeyword_1_1_1_2_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPortion", true, "portion");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_isPort_15_0='port'
+							{
+								newLeafNode(lv_isPort_15_0, grammarAccess.getFeatureMemberAccess().getIsPortPortKeyword_1_1_1_3_0());
 							}
 							{
 								if ($current==null) {
@@ -2613,7 +2643,7 @@ ruleFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_2_0());
 						}
-						lv_direction_14_0=ruleFeatureDirection
+						lv_direction_16_0=ruleFeatureDirection
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2621,7 +2651,7 @@ ruleFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"direction",
-								lv_direction_14_0,
+								lv_direction_16_0,
 								"org.omg.sysml.Alf.FeatureDirection");
 							afterParserOrEnumRuleCall();
 						}
@@ -2632,7 +2662,7 @@ ruleFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_3_0());
 						}
-						lv_ownedRelatedElement_15_0=ruleAbstractFeatureDefinition
+						lv_ownedRelatedElement_17_0=ruleAbstractFeatureDefinition
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2640,7 +2670,7 @@ ruleFeatureMember returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelatedElement",
-								lv_ownedRelatedElement_15_0,
+								lv_ownedRelatedElement_17_0,
 								"org.omg.sysml.Alf.AbstractFeatureDefinition");
 							afterParserOrEnumRuleCall();
 						}
@@ -2649,9 +2679,9 @@ ruleFeatureMember returns [EObject current=null]
 			)
 			    |
 			(
-				otherlv_16='connector'
+				otherlv_18='connector'
 				{
-					newLeafNode(otherlv_16, grammarAccess.getFeatureMemberAccess().getConnectorKeyword_1_2_0());
+					newLeafNode(otherlv_18, grammarAccess.getFeatureMemberAccess().getConnectorKeyword_1_2_0());
 				}
 				(
 					(
@@ -2659,7 +2689,7 @@ ruleFeatureMember returns [EObject current=null]
 							{
 								newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementConnectorDefinitionParserRuleCall_1_2_1_0_0());
 							}
-							lv_ownedRelatedElement_17_0=ruleConnectorDefinition
+							lv_ownedRelatedElement_19_0=ruleConnectorDefinition
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2667,7 +2697,7 @@ ruleFeatureMember returns [EObject current=null]
 								add(
 									$current,
 									"ownedRelatedElement",
-									lv_ownedRelatedElement_17_0,
+									lv_ownedRelatedElement_19_0,
 									"org.omg.sysml.Alf.ConnectorDefinition");
 								afterParserOrEnumRuleCall();
 							}
@@ -2680,7 +2710,7 @@ ruleFeatureMember returns [EObject current=null]
 								{
 									newCompositeNode(grammarAccess.getFeatureMemberAccess().getMemberNameNameParserRuleCall_1_2_1_1_0_0());
 								}
-								lv_memberName_18_0=ruleName
+								lv_memberName_20_0=ruleName
 								{
 									if ($current==null) {
 										$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2688,15 +2718,15 @@ ruleFeatureMember returns [EObject current=null]
 									set(
 										$current,
 										"memberName",
-										lv_memberName_18_0,
+										lv_memberName_20_0,
 										"org.omg.sysml.Alf.Name");
 									afterParserOrEnumRuleCall();
 								}
 							)
 						)?
-						otherlv_19='is'
+						otherlv_21='is'
 						{
-							newLeafNode(otherlv_19, grammarAccess.getFeatureMemberAccess().getIsKeyword_1_2_1_1_1());
+							newLeafNode(otherlv_21, grammarAccess.getFeatureMemberAccess().getIsKeyword_1_2_1_1_1());
 						}
 						(
 							(
@@ -2717,29 +2747,29 @@ ruleFeatureMember returns [EObject current=null]
 								}
 							)
 						)
-						otherlv_21=';'
+						otherlv_23=';'
 						{
-							newLeafNode(otherlv_21, grammarAccess.getFeatureMemberAccess().getSemicolonKeyword_1_2_1_1_3());
+							newLeafNode(otherlv_23, grammarAccess.getFeatureMemberAccess().getSemicolonKeyword_1_2_1_1_3());
 						}
 					)
 				)
 			)
 			    |
 			(
-				otherlv_22='abstract'
+				otherlv_24='abstract'
 				{
-					newLeafNode(otherlv_22, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_3_0());
+					newLeafNode(otherlv_24, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_3_0());
 				}
-				otherlv_23='connector'
+				otherlv_25='connector'
 				{
-					newLeafNode(otherlv_23, grammarAccess.getFeatureMemberAccess().getConnectorKeyword_1_3_1());
+					newLeafNode(otherlv_25, grammarAccess.getFeatureMemberAccess().getConnectorKeyword_1_3_1());
 				}
 				(
 					(
 						{
 							newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0());
 						}
-						lv_ownedRelatedElement_24_0=ruleAbstractConnectorDefinition
+						lv_ownedRelatedElement_26_0=ruleAbstractConnectorDefinition
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -2747,8 +2777,115 @@ ruleFeatureMember returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelatedElement",
-								lv_ownedRelatedElement_24_0,
+								lv_ownedRelatedElement_26_0,
 								"org.omg.sysml.Alf.AbstractConnectorDefinition");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+			    |
+			(
+				otherlv_27='succession'
+				{
+					newLeafNode(otherlv_27, grammarAccess.getFeatureMemberAccess().getSuccessionKeyword_1_4_0());
+				}
+				(
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_4_1_0_0());
+							}
+							lv_ownedRelatedElement_28_0=ruleSuccessionDefinition
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
+								}
+								add(
+									$current,
+									"ownedRelatedElement",
+									lv_ownedRelatedElement_28_0,
+									"org.omg.sysml.Alf.SuccessionDefinition");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+					    |
+					(
+						(
+							(
+								{
+									newCompositeNode(grammarAccess.getFeatureMemberAccess().getMemberNameNameParserRuleCall_1_4_1_1_0_0());
+								}
+								lv_memberName_29_0=ruleName
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
+									}
+									set(
+										$current,
+										"memberName",
+										lv_memberName_29_0,
+										"org.omg.sysml.Alf.Name");
+									afterParserOrEnumRuleCall();
+								}
+							)
+						)?
+						otherlv_30='is'
+						{
+							newLeafNode(otherlv_30, grammarAccess.getFeatureMemberAccess().getIsKeyword_1_4_1_1_1());
+						}
+						(
+							(
+								{
+									/* */
+								}
+								{
+									if ($current==null) {
+										$current = createModelElement(grammarAccess.getFeatureMemberRule());
+									}
+								}
+								{
+									newCompositeNode(grammarAccess.getFeatureMemberAccess().getMemberFeatureSuccessionCrossReference_1_4_1_1_2_0());
+								}
+								ruleQualifiedName
+								{
+									afterParserOrEnumRuleCall();
+								}
+							)
+						)
+						otherlv_32=';'
+						{
+							newLeafNode(otherlv_32, grammarAccess.getFeatureMemberAccess().getSemicolonKeyword_1_4_1_1_3());
+						}
+					)
+				)
+			)
+			    |
+			(
+				otherlv_33='abstract'
+				{
+					newLeafNode(otherlv_33, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_5_0());
+				}
+				otherlv_34='succession'
+				{
+					newLeafNode(otherlv_34, grammarAccess.getFeatureMemberAccess().getSuccessionKeyword_1_5_1());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_5_2_0());
+						}
+						lv_ownedRelatedElement_35_0=ruleAbstractSuccessionDefinition
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
+							}
+							add(
+								$current,
+								"ownedRelatedElement",
+								lv_ownedRelatedElement_35_0,
+								"org.omg.sysml.Alf.AbstractSuccessionDefinition");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -3599,9 +3736,24 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPort_3_0='port'
+							lv_isPortion_3_0='portion'
 							{
-								newLeafNode(lv_isPort_3_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortPortKeyword_1_0_1_1_0());
+								newLeafNode(lv_isPortion_3_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortionPortionKeyword_1_0_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAssociationEndFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPortion", true, "portion");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_isPort_4_0='port'
+							{
+								newLeafNode(lv_isPort_4_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortPortKeyword_1_0_1_2_0());
 							}
 							{
 								if ($current==null) {
@@ -3617,7 +3769,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_0_2_0());
 						}
-						lv_direction_4_0=ruleFeatureDirection
+						lv_direction_5_0=ruleFeatureDirection
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3625,7 +3777,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"direction",
-								lv_direction_4_0,
+								lv_direction_5_0,
 								"org.omg.sysml.Alf.FeatureDirection");
 							afterParserOrEnumRuleCall();
 						}
@@ -3636,7 +3788,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_3_0());
 						}
-						lv_ownedRelatedElement_5_0=ruleFeatureDefinition
+						lv_ownedRelatedElement_6_0=ruleFeatureDefinition
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3644,7 +3796,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelatedElement",
-								lv_ownedRelatedElement_5_0,
+								lv_ownedRelatedElement_6_0,
 								"org.omg.sysml.Alf.FeatureDefinition");
 							afterParserOrEnumRuleCall();
 						}
@@ -3653,20 +3805,20 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 			)
 			    |
 			(
-				otherlv_6='abstract'
+				otherlv_7='abstract'
 				{
-					newLeafNode(otherlv_6, grammarAccess.getAssociationEndFeatureMemberAccess().getAbstractKeyword_1_1_0());
+					newLeafNode(otherlv_7, grammarAccess.getAssociationEndFeatureMemberAccess().getAbstractKeyword_1_1_0());
 				}
-				otherlv_7='end'
+				otherlv_8='end'
 				{
-					newLeafNode(otherlv_7, grammarAccess.getAssociationEndFeatureMemberAccess().getEndKeyword_1_1_1());
+					newLeafNode(otherlv_8, grammarAccess.getAssociationEndFeatureMemberAccess().getEndKeyword_1_1_1());
 				}
 				(
 					(
 						(
-							lv_isPart_8_0='part'
+							lv_isPart_9_0='part'
 							{
-								newLeafNode(lv_isPart_8_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0());
+								newLeafNode(lv_isPart_9_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0());
 							}
 							{
 								if ($current==null) {
@@ -3679,9 +3831,24 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPort_9_0='port'
+							lv_isPortion_10_0='portion'
 							{
-								newLeafNode(lv_isPort_9_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortPortKeyword_1_1_2_1_0());
+								newLeafNode(lv_isPortion_10_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortionPortionKeyword_1_1_2_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAssociationEndFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPortion", true, "portion");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_isPort_11_0='port'
+							{
+								newLeafNode(lv_isPort_11_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortPortKeyword_1_1_2_2_0());
 							}
 							{
 								if ($current==null) {
@@ -3697,7 +3864,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_1_3_0());
 						}
-						lv_direction_10_0=ruleFeatureDirection
+						lv_direction_12_0=ruleFeatureDirection
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3705,7 +3872,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"direction",
-								lv_direction_10_0,
+								lv_direction_12_0,
 								"org.omg.sysml.Alf.FeatureDirection");
 							afterParserOrEnumRuleCall();
 						}
@@ -3716,7 +3883,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_4_0());
 						}
-						lv_ownedRelatedElement_11_0=ruleAbstractFeatureDefinition
+						lv_ownedRelatedElement_13_0=ruleAbstractFeatureDefinition
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3724,7 +3891,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelatedElement",
-								lv_ownedRelatedElement_11_0,
+								lv_ownedRelatedElement_13_0,
 								"org.omg.sysml.Alf.AbstractFeatureDefinition");
 							afterParserOrEnumRuleCall();
 						}
@@ -3733,22 +3900,39 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 			)
 			    |
 			(
-				otherlv_12='end'
+				otherlv_14='end'
 				{
-					newLeafNode(otherlv_12, grammarAccess.getAssociationEndFeatureMemberAccess().getEndKeyword_1_2_0());
+					newLeafNode(otherlv_14, grammarAccess.getAssociationEndFeatureMemberAccess().getEndKeyword_1_2_0());
 				}
 				(
 					(
-						lv_isPart_13_0='part'
-						{
-							newLeafNode(lv_isPart_13_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAssociationEndFeatureMemberRule());
+						(
+							lv_isPart_15_0='part'
+							{
+								newLeafNode(lv_isPart_15_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0());
 							}
-							setWithLastConsumed($current, "isPart", true, "part");
-						}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAssociationEndFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPart", true, "part");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_isPortion_16_0='portion'
+							{
+								newLeafNode(lv_isPortion_16_0, grammarAccess.getAssociationEndFeatureMemberAccess().getIsPortionPortionKeyword_1_2_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAssociationEndFeatureMemberRule());
+								}
+								setWithLastConsumed($current, "isPortion", true, "portion");
+							}
+						)
 					)
 				)
 				(
@@ -3756,7 +3940,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getMemberNameNameParserRuleCall_1_2_2_0());
 						}
-						lv_memberName_14_0=ruleName
+						lv_memberName_17_0=ruleName
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3764,15 +3948,15 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"memberName",
-								lv_memberName_14_0,
+								lv_memberName_17_0,
 								"org.omg.sysml.Alf.Name");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)?
-				otherlv_15='is'
+				otherlv_18='is'
 				{
-					newLeafNode(otherlv_15, grammarAccess.getAssociationEndFeatureMemberAccess().getIsKeyword_1_2_3());
+					newLeafNode(otherlv_18, grammarAccess.getAssociationEndFeatureMemberAccess().getIsKeyword_1_2_3());
 				}
 				(
 					(
@@ -3793,9 +3977,9 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_17=';'
+				otherlv_20=';'
 				{
-					newLeafNode(otherlv_17, grammarAccess.getAssociationEndFeatureMemberAccess().getSemicolonKeyword_1_2_5());
+					newLeafNode(otherlv_20, grammarAccess.getAssociationEndFeatureMemberAccess().getSemicolonKeyword_1_2_5());
 				}
 			)
 			    |
@@ -3804,51 +3988,6 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 					(
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_3_0_0());
-						}
-						lv_direction_18_0=ruleFeatureDirection
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
-							}
-							set(
-								$current,
-								"direction",
-								lv_direction_18_0,
-								"org.omg.sysml.Alf.FeatureDirection");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)?
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_3_1_0());
-						}
-						lv_ownedRelatedElement_19_0=ruleNamedFeatureDefinition
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
-							}
-							add(
-								$current,
-								"ownedRelatedElement",
-								lv_ownedRelatedElement_19_0,
-								"org.omg.sysml.Alf.NamedFeatureDefinition");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-			    |
-			(
-				otherlv_20='abstract'
-				{
-					newLeafNode(otherlv_20, grammarAccess.getAssociationEndFeatureMemberAccess().getAbstractKeyword_1_4_0());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_4_1_0());
 						}
 						lv_direction_21_0=ruleFeatureDirection
 						{
@@ -3867,9 +4006,9 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0());
+							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementNamedFeatureDefinitionParserRuleCall_1_3_1_0());
 						}
-						lv_ownedRelatedElement_22_0=ruleAbstractNamedFeatureDefinition
+						lv_ownedRelatedElement_22_0=ruleNamedFeatureDefinition
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3878,6 +4017,51 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 								$current,
 								"ownedRelatedElement",
 								lv_ownedRelatedElement_22_0,
+								"org.omg.sysml.Alf.NamedFeatureDefinition");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+			    |
+			(
+				otherlv_23='abstract'
+				{
+					newLeafNode(otherlv_23, grammarAccess.getAssociationEndFeatureMemberAccess().getAbstractKeyword_1_4_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getDirectionFeatureDirectionEnumRuleCall_1_4_1_0());
+						}
+						lv_direction_24_0=ruleFeatureDirection
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
+							}
+							set(
+								$current,
+								"direction",
+								lv_direction_24_0,
+								"org.omg.sysml.Alf.FeatureDirection");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getOwnedRelatedElementAbstractNamedFeatureDefinitionParserRuleCall_1_4_2_0());
+						}
+						lv_ownedRelatedElement_25_0=ruleAbstractNamedFeatureDefinition
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
+							}
+							add(
+								$current,
+								"ownedRelatedElement",
+								lv_ownedRelatedElement_25_0,
 								"org.omg.sysml.Alf.AbstractNamedFeatureDefinition");
 							afterParserOrEnumRuleCall();
 						}
@@ -3891,7 +4075,7 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getAssociationEndFeatureMemberAccess().getMemberNameNameParserRuleCall_1_5_0_0());
 						}
-						lv_memberName_23_0=ruleName
+						lv_memberName_26_0=ruleName
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssociationEndFeatureMemberRule());
@@ -3899,15 +4083,15 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 							set(
 								$current,
 								"memberName",
-								lv_memberName_23_0,
+								lv_memberName_26_0,
 								"org.omg.sysml.Alf.Name");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-				otherlv_24='is'
+				otherlv_27='is'
 				{
-					newLeafNode(otherlv_24, grammarAccess.getAssociationEndFeatureMemberAccess().getIsKeyword_1_5_1());
+					newLeafNode(otherlv_27, grammarAccess.getAssociationEndFeatureMemberAccess().getIsKeyword_1_5_1());
 				}
 				(
 					(
@@ -3928,9 +4112,9 @@ ruleAssociationEndFeatureMember returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_26=';'
+				otherlv_29=';'
 				{
-					newLeafNode(otherlv_26, grammarAccess.getAssociationEndFeatureMemberAccess().getSemicolonKeyword_1_5_3());
+					newLeafNode(otherlv_29, grammarAccess.getAssociationEndFeatureMemberAccess().getSemicolonKeyword_1_5_3());
 				}
 			)
 		)
@@ -6381,22 +6565,43 @@ ruleConnectorEnd returns [EObject current=null]
 }:
 	(
 		(
-			{
-				newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipSubsetParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleSubset
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipSubsetParserRuleCall_0_0());
 				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.sysml.Alf.Subset");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelationship_0_0=ruleSubset
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.sysml.Alf.Subset");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipMultiplicityParserRuleCall_1_0());
+				}
+				lv_ownedRelationship_1_0=ruleMultiplicity
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_1_0,
+						"org.omg.sysml.Alf.Multiplicity");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -6460,6 +6665,100 @@ ruleConnectorEndMember returns [EObject current=null]
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleSuccessionDefinition
+entryRuleSuccessionDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSuccessionDefinitionRule()); }
+	iv_ruleSuccessionDefinition=ruleSuccessionDefinition
+	{ $current=$iv_ruleSuccessionDefinition.current; }
+	EOF;
+
+// Rule SuccessionDefinition
+ruleSuccessionDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getSuccessionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getSuccessionDefinitionAccess().getConnectorDeclarationParserRuleCall_0());
+		}
+		this_ConnectorDeclaration_0=ruleConnectorDeclaration[$current]
+		{
+			$current = $this_ConnectorDeclaration_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getSuccessionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getSuccessionDefinitionAccess().getCategoryBodyParserRuleCall_1());
+		}
+		this_CategoryBody_1=ruleCategoryBody[$current]
+		{
+			$current = $this_CategoryBody_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleAbstractSuccessionDefinition
+entryRuleAbstractSuccessionDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAbstractSuccessionDefinitionRule()); }
+	iv_ruleAbstractSuccessionDefinition=ruleAbstractSuccessionDefinition
+	{ $current=$iv_ruleAbstractSuccessionDefinition.current; }
+	EOF;
+
+// Rule AbstractSuccessionDefinition
+ruleAbstractSuccessionDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getAbstractSuccessionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getAbstractSuccessionDefinitionAccess().getConnectorDeclarationParserRuleCall_0());
+		}
+		this_ConnectorDeclaration_0=ruleConnectorDeclaration[$current]
+		{
+			$current = $this_ConnectorDeclaration_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getAbstractSuccessionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getAbstractSuccessionDefinitionAccess().getAbstractCategoryBodyParserRuleCall_1());
+		}
+		this_AbstractCategoryBody_1=ruleAbstractCategoryBody[$current]
+		{
+			$current = $this_AbstractCategoryBody_1.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 

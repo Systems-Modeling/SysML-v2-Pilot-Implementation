@@ -84,6 +84,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 */
 	public Feature basicGetReferent() {
 		if (referent == null) {
+			clearCaches();
 			EList<Feature> feature = getFeature();
 			if (!feature.isEmpty()) {
 				referent = feature.get(0);

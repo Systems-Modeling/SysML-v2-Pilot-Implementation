@@ -328,6 +328,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
+		clearCaches();
 		getComputedRedefinitions();
 		return getOwnedSubsettingWithDefault(subsettingDefault);
 	}

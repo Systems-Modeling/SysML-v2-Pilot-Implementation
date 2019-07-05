@@ -119,14 +119,25 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		}
 		return ownedMembers;
 	}
+	
+	private EList<Membership> importedMembership = null;
 
+	@Override
+	public void clearCaches() {
+		importedMembership = null;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Membership> getImportedMembership() {
-		return this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>(), false);
+		if (importedMembership == null) {
+			importedMembership = this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>(), false);
+//			System.out.println("Caching importedMembership for " + this);
+		}
+		return importedMembership;
 	}
 
 	/**

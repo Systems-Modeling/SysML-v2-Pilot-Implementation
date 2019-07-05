@@ -130,18 +130,24 @@ class AlfScope extends AbstractScope {
 			}
 			for (m: pack.ownedMembership) {
 				if (!scopeProvider.visitedMemberships.contains(m)) {
+					var String elementName
+					var Element memberElement
 					
-					// Note: Getting the member name my require resolving a proxy for the memberElement,
-					// resulting in recursive name resolution. In this case, the membership m should
-					// be excluded from the scope, to avoid a cyclic linking error.
+					// Note: Proxy resolution for memberElement may result in recursive name resolution
+					// (and getting the memberName may also resut in accessing the memberElement).
+					// In this case, the membership m should be excluded from the scope, to avoid a 
+					// cyclic linking error.
 					scopeProvider.addVisitedMembership(m)
-					val elementName = m.memberName 
-					scopeProvider.removeVisitedMembership(m)
+					try {
+						memberElement = m.memberElement
+						elementName = m.memberName 
+					} finally {
+						scopeProvider.removeVisitedMembership(m)
+					}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 						val elementqn = qn.append(elementName)
 						if (targetqn === null || targetqn.startsWith(elementqn)) {
-							val memberElement = m.memberElement
 							if (!checkIfAdded || !visitedqns.contains(elementqn)) {
 								visitedqns.add(elementqn)
 								if (targetqn === null || targetqn == elementqn) {

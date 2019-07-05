@@ -1,0 +1,59 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//this test is similar to MultipleInheritance2 but the order of classes defined are the different.
+// XPECT noErrors --> ""
+package test{
+	
+	/* XPECT scope at B ---
+ 		A, A.AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D,	EE,  
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */			
+	class C specializes B{
+		/* XPECT scope at AA ---
+ 		A, A.AA, AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D, EE, b, c,  
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b,	test.C, test.C.AA, test.C.b, test.C.c, test.D, test.EE,
+ 		Base.Anything, Base.BehaviorOccurrence, 		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, 		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */
+		class c specializes AA {}
+	}
+	/* XPECT scope at A ---
+ 		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D, EE, 
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */
+	class B specializes A{
+		/* XPECT scope at AA ---
+ 		A, A.AA, AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D, EE, b,   
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b,	test.C, test.C.AA, test.C.b, test.C.c, test.D, test.EE,
+ 		Base.Anything, Base.BehaviorOccurrence, 		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, 		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */
+		class b specializes AA {}
+	}
+	
+	class A{
+		class AA {}
+	}
+	class EE{}
+	/* XPECT scope at C::AA ---
+ 		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D, EE, 
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */
+	class D specializes C::AA{}
+}

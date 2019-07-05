@@ -1,0 +1,55 @@
+/* This testcase is very similar to MultipleInheritance3, but change test.A.a to test.A.AA.
+   This change enabled to add xpect linking test.
+ */
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package test{
+	class A{
+		class AA {
+			class aa{}		
+		}
+	}
+	class B specializes A{
+		//XPECT linkedName at AA --> test.A.AA
+		class b specializes AA {}
+	}
+	class C specializes B{
+		/* XPECT scope at AA ---
+ 		A, A.AA, A.AA.aa, B, B.AA, B.AA.aa, B.b, B.b.aa, C, C.AA, C.AA.aa, C.b, C.b.aa, C.c2, C.c2.aa, C.c3, C.c3.aa, D, D.aa, D.d, 
+ 		AA, AA.aa, b, b.aa, c2, c2.aa, c3, c3.aa,
+ 		test.A, test.A.AA, test.A.AA.aa, test.B, test.B.AA, test.B.AA.aa, test.B.b, test.B.b.aa, test.C, test.C.AA, test.C.AA.aa,
+		test.C.b, test.C.b.aa, test.C.c2, test.C.c2.aa,  test.C.c3, test.C.c3.aa, test.D, test.D.aa, test.D.d,
+ 		Base.Anything, Base.BehaviorOccurrence,		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		--- */
+		//XPECT linkedName at AA --> test.A.AA
+		class c2 specializes AA {}
+		//XPECT linkedName at b --> test.B.b
+		/* XPECT scope at b ---
+  		A, A.AA, A.AA.aa, B, B.AA, B.AA.aa, B.b, B.b.aa, C, C.AA, C.AA.aa, C.b, C.b.aa, C.c2, C.c2.aa, C.c3, C.c3.aa, D, D.aa, D.d, 
+ 		AA, AA.aa, b, b.aa, c2, c2.aa, c3, c3.aa,
+ 		test.A, test.A.AA, test.A.AA.aa, test.B, test.B.AA, test.B.AA.aa, test.B.b, test.B.b.aa, test.C, test.C.AA, test.C.AA.aa,
+		test.C.b, test.C.b.aa, test.C.c2, test.C.c2.aa,  test.C.c3, test.C.c3.aa, test.D, test.D.aa, test.D.d,
+		Base.Anything, Base.BehaviorOccurrence,		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		--- */
+		class c3 specializes b {}
+	}
+	class D specializes C::AA{
+		//XPECT linkedName at aa --> test.A.AA.aa
+		class d specializes aa  {}
+	}
+}

@@ -1,0 +1,38 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package test{
+	class A{
+		class a {}
+	}
+	class B specializes A{
+		//linkedName at a --> test.A.a RuntimeException happens for try testing "a" 
+		class b specializes a {}
+	}
+	class C specializes B{
+		class c specializes a {}
+	}
+	/* XPECT scope at C::a ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+	class D specializes C::a{}
+}

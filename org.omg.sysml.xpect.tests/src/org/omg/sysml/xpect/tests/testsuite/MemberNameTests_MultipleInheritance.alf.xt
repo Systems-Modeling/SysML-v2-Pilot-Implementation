@@ -1,0 +1,67 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package test{
+	class A{
+		class a {}
+	}
+	/* XPECT scope at A ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+	class B specializes A {
+		//why this had to be A::a?  if a get a RuntimeException error (no EStructuralFeature found at class b special...)
+		/* XPECT scope at A::a ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E, 
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+		class b specializes a {}
+	}
+	/* XPECT scope at B ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+	class C specializes B{
+		//XPECT linkedName at A::a --> test.A.a
+		/* XPECT scope at A::a ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E, 
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+		class c specializes a {}
+	}
+	/* XPECT scope at A::a ---
+ 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
+ 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+ 		Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+		Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+		Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 
+	--- */
+	class D specializes A::a{} 
+	class E {} //added because E was causing parsing problem (confused with Exponent)
+}

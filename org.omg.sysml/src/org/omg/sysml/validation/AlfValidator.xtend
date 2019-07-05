@@ -31,11 +31,14 @@ import org.eclipse.xtext.validation.Check
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Superclassing
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.FeatureTyping
+import org.omg.sysml.lang.sysml.impl.PackageImpl
+import org.eclipse.xtext.EcoreUtil2
 
 /**
  * This class contains custom validation rules. 
@@ -57,11 +60,12 @@ class AlfValidator extends AbstractAlfValidator {
 	public static val NOT_PUBLIC_MEMBERSHIP = 'notPublicMembership'
 
 	protected def EObject filePackage(Element e) {
-		var pack = e
-		while (pack.owner !== null) {
-			pack = pack.owner
-		}
-		return pack
+		EcoreUtil2.getRootContainer(e)
+	}
+	
+	@Check
+	def clearPackage(Package pack) {
+		(pack as PackageImpl).clearCaches();
 	}
 
 	@Check
@@ -85,7 +89,7 @@ class AlfValidator extends AbstractAlfValidator {
 		val ownerr = sup.owningRelatedElement
 		val ownerrPack = ownerr.filePackage
 		val superPack = sup.superclass.filePackage
-		if (ownerrPack !== superPack && !sup.superclass.isGlobalPublic) {
+		if (superPack !== null && ownerrPack !== superPack && !sup.superclass.isGlobalPublic) {
 			error("Superclass is not visible in this scope", sup, SysMLPackage.eINSTANCE.superclassing_Superclass,
 				org.omg.sysml.validation.AlfValidator.NOT_PUBLIC_SUPERCLASS)
 		}

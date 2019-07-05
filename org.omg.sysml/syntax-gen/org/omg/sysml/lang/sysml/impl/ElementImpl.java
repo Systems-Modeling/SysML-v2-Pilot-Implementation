@@ -417,6 +417,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		name = newName;
 	}
 	
+	public void clearCaches() {
+		
+	}
+	
 	// Utility
 	
 	@SuppressWarnings("unchecked")

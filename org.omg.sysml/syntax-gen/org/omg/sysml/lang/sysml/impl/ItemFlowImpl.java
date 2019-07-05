@@ -108,6 +108,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 	
 	public Feature getItemFeature() {
+		clearCaches();
 		EList<Feature> ends = getConnectorEnd();
 		return getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
 	}
@@ -158,7 +159,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			if (!features.isEmpty()) {
 				EList<Redefinition> redefinitions = features.get(0).getOwnedRedefinition();
 				if (!redefinitions.isEmpty()) {
-					return redefinitions.get(0).getRedefinedFeature();
+					return ((RedefinitionImpl)redefinitions.get(0)).basicGetRedefinedFeature();
 				}
 			}
 		}

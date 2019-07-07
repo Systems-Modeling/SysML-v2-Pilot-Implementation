@@ -224,8 +224,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_CategoryMemberPrefix_FeatureCategoryMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureMemberRule()
-						|| rule == grammarAccess.getAssociationMemberRule()) {
+				else if (rule == grammarAccess.getFeatureMemberRule()) {
+					sequence_CategoryMemberPrefix_FeatureMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAssociationMemberRule()) {
 					sequence_CategoryMemberPrefix_FeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -247,6 +250,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
 					sequence_NamedExpressionMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getStepParameterFlowMemberRule()) {
+					sequence_StepParameterFlowMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
@@ -320,6 +327,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getItemFlowDefinitionRule()) {
 					sequence_CategoryBody_ConnectorTypePart_ItemFlowDeclaration(context, (ItemFlow) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getStepParameterFlowDefinitionRule()) {
+					sequence_StepParameterFlowDefinition(context, (ItemFlow) semanticObject); 
 					return; 
 				}
 				else break;
@@ -501,6 +512,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getSuccessionItemFlowDefinitionRule()) {
 					sequence_CategoryBody_ConnectorTypePart_ItemFlowDeclaration(context, (SuccessionItemFlow) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getStepParameterFlowDefinitionRule()) {
+					sequence_StepParameterFlowDefinition(context, (SuccessionItemFlow) semanticObject); 
 					return; 
 				}
 				else break;
@@ -957,7 +972,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedRelationship+=Multiplicity? 
 	 *         isOrdered?='ordered'? 
 	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
-	 *         (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? 
+	 *         (
+	 *             ownedRelationship+=StepParameterMember 
+	 *             ownedRelationship+=StepParameterFlowMember? 
+	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
 	 *         ownedRelationship+=BehaviorMember? 
@@ -1254,8 +1273,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PackageImport? 
-	 *         (ownedRelationship+=ElementImport? ownedRelationship+=PackageImport?)* 
+	 *         ownedRelationship+=ElementImport? 
+	 *         (ownedRelationship+=PackageImport? ownedRelationship+=ElementImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1611,7 +1630,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     FeatureMember returns FeatureMembership
-	 *     AssociationMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
@@ -1643,6 +1661,41 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AssociationMember returns FeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation? 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             (
+	//                 (isPart?='part' | isPortion?='portion' | isPort?='port')? 
+	//                 direction=FeatureDirection? 
+	//                 (ownedRelatedElement+=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	//             ) | 
+	//             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	//             ownedRelatedElement+=ConnectorDefinition | 
+	//             (memberName=Name? memberFeature=[Connector|QualifiedName]) | 
+	//             ownedRelatedElement+=AbstractConnectorDefinition | 
+	//             ownedRelatedElement+=SuccessionDefinition | 
+	//             (memberName=Name? memberFeature=[Succession|QualifiedName]) | 
+	//             ownedRelatedElement+=AbstractSuccessionDefinition | 
+	//             ownedRelatedElement+=ItemFlowDefinition | 
+	//             (memberName=Name? memberFeature=[ItemFlow|QualifiedName]) | 
+	//             ownedRelatedElement+=AbstractItemFlowDefinition | 
+	//             ownedRelatedElement+=SuccessionItemFlowDefinition | 
+	//             (memberName=Name? memberFeature=[SuccessionItemFlow|QualifiedName]) | 
+	//             ownedRelatedElement+=AbstractSuccessionItemFlowDefinition
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_FeatureMember(ISerializationContext context, FeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1796,7 +1849,14 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             ownedRelationship+=Multiplicity? 
 	 *             isOrdered?='ordered'? 
 	 *             (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
-	 *             ((ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? ownedRelationship+=ReturnParameterMember)? 
+	 *             (
+	 *                 (
+	 *                     ownedRelationship+=StepParameterMember 
+	 *                     ownedRelationship+=StepParameterFlowMember? 
+	 *                     (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *                 )? 
+	 *                 ownedRelationship+=ReturnParameterMember
+	 *             )? 
 	 *             ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *             ownedRelationship+=FeatureValue?
 	 *         )? 
@@ -2543,10 +2603,46 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     StepParameterFlowDefinition returns ItemFlow
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=ItemFlowEndMember
+	 */
+	protected void sequence_StepParameterFlowDefinition(ISerializationContext context, ItemFlow semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StepParameterFlowDefinition returns SuccessionItemFlow
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=ItemFlowEndMember
+	 */
+	protected void sequence_StepParameterFlowDefinition(ISerializationContext context, SuccessionItemFlow semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StepParameterFlowMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=StepParameterFlowDefinition
+	 */
+	protected void sequence_StepParameterFlowMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     StepParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
-	 *     (direction=FeatureDirection? memberName=Name ownedRelatedElement+=StepParameterDefinition)
+	 *     (direction=FeatureDirection? memberName=Name? ownedRelatedElement+=StepParameterDefinition)
 	 */
 	protected void sequence_StepParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -658,17 +658,27 @@ StepDefinition returns SysML::Step :
 ;
 
 fragment StepParameterList returns SysML::Category :
-	'(' ( ownedRelationship += StepParameterMember ( ',' ownedRelationship += StepParameterMember )* )? ')'
+	'(' ( ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )?
+		  ( ',' ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )? )*
+	    )? ')'
 ;
 
 StepParameterDefinition returns SysML::Parameter :
 	TypePart ValuePart?
 ;
 
+StepParameterFlowDefinition returns SysML::ItemFlow :
+	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? 'from' ownedRelationship += ItemFlowEndMember
+;
+
 /* STEP MEMBERSHIPS */
 
 StepParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? memberName = Name ownedRelatedElement += StepParameterDefinition
+	( direction = FeatureDirection )? ( memberName = Name )? ownedRelatedElement += StepParameterDefinition
+;
+
+StepParameterFlowMember returns SysML::FeatureMembership :
+	ownedRelatedElement += StepParameterFlowDefinition
 ;
 
 /* EXPRESSIONS */

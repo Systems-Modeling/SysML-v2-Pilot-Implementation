@@ -433,15 +433,18 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	// Utility Methods
 	
 	public Feature addConnectorEnd(Feature relatedFeature) {
-		Feature end = SysMLFactory.eINSTANCE.createFeature();
+		return addConnectorEnd(SysMLFactory.eINSTANCE.createFeature(), relatedFeature);
+	}
+	
+	public Feature addConnectorEnd(Feature endFeature, Feature relatedFeature) {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettedFeature(relatedFeature);
-		subsetting.setSubsettingFeature(end);
-		end.getOwnedRelationship().add(subsetting);
+		subsetting.setSubsettingFeature(endFeature);
+		endFeature.getOwnedRelationship().add(subsetting);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-		membership.getOwnedRelatedElement().add(end);
+		membership.getOwnedRelatedElement().add(endFeature);
 		getOwnedRelationship().add(membership);
-		return end;
+		return endFeature;
 	}
 	
 	public void setRelatedFeature(int index, Feature relatedFeature) {

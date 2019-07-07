@@ -8169,16 +8169,35 @@ ruleStepParameterList[EObject in_current]  returns [EObject current=in_current]
 				)
 			)
 			(
-				otherlv_2=','
+				(
+					{
+						newCompositeNode(grammarAccess.getStepParameterListAccess().getOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_1_0());
+					}
+					lv_ownedRelationship_2_0=ruleStepParameterFlowMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getStepParameterListRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.Alf.StepParameterFlowMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
+			(
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_2, grammarAccess.getStepParameterListAccess().getCommaKeyword_1_1_0());
+					newLeafNode(otherlv_3, grammarAccess.getStepParameterListAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getStepParameterListAccess().getOwnedRelationshipStepParameterMemberParserRuleCall_1_1_1_0());
+							newCompositeNode(grammarAccess.getStepParameterListAccess().getOwnedRelationshipStepParameterMemberParserRuleCall_1_2_1_0());
 						}
-						lv_ownedRelationship_3_0=ruleStepParameterMember
+						lv_ownedRelationship_4_0=ruleStepParameterMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getStepParameterListRule());
@@ -8186,17 +8205,36 @@ ruleStepParameterList[EObject in_current]  returns [EObject current=in_current]
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_3_0,
+								lv_ownedRelationship_4_0,
 								"org.omg.sysml.Alf.StepParameterMember");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getStepParameterListAccess().getOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_2_2_0());
+						}
+						lv_ownedRelationship_5_0=ruleStepParameterFlowMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getStepParameterListRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_5_0,
+								"org.omg.sysml.Alf.StepParameterFlowMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
 			)*
 		)?
-		otherlv_4=')'
+		otherlv_6=')'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getStepParameterListAccess().getRightParenthesisKeyword_2());
+			newLeafNode(otherlv_6, grammarAccess.getStepParameterListAccess().getRightParenthesisKeyword_2());
 		}
 	)
 ;
@@ -8247,6 +8285,71 @@ ruleStepParameterDefinition returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleStepParameterFlowDefinition
+entryRuleStepParameterFlowDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getStepParameterFlowDefinitionRule()); }
+	iv_ruleStepParameterFlowDefinition=ruleStepParameterFlowDefinition
+	{ $current=$iv_ruleStepParameterFlowDefinition.current; }
+	EOF;
+
+// Rule StepParameterFlowDefinition
+ruleStepParameterFlowDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='stream'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getStepParameterFlowDefinitionAccess().getStreamKeyword_0_0());
+			}
+			    |
+			(
+				(
+					{
+						/* */
+					}
+					{
+						$current = forceCreateModelElement(
+							grammarAccess.getStepParameterFlowDefinitionAccess().getSuccessionItemFlowAction_0_1_0(),
+							$current);
+					}
+				)
+				otherlv_2='flow'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getStepParameterFlowDefinitionAccess().getFlowKeyword_0_1_1());
+				}
+			)
+		)?
+		otherlv_3='from'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getStepParameterFlowDefinitionAccess().getFromKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getStepParameterFlowDefinitionAccess().getOwnedRelationshipItemFlowEndMemberParserRuleCall_2_0());
+				}
+				lv_ownedRelationship_4_0=ruleItemFlowEndMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getStepParameterFlowDefinitionRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_4_0,
+						"org.omg.sysml.Alf.ItemFlowEndMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -8303,7 +8406,7 @@ ruleStepParameterMember returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
+		)?
 		(
 			(
 				{
@@ -8322,6 +8425,42 @@ ruleStepParameterMember returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleStepParameterFlowMember
+entryRuleStepParameterFlowMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getStepParameterFlowMemberRule()); }
+	iv_ruleStepParameterFlowMember=ruleStepParameterFlowMember
+	{ $current=$iv_ruleStepParameterFlowMember.current; }
+	EOF;
+
+// Rule StepParameterFlowMember
+ruleStepParameterFlowMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getStepParameterFlowMemberAccess().getOwnedRelatedElementStepParameterFlowDefinitionParserRuleCall_0());
+			}
+			lv_ownedRelatedElement_0_0=ruleStepParameterFlowDefinition
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getStepParameterFlowMemberRule());
+				}
+				add(
+					$current,
+					"ownedRelatedElement",
+					lv_ownedRelatedElement_0_0,
+					"org.omg.sysml.Alf.StepParameterFlowDefinition");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;

@@ -18,23 +18,29 @@ package '3a-Function-based Behavior' {
 	behavior 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: EngineTorque);
 	behavior 'Amplify Torque'(in engineTorque: EngineTorque, out transmissionTorque: TransmissionTorque);
 	behavior 'Transfer Torque'(in transmissionTorque: TransmissionTorque, out driveshaftTorque: DriveshaftTorque);
-	behavior 'Distribute Torque'(in driveShaftTorque: DriveshaftTorque, out wheelTorque: WheelTorque[2]);
+	behavior 'Distribute Torque'(in driveShaftTorque: DriveshaftTorque, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque);
 	
 	behavior 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque) {
-		step 'generate torque': 'Generate Torque'(in fuelCmd = 'Provide Power'::fuelCmd, out engineTorque);
+		step 'generate torque': 'Generate Torque'(
+			in = 'Provide Power'::fuelCmd, 
+			out engineTorque
+		);
 		
-		stream 'generate torque'::engineTorque to 'amplify torque'::engineTorque1;
-				
-		step 'amplify torque': 'Amplify Torque'(in engineTorque1, out transmissionTorque);
+		step 'amplify torque': 'Amplify Torque'(
+			in from 'generate torque'::engineTorque, 
+			out transmissionTorque
+		);
 		
-		stream 'amplify torque'::transmissionTorque to 'transfer torque'::transmissionTorque;
+		step 'transfer torque': 'Transfer Torque'(
+			in from 'amplify torque'::transmissionTorque, 
+			out driveshaftTorque
+		);
 		
-		step 'transfer torque': 'Transfer Torque'(in transmissionTorque, out driveshaftTorque);
-		
-		stream 'transfer torque'::driveshaftTorque to 'distribute torque'::driveshaftTorque;
-		
-		step 'distribute torque': 'Distribute Torque'(in driveshaftTorque, 
-			out wheelTorque1 = 'Provide Power'::wheelTorque1, out wheelTorque2 = 'Provide Power'::wheelTorque2); 
+		step 'distribute torque': 'Distribute Torque'(
+			in from 'transfer torque'::driveshaftTorque, 
+			out = 'Provide Power'::wheelTorque1, 
+			out = 'Provide Power'::wheelTorque2
+		); 
 	}
 	
 	behavior 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque) {
@@ -50,18 +56,20 @@ package '3a-Function-based Behavior' {
 		
 		feature self: 'Provide Power With Control' redefines Base::self;
 		
-		step engineStart: Transfer[*] ordered {
+		feature engineStart: Transfer[*] ordered {
+			feature item: EngineStart redefines Transfer::item;
 			end transferSource: Occurrence redefines Transfer::transferSource; 
 			end transferTarget: Occurrence redefines Transfer::transferTarget = self;
 		}
 		
-		step engineOff: Transfer[*] ordered {
+		feature engineOff: Transfer[*] ordered {
+			feature item: EngineOff redefines Transfer::item;
 			end transferSource: Occurrence redefines Transfer::transferSource;
 			end transferTarget: Occurrence redefines Transfer::transferTarget = self;
 		}
 		
-		step firstEngineStart[1] subsets engineStart = first(engineStart);
-		step restEngineStart[*] subsets engineStart = rest(engineStart);
+		feature firstEngineStart[1] subsets engineStart = first(engineStart);
+		feature restEngineStart[*] subsets engineStart = rest(engineStart);
 		
 		succession engineStart[1] to engineOff[1];
 		succession engineOff[1] to restEngineStart[1];		

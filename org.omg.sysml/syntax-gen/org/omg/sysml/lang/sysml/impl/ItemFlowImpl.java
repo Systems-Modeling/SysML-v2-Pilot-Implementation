@@ -10,10 +10,16 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -119,17 +125,17 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Feature> getTargetInputFeature() {
-		if (targetInputFeature == null) {
-			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
+	public EList<Feature> getSourceOutputFeature() {
+		if (sourceOutputFeature == null) {
+			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
 		}
-		if (targetInputFeature.isEmpty()) {
+		if (sourceOutputFeature.isEmpty()) {
 			Feature feature = getInputOutputFeature(0);
 			if (feature != null) {
-				targetInputFeature.add(feature);
+				sourceOutputFeature.add(feature);
 			}
 		}
-		return targetInputFeature;
+		return sourceOutputFeature;
 	}
 	
 	/**
@@ -138,17 +144,17 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Feature> getSourceOutputFeature() {
-		if (sourceOutputFeature == null) {
-			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
+	public EList<Feature> getTargetInputFeature() {
+		if (targetInputFeature == null) {
+			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
 		}
-		if (sourceOutputFeature.isEmpty()) {
+		if (targetInputFeature.isEmpty()) {
 			Feature feature = getInputOutputFeature(1);
 			if (feature != null) {
-				sourceOutputFeature.add(feature);
+				targetInputFeature.add(feature);
 			}
 		}
-		return sourceOutputFeature;
+		return targetInputFeature;
 	}
 	
 	public Feature getInputOutputFeature(int i) {
@@ -164,6 +170,30 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	public EList<Feature> getConnectorEnd() {
+		EList<Feature> ends = super.getConnectorEnd();
+		Category owner = getOwningCategory();
+		if (ends.size() < 2 && owner instanceof Step) {
+			EList<Feature> features = owner.getOwnedFeature();
+			int i = features.indexOf(this);
+			if (i > 0) {
+				ItemFlowFeature targetInput = SysMLFactory.eINSTANCE.createItemFlowFeature();
+				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				redefinition.setRedefiningFeature(targetInput);
+				redefinition.setRedefinedFeature(features.get(i-1));
+				targetInput.getOwnedRelationship().add(redefinition);
+				ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
+				((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
+				EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
+				membership.getOwnedRelatedElement().add(targetEnd);
+				getOwnedRelationship().add(membership);
+//				addConnectorEnd(targetEnd, ((Feature)owner));
+			}
+		}
+		return ends;
 	}
 
 	@Override

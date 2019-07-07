@@ -4468,23 +4468,30 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cOwnedRelationshipStepParameterMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipStepParameterMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipStepParameterMemberParserRuleCall_1_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_2_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_2_2 = (Assignment)cGroup_1_2.eContents().get(2);
+		private final RuleCall cOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_2_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_2_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//fragment StepParameterList returns SysML::Category:
-		//	'(' (ownedRelationship+=StepParameterMember (',' ownedRelationship+=StepParameterMember)*)? ')';
+		//	'(' (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember? (','
+		//	ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' (ownedRelationship+=StepParameterMember (',' ownedRelationship+=StepParameterMember)*)? ')'
+		//'(' (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember? (','
+		//ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*)? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 		
-		//(ownedRelationship+=StepParameterMember (',' ownedRelationship+=StepParameterMember)*)?
+		//(ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember? (','
+		//ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//ownedRelationship+=StepParameterMember
@@ -4493,17 +4500,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StepParameterMember
 		public RuleCall getOwnedRelationshipStepParameterMemberParserRuleCall_1_0_0() { return cOwnedRelationshipStepParameterMemberParserRuleCall_1_0_0; }
 		
-		//(',' ownedRelationship+=StepParameterMember)*
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		//ownedRelationship+=StepParameterFlowMember?
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		
+		//StepParameterFlowMember
+		public RuleCall getOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_1_0() { return cOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_1_0; }
+		
+		//(',' ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//','
-		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 		
 		//ownedRelationship+=StepParameterMember
-		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
+		public Assignment getOwnedRelationshipAssignment_1_2_1() { return cOwnedRelationshipAssignment_1_2_1; }
 		
 		//StepParameterMember
-		public RuleCall getOwnedRelationshipStepParameterMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipStepParameterMemberParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedRelationshipStepParameterMemberParserRuleCall_1_2_1_0() { return cOwnedRelationshipStepParameterMemberParserRuleCall_1_2_1_0; }
+		
+		//ownedRelationship+=StepParameterFlowMember?
+		public Assignment getOwnedRelationshipAssignment_1_2_2() { return cOwnedRelationshipAssignment_1_2_2; }
+		
+		//StepParameterFlowMember
+		public RuleCall getOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_2_2_0() { return cOwnedRelationshipStepParameterFlowMemberParserRuleCall_1_2_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
@@ -4527,6 +4546,49 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ValuePart?
 		public RuleCall getValuePartParserRuleCall_1() { return cValuePartParserRuleCall_1; }
 	}
+	public class StepParameterFlowDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.StepParameterFlowDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cStreamKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final Action cSuccessionItemFlowAction_0_1_0 = (Action)cGroup_0_1.eContents().get(0);
+		private final Keyword cFlowKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
+		private final Keyword cFromKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipItemFlowEndMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		
+		//StepParameterFlowDefinition SysML::ItemFlow:
+		//	('stream' | {SysML::SuccessionItemFlow} 'flow')? 'from' ownedRelationship+=ItemFlowEndMember;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//('stream' | {SysML::SuccessionItemFlow} 'flow')? 'from' ownedRelationship+=ItemFlowEndMember
+		public Group getGroup() { return cGroup; }
+		
+		//('stream' | {SysML::SuccessionItemFlow} 'flow')?
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//'stream'
+		public Keyword getStreamKeyword_0_0() { return cStreamKeyword_0_0; }
+		
+		//{SysML::SuccessionItemFlow} 'flow'
+		public Group getGroup_0_1() { return cGroup_0_1; }
+		
+		//{SysML::SuccessionItemFlow}
+		public Action getSuccessionItemFlowAction_0_1_0() { return cSuccessionItemFlowAction_0_1_0; }
+		
+		//'flow'
+		public Keyword getFlowKeyword_0_1_1() { return cFlowKeyword_0_1_1; }
+		
+		//'from'
+		public Keyword getFromKeyword_1() { return cFromKeyword_1; }
+		
+		//ownedRelationship+=ItemFlowEndMember
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		
+		//ItemFlowEndMember
+		public RuleCall getOwnedRelationshipItemFlowEndMemberParserRuleCall_2_0() { return cOwnedRelationshipItemFlowEndMemberParserRuleCall_2_0; }
+	}
 	public class StepParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.StepParameterMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -4538,10 +4600,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedRelatedElementStepParameterDefinitionParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
 		
 		///* STEP MEMBERSHIPS */ StepParameterMember SysML::ParameterMembership:
-		//	direction=FeatureDirection? memberName=Name ownedRelatedElement+=StepParameterDefinition;
+		//	direction=FeatureDirection? memberName=Name? ownedRelatedElement+=StepParameterDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//direction=FeatureDirection? memberName=Name ownedRelatedElement+=StepParameterDefinition
+		//direction=FeatureDirection? memberName=Name? ownedRelatedElement+=StepParameterDefinition
 		public Group getGroup() { return cGroup; }
 		
 		//direction=FeatureDirection?
@@ -4550,7 +4612,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FeatureDirection
 		public RuleCall getDirectionFeatureDirectionEnumRuleCall_0_0() { return cDirectionFeatureDirectionEnumRuleCall_0_0; }
 		
-		//memberName=Name
+		//memberName=Name?
 		public Assignment getMemberNameAssignment_1() { return cMemberNameAssignment_1; }
 		
 		//Name
@@ -4561,6 +4623,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//StepParameterDefinition
 		public RuleCall getOwnedRelatedElementStepParameterDefinitionParserRuleCall_2_0() { return cOwnedRelatedElementStepParameterDefinitionParserRuleCall_2_0; }
+	}
+	public class StepParameterFlowMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.StepParameterFlowMember");
+		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementStepParameterFlowDefinitionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		
+		//StepParameterFlowMember SysML::FeatureMembership:
+		//	ownedRelatedElement+=StepParameterFlowDefinition;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelatedElement+=StepParameterFlowDefinition
+		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		
+		//StepParameterFlowDefinition
+		public RuleCall getOwnedRelatedElementStepParameterFlowDefinitionParserRuleCall_0() { return cOwnedRelatedElementStepParameterFlowDefinitionParserRuleCall_0; }
 	}
 	public class ExpressionDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.ExpressionDefinition");
@@ -6682,7 +6759,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final StepDefinitionElements pStepDefinition;
 	private final StepParameterListElements pStepParameterList;
 	private final StepParameterDefinitionElements pStepParameterDefinition;
+	private final StepParameterFlowDefinitionElements pStepParameterFlowDefinition;
 	private final StepParameterMemberElements pStepParameterMember;
+	private final StepParameterFlowMemberElements pStepParameterFlowMember;
 	private final ExpressionDefinitionElements pExpressionDefinition;
 	private final ExpressionElements pExpression;
 	private final ConditionalExpressionElements pConditionalExpression;
@@ -6877,7 +6956,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pStepDefinition = new StepDefinitionElements();
 		this.pStepParameterList = new StepParameterListElements();
 		this.pStepParameterDefinition = new StepParameterDefinitionElements();
+		this.pStepParameterFlowDefinition = new StepParameterFlowDefinitionElements();
 		this.pStepParameterMember = new StepParameterMemberElements();
+		this.pStepParameterFlowMember = new StepParameterFlowMemberElements();
 		this.pExpressionDefinition = new ExpressionDefinitionElements();
 		this.pExpression = new ExpressionElements();
 		this.pConditionalExpression = new ConditionalExpressionElements();
@@ -8191,7 +8272,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StepParameterList returns SysML::Category:
-	//	'(' (ownedRelationship+=StepParameterMember (',' ownedRelationship+=StepParameterMember)*)? ')';
+	//	'(' (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember? (','
+	//	ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*)? ')';
 	public StepParameterListElements getStepParameterListAccess() {
 		return pStepParameterList;
 	}
@@ -8210,14 +8292,34 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStepParameterDefinitionAccess().getRule();
 	}
 	
+	//StepParameterFlowDefinition SysML::ItemFlow:
+	//	('stream' | {SysML::SuccessionItemFlow} 'flow')? 'from' ownedRelationship+=ItemFlowEndMember;
+	public StepParameterFlowDefinitionElements getStepParameterFlowDefinitionAccess() {
+		return pStepParameterFlowDefinition;
+	}
+	
+	public ParserRule getStepParameterFlowDefinitionRule() {
+		return getStepParameterFlowDefinitionAccess().getRule();
+	}
+	
 	///* STEP MEMBERSHIPS */ StepParameterMember SysML::ParameterMembership:
-	//	direction=FeatureDirection? memberName=Name ownedRelatedElement+=StepParameterDefinition;
+	//	direction=FeatureDirection? memberName=Name? ownedRelatedElement+=StepParameterDefinition;
 	public StepParameterMemberElements getStepParameterMemberAccess() {
 		return pStepParameterMember;
 	}
 	
 	public ParserRule getStepParameterMemberRule() {
 		return getStepParameterMemberAccess().getRule();
+	}
+	
+	//StepParameterFlowMember SysML::FeatureMembership:
+	//	ownedRelatedElement+=StepParameterFlowDefinition;
+	public StepParameterFlowMemberElements getStepParameterFlowMemberAccess() {
+		return pStepParameterFlowMember;
+	}
+	
+	public ParserRule getStepParameterFlowMemberRule() {
+		return getStepParameterFlowMemberAccess().getRule();
 	}
 	
 	///* EXPRESSIONS */ // Block Expressions

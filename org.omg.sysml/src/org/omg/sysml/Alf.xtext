@@ -232,6 +232,7 @@ FeatureMember returns SysML::FeatureMembership :
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
+	| 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
 	  ( ownedRelatedElement += SuccessionDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
@@ -580,6 +581,14 @@ ConnectorEnd returns SysML::Feature :
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
 	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+;
+
+/* BINDING CONNECTORS */
+
+BindingConnectorDefinition returns SysML::BindingConnector :
+	( ( name = Name )? ConnectorTypePart 'is')?
+	  ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
+	  CategoryBody	
 ;
 
 /* SUCCESSIONS */

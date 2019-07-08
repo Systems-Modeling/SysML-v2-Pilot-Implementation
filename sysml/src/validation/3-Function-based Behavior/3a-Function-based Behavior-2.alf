@@ -2,7 +2,7 @@ package '3a-Function-based Behavior' {
 	import Transfers::Reception;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
-	
+			
 	// ITEMS
 	
 	class FuelCmd;
@@ -34,12 +34,12 @@ package '3a-Function-based Behavior' {
 		);
 		
 		step 'amplify torque': 'Amplify Torque'(
-			in engineTorque from 'generate torque'::engineTorque, 
+			in engineTorque from 'generate torque'::engineTorque,  
 			out transmissionTorque
 		);
 		
 		step 'transfer torque': 'Transfer Torque'(
-			in transmissionTorque from 'amplify torque'::transmissionTorque, 
+			in transmissionTorque from 'amplify torque'::transmissionTorque,  
 			out driveshaftTorque
 		);
 		
@@ -55,28 +55,18 @@ package '3a-Function-based Behavior' {
 		out wheelTorque1: WheelTorque, 
 		out wheelTorque2: WheelTorque
 	) {
-		succession startShot[0..1] then merge[1];
+		portion is startShot;
+		then[0..1] step merge: Merge[*];
+		then step engineStart: Reception[*](out :EngineStart);
+		then step engineOff: Reception[*](out :EngineOff);
+		then[0..1] merge;
 		
-		step merge: Merge[*];
-		
-		succession merge[1] then engineStart[1];
-		
-		step engineStart: Reception[*](out :EngineStart);
-		
-		succession engineStart[1] then engineOff[1];
-		
-		step engineOff: Reception[*](out :EngineOff);
-		
-		succession engineOff[0..1] then merge[1];		
-		
-		succession engineStart[1] then 'provide power'[1];
-		
-		step 'provide power': 'Provide Power'[*] (
+		step is engineStart;
+		then step 'provide power': 'Provide Power'[*] (
 			in fuelCmd = 'Provide Power With Control'::fuelCmd, 
 			out wheelTorque1 = 'Provide Power With Control'::wheelTorque1,
 			out wheelTorque2 = 'Provide Power With Control'::wheelTorque2
 		);
-		
-		succession 'provide power'[1] then engineOff[1];		
+		then engineOff;
 	}
 }

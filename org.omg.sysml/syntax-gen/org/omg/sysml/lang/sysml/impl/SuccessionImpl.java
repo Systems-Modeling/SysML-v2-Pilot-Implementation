@@ -42,5 +42,5 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithDefault(SUCCESSION_SUBSETTING_DEFAULT);
 	}
-	
+
 } //SuccessionImpl

@@ -3,7 +3,7 @@ package ControlFunctions {
 	import ScalarValues::*;
 	
 	abstract function '?'(test: Boolean): Anything[0..*] {
-		abstract expr then[0..1] (): Anything[0..*];
+		abstract expr 'then'[0..1] (): Anything[0..*];
 		abstract expr else[0..1] (): Anything[0..*];
 	}
 	
@@ -19,7 +19,7 @@ package ControlFunctions {
 		abstract expr second[0..1] ():Boolean;
 	}
 	
-	abstract function while(initial: Anything[0..*]): Anything[0..*] {
+	abstract function while('initial': Anything[0..*]): Anything[0..*] {
 		abstract expr condition[1..*] (argument: Anything[0..*]): Boolean;
 		abstract expr body[0..*] (argument: Anything[0..*]): Anything[0..*];
 	}

@@ -92,17 +92,17 @@ package Base {
 		 * snapshots have no duration.
 		 */
 		// Note: Connectors are only allowed to have a single type.
-		succession :HappensBeforeSelf is snapshots[1] to snapshots[1];
+		succession :HappensBeforeSelf is snapshots[1] then snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.
 		 */
-		succession startShot[1] to snapshots[0..*];
+		succession startShot[1] then snapshots[0..*];
 		
 		/**
 		 * The endShot happens after all snapshots.
 		 */
-		succession snapshots[0..*] to endShot[1];
+		succession snapshots[0..*] then endShot[1];
 	}
 
 	/**

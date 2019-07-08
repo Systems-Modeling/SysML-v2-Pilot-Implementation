@@ -63,6 +63,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SequenceConstructionExpression;
+import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.StructuredFeature;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -71,6 +72,7 @@ import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.ValueClass;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
@@ -178,6 +180,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.ITEM_FLOW_END: return createItemFlowEnd();
 			case SysMLPackage.ITEM_FLOW_FEATURE: return createItemFlowFeature();
 			case SysMLPackage.ITEM_FEATURE: return createItemFeature();
+			case SysMLPackage.SOURCE_END: return createSourceEnd();
+			case SysMLPackage.TARGET_END: return createTargetEnd();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -787,6 +791,28 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public ItemFeature createItemFeature() {
 		ItemFeatureImpl itemFeature = new ItemFeatureImpl();
 		return itemFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SourceEnd createSourceEnd() {
+		SourceEndImpl sourceEnd = new SourceEndImpl();
+		return sourceEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TargetEnd createTargetEnd() {
+		TargetEndImpl targetEnd = new TargetEndImpl();
+		return targetEnd;
 	}
 
 	/**

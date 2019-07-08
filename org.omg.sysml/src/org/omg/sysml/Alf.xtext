@@ -180,12 +180,15 @@ fragment NonFeatureMemberElement returns SysML::Membership :
 //;
 
 fragment FeaturePackageMemberElement returns SysML::Membership :
-	  'feature'? ownedRelatedElement +=NamedFeatureDefinition
-	| 'abstract' 'feature'? ownedRelatedElement +=AbstractNamedFeatureDefinition
-	| 'feature' ownedRelatedElement +=UnnamedFeatureDefinition
-	| 'abstract' 'feature' ownedRelatedElement +=AbstractUnnamedFeatureDefinition
+	  'feature'? ownedRelatedElement += NamedFeatureDefinition
+	| 'abstract' 'feature'? ownedRelatedElement += AbstractNamedFeatureDefinition
+	| 'feature' ownedRelatedElement += UnnamedFeatureDefinition
+	| 'abstract' 'feature' ownedRelatedElement += AbstractUnnamedFeatureDefinition
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
-	| BehaviorStepMemberDefinition
+	| ownedRelatedElement += StepDefinition
+	| 'step' ( memberName = Name )? 'is' memberElement = [SysML::Step|QualifiedName] ';'
+	| ownedRelatedElement += ExpressionDefinition
+	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'
 ;
 
 /* CATEGORIES */
@@ -232,12 +235,13 @@ FeatureMember returns SysML::FeatureMembership :
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
-	| 'binding' ownedRelatedElement += BindingConnectorDefinition
+    | 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
 	  ( ownedRelatedElement += SuccessionDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
 	  )
     | 'abstract' 'succession' ownedRelatedElement += AbstractSuccessionDefinition
+    | 'then' ownedRelatedElement += TargetSuccessionDefinition ';'
 	| 'stream' 
 	  ( ownedRelatedElement += ItemFlowDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
@@ -413,11 +417,11 @@ BehaviorStepMember returns SysML::FeatureMembership :
 	CategoryMemberPrefix BehaviorStepMemberDefinition
 ;
 
-fragment BehaviorStepMemberDefinition returns SysML::Membership :
+fragment BehaviorStepMemberDefinition returns SysML::FeatureMembership :
 	  ownedRelatedElement += StepDefinition
-	| 'step' ( memberName = Name )? 'is' memberElement = [SysML::Step|QualifiedName] ';'
+	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
 	| ownedRelatedElement += ExpressionDefinition
-	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'	
+	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'	
 ;
 
 /* FUNCTIONS */
@@ -555,7 +559,7 @@ AbstractConnectorDefinition returns SysML::Connector :
 
 fragment ConnectorDeclaration returns SysML::Connector :
 	( ( ( name = Name )? ConnectorTypePart 'is')?
-		  ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
+	  ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
 	| ( name = Name )? ConnectorTypePart
 	  '(' ownedRelationship += ConnectorEndMember ',' ownedRelationship += ConnectorEndMember
 	      ( ',' ownedRelationship += ConnectorEndMember )*
@@ -577,10 +581,26 @@ ConnectorEnd returns SysML::Feature :
 	ownedRelationship += Subset ( ownedRelationship += Multiplicity )?
 ;
 
+MultiplicityEnd returns SysML::Feature :
+	{SysML::SourceEnd} ( ownedRelationship += Multiplicity )?
+;
+
+EmptyEnd returns SysML::Feature :
+	{SysML::TargetEnd}
+;
+
 /* CONNECTOR MEMBERSHIPS */
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
 	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+;
+
+MultiplicityEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += MultiplicityEnd
+;
+
+EmptyEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptyEnd
 ;
 
 /* BINDING CONNECTORS */
@@ -594,11 +614,30 @@ BindingConnectorDefinition returns SysML::BindingConnector :
 /* SUCCESSIONS */
 
 SuccessionDefinition returns SysML::Succession :
-	ConnectorDeclaration CategoryBody
+	SuccessionDeclaration CategoryBody
 ;
 
-AbstractSuccessionDefinition returns SysML::Connector :
-	ConnectorDeclaration AbstractCategoryBody
+AbstractSuccessionDefinition returns SysML::Succession :
+	SuccessionDeclaration AbstractCategoryBody
+;
+
+fragment SuccessionDeclaration returns SysML::Succession :
+	( ( name = Name )? ConnectorTypePart 'is' )?
+	ownedRelationship += ConnectorEndMember 'then' ownedRelationship += ConnectorEndMember
+;
+
+TargetSuccessionDefinition returns SysML::Succession :
+	ownedRelationship += MultiplicityEndMember ownedRelationship += ConnectorEndMember
+;
+
+EmptySuccessionDefinition returns SysML::Succession :
+	ownedRelationship += MultiplicityEndMember ownedRelationship += EmptyEndMember
+;
+
+/* SUCCESSION MEMBERSHIPS */
+
+SuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += SuccessionDefinition
 ;
 
 /* ITEM FLOWS */
@@ -659,11 +698,11 @@ ParameterDefinition returns SysML::Parameter :
 /* STEPS */
 
 StepDefinition returns SysML::Step :
-	( isAbstract ?= 'abstract')? 'step' 
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+	( isAbstract ?= 'abstract')? 'step'
 	( name = Name TypePart StepParameterList? SubsettingPart ValuePart?
 	| 'redefines' ownedRelationship += Redefinition TypePart StepParameterList? ValuePart?
-	) 
-	BehaviorBody
+	) BehaviorBody
 ;
 
 fragment StepParameterList returns SysML::Category :
@@ -688,6 +727,10 @@ StepParameterMember returns SysML::ParameterMembership :
 
 StepParameterFlowMember returns SysML::FeatureMembership :
 	ownedRelatedElement += StepParameterFlowDefinition
+;
+
+EmptySuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptySuccessionDefinition
 ;
 
 /* EXPRESSIONS */

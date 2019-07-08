@@ -21,28 +21,26 @@ package '3a-Function-based Behavior' {
 	behavior 'Distribute Torque'(in driveShaftTorque: DriveshaftTorque, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque);
 	
 	behavior 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque) {
-		binding 'generate torque'::fuelCmd = 'Provide Power'::fuelCmd;
+		step 'generate torque': 'Generate Torque'(
+			in fuelCmd = 'Provide Power'::fuelCmd, 
+			out engineTorque
+		);
 		
-		step 'generate torque': 'Generate Torque'(in fuelCmd, out engineTorque);
+		step 'amplify torque': 'Amplify Torque'(
+			in engineTorque from 'generate torque'::engineTorque, 
+			out transmissionTorque
+		);
 		
-		stream 'generate torque'::engineTorque to 'amplify torque'::engineTorque;
-		
-		step 'amplify torque': 'Amplify Torque'(in engineTorque, out transmissionTorque);
-		
-		stream 'amplify torque'::transmissionTorque to 'transfer torque'::transmissionTorque;
-		
-		step 'transfer torque': 'Transfer Torque'(in transmissionTorque, out driveshaftTorque);
-		
-		stream 'transfer torque'::driveshaftTorque to 'distribute torque'::driveshaftTorque;
+		step 'transfer torque': 'Transfer Torque'(
+			in transmissionTorque from 'amplify torque'::transmissionTorque, 
+			out driveshaftTorque
+		);
 		
 		step 'distribute torque': 'Distribute Torque'(
 			in driveshaftTorque from 'transfer torque'::driveshaftTorque, 
 			out wheelTorque1 = 'Provide Power'::wheelTorque1, 
 			out wheelTorque2 = 'Provide Power'::wheelTorque2
-		);
-		
-		binding 'Provide Power'::wheelTorque1 = 'distribute torque'::wheelTorque1;
-		binding 'Provide Power'::wheelTorque2 = 'distribute torque'::wheelTorque2;
+		); 
 	}
 	
 	behavior 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: WheelTorque, out wheelTorque2: WheelTorque) {
@@ -50,28 +48,29 @@ package '3a-Function-based Behavior' {
 		import ControlNodes::Merge;
 		import Base::Occurrence::startShot;
 		
-		succession startShot[0..1] to merge[1];
+		succession startShot[0..1] then merge[1];
 		
 		step merge: Merge[*];
 		
-		succession merge[1] to engineStart[1];
+		succession merge[1] then engineStart[1];
 		
 		step engineStart: Reception[*](out :EngineStart);
-
-		succession engineStart[1] to 'provide power'[1];
-
+		
+		succession engineStart[1] then engineOff[1];
+		
+		step engineOff: Reception[*](out :EngineOff);
+		
+		succession engineOff[0..1] then merge[1];		
+		
+		succession engineStart[1] then 'provide power'[1];
+		
 		step 'provide power': 'Provide Power'[*] (
 			in fuelCmd = 'Provide Power With Control'::fuelCmd, 
 			out wheelTorque1 = 'Provide Power With Control'::wheelTorque1,
 			out wheelTorque2 = 'Provide Power With Control'::wheelTorque2
 		);
 		
-		succession 'provide power'[1] to engineOff[1];
+		succession 'provide power'[1] then engineOff[1];
 		
-		succession engineStart[1] to engineOff[1];
-
-		step engineOff: Reception[*](out :EngineOff);
-
-		succession engineOff[0..1] to merge[1];		
 	}
 }

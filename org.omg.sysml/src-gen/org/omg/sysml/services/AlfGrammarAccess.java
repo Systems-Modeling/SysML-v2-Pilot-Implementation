@@ -1472,59 +1472,63 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelatedElementAssignment_1_3_2 = (Assignment)cGroup_1_3.eContents().get(2);
 		private final RuleCall cOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_3_2.eContents().get(0);
 		private final Group cGroup_1_4 = (Group)cAlternatives_1.eContents().get(4);
-		private final Keyword cSuccessionKeyword_1_4_0 = (Keyword)cGroup_1_4.eContents().get(0);
-		private final Alternatives cAlternatives_1_4_1 = (Alternatives)cGroup_1_4.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_4_1_0 = (Assignment)cAlternatives_1_4_1.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_4_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_4_1_0.eContents().get(0);
-		private final Group cGroup_1_4_1_1 = (Group)cAlternatives_1_4_1.eContents().get(1);
-		private final Assignment cMemberNameAssignment_1_4_1_1_0 = (Assignment)cGroup_1_4_1_1.eContents().get(0);
-		private final RuleCall cMemberNameNameParserRuleCall_1_4_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_4_1_1_0.eContents().get(0);
-		private final Keyword cIsKeyword_1_4_1_1_1 = (Keyword)cGroup_1_4_1_1.eContents().get(1);
-		private final Assignment cMemberFeatureAssignment_1_4_1_1_2 = (Assignment)cGroup_1_4_1_1.eContents().get(2);
-		private final CrossReference cMemberFeatureSuccessionCrossReference_1_4_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_4_1_1_2.eContents().get(0);
-		private final RuleCall cMemberFeatureSuccessionQualifiedNameParserRuleCall_1_4_1_1_2_0_1 = (RuleCall)cMemberFeatureSuccessionCrossReference_1_4_1_1_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_1_4_1_1_3 = (Keyword)cGroup_1_4_1_1.eContents().get(3);
+		private final Keyword cBindingKeyword_1_4_0 = (Keyword)cGroup_1_4.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementBindingConnectorDefinitionParserRuleCall_1_4_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1_4_1.eContents().get(0);
 		private final Group cGroup_1_5 = (Group)cAlternatives_1.eContents().get(5);
-		private final Keyword cAbstractKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
-		private final Keyword cSuccessionKeyword_1_5_1 = (Keyword)cGroup_1_5.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_5_2 = (Assignment)cGroup_1_5.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_5_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_5_2.eContents().get(0);
+		private final Keyword cSuccessionKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
+		private final Alternatives cAlternatives_1_5_1 = (Alternatives)cGroup_1_5.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_5_1_0 = (Assignment)cAlternatives_1_5_1.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_5_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_5_1_0.eContents().get(0);
+		private final Group cGroup_1_5_1_1 = (Group)cAlternatives_1_5_1.eContents().get(1);
+		private final Assignment cMemberNameAssignment_1_5_1_1_0 = (Assignment)cGroup_1_5_1_1.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_1_5_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_5_1_1_0.eContents().get(0);
+		private final Keyword cIsKeyword_1_5_1_1_1 = (Keyword)cGroup_1_5_1_1.eContents().get(1);
+		private final Assignment cMemberFeatureAssignment_1_5_1_1_2 = (Assignment)cGroup_1_5_1_1.eContents().get(2);
+		private final CrossReference cMemberFeatureSuccessionCrossReference_1_5_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_5_1_1_2.eContents().get(0);
+		private final RuleCall cMemberFeatureSuccessionQualifiedNameParserRuleCall_1_5_1_1_2_0_1 = (RuleCall)cMemberFeatureSuccessionCrossReference_1_5_1_1_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_5_1_1_3 = (Keyword)cGroup_1_5_1_1.eContents().get(3);
 		private final Group cGroup_1_6 = (Group)cAlternatives_1.eContents().get(6);
-		private final Keyword cStreamKeyword_1_6_0 = (Keyword)cGroup_1_6.eContents().get(0);
-		private final Alternatives cAlternatives_1_6_1 = (Alternatives)cGroup_1_6.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_6_1_0 = (Assignment)cAlternatives_1_6_1.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_6_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_6_1_0.eContents().get(0);
-		private final Group cGroup_1_6_1_1 = (Group)cAlternatives_1_6_1.eContents().get(1);
-		private final Assignment cMemberNameAssignment_1_6_1_1_0 = (Assignment)cGroup_1_6_1_1.eContents().get(0);
-		private final RuleCall cMemberNameNameParserRuleCall_1_6_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_6_1_1_0.eContents().get(0);
-		private final Keyword cIsKeyword_1_6_1_1_1 = (Keyword)cGroup_1_6_1_1.eContents().get(1);
-		private final Assignment cMemberFeatureAssignment_1_6_1_1_2 = (Assignment)cGroup_1_6_1_1.eContents().get(2);
-		private final CrossReference cMemberFeatureItemFlowCrossReference_1_6_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_6_1_1_2.eContents().get(0);
-		private final RuleCall cMemberFeatureItemFlowQualifiedNameParserRuleCall_1_6_1_1_2_0_1 = (RuleCall)cMemberFeatureItemFlowCrossReference_1_6_1_1_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_1_6_1_1_3 = (Keyword)cGroup_1_6_1_1.eContents().get(3);
+		private final Keyword cAbstractKeyword_1_6_0 = (Keyword)cGroup_1_6.eContents().get(0);
+		private final Keyword cSuccessionKeyword_1_6_1 = (Keyword)cGroup_1_6.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_6_2 = (Assignment)cGroup_1_6.eContents().get(2);
+		private final RuleCall cOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_6_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_6_2.eContents().get(0);
 		private final Group cGroup_1_7 = (Group)cAlternatives_1.eContents().get(7);
-		private final Keyword cAbstractKeyword_1_7_0 = (Keyword)cGroup_1_7.eContents().get(0);
-		private final Keyword cStreamKeyword_1_7_1 = (Keyword)cGroup_1_7.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_7_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_7_2.eContents().get(0);
+		private final Keyword cStreamKeyword_1_7_0 = (Keyword)cGroup_1_7.eContents().get(0);
+		private final Alternatives cAlternatives_1_7_1 = (Alternatives)cGroup_1_7.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_7_1_0 = (Assignment)cAlternatives_1_7_1.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_7_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_7_1_0.eContents().get(0);
+		private final Group cGroup_1_7_1_1 = (Group)cAlternatives_1_7_1.eContents().get(1);
+		private final Assignment cMemberNameAssignment_1_7_1_1_0 = (Assignment)cGroup_1_7_1_1.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_1_7_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_7_1_1_0.eContents().get(0);
+		private final Keyword cIsKeyword_1_7_1_1_1 = (Keyword)cGroup_1_7_1_1.eContents().get(1);
+		private final Assignment cMemberFeatureAssignment_1_7_1_1_2 = (Assignment)cGroup_1_7_1_1.eContents().get(2);
+		private final CrossReference cMemberFeatureItemFlowCrossReference_1_7_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_7_1_1_2.eContents().get(0);
+		private final RuleCall cMemberFeatureItemFlowQualifiedNameParserRuleCall_1_7_1_1_2_0_1 = (RuleCall)cMemberFeatureItemFlowCrossReference_1_7_1_1_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_7_1_1_3 = (Keyword)cGroup_1_7_1_1.eContents().get(3);
 		private final Group cGroup_1_8 = (Group)cAlternatives_1.eContents().get(8);
-		private final Keyword cFlowKeyword_1_8_0 = (Keyword)cGroup_1_8.eContents().get(0);
-		private final Alternatives cAlternatives_1_8_1 = (Alternatives)cGroup_1_8.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_8_1_0 = (Assignment)cAlternatives_1_8_1.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_8_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_8_1_0.eContents().get(0);
-		private final Group cGroup_1_8_1_1 = (Group)cAlternatives_1_8_1.eContents().get(1);
-		private final Assignment cMemberNameAssignment_1_8_1_1_0 = (Assignment)cGroup_1_8_1_1.eContents().get(0);
-		private final RuleCall cMemberNameNameParserRuleCall_1_8_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_8_1_1_0.eContents().get(0);
-		private final Keyword cIsKeyword_1_8_1_1_1 = (Keyword)cGroup_1_8_1_1.eContents().get(1);
-		private final Assignment cMemberFeatureAssignment_1_8_1_1_2 = (Assignment)cGroup_1_8_1_1.eContents().get(2);
-		private final CrossReference cMemberFeatureSuccessionItemFlowCrossReference_1_8_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_8_1_1_2.eContents().get(0);
-		private final RuleCall cMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_8_1_1_2_0_1 = (RuleCall)cMemberFeatureSuccessionItemFlowCrossReference_1_8_1_1_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_1_8_1_1_3 = (Keyword)cGroup_1_8_1_1.eContents().get(3);
+		private final Keyword cAbstractKeyword_1_8_0 = (Keyword)cGroup_1_8.eContents().get(0);
+		private final Keyword cStreamKeyword_1_8_1 = (Keyword)cGroup_1_8.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_8_2 = (Assignment)cGroup_1_8.eContents().get(2);
+		private final RuleCall cOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_8_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_8_2.eContents().get(0);
 		private final Group cGroup_1_9 = (Group)cAlternatives_1.eContents().get(9);
-		private final Keyword cAbstractKeyword_1_9_0 = (Keyword)cGroup_1_9.eContents().get(0);
-		private final Keyword cFlowKeyword_1_9_1 = (Keyword)cGroup_1_9.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1_9_2 = (Assignment)cGroup_1_9.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_9_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_9_2.eContents().get(0);
+		private final Keyword cFlowKeyword_1_9_0 = (Keyword)cGroup_1_9.eContents().get(0);
+		private final Alternatives cAlternatives_1_9_1 = (Alternatives)cGroup_1_9.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_9_1_0 = (Assignment)cAlternatives_1_9_1.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_9_1_0_0 = (RuleCall)cOwnedRelatedElementAssignment_1_9_1_0.eContents().get(0);
+		private final Group cGroup_1_9_1_1 = (Group)cAlternatives_1_9_1.eContents().get(1);
+		private final Assignment cMemberNameAssignment_1_9_1_1_0 = (Assignment)cGroup_1_9_1_1.eContents().get(0);
+		private final RuleCall cMemberNameNameParserRuleCall_1_9_1_1_0_0 = (RuleCall)cMemberNameAssignment_1_9_1_1_0.eContents().get(0);
+		private final Keyword cIsKeyword_1_9_1_1_1 = (Keyword)cGroup_1_9_1_1.eContents().get(1);
+		private final Assignment cMemberFeatureAssignment_1_9_1_1_2 = (Assignment)cGroup_1_9_1_1.eContents().get(2);
+		private final CrossReference cMemberFeatureSuccessionItemFlowCrossReference_1_9_1_1_2_0 = (CrossReference)cMemberFeatureAssignment_1_9_1_1_2.eContents().get(0);
+		private final RuleCall cMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_9_1_1_2_0_1 = (RuleCall)cMemberFeatureSuccessionItemFlowCrossReference_1_9_1_1_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1_9_1_1_3 = (Keyword)cGroup_1_9_1_1.eContents().get(3);
+		private final Group cGroup_1_10 = (Group)cAlternatives_1.eContents().get(10);
+		private final Keyword cAbstractKeyword_1_10_0 = (Keyword)cGroup_1_10.eContents().get(0);
+		private final Keyword cFlowKeyword_1_10_1 = (Keyword)cGroup_1_10.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1_10_2 = (Assignment)cGroup_1_10.eContents().get(2);
+		private final RuleCall cOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_10_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_10_2.eContents().get(0);
 		
 		//FeatureMember SysML::FeatureMembership:
 		//	CategoryMemberPrefix (('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
@@ -1535,6 +1539,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	| 'connector' (ownedRelatedElement+=ConnectorDefinition
 		//	| memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | 'abstract' 'connector'
 		//	ownedRelatedElement+=AbstractConnectorDefinition
+		//	| 'binding' ownedRelatedElement+=BindingConnectorDefinition
 		//	| 'succession' (ownedRelatedElement+=SuccessionDefinition
 		//	| memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
 		//	ownedRelatedElement+=AbstractSuccessionDefinition
@@ -1551,8 +1556,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract' ('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition | 'connector' (ownedRelatedElement+=ConnectorDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | 'abstract' 'connector'
-		//ownedRelatedElement+=AbstractConnectorDefinition | 'succession' (ownedRelatedElement+=SuccessionDefinition |
-		//memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
+		//ownedRelatedElement+=AbstractConnectorDefinition | 'binding' ownedRelatedElement+=BindingConnectorDefinition |
+		//'succession' (ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is'
+		//memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
 		//ownedRelatedElement+=AbstractSuccessionDefinition | 'stream' (ownedRelatedElement+=ItemFlowDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';') | 'abstract' 'stream'
 		//ownedRelatedElement+=AbstractItemFlowDefinition | 'flow' (ownedRelatedElement+=SuccessionItemFlowDefinition |
@@ -1568,8 +1574,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract' ('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition | 'connector' (ownedRelatedElement+=ConnectorDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | 'abstract' 'connector'
-		//ownedRelatedElement+=AbstractConnectorDefinition | 'succession' (ownedRelatedElement+=SuccessionDefinition |
-		//memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
+		//ownedRelatedElement+=AbstractConnectorDefinition | 'binding' ownedRelatedElement+=BindingConnectorDefinition |
+		//'succession' (ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is'
+		//memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
 		//ownedRelatedElement+=AbstractSuccessionDefinition | 'stream' (ownedRelatedElement+=ItemFlowDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';') | 'abstract' 'stream'
 		//ownedRelatedElement+=AbstractItemFlowDefinition | 'flow' (ownedRelatedElement+=SuccessionItemFlowDefinition |
@@ -1742,171 +1749,183 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AbstractConnectorDefinition
 		public RuleCall getOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0() { return cOwnedRelatedElementAbstractConnectorDefinitionParserRuleCall_1_3_2_0; }
 		
-		//'succession' (ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is'
-		//memberFeature=[SysML::Succession|QualifiedName] ';')
+		//'binding' ownedRelatedElement+=BindingConnectorDefinition
 		public Group getGroup_1_4() { return cGroup_1_4; }
 		
-		//'succession'
-		public Keyword getSuccessionKeyword_1_4_0() { return cSuccessionKeyword_1_4_0; }
+		//'binding'
+		public Keyword getBindingKeyword_1_4_0() { return cBindingKeyword_1_4_0; }
 		
-		//ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';'
-		public Alternatives getAlternatives_1_4_1() { return cAlternatives_1_4_1; }
+		//ownedRelatedElement+=BindingConnectorDefinition
+		public Assignment getOwnedRelatedElementAssignment_1_4_1() { return cOwnedRelatedElementAssignment_1_4_1; }
 		
-		//ownedRelatedElement+=SuccessionDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_4_1_0() { return cOwnedRelatedElementAssignment_1_4_1_0; }
+		//BindingConnectorDefinition
+		public RuleCall getOwnedRelatedElementBindingConnectorDefinitionParserRuleCall_1_4_1_0() { return cOwnedRelatedElementBindingConnectorDefinitionParserRuleCall_1_4_1_0; }
 		
-		//SuccessionDefinition
-		public RuleCall getOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_4_1_0_0() { return cOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_4_1_0_0; }
-		
-		//memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';'
-		public Group getGroup_1_4_1_1() { return cGroup_1_4_1_1; }
-		
-		//memberName=Name?
-		public Assignment getMemberNameAssignment_1_4_1_1_0() { return cMemberNameAssignment_1_4_1_1_0; }
-		
-		//Name
-		public RuleCall getMemberNameNameParserRuleCall_1_4_1_1_0_0() { return cMemberNameNameParserRuleCall_1_4_1_1_0_0; }
-		
-		//'is'
-		public Keyword getIsKeyword_1_4_1_1_1() { return cIsKeyword_1_4_1_1_1; }
-		
-		//memberFeature=[SysML::Succession|QualifiedName]
-		public Assignment getMemberFeatureAssignment_1_4_1_1_2() { return cMemberFeatureAssignment_1_4_1_1_2; }
-		
-		//[SysML::Succession|QualifiedName]
-		public CrossReference getMemberFeatureSuccessionCrossReference_1_4_1_1_2_0() { return cMemberFeatureSuccessionCrossReference_1_4_1_1_2_0; }
-		
-		//QualifiedName
-		public RuleCall getMemberFeatureSuccessionQualifiedNameParserRuleCall_1_4_1_1_2_0_1() { return cMemberFeatureSuccessionQualifiedNameParserRuleCall_1_4_1_1_2_0_1; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_1_4_1_1_3() { return cSemicolonKeyword_1_4_1_1_3; }
-		
-		//'abstract' 'succession' ownedRelatedElement+=AbstractSuccessionDefinition
+		//'succession' (ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is'
+		//memberFeature=[SysML::Succession|QualifiedName] ';')
 		public Group getGroup_1_5() { return cGroup_1_5; }
 		
+		//'succession'
+		public Keyword getSuccessionKeyword_1_5_0() { return cSuccessionKeyword_1_5_0; }
+		
+		//ownedRelatedElement+=SuccessionDefinition | memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';'
+		public Alternatives getAlternatives_1_5_1() { return cAlternatives_1_5_1; }
+		
+		//ownedRelatedElement+=SuccessionDefinition
+		public Assignment getOwnedRelatedElementAssignment_1_5_1_0() { return cOwnedRelatedElementAssignment_1_5_1_0; }
+		
+		//SuccessionDefinition
+		public RuleCall getOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_5_1_0_0() { return cOwnedRelatedElementSuccessionDefinitionParserRuleCall_1_5_1_0_0; }
+		
+		//memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';'
+		public Group getGroup_1_5_1_1() { return cGroup_1_5_1_1; }
+		
+		//memberName=Name?
+		public Assignment getMemberNameAssignment_1_5_1_1_0() { return cMemberNameAssignment_1_5_1_1_0; }
+		
+		//Name
+		public RuleCall getMemberNameNameParserRuleCall_1_5_1_1_0_0() { return cMemberNameNameParserRuleCall_1_5_1_1_0_0; }
+		
+		//'is'
+		public Keyword getIsKeyword_1_5_1_1_1() { return cIsKeyword_1_5_1_1_1; }
+		
+		//memberFeature=[SysML::Succession|QualifiedName]
+		public Assignment getMemberFeatureAssignment_1_5_1_1_2() { return cMemberFeatureAssignment_1_5_1_1_2; }
+		
+		//[SysML::Succession|QualifiedName]
+		public CrossReference getMemberFeatureSuccessionCrossReference_1_5_1_1_2_0() { return cMemberFeatureSuccessionCrossReference_1_5_1_1_2_0; }
+		
+		//QualifiedName
+		public RuleCall getMemberFeatureSuccessionQualifiedNameParserRuleCall_1_5_1_1_2_0_1() { return cMemberFeatureSuccessionQualifiedNameParserRuleCall_1_5_1_1_2_0_1; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_1_5_1_1_3() { return cSemicolonKeyword_1_5_1_1_3; }
+		
+		//'abstract' 'succession' ownedRelatedElement+=AbstractSuccessionDefinition
+		public Group getGroup_1_6() { return cGroup_1_6; }
+		
 		//'abstract'
-		public Keyword getAbstractKeyword_1_5_0() { return cAbstractKeyword_1_5_0; }
+		public Keyword getAbstractKeyword_1_6_0() { return cAbstractKeyword_1_6_0; }
 		
 		//'succession'
-		public Keyword getSuccessionKeyword_1_5_1() { return cSuccessionKeyword_1_5_1; }
+		public Keyword getSuccessionKeyword_1_6_1() { return cSuccessionKeyword_1_6_1; }
 		
 		//ownedRelatedElement+=AbstractSuccessionDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_5_2() { return cOwnedRelatedElementAssignment_1_5_2; }
+		public Assignment getOwnedRelatedElementAssignment_1_6_2() { return cOwnedRelatedElementAssignment_1_6_2; }
 		
 		//AbstractSuccessionDefinition
-		public RuleCall getOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_5_2_0() { return cOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_5_2_0; }
+		public RuleCall getOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_6_2_0() { return cOwnedRelatedElementAbstractSuccessionDefinitionParserRuleCall_1_6_2_0; }
 		
 		//'stream' (ownedRelatedElement+=ItemFlowDefinition | memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName]
 		//';')
-		public Group getGroup_1_6() { return cGroup_1_6; }
-		
-		//'stream'
-		public Keyword getStreamKeyword_1_6_0() { return cStreamKeyword_1_6_0; }
-		
-		//ownedRelatedElement+=ItemFlowDefinition | memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';'
-		public Alternatives getAlternatives_1_6_1() { return cAlternatives_1_6_1; }
-		
-		//ownedRelatedElement+=ItemFlowDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_6_1_0() { return cOwnedRelatedElementAssignment_1_6_1_0; }
-		
-		//ItemFlowDefinition
-		public RuleCall getOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_6_1_0_0() { return cOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_6_1_0_0; }
-		
-		//memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';'
-		public Group getGroup_1_6_1_1() { return cGroup_1_6_1_1; }
-		
-		//memberName=Name?
-		public Assignment getMemberNameAssignment_1_6_1_1_0() { return cMemberNameAssignment_1_6_1_1_0; }
-		
-		//Name
-		public RuleCall getMemberNameNameParserRuleCall_1_6_1_1_0_0() { return cMemberNameNameParserRuleCall_1_6_1_1_0_0; }
-		
-		//'is'
-		public Keyword getIsKeyword_1_6_1_1_1() { return cIsKeyword_1_6_1_1_1; }
-		
-		//memberFeature=[SysML::ItemFlow|QualifiedName]
-		public Assignment getMemberFeatureAssignment_1_6_1_1_2() { return cMemberFeatureAssignment_1_6_1_1_2; }
-		
-		//[SysML::ItemFlow|QualifiedName]
-		public CrossReference getMemberFeatureItemFlowCrossReference_1_6_1_1_2_0() { return cMemberFeatureItemFlowCrossReference_1_6_1_1_2_0; }
-		
-		//QualifiedName
-		public RuleCall getMemberFeatureItemFlowQualifiedNameParserRuleCall_1_6_1_1_2_0_1() { return cMemberFeatureItemFlowQualifiedNameParserRuleCall_1_6_1_1_2_0_1; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_1_6_1_1_3() { return cSemicolonKeyword_1_6_1_1_3; }
-		
-		//'abstract' 'stream' ownedRelatedElement+=AbstractItemFlowDefinition
 		public Group getGroup_1_7() { return cGroup_1_7; }
 		
+		//'stream'
+		public Keyword getStreamKeyword_1_7_0() { return cStreamKeyword_1_7_0; }
+		
+		//ownedRelatedElement+=ItemFlowDefinition | memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';'
+		public Alternatives getAlternatives_1_7_1() { return cAlternatives_1_7_1; }
+		
+		//ownedRelatedElement+=ItemFlowDefinition
+		public Assignment getOwnedRelatedElementAssignment_1_7_1_0() { return cOwnedRelatedElementAssignment_1_7_1_0; }
+		
+		//ItemFlowDefinition
+		public RuleCall getOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_7_1_0_0() { return cOwnedRelatedElementItemFlowDefinitionParserRuleCall_1_7_1_0_0; }
+		
+		//memberName=Name? 'is' memberFeature=[SysML::ItemFlow|QualifiedName] ';'
+		public Group getGroup_1_7_1_1() { return cGroup_1_7_1_1; }
+		
+		//memberName=Name?
+		public Assignment getMemberNameAssignment_1_7_1_1_0() { return cMemberNameAssignment_1_7_1_1_0; }
+		
+		//Name
+		public RuleCall getMemberNameNameParserRuleCall_1_7_1_1_0_0() { return cMemberNameNameParserRuleCall_1_7_1_1_0_0; }
+		
+		//'is'
+		public Keyword getIsKeyword_1_7_1_1_1() { return cIsKeyword_1_7_1_1_1; }
+		
+		//memberFeature=[SysML::ItemFlow|QualifiedName]
+		public Assignment getMemberFeatureAssignment_1_7_1_1_2() { return cMemberFeatureAssignment_1_7_1_1_2; }
+		
+		//[SysML::ItemFlow|QualifiedName]
+		public CrossReference getMemberFeatureItemFlowCrossReference_1_7_1_1_2_0() { return cMemberFeatureItemFlowCrossReference_1_7_1_1_2_0; }
+		
+		//QualifiedName
+		public RuleCall getMemberFeatureItemFlowQualifiedNameParserRuleCall_1_7_1_1_2_0_1() { return cMemberFeatureItemFlowQualifiedNameParserRuleCall_1_7_1_1_2_0_1; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_1_7_1_1_3() { return cSemicolonKeyword_1_7_1_1_3; }
+		
+		//'abstract' 'stream' ownedRelatedElement+=AbstractItemFlowDefinition
+		public Group getGroup_1_8() { return cGroup_1_8; }
+		
 		//'abstract'
-		public Keyword getAbstractKeyword_1_7_0() { return cAbstractKeyword_1_7_0; }
+		public Keyword getAbstractKeyword_1_8_0() { return cAbstractKeyword_1_8_0; }
 		
 		//'stream'
-		public Keyword getStreamKeyword_1_7_1() { return cStreamKeyword_1_7_1; }
+		public Keyword getStreamKeyword_1_8_1() { return cStreamKeyword_1_8_1; }
 		
 		//ownedRelatedElement+=AbstractItemFlowDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_7_2() { return cOwnedRelatedElementAssignment_1_7_2; }
+		public Assignment getOwnedRelatedElementAssignment_1_8_2() { return cOwnedRelatedElementAssignment_1_8_2; }
 		
 		//AbstractItemFlowDefinition
-		public RuleCall getOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_7_2_0() { return cOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_7_2_0; }
+		public RuleCall getOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_8_2_0() { return cOwnedRelatedElementAbstractItemFlowDefinitionParserRuleCall_1_8_2_0; }
 		
 		//'flow' (ownedRelatedElement+=SuccessionItemFlowDefinition | memberName=Name? 'is'
 		//memberFeature=[SysML::SuccessionItemFlow|QualifiedName] ';')
-		public Group getGroup_1_8() { return cGroup_1_8; }
+		public Group getGroup_1_9() { return cGroup_1_9; }
 		
 		//'flow'
-		public Keyword getFlowKeyword_1_8_0() { return cFlowKeyword_1_8_0; }
+		public Keyword getFlowKeyword_1_9_0() { return cFlowKeyword_1_9_0; }
 		
 		//ownedRelatedElement+=SuccessionItemFlowDefinition | memberName=Name? 'is'
 		//memberFeature=[SysML::SuccessionItemFlow|QualifiedName] ';'
-		public Alternatives getAlternatives_1_8_1() { return cAlternatives_1_8_1; }
+		public Alternatives getAlternatives_1_9_1() { return cAlternatives_1_9_1; }
 		
 		//ownedRelatedElement+=SuccessionItemFlowDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_8_1_0() { return cOwnedRelatedElementAssignment_1_8_1_0; }
+		public Assignment getOwnedRelatedElementAssignment_1_9_1_0() { return cOwnedRelatedElementAssignment_1_9_1_0; }
 		
 		//SuccessionItemFlowDefinition
-		public RuleCall getOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_8_1_0_0() { return cOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_8_1_0_0; }
+		public RuleCall getOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_9_1_0_0() { return cOwnedRelatedElementSuccessionItemFlowDefinitionParserRuleCall_1_9_1_0_0; }
 		
 		//memberName=Name? 'is' memberFeature=[SysML::SuccessionItemFlow|QualifiedName] ';'
-		public Group getGroup_1_8_1_1() { return cGroup_1_8_1_1; }
+		public Group getGroup_1_9_1_1() { return cGroup_1_9_1_1; }
 		
 		//memberName=Name?
-		public Assignment getMemberNameAssignment_1_8_1_1_0() { return cMemberNameAssignment_1_8_1_1_0; }
+		public Assignment getMemberNameAssignment_1_9_1_1_0() { return cMemberNameAssignment_1_9_1_1_0; }
 		
 		//Name
-		public RuleCall getMemberNameNameParserRuleCall_1_8_1_1_0_0() { return cMemberNameNameParserRuleCall_1_8_1_1_0_0; }
+		public RuleCall getMemberNameNameParserRuleCall_1_9_1_1_0_0() { return cMemberNameNameParserRuleCall_1_9_1_1_0_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_1_8_1_1_1() { return cIsKeyword_1_8_1_1_1; }
+		public Keyword getIsKeyword_1_9_1_1_1() { return cIsKeyword_1_9_1_1_1; }
 		
 		//memberFeature=[SysML::SuccessionItemFlow|QualifiedName]
-		public Assignment getMemberFeatureAssignment_1_8_1_1_2() { return cMemberFeatureAssignment_1_8_1_1_2; }
+		public Assignment getMemberFeatureAssignment_1_9_1_1_2() { return cMemberFeatureAssignment_1_9_1_1_2; }
 		
 		//[SysML::SuccessionItemFlow|QualifiedName]
-		public CrossReference getMemberFeatureSuccessionItemFlowCrossReference_1_8_1_1_2_0() { return cMemberFeatureSuccessionItemFlowCrossReference_1_8_1_1_2_0; }
+		public CrossReference getMemberFeatureSuccessionItemFlowCrossReference_1_9_1_1_2_0() { return cMemberFeatureSuccessionItemFlowCrossReference_1_9_1_1_2_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_8_1_1_2_0_1() { return cMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_8_1_1_2_0_1; }
+		public RuleCall getMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_9_1_1_2_0_1() { return cMemberFeatureSuccessionItemFlowQualifiedNameParserRuleCall_1_9_1_1_2_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_1_8_1_1_3() { return cSemicolonKeyword_1_8_1_1_3; }
+		public Keyword getSemicolonKeyword_1_9_1_1_3() { return cSemicolonKeyword_1_9_1_1_3; }
 		
 		//'abstract' 'flow' ownedRelatedElement+=AbstractSuccessionItemFlowDefinition
-		public Group getGroup_1_9() { return cGroup_1_9; }
+		public Group getGroup_1_10() { return cGroup_1_10; }
 		
 		//'abstract'
-		public Keyword getAbstractKeyword_1_9_0() { return cAbstractKeyword_1_9_0; }
+		public Keyword getAbstractKeyword_1_10_0() { return cAbstractKeyword_1_10_0; }
 		
 		//'flow'
-		public Keyword getFlowKeyword_1_9_1() { return cFlowKeyword_1_9_1; }
+		public Keyword getFlowKeyword_1_10_1() { return cFlowKeyword_1_10_1; }
 		
 		//ownedRelatedElement+=AbstractSuccessionItemFlowDefinition
-		public Assignment getOwnedRelatedElementAssignment_1_9_2() { return cOwnedRelatedElementAssignment_1_9_2; }
+		public Assignment getOwnedRelatedElementAssignment_1_10_2() { return cOwnedRelatedElementAssignment_1_10_2; }
 		
 		//AbstractSuccessionItemFlowDefinition
-		public RuleCall getOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_9_2_0() { return cOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_9_2_0; }
+		public RuleCall getOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_10_2_0() { return cOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_10_2_0; }
 	}
 	public class EndFeatureMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.EndFeatureMember");
@@ -4073,6 +4092,64 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConnectorEnd
 		public RuleCall getOwnedRelatedElementConnectorEndParserRuleCall_1_0() { return cOwnedRelatedElementConnectorEndParserRuleCall_1_0; }
+	}
+	public class BindingConnectorDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.BindingConnectorDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cNameNameParserRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
+		private final RuleCall cConnectorTypePartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cIsKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final RuleCall cCategoryBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		
+		///* BINDING CONNECTORS */ BindingConnectorDefinition SysML::BindingConnector:
+		//	(name=Name? ConnectorTypePart 'is')?
+		//	ownedRelationship+=ConnectorEndMember '=' ownedRelationship+=ConnectorEndMember
+		//	CategoryBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name=Name? ConnectorTypePart 'is')? ownedRelationship+=ConnectorEndMember '=' ownedRelationship+=ConnectorEndMember
+		//CategoryBody
+		public Group getGroup() { return cGroup; }
+		
+		//(name=Name? ConnectorTypePart 'is')?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//name=Name?
+		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
+		
+		//Name
+		public RuleCall getNameNameParserRuleCall_0_0_0() { return cNameNameParserRuleCall_0_0_0; }
+		
+		//ConnectorTypePart
+		public RuleCall getConnectorTypePartParserRuleCall_0_1() { return cConnectorTypePartParserRuleCall_0_1; }
+		
+		//'is'
+		public Keyword getIsKeyword_0_2() { return cIsKeyword_0_2; }
+		
+		//ownedRelationship+=ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		
+		//ownedRelationship+=ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0; }
+		
+		//CategoryBody
+		public RuleCall getCategoryBodyParserRuleCall_4() { return cCategoryBodyParserRuleCall_4; }
 	}
 	public class SuccessionDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.SuccessionDefinition");
@@ -6742,6 +6819,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final ConnectorTypingElements pConnectorTyping;
 	private final ConnectorEndElements pConnectorEnd;
 	private final ConnectorEndMemberElements pConnectorEndMember;
+	private final BindingConnectorDefinitionElements pBindingConnectorDefinition;
 	private final SuccessionDefinitionElements pSuccessionDefinition;
 	private final AbstractSuccessionDefinitionElements pAbstractSuccessionDefinition;
 	private final ItemFlowDefinitionElements pItemFlowDefinition;
@@ -6939,6 +7017,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pConnectorTyping = new ConnectorTypingElements();
 		this.pConnectorEnd = new ConnectorEndElements();
 		this.pConnectorEndMember = new ConnectorEndMemberElements();
+		this.pBindingConnectorDefinition = new BindingConnectorDefinitionElements();
 		this.pSuccessionDefinition = new SuccessionDefinitionElements();
 		this.pAbstractSuccessionDefinition = new AbstractSuccessionDefinitionElements();
 		this.pItemFlowDefinition = new ItemFlowDefinitionElements();
@@ -7401,6 +7480,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	| 'connector' (ownedRelatedElement+=ConnectorDefinition
 	//	| memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | 'abstract' 'connector'
 	//	ownedRelatedElement+=AbstractConnectorDefinition
+	//	| 'binding' ownedRelatedElement+=BindingConnectorDefinition
 	//	| 'succession' (ownedRelatedElement+=SuccessionDefinition
 	//	| memberName=Name? 'is' memberFeature=[SysML::Succession|QualifiedName] ';') | 'abstract' 'succession'
 	//	ownedRelatedElement+=AbstractSuccessionDefinition
@@ -8116,6 +8196,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getConnectorEndMemberRule() {
 		return getConnectorEndMemberAccess().getRule();
+	}
+	
+	///* BINDING CONNECTORS */ BindingConnectorDefinition SysML::BindingConnector:
+	//	(name=Name? ConnectorTypePart 'is')?
+	//	ownedRelationship+=ConnectorEndMember '=' ownedRelationship+=ConnectorEndMember
+	//	CategoryBody;
+	public BindingConnectorDefinitionElements getBindingConnectorDefinitionAccess() {
+		return pBindingConnectorDefinition;
+	}
+	
+	public ParserRule getBindingConnectorDefinitionRule() {
+		return getBindingConnectorDefinitionAccess().getRule();
 	}
 	
 	///* SUCCESSIONS */ SuccessionDefinition SysML::Succession:

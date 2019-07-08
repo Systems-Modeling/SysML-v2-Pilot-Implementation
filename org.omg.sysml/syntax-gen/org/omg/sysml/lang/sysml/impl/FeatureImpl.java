@@ -333,7 +333,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		return getOwnedSubsettingWithDefault(subsettingDefault);
 	}
 	
-	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
+	public EList<Subsetting> getOwnedSubsettingWithDefault(String... subsettingDefault) {
 		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
 	}
 	

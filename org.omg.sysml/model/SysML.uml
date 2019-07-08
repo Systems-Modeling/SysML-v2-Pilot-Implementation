@@ -1190,4 +1190,10 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Class" xmi:id="_26RJ4JUgEemass-JSOUDiw" name="ItemFeature">
     <generalization xmi:id="_5ne-EJUgEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_S6RlwKK7EempxuT8GI2wUQ" name="SourceEnd">
+    <generalization xmi:id="_YKMnQKK7EempxuT8GI2wUQ" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bs55AKK7EempxuT8GI2wUQ" name="TargetEnd">
+    <generalization xmi:id="_bs55AaK7EempxuT8GI2wUQ" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
 </uml:Model>

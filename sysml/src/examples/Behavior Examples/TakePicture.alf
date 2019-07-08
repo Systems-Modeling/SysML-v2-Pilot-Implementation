@@ -32,6 +32,6 @@ behavior TakePicture() specializes Base::Performance {
 //		}
 //	}
 	
-	succession step1 to camera::focusedState;
-	succession step2 to camera::shotState;
+	succession step1 then camera::focusedState;
+	succession step2 then camera::shotState;
 }

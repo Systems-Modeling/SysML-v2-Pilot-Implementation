@@ -105,8 +105,8 @@ package Transfers {
 	  	
 	  	feature self: TransferBefore redefines Base::self;
 	  	
-	  	succession transferSource to self;
-	  	succession self to transferTarget;
+	  	succession transferSource then self;
+	  	succession self then transferTarget;
 	}
 	
 	/**

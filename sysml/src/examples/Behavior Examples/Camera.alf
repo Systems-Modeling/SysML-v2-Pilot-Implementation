@@ -6,5 +6,5 @@ class Camera {
 	portion focusedState: Camera subsets Occurrence::timeSlices;
 	portion shotState: Camera subsets Occurrence::timeSlices;
 	
-	succession focusedState to shotState;
+	succession focusedState then shotState;
 }

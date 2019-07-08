@@ -4,6 +4,8 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Optional;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +31,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Ownership;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -156,6 +159,67 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetRelatedElement() {
+		return eIsSet(SysMLPackage.CONNECTOR__TARGET)
+			|| eIsSet(SysMLPackage.CONNECTOR__SOURCE)
+			|| eIsSet(SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT)
+			|| eIsSet(SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT)
+			|| eIsSet(SysMLPackage.CONNECTOR__RELATED_FEATURE);
+	}
+
+/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Category> getType() {
+		EList<Category> type = new UniqueEList<Category>();
+		Association association = getAssociation();
+		if (association != null) {
+			type.add(association);
+		}
+		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Category> getOwnedType() {
+		EList<Category> ownedType = new UniqueEList<Category>();
+		Association ownedAssociationType = getOwnedAssociationType();
+		if (ownedAssociationType != null) {
+			ownedType.add(ownedAssociationType);
+		}
+		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__OWNED_TYPE, ownedType.size(), ownedType.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
 		if (ownedRelatedElement == null) {
@@ -240,15 +304,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		for (Feature connectorEnd: this.getConnectorEnd()) {
-			EList<Subsetting> subsetting = connectorEnd.getOwnedSubsetting();
-			if (!subsetting.isEmpty()) {
-				Feature relatedFeature = subsetting.get(0).getSubsettedFeature();
-				if (relatedFeature != null) {
-					relatedFeatures.add(relatedFeature);
-				}
-			}
-		}
+		getConnectorEnd().stream().forEach(end->
+			getRelatedFeature(end).
+			ifPresent(feature->relatedFeatures.add(feature)));
 		return relatedFeatures;
 	}
 	
@@ -433,10 +491,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	// Utility Methods
 	
 	public Feature addConnectorEnd(Feature relatedFeature) {
-		return addConnectorEnd(SysMLFactory.eINSTANCE.createFeature(), relatedFeature);
-	}
-	
-	public Feature addConnectorEnd(Feature endFeature, Feature relatedFeature) {
+		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettedFeature(relatedFeature);
 		subsetting.setSubsettingFeature(endFeature);
@@ -450,11 +505,30 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public void setRelatedFeature(int index, Feature relatedFeature) {
 		EList<Feature> connectorEnds = getConnectorEnd();
 		if (index < connectorEnds.size()) {
-			EList<Subsetting> subsettings = connectorEnds.get(index).getOwnedSubsetting();
-			if (!subsettings.isEmpty()) {
-				subsettings.get(0).setSubsettedFeature(relatedFeature);
-			}
+			setRelatedFeature(connectorEnds.get(index), relatedFeature);
 		}
+	}
+
+	public static void setRelatedFeature(Feature connectorEnd, Feature relatedFeature) {
+		getSubsetting(connectorEnd).
+			orElse(createSubsetting(connectorEnd)).
+			setSubsettedFeature(relatedFeature);
+	}
+	
+	protected static Subsetting createSubsetting(Feature connectorEnd) {
+		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+		subsetting.setSubsettingFeature(connectorEnd);
+		connectorEnd.getOwnedRelationship().add(subsetting);
+		return subsetting;
+	}
+	
+	public static Optional<Subsetting> getSubsetting(Feature connectorEnd) {
+		return connectorEnd.getOwnedSubsetting().stream().
+				filter(s->!(s instanceof Redefinition)).findFirst();
+	}
+	
+	public static Optional<Feature> getRelatedFeature(Feature connectorEnd) {
+		return getSubsetting(connectorEnd).map(s->s.getSubsettedFeature());
 	}
 
 	/**
@@ -728,83 +802,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		result.append(isDirected);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedElement() {
-		return eIsSet(SysMLPackage.CONNECTOR__TARGET)
-			|| eIsSet(SysMLPackage.CONNECTOR__SOURCE)
-			|| eIsSet(SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT)
-			|| eIsSet(SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT)
-			|| eIsSet(SysMLPackage.CONNECTOR__RELATED_FEATURE);
-	}
-
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Category> getType() {
-		EList<Category> type = new UniqueEList<Category>();
-		Association association = getAssociation();
-		if (association != null) {
-			type.add(association);
-		}
-		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
-	}
-
-	//	/**
-//	 * <!-- begin-user-doc -->
-//	 * <!-- end-user-doc -->
-//	 * @generated NOT
-//	 */
-//	@Override
-//	public EList<Category> getType() {
-//		EList<Category> type = new EObjectResolvingEList<Category>(Category.class, this, SysMLPackage.CONNECTOR__TYPE);
-//		// NOTE: The "association" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-//		Category association = basicGetAssociation();
-//		if (association != null) {
-//			type.add(association);
-//		}
-//		return type;
-//	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Category> getOwnedType() {
-		EList<Category> ownedType = new UniqueEList<Category>();
-		Association ownedAssociationType = getOwnedAssociationType();
-		if (ownedAssociationType != null) {
-			ownedType.add(ownedAssociationType);
-		}
-		return new UnionEObjectEList<Category>(this, SysMLPackage.Literals.FEATURE__OWNED_TYPE, ownedType.size(), ownedType.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedType() {
-  		return false;
 	}
 
 } //ConnectorImpl

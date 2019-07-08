@@ -36,6 +36,17 @@ package Base {
 	 * snapshots of an occurrence over time.
 	 */
 	abstract class Occurrence specializes Anything {
+		
+		/**
+		 * Occurrences that end no earlier than this occurrence starts.
+		 */
+		feature predecessors: Occurrence[0..*];
+		
+		/**
+		 * Occurrences that start no earlier than this occcurrence ends.
+		 */
+		feature successors: Occurrence[0..*];
+		
 		/**
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence.

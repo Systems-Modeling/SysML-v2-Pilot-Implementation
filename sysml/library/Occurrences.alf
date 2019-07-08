@@ -37,8 +37,8 @@ package Occurrences {
 	 * of the laterOccurrence.
 	 */
 	assoc HappensBefore {
-		end earlierOccurrence: Occurrence[0..*];
-		end laterOccurrence: Occurrence[0..*];
+		end earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors;
+		end laterOccurrence: Occurrence[0..*] redefines Occurrence::successors;
 	}
 	
 	/**

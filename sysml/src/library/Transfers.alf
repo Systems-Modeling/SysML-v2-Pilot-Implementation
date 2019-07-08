@@ -108,6 +108,25 @@ package Transfers {
 	  	succession transferSource to self;
 	  	succession self to transferTarget;
 	}
+	
+	/**
+	 * SignalTransfer is a specialization of Transfer that represents an asynchronous signal from an
+	 * unidentified source to a reception step of a target behavior.
+	 */
+	interaction SignalTransfer specializes Transfer {
+		end transferSource: Occurrence[0..*] redefines Transfer::transferSource;
+		end transferTarget: Reception[0..*] redefines Transfer::transferTarget {
+			feature signalInput: Object[0..*] redefines Transfer::transferTarget::targetInput, Reception::signalInput;
+		}
+	}
+	
+	/**
+	 * A Reception is the behavior of receiving an asynchronous signal transfer. The received signal object
+	 * is the output of the behavior.
+	 */
+	behavior Reception(out signal: Object[0..*]) {
+		abstract feature signalInput: Object[0..*] = signal;
+	}	
 	  
 	/**
 	 * transfers is a specialization of performances and binaryLinks restricted to type 

@@ -176,21 +176,33 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
 		Category owner = getOwningCategory();
-		if (ends.size() < 2 && owner instanceof Step) {
+		if (owner instanceof Step) {
 			EList<Feature> features = owner.getOwnedFeature();
 			int i = features.indexOf(this);
 			if (i > 0) {
-				ItemFlowFeature targetInput = SysMLFactory.eINSTANCE.createItemFlowFeature();
-				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-				redefinition.setRedefiningFeature(targetInput);
-				redefinition.setRedefinedFeature(features.get(i-1));
-				targetInput.getOwnedRelationship().add(redefinition);
-				ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
-				((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
-				EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-				membership.getOwnedRelatedElement().add(targetEnd);
-				getOwnedRelationship().add(membership);
-//				addConnectorEnd(targetEnd, ((Feature)owner));
+				if (ends.size() < 2) {
+					ItemFlowFeature targetInput = SysMLFactory.eINSTANCE.createItemFlowFeature();
+					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+					redefinition.setRedefiningFeature(targetInput);
+					redefinition.setRedefinedFeature(features.get(i-1));
+					targetInput.getOwnedRelationship().add(redefinition);
+					ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
+					((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
+					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
+					membership.getOwnedRelatedElement().add(targetEnd);
+					getOwnedRelationship().add(membership);
+				} else {
+					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
+					if (!features.isEmpty()) {
+						EList<Redefinition> redefinitions = endFeatures.get(0).getOwnedRedefinition();
+						if (!redefinitions.isEmpty()) {
+							Redefinition redefinition = redefinitions.get(0);
+							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
+								redefinition.setRedefinedFeature(features.get(i-1));
+							}
+						}
+					}
+				}
 			}
 		}
 		return ends;

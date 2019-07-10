@@ -41,7 +41,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 			Element owner = getOwningNamespace();
 			if (owner instanceof InvocationExpressionImpl) {
 				InvocationExpressionImpl expression = (InvocationExpressionImpl)owner;
-				int i = expression.getFeature().stream().filter(f->f instanceof BindingConnector).
+				int i = expression.getOwnedFeature().stream().filter(f->f instanceof BindingConnector).
 						collect(Collectors.toList()).indexOf(this);
 				if (i >= 0) {
 					List<? extends Feature> arguments = expression.getArguments();
@@ -59,16 +59,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 						relatedFeatures.add(feature);
 					}
 				}
-//			} else if (owner instanceof BlockExpression) {
-//				BlockExpressionImpl expression = (BlockExpressionImpl)owner;
-//				List<Expression> subexpressions = expression.getSubexpressions();
-//				if (!subexpressions.isEmpty()) {
-//					Feature result = ((ExpressionImpl)subexpressions.get(subexpressions.size() - 1)).getResult();
-//					setRelatedFeature(0, result);
-//					setRelatedFeature(1, getResult());
-//					relatedFeatures.add(result);
-//					relatedFeatures.add(getResult());
-//				}
 			}
 		}
 		return relatedFeatures;

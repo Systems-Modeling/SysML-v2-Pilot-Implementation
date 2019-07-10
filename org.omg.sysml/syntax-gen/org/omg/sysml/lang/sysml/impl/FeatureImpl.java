@@ -356,6 +356,10 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		}
 		return redefinitions;
 	}
+	
+//	protected boolean isRedefinitionsNeeded(List<Redefinition> ownedRedefinitions) {
+//		return ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null);
+//	}
 
 	/**
 	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its

@@ -7,12 +7,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -48,12 +46,13 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 
 	@Override
 	protected EList<Subsetting> getComputedRedefinitions() {
-		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
-		if (ownedRedefinitions.isEmpty()) {
-			addRedefinitions(redefinitions, null);
-		}
-		return redefinitions;
+//		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+//		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
+//		if (ownedRedefinitions.isEmpty()) {
+//			addRedefinitions(redefinitions, null);
+//		}
+//		return redefinitions;
+		return super.getComputedRedefinitions();
 	}
 	
 	@Override

@@ -204,7 +204,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 			generalization.setSpecific(this);
 		} else {
 			generalization = generalizations.stream().
-					filter(s->((GeneralizationImpl)s).basicGetGeneral() == null).
+					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
 					findFirst().orElse(null);
 		}
 		return generalization;

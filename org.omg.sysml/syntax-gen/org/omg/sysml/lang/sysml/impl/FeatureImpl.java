@@ -328,11 +328,12 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
+		clearCaches();
 		getComputedRedefinitions();
 		return getOwnedSubsettingWithDefault(subsettingDefault);
 	}
 	
-	public EList<Subsetting> getOwnedSubsettingWithDefault(String subsettingDefault) {
+	public EList<Subsetting> getOwnedSubsettingWithDefault(String... subsettingDefault) {
 		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
 	}
 	
@@ -355,6 +356,10 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		}
 		return redefinitions;
 	}
+	
+//	protected boolean isRedefinitionsNeeded(List<Redefinition> ownedRedefinitions) {
+//		return ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null);
+//	}
 
 	/**
 	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
@@ -454,6 +459,17 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		// TODO: implement this method to set the 'Owning Feature Membership' reference
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
+	
+	/**
+	 * Locally cached value for isComposite. This allows isComposite to be set directly
+	 * on a Feature, and then propagated back to the owningFeatureMembership, once this
+	 * is set.
+	 */
+	protected boolean isComposite = false;
+	
+	public boolean basicIsComposite() {
+		return isComposite;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -471,6 +487,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public void setIsComposite(boolean newIsComposite) {
+		isComposite = newIsComposite;
 		FeatureMembership featureMembership = this.getOwningFeatureMembership();
 		if (featureMembership != null) {
 			featureMembership.setIsPart(newIsComposite);

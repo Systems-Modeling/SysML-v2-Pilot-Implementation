@@ -32,6 +32,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
 	protected AbstractElementAlias match_QueryHeadExpression_FullStopSolidusKeyword_0_q;
+	protected AbstractElementAlias match_StepParameterFlowDefinition_StreamKeyword_0_0_q;
 	protected AbstractElementAlias match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q;
 	
 	@Inject
@@ -47,6 +48,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
 		match_QueryHeadExpression_FullStopSolidusKeyword_0_q = new TokenAlias(false, true, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
+		match_StepParameterFlowDefinition_StreamKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getStepParameterFlowDefinitionAccess().getStreamKeyword_0_0());
 		match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_2_1()));
 	}
 	
@@ -82,6 +84,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_QueryHeadExpression_FullStopSolidusKeyword_0_q.equals(syntax))
 				emit_QueryHeadExpression_FullStopSolidusKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_StepParameterFlowDefinition_StreamKeyword_0_0_q.equals(syntax))
+				emit_StepParameterFlowDefinition_StreamKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q.equals(syntax))
 				emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -142,15 +146,20 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'step' (ambiguity) (rule start)
+	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
 	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name '(' ')' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=StepParameterFlowMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=StepParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
@@ -222,6 +231,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
@@ -256,16 +266,41 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'stream'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'from' ownedRelationship+=ItemFlowEndMember
+	 */
+	protected void emit_StepParameterFlowDefinition_StreamKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'expr' (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     (rule start) 'expr' (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     (rule start) 'expr' (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) 'expr' (ambiguity) isOrdered?='ordered'
+	 *     (rule start) 'expr' (ambiguity) ownedRelationship+=Multiplicity
+	 *     (rule start) 'step' (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) 'step' (ambiguity) isOrdered?='ordered'
+	 *     (rule start) 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
-	 *     name=Name (ambiguity) '(' ownedRelationship+=ParameterMember
-	 *     name=Name (ambiguity) '(' ownedRelationship+=StepParameterMember
+	 *     isAbstract?='abstract' 'expr' (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     isAbstract?='abstract' 'expr' (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     isAbstract?='abstract' 'expr' (ambiguity) isNonunique?='nonunique'
+	 *     isAbstract?='abstract' 'expr' (ambiguity) isOrdered?='ordered'
+	 *     isAbstract?='abstract' 'expr' (ambiguity) ownedRelationship+=Multiplicity
+	 *     isAbstract?='abstract' 'step' (ambiguity) isNonunique?='nonunique'
+	 *     isAbstract?='abstract' 'step' (ambiguity) isOrdered?='ordered'
+	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
@@ -277,8 +312,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
 	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
-	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=ParameterMember
-	 *     ownedRelationship+=Redefinition (ambiguity) '(' ownedRelationship+=StepParameterMember
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset

@@ -204,7 +204,7 @@ public class CategoryImpl extends PackageImpl implements Category {
 			generalization.setSpecific(this);
 		} else {
 			generalization = generalizations.stream().
-					filter(s->s.getGeneral() == null).
+					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
 					findFirst().orElse(null);
 		}
 		return generalization;
@@ -316,6 +316,14 @@ public class CategoryImpl extends PackageImpl implements Category {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CATEGORY__IS_ABSTRACT, oldIsAbstract, isAbstract));
 	}
 	
+	private EList<Membership> inheritedMembership = null;
+	
+	@Override
+	public void clearCaches() {
+		super.clearCaches();
+		inheritedMembership = null;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,7 +331,11 @@ public class CategoryImpl extends PackageImpl implements Category {
 	 */
 	@Override
 	public EList<Membership> getInheritedMembership() {
-		return getInheritedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>(), true);
+		if (inheritedMembership == null) {
+			inheritedMembership = getInheritedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>(), true);
+//			System.out.println("Caching inheritedMembership for " + this);
+		}
+		return inheritedMembership;
 	}
 	
 	public EList<Membership> getInheritedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Category> excludedCategories, boolean includeProtected) {

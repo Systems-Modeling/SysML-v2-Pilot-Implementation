@@ -36,6 +36,17 @@ package Base {
 	 * snapshots of an occurrence over time.
 	 */
 	abstract class Occurrence specializes Anything {
+		
+		/**
+		 * Occurrences that end no earlier than this occurrence starts.
+		 */
+		feature predecessors: Occurrence[0..*];
+		
+		/**
+		 * Occurrences that start no earlier than this occcurrence ends.
+		 */
+		feature successors: Occurrence[0..*];
+		
 		/**
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence.
@@ -81,17 +92,17 @@ package Base {
 		 * snapshots have no duration.
 		 */
 		// Note: Connectors are only allowed to have a single type.
-		succession :HappensBeforeSelf is snapshots[1] to snapshots[1];
+		succession :HappensBeforeSelf is snapshots[1] then snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.
 		 */
-		succession startShot[1] to snapshots[0..*];
+		succession startShot[1] then snapshots[0..*];
 		
 		/**
 		 * The endShot happens after all snapshots.
 		 */
-		succession snapshots[0..*] to endShot[1];
+		succession snapshots[0..*] then endShot[1];
 	}
 
 	/**
@@ -118,8 +129,8 @@ package Base {
 	assoc BinaryLink specializes Link {
 	    feature participant: Anything[2] ordered redefines Link::participant;
 		
-		end source: Anything[0..*] subsets participant;
-	    end target: Anything[0..*] subsets participant;
+		end source: Anything[0..*] nonunique subsets participant;
+	    end target: Anything[0..*] nonunique subsets participant;
 	    
 // Means:
 //	    feature sourceParticipant: Anything[1] subsets participant {
@@ -141,8 +152,8 @@ package Base {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end self: Anything[0..*] redefines source subsets myself redefines Base::'this';
-		end myself: Anything[0..*] redefines target subsets self;
+		end self: Anything[0..*] nonunique redefines source subsets myself redefines Base::self;
+		end myself: Anything[0..*] nonunique redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
 //		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
@@ -153,6 +164,10 @@ package Base {
 	 */
 	abstract behavior Performance() specializes Occurrence {
 		feature involvedObjects: Object[0..*];
+		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		feature subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		feature subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**
@@ -176,10 +191,10 @@ package Base {
 	 */
 	
 	/**
-	 * 'this' is a feature that relates everything to itself.
+	 * self is a feature that relates everything to itself.
 	 * (This is enforced by tying this feature to SelfLink::self.)
 	 */
-	feature 'this': Anything[1] subsets things;
+	feature self: Anything[1] subsets things;
 	 
 	/**
 	 * things is the top-level feature in the language.
@@ -204,12 +219,18 @@ package Base {
 	/**
 	 * binaryLinks is a specialization of links restricted to type BinaryLink.
 	 */
-	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links;
+	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links {
+		end source: Anything[0..*] nonunique redefines BinaryLink::source;
+		end target: Anything[0..*] nonunique redefines BinaryLink::target;
+	}
 	
 	/**
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
-	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks;
+	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
+		end source: Anything[0..*] nonunique redefines SelfLink::source, binaryLinks::source;
+		end target: Anything[0..*] nonunique redefines SelfLink::target, binaryLinks::target;
+	}
 	
 	/**
 	 * performances is the most general feature for performances of behaviors.

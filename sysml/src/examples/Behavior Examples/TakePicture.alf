@@ -14,8 +14,8 @@ behavior TakePicture() specializes Base::Performance {
 	behavior Focus(out xrsl: Exposure);
 	behavior Shoot(in xsf: Exposure);	
 	
-	step step1: Focus[1] (out xrsl) subsets Performance::suboccurrences;	
-	step step2: Shoot[1] (in xsf) subsets Performance::suboccurrences;
+	step step1: Focus[1] (out xrsl);	
+	step step2: Shoot[1] (in xsf);
 	
 	flow Exposure[1] from step1::xrsl to step2::xsf;
 
@@ -32,6 +32,6 @@ behavior TakePicture() specializes Base::Performance {
 //		}
 //	}
 	
-	succession step1 to camera::focusedState;
-	succession step2 to camera::shotState;
+	succession step1 then camera::focusedState;
+	succession step2 then camera::shotState;
 }

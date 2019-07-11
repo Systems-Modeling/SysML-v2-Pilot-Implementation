@@ -490,6 +490,24 @@ public interface SysMLFactory extends EFactory {
 	ItemFeature createItemFeature();
 
 	/**
+	 * Returns a new object of class '<em>Source End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source End</em>'.
+	 * @generated
+	 */
+	SourceEnd createSourceEnd();
+
+	/**
+	 * Returns a new object of class '<em>Target End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target End</em>'.
+	 * @generated
+	 */
+	TargetEnd createTargetEnd();
+
+	/**
 	 * Returns a new object of class '<em>Operator Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

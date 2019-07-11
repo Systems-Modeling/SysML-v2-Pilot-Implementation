@@ -28,14 +28,14 @@ package Transfers {
 		}
 		
 		/**
-		 * If isMove is true, then all items begin moving from the transferSource at the start
+		 * If isMove is true, then all items leave the transferSource at the start
 		 * of the transfer.
 		 */
 		feature isMove: Boolean = notEmpty(moving);
 		
 		/**
-		 * If isPush is true, then all items are pushed out of the transferSource at the
-		 * start of the transfer.
+		 * If isPush is true, then the transfer begins when the items are available
+		 * at the source.
 		 */
 		feature isPush: Boolean = notEmpty(pushing);
 		
@@ -103,21 +103,46 @@ package Transfers {
 	 	end transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
 	  	end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
-	  	feature self: TransferBefore redefines 'this';
+	  	feature self: TransferBefore redefines Base::self;
 	  	
-	  	succession transferSource to self;
-	  	succession self to transferTarget;
+	  	succession transferSource then self;
+	  	succession self then transferTarget;
 	}
+	
+	/**
+	 * SignalTransfer is a specialization of Transfer that represents an asynchronous signal from an
+	 * unidentified source to a reception step of a target behavior.
+	 */
+	interaction SignalTransfer specializes Transfer {
+		end transferSource: Occurrence[0..*] redefines Transfer::transferSource;
+		end transferTarget: Reception[0..*] redefines Transfer::transferTarget {
+			feature signalInput: Object[0..*] redefines Transfer::transferTarget::targetInput, Reception::signalInput;
+		}
+	}
+	
+	/**
+	 * A Reception is the behavior of receiving an asynchronous signal transfer. The received signal object
+	 * is the output of the behavior.
+	 */
+	behavior Reception(out signal: Object[0..*]) {
+		abstract feature signalInput: Object[0..*] = signal;
+	}	
 	  
 	/**
 	 * transfers is a specialization of performances and binaryLinks restricted to type 
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
-	feature transfers: Transfer[0..*] nonunique subsets performances, binaryLinks;
+	feature transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+		end transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
+		end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
+	}
 	  
 	/**
 	 * successionTransfers is a specialization of transfers and successions restricted to
 	 * type TransferBefore. It is the default subsetting for sucession (non-streaming) item flows.
 	 */
-	feature flows: TransferBefore[0..*] nonunique subsets transfers, successions;
+	feature flows: TransferBefore[0..*] nonunique subsets transfers, successions {
+		end transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
+		end transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
+	}
 }

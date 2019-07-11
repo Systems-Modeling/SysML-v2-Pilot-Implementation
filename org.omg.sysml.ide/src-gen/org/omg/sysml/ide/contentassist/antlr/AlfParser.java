@@ -245,6 +245,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepDefinitionAccess().getGroup_0(), "rule__StepDefinition__Group_0__0");
 			builder.put(grammarAccess.getStepDefinitionAccess().getGroup_3_0(), "rule__StepDefinition__Group_3_0__0");
 			builder.put(grammarAccess.getStepDefinitionAccess().getGroup_3_1(), "rule__StepDefinition__Group_3_1__0");
+			builder.put(grammarAccess.getStepDefinitionAccess().getGroup_3_2(), "rule__StepDefinition__Group_3_2__0");
 			builder.put(grammarAccess.getStepParameterListAccess().getGroup(), "rule__StepParameterList__Group__0");
 			builder.put(grammarAccess.getStepParameterListAccess().getGroup_1(), "rule__StepParameterList__Group_1__0");
 			builder.put(grammarAccess.getStepParameterListAccess().getGroup_1_2(), "rule__StepParameterList__Group_1_2__0");
@@ -256,7 +257,9 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0(), "rule__ExpressionDefinition__Group_2_0__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0_2(), "rule__ExpressionDefinition__Group_2_0_2__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1(), "rule__ExpressionDefinition__Group_2_1__0");
-			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_3(), "rule__ExpressionDefinition__Group_2_1_3__0");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_1_1(), "rule__ExpressionDefinition__Group_2_1_1__0");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_2(), "rule__ExpressionDefinition__Group_2_2__0");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_2_3(), "rule__ExpressionDefinition__Group_2_2_3__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup(), "rule__NullCoalescingExpression__Group__0");
@@ -524,7 +527,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipAssignment_0_1(), "rule__StepDefinition__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getStepDefinitionAccess().getIsAbstractAssignment_1(), "rule__StepDefinition__IsAbstractAssignment_1");
 			builder.put(grammarAccess.getStepDefinitionAccess().getNameAssignment_3_0_0(), "rule__StepDefinition__NameAssignment_3_0_0");
-			builder.put(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipAssignment_3_1_1(), "rule__StepDefinition__OwnedRelationshipAssignment_3_1_1");
+			builder.put(grammarAccess.getStepDefinitionAccess().getOwnedRelationshipAssignment_3_2_1(), "rule__StepDefinition__OwnedRelationshipAssignment_3_2_1");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_0(), "rule__StepParameterList__OwnedRelationshipAssignment_1_0");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_1(), "rule__StepParameterList__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_2_1(), "rule__StepParameterList__OwnedRelationshipAssignment_1_2_1");
@@ -537,7 +540,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEmptySuccessionMemberAccess().getOwnedRelatedElementAssignment(), "rule__EmptySuccessionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getIsAbstractAssignment_0(), "rule__ExpressionDefinition__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getNameAssignment_2_0_0(), "rule__ExpressionDefinition__NameAssignment_2_0_0");
-			builder.put(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipAssignment_2_1_1(), "rule__ExpressionDefinition__OwnedRelationshipAssignment_2_1_1");
+			builder.put(grammarAccess.getExpressionDefinitionAccess().getOwnedRelationshipAssignment_2_2_1(), "rule__ExpressionDefinition__OwnedRelationshipAssignment_2_2_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4(), "rule__ConditionalExpression__OperandAssignment_1_4");

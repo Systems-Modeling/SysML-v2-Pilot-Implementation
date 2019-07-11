@@ -699,10 +699,12 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-	( isAbstract ?= 'abstract')? 'step'
+    ( isAbstract ?= 'abstract' )? 'step' 
 	( name = Name TypePart StepParameterList? SubsettingPart ValuePart?
+	| TypePart StepParameterList? ValuePart?
 	| 'redefines' ownedRelationship += Redefinition TypePart StepParameterList? ValuePart?
 	) BehaviorBody
+
 ;
 
 fragment StepParameterList returns SysML::Category :
@@ -740,8 +742,9 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 ExpressionDefinition returns SysML::BlockExpression :
 	( isAbstract ?= 'abstract')? 'expr' 
 	( name = Name TypePart ( StepParameterList ReturnParameterPart )? SubsettingPart ValuePart?
+	| TypePart ( StepParameterList ReturnParameterPart )? ValuePart?
 	| 'redefines' ownedRelationship += Redefinition TypePart ( StepParameterList ReturnParameterPart )? ValuePart?
-	)?
+	)
 	FunctionBody
 ;
 

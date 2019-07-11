@@ -28,14 +28,14 @@ package Transfers {
 		}
 		
 		/**
-		 * If isMove is true, then all items begin moving from the transferSource at the start
+		 * If isMove is true, then all items leave the transferSource at the start
 		 * of the transfer.
 		 */
 		feature isMove: Boolean = notEmpty(moving);
 		
 		/**
-		 * If isPush is true, then all items are pushed out of the transferSource at the
-		 * start of the transfer.
+		 * If isPush is true, then the transfer begins when the items are available
+		 * at the source.
 		 */
 		feature isPush: Boolean = notEmpty(pushing);
 		

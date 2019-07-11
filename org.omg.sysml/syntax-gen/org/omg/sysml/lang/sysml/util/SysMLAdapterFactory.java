@@ -32,7 +32,10 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -349,6 +352,18 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLiteralInteger(LiteralInteger object) {
 				return createLiteralIntegerAdapter();
+			}
+			@Override
+			public Adapter caseItemFlowEnd(ItemFlowEnd object) {
+				return createItemFlowEndAdapter();
+			}
+			@Override
+			public Adapter caseItemFlowFeature(ItemFlowFeature object) {
+				return createItemFlowFeatureAdapter();
+			}
+			@Override
+			public Adapter caseItemFeature(ItemFeature object) {
+				return createItemFeatureAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1053,6 +1068,48 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLiteralIntegerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFlowEnd <em>Item Flow End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ItemFlowEnd
+	 * @generated
+	 */
+	public Adapter createItemFlowEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFlowFeature <em>Item Flow Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ItemFlowFeature
+	 * @generated
+	 */
+	public Adapter createItemFlowFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFeature <em>Item Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ItemFeature
+	 * @generated
+	 */
+	public Adapter createItemFeatureAdapter() {
 		return null;
 	}
 

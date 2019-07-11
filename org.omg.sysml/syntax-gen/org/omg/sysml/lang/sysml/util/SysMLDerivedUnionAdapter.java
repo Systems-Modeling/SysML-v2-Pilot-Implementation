@@ -30,7 +30,10 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -276,6 +279,15 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.LITERAL_INTEGER:
 				notifyLiteralIntegerChanged(notification, eClass);
+				break;
+			case SysMLPackage.ITEM_FLOW_END:
+				notifyItemFlowEndChanged(notification, eClass);
+				break;
+			case SysMLPackage.ITEM_FLOW_FEATURE:
+				notifyItemFlowFeatureChanged(notification, eClass);
+				break;
+			case SysMLPackage.ITEM_FEATURE:
+				notifyItemFeatureChanged(notification, eClass);
 				break;
 		}
 	}
@@ -1419,6 +1431,72 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_INTEGER__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyItemFlowEndChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ItemFlowEnd.class)) {
+			case SysMLPackage.ITEM_FLOW_END__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FLOW_END__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FLOW_END__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyItemFlowFeatureChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ItemFlowFeature.class)) {
+			case SysMLPackage.ITEM_FLOW_FEATURE__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FLOW_FEATURE__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FLOW_FEATURE__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyItemFeatureChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ItemFeature.class)) {
+			case SysMLPackage.ITEM_FEATURE__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FEATURE__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ITEM_FEATURE__INHERITED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 		}

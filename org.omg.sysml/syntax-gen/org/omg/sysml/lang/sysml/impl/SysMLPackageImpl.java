@@ -36,7 +36,10 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -423,6 +426,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass literalIntegerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass itemFlowEndEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass itemFlowFeatureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass itemFeatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1997,16 +2021,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getInteraction_ParticipantFeature() {
-		return (EReference)interactionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getOwnership() {
 		return ownershipEClass;
 	}
@@ -2179,6 +2193,36 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	@Override
 	public EAttribute getLiteralInteger_Value() {
 		return (EAttribute)literalIntegerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getItemFlowEnd() {
+		return itemFlowEndEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getItemFlowFeature() {
+		return itemFlowFeatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getItemFeature() {
+		return itemFeatureEClass;
 	}
 
 	/**
@@ -2586,7 +2630,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(atomicInteractionEClass, ATOMIC_INTERACTION__ITEM_TYPE);
 
 		interactionEClass = createEClass(INTERACTION);
-		createEReference(interactionEClass, INTERACTION__PARTICIPANT_FEATURE);
 
 		successionItemFlowEClass = createEClass(SUCCESSION_ITEM_FLOW);
 
@@ -2635,6 +2678,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		literalIntegerEClass = createEClass(LITERAL_INTEGER);
 		createEAttribute(literalIntegerEClass, LITERAL_INTEGER__VALUE);
+
+		itemFlowEndEClass = createEClass(ITEM_FLOW_END);
+
+		itemFlowFeatureEClass = createEClass(ITEM_FLOW_FEATURE);
+
+		itemFeatureEClass = createEClass(ITEM_FEATURE);
 
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
@@ -2731,6 +2780,9 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		literalBooleanEClass.getESuperTypes().add(this.getLiteralExpression());
 		nullExpressionEClass.getESuperTypes().add(this.getExpression());
 		literalIntegerEClass.getESuperTypes().add(this.getLiteralExpression());
+		itemFlowEndEClass.getESuperTypes().add(this.getFeature());
+		itemFlowFeatureEClass.getESuperTypes().add(this.getFeature());
+		itemFeatureEClass.getESuperTypes().add(this.getFeature());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(objectClassEClass, ObjectClass.class, "ObjectClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2929,7 +2981,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getAtomicInteraction_ItemType(), this.getClass_(), null, "itemType", null, 1, -1, AtomicInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(interactionEClass, Interaction.class, "Interaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInteraction_ParticipantFeature(), this.getFeature(), null, "participantFeature", null, 2, -1, Interaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(successionItemFlowEClass, SuccessionItemFlow.class, "SuccessionItemFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2978,6 +3029,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		initEClass(literalIntegerEClass, LiteralInteger.class, "LiteralInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLiteralInteger_Value(), theTypesPackage.getInteger(), "value", null, 1, 1, LiteralInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(itemFlowEndEClass, ItemFlowEnd.class, "ItemFlowEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(itemFlowFeatureEClass, ItemFlowFeature.class, "ItemFlowFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(itemFeatureEClass, ItemFeature.class, "ItemFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");
@@ -3494,14 +3551,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/memberParameter")
-		   });
-		addAnnotation
-		  (getInteraction_ParticipantFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/involvesFeature")
 		   });
 	}
 

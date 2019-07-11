@@ -3,13 +3,17 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -28,6 +32,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
+	
+	public static final String ITEM_FLOW_SUBSETTING_DEFAULT = "Transfers::transfers";
+
 	/**
 	 * The cached value of the '{@link #getItemType() <em>Item Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -80,42 +87,93 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
 		if (itemType == null) {
 			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		}
+		if (itemType.isEmpty()) {
+			Feature feature = getItemFeature();
+			if (feature != null) {
+				itemType.addAll(feature.getType().stream().
+						filter(t->t instanceof org.omg.sysml.lang.sysml.Class).
+						map(t->(org.omg.sysml.lang.sysml.Class)t).
+						collect(Collectors.toList()));
+			}
+		}
 		return itemType;
+	}
+	
+	public Feature getItemFeature() {
+		EList<Feature> ends = getConnectorEnd();
+		return getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getTargetInputFeature() {
 		if (targetInputFeature == null) {
 			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
 		}
+		if (targetInputFeature.isEmpty()) {
+			Feature feature = getInputOutputFeature(0);
+			if (feature != null) {
+				targetInputFeature.add(feature);
+			}
+		}
 		return targetInputFeature;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
 		if (sourceOutputFeature == null) {
 			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
 		}
+		if (sourceOutputFeature.isEmpty()) {
+			Feature feature = getInputOutputFeature(1);
+			if (feature != null) {
+				sourceOutputFeature.add(feature);
+			}
+		}
 		return sourceOutputFeature;
 	}
+	
+	public Feature getInputOutputFeature(int i) {
+		EList<Feature> ends = getConnectorEnd();
+		if (ends.size() > i) {
+			Feature end = ends.get(i);
+			EList<Feature> features = end.getOwnedFeature();
+			if (!features.isEmpty()) {
+				EList<Redefinition> redefinitions = features.get(0).getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					return redefinitions.get(0).getRedefinedFeature();
+				}
+			}
+		}
+		return null;
+	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(ITEM_FLOW_SUBSETTING_DEFAULT);
+	}
+	
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return Collections.singletonList(getItemFeature());
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

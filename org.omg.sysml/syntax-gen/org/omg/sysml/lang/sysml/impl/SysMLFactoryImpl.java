@@ -35,7 +35,10 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -172,6 +175,9 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
 			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
 			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
+			case SysMLPackage.ITEM_FLOW_END: return createItemFlowEnd();
+			case SysMLPackage.ITEM_FLOW_FEATURE: return createItemFlowFeature();
+			case SysMLPackage.ITEM_FEATURE: return createItemFeature();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -748,6 +754,39 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public LiteralInteger createLiteralInteger() {
 		LiteralIntegerImpl literalInteger = new LiteralIntegerImpl();
 		return literalInteger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ItemFlowEnd createItemFlowEnd() {
+		ItemFlowEndImpl itemFlowEnd = new ItemFlowEndImpl();
+		return itemFlowEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ItemFlowFeature createItemFlowFeature() {
+		ItemFlowFeatureImpl itemFlowFeature = new ItemFlowFeatureImpl();
+		return itemFlowFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ItemFeature createItemFeature() {
+		ItemFeatureImpl itemFeature = new ItemFeatureImpl();
+		return itemFeature;
 	}
 
 	/**

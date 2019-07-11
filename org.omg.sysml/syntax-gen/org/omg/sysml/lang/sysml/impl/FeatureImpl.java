@@ -27,7 +27,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ObjectClass;
@@ -66,9 +65,12 @@ import org.omg.sysml.lang.sysml.ValueClass;
  */
 public class FeatureImpl extends CategoryImpl implements Feature {
 	
-	private static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
-	private static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
-	private static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
+	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
+	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	
+	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
+	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
 	
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
@@ -343,8 +345,7 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	}
 	
 	/**
-	 * If this Feature has no redefinitions, compute relevant redefinitions, as appropriate, from generalizations of the owning Category
-	 * of the Feature.
+	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
 	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
@@ -355,36 +356,53 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		return redefinitions;
 	}
 
+	/**
+	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
+	 * owning Category, then it is paired with relevant Features in the same position in Generalizations of the 
+	 * owning Category. The determination of what are relevant Categories and Features can be adjusted by
+	 * overriding getGeneralCategories and getRelevantFeatures.
+	 */
 	protected void addRedefinitions(EList<Subsetting> redefinitions, List<Redefinition> emptyRedefinitions) {
 		Category category = getOwningCategory();
 		int i = getRelevantFeatures(category).indexOf(this);
 		int j = 0;
-		int n = emptyRedefinitions.size();
+		int n = emptyRedefinitions == null? 0: emptyRedefinitions.size();
 		if (i >= 0) {
-			for (Generalization generalization: category.getOwnedGeneralization()) {
-				Category general = generalization.getGeneral();
-				if (general != null) {
-					List<? extends Feature> features = getRelevantFeatures(general);
-					if (i < features.size()) {
-						Feature redefinedFeature = features.get(i);
-						if (redefinedFeature != null) {
-							Redefinition redefinition;
-							if (j < n) {
-								redefinition = emptyRedefinitions.get(j);
-								j++;
-							} else {
-								redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-								redefinition.setRedefiningFeature(this);
-								getOwnedRelationship().add(redefinition);
-							}
-							redefinition.setRedefinedFeature(redefinedFeature);
-							redefinitions.add(redefinition);
+			for (Category general: getGeneralCategories(category)) {
+				List<? extends Feature> features = getRelevantFeatures(general);
+				if (i < features.size()) {
+					Feature redefinedFeature = features.get(i);
+					if (redefinedFeature != null) {
+						Redefinition redefinition;
+						if (j < n) {
+							redefinition = emptyRedefinitions.get(j);
+							j++;
+						} else {
+							redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+							redefinition.setRedefiningFeature(this);
+							getOwnedRelationship().add(redefinition);
 						}
+						redefinition.setRedefinedFeature(redefinedFeature);
+						redefinitions.add(redefinition);
 					}
 				}
 			}
-			getOwnedRelationship().removeAll(emptyRedefinitions.subList(j, n));
+			if (n > 0) {
+				getOwnedRelationship().removeAll(emptyRedefinitions.subList(j, n));
+			}
 		}
+	}
+	
+	/**
+	 * Get the set of Categories, more general than the given category, that may have 
+	 * redefined by this feature. By default this is all general Categories of the
+	 * given Category (without defaults).
+	 */
+	protected Set<Category> getGeneralCategories(Category category) {
+		return category.getOwnedGeneralization().stream().
+				map(gen->gen.getGeneral()).
+				filter(gen->gen != null).
+				collect(Collectors.toSet());
 	}
 	
 	/**

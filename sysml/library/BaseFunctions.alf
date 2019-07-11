@@ -7,6 +7,10 @@ package BaseFunctions {
 	
 	function ToString(x: Anything): String;
 	
+	function size(seq: Anything[*]): Natural;
+	function isEmpty(seq: Anything[*]): Boolean;
+	function notEmpty(seq: Anything[0..*]): Boolean;
+	
 	function '['(seq: Anything[*], index: Integer): Anything[0..1];
 
 	abstract function 'allInstances'(): Object[0..*] {

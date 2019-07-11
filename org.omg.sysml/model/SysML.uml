@@ -998,16 +998,12 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Association" xmi:id="7221b53c-2063-461f-9abc-29763e94facb" name="" visibility="public" memberEnd="2343e7b7-a7f5-4766-876f-c6259dbead0a c157657d-00ff-45a7-8901-72d5869d1be9">
     <ownedEnd xmi:id="c157657d-00ff-45a7-8901-72d5869d1be9" name="" visibility="public" type="d51c6af7-3ab4-491b-b464-521230ef02dc" association="7221b53c-2063-461f-9abc-29763e94facb"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="8b917de1-c346-4747-ae2f-13ea396ac789" name="" visibility="public" memberEnd="d5ad9849-bd99-47ac-aaa9-02b858533c21 5eb6cbf8-2072-47f1-bc7b-12d4b23cc639">
+  <packagedElement xmi:type="uml:Association" xmi:id="8b917de1-c346-4747-ae2f-13ea396ac789" name="" visibility="public" memberEnd="5eb6cbf8-2072-47f1-bc7b-12d4b23cc639">
     <ownedEnd xmi:id="5eb6cbf8-2072-47f1-bc7b-12d4b23cc639" name="" visibility="public" type="8ce7b0a8-dbee-43b9-a5b0-9756d0f6b6af" association="8b917de1-c346-4747-ae2f-13ea396ac789"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="8ce7b0a8-dbee-43b9-a5b0-9756d0f6b6af" name="Interaction" visibility="public">
     <generalization xmi:id="c111bc04-7963-416e-b029-8a9f2f086d84" general="2b6b71d4-57a9-4df4-badc-6ee2bfd7f8ba"/>
     <generalization xmi:id="a3dff1b1-94aa-418c-a60e-57911f3fabdd" general="86a283c4-fc00-49a6-af2c-f85043eadd9f"/>
-    <ownedAttribute xmi:id="d5ad9849-bd99-47ac-aaa9-02b858533c21" name="participantFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" redefinedProperty="6c83968c-1fff-42f7-9f8b-82272ab0e9cb" subsettedProperty="c0294af9-25fb-420c-ab74-c37076bb923c" association="8b917de1-c346-4747-ae2f-13ea396ac789">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="74344d70-d79f-49dc-9931-ede444e4d596" name="" visibility="public" value="2"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="dc649b8c-5b6a-400f-b164-91c754c11f45" name="" visibility="public" value="*"/>
-    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="939343d3-0c79-4f7b-8a3b-b4a0e8b5bf8c" name="" visibility="public" memberEnd="c2420f01-822c-4a39-9651-f1d23c363f62 de51428e-d67e-4b7e-8aa1-fbb0508ed883">
     <ownedEnd xmi:id="de51428e-d67e-4b7e-8aa1-fbb0508ed883" name="" visibility="public" type="fd27dfa3-9e11-465f-8981-00bc57981023" association="939343d3-0c79-4f7b-8a3b-b4a0e8b5bf8c"/>
@@ -1184,5 +1180,14 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c8bf0295-7b05-4ebd-8007-385365b87b14" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7ab484a8-5b5f-43b5-b0b4-936df9d7d5d4" name="" visibility="public" value="*"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_UaIXcJTwEemass-JSOUDiw" name="ItemFlowEnd">
+    <generalization xmi:id="_afqLQJTwEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gBbxwJTwEemass-JSOUDiw" name="ItemFlowFeature">
+    <generalization xmi:id="_gBbxwZTwEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_26RJ4JUgEemass-JSOUDiw" name="ItemFeature">
+    <generalization xmi:id="_5ne-EJUgEemass-JSOUDiw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
   </packagedElement>
 </uml:Model>

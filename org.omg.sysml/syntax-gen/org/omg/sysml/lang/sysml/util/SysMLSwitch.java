@@ -30,7 +30,10 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -712,6 +715,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCategory(literalInteger);
 				if (result == null) result = casePackage(literalInteger);
 				if (result == null) result = caseElement(literalInteger);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ITEM_FLOW_END: {
+				ItemFlowEnd itemFlowEnd = (ItemFlowEnd)theEObject;
+				T result = caseItemFlowEnd(itemFlowEnd);
+				if (result == null) result = caseFeature(itemFlowEnd);
+				if (result == null) result = caseCategory(itemFlowEnd);
+				if (result == null) result = casePackage(itemFlowEnd);
+				if (result == null) result = caseElement(itemFlowEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ITEM_FLOW_FEATURE: {
+				ItemFlowFeature itemFlowFeature = (ItemFlowFeature)theEObject;
+				T result = caseItemFlowFeature(itemFlowFeature);
+				if (result == null) result = caseFeature(itemFlowFeature);
+				if (result == null) result = caseCategory(itemFlowFeature);
+				if (result == null) result = casePackage(itemFlowFeature);
+				if (result == null) result = caseElement(itemFlowFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ITEM_FEATURE: {
+				ItemFeature itemFeature = (ItemFeature)theEObject;
+				T result = caseItemFeature(itemFeature);
+				if (result == null) result = caseFeature(itemFeature);
+				if (result == null) result = caseCategory(itemFeature);
+				if (result == null) result = casePackage(itemFeature);
+				if (result == null) result = caseElement(itemFeature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1451,6 +1484,51 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLiteralInteger(LiteralInteger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Item Flow End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Item Flow End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseItemFlowEnd(ItemFlowEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Item Flow Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Item Flow Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseItemFlowFeature(ItemFlowFeature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Item Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Item Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseItemFeature(ItemFeature object) {
 		return null;
 	}
 

@@ -43,8 +43,8 @@ package test{
 		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,
 		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,
 		   Base.selfLinks, Base.things, Base.values, 
-		   D, D.f, EE, EE.f, EE.try, b, c, f, try,
-		   test.D, test.D.f, test.EE, test.EE.f, test.EE.try, 
+		   D, D.b, D.c, D.f, EE, EE.b, EE.c, EE.f, EE.try, b, c, f, try,
+		   test.D, test.D.b, test.D.c, test.D.f, test.EE, test.EE.b, test.EE.c, test.EE.f, test.EE.try, 
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,
 		   OuterPackage3.D, OuterPackage3.D.f
 	--- */

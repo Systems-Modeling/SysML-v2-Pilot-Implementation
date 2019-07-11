@@ -19,11 +19,11 @@ package test{
 	class A{
 		class a1{}
 	}
-	class A{
-		class a2{}
-	}
 	class B specializes A{
-		// XPECT errors ---> "Couldn't resolve reference to Class 'a2'." at "a2"
-		class b specializes a2{}
+		class A{
+			class a2{}
+		}
+		// XPECT errors ---> "Couldn't resolve reference to Class 'A::a1'." at "A::a1"
+		class b specializes A::a1{}
 	}
 }

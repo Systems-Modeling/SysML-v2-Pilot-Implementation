@@ -7052,6 +7052,20 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 					}
 				)
 			)
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getConnectorDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getSubsettingPartParserRuleCall_0_4());
+			}
+			this_SubsettingPart_6=ruleSubsettingPart[$current]
+			{
+				$current = $this_SubsettingPart_6.current;
+				afterParserOrEnumRuleCall();
+			}
 		)
 		    |
 		(
@@ -7060,7 +7074,7 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 					{
 						newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getNameNameParserRuleCall_1_0_0());
 					}
-					lv_name_6_0=ruleName
+					lv_name_7_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConnectorDeclarationRule());
@@ -7068,7 +7082,7 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 						set(
 							$current,
 							"name",
-							lv_name_6_0,
+							lv_name_7_0,
 							"org.omg.sysml.Alf.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -7083,42 +7097,33 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 				}
 				newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getConnectorTypePartParserRuleCall_1_1());
 			}
-			this_ConnectorTypePart_7=ruleConnectorTypePart[$current]
+			this_ConnectorTypePart_8=ruleConnectorTypePart[$current]
 			{
-				$current = $this_ConnectorTypePart_7.current;
+				$current = $this_ConnectorTypePart_8.current;
 				afterParserOrEnumRuleCall();
 			}
-			otherlv_8='('
 			{
-				newLeafNode(otherlv_8, grammarAccess.getConnectorDeclarationAccess().getLeftParenthesisKeyword_1_2());
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getConnectorDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getSubsettingPartParserRuleCall_1_2());
+			}
+			this_SubsettingPart_9=ruleSubsettingPart[$current]
+			{
+				$current = $this_SubsettingPart_9.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_10='('
+			{
+				newLeafNode(otherlv_10, grammarAccess.getConnectorDeclarationAccess().getLeftParenthesisKeyword_1_3());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0());
-					}
-					lv_ownedRelationship_9_0=ruleConnectorEndMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConnectorDeclarationRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_9_0,
-							"org.omg.sysml.Alf.ConnectorEndMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_10=','
-			{
-				newLeafNode(otherlv_10, grammarAccess.getConnectorDeclarationAccess().getCommaKeyword_1_4());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_5_0());
+						newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_4_0());
 					}
 					lv_ownedRelationship_11_0=ruleConnectorEndMember
 					{
@@ -7134,17 +7139,40 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 					}
 				)
 			)
+			otherlv_12=','
+			{
+				newLeafNode(otherlv_12, grammarAccess.getConnectorDeclarationAccess().getCommaKeyword_1_5());
+			}
 			(
-				otherlv_12=','
+				(
+					{
+						newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_6_0());
+					}
+					lv_ownedRelationship_13_0=ruleConnectorEndMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConnectorDeclarationRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_13_0,
+							"org.omg.sysml.Alf.ConnectorEndMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_14=','
 				{
-					newLeafNode(otherlv_12, grammarAccess.getConnectorDeclarationAccess().getCommaKeyword_1_6_0());
+					newLeafNode(otherlv_14, grammarAccess.getConnectorDeclarationAccess().getCommaKeyword_1_7_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_6_1_0());
+							newCompositeNode(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_7_1_0());
 						}
-						lv_ownedRelationship_13_0=ruleConnectorEndMember
+						lv_ownedRelationship_15_0=ruleConnectorEndMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getConnectorDeclarationRule());
@@ -7152,16 +7180,16 @@ ruleConnectorDeclaration[EObject in_current]  returns [EObject current=in_curren
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_13_0,
+								lv_ownedRelationship_15_0,
 								"org.omg.sysml.Alf.ConnectorEndMember");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 			)*
-			otherlv_14=')'
+			otherlv_16=')'
 			{
-				newLeafNode(otherlv_14, grammarAccess.getConnectorDeclarationAccess().getRightParenthesisKeyword_1_7());
+				newLeafNode(otherlv_16, grammarAccess.getConnectorDeclarationAccess().getRightParenthesisKeyword_1_8());
 			}
 		)
 	)

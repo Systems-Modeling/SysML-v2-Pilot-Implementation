@@ -560,7 +560,8 @@ AbstractConnectorDefinition returns SysML::Connector :
 fragment ConnectorDeclaration returns SysML::Connector :
 	( ( ( name = Name )? ConnectorTypePart 'is')?
 	  ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
-	| ( name = Name )? ConnectorTypePart
+	  SubsettingPart
+	| ( name = Name )? ConnectorTypePart SubsettingPart
 	  '(' ownedRelationship += ConnectorEndMember ',' ownedRelationship += ConnectorEndMember
 	      ( ',' ownedRelationship += ConnectorEndMember )*
 	  ')'

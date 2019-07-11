@@ -218,7 +218,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_0(), "rule__ConnectorDeclaration__Group_0__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_0_0(), "rule__ConnectorDeclaration__Group_0_0__0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1(), "rule__ConnectorDeclaration__Group_1__0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1_6(), "rule__ConnectorDeclaration__Group_1_6__0");
+			builder.put(grammarAccess.getConnectorDeclarationAccess().getGroup_1_7(), "rule__ConnectorDeclaration__Group_1_7__0");
 			builder.put(grammarAccess.getConnectorTypePartAccess().getGroup(), "rule__ConnectorTypePart__Group__0");
 			builder.put(grammarAccess.getConnectorTypePartAccess().getGroup_0(), "rule__ConnectorTypePart__Group_0__0");
 			builder.put(grammarAccess.getConnectorEndAccess().getGroup(), "rule__ConnectorEnd__Group__0");
@@ -487,9 +487,9 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_0_3(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_0_3");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getNameAssignment_1_0(), "rule__ConnectorDeclaration__NameAssignment_1_0");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_3(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_3");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_5(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_5");
-			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_6_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6_1");
+			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_4(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_4");
+			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_6(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_6");
+			builder.put(grammarAccess.getConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_7_1(), "rule__ConnectorDeclaration__OwnedRelationshipAssignment_1_7_1");
 			builder.put(grammarAccess.getConnectorTypePartAccess().getOwnedRelationshipAssignment_0_1(), "rule__ConnectorTypePart__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getConnectorTypePartAccess().getOwnedRelationshipAssignment_1(), "rule__ConnectorTypePart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getConnectorTypePartAccess().getIsOrderedAssignment_2_0(), "rule__ConnectorTypePart__IsOrderedAssignment_2_0");

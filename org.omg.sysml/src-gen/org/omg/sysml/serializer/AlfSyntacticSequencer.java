@@ -146,11 +146,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'step' (ambiguity) (rule start)
+	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
 	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name '(' ')' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
@@ -277,11 +280,27 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'expr' (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     (rule start) 'expr' (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     (rule start) 'expr' (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) 'expr' (ambiguity) isOrdered?='ordered'
+	 *     (rule start) 'expr' (ambiguity) ownedRelationship+=Multiplicity
+	 *     (rule start) 'step' (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) 'step' (ambiguity) isOrdered?='ordered'
+	 *     (rule start) 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) ownedRelationship+=Multiplicity
+	 *     isAbstract?='abstract' 'expr' (ambiguity) 'redefines' ownedRelationship+=Redefinition
+	 *     isAbstract?='abstract' 'expr' (ambiguity) 'subsets' ownedRelationship+=Subset
+	 *     isAbstract?='abstract' 'expr' (ambiguity) isNonunique?='nonunique'
+	 *     isAbstract?='abstract' 'expr' (ambiguity) isOrdered?='ordered'
+	 *     isAbstract?='abstract' 'expr' (ambiguity) ownedRelationship+=Multiplicity
+	 *     isAbstract?='abstract' 'step' (ambiguity) isNonunique?='nonunique'
+	 *     isAbstract?='abstract' 'step' (ambiguity) isOrdered?='ordered'
+	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
@@ -293,6 +312,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
 	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     ownedRelationship+=Redefinition (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=Redefinition (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     ownedRelationship+=Redefinition (ambiguity) 'subsets' ownedRelationship+=Subset

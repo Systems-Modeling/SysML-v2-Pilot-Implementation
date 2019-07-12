@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -42,6 +45,10 @@ import org.eclipse.uml2.uml.ecore.importer.UMLImporterPlugin;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class CustomUMLImporter extends UMLImporter {
+
+	private static final String SYSML_URI = "http://www.omg.org/spec/SysML/2.0";
+	private static final String BASE_PACKAGE = "org.omg.sysml.lang";
+	private static final String TYPES_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
 
 	/*
 	 * MOSTLY FORKED FROM org.eclipse.uml2.uml.ecore.importer.UMLImporter except for
@@ -139,4 +146,35 @@ public class CustomUMLImporter extends UMLImporter {
 
 		return diagnostic;
 	}
+
+	@Override
+	public void adjustEPackage(Monitor monitor, EPackage ePackage) {
+		super.adjustEPackage(monitor, ePackage);
+		if ("http://www.eclipse.org/uml2/5.0.0/Types".equals(ePackage.getNsURI())) {
+			ePackage.setNsURI(TYPES_URI);
+			ePackage.setNsPrefix("primitives");
+		}
+		ModelImporter.EPackageImportInfo ePackageInfo = getEPackageImportInfo(ePackage);
+		if ("sysml.ecore".equals(ePackageInfo.getEcoreFileName())) {
+			ePackageInfo.setEcoreFileName("SysML.ecore");
+		}
+	}
+
+	@Override
+	protected void adjustGenModel(Monitor monitor) {
+		super.adjustGenModel(monitor);
+		GenModel current = getGenModel();
+
+		current.setModelDirectory("/" + getModelPluginID() + "/syntax-gen");
+
+		for (GenPackage genPackage : current.getGenPackages()) {
+			if (TYPES_URI.equals(genPackage.getEcorePackage().getNsURI())) {
+				genPackage.setBasePackage(BASE_PACKAGE);
+			} else if (SYSML_URI.equals(genPackage.getEcorePackage().getNsURI())) {
+				genPackage.setBasePackage(BASE_PACKAGE);
+				genPackage.setPrefix("SysML");
+			}
+		}
+	}
+
 }

@@ -50,18 +50,34 @@ package Transfers {
 		feature item: Anything[1..*];
 		
 		/**
+		 * The link from the transfer source to the items it is outputing.
+		 */
+		assoc SourceOutputLink {
+			end source: Occurrence[1];
+			end target: Occurrence[1..*] redefines transferSource::sourceOutput;
+		}
+		
+		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: BinaryLink[1..*] is transferSource::sourceOutput to item {
-			feature startShot: Occurrence redefines BinaryLink::startShot;
-			feature endShot: Occurrence redefines BinaryLink::endShot;
+		connector sourceOutputLink: SourceOutputLink[1..*] is transferSource to item {
+			feature startShot: Occurrence redefines SourceOutputLink::startShot;
+			feature endShot: Occurrence redefines SourceOutputLink::endShot;
+		}
+		
+		/**
+		 * The link from the transfer source to the items it is inputing.
+		 */
+		assoc TargetInputLink {
+			end source: Occurrence[1..*] redefines transferTarget::targetInput;
+			end target: Occurrence[1];
 		}
 		
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: BinaryLink[1..*] is item to transferTarget::targetInput {
-			feature startShot: Occurrence redefines BinaryLink::startShot;
+		connector targetInputLink: TargetInputLink[1..*] is item to transferTarget {
+			feature startShot: Occurrence redefines TargetInputLink::startShot;
 		}
 		
 		/**

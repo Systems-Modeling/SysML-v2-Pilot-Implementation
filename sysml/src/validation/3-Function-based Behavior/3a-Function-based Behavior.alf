@@ -13,14 +13,19 @@ package '3a-Function-based Behavior' {
 	class EngineStart;
 	class EngineOff;
 	
-	// BEHAVIORS
+	// ACTIVITIES
 	
 	behavior 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
 	behavior 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);
 	behavior 'Transfer Torque'(in transmissionTorque: Torque, out driveshaftTorque: Torque);
 	behavior 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
-	behavior 'Provide Power'(
+	behavior 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
+	behavior 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
+	
+	// ACTIONS
+	
+	step 'provide power': 'Provide Power'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
@@ -64,7 +69,7 @@ package '3a-Function-based Behavior' {
 		binding wheelTorque2 = 'distribute torque'::wheelTorque2;
 	}
 	
-	behavior 'Provide Power With Control'(
+	step 'provide power with control': 'Provide Power With Control'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
@@ -86,11 +91,11 @@ package '3a-Function-based Behavior' {
 		succession engineStart[1] then 'provide power'[1];
 			
 		binding 'provide power'::fuelCmd = fuelCmd;
-		step 'provide power': 'Provide Power'[*] (
+		step 'provide power'[*] (
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2
-		);
+		) redefines '3a-Function-based Behavior'::'provide power';
 		binding wheelTorque1 = 'provide power'::wheelTorque1;
 		binding wheelTorque2 = 'provide power'::wheelTorque2;
 				

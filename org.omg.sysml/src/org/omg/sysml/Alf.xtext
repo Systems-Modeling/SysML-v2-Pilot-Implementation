@@ -234,6 +234,10 @@ FeatureMember returns SysML::FeatureMembership :
 	  ( ownedRelatedElement += ConnectorDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
+	| ownedRelatedElement += StepDefinition
+	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
+	| ownedRelatedElement += ExpressionDefinition
+	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
     | 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
@@ -410,18 +414,7 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 BehaviorMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | BehaviorStepMember	
-;
-
-BehaviorStepMember returns SysML::FeatureMembership :
-	CategoryMemberPrefix BehaviorStepMemberDefinition
-;
-
-fragment BehaviorStepMemberDefinition returns SysML::FeatureMembership :
-	  ownedRelatedElement += StepDefinition
-	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
-	| ownedRelatedElement += ExpressionDefinition
-	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'	
+	NonFeatureCategoryMember | FeatureMember | EndFeatureMember	
 ;
 
 /* FUNCTIONS */

@@ -110,7 +110,15 @@ package Base {
 	 * and are mutable over time.
 	 */
 	abstract class Object specializes Occurrence {
+		/**
+		 * Performances in which this object is involved.
+		 */
 		feature involvingPerformances: Performance[0..*];
+		
+		/**
+		 * Performances which are enacted by this object.
+		 */
+		feature enactedPerformances: Performance[0..*] subsets involvingPerformances;
 	}
 	
 	/**
@@ -163,10 +171,34 @@ package Base {
 	 * Performance is the most general class of behaviors that may be performed over time.
 	 */
 	abstract behavior Performance() specializes Occurrence {
+		/**
+		 * Objects that are involved in this performance.
+		 */
 		feature involvedObjects: Object[0..*];
+		
+		/**
+		 * Objects that enact this performance.
+		 */
+		feature performers: Object[0..*];
+		
+		/**
+		 * Suboccurrences of this performance that are also performances.
+		 */
 		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		
+		/**
+		 * Subperformances of this performance that are evaluations.
+		 */
 		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		
+		/**
+		 * Subperformances of this performance that are transfers.
+		 */
 		feature subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		
+		/**
+		 * Subtransfers of this performance that are transfers-before (succession flows).
+		 */
 		feature subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	

@@ -1,0 +1,65 @@
+package '4a1-Functional Allocation' {
+	import Occurrences::*;
+		
+	behavior vehicle_allocation() {
+		feature vehicle1_c1 redefines '2-Parts Interconnection'::vehicle1_c1 {
+			
+			/**
+			 * This redefinition must be modeled explicitly, because no connectable ports are 
+			 * provided in the model for '2-Parts Interconnection'::vehicle1_c1::driveshaft.
+			 */
+			part driveshaft redefines '2-Parts Interconnection'::vehicle1_c1::driveshaft {
+				port shaftPort_b redefines '2-Parts Interconnection'::Driveshaft::shaftPort_b;
+				port shaftPort_c redefines '2-Parts Interconnection'::Driveshaft::shaftPort_c;
+			}
+
+			// The following part redefinitions should be generated automatically.
+			part engine redefines '2-Parts Interconnection'::vehicle1_c1::engine {
+				port fuelCmdPort redefines '2-Parts Interconnection'::vehicle1_c1::engine::fuelCmdPort;
+				port drivePwrPort redefines '2-Parts Interconnection'::vehicle1_c1::engine::drivePwrPort;
+			}
+			part transmission redefines '2-Parts Interconnection'::vehicle1_c1::transmission {
+				port clutchPort redefines '2-Parts Interconnection'::vehicle1_c1::transmission::clutchPort;
+				port shaftPort_a redefines '2-Parts Interconnection'::vehicle1_c1::transmission::shaftPort_a;
+			}
+			part rearAxleAssembly redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly {
+				port shaftPort_d redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::shaftPort_d;				
+				part rearAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle {
+					part leftAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle {
+						port axleToWheelPort redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort;
+					}
+					part rightAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle {
+						port axleToWheelPort redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle::axleToWheelPort;
+					}
+				}
+			}
+		}
+				
+		step 'provide power' redefines '3a-Function-based Behavior'::'provide power' {
+			// The following step redefinitions should be generated automatically.
+			step 'generate torque' (in fuelCmd, out engineTorque) redefines '3a-Function-based Behavior'::'provide power'::'generate torque';
+			step 'amplify torque' (in engineTorque, out transmissionTorque) redefines '3a-Function-based Behavior'::'provide power'::'amplify torque';
+			step 'transfer torque' (in transmissionTorque, out driveshaftTorque) redefines '3a-Function-based Behavior'::'provide power'::'transfer torque';
+			step 'distribute torque' (in driveshaftTorque, out wheelTorque1, out wheelTorque2) redefines '3a-Function-based Behavior'::'provide power'::'transfer torque';
+		}
+		
+		connector :Performs is vehicle1_c1 to 'provide power';
+		
+		connector :Performs is vehicle1_c1::engine to 'provide power'::'generate torque';
+		binding vehicle1_c1::engine::fuelCmdPort = 'provide power'::'generate torque'::fuelCmd;
+		binding vehicle1_c1::engine::drivePwrPort = 'provide power'::'generate torque'::engineTorque;
+		
+		connector :Performs is vehicle1_c1::transmission to 'provide power'::'amplify torque';
+		binding vehicle1_c1::transmission::clutchPort = 'provide power'::'amplify torque'::engineTorque;
+		binding vehicle1_c1::transmission::shaftPort_a = 'provide power'::'amplify torque'::transmissionTorque;
+		
+		connector :Performs is vehicle1_c1::driveshaft to 'provide power'::'transfer torque';
+		binding vehicle1_c1::driveshaft::shaftPort_b = 'provide power'::'transfer torque'::transmissionTorque;
+		binding vehicle1_c1::driveshaft::shaftPort_c = 'provide power'::'transfer torque'::driveshaftTorque;
+		
+		connector :Performs is vehicle1_c1::rearAxleAssembly to 'provide power'::'distribute torque';
+		binding vehicle1_c1::rearAxleAssembly::shaftPort_d = 'provide power'::'distribute torque'::driveshaftTorque;
+		binding vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort = 'provide power'::'distribute torque'::wheelTorque1;
+		binding vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle::axleToWheelPort = 'provide power'::'distribute torque'::wheelTorque2;
+	}
+}

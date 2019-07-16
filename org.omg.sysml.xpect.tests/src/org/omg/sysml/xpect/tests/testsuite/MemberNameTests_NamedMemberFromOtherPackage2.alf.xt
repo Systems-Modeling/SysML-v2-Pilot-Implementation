@@ -25,9 +25,11 @@ package test{
 		}
 		class A_alias is A;
 	}
+	
 	package P1 is P;
 	//XPECT linkedName at P1::A_alias --> test.P.A
 	/* XPECT scope at P1::A_alias ---
+	    a.AA, a.AA.AAA, test.a.AA, test.a.AA.AAA,
    	    P.A, P.A.AA, P.A.AA.AAA, P.A_alias, P.A_alias.AA,
 		P.A_alias.AA.AAA, P1.A, P1.A.AA, P1.A.AA.AAA, P1.A_alias, P1.A_alias.AA, P1.A_alias.AA.AAA, a,
 		test.P.A, test.P.A.AA, test.P.A.AA.AAA, test.P.A_alias, test.P.A_alias.AA,
@@ -35,5 +37,6 @@ package test{
 		test.P1.A_alias.AA.AAA, test.a,
 	    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   Base.selfLinks, Base.things, Base.values 
 --- */
-	feature a: P1::A_alias;
+	feature a: P1::A_alias ;
+	
 }

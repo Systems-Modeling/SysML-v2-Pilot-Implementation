@@ -247,15 +247,6 @@ public interface SysMLFactory extends EFactory {
 	Connector createConnector();
 
 	/**
-	 * Returns a new object of class '<em>Connector End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connector End</em>'.
-	 * @generated
-	 */
-	ConnectorEnd createConnectorEnd();
-
-	/**
 	 * Returns a new object of class '<em>Value Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,6 +364,69 @@ public interface SysMLFactory extends EFactory {
 	LiteralBoolean createLiteralBoolean();
 
 	/**
+	 * Returns a new object of class '<em>Invocation Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invocation Expression</em>'.
+	 * @generated
+	 */
+	InvocationExpression createInvocationExpression();
+
+	/**
+	 * Returns a new object of class '<em>Block Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block Expression</em>'.
+	 * @generated
+	 */
+	BlockExpression createBlockExpression();
+
+	/**
+	 * Returns a new object of class '<em>Parameter Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Membership</em>'.
+	 * @generated
+	 */
+	ParameterMembership createParameterMembership();
+
+	/**
+	 * Returns a new object of class '<em>Return Parameter Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Return Parameter Membership</em>'.
+	 * @generated
+	 */
+	ReturnParameterMembership createReturnParameterMembership();
+
+	/**
+	 * Returns a new object of class '<em>Query Path Step Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Path Step Expression</em>'.
+	 * @generated
+	 */
+	QueryPathStepExpression createQueryPathStepExpression();
+
+	/**
+	 * Returns a new object of class '<em>Query Qualifier Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Qualifier Expression</em>'.
+	 * @generated
+	 */
+	QueryQualifierExpression createQueryQualifierExpression();
+
+	/**
+	 * Returns a new object of class '<em>Query Path Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Path Expression</em>'.
+	 * @generated
+	 */
+	QueryPathExpression createQueryPathExpression();
+
+	/**
 	 * Returns a new object of class '<em>Literal Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,6 +461,51 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	LiteralInteger createLiteralInteger();
+
+	/**
+	 * Returns a new object of class '<em>Item Flow End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Flow End</em>'.
+	 * @generated
+	 */
+	ItemFlowEnd createItemFlowEnd();
+
+	/**
+	 * Returns a new object of class '<em>Item Flow Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Flow Feature</em>'.
+	 * @generated
+	 */
+	ItemFlowFeature createItemFlowFeature();
+
+	/**
+	 * Returns a new object of class '<em>Item Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Feature</em>'.
+	 * @generated
+	 */
+	ItemFeature createItemFeature();
+
+	/**
+	 * Returns a new object of class '<em>Source End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source End</em>'.
+	 * @generated
+	 */
+	SourceEnd createSourceEnd();
+
+	/**
+	 * Returns a new object of class '<em>Target End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target End</em>'.
+	 * @generated
+	 */
+	TargetEnd createTargetEnd();
 
 	/**
 	 * Returns a new object of class '<em>Operator Expression</em>'.
@@ -445,15 +544,6 @@ public interface SysMLFactory extends EFactory {
 	SuccessionItemFlow createSuccessionItemFlow();
 
 	/**
-	 * Returns a new object of class '<em>Element Reference Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Reference Expression</em>'.
-	 * @generated
-	 */
-	ElementReferenceExpression createElementReferenceExpression();
-
-	/**
 	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -481,13 +571,13 @@ public interface SysMLFactory extends EFactory {
 	SequenceConstructionExpression createSequenceConstructionExpression();
 
 	/**
-	 * Returns a new object of class '<em>Sequence Access Expression</em>'.
+	 * Returns a new object of class '<em>Feature Reference Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sequence Access Expression</em>'.
+	 * @return a new object of class '<em>Feature Reference Expression</em>'.
 	 * @generated
 	 */
-	SequenceAccessExpression createSequenceAccessExpression();
+	FeatureReferenceExpression createFeatureReferenceExpression();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -26,32 +26,54 @@ package org.omg.sysml.lang.sysml.util
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.scoping.AlfScopeProvider
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.common.util.URI
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
 	
+	// TODO: Use something better than the directory name to identify a library resource.
+	val MODEL_LIBRARY_DIRECTORY_NAME = "library"
+	
 	@Inject
-	AlfScopeProvider scopeProvider
+	IGlobalScopeProvider globalScope
+	
+	@Inject
+	AlfScopeProvider scopeProvider;
 	
 	@Inject
 	IQualifiedNameConverter nameConverter
 	
-	protected def EObject filePackage(Element element) {
-		var pack = element
-		while (pack.owner !== null) {
-			pack = pack.owner
-		}
-		return pack
+	protected def fileName(URI uri) {
+		return uri.trimFileExtension.lastSegment
+	}
+	
+	protected def isLibraryResource(Resource resource) {
+		return resource !== null && MODEL_LIBRARY_DIRECTORY_NAME.equals(resource.URI.segment(2))
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {
-		var element = scopeProvider.getScope(context.filePackage, reference).getSingleElement(nameConverter.toQualifiedName(name))
-		return if (element === null) null else element.getEObjectOrProxy as Element		
+		if (context === null) {
+			return null
+		} else {
+			val qname = nameConverter.toQualifiedName(name)
+			val resource = context.eResource();
+			val scope =
+				if (isLibraryResource(resource))
+					scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference)
+				else 
+					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])
+			val description = scope.getSingleElement(qname)
+			return if (description === null) null else
+				EcoreUtil.resolve(description.EObjectOrProxy, context) as Element
+		}
 	}
 	
 }

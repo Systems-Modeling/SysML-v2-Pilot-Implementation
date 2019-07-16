@@ -110,7 +110,6 @@ public interface Multiplicity extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicity_FeatureWithMultiplicity()
 	 * @see org.omg.sysml.lang.sysml.Feature#getMultiplicity
 	 * @model opposite="multiplicity" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName=' featureWith Multiplicity'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

@@ -57,7 +57,9 @@ class AlfQualifiedNameConverter implements IQualifiedNameConverter {
 			}
 			j++;
 		}
-		segments.add(ElementImpl.unescapeString(qualifiedNameAsText.substring(i, j)));
+		if (i < n && j <= n) {
+			segments.add(ElementImpl.unescapeString(qualifiedNameAsText.substring(i, j)));
+		}
 		
 		QualifiedName.create(segments)
 	}

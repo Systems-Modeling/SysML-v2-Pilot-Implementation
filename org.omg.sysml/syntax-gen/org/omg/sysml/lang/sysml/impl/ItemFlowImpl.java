@@ -3,13 +3,23 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -28,6 +38,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
+	
+	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
+	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subtransfers";
+
 	/**
 	 * The cached value of the '{@link #getItemType() <em>Item Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -80,42 +94,145 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
 		if (itemType == null) {
 			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		}
+		if (itemType.isEmpty()) {
+			Feature feature = getItemFeature();
+			if (feature != null) {
+				itemType.addAll(feature.getType().stream().
+						filter(t->t instanceof org.omg.sysml.lang.sysml.Class).
+						map(t->(org.omg.sysml.lang.sysml.Class)t).
+						collect(Collectors.toList()));
+			}
+		}
 		return itemType;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getTargetInputFeature() {
-		if (targetInputFeature == null) {
-			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
-		}
-		return targetInputFeature;
+	
+	public Feature getItemFeature() {
+		clearCaches();
+		EList<Feature> ends = getConnectorEnd();
+		return getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
 		if (sourceOutputFeature == null) {
 			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
 		}
+		if (sourceOutputFeature.isEmpty()) {
+			Feature feature = getInputOutputFeature(0);
+			if (feature != null) {
+				sourceOutputFeature.add(feature);
+			}
+		}
 		return sourceOutputFeature;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Feature> getTargetInputFeature() {
+		if (targetInputFeature == null) {
+			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
+		}
+		if (targetInputFeature.isEmpty()) {
+			Feature feature = getInputOutputFeature(1);
+			if (feature != null) {
+				targetInputFeature.add(feature);
+			}
+		}
+		return targetInputFeature;
+	}
+	
+	public Feature getInputOutputFeature(int i) {
+		EList<Feature> ends = getConnectorEnd();
+		if (ends.size() > i) {
+			Feature end = ends.get(i);
+			EList<Feature> features = end.getOwnedFeature();
+			if (!features.isEmpty()) {
+				EList<Redefinition> redefinitions = features.get(0).getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					return ((RedefinitionImpl)redefinitions.get(0)).basicGetRedefinedFeature();
+				}
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public EList<Feature> getConnectorEnd() {
+		EList<Feature> ends = super.getConnectorEnd();
+		Category owner = getOwningCategory();
+		if (owner instanceof Step) {
+			EList<Feature> features = owner.getOwnedFeature();
+			int i = features.indexOf(this);
+			if (i > 0) {
+				if (ends.size() < 2) {
+					ItemFlowFeature targetInput = SysMLFactory.eINSTANCE.createItemFlowFeature();
+					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+					redefinition.setRedefiningFeature(targetInput);
+					redefinition.setRedefinedFeature(features.get(i-1));
+					targetInput.getOwnedRelationship().add(redefinition);
+					ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
+					((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
+					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
+					membership.getOwnedRelatedElement().add(targetEnd);
+					getOwnedRelationship().add(membership);
+				} else {
+					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
+					if (!features.isEmpty()) {
+						EList<Redefinition> redefinitions = endFeatures.get(0).getOwnedRedefinition();
+						if (!redefinitions.isEmpty()) {
+							Redefinition redefinition = redefinitions.get(0);
+							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
+								redefinition.setRedefinedFeature(features.get(i-1));
+							}
+						}
+					}
+				}
+			}
+		}
+		return ends;
+	}
 
+	@Override
+	public boolean basicIsComposite() {
+		if (!isComposite && isSubtransfer()) {
+			isComposite = true;
+		}
+		return isComposite;
+	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(
+				isSubtransfer()? 
+					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
+					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isSubtransfer() {
+		return StepImpl.isPerformanceFeature(this);
+	}
+	
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return Collections.singletonList(getItemFeature());
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

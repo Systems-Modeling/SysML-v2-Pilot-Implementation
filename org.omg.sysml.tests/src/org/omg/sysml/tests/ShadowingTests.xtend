@@ -231,6 +231,7 @@ class ShadowingTests {
 		// only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
+		Assert.assertEquals("Couldn't resolve reference to Class 'B'.",result.eResource.errors.get(0).getMessage());
 	}
 
 	@Test
@@ -248,7 +249,7 @@ class ShadowingTests {
 		// only one of the packages is imported
 		Assert.assertTrue(result.eResource.errors.length == 1)
 		result.assertError(SysMLPackage.eINSTANCE.generalization, XtextSyntaxDiagnostic.LINKING_DIAGNOSTIC)
-		System.out.println(result.eResource.errors.get(0).getMessage())//Couldn't resolve reference to Category 'container::B'.
+		Assert.assertEquals("Couldn't resolve reference to Class 'container::B'.", result.eResource.errors.get(0).getMessage());
 	}
 	
 	@Test

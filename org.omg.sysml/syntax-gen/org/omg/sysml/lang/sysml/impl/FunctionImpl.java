@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -31,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
 
-	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::FunctionEvaluation";
+	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::Evaluation";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,7 +92,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT
 	 */
 	public Parameter basicGetResult() {
-		EList<Parameter> parameters = getParameter();
+		List<Parameter> parameters = getOwnedParameters();
 		return parameters.isEmpty()? null: parameters.get(parameters.size() - 1);
 	}
 

@@ -1,0 +1,28 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Classes {
+	import VisibilityPackage;
+	// XPECT errors ---> "Couldn't resolve reference to Class 'c_Public'." at "c_Public"
+	class Try specializes c_Public{
+		// XPECT errors ---> "Couldn't resolve reference to Category 'c_public'." at "c_public"
+		feature feature4 : c_public;
+	}
+}
+

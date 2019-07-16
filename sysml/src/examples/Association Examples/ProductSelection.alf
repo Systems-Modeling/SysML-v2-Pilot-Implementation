@@ -16,11 +16,11 @@ package ProductSelection {
 	assoc ProductSelection_ specializes Base::BinaryLink {
 		feature info: SelectionInfo;
 		
-		end cart: ShoppingCart[0..*] redefines sourceEnd;
-		end selectedProduct: Product[0..*] redefines targetEnd;
+		end cart: ShoppingCart[0..*] redefines source;
+		end selectedProduct: Product[0..*] redefines target;
 		
-		feature cart_: ShoppingCart[1..1] redefines sourceParticipant;
-		feature selectedProduct_: ShoppingCart[1..1] redefines targetParticipant;
+//		feature cart_: ShoppingCart[1..1] redefines sourceParticipant;
+//		feature selectedProduct_: ShoppingCart[1..1] redefines targetParticipant;
 	}
 	
 	myCart: ShoppingCart;

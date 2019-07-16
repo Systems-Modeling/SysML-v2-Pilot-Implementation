@@ -1,0 +1,28 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Classes {
+	// XPECT errors ---> "Referenced element is not visible in this scope" at "VisibilityPackage::c_Private::c_private"
+	import VisibilityPackage::c_Private::c_private;
+	class Try{
+		// XPECT errors ---> "Referenced type is not visible in this scope" at "c_private"
+		feature feature1 : c_private;
+	}
+}
+

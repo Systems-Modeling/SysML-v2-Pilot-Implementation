@@ -1,0 +1,7 @@
+package Standard {
+	import Base::*;
+	import BaseFunctions::*;
+	
+	import ScalarValues::*;
+	import ScalarFunctions::*;
+}

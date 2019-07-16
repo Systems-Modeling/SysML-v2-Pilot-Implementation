@@ -32,7 +32,7 @@ package VehicleUsages {
 			}
 			part frontAxle: Axle;
 		}		
-		part rearAxleAssembly: VehicleDefinitions.AxleAssembly {
+		part rearAxleAssembly: VehicleDefinitions::AxleAssembly {
 			part rearWheel[2] redefines wideRimWheel {
 				part lugbolt[6] redefines wideRimWheel::lugbolt {
 					feature tighteningTorque redefines Lugbolt::tighteningTorque = T2;

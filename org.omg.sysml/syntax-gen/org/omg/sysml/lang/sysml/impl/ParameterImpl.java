@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -24,6 +26,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ParameterImpl extends FeatureImpl implements Parameter {
+	
+	private boolean redefinitionsNotAdded = true;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31,33 +36,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	 */
 	protected ParameterImpl() {
 		super();
-	}
-	
-	public boolean isResultParameter() {
-		Category category = getOwningCategory();
-		return category instanceof Function && ((Function)category).getResult() == this;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> redefinitions = getComputedRedefinitions();
-		return redefinitions.isEmpty()? super.getOwnedSubsetting(): redefinitions;
-	}
-	
-	/**
-	 * Parameters redefine Parameters of superclass Behaviors, with a result Parameter of a Function 
-	 * always redefining the result Parameter of superclass Functions. 
-	 */
-	@Override
-	public List<? extends Feature> getRelevantFeatures(Category category) {
-		return !(category instanceof Behavior)? Collections.emptyList():
-			(isResultParameter() && category instanceof Function)? Collections.singletonList(((Function)category).getResult()):
-			((Behavior)category).getParameter().stream().
-				filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
 	}
 	
 	/**
@@ -70,4 +48,49 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 		return SysMLPackage.Literals.PARAMETER;
 	}
 
+	public boolean isResultParameter() {
+		return ((CategoryImpl)getOwningCategory()).getResult() == this;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Subsetting> getOwnedSubsetting() {
+		return super.getOwnedSubsetting();
+	}
+	
+	/**
+	 * Parameters redefine (owned) Parameters of general Categories, with a result Parameter always redefining
+	 * the result Parameter of a general Functions or Expression. 
+	 */
+	@Override
+	public List<? extends Feature> getRelevantFeatures(Category category) {
+		return category == null? Collections.emptyList():
+			   (isResultParameter() && (category instanceof Function | category instanceof Expression))? 
+					Collections.singletonList(((CategoryImpl)category).getResult()):
+			   ((CategoryImpl)category).getOwnedParameters().stream().
+					filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
+	}
+	
+	public void addInheritedFeatureRedefinitions() {
+		if (redefinitionsNotAdded) {
+			redefinitionsNotAdded = false;
+			EList<FeatureTyping> typing = getTyping();
+			if (!typing.isEmpty()) {
+				Category type = typing.get(0).getType();
+				if (type == null) {
+					redefinitionsNotAdded = true;
+				} else {
+					for (Feature inheritedFeature: type.getOwnedFeature()) {
+						Feature feature = SysMLFactory.eINSTANCE.createFeature();
+						feature.setName(inheritedFeature.getName());
+						addOwnedFeature(feature);
+					}
+				}
+			}
+		}
+	}
+	
 } //ParameterImpl

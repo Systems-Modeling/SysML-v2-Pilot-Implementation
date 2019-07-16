@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+live_test_execution=true
+org.eclipse.xpect.Xpect.useProjectSettings=true
+org.eclipse.xpect.ui.live_test_execution=true

@@ -158,7 +158,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				i = j + 2;
 				j = literal.indexOf('\\', i);
 			}
-			s.append(literal.substring(i, literal.length() - 1));
+			int n = literal.length();
+			if (n > 1) {
+				s.append(literal.substring(i, n - 1));
+			}
 			return s.toString();
 		}
 	}
@@ -412,6 +415,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public void basicSetName(String newName) {
 		name = newName;
+	}
+	
+	public void clearCaches() {
+		
 	}
 	
 	// Utility

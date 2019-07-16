@@ -1,0 +1,69 @@
+/**
+ * This package defines associations between occurrences that assert relationships
+ * modeling four-dimensional semantics. [Currently this is primarily time semantics.]
+ */
+package Occurrences {
+	private import Base::*;
+	
+	/**
+	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
+	 * That is, the start time of the shorterOccurrence is no earlier than the start time
+	 * of the longerOccurrence, and the end time of the shorterOccurrence is no later than
+	 * the end time of the longerOccurrence. Note that this implies that every occurrence
+	 * "happens during" itself.
+	 */
+	assoc HappensDuring {
+		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences;
+		end longerOccurrence: Occurrence[0..*];
+	}
+	
+	/**
+	 * HappensWhile asserts that two occurrences happen during each other, that is, they
+	 * each start at the same time and end at the same time.
+	 */
+	assoc HappensWhile specializes HappensDuring {
+		end thisOccurrence: Occurrence[0..*] redefines shorterOccurrence;
+		end thatOccurrence: Occurrence[0..*] redefines longerOccurrence;
+		
+		connector :HappensDuring (
+			shorterOccurrence => thatOccurrence,
+			longerOccurrence => thisOccurrence
+		);
+	}
+	
+	/**
+	 * HappensWhile asserts that the earlierOccurrence happens before the laterOccurrence.
+	 * That is, the end time of the earlierOccurrence happens no later than the start time
+	 * of the laterOccurrence.
+	 */
+	assoc HappensBefore {
+		end earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors;
+		end laterOccurrence: Occurrence[0..*] redefines Occurrence::successors;
+	}
+	
+	/**
+	 * Portioning asserts one occurrence is a portion of another.
+	 */
+	assoc Portioning { 
+		end whole: Occurrence[0..1];
+		end portion 'portion': Occurrence[0..*] redefines Occurrence::portions; 
+	}
+	
+	/** 
+	 * Involvement asserts that an involvedObject is involved in the behavior carried out
+	 * by the involvingPerformance.
+	 */
+	assoc Involvement {
+		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances;
+		end involvedObject: Object[0..*] redefines Performance::involvedObjects;
+	}
+	
+	/**
+	 * successions is a specialization of binaryLinks restricted to type HappensBefore.
+	 * It is the default subsetting for succession connectors.
+	 */
+	 feature successions: HappensBefore[0..*] nonunique subsets binaryLinks {
+	 	end earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
+	 	end laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
+	 }
+}

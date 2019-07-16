@@ -1,0 +1,60 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Classes {
+	import VisibilityPackage::c_Public::c_public ;
+	import VisibilityPackage::c_Public;
+	class Try{
+		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
+		// The below pass the junit test but if change scope at VisibilityPackage.c_Private get an Error "Reference type is not visible in this scope." 
+		/* XPECT scope at c_public ---
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values, Classes.Try, Classes.Try.feature4,		   
+		   Classes.Try.featurepublic, Classes.c_Public, Classes.c_Public.c_public, Classes.c_public, 
+		   Try, Try.feature4, Try.featurepublic, 
+		   VisibilityPackage.c_Private, VisibilityPackage.c_Private.c_private, VisibilityPackage.c_Private.c_public, VisibilityPackage.c_Private_alias,
+		   VisibilityPackage.c_Private_alias.c_public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_private,
+		   VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
+		   VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Package,
+		   VisibilityPackage.c_clazz.c_Package.c_publicc, VisibilityPackage.c_clazz.c_Protect,
+		   VisibilityPackage.c_clazz.c_Protect.c_publicc, VisibilityPackage.c_clazz.c_Public,
+		   VisibilityPackage.c_clazz.c_Public.c_packagee, VisibilityPackage.c_clazz.c_Public.c_protect, 
+		   c_Public, c_Public.c_public, c_public, 
+		   feature4, featurepublic
+	--- */
+		feature feature4 : c_public;
+		//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
+		/* XPECT scope at c_Public ---
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values, Classes.Try, Classes.Try.feature4,		   
+		   Classes.Try.featurepublic, Classes.c_Public, Classes.c_Public.c_public, Classes.c_public, 
+		   Try, Try.feature4, Try.featurepublic, 
+		   VisibilityPackage.c_Private, VisibilityPackage.c_Private.c_private, VisibilityPackage.c_Private.c_public, VisibilityPackage.c_Private_alias,
+		   VisibilityPackage.c_Private_alias.c_public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_private,
+		   VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
+		   VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Package,
+		   VisibilityPackage.c_clazz.c_Package.c_publicc, VisibilityPackage.c_clazz.c_Protect,
+		   VisibilityPackage.c_clazz.c_Protect.c_publicc, VisibilityPackage.c_clazz.c_Public,
+		   VisibilityPackage.c_clazz.c_Public.c_packagee, VisibilityPackage.c_clazz.c_Public.c_protect, 
+		   c_Public, c_Public.c_public, c_public, 
+		   feature4, featurepublic
+	--- */
+		feature featurepublic : c_Public;
+	}
+}
+

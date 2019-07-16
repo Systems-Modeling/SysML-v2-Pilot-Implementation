@@ -2,8 +2,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -17,7 +23,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StepImpl extends FeatureImpl implements Step {
 	
-	public static final String STEP_SUBSETTING_DEFAULT = "Base::behaviorOccurrences";
+	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Base::performances";
+	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,10 +44,35 @@ public class StepImpl extends FeatureImpl implements Step {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.STEP;
 	}
+	
+	@Override
+	public boolean basicIsComposite() {
+		if (!isComposite && isSubperformance()) {
+			isComposite = true;
+		}
+		return isComposite;
+	}
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(STEP_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()? 
+					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+					STEP_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isSubperformance() {
+		return isPerformanceFeature(this);
+	}
+	
+	public static boolean isPerformanceFeature(Feature step) {
+		Category owningCategory = step.getOwningCategory();
+		return owningCategory instanceof Behavior || owningCategory instanceof Step;
+	}
+	
+	public List<Step> getSubsteps() {
+		return getOwnedFeature().stream().filter(f->f instanceof Step).
+				map(f->(Step)f).collect(Collectors.toList());
 	}
 	
 } //StepImpl

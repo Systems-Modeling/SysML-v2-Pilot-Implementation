@@ -1,0 +1,31 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	class A{
+		class a2{}
+	}
+	class inner{
+		import OuterPackage::*;
+		class B specializes A {
+			// XPECT errors --> "Couldn't resolve reference to Class 'a2'." at "a2"
+			class b specializes a2{}
+		}
+	}
+}

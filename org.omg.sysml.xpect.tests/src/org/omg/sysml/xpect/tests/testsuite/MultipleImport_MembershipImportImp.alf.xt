@@ -1,0 +1,42 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
+		File {from ="/src/DependencyMultipleMembership.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
+				File {from ="/src/DependencyMultipleMembership.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import OuterPackage2::*;
+	//XPECT linkedName at C --> OuterPackage2.C
+	/* XPECT scope at C ---
+		   B, C, Test, test.B, test.C, test.Test, 
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C, 
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		   Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+	--- */
+	class Test specializes C {
+		//XPECT linkedName at b --> OuterPackage.B.b
+		/* XPECT scope at b ---
+		   	b, c, try, Test, Test.b, Test.c, Test.try,
+		   	B, B.b,C, C.b, C.c,   
+		   	test.B, test.B.b, test.C, test.C.b, test.C.c, test.Test.b,  test.Test.c, test.Test.try,test.Test, 
+		   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c, 
+		   	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		   	Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
+   		--- */
+		feature try : b;
+	}
+}

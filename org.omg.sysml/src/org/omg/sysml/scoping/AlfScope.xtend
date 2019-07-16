@@ -167,12 +167,8 @@ class AlfScope extends AbstractScope {
 											return true
 										}
 										
-										if (memberElement instanceof org.omg.sysml.lang.sysml.Class) {								
-											for (eg: memberElement.ownedSuperclassing) {
-												if (!visited.contains(eg.superclass)) {
-													eg.superclass.resolve(elementqn, false, false, visited)
-												}
-											}
+										if (memberElement.gen(elementqn, visited)) {
+											return true;
 										}
 									}
 								}

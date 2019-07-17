@@ -19,6 +19,7 @@ END_SETUP
 package Test1{
 	//XPECT linkedName at A.B --> Test1.A.B
 	/* XPECT scope at A.B ---
+	   	   A.B.b.B, Test1.A.B.b.B,
 		   A, A.B, Test1.A, Test1.A.B,
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
 		   Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
@@ -27,6 +28,8 @@ package Test1{
 		class B {
 			import A::*;
 			/* XPECT scope at B ---
+			    b.b, b.B, b.B.b,
+			    A.B.b.B, A.B.b.B.b, A.B.b.b, B.b.b, Test1.A.B.b.B, Test1.A.B.b.B.b, Test1.A.B.b.b, 
 			   	A, A.B, A.B.b, A.b, B, B.b, 
 			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
 			   	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant,

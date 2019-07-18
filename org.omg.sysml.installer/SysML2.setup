@@ -37,7 +37,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="2018-12"
+      defaultValue="2019-06"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
@@ -46,9 +46,9 @@
     <requirement
         name="org.eclipse.xtend.feature.group"/>
     <requirement
-    	name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
+        name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2018-12/"/>
+        url="http://download.eclipse.org/releases/2019-06/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -74,11 +74,11 @@
       <repositoryList
           name="Eclipse">
         <repository
-            url="http://download.eclipse.org/releases/2018-12"/>
+            url="http://download.eclipse.org/releases/2019-06"/>
         <repository
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="http://download.eclipse.org/eclipse/updates/4.9/"/>
+            url="http://download.eclipse.org/eclipse/updates/4.12/"/>
       </repositoryList>
     </targlet>
   </setupTask>

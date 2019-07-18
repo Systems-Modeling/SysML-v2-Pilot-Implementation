@@ -20,6 +20,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Category: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
+   
    **Note:** If you have installed the SysML v2 Pilot Implementation previously, this may already be pre-selected.
 
 6. Select SysML2 in the Projects list:
@@ -47,7 +48,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import all projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
+3. Import all projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each, plus `org.omg.sysml.xpect.texts`.
 
 ### Prototype Alf Implementation
 

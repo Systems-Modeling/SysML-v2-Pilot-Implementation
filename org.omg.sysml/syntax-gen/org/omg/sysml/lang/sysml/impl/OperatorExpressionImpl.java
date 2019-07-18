@@ -259,7 +259,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		
 		@Override
 		protected List<Expression> delegateList() {
-			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
+			return getOwnedFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
 		}
 		
 		@Override

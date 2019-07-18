@@ -50,7 +50,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 3. Import projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
 
-   **Note:** The project `org.omg.sysml.xpect.texts` requires the Xpect plugin, not included in the main SysML v2 installation.
+   **Note:** The project `org.omg.sysml.xpect.tests` requires the Xpect plugin, not included in the main SysML v2 installation.
 
 ### Prototype Alf Implementation
 

@@ -118,7 +118,7 @@ package Base {
 		/**
 		 * Performances which are enacted by this object.
 		 */
-		feature enactedPerformances: Performance[0..*] subsets involvingPerformances;
+		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances;
 	}
 	
 	/**
@@ -179,7 +179,7 @@ package Base {
 		/**
 		 * Objects that enact this performance.
 		 */
-		feature performers: Object[0..*];
+		feature performers: Object[0..*] subsets involvedObjects;
 		
 		/**
 		 * Suboccurrences of this performance that are also performances.
@@ -194,12 +194,12 @@ package Base {
 		/**
 		 * Subperformances of this performance that are transfers.
 		 */
-		feature subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
 		
 		/**
 		 * Subtransfers of this performance that are transfers-before (succession flows).
 		 */
-		feature subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
+		step subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**

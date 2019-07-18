@@ -23,7 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
- *  Hisahsi Miyashita, Maplesoft
+ *  Hisashi Miyashita, Maplesoft
  * 
  *****************************************************************************/
 
@@ -238,6 +238,7 @@ FeatureMember returns SysML::FeatureMembership :
 	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
 	| ownedRelatedElement += ExpressionDefinition
 	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
+	| ownedRelatedElement += PerformedStepDefinition
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
     | 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
@@ -628,12 +629,6 @@ EmptySuccessionDefinition returns SysML::Succession :
 	ownedRelationship += MultiplicityEndMember ownedRelationship += EmptyEndMember
 ;
 
-/* SUCCESSION MEMBERSHIPS */
-
-SuccessionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += SuccessionDefinition
-;
-
 /* ITEM FLOWS */
 
 ItemFlowDefinition returns SysML::ItemFlow :
@@ -713,6 +708,17 @@ StepParameterDefinition returns SysML::Parameter :
 
 StepParameterFlowDefinition returns SysML::ItemFlow :
 	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? 'from' ownedRelationship += ItemFlowEndMember
+;
+
+PerformedStepDefinition returns SysML::Step :
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+    ( isAbstract ?= 'abstract' )? 'perform' 
+	ownedRelationship += PerformedStepFeatureValue StepParameterList?
+	BehaviorBody
+;
+
+PerformedStepFeatureValue returns SysML::FeatureValue :
+	ownedRelatedElement += FeatureReferenceExpression
 ;
 
 /* STEP MEMBERSHIPS */

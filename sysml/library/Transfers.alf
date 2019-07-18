@@ -148,7 +148,7 @@ package Transfers {
 	 * transfers is a specialization of performances and binaryLinks restricted to type 
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
-	feature transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		end transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
 		end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
 	}
@@ -157,7 +157,7 @@ package Transfers {
 	 * successionTransfers is a specialization of transfers and successions restricted to
 	 * type TransferBefore. It is the default subsetting for sucession (non-streaming) item flows.
 	 */
-	feature flows: TransferBefore[0..*] nonunique subsets transfers, successions {
+	step flows: TransferBefore[0..*] nonunique subsets transfers, successions {
 		end transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
 		end transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
 	}

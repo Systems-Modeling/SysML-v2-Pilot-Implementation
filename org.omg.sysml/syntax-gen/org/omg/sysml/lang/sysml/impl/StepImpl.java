@@ -10,8 +10,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -25,6 +27,9 @@ public class StepImpl extends FeatureImpl implements Step {
 	
 	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Base::performances";
 	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
+	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Base::Object::enactedPerformances";
+	
+	protected boolean isCheckSubsetting = true;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,22 +52,58 @@ public class StepImpl extends FeatureImpl implements Step {
 	
 	@Override
 	public boolean basicIsComposite() {
-		if (!isComposite && isSubperformance()) {
+		if (!isComposite && isCompositeStep()) {
 			isComposite = true;
 		}
 		return isComposite;
 	}
+	
+	public boolean isCompositeStep() {
+		return isSubperformance() ||
+				isEnactedPerformance() &&
+					getValuation() == null;
+	}
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
+		if (isCheckSubsetting) {
+			if (isSubperformance()) {
+				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
+			} 
+			if (isEnactedPerformance()) {
+				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
+			}
+			isCheckSubsetting = false;
+		}
 		return getOwnedSubsettingWithComputedRedefinitions(
 				isSubperformance()? 
 					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+				isEnactedPerformance()?
+					STEP_SUBSETTING_OBJECT_DEFAULT:
 					STEP_SUBSETTING_BASE_DEFAULT);
 	}
 	
+	protected void addSubsetting(String name) {
+		Category category = getDefaultCategory(name);
+		if (category instanceof Feature) {
+			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+			subsetting.setSubsettedFeature((Feature)category);
+			subsetting.setSubsettingFeature(this);
+			getOwnedRelationship().add(subsetting);
+		}
+	}
+	
+	// Utility methods
+	
 	public boolean isSubperformance() {
 		return isPerformanceFeature(this);
+	}
+	
+	public boolean isEnactedPerformance() {
+		Category owningCategory = getOwningCategory();
+		return owningCategory instanceof ObjectClass ||
+				owningCategory instanceof Feature && 
+					((FeatureImpl)owningCategory).isObjectFeature();
 	}
 	
 	public static boolean isPerformanceFeature(Feature step) {

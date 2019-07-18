@@ -319,14 +319,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				FEATURE_SUBSETTING_DEFAULT);
 	}
 	
-	public boolean hasObjectType() {
-		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ObjectClass);
-	}
-	
-	public boolean hasValueType() {
-		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
-	}
-	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
 		clearCaches();
 		getComputedRedefinitions();
@@ -612,6 +604,26 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		Membership owningFeatureMembership = getOwningFeatureMembership();
 		return owningFeatureMembership != null? owningFeatureMembership: super.getOwningMembership();
 	}
+	
+	// Utility methods
+	
+	public boolean isObjectFeature() {
+		return getType().stream().anyMatch(type->type instanceof ObjectClass);
+	}
+	
+	public boolean isValueFeature() {
+		return getType().stream().anyMatch(type->type instanceof ValueClass);
+	}
+	
+	public boolean hasObjectType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ObjectClass);
+	}
+	
+	public boolean hasValueType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

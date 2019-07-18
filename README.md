@@ -48,7 +48,9 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import all projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each, plus `org.omg.sysml.xpect.texts`.
+3. Import projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
+
+   **Note:** The project `org.omg.sysml.xpect.texts` requires the Xpect plugin, not included in the main SysML v2 installation.
 
 ### Prototype Alf Implementation
 

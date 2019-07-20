@@ -158,7 +158,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=PerformFeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=PerformedStepFeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=StepParameterFlowMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=StepParameterMember ')' (ambiguity) (rule end)
@@ -287,6 +287,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'expr' (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) 'expr' (ambiguity) isOrdered?='ordered'
 	 *     (rule start) 'expr' (ambiguity) ownedRelationship+=Multiplicity
+	 *     (rule start) 'perform' (ambiguity) isNonunique?='nonunique'
+	 *     (rule start) 'perform' (ambiguity) isOrdered?='ordered'
+	 *     (rule start) 'perform' (ambiguity) ownedRelationship+=Multiplicity
 	 *     (rule start) 'step' (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) 'step' (ambiguity) isOrdered?='ordered'
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=Multiplicity
@@ -304,6 +307,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'step' (ambiguity) isOrdered?='ordered'
 	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=Multiplicity
 	 *     name=Name (ambiguity) '=' ownedRelationship+=FeatureValue
+	 *     name=Name (ambiguity) '=' ownedRelationship+=PerformedStepFeatureValue
 	 *     name=Name (ambiguity) 'redefines' ownedRelationship+=Redefinition
 	 *     name=Name (ambiguity) 'subsets' ownedRelationship+=Subset
 	 *     name=Name (ambiguity) '{' ownedRelationship+=CategoryMember
@@ -314,6 +318,9 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'
 	 *     name=Name (ambiguity) ownedRelationship+=Multiplicity
+	 *     ownedRelationship+=EmptySuccessionMember 'perform' (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=EmptySuccessionMember 'perform' (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=EmptySuccessionMember 'perform' (ambiguity) ownedRelationship+=Multiplicity
 	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isNonunique?='nonunique'
 	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) isOrdered?='ordered'
 	 *     ownedRelationship+=EmptySuccessionMember 'step' (ambiguity) ownedRelationship+=Multiplicity

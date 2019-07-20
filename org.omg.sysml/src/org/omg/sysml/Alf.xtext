@@ -712,8 +712,8 @@ StepParameterFlowDefinition returns SysML::ItemFlow :
 
 PerformedStepDefinition returns SysML::Step :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? 'perform' 
-	ownedRelationship += PerformedStepFeatureValue StepParameterList?
+    'perform' ( ( name = Name )? TypePart '=' )?
+	ownedRelationship += PerformedStepFeatureValue StepParameterList? SubsettingPart
 	BehaviorBody
 ;
 

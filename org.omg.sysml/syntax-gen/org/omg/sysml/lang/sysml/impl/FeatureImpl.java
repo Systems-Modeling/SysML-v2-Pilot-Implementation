@@ -171,18 +171,25 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Category> getType() {
+		return getTypes(true);
+	}
+	
+	public EList<Category> getTypes(boolean isWithDefaults) {
 		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
-		getTypes(this, types, new HashSet<Feature>());
+		getTypes(this, types, new HashSet<Feature>(), isWithDefaults);
 		return types;
 	}
 	
-	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures) {
+	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
 		getFeatureTypes(feature, types);
-		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
+		EList<Subsetting> subsettings = isWithDefaults? 
+				feature.getOwnedSubsetting(): 
+				((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();
+		for (Subsetting subsetting: subsettings) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				getTypes(subsettedFeature, types, visitedFeatures);
+				getTypes(subsettedFeature, types, visitedFeatures, isWithDefaults);
 			}
 		}		
 	}
@@ -608,11 +615,11 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	// Utility methods
 	
 	public boolean isObjectFeature() {
-		return getType().stream().anyMatch(type->type instanceof ObjectClass);
+		return getTypes(false).stream().anyMatch(type->type instanceof ObjectClass);
 	}
 	
 	public boolean isValueFeature() {
-		return getType().stream().anyMatch(type->type instanceof ValueClass);
+		return getTypes(false).stream().anyMatch(type->type instanceof ValueClass);
 	}
 	
 	public boolean hasObjectType() {

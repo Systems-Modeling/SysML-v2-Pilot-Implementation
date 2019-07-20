@@ -3118,9 +3118,9 @@ ruleFeatureMember returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementPerformStepDefinitionParserRuleCall_1_7_0());
+						newCompositeNode(grammarAccess.getFeatureMemberAccess().getOwnedRelatedElementPerformedStepDefinitionParserRuleCall_1_7_0());
 					}
-					lv_ownedRelatedElement_36_0=rulePerformStepDefinition
+					lv_ownedRelatedElement_36_0=rulePerformedStepDefinition
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFeatureMemberRule());
@@ -3129,7 +3129,7 @@ ruleFeatureMember returns [EObject current=null]
 							$current,
 							"ownedRelatedElement",
 							lv_ownedRelatedElement_36_0,
-							"org.omg.sysml.Alf.PerformStepDefinition");
+							"org.omg.sysml.Alf.PerformedStepDefinition");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -9060,15 +9060,15 @@ ruleStepParameterFlowDefinition returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePerformStepDefinition
-entryRulePerformStepDefinition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPerformStepDefinitionRule()); }
-	iv_rulePerformStepDefinition=rulePerformStepDefinition
-	{ $current=$iv_rulePerformStepDefinition.current; }
+// Entry rule entryRulePerformedStepDefinition
+entryRulePerformedStepDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPerformedStepDefinitionRule()); }
+	iv_rulePerformedStepDefinition=rulePerformedStepDefinition
+	{ $current=$iv_rulePerformedStepDefinition.current; }
 	EOF;
 
-// Rule PerformStepDefinition
-rulePerformStepDefinition returns [EObject current=null]
+// Rule PerformedStepDefinition
+rulePerformedStepDefinition returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -9079,17 +9079,17 @@ rulePerformStepDefinition returns [EObject current=null]
 		(
 			otherlv_0='then'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getPerformStepDefinitionAccess().getThenKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getPerformedStepDefinitionAccess().getThenKeyword_0_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPerformStepDefinitionAccess().getOwnedRelationshipEmptySuccessionMemberParserRuleCall_0_1_0());
+						newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getOwnedRelationshipEmptySuccessionMemberParserRuleCall_0_1_0());
 					}
 					lv_ownedRelationship_1_0=ruleEmptySuccessionMember
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPerformStepDefinitionRule());
+							$current = createModelElementForParent(grammarAccess.getPerformedStepDefinitionRule());
 						}
 						add(
 							$current,
@@ -9101,39 +9101,64 @@ rulePerformStepDefinition returns [EObject current=null]
 				)
 			)
 		)?
-		(
-			(
-				lv_isAbstract_2_0='abstract'
-				{
-					newLeafNode(lv_isAbstract_2_0, grammarAccess.getPerformStepDefinitionAccess().getIsAbstractAbstractKeyword_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPerformStepDefinitionRule());
-					}
-					setWithLastConsumed($current, "isAbstract", true, "abstract");
-				}
-			)
-		)?
-		otherlv_3='perform'
+		otherlv_2='perform'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPerformStepDefinitionAccess().getPerformKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getPerformedStepDefinitionAccess().getPerformKeyword_1());
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getPerformStepDefinitionAccess().getOwnedRelationshipPerformFeatureValueParserRuleCall_3_0());
+				(
+					{
+						newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getNameNameParserRuleCall_2_0_0());
+					}
+					lv_name_3_0=ruleName
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getPerformedStepDefinitionRule());
+						}
+						set(
+							$current,
+							"name",
+							lv_name_3_0,
+							"org.omg.sysml.Alf.Name");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getPerformedStepDefinitionRule());
 				}
-				lv_ownedRelationship_4_0=rulePerformFeatureValue
+				newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getTypePartParserRuleCall_2_1());
+			}
+			this_TypePart_4=ruleTypePart[$current]
+			{
+				$current = $this_TypePart_4.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_5='='
+			{
+				newLeafNode(otherlv_5, grammarAccess.getPerformedStepDefinitionAccess().getEqualsSignKeyword_2_2());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getOwnedRelationshipPerformedStepFeatureValueParserRuleCall_3_0());
+				}
+				lv_ownedRelationship_6_0=rulePerformedStepFeatureValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPerformStepDefinitionRule());
+						$current = createModelElementForParent(grammarAccess.getPerformedStepDefinitionRule());
 					}
 					add(
 						$current,
 						"ownedRelationship",
-						lv_ownedRelationship_4_0,
-						"org.omg.sysml.Alf.PerformFeatureValue");
+						lv_ownedRelationship_6_0,
+						"org.omg.sysml.Alf.PerformedStepFeatureValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -9144,13 +9169,13 @@ rulePerformStepDefinition returns [EObject current=null]
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPerformStepDefinitionRule());
+					$current = createModelElement(grammarAccess.getPerformedStepDefinitionRule());
 				}
-				newCompositeNode(grammarAccess.getPerformStepDefinitionAccess().getStepParameterListParserRuleCall_4());
+				newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getStepParameterListParserRuleCall_4());
 			}
-			this_StepParameterList_5=ruleStepParameterList[$current]
+			this_StepParameterList_7=ruleStepParameterList[$current]
 			{
-				$current = $this_StepParameterList_5.current;
+				$current = $this_StepParameterList_7.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -9159,27 +9184,41 @@ rulePerformStepDefinition returns [EObject current=null]
 		}
 		{
 			if ($current==null) {
-				$current = createModelElement(grammarAccess.getPerformStepDefinitionRule());
+				$current = createModelElement(grammarAccess.getPerformedStepDefinitionRule());
 			}
-			newCompositeNode(grammarAccess.getPerformStepDefinitionAccess().getBehaviorBodyParserRuleCall_5());
+			newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getSubsettingPartParserRuleCall_5());
 		}
-		this_BehaviorBody_6=ruleBehaviorBody[$current]
+		this_SubsettingPart_8=ruleSubsettingPart[$current]
 		{
-			$current = $this_BehaviorBody_6.current;
+			$current = $this_SubsettingPart_8.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getPerformedStepDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getPerformedStepDefinitionAccess().getBehaviorBodyParserRuleCall_6());
+		}
+		this_BehaviorBody_9=ruleBehaviorBody[$current]
+		{
+			$current = $this_BehaviorBody_9.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
 ;
 
-// Entry rule entryRulePerformFeatureValue
-entryRulePerformFeatureValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPerformFeatureValueRule()); }
-	iv_rulePerformFeatureValue=rulePerformFeatureValue
-	{ $current=$iv_rulePerformFeatureValue.current; }
+// Entry rule entryRulePerformedStepFeatureValue
+entryRulePerformedStepFeatureValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPerformedStepFeatureValueRule()); }
+	iv_rulePerformedStepFeatureValue=rulePerformedStepFeatureValue
+	{ $current=$iv_rulePerformedStepFeatureValue.current; }
 	EOF;
 
-// Rule PerformFeatureValue
-rulePerformFeatureValue returns [EObject current=null]
+// Rule PerformedStepFeatureValue
+rulePerformedStepFeatureValue returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -9189,12 +9228,12 @@ rulePerformFeatureValue returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getPerformFeatureValueAccess().getOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0());
+				newCompositeNode(grammarAccess.getPerformedStepFeatureValueAccess().getOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0());
 			}
 			lv_ownedRelatedElement_0_0=ruleFeatureReferenceExpression
 			{
 				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getPerformFeatureValueRule());
+					$current = createModelElementForParent(grammarAccess.getPerformedStepFeatureValueRule());
 				}
 				add(
 					$current,

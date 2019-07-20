@@ -250,8 +250,9 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepParameterDefinitionAccess().getGroup(), "rule__StepParameterDefinition__Group__0");
 			builder.put(grammarAccess.getStepParameterFlowDefinitionAccess().getGroup(), "rule__StepParameterFlowDefinition__Group__0");
 			builder.put(grammarAccess.getStepParameterFlowDefinitionAccess().getGroup_0_1(), "rule__StepParameterFlowDefinition__Group_0_1__0");
-			builder.put(grammarAccess.getPerformStepDefinitionAccess().getGroup(), "rule__PerformStepDefinition__Group__0");
-			builder.put(grammarAccess.getPerformStepDefinitionAccess().getGroup_0(), "rule__PerformStepDefinition__Group_0__0");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getGroup(), "rule__PerformedStepDefinition__Group__0");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getGroup_0(), "rule__PerformedStepDefinition__Group_0__0");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getGroup_2(), "rule__PerformedStepDefinition__Group_2__0");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getGroup(), "rule__StepParameterMember__Group__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup(), "rule__ExpressionDefinition__Group__0");
 			builder.put(grammarAccess.getExpressionDefinitionAccess().getGroup_2_0(), "rule__ExpressionDefinition__Group_2_0__0");
@@ -533,10 +534,10 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_2_1(), "rule__StepParameterList__OwnedRelationshipAssignment_1_2_1");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_2_2(), "rule__StepParameterList__OwnedRelationshipAssignment_1_2_2");
 			builder.put(grammarAccess.getStepParameterFlowDefinitionAccess().getOwnedRelationshipAssignment_2(), "rule__StepParameterFlowDefinition__OwnedRelationshipAssignment_2");
-			builder.put(grammarAccess.getPerformStepDefinitionAccess().getOwnedRelationshipAssignment_0_1(), "rule__PerformStepDefinition__OwnedRelationshipAssignment_0_1");
-			builder.put(grammarAccess.getPerformStepDefinitionAccess().getIsAbstractAssignment_1(), "rule__PerformStepDefinition__IsAbstractAssignment_1");
-			builder.put(grammarAccess.getPerformStepDefinitionAccess().getOwnedRelationshipAssignment_3(), "rule__PerformStepDefinition__OwnedRelationshipAssignment_3");
-			builder.put(grammarAccess.getPerformFeatureValueAccess().getOwnedRelatedElementAssignment(), "rule__PerformFeatureValue__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getOwnedRelationshipAssignment_0_1(), "rule__PerformedStepDefinition__OwnedRelationshipAssignment_0_1");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getNameAssignment_2_0(), "rule__PerformedStepDefinition__NameAssignment_2_0");
+			builder.put(grammarAccess.getPerformedStepDefinitionAccess().getOwnedRelationshipAssignment_3(), "rule__PerformedStepDefinition__OwnedRelationshipAssignment_3");
+			builder.put(grammarAccess.getPerformedStepFeatureValueAccess().getOwnedRelatedElementAssignment(), "rule__PerformedStepFeatureValue__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getDirectionAssignment_0(), "rule__StepParameterMember__DirectionAssignment_0");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getMemberNameAssignment_1(), "rule__StepParameterMember__MemberNameAssignment_1");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__StepParameterMember__OwnedRelatedElementAssignment_2");

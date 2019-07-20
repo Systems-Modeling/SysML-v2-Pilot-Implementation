@@ -9,13 +9,7 @@ package '4a1-Functional Allocation' {
 		}
 
 		// This provides a root composite step for 'provide power' in the context of vehicle_c1.
-		step 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) redefines '3a-Function-based Behavior'::'provide power' {
-			// The following step redefinitions should be generated automatically.
-			step 'generate torque' (in fuelCmd, out engineTorque) redefines '3a-Function-based Behavior'::'provide power'::'generate torque';
-			step 'amplify torque' (in engineTorque, out transmissionTorque) redefines '3a-Function-based Behavior'::'provide power'::'amplify torque';
-			step 'transfer torque' (in transmissionTorque, out driveshaftTorque) redefines '3a-Function-based Behavior'::'provide power'::'transfer torque';
-			step 'distribute torque' (in driveshaftTorque, out wheelTorque1, out wheelTorque2) redefines '3a-Function-based Behavior'::'provide power'::'transfer torque';
-		} 
+		step 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) redefines '3a-Function-based Behavior'::'provide power'; 
 		
 		part engine redefines '2-Parts Interconnection'::vehicle1_c1::engine {
 			port fuelCmdPort redefines '2-Parts Interconnection'::vehicle1_c1::engine::fuelCmdPort {

@@ -183,7 +183,10 @@
       </ownedParameter>
     </ownedOperation>
     <ownedOperation xmi:id="f4285a30-2753-41d1-a00b-79fbc140cff0" name="publicMemberships" visibility="public">
-      <ownedParameter xmi:id="9c1ef4b5-8c41-4703-8a3f-5e61e27b064c" name="" visibility="public" type="80df4982-4fcb-4c30-853c-0f2415033759" direction="return"/>
+      <ownedParameter xmi:id="9c1ef4b5-8c41-4703-8a3f-5e61e27b064c" name="" visibility="public" type="80df4982-4fcb-4c30-853c-0f2415033759" direction="return">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZRnT8KzPEemhe94CtUwiAg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aDk8YKzPEemhe94CtUwiAg" value="*"/>
+      </ownedParameter>
     </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="d00373f6-e7de-4c9f-9b9a-35937ead2cb2" name="Relationship" visibility="public">
@@ -412,7 +415,7 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="eba4e5c0-20cf-4568-b7c6-90a9d284ebc4" name="" visibility="public" value="2"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="32832b31-eb2f-40fe-93ec-ce5827e7f536" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="bfb6051d-5794-4cd9-8ebe-898077611ab3" name="itemFlowFeature" visibility="public" type="79216593-8591-4914-8fe6-b256af92961c" redefinedProperty="610b8f39-4aed-4ab9-b580-ee8d04ddf349" association="691173d8-7fd8-4bee-ae8f-adccd3a0a0df">
+    <ownedAttribute xmi:id="bfb6051d-5794-4cd9-8ebe-898077611ab3" name="itemFlowFeature" visibility="public" type="79216593-8591-4914-8fe6-b256af92961c" isDerived="true" redefinedProperty="610b8f39-4aed-4ab9-b580-ee8d04ddf349" association="691173d8-7fd8-4bee-ae8f-adccd3a0a0df">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="4eaecc08-3ce0-4859-8758-d29629d06295" name="" visibility="public" value="2"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4f5a0348-7efb-4d7f-9274-e9de2a585188" name="" visibility="public" value="*"/>
     </ownedAttribute>
@@ -653,7 +656,7 @@ else owningNamespace.nameOf(self) endif</body>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="7e407232-3182-4fcf-903a-7556d8fb3c1a" name="InstanceCreationExpression" visibility="public">
     <generalization xmi:id="4538b26a-9575-4b41-b3f3-216c2e5a7fb6" general="7195c02a-f102-4843-88a2-4f3a0217284f"/>
-    <ownedAttribute xmi:id="5ce0b58e-cf50-4cb1-b747-df2f257cd97c" name="type" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" association="ca76b5f4-c5e9-478e-b68c-b0a22e9f6b63">
+    <ownedAttribute xmi:id="5ce0b58e-cf50-4cb1-b747-df2f257cd97c" name="instantiatedType" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" association="ca76b5f4-c5e9-478e-b68c-b0a22e9f6b63">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ebd7662f-b7d2-4cf5-a462-f6f4f169b9ff" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="07bef98c-d789-44eb-934e-567c91d7584c" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -827,7 +830,7 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="9f373591-198d-4ced-b5b6-a0e66fb2cc6f" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1704dfbc-340c-40e4-8084-05213d782780" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="cc7543ff-83db-4aed-a234-dde8566d02f3" name="owningClass" visibility="public" type="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da" isDerived="true" redefinedProperty="521c8366-388f-410c-a57b-5256934269b5" association="d68af7ed-17cd-4fb0-afce-60e83cbfc73c">
+    <ownedAttribute xmi:id="cc7543ff-83db-4aed-a234-dde8566d02f3" name="owningClassifier" visibility="public" type="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da" isDerived="true" redefinedProperty="521c8366-388f-410c-a57b-5256934269b5" association="d68af7ed-17cd-4fb0-afce-60e83cbfc73c">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ca5728da-547b-48ed-ac8e-c925852f5d39" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="cefdce33-08a4-4580-bc5f-6e403553ca27" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -1115,6 +1118,10 @@ else owningNamespace.nameOf(self) endif</body>
     <ownedAttribute xmi:id="a845e308-0fa7-49d9-9d90-152949ecf7e1" name="endFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true" subsettedProperty="8fe48f98-83c5-4f3f-a581-d91448105000" association="4bcbfc49-bacd-4efe-a7f0-119b708bbdaf">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="95b90e73-0a8d-4dee-952f-855fa2799202" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="59bf70fe-9bdd-43e3-a0e3-45880b6651af" name="" visibility="public" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_xZ8wcKzQEemhe94CtUwiAg" name="ownedEndFeature" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_15uucKzQEemhe94CtUwiAg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2dW_8KzQEemhe94CtUwiAg" value="*"/>
     </ownedAttribute>
     <ownedOperation xmi:id="1a299586-4fd3-4ac9-8d7c-fa9e0d476734" name="publicMemberships" visibility="public" redefinedOperation="f4285a30-2753-41d1-a00b-79fbc140cff0">
       <ownedParameter xmi:id="87b49d56-a259-4b4d-966c-f6f26089197c" name="" visibility="public" type="80df4982-4fcb-4c30-853c-0f2415033759" direction="return"/>

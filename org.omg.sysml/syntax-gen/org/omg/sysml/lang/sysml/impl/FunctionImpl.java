@@ -63,7 +63,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	public EList<Expression> getExpression() {
 		return new DerivedEObjectEList<Expression>(
 				Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION, 
-				new int[]{SysMLPackage.CATEGORY__FEATURE});
+				new int[]{SysMLPackage.TYPE__FEATURE});
 	}
 
 	/**

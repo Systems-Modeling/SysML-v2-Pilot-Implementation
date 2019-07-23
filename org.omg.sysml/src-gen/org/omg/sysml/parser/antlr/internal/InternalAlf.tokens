@@ -27,7 +27,6 @@
 '?'=66
 '??'=67
 '@'=85
-'Class'=26
 '['=58
 ']'=60
 '^'=71
@@ -39,6 +38,7 @@
 'behavior'=30
 'binding'=40
 'class'=27
+'classifier'=26
 'compose'=54
 'connector'=39
 'datatype'=28

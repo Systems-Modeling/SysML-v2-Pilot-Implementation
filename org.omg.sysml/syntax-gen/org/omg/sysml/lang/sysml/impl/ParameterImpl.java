@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -49,7 +49,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	}
 
 	public boolean isResultParameter() {
-		return ((CategoryImpl)getOwningCategory()).getResult() == this;
+		return ((TypeImpl)getOwningType()).getResult() == this;
 	}
 	
 	/**
@@ -66,11 +66,11 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	 * the result Parameter of a general Functions or Expression. 
 	 */
 	@Override
-	public List<? extends Feature> getRelevantFeatures(Category category) {
-		return category == null? Collections.emptyList():
-			   (isResultParameter() && (category instanceof Function | category instanceof Expression))? 
-					Collections.singletonList(((CategoryImpl)category).getResult()):
-			   ((CategoryImpl)category).getOwnedParameters().stream().
+	public List<? extends Feature> getRelevantFeatures(Type type) {
+		return type == null? Collections.emptyList():
+			   (isResultParameter() && (type instanceof Function | type instanceof Expression))? 
+					Collections.singletonList(((TypeImpl)type).getResult()):
+			   ((TypeImpl)type).getOwnedParameters().stream().
 					filter(p->!((ParameterImpl)p).isResultParameter()).collect(Collectors.toList());
 	}
 	
@@ -79,7 +79,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 			redefinitionsNotAdded = false;
 			EList<FeatureTyping> typing = getTyping();
 			if (!typing.isEmpty()) {
-				Category type = typing.get(0).getType();
+				Type type = typing.get(0).getType();
 				if (type == null) {
 					redefinitionsNotAdded = true;
 				} else {

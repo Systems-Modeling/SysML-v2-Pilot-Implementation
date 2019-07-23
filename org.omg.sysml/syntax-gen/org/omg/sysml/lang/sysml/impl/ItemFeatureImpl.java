@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -56,9 +56,9 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 	}
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Category category) {
-		return category instanceof ItemFlow? ((CategoryImpl)category).getRelevantFeatures():
-			   category.getFeature().stream().
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return type instanceof ItemFlow? ((TypeImpl)type).getRelevantFeatures():
+			   type.getFeature().stream().
 					filter(feature->ITEM_FLOW_ITEM_FEATURE_NAME.equals(feature.getName())).
 					collect(Collectors.toList());
 	}

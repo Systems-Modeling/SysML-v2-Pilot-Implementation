@@ -201,7 +201,7 @@ fragment AbstractTypeBody returns SysML::Type :
 	isAbstract ?= ';' | isAbstract ?= '{' ( ownedRelationship += TypeMember | ownedRelationship += PackageImport )* '}'
 ;
 
-/* CATEGORY MEMBERSHIPS */
+/* TYPE MEMBERSHIPS */
 
 TypeMember returns SysML::Membership : 
 	NonFeatureTypeMember | FeatureMember | EndFeatureMember | FeatureTypeMember
@@ -291,7 +291,7 @@ fragment ClassifierDefinition returns SysML::Classifier :
 ;
 
 fragment ClassifierDeclaration returns SysML::Classifier :
-	( isAbstract ?= 'abstract' )? 'Class' ClassifierDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'classifier' ClassifierDeclarationCompletion
 ;
 
 fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
@@ -648,12 +648,16 @@ AbstractSuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( ( name = Name )? ConnectorTypePart 'is' )? ( ownedRelationship += ItemTypeMember 'from' )? 
+	( ( name = Name )? ConnectorTypePart 'is' )? ownedRelationship += ItemFeatureMember
 	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
 ;
 
-ItemTyping returns SysML::ItemFeature :
-	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
+ItemFeatureTyping returns SysML::ItemFeature :
+	{SysML::ItemFeature} ( ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )? 'from' )?
+;
+
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
@@ -664,10 +668,11 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 	ownedRelationship += Redefinition
 ;
 
+
 /* ITEM FLOW MEMBERSHIPS */
 
-ItemTypeMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemTyping
+ItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemFeatureTyping
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -676,6 +681,10 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFlowFeature
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature
 ;
 
 /* PARAMETERS */
@@ -707,7 +716,8 @@ StepParameterDefinition returns SysML::Parameter :
 ;
 
 StepParameterFlowDefinition returns SysML::ItemFlow :
-	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? 'from' ownedRelationship += ItemFlowEndMember
+	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? ownedRelationship += EmptyItemFeatureMember 
+	'from' ownedRelationship += ItemFlowEndMember
 ;
 
 PerformedStepDefinition returns SysML::Step :

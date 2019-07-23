@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * isComposite = owningFeatureMembership <> null and owningFeatureMembership.isPart
  * ownedType = type->intersection(ownedElement)
  * type = typing.type
+ * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -23,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
@@ -35,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getValuation <em>Valuation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -42,10 +44,10 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Feature extends Category {
+public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Referenced Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -65,11 +67,11 @@ public interface Feature extends Category {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Category> getReferencedType();
+	EList<Type> getReferencedType();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -78,29 +80,29 @@ public interface Feature extends Category {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Category</em>' reference.
-	 * @see #setOwningCategory(Category)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningCategory()
-	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeature
+	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @see #setOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeature
 	 * @model opposite="ownedFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Category getOwningCategory();
+	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Category</em>' reference.
-	 * @see #getOwningCategory()
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @see #getOwningType()
 	 * @generated
 	 */
-	void setOwningCategory(Category value);
+	void setOwningType(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Unique</b></em>' attribute.
@@ -158,7 +160,7 @@ public interface Feature extends Category {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference list isn't clear,
@@ -171,11 +173,11 @@ public interface Feature extends Category {
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 * @generated
 	 */
-	EList<Category> getType();
+	EList<Type> getType();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -196,7 +198,7 @@ public interface Feature extends Category {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Category> getOwnedType();
+	EList<Type> getOwnedType();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -230,7 +232,7 @@ public interface Feature extends Category {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -374,6 +376,32 @@ public interface Feature extends Category {
 	 * @generated
 	 */
 	EList<FeatureTyping> getTyping();
+
+	/**
+	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is End</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is End</em>' attribute.
+	 * @see #setIsEnd(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsEnd()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isEnd();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is End</em>' attribute.
+	 * @see #isEnd()
+	 * @generated
+	 */
+	void setIsEnd(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.

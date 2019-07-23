@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -38,7 +38,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 * @ordered
 	 */
-	protected Category type;
+	protected Type type;
 
 	/**
 	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
@@ -75,10 +75,10 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public Category getType() {
+	public Type getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
-			type = (Category)eResolveProxy(oldType);
+			type = (Type)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPE, oldType, type));
@@ -92,7 +92,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category basicGetType() {
+	public Type basicGetType() {
 		return type;
 	}
 
@@ -102,8 +102,8 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public void setType(Category newType) {
-		Category oldType = type;
+	public void setType(Type newType) {
+		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPE, oldType, type));
@@ -244,7 +244,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_TYPING__TYPE:
-				setType((Category)newValue);
+				setType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
 				setTypedFeature((Feature)newValue);
@@ -262,7 +262,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_TYPING__TYPE:
-				setType((Category)null);
+				setType((Type)null);
 				return;
 			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
 				setTypedFeature((Feature)null);
@@ -297,7 +297,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public Category getGeneral() {
+	public Type getGeneral() {
 		return getType();
 	}
 
@@ -307,7 +307,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public Category basicGetGeneral() {
+	public Type basicGetGeneral() {
 		return basicGetType();
 	}
 
@@ -316,7 +316,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeneral(Category newGeneral) {
+	public void setGeneral(Type newGeneral) {
 		setType(newGeneral);
 	}
 
@@ -335,7 +335,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public Category getSpecific() {
+	public Type getSpecific() {
 		return getTypedFeature();
 	}
 
@@ -345,7 +345,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	@Override
-	public Category basicGetSpecific() {
+	public Type basicGetSpecific() {
 		return basicGetTypedFeature();
 	}
 
@@ -354,7 +354,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecific(Category newSpecific) {
+	public void setSpecific(Type newSpecific) {
 		if (newSpecific != null && !(newSpecific instanceof Feature)) {
 			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
 		}

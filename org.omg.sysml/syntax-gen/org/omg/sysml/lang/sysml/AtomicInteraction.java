@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface AtomicInteraction extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Item Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Classifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item Type</em>' reference list isn't clear,
@@ -37,6 +37,6 @@ public interface AtomicInteraction extends EObject {
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getItemType();
+	EList<Classifier> getItemType();
 
 } // AtomicInteraction

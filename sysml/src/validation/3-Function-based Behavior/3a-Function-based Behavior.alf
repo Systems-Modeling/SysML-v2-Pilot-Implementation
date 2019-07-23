@@ -25,7 +25,7 @@ package '3a-Function-based Behavior' {
 	
 	// ACTIONS
 	
-	step 'provide power function': 'Provide Power'(
+	step 'provide power': 'Provide Power'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque

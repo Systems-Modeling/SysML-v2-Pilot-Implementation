@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.xtext.util.Arrays;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
@@ -59,9 +59,9 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Category category) {
-		return category instanceof ItemFlowEnd? category.getOwnedFeature():
-			   category.getFeature().stream().
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return type instanceof ItemFlowEnd? type.getOwnedFeature():
+			   type.getFeature().stream().
 					filter(feature->Arrays.contains(ITEM_FLOW_INPUT_OUTPUT_FEATURE_NAMES, feature.getName())).
 					collect(Collectors.toList());
 	}

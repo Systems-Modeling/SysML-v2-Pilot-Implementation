@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Category</b></em>'.
+ * A representation of the model object '<em><b>Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -17,25 +17,27 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedGeneralization <em>Owned Generalization</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getInput <em>Input</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getOutput <em>Output</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#isAbstract <em>Is Abstract</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Category#getInheritedMembership <em>Inherited Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  * </ul>
  *
- * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory()
+ * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
  * @model
  * @generated
  */
-public interface Category extends org.omg.sysml.lang.sysml.Package {
+public interface Type extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Owned Generalization</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Generalization}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Generalization#getOwningCategory <em>Owning Category</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -50,9 +52,9 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Generalization</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedGeneralization()
-	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningCategory
-	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization()
+	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -61,7 +63,7 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Feature Membership</em>' reference list isn't clear,
@@ -69,9 +71,9 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory
-	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership()
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();
@@ -79,12 +81,12 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningCategory <em>Owning Category</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -94,9 +96,9 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_OwnedFeature()
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwningCategory
-	 * @model opposite="owningCategory" transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeature()
+	 * @see org.omg.sysml.lang.sysml.Feature#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -118,9 +120,9 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_Feature()
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Feature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringCategory'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringType'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -129,6 +131,12 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Input</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input</em>' reference list isn't clear,
@@ -136,9 +144,10 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_Input()
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Input()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inputOfCategory'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithInput'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getInput();
@@ -146,6 +155,12 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	/**
 	 * Returns the value of the '<em><b>Output</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Output</em>' reference list isn't clear,
@@ -153,9 +168,10 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Output</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_Output()
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Output()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='outputOfCategory'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithOutput'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getOutput();
@@ -170,14 +186,14 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
 	 * @see #setIsAbstract(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_IsAbstract()
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsAbstract()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAbstract();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Category#isAbstract <em>Is Abstract</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
@@ -202,12 +218,52 @@ public interface Category extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inherited Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCategory_InheritedMembership()
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedMembership()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingCategory'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingtype'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getInheritedMembership();
 
-} // Category
+	/**
+	 * Returns the value of the '<em><b>End Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Feature</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_EndFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithEndFeature'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Feature> getEndFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned End Feature</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned End Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedEndFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<Feature> getOwnedEndFeature();
+
+} // Type

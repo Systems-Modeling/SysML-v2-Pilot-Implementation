@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -128,11 +128,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 		
 	public Function getFunction() {
-		EList<Category> types = getType();
+		EList<Type> types = getType();
 		if (types.isEmpty()) {
 			return null;
 		} else {
-			Category type = types.get(0);
+			Type type = types.get(0);
 			return type instanceof Function? (Function)type: null;
 		}
 	}

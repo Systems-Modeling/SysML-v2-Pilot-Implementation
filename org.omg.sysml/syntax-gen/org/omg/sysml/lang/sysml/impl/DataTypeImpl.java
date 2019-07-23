@@ -4,36 +4,36 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.ObjectClass;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.DataType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Object Class</b></em>'.
+ * An implementation of the model object '<em><b>Value Classifier</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ObjectClassImpl extends ClassImpl implements ObjectClass {
+public class DataTypeImpl extends ClassifierImpl implements DataType {
 	
-	public static final String OBJECT_CLASS_SUPERCLASS_DEFAULT = "Base::Object";
+	public static final String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ObjectClassImpl() {
+	protected DataTypeImpl() {
 		super();
 	}
-	
+
 	/**
-	 * If the ObjectClass has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 * If the Class has no Superclassings, then create one whose superclass is the appropriate default library class.
 	 */
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(OBJECT_CLASS_SUPERCLASS_DEFAULT);
+		return getOwnedSuperclassingWithDefault(VALUE_CLASS_SUPERCLASS_DEFAULT);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class ObjectClassImpl extends ClassImpl implements ObjectClass {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.OBJECT_CLASS;
+		return SysMLPackage.Literals.DATA_TYPE;
 	}
 
-} //ObjectClassImpl
+} //ValueClassImpl

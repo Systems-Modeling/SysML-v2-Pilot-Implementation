@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -28,26 +26,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getStep <em>Step</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getInvolvesFeature <em>Involves Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BehaviorImpl extends ClassImpl implements Behavior {
+public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
 	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::Performance";
 	
-	/**
-	 * The cached value of the '{@link #getInvolvesFeature() <em>Involves Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInvolvesFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> involvesFeature;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,20 +62,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	public EList<Step> getStep() {
 		return new DerivedEObjectEList<Step>(Step.class, this, 
 				SysMLPackage.BEHAVIOR__STEP, 
-				new int[] {SysMLPackage.CATEGORY__FEATURE});
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getInvolvesFeature() {
-		if (involvesFeature == null) {
-			involvesFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.BEHAVIOR__INVOLVES_FEATURE);
-		}
-		return involvesFeature;
+				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
 
 	/**
@@ -99,7 +73,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	public EList<Parameter> getParameter() {
 		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
 				SysMLPackage.BEHAVIOR__PARAMETER, 
-				new int[] {SysMLPackage.CATEGORY__FEATURE});
+				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
 	
 	/**
@@ -130,8 +104,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		switch (featureID) {
 			case SysMLPackage.BEHAVIOR__STEP:
 				return getStep();
-			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
-				return getInvolvesFeature();
 			case SysMLPackage.BEHAVIOR__PARAMETER:
 				return getParameter();
 		}
@@ -150,10 +122,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 			case SysMLPackage.BEHAVIOR__STEP:
 				getStep().clear();
 				getStep().addAll((Collection<? extends Step>)newValue);
-				return;
-			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
-				getInvolvesFeature().clear();
-				getInvolvesFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.BEHAVIOR__PARAMETER:
 				getParameter().clear();
@@ -174,9 +142,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 			case SysMLPackage.BEHAVIOR__STEP:
 				getStep().clear();
 				return;
-			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
-				getInvolvesFeature().clear();
-				return;
 			case SysMLPackage.BEHAVIOR__PARAMETER:
 				getParameter().clear();
 				return;
@@ -194,8 +159,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		switch (featureID) {
 			case SysMLPackage.BEHAVIOR__STEP:
 				return !getStep().isEmpty();
-			case SysMLPackage.BEHAVIOR__INVOLVES_FEATURE:
-				return involvesFeature != null && !involvesFeature.isEmpty();
 			case SysMLPackage.BEHAVIOR__PARAMETER:
 				return !getParameter().isEmpty();
 		}

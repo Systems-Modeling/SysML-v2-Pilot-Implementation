@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()
@@ -54,7 +54,8 @@ public interface Connector extends Feature, Relationship {
 	EList<Feature> getRelatedFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Association</b></em>' reference.
+	 * Returns the value of the '<em><b>Association</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -67,25 +68,14 @@ public interface Connector extends Feature, Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Association</em>' reference.
-	 * @see #setAssociation(Association)
+	 * @return the value of the '<em>Association</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	Association getAssociation();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Association</em>' reference.
-	 * @see #getAssociation()
-	 * @generated
-	 */
-	void setAssociation(Association value);
+	EList<Association> getAssociation();
 
 	/**
 	 * Returns the value of the '<em><b>Is Directed</b></em>' attribute.
@@ -121,7 +111,7 @@ public interface Connector extends Feature, Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -139,7 +129,8 @@ public interface Connector extends Feature, Relationship {
 	EList<Feature> getConnectorEnd();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
@@ -153,25 +144,14 @@ public interface Connector extends Feature, Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Association Type</em>' reference.
-	 * @see #setOwnedAssociationType(Association)
+	 * @return the value of the '<em>Owned Association Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_OwnedAssociationType()
 	 * @see org.omg.sysml.lang.sysml.Association#getOwningConnector
 	 * @model opposite="owningConnector" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	Association getOwnedAssociationType();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Association Type</em>' reference.
-	 * @see #getOwnedAssociationType()
-	 * @generated
-	 */
-	void setOwnedAssociationType(Association value);
+	EList<Association> getOwnedAssociationType();
 
 	/**
 	 * <!-- begin-user-doc -->

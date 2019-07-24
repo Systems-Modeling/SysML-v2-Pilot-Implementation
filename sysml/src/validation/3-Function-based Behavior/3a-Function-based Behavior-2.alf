@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior' {
+package '3a-Function-based Behavior-2' {
 	import Transfers::Reception;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
@@ -36,17 +36,17 @@ package '3a-Function-based Behavior' {
 		);
 		
 		step 'amplify torque': 'Amplify Torque'(
-			in engineTorque from 'generate torque'::engineTorque,  
+			in engineTorque stream from 'generate torque'::engineTorque,  
 			out transmissionTorque
 		);
 		
 		step 'transfer torque': 'Transfer Torque'(
-			in transmissionTorque from 'amplify torque'::transmissionTorque,  
+			in transmissionTorque stream from 'amplify torque'::transmissionTorque,  
 			out driveshaftTorque
 		);
 		
 		step 'distribute torque': 'Distribute Torque'(
-			in driveshaftTorque from 'transfer torque'::driveshaftTorque, 
+			in driveshaftTorque stream from 'transfer torque'::driveshaftTorque, 
 			out wheelTorque1 = 'provide power'::wheelTorque1, 
 			out wheelTorque2 = 'provide power'::wheelTorque2
 		); 
@@ -59,8 +59,8 @@ package '3a-Function-based Behavior' {
 	) {
 		portion is startShot;
 		then[0..1] step merge: Merge[*];
-		then step engineStart: Reception[*](out :EngineStart);
-		then step engineOff: Reception[*](out :EngineOff);
+		then step engineStart: Reception[*](:EngineStart);
+		then step engineOff: Reception[*](:EngineOff);
 		then[0..1] merge;
 		
 		step is engineStart;

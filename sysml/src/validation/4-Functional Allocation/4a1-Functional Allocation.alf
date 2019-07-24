@@ -16,7 +16,15 @@ package '4a1-Functional Allocation' {
 			in fuelCmd = fuelCmdPort::fuelCmd
 		);
 		
-		// For a composite enacted performance within the vehicle, replace the above with the following
+		// The above is semantically equivalent to:
+		//
+		// feature 'provide power': 'Provide Power' = '3a-Function-based Behavior'::'provide power' {
+		//	  in fuelCmd: FuelCmd 
+		//		  redefines '3a-Function-based Behavior'::'provide power'::fuelCmd 
+		//		  = fuelCmdPort::fuelCmd;
+		// }
+			
+		// For a composite enacted performance within the vehicle, replace the above with:
 		//
 		// step 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
 		//	   redefines '3a-Function-based Behavior'::'provide power';		

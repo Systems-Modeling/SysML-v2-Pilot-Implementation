@@ -36,17 +36,17 @@ package '3a-Function-based Behavior-1' {
 		);
 		
 		step 'amplify torque': 'Amplify Torque'(
-			in engineTorque from 'generate torque'::engineTorque, 
+			in engineTorque stream from 'generate torque'::engineTorque, 
 			out transmissionTorque
 		);
 		
 		step 'transfer torque': 'Transfer Torque'(
-			in transmissionTorque from 'amplify torque'::transmissionTorque, 
+			in transmissionTorque stream from 'amplify torque'::transmissionTorque, 
 			out driveshaftTorque
 		);
 		
 		step 'distribute torque': 'Distribute Torque'(
-			in driveshaftTorque from 'transfer torque'::driveshaftTorque, 
+			in driveshaftTorque stream from 'transfer torque'::driveshaftTorque, 
 			out wheelTorque1 = 'provide power'::wheelTorque1, 
 			out wheelTorque2 = 'provide power'::wheelTorque2
 		); 

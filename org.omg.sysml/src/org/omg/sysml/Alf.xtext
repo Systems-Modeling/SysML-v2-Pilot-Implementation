@@ -239,6 +239,7 @@ FeatureMember returns SysML::FeatureMembership :
 	| ownedRelatedElement += ExpressionDefinition
 	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
 	| ownedRelatedElement += PerformedStepDefinition
+	| 'perform' ( memberName = Name)? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
     | 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
@@ -510,6 +511,12 @@ fragment TypePart returns SysML::Feature :
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
+fragment NoncomposingTypePart returns SysML::Feature :
+	( ':' ( ownedRelationship += FeatureTyping | 'any' ) )?
+	( ownedRelationship += Multiplicity )? 
+	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
+;
+
 FeatureTyping returns SysML::FeatureTyping :
 	type = [SysML::Category | QualifiedName]
 ;
@@ -688,10 +695,10 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? 'step' 
-	( name = Name TypePart StepParameterList? SubsettingPart ValuePart?
-	| TypePart StepParameterList? ValuePart?
-	| 'redefines' ownedRelationship += Redefinition TypePart StepParameterList? ValuePart?
+    ( isAbstract ?= 'abstract' )? isComposite ?= 'step' 
+	( name = Name NoncomposingTypePart StepParameterList? SubsettingPart ValuePart?
+	| NoncomposingTypePart StepParameterList? ValuePart?
+	| 'redefines' ownedRelationship += Redefinition NoncomposingTypePart StepParameterList? ValuePart?
 	) BehaviorBody
 
 ;
@@ -712,13 +719,10 @@ StepParameterFlowDefinition returns SysML::ItemFlow :
 
 PerformedStepDefinition returns SysML::Step :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-    'perform' ( ( name = Name )? TypePart '=' )?
-	ownedRelationship += PerformedStepFeatureValue StepParameterList? SubsettingPart
+    'perform' ( name = Name NoncomposingTypePart 'by' )? 
+    ownedRelationship += Subset 
+    StepParameterList? SubsettingPart ValuePart?
 	BehaviorBody
-;
-
-PerformedStepFeatureValue returns SysML::FeatureValue :
-	ownedRelatedElement += FeatureReferenceExpression
 ;
 
 /* STEP MEMBERSHIPS */

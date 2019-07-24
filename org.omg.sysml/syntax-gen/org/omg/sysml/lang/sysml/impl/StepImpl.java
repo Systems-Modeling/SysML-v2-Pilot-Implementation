@@ -51,20 +51,6 @@ public class StepImpl extends FeatureImpl implements Step {
 	}
 	
 	@Override
-	public boolean basicIsComposite() {
-		if (!isComposite && isCompositeStep()) {
-			isComposite = true;
-		}
-		return isComposite;
-	}
-	
-	public boolean isCompositeStep() {
-		return isSubperformance() ||
-				isEnactedPerformance() &&
-					getValuation() == null;
-	}
-
-	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		if (isCheckSubsetting) {
 			if (isSubperformance()) {

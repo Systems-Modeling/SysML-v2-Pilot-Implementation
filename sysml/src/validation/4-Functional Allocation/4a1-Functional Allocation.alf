@@ -1,16 +1,17 @@
 package '4a1-Functional Allocation' {
+	import '2-Parts Interconnection'::*;
 	import '3a-Function-based Behavior'::*;
 	import '3a-Function-based Behavior'::'provide power'::*;
 		
-	feature vehicle1_c1 redefines '2-Parts Interconnection'::vehicle1_c1 {
+	feature vehicle1_c1_functional_allocation redefines vehicle1_c1 {
 		// Note: The definitions of the port types in '2-Parts Interconnection' do not include 
 		// input and output features.
-		port fuelCmdPort redefines '2-Parts Interconnection'::vehicle1_c1::fuelCmdPort {
+		port fuelCmdPort redefines vehicle1_c1::fuelCmdPort {
 			in fuelCmd: FuelCmd;
 		}
 
 		// This allocates the step '3a-Function-based Behavior'::'provide power' as an enacted 
-		// performance of vehicle_c1.
+		// performance of vehicle_c1_functional_allocation.
 		perform 'provide power' (
 			// This assigns the fuelCmdPort to provide the input to 'provide power'.
 			in fuelCmd = fuelCmdPort::fuelCmd
@@ -18,10 +19,12 @@ package '4a1-Functional Allocation' {
 		
 		// The above is semantically equivalent to:
 		//
-		// feature 'provide power': 'Provide Power' = '3a-Function-based Behavior'::'provide power' {
+		// feature 'provide power': 'Provide Power' 
+		//	  subsets '3a-Function-based Behavior'::'provide power', enactedPerformances
+		// {
 		//	  in fuelCmd: FuelCmd 
 		//		  redefines '3a-Function-based Behavior'::'provide power'::fuelCmd 
-		//		  = fuelCmdPort::fuelCmd;
+		//		  	  = fuelCmdPort::fuelCmd;
 		// }
 			
 		// For a composite enacted performance within the vehicle, replace the above with:
@@ -29,8 +32,8 @@ package '4a1-Functional Allocation' {
 		// step 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
 		//	   redefines '3a-Function-based Behavior'::'provide power';		
 		
-		part engine redefines '2-Parts Interconnection'::vehicle1_c1::engine {
-			port fuelCmdPort redefines '2-Parts Interconnection'::vehicle1_c1::engine::fuelCmdPort {
+		part engine redefines vehicle1_c1::engine {
+			port fuelCmdPort redefines vehicle1_c1::engine::fuelCmdPort {
 				in fuelCmd: FuelCmd;
 			}
 			
@@ -40,13 +43,13 @@ package '4a1-Functional Allocation' {
 				out engineTorque = drivePwrPort::engineTorque
 			);
 			
-			port drivePwrPort redefines '2-Parts Interconnection'::vehicle1_c1::engine::drivePwrPort {
+			port drivePwrPort redefines vehicle1_c1::engine::drivePwrPort {
 				out engineTorque: Torque;
 			}
 		}
 		
-		part transmission redefines '2-Parts Interconnection'::vehicle1_c1::transmission {
-			port clutchPort redefines '2-Parts Interconnection'::vehicle1_c1::transmission::clutchPort {
+		part transmission redefines vehicle1_c1::transmission {
+			port clutchPort redefines vehicle1_c1::transmission::clutchPort {
 				in engineTorque: Torque;
 			}
 			
@@ -55,13 +58,13 @@ package '4a1-Functional Allocation' {
 				out transmissionTorque = shaftPort_a::transmissionTorque
 			);
 
-			port shaftPort_a redefines '2-Parts Interconnection'::vehicle1_c1::transmission::shaftPort_a {
+			port shaftPort_a redefines vehicle1_c1::transmission::shaftPort_a {
 				out transmissionTorque: Torque;
 			}
 		}
 		
-		part driveshaft redefines '2-Parts Interconnection'::vehicle1_c1::driveshaft {
-			port shaftPort_b redefines '2-Parts Interconnection'::Driveshaft::shaftPort_b {
+		part driveshaft redefines vehicle1_c1::driveshaft {
+			port shaftPort_b redefines Driveshaft::shaftPort_b {
 				in transmissionTorque: Torque;
 			}
 
@@ -70,13 +73,13 @@ package '4a1-Functional Allocation' {
 				out driveshaftTorque = shaftPort_c::driveshaftTorque
 			);
 
-			port shaftPort_c redefines '2-Parts Interconnection'::Driveshaft::shaftPort_c {
+			port shaftPort_c redefines Driveshaft::shaftPort_c {
 				out driveshaftTorque: Torque;
 			}			
 		}
 		
-		part rearAxleAssembly redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly {
-			port shaftPort_d redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::shaftPort_d {
+		part rearAxleAssembly redefines vehicle1_c1::rearAxleAssembly {
+			port shaftPort_d redefines vehicle1_c1::rearAxleAssembly::shaftPort_d {
 				in driveshaftTorque: Torque;
 			}
 				
@@ -86,14 +89,14 @@ package '4a1-Functional Allocation' {
 				out wheelTorque2 = rearAxle::rightAxle::axleToWheelPort::wheelTorque
 			);
 			
-			part rearAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle {
-				part leftAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle {
-					port axleToWheelPort redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort {
+			part rearAxle redefines vehicle1_c1::rearAxleAssembly::rearAxle {
+				part leftAxle redefines vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle {
+					port axleToWheelPort redefines vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}
-				part rightAxle redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle {
-					port axleToWheelPort redefines '2-Parts Interconnection'::vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort {
+				part rightAxle redefines vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle {
+					port axleToWheelPort redefines vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}

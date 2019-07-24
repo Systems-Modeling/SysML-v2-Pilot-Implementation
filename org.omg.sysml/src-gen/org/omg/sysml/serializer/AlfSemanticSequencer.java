@@ -283,15 +283,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.FEATURE_VALUE:
-				if (rule == grammarAccess.getFeatureValueRule()) {
-					sequence_FeatureValue(context, (FeatureValue) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPerformedStepFeatureValueRule()) {
-					sequence_PerformedStepFeatureValue(context, (FeatureValue) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_FeatureValue(context, (FeatureValue) semanticObject); 
+				return; 
 			case SysMLPackage.FUNCTION:
 				if (rule == grammarAccess.getNonFeatureDefinitionRule()
 						|| rule == grammarAccess.getFunctionDefinitionOrStubRule()) {
@@ -368,9 +361,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getCategoryMemberRule()
-						|| rule == grammarAccess.getNonFeatureCategoryMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
 						|| rule == grammarAccess.getBehaviorMemberRule()) {
+					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNonFeatureCategoryMemberRule()) {
 					sequence_CategoryMemberPrefix_NonFeatureMemberElement(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -509,11 +505,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case SysMLPackage.STEP:
 				if (rule == grammarAccess.getPerformedStepDefinitionRule()) {
-					sequence_BehaviorBody_PerformedStepDefinition_Redefines_StepParameterList_Subsets_SubsettingPart_TypePart(context, (Step) semanticObject); 
+					sequence_BehaviorBody_NoncomposingTypePart_PerformedStepDefinition_Redefines_StepParameterList_Subsets_SubsettingPart_ValuePart(context, (Step) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStepDefinitionRule()) {
-					sequence_BehaviorBody_Redefines_StepDefinition_StepParameterList_Subsets_SubsettingPart_TypePart_ValuePart(context, (Step) semanticObject); 
+					sequence_BehaviorBody_NoncomposingTypePart_Redefines_StepDefinition_StepParameterList_Subsets_SubsettingPart_ValuePart(context, (Step) semanticObject); 
 					return; 
 				}
 				else break;
@@ -824,8 +820,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -881,8 +876,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -982,8 +976,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1024,22 +1017,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=EmptySuccessionMember? 
-	 *         name=Name? 
-	 *         isComposite?='compose'? 
-	 *         ownedRelationship+=FeatureTyping? 
-	 *         ownedRelationship+=Multiplicity? 
-	 *         (isOrdered?='ordered' | isNonunique?='nonunique')* 
-	 *         ownedRelationship+=PerformedStepFeatureValue 
+	 *         (name=Name ownedRelationship+=FeatureTyping? ownedRelationship+=Multiplicity? (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         ownedRelationship+=Subset 
 	 *         (
 	 *             ownedRelationship+=StepParameterMember 
 	 *             ownedRelationship+=StepParameterFlowMember? 
 	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
 	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
+	 *         ownedRelationship+=FeatureValue? 
 	 *         (ownedRelationship+=BehaviorMember | ownedRelationship+=PackageImport)*
 	 *     )
 	 */
-	protected void sequence_BehaviorBody_PerformedStepDefinition_Redefines_StepParameterList_Subsets_SubsettingPart_TypePart(ISerializationContext context, Step semanticObject) {
+	protected void sequence_BehaviorBody_NoncomposingTypePart_PerformedStepDefinition_Redefines_StepParameterList_Subsets_SubsettingPart_ValuePart(ISerializationContext context, Step semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1052,8 +1042,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         ownedRelationship+=EmptySuccessionMember? 
 	 *         isAbstract?='abstract'? 
+	 *         isComposite?='step' 
 	 *         (name=Name | ownedRelationship+=Redefinition)? 
-	 *         isComposite?='compose'? 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         ownedRelationship+=Multiplicity? 
 	 *         isOrdered?='ordered'? 
@@ -1069,7 +1059,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (ownedRelationship+=PackageImport? ownedRelationship+=BehaviorMember?)*
 	 *     )
 	 */
-	protected void sequence_BehaviorBody_Redefines_StepDefinition_StepParameterList_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, Step semanticObject) {
+	protected void sequence_BehaviorBody_NoncomposingTypePart_Redefines_StepDefinition_StepParameterList_Subsets_SubsettingPart_ValuePart(ISerializationContext context, Step semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1228,8 +1218,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1285,8 +1274,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport? ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
 	 *         name=Name 
@@ -1427,8 +1416,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1585,6 +1573,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             ownedRelatedElement+=ExpressionDefinition | 
 	 *             (memberName=Name? memberFeature=[Expression|QualifiedName]) | 
 	 *             ownedRelatedElement+=PerformedStepDefinition | 
+	 *             (memberName=Name? memberFeature=[Step|QualifiedName]) | 
 	 *             ownedRelatedElement+=AbstractConnectorDefinition | 
 	 *             ownedRelatedElement+=BindingConnectorDefinition | 
 	 *             ownedRelatedElement+=SuccessionDefinition | 
@@ -1649,6 +1638,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             ownedRelatedElement+=ExpressionDefinition | 
 	 *             (memberName=Name? memberFeature=[Expression|QualifiedName]) | 
 	 *             ownedRelatedElement+=PerformedStepDefinition | 
+	 *             (memberName=Name? memberFeature=[Step|QualifiedName]) | 
 	 *             ownedRelatedElement+=AbstractConnectorDefinition | 
 	 *             ownedRelatedElement+=BindingConnectorDefinition | 
 	 *             ownedRelatedElement+=SuccessionDefinition | 
@@ -1672,13 +1662,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     CategoryMember returns Membership
-	 *     NonFeatureCategoryMember returns Membership
 	 *     AssociationMember returns Membership
 	 *     BehaviorMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedRelatedElement+=NonFeatureDefinition | 
@@ -1697,6 +1686,32 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NonFeatureCategoryMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedRelatedElement+=NonFeatureDefinition | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Class|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ObjectClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[ValueClass|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Association|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
+	//             (memberName=Name? memberElement=[Function|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?)
+	//         )
+	//     )
+	//
+	// protected void sequence_CategoryMemberPrefix_NonFeatureMemberElement(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2052,8 +2067,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2415,18 +2429,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (direction=FeatureDirection? memberName=Name ownedRelatedElement+=ParameterDefinition)
 	 */
 	protected void sequence_ParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PerformedStepFeatureValue returns FeatureValue
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=FeatureReferenceExpression
-	 */
-	protected void sequence_PerformedStepFeatureValue(ISerializationContext context, FeatureValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

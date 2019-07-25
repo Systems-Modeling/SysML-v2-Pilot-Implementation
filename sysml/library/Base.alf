@@ -135,7 +135,7 @@ package Base {
 	 * nominally directed from source to target.
 	 */
 	assoc BinaryLink specializes Link {
-	    feature participant: Anything[2] ordered redefines Link::participant;
+	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
 		
 		end source: Anything[0..*] nonunique subsets participant;
 	    end target: Anything[0..*] nonunique subsets participant;

@@ -32,7 +32,7 @@ package Occurrences {
 	}
 	
 	/**
-	 * HappensWhile asserts that the earlierOccurrence happens before the laterOccurrence.
+	 * HappensBefore asserts that the earlierOccurrence happens before the laterOccurrence.
 	 * That is, the end time of the earlierOccurrence happens no later than the start time
 	 * of the laterOccurrence.
 	 */

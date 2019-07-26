@@ -23,7 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
- *  Hisahsi Miyashita, Maplesoft
+ *  Hisashi Miyashita, Maplesoft
  * 
  *****************************************************************************/
 
@@ -234,6 +234,12 @@ FeatureMember returns SysML::FeatureMembership :
 	  ( ownedRelatedElement += ConnectorDefinition 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
 	  )
+	| ownedRelatedElement += StepDefinition
+	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
+	| ownedRelatedElement += ExpressionDefinition
+	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
+	| ownedRelatedElement += PerformedStepDefinition
+	| 'perform' ( memberName = Name)? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
     | 'binding' ownedRelatedElement += BindingConnectorDefinition
 	| 'succession' 
@@ -410,18 +416,7 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 BehaviorMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | BehaviorStepMember	
-;
-
-BehaviorStepMember returns SysML::FeatureMembership :
-	CategoryMemberPrefix BehaviorStepMemberDefinition
-;
-
-fragment BehaviorStepMemberDefinition returns SysML::FeatureMembership :
-	  ownedRelatedElement += StepDefinition
-	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
-	| ownedRelatedElement += ExpressionDefinition
-	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'	
+	NonFeatureCategoryMember | FeatureMember | EndFeatureMember	
 ;
 
 /* FUNCTIONS */
@@ -512,6 +507,12 @@ FeatureValue returns SysML::FeatureValue :
 
 fragment TypePart returns SysML::Feature :
 	( ':' ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' ) )?
+	( ownedRelationship += Multiplicity )? 
+	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
+;
+
+fragment NoncomposingTypePart returns SysML::Feature :
+	( ':' ( ownedRelationship += FeatureTyping | 'any' ) )?
 	( ownedRelationship += Multiplicity )? 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
@@ -635,12 +636,6 @@ EmptySuccessionDefinition returns SysML::Succession :
 	ownedRelationship += MultiplicityEndMember ownedRelationship += EmptyEndMember
 ;
 
-/* SUCCESSION MEMBERSHIPS */
-
-SuccessionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += SuccessionDefinition
-;
-
 /* ITEM FLOWS */
 
 ItemFlowDefinition returns SysML::ItemFlow :
@@ -700,10 +695,10 @@ ParameterDefinition returns SysML::Parameter :
 
 StepDefinition returns SysML::Step :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? 'step' 
-	( name = Name TypePart StepParameterList? SubsettingPart ValuePart?
-	| TypePart StepParameterList? ValuePart?
-	| 'redefines' ownedRelationship += Redefinition TypePart StepParameterList? ValuePart?
+    ( isAbstract ?= 'abstract' )? isComposite ?= 'step' 
+	( name = Name NoncomposingTypePart StepParameterList? SubsettingPart ValuePart?
+	| NoncomposingTypePart StepParameterList? ValuePart?
+	| 'redefines' ownedRelationship += Redefinition NoncomposingTypePart StepParameterList? ValuePart?
 	) BehaviorBody
 
 ;
@@ -720,6 +715,14 @@ StepParameterDefinition returns SysML::Parameter :
 
 StepParameterFlowDefinition returns SysML::ItemFlow :
 	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? 'from' ownedRelationship += ItemFlowEndMember
+;
+
+PerformedStepDefinition returns SysML::Step :
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+    'perform' ( name = Name NoncomposingTypePart 'by' )? 
+    ownedRelationship += Subset 
+    StepParameterList? SubsettingPart ValuePart?
+	BehaviorBody
 ;
 
 /* STEP MEMBERSHIPS */

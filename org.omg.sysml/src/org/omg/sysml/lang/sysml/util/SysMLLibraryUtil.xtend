@@ -35,13 +35,13 @@ class SysMLLibraryUtil {
 	
 	def static SysMLLibraryProvider getInstance(Resource resource) {
 		if (instance === null) {
-			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI).get(SysMLLibraryProvider)
+			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI)?.get(SysMLLibraryProvider)
 		}
 		instance
 	}
 	
 	def static Element getLibraryElement(Element context, EReference reference, String name) {		
-		return getInstance(context.eResource).getElement(context, reference, name)
+		return getInstance(context.eResource)?.getElement(context, reference, name)
 	}
 	
 }

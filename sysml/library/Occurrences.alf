@@ -32,7 +32,7 @@ package Occurrences {
 	}
 	
 	/**
-	 * HappensWhile asserts that the earlierOccurrence happens before the laterOccurrence.
+	 * HappensBefore asserts that the earlierOccurrence happens before the laterOccurrence.
 	 * That is, the end time of the earlierOccurrence happens no later than the start time
 	 * of the laterOccurrence.
 	 */
@@ -42,21 +42,29 @@ package Occurrences {
 	}
 	
 	/**
-	 * Portioning asserts one occurrence is a portion of another.
+	 * PortionOf asserts one occurrence is a portion of another.
 	 */
-	assoc Portioning { 
+	assoc PortionOf { 
 		end whole: Occurrence[0..1];
 		end portion 'portion': Occurrence[0..*] redefines Occurrence::portions; 
 	}
 	
 	/** 
-	 * Involvement asserts that an involvedObject is involved in the behavior carried out
-	 * by the involvingPerformance.
+	 * Involves asserts that the behavior carried out by the involvingPerformance involves the
+	 * involvedObject.
 	 */
-	assoc Involvement {
+	assoc Involves {
 		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances;
 		end involvedObject: Object[0..*] redefines Performance::involvedObjects;
 	}
+	
+	/**
+	 * Performance asserts that the performer enacts the behavior carried out by the performance.
+	 */
+	 assoc Performs {
+	 	end performer: Object[0..*] redefines Performance::performers;
+	 	end performance: Performance[0..*] subsets Object::enactedPerformances;
+	 }
 	
 	/**
 	 * successions is a specialization of binaryLinks restricted to type HappensBefore.

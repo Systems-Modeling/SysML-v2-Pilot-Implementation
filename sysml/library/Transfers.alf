@@ -50,18 +50,34 @@ package Transfers {
 		feature item: Anything[1..*];
 		
 		/**
+		 * The link from the transfer source to the items it is outputing.
+		 */
+		assoc SourceOutputLink {
+			end source: Occurrence[1];
+			end target: Occurrence[1..*] redefines transferSource::sourceOutput;
+		}
+		
+		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: BinaryLink[1..*] is transferSource::sourceOutput to item {
-			feature startShot: Occurrence redefines BinaryLink::startShot;
-			feature endShot: Occurrence redefines BinaryLink::endShot;
+		connector sourceOutputLink: SourceOutputLink[1..*] is transferSource to item {
+			feature startShot: Occurrence redefines SourceOutputLink::startShot;
+			feature endShot: Occurrence redefines SourceOutputLink::endShot;
+		}
+		
+		/**
+		 * The link from the transfer source to the items it is inputing.
+		 */
+		assoc TargetInputLink {
+			end source: Occurrence[1..*] redefines transferTarget::targetInput;
+			end target: Occurrence[1];
 		}
 		
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: BinaryLink[1..*] is item to transferTarget::targetInput {
-			feature startShot: Occurrence redefines BinaryLink::startShot;
+		connector targetInputLink: TargetInputLink[1..*] is item to transferTarget {
+			feature startShot: Occurrence redefines TargetInputLink::startShot;
 		}
 		
 		/**
@@ -132,7 +148,7 @@ package Transfers {
 	 * transfers is a specialization of performances and binaryLinks restricted to type 
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
-	feature transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		end transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
 		end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
 	}
@@ -141,7 +157,7 @@ package Transfers {
 	 * successionTransfers is a specialization of transfers and successions restricted to
 	 * type TransferBefore. It is the default subsetting for sucession (non-streaming) item flows.
 	 */
-	feature flows: TransferBefore[0..*] nonunique subsets transfers, successions {
+	step flows: TransferBefore[0..*] nonunique subsets transfers, successions {
 		end transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
 		end transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
 	}

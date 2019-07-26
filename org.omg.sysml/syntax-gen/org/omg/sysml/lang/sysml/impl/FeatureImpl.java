@@ -171,18 +171,25 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Category> getType() {
+		return getTypes(true);
+	}
+	
+	public EList<Category> getTypes(boolean isWithDefaults) {
 		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
-		getTypes(this, types, new HashSet<Feature>());
+		getTypes(this, types, new HashSet<Feature>(), isWithDefaults);
 		return types;
 	}
 	
-	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures) {
+	public static void getTypes(Feature feature, List<Category> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
 		getFeatureTypes(feature, types);
-		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
+		EList<Subsetting> subsettings = isWithDefaults? 
+				feature.getOwnedSubsetting(): 
+				((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();
+		for (Subsetting subsetting: subsettings) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				getTypes(subsettedFeature, types, visitedFeatures);
+				getTypes(subsettedFeature, types, visitedFeatures, isWithDefaults);
 			}
 		}		
 	}
@@ -317,14 +324,6 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
 				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
 				FEATURE_SUBSETTING_DEFAULT);
-	}
-	
-	public boolean hasObjectType() {
-		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ObjectClass);
-	}
-	
-	public boolean hasValueType() {
-		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String subsettingDefault) {
@@ -612,6 +611,26 @@ public class FeatureImpl extends CategoryImpl implements Feature {
 		Membership owningFeatureMembership = getOwningFeatureMembership();
 		return owningFeatureMembership != null? owningFeatureMembership: super.getOwningMembership();
 	}
+	
+	// Utility methods
+	
+	public boolean isObjectFeature() {
+		return getTypes(false).stream().anyMatch(type->type instanceof ObjectClass);
+	}
+	
+	public boolean isValueFeature() {
+		return getTypes(false).stream().anyMatch(type->type instanceof ValueClass);
+	}
+	
+	public boolean hasObjectType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ObjectClass);
+	}
+	
+	public boolean hasValueType() {
+		return getTyping().stream().anyMatch(typing->typing.getType() instanceof ValueClass);
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

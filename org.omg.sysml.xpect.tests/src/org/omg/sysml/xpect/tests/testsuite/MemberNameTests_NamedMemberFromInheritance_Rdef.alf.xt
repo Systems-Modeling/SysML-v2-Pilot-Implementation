@@ -1,0 +1,38 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package test{
+	feature A{
+		feature a {}
+		feature aa is a;
+	}
+/* XPECT scope at A ---
+	   	A, A.a, A.aa, B, B.a, B.aa, B.b, B.b_alias, test.B.b, test.B.b_alias,
+	   	test.A, test.A.a, test.A.aa, test.B, test.B.a, test.B.aa,
+		Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
+--- */
+	feature B redefines A{
+		/* XPECT scope at aa ---
+	    A, A.a, A.aa, B, B.a, B.aa, B.b, B.b_alias, a, aa, b, b_alias, 
+	    test.A, test.A.a, test.A.aa,test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias, 
+		Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+--- */
+//		XPECT linkedName at aa --> test.A.a
+		feature b redefines aa;
+		b_alias is b;
+	}
+}

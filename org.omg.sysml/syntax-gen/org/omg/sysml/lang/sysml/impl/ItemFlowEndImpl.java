@@ -47,17 +47,15 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		if (getOwnedSubsettingWithoutDefault().stream().allMatch(sub->sub instanceof Redefinition)) {
-			addItemFlowEndSubsetting();
-		}
-		EList<Subsetting> subsettings = super.getOwnedSubsetting();
+		addItemFlowEndSubsetting();
+		EList<Subsetting> subsettings = super.getOwnedSubsettingWithComputedRedefinitions();
 		for (Feature feature: getOwnedFeature()) {
 			feature.getOwnedSubsetting();
 		}
 		return subsettings;
 	}
 
-	public void addItemFlowEndSubsetting() {
+	protected void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();
 		if (!features.isEmpty()) {
 			EList<Redefinition> redefinitions = 
@@ -67,10 +65,15 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 				if (feature != null) {
 					Type owner = feature.getOwningType();
 					if (owner instanceof Feature) {
-						Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+						Subsetting subsetting = getOwnedSubsettingWithoutDefault().stream().
+								filter(sub->!(sub instanceof Redefinition)).
+								findFirst().orElse(null);
+						if (subsetting == null) {
+							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+							subsetting.setSubsettingFeature(this);
+							getOwnedRelationship().add(subsetting);
+						}
 						subsetting.setSubsettedFeature((Feature)owner);
-						subsetting.setSubsettingFeature(this);
-						getOwnedRelationship().add(subsetting);
 					}
 				}
 			}

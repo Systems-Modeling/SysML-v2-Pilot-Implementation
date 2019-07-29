@@ -35,11 +35,12 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Category
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
+import org.omg.sysml.lang.sysml.Classifier
 
 class AlfScope extends AbstractScope {
 	
@@ -167,7 +168,7 @@ class AlfScope extends AbstractScope {
 											return true
 										}
 										
-										if (memberElement instanceof org.omg.sysml.lang.sysml.Class) {								
+										if (memberElement instanceof Classifier) {								
 											for (eg: memberElement.ownedSuperclassing) {
 												if (!visited.contains(eg.superclass)) {
 													eg.superclass.resolve(elementqn, false, false, visited)
@@ -187,7 +188,7 @@ class AlfScope extends AbstractScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
-		if (pack instanceof Category) {
+		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
 				if (e.general !== null && !visited.contains(e.general)) {
 					visited.add(e.general)

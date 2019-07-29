@@ -11,7 +11,7 @@ package Base {
     /**
      * Anything is the top level generalized type in the language. 
      */
-	abstract Class Anything;
+	abstract classifier Anything;
 	
 	// Values
 	
@@ -110,7 +110,15 @@ package Base {
 	 * and are mutable over time.
 	 */
 	abstract class Object specializes Occurrence {
+		/**
+		 * Performances in which this object is involved.
+		 */
 		feature involvingPerformances: Performance[0..*];
+		
+		/**
+		 * Performances which are enacted by this object.
+		 */
+		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances;
 	}
 	
 	/**
@@ -127,7 +135,7 @@ package Base {
 	 * nominally directed from source to target.
 	 */
 	assoc BinaryLink specializes Link {
-	    feature participant: Anything[2] ordered redefines Link::participant;
+	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
 		
 		end source: Anything[0..*] nonunique subsets participant;
 	    end target: Anything[0..*] nonunique subsets participant;
@@ -163,11 +171,35 @@ package Base {
 	 * Performance is the most general class of behaviors that may be performed over time.
 	 */
 	abstract behavior Performance() specializes Occurrence {
+		/**
+		 * Objects that are involved in this performance.
+		 */
 		feature involvedObjects: Object[0..*];
+		
+		/**
+		 * Objects that enact this performance.
+		 */
+		feature performers: Object[0..*] subsets involvedObjects;
+		
+		/**
+		 * Suboccurrences of this performance that are also performances.
+		 */
 		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		
+		/**
+		 * Subperformances of this performance that are evaluations.
+		 */
 		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
-		feature subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
-		feature subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
+		
+		/**
+		 * Subperformances of this performance that are transfers.
+		 */
+		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		
+		/**
+		 * Subtransfers of this performance that are transfers-before (succession flows).
+		 */
+		step subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**

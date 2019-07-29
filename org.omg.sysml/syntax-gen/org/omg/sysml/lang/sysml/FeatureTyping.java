@@ -36,14 +36,14 @@ public interface FeatureTyping extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Category)
+	 * @see #setType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_Type()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typingByCategory'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typingByType'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	Category getType();
+	Type getType();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getType <em>Type</em>}' reference.
@@ -53,7 +53,7 @@ public interface FeatureTyping extends Generalization {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Category value);
+	void setType(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Typed Feature</b></em>' reference.

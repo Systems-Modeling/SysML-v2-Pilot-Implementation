@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
@@ -126,8 +126,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 	
 	@Override
-	public EList<Category> getType() {
-		EList<Category> types = new EObjectEList<Category>(Category.class, this, SysMLPackage.FEATURE__TYPE);
+	public EList<Type> getType() {
+		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 		getFeatureTypes(this, types);
 		return types;
 	}	
@@ -259,7 +259,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		
 		@Override
 		protected List<Expression> delegateList() {
-			return getFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
+			return getOwnedFeature().stream().filter(f->f instanceof Expression).map(f->(Expression)f).collect(Collectors.toList());
 		}
 		
 		@Override

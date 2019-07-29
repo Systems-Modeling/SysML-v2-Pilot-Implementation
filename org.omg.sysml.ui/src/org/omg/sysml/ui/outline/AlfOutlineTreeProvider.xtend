@@ -22,7 +22,7 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.LiteralNull
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Expression
-import org.omg.sysml.lang.sysml.Category
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 
 /**
@@ -83,13 +83,13 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _text(Category category) {
-		var text = category.eClass.name;
-		if (category.isAbstract) {
+	def String _text(Type type) {
+		var text = type.eClass.name;
+		if (type.isAbstract) {
 			text += ' abstract'
 		}
-		if (category.name !== null) {
-			text += ' ' + category.name;
+		if (type.name !== null) {
+			text += ' ' + type.name;
 		}
 		text
 	}

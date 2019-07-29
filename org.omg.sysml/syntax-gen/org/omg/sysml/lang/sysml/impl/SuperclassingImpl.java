@@ -9,7 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -24,7 +25,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSuperclass <em>Superclass</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSubclass <em>Subclass</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,7 +39,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Class superclass;
+	protected Classifier superclass;
 
 	/**
 	 * The cached value of the '{@link #getSubclass() <em>Subclass</em>}' reference.
@@ -48,7 +49,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 * @ordered
 	 */
-	protected org.omg.sysml.lang.sysml.Class subclass;
+	protected Classifier subclass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,10 +76,10 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Class getSuperclass() {
+	public Classifier getSuperclass() {
 		if (superclass != null && superclass.eIsProxy()) {
 			InternalEObject oldSuperclass = (InternalEObject)superclass;
-			superclass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldSuperclass);
+			superclass = (Classifier)eResolveProxy(oldSuperclass);
 			if (superclass != oldSuperclass) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUPERCLASS, oldSuperclass, superclass));
@@ -92,7 +93,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetSuperclass() {
+	public Classifier basicGetSuperclass() {
 		return superclass;
 	}
 
@@ -102,8 +103,8 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public void setSuperclass(org.omg.sysml.lang.sysml.Class newSuperclass) {
-		org.omg.sysml.lang.sysml.Class oldSuperclass = superclass;
+	public void setSuperclass(Classifier newSuperclass) {
+		Classifier oldSuperclass = superclass;
 		superclass = newSuperclass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUPERCLASS, oldSuperclass, superclass));
@@ -118,7 +119,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 		return superclass != null;
 	}
 	
-	public org.omg.sysml.lang.sysml.Class getSubclass() {
+	public org.omg.sysml.lang.sysml.Classifier getSubclass() {
 		return subclass == null? basicGetSubclass(): getSubclassGen();
 	}
 
@@ -127,10 +128,10 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Class getSubclassGen() {
+	public Classifier getSubclassGen() {
 		if (subclass != null && subclass.eIsProxy()) {
 			InternalEObject oldSubclass = (InternalEObject)subclass;
-			subclass = (org.omg.sysml.lang.sysml.Class)eResolveProxy(oldSubclass);
+			subclass = (Classifier)eResolveProxy(oldSubclass);
 			if (subclass != oldSubclass) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUBCLASS, oldSubclass, subclass));
@@ -141,15 +142,15 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Superclassing has a Class as its owner, the use this as the default value of the subclass property.
+	 * If the Superclassing has a Classifier as its owner, the use this as the default value of the subclass property.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetSubclass() {
+	public org.omg.sysml.lang.sysml.Classifier basicGetSubclass() {
 		if (subclass == null) {
 			Element owner = getOwningRelatedElement();
-			if (owner instanceof org.omg.sysml.lang.sysml.Class) {
-				subclass = (org.omg.sysml.lang.sysml.Class)owner;
+			if (owner instanceof org.omg.sysml.lang.sysml.Classifier) {
+				subclass = (org.omg.sysml.lang.sysml.Classifier)owner;
 			}
 		}
 		return subclass;
@@ -161,8 +162,8 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public void setSubclass(org.omg.sysml.lang.sysml.Class newSubclass) {
-		org.omg.sysml.lang.sysml.Class oldSubclass = subclass;
+	public void setSubclass(Classifier newSubclass) {
+		Classifier oldSubclass = subclass;
 		subclass = newSubclass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUBCLASS, oldSubclass, subclass));
@@ -183,9 +184,9 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Class getOwningClass() {
-		org.omg.sysml.lang.sysml.Class owningClass = basicGetOwningClass();
-		return owningClass != null && owningClass.eIsProxy() ? (org.omg.sysml.lang.sysml.Class)eResolveProxy((InternalEObject)owningClass) : owningClass;
+	public Classifier getOwningClassifier() {
+		Classifier owningClassifier = basicGetOwningClassifier();
+		return owningClassifier != null && owningClassifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)owningClassifier) : owningClassifier;
 	}
 
 	/**
@@ -193,9 +194,9 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public org.omg.sysml.lang.sysml.Class basicGetOwningClass() {
-		Category owningCategory = super.basicGetOwningCategory();
-		return owningCategory instanceof org.omg.sysml.lang.sysml.Class? (org.omg.sysml.lang.sysml.Class)owningCategory: null;
+	public Classifier basicGetOwningClassifier() {
+		Type owningType = super.basicGetOwningType();
+		return owningType instanceof Classifier? (org.omg.sysml.lang.sysml.Classifier)owningType: null;
 	}
 
 	/**
@@ -203,17 +204,19 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setOwningClass(org.omg.sysml.lang.sysml.Class newOwningClass) {
-		super.setOwningCategory(newOwningClass);
+	@Override
+	public void setOwningClassifier(Classifier newOwningClassifier) {
+		super.setOwningType(newOwningClassifier);
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwningClass() {
-		return basicGetOwningClass() != null;
+	public boolean isSetOwningClassifier() {
+		return basicGetOwningClassifier() != null;
 	}
 
 	/**
@@ -230,9 +233,9 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 			case SysMLPackage.SUPERCLASSING__SUBCLASS:
 				if (resolve) return getSubclass();
 				return basicGetSubclass();
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASS:
-				if (resolve) return getOwningClass();
-				return basicGetOwningClass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				if (resolve) return getOwningClassifier();
+				return basicGetOwningClassifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,13 +249,13 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				setSuperclass((org.omg.sysml.lang.sysml.Class)newValue);
+				setSuperclass((Classifier)newValue);
 				return;
 			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((org.omg.sysml.lang.sysml.Class)newValue);
+				setSubclass((Classifier)newValue);
 				return;
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)newValue);
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,13 +270,13 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				setSuperclass((org.omg.sysml.lang.sysml.Class)null);
+				setSuperclass((Classifier)null);
 				return;
 			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((org.omg.sysml.lang.sysml.Class)null);
+				setSubclass((Classifier)null);
 				return;
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASS:
-				setOwningClass((org.omg.sysml.lang.sysml.Class)null);
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -291,14 +294,14 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 				return isSetGeneral();
 			case SysMLPackage.SUPERCLASSING__SPECIFIC:
 				return isSetSpecific();
-			case SysMLPackage.SUPERCLASSING__OWNING_CATEGORY:
-				return isSetOwningCategory();
+			case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
+				return isSetOwningType();
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
 				return isSetSuperclass();
 			case SysMLPackage.SUPERCLASSING__SUBCLASS:
 				return isSetSubclass();
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASS:
-				return isSetOwningClass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				return isSetOwningClassifier();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,7 +312,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category getGeneral() {
+	public Type getGeneral() {
 		return getSuperclass();
 	}
 
@@ -319,7 +322,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category basicGetGeneral() {
+	public Type basicGetGeneral() {
 		return basicGetSuperclass();
 	}
 
@@ -328,11 +331,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeneral(Category newGeneral) {
-		if (newGeneral != null && !(newGeneral instanceof org.omg.sysml.lang.sysml.Class)) {
-			throw new IllegalArgumentException("newGeneral must be an instance of org.omg.sysml.lang.sysml.Class");
+	public void setGeneral(Type newGeneral) {
+		if (newGeneral != null && !(newGeneral instanceof Classifier)) {
+			throw new IllegalArgumentException("newGeneral must be an instance of Classifier");
 		}
-		setSuperclass((org.omg.sysml.lang.sysml.Class) newGeneral);
+		setSuperclass((Classifier) newGeneral);
 	}
 
 	/**
@@ -350,7 +353,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category getSpecific() {
+	public Type getSpecific() {
 		return getSubclass();
 	}
 
@@ -360,7 +363,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category basicGetSpecific() {
+	public Type basicGetSpecific() {
 		return basicGetSubclass();
 	}
 
@@ -369,11 +372,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecific(Category newSpecific) {
-		if (newSpecific != null && !(newSpecific instanceof org.omg.sysml.lang.sysml.Class)) {
-			throw new IllegalArgumentException("newSpecific must be an instance of org.omg.sysml.lang.sysml.Class");
+	public void setSpecific(Type newSpecific) {
+		if (newSpecific != null && !(newSpecific instanceof Classifier)) {
+			throw new IllegalArgumentException("newSpecific must be an instance of Classifier");
 		}
-		setSubclass((org.omg.sysml.lang.sysml.Class) newSpecific);
+		setSubclass((Classifier) newSpecific);
 	}
 
 	/**
@@ -391,8 +394,8 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category getOwningCategory() {
-		return getOwningClass();
+	public Type getOwningType() {
+		return getOwningClassifier();
 	}
 
 	/**
@@ -401,8 +404,8 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	@Override
-	public Category basicGetOwningCategory() {
-		return basicGetOwningClass();
+	public Type basicGetOwningType() {
+		return basicGetOwningClassifier();
 	}
 
 	/**
@@ -410,11 +413,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningCategory(Category newOwningCategory) {
-		if (newOwningCategory != null && !(newOwningCategory instanceof org.omg.sysml.lang.sysml.Class)) {
-			throw new IllegalArgumentException("newOwningCategory must be an instance of org.omg.sysml.lang.sysml.Class");
+	public void setOwningType(Type newOwningType) {
+		if (newOwningType != null && !(newOwningType instanceof Classifier)) {
+			throw new IllegalArgumentException("newOwningType must be an instance of Classifier");
 		}
-		setOwningClass((org.omg.sysml.lang.sysml.Class) newOwningCategory);
+		setOwningClassifier((Classifier) newOwningType);
 	}
 
 	/**
@@ -422,7 +425,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwningCategory() {
+	public boolean isSetOwningType() {
   		return false;
 	}
 

@@ -109,7 +109,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cClassifierDefinitionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//ClassifierUnitDefinition SysML::Class:
+		//ClassifierUnitDefinition SysML::Classifier:
 		//	UnitPrefix ClassifierDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7760,7 +7760,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageUnitDefinitionAccess().getRule();
 	}
 	
-	//ClassifierUnitDefinition SysML::Class:
+	//ClassifierUnitDefinition SysML::Classifier:
 	//	UnitPrefix ClassifierDefinition;
 	public ClassifierUnitDefinitionElements getClassifierUnitDefinitionAccess() {
 		return pClassifierUnitDefinition;

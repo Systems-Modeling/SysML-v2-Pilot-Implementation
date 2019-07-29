@@ -50,7 +50,7 @@ PackageUnitDefinition returns SysML::Package:
     UnitPrefix PackageDefinition 
 ;
 
-ClassifierUnitDefinition returns SysML::Class : 
+ClassifierUnitDefinition returns SysML::Classifier : 
 	UnitPrefix ClassifierDefinition
 ;
 

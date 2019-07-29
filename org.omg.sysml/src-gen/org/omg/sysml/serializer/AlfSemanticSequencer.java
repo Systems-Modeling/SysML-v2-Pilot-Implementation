@@ -129,22 +129,30 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
+					sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getClassUnitDefinitionRule()) {
 					sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 					return; 
 				}
+				else break;
+			case SysMLPackage.CLASSIFIER:
+				if (rule == grammarAccess.getNonFeatureDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()) {
+					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody(context, (Classifier) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getUnitDefinitionRule()) {
-					sequence_ClassDeclaration_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (Classifier) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getClassifierUnitDefinitionRule()) {
-					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (Classifier) semanticObject); 
 					return; 
 				}
 				else break;
-			case SysMLPackage.CLASSIFIER:
-				sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody(context, (Classifier) semanticObject); 
-				return; 
 			case SysMLPackage.COMMENT:
 				sequence_Comment(context, (Comment) semanticObject); 
 				return; 
@@ -191,8 +199,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeMemberRule()
-						|| rule == grammarAccess.getEndFeatureMemberRule()
 						|| rule == grammarAccess.getBehaviorMemberRule()) {
+					sequence_EndFeatureMember_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_EndFeatureMember_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -832,7 +843,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -889,7 +900,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -990,7 +1001,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1209,12 +1220,13 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ClassUnitDefinition returns Class
+	 *     UnitDefinition returns Class
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=ElementImport? 
+	 *         ownedRelationship+=PackageImport? 
+	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
@@ -1226,25 +1238,24 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	}
 	
 	
-	/**
-	 * Contexts:
-	 *     UnitDefinition returns Class
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
-	 *         ownedRelationship+=Annotation? 
-	 *         (isAbstract?='abstract' | isAbstract?='abstract')? 
-	 *         name=Name 
-	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
-	 *         (ownedRelationship+=TypeMember | ownedRelationship+=PackageImport)*
-	 *     )
-	 */
-	protected void sequence_ClassDeclaration_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ClassUnitDefinition returns Class
+	//
+	// Constraint:
+	//     (
+	//         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	//         ownedRelationship+=Annotation* 
+	//         isAbstract?='abstract'? 
+	//         name=Name 
+	//         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	//         (ownedRelationship+=TypeMember | ownedRelationship+=PackageImport)*
+	//     )
+	//
+	// protected void sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1283,7 +1294,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1335,22 +1346,42 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ClassifierUnitDefinition returns Class
+	 *     UnitDefinition returns Classifier
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=ElementImport? 
+	 *         ownedRelationship+=PackageImport? 
+	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
 	 *         (ownedRelationship+=TypeMember | ownedRelationship+=PackageImport)*
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
+	protected void sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(ISerializationContext context, Classifier semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ClassifierUnitDefinition returns Classifier
+	//
+	// Constraint:
+	//     (
+	//         (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
+	//         ownedRelationship+=Annotation* 
+	//         isAbstract?='abstract'? 
+	//         name=Name 
+	//         (ownedRelationship+=Superclassing ownedRelationship+=Superclassing*)? 
+	//         (ownedRelationship+=TypeMember | ownedRelationship+=PackageImport)*
+	//     )
+	//
+	// protected void sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(ISerializationContext context, Classifier semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1584,12 +1615,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     TypeMember returns EndFeatureMembership
-	 *     EndFeatureMember returns EndFeatureMembership
 	 *     BehaviorMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
@@ -1602,6 +1632,26 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     EndFeatureMember returns EndFeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
+	//             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	//             ((isPart?='part' | isPortion?='portion') memberName=Name? memberFeature=[Feature|QualifiedName])
+	//         )
+	//     )
+	//
+	// protected void sequence_EndFeatureMember_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1673,7 +1723,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2033,7 +2083,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=ElementImport? 
-	 *         (ownedRelationship+=PackageImport ownedRelationship+=ElementImport?)* 
+	 *         ownedRelationship+=PackageImport? 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 

@@ -21,7 +21,7 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.sysml.interactive;
+package org.omg.sysml.interactive;
 
 import java.io.StringReader;
 import java.util.Scanner;

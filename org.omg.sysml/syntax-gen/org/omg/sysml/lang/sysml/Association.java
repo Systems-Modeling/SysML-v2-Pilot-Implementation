@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * An Association specifies multiple semantic relationships (pairs) that can occur between individuals of a given Category. It has at least two participant properties to connect Categories. These properties can have further properties nested under them in order to provide navigation between one Category and another.
- * relatedTypes = ownedEndFeatureMembership.type
+ * relatedTypes = associationEnd.type
  * <!-- end-model-doc -->
  *
  * <p>
@@ -19,8 +19,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getRelatedType <em>Related Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getOwnedEndFeatureMembership <em>Owned End Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getAssociationEnd <em>Association End</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation()
@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Association extends org.omg.sysml.lang.sysml.Class, Relationship {
 	/**
 	 * Returns the value of the '<em><b>Related Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Category}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -43,6 +43,9 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The types of the endFeatures of the Association, which are the relatedElements of the Association considered as a Relationship.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
@@ -50,32 +53,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	EList<Category> getRelatedType();
-
-	/**
-	 * Returns the value of the '<em><b>Owned End Feature Membership</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EndFeatureMembership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation <em>Owning Association</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership() <em>Owned Feature Membership</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned End Feature Membership</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned End Feature Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_OwnedEndFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.EndFeatureMembership#getOwningAssociation
-	 * @model opposite="owningAssociation" lower="2"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<EndFeatureMembership> getOwnedEndFeatureMembership();
+	EList<Type> getRelatedType();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Connector</b></em>' reference.
@@ -104,5 +82,28 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @generated
 	 */
 	void setOwningConnector(Connector value);
+
+	/**
+	 * Returns the value of the '<em><b>Association End</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Association End</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Association End</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
+	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	EList<Feature> getAssociationEnd();
 
 } // Association

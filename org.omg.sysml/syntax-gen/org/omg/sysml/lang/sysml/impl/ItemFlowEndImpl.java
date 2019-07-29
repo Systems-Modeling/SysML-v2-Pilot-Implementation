@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
@@ -47,17 +47,15 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		if (getOwnedSubsettingWithoutDefault().stream().allMatch(sub->sub instanceof Redefinition)) {
-			addItemFlowEndSubsetting();
-		}
-		EList<Subsetting> subsettings = super.getOwnedSubsetting();
+		addItemFlowEndSubsetting();
+		EList<Subsetting> subsettings = super.getOwnedSubsettingWithComputedRedefinitions();
 		for (Feature feature: getOwnedFeature()) {
 			feature.getOwnedSubsetting();
 		}
 		return subsettings;
 	}
 
-	public void addItemFlowEndSubsetting() {
+	protected void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();
 		if (!features.isEmpty()) {
 			EList<Redefinition> redefinitions = 
@@ -65,12 +63,17 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 			if (!redefinitions.isEmpty()) {
 				Feature feature = redefinitions.get(0).getRedefinedFeature();
 				if (feature != null) {
-					Category owner = feature.getOwningCategory();
+					Type owner = feature.getOwningType();
 					if (owner instanceof Feature) {
-						Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+						Subsetting subsetting = getOwnedSubsettingWithoutDefault().stream().
+								filter(sub->!(sub instanceof Redefinition)).
+								findFirst().orElse(null);
+						if (subsetting == null) {
+							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+							subsetting.setSubsettingFeature(this);
+							getOwnedRelationship().add(subsetting);
+						}
 						subsetting.setSubsettedFeature((Feature)owner);
-						subsetting.setSubsettingFeature(this);
-						getOwnedRelationship().add(subsetting);
 					}
 				}
 			}
@@ -78,9 +81,9 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 	
 	@Override
-	protected Set<Category> getGeneralCategories(Category category) {		
-		return category instanceof ItemFlow? new HashSet<>(((ItemFlow)category).getType()):
-			super.getGeneralCategories(category);
+	protected Set<Type> getGeneralTypes(Type type) {		
+		return type instanceof ItemFlow? new HashSet<>(((ItemFlow)type).getType()):
+			super.getGeneralTypes(type);
 	}
 	
 	@Override

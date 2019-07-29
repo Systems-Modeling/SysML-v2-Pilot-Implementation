@@ -12,15 +12,15 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership()
@@ -227,32 +227,32 @@ public interface FeatureMembership extends Membership {
 	void setDirection(FeatureDirectionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Category</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Category</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Category</em>' reference.
-	 * @see #setOwningCategory(Category)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningCategory()
-	 * @see org.omg.sysml.lang.sysml.Category#getOwnedFeatureMembership
+	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @see #setOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
 	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	Category getOwningCategory();
+	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningCategory <em>Owning Category</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Category</em>' reference.
-	 * @see #getOwningCategory()
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @see #getOwningType()
 	 * @generated
 	 */
-	void setOwningCategory(Category value);
+	void setOwningType(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.

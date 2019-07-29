@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ObjectClass;
+import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -70,10 +70,10 @@ public class StepImpl extends FeatureImpl implements Step {
 	}
 	
 	protected void addSubsetting(String name) {
-		Category category = getDefaultCategory(name);
-		if (category instanceof Feature) {
+		Type type = getDefaultType(name);
+		if (type instanceof Feature) {
 			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-			subsetting.setSubsettedFeature((Feature)category);
+			subsetting.setSubsettedFeature((Feature)type);
 			subsetting.setSubsettingFeature(this);
 			getOwnedRelationship().add(subsetting);
 		}
@@ -86,15 +86,15 @@ public class StepImpl extends FeatureImpl implements Step {
 	}
 	
 	public boolean isEnactedPerformance() {
-		Category owningCategory = getOwningCategory();
-		return owningCategory instanceof ObjectClass ||
-				owningCategory instanceof Feature && 
-					((FeatureImpl)owningCategory).isObjectFeature();
+		Type owningType = getOwningType();
+		return owningType instanceof Class ||
+				owningType instanceof Feature && 
+					((FeatureImpl)owningType).isObjectFeature();
 	}
 	
 	public static boolean isPerformanceFeature(Feature step) {
-		Category owningCategory = step.getOwningCategory();
-		return owningCategory instanceof Behavior || owningCategory instanceof Step;
+		Type owningType = step.getOwningType();
+		return owningType instanceof Behavior || owningType instanceof Step;
 	}
 	
 	public List<Step> getSubsteps() {

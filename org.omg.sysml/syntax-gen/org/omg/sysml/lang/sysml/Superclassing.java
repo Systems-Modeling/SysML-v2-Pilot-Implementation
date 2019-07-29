@@ -14,7 +14,7 @@ package org.omg.sysml.lang.sysml;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getSuperclass <em>Superclass</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getSubclass <em>Subclass</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing()
@@ -37,14 +37,14 @@ public interface Superclassing extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Superclass</em>' reference.
-	 * @see #setSuperclass(org.omg.sysml.lang.sysml.Class)
+	 * @see #setSuperclass(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Superclass()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='superclassing'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subclassing'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getSuperclass();
+	Classifier getSuperclass();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getSuperclass <em>Superclass</em>}' reference.
@@ -54,7 +54,7 @@ public interface Superclassing extends Generalization {
 	 * @see #getSuperclass()
 	 * @generated
 	 */
-	void setSuperclass(org.omg.sysml.lang.sysml.Class value);
+	void setSuperclass(Classifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Subclass</b></em>' reference.
@@ -71,14 +71,14 @@ public interface Superclassing extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subclass</em>' reference.
-	 * @see #setSubclass(org.omg.sysml.lang.sysml.Class)
+	 * @see #setSubclass(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Subclass()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subclassing'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='superclassing'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getSubclass();
+	Classifier getSubclass();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getSubclass <em>Subclass</em>}' reference.
@@ -88,41 +88,41 @@ public interface Superclassing extends Generalization {
 	 * @see #getSubclass()
 	 * @generated
 	 */
-	void setSubclass(org.omg.sysml.lang.sysml.Class value);
+	void setSubclass(Classifier value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Class#getOwnedSuperclassing <em>Owned Superclassing</em>}'.
+	 * Returns the value of the '<em><b>Owning Classifier</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing <em>Owned Superclassing</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getOwningCategory() <em>Owning Category</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getOwningType() <em>Owning Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Classifier</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' reference.
-	 * @see #setOwningClass(org.omg.sysml.lang.sysml.Class)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_OwningClass()
-	 * @see org.omg.sysml.lang.sysml.Class#getOwnedSuperclassing
+	 * @return the value of the '<em>Owning Classifier</em>' reference.
+	 * @see #setOwningClassifier(Classifier)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_OwningClassifier()
+	 * @see org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing
 	 * @model opposite="ownedSuperclassing" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Class getOwningClass();
+	Classifier getOwningClassifier();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClass <em>Owning Class</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Class</em>' reference.
-	 * @see #getOwningClass()
+	 * @param value the new value of the '<em>Owning Classifier</em>' reference.
+	 * @see #getOwningClassifier()
 	 * @generated
 	 */
-	void setOwningClass(org.omg.sysml.lang.sysml.Class value);
+	void setOwningClassifier(Classifier value);
 
 } // Superclassing

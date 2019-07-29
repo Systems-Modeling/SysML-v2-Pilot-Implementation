@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
@@ -243,17 +243,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated NOT
 	 */
 	public EList<Membership> importedMembership() {
-		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null, new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>());
+		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null, new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>());
 	}
 	
-	// Note: The excludedCategories parameter is needed in case the imported Package is a Category that has one or more Generalizations.
-	public EList<Membership> importMembership(EList<Membership> importedMembership, Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Category> excludedCategories) {
+	// Note: The excludedCategories parameter is needed in case the imported Package is a Type that has one or more Generalizations.
+	public EList<Membership> importMembership(EList<Membership> importedMembership, Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes) {
 		// TODO Implement predicate-based selection of importMembership.
 		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
 		if (importedPackage != null && !excludedPackages.contains(importedPackage)) {
 			org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();
 			excludedPackages.add(owningPackage);
-			EList<Membership> packageMembership = ((PackageImpl)importedPackage).getPublicMembership(excludedPackages, excludedCategories);
+			EList<Membership> packageMembership = ((PackageImpl)importedPackage).getPublicMembership(excludedPackages, excludedTypes);
 			importedMembership.addAll(packageMembership);
 			if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
 				nonpublicMembership.addAll(packageMembership);

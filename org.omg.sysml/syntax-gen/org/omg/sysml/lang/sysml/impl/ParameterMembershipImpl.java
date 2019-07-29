@@ -132,7 +132,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public Parameter basicGetOwnedMemberParameter() {
 		Parameter parameter = getFirstOwnedRelatedElement(Parameter.class);
-		if (getOwningCategory() instanceof BlockExpression) {
+		if (getOwningType() instanceof BlockExpression) {
 			((ParameterImpl)parameter).addInheritedFeatureRedefinitions();
 		}
 		return parameter;

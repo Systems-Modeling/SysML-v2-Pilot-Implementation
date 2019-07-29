@@ -5,11 +5,10 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Category;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,21 +18,21 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl#getCategory <em>Category</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.InstanceCreationExpressionImpl#getInstantiatedType <em>Instantiated Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InstanceCreationExpressionImpl extends InvocationExpressionImpl implements InstanceCreationExpression {
 	/**
-	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference.
+	 * The cached value of the '{@link #getInstantiatedType() <em>Instantiated Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCategory()
+	 * @see #getInstantiatedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected Category category;
+	protected Type instantiatedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,16 +59,16 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	 * @generated
 	 */
 	@Override
-	public Category getCategory() {
-		if (category != null && category.eIsProxy()) {
-			InternalEObject oldCategory = (InternalEObject)category;
-			category = (Category)eResolveProxy(oldCategory);
-			if (category != oldCategory) {
+	public Type getInstantiatedType() {
+		if (instantiatedType != null && instantiatedType.eIsProxy()) {
+			InternalEObject oldInstantiatedType = (InternalEObject)instantiatedType;
+			instantiatedType = (Type)eResolveProxy(oldInstantiatedType);
+			if (instantiatedType != oldInstantiatedType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY, oldCategory, category));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE, oldInstantiatedType, instantiatedType));
 			}
 		}
-		return category;
+		return instantiatedType;
 	}
 
 	/**
@@ -77,8 +76,8 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category basicGetCategory() {
-		return category;
+	public Type basicGetInstantiatedType() {
+		return instantiatedType;
 	}
 
 	/**
@@ -87,11 +86,11 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	 * @generated
 	 */
 	@Override
-	public void setCategory(Category newCategory) {
-		Category oldCategory = category;
-		category = newCategory;
+	public void setInstantiatedType(Type newInstantiatedType) {
+		Type oldInstantiatedType = instantiatedType;
+		instantiatedType = newInstantiatedType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY, oldCategory, category));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE, oldInstantiatedType, instantiatedType));
 	}
 
 	/**
@@ -102,9 +101,9 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
-				if (resolve) return getCategory();
-				return basicGetCategory();
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE:
+				if (resolve) return getInstantiatedType();
+				return basicGetInstantiatedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,8 +116,8 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
-				setCategory((Category)newValue);
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE:
+				setInstantiatedType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,8 +131,8 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
-				setCategory((Category)null);
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE:
+				setInstantiatedType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -147,8 +146,8 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__CATEGORY:
-				return category != null;
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__INSTANTIATED_TYPE:
+				return instantiatedType != null;
 		}
 		return super.eIsSet(featureID);
 	}

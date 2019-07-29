@@ -36,9 +36,9 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 UnitDefinition returns SysML::Package :
 	  PackageUnitDefinition 
-	| ClassUnitDefinition 
-	| ObjectClassUnitDefinition
-	| ValueClassUnitDefinition
+	| ClassifierUnitDefinition 
+	| ClassUnitDefinition
+	| DataTypeUnitDefinition
 	| AssociationUnitDefinition 
 	| InteractionUnitDefinition
 	| BehaviorUnitDefinition
@@ -50,16 +50,16 @@ PackageUnitDefinition returns SysML::Package:
     UnitPrefix PackageDefinition 
 ;
 
-ClassUnitDefinition returns SysML::ObjectClass : 
+ClassifierUnitDefinition returns SysML::Class : 
+	UnitPrefix ClassifierDefinition
+;
+
+ClassUnitDefinition returns SysML::Class:
 	UnitPrefix ClassDefinition
 ;
 
-ObjectClassUnitDefinition returns SysML::ObjectClass:
-	UnitPrefix ObjectClassDefinition
-;
-
-ValueClassUnitDefinition returns SysML::ValueClass :
-	UnitPrefix ValueClassDefinition
+DataTypeUnitDefinition returns SysML::DataType :
+	UnitPrefix DataTypeDefinition
 ;
 
 AssociationUnitDefinition returns SysML::Association :
@@ -129,9 +129,9 @@ ElementImport returns SysML::Membership :
 
 NonFeatureDefinition returns SysML::Package:
 	  PackageDefinitionOrStub 
-	| ClassDefinitionOrStub 
-	| ObjectClassDefinitionOrStub
-	| ValueClassDefinitionOrStub 
+	| ClassifierDefinitionOrStub 
+	| ClassDefinitionOrStub
+	| DataTypeDefinitionOrStub 
 	| AssociationDefinitionOrStub
 	| InteractionDefinitionOrStub
 	| BehaviorDefinitionOrStub
@@ -165,9 +165,9 @@ fragment PackageMemberPrefix returns SysML::Membership :
 fragment NonFeatureMemberElement returns SysML::Membership :
 	( ownedRelatedElement += NonFeatureDefinition
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
-    | 'Class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
-    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::ObjectClass|QualifiedName] ';'
-    | 'datatype' ( memberName = Name )? 'is' memberElement = [SysML::ValueClass|QualifiedName] ';'
+    | 'classifier' ( memberName = Name )? 'is' memberElement = [SysML::Classifier|QualifiedName] ';'
+    | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
+    | 'datatype' ( memberName = Name )? 'is' memberElement = [SysML::DataType|QualifiedName] ';'
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
     | 'behavior' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
     | 'function' ( memberName = Name )? 'is' memberElement = [SysML::Function|QualifiedName] ';'
@@ -191,28 +191,28 @@ fragment FeaturePackageMemberElement returns SysML::Membership :
 	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'
 ;
 
-/* CATEGORIES */
+/* TYPES */
 
-fragment CategoryBody returns SysML::Category :
-	';' | '{' ( ownedRelationship += CategoryMember | ownedRelationship += PackageImport )* '}'
+fragment TypeBody returns SysML::Type :
+	';' | '{' ( ownedRelationship += TypeMember | ownedRelationship += PackageImport )* '}'
 ;
 
-fragment AbstractCategoryBody returns SysML::Category :
-	isAbstract ?= ';' | isAbstract ?= '{' ( ownedRelationship += CategoryMember | ownedRelationship += PackageImport )* '}'
+fragment AbstractTypeBody returns SysML::Type :
+	isAbstract ?= ';' | isAbstract ?= '{' ( ownedRelationship += TypeMember | ownedRelationship += PackageImport )* '}'
 ;
 
-/* CATEGORY MEMBERSHIPS */
+/* TYPE MEMBERSHIPS */
 
-CategoryMember returns SysML::Membership : 
-	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | FeatureCategoryMember
+TypeMember returns SysML::Membership : 
+	NonFeatureTypeMember | FeatureMember | EndFeatureMember | FeatureTypeMember
 ;
 
-NonFeatureCategoryMember returns SysML::Membership : 
-	CategoryMemberPrefix NonFeatureMemberElement
+NonFeatureTypeMember returns SysML::Membership : 
+	TypeMemberPrefix NonFeatureMemberElement
 ;
 
-FeatureCategoryMember returns SysML::FeatureMembership : 
-	CategoryMemberPrefix
+FeatureTypeMember returns SysML::FeatureMembership : 
+	TypeMemberPrefix
 	(
     // These alternatives are provided for legacy Alf backwards compatibility.	
       ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
@@ -222,7 +222,7 @@ FeatureCategoryMember returns SysML::FeatureMembership :
 ;
 
 FeatureMember returns SysML::FeatureMembership :
-	CategoryMemberPrefix
+	TypeMemberPrefix
 	(
       ( 'feature' | isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
       ( ownedRelatedElement += FeatureDefinition 
@@ -262,7 +262,7 @@ FeatureMember returns SysML::FeatureMembership :
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
-	CategoryMemberPrefix
+	TypeMemberPrefix
     (
       'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
     | 'abstract' 'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
@@ -274,67 +274,67 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
-fragment CategoryMemberPrefix returns SysML::Membership :
+fragment TypeMemberPrefix returns SysML::Membership :
 	( ownedRelationship += Annotation )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 ;
 
-/* CLASSES */
+/* CLASSIFIERS */
 
-ClassDefinitionOrStub returns SysML::Class :
-	ClassDefinition 
-//	ClassDeclaration ( isStub ?= ';' | CategoryBody )
+ClassifierDefinitionOrStub returns SysML::Classifier :
+	ClassifierDefinition 
+//	ClassifierDeclaration ( isStub ?= ';' | CategoryBody )
 ;
 
-fragment ClassDefinition returns SysML::Class : 
-	ClassDeclaration CategoryBody
+fragment ClassifierDefinition returns SysML::Classifier : 
+	ClassifierDeclaration TypeBody
 ;
 
-fragment ClassDeclaration returns SysML::Class :
-	( isAbstract ?= 'abstract' )? 'Class' ClassDeclarationCompletion
+fragment ClassifierDeclaration returns SysML::Classifier :
+	( isAbstract ?= 'abstract' )? 'classifier' ClassifierDeclarationCompletion
 ;
 
-fragment ClassDeclarationCompletion returns SysML::Class :	
+fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
 	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	SpecializationList?
 ;
 
-fragment SpecializationList returns SysML::Class :
+fragment SpecializationList returns SysML::Classifier :
 	'specializes' ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )*
 ;
 
 Superclassing returns SysML::Superclassing:
-	superclass = [SysML::Class | QualifiedName]
+	superclass = [SysML::Classifier | QualifiedName]
 ;
 
-/* OBJECT CLASSES */
+/* CLASSES */
 
-ObjectClassDefinitionOrStub returns SysML::ObjectClass :
-	ObjectClassDefinition
+ClassDefinitionOrStub returns SysML::Class :
+	ClassDefinition
 ;
 
-fragment ObjectClassDefinition returns SysML::ObjectClass : 
-	ObjectClassDeclaration CategoryBody
+fragment ClassDefinition returns SysML::Class : 
+	ClassDeclaration TypeBody
 ;
 
-fragment ObjectClassDeclaration returns SysML::ObjectClass :
-	( isAbstract ?= 'abstract' )? 'class' ClassDeclarationCompletion
+fragment ClassDeclaration returns SysML::Class :
+	( isAbstract ?= 'abstract' )? 'class' ClassifierDeclarationCompletion
 ;
 
-/* VALUE CLASSES (DATA TYPES) */
+/* DATA TYPES */
 
-ValueClassDefinitionOrStub returns SysML::ValueClass :
-	ValueClassDefinition
+DataTypeDefinitionOrStub returns SysML::DataType :
+	DataTypeDefinition
 ;
 
-fragment ValueClassDefinition returns SysML::ValueClass :
-	ValueClassDeclaration CategoryBody
+fragment DataTypeDefinition returns SysML::DataType :
+	DataTypeDeclaration TypeBody
 ;
 
-fragment ValueClassDeclaration returns SysML::ValueClass :
-	( isAbstract ?= 'abstract' )? 'datatype' ClassDeclarationCompletion
+fragment DataTypeDeclaration returns SysML::DataType :
+	( isAbstract ?= 'abstract' )? 'datatype' ClassifierDeclarationCompletion
 ;
 
 /* ASSOCIATIONS */
@@ -349,7 +349,7 @@ fragment AssociationDefinition returns SysML::Association :
 ;
 
 fragment AssociationDeclaration returns SysML::Association :
-	( isAbstract ?= 'abstract' )? 'assoc' ClassDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'assoc' ClassifierDeclarationCompletion
 ;
 
 fragment AssociationBody returns SysML::Association :
@@ -359,11 +359,11 @@ fragment AssociationBody returns SysML::Association :
 /* ASSOCIATION MEMBERSHIPS */
 
 AssociationMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | EndFeatureMember | AssociationEndFeatureMember
+	NonFeatureTypeMember | FeatureMember | EndFeatureMember | AssociationEndFeatureMember
 ;
 
 AssociationEndFeatureMember returns SysML::EndFeatureMembership :
-	CategoryMemberPrefix
+	TypeMemberPrefix
     (
 	// These alternatives are provided for legacy Alf backwards compatibility;
       ( direction = FeatureDirection )? ownedRelatedElement += NamedFeatureDefinition
@@ -384,7 +384,7 @@ fragment InteractionDefinition returns SysML::Interaction :
 ;
 
 fragment InteractionDeclaration returns SysML::Interaction :
-	( isAbstract ?= 'abstract' )? 'interaction' ClassDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'interaction' ClassifierDeclarationCompletion
 ;
 
 /* BEHAVIORS */
@@ -401,11 +401,11 @@ fragment BehaviorDeclaration returns SysML::Behavior :
 	( isAbstract ?= 'abstract')? 'behavior' name = Name ParameterList SpecializationList?
 ;
 
-fragment ParameterList returns SysML::Category :
+fragment ParameterList returns SysML::Type :
 	'(' ( ownedRelationship += ParameterMember ( ',' ownedRelationship += ParameterMember )* )? ')'
 ;
 
-fragment BehaviorBody returns SysML::Category :
+fragment BehaviorBody returns SysML::Type :
 	';'| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* '}'
 ;
 
@@ -416,7 +416,7 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 BehaviorMember returns SysML::Membership :
-	NonFeatureCategoryMember | FeatureMember | EndFeatureMember	
+	NonFeatureTypeMember | FeatureMember | EndFeatureMember	
 ;
 
 /* FUNCTIONS */
@@ -433,11 +433,11 @@ fragment FunctionDeclaration returns SysML::Function :
 	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList ReturnParameterPart SpecializationList?
 ;
 
-fragment ReturnParameterPart returns SysML::Category :
+fragment ReturnParameterPart returns SysML::Type :
 	ownedRelationship += ReturnParameterMember
 ;
 
-fragment FunctionBody returns SysML::Category :
+fragment FunctionBody returns SysML::Type :
 	  ';'
 	| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* 
 	      ( ownedRelationship += ExpressionMember )? '}'
@@ -490,11 +490,11 @@ fragment FeatureDeclaration returns SysML::Feature :
 ;
 
 fragment FeatureCompletion returns SysML::Feature :
-	ValuePart? CategoryBody
+	ValuePart? TypeBody
 ;
 
 fragment AbstractFeatureCompletion returns SysML::Feature :
-	ValuePart? AbstractCategoryBody
+	ValuePart? AbstractTypeBody
 ;
 
 fragment ValuePart returns SysML::Feature :
@@ -518,7 +518,7 @@ fragment NoncomposingTypePart returns SysML::Feature :
 ;
 
 FeatureTyping returns SysML::FeatureTyping :
-	type = [SysML::Category | QualifiedName]
+	type = [SysML::Type | QualifiedName]
 ;
 
 Multiplicity returns SysML::Multiplicity :
@@ -551,11 +551,11 @@ Redefinition returns SysML::Redefinition:
 /* CONNECTORS */
 
 ConnectorDefinition returns SysML::Connector :	 
-	ConnectorDeclaration CategoryBody	  
+	ConnectorDeclaration TypeBody	  
 ;
 
 AbstractConnectorDefinition returns SysML::Connector :
-	ConnectorDeclaration AbstractCategoryBody
+	ConnectorDeclaration AbstractTypeBody
 ;
 
 fragment ConnectorDeclaration returns SysML::Connector :
@@ -610,17 +610,17 @@ EmptyEndMember returns SysML::EndFeatureMembership :
 BindingConnectorDefinition returns SysML::BindingConnector :
 	( ( name = Name )? ConnectorTypePart 'is')?
 	  ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
-	  CategoryBody	
+	  TypeBody	
 ;
 
 /* SUCCESSIONS */
 
 SuccessionDefinition returns SysML::Succession :
-	SuccessionDeclaration CategoryBody
+	SuccessionDeclaration TypeBody
 ;
 
 AbstractSuccessionDefinition returns SysML::Succession :
-	SuccessionDeclaration AbstractCategoryBody
+	SuccessionDeclaration AbstractTypeBody
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
@@ -639,28 +639,32 @@ EmptySuccessionDefinition returns SysML::Succession :
 /* ITEM FLOWS */
 
 ItemFlowDefinition returns SysML::ItemFlow :
-	ItemFlowDeclaration CategoryBody
+	ItemFlowDeclaration TypeBody
 ;
 
 AbstractItemFlowDefinition returns SysML::ItemFlow :
-	ItemFlowDeclaration AbstractCategoryBody
+	ItemFlowDeclaration AbstractTypeBody
 ;
 
 SuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration CategoryBody
+	ItemFlowDeclaration TypeBody
 ;
 
 AbstractSuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration AbstractCategoryBody
+	ItemFlowDeclaration AbstractTypeBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( ( name = Name )? ConnectorTypePart 'is' )? ( ownedRelationship += ItemTypeMember 'from' )? 
+	( ( name = Name )? ConnectorTypePart 'is' )? ownedRelationship += ItemFeatureMember
 	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
 ;
 
-ItemTyping returns SysML::ItemFeature :
-	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
+ItemFeatureTyping returns SysML::ItemFeature :
+	{SysML::ItemFeature} ( ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )? 'from' )?
+;
+
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
@@ -671,10 +675,11 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 	ownedRelationship += Redefinition
 ;
 
+
 /* ITEM FLOW MEMBERSHIPS */
 
-ItemTypeMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemTyping
+ItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemFeatureTyping
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -683,6 +688,10 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFlowFeature
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature
 ;
 
 /* PARAMETERS */
@@ -703,7 +712,7 @@ StepDefinition returns SysML::Step :
 
 ;
 
-fragment StepParameterList returns SysML::Category :
+fragment StepParameterList returns SysML::Type :
 	'(' ( ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )?
 		  ( ',' ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )? )*
 	    )? ')'
@@ -714,7 +723,8 @@ StepParameterDefinition returns SysML::Parameter :
 ;
 
 StepParameterFlowDefinition returns SysML::ItemFlow :
-	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? 'from' ownedRelationship += ItemFlowEndMember
+	( 'stream' | {SysML::SuccessionItemFlow} 'flow' )? ownedRelationship += EmptyItemFeatureMember 
+	'from' ownedRelationship += ItemFlowEndMember
 ;
 
 PerformedStepDefinition returns SysML::Step :

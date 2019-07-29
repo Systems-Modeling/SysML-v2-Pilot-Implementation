@@ -28,11 +28,11 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getAliases <em>Aliases</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -341,18 +341,18 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				if (resolve) return getMemberElement();
 				return basicGetMemberElement();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				if (resolve) return getOwnedMemberElement();
+				return basicGetOwnedMemberElement();
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				if (resolve) return getMembershipOwningPackage();
+				return basicGetMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				return getMemberName();
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return getVisibility();
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				return getAliases();
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				if (resolve) return getMembershipOwningPackage();
-				return basicGetMembershipOwningPackage();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				if (resolve) return getOwnedMemberElement();
-				return basicGetOwnedMemberElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +369,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)newValue);
 				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)newValue);
+				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				setMemberName((String)newValue);
 				return;
@@ -378,12 +384,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				getAliases().clear();
 				getAliases().addAll((Collection<? extends String>)newValue);
-				return;
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)newValue);
-				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -400,6 +400,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)null);
 				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)null);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)null);
+				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				setMemberName(MEMBER_NAME_EDEFAULT);
 				return;
@@ -408,12 +414,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return;
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				getAliases().clear();
-				return;
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)null);
-				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -429,20 +429,20 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
-			case SysMLPackage.MEMBERSHIP__TARGET:
-				return isSetTarget();
 			case SysMLPackage.MEMBERSHIP__SOURCE:
 				return isSetSource();
+			case SysMLPackage.MEMBERSHIP__TARGET:
+				return isSetTarget();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return basicGetOwnedMemberElement() != null;
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				return isSetMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				return MEMBER_NAME_EDEFAULT == null ? memberName != null : !MEMBER_NAME_EDEFAULT.equals(memberName);
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				return aliases != null && !aliases.isEmpty();
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				return isSetMembershipOwningPackage();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return basicGetOwnedMemberElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

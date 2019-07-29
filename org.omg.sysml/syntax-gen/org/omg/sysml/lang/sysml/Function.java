@@ -55,7 +55,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getOutput() <em>Output</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Behavior#getStep <em>Step</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Behavior#getInvolvesFeature <em>Involves Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Behavior#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
@@ -22,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Behavior extends org.omg.sysml.lang.sysml.Class {
+public interface Behavior extends Classifier {
 	/**
 	 * Returns the value of the '<em><b>Step</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Step}.
@@ -30,7 +29,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -48,29 +47,13 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	EList<Step> getStep();
 
 	/**
-	 * Returns the value of the '<em><b>Involves Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Involves Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Involves Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_InvolvesFeature()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<Feature> getInvolvesFeature();
-
-	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Parameter}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Category#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

@@ -34,6 +34,10 @@ import org.eclipse.xtext.parser.IParser;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.traversal.Traversal;
+import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
+import org.omg.sysml.util.traversal.impl.TraversalImpl;
+import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -42,25 +46,44 @@ public class SysMLInteractive {
 	
 	protected int counter = 1;
 	
+	protected Traversal traversal;
+	
+	protected StringBuilder outline;
+	
 	@Inject
 	protected IParser parser;
 	
 	@Inject
 	private SysMLInteractive() {
 		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
+		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(
+				new DefaultElementProcessingFacadeImpl() {
+					@Override
+					public void println(String line) {
+						outline.append(line);
+						outline.append("\n");
+					}
+				});
+		this.traversal = new TraversalImpl(visitorFactory);
+		visitorFactory.setTraversal(this.traversal);	
 	}
 	
 	public Object eval(String input) {
 		IParseResult result = parser.parse(new StringReader(input));
 		this.counter++;
-		return formatParseResult(result);
+		return this.formatParseResult(result);
 	}
 	
-	public static String formatParseResult(IParseResult result) {
+	public String formatElement(Element element) {
+		this.outline = new StringBuilder();
+		this.traversal.reset();
+		this.traversal.visit(element);
+		return this.outline.toString();
+	}
+		
+	public String formatParseResult(IParseResult result) {
 		if (!result.hasSyntaxErrors()) {
-			Element root = (Element)result.getRootASTElement();
-			String name = root.getName();
-			return root.eClass().getName() + (name == null? "": " " + name);
+			return this.formatElement((Element)result.getRootASTElement());
 		} else {
 			String errorMessages = "";
 			for (INode node: result.getSyntaxErrors()) {
@@ -73,8 +96,7 @@ public class SysMLInteractive {
 	
 	public void run(String input) {
 		if (input != null && !input.isEmpty()) {
-			Object result = this.eval(input);
-			System.out.println(result);
+			System.out.print(this.eval(input));
 		}
 	}
 	

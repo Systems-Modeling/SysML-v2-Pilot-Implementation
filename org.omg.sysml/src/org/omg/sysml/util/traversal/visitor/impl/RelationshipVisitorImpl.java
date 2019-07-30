@@ -46,23 +46,15 @@ public class RelationshipVisitorImpl extends VisitorImpl {
 	}
 	
 	/**
-	 * Before visiting the Relationship as an Element itself, visit all the related Elements of the Relationship.
-	 * That is, carry out a depth-first traversal of the Relationship graph.
+	 * Visit all the related Elements of the Relationship, then Process the Relationship being visited using the 
+	 * Element-processing facade for this visitor. That is, carry out a depth-first traversal of the Relationship graph.
 	 */
 	@Override
-	public Object visit() {
+	public Object process() {
 		Traversal traversal = this.getTraversal();
 		for (Element element: this.getElement().getRelatedElement()) {
 			traversal.visit(element);
 		}
-		return super.visit();
-	}
-	
-	/**
-	 * Process the Relationship being visited using the Element-processing facade for this visitor.
-	 */
-	@Override
-	protected Object process() {
 		return this.getFacade().processRelationship(this.getElement());
 	}
 

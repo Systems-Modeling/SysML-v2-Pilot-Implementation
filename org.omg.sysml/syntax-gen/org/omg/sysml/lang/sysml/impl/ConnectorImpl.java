@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -29,7 +28,6 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -295,8 +293,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		getConnectorEnd().stream().forEach(end->
-			getRelatedFeature(end).
-			ifPresent(feature->relatedFeatures.add(feature)));
+			((FeatureImpl)end).getFirstSubsettedFeature().
+			ifPresent(relatedFeatures::add));
 		return relatedFeatures;
 	}
 	
@@ -479,27 +477,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 
 	public static void setRelatedFeature(Feature connectorEnd, Feature relatedFeature) {
-		getSubsetting(connectorEnd).
-			orElse(createSubsetting(connectorEnd)).
+		((FeatureImpl)connectorEnd).getFirstSubsetting().
+			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
 			setSubsettedFeature(relatedFeature);
 	}
 	
-	protected static Subsetting createSubsetting(Feature connectorEnd) {
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettingFeature(connectorEnd);
-		connectorEnd.getOwnedRelationship().add(subsetting);
-		return subsetting;
-	}
+	//
 	
-	public static Optional<Subsetting> getSubsetting(Feature connectorEnd) {
-		return connectorEnd.getOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
-	}
-	
-	public static Optional<Feature> getRelatedFeature(Feature connectorEnd) {
-		return getSubsetting(connectorEnd).map(s->s.getSubsettedFeature());
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

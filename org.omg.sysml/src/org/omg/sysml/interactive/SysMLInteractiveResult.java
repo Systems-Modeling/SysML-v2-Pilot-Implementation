@@ -32,20 +32,15 @@ import java.util.stream.Collectors;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
-import org.omg.sysml.util.traversal.impl.TraversalImpl;
-import org.omg.sysml.util.traversal.visitor.ElementVisitorFactory;
-import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
+import org.omg.sysml.lang.sysml.Relationship;
 
 public class SysMLInteractiveResult {
+	
+	public static final String INDENT = "  ";
 	
 	private Element rootElement = null;
 	private List<Issue> issues = null;
 	private Exception exception = null;
-	
-	protected Traversal traversal;	
-	protected StringBuilder outline;
 	
 	public SysMLInteractiveResult(Element rootElement, List<Issue> issues) {
 		this.rootElement = rootElement;
@@ -84,28 +79,29 @@ public class SysMLInteractiveResult {
 		return this.exception;
 	}
 	
-	protected ElementVisitorFactory createVisitorFactory() {
-		return new ElementVisitorFactoryImpl(
-				new DefaultElementProcessingFacadeImpl() {
-					@Override
-					public void println(String line) {
-						outline.append(line);
-						outline.append("\n");
-					}
-				});
+	protected String formatElement(String indentation, Element element) {
+		String name = element.getName();
+		String kind = element instanceof Relationship? "Relationship": "Element";
+		String id = Integer.toHexString(element.hashCode());
+		return indentation + element.eClass().getName() + 
+				(name == null? "": " " + name) + " (" + kind + "@" + id + ")\n";
 	}
 	
-	protected String traverse(Element element) {
-		if (this.traversal != null) {
-			this.traversal.reset();
-		} else {
-			final ElementVisitorFactory visitorFactory = this.createVisitorFactory();
-			this.traversal = new TraversalImpl(visitorFactory);
-			visitorFactory.setTraversal(this.traversal);
+	protected String formatTree(String indentation, Element element) {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append(this.formatElement(indentation, element));
+		for (Relationship relationship: element.getOwnedRelationship()) {
+			buffer.append(this.formatElement(indentation + INDENT, relationship));
+			for (Element relatedElement: relationship.getRelatedElement()) {
+				if (relatedElement != element) {
+					buffer.append(
+						relatedElement.getOwningRelationship() == relationship? 
+								this.formatTree(indentation + INDENT + INDENT, relatedElement):
+								this.formatElement(indentation + INDENT + INDENT, relatedElement));
+				}
+			}
 		}
-		this.outline = new StringBuilder();
-		this.traversal.visit(this.rootElement);
-		return this.outline.toString();
+		return buffer.toString();
 	}
 	
 	protected <T extends Object> String formatList(List<T> list) {
@@ -115,7 +111,7 @@ public class SysMLInteractiveResult {
 	}
 	
 	public String formatRootElement() {
-		return this.rootElement == null? "null": this.traverse(this.rootElement);
+		return this.rootElement == null? "null": this.formatTree("", this.rootElement);
 	}
 	
 	public String formatIssues() {
@@ -134,11 +130,8 @@ public class SysMLInteractiveResult {
 			return this.formatException();
 		} else {
 			List<Issue> syntaxErrors = this.getSyntaxErrors();
-			if (!syntaxErrors.isEmpty()) {
-				return this.formatList(syntaxErrors);
-			} else {
-				return this.formatRootElement() + this.formatList(this.getSemanticErrors());
-			}
+			return this.formatList(syntaxErrors.isEmpty()? this.getSemanticErrors(): syntaxErrors) + 
+				   this.formatRootElement();
 		}
 	}
 

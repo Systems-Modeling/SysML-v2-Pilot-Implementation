@@ -48,6 +48,7 @@ public class SysMLInteractive extends AlfUtil {
 	
 	protected int counter = 1;
 	protected XtextResource resource;
+	protected String fileName = "interactive";
 	
 	@Inject
 	private IResourceValidator validator;
@@ -63,15 +64,19 @@ public class SysMLInteractive extends AlfUtil {
 		}
 	}
 	
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 	protected XtextResource getResource() {
 		if (this.resource == null) {
-			this.resource = (XtextResource)this.createResource("shell" + ALF_EXTENSION);
+			this.resource = (XtextResource)this.createResource(this.fileName + ALF_EXTENSION);
 		}
 		return this.resource;
 	}
 	
 	public Element getRootElement() {
-		final IParseResult result = this.resource.getParseResult();
+		final IParseResult result = this.getResource().getParseResult();
 		return result == null? null: (Element)result.getRootASTElement();
 	}
 	
@@ -80,7 +85,7 @@ public class SysMLInteractive extends AlfUtil {
 	}
 	
 	public List<Issue> validate() {
-		return validator.validate(this.resource, CheckMode.ALL, CancelIndicator.NullImpl);
+		return validator.validate(this.getResource(), CheckMode.ALL, CancelIndicator.NullImpl);
 	}
 	
 	public SysMLInteractiveResult eval(String input) {

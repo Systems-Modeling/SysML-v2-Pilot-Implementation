@@ -27,10 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -40,16 +37,17 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.AlfUtil;
+
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-public class SysMLInteractive {
+public class SysMLInteractive extends AlfUtil {
 	
-	public static final String SYSML_EXTENSION = ".alf";
+	protected static Injector injector;
 	
 	protected int counter = 1;
-	protected final ResourceSet resourceSet = new ResourceSetImpl();
-	protected final XtextResource resource;
+	protected XtextResource resource;
 	
 	@Inject
 	private IResourceValidator validator;
@@ -57,7 +55,19 @@ public class SysMLInteractive {
 	@Inject
 	private SysMLInteractive() {
 		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
-		this.resource = (XtextResource)this.resourceSet.createResource(URI.createFileURI("shell" + SYSML_EXTENSION));
+	}
+	
+	public void loadLibrary(String path) {
+		if (path != null) {
+			this.readAll(path, false);
+		}
+	}
+	
+	protected XtextResource getResource() {
+		if (this.resource == null) {
+			this.resource = (XtextResource)this.createResource("shell" + ALF_EXTENSION);
+		}
+		return this.resource;
 	}
 	
 	public Element getRootElement() {
@@ -66,7 +76,7 @@ public class SysMLInteractive {
 	}
 	
 	public void parse(String input) throws IOException {
-		this.resource.reparse(input);
+		this.getResource().reparse(input);
 	}
 	
 	public List<Issue> validate() {
@@ -76,7 +86,7 @@ public class SysMLInteractive {
 	public SysMLInteractiveResult eval(String input) {
 		this.counter++;
 		try {
-			this.resource.reparse(input);
+			this.parse(input);
 			return new SysMLInteractiveResult(this.getRootElement(), this.validate());
 		} catch (Exception e) {
 			return new SysMLInteractiveResult(e);
@@ -116,13 +126,19 @@ public class SysMLInteractive {
     }
 	
 	public static SysMLInteractive getInstance() {
-		Injector injector = new AlfStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if (injector == null) {
+			injector = new AlfStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
 		return injector.getInstance(SysMLInteractive.class);
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("SysML v2 Pilot Implementation");
-		getInstance().run();	
+		SysMLInteractive instance = getInstance();
+		if (args.length > 0) {
+			instance.loadLibrary(args[0]);
+		}
+		instance.run();	
 	}
 
 }

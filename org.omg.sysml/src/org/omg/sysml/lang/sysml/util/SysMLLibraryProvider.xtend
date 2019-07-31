@@ -56,7 +56,8 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	}
 	
 	protected def isLibraryResource(Resource resource) {
-		return resource !== null && MODEL_LIBRARY_DIRECTORY_NAME.equals(resource.URI.segment(2))
+		return resource !== null && resource.URI.segmentCount > 2 && 
+			MODEL_LIBRARY_DIRECTORY_NAME.equals(resource.URI.segment(2))
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {

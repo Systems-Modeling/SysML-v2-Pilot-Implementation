@@ -23,74 +23,63 @@
  *****************************************************************************/
 package org.omg.sysml.interactive;
 
-import java.io.StringReader;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.SyntaxErrorMessage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.IParser;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
-import org.omg.sysml.util.traversal.impl.TraversalImpl;
-import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
-
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class SysMLInteractive {
 	
+	public static final String SYSML_EXTENSION = ".alf";
+	
 	protected int counter = 1;
-	
-	protected Traversal traversal;
-	
-	protected StringBuilder outline;
+	protected final ResourceSet resourceSet = new ResourceSetImpl();
+	protected final XtextResource resource;
 	
 	@Inject
-	protected IParser parser;
+	private IResourceValidator validator;
 	
 	@Inject
 	private SysMLInteractive() {
 		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
-		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(
-				new DefaultElementProcessingFacadeImpl() {
-					@Override
-					public void println(String line) {
-						outline.append(line);
-						outline.append("\n");
-					}
-				});
-		this.traversal = new TraversalImpl(visitorFactory);
-		visitorFactory.setTraversal(this.traversal);	
+		this.resource = (XtextResource)this.resourceSet.createResource(URI.createFileURI("shell" + SYSML_EXTENSION));
 	}
 	
-	public Object eval(String input) {
-		IParseResult result = parser.parse(new StringReader(input));
+	public Element getRootElement() {
+		final IParseResult result = this.resource.getParseResult();
+		return result == null? null: (Element)result.getRootASTElement();
+	}
+	
+	public void parse(String input) throws IOException {
+		this.resource.reparse(input);
+	}
+	
+	public List<Issue> validate() {
+		return validator.validate(this.resource, CheckMode.ALL, CancelIndicator.NullImpl);
+	}
+	
+	public SysMLInteractiveResult eval(String input) {
 		this.counter++;
-		return this.formatParseResult(result);
-	}
-	
-	public String formatElement(Element element) {
-		this.outline = new StringBuilder();
-		this.traversal.reset();
-		this.traversal.visit(element);
-		return this.outline.toString();
-	}
-		
-	public String formatParseResult(IParseResult result) {
-		if (!result.hasSyntaxErrors()) {
-			return this.formatElement((Element)result.getRootASTElement());
-		} else {
-			String errorMessages = "";
-			for (INode node: result.getSyntaxErrors()) {
-				SyntaxErrorMessage errorMessage = node.getSyntaxErrorMessage();
-				errorMessages += errorMessage.getMessage() + "\n";
-			}
-			return errorMessages;
+		try {
+			this.resource.reparse(input);
+			return new SysMLInteractiveResult(this.getRootElement(), this.validate());
+		} catch (Exception e) {
+			return new SysMLInteractiveResult(e);
 		}
 	}
 	

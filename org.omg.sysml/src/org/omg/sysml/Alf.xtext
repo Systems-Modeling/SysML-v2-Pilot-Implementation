@@ -35,7 +35,8 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 /* UNITS */
 
 UnitDefinition returns SysML::Package :
-	  PackageUnitDefinition 
+	  AnonymousPackageDefinition
+	| PackageUnitDefinition 
 	| ClassifierUnitDefinition 
 	| ClassUnitDefinition
 	| DataTypeUnitDefinition
@@ -143,8 +144,12 @@ PackageDefinitionOrStub returns SysML::Package :
 //	'package' name = Name ( isStub ?= ';' | '{' ( ownedRelationship += PackageMember )* '}' )
 ;
 
-fragment PackageDefinition returns SysML::Package: 
+fragment PackageDefinition returns SysML::Package : 
 	'package' name = Name '{' ( ownedRelationship += PackageMember | ownedRelationship += PackageImport )* '}' 
+;
+
+AnonymousPackageDefinition returns SysML::Package :
+	{SysML::Package} ( ownedRelationship += PackageMember | ownedRelationship += PackageImport )*
 ;
 
 /* PACKAGE MEMBERSHIPS */

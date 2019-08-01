@@ -31,7 +31,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.validation.Issue;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public class SysMLInteractiveResult {
@@ -80,6 +84,20 @@ public class SysMLInteractiveResult {
 	}
 	
 	protected String formatElement(String indentation, Element element) {
+		if (element instanceof Classifier) {
+			((Classifier)element).getOwnedSuperclassing();
+		} else if (element instanceof Feature) {
+			((Feature)element).getOwnedSubsetting();
+			((Feature)element).getFeature();
+			if (element instanceof Expression) {
+				((Expression)element).getInput();
+				((Expression)element).getOutput();
+				if (element instanceof OperatorExpression) {
+					((OperatorExpression)element).getTyping();
+				}
+			}
+		}
+		
 		String name = element.getName();
 		String kind = element instanceof Relationship? "Relationship": "Element";
 		String id = Integer.toHexString(element.hashCode());

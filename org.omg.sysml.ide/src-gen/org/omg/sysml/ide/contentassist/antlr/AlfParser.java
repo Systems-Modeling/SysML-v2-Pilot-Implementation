@@ -37,6 +37,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageImportAccess().getAlternatives_3_0_1(), "rule__PackageImport__Alternatives_3_0_1");
 			builder.put(grammarAccess.getNonFeatureDefinitionAccess().getAlternatives(), "rule__NonFeatureDefinition__Alternatives");
 			builder.put(grammarAccess.getPackageDefinitionAccess().getAlternatives_3(), "rule__PackageDefinition__Alternatives_3");
+			builder.put(grammarAccess.getAnonymousPackageDefinitionAccess().getAlternatives_1(), "rule__AnonymousPackageDefinition__Alternatives_1");
 			builder.put(grammarAccess.getPackageMemberAccess().getAlternatives_1(), "rule__PackageMember__Alternatives_1");
 			builder.put(grammarAccess.getNonFeatureMemberElementAccess().getAlternatives(), "rule__NonFeatureMemberElement__Alternatives");
 			builder.put(grammarAccess.getFeaturePackageMemberElementAccess().getAlternatives(), "rule__FeaturePackageMemberElement__Alternatives");
@@ -113,6 +114,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getElementImportAccess().getGroup(), "rule__ElementImport__Group__0");
 			builder.put(grammarAccess.getElementImportAccess().getGroup_3(), "rule__ElementImport__Group_3__0");
 			builder.put(grammarAccess.getPackageDefinitionAccess().getGroup(), "rule__PackageDefinition__Group__0");
+			builder.put(grammarAccess.getAnonymousPackageDefinitionAccess().getGroup(), "rule__AnonymousPackageDefinition__Group__0");
 			builder.put(grammarAccess.getPackageMemberAccess().getGroup(), "rule__PackageMember__Group__0");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getGroup(), "rule__PackageMemberPrefix__Group__0");
 			builder.put(grammarAccess.getNonFeatureMemberElementAccess().getGroup_1(), "rule__NonFeatureMemberElement__Group_1__0");
@@ -336,6 +338,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageDefinitionAccess().getNameAssignment_1(), "rule__PackageDefinition__NameAssignment_1");
 			builder.put(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_0(), "rule__PackageDefinition__OwnedRelationshipAssignment_3_0");
 			builder.put(grammarAccess.getPackageDefinitionAccess().getOwnedRelationshipAssignment_3_1(), "rule__PackageDefinition__OwnedRelationshipAssignment_3_1");
+			builder.put(grammarAccess.getAnonymousPackageDefinitionAccess().getOwnedRelationshipAssignment_1_0(), "rule__AnonymousPackageDefinition__OwnedRelationshipAssignment_1_0");
+			builder.put(grammarAccess.getAnonymousPackageDefinitionAccess().getOwnedRelationshipAssignment_1_1(), "rule__AnonymousPackageDefinition__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationshipAssignment_0(), "rule__PackageMemberPrefix__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getVisibilityAssignment_1(), "rule__PackageMemberPrefix__VisibilityAssignment_1");
 			builder.put(grammarAccess.getNonFeatureMemberElementAccess().getOwnedRelatedElementAssignment_0(), "rule__NonFeatureMemberElement__OwnedRelatedElementAssignment_0");

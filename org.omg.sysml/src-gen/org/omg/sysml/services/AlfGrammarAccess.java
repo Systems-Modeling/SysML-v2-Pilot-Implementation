@@ -30,18 +30,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnitDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.UnitDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPackageUnitDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cClassifierUnitDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cClassUnitDefinitionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cDataTypeUnitDefinitionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cAssociationUnitDefinitionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cInteractionUnitDefinitionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cBehaviorUnitDefinitionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cFunctionUnitDefinitionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cFeatureUnitDefinitionParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cAnonymousPackageDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPackageUnitDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cClassifierUnitDefinitionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cClassUnitDefinitionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDataTypeUnitDefinitionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cAssociationUnitDefinitionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cInteractionUnitDefinitionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cBehaviorUnitDefinitionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cFunctionUnitDefinitionParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cFeatureUnitDefinitionParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		///* UNITS */ UnitDefinition SysML::Package:
-		//	PackageUnitDefinition
+		//	AnonymousPackageDefinition
+		//	| PackageUnitDefinition
 		//	| ClassifierUnitDefinition
 		//	| ClassUnitDefinition
 		//	| DataTypeUnitDefinition
@@ -52,37 +54,40 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	| FeatureUnitDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PackageUnitDefinition | ClassifierUnitDefinition | ClassUnitDefinition | DataTypeUnitDefinition |
-		//AssociationUnitDefinition | InteractionUnitDefinition | BehaviorUnitDefinition | FunctionUnitDefinition |
-		//FeatureUnitDefinition
+		//AnonymousPackageDefinition | PackageUnitDefinition | ClassifierUnitDefinition | ClassUnitDefinition |
+		//DataTypeUnitDefinition | AssociationUnitDefinition | InteractionUnitDefinition | BehaviorUnitDefinition |
+		//FunctionUnitDefinition | FeatureUnitDefinition
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//AnonymousPackageDefinition
+		public RuleCall getAnonymousPackageDefinitionParserRuleCall_0() { return cAnonymousPackageDefinitionParserRuleCall_0; }
+		
 		//PackageUnitDefinition
-		public RuleCall getPackageUnitDefinitionParserRuleCall_0() { return cPackageUnitDefinitionParserRuleCall_0; }
+		public RuleCall getPackageUnitDefinitionParserRuleCall_1() { return cPackageUnitDefinitionParserRuleCall_1; }
 		
 		//ClassifierUnitDefinition
-		public RuleCall getClassifierUnitDefinitionParserRuleCall_1() { return cClassifierUnitDefinitionParserRuleCall_1; }
+		public RuleCall getClassifierUnitDefinitionParserRuleCall_2() { return cClassifierUnitDefinitionParserRuleCall_2; }
 		
 		//ClassUnitDefinition
-		public RuleCall getClassUnitDefinitionParserRuleCall_2() { return cClassUnitDefinitionParserRuleCall_2; }
+		public RuleCall getClassUnitDefinitionParserRuleCall_3() { return cClassUnitDefinitionParserRuleCall_3; }
 		
 		//DataTypeUnitDefinition
-		public RuleCall getDataTypeUnitDefinitionParserRuleCall_3() { return cDataTypeUnitDefinitionParserRuleCall_3; }
+		public RuleCall getDataTypeUnitDefinitionParserRuleCall_4() { return cDataTypeUnitDefinitionParserRuleCall_4; }
 		
 		//AssociationUnitDefinition
-		public RuleCall getAssociationUnitDefinitionParserRuleCall_4() { return cAssociationUnitDefinitionParserRuleCall_4; }
+		public RuleCall getAssociationUnitDefinitionParserRuleCall_5() { return cAssociationUnitDefinitionParserRuleCall_5; }
 		
 		//InteractionUnitDefinition
-		public RuleCall getInteractionUnitDefinitionParserRuleCall_5() { return cInteractionUnitDefinitionParserRuleCall_5; }
+		public RuleCall getInteractionUnitDefinitionParserRuleCall_6() { return cInteractionUnitDefinitionParserRuleCall_6; }
 		
 		//BehaviorUnitDefinition
-		public RuleCall getBehaviorUnitDefinitionParserRuleCall_6() { return cBehaviorUnitDefinitionParserRuleCall_6; }
+		public RuleCall getBehaviorUnitDefinitionParserRuleCall_7() { return cBehaviorUnitDefinitionParserRuleCall_7; }
 		
 		//FunctionUnitDefinition
-		public RuleCall getFunctionUnitDefinitionParserRuleCall_7() { return cFunctionUnitDefinitionParserRuleCall_7; }
+		public RuleCall getFunctionUnitDefinitionParserRuleCall_8() { return cFunctionUnitDefinitionParserRuleCall_8; }
 		
 		//FeatureUnitDefinition
-		public RuleCall getFeatureUnitDefinitionParserRuleCall_8() { return cFeatureUnitDefinitionParserRuleCall_8; }
+		public RuleCall getFeatureUnitDefinitionParserRuleCall_9() { return cFeatureUnitDefinitionParserRuleCall_9; }
 	}
 	public class PackageUnitDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageUnitDefinition");
@@ -617,6 +622,41 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class AnonymousPackageDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.AnonymousPackageDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipPackageMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipPackageImportParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		
+		//AnonymousPackageDefinition SysML::Package:
+		//	{SysML::Package} (ownedRelationship+=PackageMember | ownedRelationship+=PackageImport)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SysML::Package} (ownedRelationship+=PackageMember | ownedRelationship+=PackageImport)*
+		public Group getGroup() { return cGroup; }
+		
+		//{SysML::Package}
+		public Action getPackageAction_0() { return cPackageAction_0; }
+		
+		//(ownedRelationship+=PackageMember | ownedRelationship+=PackageImport)*
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//ownedRelationship+=PackageMember
+		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
+		
+		//PackageMember
+		public RuleCall getOwnedRelationshipPackageMemberParserRuleCall_1_0_0() { return cOwnedRelationshipPackageMemberParserRuleCall_1_0_0; }
+		
+		//ownedRelationship+=PackageImport
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		
+		//PackageImport
+		public RuleCall getOwnedRelationshipPackageImportParserRuleCall_1_1_0() { return cOwnedRelationshipPackageImportParserRuleCall_1_1_0; }
 	}
 	public class PackageMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.PackageMember");
@@ -7317,6 +7357,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private final NonFeatureDefinitionElements pNonFeatureDefinition;
 	private final PackageDefinitionOrStubElements pPackageDefinitionOrStub;
 	private final PackageDefinitionElements pPackageDefinition;
+	private final AnonymousPackageDefinitionElements pAnonymousPackageDefinition;
 	private final PackageMemberElements pPackageMember;
 	private final PackageMemberPrefixElements pPackageMemberPrefix;
 	private final NonFeatureMemberElementElements pNonFeatureMemberElement;
@@ -7525,6 +7566,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNonFeatureDefinition = new NonFeatureDefinitionElements();
 		this.pPackageDefinitionOrStub = new PackageDefinitionOrStubElements();
 		this.pPackageDefinition = new PackageDefinitionElements();
+		this.pAnonymousPackageDefinition = new AnonymousPackageDefinitionElements();
 		this.pPackageMember = new PackageMemberElements();
 		this.pPackageMemberPrefix = new PackageMemberPrefixElements();
 		this.pNonFeatureMemberElement = new NonFeatureMemberElementElements();
@@ -7733,7 +7775,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	///* UNITS */ UnitDefinition SysML::Package:
-	//	PackageUnitDefinition
+	//	AnonymousPackageDefinition
+	//	| PackageUnitDefinition
 	//	| ClassifierUnitDefinition
 	//	| ClassUnitDefinition
 	//	| DataTypeUnitDefinition
@@ -7953,6 +7996,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPackageDefinitionRule() {
 		return getPackageDefinitionAccess().getRule();
+	}
+	
+	//AnonymousPackageDefinition SysML::Package:
+	//	{SysML::Package} (ownedRelationship+=PackageMember | ownedRelationship+=PackageImport)*;
+	public AnonymousPackageDefinitionElements getAnonymousPackageDefinitionAccess() {
+		return pAnonymousPackageDefinition;
+	}
+	
+	public ParserRule getAnonymousPackageDefinitionRule() {
+		return getAnonymousPackageDefinitionAccess().getRule();
 	}
 	
 	///* PACKAGE MEMBERSHIPS */ PackageMember SysML::Membership:

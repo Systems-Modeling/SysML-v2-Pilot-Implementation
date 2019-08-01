@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -45,15 +43,16 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	}
 	
 	public BindingConnector getResultConnector() {
-		List<Feature> features = getOwnedFeature();
-		if (features.size() > 1) {
-			Feature feature = features.get(1);
-			Feature result = feature instanceof Expression? ((ExpressionImpl)feature).getResult(): feature;
-			if (resultConnector == null) {
-				resultConnector = addOwnedBindingConnector(result, getResult());
-			} else {
-				((ConnectorImpl)resultConnector).setRelatedFeature(0, result);
-				((ConnectorImpl)resultConnector).setRelatedFeature(1, getResult());
+		for (Feature feature: getOwnedFeature()) {
+			if (feature instanceof Expression) {
+				Feature result = ((ExpressionImpl)feature).getResult();
+				if (resultConnector == null) {
+					resultConnector = addOwnedBindingConnector(result, getResult());
+				} else {
+					((ConnectorImpl)resultConnector).setRelatedFeature(0, result);
+					((ConnectorImpl)resultConnector).setRelatedFeature(1, getResult());
+				}
+				break;
 			}
 		}
 		return resultConnector;

@@ -130,7 +130,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				memberElement !== null) {
 			createEObjectNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
-				membership.membershipOwningPackage == memberElement || memberElement._isLeaf
+				true
 			)
 		}
 	}

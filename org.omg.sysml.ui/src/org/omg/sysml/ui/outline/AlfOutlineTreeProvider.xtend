@@ -24,6 +24,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.Classifier
 
 /**
  * Customization of the default outline structure.
@@ -129,7 +130,7 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				memberElement !== null) {
 			createEObjectNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
-				membership.membershipOwningPackage == memberElement || memberElement._isLeaf
+				true
 			)
 		}
 	}
@@ -149,10 +150,10 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(org.omg.sysml.lang.sysml.Class class_) {
+	def boolean _isLeaf(Classifier classifier) {
 		// Ensure default subclassing
-		class_.ownedSuperclassing
-		super._isLeaf(class_)
+		classifier.ownedSuperclassing
+		super._isLeaf(classifier)
 	}
 	
 	def boolean _isLeaf(Feature feature) {

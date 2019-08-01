@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -659,7 +660,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return getTyping().stream().anyMatch(typing->typing.getType() instanceof DataType);
 	}
 	
-	//
+	public Subsetting createSubsetting() {
+		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+		subsetting.setSubsettingFeature(this);
+		this.getOwnedRelationship().add(subsetting);
+		return subsetting;
+	}
+	
+	public Optional<Subsetting> getFirstSubsetting() {
+		return getOwnedSubsetting().stream().
+				filter(s->!(s instanceof Redefinition)).findFirst();
+	}
+	
+	public Optional<Feature> getFirstSubsettedFeature() {
+		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
+	}
+
+//
 	
 	/**
 	 * <!-- begin-user-doc -->

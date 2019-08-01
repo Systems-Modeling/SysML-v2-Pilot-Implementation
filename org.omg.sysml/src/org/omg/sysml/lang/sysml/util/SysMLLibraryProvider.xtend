@@ -39,8 +39,7 @@ import org.eclipse.emf.common.util.URI
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
 	
-	// TODO: Use something better than the directory name to identify a library resource.
-	val MODEL_LIBRARY_DIRECTORY_NAME = "library"
+	var modelLibraryDirectory = "/sysml/library"
 	
 	@Inject
 	IGlobalScopeProvider globalScope
@@ -56,8 +55,11 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	}
 	
 	protected def isLibraryResource(Resource resource) {
-		return resource !== null && resource.URI.segmentCount > 2 && 
-			MODEL_LIBRARY_DIRECTORY_NAME.equals(resource.URI.segment(2))
+		return resource !== null && resource.URI.path.startsWith(modelLibraryDirectory)
+	}
+	
+	def setModelLibraryDirectory(String path) {
+		modelLibraryDirectory = path
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {

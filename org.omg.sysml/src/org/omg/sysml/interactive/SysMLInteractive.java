@@ -37,6 +37,7 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.services.AlfGrammarAccess;
 import org.omg.sysml.util.AlfUtil;
 
@@ -64,6 +65,7 @@ public class SysMLInteractive extends AlfUtil {
 	
 	public void loadLibrary(String path) {
 		if (path != null) {
+			SysMLLibraryUtil.setModelLibraryDirectory(path);
 			this.readAll(path, false);
 		}
 	}

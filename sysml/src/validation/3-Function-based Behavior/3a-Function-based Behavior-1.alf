@@ -1,7 +1,8 @@
 package '3a-Function-based Behavior-1' {
-	import Transfers::Reception;
+	import Transfers::Transfer;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
+	import Base::Occurrence::incomingTransfers;
 	
 	// ITEMS
 	
@@ -63,12 +64,16 @@ package '3a-Function-based Behavior-1' {
 		
 		succession merge[1] then engineStart[1];
 		
-		step engineStart: Reception[*](out :EngineStart);
+		step engineStart: Transfer[*] subsets incomingTransfers {
+			feature item: EngineStart[1] redefines Transfer::item;
+		}
 		
 		succession engineStart[1] then engineOff[1];
 		
-		step engineOff: Reception[*](out :EngineOff);
-		
+		step engineOff: Transfer[*] subsets incomingTransfers {
+			feature item: EngineOff[1] redefines Transfer::item;
+		}
+					
 		succession engineOff[0..1] then merge[1];		
 		
 		succession engineStart[1] then 'provide power'[1];

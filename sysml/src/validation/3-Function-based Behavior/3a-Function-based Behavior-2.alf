@@ -1,7 +1,8 @@
 package '3a-Function-based Behavior-2' {
-	import Transfers::Reception;
+	import Transfers::Transfer;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
+	import Base::Occurrence::incomingTransfers;
 			
 	// ITEMS
 	
@@ -59,8 +60,12 @@ package '3a-Function-based Behavior-2' {
 	) {
 		portion is startShot;
 		then[0..1] step merge: Merge[*];
-		then step engineStart: Reception[*](:EngineStart);
-		then step engineOff: Reception[*](:EngineOff);
+		then step engineStart: Transfer[*] subsets incomingTransfers {
+			feature item: EngineStart[1] redefines Transfer::item;
+		}
+		then step engineOff: Transfer[*] subsets incomingTransfers {
+			feature item: EngineOff[1] redefines Transfer::item;
+		}
 		then[0..1] merge;
 		
 		step is engineStart;

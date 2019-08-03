@@ -64,13 +64,13 @@ package '3a-Function-based Behavior-1' {
 		
 		succession merge[1] then engineStart[1];
 		
-		step engineStart: Transfer[*] subsets incomingTransfers {
+		step engineStart subsets incomingTransfers {
 			feature item: EngineStart[1] redefines Transfer::item;
 		}
 		
 		succession engineStart[1] then engineOff[1];
 		
-		step engineOff: Transfer[*] subsets incomingTransfers {
+		step engineOff subsets incomingTransfers {
 			feature item: EngineOff[1] redefines Transfer::item;
 		}
 					

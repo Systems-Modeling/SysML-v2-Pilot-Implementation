@@ -239,6 +239,7 @@ FeatureMember returns SysML::FeatureMembership :
 	| ownedRelatedElement += ExpressionDefinition
 	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
 	| ownedRelatedElement += PerformedStepDefinition
+	| ownedRelatedElement += AcceptStepDefinition
 	| 'perform' ( memberName = Name)? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
     | 'abstract' 'connector' ownedRelatedElement += AbstractConnectorDefinition
     | 'binding' ownedRelatedElement += BindingConnectorDefinition
@@ -655,12 +656,12 @@ AbstractSuccessionItemFlowDefinition returns SysML::SuccessionItemFlow :
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( ( name = Name )? ConnectorTypePart 'is' )? ownedRelationship += ItemFeatureMember
+	( ( name = Name )? ConnectorTypePart 'is' )? ( ( ownedRelationship += ItemFeatureMember )? 'from' )
 	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
 ;
 
 ItemFeatureTyping returns SysML::ItemFeature :
-	{SysML::ItemFeature} ( ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )? 'from' )?
+	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
 ;
 
 EmptyItemFeature returns SysML::ItemFeature :
@@ -679,7 +680,7 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 /* ITEM FLOW MEMBERSHIPS */
 
 ItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFeatureTyping
+	( memberName = Name ':' )? ownedRelatedElement += ItemFeatureTyping
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -732,6 +733,12 @@ PerformedStepDefinition returns SysML::Step :
     'perform' ( name = Name NoncomposingTypePart 'by' )? 
     ownedRelationship += Subset 
     StepParameterList? SubsettingPart ValuePart?
+	BehaviorBody
+;
+
+AcceptStepDefinition returns SysML::Step :
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+	'accept' ( name = Name NoncomposingTypePart )? '(' ownedRelationship += ItemFeatureMember ')'
 	BehaviorBody
 ;
 

@@ -89,7 +89,7 @@ package Base {
 		}
 		
 		/**
-		 * snapshots have no duration.
+		 * Snapshots have no duration.
 		 */
 		// Note: Connectors are only allowed to have a single type.
 		succession :HappensBeforeSelf is snapshots[1] then snapshots[1];
@@ -103,6 +103,13 @@ package Base {
 		 * The endShot happens after all snapshots.
 		 */
 		succession snapshots[0..*] then endShot[1];
+		
+		/**
+		 * The incoming transfers targeting this occurrence. 
+		 */
+		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers
+			= Transfers::Transfer.allInstances()->
+				select t:Transfers::Transfer (t::transferTarget == self);
 	}
 
 	/**

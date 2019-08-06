@@ -3,12 +3,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}				
 			}
 		}
 	}
@@ -21,6 +23,7 @@ package Test1{
 	/* XPECT scope at A.B ---
 	   	   A.B.b.B, Test1.A.B.b.B,
 		   A, A.B, Test1.A, Test1.A.B,
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, 
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
 		   Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 	--- */
@@ -32,6 +35,7 @@ package Test1{
 			    A.B.b.B, A.B.b.B.b, A.B.b.b, B.b.b, Test1.A.B.b.B, Test1.A.B.b.B.b, Test1.A.B.b.b, 
 			   	A, A.B, A.B.b, A.b, B, B.b, 
 			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
+			   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, 
 			   	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant,
 			   	Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,
 			   	Base.BinaryLink.targetParticipant, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,

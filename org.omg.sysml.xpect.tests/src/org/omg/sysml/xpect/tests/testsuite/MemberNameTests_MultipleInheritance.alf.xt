@@ -14,6 +14,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	}
 END_SETUP 
 */
+
+//testing fails for nested linking/scope see - MemberNameTests_MultipleInheritance_nestedScopeLinkingTest.alf
 //XPECT noErrors ---> ""
 package test{
 	class A{

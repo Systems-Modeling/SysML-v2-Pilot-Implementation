@@ -16,6 +16,18 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	}
 END_SETUP 
 */
+//package Test1{
+//	class A {
+//		import B::*;
+//		feature a: A; //added to test scope A
+//		feature b: B; //added to test scope B
+//		class B {
+//			import A::*;
+//			feature aa: A; //added to test scope A
+//			feature bb: B; //added to test scope B
+//		}
+//	}
+//}
 
 // XPECT noErrors ---> ""
 package Test1{

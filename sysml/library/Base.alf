@@ -16,7 +16,7 @@ package Base {
 	// Values
 	
 	/**
-	 * Value is the most general class of entities that are values that do not change
+	 * Value is the most general classifier of entities that are values that do not change
 	 * over time.
 	 */
 	abstract datatype Value specializes Anything;
@@ -29,13 +29,13 @@ package Base {
 	// Occurrences
 	
 	/**
-	 * Occurrence is the most general class of entities that have identity and 
+	 * Occurrence is the most general classifier of entities that have identity and 
 	 * may occur over time.
 	 * 
 	 * The features of Occurrence specify the semantics of portions, slices and
 	 * snapshots of an occurrence over time.
 	 */
-	abstract class Occurrence specializes Anything {
+	abstract classifier Occurrence specializes Anything {
 		
 		/**
 		 * Occurrences that end no earlier than this occurrence starts.
@@ -113,7 +113,7 @@ package Base {
 	}
 
 	/**
-	 * Object is the most general class of non-behavioral entities that have identity
+	 * Object is the most general classifier of non-behavioral entities that have identity
 	 * and are mutable over time.
 	 */
 	abstract class Object specializes Occurrence {

@@ -31,7 +31,7 @@ package '2-Parts Interconnection' {
 	}
 	
 	/**
-	 * Class Transmission has one of the two parts its usage has.
+	 * Class Transmission has one of the two ports its usage has.
 	 */	
 	class Transmission { 
 		port clutchPort: ClutchPort;
@@ -47,7 +47,7 @@ package '2-Parts Interconnection' {
 	 */
 	class Wheel is '1a-Parts Tree'::Wheel;
 	
-	// Port Types
+	// Port Definitions
 	
 	class FuelCmdPort;
 	
@@ -69,7 +69,7 @@ package '2-Parts Interconnection' {
 		port wheelToRoadPort: WheelToRoadPort[2];
 	}
 
-	// Interfaces
+	// Interface Definitions
 	
 	assoc EngineToTransmissionInterface {
 		end drivePwrPort: DrivePwrPort;
@@ -91,10 +91,10 @@ package '2-Parts Interconnection' {
 		
 	/* USAGES */
 	
-	vehicle1_c1: VehicleA {
+	feature vehicle1_c1: VehicleA {
 		port fuelCmdPort: FuelCmdPort redefines VehicleA::fuelCmdPort;
 		
-		connector fuelCmdPort to engine::fuelCmdPort;
+		binding fuelCmdPort = engine::fuelCmdPort;
 		
 		part engine: Engine {
 			port fuelCmdPort: FuelCmdPort redefines Engine::fuelCmdPort;
@@ -120,7 +120,7 @@ package '2-Parts Interconnection' {
 		part rearAxleAssembly: RearAxleAssembly {
 			port shaftPort_d: ShaftPort_d redefines RearAxleAssembly::shaftPort_d;
 
-			connector shaftPort_d to differential::shaftPort_d;
+			binding shaftPort_d = differential::shaftPort_d;
 			
 			/**
 			 * Untyped part.
@@ -150,28 +150,26 @@ package '2-Parts Interconnection' {
 
 			part rearWheel: Wheel[2] ordered;
 			
-			part leftWheel: Wheel subsets rearWheel = rearWheel[1] {
+			part leftWheel subsets rearWheel = rearWheel[1] {
 				port wheelToAxlePort: WheelToAxlePort;
 				port wheelToRoadPort: WheelToRoadPort;
 			}
 			
-			part rightWheel: Wheel subsets rearWheel = rearWheel[2] {
+			part rightWheel subsets rearWheel = rearWheel[2] {
 				port wheelToAxlePort: WheelToAxlePort;
 				port wheelToRoadPort: WheelToRoadPort;
 			}
 			
 		}
 		
-		connector rearAxleAssembly::leftWheel::wheelToRoadPort to 
+		binding rearAxleAssembly::leftWheel::wheelToRoadPort = 
 			vehicleToRoadPort::leftWheelToRoadPort;
-		connector rearAxleAssembly::rightWheel::wheelToRoadPort to 
+		binding rearAxleAssembly::rightWheel::wheelToRoadPort = 
 			vehicleToRoadPort::rightWheelToRoadPort;
 			
-		port vehicleToRoadPort: VehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
-			import VehicleToRoadPort::*;
-			
-			port leftWheelToRoadPort: WheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[1];
-			port rightWheelToRoadPort: WheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[2];
+		port vehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
+			port leftWheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[1];
+			port rightWheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[2];
 		}
 		
 	}

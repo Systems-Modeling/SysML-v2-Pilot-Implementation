@@ -11,7 +11,7 @@ package '1c-Parts Tree Redefinition' {
 	}
 	class Wheel;
 	
-	vehicle1: Vehicle {
+	feature vehicle1: Vehicle {
 		feature mass redefines Vehicle::mass = 1000;		
 		part frontAxleAssembly: AxleAssembly {
 			part frontAxle: Axle;			
@@ -23,25 +23,17 @@ package '1c-Parts Tree Redefinition' {
 		}		
 	}
 
-	vehicle1_c1 redefines vehicle1 {
-		/*
-		 * Note: These imports are currently necessary because of qualified name
-		 * resolution limitations in the context of inheritance.
-		 */
-		import vehicle1::*;
-		import vehicle1::frontAxleAssembly::*;
-		import vehicle1::rearAxleAssembly::*;
-
+	feature vehicle1_c1 subsets vehicle1 {
 		feature mass redefines vehicle1::mass = 2000;		
-		part frontAxleAssembly_c1: AxleAssembly redefines frontAxleAssembly {			
+		part frontAxleAssembly_c1 redefines frontAxleAssembly {			
 			part frontAxle_c1: FrontAxle redefines frontAxle;			
-			part frontWheel_1: Wheel subsets frontWheel = frontWheel[1];
-			part frontWheel_2: Wheel subsets frontWheel = frontWheel[2];
+			part frontWheel_1 subsets frontWheel = frontWheel[1];
+			part frontWheel_2 subsets frontWheel = frontWheel[2];
 		}		
-		part rearAxleAssembly_c1: AxleAssembly redefines rearAxleAssembly {			
-			part rearAxle_c1: Axle redefines rearAxle;		
-			part rearWheel_1: Wheel subsets rearWheel = rearWheel[1];
-			part rearWheel_2: Wheel subsets rearWheel = rearWheel[2];
+		part rearAxleAssembly_c1 redefines rearAxleAssembly {			
+			part rearAxle_c1 redefines rearAxle;		
+			part rearWheel_1 subsets rearWheel = rearWheel[1];
+			part rearWheel_2 subsets rearWheel = rearWheel[2];
 		}		
 	}	
 }

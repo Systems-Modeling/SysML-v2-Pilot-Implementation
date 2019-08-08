@@ -13,7 +13,7 @@ package Occurrences {
 	 * "happens during" itself.
 	 */
 	assoc HappensDuring {
-		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences;
+		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences, BinaryLink::source;
 		end longerOccurrence: Occurrence[0..*];
 	}
 	
@@ -37,8 +37,8 @@ package Occurrences {
 	 * of the laterOccurrence.
 	 */
 	assoc HappensBefore {
-		end earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors;
-		end laterOccurrence: Occurrence[0..*] redefines Occurrence::successors;
+		end earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors, BinaryLink::source;
+		end laterOccurrence: Occurrence[0..*] redefines Occurrence::successors, BinaryLink::target;
 	}
 	
 	/**
@@ -46,7 +46,7 @@ package Occurrences {
 	 */
 	assoc PortionOf { 
 		end whole: Occurrence[0..1];
-		end portion 'portion': Occurrence[0..*] redefines Occurrence::portions; 
+		end portion 'portion': Occurrence[0..*] redefines Occurrence::portions, BinaryLink::target; 
 	}
 	
 	/** 
@@ -54,16 +54,16 @@ package Occurrences {
 	 * involvedObject.
 	 */
 	assoc Involves {
-		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances;
-		end involvedObject: Object[0..*] redefines Performance::involvedObjects;
+		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
+		end involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
 	}
 	
 	/**
 	 * Performance asserts that the performer enacts the behavior carried out by the performance.
 	 */
-	 assoc Performs {
-	 	end performer: Object[0..*] redefines Performance::performers;
-	 	end performance: Performance[0..*] subsets Object::enactedPerformances;
+	 assoc Performs specializes Involves {
+	 	end performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
+	 	end performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
 	 }
 	
 	/**

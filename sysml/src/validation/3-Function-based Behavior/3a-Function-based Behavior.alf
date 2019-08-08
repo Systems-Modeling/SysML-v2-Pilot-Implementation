@@ -6,13 +6,13 @@ package '3a-Function-based Behavior' {
 	
 	// ITEMS
 	
-	class FuelCmd;
-	class Torque is ISQ::TorqueValue;
+	datatype FuelCmd;
+	datatype Torque is ISQ::TorqueValue;
 	
 	// SIGNALS
 	
-	class EngineStart;
-	class EngineOff;
+	datatype EngineStart;
+	datatype EngineOff;
 	
 	// ACTIVITIES
 	
@@ -22,7 +22,6 @@ package '3a-Function-based Behavior' {
 	behavior 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	behavior 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
-	behavior 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	// ACTIONS
 	
@@ -70,7 +69,7 @@ package '3a-Function-based Behavior' {
 		binding wheelTorque2 = 'distribute torque'::wheelTorque2;
 	}
 	
-	step 'provide power with control': 'Provide Power With Control'(
+	step 'provide power with control': 'Provide Power'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
@@ -96,11 +95,11 @@ package '3a-Function-based Behavior' {
 		succession engineStart[1] then 'provide power'[1];
 			
 		binding 'provide power'::fuelCmd = fuelCmd;
-		step 'provide power'[*] (
+		step 'do provide power'[*] (
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2
-		) redefines '3a-Function-based Behavior'::'provide power';
+		) redefines 'provide power';
 		binding wheelTorque1 = 'provide power'::wheelTorque1;
 		binding wheelTorque2 = 'provide power'::wheelTorque2;
 				

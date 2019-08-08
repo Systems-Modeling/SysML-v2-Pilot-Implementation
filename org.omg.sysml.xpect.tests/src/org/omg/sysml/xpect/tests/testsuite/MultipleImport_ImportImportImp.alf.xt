@@ -24,6 +24,8 @@ package test{
 	import OuterPackage2::*;
 	//XPECT linkedName at C --> OuterPackage2.C
 	/* XPECT scope at C ---
+	       B.b.a1, C.b.a1, test.B.b.a1, test.C.b.a1,
+	       Test.b.a1, Test.try.a1, test.Test.b.a1, test.Test.try.a1,
 		   Test, test.Test,
 		   A, A.a1, B,C,
 		   test.A, test.A.a1, test.B, test.C, 
@@ -33,6 +35,9 @@ package test{
 	class Test specializes C {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		/* XPECT scope at b ---
+		   B.b.a1, C.b.a1, test.B.b.a1, test.C.b.a1,
+	       Test.b.a1, Test.try.a1, test.Test.b.a1, test.Test.try.a1,
+	       b.a1, try.a1,
 		   b, c, try, 
 		   Test, Test.b, Test.c, Test.try,
 		   test.Test, test.Test.b, test.Test.c, test.Test.try, 

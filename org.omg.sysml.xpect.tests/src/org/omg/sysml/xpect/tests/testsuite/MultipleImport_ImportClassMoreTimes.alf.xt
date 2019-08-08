@@ -25,28 +25,21 @@ package test{
 	import OuterPackage3::D;
 	//XPECT linkedName at D --> OuterPackage3.D
 	/* XPECT scope at D ---
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue,
-		   Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object,
-		   Base.Occurrence, Base.SelfLink, Base.Value, 
-		   D, EE, test.D, test.EE,
+		   D.b.a1, D.f.a1, EE.b.a1, EE.f.a1, EE.try.a1, D, EE, 
+		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, test.D, test.EE,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C, OuterPackage3.D,
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue,		   Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object,		   Base.Occurrence, Base.SelfLink, Base.Value
 	--- */
-	class EE specializes D{
+	class EE specializes D {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		/* XPECT scope at b ---
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
-		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,
-		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,
-		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,
-		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,
-		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,
-		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,
-		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,
-		   Base.selfLinks, Base.things, Base.values, 
-		   D, D.b, D.c, D.f, EE, EE.b, EE.c, EE.f, EE.try, b, c, f, try,
+		   D.b.a1, D.f.a1,  EE.b.a1,  EE.f.a1,  EE.try.a1, 
+		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, 
+		   b.a1, f.a1,try, try.a1,
+		   D, D.b, D.c, D.f, EE, EE.b, EE.c, EE.f, EE.try, b, c, f,
 		   test.D, test.D.b, test.D.c, test.D.f, test.EE, test.EE.b, test.EE.c, test.EE.f, test.EE.try, 
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,
-		   OuterPackage3.D, OuterPackage3.D.f
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,		   OuterPackage3.D, OuterPackage3.D.f,
+		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
 	--- */
 		feature try : b;
 	}

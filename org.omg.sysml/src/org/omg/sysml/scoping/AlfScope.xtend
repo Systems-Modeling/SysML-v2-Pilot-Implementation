@@ -40,7 +40,6 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
-import org.omg.sysml.lang.sysml.Classifier
 
 class AlfScope extends AbstractScope {
 	
@@ -90,7 +89,7 @@ class AlfScope extends AbstractScope {
 	 * 
 	 * If targetqn is null, return all elements in this local scope with all possible
 	 * qualified names by which they can be resolved (except that circularities are
-	 * truncated).
+	 * truncated). - called when "XPECT scope" is used.
 	 */
 	def resolveInScope(QualifiedName targetqn, boolean findFirst) {
 		this.targetqn = targetqn;
@@ -108,7 +107,7 @@ class AlfScope extends AbstractScope {
 	}
 	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet) ||
+		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
 		pack.gen(qn, visited) ||
 		pack.imp(qn, visited)
 	}
@@ -124,10 +123,10 @@ class AlfScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		if (!visited.contains(pack)) {
+	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
+		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
-				visited.add(pack)		
+				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
 				if (!scopeProvider.visitedMemberships.contains(m)) {
@@ -164,16 +163,12 @@ class AlfScope extends AbstractScope {
 										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
 										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
 										// superclass requires proxy resolution.
-										if (memberElement.owned(elementqn, false, false, visited)) {
+										if (memberElement.owned(elementqn, false, false, ownedvisited, visited)) {
 											return true
 										}
 										
-										if (memberElement instanceof Classifier) {								
-											for (eg: memberElement.ownedSuperclassing) {
-												if (!visited.contains(eg.superclass)) {
-													eg.superclass.resolve(elementqn, false, false, visited)
-												}
-											}
+										if (memberElement.gen(elementqn, visited)) {
+											return true;
 										}
 									}
 								}
@@ -182,7 +177,7 @@ class AlfScope extends AbstractScope {
 					}
 				}
 			}
-			visited.remove(pack)
+			ownedvisited.remove(pack)
 		}
 		return false
 	}

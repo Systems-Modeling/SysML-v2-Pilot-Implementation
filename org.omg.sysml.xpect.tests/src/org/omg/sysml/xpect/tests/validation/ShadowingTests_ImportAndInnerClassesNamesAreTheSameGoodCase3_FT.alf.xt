@@ -1,0 +1,33 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	feature A{
+		feature a2{}
+	}
+	feature inner{
+		import OuterPackage::*;
+		feature B : A {
+			/* XPECT errors --- 
+			"Couldn't resolve reference to Category 'a2'." at "a2"
+			--- */
+			feature b : a2{}
+		}
+	}
+}

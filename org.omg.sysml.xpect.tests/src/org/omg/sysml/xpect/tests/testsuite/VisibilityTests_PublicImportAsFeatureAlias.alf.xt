@@ -24,6 +24,7 @@ package Classes {
 	class Try{
 		//scope are the same for at aliass and at Aliass
 		/* XPECT scope at aliass ---
+		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Aliass, Aliass.c_public, 
 		   Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
 		   Try, Try.feature4, Try.featurepublic, 
@@ -41,6 +42,7 @@ package Classes {
 		feature feature4 : aliass;
 		//XPECT linkedName at Aliass --> VisibilityPackage.c_Public
 		/* XPECT scope at Aliass ---
+		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Aliass, Aliass.c_public, 
 		   Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
 		   Try, Try.feature4, Try.featurepublic, 

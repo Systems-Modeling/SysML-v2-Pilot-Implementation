@@ -21,7 +21,6 @@ package test{
 		class a {}
 	}
 	class B specializes A{
-		//linkedName at a --> test.A.a RuntimeException happens for try testing "a" 
 		class b specializes a {}
 	}
 	class C specializes B{

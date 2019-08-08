@@ -23,6 +23,8 @@ package test{
 	class C {
 		//XPECT linkedName at aliass --> OuterPackage.B.b
 		/* XPECT scope at aliass ---
+		    c.a1, C.c.a1, test.C.c.a1,
+		    aliass.a1, test.aliass.a1,
 			c, C, C.c,aliass, 
 			test.C, test.C.c, test.aliass,
 			OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, 

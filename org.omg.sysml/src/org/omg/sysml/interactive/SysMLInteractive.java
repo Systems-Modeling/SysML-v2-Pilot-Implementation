@@ -60,6 +60,7 @@ public class SysMLInteractive extends AlfUtil {
 	
 	@Inject
 	private SysMLInteractive() {
+		super(new InverseOrderedResourceSetImpl());
 		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
 	}
 	

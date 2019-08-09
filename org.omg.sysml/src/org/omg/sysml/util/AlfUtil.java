@@ -50,13 +50,18 @@ public abstract class AlfUtil {
 	
 	public static final String ALF_EXTENSION = ".alf";
 	
-	protected final ResourceSet resourceSet = new ResourceSetImpl();
+	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	
-	protected AlfUtil() {
+	protected AlfUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		AlfStandaloneSetup.doSetup();
+		this.resourceSet = resourceSet;
+	}
+	
+	protected AlfUtil() {
+		this(new ResourceSetImpl());
 	}
 	
 	/**

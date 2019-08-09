@@ -24,7 +24,7 @@ package test{
 	}
 	feature B : A {
 		/* XPECT errors --- 
-		   "Couldn't resolve reference to Category 'a1'." at "a1"
+		   "Couldn't resolve reference to Type 'a1'." at "a1"
 		--- */
 		feature b : a1{}
 	}

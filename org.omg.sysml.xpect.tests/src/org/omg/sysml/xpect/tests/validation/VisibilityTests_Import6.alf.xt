@@ -19,6 +19,6 @@ END_SETUP
 
 package Classes {
 	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Category 'c_Public::c_private'." at "c_Public::c_private"
+	// XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_private'." at "c_Public::c_private"
 	feature f : c_Public::c_private;
 }

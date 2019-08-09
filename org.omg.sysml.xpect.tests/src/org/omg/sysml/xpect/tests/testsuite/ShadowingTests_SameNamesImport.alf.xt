@@ -24,7 +24,7 @@ package test{
 	import SamePackage::container::*;
 	class something1 specializes A{}
 	//pass junit test
-	//XPECT errors -->"Couldn't resolve reference to Class 'B'." at "B"
+	//XPECT errors -->"Couldn't resolve reference to Classifier 'B'." at "B"
 	class something2 specializes B{}
 }
 

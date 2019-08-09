@@ -25,7 +25,7 @@ package test{
 	import SamePackage::container;
 	feature something1 : container::A{}
 	/* XPECT errors ---
-	"Couldn't resolve reference to Category 'container::B'." at "container::B"
+	"Couldn't resolve reference to Type 'container::B'." at "container::B"
 	--- */
 	feature something2 : container::B{}
 }

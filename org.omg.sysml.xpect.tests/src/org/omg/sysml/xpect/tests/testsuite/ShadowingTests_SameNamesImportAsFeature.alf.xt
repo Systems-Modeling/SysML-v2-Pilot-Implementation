@@ -24,6 +24,6 @@ END_SETUP
 package test{
 	import SamePackage::container;
 	class something1 specializes container::A{}
-	//XPECT errors -->"Couldn't resolve reference to Class 'container::B'." at "container::B"
+	//XPECT errors -->"Couldn't resolve reference to Classifier 'container::B'." at "container::B"
 	class something2 specializes container::B{}
 }

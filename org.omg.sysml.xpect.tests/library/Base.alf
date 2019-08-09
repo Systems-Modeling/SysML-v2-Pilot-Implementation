@@ -1,9 +1,14 @@
 package Base {
 		
+ 	/*
+	 * NOTE: This Base package is a reduced version for use specifically
+	 * with Xpect tests.
+	 */
+		
     /*
      * Anything is the top level generalized type in the language. 
      */
-	abstract Class Anything;
+	abstract classifier Anything;
 	
 	/*
 	 * Object is the most general class of individuals with reference identity.

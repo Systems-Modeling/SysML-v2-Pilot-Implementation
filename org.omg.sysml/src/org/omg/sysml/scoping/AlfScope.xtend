@@ -134,7 +134,7 @@ class AlfScope extends AbstractScope {
 					var Element memberElement
 					
 					// Note: Proxy resolution for memberElement may result in recursive name resolution
-					// (and getting the memberName may also resut in accessing the memberElement).
+					// (and getting the memberName may also result in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
 					scopeProvider.addVisited(m)
@@ -185,10 +185,17 @@ class AlfScope extends AbstractScope {
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
-				if (e.general !== null && !visited.contains(e.general)) {
-					visited.add(e.general)
-					val found = e.general.resolve(qn, false, false, visited)
-					visited.remove(e.general)
+				if (!scopeProvider.visited.contains(e)) {
+					var found = false;
+					// NOTE: Exclude the generalization e to avoid possible circular name resolution
+					// when resolving a proxy for e.general.
+					scopeProvider.addVisited(e)
+					if (e.general !== null && !visited.contains(e.general)) {
+						visited.add(e.general)
+						found = e.general.resolve(qn, false, false, visited)
+						visited.remove(e.general)
+					}
+					scopeProvider.removeVisited(e)
 					if (found) {
 						return true
 					}
@@ -202,6 +209,8 @@ class AlfScope extends AbstractScope {
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				var found = false;
+				// NOTE: Exclude the import e to avoid possible circular name resolution
+				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
 				if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
 					visited.add(e.importedPackage)

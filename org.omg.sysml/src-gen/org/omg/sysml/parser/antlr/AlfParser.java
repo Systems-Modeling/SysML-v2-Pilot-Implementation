@@ -27,7 +27,7 @@ public class AlfParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "UnitDefinition";
+		return "MultiunitDefinition";
 	}
 
 	public AlfGrammarAccess getGrammarAccess() {

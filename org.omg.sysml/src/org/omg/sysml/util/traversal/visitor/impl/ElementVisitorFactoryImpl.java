@@ -63,6 +63,7 @@ public class ElementVisitorFactoryImpl implements ElementVisitorFactory {
 	 * 
 	 * @return	the current traversal object
 	 */
+	@Override
 	public Traversal getTraversal() { 
 		return this.traversal;
 	}
@@ -72,6 +73,7 @@ public class ElementVisitorFactoryImpl implements ElementVisitorFactory {
 	 * 
 	 * @param 	traversal		the traversal object to be used
 	 */
+	@Override
 	public void setTraversal(Traversal traversal) {
 		this.traversal = traversal;
 	}

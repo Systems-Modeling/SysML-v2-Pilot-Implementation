@@ -26,6 +26,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_7_0_p;
 	protected AbstractElementAlias match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
+	protected AbstractElementAlias match_FeatureBodyDefinition_FeatureKeyword_1_q;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_1_1_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
@@ -43,6 +44,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_BaseExpression_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_7_0());
 		match_BaseExpression_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_7_0());
 		match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0()));
+		match_FeatureBodyDefinition_FeatureKeyword_1_q = new TokenAlias(false, true, grammarAccess.getFeatureBodyDefinitionAccess().getFeatureKeyword_1());
 		match_FeaturePackageMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_0_0());
 		match_FeaturePackageMemberElement_FeatureKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_1_1());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
@@ -74,6 +76,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_BaseExpression_LeftParenthesisKeyword_7_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureBodyDefinition_FeatureKeyword_1_q.equals(syntax))
+				emit_FeatureBodyDefinition_FeatureKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeaturePackageMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_FeaturePackageMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeaturePackageMemberElement_FeatureKeyword_1_1_q.equals(syntax))
@@ -167,6 +171,21 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'feature'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) name=Name
+	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     ownedRelationship+=Annotation (ambiguity) name=Name
+	 *     ownedRelationship+=ElementImport (ambiguity) name=Name
+	 *     ownedRelationship+=PackageImport (ambiguity) name=Name
+	 */
+	protected void emit_FeatureBodyDefinition_FeatureKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

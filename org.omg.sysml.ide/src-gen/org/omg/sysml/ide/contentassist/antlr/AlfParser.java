@@ -96,6 +96,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageElementVisibilityIndicatorAccess().getAlternatives(), "rule__PackageElementVisibilityIndicator__Alternatives");
 			builder.put(grammarAccess.getVisibilityIndicatorAccess().getAlternatives(), "rule__VisibilityIndicator__Alternatives");
 			builder.put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
+			builder.put(grammarAccess.getMultiunitDefinitionAccess().getGroup(), "rule__MultiunitDefinition__Group__0");
+			builder.put(grammarAccess.getMultiunitDefinitionAccess().getGroup_1(), "rule__MultiunitDefinition__Group_1__0");
 			builder.put(grammarAccess.getPackageUnitDefinitionAccess().getGroup(), "rule__PackageUnitDefinition__Group__0");
 			builder.put(grammarAccess.getClassifierUnitDefinitionAccess().getGroup(), "rule__ClassifierUnitDefinition__Group__0");
 			builder.put(grammarAccess.getClassUnitDefinitionAccess().getGroup(), "rule__ClassUnitDefinition__Group__0");
@@ -326,9 +328,11 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getColonQualifiedNameAccess().getGroup_1(), "rule__ColonQualifiedName__Group_1__0");
 			builder.put(grammarAccess.getDotQualifiedNameAccess().getGroup(), "rule__DotQualifiedName__Group__0");
 			builder.put(grammarAccess.getDotQualifiedNameAccess().getGroup_1(), "rule__DotQualifiedName__Group_1__0");
+			builder.put(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipAssignment_1_2(), "rule__MultiunitDefinition__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_0(), "rule__UnitPrefix__OwnedRelationshipAssignment_0_0");
 			builder.put(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_0_1(), "rule__UnitPrefix__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAssignment_1(), "rule__UnitPrefix__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementAssignment(), "rule__UnitMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getAnnotationAccess().getOwnedRelatedElementAssignment(), "rule__Annotation__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getCommentAccess().getBodyAssignment(), "rule__Comment__BodyAssignment");
 			builder.put(grammarAccess.getPackageImportAccess().getOwnedRelationshipAssignment_0(), "rule__PackageImport__OwnedRelationshipAssignment_0");

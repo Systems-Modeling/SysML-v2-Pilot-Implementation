@@ -27,7 +27,6 @@ package org.omg.sysml.util;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,13 +50,18 @@ public abstract class AlfUtil {
 	
 	public static final String ALF_EXTENSION = ".alf";
 	
-	protected final ResourceSet resourceSet = new ResourceSetImpl();
+	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	
-	protected AlfUtil() {
+	protected AlfUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		AlfStandaloneSetup.doSetup();
+		this.resourceSet = resourceSet;
+	}
+	
+	protected AlfUtil() {
+		this(new ResourceSetImpl());
 	}
 	
 	/**
@@ -134,7 +138,11 @@ public abstract class AlfUtil {
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 */
 	public void readAll(final File file, boolean isInput) {
-		if (!file.isDirectory()) {
+		if (file.isDirectory()) {
+			for (File nestedFile: file.listFiles()) {
+				this.readAll(nestedFile,  isInput);
+			}
+		} else {
 			final String path = file.getPath();
 			if (path.endsWith(ALF_EXTENSION)) {
 				Resource resource = this.readResource(file.getPath());
@@ -142,10 +150,7 @@ public abstract class AlfUtil {
 					this.addInputResource(resource);
 				}
 			}
-		} else {
-			Stream.of(file.listFiles()).forEach(f->this.readAll(f, isInput));
 		}
-		EcoreUtil.resolveAll(this.resourceSet);
 	}
 	
 	/**
@@ -169,6 +174,7 @@ public abstract class AlfUtil {
 	public void read(final String... paths) {
 		if (paths.length > 0) {
 			this.readAll(paths[0], true);
+			EcoreUtil.resolveAll(this.resourceSet);
 			for (int i = 1; i < paths.length; i++) {
 				this.readAll(paths[i], false);
 			}

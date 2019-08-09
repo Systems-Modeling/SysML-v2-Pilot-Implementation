@@ -33,7 +33,14 @@ import org.omg.sysml.lang.sysml.Relationship;
  *
  */
 public interface ElementProcessingFacade {
-
+	
+	/**
+	 * Pre-process the given Element. By default, do nothing.
+	 * 
+	 * @param 	element			the Element to be pre-processed
+	 */
+	default void preProcess(Element element) { }
+	
 	/**
 	 * Process the given Element, returning a unique identifier for that element.
 	 * 
@@ -49,5 +56,12 @@ public interface ElementProcessingFacade {
 	 * @return	a unique identifier for the processed Relationship
 	 */
 	Object processRelationship(Relationship relationship);
+	
+	/**
+	 * Post-process the given Element. By default, do nothing.
+	 * 
+	 * @param 	element			the Element to be post-processed
+	 */
+	default void postProcess(Element element) { }
 	
 }

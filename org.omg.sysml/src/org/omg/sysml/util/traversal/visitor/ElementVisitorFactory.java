@@ -24,6 +24,7 @@
 package org.omg.sysml.util.traversal.visitor;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.traversal.Traversal;
 
 /**
  * This is the interface for a factoru used to create Element visitors.
@@ -32,6 +33,21 @@ import org.omg.sysml.lang.sysml.Element;
  *
  */
 public interface ElementVisitorFactory {
+	
+	/**
+	 * Get the Traversal associated with this factory (if any);
+	 * 
+	 * @return the Traversal associated with this factory.
+	 */
+	default Traversal getTraversal() { return null; }
+	
+	/**
+	 * Set the Traversal that will use the Element visitors created by this
+	 * factory (if that is applicable).
+	 * 
+	 * @param 	traversal	the Traversal that will use the created visitors 
+	 */
+	default void setTraversal(Traversal traversal) { }
 	
 	/**
 	 * Create an Element visitor specialized for the given Element.

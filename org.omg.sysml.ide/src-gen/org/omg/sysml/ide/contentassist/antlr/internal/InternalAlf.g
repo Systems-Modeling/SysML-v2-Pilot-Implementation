@@ -50,6 +50,31 @@ import org.omg.sysml.services.AlfGrammarAccess;
 	}
 }
 
+// Entry rule entryRuleMultiunitDefinition
+entryRuleMultiunitDefinition
+:
+{ before(grammarAccess.getMultiunitDefinitionRule()); }
+	 ruleMultiunitDefinition
+{ after(grammarAccess.getMultiunitDefinitionRule()); } 
+	 EOF 
+;
+
+// Rule MultiunitDefinition
+ruleMultiunitDefinition 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getMultiunitDefinitionAccess().getGroup()); }
+		(rule__MultiunitDefinition__Group__0)
+		{ after(grammarAccess.getMultiunitDefinitionAccess().getGroup()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleUnitDefinition
 entryRuleUnitDefinition
 :
@@ -311,6 +336,31 @@ ruleUnitPrefix
 		{ before(grammarAccess.getUnitPrefixAccess().getGroup()); }
 		(rule__UnitPrefix__Group__0)
 		{ after(grammarAccess.getUnitPrefixAccess().getGroup()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+// Entry rule entryRuleUnitMember
+entryRuleUnitMember
+:
+{ before(grammarAccess.getUnitMemberRule()); }
+	 ruleUnitMember
+{ after(grammarAccess.getUnitMemberRule()); } 
+	 EOF 
+;
+
+// Rule UnitMember
+ruleUnitMember 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementAssignment()); }
+		(rule__UnitMember__OwnedRelatedElementAssignment)
+		{ after(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementAssignment()); }
 	)
 ;
 finally {
@@ -6254,6 +6304,148 @@ rule__FeatureDirection__Alternatives
 finally {
 	restoreStackSize(stackSize);
 }
+
+rule__MultiunitDefinition__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MultiunitDefinition__Group__0__Impl
+	rule__MultiunitDefinition__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMultiunitDefinitionAccess().getUnitDefinitionParserRuleCall_0()); }
+	ruleUnitDefinition
+	{ after(grammarAccess.getMultiunitDefinitionAccess().getUnitDefinitionParserRuleCall_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MultiunitDefinition__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMultiunitDefinitionAccess().getGroup_1()); }
+	(rule__MultiunitDefinition__Group_1__0)?
+	{ after(grammarAccess.getMultiunitDefinitionAccess().getGroup_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MultiunitDefinition__Group_1__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MultiunitDefinition__Group_1__0__Impl
+	rule__MultiunitDefinition__Group_1__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group_1__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()); }
+	()
+	{ after(grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group_1__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MultiunitDefinition__Group_1__1__Impl
+	rule__MultiunitDefinition__Group_1__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group_1__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMultiunitDefinitionAccess().getPackageOwnedRelationshipAction_1_1()); }
+	()
+	{ after(grammarAccess.getMultiunitDefinitionAccess().getPackageOwnedRelationshipAction_1_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group_1__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MultiunitDefinition__Group_1__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MultiunitDefinition__Group_1__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	(
+		{ before(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipAssignment_1_2()); }
+		(rule__MultiunitDefinition__OwnedRelationshipAssignment_1_2)
+		{ after(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipAssignment_1_2()); }
+	)
+	(
+		{ before(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipAssignment_1_2()); }
+		(rule__MultiunitDefinition__OwnedRelationshipAssignment_1_2)*
+		{ after(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipAssignment_1_2()); }
+	)
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 rule__PackageUnitDefinition__Group__0
 	@init {
@@ -14860,7 +15052,7 @@ rule__FeatureBodyDefinition__Group__1__Impl
 :
 (
 	{ before(grammarAccess.getFeatureBodyDefinitionAccess().getFeatureKeyword_1()); }
-	'feature'
+	('feature')?
 	{ after(grammarAccess.getFeatureBodyDefinitionAccess().getFeatureKeyword_1()); }
 )
 ;
@@ -24966,6 +25158,21 @@ finally {
 }
 
 
+rule__MultiunitDefinition__OwnedRelationshipAssignment_1_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipUnitMemberParserRuleCall_1_2_0()); }
+		ruleUnitMember
+		{ after(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipUnitMemberParserRuleCall_1_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__UnitPrefix__OwnedRelationshipAssignment_0_0
 	@init {
 		int stackSize = keepStackSize();
@@ -25005,6 +25212,21 @@ rule__UnitPrefix__OwnedRelationshipAssignment_1
 		{ before(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_1_0()); }
 		ruleAnnotation
 		{ after(grammarAccess.getUnitPrefixAccess().getOwnedRelationshipAnnotationParserRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__UnitMember__OwnedRelatedElementAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementUnitDefinitionParserRuleCall_0()); }
+		ruleUnitDefinition
+		{ after(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementUnitDefinitionParserRuleCall_0()); }
 	)
 ;
 finally {

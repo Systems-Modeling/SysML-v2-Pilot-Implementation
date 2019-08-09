@@ -139,6 +139,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
+		return basicGetOwnedGeneralization();
+	}
+
+	protected EList<Generalization> basicGetOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		for (Relationship relationship: this.getOwnedRelationship()) {
 			if (relationship instanceof Generalization &&
@@ -162,7 +166,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	@SuppressWarnings("unchecked")
 	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
 		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
-		for (Generalization generalization: getOwnedGeneralization()) {
+		for (Generalization generalization: basicGetOwnedGeneralization()) {
 			if (kind.isInstance(generalization)) {
 				generalizations.add((T)generalization);
 			}

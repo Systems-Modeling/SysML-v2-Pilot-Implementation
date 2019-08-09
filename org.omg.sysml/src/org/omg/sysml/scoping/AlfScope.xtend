@@ -129,7 +129,7 @@ class AlfScope extends AbstractScope {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				if (!scopeProvider.visitedMemberships.contains(m)) {
+				if (!scopeProvider.visited.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
@@ -137,12 +137,12 @@ class AlfScope extends AbstractScope {
 					// (and getting the memberName may also resut in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					scopeProvider.addVisitedMembership(m)
+					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
 						elementName = m.memberName 
 					} finally {
-						scopeProvider.removeVisitedMembership(m)
+						scopeProvider.removeVisited(m)
 					}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
@@ -200,10 +200,15 @@ class AlfScope extends AbstractScope {
 	
 	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
-				visited.add(e.importedPackage)
-				val found = e.importedPackage.resolve(qn, true, false, visited)
-				visited.remove(e.importedPackage)
+			if (!scopeProvider.visited.contains(e)) {
+				var found = false;
+				scopeProvider.addVisited(e)
+				if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
+					visited.add(e.importedPackage)
+					found = e.importedPackage.resolve(qn, true, false, visited)
+					visited.remove(e.importedPackage)
+				}
+				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
 				}

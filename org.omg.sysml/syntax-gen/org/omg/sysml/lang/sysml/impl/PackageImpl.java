@@ -147,9 +147,12 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	@Override
 	public EList<Membership> getOwnedMembership() {
-		return new DerivedEObjectEList<Membership>(
-				Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, 
-				new int[]{SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		EList<Membership> membership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP);
+		getOwnedRelationship().stream().
+			filter(rel->rel instanceof Membership).
+			map(rel->(Membership)rel).
+			forEachOrdered(membership::add);
+		return membership;
 	}
 	
 	// Operations

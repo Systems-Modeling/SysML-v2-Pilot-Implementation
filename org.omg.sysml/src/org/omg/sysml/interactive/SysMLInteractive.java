@@ -38,7 +38,6 @@ import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.services.AlfGrammarAccess;
 import org.omg.sysml.util.AlfUtil;
 
 import com.google.inject.Inject;
@@ -51,9 +50,6 @@ public class SysMLInteractive extends AlfUtil {
 	protected int counter = 1;
 	protected XtextResource resource;
 	protected String fileName = "interactive";
-	
-	@Inject
-	private AlfGrammarAccess grammar;
 	
 	@Inject
 	private IResourceValidator validator;
@@ -77,7 +73,6 @@ public class SysMLInteractive extends AlfUtil {
 	
 	public int next() {
 		this.resource = (XtextResource)this.createResource(this.counter + ALF_EXTENSION);
-		this.resource.setEntryPoint(grammar.getAnonymousPackageDefinitionRule());
 		return this.counter++;
 	}
 	

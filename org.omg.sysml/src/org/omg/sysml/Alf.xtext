@@ -34,9 +34,15 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
+MultiunitDefinition returns SysML::Element :
+	UnitDefinition 
+	( {SysML::Membership.ownedRelatedElement += current} {SysML::Package.ownedRelationship += current} 
+	  ( ownedRelationship += UnitMember )+
+	)?
+;
+
 UnitDefinition returns SysML::Package :
-	  AnonymousPackageDefinition
-	| PackageUnitDefinition 
+	  PackageUnitDefinition 
 	| ClassifierUnitDefinition 
 	| ClassUnitDefinition
 	| DataTypeUnitDefinition
@@ -87,6 +93,12 @@ fragment UnitPrefix returns SysML::Package :
 	//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
 	( ownedRelationship += PackageImport | ownedRelationship += ElementImport )*
 	( ownedRelationship += Annotation )*
+;
+
+/* UNIT MEMBERSHIPS */
+
+UnitMember returns SysML::Membership :
+	ownedRelatedElement += UnitDefinition
 ;
 
 /* VISIBILITY */
@@ -146,10 +158,6 @@ PackageDefinitionOrStub returns SysML::Package :
 
 fragment PackageDefinition returns SysML::Package : 
 	'package' name = Name '{' ( ownedRelationship += PackageMember | ownedRelationship += PackageImport )* '}' 
-;
-
-AnonymousPackageDefinition returns SysML::Package :
-	{SysML::Package} ( ownedRelationship += PackageMember | ownedRelationship += PackageImport )*
 ;
 
 /* PACKAGE MEMBERSHIPS */
@@ -488,7 +496,7 @@ AbstractUnnamedFeatureDefinition returns SysML::Feature :
 ;
 
 fragment FeatureBodyDefinition returns SysML::Feature :
-	( isAbstract ?= 'abstract' )? 'feature' FeatureDeclaration FeatureCompletion
+	( isAbstract ?= 'abstract' )? 'feature'? FeatureDeclaration FeatureCompletion
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :

@@ -82,7 +82,7 @@ public class SysMLInteractiveResult {
 		return this.exception;
 	}
 	
-	protected String formatElement(String indentation, Element element, Relationship relationship) {
+	protected void formatElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		if (element instanceof Classifier) {
 			((Classifier)element).getOwnedSuperclassing();
 		} else if (element instanceof Feature) {
@@ -92,32 +92,33 @@ public class SysMLInteractiveResult {
 		
 		String name = element.getName();
 		String id = Integer.toHexString(element.hashCode());
-		return indentation + 
+		buffer.append(indentation + 
 				(relationship == null? "": "[" + relationship.eClass().getName() + "] ") + 
 				element.eClass().getName() + 
-				(name == null? "": " " + name) + " (" + id + ")\n";
+				(name == null? "": " " + name) + " (" + id + ")\n");
 	}
 	
-	protected String formatTree(String indentation, Element element, Relationship relationship) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(this.formatElement(indentation, element, relationship));
+	protected void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
+		this.formatElement(buffer, indentation, element, relationship);
 		if (element instanceof Expression) {
 			for (Element output: ((Expression)element).getOutput()) {
-				buffer.append(this.formatElement(indentation + INDENT, output, output.getOwningMembership()));
+				if (output.getOwner() == element) {
+					this.formatElement(buffer, indentation + INDENT, output, output.getOwningMembership());
+				}
 			}
 		} else {
 			for (Relationship subrelationship: element.getOwnedRelationship()) {
 				for (Element relatedElement: subrelationship.getRelatedElement()) {
 					if (relatedElement != element) {
-						buffer.append(
-							relatedElement.getOwningRelationship() == subrelationship? 
-									this.formatTree(indentation + INDENT, relatedElement, subrelationship):
-									this.formatElement(indentation + INDENT, relatedElement, subrelationship));
+						if (relatedElement.getOwningRelationship() == subrelationship) {
+							this.formatTree(buffer, indentation + INDENT, relatedElement, subrelationship);
+						} else {
+							this.formatElement(buffer, indentation + INDENT, relatedElement, subrelationship);
+						}
 					}
 				}
 			}
 		}
-		return buffer.toString();
 	}
 	
 	protected <T extends Object> String formatList(List<T> list) {
@@ -127,10 +128,18 @@ public class SysMLInteractiveResult {
 	}
 	
 	public String formatRootElement() {
-		org.omg.sysml.lang.sysml.Package rootPackage = 
-				(org.omg.sysml.lang.sysml.Package)this.getRootElement();
-		return rootPackage == null || rootPackage.getOwnedMember().isEmpty()? "":
-			this.formatTree("", rootPackage.getOwnedMember().get(0), null);
+		StringBuilder buffer = new StringBuilder();
+		Element rootElement = this.getRootElement();
+		if (rootElement != null) {
+			if (rootElement.getName() != null) {
+				this.formatTree(buffer, "", rootElement, null);
+			} else {
+				for (Element member: ((org.omg.sysml.lang.sysml.Package)rootElement).getMember()) {
+					this.formatTree(buffer, "", member, null);
+				}
+			}
+		}
+		return buffer.toString();
 	}
 	
 	public String formatIssues() {

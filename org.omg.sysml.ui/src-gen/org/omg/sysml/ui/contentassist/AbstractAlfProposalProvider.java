@@ -18,7 +18,13 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
  */
 public abstract class AbstractAlfProposalProvider extends AbstractJavaBasedContentProposalProvider {
 
+	public void completeMultiunitDefinition_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
 	public void completeUnitPrefix_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeUnitMember_OwnedRelatedElement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeAnnotation_OwnedRelatedElement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -46,9 +52,6 @@ public abstract class AbstractAlfProposalProvider extends AbstractJavaBasedConte
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completePackageDefinition_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
-	public void completeAnonymousPackageDefinition_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completePackageMemberPrefix_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -592,6 +595,9 @@ public abstract class AbstractAlfProposalProvider extends AbstractJavaBasedConte
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 
+	public void complete_MultiunitDefinition(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 	public void complete_UnitDefinition(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -625,6 +631,9 @@ public abstract class AbstractAlfProposalProvider extends AbstractJavaBasedConte
 	public void complete_UnitPrefix(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	public void complete_UnitMember(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 	public void complete_PackageElementVisibilityIndicator(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -650,9 +659,6 @@ public abstract class AbstractAlfProposalProvider extends AbstractJavaBasedConte
 		// subclasses may override
 	}
 	public void complete_PackageDefinition(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
-	public void complete_AnonymousPackageDefinition(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_PackageMember(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

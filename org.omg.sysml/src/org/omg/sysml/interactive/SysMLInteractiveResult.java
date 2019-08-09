@@ -35,7 +35,6 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public class SysMLInteractiveResult {
@@ -83,39 +82,38 @@ public class SysMLInteractiveResult {
 		return this.exception;
 	}
 	
-	protected String formatElement(String indentation, Element element) {
+	protected String formatElement(String indentation, Element element, Relationship relationship) {
 		if (element instanceof Classifier) {
 			((Classifier)element).getOwnedSuperclassing();
 		} else if (element instanceof Feature) {
 			((Feature)element).getOwnedSubsetting();
 			((Feature)element).getFeature();
-			if (element instanceof Expression) {
-				((Expression)element).getInput();
-				((Expression)element).getOutput();
-				if (element instanceof OperatorExpression) {
-					((OperatorExpression)element).getTyping();
-				}
-			}
 		}
 		
 		String name = element.getName();
-		String kind = element instanceof Relationship? "Relationship": "Element";
 		String id = Integer.toHexString(element.hashCode());
-		return indentation + element.eClass().getName() + 
-				(name == null? "": " " + name) + " (" + kind + "@" + id + ")\n";
+		return indentation + 
+				(relationship == null? "": "[" + relationship.eClass().getName() + "] ") + 
+				element.eClass().getName() + 
+				(name == null? "": " " + name) + " (" + id + ")\n";
 	}
 	
-	protected String formatTree(String indentation, Element element) {
+	protected String formatTree(String indentation, Element element, Relationship relationship) {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append(this.formatElement(indentation, element));
-		for (Relationship relationship: element.getOwnedRelationship()) {
-			buffer.append(this.formatElement(indentation + INDENT, relationship));
-			for (Element relatedElement: relationship.getRelatedElement()) {
-				if (relatedElement != element) {
-					buffer.append(
-						relatedElement.getOwningRelationship() == relationship? 
-								this.formatTree(indentation + INDENT + INDENT, relatedElement):
-								this.formatElement(indentation + INDENT + INDENT, relatedElement));
+		buffer.append(this.formatElement(indentation, element, relationship));
+		if (element instanceof Expression) {
+			for (Element output: ((Expression)element).getOutput()) {
+				buffer.append(this.formatElement(indentation + INDENT, output, output.getOwningMembership()));
+			}
+		} else {
+			for (Relationship subrelationship: element.getOwnedRelationship()) {
+				for (Element relatedElement: subrelationship.getRelatedElement()) {
+					if (relatedElement != element) {
+						buffer.append(
+							relatedElement.getOwningRelationship() == subrelationship? 
+									this.formatTree(indentation + INDENT, relatedElement, subrelationship):
+									this.formatElement(indentation + INDENT, relatedElement, subrelationship));
+					}
 				}
 			}
 		}
@@ -129,7 +127,10 @@ public class SysMLInteractiveResult {
 	}
 	
 	public String formatRootElement() {
-		return this.rootElement == null? "null": this.formatTree("", this.rootElement);
+		org.omg.sysml.lang.sysml.Package rootPackage = 
+				(org.omg.sysml.lang.sysml.Package)this.getRootElement();
+		return rootPackage == null || rootPackage.getOwnedMember().isEmpty()? "":
+			this.formatTree("", rootPackage.getOwnedMember().get(0), null);
 	}
 	
 	public String formatIssues() {

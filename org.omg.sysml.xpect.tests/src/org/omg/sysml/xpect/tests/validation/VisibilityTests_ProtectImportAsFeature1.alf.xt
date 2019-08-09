@@ -18,7 +18,7 @@ END_SETUP
 */
 package Classes {
 	import VisibilityPackage::c_clazz;
-	// XPECT errors --> "Couldn't resolve reference to Class 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"	
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"	
 	class try specializes c_clazz::c_Public::c_protect{}
 }
 

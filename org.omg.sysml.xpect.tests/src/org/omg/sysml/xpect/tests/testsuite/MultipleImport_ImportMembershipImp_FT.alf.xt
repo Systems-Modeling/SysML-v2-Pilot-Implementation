@@ -1,0 +1,46 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+		File {from ="/src/DependencyMultipleImport_Feature_FT.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+				File {from ="/src/DependencyMultipleImport_Feature_FT.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package test{
+	import OuterPackage2::C;
+	//XPECT linkedName at C --> OuterPackage2.C
+	/* XPECT scope at C ---
+	   		C.b, C.c,  OuterPackage2.C.c, OuterPackage.B.b, Test.b, test.C.b, test.C.c, test.Test.b, test.Test.c, test.Test.try, Test.c, Test.try,
+	   	   C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1, Test.b.a1, test.Test.b.a1,
+		   C, Test, test.C, test.Test,
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C, 
+			Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+			Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	
+	--- */
+	feature Test : C {
+		//XPECT linkedName at b --> OuterPackage.B.b
+		/* XPECT scope at b ---	
+		    b.a1, try.a1,
+		    C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1, Test.b.a1, test.Test.b.a1,	   
+		 	b, c, C, C.b, C.c, Test, Test.b, Test.c, Test.try, try,
+		 	test.C, test.C.b, test.C.c, test.Test, test.Test.b, test.Test.c, test.Test.try,
+		 	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,
+		 	Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+		 	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	 
+	--- */
+		feature try : b;
+	}
+}

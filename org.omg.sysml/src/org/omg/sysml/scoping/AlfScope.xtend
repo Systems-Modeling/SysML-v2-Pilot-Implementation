@@ -40,7 +40,6 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
-import org.omg.sysml.lang.sysml.Classifier
 
 class AlfScope extends AbstractScope {
 	
@@ -90,7 +89,7 @@ class AlfScope extends AbstractScope {
 	 * 
 	 * If targetqn is null, return all elements in this local scope with all possible
 	 * qualified names by which they can be resolved (except that circularities are
-	 * truncated).
+	 * truncated). - called when "XPECT scope" is used.
 	 */
 	def resolveInScope(QualifiedName targetqn, boolean findFirst) {
 		this.targetqn = targetqn;
@@ -108,7 +107,7 @@ class AlfScope extends AbstractScope {
 	}
 	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet) ||
+		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
 		pack.gen(qn, visited) ||
 		pack.imp(qn, visited)
 	}
@@ -124,13 +123,13 @@ class AlfScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		if (!visited.contains(pack)) {
+	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
+		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
-				visited.add(pack)		
+				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				if (!scopeProvider.visitedMemberships.contains(m)) {
+				if (!scopeProvider.visited.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
@@ -138,12 +137,12 @@ class AlfScope extends AbstractScope {
 					// (and getting the memberName may also resut in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					scopeProvider.addVisitedMembership(m)
+					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
 						elementName = m.memberName 
 					} finally {
-						scopeProvider.removeVisitedMembership(m)
+						scopeProvider.removeVisited(m)
 					}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
@@ -164,16 +163,12 @@ class AlfScope extends AbstractScope {
 										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
 										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
 										// superclass requires proxy resolution.
-										if (memberElement.owned(elementqn, false, false, visited)) {
+										if (memberElement.owned(elementqn, false, false, ownedvisited, visited)) {
 											return true
 										}
 										
-										if (memberElement instanceof Classifier) {								
-											for (eg: memberElement.ownedSuperclassing) {
-												if (!visited.contains(eg.superclass)) {
-													eg.superclass.resolve(elementqn, false, false, visited)
-												}
-											}
+										if (memberElement.gen(elementqn, visited)) {
+											return true;
 										}
 									}
 								}
@@ -182,7 +177,7 @@ class AlfScope extends AbstractScope {
 					}
 				}
 			}
-			visited.remove(pack)
+			ownedvisited.remove(pack)
 		}
 		return false
 	}
@@ -205,10 +200,15 @@ class AlfScope extends AbstractScope {
 	
 	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
-				visited.add(e.importedPackage)
-				val found = e.importedPackage.resolve(qn, true, false, visited)
-				visited.remove(e.importedPackage)
+			if (!scopeProvider.visited.contains(e)) {
+				var found = false;
+				scopeProvider.addVisited(e)
+				if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
+					visited.add(e.importedPackage)
+					found = e.importedPackage.resolve(qn, true, false, visited)
+					visited.remove(e.importedPackage)
+				}
+				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
 				}

@@ -16,7 +16,7 @@ package Base {
 	// Values
 	
 	/**
-	 * Value is the most general class of entities that are values that do not change
+	 * Value is the most general classifier of entities that are values that do not change
 	 * over time.
 	 */
 	abstract datatype Value specializes Anything;
@@ -29,13 +29,13 @@ package Base {
 	// Occurrences
 	
 	/**
-	 * Occurrence is the most general class of entities that have identity and 
+	 * Occurrence is the most general classifier of entities that have identity and 
 	 * may occur over time.
 	 * 
 	 * The features of Occurrence specify the semantics of portions, slices and
 	 * snapshots of an occurrence over time.
 	 */
-	abstract class Occurrence specializes Anything {
+	abstract classifier Occurrence specializes Anything {
 		
 		/**
 		 * Occurrences that end no earlier than this occurrence starts.
@@ -89,7 +89,7 @@ package Base {
 		}
 		
 		/**
-		 * snapshots have no duration.
+		 * Snapshots have no duration.
 		 */
 		// Note: Connectors are only allowed to have a single type.
 		succession :HappensBeforeSelf is snapshots[1] then snapshots[1];
@@ -103,10 +103,17 @@ package Base {
 		 * The endShot happens after all snapshots.
 		 */
 		succession snapshots[0..*] then endShot[1];
+		
+		/**
+		 * The incoming transfers targeting this occurrence. 
+		 */
+		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers
+			= Transfers::Transfer.allInstances()->
+				select t:Transfers::Transfer (t::transferTarget == self);
 	}
 
 	/**
-	 * Object is the most general class of non-behavioral entities that have identity
+	 * Object is the most general classifier of non-behavioral entities that have identity
 	 * and are mutable over time.
 	 */
 	abstract class Object specializes Occurrence {

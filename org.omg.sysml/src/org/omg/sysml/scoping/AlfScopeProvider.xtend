@@ -44,28 +44,30 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Import
 
 class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
 
-	Set<Membership> visitedMemberships = newHashSet
+	// Used to record visited Memberships and Imports.
+	Set<Element> visited = newHashSet
 	
-	def getVisitedMemberships() {
-		visitedMemberships
+	def getVisited() {
+		visited
 	}
 	
-	def setVisitedMemberships(Set<Membership> visitedMemberships) {
-		this.visitedMemberships = visitedMemberships
+	def setVisited(Set<Element> visited) {
+		this.visited = visited
 	}
 	
-	def addVisitedMembership(Membership membership) {
-		visitedMemberships.add(membership)
+	def addVisited(Element element) {
+		visited.add(element)
 	}
 	
-	def removeVisitedMembership(Membership membership) {
-		visitedMemberships.remove(membership)
+	def removeVisited(Element element) {
+		visited.remove(element)
 	}
 	
 	override getScope(EObject context, EReference reference) {
@@ -92,6 +94,11 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
 				if (context instanceof Membership)
 					return context.scope_Namespace(context.membershipOwningPackage, reference)
+			}
+			case SysMLPackage.eINSTANCE.import_ImportedPackage: {
+				if (context instanceof Import) {
+					return context.scope_Namespace(context.importOwningPackage, reference)
+				}
 			}
 		}
 		return

@@ -4,6 +4,8 @@
 package org.omg.sysml.ui.quickfix
 
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
+import org.eclipse.xtext.scoping.IScope
+import java.util.Collections
 
 /**
  * Custom quickfixes.
@@ -11,6 +13,10 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
  */
 class AlfQuickfixProvider extends DefaultQuickfixProvider {
+	
+	override queryScope(IScope scope) {
+		Collections.emptySet()
+	}
 
 //	@Fix(AlfValidator.INVALID_NAME)
 //	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {

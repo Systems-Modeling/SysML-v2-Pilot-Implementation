@@ -1,0 +1,32 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencySamePackageName_A_Feature.alf" }
+		File {from ="/src/DependencySamePackageName_B_Feature.alf" }
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencySamePackageName_A_Feature.alf" }
+				File {from ="/src/DependencySamePackageName_B_Feature.alf" }
+			}
+		}
+	}
+END_SETUP 
+*/
+//Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
+//Current implemention import from the first src package(A).
+package test{
+	import SamePackage::container::*;
+	feature something1 : A{}
+	//pass junit test
+	/* XPECT errors at A ---
+	   "Couldn't resolve reference to Type 'B'." at "B"
+	   --- */
+	feature something2 : B{}
+}
+

@@ -3,7 +3,7 @@ package '4a1-Functional Allocation' {
 	import '3a-Function-based Behavior'::*;
 	import '3a-Function-based Behavior'::'provide power'::*;
 		
-	feature vehicle1_c1_functional_allocation redefines vehicle1_c1 {
+	feature vehicle1_c1_functional_allocation subsets vehicle1_c1 {
 		// Note: The definitions of the port types in '2-Parts Interconnection' do not include 
 		// input and output features.
 		port fuelCmdPort redefines vehicle1_c1::fuelCmdPort {

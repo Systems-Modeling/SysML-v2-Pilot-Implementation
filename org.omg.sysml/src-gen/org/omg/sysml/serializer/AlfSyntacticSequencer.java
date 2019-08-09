@@ -157,6 +157,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFeatureMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Multiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=Redefinition (ambiguity) (rule end)
@@ -226,6 +227,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='step' (ambiguity) isNonunique?='nonunique'
 	 *     isComposite?='step' (ambiguity) isOrdered?='ordered'
 	 *     isComposite?='step' (ambiguity) ownedRelationship+=Multiplicity
+	 *     name=Name (ambiguity) '(' ownedRelationship+=ItemFeatureMember
 	 *     name=Name (ambiguity) 'by' ownedRelationship+=Subset
 	 *     name=Name (ambiguity) isNonunique?='nonunique'
 	 *     name=Name (ambiguity) isOrdered?='ordered'

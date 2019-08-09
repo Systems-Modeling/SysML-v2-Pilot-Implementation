@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -28,6 +29,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Base::performances";
 	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
 	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Base::Object::enactedPerformances";
+	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Base::Occurrence::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -59,6 +61,9 @@ public class StepImpl extends FeatureImpl implements Step {
 			if (isEnactedPerformance()) {
 				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
 			}
+			if (isIncomingTransfer()) {
+				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
+			}
 			isCheckSubsetting = false;
 		}
 		return getOwnedSubsettingWithComputedRedefinitions(
@@ -66,6 +71,8 @@ public class StepImpl extends FeatureImpl implements Step {
 					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
 				isEnactedPerformance()?
 					STEP_SUBSETTING_OBJECT_DEFAULT:
+				isIncomingTransfer()?
+					STEP_SUBSETTING_TRANSFER_DEFAULT:
 					STEP_SUBSETTING_BASE_DEFAULT);
 	}
 	
@@ -79,6 +86,15 @@ public class StepImpl extends FeatureImpl implements Step {
 		}
 	}
 	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return getOwnedFeature().stream().
+				filter(f->f instanceof ItemFeature).
+				collect(Collectors.toList());
+	}
+	
+	
+	
 	// Utility methods
 	
 	public boolean isSubperformance() {
@@ -90,6 +106,10 @@ public class StepImpl extends FeatureImpl implements Step {
 		return owningType instanceof Class ||
 				owningType instanceof Feature && 
 					((FeatureImpl)owningType).isObjectFeature();
+	}
+	
+	public boolean isIncomingTransfer() {
+		return getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
 	}
 	
 	public static boolean isPerformanceFeature(Feature step) {

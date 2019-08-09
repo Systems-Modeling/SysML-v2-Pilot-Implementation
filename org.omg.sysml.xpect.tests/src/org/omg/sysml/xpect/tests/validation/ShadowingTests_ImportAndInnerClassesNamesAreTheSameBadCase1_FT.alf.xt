@@ -1,0 +1,29 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage_Feature_FT.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	import OuterPackage::*;
+	feature A{
+		feature a2{}
+	}
+	/* XPECT errors --- 
+	"Couldn't resolve reference to Type 'A::a1'." at "A::a1"
+	--- */
+	feature B : A::a1 {} 
+}

@@ -25,7 +25,7 @@ package '1a-Parts Tree' {
 	 * It is not marked as a "part", because that is only
 	 * valid in the context of a nested feature.
 	 */
-	vehicle1: Vehicle {
+	feature vehicle1: Vehicle {
 		/**
 		 * This redefines the 'mass' feature from Vehicle to give
 		 * it a fixed value.
@@ -66,7 +66,7 @@ package '1a-Parts Tree' {
 	 * connection between this copy and the original version in the
 	 * model.
 	 */
-	vehicle1_c1: Vehicle {	
+	feature vehicle1_c1: Vehicle {	
 		
 		/**
 		 * The mass value has been modified.

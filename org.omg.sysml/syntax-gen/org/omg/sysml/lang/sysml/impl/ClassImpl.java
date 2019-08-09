@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -43,6 +44,12 @@ public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysm
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CLASS;
+	}
+	
+	@Override
+	public EList<Generalization> getOwnedGeneralization() {
+		getOwnedSuperclassing();
+		return super.getOwnedGeneralization();
 	}
 
 } //ObjectClassImpl

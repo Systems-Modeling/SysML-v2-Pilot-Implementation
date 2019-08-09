@@ -22,6 +22,7 @@ package test{
 		class A{
 			//XPECT linkedName at A --> test.A1.A
 			/* XPECT scope at A ---
+			A.B.B, A1.A.B.B, B.B, test.A.A.B.B, test.A1.A.B.B,
 		    A, A.B, A1, A1.A, A1.A.B, B, 
 		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
 		    Base.Anything,		    Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		    Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value,

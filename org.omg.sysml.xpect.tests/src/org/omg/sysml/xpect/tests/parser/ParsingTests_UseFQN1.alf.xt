@@ -20,31 +20,31 @@ Package {
   ownedRelationship = [
     Membership {
       ownedRelatedElement = [
-        ObjectClass {
+        Class {
           ownedRelationship = [
             Superclassing {
-              superclass -> ObjectClass Base.alf#//@ownedRelationship.1/@ownedRelatedElement.0
-              subclass -> ObjectClass //@ownedRelationship.0/@ownedRelatedElement.0
+              superclass -> Class Base.alf#//@ownedRelationship.1/@ownedRelatedElement.0
+              subclass -> Class //@ownedRelationship.0/@ownedRelatedElement.0
             }
           ]
         }
       ]
       memberName = 'A'
-      memberElement -> ObjectClass //@ownedRelationship.0/@ownedRelatedElement.0
+      memberElement -> Class //@ownedRelationship.0/@ownedRelatedElement.0
     }
     Membership {
       ownedRelatedElement = [
-        ObjectClass {
+        Class {
           ownedRelationship = [
             Superclassing {
-              superclass -> ObjectClass //@ownedRelationship.0/@ownedRelatedElement.0
-              subclass -> ObjectClass //@ownedRelationship.1/@ownedRelatedElement.0
+              superclass -> Class //@ownedRelationship.0/@ownedRelatedElement.0
+              subclass -> Class //@ownedRelationship.1/@ownedRelatedElement.0
             }
           ]
         }
       ]
       memberName = 'B'
-      memberElement -> ObjectClass //@ownedRelationship.1/@ownedRelatedElement.0
+      memberElement -> Class //@ownedRelationship.1/@ownedRelatedElement.0
     }
   ]
 }

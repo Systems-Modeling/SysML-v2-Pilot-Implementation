@@ -19,7 +19,7 @@ END_SETUP
 package Classes {
 	import VisibilityPackage::*;
 	class Try specializes c_Public{
-		// XPECT errors --> "Couldn't resolve reference to Class 'c_private'." at "c_private"
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_private'." at "c_private"
 		class try specializes c_private{}
 	}
 }

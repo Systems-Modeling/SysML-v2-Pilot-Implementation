@@ -22,5 +22,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.ui,
  org.omg.sysml.ui.contentassist,
  org.omg.sysml.ui.internal,
+ org.omg.sysml.ui.labeling,
+ org.omg.sysml.ui.outline,
  org.omg.sysml.ui.quickfix
 Bundle-Activator: org.omg.sysml.ui.internal.SysmlActivator

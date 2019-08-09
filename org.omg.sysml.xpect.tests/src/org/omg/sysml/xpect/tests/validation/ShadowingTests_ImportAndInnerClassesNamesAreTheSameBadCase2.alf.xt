@@ -23,7 +23,7 @@ package test{
 		class a2{}
 	}
 	class B specializes A {
-		// XPECT errors --> "Couldn't resolve reference to Class 'a1'." at "a1"
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'a1'." at "a1"
 		class b specializes a1{}
 	}
 }

@@ -1,17 +1,18 @@
 package '3a-Function-based Behavior-1' {
-	import Transfers::Reception;
+	import Transfers::Transfer;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
+	import Base::Occurrence::incomingTransfers;
 	
 	// ITEMS
 	
-	class FuelCmd;
-	class Torque is ISQ::TorqueValue;
+	datatype FuelCmd;
+	datatype Torque is ISQ::TorqueValue;
 	
 	// SIGNALS
 	
-	class EngineStart;
-	class EngineOff;
+	datatype EngineStart;
+	datatype EngineOff;
 	
 	// ACTIVITIES
 	
@@ -21,7 +22,6 @@ package '3a-Function-based Behavior-1' {
 	behavior 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	behavior 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
-	behavior 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	// ACTIONS
 	
@@ -52,7 +52,7 @@ package '3a-Function-based Behavior-1' {
 		); 
 	}
 	
-	step 'provide power with control': 'Provide Power With Control'(
+	step 'provide power with control': 'Provide Power'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
@@ -63,12 +63,16 @@ package '3a-Function-based Behavior-1' {
 		
 		succession merge[1] then engineStart[1];
 		
-		step engineStart: Reception[*](out :EngineStart);
+		step engineStart subsets incomingTransfers {
+			feature item: EngineStart[1] redefines Transfer::item;
+		}
 		
 		succession engineStart[1] then engineOff[1];
 		
-		step engineOff: Reception[*](out :EngineOff);
-		
+		step engineOff subsets incomingTransfers {
+			feature item: EngineOff[1] redefines Transfer::item;
+		}
+					
 		succession engineOff[0..1] then merge[1];		
 		
 		succession engineStart[1] then 'provide power'[1];

@@ -26,13 +26,14 @@
 '>='=36
 '?'=16
 '??'=17
-'@'=99
+'@'=100
 '['=81
 ']'=82
 '^'=21
 'abstract'=63
 'accept'=89
-'allInstances'=100
+'all'=96
+'allInstances'=101
 'any'=27
 'as'=52
 'assoc'=60
@@ -41,7 +42,7 @@
 'by'=88
 'class'=58
 'classifier'=57
-'compose'=96
+'compose'=97
 'connector'=66
 'datatype'=59
 'end'=72
@@ -57,9 +58,9 @@
 'instanceof'=31
 'interaction'=75
 'is'=56
-'nonunique'=98
+'nonunique'=99
 'null'=91
-'ordered'=97
+'ordered'=98
 'out'=49
 'package'=53
 'packaged'=47
@@ -96,6 +97,7 @@ RULE_STRING_VALUE=10
 RULE_UNRESTRICTED_NAME=7
 RULE_WS=15
 T__100=100
+T__101=101
 T__16=16
 T__17=17
 T__18=18

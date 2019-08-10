@@ -70,8 +70,8 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives_1_1(), "rule__FunctionBody__Alternatives_1_1");
 			builder.put(grammarAccess.getFeatureDefinitionAccess().getAlternatives(), "rule__FeatureDefinition__Alternatives");
 			builder.put(grammarAccess.getAbstractFeatureDefinitionAccess().getAlternatives(), "rule__AbstractFeatureDefinition__Alternatives");
-			builder.put(grammarAccess.getTypePartAccess().getAlternatives_0_2(), "rule__TypePart__Alternatives_0_2");
-			builder.put(grammarAccess.getNoncomposingTypePartAccess().getAlternatives_0_1(), "rule__NoncomposingTypePart__Alternatives_0_1");
+			builder.put(grammarAccess.getTypePartAccess().getAlternatives_0_3(), "rule__TypePart__Alternatives_0_3");
+			builder.put(grammarAccess.getNoncomposingTypePartAccess().getAlternatives_0_2(), "rule__NoncomposingTypePart__Alternatives_0_2");
 			builder.put(grammarAccess.getSubsettingPartAccess().getAlternatives(), "rule__SubsettingPart__Alternatives");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getAlternatives(), "rule__ConnectorDeclaration__Alternatives");
 			builder.put(grammarAccess.getStepDefinitionAccess().getAlternatives_3(), "rule__StepDefinition__Alternatives_3");
@@ -487,12 +487,14 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getNameAssignment_0(), "rule__FeatureDeclaration__NameAssignment_0");
 			builder.put(grammarAccess.getValuePartAccess().getOwnedRelationshipAssignment_1(), "rule__ValuePart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementAssignment(), "rule__FeatureValue__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getTypePartAccess().getIsCompositeAssignment_0_1(), "rule__TypePart__IsCompositeAssignment_0_1");
-			builder.put(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_0_2_0(), "rule__TypePart__OwnedRelationshipAssignment_0_2_0");
+			builder.put(grammarAccess.getTypePartAccess().getIsSufficientAssignment_0_1(), "rule__TypePart__IsSufficientAssignment_0_1");
+			builder.put(grammarAccess.getTypePartAccess().getIsCompositeAssignment_0_2(), "rule__TypePart__IsCompositeAssignment_0_2");
+			builder.put(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_0_3_0(), "rule__TypePart__OwnedRelationshipAssignment_0_3_0");
 			builder.put(grammarAccess.getTypePartAccess().getOwnedRelationshipAssignment_1(), "rule__TypePart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getTypePartAccess().getIsOrderedAssignment_2_0(), "rule__TypePart__IsOrderedAssignment_2_0");
 			builder.put(grammarAccess.getTypePartAccess().getIsNonuniqueAssignment_2_1(), "rule__TypePart__IsNonuniqueAssignment_2_1");
-			builder.put(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipAssignment_0_1_0(), "rule__NoncomposingTypePart__OwnedRelationshipAssignment_0_1_0");
+			builder.put(grammarAccess.getNoncomposingTypePartAccess().getIsSufficientAssignment_0_1(), "rule__NoncomposingTypePart__IsSufficientAssignment_0_1");
+			builder.put(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipAssignment_0_2_0(), "rule__NoncomposingTypePart__OwnedRelationshipAssignment_0_2_0");
 			builder.put(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipAssignment_1(), "rule__NoncomposingTypePart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getNoncomposingTypePartAccess().getIsOrderedAssignment_2_0(), "rule__NoncomposingTypePart__IsOrderedAssignment_2_0");
 			builder.put(grammarAccess.getNoncomposingTypePartAccess().getIsNonuniqueAssignment_2_1(), "rule__NoncomposingTypePart__IsNonuniqueAssignment_2_1");

@@ -30,12 +30,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_FeaturePackageMemberElement_FeatureKeyword_1_1_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
-	protected AbstractElementAlias match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q;
+	protected AbstractElementAlias match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
 	protected AbstractElementAlias match_QueryHeadExpression_FullStopSolidusKeyword_0_q;
 	protected AbstractElementAlias match_StepParameterFlowDefinition_StreamKeyword_0_0_q;
 	protected AbstractElementAlias match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q;
+	protected AbstractElementAlias match_TypePart___ColonKeyword_0_0_AnyKeyword_0_3_1__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -48,12 +48,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FeaturePackageMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_0_0());
 		match_FeaturePackageMemberElement_FeatureKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getFeaturePackageMemberElementAccess().getFeatureKeyword_1_1());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
-		match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getNoncomposingTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getNoncomposingTypePartAccess().getAnyKeyword_0_1_1()));
+		match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getNoncomposingTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getNoncomposingTypePartAccess().getAnyKeyword_0_2_1()));
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
 		match_QueryHeadExpression_FullStopSolidusKeyword_0_q = new TokenAlias(false, true, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
 		match_StepParameterFlowDefinition_StreamKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getStepParameterFlowDefinitionAccess().getStreamKeyword_0_0());
 		match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getSemicolonKeyword_0()));
-		match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_2_1()));
+		match_TypePart___ColonKeyword_0_0_AnyKeyword_0_3_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_3_1()));
 	}
 	
 	@Override
@@ -84,8 +84,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeaturePackageMemberElement_FeatureKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
 				emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q.equals(syntax))
-				emit_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q.equals(syntax))
+				emit_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_QueryHeadExpression_FullStopSolidusKeyword_0_q.equals(syntax))
@@ -94,8 +94,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_StepParameterFlowDefinition_StreamKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q.equals(syntax))
-				emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TypePart___ColonKeyword_0_0_AnyKeyword_0_3_1__q.equals(syntax))
+				emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_3_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -157,6 +157,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='step' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
 	 *     name=Name '(' ')' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
@@ -225,6 +226,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -255,7 +257,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Redefinition (ambiguity) isOrdered?='ordered'
 	 *     ownedRelationship+=Redefinition (ambiguity) ownedRelationship+=Multiplicity
 	 */
-	protected void emit_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_NoncomposingTypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -301,6 +303,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='compose' 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
 	 *     name=Name (':' 'any')? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
@@ -361,7 +364,7 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Redefinition (ambiguity) isOrdered?='ordered'
 	 *     ownedRelationship+=Redefinition (ambiguity) ownedRelationship+=Multiplicity
 	 */
-	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_3_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

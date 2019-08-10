@@ -49,13 +49,14 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isSufficient <em>Is Sufficient</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,6 +81,26 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @ordered
 	 */
 	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSufficient() <em>Is Sufficient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSufficient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_SUFFICIENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSufficient() <em>Is Sufficient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSufficient()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isSufficient = IS_SUFFICIENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,7 +139,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,6 +377,29 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSufficient() {
+		return isSufficient;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsSufficient(boolean newIsSufficient) {
+		boolean oldIsSufficient = isSufficient;
+		isSufficient = newIsSufficient;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.TYPE__IS_SUFFICIENT, oldIsSufficient, isSufficient));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -474,6 +518,8 @@ public class TypeImpl extends PackageImpl implements Type {
 				return getOwnedFeatureMembership();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				return getOwnedFeature();
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return getOwnedEndFeature();
 			case SysMLPackage.TYPE__FEATURE:
 				return getFeature();
 			case SysMLPackage.TYPE__INPUT:
@@ -486,8 +532,8 @@ public class TypeImpl extends PackageImpl implements Type {
 				return getInheritedMembership();
 			case SysMLPackage.TYPE__END_FEATURE:
 				return getEndFeature();
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return getOwnedEndFeature();
+			case SysMLPackage.TYPE__IS_SUFFICIENT:
+				return isSufficient();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -513,6 +559,10 @@ public class TypeImpl extends PackageImpl implements Type {
 				getOwnedFeature().clear();
 				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
+				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
 			case SysMLPackage.TYPE__FEATURE:
 				getFeature().clear();
 				getFeature().addAll((Collection<? extends Feature>)newValue);
@@ -536,9 +586,8 @@ public class TypeImpl extends PackageImpl implements Type {
 				getEndFeature().clear();
 				getEndFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
-				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
+			case SysMLPackage.TYPE__IS_SUFFICIENT:
+				setIsSufficient((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -561,6 +610,9 @@ public class TypeImpl extends PackageImpl implements Type {
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				getOwnedFeature().clear();
 				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
+				return;
 			case SysMLPackage.TYPE__FEATURE:
 				getFeature().clear();
 				return;
@@ -579,8 +631,8 @@ public class TypeImpl extends PackageImpl implements Type {
 			case SysMLPackage.TYPE__END_FEATURE:
 				getEndFeature().clear();
 				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
+			case SysMLPackage.TYPE__IS_SUFFICIENT:
+				setIsSufficient(IS_SUFFICIENT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -604,6 +656,8 @@ public class TypeImpl extends PackageImpl implements Type {
 				return !getOwnedFeatureMembership().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				return !getOwnedFeature().isEmpty();
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return !getOwnedEndFeature().isEmpty();
 			case SysMLPackage.TYPE__FEATURE:
 				return !getFeature().isEmpty();
 			case SysMLPackage.TYPE__INPUT:
@@ -616,8 +670,8 @@ public class TypeImpl extends PackageImpl implements Type {
 				return !getInheritedMembership().isEmpty();
 			case SysMLPackage.TYPE__END_FEATURE:
 				return !getEndFeature().isEmpty();
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return !getOwnedEndFeature().isEmpty();
+			case SysMLPackage.TYPE__IS_SUFFICIENT:
+				return isSufficient != IS_SUFFICIENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -634,6 +688,8 @@ public class TypeImpl extends PackageImpl implements Type {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isAbstract: ");
 		result.append(isAbstract);
+		result.append(", isSufficient: ");
+		result.append(isSufficient);
 		result.append(')');
 		return result.toString();
 	}

@@ -134,7 +134,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<ItemFlowFeature> getItemFlowFeature() {
@@ -214,27 +214,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated
 	 */
 	public boolean isSetConnectorEnd() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getRelatedFeature() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> itemFlowFeature = (EList<Feature>)((EList<?>)getItemFlowFeature());
-		return itemFlowFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedFeature() {
   		return false;
 	}
 
@@ -359,8 +338,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		switch (featureID) {
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
-			case SysMLPackage.ITEM_FLOW__RELATED_FEATURE:
-				return isSetRelatedFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return !getItemType().isEmpty();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -370,7 +347,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return isSetItemFlowEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				return isSetItemFlowFeature();
+				return !getItemFlowFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				return !getItemFeature().isEmpty();
 		}

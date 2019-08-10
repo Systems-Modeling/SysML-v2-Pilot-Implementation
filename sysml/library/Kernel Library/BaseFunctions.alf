@@ -18,7 +18,7 @@ package BaseFunctions {
 	function '['(seq: Anything[*], index: Integer): Anything[0..1];
 
 	abstract function 'allInstances'(): Object[0..*] {
-		abstract feature type: Object;
+		abstract feature type: all Object;
 	}
 	
 	abstract function 'instanceof'(x: Anything): Boolean {

@@ -37,6 +37,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -404,8 +405,42 @@ public interface Feature extends Type {
 	void setIsEnd(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Owning Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Owning Type</em>' reference.
+	 * @see #setEndOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedEndFeature
+	 * @model opposite="ownedEndFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Type getEndOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Owning Type</em>' reference.
+	 * @see #getEndOwningType()
+	 * @generated
+	 */
+	void setEndOwningType(Type value);
+
+	/**
 	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Nonunique</em>' attribute isn't clear,
@@ -415,7 +450,7 @@ public interface Feature extends Type {
 	 * @return the value of the '<em>Is Nonunique</em>' attribute.
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isNonunique();

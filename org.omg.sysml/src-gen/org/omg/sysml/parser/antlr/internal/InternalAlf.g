@@ -6526,9 +6526,23 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 			}
 			(
 				(
-					lv_isComposite_1_0='compose'
+					lv_isSufficient_1_0='all'
 					{
-						newLeafNode(lv_isComposite_1_0, grammarAccess.getTypePartAccess().getIsCompositeComposeKeyword_0_1_0());
+						newLeafNode(lv_isSufficient_1_0, grammarAccess.getTypePartAccess().getIsSufficientAllKeyword_0_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTypePartRule());
+						}
+						setWithLastConsumed($current, "isSufficient", true, "all");
+					}
+				)
+			)?
+			(
+				(
+					lv_isComposite_2_0='compose'
+					{
+						newLeafNode(lv_isComposite_2_0, grammarAccess.getTypePartAccess().getIsCompositeComposeKeyword_0_2_0());
 					}
 					{
 						if ($current==null) {
@@ -6542,9 +6556,9 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0());
+							newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_3_0_0());
 						}
-						lv_ownedRelationship_2_0=ruleFeatureTyping
+						lv_ownedRelationship_3_0=ruleFeatureTyping
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getTypePartRule());
@@ -6552,16 +6566,16 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_2_0,
+								lv_ownedRelationship_3_0,
 								"org.omg.sysml.Alf.FeatureTyping");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 				    |
-				otherlv_3='any'
+				otherlv_4='any'
 				{
-					newLeafNode(otherlv_3, grammarAccess.getTypePartAccess().getAnyKeyword_0_2_1());
+					newLeafNode(otherlv_4, grammarAccess.getTypePartAccess().getAnyKeyword_0_3_1());
 				}
 			)
 		)?
@@ -6570,7 +6584,7 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 				{
 					newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationshipMultiplicityParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_4_0=ruleMultiplicity
+				lv_ownedRelationship_5_0=ruleMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTypePartRule());
@@ -6578,7 +6592,7 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 					add(
 						$current,
 						"ownedRelationship",
-						lv_ownedRelationship_4_0,
+						lv_ownedRelationship_5_0,
 						"org.omg.sysml.Alf.Multiplicity");
 					afterParserOrEnumRuleCall();
 				}
@@ -6597,9 +6611,9 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 						getUnorderedGroupHelper().select(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), 0);
 					}
 								({true}?=>((
-									lv_isOrdered_6_0='ordered'
+									lv_isOrdered_7_0='ordered'
 									{
-										newLeafNode(lv_isOrdered_6_0, grammarAccess.getTypePartAccess().getIsOrderedOrderedKeyword_2_0_0());
+										newLeafNode(lv_isOrdered_7_0, grammarAccess.getTypePartAccess().getIsOrderedOrderedKeyword_2_0_0());
 									}
 									{
 										if ($current==null) {
@@ -6620,9 +6634,9 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 						getUnorderedGroupHelper().select(grammarAccess.getTypePartAccess().getUnorderedGroup_2(), 1);
 					}
 								({true}?=>((
-									lv_isNonunique_7_0='nonunique'
+									lv_isNonunique_8_0='nonunique'
 									{
-										newLeafNode(lv_isNonunique_7_0, grammarAccess.getTypePartAccess().getIsNonuniqueNonuniqueKeyword_2_1_0());
+										newLeafNode(lv_isNonunique_8_0, grammarAccess.getTypePartAccess().getIsNonuniqueNonuniqueKeyword_2_1_0());
 									}
 									{
 										if ($current==null) {
@@ -6670,11 +6684,25 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 			}
 			(
 				(
+					lv_isSufficient_1_0='all'
+					{
+						newLeafNode(lv_isSufficient_1_0, grammarAccess.getNoncomposingTypePartAccess().getIsSufficientAllKeyword_0_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getNoncomposingTypePartRule());
+						}
+						setWithLastConsumed($current, "isSufficient", true, "all");
+					}
+				)
+			)?
+			(
+				(
 					(
 						{
-							newCompositeNode(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_1_0_0());
+							newCompositeNode(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0());
 						}
-						lv_ownedRelationship_1_0=ruleFeatureTyping
+						lv_ownedRelationship_2_0=ruleFeatureTyping
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getNoncomposingTypePartRule());
@@ -6682,16 +6710,16 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_1_0,
+								lv_ownedRelationship_2_0,
 								"org.omg.sysml.Alf.FeatureTyping");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 				    |
-				otherlv_2='any'
+				otherlv_3='any'
 				{
-					newLeafNode(otherlv_2, grammarAccess.getNoncomposingTypePartAccess().getAnyKeyword_0_1_1());
+					newLeafNode(otherlv_3, grammarAccess.getNoncomposingTypePartAccess().getAnyKeyword_0_2_1());
 				}
 			)
 		)?
@@ -6700,7 +6728,7 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 				{
 					newCompositeNode(grammarAccess.getNoncomposingTypePartAccess().getOwnedRelationshipMultiplicityParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_3_0=ruleMultiplicity
+				lv_ownedRelationship_4_0=ruleMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getNoncomposingTypePartRule());
@@ -6708,7 +6736,7 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 					add(
 						$current,
 						"ownedRelationship",
-						lv_ownedRelationship_3_0,
+						lv_ownedRelationship_4_0,
 						"org.omg.sysml.Alf.Multiplicity");
 					afterParserOrEnumRuleCall();
 				}
@@ -6727,9 +6755,9 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 						getUnorderedGroupHelper().select(grammarAccess.getNoncomposingTypePartAccess().getUnorderedGroup_2(), 0);
 					}
 								({true}?=>((
-									lv_isOrdered_5_0='ordered'
+									lv_isOrdered_6_0='ordered'
 									{
-										newLeafNode(lv_isOrdered_5_0, grammarAccess.getNoncomposingTypePartAccess().getIsOrderedOrderedKeyword_2_0_0());
+										newLeafNode(lv_isOrdered_6_0, grammarAccess.getNoncomposingTypePartAccess().getIsOrderedOrderedKeyword_2_0_0());
 									}
 									{
 										if ($current==null) {
@@ -6750,9 +6778,9 @@ ruleNoncomposingTypePart[EObject in_current]  returns [EObject current=in_curren
 						getUnorderedGroupHelper().select(grammarAccess.getNoncomposingTypePartAccess().getUnorderedGroup_2(), 1);
 					}
 								({true}?=>((
-									lv_isNonunique_6_0='nonunique'
+									lv_isNonunique_7_0='nonunique'
 									{
-										newLeafNode(lv_isNonunique_6_0, grammarAccess.getNoncomposingTypePartAccess().getIsNonuniqueNonuniqueKeyword_2_1_0());
+										newLeafNode(lv_isNonunique_7_0, grammarAccess.getNoncomposingTypePartAccess().getIsNonuniqueNonuniqueKeyword_2_1_0());
 									}
 									{
 										if ($current==null) {

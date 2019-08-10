@@ -100,12 +100,6 @@ public interface ItemFlow extends Connector, Step {
 	/**
 	 * Returns the value of the '<em><b>Item Flow Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowFeature}.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature() <em>Related Feature</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item Flow Feature</em>' reference list isn't clear,
@@ -115,7 +109,6 @@ public interface ItemFlow extends Connector, Step {
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<ItemFlowFeature> getItemFlowFeature();

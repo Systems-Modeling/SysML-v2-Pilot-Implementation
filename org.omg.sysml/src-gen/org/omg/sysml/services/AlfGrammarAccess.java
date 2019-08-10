@@ -3712,12 +3712,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cIsCompositeAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final Keyword cIsCompositeComposeKeyword_0_1_0 = (Keyword)cIsCompositeAssignment_0_1.eContents().get(0);
-		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
-		private final Assignment cOwnedRelationshipAssignment_0_2_0 = (Assignment)cAlternatives_0_2.eContents().get(0);
-		private final RuleCall cOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_0.eContents().get(0);
-		private final Keyword cAnyKeyword_0_2_1 = (Keyword)cAlternatives_0_2.eContents().get(1);
+		private final Assignment cIsSufficientAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final Keyword cIsSufficientAllKeyword_0_1_0 = (Keyword)cIsSufficientAssignment_0_1.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final Keyword cIsCompositeComposeKeyword_0_2_0 = (Keyword)cIsCompositeAssignment_0_2.eContents().get(0);
+		private final Alternatives cAlternatives_0_3 = (Alternatives)cGroup_0.eContents().get(3);
+		private final Assignment cOwnedRelationshipAssignment_0_3_0 = (Assignment)cAlternatives_0_3.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeatureTypingParserRuleCall_0_3_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_3_0.eContents().get(0);
+		private final Keyword cAnyKeyword_0_3_1 = (Keyword)cAlternatives_0_3.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMultiplicityParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		private final UnorderedGroup cUnorderedGroup_2 = (UnorderedGroup)cGroup.eContents().get(2);
@@ -3727,37 +3729,43 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsNonuniqueNonuniqueKeyword_2_1_0 = (Keyword)cIsNonuniqueAssignment_2_1.eContents().get(0);
 		
 		//fragment TypePart returns SysML::Feature:
-		//	(':' isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
+		//	(':' isSufficient?='all'? isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
 		//	ownedRelationship+=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(':' isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))? ownedRelationship+=Multiplicity?
-		//(isOrdered?='ordered'? & isNonunique?='nonunique'?)
+		//(':' isSufficient?='all'? isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
+		//ownedRelationship+=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?)
 		public Group getGroup() { return cGroup; }
 		
-		//(':' isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
+		//(':' isSufficient?='all'? isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//':'
 		public Keyword getColonKeyword_0_0() { return cColonKeyword_0_0; }
 		
+		//isSufficient?='all'?
+		public Assignment getIsSufficientAssignment_0_1() { return cIsSufficientAssignment_0_1; }
+		
+		//'all'
+		public Keyword getIsSufficientAllKeyword_0_1_0() { return cIsSufficientAllKeyword_0_1_0; }
+		
 		//isComposite?='compose'?
-		public Assignment getIsCompositeAssignment_0_1() { return cIsCompositeAssignment_0_1; }
+		public Assignment getIsCompositeAssignment_0_2() { return cIsCompositeAssignment_0_2; }
 		
 		//'compose'
-		public Keyword getIsCompositeComposeKeyword_0_1_0() { return cIsCompositeComposeKeyword_0_1_0; }
+		public Keyword getIsCompositeComposeKeyword_0_2_0() { return cIsCompositeComposeKeyword_0_2_0; }
 		
 		//ownedRelationship+=FeatureTyping | 'any'
-		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
+		public Alternatives getAlternatives_0_3() { return cAlternatives_0_3; }
 		
 		//ownedRelationship+=FeatureTyping
-		public Assignment getOwnedRelationshipAssignment_0_2_0() { return cOwnedRelationshipAssignment_0_2_0; }
+		public Assignment getOwnedRelationshipAssignment_0_3_0() { return cOwnedRelationshipAssignment_0_3_0; }
 		
 		//FeatureTyping
-		public RuleCall getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0() { return cOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0; }
+		public RuleCall getOwnedRelationshipFeatureTypingParserRuleCall_0_3_0_0() { return cOwnedRelationshipFeatureTypingParserRuleCall_0_3_0_0; }
 		
 		//'any'
-		public Keyword getAnyKeyword_0_2_1() { return cAnyKeyword_0_2_1; }
+		public Keyword getAnyKeyword_0_3_1() { return cAnyKeyword_0_3_1; }
 		
 		//ownedRelationship+=Multiplicity?
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
@@ -3785,10 +3793,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0_1_0 = (Assignment)cAlternatives_0_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipFeatureTypingParserRuleCall_0_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_0.eContents().get(0);
-		private final Keyword cAnyKeyword_0_1_1 = (Keyword)cAlternatives_0_1.eContents().get(1);
+		private final Assignment cIsSufficientAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final Keyword cIsSufficientAllKeyword_0_1_0 = (Keyword)cIsSufficientAssignment_0_1.eContents().get(0);
+		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_0_2_0 = (Assignment)cAlternatives_0_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_0.eContents().get(0);
+		private final Keyword cAnyKeyword_0_2_1 = (Keyword)cAlternatives_0_2.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMultiplicityParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		private final UnorderedGroup cUnorderedGroup_2 = (UnorderedGroup)cGroup.eContents().get(2);
@@ -3798,31 +3808,37 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsNonuniqueNonuniqueKeyword_2_1_0 = (Keyword)cIsNonuniqueAssignment_2_1.eContents().get(0);
 		
 		//fragment NoncomposingTypePart returns SysML::Feature:
-		//	(':' (ownedRelationship+=FeatureTyping | 'any'))?
+		//	(':' isSufficient?='all'? (ownedRelationship+=FeatureTyping | 'any'))?
 		//	ownedRelationship+=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(':' (ownedRelationship+=FeatureTyping | 'any'))? ownedRelationship+=Multiplicity? (isOrdered?='ordered'? &
-		//isNonunique?='nonunique'?)
+		//(':' isSufficient?='all'? (ownedRelationship+=FeatureTyping | 'any'))? ownedRelationship+=Multiplicity?
+		//(isOrdered?='ordered'? & isNonunique?='nonunique'?)
 		public Group getGroup() { return cGroup; }
 		
-		//(':' (ownedRelationship+=FeatureTyping | 'any'))?
+		//(':' isSufficient?='all'? (ownedRelationship+=FeatureTyping | 'any'))?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//':'
 		public Keyword getColonKeyword_0_0() { return cColonKeyword_0_0; }
 		
+		//isSufficient?='all'?
+		public Assignment getIsSufficientAssignment_0_1() { return cIsSufficientAssignment_0_1; }
+		
+		//'all'
+		public Keyword getIsSufficientAllKeyword_0_1_0() { return cIsSufficientAllKeyword_0_1_0; }
+		
 		//ownedRelationship+=FeatureTyping | 'any'
-		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
+		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
 		
 		//ownedRelationship+=FeatureTyping
-		public Assignment getOwnedRelationshipAssignment_0_1_0() { return cOwnedRelationshipAssignment_0_1_0; }
+		public Assignment getOwnedRelationshipAssignment_0_2_0() { return cOwnedRelationshipAssignment_0_2_0; }
 		
 		//FeatureTyping
-		public RuleCall getOwnedRelationshipFeatureTypingParserRuleCall_0_1_0_0() { return cOwnedRelationshipFeatureTypingParserRuleCall_0_1_0_0; }
+		public RuleCall getOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0() { return cOwnedRelationshipFeatureTypingParserRuleCall_0_2_0_0; }
 		
 		//'any'
-		public Keyword getAnyKeyword_0_1_1() { return cAnyKeyword_0_1_1; }
+		public Keyword getAnyKeyword_0_2_1() { return cAnyKeyword_0_2_1; }
 		
 		//ownedRelationship+=Multiplicity?
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
@@ -8800,7 +8816,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment TypePart returns SysML::Feature:
-	//	(':' isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
+	//	(':' isSufficient?='all'? isComposite?='compose'? (ownedRelationship+=FeatureTyping | 'any'))?
 	//	ownedRelationship+=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?);
 	public TypePartElements getTypePartAccess() {
 		return pTypePart;
@@ -8811,7 +8827,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment NoncomposingTypePart returns SysML::Feature:
-	//	(':' (ownedRelationship+=FeatureTyping | 'any'))?
+	//	(':' isSufficient?='all'? (ownedRelationship+=FeatureTyping | 'any'))?
 	//	ownedRelationship+=Multiplicity? (isOrdered?='ordered'? & isNonunique?='nonunique'?);
 	public NoncomposingTypePartElements getNoncomposingTypePartAccess() {
 		return pNoncomposingTypePart;

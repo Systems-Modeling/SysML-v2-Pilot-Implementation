@@ -520,13 +520,13 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	( ':' ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' ) )?
+	( ':' ( isSufficient ?= 'all' )? ( isComposite ?= 'compose' )? ( ownedRelationship += FeatureTyping | 'any' ) )?
 	( ownedRelationship += Multiplicity )? 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
 fragment NoncomposingTypePart returns SysML::Feature :
-	( ':' ( ownedRelationship += FeatureTyping | 'any' ) )?
+	( ':' ( isSufficient ?= 'all' )? ( ownedRelationship += FeatureTyping | 'any' ) )?
 	( ownedRelationship += Multiplicity )? 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;

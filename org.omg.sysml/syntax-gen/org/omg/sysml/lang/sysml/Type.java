@@ -20,13 +20,14 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -244,15 +245,50 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>End Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_EndFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithEndFeature'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='endFeaturingType'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getEndFeature();
 
 	/**
+	 * Returns the value of the '<em><b>Is Sufficient</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Sufficient</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Sufficient</em>' attribute.
+	 * @see #setIsSufficient(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsSufficient()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isSufficient();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Sufficient</em>' attribute.
+	 * @see #isSufficient()
+	 * @generated
+	 */
+	void setIsSufficient(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned End Feature</em>' reference list isn't clear,
@@ -261,7 +297,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned End Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedEndFeature()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Feature#getEndOwningType
+	 * @model opposite="endOwningType" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Feature> getOwnedEndFeature();

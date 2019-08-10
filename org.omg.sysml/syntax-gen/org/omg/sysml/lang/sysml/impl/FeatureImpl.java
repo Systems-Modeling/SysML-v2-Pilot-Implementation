@@ -60,6 +60,7 @@ import org.omg.sysml.lang.sysml.DataType;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -597,6 +598,38 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getEndOwningType() {
+		Type endOwningType = basicGetEndOwningType();
+		return endOwningType != null && endOwningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)endOwningType) : endOwningType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type basicGetEndOwningType() {
+		return isEnd()? basicGetOwningType(): null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEndOwningType(Type newEndOwningType) {
+		// TODO: implement this method to set the 'End Owning Type' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean isNonunique() {
@@ -747,6 +780,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getTyping();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd();
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				if (resolve) return getEndOwningType();
+				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -810,6 +846,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd((Boolean)newValue);
 				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -867,6 +906,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd(IS_END_EDEFAULT);
 				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)null);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -910,6 +952,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return typing != null && !typing.isEmpty();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd() != IS_END_EDEFAULT;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}

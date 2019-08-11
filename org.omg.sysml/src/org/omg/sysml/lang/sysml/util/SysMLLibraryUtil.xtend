@@ -32,20 +32,24 @@ import org.omg.sysml.lang.sysml.Element
 class SysMLLibraryUtil {
 	
 	static String modelLibraryDirectory = null;
-	static SysMLLibraryProvider instance
 	
 	def static setModelLibraryDirectory(String path) {
 		modelLibraryDirectory = path
 	}
 	
 	def static SysMLLibraryProvider getInstance(Resource resource) {
-		if (instance === null) {
-			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI)?.get(SysMLLibraryProvider)
+		try {
+			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI)?.get(SysMLLibraryProvider)
+			if (instance === null) {
+				System.out.println("[SysMLLibaryUtil] No library provider.")
+			} else if (modelLibraryDirectory !== null) {
+				instance.setModelLibraryDirectory(modelLibraryDirectory)
+			}
+			instance
+		} catch (Exception e) {
+			System.out.println("[SysMLLibaryUtil] Cannot get library provider: " + e)
+			null
 		}
-		if (modelLibraryDirectory !== null) {
-			instance.setModelLibraryDirectory(modelLibraryDirectory)
-		}
-		instance
 	}
 	
 	def static Element getLibraryElement(Element context, EReference reference, String name) {		

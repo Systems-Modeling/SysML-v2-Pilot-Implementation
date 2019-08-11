@@ -120,8 +120,8 @@ public class ConnectionImpl extends ConnectorImpl implements Connection {
 	 * @generated NOT
 	 */
 	public Definition basicGetOwningDefinition() {
-		Definition owningDefinition = basicGetOwningDefinition();
-		return owningDefinition != null && owningDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)owningDefinition) : owningDefinition;
+		Type type = basicGetOwningType();
+		return type instanceof Definition? (Definition)type: null;
 	}
 
 	/**
@@ -191,13 +191,7 @@ public class ConnectionImpl extends ConnectorImpl implements Connection {
 	 * @generated NOT
 	 */
 	public Association basicGetConnectionInterface() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof Association? (Association)type: null;
-		}
+		return super.basicGetAssociation();
 	}
 
 	/**

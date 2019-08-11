@@ -55,8 +55,8 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + membership.visibility._text;
 		}
 		if (membership instanceof FeatureMembership) {
-			if (membership.isPart) {
-				text += ' part'
+			if (membership.isComposite) {
+				text += ' composite'
 			}
 			if (membership.isPort) {
 				text += ' port'

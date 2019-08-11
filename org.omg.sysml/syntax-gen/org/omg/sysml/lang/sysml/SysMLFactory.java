@@ -256,6 +256,177 @@ public interface SysMLFactory extends EFactory {
 	DataType createDataType();
 
 	/**
+	 * Returns a new object of class '<em>Port Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port Usage</em>'.
+	 * @generated
+	 */
+	PortUsage createPortUsage();
+
+	/**
+	 * Returns a new object of class '<em>Port Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port Definition</em>'.
+	 * @generated
+	 */
+	PortDefinition createPortDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activity</em>'.
+	 * @generated
+	 */
+	Activity createActivity();
+
+	/**
+	 * Returns a new object of class '<em>Merge Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merge Action</em>'.
+	 * @generated
+	 */
+	MergeAction createMergeAction();
+
+	/**
+	 * Returns a new object of class '<em>Perform Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Perform Action</em>'.
+	 * @generated
+	 */
+	PerformAction createPerformAction();
+
+	/**
+	 * Returns a new object of class '<em>Accept Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Accept Action</em>'.
+	 * @generated
+	 */
+	AcceptAction createAcceptAction();
+
+	/**
+	 * Returns a new object of class '<em>Fork Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fork Action</em>'.
+	 * @generated
+	 */
+	ForkAction createForkAction();
+
+	/**
+	 * Returns a new object of class '<em>Join Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Join Action</em>'.
+	 * @generated
+	 */
+	JoinAction createJoinAction();
+
+	/**
+	 * Returns a new object of class '<em>Call Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Call Action</em>'.
+	 * @generated
+	 */
+	CallAction createCallAction();
+
+	/**
+	 * Returns a new object of class '<em>Decision Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Decision Action</em>'.
+	 * @generated
+	 */
+	DecisionAction createDecisionAction();
+
+	/**
+	 * Returns a new object of class '<em>Send Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Send Action</em>'.
+	 * @generated
+	 */
+	SendAction createSendAction();
+
+	/**
+	 * Returns a new object of class '<em>Value Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Type</em>'.
+	 * @generated
+	 */
+	ValueType createValueType();
+
+	/**
+	 * Returns a new object of class '<em>Connection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connection</em>'.
+	 * @generated
+	 */
+	Connection createConnection();
+
+	/**
+	 * Returns a new object of class '<em>Interface Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Usage</em>'.
+	 * @generated
+	 */
+	InterfaceUsage createInterfaceUsage();
+
+	/**
+	 * Returns a new object of class '<em>Interface Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Definition</em>'.
+	 * @generated
+	 */
+	InterfaceDefinition createInterfaceDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block</em>'.
+	 * @generated
+	 */
+	Block createBlock();
+
+	/**
+	 * Returns a new object of class '<em>Reference Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference Property</em>'.
+	 * @generated
+	 */
+	ReferenceProperty createReferenceProperty();
+
+	/**
+	 * Returns a new object of class '<em>Part Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Part Property</em>'.
+	 * @generated
+	 */
+	PartProperty createPartProperty();
+
+	/**
+	 * Returns a new object of class '<em>Value Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Property</em>'.
+	 * @generated
+	 */
+	ValueProperty createValueProperty();
+
+	/**
 	 * Returns a new object of class '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

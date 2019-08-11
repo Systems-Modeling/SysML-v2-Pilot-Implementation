@@ -1562,8 +1562,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_0_0 = (Alternatives)cGroup_1_0.eContents().get(0);
 		private final Keyword cFeatureKeyword_1_0_0_0 = (Keyword)cAlternatives_1_0_0.eContents().get(0);
-		private final Assignment cIsPartAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
-		private final Keyword cIsPartPartKeyword_1_0_0_1_0 = (Keyword)cIsPartAssignment_1_0_0_1.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
+		private final Keyword cIsCompositePartKeyword_1_0_0_1_0 = (Keyword)cIsCompositeAssignment_1_0_0_1.eContents().get(0);
 		private final Assignment cIsPortionAssignment_1_0_0_2 = (Assignment)cAlternatives_1_0_0.eContents().get(2);
 		private final Keyword cIsPortionPortionKeyword_1_0_0_2_0 = (Keyword)cIsPortionAssignment_1_0_0_2.eContents().get(0);
 		private final Assignment cIsPortAssignment_1_0_0_3 = (Assignment)cAlternatives_1_0_0.eContents().get(3);
@@ -1585,8 +1585,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAbstractKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
 		private final Keyword cFeatureKeyword_1_1_1_0 = (Keyword)cAlternatives_1_1_1.eContents().get(0);
-		private final Assignment cIsPartAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
-		private final Keyword cIsPartPartKeyword_1_1_1_1_0 = (Keyword)cIsPartAssignment_1_1_1_1.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
+		private final Keyword cIsCompositePartKeyword_1_1_1_1_0 = (Keyword)cIsCompositeAssignment_1_1_1_1.eContents().get(0);
 		private final Assignment cIsPortionAssignment_1_1_1_2 = (Assignment)cAlternatives_1_1_1.eContents().get(2);
 		private final Keyword cIsPortionPortionKeyword_1_1_1_2_0 = (Keyword)cIsPortionAssignment_1_1_1_2.eContents().get(0);
 		private final Assignment cIsPortAssignment_1_1_1_3 = (Assignment)cAlternatives_1_1_1.eContents().get(3);
@@ -1713,10 +1713,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedRelatedElementAbstractSuccessionItemFlowDefinitionParserRuleCall_1_18_2_0 = (RuleCall)cOwnedRelatedElementAssignment_1_18_2.eContents().get(0);
 		
 		//FeatureMember SysML::FeatureMembership:
-		//	TypeMemberPrefix (('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
-		//	(ownedRelatedElement+=FeatureDefinition
-		//	| memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') | 'abstract' ('feature' | isPart?='part' |
-		//	isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//	TypeMemberPrefix (('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port')
+		//	direction=FeatureDirection? (ownedRelatedElement+=FeatureDefinition
+		//	| memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') | 'abstract' ('feature' |
+		//	isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//	ownedRelatedElement+=AbstractFeatureDefinition
 		//	| 'connector' (ownedRelatedElement+=ConnectorDefinition
 		//	| memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | ownedRelatedElement+=StepDefinition
@@ -1740,9 +1740,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	ownedRelatedElement+=AbstractSuccessionItemFlowDefinition);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeMemberPrefix (('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//TypeMemberPrefix (('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//(ownedRelatedElement+=FeatureDefinition | memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') |
-		//'abstract' ('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//'abstract' ('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition | 'connector' (ownedRelatedElement+=ConnectorDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | ownedRelatedElement+=StepDefinition |
 		//'step' memberName=Name? 'is' memberFeature=[SysML::Step|QualifiedName] ';' | ownedRelatedElement+=ExpressionDefinition
@@ -1763,9 +1763,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeMemberPrefix
 		public RuleCall getTypeMemberPrefixParserRuleCall_0() { return cTypeMemberPrefixParserRuleCall_0; }
 		
-		//('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//(ownedRelatedElement+=FeatureDefinition | memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') |
-		//'abstract' ('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//'abstract' ('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition | 'connector' (ownedRelatedElement+=ConnectorDefinition |
 		//memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | ownedRelatedElement+=StepDefinition |
 		//'step' memberName=Name? 'is' memberFeature=[SysML::Step|QualifiedName] ';' | ownedRelatedElement+=ExpressionDefinition
@@ -1783,21 +1783,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ownedRelatedElement+=AbstractSuccessionItemFlowDefinition
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//(ownedRelatedElement+=FeatureDefinition | memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';')
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
-		//'feature' | isPart?='part' | isPortion?='portion' | isPort?='port'
+		//'feature' | isComposite?='part' | isPortion?='portion' | isPort?='port'
 		public Alternatives getAlternatives_1_0_0() { return cAlternatives_1_0_0; }
 		
 		//'feature'
 		public Keyword getFeatureKeyword_1_0_0_0() { return cFeatureKeyword_1_0_0_0; }
 		
-		//isPart?='part'
-		public Assignment getIsPartAssignment_1_0_0_1() { return cIsPartAssignment_1_0_0_1; }
+		//isComposite?='part'
+		public Assignment getIsCompositeAssignment_1_0_0_1() { return cIsCompositeAssignment_1_0_0_1; }
 		
 		//'part'
-		public Keyword getIsPartPartKeyword_1_0_0_1_0() { return cIsPartPartKeyword_1_0_0_1_0; }
+		public Keyword getIsCompositePartKeyword_1_0_0_1_0() { return cIsCompositePartKeyword_1_0_0_1_0; }
 		
 		//isPortion?='portion'
 		public Assignment getIsPortionAssignment_1_0_0_2() { return cIsPortionAssignment_1_0_0_2; }
@@ -1850,24 +1850,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//';'
 		public Keyword getSemicolonKeyword_1_0_2_1_3() { return cSemicolonKeyword_1_0_2_1_3; }
 		
-		//'abstract' ('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+		//'abstract' ('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//'abstract'
 		public Keyword getAbstractKeyword_1_1_0() { return cAbstractKeyword_1_1_0; }
 		
-		//'feature' | isPart?='part' | isPortion?='portion' | isPort?='port'
+		//'feature' | isComposite?='part' | isPortion?='portion' | isPort?='port'
 		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
 		
 		//'feature'
 		public Keyword getFeatureKeyword_1_1_1_0() { return cFeatureKeyword_1_1_1_0; }
 		
-		//isPart?='part'
-		public Assignment getIsPartAssignment_1_1_1_1() { return cIsPartAssignment_1_1_1_1; }
+		//isComposite?='part'
+		public Assignment getIsCompositeAssignment_1_1_1_1() { return cIsCompositeAssignment_1_1_1_1; }
 		
 		//'part'
-		public Keyword getIsPartPartKeyword_1_1_1_1_0() { return cIsPartPartKeyword_1_1_1_1_0; }
+		public Keyword getIsCompositePartKeyword_1_1_1_1_0() { return cIsCompositePartKeyword_1_1_1_1_0; }
 		
 		//isPortion?='portion'
 		public Assignment getIsPortionAssignment_1_1_1_2() { return cIsPortionAssignment_1_1_1_2; }
@@ -2254,8 +2254,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final Keyword cEndKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
 		private final Alternatives cAlternatives_1_0_1 = (Alternatives)cGroup_1_0.eContents().get(1);
-		private final Assignment cIsPartAssignment_1_0_1_0 = (Assignment)cAlternatives_1_0_1.eContents().get(0);
-		private final Keyword cIsPartPartKeyword_1_0_1_0_0 = (Keyword)cIsPartAssignment_1_0_1_0.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_1_0_1_0 = (Assignment)cAlternatives_1_0_1.eContents().get(0);
+		private final Keyword cIsCompositePartKeyword_1_0_1_0_0 = (Keyword)cIsCompositeAssignment_1_0_1_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_1_0_1_1 = (Assignment)cAlternatives_1_0_1.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_1_0_1_1_0 = (Keyword)cIsPortionAssignment_1_0_1_1.eContents().get(0);
 		private final Assignment cIsPortAssignment_1_0_1_2 = (Assignment)cAlternatives_1_0_1.eContents().get(2);
@@ -2268,8 +2268,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAbstractKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Keyword cEndKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
 		private final Alternatives cAlternatives_1_1_2 = (Alternatives)cGroup_1_1.eContents().get(2);
-		private final Assignment cIsPartAssignment_1_1_2_0 = (Assignment)cAlternatives_1_1_2.eContents().get(0);
-		private final Keyword cIsPartPartKeyword_1_1_2_0_0 = (Keyword)cIsPartAssignment_1_1_2_0.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_1_1_2_0 = (Assignment)cAlternatives_1_1_2.eContents().get(0);
+		private final Keyword cIsCompositePartKeyword_1_1_2_0_0 = (Keyword)cIsCompositeAssignment_1_1_2_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_1_1_2_1 = (Assignment)cAlternatives_1_1_2.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_1_1_2_1_0 = (Keyword)cIsPortionAssignment_1_1_2_1.eContents().get(0);
 		private final Assignment cIsPortAssignment_1_1_2_2 = (Assignment)cAlternatives_1_1_2.eContents().get(2);
@@ -2281,8 +2281,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
 		private final Keyword cEndKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
 		private final Alternatives cAlternatives_1_2_1 = (Alternatives)cGroup_1_2.eContents().get(1);
-		private final Assignment cIsPartAssignment_1_2_1_0 = (Assignment)cAlternatives_1_2_1.eContents().get(0);
-		private final Keyword cIsPartPartKeyword_1_2_1_0_0 = (Keyword)cIsPartAssignment_1_2_1_0.eContents().get(0);
+		private final Assignment cIsCompositeAssignment_1_2_1_0 = (Assignment)cAlternatives_1_2_1.eContents().get(0);
+		private final Keyword cIsCompositePartKeyword_1_2_1_0_0 = (Keyword)cIsCompositeAssignment_1_2_1_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_1_2_1_1 = (Assignment)cAlternatives_1_2_1.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_1_2_1_1_0 = (Keyword)cIsPortionAssignment_1_2_1_1.eContents().get(0);
 		private final Assignment cMemberNameAssignment_1_2_2 = (Assignment)cGroup_1_2.eContents().get(2);
@@ -2294,44 +2294,44 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1_2_5 = (Keyword)cGroup_1_2.eContents().get(5);
 		
 		//EndFeatureMember SysML::EndFeatureMembership:
-		//	TypeMemberPrefix ('end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//	TypeMemberPrefix ('end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 		//	ownedRelatedElement+=FeatureDefinition
-		//	| 'abstract' 'end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//	| 'abstract' 'end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 		//	ownedRelatedElement+=AbstractFeatureDefinition
-		//	| 'end' (isPart?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName]
-		//	';');
+		//	| 'end' (isComposite?='part' | isPortion?='portion') memberName=Name? 'is'
+		//	memberFeature=[SysML::Feature|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeMemberPrefix ('end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
-		//ownedRelatedElement+=FeatureDefinition | 'abstract' 'end' (isPart?='part' | isPortion?='portion' | isPort?='port')?
-		//direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition | 'end' (isPart?='part' |
-		//isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';')
+		//TypeMemberPrefix ('end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//ownedRelatedElement+=FeatureDefinition | 'abstract' 'end' (isComposite?='part' | isPortion?='portion' |
+		//isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition | 'end'
+		//(isComposite?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
 		
 		//TypeMemberPrefix
 		public RuleCall getTypeMemberPrefixParserRuleCall_0() { return cTypeMemberPrefixParserRuleCall_0; }
 		
-		//'end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
-		//ownedRelatedElement+=FeatureDefinition | 'abstract' 'end' (isPart?='part' | isPortion?='portion' | isPort?='port')?
-		//direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition | 'end' (isPart?='part' |
-		//isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';'
+		//'end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//ownedRelatedElement+=FeatureDefinition | 'abstract' 'end' (isComposite?='part' | isPortion?='portion' |
+		//isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition | 'end'
+		//(isComposite?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';'
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//'end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//'end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 		//ownedRelatedElement+=FeatureDefinition
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_1_0_0() { return cEndKeyword_1_0_0; }
 		
-		//(isPart?='part' | isPortion?='portion' | isPort?='port')?
+		//(isComposite?='part' | isPortion?='portion' | isPort?='port')?
 		public Alternatives getAlternatives_1_0_1() { return cAlternatives_1_0_1; }
 		
-		//isPart?='part'
-		public Assignment getIsPartAssignment_1_0_1_0() { return cIsPartAssignment_1_0_1_0; }
+		//isComposite?='part'
+		public Assignment getIsCompositeAssignment_1_0_1_0() { return cIsCompositeAssignment_1_0_1_0; }
 		
 		//'part'
-		public Keyword getIsPartPartKeyword_1_0_1_0_0() { return cIsPartPartKeyword_1_0_1_0_0; }
+		public Keyword getIsCompositePartKeyword_1_0_1_0_0() { return cIsCompositePartKeyword_1_0_1_0_0; }
 		
 		//isPortion?='portion'
 		public Assignment getIsPortionAssignment_1_0_1_1() { return cIsPortionAssignment_1_0_1_1; }
@@ -2357,7 +2357,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FeatureDefinition
 		public RuleCall getOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_3_0() { return cOwnedRelatedElementFeatureDefinitionParserRuleCall_1_0_3_0; }
 		
-		//'abstract' 'end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+		//'abstract' 'end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 		//ownedRelatedElement+=AbstractFeatureDefinition
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
@@ -2367,14 +2367,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//'end'
 		public Keyword getEndKeyword_1_1_1() { return cEndKeyword_1_1_1; }
 		
-		//(isPart?='part' | isPortion?='portion' | isPort?='port')?
+		//(isComposite?='part' | isPortion?='portion' | isPort?='port')?
 		public Alternatives getAlternatives_1_1_2() { return cAlternatives_1_1_2; }
 		
-		//isPart?='part'
-		public Assignment getIsPartAssignment_1_1_2_0() { return cIsPartAssignment_1_1_2_0; }
+		//isComposite?='part'
+		public Assignment getIsCompositeAssignment_1_1_2_0() { return cIsCompositeAssignment_1_1_2_0; }
 		
 		//'part'
-		public Keyword getIsPartPartKeyword_1_1_2_0_0() { return cIsPartPartKeyword_1_1_2_0_0; }
+		public Keyword getIsCompositePartKeyword_1_1_2_0_0() { return cIsCompositePartKeyword_1_1_2_0_0; }
 		
 		//isPortion?='portion'
 		public Assignment getIsPortionAssignment_1_1_2_1() { return cIsPortionAssignment_1_1_2_1; }
@@ -2400,20 +2400,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AbstractFeatureDefinition
 		public RuleCall getOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_4_0() { return cOwnedRelatedElementAbstractFeatureDefinitionParserRuleCall_1_1_4_0; }
 		
-		//'end' (isPart?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';'
+		//'end' (isComposite?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName]
+		//';'
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//'end'
 		public Keyword getEndKeyword_1_2_0() { return cEndKeyword_1_2_0; }
 		
-		//isPart?='part' | isPortion?='portion'
+		//isComposite?='part' | isPortion?='portion'
 		public Alternatives getAlternatives_1_2_1() { return cAlternatives_1_2_1; }
 		
-		//isPart?='part'
-		public Assignment getIsPartAssignment_1_2_1_0() { return cIsPartAssignment_1_2_1_0; }
+		//isComposite?='part'
+		public Assignment getIsCompositeAssignment_1_2_1_0() { return cIsCompositeAssignment_1_2_1_0; }
 		
 		//'part'
-		public Keyword getIsPartPartKeyword_1_2_1_0_0() { return cIsPartPartKeyword_1_2_1_0_0; }
+		public Keyword getIsCompositePartKeyword_1_2_1_0_0() { return cIsCompositePartKeyword_1_2_1_0_0; }
 		
 		//isPortion?='portion'
 		public Assignment getIsPortionAssignment_1_2_1_1() { return cIsPortionAssignment_1_2_1_1; }
@@ -8263,10 +8264,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FeatureMember SysML::FeatureMembership:
-	//	TypeMemberPrefix (('feature' | isPart?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
-	//	(ownedRelatedElement+=FeatureDefinition
-	//	| memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') | 'abstract' ('feature' | isPart?='part' |
-	//	isPortion?='portion' | isPort?='port') direction=FeatureDirection?
+	//	TypeMemberPrefix (('feature' | isComposite?='part' | isPortion?='portion' | isPort?='port')
+	//	direction=FeatureDirection? (ownedRelatedElement+=FeatureDefinition
+	//	| memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName] ';') | 'abstract' ('feature' |
+	//	isComposite?='part' | isPortion?='portion' | isPort?='port') direction=FeatureDirection?
 	//	ownedRelatedElement+=AbstractFeatureDefinition
 	//	| 'connector' (ownedRelatedElement+=ConnectorDefinition
 	//	| memberName=Name? 'is' memberFeature=[SysML::Connector|QualifiedName] ';') | ownedRelatedElement+=StepDefinition
@@ -8297,12 +8298,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EndFeatureMember SysML::EndFeatureMembership:
-	//	TypeMemberPrefix ('end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+	//	TypeMemberPrefix ('end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 	//	ownedRelatedElement+=FeatureDefinition
-	//	| 'abstract' 'end' (isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
+	//	| 'abstract' 'end' (isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection?
 	//	ownedRelatedElement+=AbstractFeatureDefinition
-	//	| 'end' (isPart?='part' | isPortion?='portion') memberName=Name? 'is' memberFeature=[SysML::Feature|QualifiedName]
-	//	';');
+	//	| 'end' (isComposite?='part' | isPortion?='portion') memberName=Name? 'is'
+	//	memberFeature=[SysML::Feature|QualifiedName] ';');
 	public EndFeatureMemberElements getEndFeatureMemberAccess() {
 		return pEndFeatureMember;
 	}

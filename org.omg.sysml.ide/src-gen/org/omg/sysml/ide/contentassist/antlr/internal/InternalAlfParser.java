@@ -17816,13 +17816,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Alternatives_1_0_0"
-    // InternalAlf.g:5120:1: rule__FeatureMember__Alternatives_1_0_0 : ( ( 'feature' ) | ( ( rule__FeatureMember__IsPartAssignment_1_0_0_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_0_0_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_0_0_3 ) ) );
+    // InternalAlf.g:5120:1: rule__FeatureMember__Alternatives_1_0_0 : ( ( 'feature' ) | ( ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_0_0_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_0_0_3 ) ) );
     public final void rule__FeatureMember__Alternatives_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5124:1: ( ( 'feature' ) | ( ( rule__FeatureMember__IsPartAssignment_1_0_0_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_0_0_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_0_0_3 ) ) )
+            // InternalAlf.g:5124:1: ( ( 'feature' ) | ( ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_0_0_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_0_0_3 ) ) )
             int alt19=4;
             switch ( input.LA(1) ) {
             case 26:
@@ -17874,19 +17874,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:5131:2: ( ( rule__FeatureMember__IsPartAssignment_1_0_0_1 ) )
+                    // InternalAlf.g:5131:2: ( ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 ) )
                     {
-                    // InternalAlf.g:5131:2: ( ( rule__FeatureMember__IsPartAssignment_1_0_0_1 ) )
-                    // InternalAlf.g:5132:3: ( rule__FeatureMember__IsPartAssignment_1_0_0_1 )
+                    // InternalAlf.g:5131:2: ( ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 ) )
+                    // InternalAlf.g:5132:3: ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureMemberAccess().getIsPartAssignment_1_0_0_1()); 
+                       before(grammarAccess.getFeatureMemberAccess().getIsCompositeAssignment_1_0_0_1()); 
                     }
-                    // InternalAlf.g:5133:3: ( rule__FeatureMember__IsPartAssignment_1_0_0_1 )
-                    // InternalAlf.g:5133:4: rule__FeatureMember__IsPartAssignment_1_0_0_1
+                    // InternalAlf.g:5133:3: ( rule__FeatureMember__IsCompositeAssignment_1_0_0_1 )
+                    // InternalAlf.g:5133:4: rule__FeatureMember__IsCompositeAssignment_1_0_0_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FeatureMember__IsPartAssignment_1_0_0_1();
+                    rule__FeatureMember__IsCompositeAssignment_1_0_0_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -17894,7 +17894,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureMemberAccess().getIsPartAssignment_1_0_0_1()); 
+                       after(grammarAccess.getFeatureMemberAccess().getIsCompositeAssignment_1_0_0_1()); 
                     }
 
                     }
@@ -18120,13 +18120,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureMember__Alternatives_1_1_1"
-    // InternalAlf.g:5174:1: rule__FeatureMember__Alternatives_1_1_1 : ( ( 'feature' ) | ( ( rule__FeatureMember__IsPartAssignment_1_1_1_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_1_1_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_1_1_3 ) ) );
+    // InternalAlf.g:5174:1: rule__FeatureMember__Alternatives_1_1_1 : ( ( 'feature' ) | ( ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_1_1_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_1_1_3 ) ) );
     public final void rule__FeatureMember__Alternatives_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5178:1: ( ( 'feature' ) | ( ( rule__FeatureMember__IsPartAssignment_1_1_1_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_1_1_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_1_1_3 ) ) )
+            // InternalAlf.g:5178:1: ( ( 'feature' ) | ( ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 ) ) | ( ( rule__FeatureMember__IsPortionAssignment_1_1_1_2 ) ) | ( ( rule__FeatureMember__IsPortAssignment_1_1_1_3 ) ) )
             int alt21=4;
             switch ( input.LA(1) ) {
             case 26:
@@ -18178,19 +18178,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:5185:2: ( ( rule__FeatureMember__IsPartAssignment_1_1_1_1 ) )
+                    // InternalAlf.g:5185:2: ( ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 ) )
                     {
-                    // InternalAlf.g:5185:2: ( ( rule__FeatureMember__IsPartAssignment_1_1_1_1 ) )
-                    // InternalAlf.g:5186:3: ( rule__FeatureMember__IsPartAssignment_1_1_1_1 )
+                    // InternalAlf.g:5185:2: ( ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 ) )
+                    // InternalAlf.g:5186:3: ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureMemberAccess().getIsPartAssignment_1_1_1_1()); 
+                       before(grammarAccess.getFeatureMemberAccess().getIsCompositeAssignment_1_1_1_1()); 
                     }
-                    // InternalAlf.g:5187:3: ( rule__FeatureMember__IsPartAssignment_1_1_1_1 )
-                    // InternalAlf.g:5187:4: rule__FeatureMember__IsPartAssignment_1_1_1_1
+                    // InternalAlf.g:5187:3: ( rule__FeatureMember__IsCompositeAssignment_1_1_1_1 )
+                    // InternalAlf.g:5187:4: rule__FeatureMember__IsCompositeAssignment_1_1_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FeatureMember__IsPartAssignment_1_1_1_1();
+                    rule__FeatureMember__IsCompositeAssignment_1_1_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -18198,7 +18198,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureMemberAccess().getIsPartAssignment_1_1_1_1()); 
+                       after(grammarAccess.getFeatureMemberAccess().getIsCompositeAssignment_1_1_1_1()); 
                     }
 
                     }
@@ -18902,13 +18902,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EndFeatureMember__Alternatives_1_0_1"
-    // InternalAlf.g:5318:1: rule__EndFeatureMember__Alternatives_1_0_1 : ( ( ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_0_1_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_0_1_2 ) ) );
+    // InternalAlf.g:5318:1: rule__EndFeatureMember__Alternatives_1_0_1 : ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_0_1_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_0_1_2 ) ) );
     public final void rule__EndFeatureMember__Alternatives_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5322:1: ( ( ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_0_1_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_0_1_2 ) ) )
+            // InternalAlf.g:5322:1: ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_0_1_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_0_1_2 ) ) )
             int alt27=3;
             switch ( input.LA(1) ) {
             case 93:
@@ -18936,19 +18936,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
             switch (alt27) {
                 case 1 :
-                    // InternalAlf.g:5323:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 ) )
+                    // InternalAlf.g:5323:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 ) )
                     {
-                    // InternalAlf.g:5323:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 ) )
-                    // InternalAlf.g:5324:3: ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 )
+                    // InternalAlf.g:5323:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 ) )
+                    // InternalAlf.g:5324:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_0_1_0()); 
+                       before(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_0_1_0()); 
                     }
-                    // InternalAlf.g:5325:3: ( rule__EndFeatureMember__IsPartAssignment_1_0_1_0 )
-                    // InternalAlf.g:5325:4: rule__EndFeatureMember__IsPartAssignment_1_0_1_0
+                    // InternalAlf.g:5325:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 )
+                    // InternalAlf.g:5325:4: rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__EndFeatureMember__IsPartAssignment_1_0_1_0();
+                    rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -18956,7 +18956,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_0_1_0()); 
+                       after(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_0_1_0()); 
                     }
 
                     }
@@ -19040,13 +19040,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EndFeatureMember__Alternatives_1_1_2"
-    // InternalAlf.g:5345:1: rule__EndFeatureMember__Alternatives_1_1_2 : ( ( ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_1_2_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_1_2_2 ) ) );
+    // InternalAlf.g:5345:1: rule__EndFeatureMember__Alternatives_1_1_2 : ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_1_2_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_1_2_2 ) ) );
     public final void rule__EndFeatureMember__Alternatives_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5349:1: ( ( ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_1_2_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_1_2_2 ) ) )
+            // InternalAlf.g:5349:1: ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_1_2_1 ) ) | ( ( rule__EndFeatureMember__IsPortAssignment_1_1_2_2 ) ) )
             int alt28=3;
             switch ( input.LA(1) ) {
             case 93:
@@ -19074,19 +19074,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
             switch (alt28) {
                 case 1 :
-                    // InternalAlf.g:5350:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 ) )
+                    // InternalAlf.g:5350:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 ) )
                     {
-                    // InternalAlf.g:5350:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 ) )
-                    // InternalAlf.g:5351:3: ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 )
+                    // InternalAlf.g:5350:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 ) )
+                    // InternalAlf.g:5351:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_1_2_0()); 
+                       before(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_1_2_0()); 
                     }
-                    // InternalAlf.g:5352:3: ( rule__EndFeatureMember__IsPartAssignment_1_1_2_0 )
-                    // InternalAlf.g:5352:4: rule__EndFeatureMember__IsPartAssignment_1_1_2_0
+                    // InternalAlf.g:5352:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 )
+                    // InternalAlf.g:5352:4: rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__EndFeatureMember__IsPartAssignment_1_1_2_0();
+                    rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -19094,7 +19094,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_1_2_0()); 
+                       after(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_1_2_0()); 
                     }
 
                     }
@@ -19178,13 +19178,13 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EndFeatureMember__Alternatives_1_2_1"
-    // InternalAlf.g:5372:1: rule__EndFeatureMember__Alternatives_1_2_1 : ( ( ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_2_1_1 ) ) );
+    // InternalAlf.g:5372:1: rule__EndFeatureMember__Alternatives_1_2_1 : ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_2_1_1 ) ) );
     public final void rule__EndFeatureMember__Alternatives_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAlf.g:5376:1: ( ( ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_2_1_1 ) ) )
+            // InternalAlf.g:5376:1: ( ( ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 ) ) | ( ( rule__EndFeatureMember__IsPortionAssignment_1_2_1_1 ) ) )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -19203,19 +19203,19 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             }
             switch (alt29) {
                 case 1 :
-                    // InternalAlf.g:5377:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 ) )
+                    // InternalAlf.g:5377:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 ) )
                     {
-                    // InternalAlf.g:5377:2: ( ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 ) )
-                    // InternalAlf.g:5378:3: ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 )
+                    // InternalAlf.g:5377:2: ( ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 ) )
+                    // InternalAlf.g:5378:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_2_1_0()); 
+                       before(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_2_1_0()); 
                     }
-                    // InternalAlf.g:5379:3: ( rule__EndFeatureMember__IsPartAssignment_1_2_1_0 )
-                    // InternalAlf.g:5379:4: rule__EndFeatureMember__IsPartAssignment_1_2_1_0
+                    // InternalAlf.g:5379:3: ( rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 )
+                    // InternalAlf.g:5379:4: rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__EndFeatureMember__IsPartAssignment_1_2_1_0();
+                    rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -19223,7 +19223,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getEndFeatureMemberAccess().getIsPartAssignment_1_2_1_0()); 
+                       after(grammarAccess.getEndFeatureMemberAccess().getIsCompositeAssignment_1_2_1_0()); 
                     }
 
                     }
@@ -86717,9 +86717,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureTypeMember__MemberFeatureAssignment_1_2_3"
 
 
-    // $ANTLR start "rule__FeatureMember__IsPartAssignment_1_0_0_1"
-    // InternalAlf.g:26217:1: rule__FeatureMember__IsPartAssignment_1_0_0_1 : ( ( 'part' ) ) ;
-    public final void rule__FeatureMember__IsPartAssignment_1_0_0_1() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__IsCompositeAssignment_1_0_0_1"
+    // InternalAlf.g:26217:1: rule__FeatureMember__IsCompositeAssignment_1_0_0_1 : ( ( 'part' ) ) ;
+    public final void rule__FeatureMember__IsCompositeAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -86731,23 +86731,23 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:26223:3: ( 'part' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0()); 
             }
             // InternalAlf.g:26224:3: ( 'part' )
             // InternalAlf.g:26225:4: 'part'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0()); 
             }
             match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0()); 
             }
 
             }
@@ -86767,7 +86767,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__IsPartAssignment_1_0_0_1"
+    // $ANTLR end "rule__FeatureMember__IsCompositeAssignment_1_0_0_1"
 
 
     // $ANTLR start "rule__FeatureMember__IsPortionAssignment_1_0_0_2"
@@ -87068,9 +87068,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureMember__MemberFeatureAssignment_1_0_2_1_2"
 
 
-    // $ANTLR start "rule__FeatureMember__IsPartAssignment_1_1_1_1"
-    // InternalAlf.g:26338:1: rule__FeatureMember__IsPartAssignment_1_1_1_1 : ( ( 'part' ) ) ;
-    public final void rule__FeatureMember__IsPartAssignment_1_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__FeatureMember__IsCompositeAssignment_1_1_1_1"
+    // InternalAlf.g:26338:1: rule__FeatureMember__IsCompositeAssignment_1_1_1_1 : ( ( 'part' ) ) ;
+    public final void rule__FeatureMember__IsCompositeAssignment_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -87082,23 +87082,23 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:26344:3: ( 'part' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0()); 
             }
             // InternalAlf.g:26345:3: ( 'part' )
             // InternalAlf.g:26346:4: 'part'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0()); 
+               before(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0()); 
             }
             match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0()); 
+               after(grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0()); 
             }
 
             }
@@ -87118,7 +87118,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureMember__IsPartAssignment_1_1_1_1"
+    // $ANTLR end "rule__FeatureMember__IsCompositeAssignment_1_1_1_1"
 
 
     // $ANTLR start "rule__FeatureMember__IsPortionAssignment_1_1_1_2"
@@ -88661,9 +88661,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureMember__OwnedRelatedElementAssignment_1_18_2"
 
 
-    // $ANTLR start "rule__EndFeatureMember__IsPartAssignment_1_0_1_0"
-    // InternalAlf.g:26873:1: rule__EndFeatureMember__IsPartAssignment_1_0_1_0 : ( ( 'part' ) ) ;
-    public final void rule__EndFeatureMember__IsPartAssignment_1_0_1_0() throws RecognitionException {
+    // $ANTLR start "rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0"
+    // InternalAlf.g:26873:1: rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0 : ( ( 'part' ) ) ;
+    public final void rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -88675,23 +88675,23 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:26879:3: ( 'part' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0()); 
             }
             // InternalAlf.g:26880:3: ( 'part' )
             // InternalAlf.g:26881:4: 'part'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0()); 
             }
             match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0()); 
             }
 
             }
@@ -88711,7 +88711,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EndFeatureMember__IsPartAssignment_1_0_1_0"
+    // $ANTLR end "rule__EndFeatureMember__IsCompositeAssignment_1_0_1_0"
 
 
     // $ANTLR start "rule__EndFeatureMember__IsPortionAssignment_1_0_1_1"
@@ -88910,9 +88910,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EndFeatureMember__OwnedRelatedElementAssignment_1_0_3"
 
 
-    // $ANTLR start "rule__EndFeatureMember__IsPartAssignment_1_1_2_0"
-    // InternalAlf.g:26960:1: rule__EndFeatureMember__IsPartAssignment_1_1_2_0 : ( ( 'part' ) ) ;
-    public final void rule__EndFeatureMember__IsPartAssignment_1_1_2_0() throws RecognitionException {
+    // $ANTLR start "rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0"
+    // InternalAlf.g:26960:1: rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0 : ( ( 'part' ) ) ;
+    public final void rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -88924,23 +88924,23 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:26966:3: ( 'part' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0()); 
             }
             // InternalAlf.g:26967:3: ( 'part' )
             // InternalAlf.g:26968:4: 'part'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0()); 
             }
             match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0()); 
             }
 
             }
@@ -88960,7 +88960,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EndFeatureMember__IsPartAssignment_1_1_2_0"
+    // $ANTLR end "rule__EndFeatureMember__IsCompositeAssignment_1_1_2_0"
 
 
     // $ANTLR start "rule__EndFeatureMember__IsPortionAssignment_1_1_2_1"
@@ -89159,9 +89159,9 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EndFeatureMember__OwnedRelatedElementAssignment_1_1_4"
 
 
-    // $ANTLR start "rule__EndFeatureMember__IsPartAssignment_1_2_1_0"
-    // InternalAlf.g:27047:1: rule__EndFeatureMember__IsPartAssignment_1_2_1_0 : ( ( 'part' ) ) ;
-    public final void rule__EndFeatureMember__IsPartAssignment_1_2_1_0() throws RecognitionException {
+    // $ANTLR start "rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0"
+    // InternalAlf.g:27047:1: rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0 : ( ( 'part' ) ) ;
+    public final void rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -89173,23 +89173,23 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             // InternalAlf.g:27053:3: ( 'part' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0()); 
             }
             // InternalAlf.g:27054:3: ( 'part' )
             // InternalAlf.g:27055:4: 'part'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0()); 
+               before(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0()); 
             }
             match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0()); 
+               after(grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0()); 
             }
 
             }
@@ -89209,7 +89209,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EndFeatureMember__IsPartAssignment_1_2_1_0"
+    // $ANTLR end "rule__EndFeatureMember__IsCompositeAssignment_1_2_1_0"
 
 
     // $ANTLR start "rule__EndFeatureMember__IsPortionAssignment_1_2_1_1"

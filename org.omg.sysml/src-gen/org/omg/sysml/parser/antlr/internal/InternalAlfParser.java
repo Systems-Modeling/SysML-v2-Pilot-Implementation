@@ -7508,19 +7508,19 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureMember"
-    // InternalAlf.g:2740:1: ruleFeatureMember returns [EObject current=null] : (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) ) ;
+    // InternalAlf.g:2740:1: ruleFeatureMember returns [EObject current=null] : (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) ) ;
     public final EObject ruleFeatureMember() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        Token lv_isPart_2_0=null;
+        Token lv_isComposite_2_0=null;
         Token lv_isPortion_3_0=null;
         Token lv_isPort_4_0=null;
         Token otherlv_8=null;
         Token otherlv_10=null;
         Token otherlv_11=null;
         Token otherlv_12=null;
-        Token lv_isPart_13_0=null;
+        Token lv_isComposite_13_0=null;
         Token lv_isPortion_14_0=null;
         Token lv_isPort_15_0=null;
         Token otherlv_18=null;
@@ -7614,11 +7614,11 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAlf.g:2746:2: ( (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) ) )
-            // InternalAlf.g:2747:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) )
+            // InternalAlf.g:2746:2: ( (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) ) )
+            // InternalAlf.g:2747:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) )
             {
-            // InternalAlf.g:2747:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) )
-            // InternalAlf.g:2748:3: this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )
+            // InternalAlf.g:2747:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) ) )
+            // InternalAlf.g:2748:3: this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )
             {
             if ( state.backtracking==0 ) {
 
@@ -7644,17 +7644,17 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAlf.g:2762:3: ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )
+            // InternalAlf.g:2762:3: ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )
             int alt58=19;
             alt58 = dfa58.predict(input);
             switch (alt58) {
                 case 1 :
-                    // InternalAlf.g:2763:4: ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) )
+                    // InternalAlf.g:2763:4: ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) )
                     {
-                    // InternalAlf.g:2763:4: ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) )
-                    // InternalAlf.g:2764:5: (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) )
+                    // InternalAlf.g:2763:4: ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) )
+                    // InternalAlf.g:2764:5: (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) )
                     {
-                    // InternalAlf.g:2764:5: (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )
+                    // InternalAlf.g:2764:5: (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )
                     int alt41=4;
                     switch ( input.LA(1) ) {
                     case 32:
@@ -7699,18 +7699,18 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalAlf.g:2770:6: ( (lv_isPart_2_0= 'part' ) )
+                            // InternalAlf.g:2770:6: ( (lv_isComposite_2_0= 'part' ) )
                             {
-                            // InternalAlf.g:2770:6: ( (lv_isPart_2_0= 'part' ) )
-                            // InternalAlf.g:2771:7: (lv_isPart_2_0= 'part' )
+                            // InternalAlf.g:2770:6: ( (lv_isComposite_2_0= 'part' ) )
+                            // InternalAlf.g:2771:7: (lv_isComposite_2_0= 'part' )
                             {
-                            // InternalAlf.g:2771:7: (lv_isPart_2_0= 'part' )
-                            // InternalAlf.g:2772:8: lv_isPart_2_0= 'part'
+                            // InternalAlf.g:2771:7: (lv_isComposite_2_0= 'part' )
+                            // InternalAlf.g:2772:8: lv_isComposite_2_0= 'part'
                             {
-                            lv_isPart_2_0=(Token)match(input,36,FOLLOW_35); if (state.failed) return current;
+                            lv_isComposite_2_0=(Token)match(input,36,FOLLOW_35); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                              								newLeafNode(lv_isPart_2_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0());
+                              								newLeafNode(lv_isComposite_2_0, grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0());
                               							
                             }
                             if ( state.backtracking==0 ) {
@@ -7718,7 +7718,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                               								if (current==null) {
                               									current = createModelElement(grammarAccess.getFeatureMemberRule());
                               								}
-                              								setWithLastConsumed(current, "isPart", true, "part");
+                              								setWithLastConsumed(current, "isComposite", true, "part");
                               							
                             }
 
@@ -8063,10 +8063,10 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:2906:4: (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) )
+                    // InternalAlf.g:2906:4: (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) )
                     {
-                    // InternalAlf.g:2906:4: (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) )
-                    // InternalAlf.g:2907:5: otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) )
+                    // InternalAlf.g:2906:4: (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) )
+                    // InternalAlf.g:2907:5: otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) )
                     {
                     otherlv_11=(Token)match(input,33,FOLLOW_37); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -8074,7 +8074,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_11, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_1_0());
                       				
                     }
-                    // InternalAlf.g:2911:5: (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) )
+                    // InternalAlf.g:2911:5: (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) )
                     int alt45=4;
                     switch ( input.LA(1) ) {
                     case 32:
@@ -8119,18 +8119,18 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalAlf.g:2917:6: ( (lv_isPart_13_0= 'part' ) )
+                            // InternalAlf.g:2917:6: ( (lv_isComposite_13_0= 'part' ) )
                             {
-                            // InternalAlf.g:2917:6: ( (lv_isPart_13_0= 'part' ) )
-                            // InternalAlf.g:2918:7: (lv_isPart_13_0= 'part' )
+                            // InternalAlf.g:2917:6: ( (lv_isComposite_13_0= 'part' ) )
+                            // InternalAlf.g:2918:7: (lv_isComposite_13_0= 'part' )
                             {
-                            // InternalAlf.g:2918:7: (lv_isPart_13_0= 'part' )
-                            // InternalAlf.g:2919:8: lv_isPart_13_0= 'part'
+                            // InternalAlf.g:2918:7: (lv_isComposite_13_0= 'part' )
+                            // InternalAlf.g:2919:8: lv_isComposite_13_0= 'part'
                             {
-                            lv_isPart_13_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
+                            lv_isComposite_13_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                              								newLeafNode(lv_isPart_13_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0());
+                              								newLeafNode(lv_isComposite_13_0, grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0());
                               							
                             }
                             if ( state.backtracking==0 ) {
@@ -8138,7 +8138,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                               								if (current==null) {
                               									current = createModelElement(grammarAccess.getFeatureMemberRule());
                               								}
-                              								setWithLastConsumed(current, "isPart", true, "part");
+                              								setWithLastConsumed(current, "isComposite", true, "part");
                               							
                             }
 
@@ -9929,21 +9929,21 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEndFeatureMember"
-    // InternalAlf.g:3736:1: ruleEndFeatureMember returns [EObject current=null] : (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) ) ;
+    // InternalAlf.g:3736:1: ruleEndFeatureMember returns [EObject current=null] : (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) ) ;
     public final EObject ruleEndFeatureMember() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        Token lv_isPart_2_0=null;
+        Token lv_isComposite_2_0=null;
         Token lv_isPortion_3_0=null;
         Token lv_isPort_4_0=null;
         Token otherlv_7=null;
         Token otherlv_8=null;
-        Token lv_isPart_9_0=null;
+        Token lv_isComposite_9_0=null;
         Token lv_isPortion_10_0=null;
         Token lv_isPort_11_0=null;
         Token otherlv_14=null;
-        Token lv_isPart_15_0=null;
+        Token lv_isComposite_15_0=null;
         Token lv_isPortion_16_0=null;
         Token otherlv_18=null;
         Token otherlv_20=null;
@@ -9964,11 +9964,11 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAlf.g:3742:2: ( (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) ) )
-            // InternalAlf.g:3743:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) )
+            // InternalAlf.g:3742:2: ( (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) ) )
+            // InternalAlf.g:3743:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) )
             {
-            // InternalAlf.g:3743:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) )
-            // InternalAlf.g:3744:3: this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) )
+            // InternalAlf.g:3743:2: (this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) ) )
+            // InternalAlf.g:3744:3: this_TypeMemberPrefix_0= ruleTypeMemberPrefix[$current] ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) )
             {
             if ( state.backtracking==0 ) {
 
@@ -9994,7 +9994,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAlf.g:3758:3: ( (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) )
+            // InternalAlf.g:3758:3: ( (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) ) | (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' ) )
             int alt65=3;
             int LA65_0 = input.LA(1);
 
@@ -10160,10 +10160,10 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
             }
             switch (alt65) {
                 case 1 :
-                    // InternalAlf.g:3759:4: (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) )
+                    // InternalAlf.g:3759:4: (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) )
                     {
-                    // InternalAlf.g:3759:4: (otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) )
-                    // InternalAlf.g:3760:5: otherlv_1= 'end' ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) )
+                    // InternalAlf.g:3759:4: (otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) )
+                    // InternalAlf.g:3760:5: otherlv_1= 'end' ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )? ( (lv_direction_5_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) )
                     {
                     otherlv_1=(Token)match(input,46,FOLLOW_48); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -10171,7 +10171,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_1, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_0_0());
                       				
                     }
-                    // InternalAlf.g:3764:5: ( ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )?
+                    // InternalAlf.g:3764:5: ( ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) )?
                     int alt59=4;
                     switch ( input.LA(1) ) {
                         case 36:
@@ -10193,18 +10193,18 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
 
                     switch (alt59) {
                         case 1 :
-                            // InternalAlf.g:3765:6: ( (lv_isPart_2_0= 'part' ) )
+                            // InternalAlf.g:3765:6: ( (lv_isComposite_2_0= 'part' ) )
                             {
-                            // InternalAlf.g:3765:6: ( (lv_isPart_2_0= 'part' ) )
-                            // InternalAlf.g:3766:7: (lv_isPart_2_0= 'part' )
+                            // InternalAlf.g:3765:6: ( (lv_isComposite_2_0= 'part' ) )
+                            // InternalAlf.g:3766:7: (lv_isComposite_2_0= 'part' )
                             {
-                            // InternalAlf.g:3766:7: (lv_isPart_2_0= 'part' )
-                            // InternalAlf.g:3767:8: lv_isPart_2_0= 'part'
+                            // InternalAlf.g:3766:7: (lv_isComposite_2_0= 'part' )
+                            // InternalAlf.g:3767:8: lv_isComposite_2_0= 'part'
                             {
-                            lv_isPart_2_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
+                            lv_isComposite_2_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                              								newLeafNode(lv_isPart_2_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0());
+                              								newLeafNode(lv_isComposite_2_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0());
                               							
                             }
                             if ( state.backtracking==0 ) {
@@ -10212,7 +10212,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                               								if (current==null) {
                               									current = createModelElement(grammarAccess.getEndFeatureMemberRule());
                               								}
-                              								setWithLastConsumed(current, "isPart", true, "part");
+                              								setWithLastConsumed(current, "isComposite", true, "part");
                               							
                             }
 
@@ -10379,10 +10379,10 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAlf.g:3850:4: (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) )
+                    // InternalAlf.g:3850:4: (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) )
                     {
-                    // InternalAlf.g:3850:4: (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) )
-                    // InternalAlf.g:3851:5: otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) )
+                    // InternalAlf.g:3850:4: (otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) ) )
+                    // InternalAlf.g:3851:5: otherlv_7= 'abstract' otherlv_8= 'end' ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )? ( (lv_direction_12_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_13_0= ruleAbstractFeatureDefinition ) )
                     {
                     otherlv_7=(Token)match(input,33,FOLLOW_50); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -10396,7 +10396,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_8, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_1_1());
                       				
                     }
-                    // InternalAlf.g:3859:5: ( ( (lv_isPart_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )?
+                    // InternalAlf.g:3859:5: ( ( (lv_isComposite_9_0= 'part' ) ) | ( (lv_isPortion_10_0= 'portion' ) ) | ( (lv_isPort_11_0= 'port' ) ) )?
                     int alt61=4;
                     switch ( input.LA(1) ) {
                         case 36:
@@ -10418,18 +10418,18 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
 
                     switch (alt61) {
                         case 1 :
-                            // InternalAlf.g:3860:6: ( (lv_isPart_9_0= 'part' ) )
+                            // InternalAlf.g:3860:6: ( (lv_isComposite_9_0= 'part' ) )
                             {
-                            // InternalAlf.g:3860:6: ( (lv_isPart_9_0= 'part' ) )
-                            // InternalAlf.g:3861:7: (lv_isPart_9_0= 'part' )
+                            // InternalAlf.g:3860:6: ( (lv_isComposite_9_0= 'part' ) )
+                            // InternalAlf.g:3861:7: (lv_isComposite_9_0= 'part' )
                             {
-                            // InternalAlf.g:3861:7: (lv_isPart_9_0= 'part' )
-                            // InternalAlf.g:3862:8: lv_isPart_9_0= 'part'
+                            // InternalAlf.g:3861:7: (lv_isComposite_9_0= 'part' )
+                            // InternalAlf.g:3862:8: lv_isComposite_9_0= 'part'
                             {
-                            lv_isPart_9_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
+                            lv_isComposite_9_0=(Token)match(input,36,FOLLOW_38); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                              								newLeafNode(lv_isPart_9_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0());
+                              								newLeafNode(lv_isComposite_9_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0());
                               							
                             }
                             if ( state.backtracking==0 ) {
@@ -10437,7 +10437,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                               								if (current==null) {
                               									current = createModelElement(grammarAccess.getEndFeatureMemberRule());
                               								}
-                              								setWithLastConsumed(current, "isPart", true, "part");
+                              								setWithLastConsumed(current, "isComposite", true, "part");
                               							
                             }
 
@@ -10604,10 +10604,10 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalAlf.g:3945:4: (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' )
+                    // InternalAlf.g:3945:4: (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' )
                     {
-                    // InternalAlf.g:3945:4: (otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' )
-                    // InternalAlf.g:3946:5: otherlv_14= 'end' ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';'
+                    // InternalAlf.g:3945:4: (otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';' )
+                    // InternalAlf.g:3946:5: otherlv_14= 'end' ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) ) ( (lv_memberName_17_0= ruleName ) )? otherlv_18= 'is' ( ( ruleQualifiedName ) ) otherlv_20= ';'
                     {
                     otherlv_14=(Token)match(input,46,FOLLOW_51); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -10615,7 +10615,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_14, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_2_0());
                       				
                     }
-                    // InternalAlf.g:3950:5: ( ( (lv_isPart_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) )
+                    // InternalAlf.g:3950:5: ( ( (lv_isComposite_15_0= 'part' ) ) | ( (lv_isPortion_16_0= 'portion' ) ) )
                     int alt63=2;
                     int LA63_0 = input.LA(1);
 
@@ -10634,18 +10634,18 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt63) {
                         case 1 :
-                            // InternalAlf.g:3951:6: ( (lv_isPart_15_0= 'part' ) )
+                            // InternalAlf.g:3951:6: ( (lv_isComposite_15_0= 'part' ) )
                             {
-                            // InternalAlf.g:3951:6: ( (lv_isPart_15_0= 'part' ) )
-                            // InternalAlf.g:3952:7: (lv_isPart_15_0= 'part' )
+                            // InternalAlf.g:3951:6: ( (lv_isComposite_15_0= 'part' ) )
+                            // InternalAlf.g:3952:7: (lv_isComposite_15_0= 'part' )
                             {
-                            // InternalAlf.g:3952:7: (lv_isPart_15_0= 'part' )
-                            // InternalAlf.g:3953:8: lv_isPart_15_0= 'part'
+                            // InternalAlf.g:3952:7: (lv_isComposite_15_0= 'part' )
+                            // InternalAlf.g:3953:8: lv_isComposite_15_0= 'part'
                             {
-                            lv_isPart_15_0=(Token)match(input,36,FOLLOW_27); if (state.failed) return current;
+                            lv_isComposite_15_0=(Token)match(input,36,FOLLOW_27); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                              								newLeafNode(lv_isPart_15_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0());
+                              								newLeafNode(lv_isComposite_15_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0());
                               							
                             }
                             if ( state.backtracking==0 ) {
@@ -10653,7 +10653,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
                               								if (current==null) {
                               									current = createModelElement(grammarAccess.getEndFeatureMemberRule());
                               								}
-                              								setWithLastConsumed(current, "isPart", true, "part");
+                              								setWithLastConsumed(current, "isComposite", true, "part");
                               							
                             }
 
@@ -39723,7 +39723,7 @@ public class InternalAlfParser extends AbstractInternalAntlrParser {
             this.transition = dfa_52;
         }
         public String getDescription() {
-            return "2762:3: ( ( (otherlv_1= 'feature' | ( (lv_isPart_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isPart_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )";
+            return "2762:3: ( ( (otherlv_1= 'feature' | ( (lv_isComposite_2_0= 'part' ) ) | ( (lv_isPortion_3_0= 'portion' ) ) | ( (lv_isPort_4_0= 'port' ) ) ) ( (lv_direction_5_0= ruleFeatureDirection ) )? ( ( (lv_ownedRelatedElement_6_0= ruleFeatureDefinition ) ) | ( ( (lv_memberName_7_0= ruleName ) )? otherlv_8= 'is' ( ( ruleQualifiedName ) ) otherlv_10= ';' ) ) ) | (otherlv_11= 'abstract' (otherlv_12= 'feature' | ( (lv_isComposite_13_0= 'part' ) ) | ( (lv_isPortion_14_0= 'portion' ) ) | ( (lv_isPort_15_0= 'port' ) ) ) ( (lv_direction_16_0= ruleFeatureDirection ) )? ( (lv_ownedRelatedElement_17_0= ruleAbstractFeatureDefinition ) ) ) | (otherlv_18= 'connector' ( ( (lv_ownedRelatedElement_19_0= ruleConnectorDefinition ) ) | ( ( (lv_memberName_20_0= ruleName ) )? otherlv_21= 'is' ( ( ruleQualifiedName ) ) otherlv_23= ';' ) ) ) | ( (lv_ownedRelatedElement_24_0= ruleStepDefinition ) ) | (otherlv_25= 'step' ( (lv_memberName_26_0= ruleName ) )? otherlv_27= 'is' ( ( ruleQualifiedName ) ) otherlv_29= ';' ) | ( (lv_ownedRelatedElement_30_0= ruleExpressionDefinition ) ) | (otherlv_31= 'expr' ( (lv_memberName_32_0= ruleName ) )? otherlv_33= 'is' ( ( ruleQualifiedName ) ) otherlv_35= ';' ) | ( (lv_ownedRelatedElement_36_0= rulePerformedStepDefinition ) ) | ( (lv_ownedRelatedElement_37_0= ruleAcceptStepDefinition ) ) | (otherlv_38= 'perform' ( (lv_memberName_39_0= ruleName ) )? otherlv_40= 'is' ( ( ruleQualifiedName ) ) otherlv_42= ';' ) | (otherlv_43= 'abstract' otherlv_44= 'connector' ( (lv_ownedRelatedElement_45_0= ruleAbstractConnectorDefinition ) ) ) | (otherlv_46= 'binding' ( (lv_ownedRelatedElement_47_0= ruleBindingConnectorDefinition ) ) ) | (otherlv_48= 'succession' ( ( (lv_ownedRelatedElement_49_0= ruleSuccessionDefinition ) ) | ( ( (lv_memberName_50_0= ruleName ) )? otherlv_51= 'is' ( ( ruleQualifiedName ) ) otherlv_53= ';' ) ) ) | (otherlv_54= 'abstract' otherlv_55= 'succession' ( (lv_ownedRelatedElement_56_0= ruleAbstractSuccessionDefinition ) ) ) | (otherlv_57= 'then' ( (lv_ownedRelatedElement_58_0= ruleTargetSuccessionDefinition ) ) otherlv_59= ';' ) | (otherlv_60= 'stream' ( ( (lv_ownedRelatedElement_61_0= ruleItemFlowDefinition ) ) | ( ( (lv_memberName_62_0= ruleName ) )? otherlv_63= 'is' ( ( ruleQualifiedName ) ) otherlv_65= ';' ) ) ) | (otherlv_66= 'abstract' otherlv_67= 'stream' ( (lv_ownedRelatedElement_68_0= ruleAbstractItemFlowDefinition ) ) ) | (otherlv_69= 'flow' ( ( (lv_ownedRelatedElement_70_0= ruleSuccessionItemFlowDefinition ) ) | ( ( (lv_memberName_71_0= ruleName ) )? otherlv_72= 'is' ( ( ruleQualifiedName ) ) otherlv_74= ';' ) ) ) | (otherlv_75= 'abstract' otherlv_76= 'flow' ( (lv_ownedRelatedElement_77_0= ruleAbstractSuccessionItemFlowDefinition ) ) ) )";
         }
     }
     static final String dfa_53s = "\16\uffff";

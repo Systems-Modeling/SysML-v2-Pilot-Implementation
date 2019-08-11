@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPart <em>Is Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getDirection <em>Direction</em>}</li>
@@ -88,24 +88,24 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isPart() <em>Is Part</em>}' attribute.
+	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPart()
+	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_PART_EDEFAULT = false;
+	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isPart() <em>Is Part</em>}' attribute.
+	 * The cached value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPart()
+	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isPart = IS_PART_EDEFAULT;
+	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
@@ -291,33 +291,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isPart() {
-		if (!isPart) {
-			Feature memberFeature = getOwnedMemberFeature();
-			isPart = memberFeature != null && ((FeatureImpl)memberFeature).basicIsComposite( );
-		}
-		return isPart;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsPart(boolean newIsPart) {
-		boolean oldIsPart = isPart;
-		isPart = newIsPart;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_PART, oldIsPart, isPart));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -456,6 +429,29 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
+	public boolean isComposite() {
+		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
@@ -468,8 +464,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				if (resolve) return getOwnedMemberFeature();
 				return basicGetOwnedMemberFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
-				return isPart();
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				return isComposite();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
 				return isPortion();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -503,8 +499,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
-				setIsPart((Boolean)newValue);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
 				setIsPortion((Boolean)newValue);
@@ -542,8 +538,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)null);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
-				setIsPart(IS_PART_EDEFAULT);
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
 				setIsPortion(IS_PORTION_EDEFAULT);
@@ -579,8 +575,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				return basicGetOwnedMemberFeature() != null;
-			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PART:
-				return isPart != IS_PART_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
+				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
 				return isPortion != IS_PORTION_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORT:
@@ -607,8 +603,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		result.append(isDerived);
 		result.append(", isReadOnly: ");
 		result.append(isReadOnly);
-		result.append(", isPart: ");
-		result.append(isPart);
+		result.append(", isComposite: ");
+		result.append(isComposite);
 		result.append(", isPortion: ");
 		result.append(isPortion);
 		result.append(", isPort: ");

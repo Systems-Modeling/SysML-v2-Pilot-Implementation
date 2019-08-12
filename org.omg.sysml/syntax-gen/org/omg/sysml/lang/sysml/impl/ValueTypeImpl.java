@@ -2,8 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ValueType;
 
@@ -15,6 +16,9 @@ import org.omg.sysml.lang.sysml.ValueType;
  * @generated
  */
 public class ValueTypeImpl extends DefinitionImpl implements ValueType {
+	
+	public static final String VALUE_TYPE_SUPERCLASS_DEFAULT = "Base::Value";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +36,11 @@ public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.VALUE_TYPE;
+	}
+
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(VALUE_TYPE_SUPERCLASS_DEFAULT);
 	}
 
 } //ValueTypeImpl

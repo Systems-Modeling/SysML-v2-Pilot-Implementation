@@ -65,13 +65,13 @@ package '3a-Function-based Behavior-1 - SysML' {
 		succession first merge[1] then engineStart[1];
 		
 		action engineStart subsets incomingTransfers {
-			part item: EngineStart[1] redefines Transfer::item;
+			item: EngineStart[1] redefines Transfer::item;
 		}
 		
 		succession first engineStart[1] then engineOff[1];
 		
 		action engineOff subsets incomingTransfers {
-			part item: EngineOff[1] redefines Transfer::item;
+			item: EngineOff[1] redefines Transfer::item;
 		}
 					
 		succession first engineOff[0..1] then merge[1];		

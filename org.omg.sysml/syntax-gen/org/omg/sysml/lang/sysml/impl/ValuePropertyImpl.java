@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueProperty;
@@ -29,6 +30,9 @@ import org.omg.sysml.lang.sysml.ValueProperty;
  * @generated
  */
 public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
+	
+	public static final String VALUE_PROPERTY_SUBSETTING_DEFAULT = "Base::values";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,6 +97,10 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 		return basicGetValueType() != null;
 	}
 
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(VALUE_PROPERTY_SUBSETTING_DEFAULT);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

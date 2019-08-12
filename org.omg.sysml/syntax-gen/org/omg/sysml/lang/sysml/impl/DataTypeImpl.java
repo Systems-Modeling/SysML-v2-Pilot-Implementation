@@ -29,14 +29,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	/**
-	 * If the Class has no Superclassings, then create one whose superclass is the appropriate default library class.
-	 */
-	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(VALUE_CLASS_SUPERCLASS_DEFAULT);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -44,6 +36,14 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.DATA_TYPE;
+	}
+
+	/**
+	 * If the Class has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(VALUE_CLASS_SUPERCLASS_DEFAULT);
 	}
 
 } //ValueClassImpl

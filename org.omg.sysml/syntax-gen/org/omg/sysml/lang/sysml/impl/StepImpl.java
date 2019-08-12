@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -90,6 +89,95 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * @generated
 	 */
 	@Override
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		if (isCheckSubsetting) {
+			if (isSubperformance()) {
+				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
+			} 
+			if (isEnactedPerformance()) {
+				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
+			}
+			if (isIncomingTransfer()) {
+				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
+			}
+			isCheckSubsetting = false;
+		}
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()? 
+					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+				isEnactedPerformance()?
+					STEP_SUBSETTING_OBJECT_DEFAULT:
+				isIncomingTransfer()?
+					STEP_SUBSETTING_TRANSFER_DEFAULT:
+					STEP_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return getOwnedFeature().stream().
+				filter(f->f instanceof ItemFeature).
+				collect(Collectors.toList());
+	}	
+	
+	// Utility methods
+	
+	public boolean isSubperformance() {
+		return isPerformanceFeature(this);
+	}
+	
+	public boolean isEnactedPerformance() {
+		return isEnactedPerformance(this);
+	}
+	
+	public boolean isIncomingTransfer() {
+		return isIncomingTransfer(this);
+	}
+	
+	public static boolean isEnactedPerformance(Feature step) {
+		Type owningType = step.getOwningType();
+		return owningType instanceof Class ||
+				owningType instanceof Feature && 
+					((FeatureImpl)owningType).isObjectFeature();
+	}
+	
+	public static boolean isIncomingTransfer(Feature step) {
+		return step.getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
+	}
+	
+	public static boolean isPerformanceFeature(Feature step) {
+		Type owningType = step.getOwningType();
+		return owningType instanceof Behavior || owningType instanceof Step;
+	}
+	
+	public List<Step> getSubsteps() {
+		return getOwnedFeature().stream().filter(f->f instanceof Step).
+				map(f->(Step)f).collect(Collectors.toList());
+	}
+	
+	//
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.STEP__BEHAVIOR:
@@ -146,95 +234,4 @@ public class StepImpl extends FeatureImpl implements Step {
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			if (isSubperformance()) {
-				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
-			} 
-			if (isEnactedPerformance()) {
-				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
-			}
-			if (isIncomingTransfer()) {
-				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
-			}
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()? 
-					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-				isEnactedPerformance()?
-					STEP_SUBSETTING_OBJECT_DEFAULT:
-				isIncomingTransfer()?
-					STEP_SUBSETTING_TRANSFER_DEFAULT:
-					STEP_SUBSETTING_BASE_DEFAULT);
-	}
-	
-	protected void addSubsetting(String name) {
-		Type type = getDefaultType(name);
-		if (type instanceof Feature) {
-			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-			subsetting.setSubsettedFeature((Feature)type);
-			subsetting.setSubsettingFeature(this);
-			getOwnedRelationship().add(subsetting);
-		}
-	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return getOwnedFeature().stream().
-				filter(f->f instanceof ItemFeature).
-				collect(Collectors.toList());
-	}
-	
-	
-	
-	// Utility methods
-	
-	public boolean isSubperformance() {
-		return isPerformanceFeature(this);
-	}
-	
-	public boolean isEnactedPerformance() {
-		Type owningType = getOwningType();
-		return owningType instanceof Class ||
-				owningType instanceof Feature && 
-					((FeatureImpl)owningType).isObjectFeature();
-	}
-	
-	public boolean isIncomingTransfer() {
-		return getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
-	}
-	
-	public static boolean isPerformanceFeature(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Behavior || owningType instanceof Step;
-	}
-	
-	public List<Step> getSubsteps() {
-		return getOwnedFeature().stream().filter(f->f instanceof Step).
-				map(f->(Step)f).collect(Collectors.toList());
-	}
-	
 } //StepImpl

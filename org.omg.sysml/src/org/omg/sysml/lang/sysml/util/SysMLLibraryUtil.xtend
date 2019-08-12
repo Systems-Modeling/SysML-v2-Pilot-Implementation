@@ -39,10 +39,8 @@ class SysMLLibraryUtil {
 	
 	def static SysMLLibraryProvider getInstance(Resource resource) {
 		try {
-			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI)?.get(SysMLLibraryProvider)
-			if (instance === null) {
-				System.out.println("[SysMLLibaryUtil] No library provider.")
-			} else if (modelLibraryDirectory !== null) {
+			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(SysMLLibraryProvider)
+			if (instance !== null && modelLibraryDirectory !== null) {
 				instance.setModelLibraryDirectory(modelLibraryDirectory)
 			}
 			instance

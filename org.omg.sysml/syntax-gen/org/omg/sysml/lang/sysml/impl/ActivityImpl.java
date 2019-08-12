@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -11,8 +13,10 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Action;
 import org.omg.sysml.lang.sysml.Activity;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -31,6 +35,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ActivityImpl extends DefinitionImpl implements Activity {
+
+	public String ACTIVITY_SUPERCLASS_DEFAULT = "Base::Performance";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,6 +91,24 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 		return new DerivedEObjectEList<Action>(Action.class, this, 
 				SysMLPackage.ACTIVITY__ACTION, 
 				new int[] {SysMLPackage.TYPE__FEATURE});
+	}
+
+	/**
+	 * If the Activity has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 */
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(ACTIVITY_SUPERCLASS_DEFAULT);
+	}
+	
+	/**
+	 * Return the non-parameter abstract features of the Activity.
+	 */
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return getFeature().stream().
+				filter(feature->!(feature instanceof Parameter) && feature.isAbstract()).
+				collect(Collectors.toList());
 	}
 
 	/**

@@ -14,6 +14,7 @@ import org.omg.sysml.lang.sysml.Action;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -34,6 +35,14 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public abstract class ActionImpl extends UsageImpl implements Action {
+	
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Base::performances";
+	public static final String ACTION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
+	public static final String ACTION_SUBSETTING_OBJECT_DEFAULT = "Base::Object::enactedPerformances";
+	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Base::Occurrence::incomingTransfers";
+	
+	protected boolean isCheckSubsetting = true;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,6 +186,42 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 		return basicGetActivity() != null;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		if (isCheckSubsetting) {
+			if (isSubperformance()) {
+				addSubsetting(ACTION_SUBSETTING_PERFORMANCE_DEFAULT);
+			} 
+			if (isEnactedPerformance()) {
+				addSubsetting(ACTION_SUBSETTING_OBJECT_DEFAULT);
+			}
+			if (isIncomingTransfer()) {
+				addSubsetting(ACTION_SUBSETTING_TRANSFER_DEFAULT);
+			}
+			isCheckSubsetting = false;
+		}
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()? 
+					ACTION_SUBSETTING_PERFORMANCE_DEFAULT:
+				isEnactedPerformance()?
+					ACTION_SUBSETTING_OBJECT_DEFAULT:
+				isIncomingTransfer()?
+					ACTION_SUBSETTING_TRANSFER_DEFAULT:
+					ACTION_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isSubperformance() {
+		return StepImpl.isPerformanceFeature(this);
+	}
+	
+	public boolean isEnactedPerformance() {
+		return StepImpl.isEnactedPerformance(this);
+	}
+	
+	public boolean isIncomingTransfer() {
+		return StepImpl.isIncomingTransfer(this);
+	}	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

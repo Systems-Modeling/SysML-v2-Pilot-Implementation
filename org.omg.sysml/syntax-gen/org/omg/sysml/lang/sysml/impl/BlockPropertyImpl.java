@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.BlockProperty;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -28,6 +29,9 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public abstract class BlockPropertyImpl extends PropertyImpl implements BlockProperty {
+	
+	public static final String BLOCK_PROPERTY_SUBSETTING_DEFAULT = "Base::objects";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +96,10 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 		return basicGetBlock() != null;
 	}
 
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(BLOCK_PROPERTY_SUBSETTING_DEFAULT);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

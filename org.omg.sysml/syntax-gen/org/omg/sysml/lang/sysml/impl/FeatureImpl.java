@@ -356,6 +356,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
 	}
 	
+	protected void addSubsetting(String name) {
+		Type type = getDefaultType(name);
+		if (type instanceof Feature) {
+			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+			subsetting.setSubsettedFeature((Feature)type);
+			subsetting.setSubsettingFeature(this);
+			getOwnedRelationship().add(subsetting);
+		}
+	}
+	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
@@ -368,10 +378,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 	
-//	protected boolean isRedefinitionsNeeded(List<Redefinition> ownedRedefinitions) {
-//		return ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null);
-//	}
-
 	/**
 	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
 	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 

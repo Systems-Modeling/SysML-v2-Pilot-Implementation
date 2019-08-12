@@ -131,7 +131,11 @@ public class InterfaceDefinitionImpl extends AssociationImpl implements Interfac
 	 */
 	@Override
 	public EList<PortUsage> getInterfaceEnd() {
-		return new DerivedEObjectEList<PortUsage>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END, new int[] {SysMLPackage.TYPE__END_FEATURE});
+		EList<PortUsage> ends = new EObjectEList<PortUsage>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
+		super.getAssociationEnd().stream().
+			filter(end->end instanceof PortUsage).
+			forEachOrdered(end->ends.add((PortUsage)end));
+		return ends;
 	}
 
 	/**

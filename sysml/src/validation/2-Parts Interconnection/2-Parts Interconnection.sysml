@@ -49,23 +49,23 @@ package '2-Parts Interconnection - SysML' {
 	
 	// Port Definitions
 	
-	block FuelCmdPort; // Change to port def
+	port def FuelCmdPort;
 	
-	block DrivePwrPort;
-	block ClutchPort;
+	port def DrivePwrPort;
+	port def ClutchPort;
 	
-	block ShaftPort_a;
-	block ShaftPort_b;
-	block ShaftPort_c;
-	block ShaftPort_d;
+	port def ShaftPort_a;
+	port def ShaftPort_b;
+	port def ShaftPort_c;
+	port def ShaftPort_d;
 	
-	block DiffPort;
-	block AxlePort;
-	block AxleToWheelPort;
-	block WheelToAxlePort;
-	block WheelToRoadPort;
+	port def DiffPort;
+	port def AxlePort;
+	port def AxleToWheelPort;
+	port def WheelToAxlePort;
+	port def WheelToRoadPort;
 	
-	block VehicleToRoadPort { 
+	port def VehicleToRoadPort { 
 		port wheelToRoadPort: WheelToRoadPort[2];
 	}
 
@@ -81,11 +81,11 @@ package '2-Parts Interconnection - SysML' {
 		end shaftPort_d: ShaftPort_d;
 		
 		part driveshaft: Driveshaft {
-			port shaftPort_b: ShaftPort_b redefines Driveshaft::shaftPort_b;
-			port shaftPort_c: ShaftPort_c redefines Driveshaft::shaftPort_c;
+			port shaftPort_b redefines Driveshaft::shaftPort_b;
+			port shaftPort_c redefines Driveshaft::shaftPort_c;
 		}
 		
-		connect shaftPort_a to driveshaft::shaftPort_b; // Change to connect
+		connect shaftPort_a to driveshaft::shaftPort_b;
 		connect driveshaft::shaftPort_c to shaftPort_d;
 	}
 		
@@ -94,25 +94,25 @@ package '2-Parts Interconnection - SysML' {
 	part vehicle1_c1: VehicleA {
 		port fuelCmdPort: FuelCmdPort redefines VehicleA::fuelCmdPort;
 		
-		bind fuelCmdPort = engine::fuelCmdPort; // Change to bind.
+		bind fuelCmdPort = engine::fuelCmdPort;
 		
 		part engine: Engine {
-			port fuelCmdPort: FuelCmdPort redefines Engine::fuelCmdPort;
-			port drivePwrPort: DrivePwrPort redefines Engine::drivePwrPort;
+			port fuelCmdPort redefines Engine::fuelCmdPort;
+			port drivePwrPort redefines Engine::drivePwrPort;
 		}
 		
-		connect :EngineToTransmissionInterface from // Change to interface ... connect
-			engine::drivePwrPort to transmission::clutchPort;
+		interface :EngineToTransmissionInterface
+			connect engine::drivePwrPort to transmission::clutchPort;
 			
 		part transmission: Transmission {
-			port clutchPort: ClutchPort redefines Transmission::clutchPort;
+			port clutchPort redefines Transmission::clutchPort;
 			port shaftPort_a: ShaftPort_a;	
 		}
 		
 		part driveshaft: Driveshaft;
 		
-		connect :DriveshaftInterface from
-			transmission::shaftPort_a to rearAxleAssembly::shaftPort_d {
+		interface :DriveshaftInterface
+			connect transmission::shaftPort_a to rearAxleAssembly::shaftPort_d {
 				part driveshaft redefines DriveshaftInterface::driveshaft = 
 					vehicle1_c1::driveshaft;
 			}
@@ -136,12 +136,12 @@ package '2-Parts Interconnection - SysML' {
 	
 			part rearAxle: RearAxle {
 				part leftAxle: WheelAxle {
-					port axleToDiffPort: AxlePort redefines WheelAxle::axleToDiffPort;
-					port axleToWheelPort: AxleToWheelPort redefines WheelAxle::axleToWheelPort;
+					port axleToDiffPort redefines WheelAxle::axleToDiffPort;
+					port axleToWheelPort redefines WheelAxle::axleToWheelPort;
 				}
 				part rightAxle: WheelAxle  {
-					port axleToDiffPort: AxlePort redefines WheelAxle::axleToDiffPort;
-					port axleToWheelPort: AxleToWheelPort redefines WheelAxle::axleToWheelPort;
+					port axleToDiffPort redefines WheelAxle::axleToDiffPort;
+					port axleToWheelPort redefines WheelAxle::axleToWheelPort;
 				}
 			}
 			
@@ -163,9 +163,10 @@ package '2-Parts Interconnection - SysML' {
 		}
 		
 		bind rearAxleAssembly::leftWheel::wheelToRoadPort = 
-			vehicleToRoadPort::leftWheelToRoadPort;
+			 vehicleToRoadPort::leftWheelToRoadPort;
+			 
 		bind rearAxleAssembly::rightWheel::wheelToRoadPort = 
-			vehicleToRoadPort::rightWheelToRoadPort;
+			 vehicleToRoadPort::rightWheelToRoadPort;
 			
 		port vehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
 			port leftWheelToRoadPort subsets wheelToRoadPort = wheelToRoadPort[1];

@@ -41,6 +41,7 @@ Unit returns SysML::Package :
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
 	| PartUnit
+	| ActionUnit
 ;
 
 PackageUnit returns SysML::Package: 
@@ -65,6 +66,10 @@ ActivityUnit returns SysML::Activity :
 
 PartUnit returns SysML::PartProperty :
 	UnitPrefix Part
+;
+
+ActionUnit returns SysML::CallAction :
+	UnitPrefix Action
 ;
 
 fragment UnitPrefix returns SysML::Package :
@@ -154,7 +159,7 @@ fragment PackagedUsage returns SysML::Membership :
 	| 'value'? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ownedRelatedElement += ValueProperty
 	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
-	| ownedRelatedElement += Action
+	| ownedRelatedElement += CallAction
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::Action|QualifiedName] ';'
 ;
 
@@ -186,10 +191,10 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName] ';'
 	| 'ref' ( direction = FeatureDirection )? ownedRelatedElement += ReferenceProperty
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedRelatedElement += AbstractReferenceProperty
-	| 'ref' ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
+	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
 	| 'value'? ( direction = FeatureDirection )? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractValueProperty
-	| 'value' ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
+	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
 	| 'port' ownedRelatedElement += PortUsage
 	| 'abstract' 'port' ownedRelatedElement += AbstractPortUsage
 	| 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
@@ -199,7 +204,7 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| 'connect' ownedRelatedElement += Connector 
     | 'abstract' 'connect' ownedRelatedElement += AbstractConnector
     | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::Connection|QualifiedName] ';'
-	| ownedRelatedElement += Action
+	| ownedRelatedElement += CallAction
 	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
 	| ownedRelatedElement += PerformAction
 	| ownedRelatedElement += AcceptAction
@@ -443,7 +448,9 @@ Parameter returns SysML::Parameter :
 /* PART PROPERTIES */
 
 fragment Part returns SysML::PartProperty :
-	( isAbstract ?= 'abstract' )? 'part' UsageDeclaration UsageCompletion
+	( isAbstract ?= 'abstract' )? 'part' 
+	name = Name TypePart SubsettingPart
+	UsageCompletion
 ;
 
 PartProperty returns SysML::PartProperty :
@@ -634,7 +641,13 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 /* ACTIONS */
 
-Action returns SysML::CallAction :
+fragment Action returns SysML::CallAction :
+    ( isAbstract ?= 'abstract' )? 'action' 
+	name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
+	ActivityBody
+;
+
+CallAction returns SysML::CallAction :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
     ( isAbstract ?= 'abstract' )? isComposite ?= 'action' 
 	( name = Name TypePart ActionParameterList? SubsettingPart ValuePart?

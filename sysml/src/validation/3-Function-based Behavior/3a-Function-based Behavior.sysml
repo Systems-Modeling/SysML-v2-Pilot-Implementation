@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior - SysML' {
+package '3a-Function-based Behavior' {
 	import Transfers::Transfer;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
@@ -6,13 +6,13 @@ package '3a-Function-based Behavior - SysML' {
 	
 	// ITEMS
 	
-	valuetype FuelCmd;
-	valuetype Torque is ISQ::TorqueValue;
+	value type FuelCmd;
+	value type Torque is ISQ::TorqueValue;
 	
 	// SIGNALS
 	
-	valuetype EngineStart;
-	valuetype EngineOff;
+	value type EngineStart;
+	value type EngineOff;
 	
 	// ACTIVITIES
 	
@@ -96,11 +96,11 @@ package '3a-Function-based Behavior - SysML' {
 		succession first engineStart[1] then 'provide power'[1];
 			
 		bind 'provide power'::fuelCmd = fuelCmd;
-		action 'provide power'[*] (
+		action 'do provide power'[*] (
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2
-		) redefines '3a-Function-based Behavior'::'provide power';
+		) redefines 'provide power';
 		bind wheelTorque1 = 'provide power'::wheelTorque1;
 		bind wheelTorque2 = 'provide power'::wheelTorque2;
 				

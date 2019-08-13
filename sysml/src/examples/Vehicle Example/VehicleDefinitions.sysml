@@ -26,11 +26,11 @@ package VehicleDefinitions {
 	}
 	
 	port def AxleMountIF { 
-		out transferredTorque:> ISQ::torque;
+		out transferredTorque is ISQ::torque;
 	}
 	
 	port def WheelHubIF { 
-		in appliedTorque:> ISQ::torque;
+		in appliedTorque is ISQ::torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */

@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior-2 - SysML' {
+package '3a-Function-based Behavior-2' {
 	import Transfers::Transfer;
 	import ControlNodes::Merge;
 	import Base::Occurrence::startShot;
@@ -6,13 +6,13 @@ package '3a-Function-based Behavior-2 - SysML' {
 			
 	// ITEMS
 	
-	valuetype FuelCmd;
-	valuetype Torque is ISQ::TorqueValue;
+	value type FuelCmd;
+	value type Torque is ISQ::TorqueValue;
 	
 	// SIGNALS
 	
-	valuetype EngineStart;
-	valuetype EngineOff;
+	value type EngineStart;
+	value type EngineOff;
 	
 	// ACTIVITIES
 	

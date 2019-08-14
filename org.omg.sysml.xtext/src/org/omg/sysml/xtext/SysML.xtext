@@ -157,8 +157,11 @@ fragment PackagedUsage returns SysML::Membership :
 	| 'abstract' 'part'? ownedRelatedElement += AbstractPartProperty
 	| 'part' ( memberName = Name )? 'is' memberElement = [SysML::PartProperty|QualifiedName] ';'
 	| 'value'? ownedRelatedElement += ValueProperty
-	| 'abstract' 'value'? ownedRelatedElement += ValueProperty
+	| 'abstract' 'value'? ownedRelatedElement += AbstractValueProperty
 	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
+	| 'interface'? ownedRelatedElement += InterfaceUsage
+	| 'abstract' 'interface'? ownedRelatedElement += AbstractInterfaceUsage
+	| ( 'interface' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::InterfaceUsage|QualifiedName] ';'
 	| ownedRelatedElement += CallAction
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::Action|QualifiedName] ';'
 ;
@@ -198,9 +201,9 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| 'port' ownedRelatedElement += PortUsage
 	| 'abstract' 'port' ownedRelatedElement += AbstractPortUsage
 	| 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
-	| 'interface' ownedRelatedElement += Connection
-	| 'abstract' 'interface' ownedRelatedElement += AbstractConnection
-	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::Connection|QualifiedName] ';'
+	| 'interface' ownedRelatedElement += ( InterfaceUsage | Connection )
+	| 'abstract' 'interface' ownedRelatedElement += ( AbstractInterfaceUsage | AbstractConnection )
+	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
 	| 'connect' ownedRelatedElement += Connector 
     | 'abstract' 'connect' ownedRelatedElement += AbstractConnector
     | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::Connection|QualifiedName] ';'
@@ -491,6 +494,16 @@ AbstractPortUsage returns SysML::PortUsage :
 	AbstractUsage
 ;
 
+/* INTERFACE USAGES */
+
+InterfaceUsage returns SysML::InterfaceUsage :
+	Usage
+;
+
+AbstractInterfaceUsage returns SysML::InterfaceUsage :
+	AbstractUsage
+;
+
 /* CONNECTORS */
 
 Connector returns SysML::Connection :
@@ -536,14 +549,12 @@ EmptyEndMember returns SysML::EndFeatureMembership :
 
 /* CONNECTIONS */
 
-Connection returns SysML::InterfaceUsage :	 
-	  UsageDeclaration DefinitionBody
-	| {SysML::Connection} UsageDeclaration 'connect' ConnectionPart DefinitionBody	  
+Connection returns SysML::Connection :	 
+	UsageDeclaration 'connect' ConnectionPart DefinitionBody	  
 ;
 
-AbstractConnection returns SysML::InterfaceUsage :
-	UsageDeclaration AbstractDefinitionBody
-	| {SysML::Connection} UsageDeclaration 'connect' ConnectionPart  AbstractDefinitionBody
+AbstractConnection returns SysML::Connection :
+	UsageDeclaration 'connect' ConnectionPart  AbstractDefinitionBody
 ;
 
 /* BINDING CONNECTORS */

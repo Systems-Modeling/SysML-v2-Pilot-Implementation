@@ -30,7 +30,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public abstract class BlockPropertyImpl extends PropertyImpl implements BlockProperty {
 	
-	public static final String BLOCK_PROPERTY_SUBSETTING_DEFAULT = "Base::objects";
+	public static final String BLOCK_PROPERTY_SUBSETTING_DEFAULT = "Blocks::parts";
 
 	/**
 	 * <!-- begin-user-doc -->

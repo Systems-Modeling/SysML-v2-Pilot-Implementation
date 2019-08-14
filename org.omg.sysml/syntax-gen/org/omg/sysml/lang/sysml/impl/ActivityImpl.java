@@ -36,7 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ActivityImpl extends DefinitionImpl implements Activity {
 
-	public String ACTIVITY_SUPERCLASS_DEFAULT = "Base::Performance";
+	public String ACTIVITY_SUPERCLASS_DEFAULT = "Activities::Execution";
 	
 	/**
 	 * <!-- begin-user-doc -->

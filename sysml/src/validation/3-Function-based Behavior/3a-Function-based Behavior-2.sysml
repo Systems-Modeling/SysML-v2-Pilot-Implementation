@@ -1,8 +1,5 @@
 package '3a-Function-based Behavior-2' {
-	import Transfers::Transfer;
-	import ControlNodes::Merge;
-	import Base::Occurrence::startShot;
-	import Base::Occurrence::incomingTransfers;
+	import Activities::Merge;
 			
 	// ITEMS
 	
@@ -58,7 +55,7 @@ package '3a-Function-based Behavior-2' {
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {
-		first startShot;
+		first start;
 		then[0..1] action merge: Merge[*];
 		then accept engineStart (EngineStart);
 		then accept engineOff (EngineOff);

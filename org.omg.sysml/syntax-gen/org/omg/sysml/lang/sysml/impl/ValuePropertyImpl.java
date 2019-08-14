@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.ValueProperty;
  */
 public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	
-	public static final String VALUE_PROPERTY_SUBSETTING_DEFAULT = "Base::values";
+	public static final String VALUE_PROPERTY_SUBSETTING_DEFAULT = "Blocks::values";
 
 	/**
 	 * <!-- begin-user-doc -->

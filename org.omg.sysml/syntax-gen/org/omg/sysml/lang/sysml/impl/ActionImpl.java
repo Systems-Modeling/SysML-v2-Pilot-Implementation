@@ -36,10 +36,10 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public abstract class ActionImpl extends UsageImpl implements Action {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Base::performances";
-	public static final String ACTION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
-	public static final String ACTION_SUBSETTING_OBJECT_DEFAULT = "Base::Object::enactedPerformances";
-	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Base::Occurrence::incomingTransfers";
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::executions";
+	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Execution::subexecutions";
+	public static final String ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedExecutions";
+	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::Execution::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -190,10 +190,10 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 	public EList<Subsetting> getOwnedSubsetting() {
 		if (isCheckSubsetting) {
 			if (isSubperformance()) {
-				addSubsetting(ACTION_SUBSETTING_PERFORMANCE_DEFAULT);
+				addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
 			} 
 			if (isEnactedPerformance()) {
-				addSubsetting(ACTION_SUBSETTING_OBJECT_DEFAULT);
+				addSubsetting(ACTION_SUBSETTING_PART_DEFAULT);
 			}
 			if (isIncomingTransfer()) {
 				addSubsetting(ACTION_SUBSETTING_TRANSFER_DEFAULT);
@@ -202,9 +202,9 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 		}
 		return getOwnedSubsettingWithComputedRedefinitions(
 				isSubperformance()? 
-					ACTION_SUBSETTING_PERFORMANCE_DEFAULT:
+					ACTION_SUBSETTING_SUBACTION_DEFAULT:
 				isEnactedPerformance()?
-					ACTION_SUBSETTING_OBJECT_DEFAULT:
+					ACTION_SUBSETTING_PART_DEFAULT:
 				isIncomingTransfer()?
 					ACTION_SUBSETTING_TRANSFER_DEFAULT:
 					ACTION_SUBSETTING_BASE_DEFAULT);

@@ -12,6 +12,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -29,6 +30,9 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public class InterfaceUsageImpl extends UsageImpl implements InterfaceUsage {
+	
+	public static final String INTERFACE_USAGE_SUBSETTING_DEFAULT = "Bocks::interfaces";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +95,11 @@ public class InterfaceUsageImpl extends UsageImpl implements InterfaceUsage {
 	 */
 	public boolean isSetInterfaceDefinition() {
 		return basicGetInterfaceDefinition() != null;
+	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(INTERFACE_USAGE_SUBSETTING_DEFAULT);
 	}
 
 	/**

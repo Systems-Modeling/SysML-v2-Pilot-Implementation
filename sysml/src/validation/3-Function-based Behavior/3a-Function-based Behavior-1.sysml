@@ -1,8 +1,6 @@
 package '3a-Function-based Behavior-1' {
 	import Transfers::Transfer;
-	import ControlNodes::Merge;
-	import Base::Occurrence::startShot;
-	import Base::Occurrence::incomingTransfers;
+	import Activities::Merge;
 	
 	// ITEMS
 	
@@ -82,7 +80,7 @@ package '3a-Function-based Behavior-1' {
 			in fuelCmd = 'provide power with control'::fuelCmd, 
 			out wheelTorque1 = 'provide power with control'::wheelTorque1,
 			out wheelTorque2 = 'provide power with control'::wheelTorque2
-		) redefines 'provide power';
+		) subsets 'provide power';
 		
 		succession first 'provide power'[1] then engineOff[1];		
 	}

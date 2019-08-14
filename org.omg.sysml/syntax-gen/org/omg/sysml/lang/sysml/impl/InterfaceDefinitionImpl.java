@@ -16,6 +16,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 
@@ -39,6 +40,9 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class InterfaceDefinitionImpl extends AssociationImpl implements InterfaceDefinition {
+
+	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Interface";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,6 +149,14 @@ public class InterfaceDefinitionImpl extends AssociationImpl implements Interfac
 	 */
 	public boolean isSetInterfaceEnd() {
 		return !getInterfaceEnd().isEmpty();
+	}
+
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(
+				getOwnedEndFeature().size() > 2? 
+					ASSOCIATION_SUPERCLASS_DEFAULT: 
+					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT);
 	}
 
 	/**

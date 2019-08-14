@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition {
+
+	public String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Port";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +39,9 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 		return SysMLPackage.Literals.PORT_DEFINITION;
 	}
 
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(PORT_DEFINITION_SUPERCLASS_DEFAULT);
+	}
+	
 } //PortDefinitionImpl

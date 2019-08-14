@@ -18,7 +18,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BlockImpl extends DefinitionImpl implements Block {
-	public static final String BLOCK_SUPERCLASS_DEFAULT = "Base::Object";
+	
+	public static final String BLOCK_SUPERCLASS_DEFAULT = "Blocks::Part";
 	
 	/**
 	 * <!-- begin-user-doc -->

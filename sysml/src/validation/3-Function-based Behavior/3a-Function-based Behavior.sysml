@@ -1,8 +1,6 @@
 package '3a-Function-based Behavior' {
 	import Transfers::Transfer;
-	import ControlNodes::Merge;
-	import Base::Occurrence::startShot;
-	import Base::Occurrence::incomingTransfers;
+	import Activities::Merge;
 	
 	// ITEMS
 	
@@ -70,12 +68,12 @@ package '3a-Function-based Behavior' {
 		bind wheelTorque2 = 'distribute torque'::wheelTorque2;
 	}
 	
-	action 'provide power with control': 'Provide Power With Control'(
+	action 'provide power with control': 'Provide Power With Control' (
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {		
-		succession first startShot[0..1] then merge[1];
+		succession first start[0..1] then merge[1];
 				
 		action merge: Merge[*];
 		
@@ -100,7 +98,7 @@ package '3a-Function-based Behavior' {
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2
-		) redefines 'provide power';
+		) subsets 'provide power';
 		bind wheelTorque1 = 'provide power'::wheelTorque1;
 		bind wheelTorque2 = 'provide power'::wheelTorque2;
 				

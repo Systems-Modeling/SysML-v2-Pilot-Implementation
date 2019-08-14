@@ -36,6 +36,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackagedDefinitionMember_InterfacedefKeyword_7_0_1_or___InterfaceKeyword_7_0_0_0_DefKeyword_7_0_0_1__;
 	protected AbstractElementAlias match_PackagedDefinitionMember_PortdefKeyword_9_0_1_or___PortKeyword_9_0_0_0_DefKeyword_9_0_0_1__;
 	protected AbstractElementAlias match_PackagedDefinitionMember_ValuetypeKeyword_5_0_1_or___ValueKeyword_5_0_0_0_TypeKeyword_5_0_0_1__;
+	protected AbstractElementAlias match_PackagedUsage_InterfaceKeyword_6_0_q;
+	protected AbstractElementAlias match_PackagedUsage_InterfaceKeyword_7_1_q;
 	protected AbstractElementAlias match_PackagedUsage_PartKeyword_1_1_q;
 	protected AbstractElementAlias match_PackagedUsage_ValueKeyword_3_0_q;
 	protected AbstractElementAlias match_PackagedUsage_ValueKeyword_4_1_q;
@@ -64,6 +66,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackagedDefinitionMember_InterfacedefKeyword_7_0_1_or___InterfaceKeyword_7_0_0_0_DefKeyword_7_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getInterfaceKeyword_7_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getDefKeyword_7_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getInterfacedefKeyword_7_0_1()));
 		match_PackagedDefinitionMember_PortdefKeyword_9_0_1_or___PortKeyword_9_0_0_0_DefKeyword_9_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getPortKeyword_9_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getDefKeyword_9_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getPortdefKeyword_9_0_1()));
 		match_PackagedDefinitionMember_ValuetypeKeyword_5_0_1_or___ValueKeyword_5_0_0_0_TypeKeyword_5_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getValueKeyword_5_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getTypeKeyword_5_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getValuetypeKeyword_5_0_1()));
+		match_PackagedUsage_InterfaceKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageAccess().getInterfaceKeyword_6_0());
+		match_PackagedUsage_InterfaceKeyword_7_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageAccess().getInterfaceKeyword_7_1());
 		match_PackagedUsage_PartKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageAccess().getPartKeyword_1_1());
 		match_PackagedUsage_ValueKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageAccess().getValueKeyword_3_0());
 		match_PackagedUsage_ValueKeyword_4_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageAccess().getValueKeyword_4_1());
@@ -116,6 +120,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackagedDefinitionMember_PortdefKeyword_9_0_1_or___PortKeyword_9_0_0_0_DefKeyword_9_0_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedDefinitionMember_ValuetypeKeyword_5_0_1_or___ValueKeyword_5_0_0_0_TypeKeyword_5_0_0_1__.equals(syntax))
 				emit_PackagedDefinitionMember_ValuetypeKeyword_5_0_1_or___ValueKeyword_5_0_0_0_TypeKeyword_5_0_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedUsage_InterfaceKeyword_6_0_q.equals(syntax))
+				emit_PackagedUsage_InterfaceKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedUsage_InterfaceKeyword_7_1_q.equals(syntax))
+				emit_PackagedUsage_InterfaceKeyword_7_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedUsage_PartKeyword_1_1_q.equals(syntax))
 				emit_PackagedUsage_PartKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedUsage_ValueKeyword_3_0_q.equals(syntax))
@@ -379,6 +387,32 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'interface'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelatedElement+=InterfaceUsage
+	 *     ownedRelationship+=Annotation (ambiguity) ownedRelatedElement+=InterfaceUsage
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedRelatedElement+=InterfaceUsage
+	 */
+	protected void emit_PackagedUsage_InterfaceKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'interface'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement+=AbstractInterfaceUsage
+	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedRelatedElement+=AbstractInterfaceUsage
+	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement+=AbstractInterfaceUsage
+	 */
+	protected void emit_PackagedUsage_InterfaceKeyword_7_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'part'?
 	 *
 	 * This ambiguous syntax occurs at:
@@ -408,9 +442,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'value'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement+=ValueProperty
-	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedRelatedElement+=ValueProperty
-	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement+=ValueProperty
+	 *     (rule start) 'abstract' (ambiguity) ownedRelatedElement+=AbstractValueProperty
+	 *     ownedRelationship+=Annotation 'abstract' (ambiguity) ownedRelatedElement+=AbstractValueProperty
+	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedRelatedElement+=AbstractValueProperty
 	 */
 	protected void emit_PackagedUsage_ValueKeyword_4_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

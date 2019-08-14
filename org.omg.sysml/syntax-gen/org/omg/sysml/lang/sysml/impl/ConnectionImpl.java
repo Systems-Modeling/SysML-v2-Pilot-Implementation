@@ -18,6 +18,7 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -43,6 +44,9 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class ConnectionImpl extends ConnectorImpl implements Connection {
+	
+	public static final String INTERFACE_CONNECTOR_SUBSETTING_DEFAULT = "Blocks::interfaces";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +217,14 @@ public class ConnectionImpl extends ConnectorImpl implements Connection {
 		return basicGetConnectionInterface() != null;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(
+				getConnectorEnd().size() > 2? 
+					CONNECTOR_SUBSETTING_DEFAULT:
+					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

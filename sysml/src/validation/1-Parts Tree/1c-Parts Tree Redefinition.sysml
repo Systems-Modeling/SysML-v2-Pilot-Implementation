@@ -1,4 +1,4 @@
-package '1c-Parts Tree Redefinition - SysML' {
+package '1c-Parts Tree Redefinition' {
 	import Base::*;
 	import ScalarValues::*;
 	import SI::*;

@@ -1,4 +1,4 @@
-package '1a-Parts Tree - SysML' {
+package '1a-Parts Tree' {
 	import Base::*;
 	import ScalarValues::*;
 	import SI::*;

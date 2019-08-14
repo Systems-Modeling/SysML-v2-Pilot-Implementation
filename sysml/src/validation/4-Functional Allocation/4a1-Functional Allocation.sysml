@@ -1,7 +1,7 @@
-package '4a1-Functional Allocation - SysML' {
-	import '2-Parts Interconnection - SysML'::*;
-	import '3a-Function-based Behavior - SysML'::*;
-	import '3a-Function-based Behavior - SysML'::'provide power'::*;
+package '4a1-Functional Allocation' {
+	import '2-Parts Interconnection'::*;
+	import '3a-Function-based Behavior'::*;
+	import '3a-Function-based Behavior'::'provide power'::*;
 		
 	part vehicle1_c1_functional_allocation subsets vehicle1_c1 {
 		// Note: The definitions of the port types in '2-Parts Interconnection' do not include 

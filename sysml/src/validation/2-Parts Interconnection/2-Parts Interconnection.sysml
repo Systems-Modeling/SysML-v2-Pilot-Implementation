@@ -1,5 +1,5 @@
-package '2-Parts Interconnection - SysML' {
-	import '1a-Parts Tree - SysML'::*;
+package '2-Parts Interconnection' {
+	import '1a-Parts Tree'::*;
 	
 	/* DEFINITIONS */
 

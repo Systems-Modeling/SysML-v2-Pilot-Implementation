@@ -31,7 +31,7 @@ public interface LiteralReal extends LiteralExpression {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(double)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getLiteralReal_Value()
-	 * @model dataType="org.omg.sysml.lang.types.Real" required="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	double getValue();

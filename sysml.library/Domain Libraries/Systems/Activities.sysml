@@ -1,24 +1,24 @@
 package Activities {	
 	private import Base::*;
 	
-	abstract activity Execution() :> Performance {
-		action start: Execution redefines startShot;
-		action subexecutions: Execution[0..*] subsets subperformances;
-		action done: Execution redefines endShot;
+	activity Action :> Performance {
+		action start: Action := startShot;
+		action subactions: Action[0..*] := subperformances;
+		action done: Action := endShot;
 	}
 	
-	activity Merge() :> Execution {
-		action predecessors: Execution[1] redefines Performance::predecessors; // Shouldn't be composite.
+	activity Merge :> Action {
+		ref action predecessors: Action[1] := Performance::predecessors;
 	}
 	
-	activity Decision() :> Execution {
-		action successors: Execution[1] redefines Performance::successors; // Shouldn't be composite.
+	activity Decision :> Action {
+		ref action successors: Action[1] := Performance::successors;
 	}
 	
-	activity Join() :> Execution;
+	activity Join :> Action;
 	
-	activity Fork() :> Execution;
+	activity Fork :> Action;
 	
-	action executions: Execution[0..*] subsets performances;
+	action actions: Action[0..*] :> performances;
 	
 }

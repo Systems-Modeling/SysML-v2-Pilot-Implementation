@@ -48,9 +48,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -319,21 +319,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Association basicGetAssociation() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof Association? (Association)type: null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void setAssociation(Association newAssociation) {
 		EList<FeatureTyping> typings = getTyping();
 		if (typings.isEmpty()) {
@@ -555,12 +540,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected();
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return getConnectorEnd();
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				return getOwnedAssociationType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -597,16 +582,16 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
+				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -638,14 +623,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				return;
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
+				return;
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -677,12 +662,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return !getRelatedFeature().isEmpty();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return !getConnectorEnd().isEmpty();
+			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
+				return isSetOwnedAssociationType();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -3,8 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.omg.sysml.lang.sysml.CallAction;
+import org.omg.sysml.lang.sysml.DoAction;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -14,13 +13,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class CallActionImpl extends ActionImpl implements CallAction {
+public class DoActionImpl extends ActionImpl implements DoAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CallActionImpl() {
+	protected DoActionImpl() {
 		super();
 	}
 
@@ -31,7 +30,7 @@ public class CallActionImpl extends ActionImpl implements CallAction {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.CALL_ACTION;
+		return SysMLPackage.Literals.DO_ACTION;
 	}
 
 } //CallActionImpl

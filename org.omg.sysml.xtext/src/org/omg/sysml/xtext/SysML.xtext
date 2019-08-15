@@ -38,6 +38,7 @@ Unit returns SysML::Package :
 	  PackageUnit 
 	| BlockUnit
 	| ValueTypeUnit
+	| AssociationBlockUnit
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
 	| PartUnit
@@ -56,6 +57,10 @@ ValueTypeUnit returns SysML::ValueType :
 	UnitPrefix ValueType
 ;
 
+AssociationBlockUnit returns SysML::AssociationBlock :
+	UnitPrefix AssociationBlock
+;
+
 InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
 	UnitPrefix InterfaceDefinition
 ;
@@ -68,7 +73,7 @@ PartUnit returns SysML::PartProperty :
 	UnitPrefix Part
 ;
 
-ActionUnit returns SysML::CallAction :
+ActionUnit returns SysML::Action :
 	UnitPrefix Action
 ;
 
@@ -142,12 +147,14 @@ fragment PackagedDefinitionMember returns SysML::Membership :
     | 'block' ( memberName = Name )? 'is' memberElement = [SysML::Block|QualifiedName] ';'
 	| ownedRelatedElement += ValueTypeOrStub
     | ( 'value' 'type' | 'valuetype' ) ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
+	| ownedRelatedElement += AssociationBlockOrStub
+    | ( 'assoc' 'block' | 'assocbock' ) ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
 	| ownedRelatedElement += InterfaceDefinitionOrStub
     | ( 'interface' 'def' | 'interfacedef' ) ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
 	| ownedRelatedElement += PortDefinitionOrStub
     | ( 'port' 'def' | 'portdef' ) ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
 	| ownedRelatedElement += ActivityOrStub
-    | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
+    | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
 ;
@@ -159,10 +166,7 @@ fragment PackagedUsage returns SysML::Membership :
 	| 'value'? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ownedRelatedElement += AbstractValueProperty
 	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
-	| 'interface'? ownedRelatedElement += InterfaceUsage
-	| 'abstract' 'interface'? ownedRelatedElement += AbstractInterfaceUsage
-	| ( 'interface' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::InterfaceUsage|QualifiedName] ';'
-	| ownedRelatedElement += CallAction
+	| ownedRelatedElement += ActionUsage
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::Action|QualifiedName] ';'
 ;
 
@@ -191,45 +195,41 @@ NestedUsageMember returns SysML::FeatureMembership :
 	(
 	  isComposite ?= 'part' ownedRelatedElement += PartProperty
 	| 'abstract' isComposite ?= 'part' ownedRelatedElement += AbstractPartProperty
-	| 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName] ';'
+	| isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName] ';'
 	| 'ref' ( direction = FeatureDirection )? ownedRelatedElement += ReferenceProperty
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedRelatedElement += AbstractReferenceProperty
 	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
 	| 'value'? ( direction = FeatureDirection )? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractValueProperty
 	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
-	| 'port' ownedRelatedElement += PortUsage
-	| 'abstract' 'port' ownedRelatedElement += AbstractPortUsage
-	| 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
-	| 'interface' ownedRelatedElement += ( InterfaceUsage | Connection )
-	| 'abstract' 'interface' ownedRelatedElement += ( AbstractInterfaceUsage | AbstractConnection )
-	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
+	| isPort ?= 'port' ownedRelatedElement += PortUsage
+	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+	| 'interface' ownedRelatedElement += InterfaceConnector
+	| 'abstract' 'interface' ownedRelatedElement += AbstractInterfaceConnector
+	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceConnector|QualifiedName] ';'
+	| 'link' ownedRelatedElement += ConnectorUsage 
+    | 'abstract' 'link' ownedRelatedElement += AbstractConnectorUsage
 	| 'connect' ownedRelatedElement += Connector 
     | 'abstract' 'connect' ownedRelatedElement += AbstractConnector
-    | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::Connection|QualifiedName] ';'
-	| ownedRelatedElement += CallAction
-	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
-	| ownedRelatedElement += PerformAction
-	| ownedRelatedElement += AcceptAction
-	| 'perform' ( memberName = Name)? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
+    | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectorUsage|QualifiedName] ';'
     | 'bind' ownedRelatedElement += BindingConnector
-	| 'succession' 
-	  ( ownedRelatedElement += Succession 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
-	  )
+	| 'succession' ownedRelatedElement += Succession 
     | 'abstract' 'succession' ownedRelatedElement += AbstractSuccession
+	| 'succession' ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
     | 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
     | 'then' ownedRelatedElement += TargetSuccession ';'
-	| 'stream' 
-	  ( ownedRelatedElement += ItemFlow 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
-	  )
+	| 'stream' ownedRelatedElement += ItemFlow 
     | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlow
-	| 'flow' 
-	  ( ownedRelatedElement += SuccessionItemFlow 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
-	  )
+	| 'stream' ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
+	| 'flow' ownedRelatedElement += SuccessionItemFlow 
     | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlow
+	| 'flow' ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
+	| ownedRelatedElement += ActionUsage
+	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::Action|QualifiedName] ';'
+	| ownedRelatedElement += DoAction
+	| ownedRelatedElement += PerformAction
+	| ownedRelatedElement += AcceptAction
     )
 ;
 
@@ -301,6 +301,41 @@ fragment PortDeclaration returns SysML::PortDefinition :
 	( isAbstract ?= 'abstract' )? ( 'port' 'def' | 'portdef') ClassifierDeclarationCompletion
 ;
 
+/* ASSOCIATION BLOCKS */
+
+AssociationBlockOrStub returns SysML::AssociationBlock :
+	AssociationBlock
+;
+
+fragment AssociationBlock returns SysML::AssociationBlock :
+	AssociationBlockDeclaration AssociationBlockBody
+;
+
+fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
+	( isAbstract ?= 'abstract' )? ( 'assoc' 'block' | 'assocblock' ) ClassifierDeclarationCompletion
+;
+
+fragment AssociationBlockBody returns SysML::AssociationBlock :
+	';'| '{' ( ownedRelationship += AssociationMember | ownedRelationship += Import )* '}'
+;
+
+/* ASSOCIATION BLOCK MEMBERSHIPS */
+
+AssociationMember returns SysML::Membership :
+	NestedDefinitionMember | NestedUsageMember | AssociationEndMember
+;
+
+AssociationEndMember returns SysML::EndFeatureMembership :
+	TypeMemberPrefix
+    ( 'end' 'part' ownedRelatedElement += PartProperty 
+    | 'abstract' 'end' ownedRelatedElement += AbstractPartProperty
+    | 'end' 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
+    | 'end' 'ref'? ownedRelatedElement += ReferenceProperty
+    | 'abstract' 'end' 'ref'? ownedRelatedElement += AbstractReferenceProperty
+	| 'end' 'ref'? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
+	)
+;
+
 /* INTERFACE DEFINITIONS */
 
 InterfaceDefinitionOrStub returns SysML::InterfaceDefinition :
@@ -328,9 +363,9 @@ InterfaceMember returns SysML::Membership :
 InterfaceEndMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
     (
-      isPort ?= 'end' ownedRelatedElement += PortUsage
-    | 'abstract' isPort ?= 'end' ownedRelatedElement += AbstractPortUsage
-	| isPort ?= 'end' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+      isPort ?= 'end' 'port'? ownedRelatedElement += PortUsage
+    | 'abstract' isPort ?= 'end' 'port' ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'end' 'port'? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
 	)
 ;
 
@@ -345,7 +380,7 @@ fragment Activity returns SysML::Activity :
 ;
 
 fragment ActivityDeclaration returns SysML::Activity :
-	( isAbstract ?= 'abstract')? 'activity' name = Name ParameterList SuperclassingList?
+	( isAbstract ?= 'abstract')? 'activity' name = Name ParameterList? SuperclassingList?
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -494,27 +529,25 @@ AbstractPortUsage returns SysML::PortUsage :
 	AbstractUsage
 ;
 
-/* INTERFACE USAGES */
-
-InterfaceUsage returns SysML::InterfaceUsage :
-	Usage
-;
-
-AbstractInterfaceUsage returns SysML::InterfaceUsage :
-	AbstractUsage
-;
-
 /* CONNECTORS */
 
-Connector returns SysML::Connection :
+Connector returns SysML::ConnectorUsage :
 	ConnectionPart DefinitionBody
 ;
 
-AbstractConnector returns SysML::Connection :
+AbstractConnector returns SysML::ConnectorUsage :
 	ConnectionPart AbstractDefinitionBody
 ;
 
-fragment ConnectionPart returns SysML::InterfaceUsage :
+ConnectorUsage returns SysML::ConnectorUsage :
+	UsageDeclaration 'connect' ConnectionPart DefinitionBody
+;
+
+AbstractConnectorUsage returns SysML::ConnectorUsage :
+	UsageDeclaration 'connect' ConnectionPart AbstractDefinitionBody
+;
+
+fragment ConnectionPart returns SysML::ConnectorUsage :
 	 ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
 	| '(' ownedRelationship += ConnectorEndMember ',' ownedRelationship += ConnectorEndMember
 	      ( ',' ownedRelationship += ConnectorEndMember )*
@@ -547,13 +580,13 @@ EmptyEndMember returns SysML::EndFeatureMembership :
 	ownedRelatedElement += EmptyEnd
 ;
 
-/* CONNECTIONS */
+/* INTERFACE CONNECTORS */
 
-Connection returns SysML::Connection :	 
+InterfaceConnector returns SysML::InterfaceConnector :	 
 	UsageDeclaration 'connect' ConnectionPart DefinitionBody	  
 ;
 
-AbstractConnection returns SysML::Connection :
+AbstractInterfaceConnector returns SysML::InterfaceConnector :
 	UsageDeclaration 'connect' ConnectionPart  AbstractDefinitionBody
 ;
 
@@ -652,20 +685,19 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 /* ACTIONS */
 
-fragment Action returns SysML::CallAction :
+fragment Action returns SysML::Action :
     ( isAbstract ?= 'abstract' )? 'action' 
 	name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
 ;
 
-CallAction returns SysML::CallAction :
+ActionUsage returns SysML::Action :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? isComposite ?= 'action' 
+    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
 	( name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	| TypePart ActionParameterList? ValuePart?
 	| ( ':=' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
 	) ActivityBody
-
 ;
 
 fragment ActionParameterList returns SysML::Type :
@@ -681,6 +713,14 @@ ActionParameter returns SysML::Parameter :
 ActionParameterFlow returns SysML::ItemFlow :
 	( 'stream' | {SysML::SuccessionItemFlow} 'flow' ) ownedRelationship += EmptyItemFeatureMember 
 	'from' ownedRelationship += ItemFlowEndMember
+;
+
+DoAction returns SysML::DoAction :
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+    isComposite ?= 'do' ( name = Name TypePart 'by' )? 
+    ownedRelationship += Subset 
+    ActionParameterList? SubsettingPart ValuePart?
+	ActivityBody
 ;
 
 PerformAction returns SysML::PerformAction :

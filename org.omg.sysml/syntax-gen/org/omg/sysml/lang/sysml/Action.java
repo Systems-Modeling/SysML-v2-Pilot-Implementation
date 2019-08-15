@@ -12,13 +12,13 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Action#getActivity <em>Activity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Action#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Action#getActionOwningUsage <em>Action Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Action#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAction()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Action extends Usage, Step {

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface InterfaceDefinition extends Association, Definition {
+public interface InterfaceDefinition extends AssociationBlock {
 	/**
 	 * Returns the value of the '<em><b>Interface End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.

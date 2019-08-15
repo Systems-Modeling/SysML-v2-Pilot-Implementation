@@ -274,6 +274,15 @@ public interface SysMLFactory extends EFactory {
 	PortDefinition createPortDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
 	 * Returns a new object of class '<em>Activity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,6 +308,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	PerformAction createPerformAction();
+
+	/**
+	 * Returns a new object of class '<em>Do Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Do Action</em>'.
+	 * @generated
+	 */
+	DoAction createDoAction();
 
 	/**
 	 * Returns a new object of class '<em>Accept Action</em>'.
@@ -328,15 +346,6 @@ public interface SysMLFactory extends EFactory {
 	JoinAction createJoinAction();
 
 	/**
-	 * Returns a new object of class '<em>Call Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Call Action</em>'.
-	 * @generated
-	 */
-	CallAction createCallAction();
-
-	/**
 	 * Returns a new object of class '<em>Decision Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,24 +373,6 @@ public interface SysMLFactory extends EFactory {
 	ValueType createValueType();
 
 	/**
-	 * Returns a new object of class '<em>Connection</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connection</em>'.
-	 * @generated
-	 */
-	Connection createConnection();
-
-	/**
-	 * Returns a new object of class '<em>Interface Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interface Usage</em>'.
-	 * @generated
-	 */
-	InterfaceUsage createInterfaceUsage();
-
-	/**
 	 * Returns a new object of class '<em>Interface Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -391,6 +382,24 @@ public interface SysMLFactory extends EFactory {
 	InterfaceDefinition createInterfaceDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Connector Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connector Usage</em>'.
+	 * @generated
+	 */
+	ConnectorUsage createConnectorUsage();
+
+	/**
+	 * Returns a new object of class '<em>Interface Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Connector</em>'.
+	 * @generated
+	 */
+	InterfaceConnector createInterfaceConnector();
+
+	/**
 	 * Returns a new object of class '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +407,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Block createBlock();
+
+	/**
+	 * Returns a new object of class '<em>Association Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association Block</em>'.
+	 * @generated
+	 */
+	AssociationBlock createAssociationBlock();
 
 	/**
 	 * Returns a new object of class '<em>Reference Property</em>'.

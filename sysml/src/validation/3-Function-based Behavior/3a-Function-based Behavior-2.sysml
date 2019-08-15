@@ -62,7 +62,7 @@ package '3a-Function-based Behavior-2' {
 		then[0..1] merge;
 		
 		first engineStart;
-		then action redefines 'provide power' (
+		then do 'provide power' (
 			in fuelCmd = 'Provide Power With Control'::fuelCmd, 
 			out wheelTorque1 = 'Provide Power With Control'::wheelTorque1,
 			out wheelTorque2 = 'Provide Power With Control'::wheelTorque2

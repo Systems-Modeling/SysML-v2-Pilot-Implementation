@@ -23,7 +23,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ValueProperty extends Property, Usage {
+public interface ValueProperty extends Property {
 	/**
 	 * Returns the value of the '<em><b>Value Type</b></em>' reference.
 	 * <p>
@@ -42,7 +42,7 @@ public interface ValueProperty extends Property, Usage {
 	 * @see #setValueType(DataType)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getValueProperty_ValueType()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedValue'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedProperty'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

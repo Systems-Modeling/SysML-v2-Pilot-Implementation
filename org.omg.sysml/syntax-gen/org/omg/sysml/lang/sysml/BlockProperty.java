@@ -42,7 +42,7 @@ public interface BlockProperty extends Property {
 	 * @see #setBlock(org.omg.sysml.lang.sysml.Class)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBlockProperty_Block()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedProperty'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedProperty'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

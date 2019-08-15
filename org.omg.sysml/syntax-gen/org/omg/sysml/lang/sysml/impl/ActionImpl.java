@@ -27,19 +27,19 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionImpl#getActivity <em>Activity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionImpl#getActionOwningUsage <em>Action Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ActionImpl extends UsageImpl implements Action {
+public class ActionImpl extends UsageImpl implements Action {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::executions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Execution::subexecutions";
-	public static final String ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedExecutions";
-	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::Execution::incomingTransfers";
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::actions";
+	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Action::subactions";
+	public static final String ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedActions";
+	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::Action::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -232,15 +232,15 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 		switch (featureID) {
 			case SysMLPackage.ACTION__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.ACTION__ACTIVITY:
+				if (resolve) return getActivity();
+				return basicGetActivity();
 			case SysMLPackage.ACTION__ACTION_OWNING_DEFINITION:
 				if (resolve) return getActionOwningDefinition();
 				return basicGetActionOwningDefinition();
 			case SysMLPackage.ACTION__ACTION_OWNING_USAGE:
 				if (resolve) return getActionOwningUsage();
 				return basicGetActionOwningUsage();
-			case SysMLPackage.ACTION__ACTIVITY:
-				if (resolve) return getActivity();
-				return basicGetActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,14 +258,14 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case SysMLPackage.ACTION__ACTIVITY:
+				setActivity((Behavior)newValue);
+				return;
 			case SysMLPackage.ACTION__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.ACTION__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.ACTION__ACTIVITY:
-				setActivity((Behavior)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -282,14 +282,14 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 			case SysMLPackage.ACTION__BEHAVIOR:
 				getBehavior().clear();
 				return;
+			case SysMLPackage.ACTION__ACTIVITY:
+				setActivity((Behavior)null);
+				return;
 			case SysMLPackage.ACTION__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.ACTION__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.ACTION__ACTIVITY:
-				setActivity((Behavior)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -311,12 +311,12 @@ public abstract class ActionImpl extends UsageImpl implements Action {
 				return isSetOwningDefinition();
 			case SysMLPackage.ACTION__OWNING_USAGE:
 				return isSetOwningUsage();
+			case SysMLPackage.ACTION__ACTIVITY:
+				return isSetActivity();
 			case SysMLPackage.ACTION__ACTION_OWNING_DEFINITION:
 				return isSetActionOwningDefinition();
 			case SysMLPackage.ACTION__ACTION_OWNING_USAGE:
 				return isSetActionOwningUsage();
-			case SysMLPackage.ACTION__ACTIVITY:
-				return isSetActivity();
 		}
 		return super.eIsSet(featureID);
 	}

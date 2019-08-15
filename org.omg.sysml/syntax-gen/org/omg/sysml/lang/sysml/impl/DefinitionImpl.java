@@ -25,12 +25,12 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowProperty <em>Flow Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAction <em>Owned Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowProperty <em>Flow Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
@@ -129,18 +129,18 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_PORT:
-				return getOwnedPort();
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				return getFlowProperty();
-			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
-				return getOwnedProperty();
-			case SysMLPackage.DEFINITION__PROPERTY:
-				return getProperty();
-			case SysMLPackage.DEFINITION__OWNED_ACTION:
-				return getOwnedAction();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
+			case SysMLPackage.DEFINITION__OWNED_PORT:
+				return getOwnedPort();
+			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
+				return getOwnedProperty();
+			case SysMLPackage.DEFINITION__OWNED_ACTION:
+				return getOwnedAction();
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				return getFlowProperty();
+			case SysMLPackage.DEFINITION__PROPERTY:
+				return getProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,29 +154,29 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
-				return;
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				getFlowProperty().clear();
-				getFlowProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				getOwnedProperty().addAll((Collection<? extends Property>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends Property>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				getOwnedAction().clear();
 				getOwnedAction().addAll((Collection<? extends Action>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				getFlowProperty().addAll((Collection<? extends Property>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__PROPERTY:
+				getProperty().clear();
+				getProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,23 +190,23 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
-				return;
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				getFlowProperty().clear();
 				return;
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				return;
-			case SysMLPackage.DEFINITION__PROPERTY:
-				getProperty().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				getOwnedAction().clear();
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				return;
+			case SysMLPackage.DEFINITION__PROPERTY:
+				getProperty().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,18 +220,18 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_PORT:
-				return !getOwnedPort().isEmpty();
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				return !getFlowProperty().isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
-				return !getOwnedProperty().isEmpty();
-			case SysMLPackage.DEFINITION__PROPERTY:
-				return !getProperty().isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_ACTION:
-				return !getOwnedAction().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_PORT:
+				return !getOwnedPort().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
+				return !getOwnedProperty().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_ACTION:
+				return !getOwnedAction().isEmpty();
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				return !getFlowProperty().isEmpty();
+			case SysMLPackage.DEFINITION__PROPERTY:
+				return !getProperty().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

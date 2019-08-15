@@ -1,31 +1,24 @@
 package AccessControl {
 	import ScalarValues::*;
 	
-	port def AccessPointPort;
-	port def ConsolePort;
-	port def AuthorizerPort;
-	port def SupervisorPort;
-	port def UserPort;
-	port def DoorPort;
-	
 	block Authorizer {
-		port ap: AccessPointPort[1];
-		port console: ConsolePort[1];
+		port ap[1];
+		port console[1];
 	}
-	block SpecialAuthorizer :> AuthorizerPort;
+	block SpecialAuthorizer :> Authorizer;
 	
 	block Console {
-		port authorizer: AuthorizerPort[*];
-		port supervisor: SupervisorPort[1];
+		port authorizer[*];
+		port supervisor[1];
 	}
 	
 	block AccessPoint {
 		value floor: Integer; // 0..10
 		value seclev: Integer; // 1..4
 		
-		port user: UserPort;
-		port door: DoorPort;
-		port authorizer: AuthorizerPort[1];
+		port user;
+		port door;
+		port authorizer[1];
 	}
 	
 	block BlockingAccessPoint :> AccessPoint;
@@ -45,12 +38,12 @@ package AccessControl {
 			port supervisor redefines Console::supervisor;
 		}
 		
-		port user: UserPort;
-		port door: DoorPort;
-		port supervisor: SupervisorPort;
+		port user;
+		port door;
+		port supervisor;
 		
 		bind ap::user[*] = user;
-		bind c::supervisor[1] = supervisor[1];	
+		bind c::supervisor[1] = supervisor[1];
 		
 		interface ap_aut connect ap::authorizer[*] to aut::ap[1];
 		interface aut_c connect aut::console[*] to c::authorizer[1];

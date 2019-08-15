@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()

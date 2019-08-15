@@ -11,20 +11,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.omg.sysml.lang.sysml.AcceptAction;
+import org.omg.sysml.lang.sysml.Action;
 import org.omg.sysml.lang.sysml.Activity;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.AssociationBlock;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Block;
 import org.omg.sysml.lang.sysml.BlockExpression;
-import org.omg.sysml.lang.sysml.CallAction;
 import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Connection;
+import org.omg.sysml.lang.sysml.InterfaceConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConnectorUsage;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -39,7 +41,6 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InstanceCreationExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
-import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -86,6 +87,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.DecisionAction;
+import org.omg.sysml.lang.sysml.DoAction;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,35 +144,14 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyChanged(Notification notification, EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION:
-				notifyQueryQualifierExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.OPERATOR_EXPRESSION:
-				notifyOperatorExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.INVOCATION_EXPRESSION:
-				notifyInvocationExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.EXPRESSION:
-				notifyExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.STEP:
-				notifyStepChanged(notification, eClass);
-				break;
-			case SysMLPackage.FEATURE:
-				notifyFeatureChanged(notification, eClass);
-				break;
-			case SysMLPackage.TYPE:
-				notifyTypeChanged(notification, eClass);
-				break;
-			case SysMLPackage.PACKAGE:
-				notifyPackageChanged(notification, eClass);
-				break;
 			case SysMLPackage.MEMBERSHIP:
 				notifyMembershipChanged(notification, eClass);
 				break;
 			case SysMLPackage.RELATIONSHIP:
 				notifyRelationshipChanged(notification, eClass);
+				break;
+			case SysMLPackage.PACKAGE:
+				notifyPackageChanged(notification, eClass);
 				break;
 			case SysMLPackage.IMPORT:
 				notifyImportChanged(notification, eClass);
@@ -187,17 +168,17 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CLASSIFIER:
 				notifyClassifierChanged(notification, eClass);
 				break;
-			case SysMLPackage.SUPERCLASSING:
-				notifySuperclassingChanged(notification, eClass);
+			case SysMLPackage.TYPE:
+				notifyTypeChanged(notification, eClass);
 				break;
 			case SysMLPackage.GENERALIZATION:
 				notifyGeneralizationChanged(notification, eClass);
 				break;
-			case SysMLPackage.PARAMETER:
-				notifyParameterChanged(notification, eClass);
-				break;
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				notifyFeatureMembershipChanged(notification, eClass);
+				break;
+			case SysMLPackage.FEATURE:
+				notifyFeatureChanged(notification, eClass);
 				break;
 			case SysMLPackage.REDEFINITION:
 				notifyRedefinitionChanged(notification, eClass);
@@ -208,38 +189,140 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FEATURE_VALUE:
 				notifyFeatureValueChanged(notification, eClass);
 				break;
+			case SysMLPackage.EXPRESSION:
+				notifyExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.STEP:
+				notifyStepChanged(notification, eClass);
+				break;
 			case SysMLPackage.MULTIPLICITY:
 				notifyMultiplicityChanged(notification, eClass);
 				break;
 			case SysMLPackage.FEATURE_TYPING:
 				notifyFeatureTypingChanged(notification, eClass);
 				break;
-			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				notifyQueryPathExpressionChanged(notification, eClass);
+			case SysMLPackage.SUPERCLASSING:
+				notifySuperclassingChanged(notification, eClass);
 				break;
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				notifyFeatureReferenceExpressionChanged(notification, eClass);
+			case SysMLPackage.PARAMETER:
+				notifyParameterChanged(notification, eClass);
 				break;
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
-				notifyQueryPathStepExpressionChanged(notification, eClass);
+			case SysMLPackage.OWNERSHIP:
+				notifyOwnershipChanged(notification, eClass);
 				break;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION:
-				notifyInstanceCreationExpressionChanged(notification, eClass);
+			case SysMLPackage.ANNOTATION:
+				notifyAnnotationChanged(notification, eClass);
 				break;
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
-				notifySequenceConstructionExpressionChanged(notification, eClass);
+			case SysMLPackage.ACTIVITY:
+				notifyActivityChanged(notification, eClass);
+				break;
+			case SysMLPackage.PORT_USAGE:
+				notifyPortUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.PORT_DEFINITION:
+				notifyPortDefinitionChanged(notification, eClass);
+				break;
+			case SysMLPackage.ACTION:
+				notifyActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.CLASS:
+				notifyClassChanged(notification, eClass);
+				break;
+			case SysMLPackage.BLOCK:
+				notifyBlockChanged(notification, eClass);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK:
+				notifyAssociationBlockChanged(notification, eClass);
+				break;
+			case SysMLPackage.ASSOCIATION:
+				notifyAssociationChanged(notification, eClass);
+				break;
+			case SysMLPackage.CONNECTOR:
+				notifyConnectorChanged(notification, eClass);
+				break;
+			case SysMLPackage.PART_PROPERTY:
+				notifyPartPropertyChanged(notification, eClass);
+				break;
+			case SysMLPackage.INTERFACE_DEFINITION:
+				notifyInterfaceDefinitionChanged(notification, eClass);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE:
+				notifyConnectorUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR:
+				notifyInterfaceConnectorChanged(notification, eClass);
+				break;
+			case SysMLPackage.REFERENCE_PROPERTY:
+				notifyReferencePropertyChanged(notification, eClass);
+				break;
+			case SysMLPackage.VALUE_PROPERTY:
+				notifyValuePropertyChanged(notification, eClass);
+				break;
+			case SysMLPackage.DATA_TYPE:
+				notifyDataTypeChanged(notification, eClass);
+				break;
+			case SysMLPackage.VALUE_TYPE:
+				notifyValueTypeChanged(notification, eClass);
+				break;
+			case SysMLPackage.JOIN_ACTION:
+				notifyJoinActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.DECISION_ACTION:
+				notifyDecisionActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.PERFORM_ACTION:
+				notifyPerformActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.ACCEPT_ACTION:
+				notifyAcceptActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.MERGE_ACTION:
+				notifyMergeActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.SEND_ACTION:
+				notifySendActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.FORK_ACTION:
+				notifyForkActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.DO_ACTION:
+				notifyDoActionChanged(notification, eClass);
+				break;
+			case SysMLPackage.INVOCATION_EXPRESSION:
+				notifyInvocationExpressionChanged(notification, eClass);
 				break;
 			case SysMLPackage.BLOCK_EXPRESSION:
 				notifyBlockExpressionChanged(notification, eClass);
 				break;
-			case SysMLPackage.LITERAL_UNBOUNDED:
-				notifyLiteralUnboundedChanged(notification, eClass);
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION:
+				notifyInstanceCreationExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION:
+				notifyQueryQualifierExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.OPERATOR_EXPRESSION:
+				notifyOperatorExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
+				notifyFeatureReferenceExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
+				notifySequenceConstructionExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_PATH_EXPRESSION:
+				notifyQueryPathExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
+				notifyQueryPathStepExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_BOOLEAN:
+				notifyLiteralBooleanChanged(notification, eClass);
 				break;
 			case SysMLPackage.LITERAL_EXPRESSION:
 				notifyLiteralExpressionChanged(notification, eClass);
 				break;
-			case SysMLPackage.LITERAL_INTEGER:
-				notifyLiteralIntegerChanged(notification, eClass);
+			case SysMLPackage.LITERAL_UNBOUNDED:
+				notifyLiteralUnboundedChanged(notification, eClass);
 				break;
 			case SysMLPackage.LITERAL_STRING:
 				notifyLiteralStringChanged(notification, eClass);
@@ -250,23 +333,11 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.NULL_EXPRESSION:
 				notifyNullExpressionChanged(notification, eClass);
 				break;
-			case SysMLPackage.LITERAL_BOOLEAN:
-				notifyLiteralBooleanChanged(notification, eClass);
-				break;
-			case SysMLPackage.CONNECTOR:
-				notifyConnectorChanged(notification, eClass);
-				break;
-			case SysMLPackage.ASSOCIATION:
-				notifyAssociationChanged(notification, eClass);
-				break;
-			case SysMLPackage.CLASS:
-				notifyClassChanged(notification, eClass);
+			case SysMLPackage.LITERAL_INTEGER:
+				notifyLiteralIntegerChanged(notification, eClass);
 				break;
 			case SysMLPackage.BINDING_CONNECTOR:
 				notifyBindingConnectorChanged(notification, eClass);
-				break;
-			case SysMLPackage.ITEM_FEATURE:
-				notifyItemFeatureChanged(notification, eClass);
 				break;
 			case SysMLPackage.ITEM_FLOW_FEATURE:
 				notifyItemFlowFeatureChanged(notification, eClass);
@@ -274,8 +345,11 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ITEM_FLOW_END:
 				notifyItemFlowEndChanged(notification, eClass);
 				break;
-			case SysMLPackage.INTERACTION:
-				notifyInteractionChanged(notification, eClass);
+			case SysMLPackage.ITEM_FEATURE:
+				notifyItemFeatureChanged(notification, eClass);
+				break;
+			case SysMLPackage.ITEM_FLOW:
+				notifyItemFlowChanged(notification, eClass);
 				break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW:
 				notifySuccessionItemFlowChanged(notification, eClass);
@@ -283,14 +357,11 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.SUCCESSION:
 				notifySuccessionChanged(notification, eClass);
 				break;
-			case SysMLPackage.ITEM_FLOW:
-				notifyItemFlowChanged(notification, eClass);
+			case SysMLPackage.INTERACTION:
+				notifyInteractionChanged(notification, eClass);
 				break;
 			case SysMLPackage.TARGET_END:
 				notifyTargetEndChanged(notification, eClass);
-				break;
-			case SysMLPackage.PARAMETER_MEMBERSHIP:
-				notifyParameterMembershipChanged(notification, eClass);
 				break;
 			case SysMLPackage.SOURCE_END:
 				notifySourceEndChanged(notification, eClass);
@@ -298,80 +369,17 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
 				notifyReturnParameterMembershipChanged(notification, eClass);
 				break;
+			case SysMLPackage.PARAMETER_MEMBERSHIP:
+				notifyParameterMembershipChanged(notification, eClass);
+				break;
 			case SysMLPackage.STRUCTURED_FEATURE:
 				notifyStructuredFeatureChanged(notification, eClass);
 				break;
 			case SysMLPackage.ORDERED_FEATURE:
 				notifyOrderedFeatureChanged(notification, eClass);
 				break;
-			case SysMLPackage.DATA_TYPE:
-				notifyDataTypeChanged(notification, eClass);
-				break;
-			case SysMLPackage.PORT_USAGE:
-				notifyPortUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.PORT_DEFINITION:
-				notifyPortDefinitionChanged(notification, eClass);
-				break;
-			case SysMLPackage.ACTIVITY:
-				notifyActivityChanged(notification, eClass);
-				break;
-			case SysMLPackage.MERGE_ACTION:
-				notifyMergeActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.PERFORM_ACTION:
-				notifyPerformActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.ACCEPT_ACTION:
-				notifyAcceptActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.FORK_ACTION:
-				notifyForkActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.JOIN_ACTION:
-				notifyJoinActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.CALL_ACTION:
-				notifyCallActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.DECISION_ACTION:
-				notifyDecisionActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.SEND_ACTION:
-				notifySendActionChanged(notification, eClass);
-				break;
-			case SysMLPackage.VALUE_TYPE:
-				notifyValueTypeChanged(notification, eClass);
-				break;
-			case SysMLPackage.CONNECTION:
-				notifyConnectionChanged(notification, eClass);
-				break;
-			case SysMLPackage.INTERFACE_USAGE:
-				notifyInterfaceUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.INTERFACE_DEFINITION:
-				notifyInterfaceDefinitionChanged(notification, eClass);
-				break;
-			case SysMLPackage.BLOCK:
-				notifyBlockChanged(notification, eClass);
-				break;
-			case SysMLPackage.REFERENCE_PROPERTY:
-				notifyReferencePropertyChanged(notification, eClass);
-				break;
-			case SysMLPackage.PART_PROPERTY:
-				notifyPartPropertyChanged(notification, eClass);
-				break;
-			case SysMLPackage.VALUE_PROPERTY:
-				notifyValuePropertyChanged(notification, eClass);
-				break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
 				notifyEndFeatureMembershipChanged(notification, eClass);
-				break;
-			case SysMLPackage.OWNERSHIP:
-				notifyOwnershipChanged(notification, eClass);
-				break;
-			case SysMLPackage.ANNOTATION:
-				notifyAnnotationChanged(notification, eClass);
 				break;
 		}
 	}
@@ -499,10 +507,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPackageChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(org.omg.sysml.lang.sysml.Package.class)) {
-			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
+			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 		}
@@ -549,10 +557,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPredicateChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Predicate.class)) {
-			case SysMLPackage.PREDICATE__OWNED_MEMBERSHIP:
+			case SysMLPackage.PREDICATE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PREDICATE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PREDICATE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PREDICATE__INHERITED_MEMBERSHIP:
@@ -571,10 +579,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyFunctionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Function.class)) {
-			case SysMLPackage.FUNCTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.FUNCTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.FUNCTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.FUNCTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.FUNCTION__INHERITED_MEMBERSHIP:
@@ -593,10 +601,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyBehaviorChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Behavior.class)) {
-			case SysMLPackage.BEHAVIOR__OWNED_MEMBERSHIP:
+			case SysMLPackage.BEHAVIOR__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.BEHAVIOR__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.BEHAVIOR__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.BEHAVIOR__INHERITED_MEMBERSHIP:
@@ -615,10 +623,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyClassifierChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Classifier.class)) {
-			case SysMLPackage.CLASSIFIER__OWNED_MEMBERSHIP:
+			case SysMLPackage.CLASSIFIER__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.CLASSIFIER__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.CLASSIFIER__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.CLASSIFIER__INHERITED_MEMBERSHIP:
@@ -637,10 +645,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyTypeChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Type.class)) {
-			case SysMLPackage.TYPE__OWNED_MEMBERSHIP:
+			case SysMLPackage.TYPE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.TYPE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.TYPE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.TYPE__INHERITED_MEMBERSHIP:
@@ -659,10 +667,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyClassChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(org.omg.sysml.lang.sysml.Class.class)) {
-			case SysMLPackage.CLASS__OWNED_MEMBERSHIP:
+			case SysMLPackage.CLASS__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.CLASS__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.CLASS__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.CLASS__INHERITED_MEMBERSHIP:
@@ -709,10 +717,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyFeatureChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Feature.class)) {
-			case SysMLPackage.FEATURE__OWNED_MEMBERSHIP:
+			case SysMLPackage.FEATURE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.FEATURE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.FEATURE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.FEATURE__INHERITED_MEMBERSHIP:
@@ -812,10 +820,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Expression.class)) {
-			case SysMLPackage.EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.EXPRESSION__INHERITED_MEMBERSHIP:
@@ -834,10 +842,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyStepChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Step.class)) {
-			case SysMLPackage.STEP__OWNED_MEMBERSHIP:
+			case SysMLPackage.STEP__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.STEP__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.STEP__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.STEP__INHERITED_MEMBERSHIP:
@@ -943,10 +951,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyParameterChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Parameter.class)) {
-			case SysMLPackage.PARAMETER__OWNED_MEMBERSHIP:
+			case SysMLPackage.PARAMETER__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PARAMETER__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PARAMETER__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PARAMETER__INHERITED_MEMBERSHIP:
@@ -965,10 +973,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyAssociationChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Association.class)) {
-			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
+			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ASSOCIATION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ASSOCIATION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ASSOCIATION__INHERITED_MEMBERSHIP:
@@ -999,10 +1007,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyConnectorChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Connector.class)) {
-			case SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP:
+			case SysMLPackage.CONNECTOR__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.CONNECTOR__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.CONNECTOR__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.CONNECTOR__INHERITED_MEMBERSHIP:
@@ -1036,10 +1044,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyOrderedFeatureChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(OrderedFeature.class)) {
-			case SysMLPackage.ORDERED_FEATURE__OWNED_MEMBERSHIP:
+			case SysMLPackage.ORDERED_FEATURE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ORDERED_FEATURE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ORDERED_FEATURE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ORDERED_FEATURE__INHERITED_MEMBERSHIP:
@@ -1058,10 +1066,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyStructuredFeatureChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(StructuredFeature.class)) {
-			case SysMLPackage.STRUCTURED_FEATURE__OWNED_MEMBERSHIP:
+			case SysMLPackage.STRUCTURED_FEATURE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.STRUCTURED_FEATURE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.STRUCTURED_FEATURE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.STRUCTURED_FEATURE__INHERITED_MEMBERSHIP:
@@ -1080,10 +1088,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyDataTypeChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(DataType.class)) {
-			case SysMLPackage.DATA_TYPE__OWNED_MEMBERSHIP:
+			case SysMLPackage.DATA_TYPE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.DATA_TYPE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.DATA_TYPE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.DATA_TYPE__INHERITED_MEMBERSHIP:
@@ -1102,10 +1110,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPortUsageChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(PortUsage.class)) {
-			case SysMLPackage.PORT_USAGE__OWNED_MEMBERSHIP:
+			case SysMLPackage.PORT_USAGE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PORT_USAGE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PORT_USAGE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PORT_USAGE__INHERITED_MEMBERSHIP:
@@ -1124,10 +1132,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPortDefinitionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(PortDefinition.class)) {
-			case SysMLPackage.PORT_DEFINITION__OWNED_MEMBERSHIP:
+			case SysMLPackage.PORT_DEFINITION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PORT_DEFINITION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PORT_DEFINITION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PORT_DEFINITION__INHERITED_MEMBERSHIP:
@@ -1144,12 +1152,34 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyActivityChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(Activity.class)) {
-			case SysMLPackage.ACTIVITY__OWNED_MEMBERSHIP:
+	protected void notifyActionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(Action.class)) {
+			case SysMLPackage.ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
+			case SysMLPackage.ACTION__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ACTION__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyActivityChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(Activity.class)) {
 			case SysMLPackage.ACTIVITY__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ACTIVITY__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ACTIVITY__INHERITED_MEMBERSHIP:
@@ -1168,10 +1198,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyMergeActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(MergeAction.class)) {
-			case SysMLPackage.MERGE_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.MERGE_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.MERGE_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.MERGE_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.MERGE_ACTION__INHERITED_MEMBERSHIP:
@@ -1190,10 +1220,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPerformActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(PerformAction.class)) {
-			case SysMLPackage.PERFORM_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.PERFORM_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PERFORM_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PERFORM_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PERFORM_ACTION__INHERITED_MEMBERSHIP:
@@ -1210,12 +1240,34 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyAcceptActionChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(AcceptAction.class)) {
-			case SysMLPackage.ACCEPT_ACTION__OWNED_MEMBERSHIP:
+	protected void notifyDoActionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(DoAction.class)) {
+			case SysMLPackage.DO_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
+			case SysMLPackage.DO_ACTION__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.DO_ACTION__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyAcceptActionChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(AcceptAction.class)) {
 			case SysMLPackage.ACCEPT_ACTION__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ACCEPT_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ACCEPT_ACTION__INHERITED_MEMBERSHIP:
@@ -1234,10 +1286,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyForkActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ForkAction.class)) {
-			case SysMLPackage.FORK_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.FORK_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.FORK_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.FORK_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.FORK_ACTION__INHERITED_MEMBERSHIP:
@@ -1256,10 +1308,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyJoinActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(JoinAction.class)) {
-			case SysMLPackage.JOIN_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.JOIN_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.JOIN_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.JOIN_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.JOIN_ACTION__INHERITED_MEMBERSHIP:
@@ -1276,34 +1328,12 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyCallActionChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(CallAction.class)) {
-			case SysMLPackage.CALL_ACTION__OWNED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.CALL_ACTION__IMPORTED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.CALL_ACTION__INHERITED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-		}
-	}
-
-	/**
-	 * Calls <code>notifyChanged</code> for each affected derived union.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param notification a description of the change.
-	 * @param eClass the Ecore class of the notifier.
-	 * @generated
-	 */
 	protected void notifyDecisionActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(DecisionAction.class)) {
-			case SysMLPackage.DECISION_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.DECISION_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.DECISION_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.DECISION_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.DECISION_ACTION__INHERITED_MEMBERSHIP:
@@ -1322,10 +1352,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifySendActionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(SendAction.class)) {
-			case SysMLPackage.SEND_ACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.SEND_ACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.SEND_ACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.SEND_ACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.SEND_ACTION__INHERITED_MEMBERSHIP:
@@ -1344,10 +1374,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyValueTypeChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ValueType.class)) {
-			case SysMLPackage.VALUE_TYPE__OWNED_MEMBERSHIP:
+			case SysMLPackage.VALUE_TYPE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.VALUE_TYPE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.VALUE_TYPE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.VALUE_TYPE__INHERITED_MEMBERSHIP:
@@ -1364,71 +1394,12 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyConnectionChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(Connection.class)) {
-			case SysMLPackage.CONNECTION__OWNED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.CONNECTION__IMPORTED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.CONNECTION__INHERITED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.CONNECTION__TARGET:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
-				break;
-			case SysMLPackage.CONNECTION__SOURCE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
-				break;
-			case SysMLPackage.CONNECTION__OWNING_RELATED_ELEMENT:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
-				break;
-			case SysMLPackage.CONNECTION__OWNED_RELATED_ELEMENT:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
-				break;
-			case SysMLPackage.CONNECTION__RELATED_FEATURE:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
-				break;
-		}
-	}
-
-	/**
-	 * Calls <code>notifyChanged</code> for each affected derived union.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param notification a description of the change.
-	 * @param eClass the Ecore class of the notifier.
-	 * @generated
-	 */
-	protected void notifyInterfaceUsageChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(InterfaceUsage.class)) {
-			case SysMLPackage.INTERFACE_USAGE__OWNED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.INTERFACE_USAGE__IMPORTED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-			case SysMLPackage.INTERFACE_USAGE__INHERITED_MEMBERSHIP:
-				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
-				break;
-		}
-	}
-
-	/**
-	 * Calls <code>notifyChanged</code> for each affected derived union.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param notification a description of the change.
-	 * @param eClass the Ecore class of the notifier.
-	 * @generated
-	 */
 	protected void notifyInterfaceDefinitionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(InterfaceDefinition.class)) {
-			case SysMLPackage.INTERFACE_DEFINITION__OWNED_MEMBERSHIP:
+			case SysMLPackage.INTERFACE_DEFINITION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.INTERFACE_DEFINITION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.INTERFACE_DEFINITION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.INTERFACE_DEFINITION__INHERITED_MEMBERSHIP:
@@ -1457,12 +1428,86 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyBlockChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(Block.class)) {
-			case SysMLPackage.BLOCK__OWNED_MEMBERSHIP:
+	protected void notifyConnectorUsageChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ConnectorUsage.class)) {
+			case SysMLPackage.CONNECTOR_USAGE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
+			case SysMLPackage.CONNECTOR_USAGE__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONNECTOR_USAGE__RELATED_FEATURE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyInterfaceConnectorChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(InterfaceConnector.class)) {
+			case SysMLPackage.INTERFACE_CONNECTOR__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.INTERFACE_CONNECTOR__RELATED_FEATURE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyBlockChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(Block.class)) {
 			case SysMLPackage.BLOCK__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.BLOCK__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.BLOCK__INHERITED_MEMBERSHIP:
@@ -1479,12 +1524,46 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 * @param eClass the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyReferencePropertyChanged(Notification notification, EClass eClass) {
-		switch (notification.getFeatureID(ReferenceProperty.class)) {
-			case SysMLPackage.REFERENCE_PROPERTY__OWNED_MEMBERSHIP:
+	protected void notifyAssociationBlockChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(AssociationBlock.class)) {
+			case SysMLPackage.ASSOCIATION_BLOCK__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyReferencePropertyChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ReferenceProperty.class)) {
 			case SysMLPackage.REFERENCE_PROPERTY__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+			case SysMLPackage.REFERENCE_PROPERTY__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.REFERENCE_PROPERTY__INHERITED_MEMBERSHIP:
@@ -1503,10 +1582,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyPartPropertyChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(PartProperty.class)) {
-			case SysMLPackage.PART_PROPERTY__OWNED_MEMBERSHIP:
+			case SysMLPackage.PART_PROPERTY__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.PART_PROPERTY__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.PART_PROPERTY__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.PART_PROPERTY__INHERITED_MEMBERSHIP:
@@ -1525,10 +1604,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyValuePropertyChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ValueProperty.class)) {
-			case SysMLPackage.VALUE_PROPERTY__OWNED_MEMBERSHIP:
+			case SysMLPackage.VALUE_PROPERTY__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.VALUE_PROPERTY__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.VALUE_PROPERTY__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.VALUE_PROPERTY__INHERITED_MEMBERSHIP:
@@ -1547,10 +1626,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyBindingConnectorChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(BindingConnector.class)) {
-			case SysMLPackage.BINDING_CONNECTOR__OWNED_MEMBERSHIP:
+			case SysMLPackage.BINDING_CONNECTOR__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.BINDING_CONNECTOR__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.BINDING_CONNECTOR__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.BINDING_CONNECTOR__INHERITED_MEMBERSHIP:
@@ -1584,10 +1663,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifySuccessionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Succession.class)) {
-			case SysMLPackage.SUCCESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.SUCCESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.SUCCESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.SUCCESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.SUCCESSION__INHERITED_MEMBERSHIP:
@@ -1646,10 +1725,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyInteractionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(Interaction.class)) {
-			case SysMLPackage.INTERACTION__OWNED_MEMBERSHIP:
+			case SysMLPackage.INTERACTION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.INTERACTION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.INTERACTION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.INTERACTION__INHERITED_MEMBERSHIP:
@@ -1708,10 +1787,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralBooleanChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralBoolean.class)) {
-			case SysMLPackage.LITERAL_BOOLEAN__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_BOOLEAN__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_BOOLEAN__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_BOOLEAN__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_BOOLEAN__INHERITED_MEMBERSHIP:
@@ -1730,10 +1809,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyInvocationExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(InvocationExpression.class)) {
-			case SysMLPackage.INVOCATION_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.INVOCATION_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.INVOCATION_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.INVOCATION_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1752,10 +1831,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyBlockExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(BlockExpression.class)) {
-			case SysMLPackage.BLOCK_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.BLOCK_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.BLOCK_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.BLOCK_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.BLOCK_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1824,10 +1903,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyQueryPathStepExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(QueryPathStepExpression.class)) {
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1846,10 +1925,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyQueryQualifierExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(QueryQualifierExpression.class)) {
-			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1868,10 +1947,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyQueryPathExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(QueryPathExpression.class)) {
-			case SysMLPackage.QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.QUERY_PATH_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.QUERY_PATH_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.QUERY_PATH_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.QUERY_PATH_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1890,10 +1969,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralExpression.class)) {
-			case SysMLPackage.LITERAL_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -1912,10 +1991,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralRealChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralReal.class)) {
-			case SysMLPackage.LITERAL_REAL__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_REAL__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_REAL__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_REAL__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_REAL__INHERITED_MEMBERSHIP:
@@ -1934,10 +2013,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralUnboundedChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralUnbounded.class)) {
-			case SysMLPackage.LITERAL_UNBOUNDED__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_UNBOUNDED__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_UNBOUNDED__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_UNBOUNDED__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_UNBOUNDED__INHERITED_MEMBERSHIP:
@@ -1956,10 +2035,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralIntegerChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralInteger.class)) {
-			case SysMLPackage.LITERAL_INTEGER__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_INTEGER__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_INTEGER__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_INTEGER__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_INTEGER__INHERITED_MEMBERSHIP:
@@ -1978,10 +2057,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyItemFlowEndChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ItemFlowEnd.class)) {
-			case SysMLPackage.ITEM_FLOW_END__OWNED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW_END__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ITEM_FLOW_END__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW_END__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ITEM_FLOW_END__INHERITED_MEMBERSHIP:
@@ -2000,10 +2079,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyItemFlowFeatureChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ItemFlowFeature.class)) {
-			case SysMLPackage.ITEM_FLOW_FEATURE__OWNED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW_FEATURE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ITEM_FLOW_FEATURE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW_FEATURE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ITEM_FLOW_FEATURE__INHERITED_MEMBERSHIP:
@@ -2022,10 +2101,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyItemFeatureChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ItemFeature.class)) {
-			case SysMLPackage.ITEM_FEATURE__OWNED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FEATURE__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ITEM_FEATURE__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FEATURE__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ITEM_FEATURE__INHERITED_MEMBERSHIP:
@@ -2044,10 +2123,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifySourceEndChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(SourceEnd.class)) {
-			case SysMLPackage.SOURCE_END__OWNED_MEMBERSHIP:
+			case SysMLPackage.SOURCE_END__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.SOURCE_END__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.SOURCE_END__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.SOURCE_END__INHERITED_MEMBERSHIP:
@@ -2066,10 +2145,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyTargetEndChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(TargetEnd.class)) {
-			case SysMLPackage.TARGET_END__OWNED_MEMBERSHIP:
+			case SysMLPackage.TARGET_END__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.TARGET_END__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.TARGET_END__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.TARGET_END__INHERITED_MEMBERSHIP:
@@ -2088,10 +2167,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyOperatorExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(OperatorExpression.class)) {
-			case SysMLPackage.OPERATOR_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.OPERATOR_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.OPERATOR_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.OPERATOR_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.OPERATOR_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -2110,10 +2189,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyLiteralStringChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(LiteralString.class)) {
-			case SysMLPackage.LITERAL_STRING__OWNED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_STRING__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.LITERAL_STRING__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.LITERAL_STRING__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.LITERAL_STRING__INHERITED_MEMBERSHIP:
@@ -2132,10 +2211,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyItemFlowChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(ItemFlow.class)) {
-			case SysMLPackage.ITEM_FLOW__OWNED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.ITEM_FLOW__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.ITEM_FLOW__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.ITEM_FLOW__INHERITED_MEMBERSHIP:
@@ -2169,10 +2248,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifySuccessionItemFlowChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(SuccessionItemFlow.class)) {
-			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_MEMBERSHIP:
+			case SysMLPackage.SUCCESSION_ITEM_FLOW__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.SUCCESSION_ITEM_FLOW__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.SUCCESSION_ITEM_FLOW__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW__INHERITED_MEMBERSHIP:
@@ -2206,10 +2285,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyInstanceCreationExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(InstanceCreationExpression.class)) {
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.INSTANCE_CREATION_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -2228,10 +2307,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyNullExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(NullExpression.class)) {
-			case SysMLPackage.NULL_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.NULL_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.NULL_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.NULL_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.NULL_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -2250,10 +2329,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifySequenceConstructionExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(SequenceConstructionExpression.class)) {
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__INHERITED_MEMBERSHIP:
@@ -2272,10 +2351,10 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 	 */
 	protected void notifyFeatureReferenceExpressionChanged(Notification notification, EClass eClass) {
 		switch (notification.getFeatureID(FeatureReferenceExpression.class)) {
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP:
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__IMPORTED_MEMBERSHIP:
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__OWNED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
 				break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__INHERITED_MEMBERSHIP:

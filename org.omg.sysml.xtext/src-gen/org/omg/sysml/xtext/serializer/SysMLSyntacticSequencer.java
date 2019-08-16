@@ -54,6 +54,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
 	protected AbstractElementAlias match_UsageDeclaration_ColonEqualsSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
 	protected AbstractElementAlias match_ValueTypeDeclaration_ValuetypeKeyword_1_1_or___ValueKeyword_1_0_0_TypeKeyword_1_0_1__;
+	protected AbstractElementAlias match_Value_ValueKeyword_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -90,6 +91,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getSpecializesKeyword_0_1()));
 		match_UsageDeclaration_ColonEqualsSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getColonEqualsSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
 		match_ValueTypeDeclaration_ValuetypeKeyword_1_1_or___ValueKeyword_1_0_0_TypeKeyword_1_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getValueTypeDeclarationAccess().getValueKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getValueTypeDeclarationAccess().getTypeKeyword_1_0_1())), new TokenAlias(false, false, grammarAccess.getValueTypeDeclarationAccess().getValuetypeKeyword_1_1()));
+		match_Value_ValueKeyword_1_q = new TokenAlias(false, true, grammarAccess.getValueAccess().getValueKeyword_1());
 	}
 	
 	@Override
@@ -168,6 +170,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_UsageDeclaration_ColonEqualsSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ValueTypeDeclaration_ValuetypeKeyword_1_1_or___ValueKeyword_1_0_0_TypeKeyword_1_0_1__.equals(syntax))
 				emit_ValueTypeDeclaration_ValuetypeKeyword_1_1_or___ValueKeyword_1_0_0_TypeKeyword_1_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Value_ValueKeyword_1_q.equals(syntax))
+				emit_Value_ValueKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -665,6 +669,19 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=Annotation (ambiguity) name=Name
 	 */
 	protected void emit_ValueTypeDeclaration_ValuetypeKeyword_1_1_or___ValueKeyword_1_0_0_TypeKeyword_1_0_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'value'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) name=Name
+	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     ownedRelationship+=Annotation (ambiguity) name=Name
+	 */
+	protected void emit_Value_ValueKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

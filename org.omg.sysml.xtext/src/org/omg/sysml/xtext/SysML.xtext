@@ -34,6 +34,13 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
+MultiUnit returns SysML::Element :
+	Unit 
+	( {SysML::Membership.ownedRelatedElement += current} {SysML::Package.ownedRelationship += current} 
+	  ( ownedRelationship += UnitMember )+
+	)?
+;
+
 Unit returns SysML::Package :
 	  PackageUnit 
 	| BlockUnit
@@ -42,6 +49,7 @@ Unit returns SysML::Package :
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
 	| PartUnit
+	| ValueUnit
 	| ActionUnit
 ;
 
@@ -73,6 +81,10 @@ PartUnit returns SysML::PartProperty :
 	UnitPrefix Part
 ;
 
+ValueUnit returns SysML::ValueProperty :
+	UnitPrefix Value
+;
+
 ActionUnit returns SysML::Action :
 	UnitPrefix Action
 ;
@@ -80,6 +92,12 @@ ActionUnit returns SysML::Action :
 fragment UnitPrefix returns SysML::Package :
 	//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
 	( ownedRelationship += Annotation )*
+;
+
+/* UNIT MEMBERSHIPS */
+
+UnitMember returns SysML::Membership :
+	ownedRelatedElement += Unit
 ;
 
 /* VISIBILITY */
@@ -510,6 +528,12 @@ AbstractReferenceProperty returns SysML::ReferenceProperty :
 ;
 
 /* VALUE PROPERTIES */
+
+fragment Value returns SysML::ValueProperty :
+	( isAbstract ?= 'abstract' )? 'value'? 
+	name = Name TypePart SubsettingPart
+	UsageCompletion
+;
 
 ValueProperty returns SysML::ValueProperty :
 	Usage

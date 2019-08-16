@@ -24,14 +24,13 @@
 package org.omg.sysml.interactive;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
@@ -52,12 +51,17 @@ import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.impl.TraversalImpl;
 import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
+import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class SysMLInteractive extends AlfUtil {
+	
+	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
+	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
+	public static final String SYSML_EXTENSION = ".sysml";
 	
 	protected static Injector injector;
 	
@@ -77,18 +81,24 @@ public class SysMLInteractive extends AlfUtil {
 	
 	@Inject
 	private SysMLInteractive() {
-		EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
+		super(new InverseOrderedResourceSetImpl());
+		SysMLStandaloneSetup.doSetup();
 	}
 	
 	public void loadLibrary(String path) {
 		if (path != null) {
+			if (!path.endsWith("/")) {
+				path += "/";
+			}
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
-			this.readAll(path, false);
+			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false);
+			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false);
+			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
 	}
 	
 	public int next() {
-		this.resource = (XtextResource)this.createResource(this.counter + ALF_EXTENSION);
+		this.resource = (XtextResource)this.createResource(this.counter + SYSML_EXTENSION);
 		this.addInputResource(this.resource);
 		return this.counter++;
 	}
@@ -97,33 +107,65 @@ public class SysMLInteractive extends AlfUtil {
 		return this.resource;
 	}
 	
+	public void removeResource() {
+		if (this.resource != null) {
+			try {
+				this.resource.delete(null);
+				this.resource = null;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public Element getRootElement() {
-		final IParseResult result = this.getResource().getParseResult();
-		return result == null? null: (Element)result.getRootASTElement();
+		XtextResource resource = this.getResource();
+		if (resource == null) {
+			return null;
+		} else {
+			final IParseResult result = resource.getParseResult();
+			return result == null? null: (Element)result.getRootASTElement();
+		}
 	}
 	
 	public void parse(String input) throws IOException {
-		this.getResource().reparse(input);
+		XtextResource resource = this.getResource();
+		if (resource != null) {
+			resource.reparse(input);
+		}
 	}
 	
 	public List<Issue> validate() {
-		return validator.validate(this.getResource(), CheckMode.ALL, CancelIndicator.NullImpl);
+		XtextResource resource = this.getResource();
+		if (resource == null) {
+			return Collections.emptyList();
+		} else {
+			return validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+		}
 	}
 	
 	public SysMLInteractiveResult eval(String input) {
 		this.next();
 		try {
 			this.parse(input);
-			return new SysMLInteractiveResult(this.getRootElement(), this.validate());
+			List<Issue> issues = this.validate();
+			Element rootElement = this.getRootElement();
+			if (!issues.isEmpty()) {
+				this.removeResource();
+			}
+			return new SysMLInteractiveResult(rootElement, issues);
 		} catch (Exception e) {
+			this.removeResource();
 			return new SysMLInteractiveResult(e);
 		}
 	}
 	
 	public Element resolve(String name) {
-		if (this.resource != null) {
+		List<Resource> resources = this.resourceSet.getResources();
+		if (!resources.isEmpty()) {
 			IScope scope = scopeProvider.getScope(
-					this.resource, SysMLPackage.eINSTANCE.getPackage_Member(), 
+					resources.get(resources.size() - 1), 
+					SysMLPackage.eINSTANCE.getPackage_Member(), 
 					new Predicate<IEObjectDescription>() {
 	
 						@Override
@@ -148,9 +190,9 @@ public class SysMLInteractive extends AlfUtil {
 		try {
 			Element element = this.resolve(name);
 			return element == null? "ERROR:Couldn't resolve reference to Element '" + name + "'":
-					new SysMLInteractiveResult(this.resolve(name), null).formatRootElement();
+					SysMLInteractiveUtil.formatTree(element);
 		} catch (Exception e) {
-			return new SysMLInteractiveResult(e).formatException();
+			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
 	
@@ -176,9 +218,7 @@ public class SysMLInteractive extends AlfUtil {
 				return modelName + " (" + processingFacade.getModelId() + ")";
 			}
 		} catch (Exception e) {
-			StringWriter writer = new StringWriter();
-			e.printStackTrace(new PrintWriter(writer));
-			return writer.toString();
+			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
 	
@@ -212,7 +252,7 @@ public class SysMLInteractive extends AlfUtil {
 	        				break;
 	        			} else if ("%show".equals(tokens[0])) {
 	        				if (tokens.length > 1) {
-	        					System.out.println(this.show(tokens[1]));
+	        					System.out.print(this.show(tokens[1]));
 	        				}
 	        			} else if ("%publish".equals(tokens[0])) {
 	        				if (tokens.length > 1) {

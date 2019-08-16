@@ -16023,6 +16023,7 @@ rule__UsageDeclaration__Group_2__2
 	}
 :
 	rule__UsageDeclaration__Group_2__2__Impl
+	rule__UsageDeclaration__Group_2__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -16037,6 +16038,32 @@ rule__UsageDeclaration__Group_2__2__Impl
 	{ before(grammarAccess.getUsageDeclarationAccess().getTypePartParserRuleCall_2_2()); }
 	ruleTypePart
 	{ after(grammarAccess.getUsageDeclarationAccess().getTypePartParserRuleCall_2_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__UsageDeclaration__Group_2__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__UsageDeclaration__Group_2__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__UsageDeclaration__Group_2__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getUsageDeclarationAccess().getSubsettingPartParserRuleCall_2_3()); }
+	ruleSubsettingPart
+	{ after(grammarAccess.getUsageDeclarationAccess().getSubsettingPartParserRuleCall_2_3()); }
 )
 ;
 finally {

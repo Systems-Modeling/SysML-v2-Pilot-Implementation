@@ -3524,15 +3524,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cOwnedRelationshipRedefinitionParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
+		private final RuleCall cSubsettingPartParserRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
 		
 		//fragment UsageDeclaration returns SysML::Usage:
 		//	name=Name TypePart SubsettingPart
 		//	| Typing MultiplicityPart SubsettingPart
-		//	| (':=' | 'redefines') ownedRelationship+=Redefinition TypePart;
+		//	| (':=' | 'redefines') ownedRelationship+=Redefinition TypePart SubsettingPart;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=Name TypePart SubsettingPart | Typing MultiplicityPart SubsettingPart | (':=' | 'redefines')
-		//ownedRelationship+=Redefinition TypePart
+		//ownedRelationship+=Redefinition TypePart SubsettingPart
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//name=Name TypePart SubsettingPart
@@ -3562,7 +3563,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//SubsettingPart
 		public RuleCall getSubsettingPartParserRuleCall_1_2() { return cSubsettingPartParserRuleCall_1_2; }
 		
-		//(':=' | 'redefines') ownedRelationship+=Redefinition TypePart
+		//(':=' | 'redefines') ownedRelationship+=Redefinition TypePart SubsettingPart
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//':=' | 'redefines'
@@ -3582,6 +3583,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypePart
 		public RuleCall getTypePartParserRuleCall_2_2() { return cTypePartParserRuleCall_2_2; }
+		
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_2_3() { return cSubsettingPartParserRuleCall_2_3; }
 	}
 	public class UsageCompletionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UsageCompletion");
@@ -8684,7 +8688,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//fragment UsageDeclaration returns SysML::Usage:
 	//	name=Name TypePart SubsettingPart
 	//	| Typing MultiplicityPart SubsettingPart
-	//	| (':=' | 'redefines') ownedRelationship+=Redefinition TypePart;
+	//	| (':=' | 'redefines') ownedRelationship+=Redefinition TypePart SubsettingPart;
 	public UsageDeclarationElements getUsageDeclarationAccess() {
 		return pUsageDeclaration;
 	}

@@ -414,7 +414,7 @@ fragment AbstractUsage returns SysML::Usage :
 fragment UsageDeclaration returns SysML::Usage :
 	  name = Name TypePart SubsettingPart
 	| Typing MultiplicityPart SubsettingPart
-	| ( ':=' | 'redefines' ) ownedRelationship += Redefinition TypePart
+	| ( ':=' | 'redefines' ) ownedRelationship += Redefinition TypePart SubsettingPart
 ;
 
 fragment UsageCompletion returns SysML::Usage :

@@ -5922,6 +5922,20 @@ ruleUsageDeclaration[EObject in_current]  returns [EObject current=in_current]
 				$current = $this_TypePart_9.current;
 				afterParserOrEnumRuleCall();
 			}
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getUsageDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getUsageDeclarationAccess().getSubsettingPartParserRuleCall_2_3());
+			}
+			this_SubsettingPart_10=ruleSubsettingPart[$current]
+			{
+				$current = $this_SubsettingPart_10.current;
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;

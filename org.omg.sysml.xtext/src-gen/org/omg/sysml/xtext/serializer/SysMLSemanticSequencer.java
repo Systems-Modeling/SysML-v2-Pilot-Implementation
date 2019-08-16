@@ -360,10 +360,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else if (rule == grammarAccess.getDefinitionMemberRule()
-						|| rule == grammarAccess.getNestedDefinitionMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
 						|| rule == grammarAccess.getInterfaceMemberRule()
 						|| rule == grammarAccess.getActivityMemberRule()) {
+					sequence_PackagedDefinitionMember_TypeMemberPrefix(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNestedDefinitionMemberRule()) {
 					sequence_PackagedDefinitionMember_TypeMemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -2465,14 +2468,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     DefinitionMember returns Membership
-	 *     NestedDefinitionMember returns Membership
 	 *     AssociationMember returns Membership
 	 *     InterfaceMember returns Membership
 	 *     ActivityMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=Annotation* 
+	 *         ownedRelationship+=Annotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedRelatedElement+=PackageOrStub | 
@@ -2497,6 +2499,38 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NestedDefinitionMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=Annotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedRelatedElement+=PackageOrStub | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             ownedRelatedElement+=BlockOrStub | 
+	//             (memberName=Name? memberElement=[Block|QualifiedName]) | 
+	//             ownedRelatedElement+=ValueTypeOrStub | 
+	//             (memberName=Name? memberElement=[ValueType|QualifiedName]) | 
+	//             ownedRelatedElement+=AssociationBlockOrStub | 
+	//             (memberName=Name? memberElement=[AssociationBlock|QualifiedName]) | 
+	//             ownedRelatedElement+=InterfaceDefinitionOrStub | 
+	//             (memberName=Name? memberElement=[InterfaceDefinition|QualifiedName]) | 
+	//             ownedRelatedElement+=PortDefinitionOrStub | 
+	//             (memberName=Name? memberElement=[PortDefinition|QualifiedName]) | 
+	//             ownedRelatedElement+=ActivityOrStub | 
+	//             (memberName=Name? memberElement=[Activity|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?)
+	//         )
+	//     )
+	//
+	// protected void sequence_PackagedDefinitionMember_TypeMemberPrefix(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:

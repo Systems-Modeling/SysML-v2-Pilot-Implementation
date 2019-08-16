@@ -33,7 +33,7 @@ public class SysMLKernel extends BaseKernel {
         if (result.getException() != null) {
             throw result.getException();
         }
-        return new DisplayData(result.formatRootElement());
+        return new DisplayData(result.getIssues().isEmpty()? result.formatRootElement(): "");
     }
 
     @Override

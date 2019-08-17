@@ -15250,7 +15250,7 @@ rule__InterfaceEndMember__Group_1_1__2__Impl
 :
 (
 	{ before(grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2()); }
-	'port'
+	('port')?
 	{ after(grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2()); }
 )
 ;

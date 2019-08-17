@@ -382,7 +382,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
     (
       isPort ?= 'end' 'port'? ownedRelatedElement += PortUsage
-    | 'abstract' isPort ?= 'end' 'port' ownedRelatedElement += AbstractPortUsage
+    | 'abstract' isPort ?= 'end' 'port'? ownedRelatedElement += AbstractPortUsage
 	| isPort ?= 'end' 'port'? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
 	)
 ;

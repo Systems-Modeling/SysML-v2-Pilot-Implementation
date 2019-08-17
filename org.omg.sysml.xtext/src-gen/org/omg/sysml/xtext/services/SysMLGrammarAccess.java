@@ -3238,11 +3238,11 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//InterfaceEndMember SysML::EndFeatureMembership:
 		//	TypeMemberPrefix (isPort?='end' 'port'? ownedRelatedElement+=PortUsage
-		//	| 'abstract' isPort?='end' 'port' ownedRelatedElement+=AbstractPortUsage
+		//	| 'abstract' isPort?='end' 'port'? ownedRelatedElement+=AbstractPortUsage
 		//	| isPort?='end' 'port'? memberName=Name? 'is' memberFeature=[SysML::PortUsage|QualifiedName] ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeMemberPrefix (isPort?='end' 'port'? ownedRelatedElement+=PortUsage | 'abstract' isPort?='end' 'port'
+		//TypeMemberPrefix (isPort?='end' 'port'? ownedRelatedElement+=PortUsage | 'abstract' isPort?='end' 'port'?
 		//ownedRelatedElement+=AbstractPortUsage | isPort?='end' 'port'? memberName=Name? 'is'
 		//memberFeature=[SysML::PortUsage|QualifiedName] ';')
 		public Group getGroup() { return cGroup; }
@@ -3250,7 +3250,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeMemberPrefix
 		public RuleCall getTypeMemberPrefixParserRuleCall_0() { return cTypeMemberPrefixParserRuleCall_0; }
 		
-		//isPort?='end' 'port'? ownedRelatedElement+=PortUsage | 'abstract' isPort?='end' 'port'
+		//isPort?='end' 'port'? ownedRelatedElement+=PortUsage | 'abstract' isPort?='end' 'port'?
 		//ownedRelatedElement+=AbstractPortUsage | isPort?='end' 'port'? memberName=Name? 'is'
 		//memberFeature=[SysML::PortUsage|QualifiedName] ';'
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
@@ -3273,7 +3273,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//PortUsage
 		public RuleCall getOwnedRelatedElementPortUsageParserRuleCall_1_0_2_0() { return cOwnedRelatedElementPortUsageParserRuleCall_1_0_2_0; }
 		
-		//'abstract' isPort?='end' 'port' ownedRelatedElement+=AbstractPortUsage
+		//'abstract' isPort?='end' 'port'? ownedRelatedElement+=AbstractPortUsage
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//'abstract'
@@ -3285,7 +3285,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'end'
 		public Keyword getIsPortEndKeyword_1_1_1_0() { return cIsPortEndKeyword_1_1_1_0; }
 		
-		//'port'
+		//'port'?
 		public Keyword getPortKeyword_1_1_2() { return cPortKeyword_1_1_2; }
 		
 		//ownedRelatedElement+=AbstractPortUsage
@@ -8747,7 +8747,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//InterfaceEndMember SysML::EndFeatureMembership:
 	//	TypeMemberPrefix (isPort?='end' 'port'? ownedRelatedElement+=PortUsage
-	//	| 'abstract' isPort?='end' 'port' ownedRelatedElement+=AbstractPortUsage
+	//	| 'abstract' isPort?='end' 'port'? ownedRelatedElement+=AbstractPortUsage
 	//	| isPort?='end' 'port'? memberName=Name? 'is' memberFeature=[SysML::PortUsage|QualifiedName] ';');
 	public InterfaceEndMemberElements getInterfaceEndMemberAccess() {
 		return pInterfaceEndMember;

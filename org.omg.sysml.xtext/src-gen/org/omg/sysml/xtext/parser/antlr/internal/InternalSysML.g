@@ -5351,10 +5351,12 @@ ruleInterfaceEndMember returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_6='port'
-				{
-					newLeafNode(otherlv_6, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2());
-				}
+				(
+					otherlv_6='port'
+					{
+						newLeafNode(otherlv_6, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2());
+					}
+				)?
 				(
 					(
 						{

@@ -24,12 +24,20 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
+            keywords: words("abstract accept action activity allInstances any as assoc assocblock bind block by " +
+                "connect def do end first flow from hastype import in inout instanceof interface interfacedef is " +
+                "link nonunique of ordered out package part perform port portdef private protected public " +
+                "redefines ref specializes stream subsets succession then to type value valuetype"),
+            defKeywords: words("action activity assoc assocblock block connect def link flow " +
+                "interface interfacedef package part port ref stream succession type value valuetype"),
+            /*
             keywords: words("abstract accept allInstances any as assoc behavior binding by class classifier " +
                 "compose connector datatype end expr feature flow from function hastype import in inout instanceof " +
                 "interaction is namespace nonunique ordered out package packaged part perform port portion private " +
                 "protected public redefines specializes step stream subsets succession then to"),
             defKeywords: words("assoc behavior class classifier connector datatype expr feature flow function " +
                 "interaction namespace package part port step succession"),
+            */
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

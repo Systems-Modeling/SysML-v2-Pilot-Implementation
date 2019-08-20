@@ -9,27 +9,27 @@ package SI {
 	/*
 	 * SI simple units needed before creation of base units
 	 */
-	g = MassUnit(name => "gram");
+	part g = MassUnit(name => "gram");
 
 	/*
 	 * SI base units
 	 */	
-	m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
+	part m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
 	
-	kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
+	part kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
 
-	s = TimeUnit(name => "second");
+	part s = TimeUnit(name => "second");
 
-	A = ElectricCurrentUnit(name => "ampere");
+	part A = ElectricCurrentUnit(name => "ampere");
 	
-	temperatureInKelvinTriplePointWater = ScaleValueDefinition(magnitude => 273.16, description => "temperature in kelvin of the triple point of pure water");
-	K = TemperatureUnit(name => "kelvin") {
+	part temperatureInKelvinTriplePointWater = ScaleValueDefinition(magnitude => 273.16, description => "temperature in kelvin of the triple point of pure water");
+	part K = TemperatureUnit(name => "kelvin") {
 		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
 	}
 	
-	mol = AmountOfSubstanceUnit(name => "mol");
+	part mol = AmountOfSubstanceUnit(name => "mol");
 
-	cd = LuminousIntensityUnit(name => "candela");
+	part cd = LuminousIntensityUnit(name => "candela");
 	
 	/*
 	 * SI derived units
@@ -52,17 +52,17 @@ package SI {
 	/*
 	 * Examples of other conversion based units that are accepted in SI, but not standard 
 	 */
-	min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
-	hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
+	part min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
+	part hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
 
 	/* 
 	 * Prefixed units - incomplete list
 	 */
-	km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
-	mN = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
-	kJ = EnergyUnit(name => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
-	MJ = EnergyUnit(name => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
-	GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
+	part km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
+	part mN = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
+	part kJ = EnergyUnit(name => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
+	part MJ = EnergyUnit(name => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
+	part GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
 	
 	/*
 	 * Derived units - incomplete list
@@ -78,11 +78,11 @@ package SI {
 	 * 
 	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
 	 */
-	'°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
+	part '°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
 	 
-	temperatureInCelsiusTriplePointWater = ScaleValueDefinition(magnitude => 0.01, description => "temperature in degree celsius of the triple point of pure water");
-	celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
-	'°C scale' = IntervalScale(name => "degree celsius scale") {
+	part temperatureInCelsiusTriplePointWater = ScaleValueDefinition(magnitude => 0.01, description => "temperature in degree celsius of the triple point of pure water");
+	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
+	part '°C scale' = IntervalScale(name => "degree celsius scale") {
 		ref unit redefines NonRatioScale::unit = '°C';
 		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
 		ref scaleValueMapping redefines NonRatioScale::scaleValueMapping = celsiusToKelvinScaleMapping;

@@ -14,7 +14,7 @@ package UnitsAndScales {
 	/**
 	 * Representation of a measurement unit.
 	 * 
-	 * Note: MeasurementUnit :> MeasurementScale in order to allow for efficient and intuitive definition of a ratio scale.
+	 * Note: MeasurementUnit specializes MeasurementScale in order to allow for efficient and intuitive definition of a ratio scale.
 	 * 
 	 * A MeasurementUnit can be used in two ways:
 	 * 1. Directly as the scale in a QuantityValue, which implies that the effective measurement scale is a ratio scale.
@@ -31,16 +31,17 @@ package UnitsAndScales {
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
 	abstract block SimpleUnit :> MeasurementUnit {
-		value unitPowerFactor: UnitPowerFactor subsets MeasurementUnit::unitPowerFactor {
-			value exponent redefines UnitsAndScales::UnitPowerFactor::exponent = 1;			
+		ref self : SimpleUnit redefines Base::self;
+		value unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
+			ref unit redefines UnitPowerFactor::unit = self;
+			value exponent redefines UnitPowerFactor::exponent = 1;			
 		}
 	}
 	
 	/**
 	 * Representation of a measurement unit that depends on one or more powers of other measurement units.
 	 */
-	abstract block DerivedUnit :> MeasurementUnit {
-	}
+	abstract block DerivedUnit :> MeasurementUnit;
 	
 	/**
 	 * Representation of a measurement unit power factor
@@ -103,14 +104,14 @@ package UnitsAndScales {
 	/**
 	 * Representation of an ordinal measurement scale.
 	 */
-	block OrdinalScale :> NonRatioScale { }
+	block OrdinalScale :> NonRatioScale;
 	
 	/**
 	 * Representation of an interval measurement scale.
 	 * 
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see NonRatioScale.
 	 */
-	block IntervalScale :> NonRatioScale { }
+	block IntervalScale :> NonRatioScale;
 	
 	/**
 	 * Representation of a ratio measurement scale with a periodic cycle.

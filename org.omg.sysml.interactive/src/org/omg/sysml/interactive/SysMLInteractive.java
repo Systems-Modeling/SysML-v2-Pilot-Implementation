@@ -60,6 +60,7 @@ import com.google.inject.Injector;
 public class SysMLInteractive extends AlfUtil {
 	
 	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
+	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -92,7 +93,7 @@ public class SysMLInteractive extends AlfUtil {
 			}
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
 			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false);
-			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false);
+			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
 	}
@@ -189,7 +190,7 @@ public class SysMLInteractive extends AlfUtil {
 		this.counter++;
 		try {
 			Element element = this.resolve(name);
-			return element == null? "ERROR:Couldn't resolve reference to Element '" + name + "'":
+			return element == null? "ERROR:Couldn't resolve reference to Element '" + name + "'\n":
 					SysMLInteractiveUtil.formatTree(element);
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -210,12 +211,12 @@ public class SysMLInteractive extends AlfUtil {
 		try {
 			Element element = this.resolve(name);
 			if (element == null) {
-				return "ERROR:Couldn't resolve reference to Element '" + name + "'";
+				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
-				return modelName + " (" + processingFacade.getModelId() + ")";
+				return modelName + " (" + processingFacade.getModelId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -256,7 +257,7 @@ public class SysMLInteractive extends AlfUtil {
 	        				}
 	        			} else if ("%publish".equals(tokens[0])) {
 	        				if (tokens.length > 1) {
-	        					System.out.println(this.publish(tokens[1]));
+	        					System.out.print(this.publish(tokens[1]));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

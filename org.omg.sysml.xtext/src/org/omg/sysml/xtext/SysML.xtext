@@ -220,9 +220,9 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| 'value'? ( direction = FeatureDirection )? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractValueProperty
 	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
-	| isPort ?= 'port' ownedRelatedElement += PortUsage
-	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
-	| isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+	| isPort ?= 'port' ( direction = FeatureDirection )? ownedRelatedElement += PortUsage
+	| 'abstract' isPort ?= 'port' ( direction = FeatureDirection )? ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'port' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
 	| 'interface' ownedRelatedElement += InterfaceConnector
 	| 'abstract' 'interface' ownedRelatedElement += AbstractInterfaceConnector
 	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceConnector|QualifiedName] ';'
@@ -333,8 +333,12 @@ fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
 	( isAbstract ?= 'abstract' )? ( 'assoc' 'block' | 'assocblock' ) ClassifierDeclarationCompletion
 ;
 
-fragment AssociationBlockBody returns SysML::AssociationBlock :
+fragment AssociationBlockBody returns SysML::Type :
 	';'| '{' ( ownedRelationship += AssociationMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractAssociationBlockBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += AssociationMember | ownedRelationship += Import )* '}'
 ;
 
 /* ASSOCIATION BLOCK MEMBERSHIPS */
@@ -368,8 +372,12 @@ fragment InterfaceDeclaration returns SysML::InterfaceDefinition :
 	( isAbstract ?= 'abstract' )? ( 'interface' 'def' | 'interfacedef' ) ClassifierDeclarationCompletion
 ;
 
-fragment InterfaceBody returns SysML::InterfaceDefinition :
+fragment InterfaceBody returns SysML::Type :
 	';'| '{' ( ownedRelationship += InterfaceMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractInterfaceBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += InterfaceMember | ownedRelationship += Import )* '}'
 ;
 
 /* INTERFACE DEFINITION MEMBERSHIPS */
@@ -381,9 +389,9 @@ InterfaceMember returns SysML::Membership :
 InterfaceEndMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
     (
-      isPort ?= 'end' 'port'? ownedRelatedElement += PortUsage
-    | 'abstract' isPort ?= 'end' 'port'? ownedRelatedElement += AbstractPortUsage
-	| isPort ?= 'end' 'port'? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+      isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += PortUsage
+    | 'abstract' isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
 	)
 ;
 
@@ -556,19 +564,19 @@ AbstractPortUsage returns SysML::PortUsage :
 /* CONNECTORS */
 
 Connector returns SysML::ConnectorUsage :
-	ConnectionPart DefinitionBody
+	ConnectionPart AssociationBlockBody
 ;
 
 AbstractConnector returns SysML::ConnectorUsage :
-	ConnectionPart AbstractDefinitionBody
+	ConnectionPart AbstractAssociationBlockBody
 ;
 
 ConnectorUsage returns SysML::ConnectorUsage :
-	UsageDeclaration 'connect' ConnectionPart DefinitionBody
+	UsageDeclaration 'connect' ConnectionPart AssociationBlockBody
 ;
 
 AbstractConnectorUsage returns SysML::ConnectorUsage :
-	UsageDeclaration 'connect' ConnectionPart AbstractDefinitionBody
+	UsageDeclaration 'connect' ConnectionPart AbstractAssociationBlockBody
 ;
 
 fragment ConnectionPart returns SysML::ConnectorUsage :
@@ -607,11 +615,11 @@ EmptyEndMember returns SysML::EndFeatureMembership :
 /* INTERFACE CONNECTORS */
 
 InterfaceConnector returns SysML::InterfaceConnector :	 
-	UsageDeclaration 'connect' ConnectionPart DefinitionBody	  
+	UsageDeclaration 'connect' ConnectionPart InterfaceBody	  
 ;
 
 AbstractInterfaceConnector returns SysML::InterfaceConnector :
-	UsageDeclaration 'connect' ConnectionPart  AbstractDefinitionBody
+	UsageDeclaration 'connect' ConnectionPart  AbstractInterfaceBody
 ;
 
 /* BINDING CONNECTORS */

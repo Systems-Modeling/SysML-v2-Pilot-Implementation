@@ -227,6 +227,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_AssociationBlockBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -334,7 +336,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -365,6 +366,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -389,6 +392,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'port'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     isPort?='end' (ambiguity) direction=FeatureDirection
 	 *     isPort?='end' (ambiguity) ownedRelatedElement+=PortUsage
 	 */
 	protected void emit_InterfaceEndMember_PortKeyword_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -400,6 +404,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'port'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     isPort?='end' (ambiguity) direction=FeatureDirection
 	 *     isPort?='end' (ambiguity) ownedRelatedElement+=AbstractPortUsage
 	 */
 	protected void emit_InterfaceEndMember_PortKeyword_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -412,6 +417,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     isPort?='end' (ambiguity) 'is' memberFeature=[PortUsage|QualifiedName]
+	 *     isPort?='end' (ambiguity) direction=FeatureDirection
 	 *     isPort?='end' (ambiguity) memberName=Name
 	 */
 	protected void emit_InterfaceEndMember_PortKeyword_1_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

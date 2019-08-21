@@ -248,6 +248,7 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| ownedRelatedElement += DoAction
 	| ownedRelatedElement += PerformAction
 	| ownedRelatedElement += AcceptAction
+	| ownedRelatedElement += SendAction
     )
 ;
 
@@ -766,6 +767,13 @@ PerformAction returns SysML::PerformAction :
 AcceptAction returns SysML::AcceptAction :
 	( 'then' ownedRelationship += EmptySuccessionMember )?
 	'accept' ( name = Name TypePart )? '(' ownedRelationship += ItemFeatureMember ')'
+	ActivityBody
+;
+
+SendAction returns SysML::SendAction :
+	( 'then' ownedRelationship += EmptySuccessionMember )?
+	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
+	'to' ownedRelationship += ExpressionMember
 	ActivityBody
 ;
 

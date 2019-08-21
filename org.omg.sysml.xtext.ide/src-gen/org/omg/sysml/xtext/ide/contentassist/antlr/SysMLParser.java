@@ -291,6 +291,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptActionAccess().getGroup(), "rule__AcceptAction__Group__0");
 			builder.put(grammarAccess.getAcceptActionAccess().getGroup_0(), "rule__AcceptAction__Group_0__0");
 			builder.put(grammarAccess.getAcceptActionAccess().getGroup_2(), "rule__AcceptAction__Group_2__0");
+			builder.put(grammarAccess.getSendActionAccess().getGroup(), "rule__SendAction__Group__0");
+			builder.put(grammarAccess.getSendActionAccess().getGroup_0(), "rule__SendAction__Group_0__0");
+			builder.put(grammarAccess.getSendActionAccess().getGroup_2(), "rule__SendAction__Group_2__0");
+			builder.put(grammarAccess.getSendActionAccess().getGroup_2_0(), "rule__SendAction__Group_2_0__0");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getGroup(), "rule__StepParameterMember__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
@@ -466,6 +470,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNestedUsageMemberAccess().getOwnedRelatedElementAssignment_1_34(), "rule__NestedUsageMember__OwnedRelatedElementAssignment_1_34");
 			builder.put(grammarAccess.getNestedUsageMemberAccess().getOwnedRelatedElementAssignment_1_35(), "rule__NestedUsageMember__OwnedRelatedElementAssignment_1_35");
 			builder.put(grammarAccess.getNestedUsageMemberAccess().getOwnedRelatedElementAssignment_1_36(), "rule__NestedUsageMember__OwnedRelatedElementAssignment_1_36");
+			builder.put(grammarAccess.getNestedUsageMemberAccess().getOwnedRelatedElementAssignment_1_37(), "rule__NestedUsageMember__OwnedRelatedElementAssignment_1_37");
 			builder.put(grammarAccess.getTypeMemberPrefixAccess().getOwnedRelationshipAssignment_0(), "rule__TypeMemberPrefix__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getTypeMemberPrefixAccess().getVisibilityAssignment_1(), "rule__TypeMemberPrefix__VisibilityAssignment_1");
 			builder.put(grammarAccess.getClassifierDeclarationCompletionAccess().getNameAssignment_0(), "rule__ClassifierDeclarationCompletion__NameAssignment_0");
@@ -597,6 +602,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptActionAccess().getOwnedRelationshipAssignment_0_1(), "rule__AcceptAction__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getAcceptActionAccess().getNameAssignment_2_0(), "rule__AcceptAction__NameAssignment_2_0");
 			builder.put(grammarAccess.getAcceptActionAccess().getOwnedRelationshipAssignment_4(), "rule__AcceptAction__OwnedRelationshipAssignment_4");
+			builder.put(grammarAccess.getSendActionAccess().getOwnedRelationshipAssignment_0_1(), "rule__SendAction__OwnedRelationshipAssignment_0_1");
+			builder.put(grammarAccess.getSendActionAccess().getNameAssignment_2_0_0(), "rule__SendAction__NameAssignment_2_0_0");
+			builder.put(grammarAccess.getSendActionAccess().getOwnedRelationshipAssignment_3(), "rule__SendAction__OwnedRelationshipAssignment_3");
+			builder.put(grammarAccess.getSendActionAccess().getOwnedRelationshipAssignment_5(), "rule__SendAction__OwnedRelationshipAssignment_5");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getDirectionAssignment_0(), "rule__StepParameterMember__DirectionAssignment_0");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getMemberNameAssignment_1(), "rule__StepParameterMember__MemberNameAssignment_1");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__StepParameterMember__OwnedRelatedElementAssignment_2");

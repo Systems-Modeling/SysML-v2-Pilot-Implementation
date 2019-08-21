@@ -3952,6 +3952,26 @@ ruleNestedUsageMember returns [EObject current=null]
 					}
 				)
 			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNestedUsageMemberAccess().getOwnedRelatedElementSendActionParserRuleCall_1_37_0());
+					}
+					lv_ownedRelatedElement_122_0=ruleSendAction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNestedUsageMemberRule());
+						}
+						add(
+							$current,
+							"ownedRelatedElement",
+							lv_ownedRelatedElement_122_0,
+							"org.omg.sysml.xtext.SysML.SendAction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)
 	)
 ;
@@ -10551,6 +10571,151 @@ ruleAcceptAction returns [EObject current=null]
 		this_ActivityBody_8=ruleActivityBody[$current]
 		{
 			$current = $this_ActivityBody_8.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleSendAction
+entryRuleSendAction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSendActionRule()); }
+	iv_ruleSendAction=ruleSendAction
+	{ $current=$iv_ruleSendAction.current; }
+	EOF;
+
+// Rule SendAction
+ruleSendAction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='then'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getSendActionAccess().getThenKeyword_0_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getSendActionAccess().getOwnedRelationshipEmptySuccessionMemberParserRuleCall_0_1_0());
+					}
+					lv_ownedRelationship_1_0=ruleEmptySuccessionMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSendActionRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_1_0,
+							"org.omg.sysml.xtext.SysML.EmptySuccessionMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_2='send'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getSendActionAccess().getSendKeyword_1());
+		}
+		(
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSendActionAccess().getNameNameParserRuleCall_2_0_0_0());
+						}
+						lv_name_3_0=ruleName
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSendActionRule());
+							}
+							set(
+								$current,
+								"name",
+								lv_name_3_0,
+								"org.omg.sysml.xtext.SysML.Name");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				{
+					/* */
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSendActionRule());
+					}
+					newCompositeNode(grammarAccess.getSendActionAccess().getTypePartParserRuleCall_2_0_1());
+				}
+				this_TypePart_4=ruleTypePart[$current]
+				{
+					$current = $this_TypePart_4.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			otherlv_5='of'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getSendActionAccess().getOfKeyword_2_1());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSendActionAccess().getOwnedRelationshipExpressionMemberParserRuleCall_3_0());
+				}
+				lv_ownedRelationship_6_0=ruleExpressionMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSendActionRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_6_0,
+						"org.omg.sysml.xtext.SysML.ExpressionMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_7='to'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getSendActionAccess().getToKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSendActionAccess().getOwnedRelationshipExpressionMemberParserRuleCall_5_0());
+				}
+				lv_ownedRelationship_8_0=ruleExpressionMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSendActionRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_8_0,
+						"org.omg.sysml.xtext.SysML.ExpressionMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		{
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getSendActionRule());
+			}
+			newCompositeNode(grammarAccess.getSendActionAccess().getActivityBodyParserRuleCall_6());
+		}
+		this_ActivityBody_9=ruleActivityBody[$current]
+		{
+			$current = $this_ActivityBody_9.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

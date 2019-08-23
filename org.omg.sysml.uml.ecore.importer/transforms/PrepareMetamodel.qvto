@@ -30,7 +30,7 @@ main() {
 	var model := uml.rootObjects()![Model];
 	model.packageImport := Set{};
 	model.elementImport := Set{};
-	var syntax := uml.objects()[Package]![name = "Abstract Syntax"];
+	var syntax := uml.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	syntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();

@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior-1' {
+package '3a-Function-based Behavior' {
 	import Transfers::Transfer;
 	import Activities::Merge;
 	
@@ -29,39 +29,56 @@ package '3a-Function-based Behavior-1' {
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {
+		bind 'generate torque'::fuelCmd = fuelCmd;
+		
 		action 'generate torque': 'Generate Torque'(
-			in fuelCmd = 'Provide Power'::fuelCmd, 
-			out engineTorque
+			in fuelCmd: Torque, 
+			out engineTorque: Torque
 		);
+		
+		stream of Torque 
+			from 'generate torque'::engineTorque 
+			  to 'amplify torque'::engineTorque;
 		
 		action 'amplify torque': 'Amplify Torque'(
-			in engineTorque stream from 'generate torque'::engineTorque, 
-			out transmissionTorque
+			in engineTorque: Torque, 
+			out transmissionTorque: Torque
 		);
+		
+		stream of Torque 
+			from 'amplify torque'::transmissionTorque 
+			  to 'transfer torque'::transmissionTorque;
 		
 		action 'transfer torque': 'Transfer Torque'(
-			in transmissionTorque stream from 'amplify torque'::transmissionTorque, 
-			out driveshaftTorque
+			in transmissionTorque: Torque, 
+			out driveshaftTorque: Torque
 		);
 		
+		stream of Torque 
+			from 'transfer torque'::driveshaftTorque 
+			  to 'distribute torque'::driveshaftTorque;
+		
 		action 'distribute torque': 'Distribute Torque'(
-			in driveshaftTorque stream from 'transfer torque'::driveshaftTorque, 
-			out wheelTorque1 = 'provide power'::wheelTorque1, 
-			out wheelTorque2 = 'provide power'::wheelTorque2
-		); 
+			in driveshaftTorque: Torque, 
+			out wheelTorque1: Torque, 
+			out wheelTorque2: Torque
+		);
+		
+		bind wheelTorque1 = 'distribute torque'::wheelTorque1;
+		bind wheelTorque2 = 'distribute torque'::wheelTorque2;
 	}
 	
-	action 'provide power with control': 'Provide Power With Control'(
+	action 'provide power with control': 'Provide Power With Control' (
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
-	) {
-		succession first startShot[0..1] then merge[1];
-		
+	) {		
+		succession first start[0..1] then merge[1];
+				
 		action merge: Merge[*];
 		
 		succession first merge[1] then engineStart[1];
-		
+			
 		action engineStart subsets incomingTransfers {
 			item: EngineStart[1] redefines Transfer::item;
 		}
@@ -71,17 +88,20 @@ package '3a-Function-based Behavior-1' {
 		action engineOff subsets incomingTransfers {
 			item: EngineOff[1] redefines Transfer::item;
 		}
-					
-		succession first engineOff[0..1] then merge[1];		
-		
+			
+		succession first engineOff[0..1] then merge[1];
+				
 		succession first engineStart[1] then 'provide power'[1];
-		
+			
+		bind 'provide power'::fuelCmd = fuelCmd;
 		action 'do provide power'[*] (
-			in fuelCmd = 'provide power with control'::fuelCmd, 
-			out wheelTorque1 = 'provide power with control'::wheelTorque1,
-			out wheelTorque2 = 'provide power with control'::wheelTorque2
+			in fuelCmd, 
+			out wheelTorque1, 
+			out wheelTorque2
 		) subsets 'provide power';
-		
+		bind wheelTorque1 = 'provide power'::wheelTorque1;
+		bind wheelTorque2 = 'provide power'::wheelTorque2;
+				
 		succession first 'provide power'[1] then engineOff[1];		
 	}
 }

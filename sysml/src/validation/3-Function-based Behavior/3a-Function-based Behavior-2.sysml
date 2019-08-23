@@ -1,6 +1,7 @@
-package '3a-Function-based Behavior-2' {
+package '3a-Function-based Behavior-1' {
+	import Transfers::Transfer;
 	import Activities::Merge;
-			
+	
 	// ITEMS
 	
 	value type FuelCmd;
@@ -34,12 +35,12 @@ package '3a-Function-based Behavior-2' {
 		);
 		
 		action 'amplify torque': 'Amplify Torque'(
-			in engineTorque stream from 'generate torque'::engineTorque,  
+			in engineTorque stream from 'generate torque'::engineTorque, 
 			out transmissionTorque
 		);
 		
 		action 'transfer torque': 'Transfer Torque'(
-			in transmissionTorque stream from 'amplify torque'::transmissionTorque,  
+			in transmissionTorque stream from 'amplify torque'::transmissionTorque, 
 			out driveshaftTorque
 		);
 		
@@ -55,18 +56,32 @@ package '3a-Function-based Behavior-2' {
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {
-		first start;
-		then[0..1] action merge: Merge[*];
-		then accept engineStart (EngineStart);
-		then accept engineOff (EngineOff);
-		then[0..1] merge;
+		succession first startShot[0..1] then merge[1];
 		
-		first engineStart;
-		then do 'provide power' (
-			in fuelCmd = 'Provide Power With Control'::fuelCmd, 
-			out wheelTorque1 = 'Provide Power With Control'::wheelTorque1,
-			out wheelTorque2 = 'Provide Power With Control'::wheelTorque2
-		);
-		then engineOff;
+		action merge: Merge[*];
+		
+		succession first merge[1] then engineStart[1];
+		
+		action engineStart subsets incomingTransfers {
+			item: EngineStart[1] redefines Transfer::item;
+		}
+		
+		succession first engineStart[1] then engineOff[1];
+		
+		action engineOff subsets incomingTransfers {
+			item: EngineOff[1] redefines Transfer::item;
+		}
+					
+		succession first engineOff[0..1] then merge[1];		
+		
+		succession first engineStart[1] then 'provide power'[1];
+		
+		action 'do provide power'[*] (
+			in fuelCmd = 'provide power with control'::fuelCmd, 
+			out wheelTorque1 = 'provide power with control'::wheelTorque1,
+			out wheelTorque2 = 'provide power with control'::wheelTorque2
+		) subsets 'provide power';
+		
+		succession first 'provide power'[1] then engineOff[1];		
 	}
 }

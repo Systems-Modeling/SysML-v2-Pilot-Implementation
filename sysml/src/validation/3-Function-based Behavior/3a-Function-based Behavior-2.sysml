@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior-1' {
+package '3a-Function-based Behavior-' {
 	import Transfers::Transfer;
 	import Activities::Merge;
 	
@@ -56,7 +56,7 @@ package '3a-Function-based Behavior-1' {
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {
-		succession first startShot[0..1] then merge[1];
+		succession first start[0..1] then merge[1];
 		
 		action merge: Merge[*];
 		
@@ -74,7 +74,7 @@ package '3a-Function-based Behavior-1' {
 					
 		succession first engineOff[0..1] then merge[1];		
 		
-		succession first engineStart[1] then 'provide power'[1];
+		succession first engineStart[1] then 'do provide power'[1];
 		
 		action 'do provide power'[*] (
 			in fuelCmd = 'provide power with control'::fuelCmd, 

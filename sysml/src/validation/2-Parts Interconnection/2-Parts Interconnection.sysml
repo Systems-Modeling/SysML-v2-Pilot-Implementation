@@ -80,7 +80,7 @@ package '2-Parts Interconnection' {
 		end shaftPort_a: ShaftPort_a;
 		end shaftPort_d: ShaftPort_d;
 		
-		part driveshaft: Driveshaft {
+		ref driveshaft: Driveshaft {
 			port shaftPort_b redefines Driveshaft::shaftPort_b;
 			port shaftPort_c redefines Driveshaft::shaftPort_c;
 		}
@@ -113,7 +113,7 @@ package '2-Parts Interconnection' {
 		
 		interface :DriveshaftInterface
 			connect transmission::shaftPort_a to rearAxleAssembly::shaftPort_d {
-				part driveshaft redefines DriveshaftInterface::driveshaft = 
+				ref driveshaft redefines DriveshaftInterface::driveshaft = 
 					vehicle1_c1::driveshaft;
 			}
 

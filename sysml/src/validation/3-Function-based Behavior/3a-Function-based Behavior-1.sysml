@@ -1,4 +1,4 @@
-package '3a-Function-based Behavior' {
+package '3a-Function-based Behavior-1' {
 	import Transfers::Transfer;
 	import Activities::Merge;
 	

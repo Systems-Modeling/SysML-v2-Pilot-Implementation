@@ -3,7 +3,7 @@ package '4a1-Functional Allocation' {
 	import '3a-Function-based Behavior'::*;
 	import '3a-Function-based Behavior'::'provide power'::*;
 		
-	part vehicle1_c1_functional_allocation subsets vehicle1_c1 {
+	part vehicle1_c1_functional_allocation :> vehicle1_c1 {
 		// Note: The definitions of the port types in '2-Parts Interconnection' do not include 
 		// input and output features.
 		port fuelCmdPort redefines vehicle1_c1::fuelCmdPort {
@@ -12,20 +12,15 @@ package '4a1-Functional Allocation' {
 
 		// This allocates the action '3a-Function-based Behavior'::'provide power' as an enacted 
 		// performance of vehicle_c1_functional_allocation.
-		perform 'provide power' (
+		perform 'provide power'  (
 			// This assigns the fuelCmdPort to provide the input to 'provide power'.
 			in fuelCmd = fuelCmdPort::fuelCmd
 		);
 		
 		// The above is semantically equivalent to:
 		//
-		// part 'provide power': 'Provide Power' 
-		//	  subsets '3a-Function-based Behavior'::'provide power', enactedPerformances
-		// {
-		//	  value in fuelCmd: FuelCmd 
-		//		  redefines '3a-Function-based Behavior'::'provide power'::fuelCmd 
-		//		  	  = fuelCmdPort::fuelCmd;
-		// }
+		// ref action 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
+		//	   subsets '3a-Function-based Behavior'::'provide power', enactedPerformances;		
 			
 		// For a composite enacted performance within the vehicle, replace the above with:
 		//

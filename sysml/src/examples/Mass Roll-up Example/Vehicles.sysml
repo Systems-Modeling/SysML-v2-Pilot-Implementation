@@ -11,11 +11,11 @@ package Vehicles {
 		
 		part carParts: CarPart[*] redefines subcomponents;
 		
-		part engine :> simpleThing subsets carParts {
+		part engine :> simpleThing, carParts {
 			//...
 		}
 		
-		part transmission :> simpleThing subsets carParts {
+		part transmission :> simpleThing, carParts {
 			//...
 		}
 	}

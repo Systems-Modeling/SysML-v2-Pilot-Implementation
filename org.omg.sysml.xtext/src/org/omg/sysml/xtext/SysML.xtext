@@ -34,15 +34,9 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
-MultiUnit returns SysML::Element :
-	Unit 
-	( {SysML::Membership.ownedRelatedElement += current} {SysML::Package.ownedRelationship += current} 
-	  ( ownedRelationship += UnitMember )+
-	)?
-;
-
 Unit returns SysML::Package :
-	  PackageUnit 
+	  AnonymousPackage
+	| PackageUnit 
 	| BlockUnit
 	| ValueTypeUnit
 	| AssociationBlockUnit
@@ -51,6 +45,10 @@ Unit returns SysML::Package :
 	| PartUnit
 	| ValueUnit
 	| ActionUnit
+;
+
+AnonymousPackage returns SysML::Package :
+	PackageBody
 ;
 
 PackageUnit returns SysML::Package: 
@@ -139,8 +137,12 @@ PackageOrStub returns SysML::Package :
 //	'package' name = Name ( isStub ?= ';' | '{' ( ownedRelationship += PackageMember )* '}' )
 ;
 
-fragment Package returns SysML::Package: 
-	'package' name = Name '{' ( ownedRelationship += PackageMember | ownedRelationship += Import )* '}' 
+fragment Package returns SysML::Package : 
+	'package' name = Name PackageBody 
+;
+
+fragment PackageBody returns SysML::Package :
+	'{' ( ownedRelationship += PackageMember | ownedRelationship += Import )* '}'
 ;
 
 /* PACKAGE MEMBERSHIPS */

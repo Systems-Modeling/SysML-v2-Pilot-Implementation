@@ -27,7 +27,7 @@ public class SysMLParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "MultiUnit";
+		return "Unit";
 	}
 
 	public SysMLGrammarAccess getGrammarAccess() {

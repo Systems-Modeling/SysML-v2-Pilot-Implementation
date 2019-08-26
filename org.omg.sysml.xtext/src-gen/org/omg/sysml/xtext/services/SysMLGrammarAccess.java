@@ -27,59 +27,23 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
-	public class MultiUnitElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MultiUnit");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnitParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cMembershipOwnedRelatedElementAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Action cPackageOwnedRelationshipAction_1_1 = (Action)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipUnitMemberParserRuleCall_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_2.eContents().get(0);
-		
-		///* UNITS */ MultiUnit SysML::Element:
-		//	Unit ({SysML::Membership.ownedRelatedElement+=current} {SysML::Package.ownedRelationship+=current}
-		//	ownedRelationship+=UnitMember+)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Unit ({SysML::Membership.ownedRelatedElement+=current} {SysML::Package.ownedRelationship+=current}
-		//ownedRelationship+=UnitMember+)?
-		public Group getGroup() { return cGroup; }
-		
-		//Unit
-		public RuleCall getUnitParserRuleCall_0() { return cUnitParserRuleCall_0; }
-		
-		//({SysML::Membership.ownedRelatedElement+=current} {SysML::Package.ownedRelationship+=current}
-		//ownedRelationship+=UnitMember+)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{SysML::Membership.ownedRelatedElement+=current}
-		public Action getMembershipOwnedRelatedElementAction_1_0() { return cMembershipOwnedRelatedElementAction_1_0; }
-		
-		//{SysML::Package.ownedRelationship+=current}
-		public Action getPackageOwnedRelationshipAction_1_1() { return cPackageOwnedRelationshipAction_1_1; }
-		
-		//ownedRelationship+=UnitMember+
-		public Assignment getOwnedRelationshipAssignment_1_2() { return cOwnedRelationshipAssignment_1_2; }
-		
-		//UnitMember
-		public RuleCall getOwnedRelationshipUnitMemberParserRuleCall_1_2_0() { return cOwnedRelationshipUnitMemberParserRuleCall_1_2_0; }
-	}
 	public class UnitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Unit");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPackageUnitParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cBlockUnitParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cValueTypeUnitParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cAssociationBlockUnitParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cInterfaceDefinitionUnitParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cActivityUnitParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPartUnitParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cValueUnitParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cActionUnitParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cAnonymousPackageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPackageUnitParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cBlockUnitParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cValueTypeUnitParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cAssociationBlockUnitParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cInterfaceDefinitionUnitParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cActivityUnitParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cPartUnitParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cValueUnitParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cActionUnitParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
-		//Unit SysML::Package:
-		//	PackageUnit
+		///* UNITS */ Unit SysML::Package:
+		//	AnonymousPackage
+		//	| PackageUnit
 		//	| BlockUnit
 		//	| ValueTypeUnit
 		//	| AssociationBlockUnit
@@ -90,36 +54,50 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| ActionUnit;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PackageUnit | BlockUnit | ValueTypeUnit | AssociationBlockUnit | InterfaceDefinitionUnit | ActivityUnit | PartUnit |
-		//ValueUnit | ActionUnit
+		//AnonymousPackage | PackageUnit | BlockUnit | ValueTypeUnit | AssociationBlockUnit | InterfaceDefinitionUnit |
+		//ActivityUnit | PartUnit | ValueUnit | ActionUnit
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//AnonymousPackage
+		public RuleCall getAnonymousPackageParserRuleCall_0() { return cAnonymousPackageParserRuleCall_0; }
+		
 		//PackageUnit
-		public RuleCall getPackageUnitParserRuleCall_0() { return cPackageUnitParserRuleCall_0; }
+		public RuleCall getPackageUnitParserRuleCall_1() { return cPackageUnitParserRuleCall_1; }
 		
 		//BlockUnit
-		public RuleCall getBlockUnitParserRuleCall_1() { return cBlockUnitParserRuleCall_1; }
+		public RuleCall getBlockUnitParserRuleCall_2() { return cBlockUnitParserRuleCall_2; }
 		
 		//ValueTypeUnit
-		public RuleCall getValueTypeUnitParserRuleCall_2() { return cValueTypeUnitParserRuleCall_2; }
+		public RuleCall getValueTypeUnitParserRuleCall_3() { return cValueTypeUnitParserRuleCall_3; }
 		
 		//AssociationBlockUnit
-		public RuleCall getAssociationBlockUnitParserRuleCall_3() { return cAssociationBlockUnitParserRuleCall_3; }
+		public RuleCall getAssociationBlockUnitParserRuleCall_4() { return cAssociationBlockUnitParserRuleCall_4; }
 		
 		//InterfaceDefinitionUnit
-		public RuleCall getInterfaceDefinitionUnitParserRuleCall_4() { return cInterfaceDefinitionUnitParserRuleCall_4; }
+		public RuleCall getInterfaceDefinitionUnitParserRuleCall_5() { return cInterfaceDefinitionUnitParserRuleCall_5; }
 		
 		//ActivityUnit
-		public RuleCall getActivityUnitParserRuleCall_5() { return cActivityUnitParserRuleCall_5; }
+		public RuleCall getActivityUnitParserRuleCall_6() { return cActivityUnitParserRuleCall_6; }
 		
 		//PartUnit
-		public RuleCall getPartUnitParserRuleCall_6() { return cPartUnitParserRuleCall_6; }
+		public RuleCall getPartUnitParserRuleCall_7() { return cPartUnitParserRuleCall_7; }
 		
 		//ValueUnit
-		public RuleCall getValueUnitParserRuleCall_7() { return cValueUnitParserRuleCall_7; }
+		public RuleCall getValueUnitParserRuleCall_8() { return cValueUnitParserRuleCall_8; }
 		
 		//ActionUnit
-		public RuleCall getActionUnitParserRuleCall_8() { return cActionUnitParserRuleCall_8; }
+		public RuleCall getActionUnitParserRuleCall_9() { return cActionUnitParserRuleCall_9; }
+	}
+	public class AnonymousPackageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnonymousPackage");
+		private final RuleCall cPackageBodyParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//AnonymousPackage SysML::Package:
+		//	PackageBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PackageBody
+		public RuleCall getPackageBodyParserRuleCall() { return cPackageBodyParserRuleCall; }
 	}
 	public class PackageUnitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PackageUnit");
@@ -498,19 +476,13 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Assignment cOwnedRelationshipAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
-		private final RuleCall cOwnedRelationshipPackageMemberParserRuleCall_3_0_0 = (RuleCall)cOwnedRelationshipAssignment_3_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_3_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cPackageBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//fragment Package returns SysML::Package:
-		//	'package' name=Name '{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}';
+		//	'package' name=Name PackageBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=Name '{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}'
+		//'package' name=Name PackageBody
 		public Group getGroup() { return cGroup; }
 		
 		//'package'
@@ -522,26 +494,47 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 		
+		//PackageBody
+		public RuleCall getPackageBodyParserRuleCall_2() { return cPackageBodyParserRuleCall_2; }
+	}
+	public class PackageBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PackageBody");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipPackageMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//fragment PackageBody returns SysML::Package:
+		//	'{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}'
+		public Group getGroup() { return cGroup; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
 		
 		//(ownedRelationship+=PackageMember | ownedRelationship+=Import)*
-		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//ownedRelationship+=PackageMember
-		public Assignment getOwnedRelationshipAssignment_3_0() { return cOwnedRelationshipAssignment_3_0; }
+		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
 		
 		//PackageMember
-		public RuleCall getOwnedRelationshipPackageMemberParserRuleCall_3_0_0() { return cOwnedRelationshipPackageMemberParserRuleCall_3_0_0; }
+		public RuleCall getOwnedRelationshipPackageMemberParserRuleCall_1_0_0() { return cOwnedRelationshipPackageMemberParserRuleCall_1_0_0; }
 		
 		//ownedRelationship+=Import
-		public Assignment getOwnedRelationshipAssignment_3_1() { return cOwnedRelationshipAssignment_3_1; }
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_3_1_0() { return cOwnedRelationshipImportParserRuleCall_3_1_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_0() { return cOwnedRelationshipImportParserRuleCall_1_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
 	}
 	public class PackageMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PackageMember");
@@ -7929,8 +7922,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getInoutInoutKeyword_2_0() { return cInoutInoutKeyword_2_0; }
 	}
 	
-	private final MultiUnitElements pMultiUnit;
 	private final UnitElements pUnit;
+	private final AnonymousPackageElements pAnonymousPackage;
 	private final PackageUnitElements pPackageUnit;
 	private final BlockUnitElements pBlockUnit;
 	private final ValueTypeUnitElements pValueTypeUnit;
@@ -7949,6 +7942,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ImportElements pImport;
 	private final PackageOrStubElements pPackageOrStub;
 	private final PackageElements pPackage;
+	private final PackageBodyElements pPackageBody;
 	private final PackageMemberElements pPackageMember;
 	private final PackageMemberPrefixElements pPackageMemberPrefix;
 	private final PackagedDefinitionMemberElements pPackagedDefinitionMember;
@@ -8145,8 +8139,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	@Inject
 	public SysMLGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.pMultiUnit = new MultiUnitElements();
 		this.pUnit = new UnitElements();
+		this.pAnonymousPackage = new AnonymousPackageElements();
 		this.pPackageUnit = new PackageUnitElements();
 		this.pBlockUnit = new BlockUnitElements();
 		this.pValueTypeUnit = new ValueTypeUnitElements();
@@ -8165,6 +8159,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pImport = new ImportElements();
 		this.pPackageOrStub = new PackageOrStubElements();
 		this.pPackage = new PackageElements();
+		this.pPackageBody = new PackageBodyElements();
 		this.pPackageMember = new PackageMemberElements();
 		this.pPackageMemberPrefix = new PackageMemberPrefixElements();
 		this.pPackagedDefinitionMember = new PackagedDefinitionMemberElements();
@@ -8380,19 +8375,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
-	///* UNITS */ MultiUnit SysML::Element:
-	//	Unit ({SysML::Membership.ownedRelatedElement+=current} {SysML::Package.ownedRelationship+=current}
-	//	ownedRelationship+=UnitMember+)?;
-	public MultiUnitElements getMultiUnitAccess() {
-		return pMultiUnit;
-	}
-	
-	public ParserRule getMultiUnitRule() {
-		return getMultiUnitAccess().getRule();
-	}
-	
-	//Unit SysML::Package:
-	//	PackageUnit
+	///* UNITS */ Unit SysML::Package:
+	//	AnonymousPackage
+	//	| PackageUnit
 	//	| BlockUnit
 	//	| ValueTypeUnit
 	//	| AssociationBlockUnit
@@ -8407,6 +8392,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnitRule() {
 		return getUnitAccess().getRule();
+	}
+	
+	//AnonymousPackage SysML::Package:
+	//	PackageBody;
+	public AnonymousPackageElements getAnonymousPackageAccess() {
+		return pAnonymousPackage;
+	}
+	
+	public ParserRule getAnonymousPackageRule() {
+		return getAnonymousPackageAccess().getRule();
 	}
 	
 	//PackageUnit SysML::Package:
@@ -8586,13 +8581,23 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment Package returns SysML::Package:
-	//	'package' name=Name '{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}';
+	//	'package' name=Name PackageBody;
 	public PackageElements getPackageAccess() {
 		return pPackage;
 	}
 	
 	public ParserRule getPackageRule() {
 		return getPackageAccess().getRule();
+	}
+	
+	//fragment PackageBody returns SysML::Package:
+	//	'{' (ownedRelationship+=PackageMember | ownedRelationship+=Import)* '}';
+	public PackageBodyElements getPackageBodyAccess() {
+		return pPackageBody;
+	}
+	
+	public ParserRule getPackageBodyRule() {
+		return getPackageBodyAccess().getRule();
 	}
 	
 	///* PACKAGE MEMBERSHIPS */ PackageMember SysML::Membership:

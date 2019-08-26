@@ -132,7 +132,8 @@ public class SysMLInteractive extends AlfUtil {
 	public void parse(String input) throws IOException {
 		XtextResource resource = this.getResource();
 		if (resource != null) {
-			resource.reparse(input);
+			// Surround input with braces so that it is parsed as an anonymous package.
+			resource.reparse("{\n" + input + "}");
 		}
 	}
 	
@@ -141,7 +142,12 @@ public class SysMLInteractive extends AlfUtil {
 		if (resource == null) {
 			return Collections.emptyList();
 		} else {
-			return validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+			List<Issue> issues = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+			for (Issue issue: issues) {
+				// Adjust line numbers to account for the initial brace added for parsing.
+				((Issue.IssueImpl)issue).setLineNumber(issue.getLineNumber() - 1);
+			}
+			return issues;
 		}
 	}
 	

@@ -51,7 +51,7 @@ import org.omg.sysml.services.AlfGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "MultiunitDefinition";
+    	return "UnitDefinition";
    	}
 
    	@Override
@@ -67,77 +67,6 @@ import org.omg.sysml.services.AlfGrammarAccess;
         appendSkippedTokens();
     }
 }
-
-// Entry rule entryRuleMultiunitDefinition
-entryRuleMultiunitDefinition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getMultiunitDefinitionRule()); }
-	iv_ruleMultiunitDefinition=ruleMultiunitDefinition
-	{ $current=$iv_ruleMultiunitDefinition.current; }
-	EOF;
-
-// Rule MultiunitDefinition
-ruleMultiunitDefinition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getMultiunitDefinitionAccess().getUnitDefinitionParserRuleCall_0());
-		}
-		this_UnitDefinition_0=ruleUnitDefinition
-		{
-			$current = $this_UnitDefinition_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					/* */
-				}
-				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0(),
-						$current);
-				}
-			)
-			(
-				{
-					/* */
-				}
-				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getMultiunitDefinitionAccess().getPackageOwnedRelationshipAction_1_1(),
-						$current);
-				}
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipUnitMemberParserRuleCall_1_2_0());
-					}
-					lv_ownedRelationship_3_0=ruleUnitMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMultiunitDefinitionRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.sysml.Alf.UnitMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)+
-		)?
-	)
-;
 
 // Entry rule entryRuleUnitDefinition
 entryRuleUnitDefinition returns [EObject current=null]:
@@ -758,42 +687,6 @@ ruleUnitPrefix[EObject in_current]  returns [EObject current=in_current]
 				}
 			)
 		)*
-	)
-;
-
-// Entry rule entryRuleUnitMember
-entryRuleUnitMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getUnitMemberRule()); }
-	iv_ruleUnitMember=ruleUnitMember
-	{ $current=$iv_ruleUnitMember.current; }
-	EOF;
-
-// Rule UnitMember
-ruleUnitMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementUnitDefinitionParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleUnitDefinition
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getUnitMemberRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.Alf.UnitDefinition");
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

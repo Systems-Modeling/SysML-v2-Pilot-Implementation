@@ -34,13 +34,6 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
-MultiunitDefinition returns SysML::Element :
-	UnitDefinition 
-	( {SysML::Membership.ownedRelatedElement += current} {SysML::Package.ownedRelationship += current} 
-	  ( ownedRelationship += UnitMember )+
-	)?
-;
-
 UnitDefinition returns SysML::Package :
 	  PackageUnitDefinition 
 	| ClassifierUnitDefinition 

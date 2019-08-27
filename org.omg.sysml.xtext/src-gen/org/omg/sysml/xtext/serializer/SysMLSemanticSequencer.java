@@ -218,7 +218,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getBodyMemberRule()) {
+				if (rule == grammarAccess.getActionParameterFlowMemberRule()) {
+					sequence_ActionParameterFlowMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBodyMemberRule()) {
 					sequence_BodyMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
@@ -256,10 +260,6 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 						|| rule == grammarAccess.getInterfaceMemberRule()
 						|| rule == grammarAccess.getActivityMemberRule()) {
 					sequence_NestedUsageMember_TypeMemberPrefix(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getStepParameterFlowMemberRule()) {
-					sequence_StepParameterFlowMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
@@ -446,7 +446,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.PARAMETER:
-				if (rule == grammarAccess.getParameterRule()) {
+				if (rule == grammarAccess.getBodyParameterRule()) {
+					sequence_BodyParameter_Typing(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getParameterRule()) {
 					sequence_MultiplicityPart_Typing(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
 					return; 
 				}
@@ -456,16 +460,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
-				if (rule == grammarAccess.getBodyParameterMemberRule()) {
+				if (rule == grammarAccess.getActionParameterMemberRule()) {
+					sequence_ActionParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBodyParameterMemberRule()) {
 					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterMemberRule()) {
 					sequence_ParameterMember(context, (ParameterMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getStepParameterMemberRule()) {
-					sequence_StepParameterMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -855,6 +859,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     ActionParameterFlowMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=ActionParameterFlow
+	 */
+	protected void sequence_ActionParameterFlowMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ActionParameterFlow returns ItemFlow
 	 *
 	 * Constraint:
@@ -892,9 +908,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         isOrdered?='ordered'? 
 	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (
-	 *             ownedRelationship+=StepParameterMember 
-	 *             ownedRelationship+=StepParameterFlowMember? 
-	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *             ownedRelationship+=ActionParameterMember 
+	 *             ownedRelationship+=ActionParameterFlowMember? 
+	 *             (ownedRelationship+=ActionParameterMember ownedRelationship+=ActionParameterFlowMember?)*
 	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
@@ -918,9 +934,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (name=Name ownedRelationship+=FeatureTyping? ownedRelationship+=Multiplicity? (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship+=Subset 
 	 *         (
-	 *             ownedRelationship+=StepParameterMember 
-	 *             ownedRelationship+=StepParameterFlowMember? 
-	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *             ownedRelationship+=ActionParameterMember 
+	 *             ownedRelationship+=ActionParameterFlowMember? 
+	 *             (ownedRelationship+=ActionParameterMember ownedRelationship+=ActionParameterFlowMember?)*
 	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
@@ -942,9 +958,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (name=Name ownedRelationship+=FeatureTyping? ownedRelationship+=Multiplicity? (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship+=Subset 
 	 *         (
-	 *             ownedRelationship+=StepParameterMember 
-	 *             ownedRelationship+=StepParameterFlowMember? 
-	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *             ownedRelationship+=ActionParameterMember 
+	 *             ownedRelationship+=ActionParameterFlowMember? 
+	 *             (ownedRelationship+=ActionParameterMember ownedRelationship+=ActionParameterFlowMember?)*
 	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
@@ -952,6 +968,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     )
 	 */
 	protected void sequence_ActionParameterList_ActivityBody_MultiplicityPart_PerformAction_Redefines_Subsets_SubsettingPart_Typing_ValuePart(ISerializationContext context, PerformAction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ActionParameterMember returns ParameterMembership
+	 *
+	 * Constraint:
+	 *     (direction=FeatureDirection? memberName=Name? ownedRelatedElement+=ActionParameter)
+	 */
+	protected void sequence_ActionParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -970,9 +998,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         isNonunique?='nonunique'? 
 	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *         (
-	 *             ownedRelationship+=StepParameterMember 
-	 *             ownedRelationship+=StepParameterFlowMember? 
-	 *             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	 *             ownedRelationship+=ActionParameterMember 
+	 *             ownedRelationship+=ActionParameterFlowMember? 
+	 *             (ownedRelationship+=ActionParameterMember ownedRelationship+=ActionParameterFlowMember?)*
 	 *         )? 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
@@ -1000,9 +1028,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedRelationship+=Multiplicity? 
 	//         (isOrdered?='ordered' | isNonunique?='nonunique')* 
 	//         (
-	//             ownedRelationship+=StepParameterMember 
-	//             ownedRelationship+=StepParameterFlowMember? 
-	//             (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterFlowMember?)*
+	//             ownedRelationship+=ActionParameterMember 
+	//             ownedRelationship+=ActionParameterFlowMember? 
+	//             (ownedRelationship+=ActionParameterMember ownedRelationship+=ActionParameterFlowMember?)*
 	//         )? 
 	//         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	//         ownedRelationship+=FeatureValue? 
@@ -1406,9 +1434,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     BodyParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
-	 *     (memberName=Name ownedRelatedElement+=Parameter)
+	 *     (memberName=Name ownedRelatedElement+=BodyParameter)
 	 */
 	protected void sequence_BodyParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BodyParameter returns Parameter
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=FeatureTyping?
+	 */
+	protected void sequence_BodyParameter_Typing(ISerializationContext context, org.omg.sysml.lang.sysml.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2899,30 +2939,6 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (element+=Expression element+=Expression*)?
 	 */
 	protected void sequence_SequenceConstructionExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StepParameterFlowMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=ActionParameterFlow
-	 */
-	protected void sequence_StepParameterFlowMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StepParameterMember returns ParameterMembership
-	 *
-	 * Constraint:
-	 *     (direction=FeatureDirection? memberName=Name? ownedRelatedElement+=ActionParameter)
-	 */
-	protected void sequence_StepParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

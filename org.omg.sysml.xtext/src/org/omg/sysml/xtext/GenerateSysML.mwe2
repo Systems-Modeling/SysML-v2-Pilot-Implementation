@@ -39,9 +39,9 @@ Workflow {
 		    referencedResource = "${genModel}"
 
 		    parserGenerator = {
-		    	options = {
-		    		backtrack = true
-		    	}
+//		    	options = {
+//		    		backtrack = true
+//		    	}
 		    }
 		    
 			serializer = {

@@ -181,7 +181,7 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 
 fragment PackagedUsage returns SysML::Membership :
 	  'part' ownedRelatedElement += PartProperty
-	| 'abstract' 'part'? ownedRelatedElement += AbstractPartProperty
+	| 'abstract' 'part' ownedRelatedElement += AbstractPartProperty
 	| 'part' ( memberName = Name )? 'is' memberElement = [SysML::PartProperty|QualifiedName] ';'
 	| 'value'? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ownedRelatedElement += AbstractValueProperty
@@ -353,7 +353,7 @@ AssociationMember returns SysML::Membership :
 AssociationEndMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
     ( 'end' 'part' ownedRelatedElement += PartProperty 
-    | 'abstract' 'end' ownedRelatedElement += AbstractPartProperty
+    | 'abstract' 'end' 'part' ownedRelatedElement += AbstractPartProperty
     | 'end' 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
     | 'end' 'ref'? ownedRelatedElement += ReferenceProperty
     | 'abstract' 'end' 'ref'? ownedRelatedElement += AbstractReferenceProperty
@@ -736,9 +736,9 @@ ActionUsage returns SysML::Action :
 ;
 
 fragment ActionParameterList returns SysML::Type :
-	'(' ( ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )?
-		  ( ',' ownedRelationship += StepParameterMember ( ownedRelationship += StepParameterFlowMember )? )*
-	    )? ')'
+	'(' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )?
+		( ',' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )? )*
+	')'
 ;
 
 ActionParameter returns SysML::Parameter :
@@ -781,11 +781,11 @@ SendAction returns SysML::SendAction :
 
 /* ACTION MEMBERSHIPS */
 
-StepParameterMember returns SysML::ParameterMembership :
+ActionParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? ( memberName = Name )? ownedRelatedElement += ActionParameter
 ;
 
-StepParameterFlowMember returns SysML::FeatureMembership :
+ActionParameterFlowMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ActionParameterFlow
 ;
 
@@ -795,10 +795,8 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 
 /* EXPRESSIONS */
 
-// Block Expressions
-
 Expression returns SysML::Expression :
-	 ConditionalExpression
+	 ConditionalExpression | QueryPathExpression
 ;
 
 // Conditional Test Expressions
@@ -957,11 +955,15 @@ PrimaryExpression returns SysML::Expression :
 	)*
 ;
 
+// Body Expressions
+
 BodyExpression returns SysML::BlockExpression :
-	// TODO: Update syntax (if possible) to remove need for backtracking.
-	// (Backtracking is required if typing is allowed on body parameters. Otherwise, a "=>" on the first alternative is sufficient.)
-	  ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')'
-	| ownedRelationship += ExpressionTyping
+	   => ( ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')' )
+	 | ownedRelationship += ExpressionTyping
+;
+
+BodyParameter returns SysML::Parameter :
+	{SysML::Parameter} Typing?
 ;
 
 ExpressionTyping returns SysML::FeatureTyping :
@@ -974,7 +976,6 @@ BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| FeatureReferenceExpression 
-	| QueryPathExpression
 	| InvocationExpression 
 	| ClassExtentExpression
 	| SequenceConstructionExpression 
@@ -1070,7 +1071,7 @@ BodyMember returns SysML::FeatureMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedRelatedElement += Parameter
+	memberName = Name ownedRelatedElement += BodyParameter
 ;
 
 /* QUERY PATH EXPRESSIONS */

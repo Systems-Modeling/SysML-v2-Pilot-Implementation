@@ -77,35 +77,34 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SysMLFactory init() {
 		try {
-			SysMLFactory theSysMLFactory = (SysMLFactory)EPackage.Registry.INSTANCE.getEFactory(SysMLPackage.eNS_URI);
+			SysMLFactory theSysMLFactory = (SysMLFactory) EPackage.Registry.INSTANCE.getEFactory(SysMLPackage.eNS_URI);
 			if (theSysMLFactory != null) {
 				return theSysMLFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SysMLFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public SysMLFactoryImpl() {
@@ -113,117 +112,179 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SysMLPackage.ANNOTATION: return createAnnotation();
-			case SysMLPackage.RELATIONSHIP: return createRelationship();
-			case SysMLPackage.ELEMENT: return createElement();
-			case SysMLPackage.MEMBERSHIP: return createMembership();
-			case SysMLPackage.PACKAGE: return createPackage();
-			case SysMLPackage.IMPORT: return createImport();
-			case SysMLPackage.PREDICATE: return createPredicate();
-			case SysMLPackage.FUNCTION: return createFunction();
-			case SysMLPackage.BEHAVIOR: return createBehavior();
-			case SysMLPackage.CLASSIFIER: return createClassifier();
-			case SysMLPackage.TYPE: return createType();
-			case SysMLPackage.GENERALIZATION: return createGeneralization();
-			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
-			case SysMLPackage.FEATURE: return createFeature();
-			case SysMLPackage.REDEFINITION: return createRedefinition();
-			case SysMLPackage.SUBSETTING: return createSubsetting();
-			case SysMLPackage.FEATURE_VALUE: return createFeatureValue();
-			case SysMLPackage.EXPRESSION: return createExpression();
-			case SysMLPackage.STEP: return createStep();
-			case SysMLPackage.MULTIPLICITY: return createMultiplicity();
-			case SysMLPackage.FEATURE_TYPING: return createFeatureTyping();
-			case SysMLPackage.SUPERCLASSING: return createSuperclassing();
-			case SysMLPackage.PARAMETER: return createParameter();
-			case SysMLPackage.COMMENT: return createComment();
-			case SysMLPackage.OWNERSHIP: return createOwnership();
-			case SysMLPackage.ATOMIC_INTERACTION: return createAtomicInteraction();
-			case SysMLPackage.ITEM_FLOW_END: return createItemFlowEnd();
-			case SysMLPackage.ITEM_FLOW_FEATURE: return createItemFlowFeature();
-			case SysMLPackage.ITEM_FEATURE: return createItemFeature();
-			case SysMLPackage.INTERACTION: return createInteraction();
-			case SysMLPackage.ASSOCIATION: return createAssociation();
-			case SysMLPackage.CLASS: return createClass();
-			case SysMLPackage.CONNECTOR: return createConnector();
-			case SysMLPackage.SUCCESSION_ITEM_FLOW: return createSuccessionItemFlow();
-			case SysMLPackage.SUCCESSION: return createSuccession();
-			case SysMLPackage.ITEM_FLOW: return createItemFlow();
-			case SysMLPackage.DATA_TYPE: return createDataType();
-			case SysMLPackage.BINDING_CONNECTOR: return createBindingConnector();
-			case SysMLPackage.STRUCTURED_FEATURE: return createStructuredFeature();
-			case SysMLPackage.ORDERED_FEATURE: return createOrderedFeature();
-			case SysMLPackage.OF_SUCCESSION: return createOfSuccession();
-			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP: return createReturnParameterMembership();
-			case SysMLPackage.PARAMETER_MEMBERSHIP: return createParameterMembership();
-			case SysMLPackage.TARGET_END: return createTargetEnd();
-			case SysMLPackage.SOURCE_END: return createSourceEnd();
-			case SysMLPackage.QUERY_PATH_EXPRESSION: return createQueryPathExpression();
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION: return createFeatureReferenceExpression();
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION: return createQueryPathStepExpression();
-			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
-			case SysMLPackage.INVOCATION_EXPRESSION: return createInvocationExpression();
-			case SysMLPackage.BLOCK_EXPRESSION: return createBlockExpression();
-			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION: return createQueryQualifierExpression();
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
-			case SysMLPackage.LITERAL_STRING: return createLiteralString();
-			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
-			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
-			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
-			case SysMLPackage.LITERAL_REAL: return createLiteralReal();
-			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
-			case SysMLPackage.LITERAL_UNBOUNDED: return createLiteralUnbounded();
-			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case SysMLPackage.COMMENT:
+			return createComment();
+		case SysMLPackage.ELEMENT:
+			return createElement();
+		case SysMLPackage.MEMBERSHIP:
+			return createMembership();
+		case SysMLPackage.RELATIONSHIP:
+			return createRelationship();
+		case SysMLPackage.PACKAGE:
+			return createPackage();
+		case SysMLPackage.IMPORT:
+			return createImport();
+		case SysMLPackage.PREDICATE:
+			return createPredicate();
+		case SysMLPackage.FUNCTION:
+			return createFunction();
+		case SysMLPackage.BEHAVIOR:
+			return createBehavior();
+		case SysMLPackage.CLASSIFIER:
+			return createClassifier();
+		case SysMLPackage.TYPE:
+			return createType();
+		case SysMLPackage.GENERALIZATION:
+			return createGeneralization();
+		case SysMLPackage.FEATURE_MEMBERSHIP:
+			return createFeatureMembership();
+		case SysMLPackage.FEATURE:
+			return createFeature();
+		case SysMLPackage.REDEFINITION:
+			return createRedefinition();
+		case SysMLPackage.SUBSETTING:
+			return createSubsetting();
+		case SysMLPackage.FEATURE_VALUE:
+			return createFeatureValue();
+		case SysMLPackage.EXPRESSION:
+			return createExpression();
+		case SysMLPackage.STEP:
+			return createStep();
+		case SysMLPackage.MULTIPLICITY:
+			return createMultiplicity();
+		case SysMLPackage.FEATURE_TYPING:
+			return createFeatureTyping();
+		case SysMLPackage.SUPERCLASSING:
+			return createSuperclassing();
+		case SysMLPackage.PARAMETER:
+			return createParameter();
+		case SysMLPackage.ANNOTATION:
+			return createAnnotation();
+		case SysMLPackage.OWNERSHIP:
+			return createOwnership();
+		case SysMLPackage.END_FEATURE_MEMBERSHIP:
+			return createEndFeatureMembership();
+		case SysMLPackage.ITEM_FLOW_END:
+			return createItemFlowEnd();
+		case SysMLPackage.ITEM_FLOW_FEATURE:
+			return createItemFlowFeature();
+		case SysMLPackage.ITEM_FEATURE:
+			return createItemFeature();
+		case SysMLPackage.ATOMIC_INTERACTION:
+			return createAtomicInteraction();
+		case SysMLPackage.ITEM_FLOW:
+			return createItemFlow();
+		case SysMLPackage.CONNECTOR:
+			return createConnector();
+		case SysMLPackage.ASSOCIATION:
+			return createAssociation();
+		case SysMLPackage.CLASS:
+			return createClass();
+		case SysMLPackage.SUCCESSION_ITEM_FLOW:
+			return createSuccessionItemFlow();
+		case SysMLPackage.SUCCESSION:
+			return createSuccession();
+		case SysMLPackage.INTERACTION:
+			return createInteraction();
+		case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
+			return createQueryPathStepExpression();
+		case SysMLPackage.OPERATOR_EXPRESSION:
+			return createOperatorExpression();
+		case SysMLPackage.INVOCATION_EXPRESSION:
+			return createInvocationExpression();
+		case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
+			return createSequenceConstructionExpression();
+		case SysMLPackage.INSTANCE_CREATION_EXPRESSION:
+			return createInstanceCreationExpression();
+		case SysMLPackage.QUERY_PATH_EXPRESSION:
+			return createQueryPathExpression();
+		case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
+			return createFeatureReferenceExpression();
+		case SysMLPackage.BLOCK_EXPRESSION:
+			return createBlockExpression();
+		case SysMLPackage.QUERY_QUALIFIER_EXPRESSION:
+			return createQueryQualifierExpression();
+		case SysMLPackage.LITERAL_EXPRESSION:
+			return createLiteralExpression();
+		case SysMLPackage.LITERAL_REAL:
+			return createLiteralReal();
+		case SysMLPackage.NULL_EXPRESSION:
+			return createNullExpression();
+		case SysMLPackage.LITERAL_STRING:
+			return createLiteralString();
+		case SysMLPackage.LITERAL_INTEGER:
+			return createLiteralInteger();
+		case SysMLPackage.LITERAL_UNBOUNDED:
+			return createLiteralUnbounded();
+		case SysMLPackage.LITERAL_BOOLEAN:
+			return createLiteralBoolean();
+		case SysMLPackage.DATA_TYPE:
+			return createDataType();
+		case SysMLPackage.TARGET_END:
+			return createTargetEnd();
+		case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
+			return createReturnParameterMembership();
+		case SysMLPackage.PARAMETER_MEMBERSHIP:
+			return createParameterMembership();
+		case SysMLPackage.SOURCE_END:
+			return createSourceEnd();
+		case SysMLPackage.ORDERED_FEATURE:
+			return createOrderedFeature();
+		case SysMLPackage.STRUCTURED_FEATURE:
+			return createStructuredFeature();
+		case SysMLPackage.OF_SUCCESSION:
+			return createOfSuccession();
+		case SysMLPackage.BINDING_CONNECTOR:
+			return createBindingConnector();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SysMLPackage.VISIBILITY_KIND:
-				return createVisibilityKindFromString(eDataType, initialValue);
-			case SysMLPackage.FEATURE_DIRECTION_KIND:
-				return createFeatureDirectionKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case SysMLPackage.VISIBILITY_KIND:
+			return createVisibilityKindFromString(eDataType, initialValue);
+		case SysMLPackage.FEATURE_DIRECTION_KIND:
+			return createFeatureDirectionKindFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case SysMLPackage.VISIBILITY_KIND:
-				return convertVisibilityKindToString(eDataType, instanceValue);
-			case SysMLPackage.FEATURE_DIRECTION_KIND:
-				return convertFeatureDirectionKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case SysMLPackage.VISIBILITY_KIND:
+			return convertVisibilityKindToString(eDataType, instanceValue);
+		case SysMLPackage.FEATURE_DIRECTION_KIND:
+			return convertFeatureDirectionKindToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,8 +294,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,8 +305,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,8 +316,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,8 +327,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,8 +338,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -288,8 +349,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,8 +360,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,8 +371,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -321,8 +382,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,8 +393,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -343,8 +404,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -354,8 +415,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -365,8 +426,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -376,8 +437,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -387,8 +448,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,8 +459,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -409,8 +470,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -420,8 +481,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -431,8 +492,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -442,8 +503,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -453,8 +514,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -464,8 +525,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -475,8 +536,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -486,8 +547,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -497,8 +558,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -508,8 +569,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,8 +580,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -530,8 +591,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -541,8 +602,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -552,8 +613,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -563,8 +624,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -574,8 +635,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -585,8 +646,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -596,8 +657,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -607,8 +668,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -618,8 +679,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -629,8 +690,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -640,8 +701,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -651,8 +712,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -662,8 +723,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -673,8 +734,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -684,8 +745,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -695,8 +756,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -706,8 +767,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -717,8 +778,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -728,8 +789,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -739,8 +800,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -750,8 +811,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -761,8 +822,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -772,8 +833,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -783,8 +844,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -794,8 +855,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -805,8 +866,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -816,8 +877,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -827,8 +888,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -838,8 +899,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -849,8 +910,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -860,8 +921,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -871,8 +932,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -882,8 +943,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -893,8 +954,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -904,19 +965,21 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKind result = VisibilityKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
@@ -924,19 +987,21 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeatureDirectionKind createFeatureDirectionKindFromString(EDataType eDataType, String initialValue) {
 		FeatureDirectionKind result = FeatureDirectionKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertFeatureDirectionKindToString(EDataType eDataType, Object instanceValue) {
@@ -944,18 +1009,18 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public SysMLPackage getSysMLPackage() {
-		return (SysMLPackage)getEPackage();
+		return (SysMLPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -964,4 +1029,4 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 		return SysMLPackage.eINSTANCE;
 	}
 
-} //SysMLFactoryImpl
+} // SysMLFactoryImpl

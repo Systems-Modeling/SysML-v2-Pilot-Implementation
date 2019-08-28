@@ -10,19 +10,18 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Null Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Null
+ * Expression</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
 
 	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Base::nullEvaluations";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NullExpressionImpl() {
@@ -30,8 +29,8 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -43,5 +42,5 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithDefault(NULL_EXPRESSION_SUBSETTING_DEFAULT);
 	}
-	
-} //NullExpressionImpl
+
+} // NullExpressionImpl

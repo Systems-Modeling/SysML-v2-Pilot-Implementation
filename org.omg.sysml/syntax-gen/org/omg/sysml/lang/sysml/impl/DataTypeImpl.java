@@ -9,19 +9,18 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Classifier</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value
+ * Classifier</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class DataTypeImpl extends ClassifierImpl implements DataType {
-	
+
 	public static final String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DataTypeImpl() {
@@ -29,7 +28,8 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	/**
-	 * If the Class has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 * If the Class has no Superclassings, then create one whose superclass is the
+	 * appropriate default library class.
 	 */
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
@@ -37,8 +37,8 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -46,4 +46,4 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 		return SysMLPackage.Literals.DATA_TYPE;
 	}
 
-} //ValueClassImpl
+} // ValueClassImpl

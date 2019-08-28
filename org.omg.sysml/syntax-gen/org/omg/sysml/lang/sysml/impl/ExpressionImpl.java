@@ -19,20 +19,19 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class ExpressionImpl extends StepImpl implements Expression {
-	
+
 	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::evaluations";
 	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subevaluations";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExpressionImpl() {
@@ -40,8 +39,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,19 +51,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()?
-					EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-					EXPRESSION_SUBSETTING_BASE_DEFAULT);
+				isSubperformance() ? EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT : EXPRESSION_SUBSETTING_BASE_DEFAULT);
 	}
-	
-	@Override 
+
+	@Override
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = super.getInput();
-		if (!inputs.stream().anyMatch(feature->feature.getOwner() == this)) {
+		if (!inputs.stream().anyMatch(feature -> feature.getOwner() == this)) {
 			Function function = getFunction();
 			if (function != null) {
 				int i = 0;
-				for (Feature parameter: function.getInput()) {
+				for (Feature parameter : function.getInput()) {
 					if (parameter instanceof Parameter && parameter.getOwner() == function) {
 						inputs.remove(parameter);
 						Feature input = createFeatureForParameter(parameter, i);
@@ -76,11 +73,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 		return inputs;
 	}
-	
+
 	@Override
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = super.getOutput();
-		if (!outputs.stream().anyMatch(feature->feature.getOwner() == this)) {
+		if (!outputs.stream().anyMatch(feature -> feature.getOwner() == this)) {
 			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.getOwnedRelatedElement().add(parameter);
@@ -90,17 +87,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 		return outputs;
 	}
-			
+
 	protected Feature createFeatureForParameter(Feature parameter, int i) {
 		if (parameter == null) {
 			return null;
 		} else {
 			Feature feature = SysMLFactory.eINSTANCE.createParameter();
-			
+
 			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 			redefinition.setRedefinedFeature(parameter);
 			feature.getOwnedRelationship().add(redefinition);
-			
+
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.getOwnedRelatedElement().add(feature);
 			membership.setMemberName("$" + parameter.getName());
@@ -109,32 +106,33 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			if (parameterMembership != null) {
 				membership.setDirection(parameterMembership.getDirection());
 			}
-			
+
 			return feature;
 		}
 	}
-	
+
 	@Override
 	public Feature getResult() {
-		List<Feature> outputs = getOutput().stream().
-				filter(feature->feature.getOwner() == this).collect(Collectors.toList());;
-		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
+		List<Feature> outputs = getOutput().stream().filter(feature -> feature.getOwner() == this)
+				.collect(Collectors.toList());
+		;
+		return outputs.isEmpty() ? null : outputs.get(outputs.size() - 1);
 	}
-	
+
 	@Override
 	public List<Parameter> getOwnedParameters() {
 		getResult();
 		return super.getOwnedParameters();
 	}
-		
+
 	public Function getFunction() {
 		EList<Type> types = getType();
 		if (types.isEmpty()) {
 			return null;
 		} else {
 			Type type = types.get(0);
-			return type instanceof Function? (Function)type: null;
+			return type instanceof Function ? (Function) type : null;
 		}
 	}
 
-} //ExpressionImpl
+} // ExpressionImpl

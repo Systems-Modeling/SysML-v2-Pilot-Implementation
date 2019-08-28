@@ -10,31 +10,30 @@ import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ownership</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Ownership</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OwnershipImpl() {
 		super();
 	}
-	
+
 	// Additional redefinitions
-	
+
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> source = new EObjectEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__SOURCE);
 		source.add(getOwningRelatedElement());
 		return source;
 	}
-	
+
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new EObjectEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__TARGET);
@@ -43,8 +42,8 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,4 +51,4 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 		return SysMLPackage.Literals.OWNERSHIP;
 	}
 
-} //OwnershipImpl
+} // OwnershipImpl

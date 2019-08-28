@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Null Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Null
+ * Expression</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNullExpression()

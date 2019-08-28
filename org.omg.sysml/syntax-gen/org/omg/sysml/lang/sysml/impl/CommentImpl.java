@@ -16,25 +16,27 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Comment</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Comment</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getBody <em>Body</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getAnnotationForComment <em>Annotation For Comment</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getBody
+ * <em>Body</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getCommentedElement
+ * <em>Commented Element</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getAnnotationForComment
+ * <em>Annotation For Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CommentImpl extends ElementImpl implements Comment {
 	/**
-	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBody()
 	 * @generated
 	 * @ordered
@@ -42,9 +44,9 @@ public class CommentImpl extends ElementImpl implements Comment {
 	protected static final String BODY_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBody()
 	 * @generated
 	 * @ordered
@@ -52,9 +54,9 @@ public class CommentImpl extends ElementImpl implements Comment {
 	protected String body = BODY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotationForComment() <em>Annotation For Comment</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAnnotationForComment() <em>Annotation For
+	 * Comment</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotationForComment()
 	 * @generated
 	 * @ordered
@@ -62,8 +64,8 @@ public class CommentImpl extends ElementImpl implements Comment {
 	protected Annotation annotationForComment;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -71,8 +73,8 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,8 +83,8 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,8 +93,8 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,29 +106,31 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Element getCommentedElement() {
 		Element commentedElement = basicGetCommentedElement();
-		return commentedElement != null && commentedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)commentedElement) : commentedElement;
+		return commentedElement != null && commentedElement.eIsProxy()
+				? (Element) eResolveProxy((InternalEObject) commentedElement)
+				: commentedElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Element basicGetCommentedElement() {
 		Annotation annotation = this.getAnnotationForComment();
-		return annotation == null? null: annotation.getAnnotatedElement();
+		return annotation == null ? null : annotation.getAnnotatedElement();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -134,36 +138,37 @@ public class CommentImpl extends ElementImpl implements Comment {
 		// TODO: implement this method to set the 'Commented Element' reference
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the Comment has an owner, use this as the default value for its annotationForComment property.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> If the Comment has an owner, use this as the default
+	 * value for its annotationForComment property. <!-- end-user-doc -->
 	 */
 	public Annotation getAnnotationForComment() {
-		return annotationForComment == null? basicGetAnnotationForComment(): getAnnotationForCommentGen();
+		return annotationForComment == null ? basicGetAnnotationForComment() : getAnnotationForCommentGen();
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Annotation getAnnotationForCommentGen() {
 		if (annotationForComment != null && annotationForComment.eIsProxy()) {
-			InternalEObject oldAnnotationForComment = (InternalEObject)annotationForComment;
-			annotationForComment = (Annotation)eResolveProxy(oldAnnotationForComment);
+			InternalEObject oldAnnotationForComment = (InternalEObject) annotationForComment;
+			annotationForComment = (Annotation) eResolveProxy(oldAnnotationForComment);
 			if (annotationForComment != oldAnnotationForComment) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT, oldAnnotationForComment, annotationForComment));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT, oldAnnotationForComment,
+							annotationForComment));
 			}
 		}
 		return annotationForComment;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Annotation basicGetAnnotationForComment() {
@@ -174,23 +179,27 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAnnotationForComment(Annotation newAnnotationForComment, NotificationChain msgs) {
 		Annotation oldAnnotationForComment = annotationForComment;
 		annotationForComment = newAnnotationForComment;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT, oldAnnotationForComment, newAnnotationForComment);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT, oldAnnotationForComment, newAnnotationForComment);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,42 +207,46 @@ public class CommentImpl extends ElementImpl implements Comment {
 		if (newAnnotationForComment != annotationForComment) {
 			NotificationChain msgs = null;
 			if (annotationForComment != null)
-				msgs = ((InternalEObject)annotationForComment).eInverseRemove(this, SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
+				msgs = ((InternalEObject) annotationForComment).eInverseRemove(this,
+						SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
 			if (newAnnotationForComment != null)
-				msgs = ((InternalEObject)newAnnotationForComment).eInverseAdd(this, SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
+				msgs = ((InternalEObject) newAnnotationForComment).eInverseAdd(this,
+						SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
 			msgs = basicSetAnnotationForComment(newAnnotationForComment, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT, newAnnotationForComment, newAnnotationForComment));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT,
+					newAnnotationForComment, newAnnotationForComment));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				if (annotationForComment != null)
-					msgs = ((InternalEObject)annotationForComment).eInverseRemove(this, SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
-				return basicSetAnnotationForComment((Annotation)otherEnd, msgs);
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			if (annotationForComment != null)
+				msgs = ((InternalEObject) annotationForComment).eInverseRemove(this,
+						SysMLPackage.ANNOTATION__ANNOTATING_COMMENT, Annotation.class, msgs);
+			return basicSetAnnotationForComment((Annotation) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				return basicSetAnnotationForComment(null, msgs);
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			return basicSetAnnotationForComment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -244,99 +257,101 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__BODY:
-				return getBody();
-			case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
-				if (resolve) return getCommentedElement();
-				return basicGetCommentedElement();
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				if (resolve) return getAnnotationForComment();
-				return basicGetAnnotationForComment();
+		case SysMLPackage.COMMENT__BODY:
+			return getBody();
+		case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
+			if (resolve)
+				return getCommentedElement();
+			return basicGetCommentedElement();
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			if (resolve)
+				return getAnnotationForComment();
+			return basicGetAnnotationForComment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__BODY:
-				setBody((String)newValue);
-				return;
-			case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
-				setCommentedElement((Element)newValue);
-				return;
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				setAnnotationForComment((Annotation)newValue);
-				return;
+		case SysMLPackage.COMMENT__BODY:
+			setBody((String) newValue);
+			return;
+		case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
+			setCommentedElement((Element) newValue);
+			return;
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			setAnnotationForComment((Annotation) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__BODY:
-				setBody(BODY_EDEFAULT);
-				return;
-			case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
-				setCommentedElement((Element)null);
-				return;
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				setAnnotationForComment((Annotation)null);
-				return;
+		case SysMLPackage.COMMENT__BODY:
+			setBody(BODY_EDEFAULT);
+			return;
+		case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
+			setCommentedElement((Element) null);
+			return;
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			setAnnotationForComment((Annotation) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
-	
-	@Override 
+
+	@Override
 	public boolean eIsSet(int featureID) {
-		return featureID == SysMLPackage.COMMENT__COMMENTED_ELEMENT? 
-				basicGetCommentedElement() != null:
-				eIsSetGen(featureID);
+		return featureID == SysMLPackage.COMMENT__COMMENTED_ELEMENT ? basicGetCommentedElement() != null
+				: eIsSetGen(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean eIsSetGen(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.COMMENT__BODY:
-				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
-			case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
-				return basicGetCommentedElement() != null;
-			case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
-				return annotationForComment != null;
+		case SysMLPackage.COMMENT__BODY:
+			return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
+		case SysMLPackage.COMMENT__COMMENTED_ELEMENT:
+			return basicGetCommentedElement() != null;
+		case SysMLPackage.COMMENT__ANNOTATION_FOR_COMMENT:
+			return annotationForComment != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (body: ");
@@ -345,4 +360,4 @@ public class CommentImpl extends ElementImpl implements Comment {
 		return result.toString();
 	}
 
-} //CommentImpl
+} // CommentImpl

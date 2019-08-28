@@ -8,16 +8,15 @@ import org.omg.sysml.lang.sysml.StructuredFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Structured Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Structured Feature</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeature {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StructuredFeatureImpl() {
@@ -25,8 +24,8 @@ public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -34,4 +33,4 @@ public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeat
 		return SysMLPackage.Literals.STRUCTURED_FEATURE;
 	}
 
-} //StructuredFeatureImpl
+} // StructuredFeatureImpl

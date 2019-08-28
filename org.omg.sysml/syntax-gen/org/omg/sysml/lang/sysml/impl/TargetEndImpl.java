@@ -11,16 +11,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Target End</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target
+ * End</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TargetEndImpl() {
@@ -28,8 +27,8 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -44,12 +43,12 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 		getComputedRedefinitions();
 		return getOwnedSubsettingWithoutDefault();
 	}
-	
+
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = getOwningType();
-		type = type == null? null: ((Feature)type).getOwningType();
-		return type instanceof Feature? type: null;
+		type = type == null ? null : ((Feature) type).getOwningType();
+		return type instanceof Feature ? type : null;
 	}
-	
-} //TargetEndImpl
+
+} // TargetEndImpl

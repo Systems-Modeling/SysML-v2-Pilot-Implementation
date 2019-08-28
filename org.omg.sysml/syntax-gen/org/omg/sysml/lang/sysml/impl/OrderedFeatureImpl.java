@@ -8,16 +8,15 @@ import org.omg.sysml.lang.sysml.OrderedFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ordered Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Ordered
+ * Feature</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class OrderedFeatureImpl extends StructuredFeatureImpl implements OrderedFeature {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OrderedFeatureImpl() {
@@ -25,8 +24,8 @@ public class OrderedFeatureImpl extends StructuredFeatureImpl implements Ordered
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -34,4 +33,4 @@ public class OrderedFeatureImpl extends StructuredFeatureImpl implements Ordered
 		return SysMLPackage.Literals.ORDERED_FEATURE;
 	}
 
-} //OrderedFeatureImpl
+} // OrderedFeatureImpl

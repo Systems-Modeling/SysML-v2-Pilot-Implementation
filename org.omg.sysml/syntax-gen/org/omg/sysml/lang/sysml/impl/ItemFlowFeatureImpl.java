@@ -18,19 +18,18 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Item Flow Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Item
+ * Flow Feature</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature {
-	
-	public static final String[] ITEM_FLOW_INPUT_OUTPUT_FEATURE_NAMES = {"sourceOutput", "targetInput"};
-	
+
+	public static final String[] ITEM_FLOW_INPUT_OUTPUT_FEATURE_NAMES = { "sourceOutput", "targetInput" };
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemFlowFeatureImpl() {
@@ -38,18 +37,19 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ITEM_FLOW_FEATURE;
 	}
-	
+
 	@Override
 	protected EList<Subsetting> getComputedRedefinitions() {
-		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this,
+				SysMLPackage.FEATURE__OWNED_SUBSETTING);
 		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
 		int n = ownedRedefinitions.size();
 		if (n < 2 || ownedRedefinitions.get(1).getRedefinedFeature() == null) {
@@ -57,13 +57,13 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 		}
 		return redefinitions;
 	}
-	
+
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return type instanceof ItemFlowEnd? type.getOwnedFeature():
-			   type.getFeature().stream().
-					filter(feature->Arrays.contains(ITEM_FLOW_INPUT_OUTPUT_FEATURE_NAMES, feature.getName())).
-					collect(Collectors.toList());
+		return type instanceof ItemFlowEnd ? type.getOwnedFeature()
+				: type.getFeature().stream()
+						.filter(feature -> Arrays.contains(ITEM_FLOW_INPUT_OUTPUT_FEATURE_NAMES, feature.getName()))
+						.collect(Collectors.toList());
 	}
-	
-} //ItemFlowFeatureImpl
+
+} // ItemFlowFeatureImpl

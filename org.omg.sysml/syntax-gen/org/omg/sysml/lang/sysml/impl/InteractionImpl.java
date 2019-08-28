@@ -15,23 +15,24 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Interaction</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Interaction</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getStep <em>Step</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getParameter <em>Parameter</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getStep
+ * <em>Step</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.impl.InteractionImpl#getParameter
+ * <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InteractionImpl extends AssociationImpl implements Interaction {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InteractionImpl() {
@@ -39,8 +40,8 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,132 +50,136 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, 
-				SysMLPackage.INTERACTION__STEP, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.INTERACTION__STEP,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(
-				Parameter.class, this, SysMLPackage.INTERACTION__PARAMETER, 
-				new int[]{SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.INTERACTION__PARAMETER,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.INTERACTION__STEP:
-				return getStep();
-			case SysMLPackage.INTERACTION__PARAMETER:
-				return getParameter();
+		case SysMLPackage.INTERACTION__STEP:
+			return getStep();
+		case SysMLPackage.INTERACTION__PARAMETER:
+			return getParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.INTERACTION__STEP:
-				getStep().clear();
-				getStep().addAll((Collection<? extends Step>)newValue);
-				return;
-			case SysMLPackage.INTERACTION__PARAMETER:
-				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
-				return;
+		case SysMLPackage.INTERACTION__STEP:
+			getStep().clear();
+			getStep().addAll((Collection<? extends Step>) newValue);
+			return;
+		case SysMLPackage.INTERACTION__PARAMETER:
+			getParameter().clear();
+			getParameter().addAll((Collection<? extends Parameter>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INTERACTION__STEP:
-				getStep().clear();
-				return;
-			case SysMLPackage.INTERACTION__PARAMETER:
-				getParameter().clear();
-				return;
+		case SysMLPackage.INTERACTION__STEP:
+			getStep().clear();
+			return;
+		case SysMLPackage.INTERACTION__PARAMETER:
+			getParameter().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INTERACTION__STEP:
-				return !getStep().isEmpty();
-			case SysMLPackage.INTERACTION__PARAMETER:
-				return !getParameter().isEmpty();
+		case SysMLPackage.INTERACTION__STEP:
+			return !getStep().isEmpty();
+		case SysMLPackage.INTERACTION__PARAMETER:
+			return !getParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Behavior.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.INTERACTION__STEP: return SysMLPackage.BEHAVIOR__STEP;
-				case SysMLPackage.INTERACTION__PARAMETER: return SysMLPackage.BEHAVIOR__PARAMETER;
-				default: return -1;
+			case SysMLPackage.INTERACTION__STEP:
+				return SysMLPackage.BEHAVIOR__STEP;
+			case SysMLPackage.INTERACTION__PARAMETER:
+				return SysMLPackage.BEHAVIOR__PARAMETER;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Behavior.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.INTERACTION__STEP;
-				case SysMLPackage.BEHAVIOR__PARAMETER: return SysMLPackage.INTERACTION__PARAMETER;
-				default: return -1;
+			case SysMLPackage.BEHAVIOR__STEP:
+				return SysMLPackage.INTERACTION__STEP;
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				return SysMLPackage.INTERACTION__PARAMETER;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-} //InteractionImpl
+} // InteractionImpl

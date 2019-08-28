@@ -8,16 +8,15 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Return Parameter Membership</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Return
+ * Parameter Membership</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class ReturnParameterMembershipImpl extends ParameterMembershipImpl implements ReturnParameterMembership {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ReturnParameterMembershipImpl() {
@@ -25,8 +24,8 @@ public class ReturnParameterMembershipImpl extends ParameterMembershipImpl imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -41,5 +40,5 @@ public class ReturnParameterMembershipImpl extends ParameterMembershipImpl imple
 		}
 		return direction;
 	}
-	
-} //ReturnParameterMembershipImpl
+
+} // ReturnParameterMembershipImpl

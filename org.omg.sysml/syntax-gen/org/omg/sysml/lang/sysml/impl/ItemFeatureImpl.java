@@ -13,19 +13,18 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Item Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Item
+ * Feature</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
-	
+
 	public static final String ITEM_FLOW_ITEM_FEATURE_NAME = "item";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemFeatureImpl() {
@@ -33,8 +32,8 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -44,10 +43,9 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return type instanceof Step? ((TypeImpl)type).getRelevantFeatures():
-			   type.getFeature().stream().
-					filter(feature->ITEM_FLOW_ITEM_FEATURE_NAME.equals(feature.getName())).
-					collect(Collectors.toList());
+		return type instanceof Step ? ((TypeImpl) type).getRelevantFeatures()
+				: type.getFeature().stream().filter(feature -> ITEM_FLOW_ITEM_FEATURE_NAME.equals(feature.getName()))
+						.collect(Collectors.toList());
 	}
-	
-} //ItemFeatureImpl
+
+} // ItemFeatureImpl

@@ -8,16 +8,15 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Literal Unbounded</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Literal
+ * Unbounded</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class LiteralUnboundedImpl extends LiteralExpressionImpl implements LiteralUnbounded {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LiteralUnboundedImpl() {
@@ -25,8 +24,8 @@ public class LiteralUnboundedImpl extends LiteralExpressionImpl implements Liter
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -34,4 +33,4 @@ public class LiteralUnboundedImpl extends LiteralExpressionImpl implements Liter
 		return SysMLPackage.Literals.LITERAL_UNBOUNDED;
 	}
 
-} //LiteralUnboundedImpl
+} // LiteralUnboundedImpl

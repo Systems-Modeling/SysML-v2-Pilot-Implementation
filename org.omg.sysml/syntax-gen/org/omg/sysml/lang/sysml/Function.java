@@ -4,18 +4,17 @@ package org.omg.sysml.lang.sysml;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Function#getExpression <em>Expression</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.Function#getExpression
+ * <em>Expression</em>}</li>
+ * <li>{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction()
@@ -25,25 +24,26 @@ import org.eclipse.emf.common.util.EList;
 public interface Function extends Behavior {
 
 	/**
-	 * Returns the value of the '<em><b>Expression</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * Returns the value of the '<em><b>Expression</b></em>' reference list. The
+	 * list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getStep() <em>Step</em>}'</li>
+	 * <li>'{@link org.omg.sysml.lang.sysml.Behavior#getStep() <em>Step</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expression</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Expression</em>' reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Expression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computedFunction'"
-	 *        annotation="redefines"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
+	 *        body='computedFunction'" annotation="redefines"
 	 * @generated
 	 */
 	EList<Expression> getExpression();
@@ -54,29 +54,32 @@ public interface Function extends Behavior {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
+	 * <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter()
+	 * <em>Parameter</em>}'</li>
+	 * <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Result</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Result</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Result</em>' reference.
 	 * @see #setResult(Parameter)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingFunction'"
-	 *        annotation="subsets"
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
+	 *        body='computingFunction'" annotation="subsets"
 	 * @generated
 	 */
 	Parameter getResult();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#getResult
+	 * <em>Result</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Result</em>' reference.
 	 * @see #getResult()
 	 * @generated

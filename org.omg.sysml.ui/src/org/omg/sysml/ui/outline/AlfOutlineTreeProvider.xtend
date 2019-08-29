@@ -25,6 +25,7 @@ import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Classifier
+import org.omg.sysml.lang.sysml.Annotation
 
 /**
  * Customization of the default outline structure.
@@ -119,6 +120,20 @@ class AlfOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		"LiteralNull null"
 	}
 	
+	def boolean _isLeaf(Annotation annotation) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Annotation annotation) {
+		super._createChildren(parentNode, annotation)
+		if (annotation.annotatedElement !== null) {
+			createEObjectNode(parentNode, annotation.annotatedElement, 
+				_image(annotation.annotatedElement), annotation.annotatedElement._text, 
+				true
+			)
+		}
+	}
+
 	def boolean _isLeaf(Membership membership) {
 		false
 	}

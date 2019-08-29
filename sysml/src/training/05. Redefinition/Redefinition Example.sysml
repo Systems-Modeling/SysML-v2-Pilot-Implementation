@@ -7,7 +7,7 @@ package 'Redefinition Example' {
 		part smallEng : SmallEngine redefines eng;
 	}
 	block BigVehicle :> Vehicle {
-		part bigEng : BigEngine := eng;
+		part bigEng : BigEngine :>> eng;
 	}
 
 	block Engine {

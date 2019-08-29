@@ -5,6 +5,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -169,6 +170,12 @@ public class CommentImpl extends ElementImpl implements Comment {
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {
 			annotationForComment = getOwningRelationship(Annotation.class);
+		}
+		if (annotationForComment == null) {
+			EList<Annotation> annotations = getOwnedRelationship(Annotation.class);
+			if (!annotations.isEmpty()) {
+				annotationForComment = annotations.get(0);
+			}
 		}
 		return annotationForComment;
 	}

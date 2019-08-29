@@ -3,7 +3,7 @@ package Blocks {
 	
 	block Part :> Object {
 		abstract port ports: Port[0..*] :> objects;
-		abstract action performedActions: Activities::Action[0..*] := enactedPerformances;	
+		abstract action performedActions: Activities::Action[0..*] :>> enactedPerformances;	
 	}
 	
 	value type Value :> Base::Value;
@@ -11,13 +11,13 @@ package Blocks {
 	port def Port :> Part;
 	
 	assoc block Connection :> BinaryLink, Part { // Need to handle n-ary interfaces.
-		end source: Part[0..*] := BinaryLink::source;
-		end target: Part[0..*] := BinaryLink::target;
+		end source: Part[0..*] :>> BinaryLink::source;
+		end target: Part[0..*] :>> BinaryLink::target;
 	}
 	
 	interface def Interface :> Connection { 
-		end source: Port[0..*] := Connection::source;
-		end target: Port[0..*] := Connection::target;
+		end source: Port[0..*] :>> Connection::source;
+		end target: Port[0..*] :>> Connection::target;
 	}
 	
 	abstract part parts: Part[0..*] :> objects;

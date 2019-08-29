@@ -27,7 +27,7 @@
  * 
  *****************************************************************************/
 
-grammar org.omg.sysml.xtext.SysML hidden (WS, ML_COMMENT, SL_COMMENT)
+grammar org.omg.sysml.xtext.SysML hidden (WS, SL_COMMENT)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
@@ -89,13 +89,7 @@ ActionUnit returns SysML::Action :
 
 fragment UnitPrefix returns SysML::Package :
 	//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
-	( ownedRelationship += Annotation )*
-;
-
-/* UNIT MEMBERSHIPS */
-
-UnitMember returns SysML::Membership :
-	ownedRelatedElement += Unit
+	( ownedRelationship += PrefixAnnotation )*
 ;
 
 /* VISIBILITY */
@@ -110,18 +104,33 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 
 /* COMMENTS */
 
-Annotation returns SysML::Annotation :
-	ownedRelatedElement += Comment
+Comment returns SysML::Comment :
+	( 'comment' ( name = Name )? ownedRelationship += Annotation
+	| ownedRelationship += EmptyAnnotation
+	)
+	body = ML_COMMENT
 ;
 
-Comment returns SysML::Comment :
-	body = DOCUMENTATION_COMMENT
+Annotation returns SysML::Annotation :
+	{SysML::Annotation} ( 'on' annotatedElement = [SysML::Element|QualifiedName] )?
+;
+
+EmptyAnnotation returns SysML::Annotation :
+	{SysML::Annotation}
+;
+
+PrefixAnnotation returns SysML::Annotation :
+	ownedRelatedElement += Documentation
+;
+
+Documentation returns SysML::Comment :
+	('comment' ( name = Name )? )? body = DOCUMENTATION_COMMENT
 ;
 
 /* IMPORTS */
 
 Import returns SysML::Import :
-	( ownedRelationship += Annotation )*
+	( ownedRelationship += PrefixAnnotation )*
 	( visibility = PackageElementVisibilityIndicator )?  
 	'import' (
 	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
@@ -155,7 +164,7 @@ PackageMember returns SysML::Membership :
 ;
 
 fragment PackageMemberPrefix returns SysML::Membership :
-	( ownedRelationship += Annotation )*
+	( ownedRelationship += PrefixAnnotation )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = PackageElementVisibilityIndicator )?		
 ;
@@ -176,6 +185,8 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedRelatedElement += ActivityOrStub
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
+	| ownedRelatedElement += Comment
+	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
 	)
 ;
 
@@ -259,7 +270,7 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 ;
 
 fragment TypeMemberPrefix returns SysML::Membership :
-	( ownedRelationship += Annotation )*
+	( ownedRelationship += PrefixAnnotation )*
 //  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 ;
@@ -443,7 +454,7 @@ fragment AbstractUsage returns SysML::Usage :
 fragment UsageDeclaration returns SysML::Usage :
 	  name = Name TypePart SubsettingPart
 	| Typing MultiplicityPart SubsettingPart
-	| ( ':=' | 'redefines' ) ownedRelationship += Redefinition TypePart SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart SubsettingPart
 ;
 
 fragment UsageCompletion returns SysML::Usage :
@@ -499,7 +510,7 @@ Subset returns SysML::Subsetting:
 ;
 
 fragment Redefines returns SysML::Feature :
-	( ':=' | 'redefines' ) ownedRelationship += Redefinition
+	( ':>>' | 'redefines' ) ownedRelationship += Redefinition
 ;
 
 Redefinition returns SysML::Redefinition:
@@ -731,7 +742,7 @@ ActionUsage returns SysML::Action :
     ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
 	( name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	| TypePart ActionParameterList? ValuePart?
-	| ( ':=' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
 	) ActivityBody
 ;
 
@@ -1141,13 +1152,8 @@ terminal STRING_VALUE returns Ecore::EString :
 	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
 
 terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
-terminal STATEMENT_ANNOTATION : '//@' -> '\n'
-//  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
-//  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
-;
-terminal INLINE_STATEMENT : '/*@inline(' (ID | UNRESTRICTED_NAME) ')' -> '*/';
 
-terminal ML_COMMENT	: '/*' !('*' | '@') -> '*/';
-terminal SL_COMMENT : '//' (!('@'|'\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
+terminal ML_COMMENT	: '/*' !'*' -> '*/';
+terminal SL_COMMENT : '//' (!('\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
 
 terminal WS : (' '|'\t'|'\r'|'\n')+;

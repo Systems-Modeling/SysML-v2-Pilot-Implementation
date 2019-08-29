@@ -74,7 +74,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Classifier> getItemType() {
@@ -88,7 +88,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<ItemFeature> getItemFeature() {
@@ -99,7 +99,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
@@ -112,7 +112,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
@@ -135,7 +135,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<ItemFlowFeature> getItemFlowFeature() {
@@ -149,7 +149,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getTargetInputFeature() {

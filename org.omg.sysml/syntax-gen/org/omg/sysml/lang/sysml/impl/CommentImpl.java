@@ -121,7 +121,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Element basicGetCommentedElement() {
 		Annotation annotation = this.getAnnotationForComment();
@@ -131,12 +131,11 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setCommentedElement(Element newCommentedElement) {
 		// TODO: implement this method to set the 'Commented Element' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -169,7 +168,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {

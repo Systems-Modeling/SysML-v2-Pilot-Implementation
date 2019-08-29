@@ -108,7 +108,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setOperator(String newOperator) {
@@ -147,7 +147,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public EList<Expression> getOperand() {

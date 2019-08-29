@@ -95,7 +95,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 * use this as the default value of the redefiningFeature property. <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetRedefiningFeature() {
 		if (redefiningFeature == null) {
@@ -124,7 +124,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public boolean isSetRedefiningFeature() {
 		return basicGetRedefiningFeature() != null;

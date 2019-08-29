@@ -37,7 +37,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not found in model
 	 */
 	public Association getOwningAssociation() {
 		Type type = super.getOwningType();
@@ -47,7 +47,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not found in model
 	 */
 	public Association basicGetOwningAssociation() {
 		Type type = super.basicGetOwningType();
@@ -57,7 +57,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from FeatureMembership
 	 */
 	@Override
 	public Type getOwningType() {
@@ -67,7 +67,7 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from FeatureMembership
 	 */
 	@Override
 	public Type basicGetOwningType() {

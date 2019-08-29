@@ -195,7 +195,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Type> getRelatedType() {
@@ -216,7 +216,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Connector getOwningConnector() {
 		Connector owningConnector = basicGetOwningConnector();
@@ -228,7 +228,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Connector basicGetOwningConnector() {
 		Element owner = this.getOwner();
@@ -238,7 +238,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setOwningConnector(Connector newOwningConnector) {
 		this.setOwner(newOwningConnector);
@@ -247,7 +247,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getAssociationEnd() {

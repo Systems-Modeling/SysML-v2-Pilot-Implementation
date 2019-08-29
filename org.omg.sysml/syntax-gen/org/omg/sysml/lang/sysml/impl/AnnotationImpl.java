@@ -105,7 +105,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Element basicGetAnnotatedElement() {
 		if (annotatedElement == null) {
@@ -168,7 +168,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Comment basicGetAnnotatingComment() {
 		if (annotatingComment == null) {

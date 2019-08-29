@@ -183,7 +183,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Expression basicGetValue() {
 		return getFirstOwnedRelatedElement(Expression.class);
@@ -192,12 +192,11 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setValue(Expression newValue) {
 		// TODO: implement this method to set the 'Value' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -231,7 +230,7 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetFeatureWithValue() {
 		return getOwningRelatedElement(Feature.class);
@@ -268,12 +267,11 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
 		// TODO: implement this method to set the 'Feature With Value' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**

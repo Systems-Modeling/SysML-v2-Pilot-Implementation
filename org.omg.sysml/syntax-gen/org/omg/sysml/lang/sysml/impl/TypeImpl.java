@@ -238,7 +238,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		return basicGetOwnedGeneralization();
@@ -321,7 +321,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
 		EList<FeatureMembership> featureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this,
@@ -349,7 +349,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Feature> getOwnedFeature() {
 		return new DerivedEObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__OWNED_FEATURE,
@@ -359,7 +359,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Feature> getFeature() {
 		return new DerivedEObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__FEATURE,
@@ -369,7 +369,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__INPUT);
@@ -391,7 +391,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
@@ -445,7 +445,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Membership> getInheritedMembership() {
@@ -460,7 +460,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getEndFeature() {
@@ -496,7 +496,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getOwnedEndFeature() {

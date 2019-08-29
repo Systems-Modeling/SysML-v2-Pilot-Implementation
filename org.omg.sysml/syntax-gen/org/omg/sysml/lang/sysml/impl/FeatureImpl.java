@@ -221,7 +221,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Type> getType() {
 		return getTypes(true);
@@ -255,7 +255,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Type> getReferencedType() {
 		EList<Type> referencedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
@@ -279,7 +279,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Type basicGetOwningType() {
 		org.omg.sysml.lang.sysml.Package namespace = this.getOwningNamespace();
@@ -289,7 +289,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setOwningType(Type newOwningType) {
 		throw new UnsupportedOperationException();
@@ -346,7 +346,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Type> getOwnedType() {
 		EList<Type> ownedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
@@ -358,7 +358,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Redefinition> getOwnedRedefinition() {
 		EList<Redefinition> redefinitions = new EObjectEList<Redefinition>(Redefinition.class, this,
@@ -374,7 +374,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithComputedRedefinitions(hasObjectType() ? OBJECT_FEATURE_SUBSETTING_DEFAULT
@@ -519,7 +519,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public FeatureMembership basicGetOwningFeatureMembership() {
 		return getOwningRelationship(FeatureMembership.class);
@@ -528,12 +528,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
 		// TODO: implement this method to set the 'Owning Feature Membership' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -550,7 +549,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public boolean isComposite() {
 		FeatureMembership featureMembership = this.getOwningFeatureMembership();
@@ -560,7 +559,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setIsComposite(boolean newIsComposite) {
 		isComposite = newIsComposite;
@@ -592,7 +591,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public FeatureValue basicGetValuation() {
 		return getFirstOwnedRelationship(FeatureValue.class);
@@ -629,12 +628,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setValuation(FeatureValue newValuation) {
 		// TODO: implement this method to set the 'Valuation' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -659,7 +657,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Multiplicity basicGetMultiplicity() {
 		return getFirstOwnedRelationship(Multiplicity.class);
@@ -696,7 +694,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
@@ -707,7 +705,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public EList<FeatureTyping> getTyping() {
 		return getOwnedGeneralizationWithoutDefault(FeatureTyping.class, SysMLPackage.FEATURE__TYPING);
@@ -716,7 +714,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public boolean isEnd() {
@@ -726,7 +724,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setIsEnd(boolean newIsEnd) {
@@ -747,7 +745,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Type basicGetEndOwningType() {
 		return isEnd() ? basicGetOwningType() : null;
@@ -768,7 +766,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public boolean isNonunique() {
 		return !isUnique;
@@ -777,7 +775,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setIsNonunique(boolean newIsNonunique) {
 		this.setIsUnique(!newIsNonunique);

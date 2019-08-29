@@ -95,7 +95,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Element> getRelatedElement() {
 		EList<Element> related = new BasicInternalEList<Element>(Element.class);
@@ -134,7 +134,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Element getOwningRelatedElement() {
 		EObject container = eInternalContainer();

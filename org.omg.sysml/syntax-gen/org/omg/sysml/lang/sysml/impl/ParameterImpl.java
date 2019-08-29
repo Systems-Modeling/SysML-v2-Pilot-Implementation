@@ -54,7 +54,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived, inherited from Feature
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
 		return super.getOwnedSubsetting();

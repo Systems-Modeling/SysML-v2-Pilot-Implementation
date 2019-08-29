@@ -150,7 +150,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * the use this as the default value of the subclass property. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public org.omg.sysml.lang.sysml.Classifier basicGetSubclass() {
 		if (subclass == null) {
@@ -201,7 +201,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Classifier basicGetOwningClassifier() {
 		Type owningType = super.basicGetOwningType();
@@ -211,7 +211,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setOwningClassifier(Classifier newOwningClassifier) {

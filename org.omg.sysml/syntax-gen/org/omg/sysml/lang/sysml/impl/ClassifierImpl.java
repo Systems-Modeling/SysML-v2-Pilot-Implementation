@@ -47,7 +47,7 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(CLASSIFIER_SUPERCLASS_DEFAULT);

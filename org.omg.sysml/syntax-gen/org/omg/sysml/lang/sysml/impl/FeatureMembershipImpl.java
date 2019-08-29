@@ -172,7 +172,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
-	 * @generated NOT
+	 * @generated NOT // TODO check, not found in model
 	 * @ordered
 	 */
 	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = null;
@@ -241,7 +241,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetMemberFeature() {
 		Feature ownedMemberFeature = getOwnedMemberFeature();
@@ -274,7 +274,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public boolean isSetMemberFeature() {
 		return basicGetMemberFeature() != null;
@@ -331,7 +331,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public boolean isPart() {
@@ -429,7 +429,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Type getOwningType() {
 		return basicGetOwningType();
@@ -438,7 +438,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Type basicGetOwningType() {
 		org.omg.sysml.lang.sysml.Package owningPackage = super.basicGetMembershipOwningPackage();
@@ -448,7 +448,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs) {
 		return null;
@@ -457,7 +457,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public void setOwningType(Type newOwningType) {
 
@@ -551,7 +551,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetOwnedMemberFeature() {
 		return getFirstOwnedRelatedElement(Feature.class);
@@ -560,12 +560,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
 		// TODO: implement this method to set the 'Owned Member Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**

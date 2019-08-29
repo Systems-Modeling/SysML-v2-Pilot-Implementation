@@ -94,7 +94,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetSubsettedFeature() {
 		return subsettedFeature;
@@ -150,7 +150,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * this as the default value of the subsettingFeature property. <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetSubsettingFeature() {
 		if (subsettingFeature == null) {
@@ -201,7 +201,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Feature basicGetOwningFeature() {
 		Type owningType = super.basicGetOwningType();
@@ -211,7 +211,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setOwningFeature(Feature newOwningFeature) {
 		super.setOwningType(newOwningFeature);

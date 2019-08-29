@@ -141,7 +141,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Element> getMember() {
 		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
@@ -153,7 +153,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated // TODO check, not derived
 	 */
 	@Override
 	public EList<Import> getOwnedImport() {
@@ -185,7 +185,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Element> getOwnedMember() {
 		EList<Element> ownedMembers = new EObjectEList<Element>(Element.class, this,
@@ -209,7 +209,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Membership> getImportedMembership() {
 		if (importedMembership == null) {
@@ -238,7 +238,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated // TODO check, not derived
 	 */
 	@Override
 	public EList<Membership> getOwnedMembership() {
@@ -339,7 +339,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public String nameOf(Element element) {
 		for (Membership membership : this.getMembership()) {
@@ -353,7 +353,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public EList<Membership> excludeCollisions(EList<Membership> mem) {
 		for (int i = 0; i < mem.size(); i++) {
@@ -378,7 +378,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public EList<Membership> publicMemberships() {
 		return getPublicMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>());

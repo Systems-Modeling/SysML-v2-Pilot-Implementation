@@ -146,7 +146,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetTypedFeature() {
 		if (typedFeature == null) {
@@ -180,7 +180,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public void setTypedFeature(Feature newTypedFeature) {
 	}

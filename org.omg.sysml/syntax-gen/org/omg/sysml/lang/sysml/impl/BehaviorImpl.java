@@ -58,7 +58,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Step> getStep() {
 		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.BEHAVIOR__STEP,
@@ -68,7 +68,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Parameter> getParameter() {
 		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER,

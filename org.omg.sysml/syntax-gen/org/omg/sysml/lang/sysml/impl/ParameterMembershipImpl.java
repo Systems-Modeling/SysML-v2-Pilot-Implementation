@@ -97,7 +97,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Parameter basicGetMemberParameter() {
 		Parameter ownedMemberParameter = getOwnedMemberParameter();
@@ -177,7 +177,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Parameter basicGetOwnedMemberParameter() {
 		Parameter parameter = getFirstOwnedRelatedElement(Parameter.class);
@@ -190,7 +190,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setOwnedMemberParameter(Parameter newOwnedMemberParameter) {

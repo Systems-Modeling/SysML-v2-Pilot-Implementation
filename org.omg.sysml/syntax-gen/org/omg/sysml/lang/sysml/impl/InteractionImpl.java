@@ -52,7 +52,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived, inherited from Behavior
 	 */
 	@Override
 	public EList<Step> getStep() {
@@ -63,7 +63,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived, inherited from Behavior
 	 */
 	@Override
 	public EList<Parameter> getParameter() {

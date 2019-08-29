@@ -140,7 +140,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived (inherited from Relationship.relatedElement)
 	 */
 	public EList<Element> getRelatedElement() {
 		@SuppressWarnings("unchecked")
@@ -307,7 +307,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
@@ -319,7 +319,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Association> getAssociation() {
@@ -333,7 +333,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Association basicGetAssociation() {
 		EList<Type> types = super.getType();
@@ -348,7 +348,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setAssociation(Association newAssociation) {
 		EList<FeatureTyping> typings = getTyping();
@@ -398,7 +398,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Feature> getConnectorEnd() {
@@ -425,7 +425,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Association> getOwnedAssociationType() {
@@ -447,7 +447,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
 		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);

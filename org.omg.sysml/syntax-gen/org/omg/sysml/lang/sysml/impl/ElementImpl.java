@@ -203,7 +203,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated // TODO check, not derived
 	 */
 	public Relationship getOwningRelationship() {
 		EObject container = eInternalContainer();
@@ -269,7 +269,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Element basicGetOwner() {
 		Relationship owningRelationship = getOwningRelationship();
@@ -281,12 +281,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setOwner(Element newOwner) {
 		// TODO: implement this method to set the 'Owner' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -311,7 +310,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated // TODO check, not derived
 	 */
 	public Membership basicGetOwningMembership() {
 		return getOwningRelationship(Membership.class);
@@ -348,12 +347,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated // TODO check, not derived
 	 */
 	@Override
 	public void setOwningMembership(Membership newOwningMembership) {
 		// TODO: implement this method to set the 'Owning Membership' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -372,7 +370,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
 		Membership membership = this.getOwningMembership();
@@ -382,7 +380,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
 		throw new UnsupportedOperationException();
@@ -391,7 +389,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public BasicEList<Element> getOwnedElement() {
 		BasicEList<Element> ownedElements = new EObjectEList<Element>(Element.class, this,
@@ -428,7 +426,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public String getName() {
 		String name = this.basicGetName();
@@ -443,7 +441,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setName(String newName) {
 		Membership owningMembership = this.getOwningMembership();

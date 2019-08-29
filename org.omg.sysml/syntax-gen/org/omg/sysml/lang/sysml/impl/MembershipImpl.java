@@ -177,7 +177,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Element basicGetMemberElement() {
 		Element ownedMemberElement = getOwnedMemberElement();
@@ -301,7 +301,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public String getMemberName() {
 		if (memberName == null) {
@@ -396,7 +396,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetMembershipOwningPackage() {
 		return getOwningRelatedElement(org.omg.sysml.lang.sysml.Package.class);
@@ -435,12 +435,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
 		// TODO: implement this method to set the 'Membership Owning Package' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -474,7 +473,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Element basicGetOwnedMemberElement() {
 		return getFirstOwnedRelatedElement();
@@ -516,19 +515,18 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setOwnedMemberElement(Element newOwnedMemberElement) {
 		// TODO: implement this method to set the 'Owned Member Element' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	// Operations
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public boolean isDistinguishableFrom(Membership other) {
 		// TODO Implement full distinguishibility test.
@@ -764,13 +762,13 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from Relationship
 	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this,
 				SysMLPackage.MEMBERSHIP__TARGET);
-		// NOTE: The "memberElement" object must NOT be resolved here, in order to avoid
+		// NOTE: The "memberElement" object must not be resolved here, in order to avoid
 		// Xtext lazy linking errors.
 		Element memberElement = basicGetMemberElement();
 		if (memberElement != null) {
@@ -791,7 +789,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from Relationship
 	 */
 	@Override
 	public EList<Element> getSource() {

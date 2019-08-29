@@ -58,7 +58,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Expression> getExpression() {
@@ -89,7 +89,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Parameter basicGetResult() {
 		List<Parameter> parameters = getOwnedParameters();
@@ -99,7 +99,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setResult(Parameter newResult) {

@@ -143,7 +143,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Expression basicGetLower() {
 		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
@@ -154,7 +154,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setLower(Expression newLower) {
@@ -184,7 +184,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Expression basicGetUpper() {
 		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
@@ -195,7 +195,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setUpper(Expression newUpper) {
@@ -226,7 +226,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Feature basicGetFeatureWithMultiplicity() {
 		return getOwningRelatedElement(Feature.class);
@@ -265,7 +265,7 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setFeatureWithMultiplicity(Feature newFeatureWithMultiplicity) {

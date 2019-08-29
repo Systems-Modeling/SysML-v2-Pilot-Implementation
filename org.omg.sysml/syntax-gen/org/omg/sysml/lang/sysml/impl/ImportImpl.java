@@ -197,7 +197,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Predicate basicGetSelecter() {
 		return getFirstOwnedRelatedElement(Predicate.class);
@@ -206,12 +206,11 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setSelecter(Predicate newSelecter) {
 		// TODO: implement this method to set the 'Selecter' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -260,7 +259,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetImportOwningPackage() {
 		return getOwningRelatedElement(org.omg.sysml.lang.sysml.Package.class);
@@ -298,12 +297,11 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	@Override
 	public void setImportOwningPackage(org.omg.sysml.lang.sysml.Package newImportOwningPackage) {
 		// TODO: implement this method to set the 'Import Owning Package' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -320,7 +318,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // EOperation
 	 */
 	public EList<Membership> importedMembership() {
 		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null,
@@ -542,12 +540,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from Relationship
 	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET);
-		// NOTE: The "importedPackage" object must NOT be resolved here, in order to
+		// NOTE: The "importedPackage" object must not be resolved here, in order to
 		// avoid Xtext lazy linking errors.
 		Element importedPackage = basicGetImportedPackage();
 		if (importedPackage != null) {

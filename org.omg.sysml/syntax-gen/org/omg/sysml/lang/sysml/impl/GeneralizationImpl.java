@@ -198,7 +198,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * owningRelatedElement, then use this as the default value for its specific
 	 * property. <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public Type basicGetSpecific() {
 		if (specific == null) {
@@ -227,7 +227,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived
 	 */
 	public boolean isSetSpecific() {
 		return basicGetSpecific() != null;
@@ -297,7 +297,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public Type basicGetOwningType() {
 		Element element = this.getOwningRelatedElement();
@@ -307,7 +307,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // derived
 	 */
 	public void setOwningType(Type newOwningType) {
 		if (getSpecific() != newOwningType) {
@@ -409,13 +409,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from Relationship
 	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this,
 				SysMLPackage.GENERALIZATION__TARGET);
-		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext
+		// NOTE: The "general" object must not be resolved here, in order to avoid Xtext
 		// lazy linking errors.
 		Element general = basicGetGeneral();
 		if (general != null) {
@@ -436,7 +436,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated NOT // TODO check, not derived, inherited from Relationship
 	 */
 	@Override
 	public EList<Element> getSource() {

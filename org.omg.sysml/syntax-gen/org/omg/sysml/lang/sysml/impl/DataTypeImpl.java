@@ -10,14 +10,14 @@ import org.omg.sysml.lang.sysml.DataType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Classifier</b></em>'.
+ * An implementation of the model object '<em><b>Data Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
 public class DataTypeImpl extends ClassifierImpl implements DataType {
 	
-	public static final String VALUE_CLASS_SUPERCLASS_DEFAULT = "Base::Value";
+	public static final String DATA_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -39,11 +39,11 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	/**
-	 * If the Class has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 * If the DataType has no Superclassings, then create one whose superclass is the appropriate default library class.
 	 */
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(VALUE_CLASS_SUPERCLASS_DEFAULT);
+		return getOwnedSuperclassingWithDefault(DATA_TYPE_SUPERCLASS_DEFAULT);
 	}
 
-} //ValueClassImpl
+}

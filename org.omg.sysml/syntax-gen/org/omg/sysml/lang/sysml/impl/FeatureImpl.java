@@ -70,7 +70,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
 	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
-	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::dataValues";
 	
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
 	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";

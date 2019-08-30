@@ -19,12 +19,12 @@ package Base {
 	 * Value is the most general classifier of entities that are values that do not change
 	 * over time.
 	 */
-	abstract datatype Value specializes Anything;
+	abstract datatype DataValue specializes Anything;
 	
 	/**
 	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
 	 */
-	abstract datatype EnumeratedValue specializes Value;
+	abstract datatype EnumeratedValue specializes DataValue;
 	
 	// Occurrences
 	
@@ -125,7 +125,7 @@ package Base {
 		/**
 		 * Performances which are enacted by this object.
 		 */
-		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances;
+		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
 	}
 	
 	/**
@@ -241,9 +241,9 @@ package Base {
 	abstract feature things: Anything[0..*] nonunique;
 	
 	/**
-	 * values is a specialization of things restricted to type Value.
+	 * dataValues is a specialization of things restricted to type DataValue.
 	 */
-	abstract feature values: Value[0..*] nonunique subsets things;
+	abstract feature dataValues: DataValue[0..*] nonunique subsets things;
 		 
 	/**
 	 * objects is a specialization of things restricted to type Object.

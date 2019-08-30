@@ -9,7 +9,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Object Classifier</b></em>'.
+ * An implementation of the model object '<em><b>Class</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
@@ -45,4 +45,4 @@ public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysm
 		return getOwnedSuperclassingWithDefault(CLASS_SUPERCLASS_DEFAULT);
 	}
 
-} //ObjectClassImpl
+}

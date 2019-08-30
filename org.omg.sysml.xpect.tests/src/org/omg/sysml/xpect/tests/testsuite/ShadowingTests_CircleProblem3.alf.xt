@@ -34,6 +34,12 @@ package Test1{
 	class A {
 		import B::*;
 		/* XPECT scope at A ---
+		   A.aa, A.aa.B, B.B.aa,
+		   A.B.B, A.B.B.aa, A.B.B.bb, A.B.B.bb.aa, A.B.B.bb.bb, A.B.a, A.B.b, A.B.b.aa, A.B.b.bb, 
+		   A.aa.B.aa, A.aa.B.bb, A.aa.a, A.aa.b, A.bb,  B.B,  B.B.bb, B.B.bb.aa, B.B.bb.bb,B.b.aa, B.b.bb, B.a, B.b,
+		   Test1.A.B.B, Test1.A.B.B.aa, Test1.A.B.B.bb, Test1.A.B.B.bb.aa, Test1.A.B.B.bb.bb, Test1.A.B.a, Test1.A.B.b, Test1.A.B.b.aa, Test1.A.B.b.bb, 
+		   Test1.A.aa.B.aa, Test1.A.aa.B.bb, Test1.A.aa.a, Test1.A.aa.b, Test1.A.bb,
+		   Test1.A.aa, Test1.A.aa.B,
 A, 
 a, 
 A.a, 
@@ -205,7 +211,13 @@ OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b,
 			import A::*;
 			feature aa: A; //added 
 					/* XPECT scope at B ---
-					   A, 
+A.B.B, A.B.B.aa, A.B.B.bb, A.B.B.bb.aa, A.B.B.bb.bb, A.B.a, A.B.b, A.B.b.aa, A.B.b.bb,  A.aa, A.aa.B, 
+A.aa.B.aa, A.aa.B.bb, A.aa.a, A.aa.b, A.bb,
+Test1.A.B.B, Test1.A.B.B.aa, Test1.A.B.B.bb, Test1.A.B.B.bb.aa, Test1.A.B.B.bb.bb, Test1.A.B.a, Test1.A.B.b, Test1.A.B.b.aa, Test1.A.B.b.bb,  Test1.A.aa, Test1.A.aa.B, 
+Test1.A.aa.B.aa, Test1.A.aa.B.bb, Test1.A.aa.a, Test1.A.aa.b, Test1.A.bb,
+
+
+A, 
 a, 
 A.a, 
 A.a.a, 

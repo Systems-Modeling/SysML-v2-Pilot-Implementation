@@ -170,6 +170,9 @@ class AlfScope extends AbstractScope {
 										if (memberElement.gen(elementqn, visited)) {
 											return true;
 										}
+										if (memberElement.imp(elementqn, visited)) {
+											return true;
+										}
 									}
 								}
 							}

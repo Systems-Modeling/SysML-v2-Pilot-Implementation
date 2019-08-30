@@ -40,6 +40,5 @@ package Import_Circular {
 	
 	// The following should not fail.
 	// Same problem as QualifiedNameImportTest.
-	// currently throws an xpect error "Couldn't resolve reference to Category 'P1::B'." at "P1::B"
     y: P1::B;
 }

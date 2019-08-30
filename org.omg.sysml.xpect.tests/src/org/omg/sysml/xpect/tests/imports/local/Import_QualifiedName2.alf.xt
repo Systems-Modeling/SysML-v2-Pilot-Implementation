@@ -25,11 +25,9 @@ package Import_QualifiedName {
 			import P1::*;
 			x: A;
 		}
-		// currently xpect throws errors "Couldn't resolve reference to Category 'P2a::A'." at "P2a::A"
 		x: P2a::A;
 	}
 	package P3{
-		// currently xpect throws errors "Couldn't resolve reference to Category 'P2::P2a::A'." at "P2::P2a::A"
 		x: P2::P2a::A;
 	}
 }

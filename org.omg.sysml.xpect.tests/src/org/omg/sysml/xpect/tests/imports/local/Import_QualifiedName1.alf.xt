@@ -26,7 +26,6 @@ package Import_QualifiedName {
 		}
 		// The following should not fail.
 		// A is a member of P2a because of the import.
-		// currently xpect throws errors ---> "Couldn't resolve reference to Category 'P2a::A'." at "P2a::A"
 		x: P2a::A;
 	}
 }

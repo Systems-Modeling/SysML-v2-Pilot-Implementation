@@ -28,7 +28,6 @@ package Import_Private {
 	import P2::*;
 	// This should fail.
 	// A is not visible, because the import in P2 is private.
-	//currently xpect throws no error.
 	// XPECT errors --> "Couldn't resolve reference to Category 'A'." at "A"
 	y: A;
 }

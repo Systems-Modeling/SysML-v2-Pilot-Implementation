@@ -203,7 +203,7 @@ class AlfScope extends AbstractScope {
 	
 	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
+			if (e.importedPackage !== null && !visited.contains(e.importedPackage) && e.visibility == VisibilityKind.PUBLIC) {
 				visited.add(e.importedPackage)
 				val found = e.importedPackage.resolve(qn, true, false, visited)
 				visited.remove(e.importedPackage)

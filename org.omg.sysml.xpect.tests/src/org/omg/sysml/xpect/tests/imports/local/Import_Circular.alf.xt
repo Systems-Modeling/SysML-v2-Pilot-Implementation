@@ -35,7 +35,14 @@ package Import_Circular {
 		x: A;
 		y: B;
 	}
-	
+	/* XPECT scope at P1::A ---
+	   x, y, Import_Circular.x, Import_Circular.y,
+	   P1.A, P1.B, Import_Circular.P1.A, Import_Circular.P1.B, 	   
+	   P2.A, P2.B, Import_Circular.P2.A, Import_Circular.P2.B,  
+	   Test1.A, Test1.B, Test1.x, Test1.y, Import_Circular.Test1.A, Import_Circular.Test1.B, Import_Circular.Test1.x, Import_Circular.Test1.y, 
+	   Test2.A, Test2.B, Test2.x, Test2.y, Import_Circular.Test2.A, Import_Circular.Test2.B, Import_Circular.Test2.x, Import_Circular.Test2.y,
+	   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   Base.selfLinks, Base.things, Base.values
+	--- */	
 	x: P1::A;
 	
 	// The following should not fail.

@@ -16,7 +16,7 @@ END_SETUP
 */
 
 // XPECT noErrors --> ""
-package CircularImport {
+package Import_Circular {
 	package P1 {
 		import P2::*;
 		class A;
@@ -42,5 +42,4 @@ package CircularImport {
 	// Same problem as QualifiedNameImportTest.
 	// currently throws an xpect error "Couldn't resolve reference to Category 'P1::B'." at "P1::B"
     y: P1::B;
-	
 }

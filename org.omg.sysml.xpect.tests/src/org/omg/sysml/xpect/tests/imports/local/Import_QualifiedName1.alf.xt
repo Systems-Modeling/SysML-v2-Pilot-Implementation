@@ -16,7 +16,7 @@ END_SETUP
 */
 
 // XPECT noErrors ---> ""
-package QualifiedNameImportTest {
+package Import_QualifiedName {
 	package P1 {
 		class A;
 	}

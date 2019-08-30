@@ -1,0 +1,35 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package test{
+	package P1{
+		class A;
+	}
+	package P2{
+		package P2a{
+			import P1::*;
+			x: A;
+		}
+		// currently xpect throws errors "Couldn't resolve reference to Category 'P2a::A'." at "P2a::A"
+		x: P2a::A;
+	}
+	package P3{
+		// currently xpect throws errors "Couldn't resolve reference to Category 'P2::P2a::A'." at "P2::P2a::A"
+		x: P2::P2a::A;
+	}
+}

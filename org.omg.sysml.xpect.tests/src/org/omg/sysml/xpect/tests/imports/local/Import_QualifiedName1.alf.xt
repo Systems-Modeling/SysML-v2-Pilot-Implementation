@@ -1,0 +1,32 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package QualifiedNameImportTest {
+	package P1 {
+		class A;
+	}
+	package P2 {
+		package P2a {
+			import P1::*;
+		}
+		// The following should not fail.
+		// A is a member of P2a because of the import.
+		// currently xpect throws errors ---> "Couldn't resolve reference to Category 'P2a::A'." at "P2a::A"
+		x: P2a::A;
+	}
+}

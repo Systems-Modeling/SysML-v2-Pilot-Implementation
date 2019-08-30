@@ -1,0 +1,34 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+ 
+package PrivateImportTest {
+	package P1 {
+		class A;
+	}
+	package P2 {
+		private import P1::*;
+	}
+	x: P1::A;
+	
+	import P2::*;
+	// This should fail.
+	// A is not visible, because the import in P2 is private.
+	// XPECT errors --> "Couldn't resolve reference to Category 'A'." at "A"
+	y: A;
+	
+}

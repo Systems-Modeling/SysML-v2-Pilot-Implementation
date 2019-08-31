@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorUsage;
@@ -117,6 +118,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass endFeatureMembershipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conjugatedPortMembershipEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -809,6 +817,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	@Override
 	public EClass getEndFeatureMembership() {
 		return endFeatureMembershipEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getConjugatedPortMembership() {
+		return conjugatedPortMembershipEClass;
 	}
 
 	/**
@@ -3621,6 +3639,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		endFeatureMembershipEClass = createEClass(END_FEATURE_MEMBERSHIP);
 
+		conjugatedPortMembershipEClass = createEClass(CONJUGATED_PORT_MEMBERSHIP);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -3752,6 +3772,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		structuredFeatureEClass.getESuperTypes().add(this.getFeature());
 		orderedFeatureEClass.getESuperTypes().add(this.getStructuredFeature());
 		endFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		conjugatedPortMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4094,6 +4115,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEClass(orderedFeatureEClass, OrderedFeature.class, "OrderedFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(endFeatureMembershipEClass, EndFeatureMembership.class, "EndFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(conjugatedPortMembershipEClass, ConjugatedPortMembership.class, "ConjugatedPortMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

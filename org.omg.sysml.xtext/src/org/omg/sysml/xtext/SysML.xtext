@@ -159,13 +159,12 @@ fragment PackageBody returns SysML::Package :
 PackageMember returns SysML::Membership : 
 	PackageMemberPrefix	
 	( PackagedDefinitionMember 
-	| PackagedUsage
+	| PackagedUsageMember
 	)
 ;
 
 fragment PackageMemberPrefix returns SysML::Membership :
 	( ownedRelationship += PrefixAnnotation )*
-//  ( annotation += StereotypeAnnotation )*
     ( visibility = PackageElementVisibilityIndicator )?		
 ;
 
@@ -190,7 +189,7 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	)
 ;
 
-fragment PackagedUsage returns SysML::Membership :
+fragment PackagedUsageMember returns SysML::Membership :
 	  'part' ownedRelatedElement += PartProperty
 	| 'abstract' 'part' ownedRelatedElement += AbstractPartProperty
 	| 'part' ( memberName = Name )? 'is' memberElement = [SysML::PartProperty|QualifiedName] ';'
@@ -214,15 +213,15 @@ fragment AbstractDefinitionBody returns SysML::Type :
 /* DEFINITION MEMBERSHIPS */
 
 DefinitionMember returns SysML::Membership : 
-	NestedDefinitionMember | NestedUsageMember
+	NestedDefinitionMember | NestedUsageMember | ConjugatedPortMember
 ;
 
 NestedDefinitionMember returns SysML::Membership : 
-	TypeMemberPrefix PackagedDefinitionMember
+	DefinitionMemberPrefix PackagedDefinitionMember
 ;
 
 NestedUsageMember returns SysML::FeatureMembership :
-	TypeMemberPrefix
+	DefinitionMemberPrefix
 	(
 	  isComposite ?= 'part' ownedRelatedElement += PartProperty
 	| 'abstract' isComposite ?= 'part' ownedRelatedElement += AbstractPartProperty
@@ -233,9 +232,9 @@ NestedUsageMember returns SysML::FeatureMembership :
 	| 'value'? ( direction = FeatureDirection )? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractValueProperty
 	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
-	| isPort ?= 'port' ( direction = FeatureDirection )? ownedRelatedElement += PortUsage
-	| 'abstract' isPort ?= 'port' ( direction = FeatureDirection )? ownedRelatedElement += AbstractPortUsage
-	| isPort ?= 'port' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+	| isPort ?= 'port' ownedRelatedElement += PortUsage
+	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
 	| 'interface' ownedRelatedElement += InterfaceConnector
 	| 'abstract' 'interface' ownedRelatedElement += AbstractInterfaceConnector
 	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceConnector|QualifiedName] ';'
@@ -265,13 +264,19 @@ NestedUsageMember returns SysML::FeatureMembership :
     )
 ;
 
-enum FeatureDirection returns SysML::FeatureDirectionKind:
+ConjugatedPortMember returns SysML::ConjugatedPortMembership :
+	DefinitionMemberPrefix
+	( isPort ?= 'port' ownedRelatedElement += ConjugatedPortUsage
+	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractConjugatedPortUsage
+	)
+;
+
+enum FeatureDirection returns SysML::FeatureDirectionKind :
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
-fragment TypeMemberPrefix returns SysML::Membership :
+fragment DefinitionMemberPrefix returns SysML::Membership :
 	( ownedRelationship += PrefixAnnotation )*
-//  ( annotation += StereotypeAnnotation )*
     ( visibility = VisibilityIndicator )?
 ;
 
@@ -362,7 +367,7 @@ AssociationMember returns SysML::Membership :
 ;
 
 AssociationEndMember returns SysML::EndFeatureMembership :
-	TypeMemberPrefix
+	DefinitionMemberPrefix
     ( 'end' 'part' ownedRelatedElement += PartProperty 
     | 'abstract' 'end' 'part' ownedRelatedElement += AbstractPartProperty
     | 'end' 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
@@ -401,7 +406,7 @@ InterfaceMember returns SysML::Membership :
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
-	TypeMemberPrefix
+	DefinitionMemberPrefix
     (
       isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += PortUsage
     | 'abstract' isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractPortUsage
@@ -573,6 +578,24 @@ PortUsage returns SysML::PortUsage :
 
 AbstractPortUsage returns SysML::PortUsage :
 	AbstractUsage
+;
+
+ConjugatedPortUsage returns SysML::PortUsage :
+	ConjugatePortUsageDeclaration UsageCompletion
+;
+
+AbstractConjugatedPortUsage returns SysML::PortUsage :
+	ConjugatePortUsageDeclaration AbstractUsageCompletion
+;
+
+fragment ConjugatePortUsageDeclaration returns SysML::Usage :
+	  name = Name ConjugatePortTyping MultiplicityPart SubsettingPart
+	| ConjugatePortTyping MultiplicityPart SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition ConjugatePortTyping MultiplicityPart SubsettingPart
+;
+
+fragment ConjugatePortTyping returns SysML::Feature :
+	':' '~' ( ownedRelationship += FeatureTyping | 'any' )
 ;
 
 /* CONNECTORS */

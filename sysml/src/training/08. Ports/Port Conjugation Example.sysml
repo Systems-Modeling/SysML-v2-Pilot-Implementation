@@ -1,4 +1,4 @@
-package 'Port Direction Example' {
+package 'Port Conjugation Example' {
 	
 	value type Temp;
 	
@@ -11,10 +11,10 @@ package 'Port Direction Example' {
 	}
 	
 	block FuelTank {
-		port out fuelTankPort : FuelPort;
+		port fuelTankPort : ~FuelPort;
 	}
 	
 	block Engine {
-		port in engineFuelPort : FuelPort;
+		port engineFuelPort : FuelPort;
 	}
 }

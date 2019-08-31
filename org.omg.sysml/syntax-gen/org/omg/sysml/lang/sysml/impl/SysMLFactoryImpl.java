@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorUsage;
@@ -224,6 +225,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.OF_SUCCESSION: return createOfSuccession();
 			case SysMLPackage.ORDERED_FEATURE: return createOrderedFeature();
 			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
+			case SysMLPackage.CONJUGATED_PORT_MEMBERSHIP: return createConjugatedPortMembership();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -272,6 +274,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public EndFeatureMembership createEndFeatureMembership() {
 		EndFeatureMembershipImpl endFeatureMembership = new EndFeatureMembershipImpl();
 		return endFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConjugatedPortMembership createConjugatedPortMembership() {
+		ConjugatedPortMembershipImpl conjugatedPortMembership = new ConjugatedPortMembershipImpl();
+		return conjugatedPortMembership;
 	}
 
 	/**

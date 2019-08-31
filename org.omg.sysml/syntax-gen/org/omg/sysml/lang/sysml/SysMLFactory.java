@@ -31,6 +31,15 @@ public interface SysMLFactory extends EFactory {
 	EndFeatureMembership createEndFeatureMembership();
 
 	/**
+	 * Returns a new object of class '<em>Conjugated Port Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conjugated Port Membership</em>'.
+	 * @generated
+	 */
+	ConjugatedPortMembership createConjugatedPortMembership();
+
+	/**
 	 * Returns a new object of class '<em>Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

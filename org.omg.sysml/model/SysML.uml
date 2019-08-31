@@ -1541,4 +1541,7 @@ else owningNamespace.nameOf(self) endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="e2dc4507-59d1-4f0f-865e-6b267f527650" name="" visibility="public" value="*"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_q6rHsMwQEem1X-xdLd-MnA" name="ConjugatedPortMembership">
+    <generalization xmi:id="_wcB3cMwQEem1X-xdLd-MnA" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
+  </packagedElement>
 </uml:Model>

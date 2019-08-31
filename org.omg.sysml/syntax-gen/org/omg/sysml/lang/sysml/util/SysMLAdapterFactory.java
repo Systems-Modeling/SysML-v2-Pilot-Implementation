@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorUsage;
@@ -501,6 +502,10 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createEndFeatureMembershipAdapter();
 			}
 			@Override
+			public Adapter caseConjugatedPortMembership(ConjugatedPortMembership object) {
+				return createConjugatedPortMembershipAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -531,6 +536,20 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEndFeatureMembershipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ConjugatedPortMembership <em>Conjugated Port Membership</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ConjugatedPortMembership
+	 * @generated
+	 */
+	public Adapter createConjugatedPortMembershipAdapter() {
 		return null;
 	}
 

@@ -25,6 +25,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectorUsage;
@@ -1110,6 +1111,16 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.CONJUGATED_PORT_MEMBERSHIP: {
+				ConjugatedPortMembership conjugatedPortMembership = (ConjugatedPortMembership)theEObject;
+				T result = caseConjugatedPortMembership(conjugatedPortMembership);
+				if (result == null) result = caseFeatureMembership(conjugatedPortMembership);
+				if (result == null) result = caseMembership(conjugatedPortMembership);
+				if (result == null) result = caseRelationship(conjugatedPortMembership);
+				if (result == null) result = caseElement(conjugatedPortMembership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1126,6 +1137,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEndFeatureMembership(EndFeatureMembership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conjugated Port Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conjugated Port Membership</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConjugatedPortMembership(ConjugatedPortMembership object) {
 		return null;
 	}
 

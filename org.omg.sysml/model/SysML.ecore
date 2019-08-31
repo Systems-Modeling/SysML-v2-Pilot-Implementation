@@ -955,4 +955,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedFeature" eSuperTypes="#//StructuredFeature"/>
   <eClassifiers xsi:type="ecore:EClass" name="EndFeatureMembership" eSuperTypes="#//FeatureMembership"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConjugatedPortMembership" eSuperTypes="#//FeatureMembership"/>
 </ecore:EPackage>

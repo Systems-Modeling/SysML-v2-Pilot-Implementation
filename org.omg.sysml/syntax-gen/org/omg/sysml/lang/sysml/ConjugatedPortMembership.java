@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ConjugatedPortMembership extends FeatureMembership {
+public interface ConjugatedPortMembership extends PortMembership {
 } // ConjugatedPortMembership

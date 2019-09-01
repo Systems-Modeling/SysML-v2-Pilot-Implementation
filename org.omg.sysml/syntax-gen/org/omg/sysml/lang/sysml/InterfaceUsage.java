@@ -5,7 +5,7 @@ package org.omg.sysml.lang.sysml;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Interface Usage</b></em>'.
+ * A representation of the model object '<em><b>Connection</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -19,14 +19,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface InterfaceUsage extends Usage {
+public interface InterfaceUsage extends ConnectionUsage {
 	/**
 	 * Returns the value of the '<em><b>Interface Definition</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getAssociation() <em>Association</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,14 +35,14 @@ public interface InterfaceUsage extends Usage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interface Definition</em>' reference.
-	 * @see #setInterfaceDefinition(Association)
+	 * @see #setInterfaceDefinition(InterfaceDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceUsage_InterfaceDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedInterface'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceConnector'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	Association getInterfaceDefinition();
+	InterfaceDefinition getInterfaceDefinition();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.InterfaceUsage#getInterfaceDefinition <em>Interface Definition</em>}' reference.
@@ -52,6 +52,6 @@ public interface InterfaceUsage extends Usage {
 	 * @see #getInterfaceDefinition()
 	 * @generated
 	 */
-	void setInterfaceDefinition(Association value);
+	void setInterfaceDefinition(InterfaceDefinition value);
 
-} // InterfaceUsage
+} // Connection

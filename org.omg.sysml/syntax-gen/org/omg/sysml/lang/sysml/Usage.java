@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -202,8 +202,8 @@ public interface Usage extends Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Action}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Action#getActionOwningUsage <em>Action Owning Usage</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage <em>Action Owning Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -218,11 +218,11 @@ public interface Usage extends Feature {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nested Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()
-	 * @see org.omg.sysml.lang.sysml.Action#getActionOwningUsage
+	 * @see org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage
 	 * @model opposite="actionOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Action> getNestedAction();
+	EList<ActionUsage> getNestedAction();
 
 } // Usage

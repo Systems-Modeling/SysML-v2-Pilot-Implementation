@@ -1,6 +1,6 @@
 package '3a-Function-based Behavior-' {
 	import Transfers::Transfer;
-	import Activities::Merge;
+	import ControlNodes::MergeAction;
 	
 	// ITEMS
 	
@@ -58,7 +58,7 @@ package '3a-Function-based Behavior-' {
 	) {
 		succession first start[0..1] then merge[1];
 		
-		action merge: Merge[*];
+		action merge: MergeAction[*];
 		
 		succession first merge[1] then engineStart[1];
 		

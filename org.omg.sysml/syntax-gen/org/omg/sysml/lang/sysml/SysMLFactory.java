@@ -40,6 +40,78 @@ public interface SysMLFactory extends EFactory {
 	ConjugatedPortMembership createConjugatedPortMembership();
 
 	/**
+	 * Returns a new object of class '<em>Port Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port Membership</em>'.
+	 * @generated
+	 */
+	PortMembership createPortMembership();
+
+	/**
+	 * Returns a new object of class '<em>Send Action Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Send Action Usage</em>'.
+	 * @generated
+	 */
+	SendActionUsage createSendActionUsage();
+
+	/**
+	 * Returns a new object of class '<em>Accept Action Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Accept Action Usage</em>'.
+	 * @generated
+	 */
+	AcceptActionUsage createAcceptActionUsage();
+
+	/**
+	 * Returns a new object of class '<em>Perform Action Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Perform Action Usage</em>'.
+	 * @generated
+	 */
+	PerformActionUsage createPerformActionUsage();
+
+	/**
+	 * Returns a new object of class '<em>Fork Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fork Node</em>'.
+	 * @generated
+	 */
+	ForkNode createForkNode();
+
+	/**
+	 * Returns a new object of class '<em>Decision Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Decision Node</em>'.
+	 * @generated
+	 */
+	DecisionNode createDecisionNode();
+
+	/**
+	 * Returns a new object of class '<em>Join Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Join Node</em>'.
+	 * @generated
+	 */
+	JoinNode createJoinNode();
+
+	/**
+	 * Returns a new object of class '<em>Merge Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merge Node</em>'.
+	 * @generated
+	 */
+	MergeNode createMergeNode();
+
+	/**
 	 * Returns a new object of class '<em>Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,13 +355,13 @@ public interface SysMLFactory extends EFactory {
 	PortDefinition createPortDefinition();
 
 	/**
-	 * Returns a new object of class '<em>Action</em>'.
+	 * Returns a new object of class '<em>Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action</em>'.
+	 * @return a new object of class '<em>Action Usage</em>'.
 	 * @generated
 	 */
-	Action createAction();
+	ActionUsage createActionUsage();
 
 	/**
 	 * Returns a new object of class '<em>Activity</em>'.
@@ -299,78 +371,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Activity createActivity();
-
-	/**
-	 * Returns a new object of class '<em>Merge Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Merge Action</em>'.
-	 * @generated
-	 */
-	MergeAction createMergeAction();
-
-	/**
-	 * Returns a new object of class '<em>Perform Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Perform Action</em>'.
-	 * @generated
-	 */
-	PerformAction createPerformAction();
-
-	/**
-	 * Returns a new object of class '<em>Do Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Do Action</em>'.
-	 * @generated
-	 */
-	DoAction createDoAction();
-
-	/**
-	 * Returns a new object of class '<em>Accept Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Accept Action</em>'.
-	 * @generated
-	 */
-	AcceptAction createAcceptAction();
-
-	/**
-	 * Returns a new object of class '<em>Fork Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fork Action</em>'.
-	 * @generated
-	 */
-	ForkAction createForkAction();
-
-	/**
-	 * Returns a new object of class '<em>Join Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Join Action</em>'.
-	 * @generated
-	 */
-	JoinAction createJoinAction();
-
-	/**
-	 * Returns a new object of class '<em>Decision Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Decision Action</em>'.
-	 * @generated
-	 */
-	DecisionAction createDecisionAction();
-
-	/**
-	 * Returns a new object of class '<em>Send Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Send Action</em>'.
-	 * @generated
-	 */
-	SendAction createSendAction();
 
 	/**
 	 * Returns a new object of class '<em>Value Type</em>'.
@@ -391,24 +391,6 @@ public interface SysMLFactory extends EFactory {
 	InterfaceDefinition createInterfaceDefinition();
 
 	/**
-	 * Returns a new object of class '<em>Connector Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connector Usage</em>'.
-	 * @generated
-	 */
-	ConnectorUsage createConnectorUsage();
-
-	/**
-	 * Returns a new object of class '<em>Interface Connector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interface Connector</em>'.
-	 * @generated
-	 */
-	InterfaceConnector createInterfaceConnector();
-
-	/**
 	 * Returns a new object of class '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,6 +398,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Block createBlock();
+
+	/**
+	 * Returns a new object of class '<em>Interface Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Usage</em>'.
+	 * @generated
+	 */
+	InterfaceUsage createInterfaceUsage();
+
+	/**
+	 * Returns a new object of class '<em>Connection Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connection Usage</em>'.
+	 * @generated
+	 */
+	ConnectionUsage createConnectionUsage();
 
 	/**
 	 * Returns a new object of class '<em>Association Block</em>'.

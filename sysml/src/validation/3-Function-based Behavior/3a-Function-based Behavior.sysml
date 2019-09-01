@@ -1,5 +1,5 @@
 package '3a-Function-based Behavior' {
-	import Activities::Merge;
+	import ControlNodes::MergeAction;
 			
 	// ITEMS
 	
@@ -55,7 +55,7 @@ package '3a-Function-based Behavior' {
 		out wheelTorque2: Torque
 	) {
 		first start;
-		then[0..1] action merge: Merge[*];
+		then[0..1] action merge: MergeAction[*];
 		then accept engineStart (EngineStart);
 		then accept engineOff (EngineOff);
 		then[0..1] merge;

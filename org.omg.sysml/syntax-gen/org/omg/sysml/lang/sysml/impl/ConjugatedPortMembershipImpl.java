@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ConjugatedPortMembershipImpl extends FeatureMembershipImpl implements ConjugatedPortMembership {
+public class ConjugatedPortMembershipImpl extends PortMembershipImpl implements ConjugatedPortMembership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

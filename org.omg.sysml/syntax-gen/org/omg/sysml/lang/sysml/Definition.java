@@ -17,12 +17,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowProperty <em>Flow Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedProperty <em>Owned Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -130,8 +130,8 @@ public interface Definition extends Classifier {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Action</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Action}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Action#getActionOwningDefinition <em>Action Owning Definition</em>}'.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition <em>Action Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -146,12 +146,12 @@ public interface Definition extends Classifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAction()
-	 * @see org.omg.sysml.lang.sysml.Action#getActionOwningDefinition
+	 * @see org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition
 	 * @model opposite="actionOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Action> getOwnedAction();
+	EList<ActionUsage> getOwnedAction();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Usage</b></em>' reference list.

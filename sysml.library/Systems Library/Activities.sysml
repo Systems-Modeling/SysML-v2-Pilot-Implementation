@@ -16,7 +16,7 @@ package Activities {
 		action start: Action :>> startShot;
 		
 		/**
-		 * Subperformances of this action that are actions. 
+		 * The subperformances of this action that are actions. 
 		 */
 		action subactions: Action[0..*] :> subperformances;
 		
@@ -26,25 +26,37 @@ package Activities {
 		action done: Action :>> endShot;
 	}
 	
-	// Control Nodes
-	 
-	activity Merge :> Action {
-		ref action predecessors: Action[1] :>> Performance::predecessors;
-	}
+	/**
+	 * A TransferAction is an Action that is also a Transfer in a given context.
+	 */
+	abstract activity TransferAction (context: Occurrence) :> Transfers::Transfer, Action;
 	
-	activity Decision :> Action {
-		ref action successors: Action[1] :>> Performance::successors;
-	}
+	/**
+	 * An AcceptAction is a TransferAction that is an incomingTransfer of its context.
+	 * It effectively accepts transfered items from some source.
+	 */
+	activity AcceptAction (context: Occurrence) :> TransferAction;
 	
-	activity Join :> Action;
-	
-	activity Fork :> Action;
-	
-	//
+	/**
+	 * A SendAction is a TransferAction that is initiated in one context and becomes
+	 * an incomingTransfer of its target. It effectively sends transferred items to
+	 * the target.
+	 * 
+	 * Note that the same Transfer that is a SendAction in the source context will also
+	 * act as an AcceptAction in the target context.
+	 */
+	activity SendAction (target: Occurrence) :> TransferAction;
 	
 	/**
 	 * actions is the base feature for all Action usages.
 	 */
-	action actions: Action[0..*] :> performances;
+	action actions: Action[0..*] nonunique :> performances;
+	
+	/**
+	 * transferActions is the base feature for all TransferAction usages.
+	 * transferActions is a subset of the incomingTransfers of its context.
+	 */
+	abstract action transferActions: TransferAction[0..*] nonunique (context: Occurrence) :> 
+		Transfers::transfers, actions, transferActions::context::incomingTransfers;
 	
 }

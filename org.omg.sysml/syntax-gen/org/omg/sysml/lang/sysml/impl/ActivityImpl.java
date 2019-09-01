@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.Action;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Activity;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -87,8 +87,8 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Action> getAction() {
-		return new DerivedEObjectEList<Action>(Action.class, this, 
+	public EList<ActionUsage> getAction() {
+		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, 
 				SysMLPackage.ACTIVITY__ACTION, 
 				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
@@ -148,7 +148,7 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 				return;
 			case SysMLPackage.ACTIVITY__ACTION:
 				getAction().clear();
-				getAction().addAll((Collection<? extends Action>)newValue);
+				getAction().addAll((Collection<? extends ActionUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

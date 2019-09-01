@@ -12,7 +12,7 @@ package 'Control Example' {
 	action takePicture : TakePicture {
 		first start;
 		
-		then[0..1] action merge: Activities::Merge;
+		then[0..1] action merge: ControlNodes::MergeAction;
 			
 		then accept trigger (scene : Scene);
 		

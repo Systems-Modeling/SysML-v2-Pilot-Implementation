@@ -154,6 +154,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
 	/**
+	 * The cached value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
+	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
 	protected BindingConnector valueConnector = null;
@@ -961,7 +970,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__END_OWNING_TYPE:
 				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
+				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -980,6 +989,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isUnique);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isNonunique: ");
+		result.append(isNonunique);
 		result.append(')');
 		return result.toString();
 	}

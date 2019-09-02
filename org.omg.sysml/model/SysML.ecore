@@ -966,4 +966,5 @@
       <eAnnotations source="redefines" references="#//Relationship/target"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalSuccession" eSuperTypes="#//Succession"/>
 </ecore:EPackage>

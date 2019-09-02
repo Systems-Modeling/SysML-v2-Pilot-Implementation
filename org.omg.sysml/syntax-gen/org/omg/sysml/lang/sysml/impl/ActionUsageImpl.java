@@ -38,8 +38,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
 	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::actions";
 	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Action::subactions";
-	public static final String ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedActions";
-	public static final String ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::Action::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -189,38 +187,27 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		if (isCheckSubsetting) {
-			if (isSubperformance()) {
-				addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
-			} 
-			if (isEnactedPerformance()) {
-				addSubsetting(ACTION_SUBSETTING_PART_DEFAULT);
-			}
-			if (isIncomingTransfer()) {
-				addSubsetting(ACTION_SUBSETTING_TRANSFER_DEFAULT);
-			}
+			checkSubsetting();
 			isCheckSubsetting = false;
 		}
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()? 
-					ACTION_SUBSETTING_SUBACTION_DEFAULT:
-				isEnactedPerformance()?
-					ACTION_SUBSETTING_PART_DEFAULT:
-				isIncomingTransfer()?
-					ACTION_SUBSETTING_TRANSFER_DEFAULT:
-					ACTION_SUBSETTING_BASE_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
+	}
+	
+	protected void checkSubsetting() {
+		if (isSubperformance()) {
+			addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
+		} 
+	}
+	
+	protected String getActionSubsettingDefault() {
+		return isSubperformance()? 
+				ACTION_SUBSETTING_SUBACTION_DEFAULT:
+				ACTION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	public boolean isSubperformance() {
 		return StepImpl.isPerformanceFeature(this);
 	}
-	
-	public boolean isEnactedPerformance() {
-		return StepImpl.isEnactedPerformance(this);
-	}
-	
-	public boolean isIncomingTransfer() {
-		return StepImpl.isIncomingTransfer(this);
-	}	
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.DecisionNode;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
+
+	public static final String DECISION_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::decisions";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +39,9 @@ public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
 		return SysMLPackage.Literals.DECISION_NODE;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(DECISION_NODE_SUBSETTING_BASE_DEFAULT);
+	}
+	
 } //DecisionNodeImpl

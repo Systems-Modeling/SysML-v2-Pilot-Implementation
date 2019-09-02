@@ -249,7 +249,7 @@ NonPortMember returns SysML::FeatureMembership :
     | 'abstract' 'succession' ownedRelatedElement += AbstractSuccession
 	| 'succession' ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
     | 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
-    | 'then' ownedRelatedElement += TargetSuccession ';'
+    | ownedRelatedElement += TargetSuccession ';'
 	| 'stream' ownedRelatedElement += ItemFlow 
     | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlow
 	| 'stream' ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
@@ -257,7 +257,7 @@ NonPortMember returns SysML::FeatureMembership :
     | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlow
 	| 'flow' ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
 	| ownedRelatedElement += ActionUsage
-	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::Usage|QualifiedName] ';'
+	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
 	| ownedRelatedElement += DoAction
 	| ownedRelatedElement += PerformAction
 	| ownedRelatedElement += AcceptAction
@@ -454,7 +454,11 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 ActivityMember returns SysML::Membership :
-	NestedDefinitionMember | NestedUsageMember	
+	NestedDefinitionMember | NestedUsageMember | ControlNodeMember
+;
+
+ControlNodeMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedRelatedElement += ControlNode
 ;
 
 /* USAGES */
@@ -638,11 +642,15 @@ ConnectorEnd returns SysML::Feature :
 	ownedRelationship += Subset ( ownedRelationship += Multiplicity )?
 ;
 
-MultiplicityEnd returns SysML::Feature :
+MultiplicitySourceEnd returns SysML::Feature :
 	{SysML::SourceEnd} ( ownedRelationship += Multiplicity )?
 ;
 
-EmptyEnd returns SysML::Feature :
+EmptySourceEnd returns SysML::Feature :
+	{SysML::SourceEnd}
+;
+
+EmptyTargetEnd returns SysML::Feature :
 	{SysML::TargetEnd}
 ;
 
@@ -652,12 +660,16 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
 ;
 
-MultiplicityEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += MultiplicityEnd
+MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += MultiplicitySourceEnd
 ;
 
-EmptyEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += EmptyEnd
+EmptySourceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptySourceEnd
+;
+
+EmptyTargetEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptyTargetEnd
 ;
 
 /* INTERFACE CONNECTORS */
@@ -681,11 +693,11 @@ BindingConnector returns SysML::BindingConnector :
 /* SUCCESSIONS */
 
 Succession returns SysML::Succession :
-	SuccessionDeclaration DefinitionBody
+	SuccessionDeclaration ';'
 ;
 
 AbstractSuccession returns SysML::Succession :
-	SuccessionDeclaration AbstractDefinitionBody
+	SuccessionDeclaration isAbstract ?= ';'
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
@@ -694,11 +706,20 @@ fragment SuccessionDeclaration returns SysML::Succession :
 ;
 
 TargetSuccession returns SysML::Succession :
-	ownedRelationship += MultiplicityEndMember ownedRelationship += ConnectorEndMember
+	'then' ownedRelationship += MultiplicitySourceEndMember ownedRelationship += ConnectorEndMember
 ;
 
 EmptySuccession returns SysML::Succession :
-	ownedRelationship += MultiplicityEndMember ownedRelationship += EmptyEndMember
+	'then' ownedRelationship += MultiplicitySourceEndMember ownedRelationship += EmptyTargetEndMember
+;
+
+ConditionalSuccession returns SysML::ConditionalSuccession :
+	'if' ownedRelationship += ExpressionMember 'then' 
+	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+;
+
+DefaultSuccession returns SysML::ConditionalSuccession :
+	'else' ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
 ;
 
 /* ITEM FLOWS */
@@ -772,7 +793,7 @@ fragment Action returns SysML::ActionUsage :
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	( 'then' ownedRelationship += EmptySuccessionMember )?
+	( ownedRelationship += EmptySuccessionMember )?
     ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
 	( name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	| TypePart ActionParameterList? ValuePart?
@@ -796,7 +817,7 @@ ActionParameterFlow returns SysML::ItemFlow :
 ;
 
 DoAction returns SysML::PerformActionUsage :
-	( 'then' ownedRelationship += EmptySuccessionMember )?
+	( ownedRelationship += EmptySuccessionMember )?
     isComposite ?= 'do' ( name = Name TypePart 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
@@ -804,24 +825,58 @@ DoAction returns SysML::PerformActionUsage :
 ;
 
 PerformAction returns SysML::PerformActionUsage :
-	( 'then' ownedRelationship += EmptySuccessionMember )?
-    'perform' ( name = Name TypePart 'by' )? 
+	( ownedRelationship += EmptySuccessionMember )?
+   'perform' ( name = Name TypePart 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
 ;
 
 AcceptAction returns SysML::AcceptActionUsage :
-	( 'then' ownedRelationship += EmptySuccessionMember )?
+	( ownedRelationship += EmptySuccessionMember )?
 	'accept' ( name = Name TypePart )? '(' ownedRelationship += ItemFeatureMember ')'
 	ActivityBody
 ;
 
 SendAction returns SysML::SendActionUsage :
-	( 'then' ownedRelationship += EmptySuccessionMember )?
+	( ownedRelationship += EmptySuccessionMember )?
 	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
 	'to' ownedRelationship += ExpressionMember
 	ActivityBody
+;
+
+/* CONTROL NODES */
+
+ControlNode returns SysML::ControlNode :
+	  MergeNode
+	| DecisionNode
+	| JoinNode
+	| ForkNode
+;
+
+MergeNode returns SysML::MergeNode :
+	{SysML::MergeNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'merge' ( name = Name TypePart )? ';'
+;
+
+DecisionNode returns SysML::DecisionNode :
+	{SysML::DecisionNode} ( ownedRelationship += EmptySuccessionMember )?
+	'decide' ( name = Name TypePart )? ';'
+ 	( ownedRelationship += ConditionalSuccessionMember ';'
+ 	  ( ownedRelationship += ConditionalSuccessionMember ';' )* 
+ 	  ( ownedRelationship += DefaultSuccessionMember ';' )? 
+ 	)?
+
+;
+
+JoinNode returns SysML::JoinNode :
+	{SysML::JoinNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'join' ( name = Name TypePart )? ';'
+;
+
+ForkNode returns SysML::ForkNode :
+	{SysML::ForkNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'fork' ( name = Name TypePart )? ';'
 ;
 
 /* ACTION MEMBERSHIPS */
@@ -836,6 +891,14 @@ ActionParameterFlowMember returns SysML::FeatureMembership :
 
 EmptySuccessionMember returns SysML::FeatureMembership :
 	ownedRelatedElement += EmptySuccession
+;
+
+ConditionalSuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ConditionalSuccession
+;
+
+DefaultSuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += DefaultSuccession
 ;
 
 /* EXPRESSIONS */

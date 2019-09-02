@@ -10,7 +10,7 @@ package UnlimitedNaturalFunctions {
 	function Min(x: UnlimitedNatural, y: UnlimitedNatural): UnlimitedNatural specializes NumericalFunctions::Max;
 
 	function '='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes BaseFunctions::'==';
-	function '/='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes BaseFunctions::'/=';
+	function '!='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes BaseFunctions::'!=';
 	
 	function ToString(x: UnlimitedNatural): String specializes BaseFunctions::ToString;
 	function ToNatural(x: UnlimitedNatural): Natural;

@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.JoinNode;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
+
+	public static final String JOIN_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::joins";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +39,9 @@ public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 		return SysMLPackage.Literals.JOIN_NODE;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(JOIN_NODE_SUBSETTING_BASE_DEFAULT);
+	}
+	
 } //JoinNodeImpl

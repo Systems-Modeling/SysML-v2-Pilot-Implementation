@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -20,6 +21,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +40,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::evaluations";
 	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subevaluations";
+	public static final String EXPRESSION_GUARD_FEATURE_NAME = "guard";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,6 +198,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 					EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
 					EXPRESSION_SUBSETTING_BASE_DEFAULT);
 	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return getOwningType() instanceof ConditionalSuccession &&
+			   !(type instanceof ConditionalSuccession)?
+				   type.getFeature().stream().
+						filter(feature->EXPRESSION_GUARD_FEATURE_NAME.equals(feature.getName())).
+						collect(Collectors.toList()):
+			   super.getRelevantFeatures(type);
+	}
+	
 	
 	@Override 
 	public EList<Feature> getInput() {

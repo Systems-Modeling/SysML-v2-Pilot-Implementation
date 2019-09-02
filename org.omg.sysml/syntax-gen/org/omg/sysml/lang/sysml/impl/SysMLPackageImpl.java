@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.omg.sysml.lang.types.TypesPackage;
+import org.omg.sysml.lang.types.impl.TypesPackageImpl;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Activity;
@@ -30,6 +32,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -104,8 +107,6 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.DecisionNode;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.types.TypesPackage;
-import org.omg.sysml.lang.types.impl.TypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -568,6 +569,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass ownershipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionalSuccessionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2891,6 +2899,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getConditionalSuccession() {
+		return conditionalSuccessionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getLiteralBoolean() {
 		return literalBooleanEClass;
 	}
@@ -3692,6 +3710,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(ownershipEClass, OWNERSHIP__OWNING_SOURCE);
 		createEReference(ownershipEClass, OWNERSHIP__OWNED_TARGET);
 
+		conditionalSuccessionEClass = createEClass(CONDITIONAL_SUCCESSION);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -3826,6 +3846,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		commentEClass.getESuperTypes().add(this.getElement());
 		annotationEClass.getESuperTypes().add(this.getRelationship());
 		ownershipEClass.getESuperTypes().add(this.getRelationship());
+		conditionalSuccessionEClass.getESuperTypes().add(this.getSuccession());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(classEClass, org.omg.sysml.lang.sysml.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4175,6 +4196,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEClass(ownershipEClass, Ownership.class, "Ownership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOwnership_OwningSource(), this.getElement(), null, "owningSource", null, 1, 1, Ownership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getOwnership_OwnedTarget(), this.getElement(), null, "ownedTarget", null, 1, 1, Ownership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(conditionalSuccessionEClass, ConditionalSuccession.class, "ConditionalSuccession", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

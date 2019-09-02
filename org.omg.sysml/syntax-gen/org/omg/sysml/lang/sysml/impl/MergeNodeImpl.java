@@ -2,9 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.MergeNode;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -15,6 +17,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
+
+	public static final String MERGE_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::merges";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +39,9 @@ public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 		return SysMLPackage.Literals.MERGE_NODE;
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(MERGE_NODE_SUBSETTING_BASE_DEFAULT);
+	}
+	
 } //MergeNodeImpl

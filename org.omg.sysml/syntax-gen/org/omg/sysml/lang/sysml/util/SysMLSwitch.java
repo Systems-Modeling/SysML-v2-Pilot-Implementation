@@ -24,6 +24,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -1152,6 +1153,19 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.CONDITIONAL_SUCCESSION: {
+				ConditionalSuccession conditionalSuccession = (ConditionalSuccession)theEObject;
+				T result = caseConditionalSuccession(conditionalSuccession);
+				if (result == null) result = caseSuccession(conditionalSuccession);
+				if (result == null) result = caseConnector(conditionalSuccession);
+				if (result == null) result = caseFeature(conditionalSuccession);
+				if (result == null) result = caseRelationship(conditionalSuccession);
+				if (result == null) result = caseType(conditionalSuccession);
+				if (result == null) result = casePackage(conditionalSuccession);
+				if (result == null) result = caseElement(conditionalSuccession);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -2128,6 +2142,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOwnership(Ownership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Succession</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Succession</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalSuccession(ConditionalSuccession object) {
 		return null;
 	}
 

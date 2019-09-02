@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueProperty;
 import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -225,6 +226,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.COMMENT: return createComment();
 			case SysMLPackage.ANNOTATION: return createAnnotation();
 			case SysMLPackage.OWNERSHIP: return createOwnership();
+			case SysMLPackage.CONDITIONAL_SUCCESSION: return createConditionalSuccession();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -911,6 +913,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public Ownership createOwnership() {
 		OwnershipImpl ownership = new OwnershipImpl();
 		return ownership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConditionalSuccession createConditionalSuccession() {
+		ConditionalSuccessionImpl conditionalSuccession = new ConditionalSuccessionImpl();
+		return conditionalSuccession;
 	}
 
 	/**

@@ -1561,4 +1561,7 @@ else owningNamespace.nameOf(self) endif</body>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="2b4710c1-9a53-4d4d-90f2-356575bdf43d" name="" visibility="public" memberEnd="aef5233e-d4ea-47ae-8b8e-47a2dde39024 53d1b371-a5c5-4812-87a8-a61e672f7314"/>
   <packagedElement xmi:type="uml:Association" xmi:id="5b17eab0-1751-4bcb-bde8-c4b1e73a90ad" name="" visibility="public" memberEnd="5b67d4ab-f48e-41ba-af2d-16d57429f489 41eb0599-95cb-4d4d-9387-c097bf0a6736"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5o5C8M2tEem1X-xdLd-MnA" name="ConditionalSuccession">
+    <generalization xmi:id="_9HYjEM2tEem1X-xdLd-MnA" general="fec12715-7238-4666-8f45-3e70ed179c7b"/>
+  </packagedElement>
 </uml:Model>

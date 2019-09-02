@@ -12,7 +12,7 @@ package StringFunctions {
 	function '>='(x: String, y: String): Boolean specializes ScalarFunctions::'>=';
 
 	function '='(x: String, y: String): Boolean specializes BaseFunctions::'==';
-	function '/='(x: String, y: String): Boolean specializes BaseFunctions::'/=';
+	function '!='(x: String, y: String): Boolean specializes BaseFunctions::'!=';
 	
 	function ToString(x: String): String specializes BaseFunctions::ToString;	
 }

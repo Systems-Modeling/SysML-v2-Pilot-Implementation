@@ -73,34 +73,30 @@ package '3a-Function-based Behavior-1' {
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque
 	) {		
-		succession first start[0..1] then merge[1];
+		succession first start[0..1] then continue[1];
 				
-		action merge: MergeAction[*];
+		merge continue;
 		
-		succession first merge[1] then engineStart[1];
+		succession first continue[1] then engineStart[1];
 			
-		action engineStart subsets incomingTransfers {
-			item: EngineStart[1] redefines Transfer::item;
-		}
+		accept engineStart (EngineStart);
 		
 		succession first engineStart[1] then engineOff[1];
 		
-		action engineOff subsets incomingTransfers {
-			item: EngineOff[1] redefines Transfer::item;
-		}
+		accept engineOff (EngineOff);
 			
-		succession first engineOff[0..1] then merge[1];
+		succession first engineOff[0..1] then continue[1];
 				
 		succession first engineStart[1] then 'provide power'[1];
 			
-		bind 'provide power'::fuelCmd = fuelCmd;
-		action 'do provide power'[*] (
+		bind 'do provide power'::fuelCmd = fuelCmd;
+		do 'do provide power'[*] by 'provide power' (
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2
-		) subsets 'provide power';
-		bind wheelTorque1 = 'provide power'::wheelTorque1;
-		bind wheelTorque2 = 'provide power'::wheelTorque2;
+		);
+		bind wheelTorque1 = 'do provide power'::wheelTorque1;
+		bind wheelTorque2 = 'do provide power'::wheelTorque2;
 				
 		succession first 'provide power'[1] then engineOff[1];		
 	}

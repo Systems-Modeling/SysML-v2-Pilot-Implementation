@@ -15,6 +15,9 @@ import org.omg.sysml.lang.sysml.TransferActionUsage;
  * @generated
  */
 public abstract class TransferActionUsageImpl extends ActionUsageImpl implements TransferActionUsage {
+	
+	public static final String TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::Action::incomingTransfers";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +37,14 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 		return SysMLPackage.Literals.TRANSFER_ACTION_USAGE;
 	}
 
+	@Override
+	protected void checkSubsetting() {
+		addSubsetting(TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT);
+	}
+	
+	@Override
+	protected String getActionSubsettingDefault() {
+		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;
+	}
+	
 } //TransferActionUsageImpl

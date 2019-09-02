@@ -55,10 +55,10 @@ package '3a-Function-based Behavior' {
 		out wheelTorque2: Torque
 	) {
 		first start;
-		then[0..1] action merge: MergeAction[*];
+		then merge continue;
 		then accept engineStart (EngineStart);
 		then accept engineOff (EngineOff);
-		then[0..1] merge;
+		then continue;
 		
 		first engineStart;
 		then do 'provide power' (

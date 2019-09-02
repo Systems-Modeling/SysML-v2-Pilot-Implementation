@@ -77,7 +77,12 @@ package ControlNodes {
 	 * on a given guard action have a true result. 
 	 */
 	abstract assoc block ConditionalHappensBefore :> HappensBefore {
-		abstract ref action guard(out result: ScalarValues::Boolean);
+		abstract ref action guard(out result : ScalarValues::Boolean);
 	}
-		
+	
+	/**
+	 * conditionalSuccessions is a specialization of successions with type restricted
+	 * to ConditionalHappensBefore.
+	 */
+	abstract part conditionalSuccessions : ConditionalHappensBefore[0..*] :> successions;
 }

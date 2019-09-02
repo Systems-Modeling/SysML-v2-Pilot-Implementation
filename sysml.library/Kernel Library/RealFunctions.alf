@@ -18,7 +18,7 @@ package RealFunctions {
 	function Min(x: Real, y: Real): Real specializes NumericalFunctions::Min;
 
 	function '='(x: Real, y: Real): Boolean specializes BaseFunctions::'==';
-	function '/='(x: Real, y: Real): Boolean specializes BaseFunctions::'/=';
+	function '!='(x: Real, y: Real): Boolean specializes BaseFunctions::'!=';
 	
 	function Floor(x: Real): Integer;
 	function Round(x: Real): Integer;

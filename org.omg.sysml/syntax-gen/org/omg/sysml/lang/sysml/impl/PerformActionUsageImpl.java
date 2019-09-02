@@ -15,6 +15,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
+
+	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedActions";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +37,23 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 		return SysMLPackage.Literals.PERFORM_ACTION_USAGE;
 	}
 
+	@Override
+	protected void checkSubsetting() {
+		super.checkSubsetting();
+		if (isEnactedPerformance()) {
+			addSubsetting(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
+		}
+	}
+	
+	@Override
+	protected String getActionSubsettingDefault() {
+		return isEnactedPerformance()? 
+				PERFORM_ACTION_SUBSETTING_PART_DEFAULT:
+				super.getActionSubsettingDefault();
+	}
+	
+	public boolean isEnactedPerformance() {
+		return StepImpl.isEnactedPerformance(this);
+	}
+	
 } //PerformActionUsageImpl

@@ -553,6 +553,15 @@ public interface SysMLFactory extends EFactory {
 	Ownership createOwnership();
 
 	/**
+	 * Returns a new object of class '<em>Conditional Succession</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Succession</em>'.
+	 * @generated
+	 */
+	ConditionalSuccession createConditionalSuccession();
+
+	/**
 	 * Returns a new object of class '<em>Literal Boolean</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

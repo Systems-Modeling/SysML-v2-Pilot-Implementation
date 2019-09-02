@@ -83,7 +83,7 @@ public class PortMembershipImpl extends FeatureMembershipImpl implements PortMem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortUsage basicGetMemberPort() {
 		Element ownedMemberElement = getOwnedMemberElement();

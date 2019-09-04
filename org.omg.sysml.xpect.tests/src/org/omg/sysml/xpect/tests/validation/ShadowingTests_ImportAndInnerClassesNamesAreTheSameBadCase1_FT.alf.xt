@@ -23,7 +23,7 @@ package test{
 		feature a2{}
 	}
 	/* XPECT errors --- 
-	"Couldn't resolve reference to Category 'A::a1'." at "A::a1"
+	"Couldn't resolve reference to Type 'A::a1'." at "A::a1"
 	--- */
 	feature B : A::a1 {} 
 }

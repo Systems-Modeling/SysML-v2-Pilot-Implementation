@@ -112,22 +112,22 @@ public interface SysMLFactory extends EFactory {
 	Behavior createBehavior();
 
 	/**
-	 * Returns a new object of class '<em>Class</em>'.
+	 * Returns a new object of class '<em>Classifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class</em>'.
+	 * @return a new object of class '<em>Classifier</em>'.
 	 * @generated
 	 */
-	Class createClass();
+	Classifier createClassifier();
 
 	/**
-	 * Returns a new object of class '<em>Category</em>'.
+	 * Returns a new object of class '<em>Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Category</em>'.
+	 * @return a new object of class '<em>Type</em>'.
 	 * @generated
 	 */
-	Category createCategory();
+	Type createType();
 
 	/**
 	 * Returns a new object of class '<em>Generalization</em>'.
@@ -247,22 +247,22 @@ public interface SysMLFactory extends EFactory {
 	Connector createConnector();
 
 	/**
-	 * Returns a new object of class '<em>Value Class</em>'.
+	 * Returns a new object of class '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Class</em>'.
+	 * @return a new object of class '<em>Data Type</em>'.
 	 * @generated
 	 */
-	ValueClass createValueClass();
+	DataType createDataType();
 
 	/**
-	 * Returns a new object of class '<em>Object Class</em>'.
+	 * Returns a new object of class '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Class</em>'.
+	 * @return a new object of class '<em>Class</em>'.
 	 * @generated
 	 */
-	ObjectClass createObjectClass();
+	Class createClass();
 
 	/**
 	 * Returns a new object of class '<em>Of Succession</em>'.

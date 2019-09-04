@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -26,8 +26,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningCategory <em>Owning Category</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,7 +41,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 * @ordered
 	 */
-	protected Category specific;
+	protected Type specific;
 
 	/**
 	 * The cached value of the '{@link #getGeneral() <em>General</em>}' reference.
@@ -51,7 +51,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 * @ordered
 	 */
-	protected Category general;
+	protected Type general;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,10 +78,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
-	public Category getGeneral() {
+	public Type getGeneral() {
 		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
-			general = (Category)eResolveProxy(oldGeneral);
+			general = (Type)eResolveProxy(oldGeneral);
 			if (general != oldGeneral) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__GENERAL, oldGeneral, general));
@@ -95,7 +95,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category basicGetGeneral() {
+	public Type basicGetGeneral() {
 		return general;
 	}
 
@@ -105,8 +105,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
-	public void setGeneral(Category newGeneral) {
-		Category oldGeneral = general;
+	public void setGeneral(Type newGeneral) {
+		Type oldGeneral = general;
 		general = newGeneral;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__GENERAL, oldGeneral, general));
@@ -165,7 +165,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
-	public Category getSpecific() {
+	public Type getSpecific() {
 		return specific == null? basicGetSpecific(): getSpecificGen();
 	}
 
@@ -174,10 +174,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category getSpecificGen() {
+	public Type getSpecificGen() {
 		if (specific != null && specific.eIsProxy()) {
 			InternalEObject oldSpecific = (InternalEObject)specific;
-			specific = (Category)eResolveProxy(oldSpecific);
+			specific = (Type)eResolveProxy(oldSpecific);
 			if (specific != oldSpecific) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
@@ -188,15 +188,15 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Generalization has a Category as its owningRelatedElement, then use this as the default value for its specific property.
+	 * If the Generalization has a Type as its owningRelatedElement, then use this as the default value for its specific property.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Category basicGetSpecific() {
+	public Type basicGetSpecific() {
 		if (specific == null) {
 			Element owner = getOwningRelatedElement();
-			if (owner instanceof Category) {
-				specific = (Category)owner;
+			if (owner instanceof Type) {
+				specific = (Type)owner;
 			}
 		}
 		return specific;
@@ -208,8 +208,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
-	public void setSpecific(Category newSpecific) {
-		Category oldSpecific = specific;
+	public void setSpecific(Type newSpecific) {
+		Type oldSpecific = specific;
 		specific = newSpecific;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
@@ -273,9 +273,9 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * @generated
 	 */
 	@Override
-	public Category getOwningCategory() {
-		Category owningCategory = basicGetOwningCategory();
-		return owningCategory != null && owningCategory.eIsProxy() ? (Category)eResolveProxy((InternalEObject)owningCategory) : owningCategory;
+	public Type getOwningType() {
+		Type owningType = basicGetOwningType();
+		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
 	}
 
 	/**
@@ -283,9 +283,9 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Category basicGetOwningCategory() {
+	public Type basicGetOwningType() {
 		Element element = this.getOwningRelatedElement();
-		return element instanceof Category? (Category)element: null;
+		return element instanceof Type? (Type)element: null;
 	}
 
 	/**
@@ -293,11 +293,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setOwningCategory(Category newOwningCategory) {
-		if (getSpecific() != newOwningCategory) {
-			setSpecific(newOwningCategory);
+	public void setOwningType(Type newOwningType) {
+		if (getSpecific() != newOwningType) {
+			setSpecific(newOwningType);
 		}
-		setOwningRelatedElement(newOwningCategory);
+		setOwningRelatedElement(newOwningType);
 	}
 
 	/**
@@ -311,12 +311,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				if (resolve) return getSpecific();
 				return basicGetSpecific();
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				if (resolve) return getOwningCategory();
-				return basicGetOwningCategory();
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				if (resolve) return getGeneral();
 				return basicGetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -330,13 +330,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
-				setSpecific((Category)newValue);
-				return;
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				setOwningCategory((Category)newValue);
+				setSpecific((Type)newValue);
 				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
-				setGeneral((Category)newValue);
+				setGeneral((Type)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -351,13 +351,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
-				setSpecific((Category)null);
-				return;
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				setOwningCategory((Category)null);
+				setSpecific((Type)null);
 				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
-				setGeneral((Category)null);
+				setGeneral((Type)null);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -379,10 +379,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 				return isSetTarget();
 			case SysMLPackage.GENERALIZATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.GENERALIZATION__OWNING_CATEGORY:
-				return basicGetOwningCategory() != null;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				return isSetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				return basicGetOwningType() != null;
 		}
 		return super.eIsSet(featureID);
 	}

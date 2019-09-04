@@ -20,7 +20,7 @@ END_SETUP
 
 package Classes {
 	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Category 'c_Private_alias::alias_public'." at "c_Private_alias::alias_public"
+	// XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_public'." at "c_Private_alias::alias_public"
 	feature f : c_Private_alias::alias_public;
 }
 

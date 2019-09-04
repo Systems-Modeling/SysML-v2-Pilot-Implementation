@@ -4,7 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -48,26 +48,26 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	}
 	
 	@Override
-	public Category getDefaultCategory(String... defaultNames) {
-		Category category = getOwningCategory();
-		return category instanceof Feature? 
-				getPreviousFeature((Feature)category): 
-				super.getDefaultCategory(defaultNames);
+	public Type getDefaultType(String... defaultNames) {
+		Type type = getOwningType();
+		return type instanceof Feature? 
+				getPreviousFeature((Feature)type): 
+				super.getDefaultType(defaultNames);
 	}
 	
 	protected static Feature getPreviousFeature(Feature feature) {
-		Category category = feature.getOwningCategory();
-		if (category == null) {
+		Type type = feature.getOwningType();
+		if (type == null) {
 			return null;
 		} else {
-			EList<FeatureMembership> memberships = category.getOwnedFeatureMembership();
+			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
 			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
 				Feature previousFeature = memberships.get(i).getMemberFeature();
 				if (!(previousFeature instanceof Parameter)) {
 					return previousFeature;
 				}
 			}
-			return category instanceof Feature? getPreviousFeature((Feature)category): null;
+			return type instanceof Feature? getPreviousFeature((Feature)type): null;
 		}
 	}
 

@@ -25,7 +25,7 @@ package test{
 		import OuterPackage::*;
 		feature B : A {
 			/* XPECT errors --- 
-			"Couldn't resolve reference to Category 'a2'." at "a2"
+			"Couldn't resolve reference to Type 'a2'." at "a2"
 			--- */
 			feature b : a2{}
 		}

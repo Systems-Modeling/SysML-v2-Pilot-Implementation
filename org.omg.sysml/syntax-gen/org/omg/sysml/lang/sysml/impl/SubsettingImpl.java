@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -195,8 +195,8 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated NOT
 	 */
 	public Feature basicGetOwningFeature() {
-		Category owningCategory = super.basicGetOwningCategory();
-		return owningCategory instanceof Feature? (Feature)owningCategory: null;
+		Type owningType = super.basicGetOwningType();
+		return owningType instanceof Feature? (Feature)owningType: null;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated NOT
 	 */
 	public void setOwningFeature(Feature newOwningFeature) {
-		super.setOwningCategory(newOwningFeature);
+		super.setOwningType(newOwningFeature);
 	}
 
 	/**
@@ -292,8 +292,8 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 				return isSetGeneral();
 			case SysMLPackage.SUBSETTING__SPECIFIC:
 				return isSetSpecific();
-			case SysMLPackage.SUBSETTING__OWNING_CATEGORY:
-				return isSetOwningCategory();
+			case SysMLPackage.SUBSETTING__OWNING_TYPE:
+				return isSetOwningType();
 			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
 				return isSetSubsettedFeature();
 			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
@@ -310,7 +310,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category getGeneral() {
+	public Type getGeneral() {
 		return getSubsettedFeature();
 	}
 
@@ -320,7 +320,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category basicGetGeneral() {
+	public Type basicGetGeneral() {
 		return basicGetSubsettedFeature();
 	}
 
@@ -329,7 +329,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeneral(Category newGeneral) {
+	public void setGeneral(Type newGeneral) {
 		if (newGeneral != null && !(newGeneral instanceof Feature)) {
 			throw new IllegalArgumentException("newGeneral must be an instance of Feature");
 		}
@@ -351,7 +351,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category getSpecific() {
+	public Type getSpecific() {
 		return getSubsettingFeature();
 	}
 
@@ -361,7 +361,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category basicGetSpecific() {
+	public Type basicGetSpecific() {
 		return basicGetSubsettingFeature();
 	}
 
@@ -370,7 +370,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecific(Category newSpecific) {
+	public void setSpecific(Type newSpecific) {
 		if (newSpecific != null && !(newSpecific instanceof Feature)) {
 			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
 		}
@@ -392,7 +392,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category getOwningCategory() {
+	public Type getOwningType() {
 		return getOwningFeature();
 	}
 
@@ -402,7 +402,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	@Override
-	public Category basicGetOwningCategory() {
+	public Type basicGetOwningType() {
 		return basicGetOwningFeature();
 	}
 
@@ -411,11 +411,11 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningCategory(Category newOwningCategory) {
-		if (newOwningCategory != null && !(newOwningCategory instanceof Feature)) {
-			throw new IllegalArgumentException("newOwningCategory must be an instance of Feature");
+	public void setOwningType(Type newOwningType) {
+		if (newOwningType != null && !(newOwningType instanceof Feature)) {
+			throw new IllegalArgumentException("newOwningType must be an instance of Feature");
 		}
-		setOwningFeature((Feature) newOwningCategory);
+		setOwningFeature((Feature) newOwningType);
 	}
 
 	/**
@@ -423,7 +423,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwningCategory() {
+	public boolean isSetOwningType() {
   		return false;
 	}
 

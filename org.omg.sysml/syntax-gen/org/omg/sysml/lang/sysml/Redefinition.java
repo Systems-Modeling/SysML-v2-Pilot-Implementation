@@ -39,7 +39,7 @@ public interface Redefinition extends Subsetting {
 	 * @see #setRedefiningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefiningFeature()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefining'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefinition'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
@@ -73,7 +73,7 @@ public interface Redefinition extends Subsetting {
 	 * @see #setRedefinedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefinedFeature()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefinition'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redefining'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

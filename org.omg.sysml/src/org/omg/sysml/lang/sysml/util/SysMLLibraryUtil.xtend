@@ -31,17 +31,25 @@ import org.omg.sysml.lang.sysml.Element
 
 class SysMLLibraryUtil {
 	
+	static String modelLibraryDirectory = null;
 	static SysMLLibraryProvider instance
+	
+	def static setModelLibraryDirectory(String path) {
+		modelLibraryDirectory = path
+	}
 	
 	def static SysMLLibraryProvider getInstance(Resource resource) {
 		if (instance === null) {
-			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI).get(SysMLLibraryProvider)
+			instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI)?.get(SysMLLibraryProvider)
+		}
+		if (modelLibraryDirectory !== null) {
+			instance.setModelLibraryDirectory(modelLibraryDirectory)
 		}
 		instance
 	}
 	
 	def static Element getLibraryElement(Element context, EReference reference, String name) {		
-		return getInstance(context.eResource).getElement(context, reference, name)
+		return getInstance(context.eResource)?.getElement(context, reference, name)
 	}
 	
 }

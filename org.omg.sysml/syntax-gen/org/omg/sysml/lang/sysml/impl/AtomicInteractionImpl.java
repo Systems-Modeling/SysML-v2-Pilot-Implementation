@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.omg.sysml.lang.sysml.AtomicInteraction;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -37,7 +38,7 @@ public class AtomicInteractionImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> itemType;
+	protected EList<Classifier> itemType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,9 +65,9 @@ public class AtomicInteractionImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
+	public EList<Classifier> getItemType() {
 		if (itemType == null) {
-			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ATOMIC_INTERACTION__ITEM_TYPE);
+			itemType = new EObjectResolvingEList<Classifier>(Classifier.class, this, SysMLPackage.ATOMIC_INTERACTION__ITEM_TYPE);
 		}
 		return itemType;
 	}
@@ -96,7 +97,7 @@ public class AtomicInteractionImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case SysMLPackage.ATOMIC_INTERACTION__ITEM_TYPE:
 				getItemType().clear();
-				getItemType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getItemType().addAll((Collection<? extends Classifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

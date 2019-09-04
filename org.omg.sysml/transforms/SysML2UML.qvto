@@ -170,7 +170,7 @@ query toVisibilityKind(visibility : SysML::VisibilityKind): UML::VisibilityKind 
 
 // Category
 
-abstract mapping SysML::Category::toClass(): UML::Class
+abstract mapping SysML::Type::toClass(): UML::Class
 	inherits SysML::Element::toNamedElement 
 	when { not self.oclIsKindOf(SysML::Connector) } {
 	var features := self.ownedFeatureMemberships()->mapToFeature();
@@ -183,7 +183,7 @@ abstract mapping SysML::Category::toClass(): UML::Class
 // Class
 
 mapping SysML::Class::toClass(): UML::Class
-	inherits SysML::Category::toClass { }
+	inherits SysML::Type::toClass { }
 
 // Association
 mapping SysML::Association::toAssociationClass(): UML::AssociationClass
@@ -255,7 +255,7 @@ mapping SysML::Feature::toInstanceSpecification(): UML::InstanceSpecification
 }
 
 mapping SysML::Feature::toClass(): UML::Class
-	inherits SysML::Category::toClass, SysML::Feature::toNamedElement
+	inherits SysML::Type::toClass, SysML::Feature::toNamedElement
 	when { 	not self.oclIsKindOf(SysML::Connector) and
 	        self.typeElement() = self } {
 	var typeElement := self.parentTypeElement();

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
@@ -30,11 +30,11 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getImportedMembership <em>Imported Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedMember <em>Owned Member</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,7 +134,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	public EList<Membership> getImportedMembership() {
 		if (importedMembership == null) {
-			importedMembership = this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>(), false);
+			importedMembership = this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>(), false);
 //			System.out.println("Caching importedMembership for " + this);
 		}
 		return importedMembership;
@@ -147,9 +147,12 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	@Override
 	public EList<Membership> getOwnedMembership() {
-		return new DerivedEObjectEList<Membership>(
-				Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, 
-				new int[]{SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		EList<Membership> membership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP);
+		getOwnedRelationship().stream().
+			filter(rel->rel instanceof Membership).
+			map(rel->(Membership)rel).
+			forEachOrdered(membership::add);
+		return membership;
 	}
 	
 	// Operations
@@ -199,12 +202,12 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Membership> publicMemberships() {
-		return getPublicMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Category>());
+		return getPublicMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>());
 	}
 	
-	// Note: The excludedCategories parameter is need when this operation is overridden in class Category.
-	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Category> excludedCategories) {
-		EList<Membership> publicMembership = this.getImportedMembership(excludedPackages, excludedCategories, true);
+	// Note: The excludedCategories parameter is need when this operation is overridden in class Type.
+	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes) {
+		EList<Membership> publicMembership = this.getImportedMembership(excludedPackages, excludedTypes, true);
 		publicMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PUBLIC));
 		return publicMembership;
 	}
@@ -216,12 +219,12 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		return publicMembership;
 	}
 
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Category> excludedCategories, boolean onlyPublic) {
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean onlyPublic) {
 		EList<Membership> importedMembership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP);
 		Collection<Membership> nonpublicMembership = onlyPublic? new HashSet<Membership>(): null;
 		for (Import _import: this.getOwnedImport()) {
 			if (!excludedPackages.contains(_import.getImportedPackage())) {
-				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedPackages, excludedCategories);
+				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedPackages, excludedTypes);
 			}
 		}
 		this.excludeCollisions(importedMembership);
@@ -254,16 +257,16 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		switch (featureID) {
 			case SysMLPackage.PACKAGE__MEMBERSHIP:
 				return getMembership();
-			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
-				return getOwnedMembership();
-			case SysMLPackage.PACKAGE__OWNED_MEMBER:
-				return getOwnedMember();
 			case SysMLPackage.PACKAGE__OWNED_IMPORT:
 				return getOwnedImport();
 			case SysMLPackage.PACKAGE__MEMBER:
 				return getMember();
+			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
+				return getOwnedMembership();
 			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
 				return getImportedMembership();
+			case SysMLPackage.PACKAGE__OWNED_MEMBER:
+				return getOwnedMember();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -277,14 +280,6 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
-				return;
-			case SysMLPackage.PACKAGE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				getOwnedMember().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.PACKAGE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				getOwnedImport().addAll((Collection<? extends Import>)newValue);
@@ -293,9 +288,17 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 				getMember().clear();
 				getMember().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
+				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
+				return;
 			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
 				getImportedMembership().addAll((Collection<? extends Membership>)newValue);
+				return;
+			case SysMLPackage.PACKAGE__OWNED_MEMBER:
+				getOwnedMember().clear();
+				getOwnedMember().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,20 +312,20 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				return;
-			case SysMLPackage.PACKAGE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				return;
 			case SysMLPackage.PACKAGE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				return;
 			case SysMLPackage.PACKAGE__MEMBER:
 				getMember().clear();
 				return;
+			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
+				return;
 			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
+				return;
+			case SysMLPackage.PACKAGE__OWNED_MEMBER:
+				getOwnedMember().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,16 +341,16 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		switch (featureID) {
 			case SysMLPackage.PACKAGE__MEMBERSHIP:
 				return isSetMembership();
-			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
-				return !getOwnedMembership().isEmpty();
-			case SysMLPackage.PACKAGE__OWNED_MEMBER:
-				return !getOwnedMember().isEmpty();
 			case SysMLPackage.PACKAGE__OWNED_IMPORT:
 				return !getOwnedImport().isEmpty();
 			case SysMLPackage.PACKAGE__MEMBER:
 				return !getMember().isEmpty();
+			case SysMLPackage.PACKAGE__OWNED_MEMBERSHIP:
+				return !getOwnedMembership().isEmpty();
 			case SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP:
 				return !getImportedMembership().isEmpty();
+			case SysMLPackage.PACKAGE__OWNED_MEMBER:
+				return !getOwnedMember().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

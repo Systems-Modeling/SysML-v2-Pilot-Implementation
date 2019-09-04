@@ -3,16 +3,18 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.omg.sysml.lang.sysml.Category;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
@@ -33,6 +35,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getSourceOutputFeature <em>Source Output Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowEnd <em>Item Flow End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowFeature <em>Item Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFeature <em>Item Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,36 +46,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
 	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
 	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subtransfers";
-
-	/**
-	 * The cached value of the '{@link #getItemType() <em>Item Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getItemType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.omg.sysml.lang.sysml.Class> itemType;
-
-	/**
-	 * The cached value of the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetInputFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> targetInputFeature;
-
-	/**
-	 * The cached value of the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceOutputFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> sourceOutputFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,26 +72,26 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<org.omg.sysml.lang.sysml.Class> getItemType() {
-		if (itemType == null) {
-			itemType = new EObjectResolvingEList<org.omg.sysml.lang.sysml.Class>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
-		}
-		if (itemType.isEmpty()) {
-			Feature feature = getItemFeature();
-			if (feature != null) {
-				itemType.addAll(feature.getType().stream().
-						filter(t->t instanceof org.omg.sysml.lang.sysml.Class).
-						map(t->(org.omg.sysml.lang.sysml.Class)t).
-						collect(Collectors.toList()));
-			}
-		}
+	public EList<Classifier> getItemType() {
+		EList<Classifier> itemType = new EObjectEList<Classifier>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+		getItemFeature().stream().
+			flatMap(f->f.getType().stream()).
+			filter(t->t instanceof Classifier).
+			map(t->(Classifier)t).
+			forEachOrdered(itemType::add);
 		return itemType;
 	}
 	
-	public Feature getItemFeature() {
-		clearCaches();
-		EList<Feature> ends = getConnectorEnd();
-		return getFeature().stream().filter(f->!(ends.contains(f))).findFirst().orElse(null);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ItemFeature> getItemFeature() {
+		return new DerivedEObjectEList<ItemFeature>(
+				ItemFeature.class, this, SysMLPackage.ITEM_FLOW__ITEM_FEATURE, 
+				new int[]{SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -126,15 +101,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
-		if (sourceOutputFeature == null) {
-			sourceOutputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
-		}
-		if (sourceOutputFeature.isEmpty()) {
-			Feature feature = getInputOutputFeature(0);
-			if (feature != null) {
-				sourceOutputFeature.add(feature);
-			}
-		}
+		EList<Feature> sourceOutputFeature = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
+		getInputOutputFeature(0).ifPresent(sourceOutputFeature::add);
 		return sourceOutputFeature;
 	}
 	
@@ -144,38 +112,70 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ItemFlowEnd> getItemFlowEnd() {
+		EList<ItemFlowEnd> itemFlows = 
+				new EObjectEList<ItemFlowEnd>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
+		getConnectorEnd().stream().
+			filter(end->end instanceof ItemFlowEnd).
+			map(end->(ItemFlowEnd)end).
+			forEachOrdered(itemFlows::add);
+		return itemFlows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItemFlowEnd() {
+		return !getItemFlowEnd().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ItemFlowFeature> getItemFlowFeature() {
+		EList<ItemFlowFeature> itemFlowFeatures = 
+				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE);
+		getItemFlowEnd().stream().
+			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
+			forEachOrdered(itemFlowFeatures::add);
+		return itemFlowFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItemFlowFeature() {
+		return !getItemFlowFeature().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Feature> getTargetInputFeature() {
-		if (targetInputFeature == null) {
-			targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
-		}
-		if (targetInputFeature.isEmpty()) {
-			Feature feature = getInputOutputFeature(1);
-			if (feature != null) {
-				targetInputFeature.add(feature);
-			}
-		}
+		EList<Feature> targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE);
+		getInputOutputFeature(1).ifPresent(targetInputFeature::add);
 		return targetInputFeature;
 	}
 	
-	public Feature getInputOutputFeature(int i) {
-		EList<Feature> ends = getConnectorEnd();
-		if (ends.size() > i) {
-			Feature end = ends.get(i);
-			EList<Feature> features = end.getOwnedFeature();
-			if (!features.isEmpty()) {
-				EList<Redefinition> redefinitions = features.get(0).getOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					return ((RedefinitionImpl)redefinitions.get(0)).basicGetRedefinedFeature();
-				}
-			}
-		}
-		return null;
+	public Optional<Feature> getInputOutputFeature(int i) {
+		EList<ItemFlowFeature> features = getItemFlowFeature();
+		return features.size() <= i? Optional.empty(): Optional.of(features.get(i));
 	}
 	
 	@Override
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
-		Category owner = getOwningCategory();
+		Type owner = getOwningType();
 		if (owner instanceof Step) {
 			EList<Feature> features = owner.getOwnedFeature();
 			int i = features.indexOf(this);
@@ -208,6 +208,15 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return ends;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectorEnd() {
+  		return false;
+	}
+
 	@Override
 	public boolean basicIsComposite() {
 		if (!isComposite && isSubtransfer()) {
@@ -228,11 +237,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return StepImpl.isPerformanceFeature(this);
 	}
 	
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return Collections.singletonList(getItemFeature());
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +251,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return getTargetInputFeature();
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
 				return getSourceOutputFeature();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
+				return getItemFlowEnd();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				return getItemFlowFeature();
+			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
+				return getItemFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,7 +272,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		switch (featureID) {
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
-				getItemType().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getItemType().addAll((Collection<? extends Classifier>)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
 				getTargetInputFeature().clear();
@@ -271,6 +281,18 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
 				getSourceOutputFeature().clear();
 				getSourceOutputFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
+				getItemFlowEnd().clear();
+				getItemFlowEnd().addAll((Collection<? extends ItemFlowEnd>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				getItemFlowFeature().clear();
+				getItemFlowFeature().addAll((Collection<? extends ItemFlowFeature>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
+				getItemFeature().clear();
+				getItemFeature().addAll((Collection<? extends ItemFeature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,6 +315,15 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
 				getSourceOutputFeature().clear();
 				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
+				getItemFlowEnd().clear();
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				getItemFlowFeature().clear();
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
+				getItemFeature().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,12 +336,20 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
+				return isSetConnectorEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
-				return itemType != null && !itemType.isEmpty();
+				return !getItemType().isEmpty();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
-				return targetInputFeature != null && !targetInputFeature.isEmpty();
+				return !getTargetInputFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
-				return sourceOutputFeature != null && !sourceOutputFeature.isEmpty();
+				return !getSourceOutputFeature().isEmpty();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
+				return isSetItemFlowEnd();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				return !getItemFlowFeature().isEmpty();
+			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
+				return !getItemFeature().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

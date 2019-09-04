@@ -29,16 +29,6 @@ public enum FeatureDirectionKind implements Enumerator {
 	IN(0, "in", "in"),
 
 	/**
-	 * The '<em><b>Out</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OUT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OUT(1, "out", "out"),
-
-	/**
 	 * The '<em><b>Inout</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,7 +36,15 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INOUT(2, "inout", "inout");
+	INOUT(1, "inout", "inout"), /**
+	 * The '<em><b>Out</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OUT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	OUT(2, "out", "out");
 
 	/**
 	 * The '<em><b>In</b></em>' literal value.
@@ -64,21 +62,6 @@ public enum FeatureDirectionKind implements Enumerator {
 	public static final int IN_VALUE = 0;
 
 	/**
-	 * The '<em><b>Out</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OUT
-	 * @model name="out"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OUT_VALUE = 1;
-
-	/**
 	 * The '<em><b>Inout</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -91,7 +74,22 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INOUT_VALUE = 2;
+	public static final int INOUT_VALUE = 1;
+
+	/**
+	 * The '<em><b>Out</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OUT
+	 * @model name="out"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OUT_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Feature Direction Kind</b></em>' enumerators.
@@ -102,8 +100,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	private static final FeatureDirectionKind[] VALUES_ARRAY =
 		new FeatureDirectionKind[] {
 			IN,
-			OUT,
 			INOUT,
+			OUT,
 		};
 
 	/**
@@ -161,8 +159,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	public static FeatureDirectionKind get(int value) {
 		switch (value) {
 			case IN_VALUE: return IN;
-			case OUT_VALUE: return OUT;
 			case INOUT_VALUE: return INOUT;
+			case OUT_VALUE: return OUT;
 		}
 		return null;
 	}

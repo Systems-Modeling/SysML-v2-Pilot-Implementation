@@ -35,7 +35,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Category
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
@@ -129,20 +129,20 @@ class AlfScope extends AbstractScope {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				if (!scopeProvider.visitedMemberships.contains(m)) {
+				if (!scopeProvider.visited.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
 					// Note: Proxy resolution for memberElement may result in recursive name resolution
-					// (and getting the memberName may also resut in accessing the memberElement).
+					// (and getting the memberName may also result in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					scopeProvider.addVisitedMembership(m)
+					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
 						elementName = m.memberName 
 					} finally {
-						scopeProvider.removeVisitedMembership(m)
+						scopeProvider.removeVisited(m)
 					}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
@@ -186,12 +186,19 @@ class AlfScope extends AbstractScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
-		if (pack instanceof Category) {
+		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
-				if (e.general !== null && !visited.contains(e.general)) {
-					visited.add(e.general)
-					val found = e.general.resolve(qn, false, false, visited)
-					visited.remove(e.general)
+				if (!scopeProvider.visited.contains(e)) {
+					var found = false;
+					// NOTE: Exclude the generalization e to avoid possible circular name resolution
+					// when resolving a proxy for e.general.
+					scopeProvider.addVisited(e)
+					if (e.general !== null && !visited.contains(e.general)) {
+						visited.add(e.general)
+						found = e.general.resolve(qn, false, false, visited)
+						visited.remove(e.general)
+					}
+					scopeProvider.removeVisited(e)
 					if (found) {
 						return true
 					}
@@ -203,10 +210,17 @@ class AlfScope extends AbstractScope {
 	
 	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (e.importedPackage !== null && !visited.contains(e.importedPackage) && e.visibility == VisibilityKind.PUBLIC) {
-				visited.add(e.importedPackage)
-				val found = e.importedPackage.resolve(qn, true, false, visited)
-				visited.remove(e.importedPackage)
+			if (!scopeProvider.visited.contains(e)) {
+				var found = false;
+				// NOTE: Exclude the import e to avoid possible circular name resolution
+				// when resolving a proxy for e.importedPackage.
+				scopeProvider.addVisited(e)
+				if (e.importedPackage !== null && !visited.contains(e.importedPackage) && e.visibility == VisibilityKind.PUBLIC) {
+					visited.add(e.importedPackage)
+					found = e.importedPackage.resolve(qn, true, false, visited)
+					visited.remove(e.importedPackage)
+				}
+				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
 				}

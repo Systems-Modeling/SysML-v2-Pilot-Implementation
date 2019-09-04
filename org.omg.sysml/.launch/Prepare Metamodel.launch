@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2m.qvt.oml.QvtTransformation">
+<booleanAttribute key="org.eclipse.m2m.qvt.oml.interpreter.clearContents1" value="true"/>
+<mapAttribute key="org.eclipse.m2m.qvt.oml.interpreter.configurationProperties"/>
+<intAttribute key="org.eclipse.m2m.qvt.oml.interpreter.elemCount" value="1"/>
+<stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.featureName1" value=""/>
+<booleanAttribute key="org.eclipse.m2m.qvt.oml.interpreter.isInrementalUpdate" value="false"/>
+<stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.module" value="platform:/resource/org.omg.sysml/transforms/PrepareMetamodel.qvto"/>
+<stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel1" value="platform:/resource/org.omg.sysml/model/Export/SysML.uml"/>
+<stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetType1" value="NEW_MODEL"/>
+<stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.traceFile" value="platform:/resource/org.omg.sysml/model/Export/SysML.PrepareMetamodel.qvtotrace"/>
+<booleanAttribute key="org.eclipse.m2m.qvt.oml.interpreter.useTraceFile" value="false"/>
+</launchConfiguration>

@@ -16,10 +16,12 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2018-12.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2019-06.
 
 5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Category: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
+   
+   **Note:** If you have installed the SysML v2 Pilot Implementation previously, this may already be pre-selected.
 
 6. Select SysML2 in the Projects list:
 ![oomph projects](oomph-projects.png)
@@ -33,21 +35,22 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 #### Manual installation
 
-1. Install Eclipse 4.10 (2018-12) and Xtext.
+1. Install Eclipse 2019-06 (4.12) and Xtext.
    * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
-      * https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-java-and-dsl-developers
+      * https://www.eclipse.org/downloads/packages/release/2019-06/r/eclipse-ide-java-and-dsl-developers
       
    * Alternatively, you can install the “Eclipse Modeling Tools” package (which includes other modeling capabilities, like UML, that you don’t need now but will likely be useful in the future), and install Xtext into that (per below).
-      * https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-modeling-tools
+      * https://www.eclipse.org/downloads/packages/release/2019-06/r/eclipse-modeling-tools
       
-   * To install Xtext into an existing Eclipse 4.10 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/2018-12
+   * To install Xtext into an existing Eclipse 4.12 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
+      * http://download.eclipse.org/releases/2019-06
 
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import all projects from the repository into your Eclipse workspace. The should included the projects `org.omg.sysml`, `org.sysml.owl` 
-and `org.omg.sysml.usage`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
+3. Import projects from the repository into your Eclipse workspace. This should include the projects `org.omg.sysml` and `org.sysml.owl`, with associated `ide`, `tests`, `ui` and `ui.tests` projects for each.
+
+   **Note:** The project `org.omg.sysml.xpect.tests` requires the Xpect plugin, not included in the main SysML v2 installation.
 
 ### Prototype Alf Implementation
 
@@ -72,7 +75,7 @@ Set up a Java code template as follows:
     ```
     /**
      * SysML 2 Pilot Implementation
-     * Copyright (C) 2018  California Institute of Technology ("Caltech")
+     * Copyright (C) 2019  California Institute of Technology ("Caltech")
      *
      * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU Lesser General Public License as published by

@@ -28,11 +28,26 @@ transformation PrepareMetamodel(inout uml: UML);
 
 main() {
 	var model := uml.rootObjects()![Model];
-	model.map Namespace(model);
+	model.packageImport := Set{};
+	model.elementImport := Set{};
+	model.unapplyProfiles();
+	var syntax := uml.objects()[Package]![name = "1. Abstract Syntax"];
+	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
+	syntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 	model.name := "sysml";
-	model.URI := "http://www.omg.org/spec/SysML/2.0";
+	model.URI := "http://www.omg.org/spec/SysML/2.0";	
 	removeComposition();
+}
+
+helper Package::unapplyProfiles() {
+	self.getAppliedProfiles()->forEach(profile) {
+		self.unapplyProfile(profile);
+	};
+	// Remove stereotype applications
+	uml.rootObjects()[obj | obj <> self]->forEach(obj) {
+		uml.removeElement(obj)
+	};
 }
 
 property compositeProperties: Set(Property);

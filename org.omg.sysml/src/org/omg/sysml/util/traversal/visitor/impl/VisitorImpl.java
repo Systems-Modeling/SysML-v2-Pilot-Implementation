@@ -103,6 +103,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 	 */
 	@Override
 	public Object visit() {
+		this.preProcess();
 		Object identifier = this.process();
 		Element element = this.getElement();
 		Traversal traversal = this.getTraversal();
@@ -110,7 +111,15 @@ public abstract class VisitorImpl implements ElementVisitor {
 		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
 			traversal.visit(relationship);
 		}
+		this.postProcess();
 		return identifier;
+	}
+	
+	/**
+	 * Pre-process the element being visited.
+	 */
+	protected void preProcess() {
+		this.getFacade().preProcess(this.getElement());
 	}
 	
 	/**
@@ -119,5 +128,12 @@ public abstract class VisitorImpl implements ElementVisitor {
 	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
 	 */
 	protected abstract Object process();
+	
+	/**
+	 * Post-process the Element being visited.
+	 */
+	protected void postProcess() {
+		this.getFacade().postProcess(this.getElement());
+	}
 
 }

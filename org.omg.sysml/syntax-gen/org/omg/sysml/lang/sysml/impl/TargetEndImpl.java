@@ -4,7 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Category;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -46,10 +46,10 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	}
 	
 	@Override
-	public Category getDefaultCategory(String... defaultNames) {
-		Category category = getOwningCategory();
-		category = category == null? null: ((Feature)category).getOwningCategory();
-		return category instanceof Feature? category: null;
+	public Type getDefaultType(String... defaultNames) {
+		Type type = getOwningType();
+		type = type == null? null: ((Feature)type).getOwningType();
+		return type instanceof Feature? type: null;
 	}
 	
 } //TargetEndImpl

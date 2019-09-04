@@ -3,16 +3,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
-		File {from ="/library/BaseFunctions.alf"}
-		File {from ="/library/ISQ.alf"}
-		File {from ="/library/Quantities.alf"}
-		File {from ="/library/ScalarFunctions.alf"}
-		File {from ="/library/ScalarValues.alf"}
-		File {from ="/library/SI.alf"}
-		File {from ="/library/SIPrefixes.alf"}
-		File {from ="/library/Time.alf"}
-		File {from ="/library/UnitsAndScales.alf"}
-		File {from ="/library/USCustomaryUnits.alf"}
 		File "Classes2.alf" {}
 	}
 	Workspace {
@@ -20,16 +10,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.alf"}
-				File {from ="/library/BaseFunctions.alf"}
-				File {from ="/library/ISQ.alf"}
-				File {from ="/library/Quantities.alf"}
-				File {from ="/library/ScalarFunctions.alf"}
-				File {from ="/library/ScalarValues.alf"}
-				File {from ="/library/SI.alf"}
-				File {from ="/library/SIPrefixes.alf"}
-				File {from ="/library/Time.alf"}
-				File {from ="/library/UnitsAndScales.alf"}
-				File {from ="/library/USCustomaryUnits.alf"}
 				File "Classes2.alf" {}
 			}
 		}

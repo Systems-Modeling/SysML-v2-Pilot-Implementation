@@ -39,12 +39,12 @@ public class ElementVisitorImpl extends VisitorImpl {
 	public ElementVisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		super(element, traversal, facade);
 	}
-
+	
 	/**
 	 * Process the Element being visited using the Element-processing facade for this visitor.
 	 */
 	protected Object process() {
-		return this.getFacade().processElement(this.getElement());
+		return this.getFacade().processElement(this.getElement());		
 	}
 
 }

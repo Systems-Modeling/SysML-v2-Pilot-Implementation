@@ -25,51 +25,33 @@ package test{
 		class xx {}
 	}
 	class B specializes A {
-		//pass
+//pass
 		//XPECT linkedName at A::a --> test.A.a
-		/* XPECT scope at A::a ---
-		    A, A.a, A.xx, B, B.a, B.b, B.b1, B.xx, 
-			C, C.a, C.b, C.b1, C.c0, C.c1, C.xx, D, a, b, b1, 
-			test.A, test.A.a, test.A.xx, test.B, test.B.a, test.B.b, test.B.b1, test.B.xx, test.C, test.C.a, test.C.b, test.C.b1, test.C.c0, test.C.c1,			test.C.xx, test.D, xx,
-			Base.Anything, Base.BehaviorOccurrence,			Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,			Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
-		--- */
 		class b specializes A::a {}
 //fail  java.lang.RuntimeException: Error creating value for argument org.eclipse.xpect.xtext.lib.tests.LinkingTest.linkedName(..., ICrossEReferenceAndEObject arg1)
 //Caused by: java.lang.RuntimeException: no EStructuralFeature found at '...\n	--- */\n		cl|ass b1 specia...'
 		//XPECT linkedName at a --> test.A.a
-		/* XPECT scope at a ---
-	--- */
 		class b1 specializes a{}
-		//pass
+//pass
 		//XPECT linkedName at A::AA --> test.A.AA
-		/* XPECT scope at A::AA ---
-	--- */
+//pass
 		class b2 specializes A::AA{}
 		//XPECT linkedName at AA --> test.A.AA
-		/* XPECT scope at AA ---
-	--- */
 		class b3 specializes AA{}
 	}
 	class C specializes B{
-		//fail
+//fail
 		//XPECT linkedName at a --> test.A.a
-		/* XPECT scope at a ---
-	--- */
 		class c0 specializes a {}
-		//pass
+//pass
 		//XPECT linkedName at b --> test.B.b
-		/* XPECT scope at b ---
-		A, A.a, A.xx, B, B.a, B.b, B.b1, B.xx, 
-		C, C.a, C.b, C.b1, C.c0, C.c1, C.xx, D, a, b, b1, c0, c1, test.A, test.A.a, test.A.xx,
-		test.B, test.B.a, test.B.b, test.B.b1, test.B.xx, test.C, test.C.a, test.C.b, test.C.b1, test.C.c0,
-		test.C.c1, test.C.xx, test.D, xx,
-		Base.Anything, Base.BehaviorOccurrence,Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
-	--- */
 		class c1 specializes b {}
+//pass
+		//XPECT linkedName at b1 --> test.B.b1
+		class c2 specializes b1{}
+//pass		
 		//XPECT linkedName at AA --> test.A.AA
-		/* XPECT scope at A ---
-	--- */
-		class c2 specializes AA{}
+		class c3 specializes AA{}
 	}
 	class D specializes A::xx{} 
 }

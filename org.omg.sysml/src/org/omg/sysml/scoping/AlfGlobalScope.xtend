@@ -72,27 +72,30 @@ class AlfGlobalScope extends SelectableBasedScope {
 		
 	}
 	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
+		System.out.println( "GgetSindlLocalElementByNameL " + name)
 		var result = getLocalElementsByName(name);
 		var iterator = result.iterator();
 		if (iterator.hasNext())
 			return iterator.next()
 		else
 		{  //try to find parent then find from inherited ones
-			var pname = name.skipLast(1)
-			var e_parent = super.getSingleElement(pname);
-			var o_parent = e_parent.getEObjectOrProxy();
-			if (o_parent instanceof Category) {
-				for (e: o_parent.ownedGeneralization) {
-					if (e.general !== null ) {
-						targetqn = name
-						findFirst = true
-						val found = e.general.resolve(pname, false, false, newHashSet)
-						if (found) {
-							var inherited = elements.keySet.flatMap[key |
-								elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
-							]
-							return inherited.get(0)
-						}							
+			if( name.segmentCount > 1){
+				var pname = name.skipLast(1)
+				var e_parent = super.getSingleElement(pname);
+				var o_parent = e_parent.getEObjectOrProxy();
+				if (o_parent instanceof Category) {
+					for (e: o_parent.ownedGeneralization) {
+						if (e.general !== null ) {
+							targetqn = name
+							findFirst = true
+							val found = e.general.resolve(pname, false, false, newHashSet)
+							if (found) {
+								var inherited = elements.keySet.flatMap[key |
+									elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
+								]
+								return inherited.get(0)
+							}							
+						}
 					}
 				}
 			}
@@ -102,10 +105,12 @@ class AlfGlobalScope extends SelectableBasedScope {
 	override getLocalElementsByName(QualifiedName name) {
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
+		System.out.println("GGGetlocalelementByName: " + name)
 		return super.getLocalElementsByName(name)
 	}
 	
 	override getAllLocalElements() {
+		System.out.println("GGAllElements")
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
 		var all = super.getAllLocalElements()
@@ -128,6 +133,8 @@ class AlfGlobalScope extends SelectableBasedScope {
 		var inherited = elements.keySet.flatMap[key |
 									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 								]
+								System.out.println(inherited)
+								System.out.println(all)
 		var result = Iterables.concat(all, inherited)
 		return result
 		
@@ -141,6 +148,8 @@ class AlfGlobalScope extends SelectableBasedScope {
 				qns.add(qn)
 			}					
 		}
+		else
+			System.out.println("not added: " + qn)
 	}
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
 		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||

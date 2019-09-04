@@ -196,7 +196,8 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'value'? ownedRelatedElement += ValueProperty
 	| 'abstract' 'value'? ownedRelatedElement += AbstractValueProperty
 	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
-	| ownedRelatedElement += ActionUsage
+	| 'action' ownedRelatedElement += ActionUsage
+	| 'abstract' 'action' ownedRelatedElement += AbstractActionUsage
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
 ;
 
@@ -221,10 +222,10 @@ NestedDefinitionMember returns SysML::Membership :
 ;
 
 NestedUsageMember returns SysML::FeatureMembership :
-	NonPortMember | PortMember | ConjugatedPortMember
+	PrimaryUsageMember | ActionMember | PortMember | ConjugatedPortMember
 ;
 
-NonPortMember returns SysML::FeatureMembership :
+PrimaryUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	(
 	  isComposite ?= 'part' ownedRelatedElement += PartProperty
@@ -248,21 +249,22 @@ NonPortMember returns SysML::FeatureMembership :
 	| 'succession' ownedRelatedElement += Succession 
     | 'abstract' 'succession' ownedRelatedElement += AbstractSuccession
 	| 'succession' ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
-    | 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
-    | ownedRelatedElement += TargetSuccession ';'
 	| 'stream' ownedRelatedElement += ItemFlow 
     | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlow
 	| 'stream' ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
 	| 'flow' ownedRelatedElement += SuccessionItemFlow 
     | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlow
 	| 'flow' ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
-	| ownedRelatedElement += ActionUsage
-	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
-	| ownedRelatedElement += DoAction
-	| ownedRelatedElement += PerformAction
-	| ownedRelatedElement += AcceptAction
-	| ownedRelatedElement += SendAction
     )
+;
+
+ActionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix
+	( ('ref' 'action' | isComposite ?= 'action' ) ownedRelatedElement += ActionUsage
+	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ownedRelatedElement += AbstractActionUsage
+	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+	| ('perform' | isComposite ?= 'do') ownedRelatedElement += PerformActionUsage
+	)
 ;
 
 PortMember returns SysML::PortMembership :
@@ -376,9 +378,9 @@ AssociationMember returns SysML::Membership :
 
 AssociationEndMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
-    ( 'end' 'part' ownedRelatedElement += PartProperty 
-    | 'abstract' 'end' 'part' ownedRelatedElement += AbstractPartProperty
-    | 'end' 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
+    ( 'end' isComposite ?= 'part' ownedRelatedElement += PartProperty 
+    | 'abstract' 'end' isComposite ?= 'part' ownedRelatedElement += AbstractPartProperty
+    | 'end' isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
     | 'end' 'ref'? ownedRelatedElement += ReferenceProperty
     | 'abstract' 'end' 'ref'? ownedRelatedElement += AbstractReferenceProperty
 	| 'end' 'ref'? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
@@ -447,6 +449,10 @@ fragment ActivityBody returns SysML::Type :
 	';'| '{' ( ownedRelationship += ActivityMember | ownedRelationship += Import )* '}'
 ;
 
+fragment AbstractActivityBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += ActivityMember | ownedRelationship += Import )* '}'
+;
+
 /* ACTIVITIY MEMBERSHIPS */
 
 ParameterMember returns SysML::ParameterMembership :
@@ -454,11 +460,15 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 ActivityMember returns SysML::Membership :
-	NestedDefinitionMember | NestedUsageMember | ControlNodeMember
+	NestedDefinitionMember | PrimaryUsageMember | PortMember | ConjugatedPortMember | ActivityNodeMember
 ;
 
-ControlNodeMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedRelatedElement += ControlNode
+ActivityNodeMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 
+	( ownedRelatedElement += ActivityNode
+	| 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+    | ownedRelatedElement += TargetSuccession ';'		
+	)
 ;
 
 /* USAGES */
@@ -793,12 +803,17 @@ fragment Action returns SysML::ActionUsage :
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	( ownedRelationship += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-	( name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
+	ActionDeclaration ActivityBody
+;
+
+AbstractActionUsage returns SysML::ActionUsage :
+	ActionDeclaration AbstractActivityBody
+;
+
+fragment ActionDeclaration returns SysML::ActionUsage :
+	  name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	| TypePart ActionParameterList? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
-	) ActivityBody
 ;
 
 fragment ActionParameterList returns SysML::Type :
@@ -816,36 +831,49 @@ ActionParameterFlow returns SysML::ItemFlow :
 	'from' ownedRelationship += ItemFlowEndMember
 ;
 
-DoAction returns SysML::PerformActionUsage :
-	( ownedRelationship += EmptySuccessionMember )?
-    isComposite ?= 'do' ( name = Name TypePart 'by' )? 
+PerformActionUsage returns SysML::PerformActionUsage :
+    ( name = Name TypePart 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
 ;
 
-PerformAction returns SysML::PerformActionUsage :
+/* ACTIVITY NODES */
+
+ActivityNode returns SysML::ActionUsage :
+	  ActionNode
+	| PerformActionNode
+	| AcceptActionNode
+	| SendActionNode
+	| ControlNode
+;
+
+ActionNode returns SysML::ActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
-   'perform' ( name = Name TypePart 'by' )? 
+    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
+    ActionDeclaration ActivityBody
+;
+
+PerformActionNode returns SysML::PerformActionUsage :
+	( ownedRelationship += EmptySuccessionMember )?
+    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
 ;
 
-AcceptAction returns SysML::AcceptActionUsage :
+AcceptActionNode returns SysML::AcceptActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
 	'accept' ( name = Name TypePart )? '(' ownedRelationship += ItemFeatureMember ')'
 	ActivityBody
 ;
 
-SendAction returns SysML::SendActionUsage :
+SendActionNode returns SysML::SendActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
 	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
 	'to' ownedRelationship += ExpressionMember
 	ActivityBody
 ;
-
-/* CONTROL NODES */
 
 ControlNode returns SysML::ControlNode :
 	  MergeNode

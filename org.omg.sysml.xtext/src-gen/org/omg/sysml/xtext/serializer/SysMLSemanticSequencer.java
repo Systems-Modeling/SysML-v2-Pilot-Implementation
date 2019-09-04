@@ -1609,6 +1609,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             ownedRelatedElement+=ReferenceProperty | 
 	 *             ownedRelatedElement+=AbstractReferenceProperty | 
 	 *             (memberName=Name? memberFeature=[ReferenceProperty|QualifiedName]) | 
+	 *             (isComposite?='action'? ownedRelatedElement+=ActionUsage) | 
+	 *             (isComposite?='action'? ownedRelatedElement+=AbstractActionUsage) | 
+	 *             (memberName=Name? memberFeature=[ActionUsage|QualifiedName]) | 
 	 *             (isPort?='port' ownedRelatedElement+=PortUsage) | 
 	 *             (isPort?='port' ownedRelatedElement+=AbstractPortUsage) | 
 	 *             (isPort?='port' memberName=Name? memberFeature=[PortUsage|QualifiedName])

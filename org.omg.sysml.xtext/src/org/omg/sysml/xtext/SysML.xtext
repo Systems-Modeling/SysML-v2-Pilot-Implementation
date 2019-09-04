@@ -384,6 +384,9 @@ AssociationEndMember returns SysML::EndFeatureMembership :
     | 'end' 'ref'? ownedRelatedElement += ReferenceProperty
     | 'abstract' 'end' 'ref'? ownedRelatedElement += AbstractReferenceProperty
 	| 'end' 'ref'? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
+    | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedRelatedElement += ActionUsage
+	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedRelatedElement += AbstractActionUsage
+	| 'end' 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
     | 'end' isPort ?= 'port' ownedRelatedElement += PortUsage 
     | 'abstract' 'end' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
     | 'end' isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName]

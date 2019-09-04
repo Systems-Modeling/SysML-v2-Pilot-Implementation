@@ -50,10 +50,11 @@ package ControlNodes {
 		 * The succession link for the sucessor of a DecisionAction must be an
 		 * instance of ConditionalHappensBefore with a true guard.
 		 */
-		ref successionLink[1] = ConditionalHappensBefore.allInstances()->
-			select l: ConditionalHappensBefore (
-				l.earlierOccurrence == Base::self && l::guard::result == true
-			);
+		ref successionLink: ConditionalHappensBefore[1] = 
+			ConditionalHappensBefore.allInstances()->
+				select l: ConditionalHappensBefore (
+					l.earlierOccurrence == Base::self && l::guard::result == true
+				);
 	}
 	
 	/**
@@ -77,7 +78,9 @@ package ControlNodes {
 	 * on a given guard action have a true result. 
 	 */
 	abstract assoc block ConditionalHappensBefore :> HappensBefore {
-		abstract ref action guard(out result : ScalarValues::Boolean);
+		end ref action earlierAction : Action[1];
+		end ref action laterAction : Action[0..*];
+		abstract action guard(out result : ScalarValues::Boolean);
 	}
 	
 	/**

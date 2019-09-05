@@ -8,6 +8,6 @@ package QualifiedNameImportTest {
 		}
 		// The following should not fail.
 		// A is a member of P2a because of the import.
-//		x: P2a::A;
+		x: P2a::A;
 	}
 }

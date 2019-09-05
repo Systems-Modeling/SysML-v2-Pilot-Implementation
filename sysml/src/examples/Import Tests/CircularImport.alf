@@ -21,7 +21,6 @@ package CircularImport {
 	x: P1::A;
 	
 	// The following should not fail.
-	// Same problem as QualifiedNameImportTest.
-//	y: P1::B;
+	y: P1::B;
 	
 }

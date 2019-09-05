@@ -109,7 +109,7 @@ class AlfScope extends AbstractScope {
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
 		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
 		pack.gen(qn, visited) ||
-		pack.imp(qn, visited)
+		pack.imp(qn, isInsideScope, visited)
 	}
 	
 	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
@@ -170,7 +170,7 @@ class AlfScope extends AbstractScope {
 										if (memberElement.gen(elementqn, visited)) {
 											return true;
 										}
-										if (memberElement.imp(elementqn, visited)) {
+										if (memberElement.imp(elementqn, false, visited)) {
 											return true;
 										}
 									}
@@ -208,14 +208,15 @@ class AlfScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
+	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				var found = false;
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
-				if (e.importedPackage !== null && !visited.contains(e.importedPackage) && e.visibility == VisibilityKind.PUBLIC) {
+				if (e.importedPackage !== null && !visited.contains(e.importedPackage) && 
+					(isInsideScope || e.visibility == VisibilityKind.PUBLIC)) {
 					visited.add(e.importedPackage)
 					found = e.importedPackage.resolve(qn, true, false, visited)
 					visited.remove(e.importedPackage)

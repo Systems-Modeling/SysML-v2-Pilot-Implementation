@@ -52,43 +52,42 @@ AnonymousPackage returns SysML::Package :
 ;
 
 PackageUnit returns SysML::Package: 
-    UnitPrefix Package 
+    UnitPrefix PackageDeclaration PackageBody 
 ;
 
 BlockUnit returns SysML::Block:
-	UnitPrefix Block
+	UnitPrefix BlockDeclaration DefinitionBody
 ;
 
 ValueTypeUnit returns SysML::ValueType :
-	UnitPrefix ValueType
+	UnitPrefix ValueTypeDeclaration DefinitionBody
 ;
 
 AssociationBlockUnit returns SysML::AssociationBlock :
-	UnitPrefix AssociationBlock
+	UnitPrefix AssociationBlockDeclaration AssociationBlockBody
 ;
 
 InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
-	UnitPrefix InterfaceDefinition
+	UnitPrefix InterfaceDeclaration InterfaceBody
 ;
 
 ActivityUnit returns SysML::Activity :
-	UnitPrefix Activity
+	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
 PartUnit returns SysML::PartProperty :
-	UnitPrefix Part
+	UnitPrefix PartDeclaration UsageCompletion
 ;
 
 ValueUnit returns SysML::ValueProperty :
-	UnitPrefix Value
+	UnitPrefix ValueDeclaration UsageCompletion
 ;
 
 ActionUnit returns SysML::ActionUsage :
-	UnitPrefix Action
+	UnitPrefix ActionDeclaration ActivityBody
 ;
 
 fragment UnitPrefix returns SysML::Package :
-	//	( 'namespace' namespace += [SysML::Package | QualifiedName] )?
 	( ownedRelationship += PrefixAnnotation )*
 ;
 
@@ -141,13 +140,12 @@ Import returns SysML::Import :
 
 /* PACKAGES */
 
-PackageOrStub returns SysML::Package :
-	Package
-//	'package' name = Name ( isStub ?= ';' | '{' ( ownedRelationship += PackageMember )* '}' )
+Package returns SysML::Package :
+	PackageDeclaration PackageBody
 ;
 
-fragment Package returns SysML::Package : 
-	'package' name = Name PackageBody 
+fragment PackageDeclaration returns SysML::Package : 
+	'package' name = Name 
 ;
 
 fragment PackageBody returns SysML::Package :
@@ -169,19 +167,19 @@ fragment PackageMemberPrefix returns SysML::Membership :
 ;
 
 fragment PackagedDefinitionMember returns SysML::Membership :
-	( ownedRelatedElement += PackageOrStub
+	( ownedRelatedElement += Package
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
-	| ownedRelatedElement += BlockOrStub
+	| ownedRelatedElement += Block
     | 'block' ( memberName = Name )? 'is' memberElement = [SysML::Block|QualifiedName] ';'
-	| ownedRelatedElement += ValueTypeOrStub
+	| ownedRelatedElement += ValueType
     | ( 'value' 'type' | 'valuetype' ) ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
-	| ownedRelatedElement += AssociationBlockOrStub
+	| ownedRelatedElement += AssociationBlock
     | ( 'assoc' 'block' | 'assocbock' ) ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
-	| ownedRelatedElement += InterfaceDefinitionOrStub
+	| ownedRelatedElement += InterfaceDefinition
     | ( 'interface' 'def' | 'interfacedef' ) ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
-	| ownedRelatedElement += PortDefinitionOrStub
+	| ownedRelatedElement += PortDefinition
     | ( 'port' 'def' | 'portdef' ) ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
-	| ownedRelatedElement += ActivityOrStub
+	| ownedRelatedElement += Activity
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedRelatedElement += Comment
@@ -308,11 +306,7 @@ Superclassing returns SysML::Superclassing:
 
 /* BLOCKS */
 
-BlockOrStub returns SysML::Block :
-	Block
-;
-
-fragment Block returns SysML::Block : 
+Block returns SysML::Block :
 	BlockDeclaration DefinitionBody
 ;
 
@@ -322,11 +316,7 @@ fragment BlockDeclaration returns SysML::Block :
 
 /* VALUE TYPES */
 
-ValueTypeOrStub returns SysML::ValueType :
-	ValueType
-;
-
-fragment ValueType returns SysML::ValueType :
+ValueType returns SysML::ValueType :
 	ValueTypeDeclaration DefinitionBody
 ;
 
@@ -336,11 +326,7 @@ fragment ValueTypeDeclaration returns SysML::ValueType :
 
 /* PORT DEFINITIONS */
 
-PortDefinitionOrStub returns SysML::PortDefinition :
-	PortDefinition
-;
-
-fragment PortDefinition returns SysML::PortDefinition : 
+PortDefinition returns SysML::PortDefinition :
 	PortDeclaration DefinitionBody
 ;
 
@@ -350,11 +336,7 @@ fragment PortDeclaration returns SysML::PortDefinition :
 
 /* ASSOCIATION BLOCKS */
 
-AssociationBlockOrStub returns SysML::AssociationBlock :
-	AssociationBlock
-;
-
-fragment AssociationBlock returns SysML::AssociationBlock :
+AssociationBlock returns SysML::AssociationBlock :
 	AssociationBlockDeclaration AssociationBlockBody
 ;
 
@@ -395,11 +377,7 @@ AssociationEndMember returns SysML::EndFeatureMembership :
 
 /* INTERFACE DEFINITIONS */
 
-InterfaceDefinitionOrStub returns SysML::InterfaceDefinition :
-	InterfaceDefinition
-;
-
-fragment InterfaceDefinition returns SysML::InterfaceDefinition :
+InterfaceDefinition returns SysML::InterfaceDefinition :
 	InterfaceDeclaration InterfaceBody
 ;
 
@@ -432,11 +410,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 
 /* ACTIVITIES */
 
-ActivityOrStub returns SysML::Activity :
-	Activity
-;
-
-fragment Activity returns SysML::Activity :
+Activity returns SysML::Activity :
 	ActivityDeclaration ActivityBody
 ;
 
@@ -558,10 +532,9 @@ Parameter returns SysML::Parameter :
 
 /* PART PROPERTIES */
 
-fragment Part returns SysML::PartProperty :
+fragment PartDeclaration returns SysML::PartProperty :
 	( isAbstract ?= 'abstract' )? 'part' 
 	name = Name TypePart SubsettingPart
-	UsageCompletion
 ;
 
 PartProperty returns SysML::PartProperty :
@@ -584,10 +557,9 @@ AbstractReferenceProperty returns SysML::ReferenceProperty :
 
 /* VALUE PROPERTIES */
 
-fragment Value returns SysML::ValueProperty :
+fragment ValueDeclaration returns SysML::ValueProperty :
 	( isAbstract ?= 'abstract' )? 'value'? 
 	name = Name TypePart SubsettingPart
-	UsageCompletion
 ;
 
 ValueProperty returns SysML::ValueProperty :
@@ -799,21 +771,20 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 /* ACTIONS */
 
-fragment Action returns SysML::ActionUsage :
+fragment ActionDeclaration returns SysML::ActionUsage :
     ( isAbstract ?= 'abstract' )? 'action' 
 	name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
-	ActivityBody
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	ActionDeclaration ActivityBody
+	ActionUsageDeclaration ActivityBody
 ;
 
 AbstractActionUsage returns SysML::ActionUsage :
-	ActionDeclaration AbstractActivityBody
+	ActionUsageDeclaration AbstractActivityBody
 ;
 
-fragment ActionDeclaration returns SysML::ActionUsage :
+fragment ActionUsageDeclaration returns SysML::ActionUsage :
 	  name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
 	| TypePart ActionParameterList? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
@@ -854,7 +825,7 @@ ActivityNode returns SysML::ActionUsage :
 ActionNode returns SysML::ActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
     ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-    ActionDeclaration ActivityBody
+    ActionUsageDeclaration ActivityBody
 ;
 
 PerformActionNode returns SysML::PerformActionUsage :

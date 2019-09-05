@@ -78,7 +78,7 @@ package UnitsAndScales {
 		ref prefix: UnitPrefix {
 			value conversionFactor: ScalarValues::Real redefines UnitPrefix::conversionFactor;
 		}
-		value conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
+		value conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
 	}
 
 	/**

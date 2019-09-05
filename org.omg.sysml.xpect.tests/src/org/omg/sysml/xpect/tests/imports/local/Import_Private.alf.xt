@@ -32,8 +32,8 @@ package Import_Private {
 	import P2::*;
 	// This should fail.
 	// A is not visible, because the import in P2 is private.
-	// XPECT errors --> "Couldn't resolve reference to Category 'A'." at "A"
+	// XPECT errors --> "Couldn't resolve reference to Type 'A'." at "A"
 	y: A;
-	//XPECT errors --> "Couldn't resolve reference to Category 'P2::A'." at "P2::A"
+	//XPECT errors --> "Couldn't resolve reference to Type 'P2::A'." at "P2::A"
 	y1: P2::A;
 }

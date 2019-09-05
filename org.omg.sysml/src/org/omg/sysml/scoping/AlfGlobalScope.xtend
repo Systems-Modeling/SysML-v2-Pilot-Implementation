@@ -33,7 +33,7 @@ import java.util.Set
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
-import org.omg.sysml.lang.sysml.Category
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
@@ -56,7 +56,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 	
 	
 	static def createScope (IScope outer, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
-		if (selectable == null || selectable.isEmpty())
+		if (selectable === null || selectable.isEmpty())
 			return outer;
 
 		return new AlfGlobalScope(outer, selectable, filter, type, ignoreCase);
@@ -83,7 +83,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 				var pname = name.skipLast(1)
 				var e_parent = super.getSingleElement(pname);
 				var o_parent = e_parent.getEObjectOrProxy();
-				if (o_parent instanceof Category) {
+				if (o_parent instanceof Type) {
 					for (e: o_parent.ownedGeneralization) {
 						if (e.general !== null ) {
 							targetqn = name
@@ -121,7 +121,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 			if (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
 				var eobject = idesc.getEObjectOrProxy();
 				//TODO: need to check public or not?
-				if (eobject instanceof Category) {
+				if (eobject instanceof Type) {
 					for (e: eobject.ownedGeneralization) {
 						if (e.general !== null ) {
 							e.general.resolve(idesc.qualifiedName, false, false, newHashSet)
@@ -217,7 +217,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
-		if (pack instanceof Category) {
+		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
 				if (e.general !== null && !visited.contains(e.general)) {
 					visited.add(e.general)

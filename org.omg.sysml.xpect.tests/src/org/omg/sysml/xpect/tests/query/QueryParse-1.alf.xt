@@ -1,0 +1,23 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Q {
+  feature f = 10;
+  class C {
+    feature g = %q(./f);
+  }
+}

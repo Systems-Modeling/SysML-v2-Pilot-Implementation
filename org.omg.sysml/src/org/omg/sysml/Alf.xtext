@@ -1044,14 +1044,14 @@ BodyParameterMember returns SysML::ParameterMembership :
 /* QUERY PATH EXPRESSIONS */
 
 QueryPathExpression returns SysML::Expression :
-	QueryHeadExpression
+	'%q(' QueryHeadExpression
 	( '[' {SysML::QueryQualifierExpression.operand += current}
          ( ownedRelationship += BodyMember ) ']' )?
 	( '/' {SysML::QueryPathStepExpression.operand += current}
 		operand += QueryNameExpression
 		( '[' {SysML::QueryQualifierExpression.operand += current}
 	         ( ownedRelationship += BodyMember ) ']' )?
-	)*
+	)* ')'
 ;
 
 QueryNameExpression returns SysML::QueryPathExpression :

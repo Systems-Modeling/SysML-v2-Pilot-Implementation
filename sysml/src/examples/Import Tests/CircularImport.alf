@@ -1,0 +1,26 @@
+package CircularImport {
+	package P1 {
+		import P2::*;
+		class A;
+	}
+	package P2 {
+		import P1::*;
+		class B;
+	}
+	package Test1 {
+		import P1::*;
+		x: A;
+		y: B;
+	}
+	package Test2 {
+		import P2::*;
+		x: A;
+		y: B;
+	}
+	
+	x: P1::A;
+	
+	// The following should not fail.
+	y: P1::B;
+	
+}

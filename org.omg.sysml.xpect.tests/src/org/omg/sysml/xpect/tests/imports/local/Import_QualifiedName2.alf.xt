@@ -1,0 +1,48 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package Import_QualifiedName {
+	package P1{
+		class A;
+	}
+	package P2{
+		package P2a{
+			import P1::*;
+			/* XPECT scope at A ---
+			   A,  P1.A, P2.P2a.A, P2.P2a.x, P2.y, P2a.A, P2a.x, P3.z, x, y, 
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,			   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,			   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,			   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,			   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,			   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,			   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects, Base.selfLinks, Base.things, Base.values 
+			--- */
+			x: A;
+		}
+		/* XPECT scope at P2a::A ---
+			   P1.A, P2.P2a.A, P2.P2a.x, P2.y, P2a.A, P2a.x, P3.z, y, 
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,			   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,			   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,			   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,			   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,			   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,			   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects, Base.selfLinks, Base.things, Base.values 
+		--- */
+		y: P2a::A;  
+	}
+	package P3{
+		/* XPECT scope at P2a::A ---
+			   P1.A, P2.P2a.A, P2.P2a.x, P2.y, P3.z, z, 
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,			   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,			   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,			   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,			   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,			   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,			   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects, Base.selfLinks, Base.things, Base.values 
+		--- */
+		z: P2::P2a::A;
+	}
+}

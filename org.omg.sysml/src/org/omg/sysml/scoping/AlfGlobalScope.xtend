@@ -23,97 +23,124 @@
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
- *  Miyako Wilson, JPL
+ *  Miyako Wilson, Georgia Tech
  * 
  *****************************************************************************/
 package org.omg.sysml.scoping
 
 import java.util.Map
 import java.util.Set
-import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
-import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
+import org.eclipse.xtext.scoping.impl.SelectableBasedScope
+import org.eclipse.xtext.resource.ISelectable
+import org.eclipse.emf.ecore.EClass
+import com.google.common.base.Predicate
+import com.google.common.collect.Iterables
 
-class AlfScope extends AbstractScope {
-	
-	protected Package pack		
-	protected EReference reference	
-	protected AlfScopeProvider scopeProvider
+class AlfGlobalScope extends SelectableBasedScope {
+
+	protected EClass referencteType	
 	
 	protected QualifiedName targetqn;
 	protected Map<Element, Set<QualifiedName>> elements
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
-	
 	boolean isShadowing = false;
 	
-	new(IScope parent, Package pack, EReference reference, AlfScopeProvider scopeProvider) {
-		super(parent, false)
-		this.pack = pack
-		this.reference = reference
-		this.scopeProvider = scopeProvider
-	}
 	
-	/**
-	 * A qualified name is shadowed if its first segment name is shadowed.
-	 */
-	protected override isShadowed(IEObjectDescription input) {
-		!resolveInScope(QualifiedName.create(input.name.firstSegment), true).isEmpty()
+	static def createScope (IScope outer, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
+		if (selectable === null || selectable.isEmpty())
+			return outer;
+
+		return new AlfGlobalScope(outer, selectable, filter, type, ignoreCase);
+	}
+
+	new(IScope parent, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
+		super(parent, selectable, filter, type, ignoreCase)
+		referencteType = type;
 	}
 
 	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
+		return  getSingleLocalElementByName(name)
+		
 	}
-	
+	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
+		System.out.println( "GgetSindlLocalElementByNameL " + name)
+		var result = getLocalElementsByName(name);
+		var iterator = result.iterator();
+		if (iterator.hasNext())
+			return iterator.next()
+		else
+		{  //try to find parent then find from inherited ones
+			if( name.segmentCount > 1){
+				var pname = name.skipLast(1)
+				var e_parent = super.getSingleElement(pname);
+				var o_parent = e_parent.getEObjectOrProxy();
+				if (o_parent instanceof Type) {
+					for (e: o_parent.ownedGeneralization) {
+						if (e.general !== null ) {
+							targetqn = name
+							findFirst = true
+							val found = e.general.resolve(pname, false, false, newHashSet)
+							if (found) {
+								var inherited = elements.keySet.flatMap[key |
+									elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
+								]
+								return inherited.get(0)
+							}							
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
 	override getLocalElementsByName(QualifiedName name) {
-		resolveInScope(name, false)
+		this.visitedqns = newHashSet
+		this.elements = newHashMap	
+		System.out.println("GGGetlocalelementByName: " + name)
+		return super.getLocalElementsByName(name)
 	}
 	
 	override getAllLocalElements() {
-		resolveInScope(null, false)
-	}
-	
-	/**
-	 * If targetqn is not null, resolve it in this local scope. If findFirst is true,
-	 * return the first matching element, if any. Otherwise return all matching elements.
-	 * 
-	 * If targetqn is null, return all elements in this local scope with all possible
-	 * qualified names by which they can be resolved (except that circularities are
-	 * truncated). - called when "XPECT scope" is used.
-	 */
-	def resolveInScope(QualifiedName targetqn, boolean findFirst) {
-		this.targetqn = targetqn;
-		this.findFirst = findFirst	
-		this.elements = newHashMap	
+		System.out.println("GGAllElements")
 		this.visitedqns = newHashSet
-		resolve()		
-		elements.keySet.flatMap[key |
-			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
-		]
+		this.elements = newHashMap	
+		var all = super.getAllLocalElements()
+		var iterator = all.iterator();
+		while (iterator.hasNext()){
+			var idesc = iterator.next()
+			//is there anyway to check non-Base one?
+			if (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
+				var eobject = idesc.getEObjectOrProxy();
+				//TODO: need to check public or not?
+				if (eobject instanceof Type) {
+					for (e: eobject.ownedGeneralization) {
+						if (e.general !== null ) {
+							e.general.resolve(idesc.qualifiedName, false, false, newHashSet)
+							}
+						}
+					}
+				}
+		}
+		var inherited = elements.keySet.flatMap[key |
+									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
+								]
+								System.out.println(inherited)
+								System.out.println(all)
+		var result = Iterables.concat(all, inherited)
+		return result
+		
 	}
-	
-	protected def void resolve() {	
-		pack.resolve(QualifiedName.create(), false, true, newHashSet)
-	}
-	
-	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
-		pack.gen(qn, visited) ||
-		pack.imp(qn, isInsideScope, visited)
-	}
-	
 	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
-		if (reference.EReferenceType.isInstance(el)) {
+		if (referencteType.isInstance(el)) {
 			var qns = elements.get(el)
 			if (qns === null) {
 				elements.put(el, newHashSet(qn))
@@ -121,15 +148,21 @@ class AlfScope extends AbstractScope {
 				qns.add(qn)
 			}					
 		}
+		else
+			System.out.println("not added: " + qn)
 	}
-	
+	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
+		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
+		pack.gen(qn, visited) ||
+		pack.imp(qn, visited)
+	}
 	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				if (!scopeProvider.visited.contains(m)) {
+				//if (!scopeProvider.visitedMemberships.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
@@ -137,13 +170,14 @@ class AlfScope extends AbstractScope {
 					// (and getting the memberName may also result in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					scopeProvider.addVisited(m)
-					try {
+					//scopeProvider.addVisitedMembership(m)
+					
+					//try {
 						memberElement = m.memberElement
 						elementName = m.memberName 
-					} finally {
-						scopeProvider.removeVisited(m)
-					}
+					//} finally {
+						//scopeProvider.removeVisitedMembership(m)
+					//}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 						val elementqn = qn.append(elementName)
@@ -170,15 +204,12 @@ class AlfScope extends AbstractScope {
 										if (memberElement.gen(elementqn, visited)) {
 											return true;
 										}
-										if (memberElement.imp(elementqn, false, visited)) {
-											return true;
-										}
 									}
 								}
 							}
 						}
 					}
-				}
+				//}
 			}
 			ownedvisited.remove(pack)
 		}
@@ -188,17 +219,10 @@ class AlfScope extends AbstractScope {
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
-				if (!scopeProvider.visited.contains(e)) {
-					var found = false;
-					// NOTE: Exclude the generalization e to avoid possible circular name resolution
-					// when resolving a proxy for e.general.
-					scopeProvider.addVisited(e)
-					if (e.general !== null && !visited.contains(e.general)) {
-						visited.add(e.general)
-						found = e.general.resolve(qn, false, false, visited)
-						visited.remove(e.general)
-					}
-					scopeProvider.removeVisited(e)
+				if (e.general !== null && !visited.contains(e.general)) {
+					visited.add(e.general)
+					val found = e.general.resolve(qn, false, false, visited)
+					visited.remove(e.general)
 					if (found) {
 						return true
 					}
@@ -208,20 +232,12 @@ class AlfScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
+	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (!scopeProvider.visited.contains(e)) {
-				var found = false;
-				// NOTE: Exclude the import e to avoid possible circular name resolution
-				// when resolving a proxy for e.importedPackage.
-				scopeProvider.addVisited(e)
-				if (e.importedPackage !== null && !visited.contains(e.importedPackage) && 
-					(isInsideScope || e.visibility == VisibilityKind.PUBLIC)) {
-					visited.add(e.importedPackage)
-					found = e.importedPackage.resolve(qn, true, false, visited)
-					visited.remove(e.importedPackage)
-				}
-				scopeProvider.removeVisited(e)
+			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
+				visited.add(e.importedPackage)
+				val found = e.importedPackage.resolve(qn, true, false, visited)
+				visited.remove(e.importedPackage)
 				if (found) {
 					return true
 				}

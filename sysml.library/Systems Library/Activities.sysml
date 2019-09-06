@@ -26,7 +26,7 @@ package Activities {
 		/**
 		 * The subperformances of this action that are actions. 
 		 */
-		action subactions: Action[0..*] :> subperformances;
+		action subactions: Action[0..*] :> actions, subperformances;
 	
 		/**
 		 * The subactions of this actvity that are control actions.
@@ -58,22 +58,6 @@ package Activities {
 	 * A TransferAction is an Action that is also a Transfer in a given context.
 	 */
 	abstract activity TransferAction (context: Occurrence) :> Transfers::Transfer, Action;
-	
-	/**
-	 * An AcceptAction is a TransferAction that is an incomingTransfer of its context.
-	 * It effectively accepts transfered items from some source.
-	 */
-	activity AcceptAction (context: Occurrence) :> TransferAction;
-	
-	/**
-	 * A SendAction is a TransferAction that is initiated in one context and becomes
-	 * an incomingTransfer of its target. It effectively sends transferred items to
-	 * the target.
-	 * 
-	 * Note that the same Transfer that is a SendAction in the source context will also
-	 * act as an AcceptAction in the target context.
-	 */
-	activity SendAction (target: Occurrence) :> TransferAction;
 	
 	/**
 	 * actions is the base feature for all Action usages.

@@ -27,7 +27,7 @@ package ControlNodes {
 		/**
 		 * A MergeAction must have exactly one predecessor.
 		 */
-		ref action predecessor: Action[1] :>> Performance::predecessors;
+		ref action predecessor: Action[1] :>> ControlAction::predecessors;
 	}
 	
 	/** 
@@ -44,7 +44,7 @@ package ControlNodes {
 		/**
 		 * A DecisionAction must have exactly one successor.
 		 */
-		ref action successor: Action[1] :>> Performance::successors;
+		ref action successor: Action[1] :>> ControlAction::successors;
 		
 		/**
 		 * The succession link for the sucessor of a DecisionAction must be an

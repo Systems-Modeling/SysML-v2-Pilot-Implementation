@@ -86,9 +86,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_AssociationBody_AssociationDeclaration_ClassifierDeclarationCompletion_SpecializationList(context, (Association) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_AssociationBody_AssociationDeclaration_ClassifierDeclarationCompletion_SpecializationList_UnitPrefix(context, (Association) semanticObject); 
 					return; 
 				}
@@ -103,9 +101,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_BehaviorBody_BehaviorDeclaration_ParameterList_SpecializationList(context, (Behavior) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_BehaviorBody_BehaviorDeclaration_ParameterList_SpecializationList_UnitPrefix(context, (Behavior) semanticObject); 
 					return; 
 				}
@@ -133,9 +129,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_ClassDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 					return; 
 				}
@@ -150,9 +144,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody(context, (Classifier) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_ClassifierDeclaration_ClassifierDeclarationCompletion_SpecializationList_TypeBody_UnitPrefix(context, (Classifier) semanticObject); 
 					return; 
 				}
@@ -180,9 +172,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ClassifierDeclarationCompletion_DataTypeDeclaration_SpecializationList_TypeBody(context, (DataType) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_ClassifierDeclarationCompletion_DataTypeDeclaration_SpecializationList_TypeBody_UnitPrefix(context, (DataType) semanticObject); 
 					return; 
 				}
@@ -240,9 +230,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ConnectorEnd(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_FeatureBodyDefinition_FeatureDeclaration_Redefines_Subsets_SubsettingPart_TypeBody_TypePart_UnitPrefix_ValuePart(context, (Feature) semanticObject); 
 					return; 
 				}
@@ -349,9 +337,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_FunctionBody_FunctionDeclaration_ParameterList_ReturnParameterPart_SpecializationList(context, (Function) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_FunctionBody_FunctionDeclaration_ParameterList_ReturnParameterPart_SpecializationList_UnitPrefix(context, (Function) semanticObject); 
 					return; 
 				}
@@ -369,9 +355,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_AssociationBody_ClassifierDeclarationCompletion_InteractionDeclaration_SpecializationList(context, (Interaction) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiunitDefinitionRule()
-						|| action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()) {
+				else if (rule == grammarAccess.getUnitDefinitionRule()) {
 					sequence_AssociationBody_ClassifierDeclarationCompletion_InteractionDeclaration_SpecializationList_UnitPrefix(context, (Interaction) semanticObject); 
 					return; 
 				}
@@ -437,10 +421,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_FeaturePackageMemberElement_NonFeatureMemberElement_PackageMemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
-				else if (action == grammarAccess.getMultiunitDefinitionAccess().getPackageOwnedRelationshipAction_1_1()) {
-					sequence_MultiunitDefinition_Package_1_1(context, (Membership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getTypeMemberRule()
 						|| rule == grammarAccess.getNonFeatureTypeMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
@@ -502,17 +482,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.PACKAGE:
-				if (rule == grammarAccess.getMultiunitDefinitionRule()) {
-					sequence_MultiunitDefinition_PackageDefinition_UnitPrefix(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonFeatureDefinitionRule()
+				if (rule == grammarAccess.getNonFeatureDefinitionRule()
 						|| rule == grammarAccess.getPackageDefinitionOrStubRule()) {
 					sequence_PackageDefinition(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
 					return; 
 				}
-				else if (action == grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0()
-						|| rule == grammarAccess.getUnitDefinitionRule()
+				else if (rule == grammarAccess.getUnitDefinitionRule()
 						|| rule == grammarAccess.getPackageUnitDefinitionRule()) {
 					sequence_PackageDefinition_UnitPrefix(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
 					return; 
@@ -891,14 +866,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Association
-	 *     MultiunitDefinition.Membership_1_0 returns Association
 	 *     UnitDefinition returns Association
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -950,14 +923,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Interaction
-	 *     MultiunitDefinition.Membership_1_0 returns Interaction
 	 *     UnitDefinition returns Interaction
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -998,9 +969,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedRelationship+=Annotation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
-	 *             ((isPart?='part' | isPortion?='portion') memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion') memberName=Name? memberFeature=[Feature|QualifiedName]) | 
 	 *             (direction=FeatureDirection? ownedRelatedElement+=NamedFeatureDefinition) | 
 	 *             (direction=FeatureDirection? ownedRelatedElement+=AbstractNamedFeatureDefinition) | 
 	 *             (memberName=Name memberFeature=[Feature|QualifiedName])
@@ -1053,14 +1024,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Behavior
-	 *     MultiunitDefinition.Membership_1_0 returns Behavior
 	 *     UnitDefinition returns Behavior
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1286,14 +1255,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Class
-	 *     MultiunitDefinition.Membership_1_0 returns Class
 	 *     UnitDefinition returns Class
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1357,14 +1324,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns DataType
-	 *     MultiunitDefinition.Membership_1_0 returns DataType
 	 *     UnitDefinition returns DataType
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1416,14 +1381,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Classifier
-	 *     MultiunitDefinition.Membership_1_0 returns Classifier
 	 *     UnitDefinition returns Classifier
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1695,9 +1658,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedRelationship+=Annotation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
-	 *             ((isPart?='part' | isPortion?='portion') memberName=Name? memberFeature=[Feature|QualifiedName])
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=FeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion') memberName=Name? memberFeature=[Feature|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -1772,14 +1735,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Feature
-	 *     MultiunitDefinition.Membership_1_0 returns Feature
 	 *     UnitDefinition returns Feature
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1885,11 +1846,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             (direction=FeatureDirection? ownedRelatedElement+=AbstractNamedFeatureDefinition) | 
 	 *             (direction=FeatureDirection? memberName=Name memberFeature=[Feature|QualifiedName]) | 
 	 *             (
-	 *                 (isPart?='part' | isPortion?='portion' | isPort?='port')? 
+	 *                 (isComposite?='part' | isPortion?='portion' | isPort?='port')? 
 	 *                 direction=FeatureDirection? 
 	 *                 (ownedRelatedElement+=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
 	 *             ) | 
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
 	 *             ownedRelatedElement+=ConnectorDefinition | 
 	 *             (memberName=Name? memberFeature=[Connector|QualifiedName]) | 
 	 *             ownedRelatedElement+=StepDefinition | 
@@ -1931,11 +1892,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (
-	 *                 (isPart?='part' | isPortion?='portion' | isPort?='port')? 
+	 *                 (isComposite?='part' | isPortion?='portion' | isPort?='port')? 
 	 *                 direction=FeatureDirection? 
 	 *                 (ownedRelatedElement+=FeatureDefinition | (memberName=Name? memberFeature=[Feature|QualifiedName]))
 	 *             ) | 
-	 *             ((isPart?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
+	 *             ((isComposite?='part' | isPortion?='portion' | isPort?='port')? direction=FeatureDirection? ownedRelatedElement+=AbstractFeatureDefinition) | 
 	 *             ownedRelatedElement+=ConnectorDefinition | 
 	 *             (memberName=Name? memberFeature=[Connector|QualifiedName]) | 
 	 *             ownedRelatedElement+=StepDefinition | 
@@ -2140,14 +2101,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Function
-	 *     MultiunitDefinition.Membership_1_0 returns Function
 	 *     UnitDefinition returns Function
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=ElementImport? 
 	 *         ownedRelationship+=PackageImport? 
+	 *         (ownedRelationship+=ElementImport ownedRelationship+=PackageImport?)* 
 	 *         ownedRelationship+=Annotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2346,38 +2305,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition returns Package
-	 *
-	 * Constraint:
-	 *     (
-	 *         (ownedRelationship+=MultiunitDefinition_Package_1_1 ownedRelationship+=UnitMember+) | 
-	 *         (
-	 *             (ownedRelationship+=PackageImport | ownedRelationship+=ElementImport)* 
-	 *             ownedRelationship+=Annotation* 
-	 *             name=Name 
-	 *             (ownedRelationship+=PackageMember | ownedRelationship+=PackageImport)*
-	 *         )
-	 *     )
-	 */
-	protected void sequence_MultiunitDefinition_PackageDefinition_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     MultiunitDefinition.Package_1_1 returns Membership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=MultiunitDefinition_Membership_1_0
-	 */
-	protected void sequence_MultiunitDefinition_Package_1_1(ISerializationContext context, Membership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     NamedExpressionMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -2530,7 +2457,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiunitDefinition.Membership_1_0 returns Package
 	 *     UnitDefinition returns Package
 	 *     PackageUnitDefinition returns Package
 	 *

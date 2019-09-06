@@ -39,7 +39,7 @@ import org.eclipse.emf.common.util.URI
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
 	
-	var modelLibraryDirectory = "/resource/sysml/library"
+	var modelLibraryDirectory = "/resource/sysml.library"
 	
 	@Inject
 	IGlobalScopeProvider globalScope

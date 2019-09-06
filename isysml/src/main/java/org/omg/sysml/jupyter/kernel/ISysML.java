@@ -12,6 +12,8 @@ import java.util.logging.Level;
 public class ISysML {
     public static final String LIBRARY_PATH_KEY = "ISYSML_LIBRARY_PATH";
 
+    private static volatile SysMLKernel kernel;
+
     public static void main(String[] args) throws Exception {
         if (args.length < 1) {
             throw new IllegalArgumentException("Missing connection file argument");
@@ -30,10 +32,14 @@ public class ISysML {
         JupyterConnection connection = new JupyterConnection(connProps);
 
 
-        SysMLKernel kernel = new SysMLKernel();
+        kernel = new SysMLKernel();
         kernel.becomeHandlerForConnection(connection);
 
         connection.connect();
         connection.waitUntilClose();
+    }
+
+    public static SysMLKernel getKernelInstance() {
+        return kernel;
     }
 }

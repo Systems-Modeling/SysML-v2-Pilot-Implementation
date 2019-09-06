@@ -101,6 +101,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @return the value of the '<em>Association End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='associationWithEnd'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

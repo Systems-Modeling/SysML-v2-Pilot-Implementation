@@ -109,7 +109,12 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public Element basicGetAnnotatedElement() {
 		if (annotatedElement == null) {
 			annotatedElement = getOwningRelatedElement();
-			if (annotatedElement instanceof Membership) {
+			if (annotatedElement instanceof Comment) {
+				Element owner = ((Comment)annotatedElement).getOwner();
+				if (owner != null) {
+					annotatedElement = owner;
+				}
+			} else if (annotatedElement instanceof Membership) {
 				Element ownedElement = ((Membership)annotatedElement).getOwnedMemberElement();
 				if (ownedElement != null) {
 					annotatedElement = ownedElement;
@@ -169,11 +174,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 */
 	public Comment basicGetAnnotatingComment() {
 		if (annotatingComment == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				Element ownedRelatedElement = ownedRelatedElements.get(0);
-				if (ownedRelatedElement instanceof Comment) {
-					annotatingComment = (Comment)ownedRelatedElement;
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof Comment) {
+				annotatingComment = (Comment)owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					Element ownedRelatedElement = ownedRelatedElements.get(0);
+					if (ownedRelatedElement instanceof Comment) {
+						annotatingComment = (Comment)ownedRelatedElement;
+					}
 				}
 			}
 		}

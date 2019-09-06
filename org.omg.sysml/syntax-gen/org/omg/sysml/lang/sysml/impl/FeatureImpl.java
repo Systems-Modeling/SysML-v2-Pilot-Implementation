@@ -70,7 +70,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
 	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Base::objects";
-	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::values";
+	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::dataValues";
 	
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
 	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
@@ -153,6 +153,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
 	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
@@ -356,6 +365,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
 	}
 	
+	protected void addSubsetting(String name) {
+		Type type = getDefaultType(name);
+		if (type instanceof Feature) {
+			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+			subsetting.setSubsettedFeature((Feature)type);
+			subsetting.setSubsettingFeature(this);
+			getOwnedRelationship().add(subsetting);
+		}
+	}
+	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
@@ -368,10 +387,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 	
-//	protected boolean isRedefinitionsNeeded(List<Redefinition> ownedRedefinitions) {
-//		return ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null);
-//	}
-
 	/**
 	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
 	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
@@ -489,7 +504,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public boolean isComposite() {
 		FeatureMembership featureMembership = this.getOwningFeatureMembership();
-		return featureMembership != null && featureMembership.isPart();
+		return featureMembership != null && featureMembership.isComposite();
 	}
 
 	/**
@@ -501,7 +516,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		isComposite = newIsComposite;
 		FeatureMembership featureMembership = this.getOwningFeatureMembership();
 		if (featureMembership != null) {
-			featureMembership.setIsPart(newIsComposite);
+			featureMembership.setIsComposite(newIsComposite);
 		}
 	}
 
@@ -955,7 +970,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__END_OWNING_TYPE:
 				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
+				return isNonunique != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -974,6 +989,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isUnique);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isNonunique: ");
+		result.append(isNonunique);
 		result.append(')');
 		return result.toString();
 	}

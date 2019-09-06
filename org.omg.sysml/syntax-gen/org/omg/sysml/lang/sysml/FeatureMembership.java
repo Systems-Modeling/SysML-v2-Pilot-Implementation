@@ -12,15 +12,15 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership()
@@ -115,33 +115,6 @@ public interface FeatureMembership extends Membership {
 	 * @generated
 	 */
 	void setMemberFeature(Feature value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Part</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Part</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Part</em>' attribute.
-	 * @see #setIsPart(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPart()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isPart();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isPart <em>Is Part</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Part</em>' attribute.
-	 * @see #isPart()
-	 * @generated
-	 */
-	void setIsPart(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Portion</b></em>' attribute.
@@ -288,5 +261,32 @@ public interface FeatureMembership extends Membership {
 	 * @generated
 	 */
 	void setOwnedMemberFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Composite</em>' attribute.
+	 * @see #setIsComposite(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsComposite()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isComposite();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#isComposite <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Composite</em>' attribute.
+	 * @see #isComposite()
+	 * @generated
+	 */
+	void setIsComposite(boolean value);
 
 } // FeatureMembership

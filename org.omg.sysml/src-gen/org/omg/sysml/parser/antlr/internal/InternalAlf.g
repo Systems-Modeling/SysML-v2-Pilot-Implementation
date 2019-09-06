@@ -51,7 +51,7 @@ import org.omg.sysml.services.AlfGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "MultiunitDefinition";
+    	return "UnitDefinition";
    	}
 
    	@Override
@@ -67,77 +67,6 @@ import org.omg.sysml.services.AlfGrammarAccess;
         appendSkippedTokens();
     }
 }
-
-// Entry rule entryRuleMultiunitDefinition
-entryRuleMultiunitDefinition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getMultiunitDefinitionRule()); }
-	iv_ruleMultiunitDefinition=ruleMultiunitDefinition
-	{ $current=$iv_ruleMultiunitDefinition.current; }
-	EOF;
-
-// Rule MultiunitDefinition
-ruleMultiunitDefinition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getMultiunitDefinitionAccess().getUnitDefinitionParserRuleCall_0());
-		}
-		this_UnitDefinition_0=ruleUnitDefinition
-		{
-			$current = $this_UnitDefinition_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					/* */
-				}
-				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getMultiunitDefinitionAccess().getMembershipOwnedRelatedElementAction_1_0(),
-						$current);
-				}
-			)
-			(
-				{
-					/* */
-				}
-				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getMultiunitDefinitionAccess().getPackageOwnedRelationshipAction_1_1(),
-						$current);
-				}
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMultiunitDefinitionAccess().getOwnedRelationshipUnitMemberParserRuleCall_1_2_0());
-					}
-					lv_ownedRelationship_3_0=ruleUnitMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMultiunitDefinitionRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.sysml.Alf.UnitMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)+
-		)?
-	)
-;
 
 // Entry rule entryRuleUnitDefinition
 entryRuleUnitDefinition returns [EObject current=null]:
@@ -758,42 +687,6 @@ ruleUnitPrefix[EObject in_current]  returns [EObject current=in_current]
 				}
 			)
 		)*
-	)
-;
-
-// Entry rule entryRuleUnitMember
-entryRuleUnitMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getUnitMemberRule()); }
-	iv_ruleUnitMember=ruleUnitMember
-	{ $current=$iv_ruleUnitMember.current; }
-	EOF;
-
-// Rule UnitMember
-ruleUnitMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getUnitMemberAccess().getOwnedRelatedElementUnitDefinitionParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleUnitDefinition
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getUnitMemberRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.Alf.UnitDefinition");
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 
@@ -2769,15 +2662,15 @@ ruleFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPart_2_0='part'
+							lv_isComposite_2_0='part'
 							{
-								newLeafNode(lv_isPart_2_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_0_0_1_0());
+								newLeafNode(lv_isComposite_2_0, grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_0_0_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getFeatureMemberRule());
 								}
-								setWithLastConsumed($current, "isPart", true, "part");
+								setWithLastConsumed($current, "isComposite", true, "part");
 							}
 						)
 					)
@@ -2916,15 +2809,15 @@ ruleFeatureMember returns [EObject current=null]
 					    |
 					(
 						(
-							lv_isPart_13_0='part'
+							lv_isComposite_13_0='part'
 							{
-								newLeafNode(lv_isPart_13_0, grammarAccess.getFeatureMemberAccess().getIsPartPartKeyword_1_1_1_1_0());
+								newLeafNode(lv_isComposite_13_0, grammarAccess.getFeatureMemberAccess().getIsCompositePartKeyword_1_1_1_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getFeatureMemberRule());
 								}
-								setWithLastConsumed($current, "isPart", true, "part");
+								setWithLastConsumed($current, "isComposite", true, "part");
 							}
 						)
 					)
@@ -3764,15 +3657,15 @@ ruleEndFeatureMember returns [EObject current=null]
 				(
 					(
 						(
-							lv_isPart_2_0='part'
+							lv_isComposite_2_0='part'
 							{
-								newLeafNode(lv_isPart_2_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_0_1_0_0());
+								newLeafNode(lv_isComposite_2_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_0_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getEndFeatureMemberRule());
 								}
-								setWithLastConsumed($current, "isPart", true, "part");
+								setWithLastConsumed($current, "isComposite", true, "part");
 							}
 						)
 					)
@@ -3859,15 +3752,15 @@ ruleEndFeatureMember returns [EObject current=null]
 				(
 					(
 						(
-							lv_isPart_9_0='part'
+							lv_isComposite_9_0='part'
 							{
-								newLeafNode(lv_isPart_9_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_1_2_0_0());
+								newLeafNode(lv_isComposite_9_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_1_2_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getEndFeatureMemberRule());
 								}
-								setWithLastConsumed($current, "isPart", true, "part");
+								setWithLastConsumed($current, "isComposite", true, "part");
 							}
 						)
 					)
@@ -3950,15 +3843,15 @@ ruleEndFeatureMember returns [EObject current=null]
 				(
 					(
 						(
-							lv_isPart_15_0='part'
+							lv_isComposite_15_0='part'
 							{
-								newLeafNode(lv_isPart_15_0, grammarAccess.getEndFeatureMemberAccess().getIsPartPartKeyword_1_2_1_0_0());
+								newLeafNode(lv_isComposite_15_0, grammarAccess.getEndFeatureMemberAccess().getIsCompositePartKeyword_1_2_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getEndFeatureMemberRule());
 								}
-								setWithLastConsumed($current, "isPart", true, "part");
+								setWithLastConsumed($current, "isComposite", true, "part");
 							}
 						)
 					)

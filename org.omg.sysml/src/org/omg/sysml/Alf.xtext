@@ -34,13 +34,6 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* UNITS */
 
-MultiunitDefinition returns SysML::Element :
-	UnitDefinition 
-	( {SysML::Membership.ownedRelatedElement += current} {SysML::Package.ownedRelationship += current} 
-	  ( ownedRelationship += UnitMember )+
-	)?
-;
-
 UnitDefinition returns SysML::Package :
 	  PackageUnitDefinition 
 	| ClassifierUnitDefinition 
@@ -237,11 +230,11 @@ FeatureTypeMember returns SysML::FeatureMembership :
 FeatureMember returns SysML::FeatureMembership :
 	TypeMemberPrefix
 	(
-      ( 'feature' | isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
+      ( 'feature' | isComposite ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?  
       ( ownedRelatedElement += FeatureDefinition 
       | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
       )
-    | 'abstract' ( 'feature' | isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?
+    | 'abstract' ( 'feature' | isComposite ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' ) ( direction = FeatureDirection )?
       ownedRelatedElement += AbstractFeatureDefinition
 	| 'connector' 
 	  ( ownedRelatedElement += ConnectorDefinition 
@@ -278,9 +271,9 @@ FeatureMember returns SysML::FeatureMembership :
 EndFeatureMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
     (
-      'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
-    | 'abstract' 'end' ( isPart ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
-	| 'end' ( isPart ?= 'part' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+      'end' ( isComposite ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += FeatureDefinition
+    | 'abstract' 'end' ( isComposite ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeatureDefinition
+	| 'end' ( isComposite ?= 'part' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 

@@ -5,10 +5,14 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -26,6 +30,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class SendActionUsageImpl extends TransferActionUsageImpl implements SendActionUsage {
+	/**
+	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
+	 * its ItemFeature.
+	 */
+	protected BindingConnector targetConnector = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +92,36 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 				map(f->(Expression)f).
 				collect(Collectors.toList());
 	}
+	
+	@Override
+	protected Feature getContextFeature() {
+		Expression target = getTarget();
+		return target == null? null: ((ExpressionImpl)target).getResult();
+	}
 
+	public ItemFeature getItemFeature() {
+		return getOwnedFeature().stream().
+				filter(f->f instanceof ItemFeature).
+				map(f->(ItemFeature)f).
+				findFirst().orElse(null);
+	}
+	
+	public Feature getSource() {
+		List<Expression> expressions = getOwnedExpressions();
+		return expressions.isEmpty()? null: ((ExpressionImpl)expressions.get(0)).getResult();
+	}
+
+	public BindingConnector getTargetConnector() {
+		targetConnector = makeBinding(targetConnector, getSource(), getItemFeature());
+		return targetConnector;
+	}
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getTargetConnector();
+		return super.getFeature();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

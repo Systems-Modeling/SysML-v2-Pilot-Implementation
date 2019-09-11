@@ -3,6 +3,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -10,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -160,6 +163,11 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		return !getActivity().isEmpty();
 	}
 
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return StepImpl.getRelevantFeaturesOf(this);
+	}	
+	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		if (isCheckSubsetting) {

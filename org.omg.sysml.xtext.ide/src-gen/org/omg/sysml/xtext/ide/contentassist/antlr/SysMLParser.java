@@ -345,8 +345,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptActionNodeAccess().getGroup(), "rule__AcceptActionNode__Group__0");
 			builder.put(grammarAccess.getAcceptActionNodeAccess().getGroup_3(), "rule__AcceptActionNode__Group_3__0");
 			builder.put(grammarAccess.getSendActionNodeAccess().getGroup(), "rule__SendActionNode__Group__0");
-			builder.put(grammarAccess.getSendActionNodeAccess().getGroup_3(), "rule__SendActionNode__Group_3__0");
-			builder.put(grammarAccess.getSendActionNodeAccess().getGroup_3_0(), "rule__SendActionNode__Group_3_0__0");
+			builder.put(grammarAccess.getSendActionNodeAccess().getGroup_4(), "rule__SendActionNode__Group_4__0");
+			builder.put(grammarAccess.getSendActionNodeAccess().getGroup_4_0(), "rule__SendActionNode__Group_4_0__0");
 			builder.put(grammarAccess.getMergeNodeAccess().getGroup(), "rule__MergeNode__Group__0");
 			builder.put(grammarAccess.getMergeNodeAccess().getGroup_3(), "rule__MergeNode__Group_3__0");
 			builder.put(grammarAccess.getDecisionNodeAccess().getGroup(), "rule__DecisionNode__Group__0");
@@ -707,9 +707,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAcceptActionNodeAccess().getOwnedRelationshipAssignment_5(), "rule__AcceptActionNode__OwnedRelationshipAssignment_5");
 			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_0(), "rule__SendActionNode__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_1(), "rule__SendActionNode__OwnedRelationshipAssignment_1");
-			builder.put(grammarAccess.getSendActionNodeAccess().getNameAssignment_3_0_0(), "rule__SendActionNode__NameAssignment_3_0_0");
-			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_4(), "rule__SendActionNode__OwnedRelationshipAssignment_4");
-			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_6(), "rule__SendActionNode__OwnedRelationshipAssignment_6");
+			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_2(), "rule__SendActionNode__OwnedRelationshipAssignment_2");
+			builder.put(grammarAccess.getSendActionNodeAccess().getNameAssignment_4_0_0(), "rule__SendActionNode__NameAssignment_4_0_0");
+			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_5(), "rule__SendActionNode__OwnedRelationshipAssignment_5");
+			builder.put(grammarAccess.getSendActionNodeAccess().getOwnedRelationshipAssignment_7(), "rule__SendActionNode__OwnedRelationshipAssignment_7");
 			builder.put(grammarAccess.getMergeNodeAccess().getOwnedRelationshipAssignment_1(), "rule__MergeNode__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getMergeNodeAccess().getIsCompositeAssignment_2(), "rule__MergeNode__IsCompositeAssignment_2");
 			builder.put(grammarAccess.getMergeNodeAccess().getNameAssignment_3_0(), "rule__MergeNode__NameAssignment_3_0");

@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
@@ -253,6 +254,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	public boolean isSubtransfer() {
 		return StepImpl.isPerformanceFeature(this);
 	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return StepImpl.getRelevantFeaturesOf(this);
+	}	
 	
 	/**
 	 * <!-- begin-user-doc -->

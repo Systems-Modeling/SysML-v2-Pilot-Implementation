@@ -6796,30 +6796,33 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedRelationshipEmptySuccessionMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
-		private final Keyword cSendKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Group cGroup_3_0 = (Group)cGroup_3.eContents().get(0);
-		private final Assignment cNameAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_3_0_0_0 = (RuleCall)cNameAssignment_3_0_0.eContents().get(0);
-		private final RuleCall cTypePartParserRuleCall_3_0_1 = (RuleCall)cGroup_3_0.eContents().get(1);
-		private final Keyword cOfKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedRelationshipExpressionMemberParserRuleCall_4_0 = (RuleCall)cOwnedRelationshipAssignment_4.eContents().get(0);
-		private final Keyword cToKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cOwnedRelationshipAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cOwnedRelationshipExpressionMemberParserRuleCall_6_0 = (RuleCall)cOwnedRelationshipAssignment_6.eContents().get(0);
-		private final RuleCall cActivityBodyParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipEmptyItemFeatureMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final Keyword cSendKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Group cGroup_4_0 = (Group)cGroup_4.eContents().get(0);
+		private final Assignment cNameAssignment_4_0_0 = (Assignment)cGroup_4_0.eContents().get(0);
+		private final RuleCall cNameNameParserRuleCall_4_0_0_0 = (RuleCall)cNameAssignment_4_0_0.eContents().get(0);
+		private final RuleCall cTypePartParserRuleCall_4_0_1 = (RuleCall)cGroup_4_0.eContents().get(1);
+		private final Keyword cOfKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cOwnedRelationshipExpressionMemberParserRuleCall_5_0 = (RuleCall)cOwnedRelationshipAssignment_5.eContents().get(0);
+		private final Keyword cToKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cOwnedRelationshipAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cOwnedRelationshipExpressionMemberParserRuleCall_7_0 = (RuleCall)cOwnedRelationshipAssignment_7.eContents().get(0);
+		private final RuleCall cActivityBodyParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
 		//SendActionNode SysML::SendActionUsage:
 		//	ownedRelationship+=EmptySuccessionMember?
-		//	ownedRelationship+=EmptyParameterMember
+		//	ownedRelationship+=EmptyParameterMember ownedRelationship+=EmptyItemFeatureMember
 		//	'send' ((name=Name TypePart)? 'of')? ownedRelationship+=ExpressionMember
 		//	'to' ownedRelationship+=ExpressionMember
 		//	ActivityBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship+=EmptySuccessionMember? ownedRelationship+=EmptyParameterMember 'send' ((name=Name TypePart)? 'of')?
-		//ownedRelationship+=ExpressionMember 'to' ownedRelationship+=ExpressionMember ActivityBody
+		//ownedRelationship+=EmptySuccessionMember? ownedRelationship+=EmptyParameterMember
+		//ownedRelationship+=EmptyItemFeatureMember 'send' ((name=Name TypePart)? 'of')? ownedRelationship+=ExpressionMember 'to'
+		//ownedRelationship+=ExpressionMember ActivityBody
 		public Group getGroup() { return cGroup; }
 		
 		//ownedRelationship+=EmptySuccessionMember?
@@ -6834,44 +6837,50 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//EmptyParameterMember
 		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0; }
 		
+		//ownedRelationship+=EmptyItemFeatureMember
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		
+		//EmptyItemFeatureMember
+		public RuleCall getOwnedRelationshipEmptyItemFeatureMemberParserRuleCall_2_0() { return cOwnedRelationshipEmptyItemFeatureMemberParserRuleCall_2_0; }
+		
 		//'send'
-		public Keyword getSendKeyword_2() { return cSendKeyword_2; }
+		public Keyword getSendKeyword_3() { return cSendKeyword_3; }
 		
 		//((name=Name TypePart)? 'of')?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4() { return cGroup_4; }
 		
 		//(name=Name TypePart)?
-		public Group getGroup_3_0() { return cGroup_3_0; }
+		public Group getGroup_4_0() { return cGroup_4_0; }
 		
 		//name=Name
-		public Assignment getNameAssignment_3_0_0() { return cNameAssignment_3_0_0; }
+		public Assignment getNameAssignment_4_0_0() { return cNameAssignment_4_0_0; }
 		
 		//Name
-		public RuleCall getNameNameParserRuleCall_3_0_0_0() { return cNameNameParserRuleCall_3_0_0_0; }
+		public RuleCall getNameNameParserRuleCall_4_0_0_0() { return cNameNameParserRuleCall_4_0_0_0; }
 		
 		//TypePart
-		public RuleCall getTypePartParserRuleCall_3_0_1() { return cTypePartParserRuleCall_3_0_1; }
+		public RuleCall getTypePartParserRuleCall_4_0_1() { return cTypePartParserRuleCall_4_0_1; }
 		
 		//'of'
-		public Keyword getOfKeyword_3_1() { return cOfKeyword_3_1; }
+		public Keyword getOfKeyword_4_1() { return cOfKeyword_4_1; }
 		
 		//ownedRelationship+=ExpressionMember
-		public Assignment getOwnedRelationshipAssignment_4() { return cOwnedRelationshipAssignment_4; }
+		public Assignment getOwnedRelationshipAssignment_5() { return cOwnedRelationshipAssignment_5; }
 		
 		//ExpressionMember
-		public RuleCall getOwnedRelationshipExpressionMemberParserRuleCall_4_0() { return cOwnedRelationshipExpressionMemberParserRuleCall_4_0; }
+		public RuleCall getOwnedRelationshipExpressionMemberParserRuleCall_5_0() { return cOwnedRelationshipExpressionMemberParserRuleCall_5_0; }
 		
 		//'to'
-		public Keyword getToKeyword_5() { return cToKeyword_5; }
+		public Keyword getToKeyword_6() { return cToKeyword_6; }
 		
 		//ownedRelationship+=ExpressionMember
-		public Assignment getOwnedRelationshipAssignment_6() { return cOwnedRelationshipAssignment_6; }
+		public Assignment getOwnedRelationshipAssignment_7() { return cOwnedRelationshipAssignment_7; }
 		
 		//ExpressionMember
-		public RuleCall getOwnedRelationshipExpressionMemberParserRuleCall_6_0() { return cOwnedRelationshipExpressionMemberParserRuleCall_6_0; }
+		public RuleCall getOwnedRelationshipExpressionMemberParserRuleCall_7_0() { return cOwnedRelationshipExpressionMemberParserRuleCall_7_0; }
 		
 		//ActivityBody
-		public RuleCall getActivityBodyParserRuleCall_7() { return cActivityBodyParserRuleCall_7; }
+		public RuleCall getActivityBodyParserRuleCall_8() { return cActivityBodyParserRuleCall_8; }
 	}
 	public class ControlNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ControlNode");
@@ -11304,7 +11313,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//SendActionNode SysML::SendActionUsage:
 	//	ownedRelationship+=EmptySuccessionMember?
-	//	ownedRelationship+=EmptyParameterMember
+	//	ownedRelationship+=EmptyParameterMember ownedRelationship+=EmptyItemFeatureMember
 	//	'send' ((name=Name TypePart)? 'of')? ownedRelationship+=ExpressionMember
 	//	'to' ownedRelationship+=ExpressionMember
 	//	ActivityBody;

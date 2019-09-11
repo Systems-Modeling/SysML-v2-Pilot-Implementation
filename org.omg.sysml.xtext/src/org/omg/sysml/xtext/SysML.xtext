@@ -845,7 +845,7 @@ AcceptActionNode returns SysML::AcceptActionUsage :
 
 SendActionNode returns SysML::SendActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
-	ownedRelationship += EmptyParameterMember
+	ownedRelationship += EmptyParameterMember ownedRelationship += EmptyItemFeatureMember
 	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
 	'to' ownedRelationship += ExpressionMember
 	ActivityBody

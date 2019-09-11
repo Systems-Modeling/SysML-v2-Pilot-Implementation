@@ -650,12 +650,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				if (valueConnector == null) {
-					valueConnector = addOwnedBindingConnector(((ExpressionImpl)value).getResult(), this);
-				} else {
-					((ConnectorImpl)valueConnector).setRelatedFeature(0, ((ExpressionImpl)value).getResult());
-					((ConnectorImpl)valueConnector).setRelatedFeature(1, this);
-				}
+				valueConnector = makeBinding(valueConnector, ((ExpressionImpl)value).getResult(), this);
 			}
 		}
 		return valueConnector;
@@ -674,6 +669,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	// Utility methods
+	
+	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(source, target);
+		} else {
+			((ConnectorImpl)connector).setRelatedFeature(0, source);
+			((ConnectorImpl)connector).setRelatedFeature(1, target);
+		}
+		return connector;
+	}
 	
 	public boolean isObjectFeature() {
 		return getTypes(false).stream().anyMatch(type->type instanceof Class);

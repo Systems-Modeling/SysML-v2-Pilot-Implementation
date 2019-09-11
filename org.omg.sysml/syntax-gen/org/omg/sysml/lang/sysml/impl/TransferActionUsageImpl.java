@@ -4,9 +4,11 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -29,6 +31,12 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	public static final String TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::transferActions";
 	
+	/**
+	 * The cached value of the BindingConnector from the appropriate context Feature to the context 
+	 * parameter of this TransferAction.
+	 */
+	protected BindingConnector contextConnector = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +95,21 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	@Override
 	protected String getActionSubsettingDefault() {
 		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;
+	}
+	
+	// Additional redefinitions and subsets
+
+	public BindingConnector getContextConnector() {
+		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+		return contextConnector;
+	}
+	
+	protected abstract Feature getContextFeature();
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getContextConnector();
+		return super.getFeature();
 	}
 	
 	/**

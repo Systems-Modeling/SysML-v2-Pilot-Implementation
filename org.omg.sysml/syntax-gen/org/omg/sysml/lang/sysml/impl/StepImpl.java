@@ -130,10 +130,14 @@ public class StepImpl extends FeatureImpl implements Step {
 	
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
-		return getOwnedFeature().stream().
+		return getRelevantFeaturesOf(this);
+	}	
+	
+	public static List<? extends Feature> getRelevantFeaturesOf(Step step) {
+		return step.getOwnedFeature().stream().
 				filter(f->f instanceof ItemFeature).
 				collect(Collectors.toList());
-	}	
+	}
 	
 	// Utility methods
 	

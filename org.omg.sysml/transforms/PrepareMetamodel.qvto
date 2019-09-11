@@ -71,8 +71,27 @@ mapping Package::Namespace(inout model: Model)
 	} endif
 }
 
+mapping inout Class::Namespace(inout model: Model)
+	inherits Namespace::Namespace {
+	if self.name = "Feature" then {
+	    var booleanType := self.ownedAttribute![name = "isUnique"].type;
+		var isNonuniqueProperty := object Property {
+			name := "isNonunique";
+			type := booleanType;
+			lower := 1;
+			upper := 1;
+			isDerived := true;
+			defaultValue := object LiteralBoolean {
+				value := false;
+			}
+		};
+		self.ownedAttribute += isNonuniqueProperty;
+		log("Added Property " + isNonuniqueProperty.featureQualifiedName());
+	} endif;	
+}
+
 mapping inout Property::Property() {
-	log("Property " + nameOf(self.featuringClassifier![true]) + "::" + nameOf(self));
+	log("Property " + self.featureQualifiedName());
 	log("  isComposite: " + self.isComposite.toString());
 	if self.isComposite then {
 		var compositeSubsettedProperties := self.subsettedProperty[isComposite];
@@ -93,6 +112,10 @@ mapping inout Property::Property() {
 			} endif;
 		} endif;
 	} endif;
+}
+
+query Property::featureQualifiedName(): String {
+	return nameOf(self.featuringClassifier![true]) + "::" + nameOf(self);
 }
 
 query nameOf(element: NamedElement): String {

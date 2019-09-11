@@ -9,7 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A PortUsage is a usage of a PortDefinition. A PortUsage must be owned by a BlockDefinition, a PortDefinition, an InterfaceDefinition, a PartProperty or another PortUsage.  Any owned Properties of a PortUsage must not be composite (and, therefore, cannot be PartProperties). A PortUsage m
+ * A PortUsage is a usage of a PortDefinition. A PortUsage must be owned by a Block, a PortDefinition, a PartProperty or another PortUsage.  Any owned Properties of a PortUsage must not be composite (and, therefore, cannot be PartProperties).
+ * 
+ * A PortUsage must subset, directly or indirectly, the PortUsage Part::ports inherited by its owner.
  * <!-- end-model-doc -->
  *
  * <p>

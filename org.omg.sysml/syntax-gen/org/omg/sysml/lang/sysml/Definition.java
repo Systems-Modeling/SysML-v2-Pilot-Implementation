@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclass of Definition. The flow Properties of a Definition are the Properties it features that have a direction specified.
+ * A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition. 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -70,6 +70,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The flow Properties of a Definition are the Properties that it features that have a direction specified.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_FlowProperty()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

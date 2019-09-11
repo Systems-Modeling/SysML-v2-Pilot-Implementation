@@ -4,12 +4,9 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
@@ -142,37 +139,16 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Behavior getActivity() {
-		Behavior activity = basicGetActivity();
-		return activity != null && activity.eIsProxy() ? (Behavior)eResolveProxy((InternalEObject)activity) : activity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Behavior basicGetActivity() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof Behavior? (Behavior)type: null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public void setActivity(Behavior newActivity) {
-		throw new UnsupportedOperationException();
+	public EList<Behavior> getActivity() {
+		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTIVITY);
+		super.getType().stream().
+			filter(type->type instanceof Behavior).
+			map(type->(Behavior)type).
+			forEachOrdered(behaviors::add);
+		return behaviors;
 	}
 
 	/**
@@ -181,7 +157,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 * @generated
 	 */
 	public boolean isSetActivity() {
-		return basicGetActivity() != null;
+		return !getActivity().isEmpty();
 	}
 
 	@Override
@@ -220,8 +196,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return getBehavior();
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				if (resolve) return getActivity();
-				return basicGetActivity();
+				return getActivity();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				if (resolve) return getActionOwningUsage();
 				return basicGetActionOwningUsage();
@@ -246,7 +221,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				setActivity((Behavior)newValue);
+				getActivity().clear();
+				getActivity().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)newValue);
@@ -270,7 +246,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				getBehavior().clear();
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				setActivity((Behavior)null);
+				getActivity().clear();
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)null);
@@ -367,12 +343,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 * @generated
 	 */
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behavior = new UniqueEList<Behavior>();
-		Behavior activity = getActivity();
-		if (activity != null) {
-			behavior.add(activity);
-		}
-		return new UnionEObjectEList<Behavior>(this, SysMLPackage.Literals.STEP__BEHAVIOR, behavior.size(), behavior.toArray());
+		return getActivity();
 	}
 
 	/**

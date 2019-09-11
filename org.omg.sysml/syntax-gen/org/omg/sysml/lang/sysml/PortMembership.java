@@ -8,6 +8,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Port Membership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A PortMembership is a FeatureMembership whose memberFeature is a PortUsage and which has isPort = true. It also has direction = in, unless it is a ConjugatedPortMembership.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

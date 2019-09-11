@@ -53,7 +53,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PrimaryUsageMember_ValueKeyword_1_8_0_q;
 	protected AbstractElementAlias match_QueryHeadExpression_FullStopSolidusKeyword_0_q;
 	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
-	protected AbstractElementAlias match_SendActionNode_OfKeyword_2_1_q;
+	protected AbstractElementAlias match_SendActionNode_OfKeyword_3_1_q;
 	protected AbstractElementAlias match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1;
 	protected AbstractElementAlias match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
 	protected AbstractElementAlias match_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
@@ -94,7 +94,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PrimaryUsageMember_ValueKeyword_1_8_0_q = new TokenAlias(false, true, grammarAccess.getPrimaryUsageMemberAccess().getValueKeyword_1_8_0());
 		match_QueryHeadExpression_FullStopSolidusKeyword_0_q = new TokenAlias(false, true, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
 		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
-		match_SendActionNode_OfKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getSendActionNodeAccess().getOfKeyword_2_1());
+		match_SendActionNode_OfKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getSendActionNodeAccess().getOfKeyword_3_1());
 		match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getSubsetsKeyword_0_1()));
 		match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getSpecializesKeyword_0_1()));
 		match_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
@@ -176,8 +176,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_QueryHeadExpression_FullStopSolidusKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
 				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SendActionNode_OfKeyword_2_1_q.equals(syntax))
-				emit_SendActionNode_OfKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SendActionNode_OfKeyword_3_1_q.equals(syntax))
+				emit_SendActionNode_OfKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1.equals(syntax))
 				emit_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1.equals(syntax))
@@ -682,10 +682,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'of'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'send' (ambiguity) ownedRelationship+=ExpressionMember
-	 *     ownedRelationship+=EmptySuccessionMember 'send' (ambiguity) ownedRelationship+=ExpressionMember
+	 *     ownedRelationship+=EmptyParameterMember 'send' (ambiguity) ownedRelationship+=ExpressionMember
 	 */
-	protected void emit_SendActionNode_OfKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_SendActionNode_OfKeyword_3_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

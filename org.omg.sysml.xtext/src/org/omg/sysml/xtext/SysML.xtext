@@ -838,12 +838,14 @@ PerformActionNode returns SysML::PerformActionUsage :
 
 AcceptActionNode returns SysML::AcceptActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
+	ownedRelationship += EmptyParameterMember
 	'accept' ( name = Name TypePart )? '(' ownedRelationship += ItemFeatureMember ')'
 	ActivityBody
 ;
 
 SendActionNode returns SysML::SendActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
+	ownedRelationship += EmptyParameterMember
 	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
 	'to' ownedRelationship += ExpressionMember
 	ActivityBody
@@ -881,6 +883,10 @@ ForkNode returns SysML::ForkNode :
  	isComposite ?= 'fork' ( name = Name TypePart )? ';'
 ;
 
+EmptyParameter returns SysML::Parameter :
+	{SysML::Parameter}
+;
+
 /* ACTION MEMBERSHIPS */
 
 ActionParameterMember returns SysML::ParameterMembership :
@@ -901,6 +907,10 @@ ConditionalSuccessionMember returns SysML::FeatureMembership :
 
 DefaultSuccessionMember returns SysML::FeatureMembership :
 	ownedRelatedElement += DefaultSuccession
+;
+
+EmptyParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += EmptyParameter
 ;
 
 /* EXPRESSIONS */

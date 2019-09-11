@@ -221,8 +221,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_DecisionNode_MultiplicityPart_Typing(context, (DecisionNode) semanticObject); 
 				return; 
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getAssociationMemberRule()
-						|| rule == grammarAccess.getAssociationEndMemberRule()) {
+				if (rule == grammarAccess.getAssociationMemberRule()) {
+					sequence_AssociationEndMember_DefinitionMemberPrefix(context, (EndFeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAssociationEndMemberRule()) {
 					sequence_AssociationEndMember_DefinitionMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -230,8 +233,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getInterfaceMemberRule()
-						|| rule == grammarAccess.getInterfaceEndMemberRule()) {
+				else if (rule == grammarAccess.getInterfaceMemberRule()) {
+					sequence_DefinitionMemberPrefix_InterfaceEndMember(context, (EndFeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInterfaceEndMemberRule()) {
 					sequence_DefinitionMemberPrefix_InterfaceEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -434,10 +440,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getDefinitionMemberRule()
-						|| rule == grammarAccess.getNestedDefinitionMemberRule()
 						|| rule == grammarAccess.getAssociationMemberRule()
 						|| rule == grammarAccess.getInterfaceMemberRule()
 						|| rule == grammarAccess.getActivityMemberRule()) {
+					sequence_DefinitionMemberPrefix_PackagedDefinitionMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNestedDefinitionMemberRule()) {
 					sequence_DefinitionMemberPrefix_PackagedDefinitionMember(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -520,6 +529,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_BodyParameter_Typing(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getEmptyParameterRule()) {
+					sequence_EmptyParameter(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getParameterRule()) {
 					sequence_MultiplicityPart_Typing(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
 					return; 
@@ -536,6 +549,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else if (rule == grammarAccess.getBodyParameterMemberRule()) {
 					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEmptyParameterMemberRule()) {
+					sequence_EmptyParameterMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterMemberRule()) {
@@ -991,6 +1008,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=EmptySuccessionMember? 
+	 *         ownedRelationship+=EmptyParameterMember 
 	 *         (name=Name ownedRelationship+=FeatureTyping? ownedRelationship+=Multiplicity? (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship+=ItemFeatureMember 
 	 *         (ownedRelationship+=ActivityMember | ownedRelationship+=Import)*
@@ -1012,8 +1030,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         name=Name 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         ownedRelationship+=Multiplicity? 
-	 *         isNonunique?='nonunique'? 
-	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (
 	 *             ownedRelationship+=ActionParameterMember 
 	 *             ownedRelationship+=ActionParameterFlowMember? 
@@ -1142,8 +1160,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (name=Name | ownedRelationship+=Redefinition)? 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         ownedRelationship+=Multiplicity? 
-	 *         isNonunique?='nonunique'? 
-	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         (
 	 *             ownedRelationship+=ActionParameterMember 
 	 *             ownedRelationship+=ActionParameterFlowMember? 
@@ -1329,6 +1347,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=EmptySuccessionMember? 
+	 *         ownedRelationship+=EmptyParameterMember 
 	 *         (name=Name ownedRelationship+=FeatureTyping? ownedRelationship+=Multiplicity? (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship+=ExpressionMember 
 	 *         ownedRelationship+=ExpressionMember 
@@ -1575,11 +1594,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     AssociationMember returns EndFeatureMembership
-	 *     AssociationEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixAnnotation* 
+	 *         ownedRelationship+=PrefixAnnotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (isComposite?='part' ownedRelatedElement+=PartProperty) | 
@@ -1601,6 +1619,35 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AssociationEndMember returns EndFeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=PrefixAnnotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             (isComposite?='part' ownedRelatedElement+=PartProperty) | 
+	//             (isComposite?='part' ownedRelatedElement+=AbstractPartProperty) | 
+	//             (isComposite?='part' memberName=Name? memberFeature=[PartProperty|QualifiedName]) | 
+	//             ownedRelatedElement+=ReferenceProperty | 
+	//             ownedRelatedElement+=AbstractReferenceProperty | 
+	//             (memberName=Name? memberFeature=[ReferenceProperty|QualifiedName]) | 
+	//             (isComposite?='action'? ownedRelatedElement+=ActionUsage) | 
+	//             (isComposite?='action'? ownedRelatedElement+=AbstractActionUsage) | 
+	//             (memberName=Name? memberFeature=[ActionUsage|QualifiedName]) | 
+	//             (isPort?='port' ownedRelatedElement+=PortUsage) | 
+	//             (isPort?='port' ownedRelatedElement+=AbstractPortUsage) | 
+	//             (isPort?='port' memberName=Name? memberFeature=[PortUsage|QualifiedName])
+	//         )
+	//     )
+	//
+	// protected void sequence_AssociationEndMember_DefinitionMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2147,8 +2194,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         name=Name 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         ownedRelationship+=Multiplicity? 
-	 *         isNonunique?='nonunique'? 
-	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
 	 *         (ownedRelationship+=DefinitionMember | ownedRelationship+=Import)*
@@ -2193,8 +2240,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         name=Name 
 	 *         ownedRelationship+=FeatureTyping? 
 	 *         ownedRelationship+=Multiplicity? 
-	 *         isNonunique?='nonunique'? 
-	 *         (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *         isOrdered?='ordered'? 
+	 *         (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
 	 *         ((ownedRelationship+=Subset ownedRelationship+=Subset*) | (ownedRelationship+=Redefinition ownedRelationship+=Redefinition*))* 
 	 *         ownedRelationship+=FeatureValue? 
 	 *         (ownedRelationship+=DefinitionMember | ownedRelationship+=Import)*
@@ -2319,11 +2366,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     InterfaceMember returns EndFeatureMembership
-	 *     InterfaceEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixAnnotation* 
+	 *         ownedRelationship+=PrefixAnnotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             (isPort?='end' direction=FeatureDirection? ownedRelatedElement+=PortUsage) | 
@@ -2337,17 +2383,36 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     InterfaceEndMember returns EndFeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=PrefixAnnotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             (isPort?='end' direction=FeatureDirection? ownedRelatedElement+=PortUsage) | 
+	//             (isPort?='end' direction=FeatureDirection? ownedRelatedElement+=AbstractPortUsage) | 
+	//             (isPort?='end' direction=FeatureDirection? memberName=Name? memberFeature=[PortUsage|QualifiedName])
+	//         )
+	//     )
+	//
+	// protected void sequence_DefinitionMemberPrefix_InterfaceEndMember(ISerializationContext context, EndFeatureMembership semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionMember returns Membership
-	 *     NestedDefinitionMember returns Membership
 	 *     AssociationMember returns Membership
 	 *     InterfaceMember returns Membership
 	 *     ActivityMember returns Membership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixAnnotation* 
+	 *         ownedRelationship+=PrefixAnnotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (
 	 *             ownedRelatedElement+=Package | 
@@ -2374,6 +2439,40 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     NestedDefinitionMember returns Membership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship+=PrefixAnnotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (
+	//             ownedRelatedElement+=Package | 
+	//             (memberName=Name? memberElement=[Package|QualifiedName]) | 
+	//             ownedRelatedElement+=Block | 
+	//             (memberName=Name? memberElement=[Block|QualifiedName]) | 
+	//             ownedRelatedElement+=ValueType | 
+	//             (memberName=Name? memberElement=[ValueType|QualifiedName]) | 
+	//             ownedRelatedElement+=AssociationBlock | 
+	//             (memberName=Name? memberElement=[AssociationBlock|QualifiedName]) | 
+	//             ownedRelatedElement+=InterfaceDefinition | 
+	//             (memberName=Name? memberElement=[InterfaceDefinition|QualifiedName]) | 
+	//             ownedRelatedElement+=PortDefinition | 
+	//             (memberName=Name? memberElement=[PortDefinition|QualifiedName]) | 
+	//             ownedRelatedElement+=Activity | 
+	//             (memberName=Name? memberElement=[Activity|QualifiedName]) | 
+	//             (memberElement=[Element|QualifiedName] memberName=Name?) | 
+	//             ownedRelatedElement+=Comment | 
+	//             (memberName=Name? memberElement=[Comment|QualifiedName])
+	//         )
+	//     )
+	//
+	// protected void sequence_DefinitionMemberPrefix_PackagedDefinitionMember(ISerializationContext context, Membership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2484,6 +2583,30 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     {ItemFeature}
 	 */
 	protected void sequence_EmptyItemFeature(ISerializationContext context, ItemFeature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EmptyParameterMember returns ParameterMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=EmptyParameter
+	 */
+	protected void sequence_EmptyParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EmptyParameter returns Parameter
+	 *
+	 * Constraint:
+	 *     {Parameter}
+	 */
+	protected void sequence_EmptyParameter(ISerializationContext context, org.omg.sysml.lang.sysml.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3103,7 +3226,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Unit returns Package
 	 *
 	 * Constraint:
-	 *     ((ownedRelationship+=PrefixAnnotation* name=Name)? (ownedRelationship+=PackageMember | ownedRelationship+=Import)*)
+	 *     ((ownedRelationship+=PrefixAnnotation? name=Name)? (ownedRelationship+=PackageMember | ownedRelationship+=Import)*)
 	 */
 	protected void sequence_PackageBody_PackageDeclaration_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

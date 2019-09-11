@@ -9,6 +9,12 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Activity</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An Activity is a Behavior that defines an action performed by a system or part of a system.
+ * 
+ * An Activity must subclass, directly or indirectly, the base Activity Action from the Systems model library.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

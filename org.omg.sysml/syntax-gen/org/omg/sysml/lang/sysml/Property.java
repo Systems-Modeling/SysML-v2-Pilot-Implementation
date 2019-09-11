@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Property is a usage that represents a measurable or observable attribute, quality or characteristic of a system or part of a system.
+ * A Property is a Usage that represents a measurable or observable attribute, quality or characteristic of a system or part of a system.
  * <!-- end-model-doc -->
  *
  * <p>

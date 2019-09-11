@@ -139,7 +139,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -453,7 +453,9 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public List<Parameter> getOwnedParameters() {
 		return getOwnedFeature().stream().
-				filter(feature->feature instanceof Parameter).map(feature->(Parameter)feature).collect(Collectors.toList());
+				filter(feature->feature instanceof Parameter).
+				map(feature->(Parameter)feature).
+				collect(Collectors.toList());
 	}
 	
 	public Feature getResult() {

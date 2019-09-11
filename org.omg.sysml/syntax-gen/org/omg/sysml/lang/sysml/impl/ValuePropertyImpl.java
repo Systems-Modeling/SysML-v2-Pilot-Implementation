@@ -2,14 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -55,12 +51,16 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public DataType getValueType() {
-		DataType valueType = basicGetValueType();
-		return valueType != null && valueType.eIsProxy() ? (DataType)eResolveProxy((InternalEObject)valueType) : valueType;
+	public EList<DataType> getValueType() {
+		EList<DataType> dataTypes = new EObjectEList<DataType>(DataType.class, this, SysMLPackage.VALUE_PROPERTY__VALUE_TYPE);
+		super.getType().stream().
+			filter(type->type instanceof DataType).
+			map(type->(DataType)type).
+			forEachOrdered(dataTypes::add);
+		return dataTypes;
 	}
 
 	/**
@@ -81,20 +81,10 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setValueType(DataType newValueType) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetValueType() {
-		return basicGetValueType() != null;
+		return !getValueType().isEmpty();
 	}
 
 	public EList<Subsetting> getOwnedSubsetting() {
@@ -110,8 +100,7 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				if (resolve) return getValueType();
-				return basicGetValueType();
+				return getValueType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,11 +110,13 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				setValueType((DataType)newValue);
+				getValueType().clear();
+				getValueType().addAll((Collection<? extends DataType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +131,7 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				setValueType((DataType)null);
+				getValueType().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -169,12 +160,9 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 */
 	@Override
 	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
-		DataType valueType = getValueType();
-		if (valueType != null) {
-			type.add(valueType);
-		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+		@SuppressWarnings("unchecked")
+		EList<Type> valueType = (EList<Type>)((EList<?>)getValueType());
+		return valueType;
 	}
 
 	/**

@@ -2,11 +2,19 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Action</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * An ActionUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is an Activity, an ActionUsage is a Usage of that Activity (as an action definition) within a system. However, non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.
+ * 
+ * An ActionUsage (other than a PerformActionUsage owned by a Part) must subset, directly or indirectly, either the base ActionUsage "actions" from the Systems model library, if it is not a composite feature, or the ActionUsage "subactions" inherited from its owner, if it is a composite feature.
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -93,7 +101,8 @@ public interface ActionUsage extends Usage, Step {
 	void setActionOwningUsage(Usage value);
 
 	/**
-	 * Returns the value of the '<em><b>Activity</b></em>' reference.
+	 * Returns the value of the '<em><b>Activity</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Behavior}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -106,24 +115,13 @@ public interface ActionUsage extends Usage, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Activity</em>' reference.
-	 * @see #setActivity(Behavior)
+	 * @return the value of the '<em>Activity</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_Activity()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAction'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	Behavior getActivity();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ActionUsage#getActivity <em>Activity</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Activity</em>' reference.
-	 * @see #getActivity()
-	 * @generated
-	 */
-	void setActivity(Behavior value);
+	EList<Behavior> getActivity();
 
 } // Action

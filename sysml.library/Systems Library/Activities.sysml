@@ -11,6 +11,7 @@ package Activities {
 	 * part of a system. Action is the base class of all activities.
 	 */
 	activity Action :> Performance {
+		ref action self: Action :>> Base::self;
 		ref action incomingTransfers :>> Performance::incomingTransfers;
 			
 		/**

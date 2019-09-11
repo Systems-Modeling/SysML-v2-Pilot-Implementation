@@ -2,14 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.BlockProperty;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -54,37 +50,17 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Class getBlock() {
-		org.omg.sysml.lang.sysml.Class block = basicGetBlock();
-		return block != null && block.eIsProxy() ? (org.omg.sysml.lang.sysml.Class)eResolveProxy((InternalEObject)block) : block;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public org.omg.sysml.lang.sysml.Class basicGetBlock() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof org.omg.sysml.lang.sysml.Class? (org.omg.sysml.lang.sysml.Class)type: null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public void setBlock(org.omg.sysml.lang.sysml.Class newBlock) {
-		throw new UnsupportedOperationException();
+	public EList<org.omg.sysml.lang.sysml.Class> getBlock() {
+		EList<org.omg.sysml.lang.sysml.Class> classes = 
+				new EObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.BLOCK_PROPERTY__BLOCK);
+		super.getType().stream().
+			filter(type->type instanceof org.omg.sysml.lang.sysml.Class).
+			map(type->(org.omg.sysml.lang.sysml.Class)type).
+			forEachOrdered(classes::add);
+		return classes;
 	}
 
 	/**
@@ -93,7 +69,7 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 * @generated
 	 */
 	public boolean isSetBlock() {
-		return basicGetBlock() != null;
+		return !getBlock().isEmpty();
 	}
 
 	public EList<Subsetting> getOwnedSubsetting() {
@@ -109,8 +85,7 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				if (resolve) return getBlock();
-				return basicGetBlock();
+				return getBlock();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,11 +95,13 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				setBlock((org.omg.sysml.lang.sysml.Class)newValue);
+				getBlock().clear();
+				getBlock().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,7 +116,7 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				setBlock((org.omg.sysml.lang.sysml.Class)null);
+				getBlock().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -168,12 +145,9 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 */
 	@Override
 	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
-		org.omg.sysml.lang.sysml.Class block = getBlock();
-		if (block != null) {
-			type.add(block);
-		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+		@SuppressWarnings("unchecked")
+		EList<Type> block = (EList<Type>)((EList<?>)getBlock());
+		return block;
 	}
 
 	/**

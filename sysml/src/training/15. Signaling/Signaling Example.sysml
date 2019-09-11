@@ -22,6 +22,6 @@ package 'Signaling Example' {
 			out picture
 		);
 		
-		then send shoot::picture to display;	
+		then send shoot::picture to display;
 	}
 }

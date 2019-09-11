@@ -8,6 +8,12 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Connection</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.
+ * 
+ * An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage "interfaces" from the Systems model libary.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

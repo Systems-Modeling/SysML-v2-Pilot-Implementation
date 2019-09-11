@@ -435,7 +435,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@SuppressWarnings("unchecked")
 	public static <T> EList<T> filter(List<?> elements, Class<T> class_) {
 		EList<T> list = new BasicInternalEList<T>(class_);
-		list.addAll((List<T>)elements.stream().filter(element->class_.isInstance(element)).collect(Collectors.toList()));
+		list.addAll((List<T>)elements.stream().filter(class_::isInstance).collect(Collectors.toList()));
 		return list;
 	}
 	
@@ -445,7 +445,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	
 	@SuppressWarnings("unchecked")
 	public <T extends Relationship> T getFirstOwnedRelationship(Class<T> class_) {
-		return (T)getOwnedRelationship().stream().filter(rel->class_.isInstance(rel)).findFirst().orElse(null);
+		return (T)getOwnedRelationship().stream().filter(class_::isInstance).findFirst().orElse(null);
 	}	
 	
 	//

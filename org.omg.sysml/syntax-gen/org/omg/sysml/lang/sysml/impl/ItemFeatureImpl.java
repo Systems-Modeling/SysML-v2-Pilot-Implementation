@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -44,7 +43,7 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return type instanceof Step? ((TypeImpl)type).getRelevantFeatures():
+		return type == getOwner()? ((TypeImpl)type).getRelevantFeatures():
 			   type.getFeature().stream().
 					filter(feature->ITEM_FLOW_ITEM_FEATURE_NAME.equals(feature.getName())).
 					collect(Collectors.toList());

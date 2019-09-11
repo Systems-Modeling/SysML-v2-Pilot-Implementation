@@ -154,15 +154,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNonunique()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isNonunique = IS_NONUNIQUE_EDEFAULT;
-	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
 	protected BindingConnector valueConnector = null;
@@ -482,8 +473,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
-		// TODO: implement this method to set the 'Owning Feature Membership' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 	
 	/**
@@ -547,8 +536,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public void setValuation(FeatureValue newValuation) {
-		// TODO: implement this method to set the 'Valuation' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -578,8 +565,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
-		// TODO: implement this method to set the 'Multiplicity' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 	}
 
 	/**
@@ -633,12 +618,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setEndOwningType(Type newEndOwningType) {
-		// TODO: implement this method to set the 'End Owning Type' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -667,12 +650,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				if (valueConnector == null) {
-					valueConnector = addOwnedBindingConnector(((ExpressionImpl)value).getResult(), this);
-				} else {
-					((ConnectorImpl)valueConnector).setRelatedFeature(0, ((ExpressionImpl)value).getResult());
-					((ConnectorImpl)valueConnector).setRelatedFeature(1, this);
-				}
+				valueConnector = makeBinding(valueConnector, ((ExpressionImpl)value).getResult(), this);
 			}
 		}
 		return valueConnector;
@@ -691,6 +669,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	// Utility methods
+	
+	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(source, target);
+		} else {
+			((ConnectorImpl)connector).setRelatedFeature(0, source);
+			((ConnectorImpl)connector).setRelatedFeature(1, target);
+		}
+		return connector;
+	}
 	
 	public boolean isObjectFeature() {
 		return getTypes(false).stream().anyMatch(type->type instanceof Class);
@@ -970,7 +958,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__END_OWNING_TYPE:
 				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique != IS_NONUNIQUE_EDEFAULT;
+				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -989,8 +977,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isUnique);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
-		result.append(", isNonunique: ");
-		result.append(isNonunique);
 		result.append(')');
 		return result.toString();
 	}

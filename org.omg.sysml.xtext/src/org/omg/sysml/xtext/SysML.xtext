@@ -459,9 +459,9 @@ fragment AbstractUsage returns SysML::Usage :
 ;
 
 fragment UsageDeclaration returns SysML::Usage :
-	  name = Name TypePart SubsettingPart
-	| Typing MultiplicityPart SubsettingPart
-	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart SubsettingPart
+	  name = Name TypePart? SubsettingPart
+	| TypePart SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? SubsettingPart
 ;
 
 fragment UsageCompletion returns SysML::Usage :
@@ -481,11 +481,8 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	Typing? MultiplicityPart
-;
-
-fragment Typing returns SysML::Feature :
-	':' ( ownedRelationship += FeatureTyping | 'any' )	
+	  ':' ( ownedRelationship += FeatureTyping | 'any' ) MultiplicityPart?
+	| MultiplicityPart
 ;
 
 FeatureTyping returns SysML::FeatureTyping :
@@ -493,7 +490,7 @@ FeatureTyping returns SysML::FeatureTyping :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	( ownedRelationship += Multiplicity )? 
+	ownedRelationship += Multiplicity 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
 ;
 
@@ -527,14 +524,14 @@ Redefinition returns SysML::Redefinition:
 /* PARAMETERS */
 
 Parameter returns SysML::Parameter :
-	TypePart // ( Subsets | Redefines )*
+	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
 ;
 
 /* PART PROPERTIES */
 
 fragment PartDeclaration returns SysML::PartProperty :
 	( isAbstract ?= 'abstract' )? 'part' 
-	name = Name TypePart SubsettingPart
+	name = Name TypePart? SubsettingPart
 ;
 
 PartProperty returns SysML::PartProperty :
@@ -559,7 +556,7 @@ AbstractReferenceProperty returns SysML::ReferenceProperty :
 
 fragment ValueDeclaration returns SysML::ValueProperty :
 	( isAbstract ?= 'abstract' )? 'value'? 
-	name = Name TypePart SubsettingPart
+	name = Name TypePart? SubsettingPart
 ;
 
 ValueProperty returns SysML::ValueProperty :
@@ -589,8 +586,8 @@ AbstractConjugatedPortUsage returns SysML::PortUsage :
 ;
 
 fragment ConjugatePortUsageDeclaration returns SysML::Usage :
-	  name = Name ConjugatePortTyping MultiplicityPart SubsettingPart
-	| ConjugatePortTyping MultiplicityPart SubsettingPart
+	  name = Name ConjugatePortTyping MultiplicityPart? SubsettingPart
+	| ConjugatePortTyping MultiplicityPart? SubsettingPart
 	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition ConjugatePortTyping MultiplicityPart SubsettingPart
 ;
 
@@ -670,7 +667,7 @@ AbstractInterfaceUsage returns SysML::InterfaceUsage :
 /* BINDING CONNECTORS */
 
 BindingConnector returns SysML::BindingConnector :
-	( ( name = Name )? TypePart 'of')?
+	( ( name = Name )? TypePart? 'of')?
 	  ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
 	  DefinitionBody	
 ;
@@ -686,7 +683,7 @@ AbstractSuccession returns SysML::Succession :
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
-	( ( name = Name )? TypePart 'first' )?
+	( ( name = Name )? TypePart? 'first' )?
 	ownedRelationship += ConnectorEndMember 'then' ownedRelationship += ConnectorEndMember
 ;
 
@@ -726,7 +723,7 @@ AbstractSuccessionItemFlow returns SysML::SuccessionItemFlow :
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( ( name = Name )? TypePart 
+	( ( name = Name )? TypePart? 
       ( 'of'  ownedRelationship += ItemFeatureMember
       | ownedRelationship += EmptyItemFeatureMember
       ) 'from'
@@ -773,7 +770,7 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 fragment ActionDeclaration returns SysML::ActionUsage :
     ( isAbstract ?= 'abstract' )? 'action' 
-	name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
+	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
 ;
 
 ActionUsage returns SysML::ActionUsage :
@@ -785,19 +782,20 @@ AbstractActionUsage returns SysML::ActionUsage :
 ;
 
 fragment ActionUsageDeclaration returns SysML::ActionUsage :
-	  name = Name TypePart ActionParameterList? SubsettingPart ValuePart?
-	| TypePart ActionParameterList? ValuePart?
-	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart ActionParameterList? ValuePart?
+	  name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+	| TypePart? ActionParameterList? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? ActionParameterList? ValuePart?
 ;
 
 fragment ActionParameterList returns SysML::Type :
-	'(' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )?
-		( ',' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )? )*
+	'(' ( ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )?
+		  ( ',' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )? )*
+		)?
 	')'
 ;
 
 ActionParameter returns SysML::Parameter :
-	TypePart ValuePart?
+	{SysML::Parameter} TypePart? ValuePart?
 ;
 
 ActionParameterFlow returns SysML::ItemFlow :
@@ -806,7 +804,7 @@ ActionParameterFlow returns SysML::ItemFlow :
 ;
 
 PerformActionUsage returns SysML::PerformActionUsage :
-    ( name = Name TypePart 'by' )? 
+    ( name = Name TypePart? 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
@@ -830,7 +828,7 @@ ActionNode returns SysML::ActionUsage :
 
 PerformActionNode returns SysML::PerformActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
-    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart 'by' )? 
+    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart? 'by' )? 
     ownedRelationship += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
@@ -839,14 +837,14 @@ PerformActionNode returns SysML::PerformActionUsage :
 AcceptActionNode returns SysML::AcceptActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
 	ownedRelationship += EmptyParameterMember
-	'accept' ( name = Name TypePart )? '(' ownedRelationship += ItemFeatureMember ')'
+	'accept' ( name = Name TypePart? )? '(' ownedRelationship += ItemFeatureMember ')'
 	ActivityBody
 ;
 
 SendActionNode returns SysML::SendActionUsage :
 	( ownedRelationship += EmptySuccessionMember )?
 	ownedRelationship += EmptyParameterMember ownedRelationship += EmptyItemFeatureMember
-	'send' ( ( name = Name TypePart )? 'of')? ownedRelationship += ExpressionMember 
+	'send' ( ( name = Name TypePart? )? 'of')? ownedRelationship += ExpressionMember 
 	'to' ownedRelationship += ExpressionMember
 	ActivityBody
 ;
@@ -860,12 +858,12 @@ ControlNode returns SysML::ControlNode :
 
 MergeNode returns SysML::MergeNode :
 	{SysML::MergeNode} ( ownedRelationship += EmptySuccessionMember )?
- 	isComposite ?= 'merge' ( name = Name TypePart )? ';'
+ 	isComposite ?= 'merge' ( name = Name TypePart? )? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
 	{SysML::DecisionNode} ( ownedRelationship += EmptySuccessionMember )?
-	'decide' ( name = Name TypePart )? ';'
+	'decide' ( name = Name TypePart? )? ';'
  	( ownedRelationship += ConditionalSuccessionMember ';'
  	  ( ownedRelationship += ConditionalSuccessionMember ';' )* 
  	  ( ownedRelationship += DefaultSuccessionMember ';' )? 
@@ -875,12 +873,12 @@ DecisionNode returns SysML::DecisionNode :
 
 JoinNode returns SysML::JoinNode :
 	{SysML::JoinNode} ( ownedRelationship += EmptySuccessionMember )?
- 	isComposite ?= 'join' ( name = Name TypePart )? ';'
+ 	isComposite ?= 'join' ( name = Name TypePart? )? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
 	{SysML::ForkNode} ( ownedRelationship += EmptySuccessionMember )?
- 	isComposite ?= 'fork' ( name = Name TypePart )? ';'
+ 	isComposite ?= 'fork' ( name = Name TypePart? )? ';'
 ;
 
 EmptyParameter returns SysML::Parameter :
@@ -890,7 +888,10 @@ EmptyParameter returns SysML::Parameter :
 /* ACTION MEMBERSHIPS */
 
 ActionParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? ( memberName = Name )? ownedRelatedElement += ActionParameter
+	( direction = FeatureDirection
+    | ( direction = FeatureDirection )? memberName = Name 
+    )
+	ownedRelatedElement += ActionParameter
 ;
 
 ActionParameterFlowMember returns SysML::FeatureMembership :
@@ -1082,10 +1083,6 @@ BodyExpression returns SysML::BlockExpression :
 	 | ownedRelationship += ExpressionTyping
 ;
 
-BodyParameter returns SysML::Parameter :
-	{SysML::Parameter} Typing?
-;
-
 ExpressionTyping returns SysML::FeatureTyping :
 	type = [ SysML::Function | QualifiedName ]
 ;
@@ -1191,7 +1188,7 @@ BodyMember returns SysML::FeatureMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedRelatedElement += BodyParameter
+	memberName = Name ownedRelatedElement += Parameter
 ;
 
 /* QUERY PATH EXPRESSIONS */

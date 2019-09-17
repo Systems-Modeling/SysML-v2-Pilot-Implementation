@@ -2,8 +2,8 @@ package MassRollup {
 	import ScalarFunctions::*;
 	
 	block MassedThing {
-		value mass subsets ISQ::mass; 
-		value totalMass subsets ISQ::mass;
+		value mass :> ISQ::mass; 
+		value totalMass :> ISQ::mass;
 	}
 	
 	part simpleThing : MassedThing {
@@ -18,8 +18,10 @@ package MassRollup {
 	}
 	
 	part filteredMassThing :> compositeThing {
+		abstract value minMass :> ISQ::mass;
+		
 		value totalMass redefines MassedThing::totalMass =
-			(./subcomponents/mass[p:ISQ::mass (p > 10.0)])->reduce '+' ?? 0.0;
+			(./subcomponents/mass[p (p > minMass)])->reduce '+' ?? 0.0;
 	}
 
 }

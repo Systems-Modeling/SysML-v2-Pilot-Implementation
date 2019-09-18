@@ -22,11 +22,11 @@ package test {
 	import OuterPackage::*;
 	//XPECT linkedName at B --> OuterPackage.B
 	/* XPECT scope at B ---
-	   B.b, OuterPackage.B.b, Try.b, Try.try, test.Try.b, test.Try.try, test.B.b,
+	   		B.b, Try.b, Try.try, test.Try.b, test.Try.try, test.B.b,
 	       B.b.a1, test.B.b.a1, Try.try.a1, test.Try.try.a1, Try.b.a1, test.Try.b.a1,
 		   Try, A, A.a1, B,
 		   test.Try, test.A, test.A.a1, test.B, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B,
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	
 	--- */
@@ -38,7 +38,7 @@ package test {
 		   b, try,
 		   Try, Try.b, Try.try, A, A.a1, B, B.b,
 		   test.Try, test.Try.try, test.Try.b, test.A, test.A.a1, test.B, test.B.b, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b,
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	
 		   

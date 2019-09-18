@@ -1,0 +1,69 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyPackageAlias1_Feature.alf"}
+		File {from ="/src/DependencyPackageAlias2_Feature_FT.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyPackageAlias1_Feature.alf"}
+				File {from ="/src/DependencyPackageAlias2_Feature_FT.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import PackageAlias1::*;
+	feature A{}
+	feature A_alias is A;
+	//XPECT linkedName at  A_alias --> test.A
+	/* XPECT scope at  A_alias ---
+	       AA.aa_alias, AA_alias.aa_alias, test.AA.aa_alias, test.AA_alias.aa_alias,
+ 		   A, AA, AA.aa, AA_alias, AA_alias.aa, A_alias, test_A,
+ 		   test.A, test.AA, test.AA.aa, test.AA_alias, test.AA_alias.aa, test.A_alias,  test.test_A,  
+ 		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias2.B,
+ 		   PackageAlias2.B.a, 		   PackageAlias2.B.a_alias,
+ 		   
+ 		    missingblow,
+ 		    PackageAlias1.A.a_alias,
+			PackageAlias1.A_alias.a,
+			PackageAlias1.A_alias.a_alias,
+			PackageAlias1.AA_alias,
+			PackageAlias1.AA.aa_alias,
+			PackageAlias1.AA_alias.aa,
+			PackageAlias1.AA_alias.aa_alias,
+			PackageAlias1.A_alias,
+ 		   	PackageAlias2.B.a_alias,
+ 		   	PackageAlias2.B.b,
+ 		   
+ 		    		   
+ 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+ 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value												
+		   --- */
+	feature test_A : A_alias{}
+}
+
+/*
+   The followings are added after alfglobascope is added
+   			PackageAlias2.B.a,
+ 		    PackageAlias2.B.a_alias,
+ 	But the followings are still missing: 	    
+ 		    PackageAlias1.A.a_alias,
+			PackageAlias1.A_alias.a,
+			PackageAlias1.A_alias.a_alias,
+			PackageAlias1.AA_alias,
+			PackageAlias1.AA.aa_alias,
+			PackageAlias1.AA_alias.aa,
+			PackageAlias1.AA_alias.aa_alias,
+			PackageAlias1.A_alias,
+ 		   	PackageAlias2.B.a_alias,
+ 		   	PackageAlias2.B.b,
+ */

@@ -82,6 +82,8 @@ class AlfGlobalScope extends SelectableBasedScope {
 			if( name.segmentCount > 1){
 				var pname = name.skipLast(1)
 				var e_parent = super.getSingleElement(pname);
+				if ( e_parent === null)
+				 	return null;
 				var o_parent = e_parent.getEObjectOrProxy();
 				if (o_parent instanceof Type) {
 					for (e: o_parent.ownedGeneralization) {
@@ -231,7 +233,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 		}
 		return false
 	}
-	
 	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
 		for (e: pack.ownedImport) {
 			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {

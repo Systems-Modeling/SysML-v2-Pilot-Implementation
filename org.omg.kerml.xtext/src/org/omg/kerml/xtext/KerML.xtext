@@ -146,17 +146,6 @@ ElementImport returns SysML::Membership :
 
 /* PACKAGES */
 
-NonFeatureDefinition returns SysML::Package:
-	  Package 
-	| Classifier 
-	| Class
-	| DataType 
-	| Association
-	| Interaction
-	| Behavior
-	| Function
-;
-
 Package returns SysML::Package :
 	PackageDefinition
 ;
@@ -169,13 +158,22 @@ fragment PackageBody returns SysML::Package :
 	'{' ( ownedRelationship += PackageMember | ownedRelationship += PackageImport )* '}'
 ;
 
+NonFeature returns SysML::Element:
+	  Package 
+	| Classifier 
+	| Class
+	| DataType 
+	| Association
+	| Interaction
+	| Behavior
+	| Function
+	| Comment
+;
+
 /* PACKAGE MEMBERSHIPS */
 
 PackageMember returns SysML::Membership : 
-	PackageMemberPrefix	
-	( NonFeatureMemberElement 
-	| FeaturePackageMemberElement
-	)
+	PackageMemberPrefix	( NonFeatureMemberElement | PackageFeatureMemberElement )
 ;
 
 fragment PackageMemberPrefix returns SysML::Membership :
@@ -184,7 +182,8 @@ fragment PackageMemberPrefix returns SysML::Membership :
 ;
 
 fragment NonFeatureMemberElement returns SysML::Membership :
-	( ownedRelatedElement += NonFeatureDefinition
+	  ownedRelatedElement += NonFeature
+	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
     | 'classifier' ( memberName = Name )? 'is' memberElement = [SysML::Classifier|QualifiedName] ';'
     | 'class' ( memberName = Name )? 'is' memberElement = [SysML::Class|QualifiedName] ';'
@@ -192,19 +191,18 @@ fragment NonFeatureMemberElement returns SysML::Membership :
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
     | 'behavior' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
     | 'function' ( memberName = Name )? 'is' memberElement = [SysML::Function|QualifiedName] ';'
-	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
-	| ownedRelatedElement += Comment
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
-	)
 ;
 
-fragment FeaturePackageMemberElement returns SysML::Membership :
+fragment PackageFeatureMemberElement returns SysML::Membership :
 	  'feature'? ownedRelatedElement += Feature
-	| 'abstract' 'feature'? ownedRelatedElement += AbstractFeature
 	| ( 'feature' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::Feature|QualifiedName] ';'
-	| ownedRelatedElement += StepDefinition
+	| 'abstract' 'feature'? ownedRelatedElement += AbstractFeature
+	| 'step' ownedRelatedElement += Step
 	| 'step' ( memberName = Name )? 'is' memberElement = [SysML::Step|QualifiedName] ';'
-	| ownedRelatedElement += ExpressionDefinition
+	| 'abstract' 'step' ownedRelatedElement += AbstractStep
+	| 'expr' ownedRelatedElement += BlockExpression
+	| 'abstract' 'expr' ownedRelatedElement += AbstractBlockExpression
 	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'
 ;
 
@@ -229,49 +227,67 @@ NonFeatureTypeMember returns SysML::Membership :
 ;
 
 FeatureMember returns SysML::FeatureMembership :
-	TypeMemberPrefix
-	(
-      ( 'feature' | isComposite ?= 'composite' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )?  
-      ( ownedRelatedElement += Feature 
-      | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-      )
-    | 'abstract' ( 'feature' | isComposite ?= 'composite' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )?
-      ownedRelatedElement += AbstractFeature
-	| 'connector' 
-	  ( ownedRelatedElement += Connector 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
-	  )
-	| ownedRelatedElement += StepDefinition
-	| 'step' ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
-	| ownedRelatedElement += ExpressionDefinition
-	| 'expr' ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
-    | 'abstract' 'connector' ownedRelatedElement += AbstractConnector
-    | 'binding' ownedRelatedElement += BindingConnector
-	| 'succession' 
-	  ( ownedRelatedElement += Succession 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
-	  )
-    | 'abstract' 'succession' ownedRelatedElement += AbstractSuccession
-	| 'stream' 
-	  ( ownedRelatedElement += ItemFlow 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
-	  )
-    | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlow
-	| 'flow' 
-	  ( ownedRelatedElement += SuccessionItemFlow 
-	  | ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
-	  )
-    | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlow
-    )
+	TypeMemberPrefix 
+	( FeatureMemberFlags FeatureMemberElement
+	| 'abstract' FeatureMemberFlags AbstractFeatureMemberElement
+	)
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix
-    (
-      'end' ( isComposite ?= 'composite' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += Feature
-    | 'abstract' 'end' ( isComposite ?= 'part' | isPortion ?= 'portion' | isPort ?= 'port' )? ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeature
-	| 'end' ( isComposite ?= 'composite' | isPortion ?= 'portion' ) ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+	( 'end' FeatureMemberFlags FeatureMemberElement
+	| 'abstract' 'end' FeatureMemberFlags AbstractFeatureMemberElement
 	)
+;
+
+fragment FeatureMemberElement returns SysML::FeatureMembership :
+      'feature'? ( direction = FeatureDirection )?  
+      ( ownedRelatedElement += Feature 
+      | ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+      )
+ 	| 'connector' ( direction = FeatureDirection )? 
+	  ( ownedRelatedElement += Connector 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Connector|QualifiedName] ';'
+	  )
+    | 'binding' ( direction = FeatureDirection )? 
+      ( ownedRelatedElement += BindingConnector
+      | ( memberName = Name )? 'is' memberFeature = [SysML::BindingConnector|QualifiedName] ';'
+      )
+	| 'step' ( direction = FeatureDirection )? 
+	  ( ownedRelatedElement += Step
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Step|QualifiedName] ';'
+	  )
+	| 'expr' ( direction = FeatureDirection )?
+	  ( ownedRelatedElement += BlockExpression
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
+	  )
+	| 'succession' ( direction = FeatureDirection )?
+	  ( ownedRelatedElement += Succession 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
+	  )
+	| 'stream' ( direction = FeatureDirection )?
+	  ( ownedRelatedElement += ItemFlow 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
+	  )
+	| 'flow' ( direction = FeatureDirection )?
+	  ( ownedRelatedElement += SuccessionItemFlow 
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
+	  )
+;
+
+fragment AbstractFeatureMemberElement returns SysML::FeatureMembership :
+      'feature' ( direction = FeatureDirection )? ownedRelatedElement += AbstractFeature
+    | 'connector' ( direction = FeatureDirection )? ownedRelatedElement += AbstractConnector
+    | 'binding' ( direction = FeatureDirection )? ownedRelatedElement += AbstractBindingConnector
+    | 'step' ( direction = FeatureDirection )? ownedRelatedElement += AbstractStep
+    | 'expr' ( direction = FeatureDirection )? ownedRelatedElement += AbstractBlockExpression
+    | 'succession' ( direction = FeatureDirection )? ownedRelatedElement += AbstractSuccession
+    | 'stream' ( direction = FeatureDirection )? ownedRelatedElement += AbstractItemFlow
+    | 'flow' ( direction = FeatureDirection )? ownedRelatedElement += AbstractSuccessionItemFlow
+;
+
+fragment FeatureMemberFlags returns SysML::FeatureMembership :
+	( isComposite ?= 'composite' | isPortion ?= 'portion' )? ( isPort ?= 'port' )?
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -365,6 +381,10 @@ fragment BehaviorBody returns SysML::Type :
 	';'| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* '}'
 ;
 
+fragment AbstractBehaviorBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* '}'
+;
+
 /* BEHAVIOR MEMBERSHIPS */
 
 ParameterMember returns SysML::ParameterMembership :
@@ -372,7 +392,7 @@ ParameterMember returns SysML::ParameterMembership :
 ;
 
 BehaviorMember returns SysML::Membership :
-	NonFeatureTypeMember | FeatureMember | EndFeatureMember	
+	TypeMember	
 ;
 
 /* FUNCTIONS */
@@ -392,6 +412,12 @@ fragment ReturnParameterPart returns SysML::Type :
 fragment FunctionBody returns SysML::Type :
 	  ';'
 	| '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* 
+	      ( ownedRelationship += ExpressionMember )? '}'
+;
+
+fragment AbstractFunctionBody returns SysML::Type :
+	  isAbstract ?= ';'
+	| isAbstract ?= '{' ( ownedRelationship += BehaviorMember | ownedRelationship += PackageImport )* 
 	      ( ownedRelationship += ExpressionMember )? '}'
 ;
 
@@ -515,9 +541,16 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 /* BINDING CONNECTORS */
 
 BindingConnector returns SysML::BindingConnector :
+	BindingConnectorDeclaration TypeBody	
+;
+
+AbstractBindingConnector returns SysML::BindingConnector :
+	BindingConnectorDeclaration AbstractTypeBody	
+;
+
+fragment BindingConnectorDeclaration returns SysML::BindingConnector :
 	( FeatureDeclaration 'of' )?
-	  ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
-	  TypeBody	
+	ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
 ;
 
 /* SUCCESSIONS */
@@ -606,27 +639,39 @@ Parameter returns SysML::Parameter :
 
 /* STEPS */
 
-StepDefinition returns SysML::Step :
-    ( isAbstract ?= 'abstract' )? isComposite ?= 'step' 
-	( name = Name TypePart? ParameterList? SubsettingPart ValuePart?
+Step returns SysML::Step :
+	StepDeclaration BehaviorBody
+;
+
+AbstractStep returns SysML::Step :
+	StepDeclaration AbstractBehaviorBody
+;
+
+fragment StepDeclaration returns SysML::Step :
+	  name = Name TypePart? ParameterList? SubsettingPart ValuePart?
 	| TypePart? ParameterList? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? ParameterList? ValuePart?
-	) BehaviorBody
-
 ;
 
 /* EXPRESSIONS */
 
 // Block Expressions
 
-ExpressionDefinition returns SysML::BlockExpression :
-	( isAbstract ?= 'abstract')? 'expr' 
-	( name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
+BlockExpression returns SysML::BlockExpression :
+	ExpressionDeclaration FunctionBody
+;
+
+AbstractBlockExpression returns SysML::BlockExpression :
+	ExpressionDeclaration AbstractFunctionBody
+;
+
+fragment ExpressionDeclaration returns SysML::Expression :
+	  name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
 	| TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
-	)
-	FunctionBody
 ;
+
+// Expressions
 
 Expression returns SysML::Expression :
 	 ConditionalExpression | QueryPathExpression

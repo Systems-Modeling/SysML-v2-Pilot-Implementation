@@ -16,15 +16,15 @@ package Transfers {
 		/**
 		 * The entity whose output is the source of the items to be transferred.
 		 */
-		end transferSource: Occurrence[0..*] redefines BinaryLink::source {
-			out sourceOutput: Occurrence[0..*];
+		end feature transferSource: Occurrence[0..*] redefines BinaryLink::source {
+			feature out sourceOutput: Occurrence[0..*];
 		}
 		
 		/**
 		 * The entity whose input is the target of the items to be transferred.
 		 */
-		end transferTarget: Occurrence[0..*] redefines BinaryLink::target {
-			in targetInput: Occurrence[0..*];
+		end feature transferTarget: Occurrence[0..*] redefines BinaryLink::target {
+			feature in targetInput: Occurrence[0..*];
 		}
 		
 		/**
@@ -53,8 +53,8 @@ package Transfers {
 		 * The link from the transfer source to the items it is outputing.
 		 */
 		assoc SourceOutputLink {
-			end source: Occurrence[1];
-			end target: Occurrence[1..*] redefines transferSource::sourceOutput;
+			end feature source: Occurrence[1];
+			end feature target: Occurrence[1..*] redefines transferSource::sourceOutput;
 		}
 		
 		/**
@@ -69,8 +69,8 @@ package Transfers {
 		 * The link from the transfer source to the items it is inputing.
 		 */
 		assoc TargetInputLink {
-			end source: Occurrence[1..*] redefines transferTarget::targetInput;
-			end target: Occurrence[1];
+			end feature source: Occurrence[1..*] redefines transferTarget::targetInput;
+			end feature target: Occurrence[1];
 		}
 		
 		/**
@@ -116,8 +116,8 @@ package Transfers {
 	 * the transfer, which happens before the transferTarget.
 	 */
 	interaction TransferBefore specializes Transfer, HappensBefore {
-	 	end transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
-	  	end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
+	 	end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
+	  	end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
 	  	feature self: TransferBefore redefines Base::self;
 	  	
@@ -130,8 +130,8 @@ package Transfers {
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
 	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
-		end transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
-		end transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
+		end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
+		end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
 	}
 	  
 	/**
@@ -139,7 +139,7 @@ package Transfers {
 	 * type TransferBefore. It is the default subsetting for sucession (non-streaming) item flows.
 	 */
 	step flows: TransferBefore[0..*] nonunique subsets transfers, successions {
-		end transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
-		end transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
+		end feature transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
+		end feature transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
 	}
 }

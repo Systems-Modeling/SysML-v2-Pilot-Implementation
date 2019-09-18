@@ -13,8 +13,8 @@ package Occurrences {
 	 * "happens during" itself.
 	 */
 	assoc HappensDuring {
-		end shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences, BinaryLink::source;
-		end longerOccurrence: Occurrence[0..*];
+		end feature shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences, BinaryLink::source;
+		end feature longerOccurrence: Occurrence[0..*];
 	}
 	
 	/**
@@ -22,13 +22,12 @@ package Occurrences {
 	 * each start at the same time and end at the same time.
 	 */
 	assoc HappensWhile specializes HappensDuring {
-		end thisOccurrence: Occurrence[0..*] redefines shorterOccurrence;
-		end thatOccurrence: Occurrence[0..*] redefines longerOccurrence;
+		end feature thisOccurrence: Occurrence[0..*] redefines shorterOccurrence;
+		end feature thatOccurrence: Occurrence[0..*] redefines longerOccurrence;
 		
-		connector :HappensDuring (
-			shorterOccurrence => thatOccurrence,
-			longerOccurrence => thisOccurrence
-		);
+		connector :HappensDuring 
+			from shorterOccurrence => thatOccurrence 
+			to longerOccurrence => thisOccurrence;
 	}
 	
 	/**
@@ -37,16 +36,16 @@ package Occurrences {
 	 * of the laterOccurrence.
 	 */
 	assoc HappensBefore {
-		end earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors, BinaryLink::source;
-		end laterOccurrence: Occurrence[0..*] redefines Occurrence::successors, BinaryLink::target;
+		end feature earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors, BinaryLink::source;
+		end feature laterOccurrence: Occurrence[0..*] redefines Occurrence::successors, BinaryLink::target;
 	}
 	
 	/**
 	 * PortionOf asserts one occurrence is a portion of another.
 	 */
 	assoc PortionOf { 
-		end whole: Occurrence[0..1];
-		end portion 'portion': Occurrence[0..*] redefines Occurrence::portions, BinaryLink::target; 
+		end feature whole: Occurrence[0..1];
+		end portion feature 'portion': Occurrence[0..*] redefines Occurrence::portions, BinaryLink::target; 
 	}
 	
 	/** 
@@ -54,16 +53,16 @@ package Occurrences {
 	 * involvedObject.
 	 */
 	assoc Involves {
-		end involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
-		end involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
+		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
+		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
 	}
 	
 	/**
 	 * Performance asserts that the performer enacts the behavior carried out by the performance.
 	 */
 	 assoc Performs specializes Involves {
-	 	end performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
-	 	end performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
+	 	end feature performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
+	 	end feature performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
 	 }
 	
 	/**
@@ -71,7 +70,7 @@ package Occurrences {
 	 * It is the default subsetting for succession connectors.
 	 */
 	 feature successions: HappensBefore[0..*] nonunique subsets binaryLinks {
-	 	end earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
-	 	end laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
+	 	end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
+	 	end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
 }

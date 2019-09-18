@@ -10,7 +10,7 @@ package Classes {
 	
 	abstract class B {
 		public abstract a: A;
-		packaged x: C;
+		packaged abstract x: C;
 		package P { }
 	}
 	

@@ -56,28 +56,28 @@ package Base {
 		/**
 		 * Occurrences that are portions of this occurrence.
 		 */
-		portion portions: Occurrence[0..*] subsets suboccurrences;
+		portion feature portions: Occurrence[0..*] subsets suboccurrences;
 		
 		/**
 		 * Portions of an occurrence over some finite slice of time. 
 		 */
-		portion timeSlices: Occurrence[0..*] subsets portions;
+		portion feature timeSlices: Occurrence[0..*] subsets portions;
 		
 		/**
 		 * Time slices of an occurrence that happen at a single instant of time
 		 * (i.e., have no duration).
 		 */
-		portion snapshots: Occurrence[0..*] subsets timeSlices;
+		portion feature snapshots: Occurrence[0..*] subsets timeSlices;
 		
 		/**
 		 * The snapshot representing the start of the occurrence in time.
 		 */
-		portion startShot: Occurrence[1] subsets snapshots;
+		portion feature startShot: Occurrence[1] subsets snapshots;
 		
 		/** 
 		 * The snapshot representing the end of the occurrence in time.
 		 */
-		portion endShot: Occurrence[1] subsets snapshots;
+		portion feature endShot: Occurrence[1] subsets snapshots;
 		
 		/**
 		 * HappensBeforeSelf asserts that an occurrence happens before itself, 
@@ -92,17 +92,17 @@ package Base {
 		 * Snapshots have no duration.
 		 */
 		// Note: Connectors are only allowed to have a single type.
-		succession :HappensBeforeSelf first snapshots[1] then snapshots[1];
+		composite succession :HappensBeforeSelf first snapshots[1] then snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.
 		 */
-		succession startShot[1] then snapshots[0..*];
+		composite succession startShot[1] then snapshots[0..*];
 		
 		/**
 		 * The endShot happens after all snapshots.
 		 */
-		succession snapshots[0..*] then endShot[1];
+		composite succession snapshots[0..*] then endShot[1];
 		
 		/**
 		 * The incoming transfers targeting this occurrence. 
@@ -144,8 +144,8 @@ package Base {
 	assoc BinaryLink specializes Link {
 	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
 		
-		end source: Anything[0..*] nonunique subsets participant;
-	    end target: Anything[0..*] nonunique subsets participant;
+		end feature source: Anything[0..*] nonunique subsets participant;
+	    end feature target: Anything[0..*] nonunique subsets participant;
 	    
 // Means:
 //	    feature sourceParticipant: Anything[1] subsets participant {
@@ -167,8 +167,8 @@ package Base {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end self: Anything[0..*] nonunique redefines source subsets myself redefines Base::self;
-		end myself: Anything[0..*] nonunique redefines target subsets self;
+		end feature self: Anything[0..*] nonunique redefines source subsets myself redefines Base::self;
+		end feature myself: Anything[0..*] nonunique redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
 //		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
@@ -259,16 +259,16 @@ package Base {
 	 * binaryLinks is a specialization of links restricted to type BinaryLink.
 	 */
 	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links {
-		end source: Anything[0..*] nonunique redefines BinaryLink::source;
-		end target: Anything[0..*] nonunique redefines BinaryLink::target;
+		end feature source: Anything[0..*] nonunique redefines BinaryLink::source;
+		end feature target: Anything[0..*] nonunique redefines BinaryLink::target;
 	}
 	
 	/**
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
 	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
-		end source: Anything[0..*] nonunique redefines SelfLink::source, binaryLinks::source;
-		end target: Anything[0..*] nonunique redefines SelfLink::target, binaryLinks::target;
+		end feature source: Anything[0..*] nonunique redefines SelfLink::source, binaryLinks::source;
+		end feature target: Anything[0..*] nonunique redefines SelfLink::target, binaryLinks::target;
 	}
 	
 	/**

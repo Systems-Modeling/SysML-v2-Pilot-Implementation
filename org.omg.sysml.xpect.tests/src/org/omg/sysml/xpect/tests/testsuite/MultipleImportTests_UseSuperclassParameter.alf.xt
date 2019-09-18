@@ -24,11 +24,14 @@ package test{
 	import OuterPackage2::*;
 	//XPECT linkedName at C::b --> OuterPackage.B.b
 	/* XPECT scope at C::b ---
+	   	   OuterPackage.B.b.a1, OuterPackage2.C.b.a1, OuterPackage2.C.b,
+	   	   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,
+	   	   
 	   	   B.b.a1, C.b.a1, try.a1,
 	   	   test.B.b.a1, test.C.b.a1, test.try.a1,
-		   B, B.b,, C, C.b, C.c, try,
-		   test.B, test.C.b, test.C.c, test.try, 
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c,  test.B.b, test.C,
+		   B, B.b, C, C.b, C.c, try,
+		   test.B, test.B.b, test.C, test.C.b, test.C.c, test.try, 
+		    
 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
    	--- */
 	feature try : C::b;

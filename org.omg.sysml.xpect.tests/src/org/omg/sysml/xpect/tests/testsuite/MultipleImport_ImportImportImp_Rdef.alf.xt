@@ -30,7 +30,7 @@ package test{
 		   Test, test.Test,
 		   A, A.a1, B,C,
 		   test.A, test.A.a1, test.B, test.C, 
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C, 
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C, OuterPackage2.C.b.a1, OuterPackage.B.b.a1, OuterPackage2.C.b,
 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
 	--- */
 	feature Test redefines C {
@@ -44,7 +44,7 @@ package test{
 		   test.Test, test.Test.b, test.Test.c, test.Test.try, 
 		   A, A.a1, B, B.b, C, C.b, C.c, 
 		   test.A, test.A.a1, test.B, test.B.b, test.C, test.C.b, test.C.c,
-		   OuterPackage.A, OuterPackage.A.a1,  OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c, 
+		   OuterPackage.A, OuterPackage.A.a1,  OuterPackage.B, OuterPackage.B.b, OuterPackage2.C, OuterPackage2.C.c, OuterPackage2.C.b.a1, OuterPackage.B.b.a1, OuterPackage2.C.b,
 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
 	--- */
 		feature try redefines b;

@@ -40,6 +40,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
@@ -62,6 +63,7 @@ public class SysMLInteractive extends AlfUtil {
 	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
+	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
 	protected static Injector injector;
@@ -83,6 +85,7 @@ public class SysMLInteractive extends AlfUtil {
 	@Inject
 	private SysMLInteractive() {
 		super(new InverseOrderedResourceSetImpl());
+		KerMLStandaloneSetup.doSetup();
 		SysMLStandaloneSetup.doSetup();
 	}
 	
@@ -92,7 +95,7 @@ public class SysMLInteractive extends AlfUtil {
 				path += "/";
 			}
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
-			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false);
+			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}

@@ -47,24 +47,26 @@ import com.google.common.collect.Iterables
 class AlfGlobalScope extends SelectableBasedScope {
 
 	protected EClass referencteType	
-	
+	protected AlfGlobalScopeProvider scopeProvider
 	protected QualifiedName targetqn;
 	protected Map<Element, Set<QualifiedName>> elements
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
 	boolean isShadowing = false;
+	protected Map<QualifiedName, IEObjectDescription> inDefaultGlobalScope;
 	
 	
-	static def createScope (IScope outer, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
+	static def createScope (IScope outer, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase, AlfGlobalScopeProvider scopeProvider) {
 		if (selectable === null || selectable.isEmpty())
 			return outer;
 
-		return new AlfGlobalScope(outer, selectable, filter, type, ignoreCase);
+		return new AlfGlobalScope(outer, selectable, filter, type, ignoreCase, scopeProvider);
 	}
 
-	new(IScope parent, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
+	new(IScope parent, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase, AlfGlobalScopeProvider scopeProvider) {
 		super(parent, selectable, filter, type, ignoreCase)
 		referencteType = type;
+		this.scopeProvider = scopeProvider;
 	}
 
 	override getSingleElement(QualifiedName name) {
@@ -115,29 +117,39 @@ class AlfGlobalScope extends SelectableBasedScope {
 		System.out.println("GGAllElements")
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
-		var all = super.getAllLocalElements()
-		var iterator = all.iterator();
+		this.inDefaultGlobalScope = newHashMap
+		var defaultScope = super.getAllLocalElements()
+		var iterator = defaultScope.iterator();
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
 			//is there anyway to check non-Base one?
 			if (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
+				inDefaultGlobalScope.put(idesc.qualifiedName, idesc)
+			}
+		}
+		iterator = inDefaultGlobalScope.values().iterator();
+		while (iterator.hasNext()){
+			var idesc = iterator.next()
+			//is there anyway to check non-Base one?
+			// (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
 				var eobject = idesc.getEObjectOrProxy();
 				//TODO: need to check public or not?
 				if (eobject instanceof Type) {
-					for (e: eobject.ownedGeneralization) {
-						if (e.general !== null ) {
-							e.general.resolve(idesc.qualifiedName, false, false, newHashSet)
-							}
-						}
-					}
+					(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
+					//for (e: eobject.ownedGeneralization) {
+						//if (e.general !== null ) {
+							//e.general.resolve(idesc.qualifiedName, false, false, newHashSet)
+							//}
+						//}
 				}
+			//}
 		}
-		var inherited = elements.keySet.flatMap[key |
+		var additionalScope = elements.keySet.flatMap[key |
 									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 								]
-								System.out.println(inherited)
-								System.out.println(all)
-		var result = Iterables.concat(all, inherited)
+								System.out.println(additionalScope)
+								System.out.println(defaultScope)
+		var result = Iterables.concat(defaultScope, additionalScope)
 		return result
 		
 	}
@@ -145,18 +157,19 @@ class AlfGlobalScope extends SelectableBasedScope {
 		if (referencteType.isInstance(el)) {
 			var qns = elements.get(el)
 			if (qns === null) {
-				elements.put(el, newHashSet(qn))
+				if (!inDefaultGlobalScope.keySet.contains(qn))
+					elements.put(el, newHashSet(qn))
 			} else {
-				qns.add(qn)
+				if (!inDefaultGlobalScope.keySet.contains(qn))
+					qns.add(qn)
 			}					
 		}
-		else
-			System.out.println("not added: " + qn)
 	}
+	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
 		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
 		pack.gen(qn, visited) ||
-		pack.imp(qn, visited)
+		pack.imp(qn, isInsideScope, visited)
 	}
 	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
 		if (!ownedvisited.contains(pack)) {
@@ -164,7 +177,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				//if (!scopeProvider.visitedMemberships.contains(m)) {
+				if (!scopeProvider.visited.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
@@ -172,14 +185,14 @@ class AlfGlobalScope extends SelectableBasedScope {
 					// (and getting the memberName may also result in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					//scopeProvider.addVisitedMembership(m)
+					scopeProvider.addVisited(m)
 					
-					//try {
+					try {
 						memberElement = m.memberElement
 						elementName = m.memberName 
-					//} finally {
-						//scopeProvider.removeVisitedMembership(m)
-					//}
+					} finally {
+						scopeProvider.removeVisited(m)
+					}
 									
 					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC)) {
 						val elementqn = qn.append(elementName)
@@ -202,8 +215,10 @@ class AlfGlobalScope extends SelectableBasedScope {
 										if (memberElement.owned(elementqn, false, false, ownedvisited, visited)) {
 											return true
 										}
-										
 										if (memberElement.gen(elementqn, visited)) {
+											return true;
+										}
+										if (memberElement.imp(elementqn, false, visited)){
 											return true;
 										}
 									}
@@ -211,7 +226,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 							}
 						}
 					}
-				//}
+				}
 			}
 			ownedvisited.remove(pack)
 		}
@@ -219,26 +234,44 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
+		System.out.println("GEN");
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
-				if (e.general !== null && !visited.contains(e.general)) {
-					visited.add(e.general)
-					val found = e.general.resolve(qn, false, false, visited)
-					visited.remove(e.general)
+				if (!scopeProvider.visited.contains(e)) {
+					var found = false;
+					// NOTE: Exclude the generalization e to avoid possible circular name resolution
+					// when resolving a proxy for e.general.
+					scopeProvider.addVisited(e)
+					if (e.general !== null && !visited.contains(e.general)) {
+						visited.add(e.general)
+						found = e.general.resolve(qn, false, false, visited)
+						visited.remove(e.general)
+					}
+					scopeProvider.removeVisited(e)					
 					if (found) {
 						return true
 					}
+					
 				}
 			}
 		}
 		return false
 	}
-	protected def boolean imp(Package pack, QualifiedName qn, Set<Package> visited) {
+	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
+		System.out.println("IMP")
 		for (e: pack.ownedImport) {
-			if (e.importedPackage !== null && !visited.contains(e.importedPackage)) {
-				visited.add(e.importedPackage)
-				val found = e.importedPackage.resolve(qn, true, false, visited)
-				visited.remove(e.importedPackage)
+			if (!scopeProvider.visited.contains(e)) {
+				var found = false;
+				// NOTE: Exclude the import e to avoid possible circular name resolution
+				// when resolving a proxy for e.importedPackage.
+				scopeProvider.addVisited(e)
+				if (e.importedPackage !== null && !visited.contains(e.importedPackage) &&
+					(isInsideScope || e.visibility == VisibilityKind.PUBLIC)) {
+					visited.add(e.importedPackage)
+					found = e.importedPackage.resolve(qn, true, false, visited)
+					visited.remove(e.importedPackage)
+				}
+				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
 				}

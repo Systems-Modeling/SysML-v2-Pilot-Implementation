@@ -34,11 +34,32 @@ import com.google.common.base.Predicate
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.resource.IContainer
 import org.eclipse.xtext.scoping.IScope
+import java.util.Set
+import org.omg.sysml.lang.sysml.Element
 
 class AlfGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
-override IScope createContainerScope(IScope parent, IContainer container, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
-		return AlfGlobalScope.createScope(parent, container, filter, type, ignoreCase);
+	// Used to record visited Memberships and Imports.
+	Set<Element> visited = newHashSet
+
+	override IScope createContainerScope(IScope parent, IContainer container, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
+		return AlfGlobalScope.createScope(parent, container, filter, type, ignoreCase, this);
+	}
+	
+	def getVisited() {
+		visited
+	}
+	
+	def setVisited(Set<Element> visited) {
+		this.visited = visited
+	}
+	
+	def addVisited(Element element) {
+		visited.add(element)
+	}
+	
+	def removeVisited(Element element) {
+		visited.remove(element)
 	}
 	
 }

@@ -25,7 +25,7 @@ var enableMode = function (CodeMirror) {
         return CodeMirror.getMode(config, {
             name: "clike",
             keywords: words("abstract accept action activity allInstances any as assoc assocblock bind block by " +
-                "comment connect decision def do end first flow fork from hastype if import in inout instanceof interface " +
+                "comment connect decide def do end else first flow fork from hastype if import in inout instanceof interface " +
                 "interfacedef is join link merge nonunique of on ordered out package part perform port portdef private " +
                 "protected public redefines ref send specializes stream subsets succession then to type value valuetype"),
             defKeywords: words("action activity assoc assocblock block connect def link" +

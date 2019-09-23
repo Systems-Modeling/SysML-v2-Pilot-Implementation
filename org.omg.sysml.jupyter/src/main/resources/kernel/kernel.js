@@ -28,7 +28,7 @@ var enableMode = function (CodeMirror) {
                 "comment connect decide def do end else first flow fork from hastype if import in inout instanceof interface " +
                 "interfacedef is join link merge nonunique of on ordered out package part perform port portdef private " +
                 "protected public redefines ref send specializes stream subsets succession then to type value valuetype"),
-            defKeywords: words("action activity assoc assocblock block connect def link" +
+            defKeywords: words("action activity assoc assocblock block def link" +
                 "interface interfacedef package part port portdef ref type value valuetype"),
             /*
             keywords: words("abstract accept allInstances any as assoc behavior binding by class classifier " +

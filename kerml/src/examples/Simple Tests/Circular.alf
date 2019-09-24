@@ -1,5 +1,0 @@
-package Circular {
-	class A { }
-	a: A;
-	package Circ is Circular;
-}

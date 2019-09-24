@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Class;
@@ -310,6 +311,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		ownedTypes.removeAll(this.getReferencedType());
 		return ownedTypes;
 	}
+	
+	@Override
+	public EList<Generalization> getOwnedGeneralization() {
+		getOwnedSubsetting();
+		return super.getOwnedGeneralization();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -421,8 +428,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * Type (without defaults).
 	 */
 	protected Set<Type> getGeneralTypes(Type type) {
-		return type.getOwnedGeneralization().stream().
-				map(gen->gen.getGeneral()).
+		return ((TypeImpl)type).basicGetOwnedGeneralization().stream().
+				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
 				filter(gen->gen != null).
 				collect(Collectors.toSet());
 	}

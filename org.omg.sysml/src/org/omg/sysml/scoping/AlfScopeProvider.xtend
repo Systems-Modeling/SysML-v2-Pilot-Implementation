@@ -45,6 +45,8 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.QueryPathExpression
+import org.omg.sysml.lang.sysml.QueryPathStepExpression
 
 class AlfScopeProvider extends AbstractAlfScopeProvider {
 
@@ -92,8 +94,13 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			case SysMLPackage.eINSTANCE.membership_MemberElement, 
 			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature,
 			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
-				if (context instanceof Membership)
-					return context.scope_Namespace(context.membershipOwningPackage, reference)
+				if (context instanceof Membership) {
+				    var owningPackage = context.membershipOwningPackage
+        		    if (owningPackage instanceof QueryPathExpression) {
+					    return context.scope_QueryPathExpression(owningPackage as QueryPathExpression, reference)
+        		    } 
+				    return context.scope_Namespace(owningPackage, reference)
+                  }
 			}
 			case SysMLPackage.eINSTANCE.import_ImportedPackage: {
 				if (context instanceof Import) {
@@ -121,6 +128,48 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 			super.getScope(element, reference)		
 		else 
 			namespace.alfScope(element, reference)
+	}
+
+	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
+		var oe = qps.owner;
+		if (oe instanceof QueryPathStepExpression) {
+			var qps_parent = oe as QueryPathStepExpression
+			var ops = qps_parent.operand
+			if (ops.size() >= 2) {
+				var op1 = ops.get(0)
+				if (op1 instanceof QueryPathExpression) {
+					return op1 as QueryPathExpression
+				}
+			}
+		} else {
+			return null;
+		}
+	}
+
+	def QueryPathExpression prevQueryPath(QueryPathExpression qpe) {
+		var oe = qpe.owner
+		if (oe instanceof QueryPathStepExpression) {
+			var qps = oe as QueryPathStepExpression
+			var ops = qps.operand
+			if (ops.size() >= 2) {
+				var op1 = ops.get(0);
+				if (op1 == qpe) {
+					return prevQueryPath(qps)
+				} else if (op1 instanceof QueryPathExpression) {
+					return op1 as QueryPathExpression
+				}
+			}
+		}
+		return null
+	}
+
+	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EReference reference) {
+		var prev = prevQueryPath(qpe);
+		if (prev !== null) {
+			return scope_Namespace(element, prev.referent, reference);
+		} else {
+			return scope_Namespace(element, qpe, reference)
+		}
 	}
 	
 	def IScope alfScope(Package pack, Element element, EReference reference) {

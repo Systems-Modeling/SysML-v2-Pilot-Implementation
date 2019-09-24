@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -292,7 +293,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		getConnectorEnd().stream().forEach(end->
+		new ArrayList<Feature>(getConnectorEnd()).stream().forEach(end->
 			((FeatureImpl)end).getFirstSubsettedFeature().
 			ifPresent(relatedFeatures::add));
 		return relatedFeatures;

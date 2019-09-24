@@ -74,7 +74,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 		
 	}
 	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
-		System.out.println( "GgetSindlLocalElementByNameL " + name)
 		var result = getLocalElementsByName(name);
 		var iterator = result.iterator();
 		if (iterator.hasNext())
@@ -88,19 +87,13 @@ class AlfGlobalScope extends SelectableBasedScope {
 				 	return null;
 				var o_parent = e_parent.getEObjectOrProxy();
 				if (o_parent instanceof Type) {
-					for (e: o_parent.ownedGeneralization) {
-						if (e.general !== null ) {
-							targetqn = name
-							findFirst = true
-							val found = e.general.resolve(pname, false, false, newHashSet)
-							if (found) {
-								var inherited = elements.keySet.flatMap[key |
-									elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
-								]
-								return inherited.get(0)
-							}							
-						}
-					}
+					targetqn = name
+					findFirst = true
+					(o_parent as Package).resolve(e_parent.qualifiedName, false, false ,newHashSet)					
+					result = elements.keySet.flatMap[key |
+						elements.get(key).map[qn | EObjectDescription.create(qn, key)]
+					]
+					if (!result.isEmpty) return result.get(0)
 				}
 			}
 		}
@@ -109,12 +102,10 @@ class AlfGlobalScope extends SelectableBasedScope {
 	override getLocalElementsByName(QualifiedName name) {
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
-		System.out.println("GGGetlocalelementByName: " + name)
 		return super.getLocalElementsByName(name)
 	}
 	
 	override getAllLocalElements() {
-		System.out.println("GGAllElements")
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
 		this.inDefaultGlobalScope = newHashMap
@@ -130,19 +121,11 @@ class AlfGlobalScope extends SelectableBasedScope {
 		iterator = inDefaultGlobalScope.values().iterator();
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
-			//is there anyway to check non-Base one?
-			// (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
-				var eobject = idesc.getEObjectOrProxy();
-				//TODO: need to check public or not?
-				if (eobject instanceof Type) {
-					(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
-					//for (e: eobject.ownedGeneralization) {
-						//if (e.general !== null ) {
-							//e.general.resolve(idesc.qualifiedName, false, false, newHashSet)
-							//}
-						//}
-				}
-			//}
+			var eobject = idesc.getEObjectOrProxy();
+			//TODO: need to check public or not?
+			if (eobject instanceof Type) {
+				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
+			}
 		}
 		var additionalScope = elements.keySet.flatMap[key |
 									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
@@ -157,10 +140,10 @@ class AlfGlobalScope extends SelectableBasedScope {
 		if (referencteType.isInstance(el)) {
 			var qns = elements.get(el)
 			if (qns === null) {
-				if (!inDefaultGlobalScope.keySet.contains(qn))
+				if (inDefaultGlobalScope === null || !inDefaultGlobalScope.keySet.contains(qn))
 					elements.put(el, newHashSet(qn))
 			} else {
-				if (!inDefaultGlobalScope.keySet.contains(qn))
+				if (inDefaultGlobalScope === null || !inDefaultGlobalScope.keySet.contains(qn))
 					qns.add(qn)
 			}					
 		}
@@ -234,7 +217,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
-		System.out.println("GEN");
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
@@ -258,7 +240,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 		return false
 	}
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
-		System.out.println("IMP")
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				var found = false;

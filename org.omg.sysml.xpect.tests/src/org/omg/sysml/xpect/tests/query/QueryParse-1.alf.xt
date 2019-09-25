@@ -1,0 +1,30 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package P {
+	class A;
+	function C() : A;
+	f : C;
+	/* XPECT errors ---
+
+        "The feature 'type' of 'org.omg.sysml.lang.sysml.impl.QueryPathExpressionImpl@21079a12{file:/C:/Users/himi/git/SysML-v2-Pilot-Implementation/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/query/QueryParse-1.alf.xt#//@ownedRelationship.3/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0}' with 0 values must have at least 1 values"
+        "The feature 'behavior' of 'org.omg.sysml.lang.sysml.impl.QueryPathExpressionImpl@21079a12{file:/C:/Users/himi/git/SysML-v2-Pilot-Implementation/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/query/QueryParse-1.alf.xt#//@ownedRelationship.3/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0}' with 0 values must have at least 1 values"
+        "The required feature 'function' of 'org.omg.sysml.lang.sysml.impl.QueryPathExpressionImpl@21079a12{file:/C:/Users/himi/git/SysML-v2-Pilot-Implementation/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/query/QueryParse-1.alf.xt#//@ownedRelationship.3/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0}' must be set"
+	   --- */
+	a : C = ./f;
+}
+

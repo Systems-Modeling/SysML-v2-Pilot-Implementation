@@ -1,0 +1,31 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package P {
+	class A;
+	function C() : A;
+	feature Q : C {
+		z : C;
+		feature R : C {
+			feature x : C;
+		}
+	}
+	/* XPECT errors ---
+
+	   --- */
+	a : C = ./Q/z;
+}

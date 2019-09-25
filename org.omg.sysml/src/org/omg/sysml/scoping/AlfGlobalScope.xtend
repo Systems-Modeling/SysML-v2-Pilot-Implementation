@@ -74,6 +74,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 		
 	}
 	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
+		System.out.println("getSingleLocalElementByName: " + name);
 		var result = getLocalElementsByName(name);
 		var iterator = result.iterator();
 		if (iterator.hasNext())
@@ -91,7 +92,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 					findFirst = true
 					(o_parent as Package).resolve(e_parent.qualifiedName, false, false ,newHashSet)					
 					result = elements.keySet.flatMap[key |
-						elements.get(key).map[qn | EObjectDescription.create(qn, key)]
+						elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
 					]
 					if (!result.isEmpty) return result.get(0)
 				}
@@ -99,18 +100,22 @@ class AlfGlobalScope extends SelectableBasedScope {
 		}
 		return null;
 	}
+	
+	
 	override getLocalElementsByName(QualifiedName name) {
+		System.out.println("getLocalElementsByName: " + name);
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
 		return super.getLocalElementsByName(name)
 	}
 	
 	override getAllLocalElements() {
+		System.out.println("getAllLocalElements");
 		this.visitedqns = newHashSet
 		this.elements = newHashMap	
 		this.inDefaultGlobalScope = newHashMap
-		var defaultScope = super.getAllLocalElements()
-		var iterator = defaultScope.iterator();
+		var defaultGlobalScope = super.getAllLocalElements()
+		var iterator = defaultGlobalScope.iterator();
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
 			//is there anyway to check non-Base one?
@@ -118,12 +123,14 @@ class AlfGlobalScope extends SelectableBasedScope {
 				inDefaultGlobalScope.put(idesc.qualifiedName, idesc)
 			}
 		}
+		var publicElements = newArrayList
 		iterator = inDefaultGlobalScope.values().iterator();
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
 			var eobject = idesc.getEObjectOrProxy();
-			//TODO: need to check public or not?
 			if (eobject instanceof Type) {
+				if (isPublic(eobject))
+					publicElements.add(idesc)
 				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
 			}
 		}
@@ -131,10 +138,19 @@ class AlfGlobalScope extends SelectableBasedScope {
 									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 								]
 								System.out.println(additionalScope)
-								System.out.println(defaultScope)
-		var result = Iterables.concat(defaultScope, additionalScope)
+								System.out.println(defaultGlobalScope)
+		var result = Iterables.concat(publicElements, additionalScope)
 		return result
 		
+	}
+	private def boolean isPublic(Element element) {
+		System.out.println(element.owner) 
+		if (element.owningMembership !== null && element.owningMembership.visibility !==  VisibilityKind.PUBLIC)
+			return false
+		else if (element.owner !== null)
+			return isPublic (element.owner)
+		else
+			return true
 	}
 	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
 		if (referencteType.isInstance(el)) {
@@ -150,11 +166,14 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
-		pack.gen(qn, visited) ||
-		pack.imp(qn, isInsideScope, visited)
+		if (pack.owningMembership.visibility == VisibilityKind.PUBLIC) {
+			pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
+			pack.gen(qn, visited) ||
+			pack.imp(qn, isInsideScope, visited)
+		}
 	}
 	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
+		System.out.println( "owned: " + qn);
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
@@ -183,6 +202,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 							if (!checkIfAdded || !visitedqns.contains(elementqn)) {
 								visitedqns.add(elementqn)
 								if (targetqn === null || targetqn == elementqn) {
+									System.out.println("addname: " + elementqn)
 									elements.addName(elementqn, memberElement)
 									if (findFirst && targetqn == elementqn) {
 										return true
@@ -217,6 +237,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
+		System.out.println("GEN")
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
@@ -240,6 +261,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 		return false
 	}
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
+		System.out.println("GEN")
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				var found = false;

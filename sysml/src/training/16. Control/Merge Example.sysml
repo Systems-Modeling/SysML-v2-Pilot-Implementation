@@ -1,4 +1,4 @@
-package 'Control Example' {
+package 'Merge Example' {
 	block Scene;
 	block Image;
 	block Picture;

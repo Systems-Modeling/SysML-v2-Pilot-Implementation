@@ -9,8 +9,8 @@ package Classes {
 	}
 	
 	abstract class B {
-		public abstract a: A;
-		packaged abstract x: C;
+		public abstract feature a: A;
+		packaged abstract feature x: C;
 		package P { }
 	}
 	

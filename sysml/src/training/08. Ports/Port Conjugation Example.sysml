@@ -11,10 +11,10 @@ package 'Port Conjugation Example' {
 	}
 	
 	block FuelTank {
-		port fuelTankPort : ~FuelPort;
+		port fuelTankPort : FuelPort;
 	}
 	
 	block Engine {
-		port engineFuelPort : FuelPort;
+		port engineFuelPort : ~FuelPort;
 	}
 }

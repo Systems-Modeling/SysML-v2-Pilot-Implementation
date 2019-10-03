@@ -19,21 +19,15 @@ END_SETUP
 //
 // XPECT noErrors ---> ""
 package test{
-	
-	import PackageAlias1::*;
-	
-	/* XPECT scope at A ---
-	    X, X.a, X.a_alias,  test.X, test.X.a, test.X.a_alias,
+	/* XPECT scope at PackageAlias1::A ---
+	    test,
 		A, A.a, A.a_alias,  test.A, test.A.a, test.A.a_alias,   
-		AA, AA.aa, AA.aa_alias,  test.AA, test.AA.aa, test.AA.aa_alias,
-		A_alias, A_alias.a, A_alias.a_alias,  test.A_alias, test.A_alias.a, test.A_alias.a_alias,
-		AA_alias, AA_alias.aa, AA_alias.aa_alias,  test.AA_alias, test.AA_alias.aa, test.AA_alias.aa_alias,
 	   	PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
 	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.a, PackageAlias1.AA_alias.aa_alias,
+    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
  --- */
-	class X specializes A {}
+ 	import PackageAlias1::A;
 }
 /*
 package PackageAlias1{
@@ -51,6 +45,6 @@ package PackageAlias1{
 */
 /*
 	missing in scopes are
-	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.a, PackageAlias1.AA_alias.aa_alias,
+   	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
  */

@@ -1,0 +1,38 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package test{
+	/* XPECT scope at OuterPackage::A ---
+		test,
+   	   	A, A.a1, test.A, test.A.a1,
+       	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,		   
+       	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1
+	--- */
+	import OuterPackage::A;
+	/* XPECT scope at OuterPackage::B ---
+		test,
+   	   	A, A.a1, test.A, test.A.a1,
+       	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
+		OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	--- */
+	import OuterPackage::B;
+	
+	
+}
+  

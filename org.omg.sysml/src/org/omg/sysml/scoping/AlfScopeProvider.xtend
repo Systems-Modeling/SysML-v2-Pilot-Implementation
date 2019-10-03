@@ -49,8 +49,8 @@ import org.omg.sysml.lang.sysml.Import
 class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	@Inject
-	//IGlobalScopeProvider globalScope
-	AlfGlobalScopeProvider globalScope
+	IGlobalScopeProvider globalScope
+	//AlfGlobalScopeProvider globalScope
 
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet

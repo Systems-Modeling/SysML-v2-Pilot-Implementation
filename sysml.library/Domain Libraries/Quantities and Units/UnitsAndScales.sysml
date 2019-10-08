@@ -1,3 +1,6 @@
+/**
+ * This package defines the general representations used to construct measurement scale and unit types.
+ */
 package UnitsAndScales {
 
 	/**
@@ -20,7 +23,7 @@ package UnitsAndScales {
 	 * 1. Directly as the scale in a QuantityValue, which implies that the effective measurement scale is a ratio scale.
 	 * 2. As the unit value of a non-ratio scale, see the specializations of NonRatioScale.
 	 * 
-	 * A MeasurementUnit specifies one or more UnitPowerFactor 
+	 * A MeasurementUnit specifies one or more UnitPowerFactors. 
 	 */
 	abstract block MeasurementUnit :> MeasurementScale { 
 		value unitPowerFactor: UnitPowerFactor[1..*] ordered;
@@ -64,7 +67,7 @@ package UnitsAndScales {
 	/**
 	 * Representation of a UnitConversion that is defined according to some convention.
 	 */
-	block ConversionByConvention :> UnitConversion { }
+	block ConversionByConvention :> UnitConversion;
 	
 	/**
 	 * Representation of a UnitConversion that is defined through reference to a named unit prefix associated to a conversion factor 
@@ -117,8 +120,8 @@ package UnitsAndScales {
 	 * Representation of a ratio measurement scale with a periodic cycle.
 	 * 
 	 * Note: The magnitude of the periodic cycle is defined by the modulus of the scale.
-	 * Example: Planar angle with modulus 360 degree, therefore on such a cyclic ration scale 
-	 * an angle of 450 degree is equivalent to an angle of 90 degree, and -60 degree is equivalent to 300 degree.
+	 * Example: Planar angle with modulus 360 degrees, therefore on such a cyclic ratio scale, 
+	 * an angle of 450 degrees is equivalent to an angle of 90 degrees, and -60 degrees is equivalent to 300 degrees.
 	 */
 	block CyclicRatioScale :> NonRatioScale { 
 		value modulus: ScalarValues::Number;
@@ -129,7 +132,7 @@ package UnitsAndScales {
 	 * 
 	 * The magnitude v of a ratio quantity value expressed on a logarithmic scale 
 	 * for a magnitude x of a quantity value expressed on a ratio scale is computed as follows:
-	 *   v = f · log_base( (x / x_ref )^a )
+	 *   v = f * log_base( (x / x_ref )^a )
      * where:
 	 *   f is a multiplication factor,
      *   log_base is the log function for the given logarithm base,
@@ -172,7 +175,7 @@ package UnitsAndScales {
 	}
 	
 	/**
-	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units
+	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
 	 */
 	value type QuantityDimension {
 		// Should be ordered or the order should be derived from an ordered set of base units

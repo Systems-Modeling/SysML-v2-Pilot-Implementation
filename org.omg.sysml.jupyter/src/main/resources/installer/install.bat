@@ -27,7 +27,6 @@ if errorlevel 1 (
 )
 
 echo --- Step 5: Installing SysML v2 Jupyter kernel ---
-echo %*
 call jupyter kernelspec remove sysml -f
 call python3 %~dp0\install.py --sys-prefix %* || goto:error
 
@@ -39,7 +38,7 @@ echo(
 echo(
 echo(
 echo(
-call jupyter notebook
+call jupyter notebook || goto:error
 goto :EOF
 
 :error

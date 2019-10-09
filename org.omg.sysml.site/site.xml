@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.omg.sysml.feature_0.1.0.201910091723.jar" id="org.omg.sysml.feature" version="0.1.0.201910091723">
+      <category name="KerML and SysML Editors"/>
+   </feature>
+   <category-def name="KerML and SysML Editors" label="KerML and SysML Editors">
+      <description>
+         Xtext editors for the KerML and SysML textual notations.
+      </description>
+   </category-def>
+</site>

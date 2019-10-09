@@ -45,9 +45,9 @@ import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 public class ApiElementProcessingFacade implements ElementProcessingFacade {
 
 	/**
-	 * The base path to be used to access the REST end point.
+	 * The default base path for accessing the REST end point.
 	 */
-	public final String BASE_PATH = "http://sysml2.intercax.com:9000";
+	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
 	
 	private final ApiClient apiClient = new ApiClient();
 	private final ElementApi elementApi = new ElementApi(apiClient);
@@ -62,13 +62,25 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * is created in the repository, and subsequently processed Elements are added to that model.
 	 * 
 	 * @param 	modelName			the name of the model for which Elements are being saved
+	 * @param	basePath			the base path to be used to access the REST end point.
 	 * @throws 	ApiException
 	 */
-	public ApiElementProcessingFacade(String modelName) throws ApiException {
-		this.apiClient.setBasePath(BASE_PATH);
+	public ApiElementProcessingFacade(String modelName, String basePath) throws ApiException {
+		this.apiClient.setBasePath(basePath);
 		org.omg.sysml.model.Model model = new org.omg.sysml.model.Model();
 		model.setName(modelName);
 		this.parentModel = modelApi.createModel(model);
+	}
+	
+	/**
+	 * Create a facade for processing the Elements of a model with the given name using the default base path.
+	 * 
+	 * @param 	modelName			the name of the model for which Elements are being saved
+	 * @param	basePath			the base path to be used to access the REST end point.
+	 * @throws 	ApiException
+	 */
+	public ApiElementProcessingFacade(String modelName) throws ApiException {
+		this(modelName, DEFAULT_BASE_PATH);
 	}
 	
 	/**

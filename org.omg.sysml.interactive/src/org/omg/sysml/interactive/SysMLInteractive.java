@@ -66,6 +66,10 @@ public class SysMLInteractive extends AlfUtil {
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
+	protected static SysMLInteractive instance = null;
+	
+	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
+	
 	protected static Injector injector;
 	
 	protected int counter = 1;
@@ -99,6 +103,10 @@ public class SysMLInteractive extends AlfUtil {
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
+	}
+	
+	public void setApiBasePath(String apiBasePath) {
+		this.apiBasePath = apiBasePath;
 	}
 	
 	public int next() {
@@ -206,8 +214,8 @@ public class SysMLInteractive extends AlfUtil {
 		}
 	}
 	
-	protected static ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName);	
+	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
 		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
 		Traversal traversal = new TraversalImpl(visitorFactory);
 		visitorFactory.setTraversal(traversal);	
@@ -223,7 +231,7 @@ public class SysMLInteractive extends AlfUtil {
 				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = getProcessingFacade(modelName);
+				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
 				return modelName + " (" + processingFacade.getModelId() + ")\n";
 			}
@@ -279,11 +287,18 @@ public class SysMLInteractive extends AlfUtil {
         }
     }
 	
-	public static SysMLInteractive getInstance() {
+	public static SysMLInteractive createInstance() {
 		if (injector == null) {
 			injector = new AlfStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
 		return injector.getInstance(SysMLInteractive.class);
+	}
+	
+	public static SysMLInteractive getInstance() {
+		if (instance == null) {
+			instance = createInstance();
+		}
+		return instance;
 	}
 	
 	public static void main(String[] args) {
@@ -291,6 +306,9 @@ public class SysMLInteractive extends AlfUtil {
 		SysMLInteractive instance = getInstance();
 		if (args.length > 0) {
 			instance.loadLibrary(args[0]);
+			if (args.length > 1) {
+				instance.setApiBasePath(args[1]);
+			}
 		}
 		instance.run();	
 	}

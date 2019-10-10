@@ -22,5 +22,4 @@ python3 install.py --sys-prefix "$@"
 echo "--- Step 6: Running Jupyter environment ---"
 echo "NOTE: To launch Jupyter you can now run \"jupyter notebook\" from Terminal."
 echo "Re-running this script will re-install the environment and launch Jupyter."
-printf "\n\n\n\n\n"
-jupyter notebook
+printf "\n\n"

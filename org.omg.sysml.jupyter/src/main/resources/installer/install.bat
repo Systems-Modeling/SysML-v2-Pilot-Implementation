@@ -14,7 +14,7 @@ if errorlevel 1 (
     echo Java is not installed. Please install Java and re-run.
     goto :error
 )
-call java --version || goto :error
+call java -version || goto :error
 
 echo --- Step 3: Installing Python and Jupyter into Conda environment ---
 call conda install python=3.* jupyter=1.0.* -y || goto:error
@@ -31,14 +31,10 @@ call jupyter kernelspec remove sysml -f
 call python3 %~dp0\install.py --sys-prefix %* || goto:error
 
 echo --- Step 6: Running Jupyter environment ---
-echo NOTE: To launch Jupyter you can now run ^"jupyter notebook^" from Terminal.
+echo NOTE: To launch Jupyter you can now run ^"jupyter notebook^" from Command Prompt.
 echo Re-running this script will re-install the environment and launch Jupyter.
 echo(
 echo(
-echo(
-echo(
-echo(
-call jupyter notebook || goto:error
 goto :EOF
 
 :error

@@ -9,19 +9,35 @@
 
 ## Linux
 
-3. Run the included `install.sh` script. See [How to run .sh in Linux](https://www.computerhope.com/issues/ch001648.htm).
+1. Run the included `install.sh` script. See [How to run .sh in Linux](https://www.computerhope.com/issues/ch001648.htm).
     * Open a Terminal window (Ctrl+Alt+T).
-    * Run `chmod +x /path/to/install.sh`.
-    * Run `/path/to/install.sh`.
+    * Run `cd <install-directory>`, replacing *<install-directory>* with the complete path to the installation directory.
+    * Run `chmod +x ./install.sh`.
+    * Run `./install.sh`.
+2. Start Jupyter Notebook
+    * Run `cd <notebook-directory>`, replacing *<notebook-directory>* with the complete path to the root directory for your notebooks.
+    * Run `jupyter notebook`.
+    * Jupyter Notebook will start in a browser window.
 
 ## macOS
 
-3. Run the included `install.sh` script. See [Make a file executable in Terminal on Mac](https://support.apple.com/guide/terminal/make-a-file-executable-apdd100908f-06b3-4e63-8a87-32e71241bab4/mac).
+1. Run the included `install.sh` script. 
     * Open a Terminal window. See [How to Open a Terminal Window in Mac](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac).
-    * Run `chmod +x /path/to/install.sh`.
-    * Run `/path/to/install.sh`.
+    * Run `cd <install-directory>`, replacing *<install-directory>* with the complete path to the installation directory.
+    * Run `chmod +x ./install.sh`. See [Make a file executable in Terminal on Mac](https://support.apple.com/guide/terminal/make-a-file-executable-apdd100908f-06b3-4e63-8a87-32e71241bab4/mac).
+    * Run `./install.sh`.
+2. Start Jupyter Notebook
+    * Run `cd <notebook-directory>`, replacing *<notebook-directory>* with the complete path to the root directory for your notebooks.
+    * Run `jupyter notebook`.
+    * Jupyter Notebook will start in a browser window.
 
-### Windows
-3. Run the included `install.bat` script.
+## Windows
+1. Run the included `install.bat` script.
     * Double click `install.bat` from File Explorer. See [How to run a batch file on Windows 10](https://www.windowscentral.com/how-create-and-run-batch-file-windows-10#run_batch_file_windows10).
     * Alternatively use Run or Command Prompt. See [How to Run a Batch File from the Command Line on Windows](https://www.wikihow.com/Run-a-Batch-File-from-the-Command-Line-on-Windows).
+2. Start Jupyter Notebook
+    * Open Command Prompt.
+    * Run `cd <notebook-directory>`, replacing *<notebook-directory>* with the complete path to the root directory for your notebooks.
+    * Run `jupyter notebook`.
+    * Jupyter Notebook will start in a browser window.
+    

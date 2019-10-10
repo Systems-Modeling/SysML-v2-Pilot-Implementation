@@ -72,10 +72,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	override getSingleElement(QualifiedName name) {
-		return  getSingleLocalElementByName(name)
-		
-	}
-	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
 		var result = getLocalElementsByName(name);
 		var iterator = result.iterator();
 		if (iterator.hasNext())
@@ -101,7 +97,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 		}
 		return null;
 	}
-	
+
 	
 	override getLocalElementsByName(QualifiedName name) {
 		this.visitedqns = newHashSet
@@ -134,12 +130,15 @@ class AlfGlobalScope extends SelectableBasedScope {
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
 			var eobject = idesc.getEObjectOrProxy();
-			if (eobject instanceof Type) {
+			if (eobject instanceof Package) {
 				if (isPublic(eobject)){
 					publicElementsInDefaultGlobalScope.add(idesc)
 					inDefaultGlobalScope.add(idesc.qualifiedName)
 				}
-				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
+				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)	
+				if (eobject.owner !== null){
+					(eobject.owner as Package).resolve(idesc.qualifiedName.skipLast(1), false, false ,newHashSet)
+				}
 			}
 		}
 		var additionalScope = elements.keySet.flatMap[key |
@@ -171,19 +170,21 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		if ( pack.owningMembership.visibility == VisibilityKind.PUBLIC) {
-			pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
-			pack.gen(qn, visited) ||
-			pack.imp(qn, isInsideScope, visited)
+		if ( pack.owningMembership === null ||pack.owningMembership.visibility == VisibilityKind.PUBLIC) {
+				pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
+				pack.gen(qn, visited) ||
+				pack.imp(qn, isInsideScope, visited)
 		}
 	}
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
+	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) 
+	{
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
 				if (!scopeProvider.visited.contains(m)) {
+					System.out.println(m)
 					var String elementName
 					var Element memberElement
 					

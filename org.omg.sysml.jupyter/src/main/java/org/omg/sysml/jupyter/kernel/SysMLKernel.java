@@ -36,6 +36,8 @@ public class SysMLKernel extends BaseKernel {
         }
         libraryPath.ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
 
+        Optional.ofNullable(System.getenv(ISysML.API_BASE_PATH_KEY)).ifPresent(interactive::setApiBasePath);
+
         this.magics = new Magics();
         this.magics.registerMagics(Show.class);
         this.magics.registerMagics(Publish.class);

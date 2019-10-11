@@ -36,6 +36,9 @@ jupyter {
             separator = PATH_SEPARATOR
             description = '''A file path separator delimited list of library path entries that should be available to the user code. **Important:** no matter what OS, this should use forward slash "/" as the file separator.'''
         }
+        string('api-base-path', 'ISYSML_API_BASE_PATH') {
+            description = '''The base path for the API that the model is published to using the %publish magic command.'''
+        }
     }
 }
 

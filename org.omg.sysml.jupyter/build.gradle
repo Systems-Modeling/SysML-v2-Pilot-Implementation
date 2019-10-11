@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'org.omg.sysml.jupyter.kernel'
-version '1.0-SNAPSHOT'
+version '2019-09'
 
 sourceCompatibility = 1.8
 
@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     compile group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
-    compile fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: '../org.omg.sysml.interactive/dist', include: 'sysmli*.jar')
 }
 
 jupyter {
@@ -29,12 +29,15 @@ jupyter {
     kernelLanguage = 'sysml'
     kernelInterruptMode = 'message'
     kernelExecutable = shadowJar.archivePath
-    kernelResources = files('src/main/resources/kernel')
+    kernelResources = files('src/main/resources/kernel/', fileTree('../') { include 'sysml.library/**' })
 
     kernelParameters {
         list('library-path', 'ISYSML_LIBRARY_PATH') {
             separator = PATH_SEPARATOR
             description = '''A file path separator delimited list of library path entries that should be available to the user code. **Important:** no matter what OS, this should use forward slash "/" as the file separator.'''
+        }
+        string('api-base-path', 'ISYSML_API_BASE_PATH') {
+            description = '''The base path for the API that the model is published to using the %publish magic command.'''
         }
     }
 }
@@ -54,4 +57,10 @@ installKernel.dependsOn shadowJar
 
 installKernel {
     kernelInstallPath = commandLineSpecifiedPath(userInstallPath)
+}
+
+zipKernel {
+    from('src/main/resources/installer/') {
+        into '/'
+    }
 }

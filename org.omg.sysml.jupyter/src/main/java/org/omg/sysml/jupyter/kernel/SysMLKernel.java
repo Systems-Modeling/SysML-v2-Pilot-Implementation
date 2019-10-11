@@ -3,9 +3,7 @@ package org.omg.sysml.jupyter.kernel;
 import io.github.spencerpark.jupyter.kernel.BaseKernel;
 import io.github.spencerpark.jupyter.kernel.LanguageInfo;
 import io.github.spencerpark.jupyter.kernel.display.DisplayData;
-import io.github.spencerpark.jupyter.kernel.magic.CellMagicParseContext;
 import io.github.spencerpark.jupyter.kernel.magic.LineMagicParseContext;
-import io.github.spencerpark.jupyter.kernel.magic.MagicParser;
 import io.github.spencerpark.jupyter.kernel.magic.registry.Magics;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
@@ -14,6 +12,9 @@ import org.omg.sysml.jupyter.kernel.magic.Publish;
 import org.omg.sysml.jupyter.kernel.magic.Show;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,14 @@ public class SysMLKernel extends BaseKernel {
 
     public SysMLKernel() {
         this.interactive = SysMLInteractive.getInstance();
-        Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY)).ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
+        Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));
+        // Replace with Optional#or in Java 9+
+        if (!libraryPath.isPresent()) {
+            libraryPath = Arrays.stream(System.getProperty("java.class.path", "").split(File.pathSeparator)).filter(path -> !path.isEmpty()).map(path -> Paths.get(path)).map(path -> !path.toFile().isDirectory() ? path.getParent() : path).map(path -> path.resolve("sysml.library")).filter(Files::exists).map(Path::normalize).map(Path::toString).findFirst();
+        }
+        libraryPath.ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
+
+        Optional.ofNullable(System.getenv(ISysML.API_BASE_PATH_KEY)).ifPresent(interactive::setApiBasePath);
 
         this.magics = new Magics();
         this.magics.registerMagics(Show.class);

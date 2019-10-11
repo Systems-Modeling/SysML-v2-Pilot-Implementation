@@ -7,7 +7,7 @@ conda --version
 
 echo "--- Step 2: Testing Java installation ---"
 command -v java || (echo "Java is not installed. Please install Java and re-run." && return 1)
-java --version
+java -version
 
 echo "--- Step 3: Installing Python and Jupyter into Conda environment ---"
 conda install python=3.* jupyter=1.0.* -y

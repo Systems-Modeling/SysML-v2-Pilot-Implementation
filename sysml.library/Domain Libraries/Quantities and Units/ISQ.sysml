@@ -12,7 +12,7 @@ package ISQ {
 	 * Define the following for each: abstract unit type, quantity value type, quantity value
 	 */
 	 
-	 /*
+	 /**
 	  * length
 	  */
 	block LengthUnit :> SimpleUnit {
@@ -26,7 +26,7 @@ package ISQ {
 	}	
 	value length: LengthValue :> quantity;
 	
-	 /*
+	 /**
 	  * mass
 	  */
 	block MassUnit :> SimpleUnit { 
@@ -40,7 +40,7 @@ package ISQ {
 	}
 	value mass: MassValue :> quantity;
 
-	 /*
+	 /**
 	  * time
 	  */
 	block TimeUnit :> SimpleUnit { 
@@ -54,7 +54,7 @@ package ISQ {
 	}
 	value time: TimeValue :> quantity;
 	
-	 /*
+	 /**
 	  * electric current
 	  */
 	block ElectricCurrentUnit :> SimpleUnit { 
@@ -69,7 +69,7 @@ package ISQ {
 	value electricCurrent: ElectricCurrentValue :> quantity;
 	
 	
-	 /*
+	 /**
 	  * thermodynamic temperature
 	  */
 	block TemperatureUnit :> SimpleUnit {
@@ -83,7 +83,7 @@ package ISQ {
 	}
 	value temperature: TemperatureValue :> quantity;
 	
-	 /*
+	 /**
 	  * amount of substance
 	  */
 	block AmountOfSubstanceUnit :> SimpleUnit { 
@@ -98,7 +98,7 @@ package ISQ {
 	value amountOfSubstance: AmountOfSubstanceValue :> quantity;
 			
 
-	 /*
+	 /**
 	  * luminous intensity
 	  */
 	block LuminousIntensityUnit :> SimpleUnit {
@@ -116,13 +116,12 @@ package ISQ {
 	 * Definition of derived quantities and units
 	 */
 	 
-	/*
+	/**
 	 * Define abstract super block for all derived units in ISO/IEC 80000
 	 * 
 	 * An SI derived unit is always defined in terms of powers of the SI base units.
 	 * As a default all unit power factor exponents are set to zero.
-	 */
-	 
+	 */	 
 	abstract block SIDerivedUnit :> DerivedUnit {
 		value lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
 			ref unit: LengthUnit redefines UnitPowerFactor::unit;
@@ -154,14 +153,14 @@ package ISQ {
 		}
 	}	 
 	 
-	/*
+	/**
 	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit"
 	 */
 	block UnitOfDimensionOne :> DerivedUnit {
 		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
 	}
 	
-	/*
+	/**
 	 * force
 	 */	
 	block ForceUnit :> SIDerivedUnit {
@@ -181,7 +180,7 @@ package ISQ {
 	}
 	value force: ForceValue :> quantity;
 	
-	/*
+	/**
 	 * speed
 	 */
 	block SpeedUnit :> SIDerivedUnit {
@@ -198,7 +197,7 @@ package ISQ {
 	}
 	value speed: SpeedValue :> quantity;
 	
-	/*
+	/**
 	 * torque
 	 */
 	block TorqueUnit :> SIDerivedUnit {
@@ -218,7 +217,7 @@ package ISQ {
 	}
 	value torque: TorqueValue :> quantity;
 	
-	/*
+	/**
 	 * energy
 	 */
 	block EnergyUnit :> SIDerivedUnit {
@@ -241,6 +240,7 @@ package ISQ {
 	/*
 	 * Qualified specializations of basic features, i.e. features adding more specific semantics
 	 */
+	 
 	value kineticEnergy :> energy;
 	value potentialEnergy :> energy;
 }

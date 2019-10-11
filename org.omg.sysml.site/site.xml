@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="SysML v2 Pilot Implementation Update Site">
+      This site contains feature and plugin versions for the Eclipse-based pilot implementation of SysML v2, as developed by the SysML v2 Submission Team.
+   </description>
+   <feature url="features/org.omg.sysml.feature_0.1.0.201910101715.jar" id="org.omg.sysml.feature" version="0.1.0.201910101715">
+      <category name="KerML and SysML Editors"/>
+   </feature>
+   <category-def name="KerML and SysML Editors" label="KerML and SysML Editors">
+      <description>
+         Xtext editors for the KerML and SysML textual notations.
+      </description>
+   </category-def>
+</site>

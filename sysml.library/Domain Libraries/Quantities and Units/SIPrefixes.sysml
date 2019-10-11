@@ -1,3 +1,6 @@
+/**
+ * Definition of SI unit prefixes as specified in ISO/IEC 80000-1
+ */
 package SIPrefixes {
 	import UnitsAndScales::*;
 

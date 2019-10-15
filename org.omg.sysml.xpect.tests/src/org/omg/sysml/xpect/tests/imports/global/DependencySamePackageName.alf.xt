@@ -25,6 +25,7 @@ package test{
 	/* XPECT scope at SamePackage::container ---
 		test, 
 	    container, container.A, test.container, test.container.A,
+	    SamePackage, SamePackage, 
 	    SamePackage.container, SamePackage.container, SamePackage.container.A,	SamePackage.container.B, 
 	--- */
 	import SamePackage::container;

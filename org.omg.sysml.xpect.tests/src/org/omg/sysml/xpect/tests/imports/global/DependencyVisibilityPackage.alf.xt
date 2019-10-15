@@ -21,7 +21,8 @@ END_SETUP
 package Test3{
 	/* XPECT scope at VisibilityPackage::c_Public ---
 	    c_Public, c_Public.c_public,
-	    Test3, Test3.c_Public, Test3.c_Public.c_public, 
+	    Test3, Test3.c_Public, Test3.c_Public.c_public,
+	    VisibilityPackage, 
 	    VisibilityPackage.c_Public,
 	    VisibilityPackage.c_Public.c_public, 
 	    VisibilityPackage.c_Public_alias,

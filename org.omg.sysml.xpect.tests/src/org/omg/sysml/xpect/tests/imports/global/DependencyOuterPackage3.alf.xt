@@ -28,9 +28,10 @@ package test{
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
        	C, C.b, C.b.a1, C.c, test.C, test.C.b, test.C.b.a1, test.C.c,
        	D, D.f, D.f.a1, D.b, D.b.a1, D.c, test.D, test.D.f, test.D.f.a1, test.D.b, test.D.b.a1, test.D.c,
-		OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
-		OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
-		OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
+	   	OuterPackage, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
+	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
 	import OuterPackage::A;
 	
@@ -40,9 +41,10 @@ package test{
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
        	C, C.b, C.b.a1, C.c, test.C, test.C.b, test.C.b.a1, test.C.c,
        	D, D.f, D.f.a1, D.b, D.b.a1, D.c, test.D, test.D.f, test.D.f.a1, test.D.b, test.D.b.a1, test.D.c,
-		OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
-		OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
-		OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
+	   	OuterPackage, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
+	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+				OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
 	import OuterPackage::B;
 	/* XPECT scope at OuterPackage2::C ---
@@ -51,9 +53,10 @@ package test{
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
        	C, C.b, C.b.a1, C.c, test.C, test.C.b, test.C.b.a1, test.C.c,
        	D, D.f, D.f.a1, D.b, D.b.a1, D.c, test.D, test.D.f, test.D.f.a1, test.D.b, test.D.b.a1, test.D.c,
-	   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
-	   	OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
+		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
 	import OuterPackage2::C;
 	/* XPECT scope at OuterPackage3::D ---
@@ -62,10 +65,11 @@ package test{
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
        	C, C.b, C.b.a1, C.c, test.C, test.C.b, test.C.b.a1, test.C.c,
        	D, D.f, D.f.a1, D.b, D.b.a1, D.c, test.D, test.D.f, test.D.f.a1, test.D.b, test.D.b.a1, test.D.c,  
-	   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
-	   	OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c 
-	--- */
+		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c	
+		--- */
 	import OuterPackage3::D;
 	
 }

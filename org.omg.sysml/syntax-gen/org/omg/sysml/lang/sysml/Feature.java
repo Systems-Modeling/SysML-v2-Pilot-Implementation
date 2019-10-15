@@ -10,6 +10,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>Features define sets containing multiple objects of interest, such as cars with wheels, people with other people, and cars and values representing car length. Naming these set descriptors provides context about the relationships and attributes they describe in the real world. They are expressed semantically as sets of sequences of objects of length greater than 1.</p>
+ * 
  * ownedRedefinition = ownedSubsetting->intersection(redefining)
  * referencedType = type - ownedElement
  * ownedSubsetting = ownedGeneralization->intersection(subsetting)

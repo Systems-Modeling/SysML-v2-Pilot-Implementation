@@ -8,6 +8,13 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Superclassing</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Superclassing is a Generalization that is specific to the classifier case:</p>
+ * 
+ * <p><span><span>A classifier A is a generalization of a classifier B if (as usual) any instance of A is also an instance of B.</span></span></p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

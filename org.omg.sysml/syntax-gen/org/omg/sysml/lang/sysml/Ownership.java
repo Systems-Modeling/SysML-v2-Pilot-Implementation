@@ -8,6 +8,11 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Ownership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Ownership provides an organizational hint to the model to support the development of tree views of the model and nested serializations.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

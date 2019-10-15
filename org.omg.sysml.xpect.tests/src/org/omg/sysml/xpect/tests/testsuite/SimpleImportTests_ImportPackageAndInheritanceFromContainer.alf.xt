@@ -22,13 +22,9 @@ package test{
 		//XPECT linkedName at A --> test.A
 		/*XPECT scope at A ---
 		   test.A.A, test.A.A.a, test.A.A.a.a,
-		  
 		   a, a.A, a.A.a, a.a,
  		   A, A.a,  A.a.a, test.A, test.A.a, test.A.a.a, 
- 		   
  		   test.A.a.A, test.A.a.A.a,
- 		    
- 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 		   --- */
 		class a specializes A;
 	}

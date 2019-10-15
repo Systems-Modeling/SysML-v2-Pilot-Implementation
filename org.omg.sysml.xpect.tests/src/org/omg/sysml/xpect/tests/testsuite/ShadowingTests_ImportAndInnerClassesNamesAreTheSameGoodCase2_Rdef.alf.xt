@@ -28,7 +28,6 @@ package test{
 		    A, A.a2, B, B.a2, B.b, 
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b,
 		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A, OuterPackage.B.b, OuterPackage.B.b.a1,
-		    Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
 		--- */
 	feature B redefines A {
 		//XPECT linkedName at a2 --> test.A.a2
@@ -37,7 +36,6 @@ package test{
 		    A, A.a2, B, B.a2, B.b,
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b, 
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
-		    Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
 		--- */
 		feature b redefines a2 {}
 	}

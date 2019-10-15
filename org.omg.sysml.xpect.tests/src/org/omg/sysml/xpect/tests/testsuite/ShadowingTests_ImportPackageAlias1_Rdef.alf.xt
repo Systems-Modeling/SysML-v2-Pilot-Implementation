@@ -31,7 +31,6 @@ package test{
  		   test_alias, test_alias.a,
  		   test.test_alias, test.test_alias.a,  
  		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias, PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
- 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
 		   --- */
 	feature test_a redefines A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
 	
@@ -45,7 +44,6 @@ package test{
  		   test_alias, test_alias.a,
  		   test.test_alias, test.test_alias.a,  
  		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias, PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
- 		   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values
  		   --- */
 	feature test_alias redefines A_alias{}
 }

@@ -34,7 +34,6 @@ package test{
  		AA, AA.aa, b, b.aa, c2, c2.aa, c3, c3.aa,
  		test.A, test.A.AA, test.A.AA.aa, test.B, test.B.AA, test.B.AA.aa, test.B.b, test.B.b.aa, test.C, test.C.AA, test.C.AA.aa,
 		test.C.b, test.C.b.aa, test.C.c2, test.C.c2.aa,  test.C.c3, test.C.c3.aa, test.D, test.D.aa, test.D.d,
- 		Base.Anything, Base.BehaviorOccurrence,		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 		--- */
 		//XPECT linkedName at AA --> test.A.AA
 		class c2 specializes AA {}
@@ -44,7 +43,6 @@ package test{
  		AA, AA.aa, b, b.aa, c2, c2.aa, c3, c3.aa,
  		test.A, test.A.AA, test.A.AA.aa, test.B, test.B.AA, test.B.AA.aa, test.B.b, test.B.b.aa, test.C, test.C.AA, test.C.AA.aa,
 		test.C.b, test.C.b.aa, test.C.c2, test.C.c2.aa,  test.C.c3, test.C.c3.aa, test.D, test.D.aa, test.D.d,
-		Base.Anything, Base.BehaviorOccurrence,		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 		--- */
 		class c3 specializes b {}
 	}

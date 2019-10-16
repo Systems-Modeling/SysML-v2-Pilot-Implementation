@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.EClass
 import com.google.common.base.Predicate
 import com.google.common.collect.Iterables
 
+
 class AlfGlobalScope extends SelectableBasedScope {
 
 	protected EClass referencteType	
@@ -53,7 +54,8 @@ class AlfGlobalScope extends SelectableBasedScope {
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
 	boolean isShadowing = false;
-	protected Map<QualifiedName, IEObjectDescription> inDefaultGlobalScope;
+	//protected Map<QualifiedName, IEObjectDescription> inDefaultGlobalScope;
+	protected Set<QualifiedName> inDefaultGlobalScope;
 	
 	
 	static def createScope (IScope outer, ISelectable selectable, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase, AlfGlobalScopeProvider scopeProvider) {
@@ -67,32 +69,32 @@ class AlfGlobalScope extends SelectableBasedScope {
 		super(parent, selectable, filter, type, ignoreCase)
 		referencteType = type;
 		this.scopeProvider = scopeProvider;
+		this.elements = newHashMap
 	}
 
 	override getSingleElement(QualifiedName name) {
-		return  getSingleLocalElementByName(name)
-		
-	}
-	override IEObjectDescription getSingleLocalElementByName(QualifiedName name) {
-		System.out.println("getSingleLocalElementByName: " + name);
-		var result = getLocalElementsByName(name);
-		var iterator = result.iterator();
-		if (iterator.hasNext())
-			return iterator.next()
+		this.targetqn = name;
+		this.visitedqns = newHashSet
+		this.elements = newHashMap		
+		//try get elements using the default global scoping 
+		var result_default = super.getLocalElementsByName(name)
+		if (!result_default.isEmpty) 
+			return result_default.get(0)
 		else
-		{  //try to find parent then find from inherited ones
+		{  
+			//try to find the parent then find from the parent's inherited elements
 			if( name.segmentCount > 1){
-				var pname = name.skipLast(1)
+				var pname = name.skipLast(1) //find the parent's qualified name
 				var e_parent = super.getSingleElement(pname);
 				if ( e_parent === null)
 				 	return null;
 				var o_parent = e_parent.getEObjectOrProxy();
-				if (o_parent instanceof Type) {
+				if (o_parent instanceof Package) {
 					targetqn = name
 					findFirst = true
 					(o_parent as Package).resolve(e_parent.qualifiedName, false, false ,newHashSet)					
-					result = elements.keySet.flatMap[key |
-						elements.get(key).map[qn | System.out.println(qn); EObjectDescription.create(qn, key)]
+					var result = elements.keySet.flatMap[key |
+						elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 					]
 					if (!result.isEmpty) return result.get(0)
 				}
@@ -100,51 +102,51 @@ class AlfGlobalScope extends SelectableBasedScope {
 		}
 		return null;
 	}
-	
-	
-	override getLocalElementsByName(QualifiedName name) {
-		System.out.println("getLocalElementsByName: " + name);
-		this.visitedqns = newHashSet
-		this.elements = newHashMap	
-		return super.getLocalElementsByName(name)
-	}
-	
+
 	override getAllLocalElements() {
-		System.out.println("getAllLocalElements");
 		this.visitedqns = newHashSet
-		this.elements = newHashMap	
-		this.inDefaultGlobalScope = newHashMap
+		this.elements = newHashMap
 		var defaultGlobalScope = super.getAllLocalElements()
-		var iterator = defaultGlobalScope.iterator();
-		while (iterator.hasNext()){
-			var idesc = iterator.next()
-			//is there anyway to check non-Base one?
-			if (!idesc.qualifiedName.startsWith(QualifiedName.create("Base"))){
-				inDefaultGlobalScope.put(idesc.qualifiedName, idesc)
-			}
-		}
-		var publicElements = newArrayList
-		iterator = inDefaultGlobalScope.values().iterator();
+	
+		//option1: filter out "Base"
+		var defaultGlobalScopeWithoutBase = defaultGlobalScope.filter[idec| !idec.qualifiedName.startsWith(QualifiedName.create("Base"))]
+		//create HashSet so elements created by default global will not be added in this scope.
+		this.inDefaultGlobalScope = newHashSet
+		//defaultGlobalScopeWithoutBase.forEach[idec| inDefaultGlobalScope.add(idec.qualifiedName)]
+		var iterator = defaultGlobalScopeWithoutBase.iterator();
+		//Map<QualifiedName, List<IEObjectDescription> xx = 
+			//StreamSupport.stream(defaultGlobalScopeWithoutBase.spliterator(), false)
+			//.collect(Collectors.groupingBy[idec| idec.qualifiedName]) 
+		
+
+		//option2: include "Base" in the global Scope.		
+		//this.inDefaultGlobalScope = defaultGlobalScope.map[idec| idec.qualifiedName].filter[str| !str.startsWith(QualifiedName.create("Base"))].toSet()
+		//var iterator = defaultGlobalScope.iterator();
+
+		var publicElementsInDefaultGlobalScope = newHashSet
+		//iterator = inDefaultGlobalScope.values().iterator();
 		while (iterator.hasNext()){
 			var idesc = iterator.next()
 			var eobject = idesc.getEObjectOrProxy();
-			if (eobject instanceof Type) {
-				if (isPublic(eobject))
-					publicElements.add(idesc)
-				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)					
+			if (eobject instanceof Package) {
+				if (isPublic(eobject)){
+					publicElementsInDefaultGlobalScope.add(idesc)
+					inDefaultGlobalScope.add(idesc.qualifiedName)
+				}
+				(eobject as Package).resolve(idesc.qualifiedName, false, false ,newHashSet)	
+				if (eobject.owner !== null){
+					(eobject.owner as Package).resolve(idesc.qualifiedName.skipLast(1), false, false ,newHashSet)
+				}
 			}
 		}
 		var additionalScope = elements.keySet.flatMap[key |
-									elements.get(key).map[qn | EObjectDescription.create(qn, key)]
+									elements.get(key)
+									.filter[qn |!inDefaultGlobalScope.contains(qn)]
+									.map[qn | EObjectDescription.create(qn, key)]
 								]
-								System.out.println(additionalScope)
-								System.out.println(defaultGlobalScope)
-		var result = Iterables.concat(publicElements, additionalScope)
-		return result
-		
+		return Iterables.concat(publicElementsInDefaultGlobalScope, additionalScope)
 	}
 	private def boolean isPublic(Element element) {
-		System.out.println(element.owner) 
 		if (element.owningMembership !== null && element.owningMembership.visibility !==  VisibilityKind.PUBLIC)
 			return false
 		else if (element.owner !== null)
@@ -156,24 +158,24 @@ class AlfGlobalScope extends SelectableBasedScope {
 		if (referencteType.isInstance(el)) {
 			var qns = elements.get(el)
 			if (qns === null) {
-				if (inDefaultGlobalScope === null || !inDefaultGlobalScope.keySet.contains(qn))
+				//if (!inDefaultGlobalScope.contains(qn))
 					elements.put(el, newHashSet(qn))
 			} else {
-				if (inDefaultGlobalScope === null || !inDefaultGlobalScope.keySet.contains(qn))
+				//if (!inDefaultGlobalScope.contains(qn))
 					qns.add(qn)
 			}					
 		}
 	}
 	
 	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		if (pack.owningMembership.visibility == VisibilityKind.PUBLIC) {
-			pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
-			pack.gen(qn, visited) ||
-			pack.imp(qn, isInsideScope, visited)
-		}
+		if ( pack.owningMembership === null ||pack.owningMembership.visibility == VisibilityKind.PUBLIC) {
+				pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
+				pack.gen(qn, visited) ||
+				pack.imp(qn, isInsideScope, visited)
+		} else return false;
 	}
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
-		System.out.println( "owned: " + qn);
+	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) 
+	{
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
@@ -202,7 +204,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 							if (!checkIfAdded || !visitedqns.contains(elementqn)) {
 								visitedqns.add(elementqn)
 								if (targetqn === null || targetqn == elementqn) {
-									System.out.println("addname: " + elementqn)
 									elements.addName(elementqn, memberElement)
 									if (findFirst && targetqn == elementqn) {
 										return true
@@ -237,7 +238,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 	}
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
-		System.out.println("GEN")
 		if (pack instanceof Type) {
 			for (e: pack.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
@@ -261,7 +261,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 		return false
 	}
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
-		System.out.println("GEN")
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				var found = false;

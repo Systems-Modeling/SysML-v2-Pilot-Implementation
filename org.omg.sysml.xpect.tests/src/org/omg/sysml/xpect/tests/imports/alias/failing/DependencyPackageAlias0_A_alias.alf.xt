@@ -44,8 +44,9 @@ package PackageAlias1{
 }
 */
 /*
-   having 
+Note:
+having 
     A, A.a, A.a_alias,  test.A, test.A.a, test.A.a_alias,
-	but missing
+instead of
    	A_alias, A_alias.a, A_alias.a_alias,  test.A_alias, test.A_alias.a, test.A_alias.a_alias,   
  */

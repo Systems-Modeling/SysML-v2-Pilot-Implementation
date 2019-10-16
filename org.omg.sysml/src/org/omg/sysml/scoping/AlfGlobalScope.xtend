@@ -181,7 +181,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 			}
 			for (m: pack.ownedMembership) {
 				if (!scopeProvider.visited.contains(m)) {
-					System.out.println(m)
 					var String elementName
 					var Element memberElement
 					

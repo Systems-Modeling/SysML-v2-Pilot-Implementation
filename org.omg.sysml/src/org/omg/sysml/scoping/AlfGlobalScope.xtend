@@ -69,7 +69,6 @@ class AlfGlobalScope extends SelectableBasedScope {
 		super(parent, selectable, filter, type, ignoreCase)
 		referencteType = type;
 		this.scopeProvider = scopeProvider;
-		this.elements = newHashMap
 	}
 
 	override getSingleElement(QualifiedName name) {
@@ -182,6 +181,7 @@ class AlfGlobalScope extends SelectableBasedScope {
 			}
 			for (m: pack.ownedMembership) {
 				if (!scopeProvider.visited.contains(m)) {
+					System.out.println(m)
 					var String elementName
 					var Element memberElement
 					

@@ -32,18 +32,19 @@ package Test3{
 			VisibilityPackage.c_Public_alias, 
 			VisibilityPackage.c_Public_alias.c_public,
 			VisibilityPackage.c_clazz, 
-			VisibilityPackage.c_clazz.c_Package, 
-			VisibilityPackage.c_clazz.c_Package.c_publicc, 
 			VisibilityPackage.c_clazz.c_Public,
-			VisibilityPackage.c_clazz.c_Public.c_packagee, 
+			
 			 
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values, 
+		    
 	--- */
 	feature f : c_public;
 }
 /*
    for DependencyVisibilityPackage.alf
    Current globalscope implementation includes the below in the globalscope, but they should not be.
+			VisibilityPackage.c_clazz.c_Package, 
+			VisibilityPackage.c_clazz.c_Package.c_publicc, 
+			VisibilityPackage.c_clazz.c_Public.c_packagee, 
    			VisibilityPackage.c_Private_alias.alias_public,
    			VisibilityPackage.c_Private, 
 			VisibilityPackage.c_Private.c_private, 
@@ -54,5 +55,5 @@ package Test3{
 			VisibilityPackage.c_clazz.c_Protect,
 			VisibilityPackage.c_clazz.c_Protect.c_publicc, 
 			VisibilityPackage.c_clazz.c_Public.c_protect,
-			
+			Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values,
  */

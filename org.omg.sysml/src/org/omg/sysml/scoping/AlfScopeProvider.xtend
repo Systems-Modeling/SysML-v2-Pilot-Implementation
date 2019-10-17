@@ -34,7 +34,6 @@ import java.util.Set
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureTyping
@@ -104,7 +103,7 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		}
 		return
 			if (context instanceof Package) 
-				context.alfScope(context, reference)
+				context.alfScope(reference)
 			else 
 				super.getScope(context, reference)		
 	}
@@ -121,10 +120,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.alfScope(element, reference)
+			namespace.alfScope(reference)
 	}
 	
-	def IScope alfScope(Package pack, Element element, EReference reference) {
+	def IScope alfScope(Package pack, EReference reference) {
 		val parent = pack.parentPackage
 		val outerscope = 
 			if (parent === null) { // Root Package
@@ -132,14 +131,14 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 				 if (pack.name !== null) 
 				 	// The root scope includes qualified names whose first segment is the name
 				 	// of the root package.
-				 	new AlfRootScope(global, pack, reference, this)
+				 	new AlfRootScope(global, pack, reference.EReferenceType, this)
 				 else 
 				 	global
 			} else {
-				parent.alfScope(element, reference)
+				parent.alfScope(reference)
 			}		
 
-		new AlfScope(outerscope, pack, reference, this)
+		new AlfScope(outerscope, pack, reference.EReferenceType, this)
 	}
 	
 }

@@ -18,10 +18,10 @@ END_SETUP
 */
 
 package Classes {
-	// XPECT errors ---> "Referenced element is not visible in this scope" at "VisibilityPackage::c_Public::c_private"
+	// XPECT errors ---> "Couldn't resolve reference to Element 'VisibilityPackage::c_Public::c_private'." at "VisibilityPackage::c_Public::c_private"
 	import VisibilityPackage::c_Public::c_private as aliass;
 	class Try{
-		// XPECT errors ---> "Referenced type is not visible in this scope" at "aliass"
+		// XPECT errors ---> "Couldn't resolve reference to Type 'aliass'." at "aliass"
 		feature feature1 : aliass;
 	}
 }

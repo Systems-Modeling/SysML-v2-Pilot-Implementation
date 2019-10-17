@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package Test3{
-	// XPECT errors ---> "Imported package is not visible from this context" at "VisibilityPackage::c_Private"
+	// XPECT errors ---> "Couldn't resolve reference to Package 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
 	import VisibilityPackage::c_Private::*;
 }
 

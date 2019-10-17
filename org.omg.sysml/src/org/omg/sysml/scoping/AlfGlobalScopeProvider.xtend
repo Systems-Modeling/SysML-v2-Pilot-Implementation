@@ -1,8 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
- * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,8 +19,6 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Zoltan Kiss, IncQuery
- *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, Georgia Tech
  * 
@@ -32,34 +29,19 @@ import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
 import org.eclipse.emf.ecore.EClass
 import com.google.common.base.Predicate
 import org.eclipse.xtext.resource.IEObjectDescription
-import org.eclipse.xtext.resource.IContainer
 import org.eclipse.xtext.scoping.IScope
-import java.util.Set
-import org.omg.sysml.lang.sysml.Element
+import com.google.inject.Inject
+import org.eclipse.emf.ecore.resource.Resource
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 class AlfGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
-	// Used to record visited Memberships and Imports.
-	Set<Element> visited = newHashSet
+	@Inject
+	AlfScopeProvider alfScopeProvider
+	
+	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
+		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
+		return AlfGlobalScope.createScope(scope, context, filter, type, alfScopeProvider)
+	}
 
-	override IScope createContainerScope(IScope parent, IContainer container, Predicate<IEObjectDescription> filter, EClass type, boolean ignoreCase) {
-		return AlfGlobalScope.createScope(parent, container, filter, type, ignoreCase, this);
-	}
-	
-	def getVisited() {
-		visited
-	}
-	
-	def setVisited(Set<Element> visited) {
-		this.visited = visited
-	}
-	
-	def addVisited(Element element) {
-		visited.add(element)
-	}
-	
-	def removeVisited(Element element) {
-		visited.remove(element)
-	}
-	
 }

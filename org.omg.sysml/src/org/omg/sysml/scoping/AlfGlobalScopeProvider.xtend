@@ -33,6 +33,7 @@ import org.eclipse.xtext.scoping.IScope
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.SysMLPackage
+import com.google.common.base.Predicates
 
 class AlfGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
@@ -41,7 +42,11 @@ class AlfGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
 	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
 		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
-		return AlfGlobalScope.createScope(scope, context, filter, type, alfScopeProvider)
+		return AlfGlobalScope.createScope(scope, context, filter, rootFilter, type, alfScopeProvider)
+	}
+	
+	protected def Predicate<IEObjectDescription> getRootFilter() {
+		Predicates.alwaysTrue
 	}
 
 }

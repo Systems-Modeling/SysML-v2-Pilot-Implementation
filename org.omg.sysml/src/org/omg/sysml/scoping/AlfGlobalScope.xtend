@@ -42,18 +42,20 @@ class AlfGlobalScope extends AbstractScope {
 	protected IScope outer;
 	protected Resource resource
 	protected Predicate<IEObjectDescription> filter;
+	protected Predicate<IEObjectDescription> rootFilter;
 	protected EClass referenceType	
 	protected AlfScopeProvider scopeProvider
 	
-	static def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, EClass type, AlfScopeProvider scopeProvider) {
-		return new AlfGlobalScope(outer, resource, filter, type, scopeProvider);
+	static def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, AlfScopeProvider scopeProvider) {
+		return new AlfGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 
-	new(IScope outer, Resource resource, Predicate<IEObjectDescription> filter, EClass type, AlfScopeProvider scopeProvider) {
+	new(IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, AlfScopeProvider scopeProvider) {
 		super(IScope.NULLSCOPE, false)
 		this.outer = outer
 		this.resource = resource
 		this.filter = filter
+		this.rootFilter = rootFilter
 		this.referenceType = type
 		this.scopeProvider = scopeProvider
 	}
@@ -92,7 +94,9 @@ class AlfGlobalScope extends AbstractScope {
 	}
 
 	override getAllLocalElements() {
-		val rootElements = outer.allElements.filter[!name.firstSegment.equals("Base")];
+		// Note: 'outer' is assumed to be a default global scope filtered to only return elements with qualified names
+		// of a single segment. 'rootFilter' can be used to filter out library models.
+		val rootElements = Iterables.filter(outer.allElements, rootFilter)
 		var Iterable<IEObjectDescription> allElements = rootElements.filter[referenceType.isInstance(EObjectOrProxy)]
 		for (root: rootElements) {
 			val element = root.EObjectOrProxy

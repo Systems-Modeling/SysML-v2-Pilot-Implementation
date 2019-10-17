@@ -44,12 +44,12 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
 
 class AlfScopeProvider extends AbstractAlfScopeProvider {
 
 	@Inject
-	//IGlobalScopeProvider globalScope
-	AlfGlobalScopeProvider globalScope
+	IGlobalScopeProvider globalScope
 
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet

@@ -27,8 +27,7 @@ package test{
 	/* XPECT scope at A ---
 		    A, A.a2, B, B.a2, B.b, 
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b,
-		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A,
-		    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		    Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value		    
+		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A, OuterPackage.B.b.a1,
 		--- */
 	class B specializes A {
 		//XPECT linkedName at a2 --> test.A.a2
@@ -36,8 +35,7 @@ package test{
 		    a2, b, 
 		    A, A.a2, B, B.a2, B.b,
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b, 
-		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,
-		    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,		    Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
 		--- */
 		class b specializes a2 {}
 	}

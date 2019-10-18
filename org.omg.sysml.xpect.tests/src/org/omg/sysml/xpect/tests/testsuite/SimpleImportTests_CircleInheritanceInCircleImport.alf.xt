@@ -21,10 +21,10 @@ package test{
 		import test::B::*;
 		//XPECT linkedName at b --> test.B.b
 		/*XPECT scope at b ---
+		   A.b, B.a, test.A.b, test.B.a,
  		   a, b,
  		   A, A.a, B, B.b, 
  		   test.A, test.A.a, test.B, test.B.b,
- 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 		   --- */
 		class a specializes b{}
 	}
@@ -36,7 +36,6 @@ package test{
  		   a, b,
  		   A, A.a, B, B.b, 
  		   test.A, test.A.a, test.B, test.B.b,
- 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 		   --- */
 		class b specializes a{}
 	}

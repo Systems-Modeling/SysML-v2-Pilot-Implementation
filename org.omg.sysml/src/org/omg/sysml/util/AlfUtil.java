@@ -131,20 +131,21 @@ public abstract class AlfUtil {
 	}
 	
 	/**
-	 * If the given file is an Alf file, then read it. Or, if the file is a directory, then
-	 * recursively read all the Alf files in it, directly or indirectly.
+	 * If the given file is the given extension, then read it. Or, if the file is a directory, then
+	 * recursively read all the appropriate files in it, directly or indirectly.
 	 * 
-	 * @param 	file			the file from which Alf resources are be read
+	 * @param 	file			the file from which the resources are be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @param	extension		the extension the identifies the appropriate files to read
 	 */
-	public void readAll(final File file, boolean isInput) {
+	public void readAll(final File file, boolean isInput, String extension) {
 		if (file.isDirectory()) {
 			for (File nestedFile: file.listFiles()) {
-				this.readAll(nestedFile,  isInput);
+				this.readAll(nestedFile,  isInput, extension);
 			}
 		} else {
 			final String path = file.getPath();
-			if (path.endsWith(ALF_EXTENSION)) {
+			if (path.endsWith(extension)) {
 				Resource resource = this.readResource(file.getPath());
 				if (isInput) {
 					this.addInputResource(resource);
@@ -161,7 +162,11 @@ public abstract class AlfUtil {
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 */
 	public void readAll(final String path, boolean isInput) {
-		this.readAll(new File(path), isInput);
+		this.readAll(path, isInput, ALF_EXTENSION);
+	}
+	
+	public void readAll(final String path, boolean isInput, String extension) {
+		this.readAll(new File(path), isInput, extension);
 	}
 	
 	/**

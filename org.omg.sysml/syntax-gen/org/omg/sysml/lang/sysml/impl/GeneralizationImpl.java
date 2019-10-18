@@ -17,20 +17,17 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Generalization</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Generalization</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific
- * <em>Specific</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningRelatedElement
- * <em>Owning Related Element</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral
- * <em>General</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningType
- * <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,8 +35,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class GeneralizationImpl extends RelationshipImpl implements Generalization {
 	/**
 	 * The cached value of the '{@link #getSpecific() <em>Specific</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSpecific()
 	 * @generated
 	 * @ordered
@@ -48,8 +45,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 
 	/**
 	 * The cached value of the '{@link #getGeneral() <em>General</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getGeneral()
 	 * @generated
 	 * @ordered
@@ -57,8 +54,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	protected Type general;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected GeneralizationImpl() {
@@ -66,8 +63,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -76,27 +73,26 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Type getGeneral() {
 		if (general != null && general.eIsProxy()) {
-			InternalEObject oldGeneral = (InternalEObject) general;
-			general = (Type) eResolveProxy(oldGeneral);
+			InternalEObject oldGeneral = (InternalEObject)general;
+			general = (Type)eResolveProxy(oldGeneral);
 			if (general != oldGeneral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__GENERAL,
-							oldGeneral, general));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__GENERAL, oldGeneral, general));
 			}
 		}
 		return general;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type basicGetGeneral() {
@@ -104,8 +100,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,106 +109,102 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		Type oldGeneral = general;
 		general = newGeneral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__GENERAL, oldGeneral,
-					general));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__GENERAL, oldGeneral, general));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
 		return general != null;
 	}
-
+	
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetOwningRelatedElement((Element) otherEnd, msgs);
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-			return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-			return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class,
-					msgs);
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	public Type getSpecific() {
-		return specific == null ? basicGetSpecific() : getSpecificGen();
+		return specific == null? basicGetSpecific(): getSpecificGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type getSpecificGen() {
 		if (specific != null && specific.eIsProxy()) {
-			InternalEObject oldSpecific = (InternalEObject) specific;
-			specific = (Type) eResolveProxy(oldSpecific);
+			InternalEObject oldSpecific = (InternalEObject)specific;
+			specific = (Type)eResolveProxy(oldSpecific);
 			if (specific != oldSpecific) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__SPECIFIC,
-							oldSpecific, specific));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
 			}
 		}
 		return specific;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> If the Generalization has a Type as its
-	 * owningRelatedElement, then use this as the default value for its specific
-	 * property. <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * <!-- begin-user-doc -->
+	 * If the Generalization has a Type as its owningRelatedElement, then use this as the default value for its specific property.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public Type basicGetSpecific() {
 		if (specific == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
-				specific = (Type) owner;
+				specific = (Type)owner;
 			}
 		}
 		return specific;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -220,94 +212,86 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		Type oldSpecific = specific;
 		specific = newSpecific;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific,
-					specific));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public boolean isSetSpecific() {
 		return basicGetSpecific() != null;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Element getOwningRelatedElement() {
-		if (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT)
-			return null;
-		return (Element) eInternalContainer();
+		if (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newOwningRelatedElement,
-				SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != eInternalContainer()
-				|| (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT
-						&& newOwningRelatedElement != null)) {
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject) newOwningRelatedElement).eInverseAdd(this,
-						SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT,
-					newOwningRelatedElement, newOwningRelatedElement));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Type getOwningType() {
 		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type) eResolveProxy((InternalEObject) owningType)
-				: owningType;
+		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public Type basicGetOwningType() {
 		Element element = this.getOwningRelatedElement();
-		return element instanceof Type ? (Type) element : null;
+		return element instanceof Type? (Type)element: null;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public void setOwningType(Type newOwningType) {
 		if (getSpecific() != newOwningType) {
@@ -317,106 +301,101 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__SPECIFIC:
-			if (resolve)
-				return getSpecific();
-			return basicGetSpecific();
-		case SysMLPackage.GENERALIZATION__GENERAL:
-			if (resolve)
-				return getGeneral();
-			return basicGetGeneral();
-		case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-			if (resolve)
-				return getOwningType();
-			return basicGetOwningType();
+			case SysMLPackage.GENERALIZATION__SPECIFIC:
+				if (resolve) return getSpecific();
+				return basicGetSpecific();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				if (resolve) return getGeneral();
+				return basicGetGeneral();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__SPECIFIC:
-			setSpecific((Type) newValue);
-			return;
-		case SysMLPackage.GENERALIZATION__GENERAL:
-			setGeneral((Type) newValue);
-			return;
-		case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-			setOwningType((Type) newValue);
-			return;
+			case SysMLPackage.GENERALIZATION__SPECIFIC:
+				setSpecific((Type)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				setGeneral((Type)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__SPECIFIC:
-			setSpecific((Type) null);
-			return;
-		case SysMLPackage.GENERALIZATION__GENERAL:
-			setGeneral((Type) null);
-			return;
-		case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-			setOwningType((Type) null);
-			return;
+			case SysMLPackage.GENERALIZATION__SPECIFIC:
+				setSpecific((Type)null);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)null);
+				return;
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				setGeneral((Type)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.GENERALIZATION__SPECIFIC:
-			return isSetSpecific();
-		case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-			return getOwningRelatedElement() != null;
-		case SysMLPackage.GENERALIZATION__TARGET:
-			return isSetTarget();
-		case SysMLPackage.GENERALIZATION__SOURCE:
-			return isSetSource();
-		case SysMLPackage.GENERALIZATION__GENERAL:
-			return isSetGeneral();
-		case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-			return basicGetOwningType() != null;
+			case SysMLPackage.GENERALIZATION__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.GENERALIZATION__TARGET:
+				return isSetTarget();
+			case SysMLPackage.GENERALIZATION__SOURCE:
+				return isSetSource();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				return basicGetOwningType() != null;
+			case SysMLPackage.GENERALIZATION__GENERAL:
+				return isSetGeneral();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived, inherited from Relationship
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this,
-				SysMLPackage.GENERALIZATION__TARGET);
-		// NOTE: The "general" object must not be resolved here, in order to avoid Xtext
-		// lazy linking errors.
+		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__TARGET);
+		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
 		Element general = basicGetGeneral();
 		if (general != null) {
 			target.add(general);
@@ -425,23 +404,22 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetTarget() {
-		return false;
+  		return false;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived, inherited from Relationship
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this,
-				SysMLPackage.GENERALIZATION__SOURCE);
+		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__SOURCE);
 		Element specific = basicGetSpecific();
 		if (specific != null) {
 			source.add(specific);
@@ -450,12 +428,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSource() {
-		return false;
+  		return false;
 	}
 
-} // GeneralizationImpl
+} //GeneralizationImpl

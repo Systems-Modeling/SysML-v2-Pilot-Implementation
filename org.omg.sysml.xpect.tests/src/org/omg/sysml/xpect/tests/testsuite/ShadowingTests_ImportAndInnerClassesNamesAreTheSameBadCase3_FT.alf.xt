@@ -27,12 +27,11 @@ package test{
 		feature B : A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			/* XPECT scope at a1 ---
+			inner.A, inner.A.a1, test.inner.A, test.inner.A.a1,
 		    b, a1, 
 		    A, A.a1, B, B.a1, B.b, inner, inner.B, inner.B.a1, inner.B.b,
 		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
-		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, 
-			Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
-			Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value												
+		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		--- */
 			feature b : a1{}
 		}

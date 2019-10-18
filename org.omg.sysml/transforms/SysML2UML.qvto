@@ -148,7 +148,7 @@ helper SysML::FeatureMembership::mapToFeature(): UML::Feature {
 		} endif;
 	} else {
 		umlFeature := feature.map toProperty();
-		if self.isPart then {
+		if self.isComposite then {
 			umlFeature.oclAsType(UML::Property).aggregation := UML::AggregationKind::composite;
 		} endif;
 	} endif endif;

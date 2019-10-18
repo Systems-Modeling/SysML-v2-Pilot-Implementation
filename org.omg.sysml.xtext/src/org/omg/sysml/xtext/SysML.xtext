@@ -1,0 +1,1265 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2018 IncQuery Labs Ltd.
+ * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz, MDS
+ *  Zoltan Kiss, IncQuery
+ *  Balazs Grill, IncQuery
+ *  Hisashi Miyashita, Maplesoft
+ * 
+ *****************************************************************************/
+
+grammar org.omg.sysml.xtext.SysML hidden (WS, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
+import "http://www.omg.org/spec/SysML/2.0" as SysML
+
+/* UNITS */
+
+Unit returns SysML::Package :
+	  AnonymousPackage
+	| PackageUnit 
+	| BlockUnit
+	| ValueTypeUnit
+	| AssociationBlockUnit
+	| InterfaceDefinitionUnit 
+	| ActivityUnit
+	| PartUnit
+	| ValueUnit
+	| ActionUnit
+;
+
+AnonymousPackage returns SysML::Package :
+	PackageBody
+;
+
+PackageUnit returns SysML::Package: 
+    UnitPrefix PackageDeclaration PackageBody 
+;
+
+BlockUnit returns SysML::Block:
+	UnitPrefix BlockDeclaration DefinitionBody
+;
+
+ValueTypeUnit returns SysML::ValueType :
+	UnitPrefix ValueTypeDeclaration DefinitionBody
+;
+
+AssociationBlockUnit returns SysML::AssociationBlock :
+	UnitPrefix AssociationBlockDeclaration AssociationBlockBody
+;
+
+InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
+	UnitPrefix InterfaceDeclaration InterfaceBody
+;
+
+ActivityUnit returns SysML::Activity :
+	UnitPrefix ActivityDeclaration ActivityBody
+;
+
+PartUnit returns SysML::PartProperty :
+	UnitPrefix PartDeclaration UsageCompletion
+;
+
+ValueUnit returns SysML::ValueProperty :
+	UnitPrefix ValueDeclaration UsageCompletion
+;
+
+ActionUnit returns SysML::ActionUsage :
+	UnitPrefix ActionDeclaration ActivityBody
+;
+
+fragment UnitPrefix returns SysML::Package :
+	( ownedRelationship += PrefixAnnotation )*
+;
+
+/* VISIBILITY */
+
+enum PackageElementVisibilityIndicator returns SysML::VisibilityKind:
+	public = 'public' | private = 'private'
+;
+
+enum VisibilityIndicator returns SysML::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected'
+;
+
+/* COMMENTS */
+
+Comment returns SysML::Comment :
+	( 'comment' ( name = Name )? ownedRelationship += Annotation
+	| ownedRelationship += EmptyAnnotation
+	)
+	body = ML_COMMENT
+;
+
+Annotation returns SysML::Annotation :
+	{SysML::Annotation} ( 'on' annotatedElement = [SysML::Element|QualifiedName] )?
+;
+
+EmptyAnnotation returns SysML::Annotation :
+	{SysML::Annotation}
+;
+
+PrefixAnnotation returns SysML::Annotation :
+	ownedRelatedElement += Documentation
+;
+
+Documentation returns SysML::Comment :
+	('comment' ( name = Name )? )? body = DOCUMENTATION_COMMENT
+;
+
+/* IMPORTS */
+
+Import returns SysML::Import :
+	( ownedRelationship += PrefixAnnotation )*
+	( visibility = PackageElementVisibilityIndicator )?  
+	'import' (
+	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
+	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
+	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
+	) ';'
+;
+
+/* PACKAGES */
+
+Package returns SysML::Package :
+	PackageDeclaration PackageBody
+;
+
+fragment PackageDeclaration returns SysML::Package : 
+	'package' name = Name 
+;
+
+fragment PackageBody returns SysML::Package :
+	'{' ( ownedRelationship += PackageMember | ownedRelationship += Import )* '}'
+;
+
+/* PACKAGE MEMBERSHIPS */
+
+PackageMember returns SysML::Membership : 
+	PackageMemberPrefix	
+	( PackagedDefinitionMember 
+	| PackagedUsageMember
+	)
+;
+
+fragment PackageMemberPrefix returns SysML::Membership :
+	( ownedRelationship += PrefixAnnotation )*
+    ( visibility = PackageElementVisibilityIndicator )?		
+;
+
+fragment PackagedDefinitionMember returns SysML::Membership :
+	( ownedRelatedElement += Package
+	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
+	| ownedRelatedElement += Block
+    | 'block' ( memberName = Name )? 'is' memberElement = [SysML::Block|QualifiedName] ';'
+	| ownedRelatedElement += ValueType
+    | ( 'value' 'type' | 'valuetype' ) ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
+	| ownedRelatedElement += AssociationBlock
+    | ( 'assoc' 'block' | 'assocbock' ) ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
+	| ownedRelatedElement += InterfaceDefinition
+    | ( 'interface' 'def' | 'interfacedef' ) ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
+	| ownedRelatedElement += PortDefinition
+    | ( 'port' 'def' | 'portdef' ) ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
+	| ownedRelatedElement += Activity
+    | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
+	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
+	| ownedRelatedElement += Comment
+	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
+	)
+;
+
+fragment PackagedUsageMember returns SysML::Membership :
+	  'part' ownedRelatedElement += PartProperty
+	| 'abstract' 'part' ownedRelatedElement += AbstractPartProperty
+	| 'part' ( memberName = Name )? 'is' memberElement = [SysML::PartProperty|QualifiedName] ';'
+	| 'value'? ownedRelatedElement += ValueProperty
+	| 'abstract' 'value'? ownedRelatedElement += AbstractValueProperty
+	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
+	| 'action' ownedRelatedElement += ActionUsage
+	| 'abstract' 'action' ownedRelatedElement += AbstractActionUsage
+	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
+;
+
+/* DEFINITIONS */
+
+fragment DefinitionBody returns SysML::Type :
+	';' | '{' ( ownedRelationship += DefinitionMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractDefinitionBody returns SysML::Type :
+	isAbstract ?= ';' | isAbstract ?= '{' ( ownedRelationship += DefinitionMember | ownedRelationship += Import )* '}'
+;
+
+/* DEFINITION MEMBERSHIPS */
+
+DefinitionMember returns SysML::Membership : 
+	NestedDefinitionMember | NestedUsageMember
+;
+
+NestedDefinitionMember returns SysML::Membership : 
+	DefinitionMemberPrefix PackagedDefinitionMember
+;
+
+NestedUsageMember returns SysML::FeatureMembership :
+	PrimaryUsageMember | ActionMember | PortMember | ConjugatedPortMember
+;
+
+PrimaryUsageMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix
+	(
+	  isComposite ?= 'part' ownedRelatedElement += PartProperty
+	| 'abstract' isComposite ?= 'part' ownedRelatedElement += AbstractPartProperty
+	| isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName] ';'
+	| 'ref' ( direction = FeatureDirection )? ownedRelatedElement += ReferenceProperty
+	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedRelatedElement += AbstractReferenceProperty
+	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
+	| 'value'? ( direction = FeatureDirection )? ownedRelatedElement += ValueProperty
+	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractValueProperty
+	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
+	| 'interface' ownedRelatedElement += InterfaceUsage
+	| 'abstract' 'interface' ownedRelatedElement += AbstractInterfaceUsage
+	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
+	| 'link' ownedRelatedElement += ConnectionUsage 
+    | 'abstract' 'link' ownedRelatedElement += AbstractConnectionUsage
+	| 'connect' ownedRelatedElement += Connector 
+    | 'abstract' 'connect' ownedRelatedElement += AbstractConnector
+    | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
+    | 'bind' ownedRelatedElement += BindingConnector
+	| 'succession' ownedRelatedElement += Succession 
+    | 'abstract' 'succession' ownedRelatedElement += AbstractSuccession
+	| 'succession' ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
+	| 'stream' ownedRelatedElement += ItemFlow 
+    | 'abstract' 'stream' ownedRelatedElement += AbstractItemFlow
+	| 'stream' ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
+	| 'flow' ownedRelatedElement += SuccessionItemFlow 
+    | 'abstract' 'flow' ownedRelatedElement += AbstractSuccessionItemFlow
+	| 'flow' ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
+    )
+;
+
+ActionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix
+	( ('ref' 'action' | isComposite ?= 'action' ) ownedRelatedElement += ActionUsage
+	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ownedRelatedElement += AbstractActionUsage
+	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+	| ('perform' | isComposite ?= 'do') ownedRelatedElement += PerformActionUsage
+	)
+;
+
+PortMember returns SysML::PortMembership :
+	DefinitionMemberPrefix
+	( isPort ?= 'port' ownedRelatedElement += PortUsage
+	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
+	)
+;
+
+ConjugatedPortMember returns SysML::ConjugatedPortMembership :
+	DefinitionMemberPrefix
+	( isPort ?= 'port' ownedRelatedElement += ConjugatedPortUsage
+	| 'abstract' isPort ?= 'port' ownedRelatedElement += AbstractConjugatedPortUsage
+	)
+;
+
+enum FeatureDirection returns SysML::FeatureDirectionKind :
+	in = 'in' | out = 'out' | inout = 'inout'
+;
+
+fragment DefinitionMemberPrefix returns SysML::Membership :
+	( ownedRelationship += PrefixAnnotation )*
+    ( visibility = VisibilityIndicator )?
+;
+
+/* CLASSIFIERS */
+
+fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
+	name = Name 
+//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
+	SuperclassingList?
+;
+
+fragment SuperclassingList returns SysML::Classifier :
+	( ':>' | 'specializes' ) ownedRelationship += Superclassing ( ',' ownedRelationship += Superclassing )*
+;
+
+Superclassing returns SysML::Superclassing:
+	superclass = [SysML::Classifier | QualifiedName]
+;
+
+/* BLOCKS */
+
+Block returns SysML::Block :
+	BlockDeclaration DefinitionBody
+;
+
+fragment BlockDeclaration returns SysML::Block :
+	( isAbstract ?= 'abstract' )? 'block' ClassifierDeclarationCompletion
+;
+
+/* VALUE TYPES */
+
+ValueType returns SysML::ValueType :
+	ValueTypeDeclaration DefinitionBody
+;
+
+fragment ValueTypeDeclaration returns SysML::ValueType :
+	( isAbstract ?= 'abstract' )? ( 'value' 'type' | 'valuetype' ) ClassifierDeclarationCompletion
+;
+
+/* PORT DEFINITIONS */
+
+PortDefinition returns SysML::PortDefinition :
+	PortDeclaration DefinitionBody
+;
+
+fragment PortDeclaration returns SysML::PortDefinition :
+	( isAbstract ?= 'abstract' )? ( 'port' 'def' | 'portdef') ClassifierDeclarationCompletion
+;
+
+/* ASSOCIATION BLOCKS */
+
+AssociationBlock returns SysML::AssociationBlock :
+	AssociationBlockDeclaration AssociationBlockBody
+;
+
+fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
+	( isAbstract ?= 'abstract' )? ( 'assoc' 'block' | 'assocblock' ) ClassifierDeclarationCompletion
+;
+
+fragment AssociationBlockBody returns SysML::Type :
+	';'| '{' ( ownedRelationship += AssociationMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractAssociationBlockBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += AssociationMember | ownedRelationship += Import )* '}'
+;
+
+/* ASSOCIATION BLOCK MEMBERSHIPS */
+
+AssociationMember returns SysML::Membership :
+	NestedDefinitionMember | NestedUsageMember | AssociationEndMember
+;
+
+AssociationEndMember returns SysML::EndFeatureMembership :
+	DefinitionMemberPrefix
+    ( 'end' isComposite ?= 'part' ownedRelatedElement += PartProperty 
+    | 'abstract' 'end' isComposite ?= 'part' ownedRelatedElement += AbstractPartProperty
+    | 'end' isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
+    | 'end' 'ref'? ownedRelatedElement += ReferenceProperty
+    | 'abstract' 'end' 'ref'? ownedRelatedElement += AbstractReferenceProperty
+	| 'end' 'ref'? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
+    | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedRelatedElement += ActionUsage
+	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedRelatedElement += AbstractActionUsage
+	| 'end' 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+    | 'end' isPort ?= 'port' ownedRelatedElement += PortUsage 
+    | 'abstract' 'end' isPort ?= 'port' ownedRelatedElement += AbstractPortUsage
+    | 'end' isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName]
+	)
+;
+
+/* INTERFACE DEFINITIONS */
+
+InterfaceDefinition returns SysML::InterfaceDefinition :
+	InterfaceDeclaration InterfaceBody
+;
+
+fragment InterfaceDeclaration returns SysML::InterfaceDefinition :
+	( isAbstract ?= 'abstract' )? ( 'interface' 'def' | 'interfacedef' ) ClassifierDeclarationCompletion
+;
+
+fragment InterfaceBody returns SysML::Type :
+	';'| '{' ( ownedRelationship += InterfaceMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractInterfaceBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += InterfaceMember | ownedRelationship += Import )* '}'
+;
+
+/* INTERFACE DEFINITION MEMBERSHIPS */
+
+InterfaceMember returns SysML::Membership :
+	NestedDefinitionMember | NestedUsageMember | InterfaceEndMember
+;
+
+InterfaceEndMember returns SysML::EndFeatureMembership :
+	DefinitionMemberPrefix
+    (
+      isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += PortUsage
+    | 'abstract' isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedRelatedElement += AbstractPortUsage
+	| isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+	)
+;
+
+/* ACTIVITIES */
+
+Activity returns SysML::Activity :
+	ActivityDeclaration ActivityBody
+;
+
+fragment ActivityDeclaration returns SysML::Activity :
+	( isAbstract ?= 'abstract')? 'activity' name = Name ParameterList? SuperclassingList?
+;
+
+fragment ParameterList returns SysML::Type :
+	'(' ( ownedRelationship += ParameterMember ( ',' ownedRelationship += ParameterMember )* )? ')'
+;
+
+fragment ActivityBody returns SysML::Type :
+	';'| '{' ( ownedRelationship += ActivityMember | ownedRelationship += Import )* '}'
+;
+
+fragment AbstractActivityBody returns SysML::Type :
+	isAbstract ?= ';'| isAbstract ?= '{' ( ownedRelationship += ActivityMember | ownedRelationship += Import )* '}'
+;
+
+/* ACTIVITIY MEMBERSHIPS */
+
+ParameterMember returns SysML::ParameterMembership :
+	( direction = FeatureDirection )? memberName = Name ownedRelatedElement += Parameter
+;
+
+ActivityMember returns SysML::Membership :
+	NestedDefinitionMember | PrimaryUsageMember | PortMember | ConjugatedPortMember | ActivityNodeMember
+;
+
+ActivityNodeMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 
+	( ownedRelatedElement += ActivityNode
+	| 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+    | ownedRelatedElement += TargetSuccession ';'		
+	)
+;
+
+/* USAGES */
+
+fragment Usage returns SysML::Usage :
+	UsageDeclaration UsageCompletion
+;
+
+fragment AbstractUsage returns SysML::Usage :
+	UsageDeclaration AbstractUsageCompletion
+;
+
+fragment UsageDeclaration returns SysML::Usage :
+	  name = Name TypePart? SubsettingPart
+	| TypePart SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? SubsettingPart
+;
+
+fragment UsageCompletion returns SysML::Usage :
+	ValuePart? DefinitionBody
+;
+
+fragment AbstractUsageCompletion returns SysML::Usage :
+	ValuePart? AbstractDefinitionBody
+;
+
+fragment ValuePart returns SysML::Feature :
+	'=' ownedRelationship += FeatureValue
+;
+
+FeatureValue returns SysML::FeatureValue :
+	ownedRelatedElement += Expression
+;
+
+fragment TypePart returns SysML::Feature :
+	  ':' ( ownedRelationship += FeatureTyping | 'any' ) MultiplicityPart?
+	| MultiplicityPart
+;
+
+FeatureTyping returns SysML::FeatureTyping :
+	type = [SysML::Type | QualifiedName]
+;
+
+fragment MultiplicityPart returns SysML::Feature :
+	ownedRelationship += Multiplicity 
+	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
+;
+
+Multiplicity returns SysML::Multiplicity :
+	'[' ( ownedRelatedElement +=  NaturalLiteralExpression '..' )? ownedRelatedElement +=  UnlimitedNaturalLiteralExpression ']'
+;
+
+fragment SubsettingPart returns SysML::Feature :
+	  (  
+	  	Subsets ( ',' ownedRelationship += Subset )*
+	  | Redefines ( ',' ownedRelationship += Redefinition )*
+	  )*
+;
+
+fragment Subsets returns SysML::Feature :
+	( ':>' | 'subsets' ) ownedRelationship += Subset 
+;
+
+Subset returns SysML::Subsetting:
+	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
+fragment Redefines returns SysML::Feature :
+	( ':>>' | 'redefines' ) ownedRelationship += Redefinition
+;
+
+Redefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature|QualifiedName] 
+;
+
+/* PARAMETERS */
+
+Parameter returns SysML::Parameter :
+	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
+;
+
+/* PART PROPERTIES */
+
+fragment PartDeclaration returns SysML::PartProperty :
+	( isAbstract ?= 'abstract' )? 'part' 
+	name = Name TypePart? SubsettingPart
+;
+
+PartProperty returns SysML::PartProperty :
+	Usage
+;
+
+AbstractPartProperty returns SysML::PartProperty :
+	AbstractUsage
+;
+
+/* REFERENCE PROPERTIES */
+
+ReferenceProperty returns SysML::ReferenceProperty :
+	Usage
+;
+
+AbstractReferenceProperty returns SysML::ReferenceProperty :
+	AbstractUsage
+;
+
+/* VALUE PROPERTIES */
+
+fragment ValueDeclaration returns SysML::ValueProperty :
+	( isAbstract ?= 'abstract' )? 'value'? 
+	name = Name TypePart? SubsettingPart
+;
+
+ValueProperty returns SysML::ValueProperty :
+	Usage
+;
+
+AbstractValueProperty returns SysML::ValueProperty :
+	AbstractUsage
+;
+
+/* PORT USAGE */
+
+PortUsage returns SysML::PortUsage :
+	Usage
+;
+
+AbstractPortUsage returns SysML::PortUsage :
+	AbstractUsage
+;
+
+ConjugatedPortUsage returns SysML::PortUsage :
+	ConjugatePortUsageDeclaration UsageCompletion
+;
+
+AbstractConjugatedPortUsage returns SysML::PortUsage :
+	ConjugatePortUsageDeclaration AbstractUsageCompletion
+;
+
+fragment ConjugatePortUsageDeclaration returns SysML::Usage :
+	  name = Name ConjugatePortTyping MultiplicityPart? SubsettingPart
+	| ConjugatePortTyping MultiplicityPart? SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition ConjugatePortTyping MultiplicityPart SubsettingPart
+;
+
+fragment ConjugatePortTyping returns SysML::Feature :
+	':' '~' ( ownedRelationship += FeatureTyping | 'any' )
+;
+
+/* CONNECTORS */
+
+Connector returns SysML::ConnectionUsage :
+	ConnectionPart AssociationBlockBody
+;
+
+AbstractConnector returns SysML::ConnectionUsage :
+	ConnectionPart AbstractAssociationBlockBody
+;
+
+ConnectionUsage returns SysML::ConnectionUsage :
+	UsageDeclaration 'connect' ConnectionPart AssociationBlockBody
+;
+
+AbstractConnectionUsage returns SysML::ConnectionUsage :
+	UsageDeclaration 'connect' ConnectionPart AbstractAssociationBlockBody
+;
+
+fragment ConnectionPart returns SysML::ConnectionUsage :
+	 ownedRelationship += ConnectorEndMember 'to' ownedRelationship += ConnectorEndMember
+	| '(' ownedRelationship += ConnectorEndMember ',' ownedRelationship += ConnectorEndMember
+	      ( ',' ownedRelationship += ConnectorEndMember )*
+	  ')'
+;
+
+ConnectorEnd returns SysML::Feature :
+	ownedRelationship += Subset ( ownedRelationship += Multiplicity )?
+;
+
+MultiplicitySourceEnd returns SysML::Feature :
+	{SysML::SourceEnd} ( ownedRelationship += Multiplicity )?
+;
+
+EmptySourceEnd returns SysML::Feature :
+	{SysML::SourceEnd}
+;
+
+EmptyTargetEnd returns SysML::Feature :
+	{SysML::TargetEnd}
+;
+
+/* CONNECTOR MEMBERSHIPS */
+
+ConnectorEndMember returns SysML::EndFeatureMembership :
+	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+;
+
+MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += MultiplicitySourceEnd
+;
+
+EmptySourceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptySourceEnd
+;
+
+EmptyTargetEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptyTargetEnd
+;
+
+/* INTERFACE CONNECTORS */
+
+InterfaceUsage returns SysML::InterfaceUsage :	 
+	UsageDeclaration 'connect' ConnectionPart InterfaceBody	  
+;
+
+AbstractInterfaceUsage returns SysML::InterfaceUsage :
+	UsageDeclaration 'connect' ConnectionPart  AbstractInterfaceBody
+;
+
+/* BINDING CONNECTORS */
+
+BindingConnector returns SysML::BindingConnector :
+	( ( name = Name )? TypePart? 'of')?
+	  ownedRelationship += ConnectorEndMember '=' ownedRelationship += ConnectorEndMember
+	  DefinitionBody	
+;
+
+/* SUCCESSIONS */
+
+Succession returns SysML::Succession :
+	SuccessionDeclaration ';'
+;
+
+AbstractSuccession returns SysML::Succession :
+	SuccessionDeclaration isAbstract ?= ';'
+;
+
+fragment SuccessionDeclaration returns SysML::Succession :
+	( ( name = Name )? TypePart? 'first' )?
+	ownedRelationship += ConnectorEndMember 'then' ownedRelationship += ConnectorEndMember
+;
+
+TargetSuccession returns SysML::Succession :
+	'then' ownedRelationship += MultiplicitySourceEndMember ownedRelationship += ConnectorEndMember
+;
+
+EmptySuccession returns SysML::Succession :
+	'then' ownedRelationship += MultiplicitySourceEndMember ownedRelationship += EmptyTargetEndMember
+;
+
+ConditionalSuccession returns SysML::ConditionalSuccession :
+	'if' ownedRelationship += ExpressionMember 'then' 
+	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+;
+
+DefaultSuccession returns SysML::ConditionalSuccession :
+	'else' ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+;
+
+/* ITEM FLOWS */
+
+ItemFlow returns SysML::ItemFlow :
+	ItemFlowDeclaration DefinitionBody
+;
+
+AbstractItemFlow returns SysML::ItemFlow :
+	ItemFlowDeclaration AbstractDefinitionBody
+;
+
+SuccessionItemFlow returns SysML::SuccessionItemFlow :
+	ItemFlowDeclaration DefinitionBody
+;
+
+AbstractSuccessionItemFlow returns SysML::SuccessionItemFlow :
+	ItemFlowDeclaration AbstractDefinitionBody
+;
+
+fragment ItemFlowDeclaration returns SysML::ItemFlow :
+	( ( name = Name )? TypePart? 
+      ( 'of'  ownedRelationship += ItemFeatureMember
+      | ownedRelationship += EmptyItemFeatureMember
+      ) 'from'
+    | ownedRelationship += EmptyItemFeatureMember
+    )
+	ownedRelationship += ItemFlowEndMember 'to' ownedRelationship += ItemFlowEndMember
+;
+
+ItemFeatureTyping returns SysML::ItemFeature :
+	ownedRelationship += FeatureTyping ( ownedRelationship += Multiplicity )?
+;
+
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
+;
+
+ItemFlowEnd returns SysML::ItemFlowEnd :
+	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowFeature returns SysML::ItemFlowFeature :
+	ownedRelationship += Redefinition
+;
+
+/* ITEM FLOW MEMBERSHIPS */
+
+ItemFeatureMember returns SysML::FeatureMembership :
+	( memberName = Name ':' )? ownedRelatedElement += ItemFeatureTyping
+;
+
+ItemFlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += ItemFlowEnd
+;
+
+ItemFlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemFlowFeature
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature
+;
+
+/* ACTIONS */
+
+fragment ActionDeclaration returns SysML::ActionUsage :
+    ( isAbstract ?= 'abstract' )? 'action' 
+	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+;
+
+ActionUsage returns SysML::ActionUsage :
+	ActionUsageDeclaration ActivityBody
+;
+
+AbstractActionUsage returns SysML::ActionUsage :
+	ActionUsageDeclaration AbstractActivityBody
+;
+
+fragment ActionUsageDeclaration returns SysML::ActionUsage :
+	  name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+	| TypePart? ActionParameterList? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship += Redefinition TypePart? ActionParameterList? ValuePart?
+;
+
+fragment ActionParameterList returns SysML::Type :
+	'(' ( ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )?
+		  ( ',' ownedRelationship += ActionParameterMember ( ownedRelationship += ActionParameterFlowMember )? )*
+		)?
+	')'
+;
+
+ActionParameter returns SysML::Parameter :
+	{SysML::Parameter} TypePart? ValuePart?
+;
+
+ActionParameterFlow returns SysML::ItemFlow :
+	( 'stream' | {SysML::SuccessionItemFlow} 'flow' ) ownedRelationship += EmptyItemFeatureMember 
+	'from' ownedRelationship += ItemFlowEndMember
+;
+
+PerformActionUsage returns SysML::PerformActionUsage :
+    ( name = Name TypePart? 'by' )? 
+    ownedRelationship += Subset 
+    ActionParameterList? SubsettingPart ValuePart?
+	ActivityBody
+;
+
+/* ACTIVITY NODES */
+
+ActivityNode returns SysML::ActionUsage :
+	  ActionNode
+	| PerformActionNode
+	| AcceptActionNode
+	| SendActionNode
+	| ControlNode
+;
+
+ActionNode returns SysML::ActionUsage :
+	( ownedRelationship += EmptySuccessionMember )?
+    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
+    ActionUsageDeclaration ActivityBody
+;
+
+PerformActionNode returns SysML::PerformActionUsage :
+	( ownedRelationship += EmptySuccessionMember )?
+    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart? 'by' )? 
+    ownedRelationship += Subset 
+    ActionParameterList? SubsettingPart ValuePart?
+	ActivityBody
+;
+
+AcceptActionNode returns SysML::AcceptActionUsage :
+	( ownedRelationship += EmptySuccessionMember )?
+	ownedRelationship += EmptyParameterMember
+	'accept' ( name = Name TypePart? )? '(' ownedRelationship += ItemFeatureMember ')'
+	ActivityBody
+;
+
+SendActionNode returns SysML::SendActionUsage :
+	( ownedRelationship += EmptySuccessionMember )?
+	ownedRelationship += EmptyParameterMember ownedRelationship += EmptyItemFeatureMember
+	'send' ( ( name = Name TypePart? )? 'of')? ownedRelationship += ExpressionMember 
+	'to' ownedRelationship += ExpressionMember
+	ActivityBody
+;
+
+ControlNode returns SysML::ControlNode :
+	  MergeNode
+	| DecisionNode
+	| JoinNode
+	| ForkNode
+;
+
+MergeNode returns SysML::MergeNode :
+	{SysML::MergeNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'merge' ( name = Name TypePart? )? ';'
+;
+
+DecisionNode returns SysML::DecisionNode :
+	{SysML::DecisionNode} ( ownedRelationship += EmptySuccessionMember )?
+	'decide' ( name = Name TypePart? )? ';'
+ 	( ownedRelationship += ConditionalSuccessionMember ';'
+ 	  ( ownedRelationship += ConditionalSuccessionMember ';' )* 
+ 	  ( ownedRelationship += DefaultSuccessionMember ';' )? 
+ 	)?
+
+;
+
+JoinNode returns SysML::JoinNode :
+	{SysML::JoinNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'join' ( name = Name TypePart? )? ';'
+;
+
+ForkNode returns SysML::ForkNode :
+	{SysML::ForkNode} ( ownedRelationship += EmptySuccessionMember )?
+ 	isComposite ?= 'fork' ( name = Name TypePart? )? ';'
+;
+
+EmptyParameter returns SysML::Parameter :
+	{SysML::Parameter}
+;
+
+/* ACTION MEMBERSHIPS */
+
+ActionParameterMember returns SysML::ParameterMembership :
+	( direction = FeatureDirection
+    | ( direction = FeatureDirection )? memberName = Name 
+    )
+	ownedRelatedElement += ActionParameter
+;
+
+ActionParameterFlowMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ActionParameterFlow
+;
+
+EmptySuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptySuccession
+;
+
+ConditionalSuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ConditionalSuccession
+;
+
+DefaultSuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += DefaultSuccession
+;
+
+EmptyParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += EmptyParameter
+;
+
+/* EXPRESSIONS */
+
+Expression returns SysML::Expression :
+	 ConditionalExpression | QueryPathExpression
+;
+
+// Conditional Test Expressions
+
+ConditionalExpression returns SysML::Expression :
+	NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalTestOperator operand += Expression ':' operand += ConditionalExpression
+	)?
+;
+
+ConditionalTestOperator: 
+	'?'
+;
+
+// Null Coalescing Expressions
+
+NullCoalescingExpression returns SysML::Expression :
+	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
+		operator = NullCoalescingOperator operand += ConditionalOrExpression )*
+;
+
+NullCoalescingOperator :
+	'??'
+;
+
+// Conditional Logical Expressions
+
+ConditionalOrExpression returns SysML::Expression :
+	ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalOrOperator operand += ConditionalAndExpression )*
+;
+
+ConditionalOrOperator :
+	'||'
+;
+
+ConditionalAndExpression returns SysML::Expression :
+	OrExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ConditionalAndOperator operand += OrExpression )*
+;
+
+ConditionalAndOperator :
+	'&&'
+;
+
+OrExpression returns SysML::Expression :
+	XorExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = OrOperator operand += XorExpression )*
+;
+
+// Logical Expressions
+
+OrOperator :
+	'|'
+;
+
+XorExpression returns SysML::Expression :
+	AndExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = XorOperator operand += AndExpression )*
+;
+
+XorOperator :
+	'^'
+;
+
+AndExpression returns SysML::Expression :
+	EqualityExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AndOperator operand += EqualityExpression )*
+;
+
+AndOperator :
+	'&'
+;
+
+// Equality Expressions
+
+EqualityExpression returns SysML::Expression :
+	ClassificationExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = EqualityOperator operand += ClassificationExpression )*
+	
+;
+
+EqualityOperator :
+	'==' | '!=' 
+;
+
+// Classification Expressions
+
+ClassificationExpression returns SysML::Expression :
+	RelationalExpression ( {SysML::OperatorExpression.operand += current}
+		operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+;
+
+ClassificationOperator :
+	'instanceof' | 'hastype'
+;
+
+// Relational Expressions
+
+RelationalExpression returns SysML::Expression :
+	AdditiveExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = RelationalOperator operand += AdditiveExpression )*
+;
+
+RelationalOperator :
+	'<' | '>' | '<=' | '>='
+;
+
+// Arithmetic Expressions
+
+AdditiveExpression returns SysML::Expression :
+	MultiplicativeExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = AdditiveOperator operand += MultiplicativeExpression )*	
+;
+
+AdditiveOperator :
+	'+' | '-' 
+;
+
+MultiplicativeExpression returns SysML::Expression :
+	UnitsExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = MultiplicativeOperator operand += UnitsExpression )*	
+;
+
+MultiplicativeOperator :
+	'*' | '/' | '**' 
+;
+
+// Units Expressions
+
+UnitsExpression returns SysML::Expression :
+	UnaryExpression ( {SysML::OperatorExpression.operand += current} 
+		operator = '@' '[' operand += Expression ']' )?		
+;
+
+// Unary Expressions
+
+UnaryExpression returns SysML::Expression:
+	SequenceAccessExpression | {SysML::OperatorExpression} operator = UnaryOperator operand += SequenceAccessExpression
+;
+
+UnaryOperator :
+	'+' | '-' | '!' | '~'
+;
+
+SequenceAccessExpression returns SysML::Expression :
+	 PrimaryExpression 
+	 ( {SysML::OperatorExpression.operand += current} operator = '[' operand += Expression ']' )?
+;
+
+// Primary Expressions
+
+PrimaryExpression returns SysML::Expression :
+	BaseExpression ( {SysML::OperatorExpression.operand += current} '->' 
+		operator = Name ( ownedRelationship += BodyMember )+
+	)*
+;
+
+// Body Expressions
+
+BodyExpression returns SysML::BlockExpression :
+	   => ( ownedRelationship += BodyParameterMember ( ownedRelationship += BodyParameterMember )* '(' ownedRelationship += ExpressionMember ')' )
+	 | ownedRelationship += ExpressionTyping
+;
+
+ExpressionTyping returns SysML::FeatureTyping :
+	type = [ SysML::Function | QualifiedName ]
+;
+
+// Base Expressions
+
+BaseExpression returns SysML::Expression :
+	  NullExpression
+	| LiteralExpression 
+	| FeatureReferenceExpression 
+	| InvocationExpression 
+	| ClassExtentExpression
+	| SequenceConstructionExpression 
+	| '(' Expression ')'
+;
+
+FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
+	ownedRelationship += FeatureReference
+;
+
+InvocationExpression returns SysML::InvocationExpression :
+	ownedRelationship += FeatureTyping '(' Tuple? ')'
+;
+
+fragment Tuple returns SysML::Expression :
+	PositionalTuple | NamedTuple
+;
+
+fragment PositionalTuple returns SysML::Expression :
+	ownedRelationship += ExpressionMember ( ',' ownedRelationship += ExpressionMember )*
+;
+
+fragment NamedTuple returns SysML::Expression :
+	ownedRelationship += NamedExpressionMember ( ',' ownedRelationship += NamedExpressionMember )*
+;
+
+ClassExtentExpression returns SysML::OperatorExpression :
+	ownedRelationship += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
+;
+
+TypeReference returns SysML::Feature :
+	ownedRelationship += FeatureTyping
+;
+
+SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
+	{SysML::SequenceConstructionExpression} '{' ( element += Expression ( ',' element += Expression )* )? '}'
+;
+
+NullExpression returns SysML::NullExpression :
+	{SysML::NullExpression} 'null'
+;
+
+// Literal Expressions
+
+LiteralExpression returns SysML::LiteralExpression :
+	BooleanLiteralExpression | StringLiteralExpression | RealLiteralExpression | UnlimitedNaturalLiteralExpression
+;
+
+BooleanLiteralExpression returns SysML::LiteralBoolean :
+	value = BOOLEAN_VALUE
+;
+
+StringLiteralExpression returns SysML::LiteralString :
+	value = STRING_VALUE
+;
+
+RealLiteralExpression returns SysML::LiteralReal:
+	value = RealValue
+;
+
+RealValue returns Ecore::EDouble:
+	NATURAL_VALUE? '.' ( NATURAL_VALUE | EXP_VALUE ) | EXP_VALUE
+;
+
+NaturalLiteralExpression returns SysML::LiteralInteger:
+	value = NATURAL_VALUE
+;
+
+UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
+	NaturalLiteralExpression | {SysML::LiteralUnbounded} '*'
+;
+
+/* EXPRESSION MEMBERSHIPS */
+
+ExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += Expression
+;
+
+FeatureReference returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature | QualifiedName ]
+;
+
+TypeReferenceMember returns SysML::FeatureMembership :
+	ownedRelatedElement += TypeReference
+;
+
+NamedExpressionMember returns SysML::FeatureMembership :
+	memberName = Name '=>' ownedRelatedElement += Expression
+;
+
+BodyMember returns SysML::FeatureMembership :
+	ownedRelatedElement += BodyExpression
+;
+
+BodyParameterMember returns SysML::ParameterMembership :
+	memberName = Name ownedRelatedElement += Parameter
+;
+
+/* QUERY PATH EXPRESSIONS */
+
+QueryPathExpression returns SysML::Expression :
+	QueryHeadExpression
+	( '[' {SysML::QueryQualifierExpression.operand += current}
+         ( ownedRelationship += BodyMember ) ']' )?
+	( '/' {SysML::QueryPathStepExpression.operand += current}
+		operand += QueryNameExpression
+		( '[' {SysML::QueryQualifierExpression.operand += current}
+	         ( ownedRelationship += BodyMember ) ']' )?
+	)*
+;
+
+QueryNameExpression returns SysML::QueryPathExpression :
+    /* isParent ?= '..'
+    | isDescendants ?= '/'
+    | @traversal
+    */
+    ownedRelationship += FeatureReference
+;
+
+QueryHeadExpression returns SysML::FeatureReferenceExpression :
+	'./' FeatureReferenceExpression
+;        
+
+/* NAMES */
+
+Name :
+	ID | UNRESTRICTED_NAME
+;
+
+QualifiedName :
+	Name | ColonQualifiedName | DotQualifiedName
+;
+
+ColonQualifiedName :
+	Name ('::' Name)+
+;
+
+DotQualifiedName :
+	Name ('.' Name)+
+;
+
+/* TERMINALS */
+
+terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
+	'true' | 'false' ;
+
+terminal NATURAL_VALUE returns Ecore::EInt :
+	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
+	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
+	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
+	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+;
+
+terminal EXP_VALUE :
+	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE
+;
+
+terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
+terminal UNRESTRICTED_NAME returns Ecore::EString : 
+	'\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
+
+terminal STRING_VALUE returns Ecore::EString : 
+	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
+
+terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
+
+terminal ML_COMMENT	: '/*' !'*' -> '*/';
+terminal SL_COMMENT : '//' (!('\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
+
+terminal WS : (' '|'\t'|'\r'|'\n')+;

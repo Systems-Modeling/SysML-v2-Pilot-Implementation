@@ -8,6 +8,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A Relationship is an Element that has no reason to exist without having at least two other Elements to which to relate.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

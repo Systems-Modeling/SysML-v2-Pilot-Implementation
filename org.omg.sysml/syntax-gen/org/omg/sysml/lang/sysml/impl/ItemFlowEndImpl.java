@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -44,6 +45,14 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 		return SysMLPackage.Literals.ITEM_FLOW_END;
 	}
 
+	@Override
+	public EList<Generalization> getOwnedGeneralization() {
+		// Note: Do not add flow end subsettings here, to avoid possible cyclic resolution error
+		// during traversal of the inheritance hierarchy.
+		super.getOwnedSubsettingWithComputedRedefinitions();
+		return super.basicGetOwnedGeneralization();
+	}
+	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		addItemFlowEndSubsetting();

@@ -30,7 +30,9 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(LITERAL_EXPRESSION_SUBSETTING_DEFAULT);
+		EList<Subsetting> subsettings = getOwnedSubsettingWithDefault(LITERAL_EXPRESSION_SUBSETTING_DEFAULT);
+		getComputedRedefinitions();
+		return subsettings;
 	}
 
 	/**

@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package Classes {
-	// XPECT errors --> "Referenced element is not visible in this scope" at "VisibilityPackage::c_Private"
+	// XPECT errors --> "Couldn't resolve reference to Element 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
 	import VisibilityPackage::c_Private;
 	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private::c_private'." at "c_Private::c_private"
 	class try specializes c_Private::c_private{}

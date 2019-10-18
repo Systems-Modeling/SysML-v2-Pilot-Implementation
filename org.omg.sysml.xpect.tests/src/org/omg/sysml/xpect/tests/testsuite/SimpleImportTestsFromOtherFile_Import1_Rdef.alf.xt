@@ -22,12 +22,11 @@ package test {
 	import OuterPackage::*;
 	//XPECT linkedName at A --> OuterPackage.A
 	/* XPECT scope at A ---
-	   B.b, OuterPackage.B.b, test.try, try, test.B.b,
+	   B.b, test.try, try, test.B.b,
 	       B.b.a1, test.B.b.a1, try.a1, test.try.a1,
 		   Try, Try.a1, A, A.a1, B,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B,
-			Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 	--- */
 	feature Try redefines A{}
 	//XPECT linkedName at B::b --> OuterPackage.B.b
@@ -35,8 +34,7 @@ package test {
 	       B.b.a1, test.B.b.a1, try.a1, test.try.a1,
 		   Try, Try.a1, A, A.a1, B, B.b, try,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, test.B.b, test.try, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b,
-			Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 	--- */
 	feature try redefines B::b;
 }

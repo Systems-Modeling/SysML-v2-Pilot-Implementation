@@ -23,23 +23,47 @@ package test{
 	class A{}
 	//XPECT linkedName at A --> test.A
 	/* XPECT scope at A ---
- 		   A, AA, AA.aa, AA_alias, AA_alias.aa, A_alias, A_alias.a, test_a,
- 		   test.A, test.AA,	test.AA.aa, test.AA_alias, test.AA_alias.aa, test.A_alias, test.A_alias.a, test.test_a,
- 		   test_alias, test_alias.a,
- 		   test.test_alias, test.test_alias.a,  
- 		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.AA, PackageAlias1.AA.aa, 
- 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,			Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		   A, test.A,  
+		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
+		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
+		   AA_alias, AA_alias.aa, AA_alias.aa_alias, test.AA_alias, test.AA_alias.aa, test.AA_alias.aa_alias,
+ 		   test_a, test.test_a,   
+ 		   test_alias, test_alias.a, test_alias.a_alias, test.test_alias, test.test_alias.a, test.test_alias.a_alias,
+ 		   PackageAlias1.A, PackageAlias1.A.a,  PackageAlias1.A.a_alias, 
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
+ 		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
 		   --- */
 	class test_a specializes A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
+ 		   
 	
 	//XPECT linkedName at A_alias --> PackageAlias1.A
 	/* XPECT scope at A_alias ---
-		   A, AA, AA.aa, AA_alias, AA_alias.aa, A_alias, A_alias.a, test_a,
- 		   test.A, test.AA,	test.AA.aa, test.AA_alias, test.AA_alias.aa, test.A_alias, test.A_alias.a, test.test_a,
- 		   test_alias, test_alias.a,
- 		   test.test_alias, test.test_alias.a,  
- 		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.AA, PackageAlias1.AA.aa, 
- 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,			Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value		   	
- 		   --- */
+		   A, test.A,  
+		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
+		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
+		   AA_alias, AA_alias.aa, AA_alias.aa_alias, test.AA_alias, test.AA_alias.aa, test.AA_alias.aa_alias,
+ 		   test_a, test.test_a,   
+ 		   test_alias, test_alias.a, test_alias.a_alias, test.test_alias, test.test_alias.a, test.test_alias.a_alias,
+ 		   PackageAlias1.A, PackageAlias1.A.a,  PackageAlias1.A.a_alias, 
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
+ 		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
+  		   --- */
 	class test_alias specializes A_alias{}
 }
+ 
+/*
+     package PackageAlias1{
+	class A_alias is A;
+	class A{
+		class a{}
+			class a_alias is a;
+	}
+	class AA_alias is AA;
+	class AA{
+		class aa{}
+		class aa_alias is aa;
+	}
+}*/
+   

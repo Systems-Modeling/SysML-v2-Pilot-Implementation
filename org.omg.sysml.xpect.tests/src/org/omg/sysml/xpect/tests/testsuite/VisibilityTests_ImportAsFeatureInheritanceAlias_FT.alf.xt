@@ -22,33 +22,21 @@ package Classes {
 	import VisibilityPackage::c_Public as aliass;
 	//XPECT linkedName at aliass --> VisibilityPackage.c_Public
 	/* XPECT scope at aliass ---
-	   Try.feature4, Classes.Try.feature4, 
+	  	 Try.feature4, Classes.Try.feature4, 
 	  	 Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
 	  	 Try, Try.c_public, 
-	  	 VisibilityPackage.c_Private, VisibilityPackage.c_Private.c_private, VisibilityPackage.c_Private.c_public, 
-	  	 VisibilityPackage.c_Private_alias, VisibilityPackage.c_Private_alias.c_public, 
-	  	 VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_private, VisibilityPackage.c_Public.c_public, 
-	  	 VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public, 
-	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Package, VisibilityPackage.c_clazz.c_Package.c_publicc, VisibilityPackage.c_clazz.c_Protect, VisibilityPackage.c_clazz.c_Protect.c_publicc, VisibilityPackage.c_clazz.c_Public,	  VisibilityPackage.c_clazz.c_Public.c_packagee, VisibilityPackage.c_clazz.c_Public.c_protect, 
 	  	 aliass, aliass.c_public,
-	  	 Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
-	  	 Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	
+	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
+		 VisibilityPackage.c_Public_alias,
 	--- */
 	feature Try : aliass{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		/* XPECT scope at c_public ---
 	      	Classes.Try, Classes.Try.c_public, Classes.Try.feature4, Classes.aliass, Classes.aliass.c_public, 
 	      	Try, Try.c_public, Try.feature4,
-			VisibilityPackage.c_Private, VisibilityPackage.c_Private.c_private, VisibilityPackage.c_Private.c_public,
-			VisibilityPackage.c_Private_alias, VisibilityPackage.c_Private_alias.c_public, VisibilityPackage.c_Public,
-			VisibilityPackage.c_Public.c_private, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
-			VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Package,
-			VisibilityPackage.c_clazz.c_Package.c_publicc, VisibilityPackage.c_clazz.c_Protect,
-			VisibilityPackage.c_clazz.c_Protect.c_publicc, VisibilityPackage.c_clazz.c_Public,
-			VisibilityPackage.c_clazz.c_Public.c_packagee, VisibilityPackage.c_clazz.c_Public.c_protect, 
 			aliass, aliass.c_public, c_public, feature4,
-			Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
-			Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value 	
+	  	 	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
+		 	VisibilityPackage.c_Public_alias,
 	--- */
 		feature feature4 : c_public;
 	}

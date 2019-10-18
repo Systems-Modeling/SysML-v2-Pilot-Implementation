@@ -29,12 +29,12 @@ import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.scoping.AlfScopeProvider
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.common.util.URI
+import org.omg.sysml.scoping.AlfGlobalScopeProvider
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
@@ -42,7 +42,7 @@ class SysMLLibraryProvider implements IModelLibraryProvider {
 	var modelLibraryDirectory = "/resource/sysml.library"
 	
 	@Inject
-	IGlobalScopeProvider globalScope
+	AlfGlobalScopeProvider globalScope
 	
 	@Inject
 	AlfScopeProvider scopeProvider;

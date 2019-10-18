@@ -1,0 +1,47 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencySamePackageName_A.alf" }
+		File {from ="/src/DependencySamePackageName_B.alf" }
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencySamePackageName_A.alf" }
+				File {from ="/src/DependencySamePackageName_B.alf" }
+			}
+		}
+	}
+END_SETUP 
+*/
+//Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
+//What global scope should be?????
+// XPECT noErrors ---> ""
+package test{
+	/* XPECT scope at SamePackage::container ---
+		test, 
+	    container, container.A, test.container, test.container.A,
+	    SamePackage, SamePackage, 
+	    SamePackage.container, SamePackage.container, SamePackage.container.A,	SamePackage.container.B, 
+	--- */
+	import SamePackage::container;
+	
+}
+/*
+package SamePackage{
+	class container{
+	class A{}
+	}
+}
+package SamePackage{
+	class container{
+	class B{}
+	}
+}
+
+*/
+

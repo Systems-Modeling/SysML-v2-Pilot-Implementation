@@ -35,7 +35,6 @@ package test{
 		test.P.A, test.P.A.AA, test.P.A.AA.AAA, test.P.A_alias, test.P.A_alias.AA,
 		test.P.A_alias.AA.AAA, test.P1.A, test.P1.A.AA, test.P1.A.AA.AAA, test.P1.A_alias, test.P1.A_alias.AA,
 		test.P1.A_alias.AA.AAA, test.a,
-	    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   Base.selfLinks, Base.things, Base.values 
 --- */
 	feature a: P1::A_alias ;
 	

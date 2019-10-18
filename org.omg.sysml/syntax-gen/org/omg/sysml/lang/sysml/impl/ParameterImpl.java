@@ -30,7 +30,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ParameterImpl() {
@@ -39,7 +38,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

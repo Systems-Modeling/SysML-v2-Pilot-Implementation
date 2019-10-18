@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()

@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class LiteralUnboundedImpl extends LiteralExpressionImpl implements LiteralUnbounded {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralUnboundedImpl() {
@@ -25,7 +24,6 @@ public class LiteralUnboundedImpl extends LiteralExpressionImpl implements Liter
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

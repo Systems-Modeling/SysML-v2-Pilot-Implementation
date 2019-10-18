@@ -10,8 +10,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.LiteralInteger#getValue
- * <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.LiteralInteger#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getLiteralInteger()
@@ -38,10 +37,8 @@ public interface LiteralInteger extends LiteralExpression {
 	int getValue();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.omg.sysml.lang.sysml.LiteralInteger#getValue <em>Value</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.LiteralInteger#getValue <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated

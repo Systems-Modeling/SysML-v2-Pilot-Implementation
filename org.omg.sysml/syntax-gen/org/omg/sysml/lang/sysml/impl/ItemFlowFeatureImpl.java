@@ -29,7 +29,6 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemFlowFeatureImpl() {
@@ -38,7 +37,6 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

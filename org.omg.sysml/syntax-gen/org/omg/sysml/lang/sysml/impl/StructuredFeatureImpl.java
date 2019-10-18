@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StructuredFeatureImpl() {
@@ -25,7 +24,6 @@ public class StructuredFeatureImpl extends FeatureImpl implements StructuredFeat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

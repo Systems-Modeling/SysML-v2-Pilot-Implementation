@@ -21,7 +21,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InvocationExpressionImpl() {
@@ -30,7 +29,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  * </ul>
@@ -41,6 +41,12 @@ public interface Element extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Owning Membership</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship() <em>Owning Relationship</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Membership</em>' reference isn't clear,
@@ -51,7 +57,8 @@ public interface Element extends EObject {
 	 * @see #setOwningMembership(Membership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
-	 * @model opposite="ownedMemberElement" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="ownedMemberElement" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Membership getOwningMembership();

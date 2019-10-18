@@ -22,10 +22,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getType
- * <em>Type</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getTypedFeature
- * <em>Typed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getTypedFeature <em>Typed Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,9 +40,8 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	protected Type type;
 
 	/**
-	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getTypedFeature()
 	 * @generated
 	 * @ordered
@@ -53,7 +50,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureTypingImpl() {
@@ -62,7 +58,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,18 +67,16 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Type getType() {
 		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject) type;
-			type = (Type) eResolveProxy(oldType);
+			InternalEObject oldType = (InternalEObject)type;
+			type = (Type)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPE,
-							oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -91,7 +84,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Type basicGetType() {
@@ -100,7 +92,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +104,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetType() {
@@ -127,17 +117,15 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Feature getTypedFeatureGen() {
 		if (typedFeature != null && typedFeature.eIsProxy()) {
-			InternalEObject oldTypedFeature = (InternalEObject) typedFeature;
-			typedFeature = (Feature) eResolveProxy(oldTypedFeature);
+			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
+			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
 			if (typedFeature != oldTypedFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
 			}
 		}
 		return typedFeature;
@@ -160,19 +148,14 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTypedFeature(Feature newTypedFeature, NotificationChain msgs) {
 		Feature oldTypedFeature = typedFeature;
 		typedFeature = newTypedFeature;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, newTypedFeature);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, newTypedFeature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -187,7 +170,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetTypedFeature() {
@@ -196,114 +178,104 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			if (typedFeature != null)
-				msgs = ((InternalEObject) typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING,
-						Feature.class, msgs);
-			return basicSetTypedFeature((Feature) otherEnd, msgs);
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				if (typedFeature != null)
+					msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
+				return basicSetTypedFeature((Feature)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			return basicSetTypedFeature(null, msgs);
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				return basicSetTypedFeature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__TYPE:
-			if (resolve)
-				return getType();
-			return basicGetType();
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			if (resolve)
-				return getTypedFeature();
-			return basicGetTypedFeature();
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				if (resolve) return getTypedFeature();
+				return basicGetTypedFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__TYPE:
-			setType((Type) newValue);
-			return;
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			setTypedFeature((Feature) newValue);
-			return;
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				setType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				setTypedFeature((Feature)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__TYPE:
-			setType((Type) null);
-			return;
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			setTypedFeature((Feature) null);
-			return;
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				setType((Type)null);
+				return;
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				setTypedFeature((Feature)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.FEATURE_TYPING__GENERAL:
-			return isSetGeneral();
-		case SysMLPackage.FEATURE_TYPING__SPECIFIC:
-			return isSetSpecific();
-		case SysMLPackage.FEATURE_TYPING__TYPE:
-			return isSetType();
-		case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-			return isSetTypedFeature();
+			case SysMLPackage.FEATURE_TYPING__GENERAL:
+				return isSetGeneral();
+			case SysMLPackage.FEATURE_TYPING__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				return isSetType();
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				return isSetTypedFeature();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,7 +285,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -323,7 +294,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -332,16 +302,14 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
-		return false;
+  		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,7 +319,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -361,7 +328,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -373,11 +339,10 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
-		return false;
+  		return false;
 	}
 
 } // FeatureTypingImpl

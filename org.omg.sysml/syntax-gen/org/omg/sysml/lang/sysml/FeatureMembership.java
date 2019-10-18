@@ -207,6 +207,12 @@ public interface FeatureMembership extends Membership {
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
@@ -217,7 +223,8 @@ public interface FeatureMembership extends Membership {
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
-	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="ownedFeatureMembership" required="true" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Type getOwningType();
@@ -233,7 +240,7 @@ public interface FeatureMembership extends Membership {
 	void setOwningType(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
@@ -241,27 +248,34 @@ public interface FeatureMembership extends Membership {
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature() <em>Member Feature</em>}'</li>
 	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Feature</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Member Feature</em>' reference.
+	 * @return the value of the '<em>Owned Member Feature</em>' containment reference.
 	 * @see #setOwnedMemberFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwnedMemberFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
-	 * @model opposite="owningFeatureMembership" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningFeatureMembership" containment="true" ordered="false"
+	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getOwnedMemberFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Member Feature</em>' reference.
+	 * @param value the new value of the '<em>Owned Member Feature</em>' containment reference.
 	 * @see #getOwnedMemberFeature()
 	 * @generated
 	 */

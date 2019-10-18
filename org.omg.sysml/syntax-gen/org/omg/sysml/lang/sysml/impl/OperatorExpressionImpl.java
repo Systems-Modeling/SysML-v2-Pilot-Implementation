@@ -32,10 +32,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperator
- * <em>Operator</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand
- * <em>Operand</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,9 +45,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "ScalarFunctions", "ControlFunctions" };
 
 	/**
-	 * The default value of the '{@link #getOperator() <em>Operator</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -59,7 +56,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -67,9 +63,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	protected String operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperand()
 	 * @generated
 	 * @ordered
@@ -78,7 +73,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperatorExpressionImpl() {
@@ -87,7 +81,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +90,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,97 +151,90 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-			return ((InternalEList<?>) getOperand()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
-			return getOperator();
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-			return getOperand();
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
+				return getOperator();
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				return getOperand();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
-			setOperator((String) newValue);
-			return;
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-			getOperand().clear();
-			getOperand().addAll((Collection<? extends Expression>) newValue);
-			return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
+				setOperator((String)newValue);
+				return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				getOperand().clear();
+				getOperand().addAll((Collection<? extends Expression>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
-			setOperator(OPERATOR_EDEFAULT);
-			return;
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-			getOperand().clear();
-			return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
+				setOperator(OPERATOR_EDEFAULT);
+				return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				getOperand().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
-			return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
-		case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-			return operand != null && !operand.isEmpty();
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
+				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				return operand != null && !operand.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (operator: ");

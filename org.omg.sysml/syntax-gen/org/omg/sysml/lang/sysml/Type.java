@@ -67,6 +67,12 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Feature Membership</em>' reference list isn't clear,
@@ -76,7 +82,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
-	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
+	 * @model opposite="owningType"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();

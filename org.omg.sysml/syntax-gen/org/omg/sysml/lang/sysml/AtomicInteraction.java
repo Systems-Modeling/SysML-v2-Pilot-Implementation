@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.AtomicInteraction#getItemType <em>Item
- * Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AtomicInteraction#getItemType <em>Item Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAtomicInteraction()

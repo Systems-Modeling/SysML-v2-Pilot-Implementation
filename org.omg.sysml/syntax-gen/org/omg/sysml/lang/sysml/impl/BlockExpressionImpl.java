@@ -26,7 +26,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BlockExpressionImpl() {
@@ -59,7 +58,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

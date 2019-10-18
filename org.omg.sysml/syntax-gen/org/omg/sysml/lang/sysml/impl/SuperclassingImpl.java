@@ -22,21 +22,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSuperclass
- * <em>Superclass</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSubclass
- * <em>Subclass</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getOwningClassifier
- * <em>Owning Classifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSuperclass <em>Superclass</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSubclass <em>Subclass</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SuperclassingImpl extends GeneralizationImpl implements Superclassing {
 	/**
-	 * The cached value of the '{@link #getSuperclass() <em>Superclass</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSuperclass() <em>Superclass</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSuperclass()
 	 * @generated
 	 * @ordered
@@ -46,7 +42,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	/**
 	 * The cached value of the '{@link #getSubclass() <em>Subclass</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getSubclass()
 	 * @generated
 	 * @ordered
@@ -55,7 +50,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SuperclassingImpl() {
@@ -64,7 +58,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,18 +67,16 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Classifier getSuperclass() {
 		if (superclass != null && superclass.eIsProxy()) {
-			InternalEObject oldSuperclass = (InternalEObject) superclass;
-			superclass = (Classifier) eResolveProxy(oldSuperclass);
+			InternalEObject oldSuperclass = (InternalEObject)superclass;
+			superclass = (Classifier)eResolveProxy(oldSuperclass);
 			if (superclass != oldSuperclass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUPERCLASS,
-							oldSuperclass, superclass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUPERCLASS, oldSuperclass, superclass));
 			}
 		}
 		return superclass;
@@ -93,7 +84,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Classifier basicGetSuperclass() {
@@ -102,7 +92,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,13 +99,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 		Classifier oldSuperclass = superclass;
 		superclass = newSuperclass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUPERCLASS, oldSuperclass,
-					superclass));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUPERCLASS, oldSuperclass, superclass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetSuperclass() {
@@ -129,17 +116,15 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Classifier getSubclassGen() {
 		if (subclass != null && subclass.eIsProxy()) {
-			InternalEObject oldSubclass = (InternalEObject) subclass;
-			subclass = (Classifier) eResolveProxy(oldSubclass);
+			InternalEObject oldSubclass = (InternalEObject)subclass;
+			subclass = (Classifier)eResolveProxy(oldSubclass);
 			if (subclass != oldSubclass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUBCLASS,
-							oldSubclass, subclass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUPERCLASSING__SUBCLASS, oldSubclass, subclass));
 			}
 		}
 		return subclass;
@@ -164,7 +149,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,13 +156,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 		Classifier oldSubclass = subclass;
 		subclass = newSubclass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUBCLASS, oldSubclass,
-					subclass));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUPERCLASSING__SUBCLASS, oldSubclass, subclass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetSubclass() {
@@ -187,15 +169,12 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Classifier getOwningClassifier() {
 		Classifier owningClassifier = basicGetOwningClassifier();
-		return owningClassifier != null && owningClassifier.eIsProxy()
-				? (Classifier) eResolveProxy((InternalEObject) owningClassifier)
-				: owningClassifier;
+		return owningClassifier != null && owningClassifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)owningClassifier) : owningClassifier;
 	}
 
 	/**
@@ -220,7 +199,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetOwningClassifier() {
@@ -229,97 +207,89 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-			if (resolve)
-				return getSuperclass();
-			return basicGetSuperclass();
-		case SysMLPackage.SUPERCLASSING__SUBCLASS:
-			if (resolve)
-				return getSubclass();
-			return basicGetSubclass();
-		case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-			if (resolve)
-				return getOwningClassifier();
-			return basicGetOwningClassifier();
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				if (resolve) return getSuperclass();
+				return basicGetSuperclass();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				if (resolve) return getSubclass();
+				return basicGetSubclass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				if (resolve) return getOwningClassifier();
+				return basicGetOwningClassifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-			setSuperclass((Classifier) newValue);
-			return;
-		case SysMLPackage.SUPERCLASSING__SUBCLASS:
-			setSubclass((Classifier) newValue);
-			return;
-		case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-			setOwningClassifier((Classifier) newValue);
-			return;
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				setSuperclass((Classifier)newValue);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)newValue);
+				return;
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-			setSuperclass((Classifier) null);
-			return;
-		case SysMLPackage.SUPERCLASSING__SUBCLASS:
-			setSubclass((Classifier) null);
-			return;
-		case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-			setOwningClassifier((Classifier) null);
-			return;
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				setSuperclass((Classifier)null);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)null);
+				return;
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.SUPERCLASSING__GENERAL:
-			return isSetGeneral();
-		case SysMLPackage.SUPERCLASSING__SPECIFIC:
-			return isSetSpecific();
-		case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
-			return isSetOwningType();
-		case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-			return isSetSuperclass();
-		case SysMLPackage.SUPERCLASSING__SUBCLASS:
-			return isSetSubclass();
-		case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-			return isSetOwningClassifier();
+			case SysMLPackage.SUPERCLASSING__GENERAL:
+				return isSetGeneral();
+			case SysMLPackage.SUPERCLASSING__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
+				return isSetOwningType();
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				return isSetSuperclass();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				return isSetSubclass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				return isSetOwningClassifier();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -329,7 +299,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -339,7 +308,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -351,16 +319,14 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
-		return false;
+  		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -370,7 +336,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -380,7 +345,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -392,16 +356,14 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
-		return false;
+  		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -411,7 +373,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -421,7 +382,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOwningType(Type newOwningType) {
@@ -433,11 +393,10 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetOwningType() {
-		return false;
+  		return false;
 	}
 
 } // SuperclassingImpl

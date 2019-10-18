@@ -21,7 +21,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SuccessionItemFlowImpl() {
@@ -30,7 +29,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

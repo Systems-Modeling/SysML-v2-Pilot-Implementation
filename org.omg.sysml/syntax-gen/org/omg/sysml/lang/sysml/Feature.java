@@ -253,28 +253,35 @@ public interface Feature extends Type {
 	EList<Subsetting> getOwnedSubsetting();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningMembership() <em>Owning Membership</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Feature Membership</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
+	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
-	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="ownedMemberFeature" transient="false" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature Membership</em>' reference.
+	 * @param value the new value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #getOwningFeatureMembership()
 	 * @generated
 	 */
@@ -309,6 +316,12 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Valuation</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue <em>Feature With Value</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Valuation</em>' reference isn't clear,
@@ -319,7 +332,8 @@ public interface Feature extends Type {
 	 * @see #setValuation(FeatureValue)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation()
 	 * @see org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue
-	 * @model opposite="featureWithValue" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="featureWithValue" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureValue getValuation();
@@ -337,6 +351,12 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
@@ -347,7 +367,8 @@ public interface Feature extends Type {
 	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
 	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
-	 * @model opposite="featureWithMultiplicity" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="featureWithMultiplicity" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();

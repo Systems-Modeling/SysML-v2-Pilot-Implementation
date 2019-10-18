@@ -18,8 +18,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.LiteralStringImpl#getValue
- * <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.LiteralStringImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,7 +46,6 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralStringImpl() {
@@ -56,7 +54,6 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +63,6 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +77,6 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValueGen(String newValue) {
@@ -93,71 +88,65 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_STRING__VALUE:
-			return getValue();
+			case SysMLPackage.LITERAL_STRING__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_STRING__VALUE:
-			setValue((String) newValue);
-			return;
+			case SysMLPackage.LITERAL_STRING__VALUE:
+				setValue((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_STRING__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case SysMLPackage.LITERAL_STRING__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_STRING__VALUE:
-			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case SysMLPackage.LITERAL_STRING__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");

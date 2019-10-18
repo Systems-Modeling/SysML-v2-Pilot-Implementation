@@ -26,7 +26,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BindingConnectorImpl() {
@@ -65,7 +64,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

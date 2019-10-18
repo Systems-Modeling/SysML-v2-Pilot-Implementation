@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.TargetEnd;
 public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TargetEndImpl() {
@@ -28,7 +27,6 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

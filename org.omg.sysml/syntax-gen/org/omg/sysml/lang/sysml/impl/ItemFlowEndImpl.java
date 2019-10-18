@@ -28,7 +28,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemFlowEndImpl() {
@@ -37,7 +36,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

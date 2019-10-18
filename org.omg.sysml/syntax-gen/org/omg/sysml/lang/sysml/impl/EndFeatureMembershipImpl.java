@@ -17,7 +17,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements EndFeatureMembership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EndFeatureMembershipImpl() {
@@ -26,7 +25,6 @@ public class EndFeatureMembershipImpl extends FeatureMembershipImpl implements E
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

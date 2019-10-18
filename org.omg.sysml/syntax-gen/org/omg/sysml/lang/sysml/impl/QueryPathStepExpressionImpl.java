@@ -17,7 +17,6 @@ public class QueryPathStepExpressionImpl extends OperatorExpressionImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected QueryPathStepExpressionImpl() {
@@ -31,7 +30,6 @@ public class QueryPathStepExpressionImpl extends OperatorExpressionImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

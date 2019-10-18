@@ -24,10 +24,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getStep
- * <em>Step</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getParameter
- * <em>Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getStep <em>Step</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.BehaviorImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,7 +36,6 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BehaviorImpl() {
@@ -47,7 +44,6 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,71 +91,67 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.BEHAVIOR__STEP:
-			return getStep();
-		case SysMLPackage.BEHAVIOR__PARAMETER:
-			return getParameter();
+			case SysMLPackage.BEHAVIOR__STEP:
+				return getStep();
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				return getParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.BEHAVIOR__STEP:
-			getStep().clear();
-			getStep().addAll((Collection<? extends Step>) newValue);
-			return;
-		case SysMLPackage.BEHAVIOR__PARAMETER:
-			getParameter().clear();
-			getParameter().addAll((Collection<? extends Parameter>) newValue);
-			return;
+			case SysMLPackage.BEHAVIOR__STEP:
+				getStep().clear();
+				getStep().addAll((Collection<? extends Step>)newValue);
+				return;
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.BEHAVIOR__STEP:
-			getStep().clear();
-			return;
-		case SysMLPackage.BEHAVIOR__PARAMETER:
-			getParameter().clear();
-			return;
+			case SysMLPackage.BEHAVIOR__STEP:
+				getStep().clear();
+				return;
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				getParameter().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.BEHAVIOR__STEP:
-			return !getStep().isEmpty();
-		case SysMLPackage.BEHAVIOR__PARAMETER:
-			return !getParameter().isEmpty();
+			case SysMLPackage.BEHAVIOR__STEP:
+				return !getStep().isEmpty();
+			case SysMLPackage.BEHAVIOR__PARAMETER:
+				return !getParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

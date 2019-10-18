@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class OrderedFeatureImpl extends StructuredFeatureImpl implements OrderedFeature {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OrderedFeatureImpl() {
@@ -25,7 +24,6 @@ public class OrderedFeatureImpl extends StructuredFeatureImpl implements Ordered
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

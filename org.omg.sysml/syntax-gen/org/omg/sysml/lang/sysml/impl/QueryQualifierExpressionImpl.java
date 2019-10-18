@@ -17,7 +17,6 @@ public class QueryQualifierExpressionImpl extends OperatorExpressionImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected QueryQualifierExpressionImpl() {
@@ -31,7 +30,6 @@ public class QueryQualifierExpressionImpl extends OperatorExpressionImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

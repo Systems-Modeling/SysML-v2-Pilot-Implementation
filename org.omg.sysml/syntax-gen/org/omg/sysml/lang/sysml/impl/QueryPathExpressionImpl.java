@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl implements QueryPathExpression {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected QueryPathExpressionImpl() {
@@ -28,7 +27,6 @@ public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

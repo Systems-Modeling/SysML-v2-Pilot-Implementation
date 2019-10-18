@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class ReturnParameterMembershipImpl extends ParameterMembershipImpl implements ReturnParameterMembership {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReturnParameterMembershipImpl() {
@@ -25,7 +24,6 @@ public class ReturnParameterMembershipImpl extends ParameterMembershipImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

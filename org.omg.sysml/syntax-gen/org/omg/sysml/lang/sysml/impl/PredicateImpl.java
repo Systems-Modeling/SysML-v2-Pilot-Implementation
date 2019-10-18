@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class PredicateImpl extends FunctionImpl implements Predicate {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PredicateImpl() {
@@ -25,7 +24,6 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

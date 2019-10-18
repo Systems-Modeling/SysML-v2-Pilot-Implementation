@@ -10,8 +10,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.FeatureReferenceExpression#getReferent
- * <em>Referent</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureReferenceExpression#getReferent <em>Referent</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureReferenceExpression()
@@ -38,10 +37,8 @@ public interface FeatureReferenceExpression extends Expression {
 	Feature getReferent();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.omg.sysml.lang.sysml.FeatureReferenceExpression#getReferent
-	 * <em>Referent</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureReferenceExpression#getReferent <em>Referent</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated

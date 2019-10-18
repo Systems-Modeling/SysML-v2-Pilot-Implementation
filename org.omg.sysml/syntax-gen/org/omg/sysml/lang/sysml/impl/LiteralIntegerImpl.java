@@ -18,8 +18,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl#getValue
- * <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,7 +46,6 @@ public class LiteralIntegerImpl extends LiteralExpressionImpl implements Literal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralIntegerImpl() {
@@ -56,7 +54,6 @@ public class LiteralIntegerImpl extends LiteralExpressionImpl implements Literal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +63,6 @@ public class LiteralIntegerImpl extends LiteralExpressionImpl implements Literal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +72,6 @@ public class LiteralIntegerImpl extends LiteralExpressionImpl implements Literal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,77 +79,70 @@ public class LiteralIntegerImpl extends LiteralExpressionImpl implements Literal
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.LITERAL_INTEGER__VALUE, oldValue,
-					value));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.LITERAL_INTEGER__VALUE, oldValue, value));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_INTEGER__VALUE:
-			return getValue();
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_INTEGER__VALUE:
-			setValue((Integer) newValue);
-			return;
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
+				setValue((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_INTEGER__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.LITERAL_INTEGER__VALUE:
-			return value != VALUE_EDEFAULT;
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");

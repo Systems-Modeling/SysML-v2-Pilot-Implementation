@@ -10,8 +10,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getInstantiatedType
- * <em>Instantiated Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getInstantiatedType <em>Instantiated Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getInstanceCreationExpression()
@@ -38,11 +37,9 @@ public interface InstanceCreationExpression extends InvocationExpression {
 	Type getInstantiatedType();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getInstantiatedType
-	 * <em>Instantiated Type</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.InstanceCreationExpression#getInstantiatedType <em>Instantiated Type</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Instantiated Type</em>' reference.
 	 * @see #getInstantiatedType()
 	 * @generated

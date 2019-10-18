@@ -20,7 +20,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SuccessionImpl() {
@@ -29,7 +28,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

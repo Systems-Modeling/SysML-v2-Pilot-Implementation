@@ -21,7 +21,6 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralExpressionImpl() {
@@ -37,7 +36,6 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

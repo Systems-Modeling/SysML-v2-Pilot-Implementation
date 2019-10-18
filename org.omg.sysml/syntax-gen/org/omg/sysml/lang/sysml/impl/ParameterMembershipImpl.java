@@ -22,19 +22,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getMemberParameter
- * <em>Member Parameter</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getOwnedMemberParameter
- * <em>Owned Member Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getMemberParameter <em>Member Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getOwnedMemberParameter <em>Owned Member Parameter</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ParameterMembershipImpl extends FeatureMembershipImpl implements ParameterMembership {
 	/**
-	 * The cached value of the '{@link #getMemberParameter() <em>Member
-	 * Parameter</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMemberParameter() <em>Member Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMemberParameter()
 	 * @generated
 	 * @ordered
@@ -42,10 +39,9 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	protected Parameter memberParameter;
 
 	/**
-	 * The cached value of the '{@link #getOwnedMemberParameter() <em>Owned Member
-	 * Parameter</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOwnedMemberParameter() <em>Owned Member Parameter</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOwnedMemberParameter()
 	 * @generated
 	 * @ordered
@@ -54,7 +50,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ParameterMembershipImpl() {
@@ -63,7 +58,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,17 +72,15 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Parameter getMemberParameterGen() {
 		if (memberParameter != null && memberParameter.eIsProxy()) {
-			InternalEObject oldMemberParameter = (InternalEObject) memberParameter;
-			memberParameter = (Parameter) eResolveProxy(oldMemberParameter);
+			InternalEObject oldMemberParameter = (InternalEObject)memberParameter;
+			memberParameter = (Parameter)eResolveProxy(oldMemberParameter);
 			if (memberParameter != oldMemberParameter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER, oldMemberParameter, memberParameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER, oldMemberParameter, memberParameter));
 			}
 		}
 		return memberParameter;
@@ -109,7 +101,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,8 +108,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 		Parameter oldMemberParameter = memberParameter;
 		memberParameter = newMemberParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER,
-					oldMemberParameter, memberParameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER, oldMemberParameter, memberParameter));
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
 			if (ownedMemberParameter != null && ownedMemberParameter != newMemberParameter) {
@@ -129,7 +119,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetMemberParameter() {
@@ -138,7 +127,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,20 +136,14 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOwnedMemberParameter(Parameter newOwnedMemberParameter, NotificationChain msgs) {
 		Parameter oldOwnedMemberParameter = ownedMemberParameter;
 		ownedMemberParameter = newOwnedMemberParameter;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER, oldOwnedMemberParameter,
-					newOwnedMemberParameter);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER, oldOwnedMemberParameter, newOwnedMemberParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
@@ -200,7 +182,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetOwnedMemberParameter() {
@@ -209,21 +190,19 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
-			return basicSetOwnedMemberParameter(null, msgs);
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				return basicSetOwnedMemberParameter(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +212,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +221,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMemberFeature(Feature newMemberFeature) {
@@ -255,16 +232,14 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetMemberFeature() {
-		return false;
+  		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,7 +249,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOwnedMemberFeature(Feature newOwnedMemberFeature, NotificationChain msgs) {
@@ -286,7 +260,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
@@ -298,11 +271,10 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetOwnedMemberFeature() {
-		return false;
+  		return false;
 	}
 
 	@Override
@@ -320,74 +292,69 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-			if (resolve)
-				return getMemberParameter();
-			return basicGetMemberParameter();
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
-			return getOwnedMemberParameter();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
+				if (resolve) return getMemberParameter();
+				return basicGetMemberParameter();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				return getOwnedMemberParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-			setMemberParameter((Parameter) newValue);
-			return;
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
-			setOwnedMemberParameter((Parameter) newValue);
-			return;
+			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
+				setMemberParameter((Parameter)newValue);
+				return;
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				setOwnedMemberParameter((Parameter)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-			setMemberParameter((Parameter) null);
-			return;
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
-			setOwnedMemberParameter((Parameter) null);
-			return;
+			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
+				setMemberParameter((Parameter)null);
+				return;
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				setOwnedMemberParameter((Parameter)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-			return isSetMemberParameter();
-		case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_FEATURE:
-			return isSetMemberFeature();
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-			return isSetOwnedMemberFeature();
-		case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
-			return isSetOwnedMemberParameter();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
+				return isSetMemberParameter();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_FEATURE:
+				return isSetMemberFeature();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
+			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				return isSetOwnedMemberParameter();
 		}
 		return super.eIsSet(featureID);
 	}

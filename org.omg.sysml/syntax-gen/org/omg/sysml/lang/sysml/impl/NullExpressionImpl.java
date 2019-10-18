@@ -21,7 +21,6 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NullExpressionImpl() {
@@ -30,7 +29,6 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -21,10 +21,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getTo
- * <em>To</em>}</li>
- * <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getFrom
- * <em>From</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getTo <em>To</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OfSuccessionImpl#getFrom <em>From</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,7 +50,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OfSuccessionImpl() {
@@ -61,7 +58,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,18 +67,16 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public OrderedFeature getTo() {
 		if (to != null && to.eIsProxy()) {
-			InternalEObject oldTo = (InternalEObject) to;
-			to = (OrderedFeature) eResolveProxy(oldTo);
+			InternalEObject oldTo = (InternalEObject)to;
+			to = (OrderedFeature)eResolveProxy(oldTo);
 			if (to != oldTo) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OF_SUCCESSION__TO, oldTo,
-							to));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OF_SUCCESSION__TO, oldTo, to));
 			}
 		}
 		return to;
@@ -90,7 +84,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrderedFeature basicGetTo() {
@@ -99,7 +92,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,18 +104,16 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public OrderedFeature getFrom() {
 		if (from != null && from.eIsProxy()) {
-			InternalEObject oldFrom = (InternalEObject) from;
-			from = (OrderedFeature) eResolveProxy(oldFrom);
+			InternalEObject oldFrom = (InternalEObject)from;
+			from = (OrderedFeature)eResolveProxy(oldFrom);
 			if (from != oldFrom) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OF_SUCCESSION__FROM, oldFrom,
-							from));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OF_SUCCESSION__FROM, oldFrom, from));
 			}
 		}
 		return from;
@@ -131,7 +121,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrderedFeature basicGetFrom() {
@@ -140,7 +129,6 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,72 +141,66 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SysMLPackage.OF_SUCCESSION__TO:
-			if (resolve)
-				return getTo();
-			return basicGetTo();
-		case SysMLPackage.OF_SUCCESSION__FROM:
-			if (resolve)
-				return getFrom();
-			return basicGetFrom();
+			case SysMLPackage.OF_SUCCESSION__TO:
+				if (resolve) return getTo();
+				return basicGetTo();
+			case SysMLPackage.OF_SUCCESSION__FROM:
+				if (resolve) return getFrom();
+				return basicGetFrom();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SysMLPackage.OF_SUCCESSION__TO:
-			setTo((OrderedFeature) newValue);
-			return;
-		case SysMLPackage.OF_SUCCESSION__FROM:
-			setFrom((OrderedFeature) newValue);
-			return;
+			case SysMLPackage.OF_SUCCESSION__TO:
+				setTo((OrderedFeature)newValue);
+				return;
+			case SysMLPackage.OF_SUCCESSION__FROM:
+				setFrom((OrderedFeature)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.OF_SUCCESSION__TO:
-			setTo((OrderedFeature) null);
-			return;
-		case SysMLPackage.OF_SUCCESSION__FROM:
-			setFrom((OrderedFeature) null);
-			return;
+			case SysMLPackage.OF_SUCCESSION__TO:
+				setTo((OrderedFeature)null);
+				return;
+			case SysMLPackage.OF_SUCCESSION__FROM:
+				setFrom((OrderedFeature)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SysMLPackage.OF_SUCCESSION__TO:
-			return to != null;
-		case SysMLPackage.OF_SUCCESSION__FROM:
-			return from != null;
+			case SysMLPackage.OF_SUCCESSION__TO:
+				return to != null;
+			case SysMLPackage.OF_SUCCESSION__FROM:
+				return from != null;
 		}
 		return super.eIsSet(featureID);
 	}

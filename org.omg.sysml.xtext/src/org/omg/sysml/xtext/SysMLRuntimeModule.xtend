@@ -7,6 +7,8 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.naming.AlfQualifiedNameConverter
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.lang.sysml.util.SysMLLibraryProvider
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
+import org.omg.sysml.scoping.AlfGlobalScopeProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -19,6 +21,10 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
 		SysMLLibraryProvider
+	}
+		
+	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		AlfGlobalScopeProvider
 	}
 		
 }

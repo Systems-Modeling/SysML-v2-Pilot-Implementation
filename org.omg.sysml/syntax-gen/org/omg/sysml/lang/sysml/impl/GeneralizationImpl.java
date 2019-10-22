@@ -5,12 +5,13 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -394,13 +395,14 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__TARGET);
+		EList<Element> target = new UniqueEList<Element>();
+		// TODO: Remove this?
 		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
 		Element general = basicGetGeneral();
 		if (general != null) {
 			target.add(general);
 		}
-		return target;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
 	}
 
 	/**
@@ -419,12 +421,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.GENERALIZATION__SOURCE);
-		Element specific = basicGetSpecific();
+		EList<Element> source = new UniqueEList<Element>();
+		// TODO: Remove this difference?
+		Type specific = basicGetSpecific();
 		if (specific != null) {
 			source.add(specific);
 		}
-		return source;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
 
 	/**

@@ -273,8 +273,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public void setOwner(Element newOwner) {
-		// TODO: implement this method to set the 'Owner' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -298,10 +297,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership basicGetOwningMembership() {
-		return getOwningRelationship(Membership.class);
+		return owningMembership;
 	}
 
 	/**
@@ -331,12 +330,21 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningMembership(Membership newOwningMembership) {
-		// TODO: implement this method to set the 'Owning Membership' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newOwningMembership != owningMembership) {
+			NotificationChain msgs = null;
+			if (owningMembership != null)
+				msgs = ((InternalEObject)owningMembership).eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
+			if (newOwningMembership != null)
+				msgs = ((InternalEObject)newOwningMembership).eInverseAdd(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, Membership.class, msgs);
+			msgs = basicSetOwningMembership(newOwningMembership, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, newOwningMembership, newOwningMembership));
 	}
 
 	/**

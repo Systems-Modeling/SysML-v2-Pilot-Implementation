@@ -14,7 +14,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -47,15 +46,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 
 	public boolean isResultParameter() {
 		return ((TypeImpl) getOwningType()).getResult() == this;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived, inherited from Feature
-	 */
-	public EList<Subsetting> getOwnedSubsetting() {
-		return super.getOwnedSubsetting();
 	}
 
 	/**

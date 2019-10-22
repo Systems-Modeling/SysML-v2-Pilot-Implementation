@@ -83,11 +83,12 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> If the Redefinition has a Feature as its owner, the
-	 * use this as the default value of the redefiningFeature property. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * If the Redefinition has a Feature as its owner, then
+	 * use this as the default value of the redefiningFeature property. 
+	 * <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public Feature basicGetRedefiningFeature() {
 		if (redefiningFeature == null) {
@@ -114,7 +115,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public boolean isSetRedefiningFeature() {
 		return basicGetRedefiningFeature() != null;

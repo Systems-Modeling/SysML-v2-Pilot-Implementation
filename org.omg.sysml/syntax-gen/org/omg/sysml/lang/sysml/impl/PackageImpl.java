@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectWithInverseResolvingEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
@@ -132,22 +132,23 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	public EList<Element> getMember() {
 		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
-		members.addAll(getMembership().stream().
-				map(m->((MembershipImpl)m).getMemberElement()).
-				filter(m->m != null).collect(Collectors.toList()));		
+		getMembership().stream().
+			map(m->((MembershipImpl)m).getMemberElement()).
+			filter(m->m != null).forEachOrdered(members::add);	
 		return members;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Import> getOwnedImport() {
-		return new DerivedEObjectEList<Import>(
-				Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT, 
-				new int[]{SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		if (ownedImport == null) {
+			ownedImport = new SubsetSupersetEObjectResolvingEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT, OWNED_IMPORT_ESUPERSETS, OWNED_IMPORT_ESUBSETS);
+		}
+		return ownedImport;
 	}
 
 	/**
@@ -221,16 +222,14 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Membership> getOwnedMembership() {
-		EList<Membership> membership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP);
-		getOwnedRelationship().stream().
-			filter(rel->rel instanceof Membership).
-			map(rel->(Membership)rel).
-			forEachOrdered(membership::add);
-		return membership;
+		if (ownedMembership == null) {
+			ownedMembership = new SubsetSupersetEObjectResolvingEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP, OWNED_MEMBERSHIP_ESUPERSETS, OWNED_MEMBERSHIP_ESUBSETS);
+		}
+		return ownedMembership;
 	}
 	
 	/**

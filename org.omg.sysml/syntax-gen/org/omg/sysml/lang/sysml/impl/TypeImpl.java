@@ -292,16 +292,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		EList<FeatureMembership> featureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				featureMemberships.add(((FeatureMembership)membership));
-			}
+		if (ownedFeatureMembership == null) {
+			ownedFeatureMembership = new SubsetSupersetEObjectWithInverseResolvingEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP, OWNED_FEATURE_MEMBERSHIP_ESUPERSETS, null, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE);
 		}
-		return featureMemberships;
+		return ownedFeatureMembership;
 	}
 
 	/**

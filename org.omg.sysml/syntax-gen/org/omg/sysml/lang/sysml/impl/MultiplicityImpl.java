@@ -126,24 +126,37 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Expression basicGetLower() {
-		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
-		int n = expressions.size();
-		return n < 2 ? null : expressions.get(0);
+		return lower;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setLower(Expression newLower) {
-		// TODO: implement this method to set the 'Lower' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		Expression oldLower = lower;
+		lower = newLower;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__LOWER, oldLower, lower));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newLower != null) {
+				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+				if (!ownedRelatedElement.contains(newLower)) {
+					ownedRelatedElement.add(newLower);
+				}
+			}
+			if (newLower != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newLower)) {
+					target.add(newLower);
+				}
+			}
+		}
 	}
 
 	/**
@@ -165,24 +178,37 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Expression basicGetUpper() {
-		EList<Expression> expressions = getOwnedRelatedElement(Expression.class);
-		int n = expressions.size();
-		return n == 0 ? null : n == 1 ? expressions.get(0) : expressions.get(1);
+		return upper;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setUpper(Expression newUpper) {
-		// TODO: implement this method to set the 'Upper' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		Expression oldUpper = upper;
+		upper = newUpper;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__UPPER, oldUpper, upper));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newUpper != null) {
+				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+				if (!ownedRelatedElement.contains(newUpper)) {
+					ownedRelatedElement.add(newUpper);
+				}
+			}
+			if (newUpper != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newUpper)) {
+					target.add(newUpper);
+				}
+			}
+		}
 	}
 
 	/**
@@ -204,11 +230,10 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Feature basicGetFeatureWithMultiplicity() {
-		return getOwningRelatedElement(Feature.class);
+		return featureWithMultiplicity;
 	}
 
 	/**
@@ -237,13 +262,21 @@ public class MultiplicityImpl extends RelationshipImpl implements Multiplicity {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setFeatureWithMultiplicity(Feature newFeatureWithMultiplicity) {
-		// TODO: implement this method to set the 'Feature With Multiplicity' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newFeatureWithMultiplicity != featureWithMultiplicity) {
+			NotificationChain msgs = null;
+			if (featureWithMultiplicity != null)
+				msgs = ((InternalEObject)featureWithMultiplicity).eInverseRemove(this, SysMLPackage.FEATURE__MULTIPLICITY, Feature.class, msgs);
+			if (newFeatureWithMultiplicity != null)
+				msgs = ((InternalEObject)newFeatureWithMultiplicity).eInverseAdd(this, SysMLPackage.FEATURE__MULTIPLICITY, Feature.class, msgs);
+			msgs = basicSetFeatureWithMultiplicity(newFeatureWithMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, newFeatureWithMultiplicity, newFeatureWithMultiplicity));
 	}
 
 	/**

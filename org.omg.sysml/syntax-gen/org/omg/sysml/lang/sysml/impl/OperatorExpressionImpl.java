@@ -99,16 +99,14 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setOperator(String newOperator) {
 		String oldOperator = operator;
 		operator = newOperator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR,
-					oldOperator, operator));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 
 	@Override
@@ -137,9 +135,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
+	 * as owned features.
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getOperand() {

@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -346,16 +348,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public EList<Redefinition> getOwnedRedefinition() {
 		EList<Redefinition> redefinitions = new EObjectEList<Redefinition>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION);
-		for (Subsetting subset: this.getOwnedSubsetting()) {
-			if (subset instanceof Redefinition) {
-				redefinitions.add((Redefinition)subset);
-			}
-		}
+		getOwnedSubsetting().stream().
+			filter(subset->subset instanceof Redefinition).
+			map(subset->(Redefinition)subset).
+			forEachOrdered(redefinitions::add);
 		return redefinitions;
 	}
 
+	// TODO
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -508,19 +511,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public FeatureMembership basicGetOwningFeatureMembership() {
-		return getOwningRelationship(FeatureMembership.class);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
+		if (newOwningFeatureMembership != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP && newOwningFeatureMembership != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningFeatureMembership))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningFeatureMembership != null)
+				msgs = ((InternalEObject)newOwningFeatureMembership).eInverseAdd(this, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, FeatureMembership.class, msgs);
+			msgs = basicSetOwningFeatureMembership(newOwningFeatureMembership, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, newOwningFeatureMembership, newOwningFeatureMembership));
 	}
 	
 	/**
@@ -578,10 +585,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public FeatureValue basicGetValuation() {
-		return getFirstOwnedRelationship(FeatureValue.class);
+		return valuation;
 	}
 
 	/**
@@ -611,10 +618,21 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setValuation(FeatureValue newValuation) {
+		if (newValuation != valuation) {
+			NotificationChain msgs = null;
+			if (valuation != null)
+				msgs = ((InternalEObject)valuation).eInverseRemove(this, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, FeatureValue.class, msgs);
+			if (newValuation != null)
+				msgs = ((InternalEObject)newValuation).eInverseAdd(this, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, FeatureValue.class, msgs);
+			msgs = basicSetValuation(newValuation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__VALUATION, newValuation, newValuation));
 	}
 
 	/**
@@ -638,10 +656,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return getFirstOwnedRelationship(Multiplicity.class);
+		return multiplicity;
 	}
 
 	/**
@@ -671,19 +689,34 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
+		if (newMultiplicity != multiplicity) {
+			NotificationChain msgs = null;
+			if (multiplicity != null)
+				msgs = ((InternalEObject)multiplicity).eInverseRemove(this, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, Multiplicity.class, msgs);
+			if (newMultiplicity != null)
+				msgs = ((InternalEObject)newMultiplicity).eInverseAdd(this, SysMLPackage.MULTIPLICITY__FEATURE_WITH_MULTIPLICITY, Multiplicity.class, msgs);
+			msgs = basicSetMultiplicity(newMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__MULTIPLICITY, newMultiplicity, newMultiplicity));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public EList<FeatureTyping> getTyping() {
-		return getOwnedGeneralizationWithoutDefault(FeatureTyping.class, SysMLPackage.FEATURE__TYPING);
+		if (typing == null) {
+			typing = new EObjectWithInverseResolvingEList<FeatureTyping>(FeatureTyping.class, this, SysMLPackage.FEATURE__TYPING, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE);
+		}
+		return typing;
 	}
 
 	/**
@@ -703,6 +736,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public void setIsEnd(boolean newIsEnd) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

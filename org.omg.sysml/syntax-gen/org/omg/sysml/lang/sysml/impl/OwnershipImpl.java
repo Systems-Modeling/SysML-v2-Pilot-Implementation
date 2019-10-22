@@ -258,21 +258,32 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwnedTarget() {
-		EList<Element> target = super.getTarget();
-		return target.isEmpty()? null: target.get(0);
+		return ownedTarget;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedTarget(Element newOwnedTarget) {
-		throw new UnsupportedOperationException();
+		Element oldOwnedTarget = ownedTarget;
+		ownedTarget = newOwnedTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OWNERSHIP__OWNED_TARGET, oldOwnedTarget, ownedTarget));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newOwnedTarget != null) {
+				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+				if (!ownedRelatedElement.contains(newOwnedTarget)) {
+					ownedRelatedElement.add(newOwnedTarget);
+				}
+			}
+		}
 	}
 
 	/**

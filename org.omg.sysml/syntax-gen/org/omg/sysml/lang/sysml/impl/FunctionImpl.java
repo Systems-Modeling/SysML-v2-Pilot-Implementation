@@ -97,7 +97,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 */
 	@Override
 	public void setResult(Parameter newResult) {
-
+		throw new UnsupportedOperationException();
 	}
 
 	/**

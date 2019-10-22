@@ -159,21 +159,31 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Expression basicGetValue() {
-		return getFirstOwnedRelatedElement(Expression.class);
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setValue(Expression newValue) {
-		// TODO: implement this method to set the 'Value' reference
+		Expression oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__VALUE, oldValue, value));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newValue != null) {
+				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+				if (!ownedRelatedElement.contains(newValue)) {
+					ownedRelatedElement.add(newValue);
+				}
+			}
+		}
 	}
 
 	/**
@@ -203,11 +213,10 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Feature basicGetFeatureWithValue() {
-		return getOwningRelatedElement(Feature.class);
+		return featureWithValue;
 	}
 
 	/**
@@ -235,12 +244,21 @@ public class FeatureValueImpl extends RelationshipImpl implements FeatureValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
-		// TODO: implement this method to set the 'Feature With Value' reference
+		if (newFeatureWithValue != featureWithValue) {
+			NotificationChain msgs = null;
+			if (featureWithValue != null)
+				msgs = ((InternalEObject)featureWithValue).eInverseRemove(this, SysMLPackage.FEATURE__VALUATION, Feature.class, msgs);
+			if (newFeatureWithValue != null)
+				msgs = ((InternalEObject)newFeatureWithValue).eInverseAdd(this, SysMLPackage.FEATURE__VALUATION, Feature.class, msgs);
+			msgs = basicSetFeatureWithValue(newFeatureWithValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, newFeatureWithValue, newFeatureWithValue));
 	}
 
 	/**

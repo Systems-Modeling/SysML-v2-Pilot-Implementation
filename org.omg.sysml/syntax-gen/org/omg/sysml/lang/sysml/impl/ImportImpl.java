@@ -9,10 +9,10 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -175,21 +175,37 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Predicate basicGetSelecter() {
-		return getFirstOwnedRelatedElement(Predicate.class);
+		return selecter;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setSelecter(Predicate newSelecter) {
-		// TODO: implement this method to set the 'Selecter' reference
+		Predicate oldSelecter = selecter;
+		selecter = newSelecter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__SELECTER, oldSelecter, selecter));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newSelecter != null) {
+				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+				if (!ownedRelatedElement.contains(newSelecter)) {
+					ownedRelatedElement.add(newSelecter);
+				}
+			}
+			if (newSelecter != null) {
+				EList<Element> target = getTarget();
+				if (!target.contains(newSelecter)) {
+					target.add(newSelecter);
+				}
+			}
+		}
 	}
 
 	/**
@@ -232,11 +248,10 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetImportOwningPackage() {
-		return getOwningRelatedElement(org.omg.sysml.lang.sysml.Package.class);
+		return importOwningPackage;
 	}
 
 	/**
@@ -265,12 +280,21 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setImportOwningPackage(org.omg.sysml.lang.sysml.Package newImportOwningPackage) {
-		// TODO: implement this method to set the 'Import Owning Package' reference
+		if (newImportOwningPackage != importOwningPackage) {
+			NotificationChain msgs = null;
+			if (importOwningPackage != null)
+				msgs = ((InternalEObject)importOwningPackage).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_IMPORT_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			if (newImportOwningPackage != null)
+				msgs = ((InternalEObject)newImportOwningPackage).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_IMPORT_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			msgs = basicSetImportOwningPackage(newImportOwningPackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE, newImportOwningPackage, newImportOwningPackage));
 	}
 
 	/**
@@ -491,17 +515,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived, inherited from Relationship
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET);
-		// NOTE: The "importedPackage" object must not be resolved here, in order to
-		// avoid Xtext lazy linking errors.
-		Element importedPackage = basicGetImportedPackage();
-		if (importedPackage != null) {
-			target.add(importedPackage);
+		if (target == null) {
+			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET, null, TARGET_ESUBSETS);
 		}
 		return target;
 	}

@@ -131,17 +131,18 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> If the Superclassing has a Classifier as its owner,
-	 * the use this as the default value of the subclass property. <!-- end-user-doc
-	 * -->
+	 * <!-- begin-user-doc --> 
+	 * If the Superclassing has a Classifier as its owner,
+	 * the use this as the default value of the subclass property. 
+	 * <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Classifier basicGetSubclass() {
 		if (subclass == null) {
 			Element owner = getOwningRelatedElement();
-			if (owner instanceof org.omg.sysml.lang.sysml.Classifier) {
-				subclass = (org.omg.sysml.lang.sysml.Classifier) owner;
+			if (owner instanceof Classifier) {
+				subclass = (Classifier) owner;
 			}
 		}
 		return subclass;

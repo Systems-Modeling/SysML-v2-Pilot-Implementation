@@ -75,7 +75,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
 		if (referent == null) {

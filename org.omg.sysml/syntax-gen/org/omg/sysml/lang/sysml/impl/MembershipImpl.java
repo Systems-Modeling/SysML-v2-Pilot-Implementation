@@ -9,16 +9,17 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -144,16 +145,18 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		return SysMLPackage.Literals.MEMBERSHIP;
 	}
 	
-	public Element getMemberElement() {
-		return memberElement == null? basicGetMemberElement(): getMemberElementGen();
-	}
+	// TODO
+//	public Element getMemberElement() {
+//		return memberElement == null? basicGetMemberElement(): getMemberElementGen();
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getMemberElementGen() {
+	@Override
+	public Element getMemberElement() {
 		if (memberElement != null && memberElement.eIsProxy()) {
 			InternalEObject oldMemberElement = (InternalEObject)memberElement;
 			memberElement = (Element)eResolveProxy(oldMemberElement);
@@ -168,13 +171,9 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetMemberElement() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		if (memberElement == null && ownedMemberElement != null) {
-			memberElement = ownedMemberElement;
-		}
 		return memberElement;
 	}
 
@@ -372,10 +371,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetMembershipOwningPackage() {
-		return getOwningRelatedElement(org.omg.sysml.lang.sysml.Package.class);
+		return membershipOwningPackage;
 	}
 
 	/**
@@ -405,12 +404,21 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
-		// TODO: implement this method to set the 'Membership Owning Package' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newMembershipOwningPackage != membershipOwningPackage) {
+			NotificationChain msgs = null;
+			if (membershipOwningPackage != null)
+				msgs = ((InternalEObject)membershipOwningPackage).eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			if (newMembershipOwningPackage != null)
+				msgs = ((InternalEObject)newMembershipOwningPackage).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			msgs = basicSetMembershipOwningPackage(newMembershipOwningPackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE, newMembershipOwningPackage, newMembershipOwningPackage));
 	}
 
 	/**
@@ -443,10 +451,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwnedMemberElement() {
-		return getFirstOwnedRelatedElement();
+		return ownedMemberElement;
 	}
 
 	/**
@@ -481,12 +489,21 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberElement(Element newOwnedMemberElement) {
-		// TODO: implement this method to set the 'Owned Member Element' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newOwnedMemberElement != ownedMemberElement) {
+			NotificationChain msgs = null;
+			if (ownedMemberElement != null)
+				msgs = ((InternalEObject)ownedMemberElement).eInverseRemove(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
+			if (newOwnedMemberElement != null)
+				msgs = ((InternalEObject)newOwnedMemberElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
+			msgs = basicSetOwnedMemberElement(newOwnedMemberElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT, newOwnedMemberElement, newOwnedMemberElement));
 	}
 
 	// Operations
@@ -500,6 +517,54 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		String name = this.getMemberName();
 		String otherName = other.getMemberName();
 		return name == null? otherName != null: !name.equals(otherName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Element memberElement = getMemberElement();
+		if (memberElement != null) {
+			target.add(memberElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		org.omg.sysml.lang.sysml.Package membershipOwningPackage = getMembershipOwningPackage();
+		if (membershipOwningPackage != null) {
+			source.add(membershipOwningPackage);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
 	}
 
 	/**
@@ -716,55 +781,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		result.append(aliases);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__TARGET);
-		// NOTE: The "memberElement" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element memberElement = basicGetMemberElement();
-		if (memberElement != null) {
-			target.add(memberElement);
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__SOURCE);
-		Element membershipOwningPackage = getMembershipOwningPackage();
-		if (membershipOwningPackage != null) {
-			source.add(membershipOwningPackage);
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //MembershipImpl

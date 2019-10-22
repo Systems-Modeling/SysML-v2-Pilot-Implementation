@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Connector;
@@ -131,12 +132,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public EList<Element> getRelatedElement() {
-		@SuppressWarnings("unchecked")
-		EList<Element> relatedFeatures = (EList<Element>)((EList<?>)getRelatedFeature());
-		return relatedFeatures;
+		return new DerivedUnionEObjectEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__RELATED_ELEMENT, RELATED_ELEMENT_ESUBSETS);
 	}
 
 	/**

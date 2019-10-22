@@ -84,8 +84,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Feature basicGetSubsettedFeature() {
 		return subsettedFeature;

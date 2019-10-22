@@ -207,16 +207,18 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		return SysMLPackage.Literals.FEATURE_MEMBERSHIP;
 	}
 	
-	public Feature getMemberFeature() {
-		return memberFeature == null? basicGetMemberFeature(): getMemberFeatureGen();
-	}
+	// TODO
+//	public Feature getMemberFeature() {
+//		return memberFeature == null? basicGetMemberFeature(): getMemberFeatureGen();
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getMemberFeatureGen() {
+	@Override
+	public Feature getMemberFeature() {
 		if (memberFeature != null && memberFeature.eIsProxy()) {
 			InternalEObject oldMemberFeature = (InternalEObject)memberFeature;
 			memberFeature = (Feature)eResolveProxy(oldMemberFeature);
@@ -228,16 +230,25 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		return memberFeature;
 	}
 
+//	/**
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated NOT
+//	 */
+//	public Feature basicGetMemberFeature() {
+//		Feature ownedMemberFeature = getOwnedMemberFeature();
+//		if (memberFeature == null && ownedMemberFeature != null) {
+//			memberFeature = ownedMemberFeature;
+//		}
+//		return memberFeature;
+//	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetMemberFeature() {
-		Feature ownedMemberFeature = getOwnedMemberFeature();
-		if (memberFeature == null && ownedMemberFeature != null) {
-			memberFeature = ownedMemberFeature;
-		}
 		return memberFeature;
 	}
 
@@ -263,10 +274,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetMemberFeature() {
-		return basicGetMemberFeature() != null;
+		return memberFeature != null;
 	}
 
 	/**
@@ -416,7 +427,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated NOT
 	 */
 	public void setOwningType(Type newOwningType) {
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -500,21 +511,21 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Feature basicGetOwnedMemberFeature() {
-		return getFirstOwnedRelatedElement(Feature.class);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
-		// TODO: implement this method to set the 'Owned Member Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newOwnedMemberFeature != ownedMemberFeature) {
+			NotificationChain msgs = null;
+			if (ownedMemberFeature != null)
+				msgs = ((InternalEObject)ownedMemberFeature).eInverseRemove(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
+			if (newOwnedMemberFeature != null)
+				msgs = ((InternalEObject)newOwnedMemberFeature).eInverseAdd(this, SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP, Feature.class, msgs);
+			msgs = basicSetOwnedMemberFeature(newOwnedMemberFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, newOwnedMemberFeature, newOwnedMemberFeature));
 	}
 
 	/**

@@ -8,14 +8,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -84,14 +83,11 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
+	@Override
 	public EList<Element> getRelatedElement() {
-		EList<Element> related = new BasicInternalEList<Element>(Element.class);
-		related.addAll(this.getSource());
-		related.addAll(this.getTarget());
-		return related;
+		return new DerivedUnionEObjectEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__RELATED_ELEMENT, RELATED_ELEMENT_ESUBSETS);
 	}
 
 	/**
@@ -118,14 +114,12 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
+	@Override
 	public Element getOwningRelatedElement() {
-		EObject container = eInternalContainer();
-		return container instanceof Element && ((Element) container).getOwnedRelationship().contains(this)
-				? (Element) container
-				: null;
+		if (eContainerFeatureID() != SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
 	}
 
 	/**

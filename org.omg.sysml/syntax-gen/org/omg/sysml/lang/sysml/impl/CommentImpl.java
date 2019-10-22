@@ -155,7 +155,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {

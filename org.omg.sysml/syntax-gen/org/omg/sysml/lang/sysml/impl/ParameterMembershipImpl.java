@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -86,16 +85,24 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 		return memberParameter;
 	}
 
+	// TODO
+//	/**
+//	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+//	 * 
+//	 * @generated NOT // TODO check, not derived
+//	 */
+//	public Parameter basicGetMemberParameter() {
+//		Parameter ownedMemberParameter = getOwnedMemberParameter();
+//		if (memberParameter == null && ownedMemberParameter != null) {
+//			memberParameter = ownedMemberParameter;
+//		}
+//		return memberParameter;
+//	}
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	public Parameter basicGetMemberParameter() {
-		Parameter ownedMemberParameter = getOwnedMemberParameter();
-		if (memberParameter == null && ownedMemberParameter != null) {
-			memberParameter = ownedMemberParameter;
-		}
 		return memberParameter;
 	}
 
@@ -158,26 +165,21 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
-	 */
-	public Parameter basicGetOwnedMemberParameter() {
-		Parameter parameter = getFirstOwnedRelatedElement(Parameter.class);
-		if (getOwningType() instanceof BlockExpression) {
-			((ParameterImpl) parameter).addInheritedFeatureRedefinitions();
-		}
-		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberParameter(Parameter newOwnedMemberParameter) {
-		// TODO: implement this method to set the 'Owned Member Parameter' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newOwnedMemberParameter != ownedMemberParameter) {
+			NotificationChain msgs = null;
+			if (ownedMemberParameter != null)
+				msgs = ((InternalEObject)ownedMemberParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER, null, msgs);
+			if (newOwnedMemberParameter != null)
+				msgs = ((InternalEObject)newOwnedMemberParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER, null, msgs);
+			msgs = basicSetOwnedMemberParameter(newOwnedMemberParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER, newOwnedMemberParameter, newOwnedMemberParameter));
 	}
 
 	/**
@@ -275,11 +277,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public boolean isSetOwnedMemberFeature() {
   		return false;
-	}
-
-	@Override
-	public Feature basicGetOwnedMemberFeature() {
-		return basicGetOwnedMemberParameter();
 	}
 
 	@Override

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -64,9 +65,33 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	EList<Generalization> getOwnedGeneralization();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * Returns the value of the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership() <em>Owned Feature Membership</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Feature Membership comp</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Feature Membership comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership_comp()
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
+	 * @model opposite="owningType" containment="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FeatureMembership> getOwnedFeatureMembership_comp();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -81,9 +106,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
-	 * @model opposite="owningType"
-	 *        annotation="subsets"
+	 * @model annotation="subsets"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();

@@ -205,8 +205,8 @@ public interface FeatureMembership extends Membership {
 	void setDirection(FeatureDirectionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -219,21 +219,21 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @return the value of the '<em>Owning Type</em>' container reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
-	 * @model opposite="ownedFeatureMembership" required="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp
+	 * @model opposite="ownedFeatureMembership_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @param value the new value of the '<em>Owning Type</em>' container reference.
 	 * @see #getOwningType()
 	 * @generated
 	 */
@@ -252,7 +252,7 @@ public interface FeatureMembership extends Membership {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

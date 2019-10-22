@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -177,16 +178,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @ordered
 	 */
 	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwningType() <em>Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type owningType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -396,38 +387,44 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public Type getOwningType() {
-		return basicGetOwningType();
+		if (eContainerFeatureID() != SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE) return null;
+		return (Type)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Type basicGetOwningType() {
-		org.omg.sysml.lang.sysml.Package owningPackage = super.basicGetMembershipOwningPackage();
-		return owningPackage instanceof Type? (Type)owningPackage: null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs) {
-		return null;
+		msgs = eBasicSetContainer((InternalEObject)newOwningType, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE, msgs);
+		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setOwningType(Type newOwningType) {
-		throw new UnsupportedOperationException();
+		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE && newOwningType != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningType))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningType != null)
+				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP, Type.class, msgs);
+			msgs = basicSetOwningType(newOwningType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE, newOwningType, newOwningType));
 	}
 
 	/**
@@ -436,7 +433,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	public boolean isSetOwningType() {
-		return owningType != null;
+		return getOwningType() != null;
 	}
 
 	/**
@@ -452,8 +449,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 					msgs = ((InternalEObject)ownedMemberFeature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, null, msgs);
 				return basicSetOwnedMemberFeature((Feature)otherEnd, msgs);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
-				if (owningType != null)
-					msgs = ((InternalEObject)owningType).eInverseRemove(this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP, Type.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningType((Type)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -473,6 +470,20 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return basicSetOwningType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP, Type.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -590,8 +601,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__DIRECTION:
 				return getDirection();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
-				if (resolve) return getOwningType();
-				return basicGetOwningType();
+				return getOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -686,8 +696,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isSetMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return isSetOwnedMemberElement();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				return isSetOwnedMemberElement_comp();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				return isSetMembershipOwningPackage();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
@@ -783,7 +793,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
-	public Element getOwnedMemberElement() {
+	public Element getOwnedMemberElement_comp() {
 		return getOwnedMemberFeature();
 	}
 
@@ -792,21 +802,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Element basicGetOwnedMemberElement() {
-		return getOwnedMemberFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMemberElement(Element newOwnedMemberElement, NotificationChain msgs) {
-		if (newOwnedMemberElement != null && !(newOwnedMemberElement instanceof Feature)) {
-			throw new IllegalArgumentException("newOwnedMemberElement must be an instance of Feature");
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Feature)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Feature");
 		}
-		return basicSetOwnedMemberFeature((Feature) newOwnedMemberElement, msgs);
+		return basicSetOwnedMemberFeature((Feature) newOwnedMemberElement_comp, msgs);
 	}
 
 	/**
@@ -814,11 +814,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberElement(Element newOwnedMemberElement) {
-		if (newOwnedMemberElement != null && !(newOwnedMemberElement instanceof Feature)) {
-			throw new IllegalArgumentException("newOwnedMemberElement must be an instance of Feature");
+	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Feature)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Feature");
 		}
-		setOwnedMemberFeature((Feature) newOwnedMemberElement);
+		setOwnedMemberFeature((Feature) newOwnedMemberElement_comp);
 	}
 
 	/**
@@ -826,7 +826,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedMemberElement() {
+	public boolean isSetOwnedMemberElement_comp() {
   		return false;
 	}
 
@@ -838,16 +838,6 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
 		return getOwningType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Package basicGetMembershipOwningPackage() {
-		return basicGetOwningType();
 	}
 
 	/**

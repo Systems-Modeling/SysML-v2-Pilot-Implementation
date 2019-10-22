@@ -21,7 +21,7 @@
       <details key="documentation" value="&lt;p>Element is most basic tracked entity in the model. It provides an identifier for the system to track.&lt;/p>&#xA;&#xA;name = if owningNamespace = null then null&#xA;else owningNamespace.nameOf(self) endif&#xA;ownedElement = ownedRelationship.ownedRelatedElement&#xA;owner = owningRelationship.owningRelatedElement"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningMembership" ordered="false"
-        eType="#//Membership" eOpposite="#//Membership/ownedMemberElement">
+        eType="#//Membership" eOpposite="#//Membership/ownedMemberElement_comp">
       <eAnnotations source="subsets" references="#//Element/owningRelationship"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelationship" ordered="false"
@@ -61,13 +61,16 @@
       <eAnnotations source="redefines" references="#//Relationship/target"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="membershipOwningPackage"
-        ordered="false" lowerBound="1" eType="#//Package" eOpposite="#//Package/ownedMembership_comp">
+        ordered="false" eType="#//Package" eOpposite="#//Package/ownedMembership_comp">
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
-        eType="#//Element" eOpposite="#//Element/owningMembership">
-      <eAnnotations source="subsets" references="#//Membership/memberElement #//Relationship/ownedRelatedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement_comp"
+        ordered="false" eType="#//Element" containment="true" eOpposite="#//Element/owningMembership">
+      <eAnnotations source="subsets" references="#//Membership/memberElement #//Membership/ownedMemberElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" eType="#//Element">
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Element">
@@ -131,7 +134,7 @@
       <eAnnotations source="union"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImport_comp" upperBound="-1"
-        eType="#//Import" eOpposite="#//Import/importOwningPackage">
+        eType="#//Import" containment="true" eOpposite="#//Import/importOwningPackage">
       <eAnnotations source="subsets" references="#//Package/ownedImport"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
@@ -152,7 +155,7 @@
       <eAnnotations source="subsets" references="#//Package/membership"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMembership_comp" upperBound="-1"
-        eType="#//Membership" eOpposite="#//Membership/membershipOwningPackage">
+        eType="#//Membership" containment="true" eOpposite="#//Membership/membershipOwningPackage">
       <eAnnotations source="subsets" references="#//Package/membership #//Package/ownedMembership"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMembership" upperBound="-1"
@@ -173,19 +176,22 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Relationship/target"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="selecter" ordered="false"
-        eType="#//Predicate">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selecter_comp" ordered="false"
+        eType="#//Predicate" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="import"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement #//Relationship/target"/>
+      <eAnnotations source="subsets" references="#//Relationship/target #//Import/selecter"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
         lowerBound="1" eType="#//VisibilityKind" defaultValueLiteral="public"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importOwningPackage" ordered="false"
-        lowerBound="1" eType="#//Package" eOpposite="#//Package/ownedImport_comp">
+        eType="#//Package" eOpposite="#//Package/ownedImport_comp">
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selecter" eType="#//Predicate">
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Predicate" eSuperTypes="#//Function"/>
@@ -240,9 +246,9 @@
         eOpposite="#//Generalization/owningType">
       <eAnnotations source="subsets" references="#//Element/ownedElement #//Element/ownedRelationship"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureMembership"
-        upperBound="-1" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/owningType">
-      <eAnnotations source="subsets" references="#//Package/ownedMembership_comp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureMembership_comp"
+        upperBound="-1" eType="#//FeatureMembership" containment="true" eOpposite="#//FeatureMembership/owningType">
+      <eAnnotations source="subsets" references="#//Type/ownedFeatureMembership"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" ordered="false"
         upperBound="-1" eType="#//Feature" volatile="true" transient="true" derived="true"
@@ -293,6 +299,10 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSufficient" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureMembership"
+        upperBound="-1" eType="#//FeatureMembership">
+      <eAnnotations source="subsets" references="#//Package/ownedMembership_comp"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -334,7 +344,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberFeature" ordered="false"
         eType="#//Feature" containment="true" eOpposite="#//Feature/owningFeatureMembership">
-      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
+      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement_comp"/>
       <eAnnotations source="subsets" references="#//FeatureMembership/memberFeature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
@@ -346,7 +356,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
         eType="#//FeatureDirectionKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
-        lowerBound="1" eType="#//Type" eOpposite="#//Type/ownedFeatureMembership">
+        eType="#//Type" eOpposite="#//Type/ownedFeatureMembership_comp">
       <eAnnotations source="redefines" references="#//Membership/membershipOwningPackage"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -401,13 +411,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
         transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valuation" ordered="false"
-        eType="#//FeatureValue" eOpposite="#//FeatureValue/featureWithValue">
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valuation_comp" ordered="false"
+        eType="#//FeatureValue" containment="true" eOpposite="#//FeatureValue/featureWithValue">
+      <eAnnotations source="subsets" references="#//Feature/valuation"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" ordered="false"
-        eType="#//Multiplicity" eOpposite="#//Multiplicity/featureWithMultiplicity">
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity_comp" ordered="false"
+        eType="#//Multiplicity" containment="true" eOpposite="#//Multiplicity/featureWithMultiplicity">
+      <eAnnotations source="subsets" references="#//Feature/multiplicity"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typing" ordered="false"
         upperBound="-1" eType="#//FeatureTyping" eOpposite="#//FeatureTyping/typedFeature"/>
@@ -421,6 +431,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
         transient="true" defaultValueLiteral="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valuation" eType="#//FeatureValue">
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="#//Multiplicity">
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Redefinition" eSuperTypes="#//Subsetting">
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefiningFeature" ordered="false"
@@ -459,18 +475,21 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureValue" eSuperTypes="#//Relationship">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
-        eType="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value_comp" ordered="false"
+        eType="#//Expression" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="expressedValuation"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/target"/>
-      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
+      <eAnnotations source="subsets" references="#//FeatureValue/value"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureWithValue" ordered="false"
-        lowerBound="1" eType="#//Feature" eOpposite="#//Feature/valuation">
+        eType="#//Feature" eOpposite="#//Feature/valuation_comp">
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression">
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Step">
@@ -493,24 +512,30 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplicity" eSuperTypes="#//Relationship">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" ordered="false"
-        eType="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower_comp" ordered="false"
+        eType="#//Expression" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="lowerMultiplicity"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement #//Relationship/target"/>
+      <eAnnotations source="subsets" references="#//Relationship/target #//Multiplicity/lower"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" ordered="false"
-        lowerBound="1" eType="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper_comp" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="upperMultiplicity"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement #//Relationship/target"/>
+      <eAnnotations source="subsets" references="#//Relationship/target #//Multiplicity/upper"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureWithMultiplicity"
-        ordered="false" eType="#//Feature" eOpposite="#//Feature/multiplicity">
+        ordered="false" eType="#//Feature" eOpposite="#//Feature/multiplicity_comp">
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" eType="#//Expression">
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" lowerBound="1" eType="#//Expression">
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureTyping" eSuperTypes="#//Generalization">
@@ -580,12 +605,16 @@
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTarget" ordered="false"
-        lowerBound="1" eType="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTarget_comp" ordered="false"
+        lowerBound="1" eType="#//Element" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="targetOwnership"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/target"/>
+      <eAnnotations source="subsets" references="#//Ownership/ownedTarget"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTarget" lowerBound="1"
+        eType="#//Element">
       <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>

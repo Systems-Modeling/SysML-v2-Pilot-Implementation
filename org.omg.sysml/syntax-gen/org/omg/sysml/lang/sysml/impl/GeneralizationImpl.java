@@ -122,50 +122,6 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		return general != null;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-				return basicSetOwningRelatedElement(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
 	public Type getSpecific() {
 		return specific == null? basicGetSpecific(): getSpecificGen();
 	}
@@ -214,6 +170,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		specific = newSpecific;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.GENERALIZATION__SPECIFIC, oldSpecific, specific));
+	}
+	
+	public void basicSetSpecific(Type newSpecific) {
+		setSpecific(newSpecific);
 	}
 
 	/**
@@ -299,6 +259,57 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			setSpecific(newOwningType);
 		}
 		setOwningRelatedElement(newOwningType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		// TODO: Remove this?
+		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
+		Element general = basicGetGeneral();
+		if (general != null) {
+			target.add(general);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		// TODO: Remove this difference?
+		Type specific = basicGetSpecific();
+		if (specific != null) {
+			source.add(specific);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
 	}
 
 	/**
@@ -391,18 +402,17 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		// TODO: Remove this?
-		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element general = basicGetGeneral();
-		if (general != null) {
-			target.add(general);
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -410,24 +420,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		// TODO: Remove this difference?
-		Type specific = basicGetSpecific();
-		if (specific != null) {
-			source.add(specific);
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
 		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -435,8 +434,13 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetSource() {
-  		return false;
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 } //GeneralizationImpl

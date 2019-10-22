@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -132,9 +133,16 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	public Feature basicGetTypedFeature() {
+		if (typedFeature == null) {
+			Element owningRelatedElement = getOwningRelatedElement();
+			if (owningRelatedElement instanceof Feature) {
+				typedFeature = (Feature) owningRelatedElement;
+			}
+		}
 		return typedFeature;
 	}
 
@@ -173,10 +181,10 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetTypedFeature() {
-		return typedFeature != null;
+		return basicGetTypedFeature() != null;
 	}
 
 	/**
@@ -338,6 +346,11 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
 		}
 		setTypedFeature((Feature) newSpecific);
+	}
+	
+	@Override
+	public void basicSetSpecific(Type newSpecific) {
+		basicSetTypedFeature((Feature) newSpecific, null);
 	}
 
 	/**

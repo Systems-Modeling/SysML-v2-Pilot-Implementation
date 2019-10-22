@@ -39,8 +39,8 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Owning Membership</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
+	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -53,21 +53,21 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Membership</em>' reference.
+	 * @return the value of the '<em>Owning Membership</em>' container reference.
 	 * @see #setOwningMembership(Membership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
-	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
-	 * @model opposite="ownedMemberElement" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp
+	 * @model opposite="ownedMemberElement_comp" transient="false" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Membership getOwningMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Membership</em>' reference.
+	 * @param value the new value of the '<em>Owning Membership</em>' container reference.
 	 * @see #getOwningMembership()
 	 * @generated
 	 */

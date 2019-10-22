@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectWithInverseResolvingEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
@@ -68,7 +67,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	protected EList<Membership> ownedMembership;
 	/**
-	 * The cached value of the '{@link #getOwnedImport_comp() <em>Owned Import comp</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedImport_comp() <em>Owned Import comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedImport_comp()
@@ -77,7 +76,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	protected EList<Import> ownedImport_comp;
 	/**
-	 * The cached value of the '{@link #getOwnedMembership_comp() <em>Owned Membership comp</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedMembership_comp() <em>Owned Membership comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMembership_comp()
@@ -214,7 +213,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	@Override
 	public EList<Membership> getOwnedMembership_comp() {
 		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new SubsetSupersetEObjectWithInverseResolvingEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, OWNED_MEMBERSHIP_COMP_ESUPERSETS, null, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
+			ownedMembership_comp = new SubsetSupersetEObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, OWNED_MEMBERSHIP_COMP_ESUPERSETS, null, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
 		}
 		return ownedMembership_comp;
 	}
@@ -282,13 +281,13 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	@Override
 	public EList<Import> getOwnedImport_comp() {
 		if (ownedImport_comp == null) {
-			ownedImport_comp = new SubsetSupersetEObjectWithInverseResolvingEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT_COMP, OWNED_IMPORT_COMP_ESUPERSETS, null, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
+			ownedImport_comp = new SubsetSupersetEObjectContainmentWithInverseEList<Import>(Import.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT_COMP, OWNED_IMPORT_COMP_ESUPERSETS, null, SysMLPackage.IMPORT__IMPORT_OWNING_PACKAGE);
 		}
 		return ownedImport_comp;
 	}
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedImport_comp() <em>Owned Import comp</em>}' reference list.
+	 * The array of superset feature identifiers for the '{@link #getOwnedImport_comp() <em>Owned Import comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedImport_comp()
@@ -297,7 +296,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	protected static final int[] OWNED_IMPORT_COMP_ESUPERSETS = new int[] {SysMLPackage.PACKAGE__OWNED_IMPORT};
 	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedMembership_comp() <em>Owned Membership comp</em>}' reference list.
+	 * The array of superset feature identifiers for the '{@link #getOwnedMembership_comp() <em>Owned Membership comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMembership_comp()

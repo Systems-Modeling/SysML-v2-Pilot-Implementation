@@ -13,9 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportedPackage <em>Imported Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter_comp <em>Selecter comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport()
@@ -57,13 +58,47 @@ public interface Import extends Relationship {
 	void setImportedPackage(org.omg.sysml.lang.sysml.Package value);
 
 	/**
+	 * Returns the value of the '<em><b>Selecter comp</b></em>' containment reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Import#getSelecter() <em>Selecter</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Selecter comp</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Selecter comp</em>' containment reference.
+	 * @see #setSelecter_comp(Predicate)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter_comp()
+	 * @model containment="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Predicate getSelecter_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getSelecter_comp <em>Selecter comp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Selecter comp</em>' containment reference.
+	 * @see #getSelecter_comp()
+	 * @generated
+	 */
+	void setSelecter_comp(Predicate value);
+
+	/**
 	 * Returns the value of the '<em><b>Selecter</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -74,9 +109,7 @@ public interface Import extends Relationship {
 	 * @return the value of the '<em>Selecter</em>' reference.
 	 * @see #setSelecter(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter()
-	 * @model ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
-	 *        annotation="subsets"
+	 * @model annotation="subsets"
 	 * @generated
 	 */
 	Predicate getSelecter();
@@ -122,7 +155,7 @@ public interface Import extends Relationship {
 	void setVisibility(VisibilityKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Import Owning Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Import Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
@@ -142,11 +175,11 @@ public interface Import extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Import Owning Package</em>' reference.
+	 * @return the value of the '<em>Import Owning Package</em>' container reference.
 	 * @see #setImportOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport_comp
-	 * @model opposite="ownedImport_comp" required="true" ordered="false"
+	 * @model opposite="ownedImport_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated

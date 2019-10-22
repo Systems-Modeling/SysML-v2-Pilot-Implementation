@@ -40,7 +40,6 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EReference
-					&& ((EReference) modelElement).isMany()
 					&& AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
 				EAnnotation compSubsets = modelElement.getEAnnotation(ANNOTATION__SUBSETS);
 				if (compSubsets != null) {
@@ -64,6 +63,16 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 
 						// change the reference name
 						compRef.setName(compRef.getName() + "_comp");
+						
+						// set the reference to be containment (even though the UML property was composite, 
+						// the reference will not be, because the original property subsets a composite)
+						compRef.setContainment(true);
+						
+						// Ensure the opposite containment reference is optional.
+						EReference opRef = compRef.getEOpposite();
+						if (opRef != null) {
+							opRef.setLowerBound(0);
+						}
 
 						// add the normal ref, now that its name is not in use anymore
 						EClass container = (EClass) ((EStructuralFeature) compRef).eContainer();

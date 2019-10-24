@@ -5,14 +5,15 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Ownership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -26,25 +27,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwnedTarget <em>Owned Target</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwningSource <em>Owning Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwnedTarget_comp <em>Owned Target comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OwnershipImpl#getOwnedTarget <em>Owned Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OwnershipImpl extends RelationshipImpl implements Ownership {
-	/**
-	 * The cached value of the '{@link #getOwnedTarget() <em>Owned Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element ownedTarget;
-
 	/**
 	 * The cached value of the '{@link #getOwningSource() <em>Owning Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -74,13 +65,20 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 		super();
 	}
 	
-	// Additional redefinitions
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Element> getSource() {
-		EList<Element> source = new EObjectEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__SOURCE);
-		source.add(getOwningRelatedElement());
-		return source;
+		EList<Element> source = new UniqueEList<Element>();
+		Element owningSource = getOwningSource();
+		if (owningSource != null) {
+			source.add(owningSource);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
 	
 	/**
@@ -92,11 +90,19 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
   		return false;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__TARGET);
-		target.addAll(getOwnedRelatedElement());
-		return target;
+		EList<Element> target = new UniqueEList<Element>();
+		Element ownedTarget_comp = getOwnedTarget_comp();
+		if (ownedTarget_comp != null) {
+			target.add(ownedTarget_comp);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
 	}
 
 	/**
@@ -159,7 +165,7 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -173,22 +179,12 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	 * @generated
 	 */
 	@Override
-	public EList<Element> getOwnedRelatedElement() {
-		if (ownedRelatedElement == null) {
-			ownedRelatedElement = new SubsetSupersetEObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT, null, OWNED_RELATED_ELEMENT_ESUBSETS, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+	public EList<Element> getOwnedRelatedElement_comp() {
+		if (ownedRelatedElement_comp == null) {
+			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
 		}
-		return ownedRelatedElement;
+		return ownedRelatedElement_comp;
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.OWNERSHIP__OWNED_TARGET};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,14 +266,6 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP, oldOwnedTarget_comp, newOwnedTarget_comp);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedTarget_comp != null) {
-				if (newOwnedTarget_comp != ownedTarget) {
-					setOwnedTarget(newOwnedTarget_comp);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -317,50 +305,39 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	 */
 	@Override
 	public Element getOwnedTarget() {
-		if (ownedTarget != null && ownedTarget.eIsProxy()) {
-			InternalEObject oldOwnedTarget = (InternalEObject)ownedTarget;
-			ownedTarget = (Element)eResolveProxy(oldOwnedTarget);
-			if (ownedTarget != oldOwnedTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OWNERSHIP__OWNED_TARGET, oldOwnedTarget, ownedTarget));
-			}
-		}
-		return ownedTarget;
+		Element ownedTarget = basicGetOwnedTarget();
+		return ownedTarget != null && ownedTarget.eIsProxy() ? (Element)eResolveProxy((InternalEObject)ownedTarget) : ownedTarget;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Element basicGetOwnedTarget() {
-		return ownedTarget;
+		return getOwnedTarget();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedTarget(Element newOwnedTarget) {
-		Element oldOwnedTarget = ownedTarget;
-		ownedTarget = newOwnedTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OWNERSHIP__OWNED_TARGET, oldOwnedTarget, ownedTarget));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedTarget_comp != null && ownedTarget_comp != newOwnedTarget) {
-				setOwnedTarget_comp(null);
-			}
-			if (newOwnedTarget != null) {
-				EList<Element> ownedRelatedElement = getOwnedRelatedElement();
-				if (!ownedRelatedElement.contains(newOwnedTarget)) {
-					ownedRelatedElement.add(newOwnedTarget);
-				}
-			}
-		}
+		throw new UnsupportedOperationException();
 	}
+
+	// Additional subsets
+	
+	@Override
+	public EList<Element> getOwnedRelatedElement() {
+		EList<Element> relatedElements = super.getOwnedRelatedElement();
+		relatedElements.add(getOwnedTarget());
+		return relatedElements;
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -375,8 +352,8 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -391,8 +368,8 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 		switch (featureID) {
 			case SysMLPackage.OWNERSHIP__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP:
 				return basicSetOwnedTarget_comp(null, msgs);
 		}
@@ -408,7 +385,7 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.OWNERSHIP__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -421,14 +398,14 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
-				if (resolve) return getOwnedTarget();
-				return basicGetOwnedTarget();
 			case SysMLPackage.OWNERSHIP__OWNING_SOURCE:
 				if (resolve) return getOwningSource();
 				return basicGetOwningSource();
 			case SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP:
 				return getOwnedTarget_comp();
+			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
+				if (resolve) return getOwnedTarget();
+				return basicGetOwnedTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -441,14 +418,14 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
-				setOwnedTarget((Element)newValue);
-				return;
 			case SysMLPackage.OWNERSHIP__OWNING_SOURCE:
 				setOwningSource((Element)newValue);
 				return;
 			case SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP:
 				setOwnedTarget_comp((Element)newValue);
+				return;
+			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
+				setOwnedTarget((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -462,14 +439,14 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
-				setOwnedTarget((Element)null);
-				return;
 			case SysMLPackage.OWNERSHIP__OWNING_SOURCE:
 				setOwningSource((Element)null);
 				return;
 			case SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP:
 				setOwnedTarget_comp((Element)null);
+				return;
+			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
+				setOwnedTarget((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -485,10 +462,8 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 		switch (featureID) {
 			case SysMLPackage.OWNERSHIP__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
-			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
-				return ownedTarget != null;
-			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.OWNERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.OWNERSHIP__SOURCE:
 				return isSetSource();
 			case SysMLPackage.OWNERSHIP__TARGET:
@@ -497,6 +472,8 @@ public class OwnershipImpl extends RelationshipImpl implements Ownership {
 				return isSetOwningSource();
 			case SysMLPackage.OWNERSHIP__OWNED_TARGET_COMP:
 				return isSetOwnedTarget_comp();
+			case SysMLPackage.OWNERSHIP__OWNED_TARGET:
+				return basicGetOwnedTarget() != null;
 		}
 		return super.eIsSet(featureID);
 	}

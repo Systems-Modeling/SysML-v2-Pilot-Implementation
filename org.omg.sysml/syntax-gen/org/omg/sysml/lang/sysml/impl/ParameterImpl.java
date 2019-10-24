@@ -8,12 +8,15 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -42,6 +45,14 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PARAMETER;
+	}
+	
+	@Override
+	public FeatureMembership getOwningFeatureMembership() {
+		EObject container = eInternalContainer();
+		return container instanceof ParameterMembership? 
+				(FeatureMembership)container: 
+			    super.getOwningFeatureMembership();
 	}
 
 	public boolean isResultParameter() {
@@ -80,5 +91,5 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 			}
 		}
 	}
-
+	
 } // ParameterImpl

@@ -47,7 +47,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -68,12 +68,6 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * Returns the value of the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership() <em>Owned Feature Membership</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Feature Membership comp</em>' containment reference list isn't clear,
@@ -84,7 +78,6 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership_comp()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
 	 * @model opposite="owningType" containment="true"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership_comp();
@@ -106,7 +99,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();

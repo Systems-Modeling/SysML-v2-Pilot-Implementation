@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -53,9 +53,7 @@ import org.omg.sysml.lang.sysml.DataType;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValuation <em>Valuation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
@@ -72,6 +70,8 @@ import org.omg.sysml.lang.sysml.DataType;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getValuation <em>Valuation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,24 +85,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
 	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
 	
-	/**
-	 * The cached value of the '{@link #getValuation() <em>Valuation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValuation()
-	 * @generated
-	 * @ordered
-	 */
-	protected FeatureValue valuation;
-	/**
-	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected Multiplicity multiplicity;
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -423,7 +405,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 			subsetting.setSubsettedFeature((Feature)type);
 			subsetting.setSubsettingFeature(this);
-			getOwnedRelationship().add(subsetting);
+			getOwnedRelationship_comp().add(subsetting);
 		}
 	}
 	
@@ -463,7 +445,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 						} else {
 							redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 							redefinition.setRedefiningFeature(this);
-							getOwnedRelationship().add(redefinition);
+							getOwnedRelationship_comp().add(redefinition);
 						}
 						redefinition.setRedefinedFeature(redefinedFeature);
 						redefinitions.add(redefinition);
@@ -471,7 +453,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				}
 			}
 			if (n > 0) {
-				getOwnedRelationship().removeAll(emptyRedefinitions.subList(j, n));
+				getOwnedRelationship_comp().removeAll(emptyRedefinitions.subList(j, n));
 			}
 		}
 	}
@@ -551,7 +533,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningFeatureMembership != null)
-				msgs = ((InternalEObject)newOwningFeatureMembership).eInverseAdd(this, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, FeatureMembership.class, msgs);
+				msgs = ((InternalEObject)newOwningFeatureMembership).eInverseAdd(this, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP, FeatureMembership.class, msgs);
 			msgs = basicSetOwningFeatureMembership(newOwningFeatureMembership, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -615,14 +597,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__VALUATION_COMP, oldValuation_comp, newValuation_comp);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newValuation_comp != null) {
-				if (newValuation_comp != valuation) {
-					setValuation(newValuation_comp);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -668,14 +642,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__MULTIPLICITY_COMP, oldMultiplicity_comp, newMultiplicity_comp);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newMultiplicity_comp != null) {
-				if (newMultiplicity_comp != multiplicity) {
-					setMultiplicity(newMultiplicity_comp);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -706,49 +672,27 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public FeatureValue getValuation() {
-		if (valuation != null && valuation.eIsProxy()) {
-			InternalEObject oldValuation = (InternalEObject)valuation;
-			valuation = (FeatureValue)eResolveProxy(oldValuation);
-			if (valuation != oldValuation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__VALUATION, oldValuation, valuation));
-			}
-		}
-		return valuation;
+		FeatureValue valuation = basicGetValuation();
+		return valuation != null && valuation.eIsProxy() ? (FeatureValue)eResolveProxy((InternalEObject)valuation) : valuation;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FeatureValue basicGetValuation() {
-		return valuation;
+		return getValuation_comp();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setValuation(FeatureValue newValuation) {
-		FeatureValue oldValuation = valuation;
-		valuation = newValuation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__VALUATION, oldValuation, valuation));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (valuation_comp != null && valuation_comp != newValuation) {
-				setValuation_comp(null);
-			}
-			if (newValuation != null) {
-				EList<Relationship> ownedRelationship = getOwnedRelationship();
-				if (!ownedRelationship.contains(newValuation)) {
-					ownedRelationship.add(newValuation);
-				}
-			}
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -758,49 +702,37 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public Multiplicity getMultiplicity() {
-		if (multiplicity != null && multiplicity.eIsProxy()) {
-			InternalEObject oldMultiplicity = (InternalEObject)multiplicity;
-			multiplicity = (Multiplicity)eResolveProxy(oldMultiplicity);
-			if (multiplicity != oldMultiplicity) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE__MULTIPLICITY, oldMultiplicity, multiplicity));
-			}
-		}
-		return multiplicity;
+		Multiplicity multiplicity = basicGetMultiplicity();
+		return multiplicity != null && multiplicity.eIsProxy() ? (Multiplicity)eResolveProxy((InternalEObject)multiplicity) : multiplicity;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return multiplicity;
+		return getMultiplicity_comp();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
-		Multiplicity oldMultiplicity = multiplicity;
-		multiplicity = newMultiplicity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__MULTIPLICITY, oldMultiplicity, multiplicity));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (multiplicity_comp != null && multiplicity_comp != newMultiplicity) {
-				setMultiplicity_comp(null);
-			}
-			if (newMultiplicity != null) {
-				EList<Relationship> ownedRelationship = getOwnedRelationship();
-				if (!ownedRelationship.contains(newMultiplicity)) {
-					ownedRelationship.add(newMultiplicity);
-				}
-			}
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public EList<FeatureTyping> getTyping() {
+		EList<FeatureTyping> typing = getTypingGen();
+		if (typing.isEmpty()) {
+			getOwnedGeneralizationWithoutDefault(FeatureTyping.class, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE).stream().
+				forEachOrdered(f->((InternalEList<FeatureTyping>)typing).basicAdd(f, null));
 		}
+		return typing;
 	}
 
 	/**
@@ -808,8 +740,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<FeatureTyping> getTyping() {
+	public EList<FeatureTyping> getTypingGen() {
 		if (typing == null) {
 			typing = new EObjectWithInverseResolvingEList<FeatureTyping>(FeatureTyping.class, this, SysMLPackage.FEATURE__TYPING, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE);
 		}
@@ -884,25 +815,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		this.setIsUnique(!newIsNonunique);
 	}
 	
-	// Additional redefinitions and subsets
-
-	public BindingConnector getValueConnector() {
-		FeatureValue valuation = getValuation();
-		if (valuation != null) {
-			Expression value = valuation.getValue();
-			if (value != null) {
-				valueConnector = makeBinding(valueConnector, ((ExpressionImpl)value).getResult(), this);
-			}
-		}
-		return valueConnector;
-	}
-	
-	@Override
-	public EList<Feature> getFeature() {
-		getValueConnector();
-		return super.getFeature();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -915,12 +827,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
 			if (owningFeatureMembership != null && owningFeatureMembership != newOwningMembership) {
 				setOwningFeatureMembership(null);
-			}
-			if (newOwningMembership != null) {
-				Relationship owningRelationship = getOwningRelationship();
-				if (newOwningMembership != owningRelationship) {
-					setOwningRelationship(newOwningMembership);
-				}
 			}
 		}
 		return msgs;
@@ -953,24 +859,56 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Relationship> getOwnedRelationship() {
-		if (ownedRelationship == null) {
-			ownedRelationship = new SubsetSupersetEObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.FEATURE__OWNED_RELATIONSHIP, null, OWNED_RELATIONSHIP_ESUBSETS, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
-		}
-		return ownedRelationship;
+	public boolean isSetOwningMembership() {
+		return getOwningMembership() != null;
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedRelationship() <em>Owned Relationship</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelationship()
 	 * @generated
-	 * @ordered
 	 */
-	protected static final int[] OWNED_RELATIONSHIP_ESUBSETS = new int[] {SysMLPackage.FEATURE__OWNED_MEMBERSHIP, SysMLPackage.FEATURE__OWNED_IMPORT, SysMLPackage.FEATURE__VALUATION, SysMLPackage.FEATURE__MULTIPLICITY};
+	@Override
+	public EList<Relationship> getOwnedRelationship_comp() {
+		if (ownedRelationship_comp == null) {
+			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.FEATURE__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
+		}
+		return ownedRelationship_comp;
+	}
 
+	// Additional redefinitions and subsets
+
+	public BindingConnector getValueConnector() {
+		FeatureValue valuation = getValuation();
+		if (valuation != null) {
+			Expression value = valuation.getValue();
+			if (value != null) {
+				valueConnector = makeBinding(valueConnector, ((ExpressionImpl)value).getResult(), this);
+			}
+		}
+		return valueConnector;
+	}
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getValueConnector();
+		return super.getFeature();
+	}
+	
+	@Override
+	public EList<Relationship> getOwnedRelationship() {
+		EList<Relationship> ownedRelationships = super.getOwnedRelationship();
+		Relationship multiplicity = getMultiplicity();
+		if (multiplicity != null) {
+			ownedRelationships.add(multiplicity);
+		}
+		Relationship valuation = getValuation();
+		if (valuation != null) {
+			ownedRelationships.add(valuation);
+		}
+		return ownedRelationships;
+	}
+	
 	// Utility methods
 	
 	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
@@ -1002,7 +940,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public Subsetting createSubsetting() {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettingFeature(this);
-		this.getOwnedRelationship().add(subsetting);
+		getOwnedRelationship_comp().add(subsetting);
 		return subsetting;
 	}
 	
@@ -1015,7 +953,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
 	}
 
-//
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -1030,8 +968,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningMembership((Membership)otherEnd, msgs);
-			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -1060,8 +998,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNING_MEMBERSHIP:
 				return basicSetOwningMembership(null, msgs);
-			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
-				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP_COMP:
+				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
 				return basicSetOwningFeatureMembership(null, msgs);
 			case SysMLPackage.FEATURE__VALUATION_COMP:
@@ -1085,7 +1023,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNING_MEMBERSHIP:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, Membership.class, msgs);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE, FeatureMembership.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP, FeatureMembership.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -1098,12 +1036,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__VALUATION:
-				if (resolve) return getValuation();
-				return basicGetValuation();
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				if (resolve) return getMultiplicity();
-				return basicGetMultiplicity();
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				return getReferencedType();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
@@ -1138,6 +1070,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
+			case SysMLPackage.FEATURE__VALUATION:
+				if (resolve) return getValuation();
+				return basicGetValuation();
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				if (resolve) return getMultiplicity();
+				return basicGetMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1151,12 +1089,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__VALUATION:
-				setValuation((FeatureValue)newValue);
-				return;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				setMultiplicity((Multiplicity)newValue);
-				return;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				getReferencedType().clear();
 				getReferencedType().addAll((Collection<? extends Type>)newValue);
@@ -1211,6 +1143,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
+			case SysMLPackage.FEATURE__VALUATION:
+				setValuation((FeatureValue)newValue);
+				return;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				setMultiplicity((Multiplicity)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1223,12 +1161,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__VALUATION:
-				setValuation((FeatureValue)null);
-				return;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				setMultiplicity((Multiplicity)null);
-				return;
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				getReferencedType().clear();
 				return;
@@ -1277,6 +1209,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
+			case SysMLPackage.FEATURE__VALUATION:
+				setValuation((FeatureValue)null);
+				return;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				setMultiplicity((Multiplicity)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1290,13 +1228,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNING_MEMBERSHIP:
-				return getOwningMembership() != null;
-			case SysMLPackage.FEATURE__VALUATION:
-				return valuation != null;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				return multiplicity != null;
-			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
-				return ownedRelationship != null && !ownedRelationship.isEmpty();
+				return isSetOwningMembership();
+			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP_COMP:
+				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
 			case SysMLPackage.FEATURE__REFERENCED_TYPE:
 				return !getReferencedType().isEmpty();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
@@ -1329,6 +1263,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
+			case SysMLPackage.FEATURE__VALUATION:
+				return basicGetValuation() != null;
+			case SysMLPackage.FEATURE__MULTIPLICITY:
+				return basicGetMultiplicity() != null;
 		}
 		return super.eIsSet(featureID);
 	}

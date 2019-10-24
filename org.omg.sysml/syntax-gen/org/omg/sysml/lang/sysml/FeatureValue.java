@@ -23,12 +23,6 @@ public interface FeatureValue extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Value comp</b></em>' containment reference.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureValue#getValue() <em>Value</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
@@ -46,7 +40,6 @@ public interface FeatureValue extends Relationship {
 	 * @model containment="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='expressedValuation'"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Expression getValue_comp();
@@ -67,7 +60,7 @@ public interface FeatureValue extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -78,7 +71,8 @@ public interface FeatureValue extends Relationship {
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_Value()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Expression getValue();
@@ -96,16 +90,11 @@ public interface FeatureValue extends Relationship {
 	 * Returns the value of the '<em><b>Feature With Value</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getValuation_comp <em>Valuation comp</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -119,7 +108,6 @@ public interface FeatureValue extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Feature#getValuation_comp
 	 * @model opposite="valuation_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getFeatureWithValue();

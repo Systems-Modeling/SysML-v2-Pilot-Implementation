@@ -59,13 +59,6 @@ public interface Import extends Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Selecter comp</b></em>' containment reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Import#getSelecter() <em>Selecter</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Selecter comp</em>' containment reference isn't clear,
@@ -77,7 +70,6 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter_comp()
 	 * @model containment="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Predicate getSelecter_comp();
@@ -98,7 +90,8 @@ public interface Import extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -109,7 +102,8 @@ public interface Import extends Relationship {
 	 * @return the value of the '<em>Selecter</em>' reference.
 	 * @see #setSelecter(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Predicate getSelecter();
@@ -158,16 +152,11 @@ public interface Import extends Relationship {
 	 * Returns the value of the '<em><b>Import Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -181,7 +170,6 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport_comp
 	 * @model opposite="ownedImport_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getImportOwningPackage();

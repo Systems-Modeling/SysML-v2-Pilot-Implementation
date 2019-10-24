@@ -10,8 +10,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.omg.sysml.lang.sysml.Expression;
@@ -25,6 +25,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SequenceConstructionExpressionImpl#getElement_comp <em>Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SequenceConstructionExpressionImpl#getElement <em>Element</em>}</li>
  * </ul>
  *
@@ -32,14 +33,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class SequenceConstructionExpressionImpl extends ExpressionImpl implements SequenceConstructionExpression {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getElement()
+	 * The cached value of the '{@link #getElement_comp() <em>Element comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElement_comp()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> element;
-
+	protected EList<Expression> element_comp;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -58,15 +59,27 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EList<Expression> getElement() {
-		if (element == null) {
-			element = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT);
+	public EList<Expression> getElement_comp() {
+		if (element_comp == null) {
+			element_comp = new EObjectContainmentEList<Expression>(Expression.class, this, SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP);
 		}
-		return element;
+		return element_comp;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Expression> getElement() {
+		EList<Expression> elements = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT);
+		elements.addAll(getElement_comp());
+		return elements;
 	}
 
 	/**
@@ -76,8 +89,8 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT:
-				return ((InternalEList<?>)getElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP:
+				return ((InternalEList<?>)getElement_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -89,6 +102,8 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP:
+				return getElement_comp();
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT:
 				return getElement();
 		}
@@ -103,6 +118,10 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP:
+				getElement_comp().clear();
+				getElement_comp().addAll((Collection<? extends Expression>)newValue);
+				return;
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT:
 				getElement().clear();
 				getElement().addAll((Collection<? extends Expression>)newValue);
@@ -118,6 +137,9 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP:
+				getElement_comp().clear();
+				return;
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT:
 				getElement().clear();
 				return;
@@ -132,8 +154,10 @@ public class SequenceConstructionExpressionImpl extends ExpressionImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT_COMP:
+				return element_comp != null && !element_comp.isEmpty();
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION__ELEMENT:
-				return element != null && !element.isEmpty();
+				return !getElement().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

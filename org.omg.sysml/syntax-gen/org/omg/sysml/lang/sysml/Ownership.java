@@ -70,12 +70,6 @@ public interface Ownership extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Owned Target comp</b></em>' containment reference.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Ownership#getOwnedTarget() <em>Owned Target</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
@@ -93,7 +87,6 @@ public interface Ownership extends Relationship {
 	 * @model containment="true" required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetOwnership'"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedTarget_comp();
@@ -114,7 +107,7 @@ public interface Ownership extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +118,7 @@ public interface Ownership extends Relationship {
 	 * @return the value of the '<em>Owned Target</em>' reference.
 	 * @see #setOwnedTarget(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwnership_OwnedTarget()
-	 * @model required="true"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */

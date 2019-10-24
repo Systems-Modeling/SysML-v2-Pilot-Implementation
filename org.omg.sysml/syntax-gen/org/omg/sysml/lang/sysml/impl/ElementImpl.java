@@ -24,7 +24,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,8 +36,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -56,28 +53,28 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
-	 * The cached value of the '{@link #getOwnedRelationship() <em>Owned Relationship</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedRelationship_comp() <em>Owned Relationship comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelationship()
+	 * @see #getOwnedRelationship_comp()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Relationship> ownedRelationship;
+	protected EList<Relationship> ownedRelationship_comp;
 
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
@@ -173,15 +170,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public static String escapeString(String str) {
 		StringBuilder s = new StringBuilder();
-		int j = 0;
 		for (int i = 0; i < str.length(); i++) {
 			int c = "\b\t\n\f\r\"'\\".indexOf(str.charAt(i));
-			if (c > 0) {
-				s.append(str.substring(j, i));
+			if (c < 0) {
+				s.append(str.charAt(i));
+			} else {
 				s.append('\\');
 				s.append("btnfr\"'\\".charAt(c));
 			}
-			j++;
 		}
 		return s.toString();
 	}
@@ -202,15 +198,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelationship(Relationship newOwningRelationship, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningRelationship, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			Membership owningMembership = getOwningMembership();
-			if (owningMembership != null && owningMembership != newOwningRelationship) {
-				setOwningMembership(null);
-			}
+		if (newOwningRelationship != null && !(newOwningRelationship instanceof Membership)) {
+			throw new IllegalArgumentException("newOwningRelationship must be an instance of Membership");
 		}
-		return msgs;
+		return basicSetOwningMembership((Membership) newOwningRelationship, msgs);
 	}
 
 	/**
@@ -220,19 +211,19 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public void setOwningRelationship(Relationship newOwningRelationship) {
-		if (newOwningRelationship != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_RELATIONSHIP && newOwningRelationship != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningRelationship))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningRelationship != null)
-				msgs = ((InternalEObject)newOwningRelationship).eInverseAdd(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
-			msgs = basicSetOwningRelationship(newOwningRelationship, msgs);
-			if (msgs != null) msgs.dispatch();
+		if (newOwningRelationship != null && !(newOwningRelationship instanceof Membership)) {
+			throw new IllegalArgumentException("newOwningRelationship must be an instance of Membership");
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP, newOwningRelationship, newOwningRelationship));
+		setOwningMembership((Membership) newOwningRelationship);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningRelationship() {
+  		return false;
 	}
 
 	/**
@@ -285,15 +276,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningMembership, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwningMembership != null) {
-				Relationship owningRelationship = getOwningRelationship();
-				if (newOwningMembership != owningRelationship) {
-					setOwningRelationship(newOwningMembership);
-				}
-			}
-		}
 		return msgs;
 	}
 
@@ -317,6 +299,28 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, newOwningMembership, newOwningMembership));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningMembership() {
+		return getOwningMembership() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Relationship> getOwnedRelationship_comp() {
+		if (ownedRelationship_comp == null) {
+			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
+		}
+		return ownedRelationship_comp;
 	}
 
 	/**
@@ -417,14 +421,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
-		if (ownedRelationship == null) {
-			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
-		}
-		return ownedRelationship;
+		EList<Relationship> ownedRelationships = new EObjectEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
+		ownedRelationships.addAll(getOwnedRelationship_comp());
+		return ownedRelationships;
 	}
 
 	// Additional
@@ -449,35 +452,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		
 	}
 	
-	// Utility
-	
-	@SuppressWarnings("unchecked")
-	public static <T> T cast(Object element, Class<T> class_) {
-		return class_.isInstance(element)? (T)element: null;		
-	}
-	
-	public <T extends Relationship> T getOwningRelationship(Class<T> class_) {
-		return cast(getOwningRelationship(), class_);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> EList<T> filter(List<?> elements, Class<T> class_) {
-		EList<T> list = new BasicInternalEList<T>(class_);
-		list.addAll((List<T>)elements.stream().filter(class_::isInstance).collect(Collectors.toList()));
-		return list;
-	}
-	
-	public <T extends Relationship> EList<T> getOwnedRelationship(Class<T> class_) {
-		return filter(getOwnedRelationship(), class_);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public <T extends Relationship> T getFirstOwnedRelationship(Class<T> class_) {
-		return (T)getOwnedRelationship().stream().filter(class_::isInstance).findFirst().orElse(null);
-	}	
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -487,16 +461,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelationship((Relationship)otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningMembership((Membership)otherEnd, msgs);
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -509,12 +479,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return basicSetOwningRelationship(null, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return basicSetOwningMembership(null, msgs);
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -527,8 +495,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, Membership.class, msgs);
 		}
@@ -547,8 +513,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwningRelationship();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return getOwningMembership();
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				return getOwnedRelationship();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return getOwnedRelationship_comp();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				if (resolve) return getOwningNamespace();
 				return basicGetOwningNamespace();
@@ -561,6 +527,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwner();
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return getOwnedElement();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
+				return getOwnedRelationship();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -580,9 +548,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				getOwnedRelationship().clear();
-				getOwnedRelationship().addAll((Collection<? extends Relationship>)newValue);
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				getOwnedRelationship_comp().clear();
+				getOwnedRelationship_comp().addAll((Collection<? extends Relationship>)newValue);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
@@ -599,6 +567,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				getOwnedElement().clear();
 				getOwnedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
+				getOwnedRelationship().clear();
+				getOwnedRelationship().addAll((Collection<? extends Relationship>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -618,8 +590,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)null);
 				return;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				getOwnedRelationship().clear();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				getOwnedRelationship_comp().clear();
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
@@ -636,6 +608,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				getOwnedElement().clear();
 				return;
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
+				getOwnedRelationship().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -649,11 +624,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
-				return getOwningRelationship() != null;
+				return isSetOwningRelationship();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return getOwningMembership() != null;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
-				return ownedRelationship != null && !ownedRelationship.isEmpty();
+				return isSetOwningMembership();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return basicGetOwningNamespace() != null;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
@@ -664,6 +639,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwner() != null;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return !getOwnedElement().isEmpty();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
+				return !getOwnedRelationship().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

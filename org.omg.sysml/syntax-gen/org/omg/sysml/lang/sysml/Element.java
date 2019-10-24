@@ -24,13 +24,14 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -42,7 +43,7 @@ public interface Element extends EObject {
 	 * Returns the value of the '<em><b>Owning Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship() <em>Owning Relationship</em>}'</li>
@@ -58,7 +59,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
 	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp
 	 * @model opposite="ownedMemberElement_comp" transient="false" ordered="false"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Membership getOwningMembership();
@@ -74,8 +75,26 @@ public interface Element extends EObject {
 	void setOwningMembership(Membership value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Relationship}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Relationship comp</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Relationship comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedRelationship_comp()
+	 * @see org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement
+	 * @model opposite="owningRelatedElement" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Relationship> getOwnedRelationship_comp();
+
+	/**
 	 * Returns the value of the '<em><b>Owning Relationship</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Relationship</em>' container reference isn't clear,
@@ -85,8 +104,8 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Owning Relationship</em>' container reference.
 	 * @see #setOwningRelationship(Relationship)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningRelationship()
-	 * @see org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement
-	 * @model opposite="ownedRelatedElement" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp
+	 * @model opposite="ownedRelatedElement_comp" transient="false" ordered="false"
 	 * @generated
 	 */
 	Relationship getOwningRelationship();
@@ -228,19 +247,17 @@ public interface Element extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Relationship</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Relationship}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Relationship</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Relationship</em>' containment reference list.
+	 * @return the value of the '<em>Owned Relationship</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedRelationship()
-	 * @see org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement
-	 * @model opposite="owningRelatedElement" containment="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<Relationship> getOwnedRelationship();

@@ -58,23 +58,16 @@ public interface Package extends Element {
 	 * Returns the value of the '<em><b>Owned Import comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedImport() <em>Owned Import</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Import comp</em>' reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Owned Import comp</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Import comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport_comp()
 	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningPackage
 	 * @model opposite="importOwningPackage" containment="true"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport_comp();
@@ -86,7 +79,7 @@ public interface Package extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -96,7 +89,8 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Import</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
@@ -173,24 +167,16 @@ public interface Package extends Element {
 	 * Returns the value of the '<em><b>Owned Membership comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMembership() <em>Membership</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership() <em>Owned Membership</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Membership comp</em>' reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Owned Membership comp</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Membership comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership_comp()
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage
 	 * @model opposite="membershipOwningPackage" containment="true"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership_comp();
@@ -202,7 +188,8 @@ public interface Package extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMembership() <em>Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -212,7 +199,8 @@ public interface Package extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

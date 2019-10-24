@@ -32,7 +32,7 @@ public interface Connector extends Feature, Relationship {
 	 * Returns the value of the '<em><b>Related Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
@@ -47,7 +47,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Feature> getRelatedFeature();

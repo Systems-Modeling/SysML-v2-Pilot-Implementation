@@ -75,7 +75,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 						if (subsetting == null) {
 							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 							subsetting.setSubsettingFeature(this);
-							getOwnedRelationship().add(subsetting);
+							getOwnedRelationship_comp().add(subsetting);
 						}
 						subsetting.setSubsettedFeature((Feature) owner);
 					}

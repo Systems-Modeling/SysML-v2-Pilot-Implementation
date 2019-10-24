@@ -142,16 +142,11 @@ public interface Membership extends Relationship {
 	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +160,6 @@ public interface Membership extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp
 	 * @model opposite="ownedMembership_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();
@@ -183,13 +177,6 @@ public interface Membership extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Owned Member Element comp</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Member Element comp</em>' containment reference isn't clear,
@@ -201,7 +188,6 @@ public interface Membership extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement_comp()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
 	 * @model opposite="owningMembership" containment="true" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedMemberElement_comp();
@@ -222,7 +208,8 @@ public interface Membership extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -233,7 +220,8 @@ public interface Membership extends Relationship {
 	 * @return the value of the '<em>Owned Member Element</em>' reference.
 	 * @see #setOwnedMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();

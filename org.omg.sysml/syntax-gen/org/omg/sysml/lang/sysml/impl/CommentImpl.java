@@ -2,10 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -125,13 +126,9 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 */
 	@Override
 	public void setCommentedElement(Element newCommentedElement) {
-		// TODO: implement this method to set the 'Commented Element' reference
+		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * <!-- begin-user-doc --> If the Comment has an owner, use this as the default
-	 * value for its annotationForComment property. <!-- end-user-doc -->
-	 */
 	public Annotation getAnnotationForComment() {
 		return annotationForComment == null ? basicGetAnnotationForComment() : getAnnotationForCommentGen();
 	}
@@ -153,19 +150,20 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * If the Comment has an owner, use this as the default value for its annotationForComment property. 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {
-			annotationForComment = getOwningRelationship(Annotation.class);
+			annotationForComment = (Annotation)Optional.ofNullable(getOwningRelationship()).
+					filter(rel->rel instanceof Annotation).orElse(null);
 		}
 		if (annotationForComment == null) {
-			EList<Annotation> annotations = getOwnedRelationship(Annotation.class);
-			if (!annotations.isEmpty()) {
-				annotationForComment = annotations.get(0);
-			}
+			annotationForComment = (Annotation)getOwnedRelationship().stream().
+					filter(rel->rel instanceof Annotation).findFirst().orElse(null);
 		}
 		return annotationForComment;
 	}

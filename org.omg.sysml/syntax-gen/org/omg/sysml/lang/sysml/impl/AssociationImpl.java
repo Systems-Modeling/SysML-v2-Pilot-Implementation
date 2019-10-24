@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -35,6 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningConnector <em>Owning Connector</em>}</li>
@@ -65,15 +67,14 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	protected EList<Element> source;
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #getOwnedRelatedElement()
+	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRelatedElement_comp()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedRelatedElement;
-
+	protected EList<Element> ownedRelatedElement_comp;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -93,14 +94,13 @@ public class AssociationImpl extends ClassImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		if (ownedRelatedElement == null) {
-			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement;
+		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
+		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
+		return ownedRelatedElements;
 	}
 
 	/**
@@ -135,12 +135,25 @@ public class AssociationImpl extends ClassImpl implements Association {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedRelatedElement_comp() {
+		if (ownedRelatedElement_comp == null) {
+			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement_comp;
 	}
 
 	/**
@@ -303,8 +316,8 @@ public class AssociationImpl extends ClassImpl implements Association {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -318,8 +331,8 @@ public class AssociationImpl extends ClassImpl implements Association {
 		switch (featureID) {
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -332,7 +345,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -352,6 +365,8 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return getSource();
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement();
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				return getOwnedRelatedElement_comp();
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				return getOwnedRelatedElement();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
@@ -383,6 +398,10 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return;
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				getOwnedRelatedElement_comp().clear();
+				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
@@ -419,6 +438,9 @@ public class AssociationImpl extends ClassImpl implements Association {
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)null);
 				return;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				getOwnedRelatedElement_comp().clear();
+				return;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
@@ -450,8 +472,10 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return source != null && !source.isEmpty();
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
+				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+				return !getOwnedRelatedElement().isEmpty();
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
 				return isSetEndFeature();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
@@ -476,6 +500,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 				case SysMLPackage.ASSOCIATION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.ASSOCIATION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
 				case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
 				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
@@ -495,6 +520,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.ASSOCIATION__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION__SOURCE;
 				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP;
 				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}

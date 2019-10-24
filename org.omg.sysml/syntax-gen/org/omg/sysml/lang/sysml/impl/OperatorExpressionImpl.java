@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand_comp <em>Operand comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
@@ -63,13 +64,14 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	protected String operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getOperand()
+	 * The cached value of the '{@link #getOperand_comp() <em>Operand comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperand_comp()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> operand;
+	protected EList<Expression> operand_comp;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -109,6 +111,20 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 
+	/**
+	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
+	 * as owned features.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Expression> getOperand_comp() {
+		if (operand_comp == null) {
+			operand_comp = new OperandEList();
+		}
+		return operand_comp;
+	}
+
 	@Override
 	public EList<FeatureTyping> getTyping() {
 		String operator = getOperator();
@@ -126,8 +142,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	protected String[] getOperatorQualifiedNames(String op) {
 		// NOTE: This is necessary because of how Xtext constructs the qualified name in
-		// the global scope for
-		// an element named '.'.
+		// the global scope for an element named '.'.
 		// TODO: Remove this if and when possible.
 		final String operator = ".".equals(op) ? "" : op;
 
@@ -135,17 +150,13 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 
 	/**
-	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
-	 * as owned features.
-	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getOperand() {
-		if (operand == null) {
-			operand = new OperandEList();
-		}
-		return operand;
+		EList<Expression> operands = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
+		operands.addAll(getOperand_comp());
+		return operands;
 	}
 
 	/**
@@ -155,8 +166,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
+				return ((InternalEList<?>)getOperand_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,6 +181,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return getOperator();
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
+				return getOperand_comp();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				return getOperand();
 		}
@@ -186,6 +199,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator((String)newValue);
+				return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
+				getOperand_comp().clear();
+				getOperand_comp().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				getOperand().clear();
@@ -205,6 +222,9 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator(OPERATOR_EDEFAULT);
 				return;
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
+				getOperand_comp().clear();
+				return;
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				getOperand().clear();
 				return;
@@ -221,8 +241,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
+				return operand_comp != null && !operand_comp.isEmpty();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return operand != null && !operand.isEmpty();
+				return !getOperand().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

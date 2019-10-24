@@ -57,13 +57,17 @@ public class PortMembershipImpl extends FeatureMembershipImpl implements PortMem
 		return SysMLPackage.Literals.PORT_MEMBERSHIP;
 	}
 
+	@Override
+	public PortUsage getMemberPort() {
+		return memberPort == null ? basicGetMemberPort() : getMemberPortGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public PortUsage getMemberPort() {
+	public PortUsage getMemberPortGen() {
 		if (memberPort != null && memberPort.eIsProxy()) {
 			InternalEObject oldMemberPort = (InternalEObject)memberPort;
 			memberPort = (PortUsage)eResolveProxy(oldMemberPort);
@@ -78,9 +82,13 @@ public class PortMembershipImpl extends FeatureMembershipImpl implements PortMem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortUsage basicGetMemberPort() {
+		Feature ownedMemberFeature = getOwnedMemberFeature();
+		if (memberPort == null && ownedMemberFeature instanceof PortUsage) {
+			memberPort = (PortUsage)ownedMemberFeature;
+		}
 		return memberPort;
 	}
 

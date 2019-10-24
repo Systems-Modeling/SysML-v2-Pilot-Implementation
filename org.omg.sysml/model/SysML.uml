@@ -81,7 +81,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="486005d4-8ef3-45fa-947e-e0b20c33ef5b" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7d125241-c494-4801-a042-e04abcf901db" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="7f952a01-37c9-4a58-b3f4-24261885c2b4" name="importOwningPackage" visibility="public" type="732bd40e-fb64-42e2-8663-8fcee1dac982" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3" subsettedProperty="53d1b371-a5c5-4812-87a8-a61e672f7314" association="4b79fb44-57d3-446f-a4cc-4fd50fbc2bfb">
+    <ownedAttribute xmi:id="7f952a01-37c9-4a58-b3f4-24261885c2b4" name="importOwningPackage" visibility="public" type="732bd40e-fb64-42e2-8663-8fcee1dac982" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3 53d1b371-a5c5-4812-87a8-a61e672f7314" association="4b79fb44-57d3-446f-a4cc-4fd50fbc2bfb">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c5b570ba-7584-41d2-92ba-050d3aa441df" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a9e51875-2e14-4188-972d-421570b807a6" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -129,7 +129,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="60a31cfb-c26c-4084-a5df-f3201d6fb862" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="25cabca0-25c2-40a4-920d-ab8a5f0d6efc" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" name="membershipOwningPackage" visibility="public" type="732bd40e-fb64-42e2-8663-8fcee1dac982" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3" subsettedProperty="a30aa520-08d8-4370-937a-bfdf0d24795f 53d1b371-a5c5-4812-87a8-a61e672f7314" association="7eaea69d-33cc-4ebf-bf81-534192877604">
+    <ownedAttribute xmi:id="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" name="membershipOwningPackage" visibility="public" type="732bd40e-fb64-42e2-8663-8fcee1dac982" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3 53d1b371-a5c5-4812-87a8-a61e672f7314" subsettedProperty="a30aa520-08d8-4370-937a-bfdf0d24795f" association="7eaea69d-33cc-4ebf-bf81-534192877604">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="bdf5e53e-cf60-4e7e-a98e-88e2bf1e0b1e" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c4640766-b2a1-4af8-9953-6e0ea6d2ff43" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -332,7 +332,7 @@ else owningNamespace.nameOf(self) endif</body>
         <body>owner = owningRelationship.owningRelatedElement</body>
       </specification>
     </ownedRule>
-    <ownedAttribute xmi:id="4e9a7462-c2c0-42cd-a715-dc21395cc779" name="owningMembership" visibility="public" type="80df4982-4fcb-4c30-853c-0f2415033759" subsettedProperty="efc396e8-bcd6-4a21-a0d8-6588161444eb" association="a0fab899-a06e-4564-9388-8d9e5d44ec52">
+    <ownedAttribute xmi:id="4e9a7462-c2c0-42cd-a715-dc21395cc779" name="owningMembership" visibility="public" type="80df4982-4fcb-4c30-853c-0f2415033759" redefinedProperty="efc396e8-bcd6-4a21-a0d8-6588161444eb" association="a0fab899-a06e-4564-9388-8d9e5d44ec52">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="019003cf-e8a3-43e9-b0c6-4ed9e373703a" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="03e94ce8-3eae-4972-94e9-bcbdc403d4f9" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -1228,7 +1228,7 @@ An Activity must subclass, directly or indirectly, the base Activity Action from
     </ownedRule>
     <generalization xmi:id="67a6c9bd-9a31-448a-995c-64fa8c61ab9f" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
     <generalization xmi:id="f34a1ef1-4ecd-40c8-becb-22fa68055c46" general="d00373f6-e7de-4c9f-9b9a-35937ead2cb2"/>
-    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isUnique="false" isDerived="true" subsettedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
+    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isUnique="false" isDerived="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f55f7f74-8ba9-4ffb-8a21-c37e64d6fb32" name="" visibility="public" value="2"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4621be24-47c6-430d-b1b3-d8f36f772711" name="" visibility="public" value="*"/>
     </ownedAttribute>
@@ -1381,7 +1381,7 @@ An Activity must subclass, directly or indirectly, the base Activity Action from
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cf31790b-b7c4-4cde-9840-d1c026754294" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a87ea796-85cb-4a1e-bf3a-d4029a59af4c" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="c04ae22b-3cb3-4600-921c-538de1a430d6" name="featureWithMultiplicity" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3" subsettedProperty="53d1b371-a5c5-4812-87a8-a61e672f7314" association="2fcbcc6d-9644-4e8f-98ad-b776e55e2074">
+    <ownedAttribute xmi:id="c04ae22b-3cb3-4600-921c-538de1a430d6" name="featureWithMultiplicity" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3 53d1b371-a5c5-4812-87a8-a61e672f7314" association="2fcbcc6d-9644-4e8f-98ad-b776e55e2074">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cac14fd4-1b82-432e-b662-303264170f5e" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a2b667fd-2402-465b-8807-ecec4db44d53" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -1566,7 +1566,7 @@ An Activity must subclass, directly or indirectly, the base Activity Action from
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f3720ac3-f82b-41ec-abfe-ef7fdfc1be3c" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a40d9751-5d32-44e0-963d-655b398a7953" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="49208b35-f983-488e-b6b3-fe7a5b42f1ac" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3" subsettedProperty="53d1b371-a5c5-4812-87a8-a61e672f7314" association="941b08bf-d52e-4859-8683-71fdf702821f">
+    <ownedAttribute xmi:id="49208b35-f983-488e-b6b3-fe7a5b42f1ac" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3 53d1b371-a5c5-4812-87a8-a61e672f7314" association="941b08bf-d52e-4859-8683-71fdf702821f">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="43821e14-0728-48da-bbea-be4f60af0be8" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="89d3937e-653d-4aa6-8637-d132ab555139" name="" visibility="public" value="1"/>
     </ownedAttribute>

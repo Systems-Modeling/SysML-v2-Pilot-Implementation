@@ -256,7 +256,7 @@ public interface Feature extends Type {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -272,8 +272,8 @@ public interface Feature extends Type {
 	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
-	 * @model opposite="ownedMemberFeature" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp
+	 * @model opposite="ownedMemberFeature_comp" transient="false" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -318,12 +318,6 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Valuation comp</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue <em>Feature With Value</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getValuation() <em>Valuation</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Valuation comp</em>' containment reference isn't clear,
@@ -335,7 +329,6 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation_comp()
 	 * @see org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue
 	 * @model opposite="featureWithValue" containment="true" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureValue getValuation_comp();
@@ -353,12 +346,6 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Multiplicity comp</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity <em>Feature With Multiplicity</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity() <em>Multiplicity</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity comp</em>' containment reference isn't clear,
@@ -370,7 +357,6 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity_comp()
 	 * @see org.omg.sysml.lang.sysml.Multiplicity#getFeatureWithMultiplicity
 	 * @model opposite="featureWithMultiplicity" containment="true" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity_comp();
@@ -391,7 +377,7 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -402,7 +388,8 @@ public interface Feature extends Type {
 	 * @return the value of the '<em>Valuation</em>' reference.
 	 * @see #setValuation(FeatureValue)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Valuation()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureValue getValuation();
@@ -423,7 +410,7 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -434,7 +421,8 @@ public interface Feature extends Type {
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
-	 * @model annotation="subsets"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();

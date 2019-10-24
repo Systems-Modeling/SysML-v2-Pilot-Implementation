@@ -135,7 +135,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * this as the default value of the subsettingFeature property. <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated NOT // TODO check, not derived
+	 * @generated NOT
 	 */
 	public Feature basicGetSubsettingFeature() {
 		if (subsettingFeature == null) {

@@ -6,12 +6,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.sysml.lang.sysml.PortMembership;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -186,7 +189,15 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 		return getOwnedSubsettingWithComputedRedefinitions(PORT_USAGE_SUBSETTING_BASE_DEFAULT);
 	}
 	
-/**
+	@Override
+	public FeatureMembership getOwningFeatureMembership() {
+		EObject container = eInternalContainer();
+		return container instanceof PortMembership? 
+				(FeatureMembership)container: 
+			    super.getOwningFeatureMembership();
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

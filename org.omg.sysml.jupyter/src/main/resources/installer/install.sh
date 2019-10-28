@@ -19,7 +19,12 @@ echo "--- Step 5: Installing SysML v2 Jupyter kernel ---"
 jupyter kernelspec remove sysml -f || true
 python3 install.py --sys-prefix "$@"
 
-echo "--- Step 6: Running Jupyter environment ---"
+echo "--- Step 6: Installing Jupyter notebook extension for codefolding ---"
+conda install -c conda-forge jupyter_contrib_nbextensions -y
+jupyter contrib nbextension install --sys-prefix
+jupyter nbextension enable codefolding/main --sys-prefix
+
+echo "--- Step 7: Running Jupyter environment ---"
 echo "NOTE: To launch Jupyter you can now run \"jupyter notebook\" from Terminal."
 echo "Re-running this script will re-install the environment and launch Jupyter."
 printf "\n\n"

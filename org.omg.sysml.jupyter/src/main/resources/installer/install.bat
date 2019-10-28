@@ -30,7 +30,12 @@ echo --- Step 5: Installing SysML v2 Jupyter kernel ---
 call jupyter kernelspec remove sysml -f
 call python %~dp0\install.py --sys-prefix %* || goto:error
 
-echo --- Step 6: Running Jupyter environment ---
+echo --- Step 6: Installing Jupyter notebook extension for codefolding ---
+call conda install -c conda-forge jupyter_contrib_nbextensions -y || goto:error
+call jupyter contrib nbextension install --sys-prefix || goto:error
+call jupyter nbextension enable codefolding/main --sys-prefix || goto:error
+
+echo --- Step 7: Running Jupyter environment ---
 echo To launch Jupyter you can now run ^"jupyter notebook^" from Command Prompt.
 echo Re-running this script is not necessary and will re-install the environment.
 echo(

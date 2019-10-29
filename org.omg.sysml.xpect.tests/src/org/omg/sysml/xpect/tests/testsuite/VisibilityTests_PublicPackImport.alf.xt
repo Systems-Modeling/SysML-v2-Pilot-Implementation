@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -21,7 +21,7 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::c_Public::*;
 	//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
-	/* XPECT scope at c_public ---
+	//* XPECT scope at c_public ---
 		   c_public, f,
 		   Test3.c_public, Test3.f, 
 			 
@@ -39,7 +39,7 @@ package Test3{
 	--- */
 	feature f : c_public;
 }
-/*
+//*
    for DependencyVisibilityPackage.alf
    Current globalscope implementation includes the below in the globalscope, but they should not be.
 			VisibilityPackage.c_clazz.c_Package, 

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 ResourceSet {
 		ThisFile {}
@@ -35,7 +35,7 @@ package Import_Circular {
 		x: A;
 		y: B;
 	}
-	/* XPECT scope at P1::A ---
+	//* XPECT scope at P1::A ---
 	   x, y, Import_Circular.x, Import_Circular.y,
 	   P1.A, P1.B, Import_Circular.P1.A, Import_Circular.P1.B, 	   
 	   P2.A, P2.B, Import_Circular.P2.A, Import_Circular.P2.B,  

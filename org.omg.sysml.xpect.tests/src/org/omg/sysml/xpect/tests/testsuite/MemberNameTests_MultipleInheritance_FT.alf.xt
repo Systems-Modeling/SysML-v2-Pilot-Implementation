@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -19,7 +19,7 @@ package test{
 	feature A{
 		feature a {}
 	}
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	
@@ -30,19 +30,19 @@ package test{
 		//scope at a --> a, A.a
 		feature b : a {}
 	}
-	/* XPECT scope at B ---
+	//* XPECT scope at B ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */
 	feature C : B{
 		//XPECT linkedName at A::a --> test.A.a
-		/* XPECT scope at A::a ---
+		//* XPECT scope at A::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E, 
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */
 		feature c : a {}
 	}
-	/* XPECT scope at A::a ---
+	//* XPECT scope at A::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */

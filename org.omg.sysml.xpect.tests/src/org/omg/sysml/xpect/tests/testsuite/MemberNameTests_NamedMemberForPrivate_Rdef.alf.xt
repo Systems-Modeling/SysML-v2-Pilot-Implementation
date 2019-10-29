@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -19,7 +19,7 @@ package test {
 	private feature something{}
 	private feature k is something;
 	feature hello {
-		/* XPECT scope at k ---
+		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 
 		   		test,
 		--- */

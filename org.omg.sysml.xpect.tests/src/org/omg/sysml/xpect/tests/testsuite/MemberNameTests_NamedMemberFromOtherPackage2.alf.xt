@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -28,7 +28,7 @@ package test{
 	
 	package P1 is P;
 	//XPECT linkedName at P1::A_alias --> test.P.A
-	/* XPECT scope at P1::A_alias ---
+	//* XPECT scope at P1::A_alias ---
 	    a.AA, a.AA.AAA, test.a.AA, test.a.AA.AAA,
    	    P.A, P.A.AA, P.A.AA.AAA, P.A_alias, P.A_alias.AA,
 		P.A_alias.AA.AAA, P1.A, P1.A.AA, P1.A.AA.AAA, P1.A_alias, P1.A_alias.AA, P1.A_alias.AA.AAA, a,

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -23,7 +23,7 @@ END_SETUP
 package test{
 	import OuterPackage2::*;
 	//XPECT linkedName at C::b --> OuterPackage.B.b
-	/* XPECT scope at C::b ---
+	//* XPECT scope at C::b ---
 	   	   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
 	   	   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, OuterPackage2.C, OuterPackage2.C.c, OuterPackage2.C.b.a1, OuterPackage2.C.b,
 	   	   

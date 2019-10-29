@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -21,7 +21,7 @@ END_SETUP
 package Classes {
 	import VisibilityPackage::c_Public;
 	//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
-	/* XPECT scope at c_Public ---
+	//* XPECT scope at c_Public ---
     	Try, Try.c_public, Try.feature4, Classes.Try, Classes.Try.c_public, Classes.Try.feature4, 
  		c_Public, c_Public.c_public, Classes.c_Public, Classes.c_Public.c_public,  
 	  	VisibilityPackage.c_Public_alias.alias_public, 
@@ -30,7 +30,7 @@ package Classes {
 	--- */
 	feature Try : c_Public {
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
-		/* XPECT scope at c_public ---
+		//* XPECT scope at c_public ---
 		feature4, c_public, 
     	Try, Try.c_public, Try.feature4, Classes.Try, Classes.Try.c_public, Classes.Try.feature4, 
  		c_Public, c_Public.c_public, Classes.c_Public, Classes.c_Public.c_public,  

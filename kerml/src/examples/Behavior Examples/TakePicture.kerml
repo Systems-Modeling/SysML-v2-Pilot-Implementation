@@ -1,8 +1,8 @@
-behavior TakePicture() specializes Base::Performance {
+behavior TakePicture() {
 	import Base::*;
 	import Camera;
 	
-	feature camera: Camera[1] subsets Performance::involvedObjects {
+	feature camera: Camera[1] subsets involvedObjects {
 		// Note: In the future, these "connection point" redefinitions 
 		// will be automatic.
 		feature focusedState redefines Camera::focusedState;

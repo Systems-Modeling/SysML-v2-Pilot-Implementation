@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -21,21 +21,21 @@ package test{
 	class A{
 		class a {}
 	}
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */
 	class B specializes A {
 		class b specializes a {}
 	}
-	/* XPECT scope at B ---
+	//* XPECT scope at B ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */
 	class C specializes B{
 		class c specializes a {}
 	}
-	/* XPECT scope at A::a ---
+	//* XPECT scope at A::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
  	--- */

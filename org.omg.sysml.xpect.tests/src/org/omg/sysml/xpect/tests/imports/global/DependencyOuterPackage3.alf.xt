@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package test{
-	/* XPECT scope at OuterPackage::A ---
+	//* XPECT scope at OuterPackage::A ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -35,7 +35,7 @@ package test{
 	--- */
 	import OuterPackage::A;
 	
-	/* XPECT scope at OuterPackage::B ---
+	//* XPECT scope at OuterPackage::B ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -47,7 +47,7 @@ package test{
 				OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
 	import OuterPackage::B;
-	/* XPECT scope at OuterPackage2::C ---
+	//* XPECT scope at OuterPackage2::C ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -59,7 +59,7 @@ package test{
 		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
 	import OuterPackage2::C;
-	/* XPECT scope at OuterPackage3::D ---
+	//* XPECT scope at OuterPackage3::D ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -74,7 +74,7 @@ package test{
 	
 }
   
-/*
+//*
    package OuterPackage{	
 		class A{
 			class a1{}

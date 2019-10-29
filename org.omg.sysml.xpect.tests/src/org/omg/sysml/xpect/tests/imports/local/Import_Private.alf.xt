@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 ResourceSet {
 		ThisFile {}
@@ -23,7 +23,7 @@ package Import_Private {
 	package P2 {
 		private import P1::*;
 	}
-	/* XPECT scope at P1::A ---
+	//* XPECT scope at P1::A ---
 	   x, y, y1, z, P1.A, P3.B, B, Import_Private.x, Import_Private.y, Import_Private.y1, Import_Private.z, Import_Private.P1.A, Import_Private.P3.B, Import_Private.B,
 	--- */
 	x: P1::A;

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.imports.global.SysMLImportGlobalTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ package test{
 	
 	import PackageAlias1::*;
 	
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
 	    X, X.a, X.a_alias,  test.X, test.X.a, test.X.a_alias,
 		A, A.a, A.a_alias,  test.A, test.A.a, test.A.a_alias,   
 		AA, AA.aa, AA.aa_alias,  test.AA, test.AA.aa, test.AA.aa_alias,
@@ -35,7 +35,7 @@ package test{
  --- */
 	class X specializes A {}
 }
-/*
+//*
 package PackageAlias1{
 	class A_alias is A;
 	class A{
@@ -49,7 +49,7 @@ package PackageAlias1{
 	}
 }
 */
-/*
+//*
 	missing in scopes are
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
     	PackageAlias1.AA_alias, PackageAlias1.AA_alias.a, PackageAlias1.AA_alias.aa_alias,

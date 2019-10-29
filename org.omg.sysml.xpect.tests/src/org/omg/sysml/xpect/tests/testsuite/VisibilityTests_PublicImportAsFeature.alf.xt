@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ package Classes {
 	class Try{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		// The below pass the junit test but if change scope at VisibilityPackage.c_Private get an Error "Reference type is not visible in this scope." 
-		/* XPECT scope at c_public ---
+		//* XPECT scope at c_public ---
 		   Classes.Try, Classes.Try.feature4,
 		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Classes.Try.featurepublic, Classes.c_Public, Classes.c_Public.c_public, Classes.c_public, 
@@ -36,7 +36,7 @@ package Classes {
 	--- */
 		feature feature4 : c_public;
 		//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
-		/* XPECT scope at c_Public ---
+		//* XPECT scope at c_Public ---
 		   Classes.Try, Classes.Try.feature4,
 		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Classes.Try.featurepublic, Classes.c_Public, Classes.c_Public.c_public, Classes.c_public, 

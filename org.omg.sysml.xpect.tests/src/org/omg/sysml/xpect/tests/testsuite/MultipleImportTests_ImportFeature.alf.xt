@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -20,7 +20,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package test{
-	/* XPECT scope at OuterPackage2::C::b ---
+	//* XPECT scope at OuterPackage2::C::b ---
 		OuterPackage, OuterPackage2, test,
 		D, D.try, D.try.a1, OuterPackage.A,
 		OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, OuterPackage2.C,
@@ -30,7 +30,7 @@ package test{
 	import OuterPackage2::C::b;
 	class D{
 		//XPECT linkedName at b --> OuterPackage.B.b
-		/* XPECT scope at b ---
+		//* XPECT scope at b ---
 		D, D.try, D.try.a1, 
 		OuterPackage.A,	OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, OuterPackage2.C,
 		OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c, 
@@ -40,7 +40,7 @@ package test{
 		feature try : b;
 	}
 }
-/* Note: difference between two scopes are
+//* Note: difference between two scopes are
    OuterPackage, OuterPackage2, test, Base --------------- scope at OuterPacakge2::C::b
    try, try.a1 --------------------------------------------scope at b
  */

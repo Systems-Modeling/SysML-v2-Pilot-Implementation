@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ package test{
 	import PackageAlias1::*;
 	class A{}
 	//XPECT linkedName at A --> test.A
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
 		   A, test.A,  
 		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
 		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
@@ -38,7 +38,7 @@ package test{
  		   
 	
 	//XPECT linkedName at A_alias --> PackageAlias1.A
-	/* XPECT scope at A_alias ---
+	//* XPECT scope at A_alias ---
 		   A, test.A,  
 		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
 		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
@@ -53,7 +53,7 @@ package test{
 	class test_alias specializes A_alias{}
 }
  
-/*
+//*
      package PackageAlias1{
 	class A_alias is A;
 	class A{

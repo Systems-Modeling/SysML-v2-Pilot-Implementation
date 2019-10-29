@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ package test{
 		class b{
 			import A::*;
 			//xpect throws RuntimeError class name and its specializes are the same. so no scope or linking test at d
-			/* XPECT scope at d ---
+			//* XPECT scope at d ---
 			   
 			 --- */
 		   //XPECT linkedName at d --> test.A.b.d

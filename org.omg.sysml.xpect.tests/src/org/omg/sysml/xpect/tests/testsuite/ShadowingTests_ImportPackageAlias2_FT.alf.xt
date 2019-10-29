@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -25,7 +25,7 @@ package test{
 	feature A{}
 	feature A_alias is A;
 	//XPECT linkedName at  A_alias --> test.A
-	/* XPECT scope at  A_alias ---
+	//* XPECT scope at  A_alias ---
 	        test_A, test.test_A,
 	        A, test.A, 
 			A_alias, test.A_alias,
@@ -47,7 +47,7 @@ package test{
 	feature test_A : A_alias{}
 }
 
-/*
+//*
    The followings are added after alfglobascope is added
    			PackageAlias2.B.a,
  		    PackageAlias2.B.a_alias,

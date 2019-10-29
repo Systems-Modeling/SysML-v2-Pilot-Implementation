@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ END_SETUP
 package test{
 	import SamePackage::container;
 	feature something1 : container::A{}
-	/* XPECT errors ---
+	//* XPECT errors ---
 	"Couldn't resolve reference to Type 'container::B'." at "container::B"
 	--- */
 	feature something2 : container::B{}

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -23,7 +23,7 @@ package test{
 		feature a2{}
 	}
 	feature B : A {
-		/* XPECT errors --- 
+		//* XPECT errors --- 
 		   "Couldn't resolve reference to Type 'a1'." at "a1"
 		--- */
 		feature b : a1{}

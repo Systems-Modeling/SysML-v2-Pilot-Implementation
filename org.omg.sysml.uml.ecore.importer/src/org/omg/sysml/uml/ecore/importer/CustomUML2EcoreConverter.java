@@ -41,7 +41,6 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EReference
 					&& AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
-				EAnnotation compSubsets = modelElement.getEAnnotation(ANNOTATION__SUBSETS);
 				EReference compRef = (EReference) modelElement;
 
 				// create a new EReference that will not be composite
@@ -74,30 +73,14 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 				EClass container = (EClass) ((EStructuralFeature) compRef).eContainer();
 				container.getEStructuralFeatures().add(normalRef);
 
+				// move all subsetting to the new reference
+				EAnnotation compSubsets = compRef.getEAnnotation(ANNOTATION__SUBSETS);
 				if (compSubsets != null) {
-					
-					// get the base reference from the initial subsets annotation (if any)
-					EReference baseRef = null;
-					for (EObject ref : compSubsets.getReferences()) {
-						if (ref instanceof EReference && ((EReference) ref).isContainment()) {
-							baseRef = (EReference) ref;
-						}
-					}
-
-					if (baseRef != null) {
-						// update the comp reference annotation
-						compSubsets.getReferences().remove(baseRef);
-						compSubsets.getReferences().add(normalRef);
-						// update the normal reference annotation
-						EAnnotation normalSubsets = normalRef.getEAnnotation(ANNOTATION__SUBSETS);
-						if (normalSubsets == null) {
-							normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
-							normalSubsets.setSource(ANNOTATION__SUBSETS);
-							normalRef.getEAnnotations().add(normalSubsets);
-						}
-						normalSubsets.getReferences().add(baseRef);
-					}
-					
+					EAnnotation normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
+					normalSubsets.setSource(ANNOTATION__SUBSETS);
+					normalRef.getEAnnotations().add(normalSubsets);
+					normalSubsets.getReferences().addAll(compSubsets.getReferences());
+					compRef.getEAnnotations().remove(compSubsets);
 				}
 			}
 		}

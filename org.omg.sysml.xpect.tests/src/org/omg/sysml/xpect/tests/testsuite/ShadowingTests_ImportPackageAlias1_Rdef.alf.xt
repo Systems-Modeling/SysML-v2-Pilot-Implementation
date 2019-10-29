@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ package test{
 	import PackageAlias1::*;
 	feature A{}
 	//XPECT linkedName at A --> test.A
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
 	   	   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
  		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
 	   	   AA.aa_alias, AA_alias.aa_alias,A_alias.a_alias, test_alias.a_alias, test.AA.aa_alias, test.AA_alias.aa_alias, test.A_alias.a_alias, test.test_alias.a_alias,
@@ -35,7 +35,7 @@ package test{
 	feature test_a redefines A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
 	
 	//XPECT linkedName at A_alias --> PackageAlias1.A
-	/* XPECT scope at A_alias ---
+	//* XPECT scope at A_alias ---
 		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
  		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
 		   AA.aa_alias, AA_alias.aa_alias,A_alias.a_alias, test_alias.a_alias, test.AA.aa_alias, test.AA_alias.aa_alias, test.A_alias.a_alias, test.test_alias.a_alias,

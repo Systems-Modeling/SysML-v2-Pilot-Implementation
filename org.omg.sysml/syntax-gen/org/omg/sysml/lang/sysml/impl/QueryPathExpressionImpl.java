@@ -11,16 +11,14 @@ import org.omg.sysml.lang.sysml.QueryPathExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Query Path Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Query
+ * Path Expression</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl implements QueryPathExpression {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QueryPathExpressionImpl() {
@@ -28,8 +26,7 @@ public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -39,10 +36,10 @@ public class QueryPathExpressionImpl extends FeatureReferenceExpressionImpl impl
 
 	@Override
 	public Feature getResult() {
-		List<Feature> outputs = getOutput().stream().
-				filter(feature->feature.getOwner() == this).collect(Collectors.toList());;
-		return outputs.isEmpty()? null: outputs.get(outputs.size() - 1);
+		List<Feature> outputs = getOutput().stream().filter(feature -> feature.getOwner() == this)
+				.collect(Collectors.toList());
+		;
+		return outputs.isEmpty() ? null : outputs.get(outputs.size() - 1);
 	}
-	
-	
-} //QueryPathExpressionImpl
+
+} // QueryPathExpressionImpl

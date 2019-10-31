@@ -15,9 +15,8 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Interaction</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Interaction</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -30,8 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class InteractionImpl extends AssociationImpl implements Interaction {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected InteractionImpl() {
@@ -39,8 +37,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -49,32 +46,29 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived, inherited from Behavior
 	 */
 	@Override
 	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, 
-				SysMLPackage.INTERACTION__STEP, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.INTERACTION__STEP,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived, inherited from Behavior
 	 */
 	@Override
 	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(
-				Parameter.class, this, SysMLPackage.INTERACTION__PARAMETER, 
-				new int[]{SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.INTERACTION__PARAMETER,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -89,8 +83,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -110,8 +103,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,8 +120,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,8 +135,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,8 +151,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -177,4 +166,4 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-} //InteractionImpl
+} // InteractionImpl

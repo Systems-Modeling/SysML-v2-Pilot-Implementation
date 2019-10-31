@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.scoping.SysMLScopingTest
 	ResourceSet {
 		ThisFile {}

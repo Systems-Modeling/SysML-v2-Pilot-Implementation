@@ -4,11 +4,9 @@ package org.omg.sysml.lang.sysml;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -35,8 +33,8 @@ public interface Function extends Behavior {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expression</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Expression</em>' reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' reference list.
@@ -59,8 +57,8 @@ public interface Function extends Behavior {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Result</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Result</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
@@ -75,8 +73,7 @@ public interface Function extends Behavior {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Result</em>' reference.
 	 * @see #getResult()
 	 * @generated

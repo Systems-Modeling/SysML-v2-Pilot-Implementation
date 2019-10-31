@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
 	ResourceSet {
 		ThisFile {}
@@ -15,36 +15,32 @@ XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
 END_SETUP 
 */
 
-/* XPECT ast ---
+//* XPECT ast ---
 Package {
-  ownedRelationship = [
+  ownedMembership_comp = [
     Membership {
-      ownedRelatedElement = [
-        Class {
-          ownedRelationship = [
-            Superclassing {
-              superclass -> Class Base.alf#//@ownedRelationship.1/@ownedRelatedElement.0
-              subclass -> Class //@ownedRelationship.0/@ownedRelatedElement.0
-            }
-          ]
-        }
-      ]
       memberName = 'A'
-      memberElement -> Class //@ownedRelationship.0/@ownedRelatedElement.0
+      memberElement -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class Base.alf#//@ownedMembership_comp.4/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+          }
+        ]
+      }
     }
     Membership {
-      ownedRelatedElement = [
-        Class {
-          ownedRelationship = [
-            Superclassing {
-              superclass -> Class //@ownedRelationship.0/@ownedRelatedElement.0
-              subclass -> Class //@ownedRelationship.1/@ownedRelatedElement.0
-            }
-          ]
-        }
-      ]
       memberName = 'B'
-      memberElement -> Class //@ownedRelationship.1/@ownedRelatedElement.0
+      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+          }
+        ]
+      }
     }
   ]
 }

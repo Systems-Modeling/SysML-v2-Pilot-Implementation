@@ -18,9 +18,8 @@ import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Behavior</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -34,10 +33,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
 	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::Performance";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected BehaviorImpl() {
@@ -45,8 +43,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,48 +52,45 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, 
-				SysMLPackage.BEHAVIOR__STEP, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.BEHAVIOR__STEP,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
-				SysMLPackage.BEHAVIOR__PARAMETER, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
-	
+
 	/**
-	 * If the Behavior has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 * If the Behavior has no Superclassings, then create one whose superclass is
+	 * the appropriate default library class.
 	 */
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(BEHAVIOR_SUPERCLASS_DEFAULT);
 	}
-	
+
 	/**
 	 * Return the non-parameter abstract features of the Behavior.
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return getFeature().stream().
-				filter(feature->!(feature instanceof Parameter) && feature.isAbstract()).
-				collect(Collectors.toList());
+		return getFeature().stream().filter(feature -> !(feature instanceof Parameter) && feature.isAbstract())
+				.collect(Collectors.toList());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,8 +105,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -132,8 +125,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,8 +142,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -165,4 +156,4 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 		return super.eIsSet(featureID);
 	}
 
-} //BehaviorImpl
+} // BehaviorImpl

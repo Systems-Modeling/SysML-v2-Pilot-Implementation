@@ -203,12 +203,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 					redefinition.setRedefiningFeature(targetInput);
 					redefinition.setRedefinedFeature(features.get(i-1));
-					targetInput.getOwnedRelationship().add(redefinition);
+					targetInput.getOwnedRelationship_comp().add(redefinition);
 					ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
 					((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
 					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-					membership.getOwnedRelatedElement().add(targetEnd);
-					getOwnedRelationship().add(membership);
+					membership.setOwnedMemberFeature_comp(targetEnd);
+					getOwnedFeatureMembership_comp().add(membership);
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {

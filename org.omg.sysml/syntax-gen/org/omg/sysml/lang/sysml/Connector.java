@@ -5,9 +5,8 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Connector</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * relatedFeature = connectorEnd.feature
@@ -33,7 +32,7 @@ public interface Connector extends Feature, Relationship {
 	 * Returns the value of the '<em><b>Related Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
@@ -48,7 +47,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Feature> getRelatedFeature();
@@ -64,8 +63,8 @@ public interface Connector extends Feature, Relationship {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Association</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Association</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Association</em>' reference list.
@@ -82,8 +81,8 @@ public interface Connector extends Feature, Relationship {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Directed</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Is Directed</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Directed</em>' attribute.
@@ -95,9 +94,10 @@ public interface Connector extends Feature, Relationship {
 	boolean isDirected();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#isDirected
+	 * <em>Is Directed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>Is Directed</em>' attribute.
 	 * @see #isDirected()
 	 * @generated
@@ -140,8 +140,8 @@ public interface Connector extends Feature, Relationship {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Association Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owned Association Type</em>' reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Association Type</em>' reference list.
@@ -154,8 +154,7 @@ public interface Connector extends Feature, Relationship {
 	EList<Association> getOwnedAssociationType();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model ordered="false" relatedFeatureRequired="true" relatedFeatureOrdered="false"
 	 * @generated
 	 */

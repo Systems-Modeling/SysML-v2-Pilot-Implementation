@@ -13,16 +13,14 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Invocation Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Invocation Expression</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected InvocationExpressionImpl() {
@@ -30,8 +28,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -46,25 +43,22 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		if (i < arguments.size()) {
 			Feature argument = arguments.get(i);
 			addOwnedBindingConnector(
-					argument instanceof Expression? 
-							((ExpressionImpl)arguments.get(i)).getResult(): 
-							argument, 
-					input);							
+					argument instanceof Expression ? ((ExpressionImpl) arguments.get(i)).getResult() : argument, input);
 		}
 		return input;
 	}
-	
+
 	public List<? extends Feature> getArguments() {
 		return super.getOwnedFeature();
 	}
-	
+
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		Function function = getFunction();
-		int m = function == null? 0: function.getInput().size();
+		int m = function == null ? 0 : function.getInput().size();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();
-		return m >= n? Collections.emptyList(): features.subList(m, n);
+		return m >= n ? Collections.emptyList() : features.subList(m, n);
 	}
-	
-} //InvocationExpressionImpl
+
+} // InvocationExpressionImpl

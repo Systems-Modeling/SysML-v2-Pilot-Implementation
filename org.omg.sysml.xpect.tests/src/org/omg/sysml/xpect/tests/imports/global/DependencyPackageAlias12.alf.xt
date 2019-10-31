@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -20,7 +20,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package Test1{
-	/* XPECT scope at PackageAlias1::A ---
+	//* XPECT scope at PackageAlias1::A ---
 	    A, A.a, A.a_alias,  Test1.A, Test1.A.a, Test1.A.a_alias,
 	    PackageAlias1, PackageAlias2, Test1,
 	   	PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,

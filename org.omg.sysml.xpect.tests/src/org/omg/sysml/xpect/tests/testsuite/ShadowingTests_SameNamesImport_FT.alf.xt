@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ package test{
 	import SamePackage::container::*;
 	feature something1 : A{}
 	//pass junit test
-	/* XPECT errors at A ---
+	//* XPECT errors at A ---
 	   "Couldn't resolve reference to Type 'B'." at "B"
 	   --- */
 	feature something2 : B{}

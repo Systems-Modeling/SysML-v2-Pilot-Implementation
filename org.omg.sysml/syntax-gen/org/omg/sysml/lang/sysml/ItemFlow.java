@@ -5,9 +5,8 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Item Flow</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Item
+ * Flow</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -27,14 +26,15 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ItemFlow extends Connector, Step {
 	/**
-	 * Returns the value of the '<em><b>Item Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Classifier}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Item Type</b></em>' reference list. The list
+	 * contents are of type {@link org.omg.sysml.lang.sysml.Classifier}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Item Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Item Type</em>' reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Item Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemType()
 	 * @model required="true" transient="true" volatile="true" derived="true"
@@ -47,8 +47,8 @@ public interface ItemFlow extends Connector, Step {
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Input Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Target Input Feature</em>' reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference list.
@@ -63,8 +63,8 @@ public interface ItemFlow extends Connector, Step {
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source Output Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Source Output Feature</em>' reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference list.
@@ -102,8 +102,8 @@ public interface ItemFlow extends Connector, Step {
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowFeature}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Item Flow Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Item Flow Feature</em>' reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.

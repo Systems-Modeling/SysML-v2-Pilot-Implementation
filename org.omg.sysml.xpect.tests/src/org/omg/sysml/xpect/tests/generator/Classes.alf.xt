@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.generator.SysMLGeneratorTest
 	ResourceSet {
 		ThisFile {}
@@ -15,7 +15,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.generator.SysMLGeneratorTest
 END_SETUP 
 */
 
-/*
+//*
 Test the full generated code
 XPECT generated ---
 (no files have been generated)

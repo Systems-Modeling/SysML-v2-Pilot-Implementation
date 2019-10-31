@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ END_SETUP
 package test{
 	import OuterPackage3::D;
 	//XPECT linkedName at D --> OuterPackage3.D
-	/* XPECT scope at D ---
+	//* XPECT scope at D ---
 	   	   D.b, D.c, D.f, EE.b, EE.c, EE.f, EE.try,  test.D.b, test.D.c, test.D.f, test.EE.b, test.EE.c, test.EE.f, test.EE.try,
 		   D.b.a1, D.f.a1, EE.b.a1, EE.f.a1, EE.try.a1, D, EE, 
 		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, test.D, test.EE,
@@ -37,7 +37,7 @@ package test{
 	--- */
 	feature EE : D {
 		//XPECT linkedName at b --> OuterPackage.B.b
-		/* XPECT scope at b ---
+		//* XPECT scope at b ---
 		   D.b.a1, D.f.a1,  EE.b.a1,  EE.f.a1,  EE.try.a1, 
 		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, 
 		   b.a1, f.a1,try, try.a1,

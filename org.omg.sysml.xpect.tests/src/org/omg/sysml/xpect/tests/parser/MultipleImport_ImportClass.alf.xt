@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
 	ResourceSet {
 		ThisFile {}
@@ -18,44 +18,45 @@ XPECT_SETUP org.omg.sysml.xpect.tests.parser.SysMLParserTest
 	}
 END_SETUP 
 */
-/* XPECT ast ---
+//* XPECT ast ---
 Package {
-ownedRelationship = [
+  ownedMembership_comp = [
     Membership {
       memberName = 'C'
-      memberElement -> Class DependencyMultipleMembership.alf#//@ownedRelationship.1/@ownedRelatedElement.0
+      memberElement -> Class DependencyMultipleMembership.alf#//@ownedMembership_comp.1/@ownedMemberElement_comp
     }
     Membership {
-      ownedRelatedElement = [
-        Class {
-          ownedRelationship = [
-            Superclassing {
-              superclass -> Class DependencyMultipleMembership.alf#//@ownedRelationship.1/@ownedRelatedElement.0
-              subclass -> Class //@ownedRelationship.1/@ownedRelatedElement.0
-            }
-            FeatureMembership {
-              ownedRelatedElement = [
-                Feature {
-                  ownedRelationship = [
-                    FeatureTyping {
-                      type -> Feature DependencyOuterPackage.alf#//@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.0/@ownedRelatedElement.0
-                      typedFeature -> Feature //@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0
-                    }
-                    Subsetting {
-                      subsettedFeature -> Feature Base.alf#//@ownedRelationship.12/@ownedRelatedElement.0
-                      subsettingFeature -> Feature //@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0
-                    }
-                  ]
+      memberName = 'D'
+      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class DependencyMultipleMembership.alf#//@ownedMembership_comp.1/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+          }
+        ]
+        ownedFeatureMembership_comp = [
+          FeatureMembership {
+            memberName = 'try'
+            memberFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+            ownedMemberFeature_comp = Feature {
+              ownedRelationship_comp = [
+                FeatureTyping {
+                  type -> Feature DependencyOuterPackage.alf#//@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                  typedFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                }
+                Subsetting {
+                  subsettedFeature -> Feature Base.alf#//@ownedMembership_comp.21/@ownedMemberElement_comp
+                  subsettingFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
                 }
               ]
-              memberName = 'try'
-              memberFeature -> Feature //@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0
+              typing -> [
+                FeatureTyping //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp/@ownedRelationship_comp.0
+              ]
             }
-          ]
-        }
-      ]
-      memberName = 'D'
-      memberElement -> Class //@ownedRelationship.1/@ownedRelatedElement.0
+          }
+        ]
+      }
     }
   ]
 }

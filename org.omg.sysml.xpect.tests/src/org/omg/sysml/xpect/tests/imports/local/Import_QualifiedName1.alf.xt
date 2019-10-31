@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ package Import_QualifiedName {
 		package P2a {
 			import P1::*;
 		}
-		/* XPECT scope at P2a::A ---
+		//* XPECT scope at P2a::A ---
 			   x, P1.A, P2.P2a.A, ,P2.x, P2a.A,  
 			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.x, Import_QualifiedName.P2.P2a.A,  
 		--- */

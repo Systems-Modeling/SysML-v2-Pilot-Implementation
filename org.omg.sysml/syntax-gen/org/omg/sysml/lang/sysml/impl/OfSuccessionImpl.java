@@ -15,9 +15,8 @@ import org.omg.sysml.lang.sysml.OrderedFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Of Succession</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Of
+ * Succession</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -30,9 +29,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements OfSuccession {
 	/**
-	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTo() <em>To</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTo()
 	 * @generated
 	 * @ordered
@@ -40,9 +39,9 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	protected OrderedFeature to;
 
 	/**
-	 * The cached value of the '{@link #getFrom() <em>From</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFrom() <em>From</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFrom()
 	 * @generated
 	 * @ordered
@@ -50,8 +49,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	protected OrderedFeature from;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected OfSuccessionImpl() {
@@ -59,8 +57,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -69,8 +66,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -87,8 +83,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OrderedFeature basicGetTo() {
@@ -96,8 +91,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +103,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,8 +120,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OrderedFeature basicGetFrom() {
@@ -136,8 +128,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -149,8 +140,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -167,8 +157,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -185,8 +174,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -203,8 +191,7 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -218,4 +205,4 @@ public class OfSuccessionImpl extends MinimalEObjectImpl.Container implements Of
 		return super.eIsSet(featureID);
 	}
 
-} //OfSuccessionImpl
+} // OfSuccessionImpl

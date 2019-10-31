@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.PortMembership;
@@ -60,7 +59,7 @@ public class PortMembershipImpl extends FeatureMembershipImpl implements PortMem
 
 	@Override
 	public PortUsage getMemberPort() {
-		return memberPort == null? basicGetMemberPort(): getMemberPortGen();
+		return memberPort == null ? basicGetMemberPort() : getMemberPortGen();
 	}
 
 	/**
@@ -86,9 +85,9 @@ public class PortMembershipImpl extends FeatureMembershipImpl implements PortMem
 	 * @generated NOT
 	 */
 	public PortUsage basicGetMemberPort() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		if (memberPort == null && ownedMemberElement instanceof PortUsage) {
-			memberPort = (PortUsage)ownedMemberElement;
+		Feature ownedMemberFeature = getOwnedMemberFeature();
+		if (memberPort == null && ownedMemberFeature instanceof PortUsage) {
+			memberPort = (PortUsage)ownedMemberFeature;
 		}
 		return memberPort;
 	}

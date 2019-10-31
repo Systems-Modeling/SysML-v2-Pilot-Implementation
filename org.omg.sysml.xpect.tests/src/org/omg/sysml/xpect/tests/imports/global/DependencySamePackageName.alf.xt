@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ END_SETUP
 //What global scope should be?????
 // XPECT noErrors ---> ""
 package test{
-	/* XPECT scope at SamePackage::container ---
+	//* XPECT scope at SamePackage::container ---
 		test, 
 	    container, container.A, test.container, test.container.A,
 	    SamePackage, SamePackage, 
@@ -31,7 +31,7 @@ package test{
 	import SamePackage::container;
 	
 }
-/*
+//*
 package SamePackage{
 	class container{
 	class A{}

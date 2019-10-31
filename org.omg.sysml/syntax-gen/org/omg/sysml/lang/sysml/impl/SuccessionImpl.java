@@ -9,19 +9,17 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Succession</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Succession</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
-	
+
 	public static final String SUCCESSION_SUBSETTING_DEFAULT = "Occurrences::successions";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SuccessionImpl() {
@@ -29,8 +27,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -43,4 +40,4 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		return getOwnedSubsettingWithDefault(SUCCESSION_SUBSETTING_DEFAULT);
 	}
 
-} //SuccessionImpl
+} // SuccessionImpl

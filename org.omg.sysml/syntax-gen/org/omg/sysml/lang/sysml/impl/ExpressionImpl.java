@@ -17,6 +17,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -235,10 +236,10 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		EList<Feature> outputs = super.getOutput();
 		if (!outputs.stream().anyMatch(feature->feature.getOwner() == this)) {
 			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			membership.getOwnedRelatedElement().add(parameter);
+			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
-			getOwnedRelationship().add(membership);
+			getOwnedFeatureMembership_comp().add(membership);
 			outputs.add(parameter);
 		}
 		return outputs;
@@ -252,12 +253,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			
 			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 			redefinition.setRedefinedFeature(parameter);
-			feature.getOwnedRelationship().add(redefinition);
+			feature.getOwnedRelationship_comp().add(redefinition);
 			
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
-			membership.getOwnedRelatedElement().add(feature);
+			membership.setOwnedMemberFeature_comp(feature);
 			membership.setMemberName("$" + parameter.getName());
-			getOwnedRelationship().add(membership);
+			getOwnedFeatureMembership_comp().add(membership);
 			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
 			if (parameterMembership != null) {
 				membership.setDirection(parameterMembership.getDirection());

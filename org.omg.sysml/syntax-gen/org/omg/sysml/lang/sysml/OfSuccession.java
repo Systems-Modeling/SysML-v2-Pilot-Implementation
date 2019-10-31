@@ -5,9 +5,8 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Of Succession</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Of
+ * Succession</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -24,10 +23,11 @@ import org.eclipse.emf.ecore.EObject;
 public interface OfSuccession extends EObject {
 	/**
 	 * Returns the value of the '<em><b>To</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc
+	 * -->
 	 * <p>
-	 * If the meaning of the '<em>To</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>To</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>To</em>' reference.
@@ -40,8 +40,7 @@ public interface OfSuccession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OfSuccession#getTo <em>To</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>To</em>' reference.
 	 * @see #getTo()
 	 * @generated
@@ -49,13 +48,14 @@ public interface OfSuccession extends EObject {
 	void setTo(OrderedFeature value);
 
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>From</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>From</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>From</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>From</em>' reference.
 	 * @see #setFrom(OrderedFeature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOfSuccession_From()
@@ -66,8 +66,7 @@ public interface OfSuccession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OfSuccession#getFrom <em>From</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>From</em>' reference.
 	 * @see #getFrom()
 	 * @generated

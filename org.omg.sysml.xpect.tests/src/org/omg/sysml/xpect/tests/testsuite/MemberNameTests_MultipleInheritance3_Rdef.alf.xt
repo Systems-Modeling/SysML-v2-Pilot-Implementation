@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -29,7 +29,7 @@ package test{
 		// linkedName at a --> test.A.a ----- xpect link test "a" test here will cause RuntimeException why?
 		feature c1 redefines a {}
 		//XPECT linkedName at b --> test.B.b
-		/* XPECT scope at b ---
+		//* XPECT scope at b ---
  		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, 
  		a, a.aa, b, b.aa, c1, c1.aa, c2, c2.aa,
  		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa, test.C, test.C.a, test.C.a.aa,
@@ -39,7 +39,7 @@ package test{
 	}
 	feature D redefines C::a{
 		//XPECT linkedName at aa --> test.A.a.aa
-		/* XPECT scope at aa ---
+		//* XPECT scope at aa ---
  		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, 
 		C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, aa, d,
 		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa,

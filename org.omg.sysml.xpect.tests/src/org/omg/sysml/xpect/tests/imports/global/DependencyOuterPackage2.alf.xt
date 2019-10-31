@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,7 +22,7 @@ END_SETUP
 //Note: DependencyMultipleMembership.alf and DependencyMultipleImport.alf" are similar that yields the same global scope.
 // XPECT noErrors ---> ""
 package test{
-	/* XPECT scope at OuterPackage2::C ---
+	//* XPECT scope at OuterPackage2::C ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -32,7 +32,7 @@ package test{
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c
 	--- */
 	import OuterPackage2::C;
-	/* XPECT scope at OuterPackage::A ---
+	//* XPECT scope at OuterPackage::A ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -43,7 +43,7 @@ package test{
 	--- */
 	import OuterPackage::A;
 	
-	/* XPECT scope at OuterPackage::B ---
+	//* XPECT scope at OuterPackage::B ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
        	B, B.b, B.b.a1, test.B, test.B.b, test.B.b.a1,
@@ -56,7 +56,7 @@ package test{
 	
 }
   
-/*
+//*
    package OuterPackage{	
 		class A{
 			class a1{}

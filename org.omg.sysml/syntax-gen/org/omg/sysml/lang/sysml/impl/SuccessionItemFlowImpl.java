@@ -9,20 +9,18 @@ import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Succession Item Flow</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Succession Item Flow</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionItemFlow {
-	
+
 	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::flows";
 	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subflows";
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SuccessionItemFlowImpl() {
@@ -30,8 +28,7 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -41,10 +38,8 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				isSubtransfer()?
-						SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-						SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+		return getOwnedSubsettingWithDefault(isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
+				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
 	}
-	
-} //SuccessionItemFlowImpl
+
+} // SuccessionItemFlowImpl

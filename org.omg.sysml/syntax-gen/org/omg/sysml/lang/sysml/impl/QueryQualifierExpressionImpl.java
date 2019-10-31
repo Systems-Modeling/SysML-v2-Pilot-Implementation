@@ -7,17 +7,16 @@ import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Query Qualifier Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Query
+ * Qualifier Expression</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class QueryQualifierExpressionImpl extends OperatorExpressionImpl implements QueryQualifierExpression {
-    private static final String DEFAULT_QUALIFIER_FUNCTION = "select";
+	private static final String DEFAULT_QUALIFIER_FUNCTION = "select";
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QueryQualifierExpressionImpl() {
@@ -28,10 +27,9 @@ public class QueryQualifierExpressionImpl extends OperatorExpressionImpl impleme
 	public String getOperator() {
 		return DEFAULT_QUALIFIER_FUNCTION;
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -40,9 +38,9 @@ public class QueryQualifierExpressionImpl extends OperatorExpressionImpl impleme
 	}
 
 	@Override
-    public String getName() {
-        // TODO: Mainly for Outline
-        return super.getName();
-    }
+	public String getName() {
+		// TODO: Mainly for Outline
+		return super.getName();
+	}
 
-} //QueryQualifierExpressionImpl
+} // QueryQualifierExpressionImpl

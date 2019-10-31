@@ -12,9 +12,8 @@ import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Literal Boolean</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Literal
+ * Boolean</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -26,9 +25,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LiteralBooleanImpl extends LiteralExpressionImpl implements LiteralBoolean {
 	/**
-	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isValue()
 	 * @generated
 	 * @ordered
@@ -36,9 +35,9 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	protected static final boolean VALUE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isValue()
 	 * @generated
 	 * @ordered
@@ -46,8 +45,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	protected boolean value = VALUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected LiteralBooleanImpl() {
@@ -55,8 +53,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,8 +62,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,8 +71,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,8 +83,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -102,8 +96,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,8 +110,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +124,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -146,8 +137,7 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,4 +151,4 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 		return result.toString();
 	}
 
-} //LiteralBooleanImpl
+} // LiteralBooleanImpl

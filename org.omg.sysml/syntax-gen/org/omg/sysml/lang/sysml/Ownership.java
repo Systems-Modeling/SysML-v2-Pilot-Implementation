@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ownership</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Ownership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * <p>Ownership provides an organizational hint to the model to support the development of tree views of the model and nested serializations.</p>
@@ -18,6 +16,7 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Ownership#getOwningSource <em>Owning Source</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Ownership#getOwnedTarget_comp <em>Owned Target comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Ownership#getOwnedTarget <em>Owned Target</em>}</li>
  * </ul>
  *
@@ -69,12 +68,46 @@ public interface Ownership extends Relationship {
 	void setOwningSource(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Target comp</b></em>' containment reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Target comp</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Target comp</em>' containment reference.
+	 * @see #setOwnedTarget_comp(Element)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwnership_OwnedTarget_comp()
+	 * @model containment="true" required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetOwnership'"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	Element getOwnedTarget_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Ownership#getOwnedTarget_comp <em>Owned Target comp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Target comp</em>' containment reference.
+	 * @see #getOwnedTarget_comp()
+	 * @generated
+	 */
+	void setOwnedTarget_comp(Element value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Target</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -85,9 +118,8 @@ public interface Ownership extends Relationship {
 	 * @return the value of the '<em>Owned Target</em>' reference.
 	 * @see #setOwnedTarget(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwnership_OwnedTarget()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetOwnership'"
-	 *        annotation="redefines"
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwnedTarget();

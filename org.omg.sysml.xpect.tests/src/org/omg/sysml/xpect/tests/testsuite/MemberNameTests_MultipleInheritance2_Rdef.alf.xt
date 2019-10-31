@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -20,7 +20,7 @@ package test{
 	feature A{
 		feature a;
 	}
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
 	--- */
@@ -29,14 +29,14 @@ package test{
 	//\n		fe|ature b redef... is not valid here.
 		feature b redefines a {}
 	}
-	/* XPECT scope at B ---
+	//* XPECT scope at B ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
 	--- */
 	feature C redefines B{
 		feature c redefines a;
 	}
-	/* XPECT scope at C::a ---
+	//* XPECT scope at C::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
 	--- */

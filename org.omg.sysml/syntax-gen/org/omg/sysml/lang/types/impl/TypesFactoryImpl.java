@@ -14,16 +14,15 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.omg.sysml.lang.types.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * @generated
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public static TypesFactory init() {
@@ -40,9 +39,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public TypesFactoryImpl() {
@@ -50,8 +49,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,8 +61,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,8 +83,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +105,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Boolean createBooleanFromString(EDataType eDataType, String initialValue) {
@@ -118,8 +113,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertBooleanToString(EDataType eDataType, Object instanceValue) {
@@ -127,8 +121,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Integer createIntegerFromString(EDataType eDataType, String initialValue) {
@@ -136,8 +129,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertIntegerToString(EDataType eDataType, Object instanceValue) {
@@ -145,8 +137,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Double createRealFromString(EDataType eDataType, String initialValue) {
@@ -154,8 +145,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertRealToString(EDataType eDataType, Object instanceValue) {
@@ -163,8 +153,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Integer createUnlimitedNaturalFromString(EDataType eDataType, String initialValue) {
@@ -172,8 +161,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertUnlimitedNaturalToString(EDataType eDataType, Object instanceValue) {
@@ -181,8 +169,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String createStringFromString(EDataType eDataType, String initialValue) {
@@ -190,8 +177,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertStringToString(EDataType eDataType, Object instanceValue) {
@@ -199,8 +185,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -209,8 +194,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -219,4 +203,4 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 		return TypesPackage.eINSTANCE;
 	}
 
-} //TypesFactoryImpl
+} // TypesFactoryImpl

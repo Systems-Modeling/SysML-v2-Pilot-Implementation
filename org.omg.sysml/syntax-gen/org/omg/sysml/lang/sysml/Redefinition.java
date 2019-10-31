@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Redefinition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Redefinition</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -47,8 +45,8 @@ public interface Redefinition extends Subsetting {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Redefinition#getRedefiningFeature <em>Redefining Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Redefining Feature</em>' reference.
 	 * @see #getRedefiningFeature()
 	 * @generated
@@ -81,8 +79,8 @@ public interface Redefinition extends Subsetting {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Redefinition#getRedefinedFeature <em>Redefined Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Redefined Feature</em>' reference.
 	 * @see #getRedefinedFeature()
 	 * @generated

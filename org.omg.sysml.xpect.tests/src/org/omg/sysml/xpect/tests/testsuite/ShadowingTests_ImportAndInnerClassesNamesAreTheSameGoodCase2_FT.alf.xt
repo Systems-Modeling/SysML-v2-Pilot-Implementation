@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -24,14 +24,14 @@ package test{
 		feature a2{}
 	}
 	//XPECT linkedName at A --> test.A
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
 		    A, A.a2, B, B.a2, B.b, 
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b,
 		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A, OuterPackage.B.b, OuterPackage.B.b.a1,
 		--- */
 	feature B : A {
 		//XPECT linkedName at a2 --> test.A.a2
-		/* XPECT scope at a2 ---
+		//* XPECT scope at a2 ---
 		    a2, b, 
 		    A, A.a2, B, B.a2, B.b,
 		    test.A, test.A.a2, test.B, test.B.a2, test.B.b, 

@@ -13,9 +13,8 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Feature Reference Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
+ * Reference Expression</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -28,17 +27,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
 	/**
 	 * The cached value of the '{@link #getReferent() <em>Referent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferent()
 	 * @generated
 	 * @ordered
 	 */
 	protected Feature referent;
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FeatureReferenceExpressionImpl() {
@@ -46,23 +43,21 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION;
 	}
-	
+
 	@Override
 	public Feature getReferent() {
-		return referent == null? basicGetReferent(): getReferentGen();
+		return referent == null ? basicGetReferent() : getReferentGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getReferentGen() {
@@ -78,8 +73,8 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
@@ -92,10 +87,9 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		}
 		return referent;
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,8 +106,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,8 +120,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -142,8 +134,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -157,8 +148,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -170,4 +160,4 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return super.eIsSet(featureID);
 	}
 
-} //FeatureReferenceExpressionImpl
+} // FeatureReferenceExpressionImpl

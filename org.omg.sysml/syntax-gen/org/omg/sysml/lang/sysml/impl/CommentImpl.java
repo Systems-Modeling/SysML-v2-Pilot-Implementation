@@ -2,10 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -17,9 +18,8 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Comment</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Comment</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -33,9 +33,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class CommentImpl extends ElementImpl implements Comment {
 	/**
-	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBody()
 	 * @generated
 	 * @ordered
@@ -43,9 +43,9 @@ public class CommentImpl extends ElementImpl implements Comment {
 	protected static final String BODY_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBody()
 	 * @generated
 	 * @ordered
@@ -54,8 +54,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 
 	/**
 	 * The cached value of the '{@link #getAnnotationForComment() <em>Annotation For Comment</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAnnotationForComment()
 	 * @generated
 	 * @ordered
@@ -63,8 +62,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	protected Annotation annotationForComment;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -72,8 +70,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,8 +79,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +88,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -105,8 +100,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -116,38 +110,31 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public Element basicGetCommentedElement() {
 		Annotation annotation = this.getAnnotationForComment();
-		return annotation == null? null: annotation.getAnnotatedElement();
+		return annotation == null ? null : annotation.getAnnotatedElement();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setCommentedElement(Element newCommentedElement) {
-		// TODO: implement this method to set the 'Commented Element' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * If the Comment has an owner, use this as the default value for its annotationForComment property.
-	 * <!-- end-user-doc -->
-	 */
+
 	public Annotation getAnnotationForComment() {
-		return annotationForComment == null? basicGetAnnotationForComment(): getAnnotationForCommentGen();
+		return annotationForComment == null ? basicGetAnnotationForComment() : getAnnotationForCommentGen();
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Annotation getAnnotationForCommentGen() {
@@ -163,26 +150,26 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * If the Comment has an owner, use this as the default value for its annotationForComment property. 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Annotation basicGetAnnotationForComment() {
 		if (annotationForComment == null) {
-			annotationForComment = getOwningRelationship(Annotation.class);
+			annotationForComment = (Annotation)Optional.ofNullable(getOwningRelationship()).
+					filter(rel->rel instanceof Annotation).orElse(null);
 		}
 		if (annotationForComment == null) {
-			EList<Annotation> annotations = getOwnedRelationship(Annotation.class);
-			if (!annotations.isEmpty()) {
-				annotationForComment = annotations.get(0);
-			}
+			annotationForComment = (Annotation)getOwnedRelationship().stream().
+					filter(rel->rel instanceof Annotation).findFirst().orElse(null);
 		}
 		return annotationForComment;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetAnnotationForComment(Annotation newAnnotationForComment, NotificationChain msgs) {
@@ -196,8 +183,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -216,8 +202,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -232,8 +217,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -251,8 +235,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,8 +254,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -292,8 +274,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -311,17 +292,15 @@ public class CommentImpl extends ElementImpl implements Comment {
 		}
 		super.eUnset(featureID);
 	}
-	
-	@Override 
+
+	@Override
 	public boolean eIsSet(int featureID) {
-		return featureID == SysMLPackage.COMMENT__COMMENTED_ELEMENT? 
-				basicGetCommentedElement() != null:
-				eIsSetGen(featureID);
+		return featureID == SysMLPackage.COMMENT__COMMENTED_ELEMENT ? basicGetCommentedElement() != null
+				: eIsSetGen(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean eIsSetGen(int featureID) {
@@ -337,8 +316,7 @@ public class CommentImpl extends ElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -352,4 +330,4 @@ public class CommentImpl extends ElementImpl implements Comment {
 		return result.toString();
 	}
 
-} //CommentImpl
+} // CommentImpl

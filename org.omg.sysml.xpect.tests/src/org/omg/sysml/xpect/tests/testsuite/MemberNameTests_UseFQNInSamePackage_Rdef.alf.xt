@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -18,7 +18,7 @@ END_SETUP
 //XPECT noErrors ---> ""
 package test{
 	feature A {}
-	/* XPECT scope at test::A ---
+	//* XPECT scope at test::A ---
 	   	A, B, test.A, test.B,
   	--- */
 	feature B redefines test::A{}

@@ -2,13 +2,17 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.alf"}
+		File {from ="/library_expr/Base.alf"}
+		File {from ="/library_expr/ScalarValues.alf"}
+		File {from ="/library_expr/ControlFunctions.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.alf"}
+				File {from ="/library_expr/Base.alf"}
+				File {from ="/library_expr/ScalarValues.alf"}
+				File {from ="/library_expr/ControlFunctions.alf"}
 			}
 		}
 	}
@@ -17,7 +21,7 @@ END_SETUP
 
 package P {
 	class A;
-	function C() : A;
+	class C;
 	feature Q : C {
 		z : C;
 		feature R : C {

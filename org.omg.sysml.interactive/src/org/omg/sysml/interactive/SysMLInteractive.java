@@ -63,6 +63,7 @@ public class SysMLInteractive extends AlfUtil {
 	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
+	public static final String QUANTITIES_AND_UNITS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Quantities and Units";
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -101,7 +102,15 @@ public class SysMLInteractive extends AlfUtil {
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
 			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
-			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
+			
+			// TODO: Replace this hardcoding with a configuration mechanism.
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SIPrefixes" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Time" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 		}
 	}
 	

@@ -8,11 +8,19 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public class SysMLInteractiveUtil {
 
 	public static final String INDENT = "  ";
+	
+	private static String formatRelationship(Relationship relationship) {
+		return relationship == null? "":
+			   relationship instanceof Membership && ((Membership)relationship).getOwnedMemberElement() == null?
+					   "[" + relationship.eClass().getName() + " " + ((Membership)relationship).getMemberName() + "] ":
+			   "[" + relationship.eClass().getName() + "] ";
+	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		if (element instanceof Classifier) {
@@ -25,7 +33,7 @@ public class SysMLInteractiveUtil {
 		String name = element.getName();
 		String id = Integer.toHexString(element.hashCode());
 		buffer.append(indentation + 
-				(relationship == null? "": "[" + relationship.eClass().getName() + "] ") + 
+				formatRelationship(relationship) + 
 				element.eClass().getName() + 
 				(name == null? "": " " + name) + " (" + id + ")\n");
 	}

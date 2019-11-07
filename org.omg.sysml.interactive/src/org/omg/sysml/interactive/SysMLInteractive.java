@@ -224,6 +224,7 @@ public class SysMLInteractive extends AlfUtil {
 	}
 	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
+		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
 		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
 		Traversal traversal = new TraversalImpl(visitorFactory);
@@ -242,7 +243,7 @@ public class SysMLInteractive extends AlfUtil {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
-				return modelName + " (" + processingFacade.getModelId() + ")\n";
+				return modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);

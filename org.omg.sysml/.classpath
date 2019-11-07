@@ -6,6 +6,6 @@
 	<classpathentry kind="src" path="syntax-gen"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="lib/sysml-api-client-0.1.0-all.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/sysml-v2-api-client-2019-09-all.jar" sourcepath="/SysML-v2-API-Client/src/main/java"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

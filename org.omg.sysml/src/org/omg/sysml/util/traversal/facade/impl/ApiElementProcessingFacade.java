@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Project Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,16 +23,17 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.api.ElementApi;
-import org.omg.sysml.api.ModelApi;
-import org.omg.sysml.api.RelationshipApi;
+import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -47,40 +48,39 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	/**
 	 * The default base path for accessing the REST end point.
 	 */
-	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
+	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
 	private final ApiClient apiClient = new ApiClient();
 	private final ElementApi elementApi = new ElementApi(apiClient);
-	private final RelationshipApi relationshipApi = new RelationshipApi(apiClient);
-	private final ModelApi modelApi = new ModelApi(apiClient);
+	private final ProjectApi projectApi = new ProjectApi(apiClient);
 
-	private final org.omg.sysml.model.Model parentModel;
+	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
 
 	/**
-	 * Create a facade for processing the Elements of a model with the given name. A model with that name
-	 * is created in the repository, and subsequently processed Elements are added to that model.
+	 * Create a facade for processing the Elements of a project with the given name. A project with that name
+	 * is created in the repository, and subsequently processed Elements are added to that project.
 	 * 
-	 * @param 	modelName			the name of the model for which Elements are being saved
+	 * @param 	projectName			the name of the project for which Elements are being saved
 	 * @param	basePath			the base path to be used to access the REST end point.
 	 * @throws 	ApiException
 	 */
-	public ApiElementProcessingFacade(String modelName, String basePath) throws ApiException {
+	public ApiElementProcessingFacade(String projectName, String basePath) throws ApiException {
 		this.apiClient.setBasePath(basePath);
-		org.omg.sysml.model.Model model = new org.omg.sysml.model.Model();
-		model.setName(modelName);
-		this.parentModel = modelApi.createModel(model);
+		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
+		project.setAtType("Project");
+		project.setName(projectName);
+		this.project = projectApi.createProject(project);
 	}
 	
 	/**
 	 * Create a facade for processing the Elements of a model with the given name using the default base path.
 	 * 
-	 * @param 	modelName			the name of the model for which Elements are being saved
-	 * @param	basePath			the base path to be used to access the REST end point.
+	 * @param 	projectName			the name of the project for which Elements are being saved
 	 * @throws 	ApiException
 	 */
-	public ApiElementProcessingFacade(String modelName) throws ApiException {
-		this(modelName, DEFAULT_BASE_PATH);
+	public ApiElementProcessingFacade(String projectName) throws ApiException {
+		this(projectName, DEFAULT_BASE_PATH);
 	}
 	
 	/**
@@ -102,14 +102,38 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
-	 * Get a string representation of the UUID of the model as it is saved in the repository.
+	 * Get a string representation of the UUID of the project as it is saved in the repository.
 	 * 
-	 * @return	the UUID of the model saved in the repository
+	 * @return	the UUID of the project saved in the repository
 	 */
-	public String getModelId() {
-		return this.parentModel.getIdentifier().toString();
+	public String getProjectId() {
+		return this.project.getIdentifier().toString();
 	}
 	
+	/**
+	 * Create an Identified object with the given identifier.
+	 * 
+	 * @param 	identifier			the UUID of the object being identified
+	 * @return	an Identified object with the given identifier
+	 */
+	private static Identified identified(UUID identifier) {
+		return new Identified().identifier(identifier);
+	}
+	
+	/**
+	 * Create a list of Identified objects corresponding to the identifiers of a given list of Elements.
+	 * 
+	 * @param 	elements			the Elements being identified
+	 * @return	a list of Identified objects with the identifiers of the given elements
+	 */
+	private List<Identified> getIdentified(List<Element> elements) {
+		return elements.stream().
+				map(traversal::getIdentifier).
+				filter(id->id instanceof UUID).
+				map(id->identified((UUID)id)).
+				collect(Collectors.toList());
+	}
+
 	/**
 	 * Initialize the given API Element from the given source model Element.
 	 * 
@@ -117,14 +141,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	modelElement		the Element as it is represented in Ecore
 	 * @return	the repository Element
 	 */
-	protected <T extends org.omg.sysml.model.Element> T initialize(T apiElement, Element modelElement) {
-		apiElement.setName(modelElement.getName());
-		apiElement.setDescription(descriptionOf(modelElement));
-		apiElement.setType(modelElement.eClass().getName());
-		apiElement.setParentModel(this.parentModel.getIdentifier());
+	protected org.omg.sysml.model.Element initialize(Element modelElement) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
+		apiElement.put("@type", modelElement.eClass().getName());
+		apiElement.put("containingProject", identified(this.project.getIdentifier()));
+		apiElement.put("name", modelElement.getName());
 //		System.out.println("... name = " + apiElement.getName() + 
-//				" type = " + apiElement.getType() + 
-//				" parentModel = " + apiElement.getParentModel());
+//				" type = " + apiElement.getAtType() + 
+//				" containingProject = " + apiElement.getContainingProject().getIdentifier());
 		return apiElement;
 	}
 	
@@ -137,9 +161,9 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @throws 	ApiException
 	 */
 	protected org.omg.sysml.model.Element createElement(Element modelElement) throws ApiException {
-		return  elementApi.createElement(this.initialize(new org.omg.sysml.model.Element(), modelElement));
+		return  elementApi.createElement(this.initialize(modelElement));
 	}
-
+	
 	/**
 	 * Use the API to save the given source model Relationship to the repository. Return the data for the Relationship
 	 * as it was saved in the repository.
@@ -148,25 +172,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	the Relationship as saved in the repository, as it is represented in the API
 	 * @throws 	ApiException
 	 */
-	protected org.omg.sysml.model.Relationship createRelationship(Relationship modelRelationship) throws ApiException {
-		org.omg.sysml.model.Relationship repositoryRelationship = this.initialize(new org.omg.sysml.model.Relationship(), modelRelationship);
-		EList<Element> source = modelRelationship.getSource();
-		if (!source.isEmpty()) {
-			Object identifier = traversal.getIdentifier(modelRelationship.getSource().get(0));
-			if (identifier instanceof UUID) {
-				repositoryRelationship.setSourceElementRole("source");
-				repositoryRelationship.setSourceElement((UUID)identifier);
-			}
-		}
-		EList<Element> target = modelRelationship.getTarget();
-		if (!target.isEmpty()) {
-			Object identifier = traversal.getIdentifier(modelRelationship.getTarget().get(0));
-			if (identifier instanceof UUID) {
-				repositoryRelationship.setTargetElementRole("target");
-				repositoryRelationship.setTargetElement((UUID)identifier);
-			}
-		}
-		return  relationshipApi.createRelationship(repositoryRelationship);
+	protected org.omg.sysml.model.Element createRelationship(Relationship modelRelationship) throws ApiException {
+		org.omg.sysml.model.Element repositoryRelationship = this.initialize(modelRelationship);
+		repositoryRelationship.put("source", getIdentified(modelRelationship.getSource()));
+		repositoryRelationship.put("target", getIdentified(modelRelationship.getTarget()));
+		return  elementApi.createElement(repositoryRelationship);
 	}
 	
 	/**
@@ -188,7 +198,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		}
 		return s;
 	}
-
+	
 	/**
 	 * Save the given Element to the repository and, if successful, return the UUID created for it.
 	 * If there is an exception while saving the element, return an identifier based on the
@@ -201,12 +211,16 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public Object processElement(Element element) {
 		try {
 			System.out.println("Saving element " + descriptionOf(element));
-			UUID identifier = this.createElement(element).getIdentifier();
+			UUID identifier = UUID.fromString((String)this.createElement(element).get("identifier"));
 			System.out.println("... element id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
-			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-			return Integer.toHexString(element.hashCode());
+			if (e.getCode() >= 500) {
+				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
+			} else {
+				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
+				return Integer.toHexString(element.hashCode());
+			}
 		}
 	}
 
@@ -222,12 +236,16 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public Object processRelationship(Relationship relationship) {
 		try {
 			System.out.println("Saving relationship " + descriptionOf(relationship));
-			UUID identifier = this.createRelationship(relationship).getIdentifier();
+			UUID identifier = UUID.fromString((String)this.createRelationship(relationship).get("identifier"));
 			System.out.println("... relationship id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
-			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-			return Integer.toHexString(relationship.hashCode());
+			if (e.getCode() >= 500) {
+				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
+			} else {
+				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
+				return Integer.toHexString(relationship.hashCode());
+			}
 		}
 	}
 

@@ -54,7 +54,7 @@ public class AlfRepositorySaveImpl extends AlfTraversalImpl {
 	public AlfRepositorySaveImpl(String modelName) throws ApiException {
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName);	
 		processingFacade.setTraversal(this.initialize(processingFacade));
-		this.modelId = processingFacade.getModelId();
+		this.modelId = processingFacade.getProjectId();
 	}
 	
 	/**

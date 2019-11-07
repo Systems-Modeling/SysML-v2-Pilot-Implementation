@@ -601,8 +601,51 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				sequence_QueryNameExpression(context, (QueryPathExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnitsExpressionRule()
+						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getSequenceAccessExpressionRule()
+						|| action == grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getQueryPathExpressionRule()
+						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1()
+						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1()
+						|| rule == grammarAccess.getQueryHeadExpressionRule()) {
+					sequence_QueryHeadExpression(context, (QueryPathExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getQueryNameExpressionRule()) {
+					sequence_QueryNameExpression(context, (QueryPathExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
 				sequence_QueryPathExpression(context, (QueryPathStepExpression) semanticObject); 
 				return; 
@@ -2608,10 +2651,6 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PrimaryExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     BaseExpression returns FeatureReferenceExpression
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
-	 *     QueryPathExpression returns FeatureReferenceExpression
-	 *     QueryPathExpression.QueryQualifierExpression_1_1 returns FeatureReferenceExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns FeatureReferenceExpression
-	 *     QueryHeadExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
 	 *     ownedRelationship+=FeatureReference
@@ -3067,7 +3106,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Unit returns Package
 	 *
 	 * Constraint:
-	 *     ((ownedRelationship+=PrefixAnnotation* name=Name)? (ownedRelationship+=PackageMember | ownedRelationship+=Import)*)
+	 *     ((ownedRelationship+=PrefixAnnotation? name=Name)? (ownedRelationship+=PackageMember | ownedRelationship+=Import)*)
 	 */
 	protected void sequence_PackageBody_PackageDeclaration_UnitPrefix(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -3149,6 +3188,54 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ownedRelatedElement+=Documentation
 	 */
 	protected void sequence_PrefixAnnotation(ISerializationContext context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expression returns QueryPathExpression
+	 *     ConditionalExpression returns QueryPathExpression
+	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     NullCoalescingExpression returns QueryPathExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ConditionalOrExpression returns QueryPathExpression
+	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ConditionalAndExpression returns QueryPathExpression
+	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     OrExpression returns QueryPathExpression
+	 *     OrExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     XorExpression returns QueryPathExpression
+	 *     XorExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     AndExpression returns QueryPathExpression
+	 *     AndExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     EqualityExpression returns QueryPathExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ClassificationExpression returns QueryPathExpression
+	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     RelationalExpression returns QueryPathExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     AdditiveExpression returns QueryPathExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     MultiplicativeExpression returns QueryPathExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     UnitsExpression returns QueryPathExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     UnaryExpression returns QueryPathExpression
+	 *     SequenceAccessExpression returns QueryPathExpression
+	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     PrimaryExpression returns QueryPathExpression
+	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     BaseExpression returns QueryPathExpression
+	 *     QueryPathExpression returns QueryPathExpression
+	 *     QueryPathExpression.QueryQualifierExpression_1_1 returns QueryPathExpression
+	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathExpression
+	 *     QueryHeadExpression returns QueryPathExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=FeatureReference
+	 */
+	protected void sequence_QueryHeadExpression(ISerializationContext context, QueryPathExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

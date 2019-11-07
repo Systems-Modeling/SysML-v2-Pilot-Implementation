@@ -11456,14 +11456,25 @@ ruleQueryHeadExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
 		}
-		{
-			newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getFeatureReferenceExpressionParserRuleCall_1());
-		}
-		this_FeatureReferenceExpression_1=ruleFeatureReferenceExpression
-		{
-			$current = $this_FeatureReferenceExpression_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getOwnedRelationshipFeatureReferenceParserRuleCall_1_0());
+				}
+				lv_ownedRelationship_1_0=ruleFeatureReference
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getQueryHeadExpressionRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_1_0,
+						"org.omg.kerml.xtext.KerML.FeatureReference");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

@@ -9010,20 +9010,24 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.QueryHeadExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFullStopSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cFeatureReferenceExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipFeatureReferenceParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
-		//QueryHeadExpression SysML::FeatureReferenceExpression:
-		//	'./' FeatureReferenceExpression;
+		//QueryHeadExpression SysML::QueryPathExpression:
+		//	'./' ownedRelationship+=FeatureReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'./' FeatureReferenceExpression
+		//'./' ownedRelationship+=FeatureReference
 		public Group getGroup() { return cGroup; }
 		
 		//'./'
 		public Keyword getFullStopSolidusKeyword_0() { return cFullStopSolidusKeyword_0; }
 		
-		//FeatureReferenceExpression
-		public RuleCall getFeatureReferenceExpressionParserRuleCall_1() { return cFeatureReferenceExpressionParserRuleCall_1; }
+		//ownedRelationship+=FeatureReference
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		
+		//FeatureReference
+		public RuleCall getOwnedRelationshipFeatureReferenceParserRuleCall_1_0() { return cOwnedRelationshipFeatureReferenceParserRuleCall_1_0; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Name");
@@ -12048,8 +12052,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getQueryNameExpressionAccess().getRule();
 	}
 	
-	//QueryHeadExpression SysML::FeatureReferenceExpression:
-	//	'./' FeatureReferenceExpression;
+	//QueryHeadExpression SysML::QueryPathExpression:
+	//	'./' ownedRelationship+=FeatureReference;
 	public QueryHeadExpressionElements getQueryHeadExpressionAccess() {
 		return pQueryHeadExpression;
 	}

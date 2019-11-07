@@ -592,6 +592,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2(), "rule__QueryPathExpression__OperandAssignment_2_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2");
 			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__QueryNameExpression__OwnedRelationshipAssignment");
+			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedRelationshipAssignment_1(), "rule__QueryHeadExpression__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getUnorderedGroup_1(), "rule__MultiplicityPart__UnorderedGroup_1");
 		}
 	}

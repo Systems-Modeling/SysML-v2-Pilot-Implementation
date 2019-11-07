@@ -963,8 +963,8 @@ QueryNameExpression returns SysML::QueryPathExpression :
     ownedRelationship += FeatureReference
 ;
 
-QueryHeadExpression returns SysML::FeatureReferenceExpression :
-	'./' FeatureReferenceExpression
+QueryHeadExpression returns SysML::QueryPathExpression :
+	'./' ownedRelationship += FeatureReference
 ;        
 
 /* NAMES */

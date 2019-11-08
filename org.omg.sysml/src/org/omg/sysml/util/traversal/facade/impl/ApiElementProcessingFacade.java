@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.api.ElementApi;
@@ -48,7 +50,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	/**
 	 * The default base path for accessing the REST end point.
 	 */
-	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
+	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
 	
 	private final ApiClient apiClient = new ApiClient();
 	private final ElementApi elementApi = new ElementApi(apiClient);
@@ -143,9 +145,13 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	protected org.omg.sysml.model.Element initialize(Element modelElement) {
 		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
-		apiElement.put("@type", modelElement.eClass().getName());
+		EClass eClass = modelElement.eClass();
+		apiElement.put("@type", eClass.getName());
 		apiElement.put("containingProject", identified(this.project.getIdentifier()));
 		apiElement.put("name", modelElement.getName());
+		for (EStructuralFeature feature: eClass.getEAllAttributes()) {
+			apiElement.put(feature.getName(), modelElement.eGet(feature));
+		}
 //		System.out.println("... name = " + apiElement.getName() + 
 //				" type = " + apiElement.getAtType() + 
 //				" containingProject = " + apiElement.getContainingProject().getIdentifier());
@@ -210,11 +216,12 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object processElement(Element element) {
 		try {
-			System.out.println("Saving element " + descriptionOf(element));
+			System.out.print("Saving " + descriptionOf(element) + "... ");
 			UUID identifier = UUID.fromString((String)this.createElement(element).get("identifier"));
-			System.out.println("... element id is " + identifier);
+			System.out.println("id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
+			System.out.println();
 			if (e.getCode() >= 500) {
 				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
 			} else {
@@ -235,11 +242,12 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object processRelationship(Relationship relationship) {
 		try {
-			System.out.println("Saving relationship " + descriptionOf(relationship));
+			System.out.print("Saving " + descriptionOf(relationship) + "... ");
 			UUID identifier = UUID.fromString((String)this.createRelationship(relationship).get("identifier"));
-			System.out.println("... relationship id is " + identifier);
+			System.out.println("id is " + identifier);
 			return identifier;
 		} catch (ApiException e) {
+			System.out.println();
 			if (e.getCode() >= 500) {
 				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
 			} else {

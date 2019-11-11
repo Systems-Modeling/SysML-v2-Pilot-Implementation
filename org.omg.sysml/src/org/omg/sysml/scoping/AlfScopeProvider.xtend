@@ -135,11 +135,10 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
 			if (op1 instanceof QueryPathExpression) {
-				return op1 as QueryPathExpression
+				return op1
 			}
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathExpression qpe) {

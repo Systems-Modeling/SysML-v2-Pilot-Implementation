@@ -2,12 +2,10 @@ package org.omg.sysml.xpect.tests.query;
 
 import org.junit.runner.RunWith;
 import org.eclipse.xpect.runner.XpectRunner;
-import org.eclipse.xpect.runner.XpectTestFiles;
-import org.eclipse.xpect.xtext.lib.tests.ScopingTest;
+import org.eclipse.xpect.xtext.lib.tests.XtextTests;
 
 @RunWith(XpectRunner.class)
-@XpectTestFiles(fileExtensions = "xt")
-public class SysMLQueryTest extends ScopingTest {
+public class SysMLQueryTest extends XtextTests {
 
 }
    

@@ -1,5 +1,5 @@
 /* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library_expr/Base.alf"}
@@ -17,7 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 END_SETUP 
 */
 
-/*XPECT noerrors*/
+// XPECT noErrors ---> ""
 package P {
 	class A;
 	class C;

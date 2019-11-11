@@ -3,7 +3,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library_expr/Base.alf"}
-		File {from ="/library_expr/ScalarValues.alf"}
 		File {from ="/library_expr/ControlFunctions.alf"}
 	}
 	Workspace {
@@ -11,7 +10,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library_expr/Base.alf"}
-				File {from ="/library_expr/ScalarValues.alf"}
 				File {from ="/library_expr/ControlFunctions.alf"}
 			}
 		}
@@ -19,6 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 END_SETUP 
 */
 
+/*XPECT noErrors*/
 package P {
 	class A;
 	class C;
@@ -28,8 +27,5 @@ package P {
 			feature x : C;
 		}
 	}
-	/* XPECT errors ---
-
-	   --- */
 	a : C = ./Q/z;
 }

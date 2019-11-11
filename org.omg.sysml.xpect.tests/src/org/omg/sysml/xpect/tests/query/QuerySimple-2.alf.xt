@@ -17,13 +17,18 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 END_SETUP 
 */
 
-/*XPECT noerrors*/
+/*XPECT noErrors*/
 package P {
-	class A;
 	class C;
 	feature Q : C {
 		feature z : C;
-		feature R : C;
+		feature R : C {
+			feature x : C;
+			feature S {
+				feature y : C;
+			}
+		}
 	}
-	a : C = ./Q/z;
+	a = ./Q/R/x;
+	b = ./Q/R/S/y;
 }

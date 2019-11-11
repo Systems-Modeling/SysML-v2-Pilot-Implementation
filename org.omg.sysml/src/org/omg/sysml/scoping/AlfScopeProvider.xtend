@@ -131,15 +131,11 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
-		var oe = qps.owner;
-		if (oe instanceof QueryPathStepExpression) {
-			var qps_parent = oe as QueryPathStepExpression
-			var ops = qps_parent.operand
-			if (ops.size() >= 2) {
-				var op1 = ops.get(0)
-				if (op1 instanceof QueryPathExpression) {
-					return op1 as QueryPathExpression
-				}
+		var ops = qps.operand
+		if (ops.size() >= 2) {
+			var op1 = ops.get(1)
+			if (op1 instanceof QueryPathExpression) {
+				return op1 as QueryPathExpression
 			}
 		} else {
 			return null;
@@ -149,14 +145,15 @@ class AlfScopeProvider extends AbstractAlfScopeProvider {
 	def QueryPathExpression prevQueryPath(QueryPathExpression qpe) {
 		var oe = qpe.owner
 		if (oe instanceof QueryPathStepExpression) {
-			var qps = oe as QueryPathStepExpression
-			var ops = qps.operand
+			var ops = oe.operand
 			if (ops.size() >= 2) {
 				var op1 = ops.get(0);
 				if (op1 == qpe) {
-					return prevQueryPath(qps)
+					return null;
 				} else if (op1 instanceof QueryPathExpression) {
-					return op1 as QueryPathExpression
+					return op1
+				} else if (op1 instanceof QueryPathStepExpression) {
+					return prevQueryPath(op1)
 				}
 			}
 		}

@@ -25,14 +25,15 @@
 package org.omg.sysml.util;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.AlfStandaloneSetup;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -52,16 +53,27 @@ public abstract class AlfUtil {
 	
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
+	protected final List<String> extensions = new ArrayList<String>();
 	
 	protected AlfUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		AlfStandaloneSetup.doSetup();
 		this.resourceSet = resourceSet;
+		this.addExtension(ALF_EXTENSION);
 	}
 	
 	protected AlfUtil() {
 		this(new ResourceSetImpl());
+	}
+	
+	/**
+	 * Add an extension to the list of allowed file extensions. The extension string must start with a dot.
+	 * 
+	 * @param 	extension		the extension to be added (including the initial dot)
+	 */
+	protected void addExtension(String extension) {
+		this.extensions.add(extension);
 	}
 	
 	/**
@@ -131,21 +143,20 @@ public abstract class AlfUtil {
 	}
 	
 	/**
-	 * If the given file is the given extension, then read it. Or, if the file is a directory, then
-	 * recursively read all the appropriate files in it, directly or indirectly.
+	 * If the given file has an allowable extension, then read it. Or, if the file is a directory, then
+	 * recursively read all the allowable files in it, directly or indirectly.
 	 * 
 	 * @param 	file			the file from which the resources are be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
-	 * @param	extension		the extension the identifies the appropriate files to read
 	 */
-	public void readAll(final File file, boolean isInput, String extension) {
+	public void readAll(final File file, boolean isInput) {
 		if (file.isDirectory()) {
 			for (File nestedFile: file.listFiles()) {
-				this.readAll(nestedFile,  isInput, extension);
+				this.readAll(nestedFile,  isInput);
 			}
 		} else {
 			final String path = file.getPath();
-			if (path.endsWith(extension)) {
+			if (extensions.stream().anyMatch(path::endsWith)) {
 				Resource resource = this.readResource(file.getPath());
 				if (isInput) {
 					this.addInputResource(resource);
@@ -155,18 +166,30 @@ public abstract class AlfUtil {
 	}
 	
 	/**
-	 * If the given path identifies an Alf file, then read if. If the given path is for a directory,
-	 * then recursively read all the Alf files in it, directly or indirectly.
+	 * If the given path identifies an file with an allowable extension, then read it. 
+	 * If the given path is for a directory, then recursively read all the allowable files in it, 
+	 * directly or indirectly.
 	 * 
-	 * @param 	path			the path from which Alf resources are to be read
+	 * @param 	path			the path from which resources are to be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 */
 	public void readAll(final String path, boolean isInput) {
-		this.readAll(path, isInput, ALF_EXTENSION);
+		this.readAll(new File(path), isInput);
 	}
 	
+	/**
+	 * If the given path identifies an file with the given extension, then read it. 
+	 * If the given path is for a directory, then recursively read all the allowable files in it, 
+	 * directly or indirectly.
+	 * 
+	 * @param 	path			the path from which resources are to be read
+	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @param 	extension		the allowed file extension
+	 */
 	public void readAll(final String path, boolean isInput, String extension) {
-		this.readAll(new File(path), isInput, extension);
+		this.extensions.clear();
+		this.addExtension(extension);
+		this.readAll(new File(path), isInput);
 	}
 	
 	/**
@@ -178,11 +201,10 @@ public abstract class AlfUtil {
 	 */
 	public void read(final String... paths) {
 		if (paths.length > 0) {
-			this.readAll(paths[0], true);
-			EcoreUtil.resolveAll(this.resourceSet);
 			for (int i = 1; i < paths.length; i++) {
 				this.readAll(paths[i], false);
 			}
+			this.readAll(paths[0], true);
 		}
 	}
 	

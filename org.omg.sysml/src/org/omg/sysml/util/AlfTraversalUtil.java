@@ -21,15 +21,15 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.util.traversal.impl;
+package org.omg.sysml.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.AlfUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
+import org.omg.sysml.util.traversal.impl.TraversalImpl;
 import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 
 /**
@@ -41,28 +41,12 @@ import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
  * @author Ed Seidewitz
  *
  */
-public class AlfTraversalImpl extends AlfUtil {
+public class AlfTraversalUtil extends AlfUtil {
 	
 	/**
 	 * The traversal object used to manage the traversal of the model graph.
 	 */
 	protected Traversal traversal;
-	
-	/**
-	 * Create an Alf traversal using the given element-processing facade.
-	 * 
-	 * @param 	processingFacade	the facade for processing Elements and Relationships
-	 */
-	public AlfTraversalImpl(ElementProcessingFacade processingFacade) {
-		this.initialize(processingFacade);
-	}
-	
-	/**
-	 * Create an Alf traversal using the default element-processing facade.
-	 */
-	public AlfTraversalImpl() {
-		this(new DefaultElementProcessingFacadeImpl());
-	}
 	
 	/**
 	 * Get the traversal object for this model traversal.
@@ -88,6 +72,7 @@ public class AlfTraversalImpl extends AlfUtil {
 	
 	/**
 	 * Visit each of the top-level model Elements in each of the current input Resources.
+	 * Traversal must be initialized before processing.
 	 */
 	public void process() {
 		for (Resource resource: this.inputResources) {
@@ -100,6 +85,23 @@ public class AlfTraversalImpl extends AlfUtil {
 	}
 	
 	/**
+	 * Run the traversal for the given main program arguments.
+	 * 
+	 * @param 	args		the array of main program arguments
+	 */
+	public void run(String[] args) {
+		try {
+			this.initialize(new DefaultElementProcessingFacadeImpl());
+			this.read(args);
+			
+			System.out.println("Processing...");
+			this.process();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * The main program reads the Alf resources as given by its arguments and then processes all the input
 	 * resources. Elements from library resources are only traversed if they are referenced from an input
 	 * or are directly or indirectly related to another Element so referenced.
@@ -108,15 +110,7 @@ public class AlfTraversalImpl extends AlfUtil {
 	 * 					are paths for reading library resources
 	 */
 	public static void main(String[] args) {
-		try {
-			final AlfTraversalImpl traversal = new AlfTraversalImpl();
-			traversal.read(args);
-			
-			System.out.println("Processing...");
-			traversal.process();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new AlfTraversalUtil().run(args);
 	}
 
 }

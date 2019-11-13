@@ -215,11 +215,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getEndFeatureMemberRule()) {
-					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
+				if (rule == grammarAccess.getFeatureTypeMemberRule()
+						|| rule == grammarAccess.getEndFeatureMemberRule()
 						|| rule == grammarAccess.getFeatureBehaviorMemberRule()) {
 					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
@@ -485,8 +482,51 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				sequence_QueryNameExpression(context, (QueryPathExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnitsExpressionRule()
+						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getSequenceAccessExpressionRule()
+						|| action == grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getQueryPathExpressionRule()
+						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_1_1()
+						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperand_compAction_2_1()
+						|| rule == grammarAccess.getQueryHeadExpressionRule()) {
+					sequence_QueryHeadExpression(context, (QueryPathExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getQueryNameExpressionRule()) {
+					sequence_QueryNameExpression(context, (QueryPathExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
 				sequence_QueryPathExpression(context, (QueryPathStepExpression) semanticObject); 
 				return; 
@@ -572,7 +612,9 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     FeatureTypeMember returns EndFeatureMembership
 	 *     EndFeatureMember returns EndFeatureMembership
+	 *     FeatureBehaviorMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
@@ -607,45 +649,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     FeatureTypeMember returns EndFeatureMembership
-	//     FeatureBehaviorMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship_comp+=PrefixAnnotation? 
-	//         visibility=VisibilityIndicator? 
-	//         (isComposite?='composite' | isPortion?='portion')? 
-	//         isPort?='port'? 
-	//         (
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=Feature | (memberName=Name? memberFeature=[Feature|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=Connector | (memberName=Name? memberFeature=[Connector|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=BindingConnector | (memberName=Name? memberFeature=[BindingConnector|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=Step | (memberName=Name? memberFeature=[Step|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=BlockExpression | (memberName=Name? memberFeature=[Expression|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=Succession | (memberName=Name? memberFeature=[Succession|QualifiedName]))) | 
-	//             (direction=FeatureDirection? (ownedMemberFeature_comp=ItemFlow | (memberName=Name? memberFeature=[ItemFlow|QualifiedName]))) | 
-	//             (
-	//                 direction=FeatureDirection? 
-	//                 (ownedMemberFeature_comp=SuccessionItemFlow | (memberName=Name? memberFeature=[SuccessionItemFlow|QualifiedName]))
-	//             ) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractFeature) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractConnector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBindingConnector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractStep) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBlockExpression) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccession) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemFlow) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccessionItemFlow)
-	//         )
-	//     )
-	//
-	// protected void sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1000,7 +1003,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1249,7 +1253,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1317,7 +1322,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1373,7 +1379,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1603,8 +1610,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedMembership_comp+=ElementImport? 
-	 *         (ownedImport_comp+=PackageImport? ownedMembership_comp+=ElementImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
@@ -1778,10 +1785,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PrimaryExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     BaseExpression returns FeatureReferenceExpression
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
-	 *     QueryPathExpression returns FeatureReferenceExpression
-	 *     QueryPathExpression.QueryQualifierExpression_1_1 returns FeatureReferenceExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns FeatureReferenceExpression
-	 *     QueryHeadExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
 	 *     ownedFeatureMembership_comp+=FeatureReference
@@ -1872,7 +1875,8 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2389,6 +2393,54 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ownedRelatedElement_comp+=Documentation
 	 */
 	protected void sequence_PrefixAnnotation(ISerializationContext context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expression returns QueryPathExpression
+	 *     ConditionalExpression returns QueryPathExpression
+	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     NullCoalescingExpression returns QueryPathExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ConditionalOrExpression returns QueryPathExpression
+	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ConditionalAndExpression returns QueryPathExpression
+	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     OrExpression returns QueryPathExpression
+	 *     OrExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     XorExpression returns QueryPathExpression
+	 *     XorExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     AndExpression returns QueryPathExpression
+	 *     AndExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     EqualityExpression returns QueryPathExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     ClassificationExpression returns QueryPathExpression
+	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     RelationalExpression returns QueryPathExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     AdditiveExpression returns QueryPathExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     MultiplicativeExpression returns QueryPathExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     UnitsExpression returns QueryPathExpression
+	 *     UnitsExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     UnaryExpression returns QueryPathExpression
+	 *     SequenceAccessExpression returns QueryPathExpression
+	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     PrimaryExpression returns QueryPathExpression
+	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryPathExpression
+	 *     BaseExpression returns QueryPathExpression
+	 *     QueryPathExpression returns QueryPathExpression
+	 *     QueryPathExpression.QueryQualifierExpression_1_1 returns QueryPathExpression
+	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathExpression
+	 *     QueryHeadExpression returns QueryPathExpression
+	 *
+	 * Constraint:
+	 *     ownedFeatureMembership_comp+=FeatureReference
+	 */
+	protected void sequence_QueryHeadExpression(ISerializationContext context, QueryPathExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -1,0 +1,25 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library_expr/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library_expr/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package P {
+	class A;
+	class C;
+	f : C;
+	a : C = ./f;
+}
+

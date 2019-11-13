@@ -27,4 +27,12 @@ package RealFunctions {
 	function ToInteger(x: Real): Integer;
 	function ToReal(x: String): Real;
 	function ToComplex(x: Real): Complex;
+	
+	function sum(collection: Real[0..*]): Real {
+		ScalarFunctions::sum(collection, 0.0)
+	}
+	
+	function product(collection: Real[0..*]): Real {
+		ScalarFunctions::product(collection, 1.0)
+	}	
 }

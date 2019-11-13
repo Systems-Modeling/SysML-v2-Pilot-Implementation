@@ -604,6 +604,7 @@ public class AlfParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperand_compAssignment_2_2(), "rule__QueryPathExpression__Operand_compAssignment_2_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedFeatureMembership_compAssignment_2_3_2(), "rule__QueryPathExpression__OwnedFeatureMembership_compAssignment_2_3_2");
 			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__QueryNameExpression__OwnedFeatureMembership_compAssignment");
+			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__QueryHeadExpression__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getUnorderedGroup_1(), "rule__MultiplicityPart__UnorderedGroup_1");
 		}
 	}

@@ -1004,8 +1004,8 @@ QueryNameExpression returns SysML::QueryPathExpression :
     ownedFeatureMembership_comp += FeatureReference
 ;
 
-QueryHeadExpression returns SysML::FeatureReferenceExpression :
-	'./' FeatureReferenceExpression
+QueryHeadExpression returns SysML::QueryPathExpression :
+	'./' ownedFeatureMembership_comp += FeatureReference
 ;        
 
 /* NAMES */

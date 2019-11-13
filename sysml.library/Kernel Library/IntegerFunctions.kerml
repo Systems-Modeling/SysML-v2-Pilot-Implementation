@@ -25,4 +25,12 @@ package IntegerFunctions {
 	function ToNatural(x: Integer): Natural;
 	function ToInteger(x: String): Integer;
 	function ToReal(x: Integer): Real;
+	
+	function sum(collection: Integer[0..*]): Integer {
+		ScalarFunctions::sum(collection, 0)
+	}
+	
+	function product(collection: Integer[0..*]): Integer {
+		ScalarFunctions::product(collection, 1)
+	}
 }	

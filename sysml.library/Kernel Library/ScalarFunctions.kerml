@@ -24,4 +24,12 @@ package ScalarFunctions {
 	abstract function Min(x: ScalarValue, y: ScalarValue): ScalarValue;
 	
 	abstract function '@'(x: ScalarValue, y: Base::Anything): ScalarValue;
+	
+	function sum(collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
+		collection->reduce '+' ?? zero
+	}
+	
+	function product(collection: ScalarValue[0..*], one: ScalarValue): ScalarValue {
+		collection->reduce '*' ?? one
+	}
 }

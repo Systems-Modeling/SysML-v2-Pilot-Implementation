@@ -1,7 +1,7 @@
 package ComplexFunctions {
 	import ScalarValues::*;
 		
-	feature i: Complex = Rect(0, 1);
+	feature i: Complex = Rect(0.0, 1.0);
 	
 	function Rect(re: Real, im: Real): Complex;
 	function Polar(abs: Real, arg: Real): Complex;
@@ -23,4 +23,12 @@ package ComplexFunctions {
 	
 	function ToString(x: Complex): String specializes BaseFunctions::ToString;
 	function ToComplex(x: String): Complex;
+	
+	function sum(collection: Complex[0..*]): Complex {
+		ScalarFunctions::sum(collection, Rect(0.0, 0.0))
+	}
+	
+	function product(collection: Real[0..*]): Real {
+		ScalarFunctions::product(collection, Rect(1.0, 0.0))
+	}	
 }

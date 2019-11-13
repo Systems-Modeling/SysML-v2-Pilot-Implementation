@@ -31761,9 +31761,9 @@ rule__QueryHeadExpression__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQueryHeadExpressionAccess().getFeatureReferenceExpressionParserRuleCall_1()); }
-	ruleFeatureReferenceExpression
-	{ after(grammarAccess.getQueryHeadExpressionAccess().getFeatureReferenceExpressionParserRuleCall_1()); }
+	{ before(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compAssignment_1()); }
+	(rule__QueryHeadExpression__OwnedFeatureMembership_compAssignment_1)
+	{ after(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compAssignment_1()); }
 )
 ;
 finally {
@@ -38276,6 +38276,21 @@ rule__QueryNameExpression__OwnedFeatureMembership_compAssignment
 		{ before(grammarAccess.getQueryNameExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_0()); }
 		ruleFeatureReference
 		{ after(grammarAccess.getQueryNameExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__QueryHeadExpression__OwnedFeatureMembership_compAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0()); }
+		ruleFeatureReference
+		{ after(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0()); }
 	)
 ;
 finally {

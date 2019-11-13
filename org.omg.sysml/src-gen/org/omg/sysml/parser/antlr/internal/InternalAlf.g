@@ -12503,17 +12503,25 @@ ruleQueryHeadExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
 		}
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getFeatureReferenceExpressionParserRuleCall_1());
-		}
-		this_FeatureReferenceExpression_1=ruleFeatureReferenceExpression
-		{
-			$current = $this_FeatureReferenceExpression_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0());
+				}
+				lv_ownedFeatureMembership_comp_1_0=ruleFeatureReference
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getQueryHeadExpressionRule());
+					}
+					add(
+						$current,
+						"ownedFeatureMembership_comp",
+						lv_ownedFeatureMembership_comp_1_0,
+						"org.omg.sysml.Alf.FeatureReference");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

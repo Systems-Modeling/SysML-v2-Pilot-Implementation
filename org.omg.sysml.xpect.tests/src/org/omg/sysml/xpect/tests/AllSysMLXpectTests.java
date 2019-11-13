@@ -8,6 +8,7 @@ import org.omg.sysml.xpect.tests.imports.global.SysMLImportGlobalTest;
 import org.omg.sysml.xpect.tests.imports.local.SysMLImportLocalTest;
 import org.omg.sysml.xpect.tests.linking.SysMLLinkingTest;
 import org.omg.sysml.xpect.tests.parser.SysMLParserTest;
+import org.omg.sysml.xpect.tests.query.SysMLQueryTest;
 import org.omg.sysml.xpect.tests.scoping.SysMLScopingTest;
 import org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest;
 import org.omg.sysml.xpect.tests.validation.SysMLValidationTest;
@@ -20,7 +21,8 @@ import org.omg.sysml.xpect.tests.validation.SysMLValidationTest;
 		SysMLParserTest.class, //
 		SysMLScopingTest.class, //
 		SysMLXtextTest.class, //
-		SysMLValidationTest.class //
+		SysMLValidationTest.class, //
+		SysMLQueryTest.class
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

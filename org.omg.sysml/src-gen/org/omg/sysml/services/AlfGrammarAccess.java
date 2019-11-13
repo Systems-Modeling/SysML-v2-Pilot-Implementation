@@ -6739,20 +6739,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.QueryHeadExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFullStopSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cFeatureReferenceExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOwnedFeatureMembership_compAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1.eContents().get(0);
 		
-		//QueryHeadExpression SysML::FeatureReferenceExpression:
-		//	'./' FeatureReferenceExpression;
+		//QueryHeadExpression SysML::QueryPathExpression:
+		//	'./' ownedFeatureMembership_comp+=FeatureReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'./' FeatureReferenceExpression
+		//'./' ownedFeatureMembership_comp+=FeatureReference
 		public Group getGroup() { return cGroup; }
 		
 		//'./'
 		public Keyword getFullStopSolidusKeyword_0() { return cFullStopSolidusKeyword_0; }
 		
-		//FeatureReferenceExpression
-		public RuleCall getFeatureReferenceExpressionParserRuleCall_1() { return cFeatureReferenceExpressionParserRuleCall_1; }
+		//ownedFeatureMembership_comp+=FeatureReference
+		public Assignment getOwnedFeatureMembership_compAssignment_1() { return cOwnedFeatureMembership_compAssignment_1; }
+		
+		//FeatureReference
+		public RuleCall getOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0() { return cOwnedFeatureMembership_compFeatureReferenceParserRuleCall_1_0; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.Alf.Name");
@@ -9251,8 +9255,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getQueryNameExpressionAccess().getRule();
 	}
 	
-	//QueryHeadExpression SysML::FeatureReferenceExpression:
-	//	'./' FeatureReferenceExpression;
+	//QueryHeadExpression SysML::QueryPathExpression:
+	//	'./' ownedFeatureMembership_comp+=FeatureReference;
 	public QueryHeadExpressionElements getQueryHeadExpressionAccess() {
 		return pQueryHeadExpression;
 	}

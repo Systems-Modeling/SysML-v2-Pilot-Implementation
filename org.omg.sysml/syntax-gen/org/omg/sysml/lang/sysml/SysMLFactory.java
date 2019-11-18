@@ -463,33 +463,6 @@ public interface SysMLFactory extends EFactory {
 	Class createClass();
 
 	/**
-	 * Returns a new object of class '<em>Of Succession</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Of Succession</em>'.
-	 * @generated
-	 */
-	OfSuccession createOfSuccession();
-
-	/**
-	 * Returns a new object of class '<em>Ordered Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ordered Feature</em>'.
-	 * @generated
-	 */
-	OrderedFeature createOrderedFeature();
-
-	/**
-	 * Returns a new object of class '<em>Structured Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Structured Feature</em>'.
-	 * @generated
-	 */
-	StructuredFeature createStructuredFeature();
-
-	/**
 	 * Returns a new object of class '<em>Binding Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -497,6 +470,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	BindingConnector createBindingConnector();
+
+	/**
+	 * Returns a new object of class '<em>Multiplicity Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiplicity Range</em>'.
+	 * @generated
+	 */
+	MultiplicityRange createMultiplicityRange();
 
 	/**
 	 * Returns a new object of class '<em>Succession</em>'.
@@ -542,6 +524,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Interaction createInteraction();
+
+	/**
+	 * Returns a new object of class '<em>Import Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Import Condition</em>'.
+	 * @generated
+	 */
+	ImportCondition createImportCondition();
+
+	/**
+	 * Returns a new object of class '<em>Conditional Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Import</em>'.
+	 * @generated
+	 */
+	ConditionalImport createConditionalImport();
 
 	/**
 	 * Returns a new object of class '<em>Ownership</em>'.

@@ -497,7 +497,7 @@ fragment AbstractUsageCompletion returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	'=' valuation_comp = FeatureValue
+	'=' ownedFeatureMembership_comp += FeatureValue
 ;
 
 FeatureValue returns SysML::FeatureValue :
@@ -514,12 +514,13 @@ FeatureTyping returns SysML::FeatureTyping :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	multiplicity_comp = Multiplicity 
+	ownedFeatureMembership_comp += MultiplicityMember 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
 ;
 
-Multiplicity returns SysML::Multiplicity :
-	'[' ( lower_comp =  NaturalLiteralExpression '..' )? upper_comp =  UnlimitedNaturalLiteralExpression ']'
+Multiplicity returns SysML::MultiplicityRange :
+	'[' ( ownedFeatureMembership_comp += NaturalLiteralMember '..' )? 
+	      ownedFeatureMembership_comp += UnlimitedNaturalLiteralMember ']'
 ;
 
 fragment SubsettingPart returns SysML::Feature :
@@ -543,6 +544,20 @@ fragment Redefines returns SysML::Feature :
 
 Redefinition returns SysML::Redefinition:
 	redefinedFeature = [SysML::Feature|QualifiedName] 
+;
+
+/* USAGE MEMBERSHIPS */
+
+MultiplicityMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = Multiplicity
+;
+
+NaturalLiteralMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = NaturalLiteralExpression
+;
+
+UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = UnlimitedNaturalLiteralExpression
 ;
 
 /* PARAMETERS */
@@ -645,11 +660,11 @@ fragment ConnectionPart returns SysML::ConnectionUsage :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship_comp += Subset ( multiplicity_comp = Multiplicity )?
+	ownedRelationship_comp += Subset ( ownedFeatureMembership_comp += MultiplicityMember )?
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} (  multiplicity_comp = Multiplicity )?
+	{SysML::SourceEnd} (  ownedFeatureMembership_comp += MultiplicityMember )?
 ;
 
 EmptySourceEnd returns SysML::Feature :
@@ -757,7 +772,7 @@ fragment ItemFlowDeclaration returns SysML::ItemFlow :
 ;
 
 ItemFeatureTyping returns SysML::ItemFeature :
-	ownedRelationship_comp += FeatureTyping ( multiplicity_comp = Multiplicity )?
+	ownedRelationship_comp += FeatureTyping ( ownedFeatureMembership_comp += MultiplicityMember )?
 ;
 
 EmptyItemFeature returns SysML::ItemFeature :

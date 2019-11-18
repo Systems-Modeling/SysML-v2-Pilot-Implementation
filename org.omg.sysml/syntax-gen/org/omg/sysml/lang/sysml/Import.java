@@ -13,10 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportedPackage <em>Imported Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter_comp <em>Selecter comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport()
@@ -56,66 +54,6 @@ public interface Import extends Relationship {
 	 * @generated
 	 */
 	void setImportedPackage(org.omg.sysml.lang.sysml.Package value);
-
-	/**
-	 * Returns the value of the '<em><b>Selecter comp</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Selecter comp</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Selecter comp</em>' containment reference.
-	 * @see #setSelecter_comp(Predicate)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter_comp()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
-	 * @generated
-	 */
-	Predicate getSelecter_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getSelecter_comp <em>Selecter comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Selecter comp</em>' containment reference.
-	 * @see #getSelecter_comp()
-	 * @generated
-	 */
-	void setSelecter_comp(Predicate value);
-
-	/**
-	 * Returns the value of the '<em><b>Selecter</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Selecter</em>' reference isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Selecter</em>' reference.
-	 * @see #setSelecter(Predicate)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Selecter()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Predicate getSelecter();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getSelecter <em>Selecter</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Selecter</em>' reference.
-	 * @see #getSelecter()
-	 * @generated
-	 */
-	void setSelecter(Predicate value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.

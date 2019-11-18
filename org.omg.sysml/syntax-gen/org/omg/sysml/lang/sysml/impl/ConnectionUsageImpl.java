@@ -29,11 +29,11 @@ import org.omg.sysml.lang.sysml.Usage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getNestedAction <em>Nested Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -194,17 +194,17 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
-			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PORT:
 				return getNestedPort();
-			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
-				return getNestedAction();
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY:
 				return getNestedProperty();
 			case SysMLPackage.CONNECTION_USAGE__PROPERTY:
 				return getProperty();
+			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
+				return getNestedAction();
+			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,16 +225,9 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
-				return;
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PORT:
 				getNestedPort().clear();
 				getNestedPort().addAll((Collection<? extends PortUsage>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
-				getNestedAction().clear();
-				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY:
 				getNestedProperty().clear();
@@ -243,6 +236,13 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__PROPERTY:
 				getProperty().clear();
 				getProperty().addAll((Collection<? extends Property>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
+				getNestedAction().clear();
+				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,20 +262,20 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
-				return;
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PORT:
 				getNestedPort().clear();
-				return;
-			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
-				getNestedAction().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY:
 				getNestedProperty().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__PROPERTY:
 				getProperty().clear();
+				return;
+			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
+				getNestedAction().clear();
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -293,16 +293,16 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 				return !getNestedUsage().isEmpty();
 			case SysMLPackage.CONNECTION_USAGE__OWNING_USAGE:
 				return basicGetOwningUsage() != null;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
-			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
-				return !getNestedAction().isEmpty();
 			case SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY:
 				return !getNestedProperty().isEmpty();
 			case SysMLPackage.CONNECTION_USAGE__PROPERTY:
 				return !getProperty().isEmpty();
+			case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION:
+				return !getNestedAction().isEmpty();
+			case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION:
+				return basicGetOwningDefinition() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -318,11 +318,11 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_USAGE__NESTED_USAGE: return SysMLPackage.USAGE__NESTED_USAGE;
 				case SysMLPackage.CONNECTION_USAGE__OWNING_USAGE: return SysMLPackage.USAGE__OWNING_USAGE;
-				case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION: return SysMLPackage.USAGE__OWNING_DEFINITION;
 				case SysMLPackage.CONNECTION_USAGE__NESTED_PORT: return SysMLPackage.USAGE__NESTED_PORT;
-				case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION: return SysMLPackage.USAGE__NESTED_ACTION;
 				case SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY: return SysMLPackage.USAGE__NESTED_PROPERTY;
 				case SysMLPackage.CONNECTION_USAGE__PROPERTY: return SysMLPackage.USAGE__PROPERTY;
+				case SysMLPackage.CONNECTION_USAGE__NESTED_ACTION: return SysMLPackage.USAGE__NESTED_ACTION;
+				case SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION: return SysMLPackage.USAGE__OWNING_DEFINITION;
 				default: return -1;
 			}
 		}
@@ -340,11 +340,11 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 			switch (baseFeatureID) {
 				case SysMLPackage.USAGE__NESTED_USAGE: return SysMLPackage.CONNECTION_USAGE__NESTED_USAGE;
 				case SysMLPackage.USAGE__OWNING_USAGE: return SysMLPackage.CONNECTION_USAGE__OWNING_USAGE;
-				case SysMLPackage.USAGE__OWNING_DEFINITION: return SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION;
 				case SysMLPackage.USAGE__NESTED_PORT: return SysMLPackage.CONNECTION_USAGE__NESTED_PORT;
-				case SysMLPackage.USAGE__NESTED_ACTION: return SysMLPackage.CONNECTION_USAGE__NESTED_ACTION;
 				case SysMLPackage.USAGE__NESTED_PROPERTY: return SysMLPackage.CONNECTION_USAGE__NESTED_PROPERTY;
 				case SysMLPackage.USAGE__PROPERTY: return SysMLPackage.CONNECTION_USAGE__PROPERTY;
+				case SysMLPackage.USAGE__NESTED_ACTION: return SysMLPackage.CONNECTION_USAGE__NESTED_ACTION;
+				case SysMLPackage.USAGE__OWNING_DEFINITION: return SysMLPackage.CONNECTION_USAGE__OWNING_DEFINITION;
 				default: return -1;
 			}
 		}

@@ -14,8 +14,7 @@ Require-Bundle: org.junit;bundle-version="4.12.0",
  org.eclipse.xtext.builder.standalone;bundle-version="2.12.0",
  org.eclipse.xtext.builder;bundle-version="2.12.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.omg.sysml.tests;x-internal=true,
- org.omg.kerml.xtext.tests;x-internal=true
+Export-Package: org.omg.sysml.tests;x-internal=true
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runners.model;version="4.5.0",

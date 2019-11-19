@@ -444,7 +444,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * Get the relevant Features that may be redefined from the given Type.
 	 * If this is an end Feature, return the end Features of the Type,
-	 * otherwise return the relavent features of the type.
+	 * otherwise return the relevant features of the type.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isEnd()? type.getFeature().stream().
@@ -453,8 +453,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.
-			   getOwningType() instanceof Parameter? type.getOwnedFeature():
-						   
+			   getOwningType() instanceof Parameter? 
+					   type.getOwnedFeature().stream().
+					   filter(f->!(f instanceof Multiplicity)).
+					   collect(Collectors.toList()):
+
 			   type != null? ((TypeImpl)type).getRelevantFeatures():
 			   Collections.emptyList();
 	}

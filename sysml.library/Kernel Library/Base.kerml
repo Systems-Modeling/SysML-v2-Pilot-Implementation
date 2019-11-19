@@ -235,10 +235,23 @@ package Base {
 	abstract feature things: Anything[0..*] nonunique;
 	
 	/**
+	 * self is a feature that relates everything to itself.
+	 * (This is enforced by tying this feature to SelfLink::self.)
+	 */
+	feature self: Anything[1] subsets things;
+	 
+	/**
 	 * dataValues is a specialization of things restricted to type DataValue.
 	 */
 	abstract feature dataValues: DataValue[0..*] nonunique subsets things;
 		 
+	/**
+	 * naturals is a specialization of dataValues restricted to type Natural. 
+	 * It is the root feature of all multiplicities, which map from a feature to
+	 * the set of Natural numbers representing allowable cardinalities of the feature.
+	 */
+	abstract feature naturals: ScalarValues::Natural[0..*] subsets dataValues;
+	
 	/**
 	 * objects is a specialization of things restricted to type Object.
 	 */
@@ -284,18 +297,5 @@ package Base {
 	 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.
 	 */
 	abstract expr nullEvaluations: NullEvaluation[0..*] nonunique subsets evaluations;
-	
-	/**
-	 * self is a feature that relates everything to itself.
-	 * (This is enforced by tying this feature to SelfLink::self.)
-	 */
-	feature self: Anything[1] subsets things;
-	 
-	/**
-	 * naturals is an abstract feature whose value is all Natural numbers. It is the superset 
-	 * of all multiplicities, which map from a feature to a subset of Natural numbers representing 
-	 * allowable cardinalities of the feature.
-	 */
-	abstract feature naturals: all ScalarValues::Natural subsets dataValues;
 	
 }

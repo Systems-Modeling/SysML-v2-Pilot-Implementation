@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -202,11 +204,13 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return getOwningType() instanceof ConditionalSuccession &&
+		Type owningType = getOwningType();
+		return owningType instanceof ConditionalSuccession &&
 			   !(type instanceof ConditionalSuccession)?
 				   type.getFeature().stream().
 						filter(feature->EXPRESSION_GUARD_FEATURE_NAME.equals(feature.getName())).
 						collect(Collectors.toList()):
+			   owningType instanceof FeatureValue? Collections.emptyList():
 			   super.getRelevantFeatures(type);
 	}
 	

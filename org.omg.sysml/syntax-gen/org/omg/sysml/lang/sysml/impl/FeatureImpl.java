@@ -447,10 +447,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * otherwise return the relavent features of the type.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return getOwningFeatureMembership() instanceof EndFeatureMembership?
-						type.getFeature().stream().
-							filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
-							collect(Collectors.toList()):
+		return isEnd()? type.getFeature().stream().
+					filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
+					collect(Collectors.toList()):
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.
@@ -563,7 +562,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return (Multiplicity)getOwnedFeature().stream().
+		return (Multiplicity)getFeature().stream().
 				filter(feature->feature instanceof Multiplicity).
 				findFirst().orElse(null);
 	}

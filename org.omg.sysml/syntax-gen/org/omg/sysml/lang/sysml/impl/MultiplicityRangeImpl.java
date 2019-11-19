@@ -12,6 +12,7 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -30,6 +31,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class MultiplicityRangeImpl extends MultiplicityImpl implements MultiplicityRange {
+	public static final String MULTIPLICITY_RANGE_SUBSETTING_DEFAULT = "Base::naturals";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,6 +152,11 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 */
 	public boolean isSetBound() {
 		return !getBound().isEmpty();
+	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(MULTIPLICITY_RANGE_SUBSETTING_DEFAULT);
 	}
 
 	/**

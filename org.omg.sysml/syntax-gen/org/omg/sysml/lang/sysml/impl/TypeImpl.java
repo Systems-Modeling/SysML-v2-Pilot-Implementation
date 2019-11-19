@@ -213,16 +213,35 @@ public class TypeImpl extends PackageImpl implements Type {
 	@SuppressWarnings("unchecked")
 	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
 		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
-		Generalization generalization = getDefaultGeneralization(generalizations, eClass);
+		Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
 		if (generalization != null) {
-			Type general = getDefaultType(defaultNames);
-			if (general != null) {
-				generalization.setGeneral(general);
-				generalizations.add((T)generalization);
-				getOwnedRelationship_comp().add(generalization);
-			}
+			generalizations.add((T)generalization);
+			getOwnedRelationship_comp().add(generalization);
 		}
 		return generalizations;
+	}
+	
+	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
+		Generalization generalization = null;
+		if (generalizations.isEmpty()) {
+			Type general = getDefaultType(defaultNames);
+			// Do not add a default generalization of a type to itself.
+			if (general != null && general != this) {
+				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
+				generalization.setGeneral(general);
+				((GeneralizationImpl)generalization).basicSetSpecific(this);
+			}
+		} else {
+			generalization = generalizations.stream().
+					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
+					findFirst().orElse(null);
+			if (generalization != null) {
+				// Only resolve a default name if necessary.
+				Type general = getDefaultType(defaultNames);
+				generalization.setGeneral(general);
+			}
+		}
+		return generalization;
 	}
 	
 	protected Type getDefaultType(String... defaultNames) {
@@ -234,19 +253,6 @@ public class TypeImpl extends PackageImpl implements Type {
 			}
 		}
 		return null;
-	}
-	
-	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass) {
-		Generalization generalization = null;
-		if (generalizations.isEmpty()) {
-			generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
-			((GeneralizationImpl)generalization).basicSetSpecific(this);
-		} else {
-			generalization = generalizations.stream().
-					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
-					findFirst().orElse(null);
-		}
-		return generalization;
 	}
 	
 	/**

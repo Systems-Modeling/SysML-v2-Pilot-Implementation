@@ -4,7 +4,7 @@
 package org.omg.sysml.xtext.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.omg.sysml.ui.contentassist.AlfPrefixMatcher
+import org.omg.kerml.xtext.ui.contentassist.KerMLPrefixMatcher
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -12,6 +12,6 @@ import org.omg.sysml.ui.contentassist.AlfPrefixMatcher
 @FinalFieldsConstructor
 class SysMLUiModule extends AbstractSysMLUiModule {
 	override bindPrefixMatcher() {
-		AlfPrefixMatcher
+		KerMLPrefixMatcher
 	}
 }

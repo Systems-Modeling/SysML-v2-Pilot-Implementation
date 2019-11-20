@@ -7,5 +7,7 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.ui"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.kerml.xtext.ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.kerml.xtext"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

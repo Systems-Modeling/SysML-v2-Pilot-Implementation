@@ -204,6 +204,121 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwningRelatedElement() {
+		return getConditionalImport();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof ConditionalImport)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of ConditionalImport");
+		}
+		return basicSetConditionalImport((ConditionalImport) newOwningRelatedElement, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningRelatedElement(Element newOwningRelatedElement) {
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof ConditionalImport)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of ConditionalImport");
+		}
+		setConditionalImport((ConditionalImport) newOwningRelatedElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningRelatedElement() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		ConditionalImport conditionalImport = getConditionalImport();
+		if (conditionalImport != null) {
+			source.add(conditionalImport);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Predicate predicate_comp = getPredicate_comp();
+		if (predicate_comp != null) {
+			target.add(predicate_comp);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedRelatedElement_comp() {
+		EList<Element> ownedRelatedElement_comp = new UniqueEList<Element>();
+		Predicate predicate_comp = getPredicate_comp();
+		if (predicate_comp != null) {
+			ownedRelatedElement_comp.add(predicate_comp);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP, ownedRelatedElement_comp.size(), ownedRelatedElement_comp.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedRelatedElement_comp() {
+  		return false;
+	}
+
 	// Additional subsets
 	
 	@Override
@@ -215,6 +330,8 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 		}
 		return relatedElements;
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -335,10 +452,10 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 				return isSetOwningRelatedElement();
 			case SysMLPackage.IMPORT_CONDITION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.IMPORT_CONDITION__TARGET:
-				return isSetTarget();
 			case SysMLPackage.IMPORT_CONDITION__OWNED_RELATED_ELEMENT_COMP:
 				return isSetOwnedRelatedElement_comp();
+			case SysMLPackage.IMPORT_CONDITION__TARGET:
+				return isSetTarget();
 			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
 				return isSetConditionalImport();
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
@@ -347,121 +464,6 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 				return basicGetPredicate() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwningRelatedElement() {
-		return getConditionalImport();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof ConditionalImport)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of ConditionalImport");
-		}
-		return basicSetConditionalImport((ConditionalImport) newOwningRelatedElement, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof ConditionalImport)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of ConditionalImport");
-		}
-		setConditionalImport((ConditionalImport) newOwningRelatedElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningRelatedElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		ConditionalImport conditionalImport = getConditionalImport();
-		if (conditionalImport != null) {
-			source.add(conditionalImport);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Predicate predicate_comp = getPredicate_comp();
-		if (predicate_comp != null) {
-			target.add(predicate_comp);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		EList<Element> ownedRelatedElement_comp = new UniqueEList<Element>();
-		Predicate predicate_comp = getPredicate_comp();
-		if (predicate_comp != null) {
-			ownedRelatedElement_comp.add(predicate_comp);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP, ownedRelatedElement_comp.size(), ownedRelatedElement_comp.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedRelatedElement_comp() {
-  		return false;
 	}
 
 } //ImportConditionImpl

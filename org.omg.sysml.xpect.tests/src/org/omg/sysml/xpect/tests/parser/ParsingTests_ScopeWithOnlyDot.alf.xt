@@ -21,8 +21,6 @@ END_SETUP
 Package {
   ownedMembership_comp = [
     Membership {
-      memberName = 'C'
-      memberElement -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
       ownedMemberElement_comp = Class {
         ownedRelationship_comp = [
           Superclassing {
@@ -52,6 +50,8 @@ Package {
           }
         ]
       }
+      memberName = 'C'
+      memberElement -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
     }
   ]
 }

@@ -328,8 +328,13 @@ helper newMaxCardinality(cardinality: Integer, objectProperty: OWL::ObjectProper
 }
 
 helper SysML::Feature::mapMultiplicity(objectProperty: OWL::ObjectProperty, domain: OWL::Class) {
-	var lower = if self.multiplicity = null then null else self.multiplicity.lower endif;
-	var upper = if self.multiplicity = null then null else self.multiplicity.upper endif;
+	var lower: Expression = null;
+	var upper: Expression = null;
+	if self.multiplicity <> null and self.multiplicity.oclIsKindOf(SysML::MultiplicityRange) then {
+		var range = self.multiplicity.oclAsType(SysML::MultiplicityRange);
+		lower := range.lowerBound;
+		upper := range.upperBound;
+	} endif;
 	if lower <> null then {
 		if lower.oclIsKindOf(SysML::LiteralInteger) then {
 			newMinCardinality(lower.oclAsType(SysML::LiteralInteger).value, objectProperty, domain);

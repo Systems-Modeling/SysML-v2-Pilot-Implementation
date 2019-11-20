@@ -1,6 +1,4 @@
 package '3a-Function-based Behavior-' {
-	import Transfers::Transfer;
-	import ControlNodes::MergeAction;
 	
 	// ITEMS
 	
@@ -20,7 +18,6 @@ package '3a-Function-based Behavior-' {
 	activity 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	activity 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
-	activity 'Provide Power With Control'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	// ACTIONS
 	
@@ -30,7 +27,7 @@ package '3a-Function-based Behavior-' {
 		out wheelTorque2: Torque
 	) {
 		action 'generate torque': 'Generate Torque'(
-			in fuelCmd = 'Provide Power'::fuelCmd, 
+			in fuelCmd = 'provide power'::fuelCmd, 
 			out engineTorque
 		);
 		
@@ -51,7 +48,7 @@ package '3a-Function-based Behavior-' {
 		); 
 	}
 	
-	action 'provide power with control': 'Provide Power With Control'(
+	action 'provide power with control': 'Provide Power'(
 		in fuelCmd: FuelCmd, 
 		out wheelTorque1: Torque, 
 		out wheelTorque2: Torque

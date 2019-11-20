@@ -28,12 +28,12 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getFlowProperty <em>Flow Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedAction <em>Owned Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedPort <em>Owned Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getFlowProperty <em>Flow Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
@@ -143,18 +143,18 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				return getOwnedPort();
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				return getFlowProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				return getOwnedProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				return getProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				return getOwnedAction();
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
 				return getOwnedUsage();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
+				return getOwnedPort();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
+				return getOwnedProperty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
+				return getOwnedAction();
+			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
+				return getFlowProperty();
+			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
+				return getProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,29 +168,29 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				getFlowProperty().clear();
-				getFlowProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				getOwnedProperty().addAll((Collection<? extends Property>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends Property>)newValue);
-				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
 				getOwnedAction().clear();
 				getOwnedAction().addAll((Collection<? extends ActionUsage>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				getFlowProperty().addAll((Collection<? extends Property>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
+				getProperty().clear();
+				getProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -204,23 +204,23 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
 				getOwnedPort().clear();
-				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				getFlowProperty().clear();
 				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				getProperty().clear();
-				return;
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
 				getOwnedAction().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				getOwnedUsage().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				return;
+			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
+				getProperty().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,18 +234,18 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				return !getOwnedPort().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				return !getFlowProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				return !getOwnedProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				return !getProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				return !getOwnedAction().isEmpty();
 			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
+				return !getOwnedPort().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
+				return !getOwnedProperty().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
+				return !getOwnedAction().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
+				return !getFlowProperty().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
+				return !getProperty().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -259,12 +259,12 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Definition.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT: return SysMLPackage.DEFINITION__OWNED_PORT;
-				case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY: return SysMLPackage.DEFINITION__FLOW_PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY: return SysMLPackage.DEFINITION__OWNED_PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY: return SysMLPackage.DEFINITION__PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION: return SysMLPackage.DEFINITION__OWNED_ACTION;
 				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE: return SysMLPackage.DEFINITION__OWNED_USAGE;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT: return SysMLPackage.DEFINITION__OWNED_PORT;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY: return SysMLPackage.DEFINITION__OWNED_PROPERTY;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION: return SysMLPackage.DEFINITION__OWNED_ACTION;
+				case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY: return SysMLPackage.DEFINITION__FLOW_PROPERTY;
+				case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY: return SysMLPackage.DEFINITION__PROPERTY;
 				default: return -1;
 			}
 		}
@@ -285,12 +285,12 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Definition.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.DEFINITION__OWNED_PORT: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT;
-				case SysMLPackage.DEFINITION__FLOW_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY;
-				case SysMLPackage.DEFINITION__OWNED_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY;
-				case SysMLPackage.DEFINITION__PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__PROPERTY;
-				case SysMLPackage.DEFINITION__OWNED_ACTION: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION;
 				case SysMLPackage.DEFINITION__OWNED_USAGE: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE;
+				case SysMLPackage.DEFINITION__OWNED_PORT: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT;
+				case SysMLPackage.DEFINITION__OWNED_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY;
+				case SysMLPackage.DEFINITION__OWNED_ACTION: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION;
+				case SysMLPackage.DEFINITION__FLOW_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY;
+				case SysMLPackage.DEFINITION__PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__PROPERTY;
 				default: return -1;
 			}
 		}

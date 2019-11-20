@@ -30,8 +30,8 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortDefinition <em>Port Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortOwningUsage <em>Port Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortOwningDefinition <em>Port Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortOwningUsage <em>Port Owning Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -208,12 +208,12 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				if (resolve) return getPortDefinition();
 				return basicGetPortDefinition();
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				if (resolve) return getPortOwningUsage();
-				return basicGetPortOwningUsage();
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_DEFINITION:
 				if (resolve) return getPortOwningDefinition();
 				return basicGetPortOwningDefinition();
+			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
+				if (resolve) return getPortOwningUsage();
+				return basicGetPortOwningUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,11 +229,11 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				setPortDefinition((PortDefinition)newValue);
 				return;
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				setPortOwningUsage((Usage)newValue);
-				return;
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_DEFINITION:
 				setPortOwningDefinition((Definition)newValue);
+				return;
+			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
+				setPortOwningUsage((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,11 +250,11 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				setPortDefinition((PortDefinition)null);
 				return;
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				setPortOwningUsage((Usage)null);
-				return;
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_DEFINITION:
 				setPortOwningDefinition((Definition)null);
+				return;
+			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
+				setPortOwningUsage((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -270,16 +270,16 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.PORT_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
 			case SysMLPackage.PORT_USAGE__OWNING_DEFINITION:
 				return isSetOwningDefinition();
+			case SysMLPackage.PORT_USAGE__OWNING_USAGE:
+				return isSetOwningUsage();
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				return isSetPortDefinition();
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				return isSetPortOwningUsage();
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_DEFINITION:
 				return isSetPortOwningDefinition();
+			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
+				return isSetPortOwningUsage();
 		}
 		return super.eIsSet(featureID);
 	}

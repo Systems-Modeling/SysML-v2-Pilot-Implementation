@@ -222,19 +222,19 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='action' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     multiplicity_comp=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=EmptySuccessionMember 'ref' 'action' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ExpressionMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ItemFeatureMember ')' (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 *     valuation_comp=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -381,16 +381,16 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) ':' '~' 'any' (ambiguity) (rule start)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     multiplicity_comp=Multiplicity (ambiguity) (rule end)
 	 *     name=Name ':' '~' 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 *     valuation_comp=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -655,12 +655,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     multiplicity_comp=Multiplicity (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     name=Name ':' '~' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=EmptySuccessionMember 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
@@ -693,12 +693,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
-	 *     multiplicity_comp=Multiplicity (ambiguity) ownedRelationship_comp+=Subset
 	 *     name=Name ':' '~' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=EmptySuccessionMember 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset
@@ -736,13 +736,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'ref' 'action' (ambiguity) multiplicity_comp=Multiplicity
-	 *     (rule start) (ambiguity) multiplicity_comp=Multiplicity
-	 *     isAbstract?='abstract' 'ref' 'action' (ambiguity) multiplicity_comp=Multiplicity
-	 *     isComposite?='action' (ambiguity) multiplicity_comp=Multiplicity
-	 *     name=Name (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedFeatureMembership_comp+=EmptySuccessionMember 'ref' 'action' (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) multiplicity_comp=Multiplicity
+	 *     (rule start) 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isComposite?='action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedFeatureMembership_comp+=EmptySuccessionMember 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

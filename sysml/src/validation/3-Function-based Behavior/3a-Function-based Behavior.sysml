@@ -1,5 +1,4 @@
 package '3a-Function-based Behavior' {
-	import ControlNodes::MergeAction;
 			
 	// ITEMS
 	
@@ -28,7 +27,7 @@ package '3a-Function-based Behavior' {
 		out wheelTorque2: Torque
 	) {
 		action 'generate torque': 'Generate Torque'(
-			in fuelCmd = 'Provide Power'::fuelCmd, 
+			in fuelCmd = 'provide power'::fuelCmd,
 			out engineTorque
 		);
 		

@@ -174,14 +174,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
-	 *     multiplicity_comp=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 *     valuation_comp=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -588,14 +588,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
-	 *     multiplicity_comp=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 *     valuation_comp=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -649,8 +649,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isSufficient?='all' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     multiplicity_comp=Multiplicity (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
@@ -700,8 +700,8 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isSufficient?='all' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     multiplicity_comp=Multiplicity (ambiguity) ownedRelationship_comp+=Subset
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Subset
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
@@ -727,11 +727,12 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
-	 *     multiplicity_comp=Multiplicity (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) (rule end)
 	 *     ownedMembership_comp+=ElementImport 'feature' ':' 'any' (ambiguity) (rule end)
@@ -740,7 +741,6 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=UnitAnnotation 'feature' ':' 'any' (ambiguity) (rule end)
-	 *     valuation_comp=FeatureValue (ambiguity) (rule end)
 	 */
 	protected void emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -751,14 +751,14 @@ public class AlfSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':' 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'feature' (ambiguity) multiplicity_comp=Multiplicity
-	 *     (rule start) (ambiguity) multiplicity_comp=Multiplicity
-	 *     isAbstract?='abstract' 'feature' (ambiguity) multiplicity_comp=Multiplicity
-	 *     name=Name (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedImport_comp+=PackageImport 'feature' (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedMembership_comp+=ElementImport 'feature' (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) multiplicity_comp=Multiplicity
-	 *     ownedRelationship_comp+=UnitAnnotation 'feature' (ambiguity) multiplicity_comp=Multiplicity
+	 *     (rule start) 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedImport_comp+=PackageImport 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedMembership_comp+=ElementImport 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedRelationship_comp+=UnitAnnotation 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_2_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

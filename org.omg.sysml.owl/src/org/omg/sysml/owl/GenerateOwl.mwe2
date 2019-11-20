@@ -13,13 +13,13 @@ Workflow {
 				baseName = "org.omg.sysml.owl"
 				rootPath = rootPath
 				runtimeTest = {
-					enabled = true
+					enabled = false
 				}
 				eclipsePlugin = {
 					enabled = true
 				}
 				eclipsePluginTest = {
-					enabled = true
+					enabled = false
 				}
 				createEclipseMetaData = true
 			}

@@ -8,7 +8,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.sysml.lang.sysml.util.SysMLLibraryProvider
+import org.omg.kerml.xtext.library.KerMLLibraryProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -20,7 +20,7 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	}
 	
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
-		SysMLLibraryProvider
+		KerMLLibraryProvider
 	}
 		
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {

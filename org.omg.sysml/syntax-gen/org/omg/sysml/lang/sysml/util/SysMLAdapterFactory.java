@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.ConjugatedEndPortMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -35,6 +36,7 @@ import org.omg.sysml.lang.sysml.ControlNode;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.EndPortMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -520,6 +522,14 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createEndFeatureMembershipAdapter();
 			}
 			@Override
+			public Adapter caseEndPortMembership(EndPortMembership object) {
+				return createEndPortMembershipAdapter();
+			}
+			@Override
+			public Adapter caseConjugatedEndPortMembership(ConjugatedEndPortMembership object) {
+				return createConjugatedEndPortMembershipAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -550,6 +560,34 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEndFeatureMembershipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.EndPortMembership <em>End Port Membership</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.EndPortMembership
+	 * @generated
+	 */
+	public Adapter createEndPortMembershipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ConjugatedEndPortMembership <em>Conjugated End Port Membership</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ConjugatedEndPortMembership
+	 * @generated
+	 */
+	public Adapter createConjugatedEndPortMembershipAdapter() {
 		return null;
 	}
 

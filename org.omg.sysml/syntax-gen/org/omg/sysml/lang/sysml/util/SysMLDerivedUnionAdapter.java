@@ -22,6 +22,7 @@ import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.ConjugatedEndPortMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -30,6 +31,7 @@ import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.EndPortMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -392,6 +394,12 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
 				notifyEndFeatureMembershipChanged(notification, eClass);
 				break;
+			case SysMLPackage.END_PORT_MEMBERSHIP:
+				notifyEndPortMembershipChanged(notification, eClass);
+				break;
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP:
+				notifyConjugatedEndPortMembershipChanged(notification, eClass);
+				break;
 		}
 	}
 
@@ -428,6 +436,56 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
 				break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyEndPortMembershipChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(EndPortMembership.class)) {
+			case SysMLPackage.END_PORT_MEMBERSHIP__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.END_PORT_MEMBERSHIP__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.END_PORT_MEMBERSHIP__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.END_PORT_MEMBERSHIP__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyConjugatedEndPortMembershipChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ConjugatedEndPortMembership.class)) {
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP__OWNED_RELATED_ELEMENT:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
 				break;
 		}

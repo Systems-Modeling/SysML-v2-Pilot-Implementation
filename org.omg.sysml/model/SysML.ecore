@@ -1195,4 +1195,6 @@
       <details key="documentation" value="&lt;p>EndFeatureMembership is a FeatureMembership for Associations. The EndFeatureMembership describes how additional navigation from a Type to a Feature is made beyond navigation from the Association that nests the Feature.&lt;/p>&#xA;"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndPortMembership" eSuperTypes="#//PortMembership #//EndFeatureMembership"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConjugatedEndPortMembership" eSuperTypes="#//ConjugatedPortMembership #//EndFeatureMembership"/>
 </ecore:EPackage>

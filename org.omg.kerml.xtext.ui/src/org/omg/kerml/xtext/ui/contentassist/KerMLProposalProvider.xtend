@@ -16,7 +16,9 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal
  * on how to customize the content assistant.
  */
 class KerMLProposalProvider extends AbstractKerMLProposalProvider {
+	
 	override lookupCrossReference(EObject model, EReference reference, ICompletionProposalAcceptor acceptor,
 		Predicate<IEObjectDescription> filter, Function<IEObjectDescription, ICompletionProposal> proposalFactory) {		
 	}
+	
 }

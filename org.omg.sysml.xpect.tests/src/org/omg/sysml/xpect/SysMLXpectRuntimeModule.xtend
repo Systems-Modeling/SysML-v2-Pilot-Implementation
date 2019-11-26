@@ -1,8 +1,8 @@
 package org.omg.sysml.xpect
 
-import org.omg.sysml.AlfRuntimeModule
+import org.omg.kerml.xtext.KerMLRuntimeModule
 
-class SysMLXpectRuntimeModule extends AlfRuntimeModule {
+class SysMLXpectRuntimeModule extends KerMLRuntimeModule {
 	
 	override bindIGlobalScopeProvider() {
 		SysMLXpectGlobalScopeProvider

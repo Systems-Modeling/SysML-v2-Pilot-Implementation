@@ -3,7 +3,7 @@
  */
 package org.omg.sysml.xtext.scoping
 
-import org.omg.sysml.scoping.AlfScopeProvider
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 
 /**
  * This class contains custom scoping description.
@@ -11,6 +11,6 @@ import org.omg.sysml.scoping.AlfScopeProvider
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
  * on how and when to use it.
  */
-class SysMLScopeProvider extends AlfScopeProvider {
+class SysMLScopeProvider extends KerMLScopeProvider {
 
 }

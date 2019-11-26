@@ -5,9 +5,9 @@
          point="org.eclipse.xpect.fileExtensions">
       <fileExtension
             fileExtension="alf"
-            xtextLanguageName="org.omg.sysml.Alf"
+            xtextLanguageName="org.omg.kerml.xtext.KerML"
             xtextRuntimeModule="org.omg.sysml.xpect.SysMLXpectRuntimeModule"
-            xtextUiModule="org.omg.sysml.ui.AlfUiModule">
+            xtextUiModule="org.omg.kerml.xtext.ui.KerMLUiModule">
       </fileExtension>
    </extension>
 

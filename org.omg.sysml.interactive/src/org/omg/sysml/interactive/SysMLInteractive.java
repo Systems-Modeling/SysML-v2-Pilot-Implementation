@@ -41,13 +41,12 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.sysml.AlfStandaloneSetup;
+import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.naming.AlfQualifiedNameConverter;
-import org.omg.sysml.util.AlfUtil;
+import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.impl.TraversalImpl;
@@ -58,7 +57,7 @@ import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-public class SysMLInteractive extends AlfUtil {
+public class SysMLInteractive extends SysMLUtil {
 	
 	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
@@ -67,11 +66,10 @@ public class SysMLInteractive extends AlfUtil {
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
-	protected static SysMLInteractive instance = null;
-	
-	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
-	
 	protected static Injector injector;
+	protected static SysMLInteractive instance = null;
+		
+	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	
 	protected int counter = 1;
 	protected XtextResource resource;
@@ -82,7 +80,7 @@ public class SysMLInteractive extends AlfUtil {
 	private IGlobalScopeProvider scopeProvider;
 	
 	@Inject
-	private AlfQualifiedNameConverter qualifiedNameConverter;
+	private KerMLQualifiedNameConverter qualifiedNameConverter;
 	
 	@Inject
 	private IResourceValidator validator;
@@ -90,8 +88,6 @@ public class SysMLInteractive extends AlfUtil {
 	@Inject
 	private SysMLInteractive() {
 		super(new InverseOrderedResourceSetImpl());
-		KerMLStandaloneSetup.doSetup();
-		SysMLStandaloneSetup.doSetup();
 	}
 	
 	public void loadLibrary(String path) {
@@ -299,7 +295,8 @@ public class SysMLInteractive extends AlfUtil {
 	
 	public static SysMLInteractive createInstance() {
 		if (injector == null) {
-			injector = new AlfStandaloneSetup().createInjectorAndDoEMFRegistration();
+			KerMLStandaloneSetup.doSetup();
+			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
 		return injector.getInstance(SysMLInteractive.class);
 	}

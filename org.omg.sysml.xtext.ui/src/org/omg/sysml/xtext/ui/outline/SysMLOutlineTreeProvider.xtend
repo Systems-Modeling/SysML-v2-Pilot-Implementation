@@ -3,13 +3,13 @@
  */
 package org.omg.sysml.xtext.ui.outline
 
-import org.omg.sysml.ui.outline.AlfOutlineTreeProvider
+import org.omg.kerml.xtext.ui.outline.KerMLOutlineTreeProvider
 
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
-class SysMLOutlineTreeProvider extends AlfOutlineTreeProvider {
+class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 
 }

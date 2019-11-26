@@ -66,21 +66,6 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DataType basicGetValueType() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof DataType? (DataType)type: null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetValueType() {

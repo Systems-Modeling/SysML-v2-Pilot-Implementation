@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.ConjugatedEndPortMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -33,6 +34,7 @@ import org.omg.sysml.lang.sysml.ControlNode;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.EndPortMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -1171,6 +1173,31 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.END_PORT_MEMBERSHIP: {
+				EndPortMembership endPortMembership = (EndPortMembership)theEObject;
+				T result = caseEndPortMembership(endPortMembership);
+				if (result == null) result = casePortMembership(endPortMembership);
+				if (result == null) result = caseEndFeatureMembership(endPortMembership);
+				if (result == null) result = caseFeatureMembership(endPortMembership);
+				if (result == null) result = caseMembership(endPortMembership);
+				if (result == null) result = caseRelationship(endPortMembership);
+				if (result == null) result = caseElement(endPortMembership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP: {
+				ConjugatedEndPortMembership conjugatedEndPortMembership = (ConjugatedEndPortMembership)theEObject;
+				T result = caseConjugatedEndPortMembership(conjugatedEndPortMembership);
+				if (result == null) result = caseConjugatedPortMembership(conjugatedEndPortMembership);
+				if (result == null) result = caseEndFeatureMembership(conjugatedEndPortMembership);
+				if (result == null) result = casePortMembership(conjugatedEndPortMembership);
+				if (result == null) result = caseFeatureMembership(conjugatedEndPortMembership);
+				if (result == null) result = caseMembership(conjugatedEndPortMembership);
+				if (result == null) result = caseRelationship(conjugatedEndPortMembership);
+				if (result == null) result = caseElement(conjugatedEndPortMembership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1187,6 +1214,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEndFeatureMembership(EndFeatureMembership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End Port Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End Port Membership</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEndPortMembership(EndPortMembership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conjugated End Port Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conjugated End Port Membership</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConjugatedEndPortMembership(ConjugatedEndPortMembership object) {
 		return null;
 	}
 

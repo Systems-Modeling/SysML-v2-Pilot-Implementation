@@ -33,6 +33,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
 	protected AbstractElementAlias match_BindingConnector_OfKeyword_0_2_q;
 	protected AbstractElementAlias match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
+	protected AbstractElementAlias match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q;
+	protected AbstractElementAlias match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q;
 	protected AbstractElementAlias match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Documentation_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
@@ -40,7 +42,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_InterfaceDeclaration_InterfacedefKeyword_1_1_or___InterfaceKeyword_1_0_0_DefKeyword_1_0_1__;
 	protected AbstractElementAlias match_InterfaceEndMember_PortKeyword_1_0_1_q;
 	protected AbstractElementAlias match_InterfaceEndMember_PortKeyword_1_1_2_q;
-	protected AbstractElementAlias match_InterfaceEndMember_PortKeyword_1_2_1_q;
 	protected AbstractElementAlias match_PackagedDefinitionMember_AssocbockKeyword_7_0_1_or___AssocKeyword_7_0_0_0_BlockKeyword_7_0_0_1__;
 	protected AbstractElementAlias match_PackagedDefinitionMember_InterfacedefKeyword_9_0_1_or___InterfaceKeyword_9_0_0_0_DefKeyword_9_0_0_1__;
 	protected AbstractElementAlias match_PackagedDefinitionMember_PortdefKeyword_11_0_1_or___PortKeyword_11_0_0_0_DefKeyword_11_0_0_1__;
@@ -75,6 +76,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 		match_BindingConnector_OfKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorAccess().getOfKeyword_0_2());
 		match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugatePortUsageDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getConjugatePortUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
+		match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q = new TokenAlias(false, true, grammarAccess.getConjugatedInterfaceEndMemberAccess().getPortKeyword_1_0_1());
+		match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q = new TokenAlias(false, true, grammarAccess.getConjugatedInterfaceEndMemberAccess().getPortKeyword_1_1_2());
 		match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getSemicolonKeyword_0()));
 		match_Documentation_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getCommentKeyword_0_0());
 		match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getFullStopKeyword_3_0_1_1()));
@@ -82,7 +85,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_InterfaceDeclaration_InterfacedefKeyword_1_1_or___InterfaceKeyword_1_0_0_DefKeyword_1_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceDeclarationAccess().getInterfaceKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getInterfaceDeclarationAccess().getDefKeyword_1_0_1())), new TokenAlias(false, false, grammarAccess.getInterfaceDeclarationAccess().getInterfacedefKeyword_1_1()));
 		match_InterfaceEndMember_PortKeyword_1_0_1_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_0_1());
 		match_InterfaceEndMember_PortKeyword_1_1_2_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2());
-		match_InterfaceEndMember_PortKeyword_1_2_1_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_2_1());
 		match_PackagedDefinitionMember_AssocbockKeyword_7_0_1_or___AssocKeyword_7_0_0_0_BlockKeyword_7_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAssocKeyword_7_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getBlockKeyword_7_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAssocbockKeyword_7_0_1()));
 		match_PackagedDefinitionMember_InterfacedefKeyword_9_0_1_or___InterfaceKeyword_9_0_0_0_DefKeyword_9_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getInterfaceKeyword_9_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getDefKeyword_9_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getInterfacedefKeyword_9_0_1()));
 		match_PackagedDefinitionMember_PortdefKeyword_11_0_1_or___PortKeyword_11_0_0_0_DefKeyword_11_0_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getPortKeyword_11_0_0_0()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getDefKeyword_11_0_0_1())), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getPortdefKeyword_11_0_1()));
@@ -138,6 +140,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_BindingConnector_OfKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
 				emit_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q.equals(syntax))
+				emit_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q.equals(syntax))
+				emit_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_CommentKeyword_0_0_q.equals(syntax))
@@ -152,8 +158,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_InterfaceEndMember_PortKeyword_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceEndMember_PortKeyword_1_1_2_q.equals(syntax))
 				emit_InterfaceEndMember_PortKeyword_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_InterfaceEndMember_PortKeyword_1_2_1_q.equals(syntax))
-				emit_InterfaceEndMember_PortKeyword_1_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedDefinitionMember_AssocbockKeyword_7_0_1_or___AssocKeyword_7_0_0_0_BlockKeyword_7_0_0_1__.equals(syntax))
 				emit_PackagedDefinitionMember_AssocbockKeyword_7_0_1_or___AssocKeyword_7_0_0_0_BlockKeyword_7_0_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedDefinitionMember_InterfacedefKeyword_9_0_1_or___InterfaceKeyword_9_0_0_0_DefKeyword_9_0_0_1__.equals(syntax))
@@ -374,6 +378,28 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'port'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=ConjugatedPortUsage
+	 */
+	protected void emit_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'port'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=AbstractConjugatedPortUsage
+	 */
+	protected void emit_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
@@ -450,7 +476,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'port'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isPort?='end' (ambiguity) direction=FeatureDirection
 	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=PortUsage
 	 */
 	protected void emit_InterfaceEndMember_PortKeyword_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -462,23 +487,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'port'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     isPort?='end' (ambiguity) direction=FeatureDirection
 	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=AbstractPortUsage
 	 */
 	protected void emit_InterfaceEndMember_PortKeyword_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'port'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     isPort?='end' (ambiguity) 'is' memberFeature=[PortUsage|QualifiedName]
-	 *     isPort?='end' (ambiguity) direction=FeatureDirection
-	 *     isPort?='end' (ambiguity) memberName=Name
-	 */
-	protected void emit_InterfaceEndMember_PortKeyword_1_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -28,12 +28,14 @@ import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.ConjugatedEndPortMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.EndPortMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -227,6 +229,8 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.INTERACTION: return createInteraction();
 			case SysMLPackage.MULTIPLICITY_RANGE: return createMultiplicityRange();
 			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
+			case SysMLPackage.END_PORT_MEMBERSHIP: return createEndPortMembership();
+			case SysMLPackage.CONJUGATED_END_PORT_MEMBERSHIP: return createConjugatedEndPortMembership();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -275,6 +279,28 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public EndFeatureMembership createEndFeatureMembership() {
 		EndFeatureMembershipImpl endFeatureMembership = new EndFeatureMembershipImpl();
 		return endFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EndPortMembership createEndPortMembership() {
+		EndPortMembershipImpl endPortMembership = new EndPortMembershipImpl();
+		return endPortMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConjugatedEndPortMembership createConjugatedEndPortMembership() {
+		ConjugatedEndPortMembershipImpl conjugatedEndPortMembership = new ConjugatedEndPortMembershipImpl();
+		return conjugatedEndPortMembership;
 	}
 
 	/**

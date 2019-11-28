@@ -490,21 +490,22 @@ fragment ParameterList returns SysML::Type :
 ;
 
 fragment ActivityBody returns SysML::Type :
-	  ';'
-	| '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ActivityUsageMember
-		| ownedImport_comp += Import
-	)* '}'
+	  ';' | '{' ActivityBodyItem* '}'
 ;
 
 fragment AbstractActivityBody returns SysML::Type :
-	  isAbstract ?= ';'
-	| isAbstract ?= '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ActivityUsageMember
-		| ownedImport_comp += Import
-	)* '}'
+	  isAbstract ?= ';' | isAbstract ?= '{' ActivityBodyItem* '}'
+;
+
+fragment ActivityBodyItem returns SysML::Type :
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedFeatureMembership_comp += StructureUsageMember
+	| ownedFeatureMembership_comp += InitialNodeMember
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
+	  ownedFeatureMembership_comp += ActivityNodeMember
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ownedImport_comp += Import
 ;
 
 /* ACTIVITIY MEMBERSHIPS */
@@ -513,16 +514,17 @@ ParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? memberName = Name ownedMemberFeature_comp = Parameter
 ;
 
-ActivityUsageMember returns SysML::FeatureMembership :
-	StructureUsageMember | ActivityNodeMember
+InitialNodeMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+	
 ;
 
 ActivityNodeMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 
-	( ownedMemberFeature_comp = ActivityNode
-	| 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
-    | ownedMemberFeature_comp = TargetSuccession ';'		
-	)
+	DefinitionMemberPrefix ownedMemberFeature_comp = ActivityNode
+;
+
+TargetSuccessionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TargetSuccession ';'
 ;
 
 /* STATE DEFINITIONS */
@@ -567,21 +569,19 @@ EmptyActionUsage returns SysML::ActionUsage :
 /* STATE MEMBERSHIPS */
 
 EntryBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'entry' BehaviorMember
+	DefinitionMemberPrefix 'entry' ownedMemberFeature_comp = StateBehaviorUsage
 ;
 
 DoBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'do' BehaviorMember
+	DefinitionMemberPrefix 'do' ownedMemberFeature_comp = StateBehaviorUsage
 ;
 
 ExitBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'exit' BehaviorMember
+	DefinitionMemberPrefix 'exit' ownedMemberFeature_comp = StateBehaviorUsage
 ;
 
-fragment BehaviorMember returns SysML::FeatureMembership:
-	  ownedMemberFeature_comp = PerformActionUsage
-	| isComposite ?= 'action' ownedMemberFeature_comp = ActionUsage
-	| ownedMemberFeature_comp = EmptyActionUsage
+StateBehaviorUsage returns SysML::ActionUsage :
+	PerformActionUsage | ActionNode | EmptyActionUsage
 ;
 
 StateMember returns SysML::FeatureMembership :
@@ -908,7 +908,7 @@ TransitionStep returns SysML::Step :
 	{SysML::Step}  
 	( 'accept' ownedFeatureMembership_comp += ItemFeatureMember )?
 	( 'if' ownedFeatureMembership_comp += ExpressionMember )?
-	( 'do' ownedFeatureMembership_comp += ActionUsageMember )?
+	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
 ;
 
 /* SUCCESSION MEMBERHSIPS */
@@ -925,8 +925,8 @@ TransitionStepMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = TransitionStep
 ;
 
-ActionUsageMember returns SysML::FeatureMembership :
-	BehaviorMember
+EffectBehaviorMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = StateBehaviorUsage
 ;
 
 /* ITEM FLOWS */
@@ -1038,36 +1038,35 @@ PerformActionUsage returns SysML::PerformActionUsage :
 /* ACTIVITY NODES */
 
 ActivityNode returns SysML::ActionUsage :
-	  ActionNode
-	| PerformActionNode
-	| AcceptActionNode
-	| SendActionNode
-	| ControlNode
+	  ActionNode | ControlNode
 ;
 
 ActionNode returns SysML::ActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
+	  ActionUsageNode
+	| PerformActionNode
+	| AcceptActionNode
+	| SendActionNode	
+;
+
+ActionUsageNode returns SysML::ActionUsage :
     ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
     ActionUsageDeclaration ActivityBody
 ;
 
 PerformActionNode returns SysML::PerformActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
-    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart? 'by' )? 
+    isComposite ?= 'perform' ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?
 	ActivityBody
 ;
 
 AcceptActionNode returns SysML::AcceptActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
 	ActivityBody
 ;
 
 SendActionNode returns SysML::SendActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
 	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
 	'send' ( ( name = Name TypePart? )? 'of')? ownedFeatureMembership_comp += ExpressionMember 
 	'to' ownedFeatureMembership_comp += ExpressionMember
@@ -1082,13 +1081,11 @@ ControlNode returns SysML::ControlNode :
 ;
 
 MergeNode returns SysML::MergeNode :
-	{SysML::MergeNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'merge' ( name = Name TypePart? )? ';'
+	{SysML::MergeNode} isComposite ?= 'merge' ( name = Name TypePart? )? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	{SysML::DecisionNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-	'decide' ( name = Name TypePart? )? ';'
+	{SysML::DecisionNode} isComposite ?= 'decide' ( name = Name TypePart? )? ';'
  	( ownedFeatureMembership_comp += ConditionalSuccessionMember ';'
  	  ( ownedFeatureMembership_comp += ConditionalSuccessionMember ';' )* 
  	  ( ownedFeatureMembership_comp += DefaultSuccessionMember ';' )? 
@@ -1097,13 +1094,11 @@ DecisionNode returns SysML::DecisionNode :
 ;
 
 JoinNode returns SysML::JoinNode :
-	{SysML::JoinNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'join' ( name = Name TypePart? )? ';'
+	{SysML::JoinNode} isComposite ?= 'join' ( name = Name TypePart? )? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
-	{SysML::ForkNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'fork' ( name = Name TypePart? )? ';'
+	{SysML::ForkNode} isComposite ?= 'fork' ( name = Name TypePart? )? ';'
 ;
 
 EmptyParameter returns SysML::Parameter :

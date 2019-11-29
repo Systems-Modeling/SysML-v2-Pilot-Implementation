@@ -562,8 +562,12 @@ fragment StateBehaviorPart returns SysML::Type :
    ( ownedFeatureMembership_comp += ExitBehaviorMember )?
 ;
 
+StateBehaviorUsage returns SysML::ActionUsage :
+	  EmptyActionUsage ';' | PerformActionUsage | ActionNode
+;
+
 EmptyActionUsage returns SysML::ActionUsage :
-	{SysML::ActionUsage} ';'
+	{SysML::ActionUsage}
 ;
 
 /* STATE MEMBERSHIPS */
@@ -578,10 +582,6 @@ DoBehaviorMember returns SysML::FeatureMembership :
 
 ExitBehaviorMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix 'exit' ownedMemberFeature_comp = StateBehaviorUsage
-;
-
-StateBehaviorUsage returns SysML::ActionUsage :
-	PerformActionUsage | ActionNode | EmptyActionUsage
 ;
 
 StateMember returns SysML::FeatureMembership :
@@ -911,6 +911,12 @@ TransitionStep returns SysML::Step :
 	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
 ;
 
+EffectBehaviorUsage returns SysML::ActionUsage :
+	  EmptyActionUsage
+	| ( PerformActionUsageDeclaration | ActionNodeDeclaration )
+	  ( '{' ActivityBodyItem* '}' )?
+;
+
 /* SUCCESSION MEMBERHSIPS */
 
 EmptyTransitionStepMember returns SysML::FeatureMembership :
@@ -926,7 +932,7 @@ TransitionStepMember returns SysML::FeatureMembership :
 ;
 
 EffectBehaviorMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = StateBehaviorUsage
+	ownedMemberFeature_comp = EffectBehaviorUsage
 ;
 
 /* ITEM FLOWS */
@@ -1029,10 +1035,13 @@ ActionParameterFlow returns SysML::ItemFlow :
 ;
 
 PerformActionUsage returns SysML::PerformActionUsage :
+	PerformActionUsageDeclaration ActivityBody
+;
+
+PerformActionUsageDeclaration returns SysML::PerformActionUsage :
     ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?
-	ActivityBody
 ;
 
 /* ACTIVITY NODES */
@@ -1042,35 +1051,36 @@ ActivityNode returns SysML::ActionUsage :
 ;
 
 ActionNode returns SysML::ActionUsage :
-	  ActionUsageNode
-	| PerformActionNode
-	| AcceptActionNode
-	| SendActionNode	
+	ActionNodeDeclaration ActivityBody
 ;
 
-ActionUsageNode returns SysML::ActionUsage :
+ActionNodeDeclaration returns SysML::ActionUsage :
+	  ActionUsageNodeDeclaration
+	| PerformActionNodeDeclaration
+	| AcceptActionNodeDeclaration
+	| SendActionNodeDeclaration	
+;
+
+ActionUsageNodeDeclaration returns SysML::ActionUsage :
     ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-    ActionUsageDeclaration ActivityBody
+    ActionUsageDeclaration
 ;
 
-PerformActionNode returns SysML::PerformActionUsage :
+PerformActionNodeDeclaration returns SysML::PerformActionUsage :
     isComposite ?= 'perform' ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?
-	ActivityBody
 ;
 
-AcceptActionNode returns SysML::AcceptActionUsage :
+AcceptActionNodeDeclaration returns SysML::AcceptActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
-	ActivityBody
 ;
 
-SendActionNode returns SysML::SendActionUsage :
+SendActionNodeDeclaration returns SysML::SendActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
 	'send' ( ( name = Name TypePart? )? 'of')? ownedFeatureMembership_comp += ExpressionMember 
 	'to' ownedFeatureMembership_comp += ExpressionMember
-	ActivityBody
 ;
 
 ControlNode returns SysML::ControlNode :

@@ -399,26 +399,26 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cAnnotationAction_0 = (Action)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cOnKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cAboutKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cAnnotatedElementAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final CrossReference cAnnotatedElementElementCrossReference_1_1_0 = (CrossReference)cAnnotatedElementAssignment_1_1.eContents().get(0);
 		private final RuleCall cAnnotatedElementElementQualifiedNameParserRuleCall_1_1_0_1 = (RuleCall)cAnnotatedElementElementCrossReference_1_1_0.eContents().get(1);
 		
 		//Annotation SysML::Annotation:
-		//	{SysML::Annotation} ('on' annotatedElement=[SysML::Element|QualifiedName])?;
+		//	{SysML::Annotation} ('about' annotatedElement=[SysML::Element|QualifiedName])?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Annotation} ('on' annotatedElement=[SysML::Element|QualifiedName])?
+		//{SysML::Annotation} ('about' annotatedElement=[SysML::Element|QualifiedName])?
 		public Group getGroup() { return cGroup; }
 		
 		//{SysML::Annotation}
 		public Action getAnnotationAction_0() { return cAnnotationAction_0; }
 		
-		//('on' annotatedElement=[SysML::Element|QualifiedName])?
+		//('about' annotatedElement=[SysML::Element|QualifiedName])?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'on'
-		public Keyword getOnKeyword_1_0() { return cOnKeyword_1_0; }
+		//'about'
+		public Keyword getAboutKeyword_1_0() { return cAboutKeyword_1_0; }
 		
 		//annotatedElement=[SysML::Element|QualifiedName]
 		public Assignment getAnnotatedElementAssignment_1_1() { return cAnnotatedElementAssignment_1_1; }
@@ -7587,7 +7587,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Annotation SysML::Annotation:
-	//	{SysML::Annotation} ('on' annotatedElement=[SysML::Element|QualifiedName])?;
+	//	{SysML::Annotation} ('about' annotatedElement=[SysML::Element|QualifiedName])?;
 	public AnnotationElements getAnnotationAccess() {
 		return pAnnotation;
 	}

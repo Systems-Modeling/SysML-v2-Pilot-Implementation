@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSysMLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_NATURAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_SL_COMMENT", "RULE_WS", "'comment'", "'on'", "'import'", "'::'", "'.'", "'*'", "';'", "'package'", "'{'", "'}'", "'is'", "'block'", "'value'", "'type'", "'valuetype'", "'assoc'", "'assocbock'", "'interface'", "'def'", "'interfacedef'", "'port'", "'portdef'", "'activity'", "'state'", "'statedef'", "'as'", "'part'", "'abstract'", "'action'", "'ref'", "'link'", "'connect'", "'bind'", "'succession'", "'stream'", "'flow'", "'perform'", "'exhibit'", "':>'", "'specializes'", "','", "'assocblock'", "'end'", "'('", "')'", "'first'", "'entry'", "'do'", "'exit'", "':>>'", "'redefines'", "'='", "':'", "'any'", "'ordered'", "'nonunique'", "'['", "'..'", "']'", "'subsets'", "'~'", "'to'", "'=>'", "'of'", "'then'", "'if'", "'else'", "'transition'", "'accept'", "'from'", "'by'", "'send'", "'merge'", "'decide'", "'join'", "'fork'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'**'", "'@'", "'!'", "'->'", "'allInstances'", "'null'", "'./'", "'public'", "'private'", "'protected'", "'in'", "'out'", "'inout'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_NATURAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_SL_COMMENT", "RULE_WS", "'comment'", "'about'", "'import'", "'::'", "'.'", "'*'", "';'", "'package'", "'{'", "'}'", "'is'", "'block'", "'value'", "'type'", "'valuetype'", "'assoc'", "'assocbock'", "'interface'", "'def'", "'interfacedef'", "'port'", "'portdef'", "'activity'", "'state'", "'statedef'", "'as'", "'part'", "'abstract'", "'action'", "'ref'", "'link'", "'connect'", "'bind'", "'succession'", "'stream'", "'flow'", "'perform'", "'exhibit'", "':>'", "'specializes'", "','", "'assocblock'", "'end'", "'('", "')'", "'first'", "'entry'", "'do'", "'exit'", "':>>'", "'redefines'", "'='", "':'", "'any'", "'ordered'", "'nonunique'", "'['", "'..'", "']'", "'subsets'", "'~'", "'to'", "'=>'", "'of'", "'then'", "'if'", "'else'", "'transition'", "'accept'", "'from'", "'by'", "'send'", "'merge'", "'decide'", "'join'", "'fork'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'**'", "'@'", "'!'", "'->'", "'allInstances'", "'null'", "'./'", "'public'", "'private'", "'protected'", "'in'", "'out'", "'inout'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -2629,7 +2629,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAnnotation"
-    // InternalSysML.g:931:1: ruleAnnotation returns [EObject current=null] : ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? ) ;
+    // InternalSysML.g:931:1: ruleAnnotation returns [EObject current=null] : ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? ) ;
     public final EObject ruleAnnotation() throws RecognitionException {
         EObject current = null;
 
@@ -2639,11 +2639,11 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:937:2: ( ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? ) )
-            // InternalSysML.g:938:2: ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? )
+            // InternalSysML.g:937:2: ( ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? ) )
+            // InternalSysML.g:938:2: ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? )
             {
-            // InternalSysML.g:938:2: ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? )
-            // InternalSysML.g:939:3: () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )?
+            // InternalSysML.g:938:2: ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? )
+            // InternalSysML.g:939:3: () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )?
             {
             // InternalSysML.g:939:3: ()
             // InternalSysML.g:940:4: 
@@ -2658,7 +2658,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:946:3: (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )?
+            // InternalSysML.g:946:3: (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2667,12 +2667,12 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalSysML.g:947:4: otherlv_1= 'on' ( ( ruleQualifiedName ) )
+                    // InternalSysML.g:947:4: otherlv_1= 'about' ( ( ruleQualifiedName ) )
                     {
                     otherlv_1=(Token)match(input,15,FOLLOW_14); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getOnKeyword_1_0());
+                      				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getAboutKeyword_1_0());
                       			
                     }
                     // InternalSysML.g:951:4: ( ( ruleQualifiedName ) )

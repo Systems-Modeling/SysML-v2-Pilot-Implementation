@@ -4,7 +4,7 @@ package 'Comment Example' {
 	
 	comment Comment1 /* This is a named documentary comment. */
 	
-	comment on Automobile
+	comment about Automobile
 	/* This is an unnamed documentary comment, 
 	 * annotating an explicitly specified element. 
 	 */

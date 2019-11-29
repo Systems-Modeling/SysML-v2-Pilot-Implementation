@@ -32,6 +32,7 @@
 '['=70
 ']'=72
 '^'=95
+'about'=15
 'abstract'=41
 'accept'=82
 'action'=42
@@ -74,7 +75,6 @@
 'nonunique'=69
 'null'=113
 'of'=77
-'on'=15
 'ordered'=68
 'out'=119
 'package'=21

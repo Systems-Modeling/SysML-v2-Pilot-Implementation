@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalKerMLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_NATURAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'comment'", "'on'", "'import'", "'::'", "'.'", "'*'", "';'", "'as'", "'package'", "'{'", "'}'", "'is'", "'classifier'", "'class'", "'datatype'", "'assoc'", "'behavior'", "'function'", "'feature'", "'abstract'", "'step'", "'expr'", "'end'", "'connector'", "'binding'", "'succession'", "'stream'", "'flow'", "'composite'", "'portion'", "'port'", "':>'", "'specializes'", "','", "'interaction'", "'('", "')'", "':>>'", "'redefines'", "'='", "':'", "'all'", "'any'", "'ordered'", "'nonunique'", "'['", "'..'", "']'", "'subsets'", "'from'", "'to'", "'=>'", "'of'", "'first'", "'then'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'**'", "'@'", "'!'", "'~'", "'->'", "'allInstances'", "'null'", "'./'", "'public'", "'private'", "'protected'", "'packaged'", "'in'", "'out'", "'inout'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_NATURAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'comment'", "'about'", "'import'", "'::'", "'.'", "'*'", "';'", "'as'", "'package'", "'{'", "'}'", "'is'", "'classifier'", "'class'", "'datatype'", "'assoc'", "'behavior'", "'function'", "'feature'", "'abstract'", "'step'", "'expr'", "'end'", "'connector'", "'binding'", "'succession'", "'stream'", "'flow'", "'composite'", "'portion'", "'port'", "':>'", "'specializes'", "','", "'interaction'", "'('", "')'", "':>>'", "'redefines'", "'='", "':'", "'all'", "'any'", "'ordered'", "'nonunique'", "'['", "'..'", "']'", "'subsets'", "'from'", "'to'", "'=>'", "'of'", "'first'", "'then'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'**'", "'@'", "'!'", "'~'", "'->'", "'allInstances'", "'null'", "'./'", "'public'", "'private'", "'protected'", "'packaged'", "'in'", "'out'", "'inout'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -2339,7 +2339,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAnnotation"
-    // InternalKerML.g:830:1: ruleAnnotation returns [EObject current=null] : ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? ) ;
+    // InternalKerML.g:830:1: ruleAnnotation returns [EObject current=null] : ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? ) ;
     public final EObject ruleAnnotation() throws RecognitionException {
         EObject current = null;
 
@@ -2349,11 +2349,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:836:2: ( ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? ) )
-            // InternalKerML.g:837:2: ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? )
+            // InternalKerML.g:836:2: ( ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? ) )
+            // InternalKerML.g:837:2: ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? )
             {
-            // InternalKerML.g:837:2: ( () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )? )
-            // InternalKerML.g:838:3: () (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )?
+            // InternalKerML.g:837:2: ( () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )? )
+            // InternalKerML.g:838:3: () (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )?
             {
             // InternalKerML.g:838:3: ()
             // InternalKerML.g:839:4: 
@@ -2368,7 +2368,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:845:3: (otherlv_1= 'on' ( ( ruleQualifiedName ) ) )?
+            // InternalKerML.g:845:3: (otherlv_1= 'about' ( ( ruleQualifiedName ) ) )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2377,12 +2377,12 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalKerML.g:846:4: otherlv_1= 'on' ( ( ruleQualifiedName ) )
+                    // InternalKerML.g:846:4: otherlv_1= 'about' ( ( ruleQualifiedName ) )
                     {
                     otherlv_1=(Token)match(input,16,FOLLOW_18); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getOnKeyword_1_0());
+                      				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getAboutKeyword_1_0());
                       			
                     }
                     // InternalKerML.g:850:4: ( ( ruleQualifiedName ) )

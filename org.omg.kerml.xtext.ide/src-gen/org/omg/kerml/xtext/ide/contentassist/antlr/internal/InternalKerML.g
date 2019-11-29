@@ -7082,9 +7082,9 @@ rule__Annotation__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAnnotationAccess().getOnKeyword_1_0()); }
-	'on'
-	{ after(grammarAccess.getAnnotationAccess().getOnKeyword_1_0()); }
+	{ before(grammarAccess.getAnnotationAccess().getAboutKeyword_1_0()); }
+	'about'
+	{ after(grammarAccess.getAnnotationAccess().getAboutKeyword_1_0()); }
 )
 ;
 finally {

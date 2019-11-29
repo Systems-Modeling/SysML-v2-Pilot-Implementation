@@ -944,9 +944,9 @@ ruleAnnotation returns [EObject current=null]
 			}
 		)
 		(
-			otherlv_1='on'
+			otherlv_1='about'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getOnKeyword_1_0());
+				newLeafNode(otherlv_1, grammarAccess.getAnnotationAccess().getAboutKeyword_1_0());
 			}
 			(
 				(

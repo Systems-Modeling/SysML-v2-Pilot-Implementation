@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_EXP_VALUE", "RULE_NATURAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'::'", "'.'", "';'", "':>'", "'specializes'", "':>>'", "'redefines'", "'any'", "'subsets'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'**'", "'!'", "'~'", "'public'", "'private'", "'protected'", "'packaged'", "'in'", "'out'", "'inout'", "'comment'", "'on'", "'import'", "'as'", "'package'", "'{'", "'}'", "'is'", "'classifier'", "'class'", "'datatype'", "'assoc'", "'behavior'", "'function'", "'feature'", "'abstract'", "'step'", "'expr'", "'end'", "'connector'", "'binding'", "'succession'", "'stream'", "'flow'", "','", "'interaction'", "'('", "')'", "'='", "':'", "'['", "']'", "'..'", "'to'", "'from'", "'=>'", "'of'", "'then'", "'first'", "'->'", "'null'", "'./'", "'composite'", "'portion'", "'port'", "'all'", "'ordered'", "'nonunique'", "'@'", "'allInstances'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_EXP_VALUE", "RULE_NATURAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_BOOLEAN_VALUE", "RULE_STRING_VALUE", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'::'", "'.'", "';'", "':>'", "'specializes'", "':>>'", "'redefines'", "'any'", "'subsets'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'**'", "'!'", "'~'", "'public'", "'private'", "'protected'", "'packaged'", "'in'", "'out'", "'inout'", "'comment'", "'about'", "'import'", "'as'", "'package'", "'{'", "'}'", "'is'", "'classifier'", "'class'", "'datatype'", "'assoc'", "'behavior'", "'function'", "'feature'", "'abstract'", "'step'", "'expr'", "'end'", "'connector'", "'binding'", "'succession'", "'stream'", "'flow'", "','", "'interaction'", "'('", "')'", "'='", "':'", "'['", "']'", "'..'", "'to'", "'from'", "'=>'", "'of'", "'then'", "'first'", "'->'", "'null'", "'./'", "'composite'", "'portion'", "'port'", "'all'", "'ordered'", "'nonunique'", "'@'", "'allInstances'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -26094,24 +26094,24 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Annotation__Group_1__0__Impl"
-    // InternalKerML.g:7079:1: rule__Annotation__Group_1__0__Impl : ( 'on' ) ;
+    // InternalKerML.g:7079:1: rule__Annotation__Group_1__0__Impl : ( 'about' ) ;
     public final void rule__Annotation__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:7083:1: ( ( 'on' ) )
-            // InternalKerML.g:7084:1: ( 'on' )
+            // InternalKerML.g:7083:1: ( ( 'about' ) )
+            // InternalKerML.g:7084:1: ( 'about' )
             {
-            // InternalKerML.g:7084:1: ( 'on' )
-            // InternalKerML.g:7085:2: 'on'
+            // InternalKerML.g:7084:1: ( 'about' )
+            // InternalKerML.g:7085:2: 'about'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAnnotationAccess().getOnKeyword_1_0()); 
+               before(grammarAccess.getAnnotationAccess().getAboutKeyword_1_0()); 
             }
             match(input,54,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAnnotationAccess().getOnKeyword_1_0()); 
+               after(grammarAccess.getAnnotationAccess().getAboutKeyword_1_0()); 
             }
 
             }

@@ -215,12 +215,12 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getEndFeatureMemberRule()) {
+				if (rule == grammarAccess.getFeatureTypeMemberRule()
+						|| rule == grammarAccess.getFeatureBehaviorMemberRule()) {
 					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
-						|| rule == grammarAccess.getFeatureBehaviorMemberRule()) {
+				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -627,11 +627,12 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     EndFeatureMember returns EndFeatureMembership
+	 *     FeatureTypeMember returns EndFeatureMembership
+	 *     FeatureBehaviorMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship_comp+=PrefixAnnotation* 
+	 *         ownedRelationship_comp+=PrefixAnnotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
 	 *         isPort?='port'? 
@@ -668,12 +669,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     FeatureTypeMember returns EndFeatureMembership
-	//     FeatureBehaviorMember returns EndFeatureMembership
+	//     EndFeatureMember returns EndFeatureMembership
 	//
 	// Constraint:
 	//     (
-	//         ownedRelationship_comp+=PrefixAnnotation? 
+	//         ownedRelationship_comp+=PrefixAnnotation* 
 	//         visibility=VisibilityIndicator? 
 	//         (isComposite?='composite' | isPortion?='portion')? 
 	//         isPort?='port'? 
@@ -1055,7 +1055,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1304,7 +1305,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1372,7 +1374,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1428,7 +1431,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1658,8 +1662,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedMembership_comp+=ElementImport? 
-	 *         (ownedImport_comp+=PackageImport? ownedMembership_comp+=ElementImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
@@ -1923,7 +1927,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 

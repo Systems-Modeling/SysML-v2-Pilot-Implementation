@@ -112,7 +112,7 @@ Comment returns SysML::Comment :
 ;
 
 Annotation returns SysML::Annotation :
-	{SysML::Annotation} ( 'on' annotatedElement = [SysML::Element|QualifiedName] )?
+	{SysML::Annotation} ( 'about' annotatedElement = [SysML::Element|QualifiedName] )?
 ;
 
 EmptyAnnotation returns SysML::Annotation :

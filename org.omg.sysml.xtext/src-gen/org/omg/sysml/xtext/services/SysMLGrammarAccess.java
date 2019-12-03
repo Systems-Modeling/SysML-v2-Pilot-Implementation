@@ -7125,7 +7125,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cAcceptKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedFeatureMembership_compAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1.eContents().get(0);
+		private final RuleCall cOwnedFeatureMembership_compTriggerStepMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cIfKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedFeatureMembership_compAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -7136,28 +7136,28 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedFeatureMembership_compEffectBehaviorMemberParserRuleCall_3_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_3_1.eContents().get(0);
 		
 		//TransitionStep SysML::Step:
-		//	{SysML::Step} ('accept' ownedFeatureMembership_comp+=ItemFeatureMember)? ('if'
+		//	{SysML::Step} ('accept' ownedFeatureMembership_comp+=TriggerStepMember)? ('if'
 		//	ownedFeatureMembership_comp+=ExpressionMember)? ('do' ownedFeatureMembership_comp+=EffectBehaviorMember)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Step} ('accept' ownedFeatureMembership_comp+=ItemFeatureMember)? ('if'
+		//{SysML::Step} ('accept' ownedFeatureMembership_comp+=TriggerStepMember)? ('if'
 		//ownedFeatureMembership_comp+=ExpressionMember)? ('do' ownedFeatureMembership_comp+=EffectBehaviorMember)?
 		public Group getGroup() { return cGroup; }
 		
 		//{SysML::Step}
 		public Action getStepAction_0() { return cStepAction_0; }
 		
-		//('accept' ownedFeatureMembership_comp+=ItemFeatureMember)?
+		//('accept' ownedFeatureMembership_comp+=TriggerStepMember)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'accept'
 		public Keyword getAcceptKeyword_1_0() { return cAcceptKeyword_1_0; }
 		
-		//ownedFeatureMembership_comp+=ItemFeatureMember
+		//ownedFeatureMembership_comp+=TriggerStepMember
 		public Assignment getOwnedFeatureMembership_compAssignment_1_1() { return cOwnedFeatureMembership_compAssignment_1_1; }
 		
-		//ItemFeatureMember
-		public RuleCall getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_1_0() { return cOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_1_0; }
+		//TriggerStepMember
+		public RuleCall getOwnedFeatureMembership_compTriggerStepMemberParserRuleCall_1_1_0() { return cOwnedFeatureMembership_compTriggerStepMemberParserRuleCall_1_1_0; }
 		
 		//('if' ownedFeatureMembership_comp+=ExpressionMember)?
 		public Group getGroup_2() { return cGroup_2; }
@@ -7182,6 +7182,34 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EffectBehaviorMember
 		public RuleCall getOwnedFeatureMembership_compEffectBehaviorMemberParserRuleCall_3_1_0() { return cOwnedFeatureMembership_compEffectBehaviorMemberParserRuleCall_3_1_0; }
+	}
+	public class TriggerStepElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TriggerStep");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOwnedFeatureMembership_compAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_0.eContents().get(0);
+		private final Assignment cOwnedFeatureMembership_compAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1.eContents().get(0);
+		
+		//TriggerStep SysML::AcceptActionUsage:
+		//	ownedFeatureMembership_comp+=EmptyParameterMember
+		//	ownedFeatureMembership_comp+=ItemFeatureMember;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedFeatureMembership_comp+=EmptyParameterMember ownedFeatureMembership_comp+=ItemFeatureMember
+		public Group getGroup() { return cGroup; }
+		
+		//ownedFeatureMembership_comp+=EmptyParameterMember
+		public Assignment getOwnedFeatureMembership_compAssignment_0() { return cOwnedFeatureMembership_compAssignment_0; }
+		
+		//EmptyParameterMember
+		public RuleCall getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0() { return cOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0; }
+		
+		//ownedFeatureMembership_comp+=ItemFeatureMember
+		public Assignment getOwnedFeatureMembership_compAssignment_1() { return cOwnedFeatureMembership_compAssignment_1; }
+		
+		//ItemFeatureMember
+		public RuleCall getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_0() { return cOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_0; }
 	}
 	public class EffectBehaviorUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EffectBehaviorUsage");
@@ -7275,6 +7303,21 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TransitionStep
 		public RuleCall getOwnedMemberFeature_compTransitionStepParserRuleCall_0() { return cOwnedMemberFeature_compTransitionStepParserRuleCall_0; }
+	}
+	public class TriggerStepMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TriggerStepMember");
+		private final Assignment cOwnedMemberFeature_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedMemberFeature_compTriggerStepParserRuleCall_0 = (RuleCall)cOwnedMemberFeature_compAssignment.eContents().get(0);
+		
+		//TriggerStepMember SysML::FeatureMembership:
+		//	ownedMemberFeature_comp=TriggerStep;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedMemberFeature_comp=TriggerStep
+		public Assignment getOwnedMemberFeature_compAssignment() { return cOwnedMemberFeature_compAssignment; }
+		
+		//TriggerStep
+		public RuleCall getOwnedMemberFeature_compTriggerStepParserRuleCall_0() { return cOwnedMemberFeature_compTriggerStepParserRuleCall_0; }
 	}
 	public class EffectBehaviorMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EffectBehaviorMember");
@@ -10943,10 +10986,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final TargetTransitionSuccessionElements pTargetTransitionSuccession;
 	private final ConditionalTransitionSuccessionElements pConditionalTransitionSuccession;
 	private final TransitionStepElements pTransitionStep;
+	private final TriggerStepElements pTriggerStep;
 	private final EffectBehaviorUsageElements pEffectBehaviorUsage;
 	private final EmptyTransitionStepMemberElements pEmptyTransitionStepMember;
 	private final ConditionalStepMemberElements pConditionalStepMember;
 	private final TransitionStepMemberElements pTransitionStepMember;
+	private final TriggerStepMemberElements pTriggerStepMember;
 	private final EffectBehaviorMemberElements pEffectBehaviorMember;
 	private final ItemFlowElements pItemFlow;
 	private final AbstractItemFlowElements pAbstractItemFlow;
@@ -11223,10 +11268,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTargetTransitionSuccession = new TargetTransitionSuccessionElements();
 		this.pConditionalTransitionSuccession = new ConditionalTransitionSuccessionElements();
 		this.pTransitionStep = new TransitionStepElements();
+		this.pTriggerStep = new TriggerStepElements();
 		this.pEffectBehaviorUsage = new EffectBehaviorUsageElements();
 		this.pEmptyTransitionStepMember = new EmptyTransitionStepMemberElements();
 		this.pConditionalStepMember = new ConditionalStepMemberElements();
 		this.pTransitionStepMember = new TransitionStepMemberElements();
+		this.pTriggerStepMember = new TriggerStepMemberElements();
 		this.pEffectBehaviorMember = new EffectBehaviorMemberElements();
 		this.pItemFlow = new ItemFlowElements();
 		this.pAbstractItemFlow = new AbstractItemFlowElements();
@@ -13040,7 +13087,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TransitionStep SysML::Step:
-	//	{SysML::Step} ('accept' ownedFeatureMembership_comp+=ItemFeatureMember)? ('if'
+	//	{SysML::Step} ('accept' ownedFeatureMembership_comp+=TriggerStepMember)? ('if'
 	//	ownedFeatureMembership_comp+=ExpressionMember)? ('do' ownedFeatureMembership_comp+=EffectBehaviorMember)?;
 	public TransitionStepElements getTransitionStepAccess() {
 		return pTransitionStep;
@@ -13048,6 +13095,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTransitionStepRule() {
 		return getTransitionStepAccess().getRule();
+	}
+	
+	//TriggerStep SysML::AcceptActionUsage:
+	//	ownedFeatureMembership_comp+=EmptyParameterMember
+	//	ownedFeatureMembership_comp+=ItemFeatureMember;
+	public TriggerStepElements getTriggerStepAccess() {
+		return pTriggerStep;
+	}
+	
+	public ParserRule getTriggerStepRule() {
+		return getTriggerStepAccess().getRule();
 	}
 	
 	//EffectBehaviorUsage SysML::ActionUsage:
@@ -13089,6 +13147,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTransitionStepMemberRule() {
 		return getTransitionStepMemberAccess().getRule();
+	}
+	
+	//TriggerStepMember SysML::FeatureMembership:
+	//	ownedMemberFeature_comp=TriggerStep;
+	public TriggerStepMemberElements getTriggerStepMemberAccess() {
+		return pTriggerStepMember;
+	}
+	
+	public ParserRule getTriggerStepMemberRule() {
+		return getTriggerStepMemberAccess().getRule();
 	}
 	
 	//EffectBehaviorMember SysML::FeatureMembership:

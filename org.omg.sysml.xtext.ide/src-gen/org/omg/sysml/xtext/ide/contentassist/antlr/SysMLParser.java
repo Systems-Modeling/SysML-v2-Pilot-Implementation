@@ -372,6 +372,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionStepAccess().getGroup_1(), "rule__TransitionStep__Group_1__0");
 			builder.put(grammarAccess.getTransitionStepAccess().getGroup_2(), "rule__TransitionStep__Group_2__0");
 			builder.put(grammarAccess.getTransitionStepAccess().getGroup_3(), "rule__TransitionStep__Group_3__0");
+			builder.put(grammarAccess.getTriggerStepAccess().getGroup(), "rule__TriggerStep__Group__0");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getGroup_1(), "rule__EffectBehaviorUsage__Group_1__0");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getGroup_1_1(), "rule__EffectBehaviorUsage__Group_1_1__0");
 			builder.put(grammarAccess.getItemFlowAccess().getGroup(), "rule__ItemFlow__Group__0");
@@ -798,9 +799,12 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionStepAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__TransitionStep__OwnedFeatureMembership_compAssignment_1_1");
 			builder.put(grammarAccess.getTransitionStepAccess().getOwnedFeatureMembership_compAssignment_2_1(), "rule__TransitionStep__OwnedFeatureMembership_compAssignment_2_1");
 			builder.put(grammarAccess.getTransitionStepAccess().getOwnedFeatureMembership_compAssignment_3_1(), "rule__TransitionStep__OwnedFeatureMembership_compAssignment_3_1");
+			builder.put(grammarAccess.getTriggerStepAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__TriggerStep__OwnedFeatureMembership_compAssignment_0");
+			builder.put(grammarAccess.getTriggerStepAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__TriggerStep__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getEmptyTransitionStepMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__EmptyTransitionStepMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getConditionalStepMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__ConditionalStepMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getTransitionStepMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TransitionStepMember__OwnedMemberFeature_compAssignment");
+			builder.put(grammarAccess.getTriggerStepMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TriggerStepMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getEffectBehaviorMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__EffectBehaviorMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getNameAssignment_0_0_0(), "rule__ItemFlowDeclaration__NameAssignment_0_0_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedFeatureMembership_compAssignment_0_0_2_0_1(), "rule__ItemFlowDeclaration__OwnedFeatureMembership_compAssignment_0_0_2_0_1");

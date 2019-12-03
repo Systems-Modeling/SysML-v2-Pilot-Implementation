@@ -11885,9 +11885,9 @@ ruleTransitionStep returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTransitionStepAccess().getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getTransitionStepAccess().getOwnedFeatureMembership_compTriggerStepMemberParserRuleCall_1_1_0());
 					}
-					lv_ownedFeatureMembership_comp_2_0=ruleItemFeatureMember
+					lv_ownedFeatureMembership_comp_2_0=ruleTriggerStepMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTransitionStepRule());
@@ -11896,7 +11896,7 @@ ruleTransitionStep returns [EObject current=null]
 							$current,
 							"ownedFeatureMembership_comp",
 							lv_ownedFeatureMembership_comp_2_0,
-							"org.omg.sysml.xtext.SysML.ItemFeatureMember");
+							"org.omg.sysml.xtext.SysML.TriggerStepMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -11952,6 +11952,63 @@ ruleTransitionStep returns [EObject current=null]
 				)
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleTriggerStep
+entryRuleTriggerStep returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTriggerStepRule()); }
+	iv_ruleTriggerStep=ruleTriggerStep
+	{ $current=$iv_ruleTriggerStep.current; }
+	EOF;
+
+// Rule TriggerStep
+ruleTriggerStep returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTriggerStepAccess().getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0());
+				}
+				lv_ownedFeatureMembership_comp_0_0=ruleEmptyParameterMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTriggerStepRule());
+					}
+					add(
+						$current,
+						"ownedFeatureMembership_comp",
+						lv_ownedFeatureMembership_comp_0_0,
+						"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTriggerStepAccess().getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_1_0());
+				}
+				lv_ownedFeatureMembership_comp_1_0=ruleItemFeatureMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTriggerStepRule());
+					}
+					add(
+						$current,
+						"ownedFeatureMembership_comp",
+						lv_ownedFeatureMembership_comp_1_0,
+						"org.omg.sysml.xtext.SysML.ItemFeatureMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -12129,6 +12186,42 @@ ruleTransitionStepMember returns [EObject current=null]
 					"ownedMemberFeature_comp",
 					lv_ownedMemberFeature_comp_0_0,
 					"org.omg.sysml.xtext.SysML.TransitionStep");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleTriggerStepMember
+entryRuleTriggerStepMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTriggerStepMemberRule()); }
+	iv_ruleTriggerStepMember=ruleTriggerStepMember
+	{ $current=$iv_ruleTriggerStepMember.current; }
+	EOF;
+
+// Rule TriggerStepMember
+ruleTriggerStepMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getTriggerStepMemberAccess().getOwnedMemberFeature_compTriggerStepParserRuleCall_0());
+			}
+			lv_ownedMemberFeature_comp_0_0=ruleTriggerStep
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getTriggerStepMemberRule());
+				}
+				set(
+					$current,
+					"ownedMemberFeature_comp",
+					lv_ownedMemberFeature_comp_0_0,
+					"org.omg.sysml.xtext.SysML.TriggerStep");
 				afterParserOrEnumRuleCall();
 			}
 		)

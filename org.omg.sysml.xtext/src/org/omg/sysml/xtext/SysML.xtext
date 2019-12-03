@@ -906,9 +906,14 @@ ConditionalTransitionSuccession returns SysML::Succession :
 
 TransitionStep returns SysML::Step :
 	{SysML::Step}  
-	( 'accept' ownedFeatureMembership_comp += ItemFeatureMember )?
+	( 'accept' ownedFeatureMembership_comp += TriggerStepMember )?
 	( 'if' ownedFeatureMembership_comp += ExpressionMember )?
 	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
+;
+
+TriggerStep returns SysML::AcceptActionUsage :
+	ownedFeatureMembership_comp += EmptyParameterMember
+	ownedFeatureMembership_comp += ItemFeatureMember
 ;
 
 EffectBehaviorUsage returns SysML::ActionUsage :
@@ -929,6 +934,10 @@ ConditionalStepMember returns SysML::FeatureMembership :
 
 TransitionStepMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = TransitionStep
+;
+
+TriggerStepMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TriggerStep
 ;
 
 EffectBehaviorMember returns SysML::FeatureMembership :

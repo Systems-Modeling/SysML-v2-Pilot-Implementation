@@ -8259,16 +8259,29 @@ ruleStateMember returns [EObject current=null]
 			(
 				(
 					(
-						lv_isComposite_1_0='state'
+						otherlv_1='ref'
 						{
-							newLeafNode(lv_isComposite_1_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_0_0_0());
+							newLeafNode(otherlv_1, grammarAccess.getStateMemberAccess().getRefKeyword_1_0_0_0_0());
 						}
+						otherlv_2='state'
 						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getStateMemberRule());
+							newLeafNode(otherlv_2, grammarAccess.getStateMemberAccess().getStateKeyword_1_0_0_0_1());
+						}
+					)
+					    |
+					(
+						(
+							lv_isComposite_3_0='state'
+							{
+								newLeafNode(lv_isComposite_3_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_0_0_1_0());
 							}
-							setWithLastConsumed($current, "isComposite", true, "state");
-						}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getStateMemberRule());
+								}
+								setWithLastConsumed($current, "isComposite", true, "state");
+							}
+						)
 					)
 				)
 				(
@@ -8276,7 +8289,7 @@ ruleStateMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compStateUsageParserRuleCall_1_0_1_0());
 						}
-						lv_ownedMemberFeature_comp_2_0=ruleStateUsage
+						lv_ownedMemberFeature_comp_4_0=ruleStateUsage
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getStateMemberRule());
@@ -8284,7 +8297,7 @@ ruleStateMember returns [EObject current=null]
 							set(
 								$current,
 								"ownedMemberFeature_comp",
-								lv_ownedMemberFeature_comp_2_0,
+								lv_ownedMemberFeature_comp_4_0,
 								"org.omg.sysml.xtext.SysML.StateUsage");
 							afterParserOrEnumRuleCall();
 						}
@@ -8293,22 +8306,35 @@ ruleStateMember returns [EObject current=null]
 			)
 			    |
 			(
-				otherlv_3='abstract'
+				otherlv_5='abstract'
 				{
-					newLeafNode(otherlv_3, grammarAccess.getStateMemberAccess().getAbstractKeyword_1_1_0());
+					newLeafNode(otherlv_5, grammarAccess.getStateMemberAccess().getAbstractKeyword_1_1_0());
 				}
 				(
 					(
-						lv_isComposite_4_0='state'
+						otherlv_6='ref'
 						{
-							newLeafNode(lv_isComposite_4_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_1_1_0());
+							newLeafNode(otherlv_6, grammarAccess.getStateMemberAccess().getRefKeyword_1_1_1_0_0());
 						}
+						otherlv_7='state'
 						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getStateMemberRule());
+							newLeafNode(otherlv_7, grammarAccess.getStateMemberAccess().getStateKeyword_1_1_1_0_1());
+						}
+					)
+					    |
+					(
+						(
+							lv_isComposite_8_0='state'
+							{
+								newLeafNode(lv_isComposite_8_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_1_1_1_0());
 							}
-							setWithLastConsumed($current, "isComposite", true, "state");
-						}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getStateMemberRule());
+								}
+								setWithLastConsumed($current, "isComposite", true, "state");
+							}
+						)
 					)
 				)
 				(
@@ -8316,7 +8342,7 @@ ruleStateMember returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_1_2_0());
 						}
-						lv_ownedMemberFeature_comp_5_0=ruleAbstractStateUsage
+						lv_ownedMemberFeature_comp_9_0=ruleAbstractStateUsage
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getStateMemberRule());
@@ -8324,7 +8350,7 @@ ruleStateMember returns [EObject current=null]
 							set(
 								$current,
 								"ownedMemberFeature_comp",
-								lv_ownedMemberFeature_comp_5_0,
+								lv_ownedMemberFeature_comp_9_0,
 								"org.omg.sysml.xtext.SysML.AbstractStateUsage");
 							afterParserOrEnumRuleCall();
 						}

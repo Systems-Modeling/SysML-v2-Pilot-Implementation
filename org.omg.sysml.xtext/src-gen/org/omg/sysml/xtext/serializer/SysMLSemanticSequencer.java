@@ -3354,7 +3354,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation* 
 	 *         visibility=VisibilityIndicator? 
-	 *         ((isComposite?='state' ownedMemberFeature_comp=StateUsage) | (isComposite?='state' ownedMemberFeature_comp=AbstractStateUsage))
+	 *         ((isComposite?='state'? ownedMemberFeature_comp=StateUsage) | (isComposite?='state'? ownedMemberFeature_comp=AbstractStateUsage))
 	 *     )
 	 */
 	protected void sequence_DefinitionMemberPrefix_StateMember(ISerializationContext context, FeatureMembership semanticObject) {

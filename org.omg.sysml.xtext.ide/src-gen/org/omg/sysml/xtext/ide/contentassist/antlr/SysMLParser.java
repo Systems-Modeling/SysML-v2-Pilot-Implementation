@@ -89,6 +89,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateBodyItemAccess().getAlternatives(), "rule__StateBodyItem__Alternatives");
 			builder.put(grammarAccess.getStateBehaviorUsageAccess().getAlternatives(), "rule__StateBehaviorUsage__Alternatives");
 			builder.put(grammarAccess.getStateMemberAccess().getAlternatives_1(), "rule__StateMember__Alternatives_1");
+			builder.put(grammarAccess.getStateMemberAccess().getAlternatives_1_0_0(), "rule__StateMember__Alternatives_1_0_0");
+			builder.put(grammarAccess.getStateMemberAccess().getAlternatives_1_1_1(), "rule__StateMember__Alternatives_1_1_1");
 			builder.put(grammarAccess.getUsageDeclarationAccess().getAlternatives(), "rule__UsageDeclaration__Alternatives");
 			builder.put(grammarAccess.getUsageDeclarationAccess().getAlternatives_2_0(), "rule__UsageDeclaration__Alternatives_2_0");
 			builder.put(grammarAccess.getTypePartAccess().getAlternatives(), "rule__TypePart__Alternatives");
@@ -309,7 +311,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExitBehaviorMemberAccess().getGroup(), "rule__ExitBehaviorMember__Group__0");
 			builder.put(grammarAccess.getStateMemberAccess().getGroup(), "rule__StateMember__Group__0");
 			builder.put(grammarAccess.getStateMemberAccess().getGroup_1_0(), "rule__StateMember__Group_1_0__0");
+			builder.put(grammarAccess.getStateMemberAccess().getGroup_1_0_0_0(), "rule__StateMember__Group_1_0_0_0__0");
 			builder.put(grammarAccess.getStateMemberAccess().getGroup_1_1(), "rule__StateMember__Group_1_1__0");
+			builder.put(grammarAccess.getStateMemberAccess().getGroup_1_1_1_0(), "rule__StateMember__Group_1_1_1_0__0");
 			builder.put(grammarAccess.getConditionalTransitionSuccessionMemberAccess().getGroup(), "rule__ConditionalTransitionSuccessionMember__Group__0");
 			builder.put(grammarAccess.getTargetTransitionSuccessionMemberAccess().getGroup(), "rule__TargetTransitionSuccessionMember__Group__0");
 			builder.put(grammarAccess.getTransitionSuccessionMemberAccess().getGroup(), "rule__TransitionSuccessionMember__Group__0");
@@ -721,9 +725,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEntryBehaviorMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__EntryBehaviorMember__OwnedMemberFeature_compAssignment_2");
 			builder.put(grammarAccess.getDoBehaviorMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__DoBehaviorMember__OwnedMemberFeature_compAssignment_2");
 			builder.put(grammarAccess.getExitBehaviorMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__ExitBehaviorMember__OwnedMemberFeature_compAssignment_2");
-			builder.put(grammarAccess.getStateMemberAccess().getIsCompositeAssignment_1_0_0(), "rule__StateMember__IsCompositeAssignment_1_0_0");
+			builder.put(grammarAccess.getStateMemberAccess().getIsCompositeAssignment_1_0_0_1(), "rule__StateMember__IsCompositeAssignment_1_0_0_1");
 			builder.put(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compAssignment_1_0_1(), "rule__StateMember__OwnedMemberFeature_compAssignment_1_0_1");
-			builder.put(grammarAccess.getStateMemberAccess().getIsCompositeAssignment_1_1_1(), "rule__StateMember__IsCompositeAssignment_1_1_1");
+			builder.put(grammarAccess.getStateMemberAccess().getIsCompositeAssignment_1_1_1_1(), "rule__StateMember__IsCompositeAssignment_1_1_1_1");
 			builder.put(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compAssignment_1_1_2(), "rule__StateMember__OwnedMemberFeature_compAssignment_1_1_2");
 			builder.put(grammarAccess.getConditionalTransitionSuccessionMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__ConditionalTransitionSuccessionMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getTargetTransitionSuccessionMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__TargetTransitionSuccessionMember__OwnedMemberFeature_compAssignment_1");

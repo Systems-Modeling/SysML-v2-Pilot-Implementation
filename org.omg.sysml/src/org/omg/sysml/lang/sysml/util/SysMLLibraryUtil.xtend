@@ -37,9 +37,9 @@ class SysMLLibraryUtil {
 		modelLibraryDirectory = path
 	}
 	
-	def static SysMLLibraryProvider getInstance(Resource resource) {
+	def static IModelLibraryProvider getInstance(Resource resource) {
 		try {
-			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(SysMLLibraryProvider)
+			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(IModelLibraryProvider)
 			if (instance !== null && modelLibraryDirectory !== null) {
 				instance.setModelLibraryDirectory(modelLibraryDirectory)
 			}

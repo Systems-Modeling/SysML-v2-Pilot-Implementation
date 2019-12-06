@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.ValueType;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.ConjugatedEndPortMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortMembership;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -39,6 +40,7 @@ import org.omg.sysml.lang.sysml.ControlNode;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.EndPortMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -121,6 +123,20 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass endFeatureMembershipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass endPortMembershipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conjugatedEndPortMembershipEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -841,6 +857,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	@Override
 	public EClass getEndFeatureMembership() {
 		return endFeatureMembershipEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEndPortMembership() {
+		return endPortMembershipEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getConjugatedEndPortMembership() {
+		return conjugatedEndPortMembershipEClass;
 	}
 
 	/**
@@ -3965,6 +4001,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		endFeatureMembershipEClass = createEClass(END_FEATURE_MEMBERSHIP);
 
+		endPortMembershipEClass = createEClass(END_PORT_MEMBERSHIP);
+
+		conjugatedEndPortMembershipEClass = createEClass(CONJUGATED_END_PORT_MEMBERSHIP);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -4101,6 +4141,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		interactionEClass.getESuperTypes().add(this.getBehavior());
 		multiplicityRangeEClass.getESuperTypes().add(this.getMultiplicity());
 		endFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		endPortMembershipEClass.getESuperTypes().add(this.getPortMembership());
+		endPortMembershipEClass.getESuperTypes().add(this.getEndFeatureMembership());
+		conjugatedEndPortMembershipEClass.getESuperTypes().add(this.getConjugatedPortMembership());
+		conjugatedEndPortMembershipEClass.getESuperTypes().add(this.getEndFeatureMembership());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(membershipEClass, Membership.class, "Membership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4475,6 +4519,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getMultiplicityRange_Bound(), this.getExpression(), null, "bound", null, 1, 2, MultiplicityRange.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(endFeatureMembershipEClass, EndFeatureMembership.class, "EndFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(endPortMembershipEClass, EndPortMembership.class, "EndPortMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(conjugatedEndPortMembershipEClass, ConjugatedEndPortMembership.class, "ConjugatedEndPortMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

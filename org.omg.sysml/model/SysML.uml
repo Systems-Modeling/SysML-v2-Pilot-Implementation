@@ -1852,4 +1852,12 @@ Note: A Multiplicity is a nested Feature so that specializations of it can speci
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="77ec8e9e-dc35-45b5-b3ac-964b7e3114d3" name="" visibility="public" memberEnd="077a3948-ff80-405a-b769-123a0a235d1f b2830939-3d87-40dc-8acf-ed3f043eba1a"/>
   <packagedElement xmi:type="uml:Association" xmi:id="77258d7e-6bf1-4380-beb8-7a6db52bede7" name="" visibility="public" memberEnd="d65bfe47-3744-4fb9-a371-dc053aabfccd 521c8366-388f-410c-a57b-5256934269b5"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_q8pv0A_LEeqfO60I24Uw4Q" name="EndPortMembership">
+    <generalization xmi:id="_uLEMkA_LEeqfO60I24Uw4Q" general="6e291320-3cad-4176-a2d1-69007d4da523"/>
+    <generalization xmi:id="_zZvQ4A_LEeqfO60I24Uw4Q" general="39b98ffa-351e-4794-898d-59cccb0d728f"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6HW_cA_LEeqfO60I24Uw4Q" name="ConjugatedEndPortMembership">
+    <generalization xmi:id="_6HW_cQ_LEeqfO60I24Uw4Q" general="6e291320-3cad-4176-a2d1-69007d4da523"/>
+    <generalization xmi:id="_6HW_cg_LEeqfO60I24Uw4Q" general="330d22a7-4b38-4c4a-a1cc-708b7a61f553"/>
+  </packagedElement>
 </uml:Model>

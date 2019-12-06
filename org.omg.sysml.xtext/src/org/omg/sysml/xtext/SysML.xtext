@@ -354,7 +354,7 @@ fragment AssociationBlockBody returns SysML::Type :
 	  ';'
 	| '{' (
 		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( NestedUsageMember | AssociationEndMember )
+		| ownedFeatureMembership_comp += AssociationUsageMember
 		| ownedImport_comp += Import
 	  )* '}'
 ;
@@ -363,12 +363,16 @@ fragment AbstractAssociationBlockBody returns SysML::Type :
 	  isAbstract ?= ';'
 	| isAbstract ?= '{' ( 
 		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( NestedUsageMember | AssociationEndMember )
+		| ownedFeatureMembership_comp += AssociationUsageMember
 		| ownedImport_comp += Import
 	)* '}'
 ;
 
 /* ASSOCIATION BLOCK MEMBERSHIPS */
+
+AssociationUsageMember returns SysML::FeatureMembership :
+	NestedUsageMember | AssociationEndMember | EndPortMember | ConjugatedEndPortMember
+;
 
 AssociationEndMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
@@ -381,9 +385,20 @@ AssociationEndMember returns SysML::EndFeatureMembership :
     | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
 	| 'end' 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
-    | 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage 
-    | 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
-    | 'end' isPort ?= 'port' ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName]
+	)
+;
+
+EndPortMember returns SysML::EndPortMembership :
+	DefinitionMemberPrefix
+	( 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage
+	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
+	)
+;
+
+ConjugatedEndPortMember returns SysML::ConjugatedEndPortMembership :
+	DefinitionMemberPrefix
+	( 'end' isPort ?= 'port' ownedMemberFeature_comp = ConjugatedPortUsage
+	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractConjugatedPortUsage
 	)
 ;
 
@@ -401,7 +416,7 @@ fragment InterfaceBody returns SysML::Type :
 	  ';'
 	| '{' ( 
 		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( NestedUsageMember | InterfaceEndMember )
+		| ownedFeatureMembership_comp += InterfaceUsageMember
 		| ownedImport_comp += Import
 	)* '}'
 ;
@@ -410,19 +425,30 @@ fragment AbstractInterfaceBody returns SysML::Type :
 	  isAbstract ?= ';'
 	| isAbstract ?= '{' ( 
 		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( NestedUsageMember | InterfaceEndMember )
+		| ownedFeatureMembership_comp += InterfaceUsageMember
 		| ownedImport_comp += Import
 	)* '}'
 ;
 
 /* INTERFACE DEFINITION MEMBERSHIPS */
 
-InterfaceEndMember returns SysML::EndFeatureMembership :
+InterfaceUsageMember returns SysML::FeatureMembership :
+	NestedUsageMember | InterfaceEndMember | ConjugatedInterfaceEndMember
+;
+
+InterfaceEndMember returns SysML::EndPortMembership :
 	DefinitionMemberPrefix
     (
-      isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedMemberFeature_comp = PortUsage
-    | 'abstract' isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractPortUsage
-	| isPort ?= 'end' 'port'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::PortUsage|QualifiedName] ';'
+      isPort ?= 'end' 'port'? ownedMemberFeature_comp = PortUsage
+    | 'abstract' isPort ?= 'end' 'port'? ownedMemberFeature_comp = AbstractPortUsage
+	)
+;
+
+ConjugatedInterfaceEndMember returns SysML::ConjugatedEndPortMembership :
+	DefinitionMemberPrefix
+    (
+      isPort ?= 'end' 'port'? ownedMemberFeature_comp = ConjugatedPortUsage
+    | 'abstract' isPort ?= 'end' 'port'? ownedMemberFeature_comp = AbstractConjugatedPortUsage
 	)
 ;
 

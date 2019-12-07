@@ -182,17 +182,17 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedMemberElement_comp = Block
     | 'block' ( memberName = Name )? 'is' memberElement = [SysML::Block|QualifiedName] ';'
 	| ownedMemberElement_comp = ValueType
-    | ( 'value' 'type' | 'valuetype' ) ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
+    | 'value' 'type' ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
 	| ownedMemberElement_comp = AssociationBlock
-    | ( 'assoc' 'block' | 'assocbock' ) ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
+    | 'assoc' 'block' ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
 	| ownedMemberElement_comp = InterfaceDefinition
-    | ( 'interface' 'def' | 'interfacedef' ) ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
+    | 'interface' 'def' ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
 	| ownedMemberElement_comp = PortDefinition
-    | ( 'port' 'def' | 'portdef' ) ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
+    | 'port' 'def' ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
 	| ownedMemberElement_comp = Activity
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
     | ownedMemberElement_comp = StateDefinition
-    | ( 'state' 'def' | 'statedef' ) ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
+    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedMemberElement_comp = Comment
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
@@ -350,7 +350,7 @@ ValueType returns SysML::ValueType :
 ;
 
 fragment ValueTypeDeclaration returns SysML::ValueType :
-	( isAbstract ?= 'abstract' )? ( 'value' 'type' | 'valuetype' ) ClassifierDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'value' 'type' ClassifierDeclarationCompletion
 ;
 
 /* PORT DEFINITIONS */
@@ -360,7 +360,7 @@ PortDefinition returns SysML::PortDefinition :
 ;
 
 fragment PortDeclaration returns SysML::PortDefinition :
-	( isAbstract ?= 'abstract' )? ( 'port' 'def' | 'portdef') ClassifierDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'port' 'def' ClassifierDeclarationCompletion
 ;
 
 /* ASSOCIATION BLOCKS */
@@ -370,7 +370,7 @@ AssociationBlock returns SysML::AssociationBlock :
 ;
 
 fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
-	( isAbstract ?= 'abstract' )? ( 'assoc' 'block' | 'assocblock' ) ClassifierDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'assoc' 'block' ClassifierDeclarationCompletion
 ;
 
 fragment AssociationBlockBody returns SysML::Type :
@@ -432,7 +432,7 @@ InterfaceDefinition returns SysML::InterfaceDefinition :
 ;
 
 fragment InterfaceDeclaration returns SysML::InterfaceDefinition :
-	( isAbstract ?= 'abstract' )? ( 'interface' 'def' | 'interfacedef' ) ClassifierDeclarationCompletion
+	( isAbstract ?= 'abstract' )? 'interface' 'def' ClassifierDeclarationCompletion
 ;
 
 fragment InterfaceBody returns SysML::Type :

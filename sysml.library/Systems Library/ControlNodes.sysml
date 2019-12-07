@@ -23,12 +23,7 @@ package ControlNodes {
 	 * Note: Incoming sucession connectors to a MergeAction must have source multiplicity 
 	 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
 	 */
-	activity MergeAction :> ControlAction, MergePerformance {
-		/**
-		 * A MergeAction must have exactly one predecessor.
-		 */
-		ref action predecessor: Action[1] :>> ControlAction::predecessors;
-	}
+	activity MergeAction :> ControlAction, MergePerformance;
 	
 	/** 
 	 * A DecisionAction is the ControlAction for a decision node.
@@ -38,12 +33,7 @@ package ControlNodes {
 	 * If an outgoing succession has a guard, it should have a transitionStep typed by 
 	 * DecisionTransition.
 	 */
-	activity DecisionAction :> ControlAction {
-		/**
-		 * A DecisionAction must have exactly one successor.
-		 */
-		ref action successor: Action[1] :>> ControlAction::successors;
-	}
+	activity DecisionAction :> ControlAction, DecisionPerformance;
 	
 	/**
 	 * A JoinAction is the ControlAction for a JoinNode.

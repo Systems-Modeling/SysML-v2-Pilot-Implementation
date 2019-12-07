@@ -9,7 +9,7 @@ package 'Allocation Example' {
 		ref views : Scene[*] ordered = takePhoto::scene;
 		ref photos : Picture[*] ordered = takePhoto::picture;
 		
-		do takePhoto[*] ordered 
+		perform takePhoto[*] ordered 
 			by takePicture (in scene, out picture);
 		
 		part f : AutoFocus {

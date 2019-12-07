@@ -42,9 +42,11 @@ Unit returns SysML::Package :
 	| AssociationBlockUnit
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
+	| StateDefinitionUnit
 	| PartUnit
 	| ValueUnit
 	| ActionUnit
+	| StateUnit
 ;
 
 AnonymousPackage returns SysML::Package :
@@ -75,6 +77,10 @@ ActivityUnit returns SysML::Activity :
 	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
+StateDefinitionUnit returns SysML::Behavior :
+	UnitPrefix StateDefDeclaration StateBody
+;
+
 PartUnit returns SysML::PartProperty :
 	UnitPrefix PartDeclaration UsageCompletion
 ;
@@ -85,6 +91,10 @@ ValueUnit returns SysML::ValueProperty :
 
 ActionUnit returns SysML::ActionUsage :
 	UnitPrefix ActionDeclaration ActivityBody
+;
+
+StateUnit returns SysML::ActionUsage :
+	UnitPrefix StateDeclaration StateBody
 ;
 
 fragment UnitPrefix returns SysML::Package :
@@ -111,7 +121,7 @@ Comment returns SysML::Comment :
 ;
 
 Annotation returns SysML::Annotation :
-	{SysML::Annotation} ( 'on' annotatedElement = [SysML::Element|QualifiedName] )?
+	{SysML::Annotation} ( 'about' annotatedElement = [SysML::Element|QualifiedName] )?
 ;
 
 EmptyAnnotation returns SysML::Annotation :
@@ -181,6 +191,8 @@ fragment PackagedDefinitionMember returns SysML::Membership :
     | ( 'port' 'def' | 'portdef' ) ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
 	| ownedMemberElement_comp = Activity
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
+    | ownedMemberElement_comp = StateDefinition
+    | ( 'state' 'def' | 'statedef' ) ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedMemberElement_comp = Comment
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
@@ -197,6 +209,9 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'action' ownedMemberElement_comp = ActionUsage
 	| 'abstract' 'action' ownedMemberElement_comp = AbstractActionUsage
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
+	| 'state' ownedMemberElement_comp = StateUsage
+	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
+	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
 ;
 
 /* DEFINITIONS */
@@ -226,10 +241,14 @@ NestedDefinitionMember returns SysML::Membership :
 ;
 
 NestedUsageMember returns SysML::FeatureMembership :
-	PrimaryUsageMember | ActionMember | PortMember | ConjugatedPortMember
+	StructureUsageMember | BehaviorUsageMember
 ;
 
-PrimaryUsageMember returns SysML::FeatureMembership :
+StructureUsageMember returns SysML::FeatureMembership :
+	NonPortStructureUsageMember | PortMember | ConjugatedPortMember
+;
+
+NonPortStructureUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	(
 	  isComposite ?= 'part' ownedMemberFeature_comp = PartProperty
@@ -262,12 +281,16 @@ PrimaryUsageMember returns SysML::FeatureMembership :
     )
 ;
 
-ActionMember returns SysML::FeatureMembership :
+BehaviorUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	( ('ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
 	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
-	| ('perform' | isComposite ?= 'do') ownedMemberFeature_comp = PerformActionUsage
+	| ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = StateUsage
+	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
+	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+	| 'perform' ownedMemberFeature_comp = PerformActionUsage
+	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
 	)
 ;
 
@@ -467,21 +490,22 @@ fragment ParameterList returns SysML::Type :
 ;
 
 fragment ActivityBody returns SysML::Type :
-	  ';'
-	| '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( PrimaryUsageMember | PortMember | ConjugatedPortMember | ActivityNodeMember )
-		| ownedImport_comp += Import
-	)* '}'
+	  ';' | '{' ActivityBodyItem* '}'
 ;
 
 fragment AbstractActivityBody returns SysML::Type :
-	  isAbstract ?= ';'
-	| isAbstract ?= '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ( PrimaryUsageMember | PortMember | ConjugatedPortMember | ActivityNodeMember )
-		| ownedImport_comp += Import
-	)* '}'
+	  isAbstract ?= ';' | isAbstract ?= '{' ActivityBodyItem* '}'
+;
+
+fragment ActivityBodyItem returns SysML::Type :
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedFeatureMembership_comp += StructureUsageMember
+	| ownedFeatureMembership_comp += InitialNodeMember
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
+	  ownedFeatureMembership_comp += ActivityNodeMember
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ownedImport_comp += Import
 ;
 
 /* ACTIVITIY MEMBERSHIPS */
@@ -490,12 +514,93 @@ ParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? memberName = Name ownedMemberFeature_comp = Parameter
 ;
 
+InitialNodeMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+	
+;
+
 ActivityNodeMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 
-	( ownedMemberFeature_comp = ActivityNode
-	| 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
-    | ownedMemberFeature_comp = TargetSuccession ';'		
+	DefinitionMemberPrefix ownedMemberFeature_comp = ActivityNode
+;
+
+TargetSuccessionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TargetSuccession ';'
+;
+
+/* STATE DEFINITIONS */
+
+StateDefinition returns SysML::Behavior :
+	StateDefDeclaration StateBody
+;
+
+fragment StateDefDeclaration returns SysML::Behavior :
+	( isAbstract ?= 'abstract')? 'state' 'def' name = Name ParameterList? SuperclassingList?
+;
+
+fragment StateBody returns SysML::Type :
+	';' | '{' StateBehaviorPart StateBodyItem* '}'
+;
+
+fragment AbstractStateBody returns SysML::Type :
+	isAbstract ?= ';' | isAbstract ?= '{' StateBehaviorPart StateBodyItem* '}'
+;
+
+fragment StateBodyItem returns SysML::Type :
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedFeatureMembership_comp += StructureUsageMember
+	| ownedFeatureMembership_comp += StateMember
+		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
+	| ownedFeatureMembership_comp += TransitionSuccessionMember
+	| ownedImport_comp += Import
+;
+
+fragment StateBehaviorPart returns SysML::Type :
+	( ownedFeatureMembership_comp += EntryBehaviorMember
+	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
+	)?
+	( ownedFeatureMembership_comp += DoBehaviorMember )?
+	( ownedFeatureMembership_comp += ExitBehaviorMember )?
+;
+
+StateBehaviorUsage returns SysML::ActionUsage :
+	EmptyActionUsage ';' | PerformActionUsage | ActionNode
+;
+
+EmptyActionUsage returns SysML::ActionUsage :
+	{SysML::ActionUsage}
+;
+
+/* STATE MEMBERSHIPS */
+
+EntryBehaviorMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'entry' ownedMemberFeature_comp = StateBehaviorUsage
+;
+
+DoBehaviorMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'do' ownedMemberFeature_comp = StateBehaviorUsage
+;
+
+ExitBehaviorMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'exit' ownedMemberFeature_comp = StateBehaviorUsage
+;
+
+StateMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix
+	( ( 'ref' 'state' | isComposite ?= 'state' ) ownedMemberFeature_comp = StateUsage
+	| 'abstract' ( 'ref' 'state' | isComposite ?= 'state' ) ownedMemberFeature_comp = AbstractStateUsage
 	)
+;
+
+ConditionalTransitionSuccessionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = ConditionalTransitionSuccession ';'
+;
+
+TargetTransitionSuccessionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionSuccession ';'
+;
+
+TransitionSuccessionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionSuccession ';'
 ;
 
 /* USAGES */
@@ -760,13 +865,83 @@ EmptySuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember ownedFeatureMembership_comp += EmptyTargetEndMember
 ;
 
-ConditionalSuccession returns SysML::ConditionalSuccession :
-	'if' ownedFeatureMembership_comp += ExpressionMember 'then' 
-	ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
+ConditionalSuccession returns SysML::Succession :
+	ownedFeatureMembership_comp += ConditionalStepMember
+	ownedFeatureMembership_comp += EmptySourceEndMember 
+	'then' ownedFeatureMembership_comp += ConnectorEndMember
 ;
 
-DefaultSuccession returns SysML::ConditionalSuccession :
-	'else' ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
+ConditionalStep returns SysML::Step :
+	'if' ownedFeatureMembership_comp += ExpressionMember
+;
+
+DefaultSuccession returns SysML::Succession :
+	ownedFeatureMembership_comp += EmptySourceEndMember 
+	ownedFeatureMembership_comp += EmptyTransitionStepMember
+	'else' ownedFeatureMembership_comp += ConnectorEndMember
+;
+
+EmptyTransitionStep returns SysML::Step :
+	{SysML::Step}
+;
+
+TransitionSuccession returns SysML::Succession :
+	'transition' ( ( name = Name )? TypePart? 'first' )? 
+	ownedFeatureMembership_comp += ConnectorEndMember 
+	ownedFeatureMembership_comp += TransitionStepMember 
+	'then' ownedFeatureMembership_comp += ConnectorEndMember	
+;
+
+TargetTransitionSuccession returns SysML::Succession :
+	ownedFeatureMembership_comp += EmptySourceEndMember
+	ownedFeatureMembership_comp += TransitionStepMember 
+	'then' ownedFeatureMembership_comp += ConnectorEndMember	
+;
+
+ConditionalTransitionSuccession returns SysML::Succession :
+    ownedFeatureMembership_comp += EmptySourceEndMember
+	( ownedFeatureMembership_comp += ConditionalStepMember )?
+	'then' ownedFeatureMembership_comp += ConnectorEndMember	
+;
+
+TransitionStep returns SysML::Step :
+	{SysML::Step}  
+	( 'accept' ownedFeatureMembership_comp += TriggerStepMember )?
+	( 'if' ownedFeatureMembership_comp += ExpressionMember )?
+	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
+;
+
+TriggerStep returns SysML::AcceptActionUsage :
+	ownedFeatureMembership_comp += EmptyParameterMember
+	ownedFeatureMembership_comp += ItemFeatureMember
+;
+
+EffectBehaviorUsage returns SysML::ActionUsage :
+	  EmptyActionUsage
+	| ( PerformActionUsageDeclaration | ActionNodeDeclaration )
+	  ( '{' ActivityBodyItem* '}' )?
+;
+
+/* SUCCESSION MEMBERHSIPS */
+
+EmptyTransitionStepMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = EmptyTransitionStep
+;
+
+ConditionalStepMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = ConditionalStep
+;
+
+TransitionStepMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TransitionStep
+;
+
+TriggerStepMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TriggerStep
+;
+
+EffectBehaviorMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = EffectBehaviorUsage
 ;
 
 /* ITEM FLOWS */
@@ -839,7 +1014,7 @@ fragment ActionDeclaration returns SysML::ActionUsage :
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	ActionUsageDeclaration ActivityBody
+	{SysML::ActionUsage} ActionUsageDeclaration ActivityBody
 ;
 
 AbstractActionUsage returns SysML::ActionUsage :
@@ -869,49 +1044,52 @@ ActionParameterFlow returns SysML::ItemFlow :
 ;
 
 PerformActionUsage returns SysML::PerformActionUsage :
+	PerformActionUsageDeclaration ActivityBody
+;
+
+PerformActionUsageDeclaration returns SysML::PerformActionUsage :
     ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?
-	ActivityBody
 ;
 
 /* ACTIVITY NODES */
 
 ActivityNode returns SysML::ActionUsage :
-	  ActionNode
-	| PerformActionNode
-	| AcceptActionNode
-	| SendActionNode
-	| ControlNode
+	  ActionNode | ControlNode
 ;
 
 ActionNode returns SysML::ActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
-    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-    ActionUsageDeclaration ActivityBody
+	ActionNodeDeclaration ActivityBody
 ;
 
-PerformActionNode returns SysML::PerformActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
-    ( 'perform' | isComposite ?= 'do' ) ( name = Name TypePart? 'by' )? 
+ActionNodeDeclaration returns SysML::ActionUsage :
+	  ActionUsageNodeDeclaration
+	| PerformActionNodeDeclaration
+	| AcceptActionNodeDeclaration
+	| SendActionNodeDeclaration	
+;
+
+ActionUsageNodeDeclaration returns SysML::ActionUsage :
+    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
+    ActionUsageDeclaration
+;
+
+PerformActionNodeDeclaration returns SysML::PerformActionUsage :
+    isComposite ?= 'perform' ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?
-	ActivityBody
 ;
 
-AcceptActionNode returns SysML::AcceptActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
+AcceptActionNodeDeclaration returns SysML::AcceptActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
-	ActivityBody
 ;
 
-SendActionNode returns SysML::SendActionUsage :
-	( ownedFeatureMembership_comp += EmptySuccessionMember )?
+SendActionNodeDeclaration returns SysML::SendActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
 	'send' ( ( name = Name TypePart? )? 'of')? ownedFeatureMembership_comp += ExpressionMember 
 	'to' ownedFeatureMembership_comp += ExpressionMember
-	ActivityBody
 ;
 
 ControlNode returns SysML::ControlNode :
@@ -922,13 +1100,11 @@ ControlNode returns SysML::ControlNode :
 ;
 
 MergeNode returns SysML::MergeNode :
-	{SysML::MergeNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'merge' ( name = Name TypePart? )? ';'
+	{SysML::MergeNode} isComposite ?= 'merge' ( name = Name TypePart? )? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	{SysML::DecisionNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-	'decide' ( name = Name TypePart? )? ';'
+	{SysML::DecisionNode} isComposite ?= 'decide' ( name = Name TypePart? )? ';'
  	( ownedFeatureMembership_comp += ConditionalSuccessionMember ';'
  	  ( ownedFeatureMembership_comp += ConditionalSuccessionMember ';' )* 
  	  ( ownedFeatureMembership_comp += DefaultSuccessionMember ';' )? 
@@ -937,13 +1113,11 @@ DecisionNode returns SysML::DecisionNode :
 ;
 
 JoinNode returns SysML::JoinNode :
-	{SysML::JoinNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'join' ( name = Name TypePart? )? ';'
+	{SysML::JoinNode} isComposite ?= 'join' ( name = Name TypePart? )? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
-	{SysML::ForkNode} ( ownedFeatureMembership_comp += EmptySuccessionMember )?
- 	isComposite ?= 'fork' ( name = Name TypePart? )? ';'
+	{SysML::ForkNode} isComposite ?= 'fork' ( name = Name TypePart? )? ';'
 ;
 
 EmptyParameter returns SysML::Parameter :
@@ -977,6 +1151,28 @@ DefaultSuccessionMember returns SysML::FeatureMembership :
 
 EmptyParameterMember returns SysML::ParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
+;
+
+/* STATES */
+
+fragment StateDeclaration returns SysML::ActionUsage :
+    ( isAbstract ?= 'abstract' )? 'state' 
+	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+;
+
+StateUsage returns SysML::ActionUsage :
+	{SysML::ActionUsage} ActionUsageDeclaration StateBody
+;
+
+AbstractStateUsage returns SysML::ActionUsage :
+	{SysML::ActionUsage} ActionUsageDeclaration AbstractStateBody
+;
+
+ExhibitStateUsage returns SysML::PerformActionUsage :
+    ( name = Name TypePart? 'by' )? 
+    ownedRelationship_comp += Subset 
+    ActionParameterList? SubsettingPart ValuePart?
+	StateBody
 ;
 
 /* EXPRESSIONS */

@@ -199,7 +199,7 @@ class KerMLScope extends AbstractScope {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
-					if (e.general !== null && !visited.contains(e.general)) {
+					if (e.general !== null && !e.general.eIsProxy && !visited.contains(e.general)) {
 						visited.add(e.general)
 						found = e.general.resolve(qn, false, false, visited)
 						visited.remove(e.general)
@@ -221,7 +221,7 @@ class KerMLScope extends AbstractScope {
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
-				if (e.importedPackage !== null && !visited.contains(e.importedPackage) && 
+				if (e.importedPackage !== null && !e.importedPackage.eIsProxy && !visited.contains(e.importedPackage) && 
 					(isInsideScope || e.visibility == VisibilityKind.PUBLIC)) {
 					visited.add(e.importedPackage)
 					found = e.importedPackage.resolve(qn, true, false, visited)

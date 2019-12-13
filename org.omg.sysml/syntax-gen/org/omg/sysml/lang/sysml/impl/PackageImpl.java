@@ -240,8 +240,8 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
 		EList<Relationship> ownedRelationships = super.getOwnedRelationship();
-		ownedRelationships.addAll(getOwnedMembership());
 		ownedRelationships.addAll(getOwnedImport());
+		ownedRelationships.addAll(getOwnedMembership());
 		return ownedRelationships;
 	}
 

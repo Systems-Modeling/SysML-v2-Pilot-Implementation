@@ -28,6 +28,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
@@ -122,6 +123,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		return new Identified().identifier(identifier);
 	}
 	
+	private Identified getIdentified(Element element) {
+		Object identifier = this.traversal.getIdentifier(element);
+		return identifier instanceof UUID? identified((UUID)identifier): null;
+	}
+	
 	/**
 	 * Create a list of Identified objects corresponding to the identifiers of a given list of Elements.
 	 * 
@@ -149,9 +155,6 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		apiElement.put("@type", eClass.getName());
 		apiElement.put("containingProject", identified(this.project.getIdentifier()));
 		apiElement.put("name", modelElement.getName());
-		for (EStructuralFeature feature: eClass.getEAllAttributes()) {
-			apiElement.put(feature.getName(), modelElement.eGet(feature));
-		}
 //		System.out.println("... name = " + apiElement.getName() + 
 //				" type = " + apiElement.getAtType() + 
 //				" containingProject = " + apiElement.getContainingProject().getIdentifier());
@@ -180,8 +183,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	protected org.omg.sysml.model.Element createRelationship(Relationship modelRelationship) throws ApiException {
 		org.omg.sysml.model.Element repositoryRelationship = this.initialize(modelRelationship);
-		repositoryRelationship.put("source", getIdentified(modelRelationship.getSource()));
-		repositoryRelationship.put("target", getIdentified(modelRelationship.getTarget()));
+//		repositoryRelationship.put("source", getIdentified(modelRelationship.getSource()));
+//		repositoryRelationship.put("target", getIdentified(modelRelationship.getTarget()));
 		return  elementApi.createElement(repositoryRelationship);
 	}
 	
@@ -253,6 +256,38 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 			} else {
 				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
 				return Integer.toHexString(relationship.hashCode());
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void postProcess(Element element) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
+		EClass eClass = element.eClass();
+		apiElement.put("@type", eClass.getName());
+		apiElement.put("identifier", this.traversal.getIdentifier(element).toString());
+		apiElement.put("containingProject", identified(this.project.getIdentifier()));
+		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
+			String name = feature.getName();
+			if (!apiElement.containsKey(name) && !"feature".equals(name) && !"bound".equals(name)) {
+				Object value = element.eGet(feature);
+				if (feature instanceof EReference) {
+					value = feature.isMany()?
+						getIdentified((List<Element>)value):
+						getIdentified((Element)value);
+				}
+				apiElement.put(feature.getName(), value);
+			}
+		}
+		try {
+			elementApi.createElement(apiElement);
+		} catch (ApiException e) {
+			System.out.println();
+			if (e.getCode() >= 500) {
+				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
+			} else {
+				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
 			}
 		}
 	}

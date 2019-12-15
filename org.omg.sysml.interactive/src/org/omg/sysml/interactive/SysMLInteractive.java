@@ -49,8 +49,6 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
-import org.omg.sysml.util.traversal.impl.TraversalImpl;
-import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicate;
@@ -222,10 +220,7 @@ public class SysMLInteractive extends SysMLUtil {
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
-		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
-		Traversal traversal = new TraversalImpl(visitorFactory);
-		visitorFactory.setTraversal(traversal);	
-		processingFacade.setTraversal(traversal);
+		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
 	

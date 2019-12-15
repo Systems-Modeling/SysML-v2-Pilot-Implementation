@@ -28,7 +28,7 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
 /**
- * This is a default element processing facade that simply prints out a string representation of an Element or Relationship 
+ * This is a default element processing facade that simply prints out a string representation of an Element
  * being processed and returns a hex-string representation of the object hash code to be used as an identifier.
  * 
  * @author Ed Seidewitz
@@ -119,18 +119,10 @@ public class DefaultElementProcessingFacadeImpl implements ElementProcessingFaca
 	 * @see org.omg.sysml.util.traversal.facade.ElementProcessingFacade#processElement(org.omg.sysml.lang.sysml.Element)
 	 */
 	@Override
-	public String processElement(Element element) {
+	public String process(Element element) {
 		return getId(element);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.omg.sysml.util.traversal.facade.ElementProcessingFacade#processRelationship(org.omg.sysml.lang.sysml.Relationship)
-	 */
-	@Override
-	public String processRelationship(Relationship relationship) {
-		return getId(relationship);
-	}
-	
 	/* (non-Javadoc)
 	 * @see org.omg.sysml.util.traversal.facade.ElementProcessingFacade#postprocess(org.omg.sysml.lang.sysml.Element)
 	 */

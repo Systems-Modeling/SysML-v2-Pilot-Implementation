@@ -52,12 +52,17 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
 	
+	private static final int MAX_DOT_COUNT = 100;
+	
 	private final ApiClient apiClient = new ApiClient();
 	private final ElementApi elementApi = new ElementApi(apiClient);
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
 
 	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
+	
+	private boolean isVerbose = false;
+	private int dotCount = 0;
 
 	/**
 	 * Create a facade for processing the Elements of a project with the given name. A project with that name
@@ -101,6 +106,23 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public Traversal getTraversal() {
 		return this.traversal;
+	}
+	
+	/**
+	 * Set whether the facade prints a detailed trace of what is being traversed.
+	 * 
+	 * @param 	isVerbose		whether verbose mode is to be activated
+	 */
+	public void setIsVerbose(boolean isVerbose) {
+		this.isVerbose = isVerbose;
+	}
+	/**
+	 * Return whether verbose mode is active.
+	 * 
+	 * @return whether verbose mode is active
+	 */
+	public boolean isVerbose() {
+		return this.isVerbose;
 	}
 	
 	/**
@@ -213,12 +235,23 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	@Override
 	public Object process(Element element) {
-		System.out.print("Saving " + descriptionOf(element) + "... ");
+		if (this.isVerbose()) {
+			System.out.print("Saving " + descriptionOf(element) + "... ");
+		} else {
+			if (dotCount == MAX_DOT_COUNT) {
+				System.out.println();
+				dotCount = 0;
+			}
+			System.out.print(".");
+			dotCount++;
+		}
 		Object identifier = UUID.fromString((String)this.createElement(this.initialize(element)).get("identifier"));
 		if (identifier == null) {
 			identifier = Integer.toHexString(element.hashCode());
 		}
-		System.out.println("id is " + identifier);
+		if (this.isVerbose()) {
+			System.out.println("id is " + identifier);
+		}
 		return identifier;
 	}
 

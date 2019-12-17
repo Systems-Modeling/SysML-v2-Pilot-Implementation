@@ -234,6 +234,7 @@ public class SysMLInteractive extends SysMLUtil {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
+				System.out.println();
 				return modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {

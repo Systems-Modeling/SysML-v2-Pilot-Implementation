@@ -48,6 +48,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	public void initialize(String modelName, String basePath) throws ApiException  {
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, basePath);	
 		processingFacade.setTraversal(this.initialize(processingFacade));
+		processingFacade.setIsVerbose(true);
 		this.projectId = processingFacade.getProjectId();
 	}
 	

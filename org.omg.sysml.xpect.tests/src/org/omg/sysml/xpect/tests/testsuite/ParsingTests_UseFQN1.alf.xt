@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -18,8 +18,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	class A {}
-	/* XPECT scope at test::A ---
-	  	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	  	Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,	  	Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value,
+	//* XPECT scope at test::A ---
 	  	A, B, test.A, test.B
 	--- */
 	class B specializes test::A{}

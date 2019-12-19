@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Feature Typing</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature
+ * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -31,8 +29,8 @@ public interface FeatureTyping extends Generalization {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
@@ -47,8 +45,7 @@ public interface FeatureTyping extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
@@ -66,8 +63,8 @@ public interface FeatureTyping extends Generalization {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Typed Feature</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Typed Feature</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Typed Feature</em>' reference.
@@ -82,8 +79,7 @@ public interface FeatureTyping extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature <em>Typed Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Typed Feature</em>' reference.
 	 * @see #getTypedFeature()
 	 * @generated

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -21,19 +21,19 @@ END_SETUP
 package test {
 	import OuterPackage::*;
 	//XPECT linkedName at A --> OuterPackage.A
-	/* XPECT scope at A ---
+	//* XPECT scope at A ---
+	       B.b.a1, test.B.b.a1, try.a1, test.try.a1,
 		   Try, Try.a1, A, A.a1, B,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B,
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
 	--- */
 	class Try specializes A{}
 	//XPECT linkedName at B::b --> OuterPackage.B.b
-	/* XPECT scope at B::b ---
+	//* XPECT scope at B::b ---
+	       B.b.a1, test.B.b.a1, try.a1, test.try.a1,
 		   Try, Try.a1, A, A.a1, B, B.b, try,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, test.B.b, test.try, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b,
-		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,		   Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,		   Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,		   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,		   Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,		   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,		   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		   Base.selfLinks, Base.things, Base.values
+		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 	--- */
 	feature try : B::b;
 }

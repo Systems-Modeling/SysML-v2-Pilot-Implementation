@@ -1,26 +1,37 @@
-/* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
-		File {from ="DependencyOuterPackage.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.alf"}
-				File {from ="DependencyOuterPackage.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
 			}
 		}
 	}
 END_SETUP 
 */
+//xpect test pass but has the below in the console output
+//2348 [main] ERROR xt.linking.lazy.LazyLinkingResource  - Cyclic resolution of lazy links : Superclassing.superclass->Superclassing.superclass in resource 'file:/C:/Users/mw107/Documents/GitHub2/SysML-v2-Pilot-Implementation/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/failing/ShadowingTests_CircleProblem2.alf.xt'.
+//org.eclipse.xtext.linking.lazy.LazyLinkingResource$CyclicLinkingException: Cyclic resolution of lazy links : Superclassing.superclass->Superclassing.superclass in resource 'file:/C:/Users/mw107/Documents/GitHub2/SysML-v2-Pilot-Implementation/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/failing/ShadowingTests_CircleProblem2.alf.xt'.
+//	at org.eclipse.xtext.linking.lazy.LazyLinkingResource.handleCyclicResolution(LazyLinkingResource.java:323)
 
+// XPECT noErrors --> ""
 package Test1{
 	class A {
 		import B::*;
-		// XPECT errors ---> "Couldn't resolve reference to Class 'A'." at "A"
+		//XPECT linkedName at A --> Test1.A
+		//* XPECT scope at A ---
+   		A, A.B, A.B.B, B, B.B, Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value, OuterPackage.A,
+OuterPackage.A.a1, OuterPackage.B, Test1.A, Test1.A.B, Test1.A.B.B
+ 	--- */
 		class B specializes A{}
 	}
 }

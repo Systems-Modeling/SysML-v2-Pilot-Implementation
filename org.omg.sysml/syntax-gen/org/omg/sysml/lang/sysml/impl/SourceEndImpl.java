@@ -5,6 +5,8 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ConditionalSuccession;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -50,7 +52,9 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = getOwningType();
-		return type instanceof Feature? 
+		return type instanceof ConditionalSuccession?
+				((Feature)type).getOwningType():
+			   type instanceof Feature? 
 				getPreviousFeature((Feature)type): 
 				super.getDefaultType(defaultNames);
 	}
@@ -63,12 +67,12 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
 			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
 				Feature previousFeature = memberships.get(i).getMemberFeature();
-				if (!(previousFeature instanceof Parameter)) {
+				if (!(previousFeature instanceof Parameter || previousFeature instanceof Connector)) {
 					return previousFeature;
 				}
 			}
 			return type instanceof Feature? getPreviousFeature((Feature)type): null;
 		}
 	}
-
+	
 } //SourceEndImpl

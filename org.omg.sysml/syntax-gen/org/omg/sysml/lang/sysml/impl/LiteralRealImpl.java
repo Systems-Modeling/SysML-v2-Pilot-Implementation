@@ -12,9 +12,8 @@ import org.omg.sysml.lang.sysml.LiteralReal;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Literal Real</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Literal
+ * Real</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -26,9 +25,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralReal {
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -36,9 +35,9 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	protected static final double VALUE_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -46,8 +45,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	protected double value = VALUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected LiteralRealImpl() {
@@ -55,8 +53,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,8 +62,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,8 +71,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,8 +83,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -102,8 +96,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,8 +110,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +124,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -146,8 +137,7 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,4 +151,4 @@ public class LiteralRealImpl extends LiteralExpressionImpl implements LiteralRea
 		return result.toString();
 	}
 
-} //LiteralRealImpl
+} // LiteralRealImpl

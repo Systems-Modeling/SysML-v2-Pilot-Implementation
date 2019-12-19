@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencySamePackageName_A.alf" }
+		File {from ="/src/DependencySamePackageName_B.alf" }
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencySamePackageName_A.alf" }
+				File {from ="/src/DependencySamePackageName_B.alf" }
+			}
+		}
+	}
+END_SETUP 
+*/
+//Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
+//Current implemention import from the first src package(A).
+package test{
+	import SamePackage::container::*;
+	class something1 specializes A{}
+	//pass junit test
+	//XPECT errors -->"Couldn't resolve reference to Classifier 'B'." at "B"
+	class something2 specializes B{}
+}
+

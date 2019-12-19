@@ -6,7 +6,7 @@
       <fileExtension
             fileExtension="alf"
             xtextLanguageName="org.omg.sysml.Alf"
-            xtextRuntimeModule="org.omg.sysml.AlfRuntimeModule"
+            xtextRuntimeModule="org.omg.sysml.xpect.SysMLXpectRuntimeModule"
             xtextUiModule="org.omg.sysml.ui.AlfUiModule">
       </fileExtension>
    </extension>

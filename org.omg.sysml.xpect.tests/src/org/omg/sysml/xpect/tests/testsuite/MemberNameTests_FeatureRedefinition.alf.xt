@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,10 +22,10 @@ package testt {
 	}
 	feature B is A;
 	//XPECT linkedName at B::a --> testt.A.a
-	/* XPECT scope at B::a ---
+	//* XPECT scope at B::a ---
    		A, A.a, B, B.a, C,
    		testt.A, testt.A.a, testt.B, testt.B.a, testt.C,
-	   	Base.BinaryLink.linkage, Base.BinaryLink.participant,		Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,		Base.BinaryLink.targetParticipant, Base.Link.participant, Base.SelfLink.myself, Base.SelfLink.self,		Base.SelfLink.sourceParticipant, Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,		Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		Base.selfLinks, Base.things, Base.values 
 	--- */
 	feature C redefines B::a;
 }
+//	   	Base.BinaryLink.linkage, Base.BinaryLink.participant,		Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,		Base.BinaryLink.targetParticipant, Base.Link.participant, Base.SelfLink.myself, Base.SelfLink.self,		Base.SelfLink.sourceParticipant, Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,		Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		Base.selfLinks, Base.things, Base.values

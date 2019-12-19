@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -24,7 +24,7 @@ package test{
 	class inner{
 		import OuterPackage::*;
 		class B specializes A {
-			// XPECT errors --> "Couldn't resolve reference to Class 'a2'." at "a2"
+			// XPECT errors --> "Couldn't resolve reference to Classifier 'a2'." at "a2"
 			class b specializes a2{}
 		}
 	}

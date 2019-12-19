@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,25 +22,15 @@ package test{
 		class aa is a;
 	}
 	AA is A;
-/* XPECT scope at AA ---
+//* XPECT scope at AA ---
 	   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa,
 	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, 
-	   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,
-	   Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value,
 --- */
 	//XPECT linkedName at AA --> test.A
 	class B specializes AA{
-		/* XPECT scope at aa ---
+		//* XPECT scope at aa ---
 			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa, B.b, B.b_alias, a, aa, b, b_alias,
 			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias,
-			   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.BinaryLink.linkage, Base.BinaryLink.participant,
-			   Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,
-			   Base.BinaryLink.targetParticipant, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,
-			   Base.Link.participant, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence,
-			   Base.SelfLink, Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,
-			   Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,
-			   Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,
-			   Base.selfLinks, Base.things, Base.values 
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b: aa;

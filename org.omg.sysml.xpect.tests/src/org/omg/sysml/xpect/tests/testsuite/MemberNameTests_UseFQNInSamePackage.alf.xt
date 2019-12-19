@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -19,9 +19,8 @@ END_SETUP
 package test{
 	class A {}
 	//XPECT linkedName at A --> test.A
-	/* XPECT scope at test::A ---
+	//* XPECT scope at test::A ---
 	   	A, B, test.A, test.B,
-	   	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	    Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,	    Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value
 	   	--- */
 	class B specializes test::A{}
 }

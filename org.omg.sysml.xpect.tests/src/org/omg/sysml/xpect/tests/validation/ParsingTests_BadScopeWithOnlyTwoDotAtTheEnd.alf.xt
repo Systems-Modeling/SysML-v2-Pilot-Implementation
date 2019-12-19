@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -23,8 +23,9 @@ package test{
 		feature a: A;
 	}
 	class B{
-		/* XPECT errors ---
-			"Couldn't resolve reference to Category 'Test3::A'." at "Test3::A"
+		//* XPECT errors ---
+			"Couldn't resolve reference to Type 'Test3::A'." at "Test3::A"
+			"Couldn't resolve reference to Type 'a'." at "a"
 			"no viable alternative at input ':'" at ":"
 		--- */
 		feature b: Test3::A:a;

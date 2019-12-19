@@ -18,9 +18,9 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 /**
- * TODO Check whether the changes made for ST6RI-61 are valid.
  * 
- * @author wpiers
+ * @author William Piers, Obeo
+ * @author Ed Seidewitz, Model Driven Solutions
  *
  */
 public class CustomUML2EcoreConverter extends UML2EcoreConverter {
@@ -40,48 +40,47 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EReference
-					&& ((EReference) modelElement).isMany()
 					&& AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
-				EAnnotation compSubsets = modelElement.getEAnnotation(ANNOTATION__SUBSETS);
+				EReference compRef = (EReference) modelElement;
+
+				// create a new EReference that will not be composite
+				EReference normalRef = EcoreFactory.eINSTANCE.createEReference();
+				normalRef.setName(compRef.getName());
+				normalRef.setEType(compRef.getEType());
+				normalRef.setLowerBound(compRef.getLowerBound());
+				normalRef.setUpperBound(compRef.getUpperBound());
+
+				// set the new reference to be derived, because the generated subsetting mechanism
+				// does not work with Xtext lazy linking.
+				normalRef.setDerived(true);
+				normalRef.setTransient(true);
+				normalRef.setVolatile(true);
+
+				// change the reference name
+				compRef.setName(compRef.getName() + "_comp");
+
+				// set the old reference to be containment (even though the UML property was composite, 
+				// the reference will not be, because the original property subsets a composite)
+				compRef.setContainment(true);
+
+				// Ensure the opposite container reference is optional.
+				EReference opRef = compRef.getEOpposite();
+				if (opRef != null) {
+					opRef.setLowerBound(0);
+				}
+
+				// add the normal ref, now that its name is not in use anymore
+				EClass container = (EClass) ((EStructuralFeature) compRef).eContainer();
+				container.getEStructuralFeatures().add(normalRef);
+
+				// move all subsetting to the new reference
+				EAnnotation compSubsets = compRef.getEAnnotation(ANNOTATION__SUBSETS);
 				if (compSubsets != null) {
-					EReference compRef = (EReference) modelElement;
-
-					// get the base reference from the initial annotation
-					EReference baseRef = null;
-					for (EObject ref : compSubsets.getReferences()) {
-						if (ref instanceof EReference && ((EReference) ref).isContainment()) {
-							baseRef = (EReference) ref;
-						}
-					}
-
-					if (baseRef != null) {
-						// create a new EReference that will subset the base reference
-						EReference normalRef = EcoreFactory.eINSTANCE.createEReference();
-						normalRef.setName(compRef.getName());
-						normalRef.setEType(compRef.getEType());
-						normalRef.setLowerBound(compRef.getLowerBound());
-						normalRef.setUpperBound(compRef.getUpperBound());
-
-						// change the reference name
-						compRef.setName(compRef.getName() + "_comp");
-
-						// add the normal ref, now that its name is not in use anymore
-						EClass container = (EClass) ((EStructuralFeature) compRef).eContainer();
-						container.getEStructuralFeatures().add(normalRef);
-
-						// update the comp reference annotation
-						compSubsets.getReferences().remove(baseRef);
-						compSubsets.getReferences().add(normalRef);
-
-						// update the normal reference annotation
-						EAnnotation normalSubsets = normalRef.getEAnnotation(ANNOTATION__SUBSETS);
-						if (normalSubsets == null) {
-							normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
-							normalSubsets.setSource(ANNOTATION__SUBSETS);
-							normalRef.getEAnnotations().add(normalSubsets);
-						}
-						normalSubsets.getReferences().add(baseRef);
-					}
+					EAnnotation normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
+					normalSubsets.setSource(ANNOTATION__SUBSETS);
+					normalRef.getEAnnotations().add(normalSubsets);
+					normalSubsets.getReferences().addAll(compSubsets.getReferences());
+					compRef.getEAnnotations().remove(compSubsets);
 				}
 			}
 		}

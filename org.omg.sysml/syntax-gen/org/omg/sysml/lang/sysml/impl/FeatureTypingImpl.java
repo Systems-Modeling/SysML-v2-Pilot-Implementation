@@ -16,9 +16,8 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Feature Typing</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
+ * Typing</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -31,9 +30,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTyping {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -42,8 +41,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 
 	/**
 	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getTypedFeature()
 	 * @generated
 	 * @ordered
@@ -51,8 +49,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	protected Feature typedFeature;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FeatureTypingImpl() {
@@ -60,8 +57,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,8 +66,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,8 +83,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type basicGetType() {
@@ -97,8 +91,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,22 +103,20 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetType() {
 		return type != null;
 	}
-	
+
 	@Override
 	public Feature getTypedFeature() {
-		return typedFeature == null? basicGetTypedFeature(): getTypedFeatureGen();
+		return typedFeature == null ? basicGetTypedFeature() : getTypedFeatureGen();
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getTypedFeatureGen() {
@@ -140,24 +131,23 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 		return typedFeature;
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Feature basicGetTypedFeature() {
 		if (typedFeature == null) {
 			Element owningRelatedElement = getOwningRelatedElement();
 			if (owningRelatedElement instanceof Feature) {
-				typedFeature = (Feature)owningRelatedElement;
+				typedFeature = (Feature) owningRelatedElement;
 			}
 		}
 		return typedFeature;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetTypedFeature(Feature newTypedFeature, NotificationChain msgs) {
@@ -171,25 +161,34 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setTypedFeature(Feature newTypedFeature) {
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetTypedFeature() {
-		return typedFeature != null;
+	@Override
+	public void setTypedFeature(Feature newTypedFeature) {
+		if (newTypedFeature != typedFeature) {
+			NotificationChain msgs = null;
+			if (typedFeature != null)
+				msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
+			if (newTypedFeature != null)
+				msgs = ((InternalEObject)newTypedFeature).eInverseAdd(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
+			msgs = basicSetTypedFeature(newTypedFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, newTypedFeature, newTypedFeature));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSetTypedFeature() {
+		return basicGetTypedFeature() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -204,8 +203,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -218,8 +216,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -236,8 +233,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -254,8 +250,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -272,8 +267,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -292,8 +286,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -302,8 +295,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -312,8 +304,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -321,8 +312,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
@@ -330,8 +320,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -340,8 +329,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -350,8 +338,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -360,14 +347,18 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 		}
 		setTypedFeature((Feature) newSpecific);
 	}
+	
+	@Override
+	public void basicSetSpecific(Type newSpecific) {
+		basicSetTypedFeature((Feature) newSpecific, null);
+	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
   		return false;
 	}
 
-} //FeatureTypingImpl
+} // FeatureTypingImpl

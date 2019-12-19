@@ -16,7 +16,7 @@ public class AlfParser extends AbstractAntlrParser {
 
 	@Override
 	protected void setInitialHiddenTokens(XtextTokenStream tokenStream) {
-		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_NOTE", "RULE_SL_NOTE");
 	}
 	
 
@@ -27,7 +27,7 @@ public class AlfParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "UnitDefinition";
+		return "Unit";
 	}
 
 	public AlfGrammarAccess getGrammarAccess() {

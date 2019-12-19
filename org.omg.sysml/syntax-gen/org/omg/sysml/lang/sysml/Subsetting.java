@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Subsetting</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -48,8 +46,7 @@ public interface Subsetting extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettedFeature <em>Subsetted Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Subsetted Feature</em>' reference.
 	 * @see #getSubsettedFeature()
 	 * @generated
@@ -82,8 +79,8 @@ public interface Subsetting extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettingFeature <em>Subsetting Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Subsetting Feature</em>' reference.
 	 * @see #getSubsettingFeature()
 	 * @generated
@@ -101,8 +98,8 @@ public interface Subsetting extends Generalization {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Feature</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owning Feature</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.
@@ -117,8 +114,7 @@ public interface Subsetting extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning Feature</em>' reference.
 	 * @see #getOwningFeature()
 	 * @generated

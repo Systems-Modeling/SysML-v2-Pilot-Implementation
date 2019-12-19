@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -18,6 +18,6 @@ END_SETUP
 */
 package Classes {
 	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Class 'c_Private'." at "c_Private"
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private'." at "c_Private"
 	class Try specializes c_Private{}
 }

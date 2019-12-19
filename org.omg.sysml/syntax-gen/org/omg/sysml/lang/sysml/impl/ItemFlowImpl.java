@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
@@ -10,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -32,6 +34,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getSourceOutputFeature <em>Source Output Feature</em>}</li>
@@ -64,6 +67,30 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ITEM_FLOW;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Behavior> getBehavior() {
+		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
+		super.getType().stream().
+			filter(type->type instanceof Behavior).
+			map(type->(Behavior)type).
+			forEachOrdered(behaviors::add);
+		return behaviors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
+		return !getBehavior().isEmpty();
 	}
 
 	/**
@@ -134,7 +161,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<ItemFlowFeature> getItemFlowFeature() {
@@ -144,15 +171,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
 			forEachOrdered(itemFlowFeatures::add);
 		return itemFlowFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetItemFlowFeature() {
-		return !getItemFlowFeature().isEmpty();
 	}
 
 	/**
@@ -185,12 +203,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 					redefinition.setRedefiningFeature(targetInput);
 					redefinition.setRedefinedFeature(features.get(i-1));
-					targetInput.getOwnedRelationship().add(redefinition);
+					targetInput.getOwnedRelationship_comp().add(redefinition);
 					ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
 					((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
 					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-					membership.getOwnedRelatedElement().add(targetEnd);
-					getOwnedRelationship().add(membership);
+					membership.setOwnedMemberFeature_comp(targetEnd);
+					getOwnedFeatureMembership_comp().add(membership);
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {
@@ -217,27 +235,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
   		return false;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getRelatedFeature() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> itemFlowFeature = (EList<Feature>)((EList<?>)getItemFlowFeature());
-		return itemFlowFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedFeature() {
-  		return false;
-	}
-
 	@Override
 	public boolean basicIsComposite() {
 		if (!isComposite && isSubtransfer()) {
@@ -258,6 +255,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return StepImpl.isPerformanceFeature(this);
 	}
 	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return StepImpl.getRelevantFeaturesOf(this);
+	}	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,6 +268,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
+				return getBehavior();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return getItemType();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -291,6 +295,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
+				getBehavior().clear();
+				getBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
 				getItemType().addAll((Collection<? extends Classifier>)newValue);
@@ -327,6 +335,9 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
+				getBehavior().clear();
+				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
 				return;
@@ -357,10 +368,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ITEM_FLOW__TYPE:
+				return isSetType();
+			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
+				return isSetBehavior();
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
-			case SysMLPackage.ITEM_FLOW__RELATED_FEATURE:
-				return isSetRelatedFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return !getItemType().isEmpty();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -370,11 +383,64 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return isSetItemFlowEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				return isSetItemFlowFeature();
+				return !getItemFlowFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				return !getItemFeature().isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Step.class) {
+			switch (derivedFeatureID) {
+				case SysMLPackage.ITEM_FLOW__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Step.class) {
+			switch (baseFeatureID) {
+				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.ITEM_FLOW__BEHAVIOR;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> association = (EList<Type>)((EList<?>)getAssociation());
+		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 } //ItemFlowImpl

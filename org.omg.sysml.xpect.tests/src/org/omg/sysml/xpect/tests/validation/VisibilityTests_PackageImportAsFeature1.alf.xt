@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -18,9 +18,9 @@ END_SETUP
 */
 
 package Classes {
-	// XPECT errors --> "Referenced element is not visible in this scope" at "VisibilityPackage::c_clazz::c_Public::c_packagee"
+	// XPECT errors --> "Couldn't resolve reference to Element 'VisibilityPackage::c_clazz::c_Public::c_packagee'." at "VisibilityPackage::c_clazz::c_Public::c_packagee"
 	import VisibilityPackage::c_clazz::c_Public::c_packagee;
-	// XPECT errors --> "Referenced type is not visible in this scope" at "c_packagee"
+	// XPECT errors --> "Couldn't resolve reference to Type 'c_packagee'." at "c_packagee"
 	feature try : c_packagee;
 }
 

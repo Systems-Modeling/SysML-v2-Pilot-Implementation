@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Interactive
+Bundle-SymbolicName: org.omg.sysml.interactive
+Bundle-Version: 1.0.0.qualifier
+Export-Package: org.omg.sysml.interactive
+Require-Bundle: org.eclipse.emf.ecore,
+ com.google.inject,
+ org.eclipse.xtext

@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -20,6 +20,6 @@ package test{
 		class A {}
 		class A_alias is A;
 	}
-	// XPECT errors --> "Couldn't resolve reference to Category 'P1::A_alias'." at "P1::A_alias"
+	// XPECT errors --> "Couldn't resolve reference to Type 'P1::A_alias'." at "P1::A_alias"
 	feature a: P1::A_alias;
 }

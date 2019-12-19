@@ -2,11 +2,16 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Superclassing</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Superclassing</b></em>'. <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * <p>Superclassing is a Generalization that is specific to the classifier case:</p>
+ * 
+ * <p><span><span>A classifier A is a generalization of a classifier B if (as usual) any instance of A is also an instance of B.</span></span></p>
+ * 
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -32,8 +37,8 @@ public interface Superclassing extends Generalization {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Superclass</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Superclass</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Superclass</em>' reference.
@@ -47,9 +52,11 @@ public interface Superclassing extends Generalization {
 	Classifier getSuperclass();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getSuperclass <em>Superclass</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.omg.sysml.lang.sysml.Superclassing#getSuperclass
+	 * <em>Superclass</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>Superclass</em>' reference.
 	 * @see #getSuperclass()
 	 * @generated
@@ -66,8 +73,8 @@ public interface Superclassing extends Generalization {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Subclass</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Subclass</em>' reference isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subclass</em>' reference.
@@ -82,8 +89,7 @@ public interface Superclassing extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getSubclass <em>Subclass</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Subclass</em>' reference.
 	 * @see #getSubclass()
 	 * @generated
@@ -117,8 +123,7 @@ public interface Superclassing extends Generalization {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning Classifier</em>' reference.
 	 * @see #getOwningClassifier()
 	 * @generated

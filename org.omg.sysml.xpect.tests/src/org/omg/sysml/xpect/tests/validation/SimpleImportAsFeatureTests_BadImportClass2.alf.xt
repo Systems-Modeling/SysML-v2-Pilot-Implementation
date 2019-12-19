@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -20,7 +20,7 @@ END_SETUP
 package test{
 	import OuterPackage.B.b;
 	class C {
-		// XPECT errors ---> "Couldn't resolve reference to Category 'B'." at "B"
+		// XPECT errors ---> "Couldn't resolve reference to Type 'B'." at "B"
 		feature c: B;
 	}
 }

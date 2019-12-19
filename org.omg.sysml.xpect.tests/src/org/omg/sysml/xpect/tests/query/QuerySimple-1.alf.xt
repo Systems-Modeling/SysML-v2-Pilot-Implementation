@@ -2,23 +2,28 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.alf"}
+		File {from ="/library_expr/Base.alf"}
+		File {from ="/library_expr/ControlFunctions.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.alf"}
+				File {from ="/library_expr/Base.alf"}
+				File {from ="/library_expr/ControlFunctions.alf"}
 			}
 		}
 	}
 END_SETUP 
 */
 
-package Q {
-  feature f = 10;
-  class C {
-    // XPECT scope at f --> f, C
-    feature g = %q(/Q/f);
-  }
+// XPECT noErrors ---> ""
+package P {
+	class A;
+	class C;
+	feature Q : C {
+		feature z : C;
+		feature R : C;
+	}
+	a : C = ./Q/z;
 }

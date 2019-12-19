@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,28 +22,20 @@ package test{
 		}
 	}
 	class B specializes A{
-		//if A:: RuntimeException:  OFSET 'A::a' not found
-		//if a Caused by RuntimeException: no EStructuralFeature found class b special...
-		//what is different from MultipleInheritance2 - A::a works fine...
 		class b specializes a {}
 	}
 	class C specializes B{
-		//can not test scope at a because a is not directly inherited? 
-		/* XPECT scope at b ---
- 		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, 
- 		a, a.aa, b, b.aa, c1, c1.aa, c2, c2.aa,
- 		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa, test.C, test.C.a, test.C.a.aa,
-		test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
- 		Base.Anything, Base.BehaviorOccurrence,
-		Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link,
-		Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value,
-	--- */
-		// linkedName at a --> test.A.a ----- xpect link test "a" test here will cause RuntimeException why?
 		class c1 specializes a {}
 		class c2 specializes b {}
 	}
 	class D specializes C::a{
 		//XPECT linkedName at aa --> test.A.a.aa
+		//* XPECT scope at aa ---
+ 		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, 
+		C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, aa, d,
+		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa,
+		test.C, test.C.a, test.C.a.aa, test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
+	--- */
 		class d specializes aa  {}
 	}
 }

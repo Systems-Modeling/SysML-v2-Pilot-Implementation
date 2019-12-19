@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -19,7 +19,7 @@ END_SETUP
 
 package Classes {
 	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Class 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
 	class try specializes c_clazz::c_Protect::c_publicc{}
 }
 

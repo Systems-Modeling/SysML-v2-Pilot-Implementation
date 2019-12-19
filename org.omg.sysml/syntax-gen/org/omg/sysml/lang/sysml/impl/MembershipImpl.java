@@ -7,13 +7,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -28,11 +33,13 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getAliases <em>Aliases</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +54,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @ordered
 	 */
 	protected Element memberElement;
+
+	/**
+	 * The cached value of the '{@link #getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberElement_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element ownedMemberElement_comp;
 
 	/**
 	 * The default value of the '{@link #getMemberName() <em>Member Name</em>}' attribute.
@@ -117,6 +134,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		return SysMLPackage.Literals.MEMBERSHIP;
 	}
 	
+	@Override
 	public Element getMemberElement() {
 		return memberElement == null? basicGetMemberElement(): getMemberElementGen();
 	}
@@ -140,11 +158,13 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Note: This is still necessary, because the Xtext lazy linker clears the memberElement value set via a
+	 * call to setOwnedMemberElement_comp, but does not install a proxy.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Element basicGetMemberElement() {
-		Element ownedMemberElement = getOwnedMemberElement();
+		Element ownedMemberElement = basicGetOwnedMemberElement();
 		if (memberElement == null && ownedMemberElement != null) {
 			memberElement = ownedMemberElement;
 		}
@@ -154,7 +174,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setMemberElement(Element newMemberElement) {
@@ -162,6 +182,13 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		memberElement = newMemberElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT, oldMemberElement, memberElement));
+		// Note: The generated code below causes the owned member element to be nulled during the Xtext reconcilation process.
+//		Resource.Internal eInternalResource = eInternalResource();
+//		if (eInternalResource == null || !eInternalResource.isLoading()) {
+//			if (ownedMemberElement_comp != null && ownedMemberElement_comp != newMemberElement) {
+//				setOwnedMemberElement_comp(null);
+//			}
+//		}
 	}
 
 	/**
@@ -176,13 +203,70 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedRelatedElement_comp() {
+		if (ownedRelatedElement_comp == null) {
+			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement_comp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwningRelatedElement() {
+		return getMembershipOwningPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof org.omg.sysml.lang.sysml.Package)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of org.omg.sysml.lang.sysml.Package");
+		}
+		return basicSetMembershipOwningPackage((org.omg.sysml.lang.sysml.Package) newOwningRelatedElement, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRelatedElement(Element newOwningRelatedElement) {
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof org.omg.sysml.lang.sysml.Package)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of org.omg.sysml.lang.sysml.Package");
+		}
+		setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package) newOwningRelatedElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningRelatedElement() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getMemberName() {
 		if (memberName == null) {
 			ElementImpl memberElement = (ElementImpl)this.getMemberElement();
 			if (memberElement != null) {
-				if (memberElement == getOwnedMemberElement()) {
+				if (memberElement == getOwnedMemberElement_comp()) {
 					memberName = memberElement.basicGetName();
 					memberElement.basicSetName(null);
 				} else {
@@ -253,28 +337,54 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	@Override
 	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
-		org.omg.sysml.lang.sysml.Package membershipOwningPackage = basicGetMembershipOwningPackage();
-		return membershipOwningPackage != null && membershipOwningPackage.eIsProxy() ? (org.omg.sysml.lang.sysml.Package)eResolveProxy((InternalEObject)membershipOwningPackage) : membershipOwningPackage;
+		if (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE) return null;
+		return (org.omg.sysml.lang.sysml.Package)eInternalContainer();
 	}
+	
+	// Additional subsets
+	
+	@Override
+	public EList<Element> getOwnedRelatedElement() {
+		EList<Element> relatedElements = super.getOwnedRelatedElement();
+		Element ownedMemberElement = getOwnedMemberElement();
+		if (ownedMemberElement != null) {
+			relatedElements.add(getOwnedMemberElement());
+		}
+		return relatedElements;
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Package basicGetMembershipOwningPackage() {
-		return getOwningRelatedElement(org.omg.sysml.lang.sysml.Package.class);
+	public NotificationChain basicSetMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newMembershipOwningPackage, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE, msgs);
+		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
-		// TODO: implement this method to set the 'Membership Owning Package' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		if (newMembershipOwningPackage != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE && newMembershipOwningPackage != null)) {
+			if (EcoreUtil.isAncestor(this, newMembershipOwningPackage))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newMembershipOwningPackage != null)
+				msgs = ((InternalEObject)newMembershipOwningPackage).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			msgs = basicSetMembershipOwningPackage(newMembershipOwningPackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE, newMembershipOwningPackage, newMembershipOwningPackage));
 	}
 
 	/**
@@ -283,7 +393,52 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated
 	 */
 	public boolean isSetMembershipOwningPackage() {
-		return basicGetMembershipOwningPackage() != null;
+		return getMembershipOwningPackage() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwnedMemberElement_comp() {
+		return ownedMemberElement_comp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		Element oldOwnedMemberElement_comp = ownedMemberElement_comp;
+		ownedMemberElement_comp = newOwnedMemberElement_comp;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, oldOwnedMemberElement_comp, newOwnedMemberElement_comp);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
+		if (newOwnedMemberElement_comp != ownedMemberElement_comp) {
+			NotificationChain msgs = null;
+			if (ownedMemberElement_comp != null)
+				msgs = ((InternalEObject)ownedMemberElement_comp).eInverseRemove(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
+			if (newOwnedMemberElement_comp != null)
+				msgs = ((InternalEObject)newOwnedMemberElement_comp).eInverseAdd(this, SysMLPackage.ELEMENT__OWNING_MEMBERSHIP, Element.class, msgs);
+			msgs = basicSetOwnedMemberElement_comp(newOwnedMemberElement_comp, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, newOwnedMemberElement_comp, newOwnedMemberElement_comp));
 	}
 
 	/**
@@ -303,7 +458,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated NOT
 	 */
 	public Element basicGetOwnedMemberElement() {
-		return getFirstOwnedRelatedElement();
+		return getOwnedMemberElement_comp();
 	}
 
 	/**
@@ -313,8 +468,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	@Override
 	public void setOwnedMemberElement(Element newOwnedMemberElement) {
-		// TODO: implement this method to set the 'Owned Member Element' reference
-		// Ensure that you remove @generated or mark it @generated NOT
+		setOwnedMemberElement_comp(newOwnedMemberElement);
 	}
 
 	// Operations
@@ -336,23 +490,127 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated
 	 */
 	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Element memberElement = getMemberElement();
+		if (memberElement != null) {
+			target.add(memberElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		org.omg.sysml.lang.sysml.Package membershipOwningPackage = getMembershipOwningPackage();
+		if (membershipOwningPackage != null) {
+			source.add(membershipOwningPackage);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				if (ownedMemberElement_comp != null)
+					msgs = ((InternalEObject)ownedMemberElement_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, null, msgs);
+				return basicSetOwnedMemberElement_comp((Element)otherEnd, msgs);
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				return basicSetOwnedMemberElement_comp(null, msgs);
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				return basicSetMembershipOwningPackage(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				if (resolve) return getMemberElement();
 				return basicGetMemberElement();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				if (resolve) return getOwnedMemberElement();
-				return basicGetOwnedMemberElement();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				return getOwnedMemberElement_comp();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				if (resolve) return getMembershipOwningPackage();
-				return basicGetMembershipOwningPackage();
+				return getMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				return getMemberName();
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return getVisibility();
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				return getAliases();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				if (resolve) return getOwnedMemberElement();
+				return basicGetOwnedMemberElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,8 +627,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)newValue);
 				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)newValue);
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				setOwnedMemberElement_comp((Element)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)newValue);
@@ -384,6 +642,9 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				getAliases().clear();
 				getAliases().addAll((Collection<? extends String>)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -400,8 +661,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)null);
 				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)null);
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				setOwnedMemberElement_comp((Element)null);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)null);
@@ -414,6 +675,9 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return;
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				getAliases().clear();
+				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -429,12 +693,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP:
+				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.MEMBERSHIP__SOURCE:
 				return isSetSource();
+			case SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT:
+				return isSetOwningRelatedElement();
 			case SysMLPackage.MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return basicGetOwnedMemberElement() != null;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
+				return ownedMemberElement_comp != null;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				return isSetMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
@@ -443,6 +711,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return visibility != VISIBILITY_EDEFAULT;
 			case SysMLPackage.MEMBERSHIP__ALIASES:
 				return aliases != null && !aliases.isEmpty();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return basicGetOwnedMemberElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -479,55 +749,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		result.append(aliases);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__TARGET);
-		// NOTE: The "memberElement" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element memberElement = basicGetMemberElement();
-		if (memberElement != null) {
-			target.add(memberElement);
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.MEMBERSHIP__SOURCE);
-		Element membershipOwningPackage = getMembershipOwningPackage();
-		if (membershipOwningPackage != null) {
-			source.add(membershipOwningPackage);
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 } //MembershipImpl

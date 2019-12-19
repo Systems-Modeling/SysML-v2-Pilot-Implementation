@@ -16,9 +16,8 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Subsetting</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -33,8 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	/**
 	 * The cached value of the '{@link #getSubsettedFeature() <em>Subsetted Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSubsettedFeature()
 	 * @generated
 	 * @ordered
@@ -43,8 +41,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 
 	/**
 	 * The cached value of the '{@link #getSubsettingFeature() <em>Subsetting Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSubsettingFeature()
 	 * @generated
 	 * @ordered
@@ -52,8 +49,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	protected Feature subsettingFeature;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SubsettingImpl() {
@@ -61,8 +57,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -71,8 +66,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -89,17 +83,15 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	public Feature basicGetSubsettedFeature() {
 		return subsettedFeature;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,21 +103,19 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubsettedFeature() {
 		return subsettedFeature != null;
 	}
-	
+
 	public Feature getSubsettingFeature() {
-		return subsettingFeature == null? basicGetSubsettingFeature(): getSubsettingFeatureGen();
+		return subsettingFeature == null ? basicGetSubsettingFeature() : getSubsettingFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getSubsettingFeatureGen() {
@@ -141,24 +131,24 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the Subsetting has a Feature as its owner, the use this as the default value of the subsettingFeature property.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> If the Subsetting has a Feature as its owner, the use
+	 * this as the default value of the subsettingFeature property. <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Feature basicGetSubsettingFeature() {
 		if (subsettingFeature == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
-				subsettingFeature = (Feature)owner;
+				subsettingFeature = (Feature) owner;
 			}
 		}
 		return subsettingFeature;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -170,8 +160,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubsettingFeature() {
@@ -179,8 +168,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -190,27 +178,26 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public Feature basicGetOwningFeature() {
 		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Feature? (Feature)owningType: null;
+		return owningType instanceof Feature ? (Feature) owningType : null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public void setOwningFeature(Feature newOwningFeature) {
 		super.setOwningType(newOwningFeature);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
@@ -218,8 +205,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -239,8 +225,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -260,8 +245,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -281,8 +265,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -305,8 +288,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -315,8 +297,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -325,8 +306,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -337,8 +317,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
@@ -346,8 +325,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -356,8 +334,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -366,8 +343,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -378,8 +354,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
@@ -387,8 +362,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -397,8 +371,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -407,8 +380,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setOwningType(Type newOwningType) {
@@ -419,12 +391,11 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningType() {
   		return false;
 	}
 
-} //SubsettingImpl
+} // SubsettingImpl

@@ -16,9 +16,8 @@ import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Superclassing</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Superclassing</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -33,8 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class SuperclassingImpl extends GeneralizationImpl implements Superclassing {
 	/**
 	 * The cached value of the '{@link #getSuperclass() <em>Superclass</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSuperclass()
 	 * @generated
 	 * @ordered
@@ -43,8 +41,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * The cached value of the '{@link #getSubclass() <em>Subclass</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSubclass()
 	 * @generated
 	 * @ordered
@@ -52,8 +49,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	protected Classifier subclass;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SuperclassingImpl() {
@@ -61,8 +57,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -71,8 +66,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -89,8 +83,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Classifier basicGetSuperclass() {
@@ -98,8 +91,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,21 +103,19 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSuperclass() {
 		return superclass != null;
 	}
-	
+
 	public org.omg.sysml.lang.sysml.Classifier getSubclass() {
-		return subclass == null? basicGetSubclass(): getSubclassGen();
+		return subclass == null ? basicGetSubclass() : getSubclassGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Classifier getSubclassGen() {
@@ -141,24 +131,25 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the Superclassing has a Classifier as its owner, the use this as the default value of the subclass property.
+	 * <!-- begin-user-doc --> 
+	 * If the Superclassing has a Classifier as its owner,
+	 * the use this as the default value of the subclass property. 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Classifier basicGetSubclass() {
 		if (subclass == null) {
 			Element owner = getOwningRelatedElement();
-			if (owner instanceof org.omg.sysml.lang.sysml.Classifier) {
-				subclass = (org.omg.sysml.lang.sysml.Classifier)owner;
+			if (owner instanceof Classifier) {
+				subclass = (Classifier) owner;
 			}
 		}
 		return subclass;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -170,8 +161,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubclass() {
@@ -179,8 +169,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -190,29 +179,27 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public Classifier basicGetOwningClassifier() {
 		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Classifier? (org.omg.sysml.lang.sysml.Classifier)owningType: null;
+		return owningType instanceof Classifier ? (org.omg.sysml.lang.sysml.Classifier) owningType : null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setOwningClassifier(Classifier newOwningClassifier) {
 		super.setOwningType(newOwningClassifier);
 	}
 
-
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningClassifier() {
@@ -220,8 +207,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -241,8 +227,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -262,8 +247,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -283,8 +267,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -307,8 +290,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -317,8 +299,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -327,8 +308,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -339,8 +319,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
@@ -348,8 +327,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -358,8 +336,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -368,8 +345,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -380,8 +356,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
@@ -389,8 +364,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -399,8 +373,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -409,8 +382,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setOwningType(Type newOwningType) {
@@ -421,12 +393,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningType() {
   		return false;
 	}
 
-} //SuperclassingImpl
+} // SuperclassingImpl

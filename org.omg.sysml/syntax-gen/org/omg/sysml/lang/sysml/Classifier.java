@@ -11,6 +11,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>Classifiers define sets containing individual objects of interest, such as cars, ships, or people. They are expressed semantically as sets of sequences of objects of length 1.</p>
+ * 
  * ownedSuperclassings = ownedGeneralizations->intersection(superclassing)
  * <!-- end-model-doc -->
  *

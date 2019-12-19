@@ -1,0 +1,50 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+ 
+package Import_Private {
+	package P1 {
+		class A;
+	}
+	package P2 {
+		private import P1::*;
+	}
+	//* XPECT scope at P1::A ---
+	   x, y, y1, z, P1.A, P3.B, B, Import_Private.x, Import_Private.y, Import_Private.y1, Import_Private.z, Import_Private.P1.A, Import_Private.P3.B, Import_Private.B,
+	--- */
+	x: P1::A;
+	
+	import P2::*;
+	// This should fail.
+	// A is not visible, because the import in P2 is private.
+	// XPECT errors --> "Couldn't resolve reference to Type 'A'." at "A"
+	y: A;
+	//XPECT errors --> "Couldn't resolve reference to Type 'P2::A'." at "P2::A"
+	y1: P2::A;
+	
+	package P3 {
+		class B;
+	}
+	
+	private import P3::*;
+	
+	// This should not fail.
+	// Private import only restricts visibility outside the package.
+	// XPECT linkedName at B --> Import_Private.P3.B
+	z: B;
+	
+}

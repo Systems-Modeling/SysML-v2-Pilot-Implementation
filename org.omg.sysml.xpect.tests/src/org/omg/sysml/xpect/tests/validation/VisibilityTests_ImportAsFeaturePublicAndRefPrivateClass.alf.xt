@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	ResourceSet {
 		ThisFile {}
@@ -19,7 +19,7 @@ END_SETUP
 package Classes {
 	import VisibilityPackage::c_Public;
 	class Try{
-		// XPECT errors --> "Couldn't resolve reference to Category 'c_Public::c_private'." at "c_Public::c_private"
+		// XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_private'." at "c_Public::c_private"
 		feature try : c_Public::c_private;
 	}
 }

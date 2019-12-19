@@ -5,19 +5,24 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Relationship</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * <p>A Relationship is an Element that has no reason to exist without having at least two other Elements to which to relate.</p>
+ * 
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement <em>Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getSource <em>Source</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship()
@@ -26,9 +31,8 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Relationship extends Element {
 	/**
-	 * Returns the value of the '<em><b>Owned Related Element</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Related Element</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -37,14 +41,13 @@ public interface Relationship extends Element {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Related Element</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owned Related Element</em>' containment reference
+	 * list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Related Element</em>' containment reference list.
+	 * @return the value of the '<em>Owned Related Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
-	 * @model opposite="owningRelationship" containment="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -52,7 +55,7 @@ public interface Relationship extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Related Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -61,15 +64,15 @@ public interface Relationship extends Element {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Related Element</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owning Related Element</em>' container reference
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Related Element</em>' container reference.
 	 * @see #setOwningRelatedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwningRelatedElement()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship
-	 * @model opposite="ownedRelationship" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp
+	 * @model opposite="ownedRelationship_comp" transient="false" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -77,13 +80,31 @@ public interface Relationship extends Element {
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owning Related Element</em>' container reference.
 	 * @see #getOwningRelatedElement()
 	 * @generated
 	 */
 	void setOwningRelatedElement(Element value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Related Element comp</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Related Element comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement_comp()
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
+	 * @model opposite="owningRelationship" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Element> getOwnedRelatedElement_comp();
 
 	/**
 	 * Returns the value of the '<em><b>Related Element</b></em>' reference list.
@@ -115,8 +136,8 @@ public interface Relationship extends Element {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Target</em>' reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference list.
@@ -139,8 +160,8 @@ public interface Relationship extends Element {
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Source</em>' reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference list.
@@ -151,5 +172,5 @@ public interface Relationship extends Element {
 	 * @generated
 	 */
 	EList<Element> getSource();
-	
+
 } // Relationship

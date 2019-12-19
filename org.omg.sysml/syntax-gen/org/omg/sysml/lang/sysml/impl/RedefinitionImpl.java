@@ -14,9 +14,8 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Redefinition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Redefinition</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -30,8 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	/**
 	 * The cached value of the '{@link #getRedefiningFeature() <em>Redefining Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRedefiningFeature()
 	 * @generated
 	 * @ordered
@@ -40,8 +38,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * The cached value of the '{@link #getRedefinedFeature() <em>Redefined Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRedefinedFeature()
 	 * @generated
 	 * @ordered
@@ -49,8 +46,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	protected Feature redefinedFeature;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RedefinitionImpl() {
@@ -58,22 +54,20 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.REDEFINITION;
 	}
-	
+
 	public Feature getRedefiningFeature() {
-		return redefiningFeature == null? basicGetRedefiningFeature(): getRedefiningFeatureGen();
+		return redefiningFeature == null ? basicGetRedefiningFeature() : getRedefiningFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getRedefiningFeatureGen() {
@@ -89,24 +83,25 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the Redefinition has a Feature as its owner, the use this as the default value of the redefiningFeature property.
+	 * <!-- begin-user-doc --> 
+	 * If the Redefinition has a Feature as its owner, then
+	 * use this as the default value of the redefiningFeature property. 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Feature basicGetRedefiningFeature() {
 		if (redefiningFeature == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
-				redefiningFeature = (Feature)owner;
+				redefiningFeature = (Feature) owner;
 			}
 		}
 		return redefiningFeature;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -118,8 +113,8 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean isSetRedefiningFeature() {
@@ -127,8 +122,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -145,8 +139,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature basicGetRedefinedFeature() {
@@ -154,8 +147,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -167,8 +159,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetRedefinedFeature() {
@@ -176,8 +167,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,8 +184,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -212,8 +201,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -230,8 +218,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -250,8 +237,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -260,8 +246,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -270,8 +255,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSubsettingFeature(Feature newSubsettingFeature) {
@@ -279,8 +263,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubsettingFeature() {
@@ -288,8 +271,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -298,8 +280,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -308,8 +289,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSubsettedFeature(Feature newSubsettedFeature) {
@@ -317,12 +297,11 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubsettedFeature() {
   		return false;
 	}
 
-} //RedefinitionImpl
+} // RedefinitionImpl

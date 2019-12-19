@@ -11,9 +11,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Instance Creation Expression</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Instance Creation Expression</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -26,8 +25,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class InstanceCreationExpressionImpl extends InvocationExpressionImpl implements InstanceCreationExpression {
 	/**
 	 * The cached value of the '{@link #getInstantiatedType() <em>Instantiated Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getInstantiatedType()
 	 * @generated
 	 * @ordered
@@ -35,8 +33,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	protected Type instantiatedType;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected InstanceCreationExpressionImpl() {
@@ -44,8 +41,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -54,8 +50,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -72,8 +67,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type basicGetInstantiatedType() {
@@ -81,8 +75,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -94,8 +87,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +101,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,8 +115,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,8 +129,7 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,4 +141,4 @@ public class InstanceCreationExpressionImpl extends InvocationExpressionImpl imp
 		return super.eIsSet(featureID);
 	}
 
-} //InstanceCreationExpressionImpl
+} // InstanceCreationExpressionImpl

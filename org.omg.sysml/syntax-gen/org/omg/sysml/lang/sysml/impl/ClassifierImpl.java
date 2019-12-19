@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -57,6 +58,12 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return getOwnedGeneralizationWithDefault(Superclassing.class, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING, SysMLPackage.eINSTANCE.getSuperclassing(), superclassDefault);
 	}
 	
+	@Override
+	public EList<Generalization> getOwnedGeneralization() {
+		getOwnedSuperclassing();
+		return super.getOwnedGeneralization();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

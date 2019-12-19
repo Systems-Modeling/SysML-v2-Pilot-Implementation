@@ -30,14 +30,18 @@ main() {
 	var model := uml.rootObjects()![Model];
 	model.packageImport := Set{};
 	model.elementImport := Set{};
-	model.unapplyProfiles();
-	var syntax := uml.objects()[Package]![name = "Abstract Syntax"];
+	var syntax := uml.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
+	model.unapplyProfiles();
 	syntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 	model.name := "sysml";
-	model.URI := "http://www.omg.org/spec/SysML/2.0";	
-	removeComposition();
+	model.URI := "http://www.omg.org/spec/SysML/2.0";
+	var featureClass := uml.objects()[Class]![name = "Feature"];
+	assert warning (featureClass <> null) with log ("Feature class not found.");
+	if featureClass <> null then {
+		featureClass.addNonuniqueAttribute();
+	} endif;
 }
 
 helper Package::unapplyProfiles() {
@@ -50,48 +54,32 @@ helper Package::unapplyProfiles() {
 	};
 }
 
-property compositeProperties: Set(Property);
-
-helper removeComposition() {
-	compositeProperties->forEach(prop) {
-		prop.isComposite := false;
-	}
+helper Class::addNonuniqueAttribute() {
+    var booleanType := self.oclAsType(Class).ownedAttribute![name = "isUnique"].type;
+	var isNonuniqueProperty := object Property {
+		name := "isNonunique";
+		type := booleanType;
+		lower := 1;
+		upper := 1;
+		isDerived := true;
+		defaultValue := object LiteralBoolean {
+			value := false;
+		}
+	};
+	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
+	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
 }
 
-mapping Namespace::Namespace(inout model: Model) {
-	self.ownedMember[Property]->map Property();
-	self.ownedMember[Namespace]->map Namespace(model);
-}
-
-mapping Package::Namespace(inout model: Model)
-	inherits Namespace::Namespace {
+mapping Package::Namespace(inout model: Model) {
+	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
+	self.ownedMember[Package]->map Namespace(model);
 	if self <> model then {
 		model.packagedElement += self.packagedElement;
-	} endif
+	} endif;
 }
 
-mapping inout Property::Property() {
-	log("Property " + nameOf(self.featuringClassifier![true]) + "::" + nameOf(self));
-	log("  isComposite: " + self.isComposite.toString());
-	if self.isComposite then {
-		var compositeSubsettedProperties := self.subsettedProperty[isComposite];
-		var compositeRedefinedProperties := self.redefinedProperty[isComposite];
-		log("  compositeSubsettedProperties: " + compositeSubsettedProperties->notEmpty().toString());
-		log("  compositeRedefinedProperties: " + compositeRedefinedProperties->notEmpty().toString());
-		if compositeSubsettedProperties->notEmpty() or compositeRedefinedProperties->notEmpty() then {
-			compositeProperties += self;
-			self.isDerived := true;
-			self.subsettedProperty := self.subsettedProperty - compositeSubsettedProperties;
-			self.redefinedProperty := self.redefinedProperty - compositeRedefinedProperties;
-			log("  opposite: " + nameOf(self.opposite));
-			if self.opposite <> null then {
-				self.opposite.isDerived := true;
-				var rejectedProperties := compositeSubsettedProperties->union(compositeRedefinedProperties);
-				self.opposite.subsettedProperty := self.opposite.subsettedProperty->reject(rejectedProperties->includes(opposite));
-				self.opposite.redefinedProperty := self.opposite.redefinedProperty->reject(rejectedProperties->includes(opposite));
-			} endif;
-		} endif;
-	} endif;
+query Property::featureQualifiedName(): String {
+	return nameOf(self.featuringClassifier![true]) + "::" + nameOf(self);
 }
 
 query nameOf(element: NamedElement): String {

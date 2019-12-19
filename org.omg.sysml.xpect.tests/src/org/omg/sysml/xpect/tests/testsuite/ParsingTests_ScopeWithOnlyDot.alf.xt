@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -20,11 +20,11 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	class C {
-		/* XPECT scope at OuterPackage.B.b ---
-	  	Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	  	Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	  	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	  	Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	  	Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	  	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	  	Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	  	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	  	Base.selfLinks, Base.things, Base.values,
+		//* XPECT scope at OuterPackage.B.b ---
+		c.a1, C.c.a1, test.C.c.a1,
 	  	C, C.c, 
-	  	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, 
-	  	c, test.C, test.C.c
+	  	c, test.C, test.C.c,
+	  	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 	--- */
 		feature c : OuterPackage.B.b;
 	}

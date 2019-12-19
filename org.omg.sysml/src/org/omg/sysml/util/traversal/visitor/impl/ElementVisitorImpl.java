@@ -23,7 +23,10 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.visitor.impl;
 
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -39,12 +42,31 @@ public class ElementVisitorImpl extends VisitorImpl {
 	public ElementVisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		super(element, traversal, facade);
 	}
+	
+	@Override
+	protected void preProcess() {
+		Element element = this.getElement();
+		if (element instanceof Classifier) {
+			((Classifier)element).getOwnedSuperclassing();
+		} else if (element instanceof Feature) {
+			((Feature)element).getOwnedSubsetting();
+			((Feature)element).getFeature();
+			
+			if (element instanceof Expression) {
+				((Expression)element).getInput();
+				((Expression)element).getOutput();
+				((Expression)element).getTyping();
+			}
+		}		
+		super.preProcess();
+	}
 
+	
 	/**
 	 * Process the Element being visited using the Element-processing facade for this visitor.
 	 */
 	protected Object process() {
-		return this.getFacade().processElement(this.getElement());
+		return this.getFacade().processElement(this.getElement());		
 	}
 
 }

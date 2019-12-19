@@ -1,0 +1,72 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyOuterPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyOuterPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+//
+//package Test1{
+//	class A specializes D{
+//		class B specializes C{}
+//	}
+//	class C specializes A{}
+//	class D specializes A.B{}
+//}
+
+
+// XPECT noErrors --> ""
+package Test1{
+		//XPECT linkedName at D --> Test1.D
+		//* XPECT scope at D ---
+   		A, A.B, A.B.B, Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value, C, C.B, D, D.B,
+OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, Test1.A, Test1.A.B, Test1.A.B.B, Test1.C,
+Test1.C.B, Test1.D, Test1.D.B
+ 	--- */
+	class A specializes D{
+		//XPECT linkedName at C --> Test1.C
+		//* XPECT scope at C ---
+		   B, B.B,
+   		A, A.B, A.B.B, Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value, C, C.B, D, D.B,
+OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, Test1.A, Test1.A.B, Test1.A.B.B, Test1.C,
+Test1.C.B, Test1.D, Test1.D.B
+ 	--- */
+		class B specializes C{}
+	}
+	//XPECT linkedName at A --> Test1.A
+	//* XPECT scope at A ---
+   		A, A.B, A.B.B, Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value, C, C.B, D, D.B,
+OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, Test1.A, Test1.A.B, Test1.A.B.B, Test1.C,
+Test1.C.B, Test1.D, Test1.D.B
+ 	--- */
+	class C specializes A{}
+	
+	//XPECT linkedName at A.B --> Test1.A.B
+//* XPECT scope at A.B ---
+   		A, A.B, A.B.B, Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,
+Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation,
+Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value, C, C.B, D, D.B,
+OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, Test1.A, Test1.A.B, Test1.A.B.B, Test1.C,
+Test1.C.B, Test1.D, Test1.D.B
+ 	--- */
+	class D specializes A.B{}
+}

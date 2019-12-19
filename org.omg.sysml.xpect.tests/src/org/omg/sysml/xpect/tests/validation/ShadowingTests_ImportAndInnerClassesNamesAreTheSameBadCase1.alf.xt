@@ -1,4 +1,4 @@
-/* 
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
@@ -22,6 +22,6 @@ package test{
 	class A{
 		class a2{}
 	}
-	// XPECT errors --> "Couldn't resolve reference to Class 'A::a1'." at "A::a1"
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'A::a1'." at "A::a1"
 	class B specializes A::a1 {} 
 }

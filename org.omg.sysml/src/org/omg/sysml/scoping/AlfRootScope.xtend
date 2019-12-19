@@ -23,18 +23,18 @@
  *****************************************************************************/
 package org.omg.sysml.scoping
 
-import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Package
 import java.util.Map
 import org.omg.sysml.lang.sysml.Element
 import java.util.Set
+import org.eclipse.emf.ecore.EClass
 
 class AlfRootScope extends AlfScope {
 	
-	new(IScope parent, Package pack, EReference reference, AlfScopeProvider scopeProvider) {
-		super(parent, pack, reference, scopeProvider)
+	new(IScope parent, Package pack, EClass referenceType, AlfScopeProvider scopeProvider) {
+		super(parent, pack, referenceType, scopeProvider)
 	}
 	
 	protected override void resolve() {

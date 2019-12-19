@@ -18,9 +18,8 @@ import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -34,10 +33,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FunctionImpl extends BehaviorImpl implements Function {
 
 	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::Evaluation";
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FunctionImpl() {
@@ -45,8 +43,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,20 +52,18 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	@Override
 	public EList<Expression> getExpression() {
-		return new DerivedEObjectEList<Expression>(
-				Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION, 
-				new int[]{SysMLPackage.TYPE__FEATURE});
+		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION,
+				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetExpression() {
@@ -76,8 +71,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -87,27 +81,28 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	public Parameter basicGetResult() {
 		List<Parameter> parameters = getOwnedParameters();
-		return parameters.isEmpty()? null: parameters.get(parameters.size() - 1);
+		return parameters.isEmpty() ? null : parameters.get(parameters.size() - 1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT // derived
 	 */
 	@Override
 	public void setResult(Parameter newResult) {
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * If the function has no Superclassings, then create one whose superclass is the appropriate default library class.
+	 * If the function has no Superclassings, then create one whose superclass is
+	 * the appropriate default library class.
 	 */
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
@@ -115,8 +110,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +126,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -152,8 +145,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -170,8 +162,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -188,8 +179,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -200,12 +190,11 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetStep() {
   		return false;
 	}
 
-} //FunctionImpl
+} // FunctionImpl

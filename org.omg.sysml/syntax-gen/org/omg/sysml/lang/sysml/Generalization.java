@@ -8,6 +8,18 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Generalization</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Generalization determines how instances of Types are related to one another. This includes:</p>
+ * 
+ * <ol>
+ * 	<li><span><span>A classifier A is a generalization of a classifier B if (as usual) any instance of A is also an instance of B.</span></span></li>
+ * 	<li><span><span>A classifier A is a generalization of a feature B if A is the same as or a generalization of the <em>feature type</em> of B.</span></span></li>
+ * 	<li><span><span>A feature A is a generalization of a feature B if <em>both</em> the featuring type of A is a generalization of the featuring type of B <em>and</em> the feature type of A is the same as or a generalization of the feature type of B. (In other words, both domain of A is a generalization of domain of B and range of A is a generalization of range of B)</span></span></li>
+ * 	<li><span><span>A feature cannot be a generalization of a classifier.</span></span></li>
+ * </ol>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

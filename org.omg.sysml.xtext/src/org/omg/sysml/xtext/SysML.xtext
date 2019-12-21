@@ -294,14 +294,14 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	)
 ;
 
-PortMember returns SysML::PortMembership :
+PortMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	( isPort ?= 'port' ownedMemberFeature_comp = PortUsage
 	| 'abstract' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
 	)
 ;
 
-ConjugatedPortMember returns SysML::ConjugatedPortMembership :
+ConjugatedPortMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	( isPort ?= 'port' ownedMemberFeature_comp = ConjugatedPortUsage
 	| 'abstract' isPort ?= 'port' ownedMemberFeature_comp = AbstractConjugatedPortUsage
@@ -411,14 +411,14 @@ AssociationEndMember returns SysML::EndFeatureMembership :
 	)
 ;
 
-EndPortMember returns SysML::EndPortMembership :
+EndPortMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
 	( 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage
 	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
 	)
 ;
 
-ConjugatedEndPortMember returns SysML::ConjugatedEndPortMembership :
+ConjugatedEndPortMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
 	( 'end' isPort ?= 'port' ownedMemberFeature_comp = ConjugatedPortUsage
 	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractConjugatedPortUsage
@@ -459,7 +459,7 @@ InterfaceUsageMember returns SysML::FeatureMembership :
 	NestedUsageMember | InterfaceEndMember | ConjugatedInterfaceEndMember
 ;
 
-InterfaceEndMember returns SysML::EndPortMembership :
+InterfaceEndMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
     (
       isPort ?= 'end' 'port'? ownedMemberFeature_comp = PortUsage
@@ -467,7 +467,7 @@ InterfaceEndMember returns SysML::EndPortMembership :
 	)
 ;
 
-ConjugatedInterfaceEndMember returns SysML::ConjugatedEndPortMembership :
+ConjugatedInterfaceEndMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
     (
       isPort ?= 'end' 'port'? ownedMemberFeature_comp = ConjugatedPortUsage
@@ -762,7 +762,7 @@ fragment ConjugatePortUsageDeclaration returns SysML::Usage :
 ;
 
 fragment ConjugatePortTyping returns SysML::Feature :
-	':' '~' ( ownedRelationship_comp += FeatureTyping | 'any' )
+	':' '~' ownedRelationship_comp += FeatureTyping
 ;
 
 /* CONNECTORS */

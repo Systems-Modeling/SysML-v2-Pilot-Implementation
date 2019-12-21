@@ -31,42 +31,6 @@ public interface SysMLFactory extends EFactory {
 	EndFeatureMembership createEndFeatureMembership();
 
 	/**
-	 * Returns a new object of class '<em>End Port Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>End Port Membership</em>'.
-	 * @generated
-	 */
-	EndPortMembership createEndPortMembership();
-
-	/**
-	 * Returns a new object of class '<em>Conjugated End Port Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conjugated End Port Membership</em>'.
-	 * @generated
-	 */
-	ConjugatedEndPortMembership createConjugatedEndPortMembership();
-
-	/**
-	 * Returns a new object of class '<em>Conjugated Port Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conjugated Port Membership</em>'.
-	 * @generated
-	 */
-	ConjugatedPortMembership createConjugatedPortMembership();
-
-	/**
-	 * Returns a new object of class '<em>Port Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Port Membership</em>'.
-	 * @generated
-	 */
-	PortMembership createPortMembership();
-
-	/**
 	 * Returns a new object of class '<em>Send Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +94,24 @@ public interface SysMLFactory extends EFactory {
 	MergeNode createMergeNode();
 
 	/**
+	 * Returns a new object of class '<em>State Action Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Action Membership</em>'.
+	 * @generated
+	 */
+	StateActionMembership createStateActionMembership();
+
+	/**
+	 * Returns a new object of class '<em>State Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Definition</em>'.
+	 * @generated
+	 */
+	StateDefinition createStateDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,6 +119,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	FeatureMembership createFeatureMembership();
+
+	/**
+	 * Returns a new object of class '<em>Conjugation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conjugation</em>'.
+	 * @generated
+	 */
+	Conjugation createConjugation();
 
 	/**
 	 * Returns a new object of class '<em>Membership</em>'.
@@ -371,6 +362,33 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	PortDefinition createPortDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Conjugated Port Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conjugated Port Definition</em>'.
+	 * @generated
+	 */
+	ConjugatedPortDefinition createConjugatedPortDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Port Conjugation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port Conjugation</em>'.
+	 * @generated
+	 */
+	PortConjugation createPortConjugation();
+
+	/**
+	 * Returns a new object of class '<em>State Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Usage</em>'.
+	 * @generated
+	 */
+	StateUsage createStateUsage();
 
 	/**
 	 * Returns a new object of class '<em>Action Usage</em>'.
@@ -616,6 +634,15 @@ public interface SysMLFactory extends EFactory {
 	ParameterMembership createParameterMembership();
 
 	/**
+	 * Returns a new object of class '<em>Transition Step</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Transition Step</em>'.
+	 * @generated
+	 */
+	TransitionStep createTransitionStep();
+
+	/**
 	 * Returns a new object of class '<em>Return Parameter Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -731,6 +758,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	TargetEnd createTargetEnd();
+
+	/**
+	 * Returns a new object of class '<em>Transition Feature Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Transition Feature Membership</em>'.
+	 * @generated
+	 */
+	TransitionFeatureMembership createTransitionFeatureMembership();
 
 	/**
 	 * Returns a new object of class '<em>Operator Expression</em>'.

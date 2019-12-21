@@ -91,7 +91,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRedefinesAccess().getAlternatives_0(), "rule__Redefines__Alternatives_0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getAlternatives(), "rule__ConjugatePortUsageDeclaration__Alternatives");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getAlternatives_2_0(), "rule__ConjugatePortUsageDeclaration__Alternatives_2_0");
-			builder.put(grammarAccess.getConjugatePortTypingAccess().getAlternatives_2(), "rule__ConjugatePortTyping__Alternatives_2");
 			builder.put(grammarAccess.getConnectionPartAccess().getAlternatives(), "rule__ConnectionPart__Alternatives");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getAlternatives(), "rule__EffectBehaviorUsage__Alternatives");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getAlternatives_1_0(), "rule__EffectBehaviorUsage__Alternatives_1_0");
@@ -740,7 +739,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValueDeclarationAccess().getNameAssignment_2(), "rule__ValueDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getNameAssignment_0_0(), "rule__ConjugatePortUsageDeclaration__NameAssignment_0_0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getOwnedRelationship_compAssignment_2_1(), "rule__ConjugatePortUsageDeclaration__OwnedRelationship_compAssignment_2_1");
-			builder.put(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2_0(), "rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2_0");
+			builder.put(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2(), "rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_0(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_0");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_2(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_2");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_1_1");

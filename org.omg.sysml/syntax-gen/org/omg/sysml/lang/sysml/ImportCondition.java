@@ -12,8 +12,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getConditionalImport <em>Conditional Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getPredicate_comp <em>Predicate comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getConditionalImport <em>Conditional Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getPredicate <em>Predicate</em>}</li>
  * </ul>
  *

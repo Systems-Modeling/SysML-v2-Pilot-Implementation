@@ -10099,29 +10099,22 @@ ruleConjugatePortTyping[EObject in_current]  returns [EObject current=in_current
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0_0());
+				{
+					newCompositeNode(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0());
+				}
+				lv_ownedRelationship_comp_2_0=ruleFeatureTyping
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConjugatePortTypingRule());
 					}
-					lv_ownedRelationship_comp_2_0=ruleFeatureTyping
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConjugatePortTypingRule());
-						}
-						add(
-							$current,
-							"ownedRelationship_comp",
-							lv_ownedRelationship_comp_2_0,
-							"org.omg.sysml.xtext.SysML.FeatureTyping");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"ownedRelationship_comp",
+						lv_ownedRelationship_comp_2_0,
+						"org.omg.sysml.xtext.SysML.FeatureTyping");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			    |
-			otherlv_3='any'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getConjugatePortTypingAccess().getAnyKeyword_2_1());
-			}
 		)
 	)
 ;

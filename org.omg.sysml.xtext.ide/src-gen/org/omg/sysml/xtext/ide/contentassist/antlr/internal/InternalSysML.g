@@ -8063,27 +8063,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ConjugatePortTyping__Alternatives_2
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2_0()); }
-		(rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2_0)
-		{ after(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getConjugatePortTypingAccess().getAnyKeyword_2_1()); }
-		'any'
-		{ after(grammarAccess.getConjugatePortTypingAccess().getAnyKeyword_2_1()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__ConnectionPart__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -25438,9 +25417,9 @@ rule__ConjugatePortTyping__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConjugatePortTypingAccess().getAlternatives_2()); }
-	(rule__ConjugatePortTyping__Alternatives_2)
-	{ after(grammarAccess.getConjugatePortTypingAccess().getAlternatives_2()); }
+	{ before(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2()); }
+	(rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2)
+	{ after(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2()); }
 )
 ;
 finally {
@@ -41637,15 +41616,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2_0
+rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0_0()); }
+		{ before(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0()); }
 		ruleFeatureTyping
-		{ after(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0_0()); }
+		{ after(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_2_0()); }
 	)
 ;
 finally {

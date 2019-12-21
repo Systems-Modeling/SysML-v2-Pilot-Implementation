@@ -361,6 +361,21 @@ PortDefinition returns SysML::PortDefinition :
 
 fragment PortDeclaration returns SysML::PortDefinition :
 	( isAbstract ?= 'abstract' )? 'port' 'def' ClassifierDeclarationCompletion
+	ownedMembership_comp += ConjugatedPortDefinitionMember
+;
+
+ConjugatedPortDefinition returns SysML::ConjugatedPortDefinition :
+	ownedRelationship_comp += PortConjugation
+;
+
+PortConjugation returns SysML::PortConjugation :
+	{SysML::PortConjugation}
+;
+
+/* PORT DEFINITION MEMBERSHIPS */
+
+ConjugatedPortDefinitionMember returns SysML::Membership :
+	ownedMemberElement_comp = ConjugatedPortDefinition
 ;
 
 /* ASSOCIATION BLOCKS */

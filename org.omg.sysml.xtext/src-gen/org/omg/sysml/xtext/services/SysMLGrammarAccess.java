@@ -3252,12 +3252,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPortKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cDefKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cClassifierDeclarationCompletionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cOwnedMembership_compAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOwnedMembership_compConjugatedPortDefinitionMemberParserRuleCall_4_0 = (RuleCall)cOwnedMembership_compAssignment_4.eContents().get(0);
 		
 		//fragment PortDeclaration returns SysML::PortDefinition:
-		//	isAbstract?='abstract'? 'port' 'def' ClassifierDeclarationCompletion;
+		//	isAbstract?='abstract'? 'port' 'def' ClassifierDeclarationCompletion
+		//	ownedMembership_comp+=ConjugatedPortDefinitionMember;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//isAbstract?='abstract'? 'port' 'def' ClassifierDeclarationCompletion
+		//ownedMembership_comp+=ConjugatedPortDefinitionMember
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -3274,6 +3278,53 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ClassifierDeclarationCompletion
 		public RuleCall getClassifierDeclarationCompletionParserRuleCall_3() { return cClassifierDeclarationCompletionParserRuleCall_3; }
+		
+		//ownedMembership_comp+=ConjugatedPortDefinitionMember
+		public Assignment getOwnedMembership_compAssignment_4() { return cOwnedMembership_compAssignment_4; }
+		
+		//ConjugatedPortDefinitionMember
+		public RuleCall getOwnedMembership_compConjugatedPortDefinitionMemberParserRuleCall_4_0() { return cOwnedMembership_compConjugatedPortDefinitionMemberParserRuleCall_4_0; }
+	}
+	public class ConjugatedPortDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConjugatedPortDefinition");
+		private final Assignment cOwnedRelationship_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationship_compPortConjugationParserRuleCall_0 = (RuleCall)cOwnedRelationship_compAssignment.eContents().get(0);
+		
+		//ConjugatedPortDefinition SysML::ConjugatedPortDefinition:
+		//	ownedRelationship_comp+=PortConjugation;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelationship_comp+=PortConjugation
+		public Assignment getOwnedRelationship_compAssignment() { return cOwnedRelationship_compAssignment; }
+		
+		//PortConjugation
+		public RuleCall getOwnedRelationship_compPortConjugationParserRuleCall_0() { return cOwnedRelationship_compPortConjugationParserRuleCall_0; }
+	}
+	public class PortConjugationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortConjugation");
+		private final Action cPortConjugationAction = (Action)rule.eContents().get(1);
+		
+		//PortConjugation SysML::PortConjugation:
+		//	{SysML::PortConjugation};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SysML::PortConjugation}
+		public Action getPortConjugationAction() { return cPortConjugationAction; }
+	}
+	public class ConjugatedPortDefinitionMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConjugatedPortDefinitionMember");
+		private final Assignment cOwnedMemberElement_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedMemberElement_compConjugatedPortDefinitionParserRuleCall_0 = (RuleCall)cOwnedMemberElement_compAssignment.eContents().get(0);
+		
+		///* PORT DEFINITION MEMBERSHIPS */ ConjugatedPortDefinitionMember SysML::Membership:
+		//	ownedMemberElement_comp=ConjugatedPortDefinition;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedMemberElement_comp=ConjugatedPortDefinition
+		public Assignment getOwnedMemberElement_compAssignment() { return cOwnedMemberElement_compAssignment; }
+		
+		//ConjugatedPortDefinition
+		public RuleCall getOwnedMemberElement_compConjugatedPortDefinitionParserRuleCall_0() { return cOwnedMemberElement_compConjugatedPortDefinitionParserRuleCall_0; }
 	}
 	public class AssociationBlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AssociationBlock");
@@ -10842,6 +10893,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ValueTypeDeclarationElements pValueTypeDeclaration;
 	private final PortDefinitionElements pPortDefinition;
 	private final PortDeclarationElements pPortDeclaration;
+	private final ConjugatedPortDefinitionElements pConjugatedPortDefinition;
+	private final PortConjugationElements pPortConjugation;
+	private final ConjugatedPortDefinitionMemberElements pConjugatedPortDefinitionMember;
 	private final AssociationBlockElements pAssociationBlock;
 	private final AssociationBlockDeclarationElements pAssociationBlockDeclaration;
 	private final AssociationBlockBodyElements pAssociationBlockBody;
@@ -11127,6 +11181,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pValueTypeDeclaration = new ValueTypeDeclarationElements();
 		this.pPortDefinition = new PortDefinitionElements();
 		this.pPortDeclaration = new PortDeclarationElements();
+		this.pConjugatedPortDefinition = new ConjugatedPortDefinitionElements();
+		this.pPortConjugation = new PortConjugationElements();
+		this.pConjugatedPortDefinitionMember = new ConjugatedPortDefinitionMemberElements();
 		this.pAssociationBlock = new AssociationBlockElements();
 		this.pAssociationBlockDeclaration = new AssociationBlockDeclarationElements();
 		this.pAssociationBlockBody = new AssociationBlockBodyElements();
@@ -11954,13 +12011,44 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment PortDeclaration returns SysML::PortDefinition:
-	//	isAbstract?='abstract'? 'port' 'def' ClassifierDeclarationCompletion;
+	//	isAbstract?='abstract'? 'port' 'def' ClassifierDeclarationCompletion
+	//	ownedMembership_comp+=ConjugatedPortDefinitionMember;
 	public PortDeclarationElements getPortDeclarationAccess() {
 		return pPortDeclaration;
 	}
 	
 	public ParserRule getPortDeclarationRule() {
 		return getPortDeclarationAccess().getRule();
+	}
+	
+	//ConjugatedPortDefinition SysML::ConjugatedPortDefinition:
+	//	ownedRelationship_comp+=PortConjugation;
+	public ConjugatedPortDefinitionElements getConjugatedPortDefinitionAccess() {
+		return pConjugatedPortDefinition;
+	}
+	
+	public ParserRule getConjugatedPortDefinitionRule() {
+		return getConjugatedPortDefinitionAccess().getRule();
+	}
+	
+	//PortConjugation SysML::PortConjugation:
+	//	{SysML::PortConjugation};
+	public PortConjugationElements getPortConjugationAccess() {
+		return pPortConjugation;
+	}
+	
+	public ParserRule getPortConjugationRule() {
+		return getPortConjugationAccess().getRule();
+	}
+	
+	///* PORT DEFINITION MEMBERSHIPS */ ConjugatedPortDefinitionMember SysML::Membership:
+	//	ownedMemberElement_comp=ConjugatedPortDefinition;
+	public ConjugatedPortDefinitionMemberElements getConjugatedPortDefinitionMemberAccess() {
+		return pConjugatedPortDefinitionMember;
+	}
+	
+	public ParserRule getConjugatedPortDefinitionMemberRule() {
+		return getConjugatedPortDefinitionMemberAccess().getRule();
 	}
 	
 	///* ASSOCIATION BLOCKS */ AssociationBlock SysML::AssociationBlock:

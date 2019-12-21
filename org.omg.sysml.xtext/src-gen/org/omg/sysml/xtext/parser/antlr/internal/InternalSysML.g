@@ -5150,6 +5150,121 @@ rulePortDeclaration[EObject in_current]  returns [EObject current=in_current]
 			$current = $this_ClassifierDeclarationCompletion_3.current;
 			afterParserOrEnumRuleCall();
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPortDeclarationAccess().getOwnedMembership_compConjugatedPortDefinitionMemberParserRuleCall_4_0());
+				}
+				lv_ownedMembership_comp_4_0=ruleConjugatedPortDefinitionMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPortDeclarationRule());
+					}
+					add(
+						$current,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_4_0,
+						"org.omg.sysml.xtext.SysML.ConjugatedPortDefinitionMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleConjugatedPortDefinition
+entryRuleConjugatedPortDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConjugatedPortDefinitionRule()); }
+	iv_ruleConjugatedPortDefinition=ruleConjugatedPortDefinition
+	{ $current=$iv_ruleConjugatedPortDefinition.current; }
+	EOF;
+
+// Rule ConjugatedPortDefinition
+ruleConjugatedPortDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getConjugatedPortDefinitionAccess().getOwnedRelationship_compPortConjugationParserRuleCall_0());
+			}
+			lv_ownedRelationship_comp_0_0=rulePortConjugation
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getConjugatedPortDefinitionRule());
+				}
+				add(
+					$current,
+					"ownedRelationship_comp",
+					lv_ownedRelationship_comp_0_0,
+					"org.omg.sysml.xtext.SysML.PortConjugation");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRulePortConjugation
+entryRulePortConjugation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPortConjugationRule()); }
+	iv_rulePortConjugation=rulePortConjugation
+	{ $current=$iv_rulePortConjugation.current; }
+	EOF;
+
+// Rule PortConjugation
+rulePortConjugation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			$current = forceCreateModelElement(
+				grammarAccess.getPortConjugationAccess().getPortConjugationAction(),
+				$current);
+		}
+	)
+;
+
+// Entry rule entryRuleConjugatedPortDefinitionMember
+entryRuleConjugatedPortDefinitionMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConjugatedPortDefinitionMemberRule()); }
+	iv_ruleConjugatedPortDefinitionMember=ruleConjugatedPortDefinitionMember
+	{ $current=$iv_ruleConjugatedPortDefinitionMember.current; }
+	EOF;
+
+// Rule ConjugatedPortDefinitionMember
+ruleConjugatedPortDefinitionMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getConjugatedPortDefinitionMemberAccess().getOwnedMemberElement_compConjugatedPortDefinitionParserRuleCall_0());
+			}
+			lv_ownedMemberElement_comp_0_0=ruleConjugatedPortDefinition
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getConjugatedPortDefinitionMemberRule());
+				}
+				set(
+					$current,
+					"ownedMemberElement_comp",
+					lv_ownedMemberElement_comp_0_0,
+					"org.omg.sysml.xtext.SysML.ConjugatedPortDefinition");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

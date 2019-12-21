@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.PortConjugation;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -69,14 +70,18 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PORT_CONJUGATION;
 	}
+	
+	@Override
+	public PortDefinition getOriginalPortDefinition() {
+		return originalPortDefinition == null? basicGetOriginalPortDefinition(): getOriginalPortDefinitionGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public PortDefinition getOriginalPortDefinition() {
+	public PortDefinition getOriginalPortDefinitionGen() {
 		if (originalPortDefinition != null && originalPortDefinition.eIsProxy()) {
 			InternalEObject oldOriginalPortDefinition = (InternalEObject)originalPortDefinition;
 			originalPortDefinition = (PortDefinition)eResolveProxy(oldOriginalPortDefinition);
@@ -91,9 +96,18 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortDefinition basicGetOriginalPortDefinition() {
+		if (originalPortDefinition == null) {
+			ConjugatedPortDefinition conjugatedPortDefinition = getConjugatedPortDefinition();
+			if (conjugatedPortDefinition != null) {
+				Element conjugatedPortDefinitionOwner = conjugatedPortDefinition.getOwner();
+				if (conjugatedPortDefinitionOwner instanceof PortDefinition) {
+					originalPortDefinition = (PortDefinition)conjugatedPortDefinitionOwner;
+				}
+			}
+		}
 		return originalPortDefinition;
 	}
 
@@ -119,13 +133,17 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 		return originalPortDefinition != null;
 	}
 
+	@Override
+	public ConjugatedPortDefinition getConjugatedPortDefinition() {
+		return conjugatedPortDefinition == null? basicGetConjugatedPortDefinition(): getConjugatedPortDefinitionGen();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public ConjugatedPortDefinition getConjugatedPortDefinition() {
+	public ConjugatedPortDefinition getConjugatedPortDefinitionGen() {
 		if (conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy()) {
 			InternalEObject oldConjugatedPortDefinition = (InternalEObject)conjugatedPortDefinition;
 			conjugatedPortDefinition = (ConjugatedPortDefinition)eResolveProxy(oldConjugatedPortDefinition);
@@ -140,9 +158,15 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
+		if (conjugatedPortDefinition == null) {
+			Type owningType = super.basicGetOwningType();
+			if (owningType instanceof ConjugatedPortDefinition) {
+				conjugatedPortDefinition = (ConjugatedPortDefinition)owningType;
+			}
+		}
 		return conjugatedPortDefinition;
 	}
 

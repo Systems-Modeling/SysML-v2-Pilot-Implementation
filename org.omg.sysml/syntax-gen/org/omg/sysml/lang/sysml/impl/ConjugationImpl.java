@@ -78,14 +78,18 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONJUGATION;
 	}
+	
+	@Override
+	public Type getConjugatedType() {
+		return conjugatedType == null? basicGetConjugatedType(): getConjugatedTypeGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Type getConjugatedType() {
+	public Type getConjugatedTypeGen() {
 		if (conjugatedType != null && conjugatedType.eIsProxy()) {
 			InternalEObject oldConjugatedType = (InternalEObject)conjugatedType;
 			conjugatedType = (Type)eResolveProxy(oldConjugatedType);
@@ -100,9 +104,15 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetConjugatedType() {
+		if (conjugatedType == null) {
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof Type) {
+				conjugatedType = (Type)owner;
+			}
+		}
 		return conjugatedType;
 	}
 
@@ -229,7 +239,7 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	 * @generated NOT
 	 */
 	public Type basicGetOwningType() {
-		Element owner = getOwner();
+		Element owner = getOwningRelatedElement();
 		return owner instanceof Type? (Type)owner: null;
 	}
 

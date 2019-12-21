@@ -302,11 +302,16 @@ public class TypeImpl extends PackageImpl implements Type {
 	@SuppressWarnings("unchecked")
 	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
 		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
-		Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
-		if (generalization != null) {
-			generalizations.add((T)generalization);
-			getOwnedRelationship_comp().add(generalization);
+		
+		// Do not add a default generalization if the type is conjugated.
+		if (!isConjugated()) {
+			Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
+			if (generalization != null) {
+				generalizations.add((T)generalization);
+				getOwnedRelationship_comp().add(generalization);
+			}
 		}
+		
 		return generalizations;
 	}
 	
@@ -385,15 +390,20 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__INPUT);
-		for (Membership membership: this.getMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.IN.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getMemberFeature();
-					if (feature != null) {
-						inputs.add(feature);
+		Conjugation conjugator = getConjugator();
+		if (conjugator != null) {
+			inputs.addAll(conjugator.getOriginalType().getOutput());
+		} else {
+			for (Membership membership: this.getMembership()) {
+				if (membership instanceof FeatureMembership) {
+					FeatureMembership featureMembership = (FeatureMembership)membership;
+					FeatureDirectionKind direction = featureMembership.getDirection();
+					if (FeatureDirectionKind.IN.equals(direction) || 
+							FeatureDirectionKind.INOUT.equals(direction)) {
+						Feature feature = featureMembership.getMemberFeature();
+						if (feature != null) {
+							inputs.add(feature);
+						}
 					}
 				}
 			}
@@ -408,15 +418,20 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
-		for (Membership membership: this.getMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.OUT.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getMemberFeature();
-					if (feature != null) {
-						outputs.add(feature);
+		Conjugation conjugator = getConjugator();
+		if (conjugator != null) {
+			outputs.addAll(conjugator.getOriginalType().getInput());
+		} else {
+			for (Membership membership: this.getMembership()) {
+				if (membership instanceof FeatureMembership) {
+					FeatureMembership featureMembership = (FeatureMembership)membership;
+					FeatureDirectionKind direction = featureMembership.getDirection();
+					if (FeatureDirectionKind.OUT.equals(direction) || 
+							FeatureDirectionKind.INOUT.equals(direction)) {
+						Feature feature = featureMembership.getMemberFeature();
+						if (feature != null) {
+							outputs.add(feature);
+						}
 					}
 				}
 			}
@@ -600,6 +615,13 @@ public class TypeImpl extends PackageImpl implements Type {
 	public EList<Membership> getInheritedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
 		excludedTypes.add(this);
+		Conjugation conjugator = this.getConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType != null && !excludedTypes.contains(originalType)) {
+				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedPackages, excludedTypes, includeProtected));
+			}
+		}
 		for (Generalization generalization: getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
 			if (general != null && !excludedTypes.contains(general)) {
@@ -613,7 +635,14 @@ public class TypeImpl extends PackageImpl implements Type {
 		return inheritedMemberships;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected){
+	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
+		EList<Membership> membership = getOwnedMembership();
+		membership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
+		membership.addAll(getImportedMembership(excludedPackages, excludedTypes, includeProtected));
+		return membership;
+	}	
+	
+	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> nonPrivateMembership = getInheritedMembership(excludedPackages, excludedTypes, includeProtected);
 		nonPrivateMembership.addAll(super.getPublicMembership(excludedPackages, excludedTypes));
 		if (includeProtected) {
@@ -623,7 +652,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	@Override
-	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes){
+	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes) {
 		return getNonPrivateMembership(excludedPackages, excludedTypes, false);
 	}
 	

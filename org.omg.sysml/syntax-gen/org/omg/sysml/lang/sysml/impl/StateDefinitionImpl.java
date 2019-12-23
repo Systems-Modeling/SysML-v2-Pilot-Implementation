@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -31,6 +32,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StateDefinitionImpl extends DefinitionImpl implements StateDefinition {
+
+	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::State";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +87,11 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(STATE_DEFINITION_SUPERCLASS_DEFAULT);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

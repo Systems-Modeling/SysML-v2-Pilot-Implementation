@@ -77,7 +77,7 @@ ActivityUnit returns SysML::Activity :
 	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
-StateDefinitionUnit returns SysML::Behavior :
+StateDefinitionUnit returns SysML::StateDefinition :
 	UnitPrefix StateDefDeclaration StateBody
 ;
 
@@ -93,7 +93,7 @@ ActionUnit returns SysML::ActionUsage :
 	UnitPrefix ActionDeclaration ActivityBody
 ;
 
-StateUnit returns SysML::ActionUsage :
+StateUnit returns SysML::StateUsage :
 	UnitPrefix StateDeclaration StateBody
 ;
 
@@ -529,11 +529,11 @@ TargetSuccessionMember returns SysML::FeatureMembership :
 
 /* STATE DEFINITIONS */
 
-StateDefinition returns SysML::Behavior :
+StateDefinition returns SysML::StateDefinition :
 	StateDefDeclaration StateBody
 ;
 
-fragment StateDefDeclaration returns SysML::Behavior :
+fragment StateDefDeclaration returns SysML::StateDefinition :
 	( isAbstract ?= 'abstract')? 'state' 'def' name = Name ParameterList? SuperclassingList?
 ;
 
@@ -555,14 +555,14 @@ fragment StateBodyItem returns SysML::Type :
 ;
 
 fragment StateBehaviorPart returns SysML::Type :
-	( ownedFeatureMembership_comp += EntryBehaviorMember
+	( ownedFeatureMembership_comp += EntryActionMember
 	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
 	)?
-	( ownedFeatureMembership_comp += DoBehaviorMember )?
-	( ownedFeatureMembership_comp += ExitBehaviorMember )?
+	( ownedFeatureMembership_comp += DoActionMember )?
+	( ownedFeatureMembership_comp += ExitActionMember )?
 ;
 
-StateBehaviorUsage returns SysML::ActionUsage :
+StateActionUsage returns SysML::ActionUsage :
 	EmptyActionUsage ';' | PerformActionUsage | ActionNode
 ;
 
@@ -572,16 +572,28 @@ EmptyActionUsage returns SysML::ActionUsage :
 
 /* STATE MEMBERSHIPS */
 
-EntryBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'entry' ownedMemberFeature_comp = StateBehaviorUsage
+EntryActionMember returns SysML::StateActionMembership :
+	DefinitionMemberPrefix kind = EntryActionKind ownedMemberFeature_comp = StateActionUsage
 ;
 
-DoBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'do' ownedMemberFeature_comp = StateBehaviorUsage
+EntryActionKind returns SysML::StateActionKind :
+	'entry'
 ;
 
-ExitBehaviorMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'exit' ownedMemberFeature_comp = StateBehaviorUsage
+DoActionMember returns SysML::StateActionMembership :
+	DefinitionMemberPrefix kind = DoActionKind ownedMemberFeature_comp = StateActionUsage
+;
+
+DoActionKind returns SysML::StateActionKind :
+	'do'
+;
+
+ExitActionMember returns SysML::StateActionMembership :
+	DefinitionMemberPrefix kind = ExitActionKind ownedMemberFeature_comp = StateActionUsage
+;
+
+ExitActionKind returns SysML::StateActionKind :
+	'exit'
 ;
 
 StateMember returns SysML::FeatureMembership :
@@ -1021,7 +1033,7 @@ AbstractActionUsage returns SysML::ActionUsage :
 	ActionUsageDeclaration AbstractActivityBody
 ;
 
-fragment ActionUsageDeclaration returns SysML::ActionUsage :
+fragment ActionUsageDeclaration returns SysML::Step :
 	  name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
 	| TypePart? ActionParameterList? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ActionParameterList? ValuePart?
@@ -1155,20 +1167,20 @@ EmptyParameterMember returns SysML::ParameterMembership :
 
 /* STATES */
 
-fragment StateDeclaration returns SysML::ActionUsage :
+fragment StateDeclaration returns SysML::StateUsage :
     ( isAbstract ?= 'abstract' )? 'state' 
 	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
 ;
 
-StateUsage returns SysML::ActionUsage :
-	{SysML::ActionUsage} ActionUsageDeclaration StateBody
+StateUsage returns SysML::StateUsage :
+	{SysML::StateUsage} ActionUsageDeclaration StateBody
 ;
 
-AbstractStateUsage returns SysML::ActionUsage :
-	{SysML::ActionUsage} ActionUsageDeclaration AbstractStateBody
+AbstractStateUsage returns SysML::StateUsage :
+	{SysML::StateUsage} ActionUsageDeclaration AbstractStateBody
 ;
 
-ExhibitStateUsage returns SysML::PerformActionUsage :
+ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( name = Name TypePart? 'by' )? 
     ownedRelationship_comp += Subset 
     ActionParameterList? SubsettingPart ValuePart?

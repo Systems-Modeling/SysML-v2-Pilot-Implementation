@@ -409,6 +409,15 @@ public interface SysMLFactory extends EFactory {
 	Activity createActivity();
 
 	/**
+	 * Returns a new object of class '<em>Exhibit State Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Exhibit State Usage</em>'.
+	 * @generated
+	 */
+	ExhibitStateUsage createExhibitStateUsage();
+
+	/**
 	 * Returns a new object of class '<em>Value Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

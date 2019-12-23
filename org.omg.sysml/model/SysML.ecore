@@ -1329,4 +1329,8 @@
       <eAnnotations source="subsets" references="#//Behavior/step"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExhibitStateUsage" eSuperTypes="#//StateUsage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exhibitedState" ordered="false"
+        lowerBound="1" eType="#//StateUsage" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
 </ecore:EPackage>

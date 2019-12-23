@@ -45111,6 +45111,637 @@ public interface SysMLPackage extends EPackage {
 	int ACTIVITY_OPERATION_COUNT = DEFINITION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ExhibitStateUsageImpl <em>Exhibit State Usage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ExhibitStateUsageImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getExhibitStateUsage()
+	 * @generated
+	 */
+	int EXHIBIT_STATE_USAGE = 97;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_MEMBERSHIP = STATE_USAGE__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_RELATIONSHIP_COMP = STATE_USAGE__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_RELATIONSHIP = STATE_USAGE__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IDENTIFIER = STATE_USAGE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_NAMESPACE = STATE_USAGE__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NAME = STATE_USAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNER = STATE_USAGE__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_ELEMENT = STATE_USAGE__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_RELATIONSHIP = STATE_USAGE__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_MEMBERSHIP_COMP = STATE_USAGE__OWNED_MEMBERSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_MEMBER = STATE_USAGE__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__MEMBERSHIP = STATE_USAGE__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_IMPORT_COMP = STATE_USAGE__OWNED_IMPORT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__MEMBER = STATE_USAGE__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IMPORTED_MEMBERSHIP = STATE_USAGE__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_MEMBERSHIP = STATE_USAGE__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_IMPORT = STATE_USAGE__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_GENERALIZATION = STATE_USAGE__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_FEATURE_MEMBERSHIP_COMP = STATE_USAGE__OWNED_FEATURE_MEMBERSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__FEATURE = STATE_USAGE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_FEATURE = STATE_USAGE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__INPUT = STATE_USAGE__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OUTPUT = STATE_USAGE__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_ABSTRACT = STATE_USAGE__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__INHERITED_MEMBERSHIP = STATE_USAGE__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__END_FEATURE = STATE_USAGE__END_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_END_FEATURE = STATE_USAGE__OWNED_END_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_SUFFICIENT = STATE_USAGE__IS_SUFFICIENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_CONJUGATOR = STATE_USAGE__OWNED_CONJUGATOR;
+
+	/**
+	 * The feature id for the '<em><b>Conjugator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__CONJUGATOR = STATE_USAGE__CONJUGATOR;
+
+	/**
+	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_CONJUGATED = STATE_USAGE__IS_CONJUGATED;
+
+	/**
+	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__FEATURE_MEMBERSHIP = STATE_USAGE__FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__INHERITED_FEATURE = STATE_USAGE__INHERITED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_FEATURE_MEMBERSHIP = STATE_USAGE__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_FEATURE_MEMBERSHIP = STATE_USAGE__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_TYPE = STATE_USAGE__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>End Owning Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__END_OWNING_TYPE = STATE_USAGE__END_OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__REFERENCED_TYPE = STATE_USAGE__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_UNIQUE = STATE_USAGE__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_ORDERED = STATE_USAGE__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__TYPE = STATE_USAGE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_TYPE = STATE_USAGE__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_REDEFINITION = STATE_USAGE__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNED_SUBSETTING = STATE_USAGE__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_COMPOSITE = STATE_USAGE__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__TYPING = STATE_USAGE__TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Is End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_END = STATE_USAGE__IS_END;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__MULTIPLICITY = STATE_USAGE__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__IS_NONUNIQUE = STATE_USAGE__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NESTED_USAGE = STATE_USAGE__NESTED_USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Usage</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_USAGE = STATE_USAGE__OWNING_USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__OWNING_DEFINITION = STATE_USAGE__OWNING_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Nested Port</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NESTED_PORT = STATE_USAGE__NESTED_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Property</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NESTED_PROPERTY = STATE_USAGE__NESTED_PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Nested State</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NESTED_STATE = STATE_USAGE__NESTED_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__PROPERTY = STATE_USAGE__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Nested Action</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__NESTED_ACTION = STATE_USAGE__NESTED_ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__BEHAVIOR = STATE_USAGE__BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>State Owning Usage</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__STATE_OWNING_USAGE = STATE_USAGE__STATE_OWNING_USAGE;
+
+	/**
+	 * The feature id for the '<em><b>State Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__STATE_DEFINITION = STATE_USAGE__STATE_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>State Owning Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__STATE_OWNING_DEFINITION = STATE_USAGE__STATE_OWNING_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Exhibited State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE__EXHIBITED_STATE = STATE_USAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Exhibit State Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE_FEATURE_COUNT = STATE_USAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Name Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE___NAME_OF__ELEMENT = STATE_USAGE___NAME_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE___EXCLUDE_COLLISIONS__ELIST = STATE_USAGE___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE___PUBLIC_MEMBERSHIPS = STATE_USAGE___PUBLIC_MEMBERSHIPS;
+
+	/**
+	 * The operation id for the '<em>Direction Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE___DIRECTION_OF__FEATURE = STATE_USAGE___DIRECTION_OF__FEATURE;
+
+	/**
+	 * The operation id for the '<em>Direction For</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE___DIRECTION_FOR__TYPE = STATE_USAGE___DIRECTION_FOR__TYPE;
+
+	/**
+	 * The number of operations of the '<em>Exhibit State Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXHIBIT_STATE_USAGE_OPERATION_COUNT = STATE_USAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45118,7 +45749,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 97;
+	int VISIBILITY_KIND = 98;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -45128,7 +45759,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 98;
+	int FEATURE_DIRECTION_KIND = 99;
 
 
 	/**
@@ -45139,7 +45770,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureKind()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_KIND = 99;
+	int TRANSITION_FEATURE_KIND = 100;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.StateActionKind <em>State Action Kind</em>}' enum.
@@ -45149,7 +45780,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateActionKind()
 	 * @generated
 	 */
-	int STATE_ACTION_KIND = 100;
+	int STATE_ACTION_KIND = 101;
 
 
 	/**
@@ -47328,6 +47959,27 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getActivity_Action();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ExhibitStateUsage <em>Exhibit State Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Exhibit State Usage</em>'.
+	 * @see org.omg.sysml.lang.sysml.ExhibitStateUsage
+	 * @generated
+	 */
+	EClass getExhibitStateUsage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ExhibitStateUsage#getExhibitedState <em>Exhibited State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Exhibited State</em>'.
+	 * @see org.omg.sysml.lang.sysml.ExhibitStateUsage#getExhibitedState()
+	 * @see #getExhibitStateUsage()
+	 * @generated
+	 */
+	EReference getExhibitStateUsage_ExhibitedState();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ValueType <em>Value Type</em>}'.
@@ -50139,6 +50791,24 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ACTIVITY__ACTION = eINSTANCE.getActivity_Action();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ExhibitStateUsageImpl <em>Exhibit State Usage</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.ExhibitStateUsageImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getExhibitStateUsage()
+		 * @generated
+		 */
+		EClass EXHIBIT_STATE_USAGE = eINSTANCE.getExhibitStateUsage();
+
+		/**
+		 * The meta object literal for the '<em><b>Exhibited State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXHIBIT_STATE_USAGE__EXHIBITED_STATE = eINSTANCE.getExhibitStateUsage_ExhibitedState();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ValueTypeImpl <em>Value Type</em>}' class.

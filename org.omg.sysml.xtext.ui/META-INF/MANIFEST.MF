@@ -5,7 +5,8 @@ Bundle-Name: org.omg.sysml.xtext.ui
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.omg.sysml.xtext,
+Require-Bundle: org.omg.sysml;bundle-version="1.0.0",
+ org.omg.sysml.xtext,
  org.omg.sysml.xtext.ide,
  org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.shared,

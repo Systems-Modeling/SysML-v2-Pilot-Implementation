@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -11,8 +12,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -33,6 +36,12 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class StateUsageImpl extends UsageImpl implements StateUsage {
+
+	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::states";
+	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::State::substates";
+	
+	protected boolean isCheckSubsetting = true;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,7 +108,7 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 	 */
 	@Override
 	public EList<Behavior> getStateDefinition() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTIVITY);
+		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
@@ -155,6 +164,151 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 		return basicGetStateOwningDefinition() != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getBehavior() {
+		return getStateDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage getOwningUsage() {
+		return getStateOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage basicGetOwningUsage() {
+		return basicGetStateOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningUsage(Usage newOwningUsage) {
+		setStateOwningUsage(newOwningUsage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningUsage() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition getOwningDefinition() {
+		return getStateOwningDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition basicGetOwningDefinition() {
+		return basicGetStateOwningDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningDefinition(Definition newOwningDefinition) {
+		setStateOwningDefinition(newOwningDefinition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningDefinition() {
+  		return false;
+	}
+
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return StepImpl.getRelevantFeaturesOf(this);
+	}	
+	
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		if (isCheckSubsetting) {
+			checkSubsetting();
+			isCheckSubsetting = false;
+		}
+		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
+	}
+	
+	protected void checkSubsetting() {
+		if (isSubperformance()) {
+			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);
+		} 
+	}
+	
+	protected String getActionSubsettingDefault() {
+		return isSubperformance()? 
+				STATE_SUBSETTING_SUBSTATE_DEFAULT:
+				STATE_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	public boolean isSubperformance() {
+		return StepImpl.isPerformanceFeature(this);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -284,121 +438,6 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Behavior> getBehavior() {
-		return getStateDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getOwningUsage() {
-		return getStateOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetOwningUsage() {
-		return basicGetStateOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningUsage(Usage newOwningUsage) {
-		setStateOwningUsage(newOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUsage() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getOwningDefinition() {
-		return getStateOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition basicGetOwningDefinition() {
-		return basicGetStateOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningDefinition(Definition newOwningDefinition) {
-		setStateOwningDefinition(newOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningDefinition() {
-  		return false;
 	}
 
 } //StateUsageImpl

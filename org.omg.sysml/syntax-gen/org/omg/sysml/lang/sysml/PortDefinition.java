@@ -43,7 +43,7 @@ public interface PortDefinition extends Definition {
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortDefinition_ConjugatedPortDefinition()
 	 * @see org.omg.sysml.lang.sysml.ConjugatedPortDefinition#getOriginalPortDefinition
-	 * @model opposite="originalPortDefinition" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="originalPortDefinition" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */

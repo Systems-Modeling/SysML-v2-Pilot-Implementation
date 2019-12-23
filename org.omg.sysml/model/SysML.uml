@@ -2015,4 +2015,8 @@ An ActionUsage (other than a PerformActionUsage owned by a Part) must subset, di
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a2a033c2-3e09-4ed3-bef5-82a75afa128f" name="" visibility="public" value="1"/>
     </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Bw-wkCUzEeqF9Y3-C8BRWA" name="ExhibitStateUsage">
+    <generalization xmi:id="_xBSqsCUzEeqF9Y3-C8BRWA" general="6eefbf37-3bc7-4a0f-be57-5bd6b2344717"/>
+    <ownedAttribute xmi:id="_FT5dsCUzEeqF9Y3-C8BRWA" name="exhibitedState" type="6eefbf37-3bc7-4a0f-be57-5bd6b2344717" isDerived="true"/>
+  </packagedElement>
 </uml:Model>

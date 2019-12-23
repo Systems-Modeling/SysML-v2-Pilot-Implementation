@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -241,6 +242,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.REFERENCE_PROPERTY: return createReferenceProperty();
 			case SysMLPackage.VALUE_PROPERTY: return createValueProperty();
 			case SysMLPackage.ACTIVITY: return createActivity();
+			case SysMLPackage.EXHIBIT_STATE_USAGE: return createExhibitStateUsage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -759,6 +761,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public Activity createActivity() {
 		ActivityImpl activity = new ActivityImpl();
 		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ExhibitStateUsage createExhibitStateUsage() {
+		ExhibitStateUsageImpl exhibitStateUsage = new ExhibitStateUsageImpl();
+		return exhibitStateUsage;
 	}
 
 	/**

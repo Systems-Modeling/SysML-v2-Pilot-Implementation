@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.Annotation
+import org.omg.sysml.lang.sysml.Conjugation
 
 /**
  * Customization of the default outline structure.
@@ -48,6 +49,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Membership membership) {
+		membership.prefixText + ' ' + membership.nameText
+	}
+	
+	def String nameText(Membership membership) {
+		if (membership.memberName !== null)
+			membership.memberName
+		else if (membership.memberElement?.name !== null)
+			membership.memberElement.name
+		else ""
+	}
+	
+	def String prefixText(Membership membership) {
 		var text = membership.eClass.name;
 		if (membership.ownedMemberElement !== null) {
 			text += ' owns'
@@ -55,21 +68,22 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (membership.visibility !== null) {
 			text += ' ' + membership.visibility._text;
 		}
-		if (membership instanceof FeatureMembership) {
-			if (membership.isComposite) {
-				text += ' composite'
-			}
-			if (membership.isPort) {
-				text += ' port'
-			}
-			if (membership.direction !== null) {
-				text += ' ' + membership.direction
-			}
+		text
+	}
+	
+	def String prefixText(FeatureMembership membership) {
+		var text = (membership as Membership).prefixText
+		if (membership.isComposite) {
+			text += ' composite'
 		}
-		if (membership.memberName !== null) {
-			text += ' ' + membership.memberName
-		} else if (membership.memberElement?.name !== null) {
-			text += ' ' + membership.memberElement.name;
+		if (membership.isPortion) {
+			text += ' portion'
+		}
+		if (membership.isPort) {
+			text += ' port'
+		}
+		if (membership.direction !== null) {
+			text += ' ' + membership.direction
 		}
 		text
 	}
@@ -213,6 +227,19 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (subset.subsettedFeature !== null) {
 			createEObjectNode(parentNode, subset.subsettedFeature, 
 				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
+				true
+			)
+		}
+	}
+	
+	def boolean _isLeaf(Conjugation conjugation) {
+		conjugation.originalType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Conjugation conjugation) {
+		if (conjugation.originalType !== null) {
+			createEObjectNode(parentNode, conjugation.originalType, 
+				_image(conjugation.originalType), conjugation.originalType._text, 
 				true
 			)
 		}

@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActivity <em>Activity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage <em>Action Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage()

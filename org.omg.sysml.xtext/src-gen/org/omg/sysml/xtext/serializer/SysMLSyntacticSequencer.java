@@ -373,6 +373,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedMembership_comp+=ConjugatedPortDefinitionMember (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
@@ -547,8 +548,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     (rule start) 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     isAbstract?='abstract' 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     isComposite?='action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
@@ -556,6 +560,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
@@ -582,8 +587,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
+	 *     (rule start) 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isAbstract?='abstract' 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isComposite?='action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
@@ -591,6 +599,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
+	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset

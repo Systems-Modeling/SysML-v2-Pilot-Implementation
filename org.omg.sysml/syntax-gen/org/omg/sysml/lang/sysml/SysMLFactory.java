@@ -418,6 +418,15 @@ public interface SysMLFactory extends EFactory {
 	ExhibitStateUsage createExhibitStateUsage();
 
 	/**
+	 * Returns a new object of class '<em>Conjugated Port Typing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conjugated Port Typing</em>'.
+	 * @generated
+	 */
+	ConjugatedPortTyping createConjugatedPortTyping();
+
+	/**
 	 * Returns a new object of class '<em>Value Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

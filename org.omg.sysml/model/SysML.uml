@@ -2019,4 +2019,9 @@ An ActionUsage (other than a PerformActionUsage owned by a Part) must subset, di
     <generalization xmi:id="_xBSqsCUzEeqF9Y3-C8BRWA" general="6eefbf37-3bc7-4a0f-be57-5bd6b2344717"/>
     <ownedAttribute xmi:id="_FT5dsCUzEeqF9Y3-C8BRWA" name="exhibitedState" type="6eefbf37-3bc7-4a0f-be57-5bd6b2344717" isDerived="true"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_k3lGoCXSEeqF9Y3-C8BRWA" name="ConjugatedPortTyping">
+    <generalization xmi:id="_pyhWoCXSEeqF9Y3-C8BRWA" general="38d72c05-06ba-4112-bd58-c4519c98d654"/>
+    <ownedAttribute xmi:id="_tdnIUCXSEeqF9Y3-C8BRWA" name="originalPortDefinition" type="33b8dad8-751d-4025-b226-108cc30128ef"/>
+    <ownedAttribute xmi:id="_yPKLwCXSEeqF9Y3-C8BRWA" name="conjugatedPortDefinition" type="4cb0317d-1900-48b9-85d3-5c63991b39bf" isDerived="true" redefinedProperty="d536c4ac-f8ed-475e-9750-bc30806712a4"/>
+  </packagedElement>
 </uml:Model>

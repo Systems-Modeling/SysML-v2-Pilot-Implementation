@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -243,6 +244,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.VALUE_PROPERTY: return createValueProperty();
 			case SysMLPackage.ACTIVITY: return createActivity();
 			case SysMLPackage.EXHIBIT_STATE_USAGE: return createExhibitStateUsage();
+			case SysMLPackage.CONJUGATED_PORT_TYPING: return createConjugatedPortTyping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -772,6 +774,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public ExhibitStateUsage createExhibitStateUsage() {
 		ExhibitStateUsageImpl exhibitStateUsage = new ExhibitStateUsageImpl();
 		return exhibitStateUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConjugatedPortTyping createConjugatedPortTyping() {
+		ConjugatedPortTypingImpl conjugatedPortTyping = new ConjugatedPortTypingImpl();
+		return conjugatedPortTyping;
 	}
 
 	/**

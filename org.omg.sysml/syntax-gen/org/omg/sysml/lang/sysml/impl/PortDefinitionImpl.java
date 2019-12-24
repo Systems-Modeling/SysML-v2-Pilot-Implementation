@@ -64,7 +64,9 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 	 * @generated NOT
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
-		return (ConjugatedPortDefinition) getOwnedMember().stream().filter(member->member instanceof ConjugatedPortDefinition).findFirst().orElse(null);
+		return (ConjugatedPortDefinition) getOwnedMember().stream().
+				filter(member->member instanceof ConjugatedPortDefinition).
+				findFirst().orElse(null);
 	}
 
 	/**

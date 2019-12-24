@@ -45742,6 +45742,232 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE_OPERATION_COUNT = STATE_USAGE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ConjugatedPortTypingImpl <em>Conjugated Port Typing</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.ConjugatedPortTypingImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getConjugatedPortTyping()
+	 * @generated
+	 */
+	int CONJUGATED_PORT_TYPING = 98;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNING_MEMBERSHIP = FEATURE_TYPING__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNED_RELATIONSHIP_COMP = FEATURE_TYPING__OWNED_RELATIONSHIP_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNING_RELATIONSHIP = FEATURE_TYPING__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__IDENTIFIER = FEATURE_TYPING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNING_NAMESPACE = FEATURE_TYPING__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__NAME = FEATURE_TYPING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNER = FEATURE_TYPING__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNED_ELEMENT = FEATURE_TYPING__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNED_RELATIONSHIP = FEATURE_TYPING__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__RELATED_ELEMENT = FEATURE_TYPING__RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__TARGET = FEATURE_TYPING__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__SOURCE = FEATURE_TYPING__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Related Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNING_RELATED_ELEMENT = FEATURE_TYPING__OWNING_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element comp</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNED_RELATED_ELEMENT_COMP = FEATURE_TYPING__OWNED_RELATED_ELEMENT_COMP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Related Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNED_RELATED_ELEMENT = FEATURE_TYPING__OWNED_RELATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__GENERAL = FEATURE_TYPING__GENERAL;
+
+	/**
+	 * The feature id for the '<em><b>Specific</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__SPECIFIC = FEATURE_TYPING__SPECIFIC;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__OWNING_TYPE = FEATURE_TYPING__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__TYPE = FEATURE_TYPING__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Typed Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__TYPED_FEATURE = FEATURE_TYPING__TYPED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Original Port Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__ORIGINAL_PORT_DEFINITION = FEATURE_TYPING_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Conjugated Port Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION = FEATURE_TYPING_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Conjugated Port Typing</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING_FEATURE_COUNT = FEATURE_TYPING_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Conjugated Port Typing</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONJUGATED_PORT_TYPING_OPERATION_COUNT = FEATURE_TYPING_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45749,7 +45975,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 98;
+	int VISIBILITY_KIND = 99;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -45759,7 +45985,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 99;
+	int FEATURE_DIRECTION_KIND = 100;
 
 
 	/**
@@ -45770,7 +45996,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureKind()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_KIND = 100;
+	int TRANSITION_FEATURE_KIND = 101;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.StateActionKind <em>State Action Kind</em>}' enum.
@@ -45780,7 +46006,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateActionKind()
 	 * @generated
 	 */
-	int STATE_ACTION_KIND = 101;
+	int STATE_ACTION_KIND = 102;
 
 
 	/**
@@ -47980,6 +48206,38 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExhibitStateUsage_ExhibitedState();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ConjugatedPortTyping <em>Conjugated Port Typing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conjugated Port Typing</em>'.
+	 * @see org.omg.sysml.lang.sysml.ConjugatedPortTyping
+	 * @generated
+	 */
+	EClass getConjugatedPortTyping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ConjugatedPortTyping#getOriginalPortDefinition <em>Original Port Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Original Port Definition</em>'.
+	 * @see org.omg.sysml.lang.sysml.ConjugatedPortTyping#getOriginalPortDefinition()
+	 * @see #getConjugatedPortTyping()
+	 * @generated
+	 */
+	EReference getConjugatedPortTyping_OriginalPortDefinition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ConjugatedPortTyping#getConjugatedPortDefinition <em>Conjugated Port Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Conjugated Port Definition</em>'.
+	 * @see org.omg.sysml.lang.sysml.ConjugatedPortTyping#getConjugatedPortDefinition()
+	 * @see #getConjugatedPortTyping()
+	 * @generated
+	 */
+	EReference getConjugatedPortTyping_ConjugatedPortDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.ValueType <em>Value Type</em>}'.
@@ -50809,6 +51067,32 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXHIBIT_STATE_USAGE__EXHIBITED_STATE = eINSTANCE.getExhibitStateUsage_ExhibitedState();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ConjugatedPortTypingImpl <em>Conjugated Port Typing</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.ConjugatedPortTypingImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getConjugatedPortTyping()
+		 * @generated
+		 */
+		EClass CONJUGATED_PORT_TYPING = eINSTANCE.getConjugatedPortTyping();
+
+		/**
+		 * The meta object literal for the '<em><b>Original Port Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONJUGATED_PORT_TYPING__ORIGINAL_PORT_DEFINITION = eINSTANCE.getConjugatedPortTyping_OriginalPortDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Conjugated Port Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION = eINSTANCE.getConjugatedPortTyping_ConjugatedPortDefinition();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ValueTypeImpl <em>Value Type</em>}' class.

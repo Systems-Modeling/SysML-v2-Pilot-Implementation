@@ -324,7 +324,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getGroup_0(), "rule__ConjugatePortUsageDeclaration__Group_0__0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getGroup_1(), "rule__ConjugatePortUsageDeclaration__Group_1__0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getGroup_2(), "rule__ConjugatePortUsageDeclaration__Group_2__0");
-			builder.put(grammarAccess.getConjugatePortTypingAccess().getGroup(), "rule__ConjugatePortTyping__Group__0");
+			builder.put(grammarAccess.getConjugatePortTypePartAccess().getGroup(), "rule__ConjugatePortTypePart__Group__0");
 			builder.put(grammarAccess.getConnectorAccess().getGroup(), "rule__Connector__Group__0");
 			builder.put(grammarAccess.getAbstractConnectorAccess().getGroup(), "rule__AbstractConnector__Group__0");
 			builder.put(grammarAccess.getConnectionUsageAccess().getGroup(), "rule__ConnectionUsage__Group__0");
@@ -745,7 +745,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValueDeclarationAccess().getNameAssignment_2(), "rule__ValueDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getNameAssignment_0_0(), "rule__ConjugatePortUsageDeclaration__NameAssignment_0_0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getOwnedRelationship_compAssignment_2_1(), "rule__ConjugatePortUsageDeclaration__OwnedRelationship_compAssignment_2_1");
-			builder.put(grammarAccess.getConjugatePortTypingAccess().getOwnedRelationship_compAssignment_2(), "rule__ConjugatePortTyping__OwnedRelationship_compAssignment_2");
+			builder.put(grammarAccess.getConjugatePortTypePartAccess().getOwnedRelationship_compAssignment_2(), "rule__ConjugatePortTypePart__OwnedRelationship_compAssignment_2");
+			builder.put(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionAssignment(), "rule__ConjugatedPortTyping__OriginalPortDefinitionAssignment");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_0(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_0");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_2(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_2");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_1_1");

@@ -59,14 +59,18 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONJUGATED_PORT_DEFINITION;
 	}
+	
+	@Override
+	public PortConjugation getOwnedPortConjugator() {
+		return ownedPortConjugator == null? basicGetOwnedPortConjugator(): getOwnedPortConjugatorGen();
+	}	
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public PortConjugation getOwnedPortConjugator() {
+	public PortConjugation getOwnedPortConjugatorGen() {
 		if (ownedPortConjugator != null && ownedPortConjugator.eIsProxy()) {
 			InternalEObject oldOwnedPortConjugator = (InternalEObject)ownedPortConjugator;
 			ownedPortConjugator = (PortConjugation)eResolveProxy(oldOwnedPortConjugator);
@@ -81,7 +85,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
 		if (ownedPortConjugator == null) {
@@ -259,6 +263,21 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	}
 	
 	// Additional subsets/redefinitions
+	
+	@Override
+	public String basicGetName() {
+		String name = super.basicGetName();
+		if (name == null) {
+			PortDefinition originalPortDefinition = getOriginalPortDefinition();
+			if (originalPortDefinition != null) {
+				name = originalPortDefinition.getName();
+				if (name != null) {
+					name = "~" + name;
+				}
+			}
+		}
+		return name;
+	}
 	
 	@Override
 	public Conjugation getConjugator() {

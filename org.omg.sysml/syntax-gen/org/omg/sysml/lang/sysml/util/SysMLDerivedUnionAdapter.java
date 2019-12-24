@@ -23,6 +23,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -419,6 +420,9 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.EXHIBIT_STATE_USAGE:
 				notifyExhibitStateUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING:
+				notifyConjugatedPortTypingChanged(notification, eClass);
 				break;
 		}
 	}
@@ -1481,6 +1485,34 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.EXHIBIT_STATE_USAGE__INHERITED_MEMBERSHIP:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.PACKAGE__MEMBERSHIP);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyConjugatedPortTypingChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ConjugatedPortTyping.class)) {
+			case SysMLPackage.CONJUGATED_PORT_TYPING__TARGET:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING__SOURCE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING__OWNING_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING__OWNED_RELATED_ELEMENT:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING__OWNING_TYPE:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
 				break;
 		}
 	}

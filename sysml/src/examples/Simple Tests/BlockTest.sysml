@@ -9,7 +9,7 @@ package BlockTest {
 	
 	abstract block B {
 		public abstract part a: A;
-		port x: C;
+		port x: ~C;
 		package P { }
 	}
 	

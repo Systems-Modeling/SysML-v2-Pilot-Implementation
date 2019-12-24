@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConditionalImport;
 import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -1254,6 +1255,16 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.CONJUGATED_PORT_TYPING: {
+				ConjugatedPortTyping conjugatedPortTyping = (ConjugatedPortTyping)theEObject;
+				T result = caseConjugatedPortTyping(conjugatedPortTyping);
+				if (result == null) result = caseFeatureTyping(conjugatedPortTyping);
+				if (result == null) result = caseGeneralization(conjugatedPortTyping);
+				if (result == null) result = caseRelationship(conjugatedPortTyping);
+				if (result == null) result = caseElement(conjugatedPortTyping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -2005,6 +2016,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExhibitStateUsage(ExhibitStateUsage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conjugated Port Typing</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conjugated Port Typing</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConjugatedPortTyping(ConjugatedPortTyping object) {
 		return null;
 	}
 

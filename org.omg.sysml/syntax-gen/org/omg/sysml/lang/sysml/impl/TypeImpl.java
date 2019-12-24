@@ -192,14 +192,18 @@ public class TypeImpl extends PackageImpl implements Type {
 		}
 		return ownedRelationship_comp;
 	}
+	
+	@Override
+	public Conjugation getConjugator() {
+		return conjugator == null? basicGetConjugator(): getConjugatorGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Conjugation getConjugator() {
+	public Conjugation getConjugatorGen() {
 		if (conjugator != null && conjugator.eIsProxy()) {
 			InternalEObject oldConjugator = (InternalEObject)conjugator;
 			conjugator = (Conjugation)eResolveProxy(oldConjugator);
@@ -214,9 +218,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Conjugation basicGetConjugator() {
+		if (conjugator == null) {
+			conjugator = (Conjugation) getOwnedRelationship().stream().
+					filter(r->r instanceof Conjugation).
+					findFirst().orElse(null);
+		}
 		return conjugator;
 	}
 
@@ -537,7 +546,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public Conjugation basicGetOwnedConjugator() {
 		Conjugation conjugator = getConjugator();
-		return conjugator != null && conjugator.getOwnedElement() == this? conjugator: null;
+		return this.getOwnedRelationship().contains(conjugator)? conjugator: null;
 	}
 
 	/**

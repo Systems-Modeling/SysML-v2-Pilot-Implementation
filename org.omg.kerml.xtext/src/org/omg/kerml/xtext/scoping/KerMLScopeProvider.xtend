@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
+import org.omg.sysml.lang.sysml.Conjugation
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -77,6 +78,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			case SysMLPackage.eINSTANCE.featureTyping_Type: {
 				if (context instanceof FeatureTyping)
 					return context.typedFeature.scope_owningNamespace(reference)
+			}
+			case SysMLPackage.eINSTANCE.conjugation_OriginalType: {
+				if (context instanceof Conjugation) {
+					return context.conjugatedType.scope_owningNamespace(reference)
+				}
 			}
 			case SysMLPackage.eINSTANCE.generalization_General, 
 			case SysMLPackage.eINSTANCE.superclassing_Superclass: {

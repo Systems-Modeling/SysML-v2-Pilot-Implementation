@@ -193,17 +193,21 @@ class KerMLScope extends AbstractScope {
 
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
 		if (pack instanceof Type) {
+			var conjugator = pack.conjugator
+			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
+				scopeProvider.addVisited(conjugator)
+				var found = conjugator.originalType.resolveIfUnvisited(qn, false, false, visited)
+				scopeProvider.removeVisited(conjugator)
+				if (found) {
+					return true
+				}
+			}
 			for (e: pack.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
-					var found = false;
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
-					if (e.general !== null && !e.general.eIsProxy && !visited.contains(e.general)) {
-						visited.add(e.general)
-						found = e.general.resolve(qn, false, false, visited)
-						visited.remove(e.general)
-					}
+					var found = e.general.resolveIfUnvisited(qn, false, false, visited)
 					scopeProvider.removeVisited(e)
 					if (found) {
 						return true
@@ -217,16 +221,11 @@ class KerMLScope extends AbstractScope {
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
-				var found = false;
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
-				if (e.importedPackage !== null && !e.importedPackage.eIsProxy && !visited.contains(e.importedPackage) && 
-					(isInsideScope || e.visibility == VisibilityKind.PUBLIC)) {
-					visited.add(e.importedPackage)
-					found = e.importedPackage.resolve(qn, true, false, visited)
-					visited.remove(e.importedPackage)
-				}
+				var found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
+					e.importedPackage.resolveIfUnvisited(qn, true, false, visited)
 				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
@@ -234,6 +233,16 @@ class KerMLScope extends AbstractScope {
 			}
 		}
 		return false
+	}
+	
+	protected def boolean resolveIfUnvisited(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
+		var found = false
+		if (pack !== null && !pack.eIsProxy && !visited.contains(pack)) {
+			visited.add(pack)
+			found = pack.resolve(qn, checkIfAdded, isInsideScope, visited)
+			visited.remove(pack)
+		}
+		found
 	}
 	
 }

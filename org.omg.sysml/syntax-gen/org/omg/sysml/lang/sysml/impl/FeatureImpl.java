@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Class;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -205,6 +206,13 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
 		getFeatureTypes(feature, types);
+		Conjugation conjugator = feature.getConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType instanceof Feature) {
+				getTypes((Feature)originalType, types, visitedFeatures, isWithDefaults);
+			}
+		}
 		EList<Subsetting> subsettings = isWithDefaults? 
 				feature.getOwnedSubsetting(): 
 				((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();

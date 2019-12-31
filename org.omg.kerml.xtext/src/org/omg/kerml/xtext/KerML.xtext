@@ -330,15 +330,20 @@ fragment ClassifierDeclaration returns SysML::Classifier :
 fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
 	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	SpecializationList?
+	SpecializationOrConjugation?
 ;
 
-fragment SpecializationList returns SysML::Classifier :
-	(':>' | 'specializes' ) ownedRelationship_comp += Superclassing ( ',' ownedRelationship_comp += Superclassing )*
+fragment SpecializationOrConjugation returns SysML::Classifier :
+	  ( ':>' | 'specializes' ) ownedRelationship_comp += Superclassing ( ',' ownedRelationship_comp += Superclassing )*
+	| ( '~' | 'conjugates' ) ownedRelationship_comp += Conjugation
 ;
 
-Superclassing returns SysML::Superclassing:
+Superclassing returns SysML::Superclassing :
 	superclass = [SysML::Classifier | QualifiedName]
+;
+
+Conjugation returns SysML::Conjugation :
+	originalType = [SysML::Classifier | QualifiedName]
 ;
 
 /* CLASSES */
@@ -371,16 +376,6 @@ fragment AssociationDeclaration returns SysML::Association :
 	( isAbstract ?= 'abstract' )? 'assoc' ClassifierDeclarationCompletion
 ;
 
-/* INTERACTIONS */
-
-Interaction returns SysML::Interaction :
-	InteractionDeclaration TypeBody
-;
-
-fragment InteractionDeclaration returns SysML::Interaction :
-	( isAbstract ?= 'abstract' )? 'interaction' name = Name ParameterList? SpecializationList?
-;
-
 /* BEHAVIORS */
 
 Behavior returns SysML::Behavior :
@@ -388,7 +383,11 @@ Behavior returns SysML::Behavior :
 ;
 
 fragment BehaviorDeclaration returns SysML::Behavior :
-	( isAbstract ?= 'abstract')? 'behavior' name = Name ParameterList? SpecializationList?
+	( isAbstract ?= 'abstract')? 'behavior' BehaviorDeclarationCompletion
+;
+
+fragment BehaviorDeclarationCompletion returns SysML::Behavior :
+	name = Name ParameterList? SpecializationOrConjugation?
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -434,7 +433,7 @@ Function returns SysML::Function :
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
-	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList? ReturnParameterPart SpecializationList?
+	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -471,6 +470,16 @@ ExpressionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = Expression
 ;
 
+/* INTERACTIONS */
+
+Interaction returns SysML::Interaction :
+	InteractionDeclaration TypeBody
+;
+
+fragment InteractionDeclaration returns SysML::Interaction :
+	( isAbstract ?= 'abstract' )? 'interaction' BehaviorDeclarationCompletion
+;
+
 /* FEATURES */
 
 Feature returns SysML::Feature :
@@ -486,9 +495,17 @@ fragment FeatureDefinition returns SysML::Feature :
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
-	  name = Name TypePart? SubsettingPart
+	  name = Name ( TypePart? SubsettingPart | FeatureConjugationPart )
 	| TypePart SubsettingPart
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart
+;
+
+fragment FeatureConjugationPart returns SysML::Feature :
+	( '~' | 'conjugates' ) ownedRelationship_comp += FeatureConjugation
+;
+
+FeatureConjugation returns SysML::Conjugation :
+	originalType = [SysML::Feature | QualifiedName ]
 ;
 
 fragment FeatureCompletion returns SysML::Feature :

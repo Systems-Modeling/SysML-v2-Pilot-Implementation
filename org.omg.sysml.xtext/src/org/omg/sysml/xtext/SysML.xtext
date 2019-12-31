@@ -361,6 +361,21 @@ PortDefinition returns SysML::PortDefinition :
 
 fragment PortDeclaration returns SysML::PortDefinition :
 	( isAbstract ?= 'abstract' )? 'port' 'def' ClassifierDeclarationCompletion
+	ownedMembership_comp += ConjugatedPortDefinitionMember
+;
+
+ConjugatedPortDefinition returns SysML::ConjugatedPortDefinition :
+	ownedRelationship_comp += PortConjugation
+;
+
+PortConjugation returns SysML::PortConjugation :
+	{SysML::PortConjugation}
+;
+
+/* PORT DEFINITION MEMBERSHIPS */
+
+ConjugatedPortDefinitionMember returns SysML::Membership :
+	ownedMemberElement_comp = ConjugatedPortDefinition
 ;
 
 /* ASSOCIATION BLOCKS */
@@ -768,13 +783,17 @@ AbstractConjugatedPortUsage returns SysML::PortUsage :
 ;
 
 fragment ConjugatePortUsageDeclaration returns SysML::Usage :
-	  name = Name ConjugatePortTyping MultiplicityPart? SubsettingPart
-	| ConjugatePortTyping MultiplicityPart? SubsettingPart
-	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition ConjugatePortTyping MultiplicityPart SubsettingPart
+	  name = Name ConjugatePortTypePart MultiplicityPart? SubsettingPart
+	| ConjugatePortTypePart MultiplicityPart? SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition ConjugatePortTypePart MultiplicityPart SubsettingPart
 ;
 
-fragment ConjugatePortTyping returns SysML::Feature :
-	':' '~' ownedRelationship_comp += FeatureTyping
+fragment ConjugatePortTypePart returns SysML::Feature :
+	':' '~' ownedRelationship_comp += ConjugatedPortTyping
+;
+
+ConjugatedPortTyping returns SysML::ConjugatedPortTyping :
+	originalPortDefinition = [SysML::PortDefinition | QualifiedName]
 ;
 
 /* CONNECTORS */

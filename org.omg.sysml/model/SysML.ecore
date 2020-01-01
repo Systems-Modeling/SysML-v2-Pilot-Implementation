@@ -1335,7 +1335,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConjugatedPortTyping" eSuperTypes="#//FeatureTyping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="originalPortDefinition"
-        ordered="false" lowerBound="1" eType="#//PortDefinition"/>
+        ordered="false" lowerBound="1" eType="#//PortDefinition">
+      <eAnnotations source="subsets" references="#//Relationship/target"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conjugatedPortDefinition"
         ordered="false" lowerBound="1" eType="#//ConjugatedPortDefinition" volatile="true"
         transient="true" derived="true">

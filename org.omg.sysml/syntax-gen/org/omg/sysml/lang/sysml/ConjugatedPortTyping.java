@@ -23,6 +23,12 @@ package org.omg.sysml.lang.sysml;
 public interface ConjugatedPortTyping extends FeatureTyping {
 	/**
 	 * Returns the value of the '<em><b>Original Port Definition</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Original Port Definition</em>' reference isn't clear,
@@ -33,6 +39,7 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * @see #setOriginalPortDefinition(PortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortTyping_OriginalPortDefinition()
 	 * @model required="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	PortDefinition getOriginalPortDefinition();

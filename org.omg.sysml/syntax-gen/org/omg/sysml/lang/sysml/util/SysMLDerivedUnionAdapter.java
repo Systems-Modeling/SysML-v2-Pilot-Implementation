@@ -1514,6 +1514,9 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CONJUGATED_PORT_TYPING__OWNING_TYPE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
 				break;
+			case SysMLPackage.CONJUGATED_PORT_TYPING__ORIGINAL_PORT_DEFINITION:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
 		}
 	}
 

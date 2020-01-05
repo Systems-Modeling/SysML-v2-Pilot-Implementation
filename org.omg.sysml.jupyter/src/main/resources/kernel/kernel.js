@@ -24,20 +24,11 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
-            keywords: words("abstract accept action activity allInstances any as assoc assocblock bind block by " +
-                "comment connect decide def do end else first flow fork from hastype if import in inout instanceof interface " +
-                "interfacedef is join link merge nonunique of on ordered out package part perform port portdef private " +
-                "protected public redefines ref send specializes stream subsets succession then to type value valuetype"),
-            defKeywords: words("action activity assoc assocblock block def link" +
-                "interface interfacedef package part port portdef ref type value valuetype"),
-            /*
-            keywords: words("abstract accept allInstances any as assoc behavior binding by class classifier " +
-                "compose connector datatype end expr feature flow from function hastype import in inout instanceof " +
-                "interaction is namespace nonunique ordered out package packaged part perform port portion private " +
-                "protected public redefines specializes step stream subsets succession then to"),
-            defKeywords: words("assoc behavior class classifier connector datatype expr feature flow function " +
-                "interaction namespace package part port step succession"),
-            */
+            keywords: words("about abstract accept action activity allInstances any as assoc bind block by " +
+                "comment connect decide def do else end entry exhibit exit first flow fork from hastype if import " +
+                "in inout instanceof interface is join link merge nonunique of ordered out package part perform port private " +
+                "protected public redefines ref send specializes state stream subsets succession then to transition type value"),
+            defKeywords: words("action activity assoc block def link interface package part port ref state transition type value"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

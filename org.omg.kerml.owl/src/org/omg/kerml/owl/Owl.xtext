@@ -1,0 +1,769 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2018 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+grammar org.omg.kerml.owl.Owl with org.eclipse.xtext.common.Terminals
+
+generate owl "http://www.omg.org/spec/SysML/2.0/OWL"
+
+
+// Ontologies
+
+OntologyFile:
+	( documents += OntologyDocument )+
+;
+
+OntologyDocument:
+	( prefixDeclarations += PrefixDeclaration )*
+	ontology = Ontology
+;
+
+PrefixDeclaration:
+	'Prefix' '(' prefixName = PrefixName '=' fullIRI = FullIRI ')'
+;
+
+Ontology:
+	{Ontology} 'Ontology' '(' 
+		( ontologyIRI = IRI (versionIRI = IRI)? )?
+		( directlyImportsDocuments += DirectlyImportsDocument )*
+		( ontologyAnnotations += Annotation )*
+		( axioms += Axiom )*
+	')'
+;
+
+DirectlyImportsDocument:
+	'Import' '(' IRI ')'
+;
+
+// Entities, Literals, and Anonymous Individuals
+
+Entity:
+	Class | 
+	ObjectProperty | 
+	DataProperty | 
+	AnnotationProperty | 
+	Datatype | 
+	NamedIndividual
+;
+
+Class:
+	entityIRI = IRI
+;
+
+Datatype:
+	entityIRI = IRI
+;
+
+ObjectProperty:
+	entityIRI = IRI
+;
+
+DataProperty:
+	entityIRI = IRI
+;
+
+AnnotationProperty:
+	entityIRI = IRI
+;
+
+Individual:
+	NamedIndividual | 
+	AnonymousIndividual
+;
+
+NamedIndividual:
+	entityIRI = IRI
+;
+
+AnonymousIndividual:
+	nodeId = NodeID
+;
+
+Literal:
+	TypedLiteral | 
+	StringLiteral
+;
+
+TypedLiteral:
+	lexicalForm = STRING '^^' datatype = IRI // [Datatype|IRI]
+;
+
+StringLiteral:
+	lexicalForm = STRING
+;
+
+Declaration:
+	'Declaration' '(' 
+		( axiomAnnotation += Annotation )*
+		entity = EntityDeclaration
+	')'
+;
+
+EntityDeclaration returns Entity:
+	'Class' '(' Class ')' |
+	'Datatype' '(' Datatype ')' |
+	'ObjectProperty' '(' ObjectProperty ')' |
+    'DataProperty' '(' DataProperty ')' |
+    'AnnotationProperty' '(' AnnotationProperty ')' |
+    'NamedIndividual' '(' NamedIndividual ')'
+;
+
+// Property Expressions
+
+ObjectPropertyExpression:
+	ObjectPropertyReference | 
+	InverseObjectProperty
+;
+
+ObjectPropertyReference:
+	objectProperty = IRI // [ObjectProperty|IRI]
+;
+
+InverseObjectProperty:
+	'ObjectInverseOf' '(' 
+		objectProperty = IRI // [ObjectProperty|IRI] 
+	')'
+;
+
+DataPropertyExpression:
+	DataPropertyReference
+;
+
+DataPropertyReference:
+	dataProperty = IRI // [DataProperty|IRI]
+;
+
+// Data Ranges
+
+DataRange:
+	DatatypeReference |
+    DataIntersectionOf |
+    DataUnionOf |
+    DataComplementOf |
+    DataOneOf |
+    DatatypeRestriction
+;
+
+DatatypeReference:
+	datatype = IRI // [Datatype|IRI]
+;
+
+DataIntersectionOf:
+	'DataIntersectionOf' '(' 
+		dataRanges += DataRange 
+		( dataRanges += DataRange )+ 
+	')'
+;
+
+DataUnionOf:
+	'DataUnionOf' '('
+		dataRanges += DataRange 
+		( dataRanges += DataRange )+ 
+	')'
+;
+
+DataComplementOf:
+	'DataComplementOf' '(' 
+		dataRange = DataRange 
+	')'
+;
+
+DataOneOf:
+	'DataOneOf' '(' 
+		( literals += Literal )+ 
+	')'
+;
+
+DatatypeRestriction:
+	'DatatypeRestriction' '(' 
+		dataType = DatatypeReference
+		( restrictions += FacetRestriction )+
+	')'
+;
+
+FacetRestriction:
+	constrainingFacet = IRI restrictionValue = Literal
+;
+
+// Class Expressions
+
+ClassExpression:
+	ClassReference |
+	ObjectIntersectionOf | ObjectUnionOf | ObjectComplementOf | ObjectOneOf |
+    ObjectSomeValuesFrom | ObjectAllValuesFrom | ObjectHasValue | ObjectHasSelf |
+    ObjectMinCardinality | ObjectMaxCardinality | ObjectExactCardinality |
+    DataSomeValuesFrom | DataAllValuesFrom | DataHasValue |
+    DataMinCardinality | DataMaxCardinality | DataExactCardinality
+;
+
+ClassReference:
+	class = IRI // [Class|IRI]
+;
+
+ObjectIntersectionOf:
+	'ObjectIntersectionOf' '('
+		( classExpressions += ClassExpression )+
+	')'
+;
+
+ObjectUnionOf:
+	'ObjectUnionOf' '('
+		( classExpressions += ClassExpression )+
+	')'
+;
+
+ObjectComplementOf:
+	'ObjectComplementOf' '('
+		classExpression = ClassExpression
+	')'
+;
+
+ObjectOneOf:
+	'ObjectOneOf' '('
+		( individuals += IndividualReference )+
+	')'
+;
+
+IndividualReference:
+	NamedIndividualReference | 
+	AnonymousIndividualReference
+;
+
+NamedIndividualReference:
+	individual = IRI // [NamedIndividual|IRI]
+;
+
+AnonymousIndividualReference:
+	individual = NodeID // [AnonymousIndividual|NodeID]
+;
+
+ObjectSomeValuesFrom:
+	'ObjectSomeValuesFrom' '('
+		objectPropertyExpression = ObjectPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+ObjectAllValuesFrom:
+	'ObjectAllValuesFrom' '('
+		objectPropertyExpression = ObjectPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+ObjectHasValue:
+	'ObjectHasValue' '('
+		objectPropertyExpression = ObjectPropertyExpression
+		individual = IndividualReference
+	')'
+;
+
+ObjectHasSelf:
+	'ObjectHasSelf' '('
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+ObjectMinCardinality:
+	'ObjectMinCardinality' '('
+		cardinality = INT
+		objectPropertyExpression = ObjectPropertyExpression
+		( classExpression = ClassExpression )?
+	')'
+;
+
+ObjectMaxCardinality:
+	'ObjectMaxCardinality' '('
+		cardinality = INT
+		objectPropertyExpression = ObjectPropertyExpression
+		( classExpression = ClassExpression )?
+	')'
+;
+
+ObjectExactCardinality:
+	'ObjectExactCardinality' '('
+		cardinality = INT
+		objectPropertyExpression = ObjectPropertyExpression
+		( classExpression = ClassExpression )?
+	')'
+;
+
+DataSomeValuesFrom:
+	'DataSomeValuesFrom' '('
+		( dataPropertyExpressions += DataPropertyExpression )+
+		dataRange += DataRange
+	')'	
+;
+
+DataAllValuesFrom:
+	'DataAllValuesFrom' '('
+		( dataPropertyExpressions += DataPropertyExpression )+
+		dataRange += DataRange
+	')'	
+;
+
+DataHasValue:
+	'DataHasValue' '('
+		dataPropertyExpression = DataPropertyExpression
+		literal = Literal
+	')'
+;
+
+DataMinCardinality:
+	'DataMinCardinality' '('
+		cardinality = INT
+		dataPropertyExpression = DataPropertyExpression
+		( dataRange = DataRange )?
+;
+
+DataMaxCardinality:
+	'DataMaxCardinality' '('
+		cardinality = INT
+		dataPropertyExpression = DataPropertyExpression
+		( dataRange = DataRange )?
+;
+
+DataExactCardinality:
+	'DataExactCardinality' '('
+		cardinality = INT
+		dataPropertyExpression = DataPropertyExpression
+		( dataRange = DataRange )?
+;
+
+// Axioms
+
+Axiom:
+	Declaration | 
+	ClassAxiom | 
+	ObjectPropertyAxiom | 
+	DataPropertyAxiom | 
+	DatatypeDefinition | 
+	HasKey | 
+	Assertion | 
+	AnnotationAxiom	
+;
+
+// Class Axioms
+
+ClassAxiom:
+	SubClassOf | 
+	EquivalentClasses | 
+	DisjointClasses | 
+	DisjointUnion
+;
+
+SubClassOf:
+	'SubClassOf' '('
+		( axiomAnnotations += Annotation )*
+		subClassExpression = ClassExpression
+		superClassExpression = ClassExpression
+	')'
+;
+
+EquivalentClasses:
+	'EquivalentClasses' '('
+		( axiomAnnotations += Annotation )*
+		classExpressions += ClassExpression
+		( classExpressions += ClassExpression )+
+	')'
+;
+
+DisjointClasses:
+	'DisjointClasses' '('
+		( axiomAnnotations += Annotation )*
+		classExpressions += ClassExpression
+		( classExpressions += ClassExpression )+
+	')'
+;
+
+DisjointUnion:
+	'DisjointUnion' '('
+		( axiomAnnotations += Annotation )*
+		class = ClassReference
+		disjointClassExpressions += ClassExpression
+		( disjointClassExpressions += ClassExpression )+
+	')'
+;
+
+// Object Property Axioms
+
+ObjectPropertyAxiom:
+	SubObjectPropertyOf | EquivalentObjectProperties |
+    DisjointObjectProperties | InverseObjectProperties |
+    ObjectPropertyDomain | ObjectPropertyRange |
+    FunctionalObjectProperty | InverseFunctionalObjectProperty |
+    ReflexiveObjectProperty | IrreflexiveObjectProperty |
+    SymmetricObjectProperty | AsymmetricObjectProperty |
+    TransitiveObjectProperty
+;
+
+SubObjectPropertyOf:
+	'SubObjectPropertyOf' '('
+		( axiomAnnotations += Annotation )*
+		( subObjectPropertyExpression += ObjectPropertyExpression |
+		  'ObjectPropertyChain' '('
+		      ( subObjectPropertyExpression += ObjectPropertyExpression )+
+		  ')'
+		)
+	')'
+;
+
+EquivalentObjectProperties:
+	'EquivalentObjectProperties' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpressions += ObjectPropertyExpression
+		( objectPropertyExpressions += ObjectPropertyExpression )+
+	')'
+;
+
+DisjointObjectProperties:
+	'DisjointObjectProperties' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpressions += ObjectPropertyExpression
+		( objectPropertyExpressions += ObjectPropertyExpression )+
+	')'
+;
+
+InverseObjectProperties:
+	'InverseObjectProperties' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression1 = ObjectPropertyExpression
+		objectPropertyExpression2 = ObjectPropertyExpression
+	')'
+;
+
+ObjectPropertyDomain:
+	'ObjectPropertyDomain' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+ObjectPropertyRange:
+	'ObjectPropertyRange' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+FunctionalObjectProperty:
+	'FunctionalObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+InverseFunctionalObjectProperty:
+	'InverseFunctionalObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+ReflexiveObjectProperty:
+	'ReflectiveObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+IrreflexiveObjectProperty:
+	'IrreflectiveObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+SymmetricObjectProperty:
+	'SymmetricObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+AsymmetricObjectProperty:
+	'AsymmetricObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+TransitiveObjectProperty:
+	'TransitiveObjectProperty' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+	')'
+;
+
+// Data Property Axioms
+
+DataPropertyAxiom:
+	SubDataPropertyOf | 
+	EquivalentDataProperties | 
+	DisjointDataProperties |
+    DataPropertyDomain | 
+    DataPropertyRange | 
+    FunctionalDataProperty
+;
+
+SubDataPropertyOf:
+	'SubDataPropertyOf' '('
+		( axiomAnnotations += Annotation )*
+		subDataPropertyExpression = DataPropertyExpression
+		superDataPropertyExpression = DataPropertyExpression
+	')'
+;
+
+EquivalentDataProperties:
+	'EquivalentDataProperties' '('
+		( axiomAnnotations += Annotation )*
+		dataPropertyExpressions += DataPropertyExpression
+		( dataPropertyExpressions += DataPropertyExpression )+
+	')'
+;
+
+DisjointDataProperties:
+	'DisjointDataProperties' '('
+		( axiomAnnotations += Annotation )*
+		dataPropertyExpressions += DataPropertyExpression
+		( dataPropertyExpressions += DataPropertyExpression )+
+	')'
+;
+
+DataPropertyDomain:
+	'DataPropertyDomain' '('
+		( axiomAnnotations += Annotation )*
+		dataPropertyExpressions += DataPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+DataPropertyRange:
+	'DataPropertyRange' '('
+		( axiomAnnotations += Annotation )*
+		dataPropertyExpressions += DataPropertyExpression
+		classExpression = ClassExpression
+	')'
+;
+
+FunctionalDataProperty:
+	'FunctionalDataProperty' '('
+		( axiomAnnotations += Annotation )*
+		dataPropertyExpressions += DataPropertyExpression
+	')'
+;
+
+// Datatype Definitions
+
+DatatypeDefinition:
+	'DatatypeDefinition' '('
+		( axiomAnnotations += Annotation )*
+		datatype = DatatypeReference
+		dataRange = DataRange
+	')'
+;
+
+// Keys
+
+HasKey:
+	'HasKey' '('
+		( axiomAnnotations += Annotation )*
+		classExpression = ClassExpression
+		'(' ( objectPropertyExpressions += ObjectPropertyExpression )* ')'
+		'(' ( dataPropertyExpressions += DataPropertyExpression )* ')'
+	')'
+;
+
+// Assertions
+
+Assertion:
+    SameIndividual | 
+    DifferentIndividuals | 
+    ClassAssertion |
+    ObjectPropertyAssertion | 
+    NegativeObjectPropertyAssertion |
+    DataPropertyAssertion | 
+    NegativeDataPropertyAssertion
+;
+
+SameIndividual:
+	'SameIndividual' '('
+		( axiomAnnotations += Annotation )*
+		individuals += IndividualReference
+		( individuals += IndividualReference )+
+	')'
+;
+
+DifferentIndividuals:
+	'DifferentIndividuals' '('
+		( axiomAnnotations += Annotation )*
+		individuals += IndividualReference
+		( individuals += IndividualReference )+
+	')'
+;
+
+ClassAssertion:
+	'ClassAssertion' '('
+		( axiomAnnotations += Annotation )*
+		classExpression = ClassExpression
+		individual = IndividualReference
+	')'
+;
+
+ObjectPropertyAssertion:
+	'ObjectPropertyAssertion' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		sourceIndividual = IndividualReference
+		targetIndividual = IndividualReference
+	')'
+;
+
+NegativeObjectPropertyAssertion:
+	'NegativeObjectPropertyAssertion' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		sourceIndividual = IndividualReference
+		targetIndividual = IndividualReference
+	')'
+;
+
+DataPropertyAssertion:
+	'DataPropertyAssertion' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		sourceIndividual = IndividualReference
+		targetValue = Literal
+	')'
+;
+
+NegativeDataPropertyAssertion:
+	'NegativeDataPropertyAssertion' '('
+		( axiomAnnotations += Annotation )*
+		objectPropertyExpression = ObjectPropertyExpression
+		sourceIndividual = IndividualReference
+		targetValue = Literal
+	')'
+;
+
+// Annotations
+
+Annotation:
+	'Annotation' '('
+		( annotationAnnotations += Annotation )*
+		annotationProperty = AnnotationProperty
+		annotationvalue = AnnotationValue
+	')'
+;
+
+AnnotationValue:
+	AnonymousIndividualReference | 
+	{AnnotationValue} IRI | 
+	Literal
+;
+
+// Annotation Axioms
+
+AnnotationAxiom:
+	AnnotationAssertion | 
+	SubAnnotationPropertyOf | 
+	AnnotationPropertyDomain | 
+	AnnotationPropertyRange
+;
+
+AnnotationAssertion:
+	'AnnotationAssertion' '('
+		( annotationAnnotations += Annotation )*
+		annotationProperty = AnnotationProperty
+		annotationSubject = AnnotationSubject
+		annotationValue = AnnotationValue
+	')'
+;
+
+AnnotationSubject:
+	{AnnotationSubject} IRI | AnonymousIndividualReference
+;
+
+SubAnnotationPropertyOf:
+	'SubAnnotationPropertyOf' '('
+		( annotationAnnotations += Annotation )*
+		subAnnotationProperty = AnnotationProperty
+		superAnnotationProperty = AnnotationProperty
+	')'
+;
+
+AnnotationPropertyDomain:
+	'AnnotationPropertyDomain' '('
+		( annotationAnnotations += Annotation )*
+		annotationProperty = AnnotationProperty
+		domain = IRI
+	')'
+;
+
+AnnotationPropertyRange:
+	'AnnotationPropertyRange' '('
+		( annotationAnnotations += Annotation )*
+		annotationProperty = AnnotationProperty
+		range = IRI
+	')'
+;
+
+// Identification
+
+IRI:
+	FullIRI | AbbreviatedIRI
+;
+
+FullIRI:
+	FULL_IRI
+;
+
+AbbreviatedIRI:
+	PN_PREFIX? PN_LOCAL
+;
+
+PrefixName:
+	PN_PREFIX? ':' 
+;
+
+NodeID:
+	BLANK_NODE_LABEL
+;
+
+// Lexical Structure
+
+terminal fragment ISEGMENT: ('a'..'z'|'A'..'Z'|'_'|'-'|'.'|'~'|'0'..'9')*;
+terminal FULL_IRI: '<' ID ':' '//' ISEGMENT ('/' ISEGMENT)* ( '#' ISEGMENT )? '>';
+
+terminal fragment PN_CHARS_BASE: 'a'..'z'|'A'..'Z';
+terminal fragment PN_CHARS_U: PN_CHARS_BASE | '_';
+terminal fragment PN_CHARS: PN_CHARS_U | '-' | '0'..'9';
+terminal PN_PREFIX: PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?;
+terminal PN_LOCAL: ':' (PN_CHARS_U | '0'..'9') ((PN_CHARS | '.')* PN_CHARS)?;
+
+//terminal PNAME_LN: PN_PREFIX? ':' PN_LOCAL;
+//terminal PNAME_NS: PN_PREFIX? ':';
+
+terminal BLANK_NODE_LABEL: '_:' (PN_CHARS_U | '0'..'9') ((PN_CHARS | '.')* PN_CHARS)?;

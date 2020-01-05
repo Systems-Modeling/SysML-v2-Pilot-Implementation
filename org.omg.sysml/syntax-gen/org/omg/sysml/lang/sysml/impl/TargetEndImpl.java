@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
@@ -44,9 +45,17 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 
 	@Override
 	public Type getDefaultType(String... defaultNames) {
-		Type type = getOwningType();
-		type = type == null ? null : ((Feature) type).getOwningType();
-		return type instanceof Feature ? type : null;
+		Type type = this.getOwningType();
+		if (type instanceof Feature) {
+			Feature feature = (Feature)type;
+			type = feature.getOwningType();
+			if (type != null) {
+				EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
+				int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
+				return i < memberships.size()? memberships.get(i).getMemberFeature(): null;
+			}
+		}
+		return null;
 	}
 
 } // TargetEndImpl

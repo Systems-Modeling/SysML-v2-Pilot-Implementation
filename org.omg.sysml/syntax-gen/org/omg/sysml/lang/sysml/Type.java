@@ -21,15 +21,20 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  * </ul>
  *
@@ -90,6 +95,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership() <em>Feature Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -104,6 +110,17 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If the given feature is a feature of this type, then return its effective direction relative to this type.
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" featureRequired="true" featureOrdered="false"
+	 * @generated
+	 */
+	FeatureDirectionKind directionOf(Feature feature);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.
@@ -205,6 +222,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Abstract</em>' attribute isn't clear,
@@ -214,7 +232,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
 	 * @see #setIsAbstract(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsAbstract()
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAbstract();
@@ -247,7 +265,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @return the value of the '<em>Inherited Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedMembership()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingtype'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingType'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -303,6 +321,138 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	void setIsSufficient(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Conjugator</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getConjugator() <em>Conjugator</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Conjugator</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Conjugator</em>' reference.
+	 * @see #setOwnedConjugator(Conjugation)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedConjugator()
+	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Conjugation getOwnedConjugator();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Conjugator</em>' reference.
+	 * @see #getOwnedConjugator()
+	 * @generated
+	 */
+	void setOwnedConjugator(Conjugation value);
+
+	/**
+	 * Returns the value of the '<em><b>Conjugator</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Conjugation#getConjugatedType <em>Conjugated Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Conjugator</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Conjugator</em>' reference.
+	 * @see #setConjugator(Conjugation)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Conjugator()
+	 * @see org.omg.sysml.lang.sysml.Conjugation#getConjugatedType
+	 * @model opposite="conjugatedType" ordered="false"
+	 * @generated
+	 */
+	Conjugation getConjugator();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Conjugator</em>' reference.
+	 * @see #getConjugator()
+	 * @generated
+	 */
+	void setConjugator(Conjugation value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Conjugated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Conjugated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Conjugated</em>' attribute.
+	 * @see #setIsConjugated(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsConjugated()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isConjugated();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Conjugated</em>' attribute.
+	 * @see #isConjugated()
+	 * @generated
+	 */
+	void setIsConjugated(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Feature Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Feature Membership</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Feature Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='type'"
+	 * @generated
+	 */
+	EList<FeatureMembership> getFeatureMembership();
+
+	/**
+	 * Returns the value of the '<em><b>Inherited Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inherited Feature</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inherited Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingType'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Feature> getInheritedFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

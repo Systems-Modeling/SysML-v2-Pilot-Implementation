@@ -48,5 +48,7 @@ public class KerMLStandaloneSetupGenerated implements ISetup {
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("kerml", resourceFactory);
 		IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("kerml", serviceProvider);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("alf", resourceFactory);
+		IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("alf", serviceProvider);
 	}
 }

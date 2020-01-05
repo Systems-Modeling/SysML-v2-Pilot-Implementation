@@ -60,7 +60,7 @@ package '3a-Function-based Behavior' {
 		then continue;
 		
 		first engineStart;
-		then do 'provide power' (
+		then perform 'provide power' (
 			in fuelCmd = 'provide power with control'::fuelCmd, 
 			out wheelTorque1 = 'provide power with control'::wheelTorque1,
 			out wheelTorque2 = 'provide power with control'::wheelTorque2

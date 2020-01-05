@@ -3,12 +3,12 @@
  */
 package org.omg.kerml.xtext
 
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.omg.sysml.naming.AlfQualifiedNameConverter
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.sysml.lang.sysml.util.SysMLLibraryProvider
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.omg.sysml.scoping.AlfGlobalScopeProvider
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
+import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
+import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.kerml.xtext.library.KerMLLibraryProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -16,15 +16,15 @@ import org.omg.sysml.scoping.AlfGlobalScopeProvider
 class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		AlfQualifiedNameConverter
+		KerMLQualifiedNameConverter
 	}
 	
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
-		SysMLLibraryProvider
+		KerMLLibraryProvider
 	}
 		
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		AlfGlobalScopeProvider
+		KerMLGlobalScopeProvider
 	}
 		
 }

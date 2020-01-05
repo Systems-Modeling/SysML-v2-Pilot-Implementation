@@ -26,6 +26,8 @@ Package {
       memberElement -> Class DependencyMultipleMembership.alf#//@ownedMembership_comp.1/@ownedMemberElement_comp
     }
     Membership {
+      memberName = 'D'
+      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
       ownedMemberElement_comp = Class {
         ownedRelationship_comp = [
           Superclassing {
@@ -55,8 +57,6 @@ Package {
           }
         ]
       }
-      memberName = 'D'
-      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
     }
   ]
 }

@@ -32,6 +32,7 @@
 '['=83
 ']'=84
 '^'=20
+'about'=54
 'abstract'=68
 'all'=98
 'allInstances'=102
@@ -63,7 +64,6 @@
 'nonunique'=100
 'null'=93
 'of'=89
-'on'=54
 'ordered'=99
 'out'=51
 'package'=57

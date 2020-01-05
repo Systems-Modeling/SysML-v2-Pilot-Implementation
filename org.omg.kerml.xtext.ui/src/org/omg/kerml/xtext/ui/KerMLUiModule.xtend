@@ -4,14 +4,16 @@
 package org.omg.kerml.xtext.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.omg.sysml.ui.contentassist.AlfPrefixMatcher
+import org.omg.kerml.xtext.ui.contentassist.KerMLPrefixMatcher
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class KerMLUiModule extends AbstractKerMLUiModule {
+	
 	override bindPrefixMatcher() {
-		AlfPrefixMatcher
+		KerMLPrefixMatcher
 	}
+	
 }

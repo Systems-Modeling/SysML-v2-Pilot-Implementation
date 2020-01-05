@@ -18,10 +18,13 @@ Require-Bundle: org.omg.kerml.xtext,
  org.eclipse.xtext.builder,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional,
- org.omg.sysml.ui;bundle-version="1.0.0"
+ org.omg.sysml;bundle-version="1.0.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.omg.kerml.xtext.ui.quickfix,
+Export-Package: org.omg.kerml.xtext.ui,
  org.omg.kerml.xtext.ui.contentassist,
- org.omg.kerml.xtext.ui.internal
+ org.omg.kerml.xtext.ui.internal,
+ org.omg.kerml.xtext.ui.labeling,
+ org.omg.kerml.xtext.ui.outline,
+ org.omg.kerml.xtext.ui.quickfix
 Bundle-Activator: org.omg.kerml.xtext.ui.internal.XtextActivator

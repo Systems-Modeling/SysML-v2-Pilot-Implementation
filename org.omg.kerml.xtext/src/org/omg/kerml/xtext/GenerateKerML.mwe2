@@ -30,7 +30,7 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "org.omg.kerml.xtext.KerML"
-			fileExtensions = "kerml"
+			fileExtensions = "kerml,alf"
 		    referencedResource = "${genModel}"
 
 		    parserGenerator = {

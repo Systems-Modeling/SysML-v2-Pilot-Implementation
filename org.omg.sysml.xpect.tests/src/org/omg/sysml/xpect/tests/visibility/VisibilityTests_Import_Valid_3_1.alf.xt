@@ -10,17 +10,15 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.alf"}
-				File {from ="/src/DependencyVisibilityPackage.alf" }
+				File {from ="/src/DependencyVisibilityPackage.alf"}
 			}
 		}
 	}
 END_SETUP 
 */
-
-
+//XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_public'." at "c_Private_alias::alias_public"
-	feature f : c_Private_alias::alias_public;
+	import VisibilityPackage::c_Public::*;
+	feature a : c_public;
+	feature b : VisibilityPackage::c_Public::c_public;
 }
-

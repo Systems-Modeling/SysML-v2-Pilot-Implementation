@@ -30,7 +30,7 @@ package Classes {
 		    Try.feature4, Try.featurepublic, 
 		    Try, Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 		--- */
 		//XPECT linkedName at aliass --> VisibilityPackage.c_Public.c_public
 		feature feature4 : aliass;
@@ -42,7 +42,7 @@ package Classes {
 		    Try.feature4, Try.featurepublic, 
 		    Try, Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 		--- */
 		feature featurepublic : Aliass;
 	}

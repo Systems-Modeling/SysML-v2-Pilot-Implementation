@@ -12,6 +12,7 @@ import org.omg.sysml.xpect.tests.query.SysMLQueryTest;
 import org.omg.sysml.xpect.tests.scoping.SysMLScopingTest;
 import org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest;
 import org.omg.sysml.xpect.tests.validation.SysMLValidationTest;
+import org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest;
 
 @SuiteClasses({ SysMLLinkingTest.class, //
 		SysMLGeneratorTest.class, //
@@ -22,7 +23,8 @@ import org.omg.sysml.xpect.tests.validation.SysMLValidationTest;
 		SysMLScopingTest.class, //
 		SysMLXtextTest.class, //
 		SysMLValidationTest.class, //
-		SysMLQueryTest.class
+		SysMLQueryTest.class,
+		SysMLVisibilityTest.class
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

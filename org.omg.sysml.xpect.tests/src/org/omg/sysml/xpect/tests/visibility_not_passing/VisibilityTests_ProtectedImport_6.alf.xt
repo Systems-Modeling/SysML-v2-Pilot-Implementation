@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,11 +17,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 END_SETUP 
 */
 
-package Classes {
-	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
-	class try specializes c_clazz::c_Protect::c_publicc{}
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::c_clazz::*;
+	class A specializes c_Protect::c_publicc{
+	}
 }
-
-
-

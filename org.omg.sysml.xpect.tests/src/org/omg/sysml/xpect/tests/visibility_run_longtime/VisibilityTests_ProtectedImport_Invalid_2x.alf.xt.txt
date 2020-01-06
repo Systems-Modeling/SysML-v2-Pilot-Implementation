@@ -1,0 +1,38 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//if import is more than 3 takes longtime to run
+package Test3{
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
+	import VisibilityPackage::c_Private::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Private::c_private'." at "VisibilityPackage::c_Private::c_private"
+	import VisibilityPackage::c_Private::c_private::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Private::c_public'." at "VisibilityPackage::c_Private::c_public"
+	import VisibilityPackage::c_Private::c_public::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Public::c_protected'." at "VisibilityPackage::c_Public::c_protected"
+	import VisibilityPackage::c_Public::c_protected::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Public::c_private'." at "VisibilityPackage::c_Public::c_private"
+	import VisibilityPackage::c_Public::c_private::*;
+	
+}
+	//import VisibilityPackage::c_Public::*;
+//import VisibilityPackage::c_Public::c_public::*;
+
+	
+	

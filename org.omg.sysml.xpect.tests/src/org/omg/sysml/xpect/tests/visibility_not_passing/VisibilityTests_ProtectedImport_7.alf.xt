@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,8 +17,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 END_SETUP 
 */
 
+// XPECT noErrors ---> ""
 package Test3{
-	// XPECT errors ---> "Couldn't resolve reference to Package 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
-	import VisibilityPackage::c_Private::*;
+	import VisibilityPackage::*;
+	class A specializes c_Public_alias{
+ 		class AA specializes alias_protected{}
+ 		class BB specializes A::alias_protected{}
+ 		class CC specializes Test3::A::alias_protected{}
+	}
 }
-

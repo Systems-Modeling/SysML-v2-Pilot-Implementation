@@ -1,0 +1,28 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Test3{
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_clazz::c_Protect::c_protect'." at "VisibilityPackage::c_clazz::c_Protect::c_protect"
+	import VisibilityPackage::c_clazz::c_Protect::c_protect::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_clazz::c_Package'." at "VisibilityPackage::c_clazz::c_Package"
+	import VisibilityPackage::c_clazz::c_Package::*;
+	
+}
+

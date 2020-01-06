@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Classes {
+	import VisibilityPackage::c_Public::*;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_private'." at "c_private"
+	feature a : c_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_protected'." at "c_protected"
+	feature b : c_protected;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_private'." at "c_Public::c_private"
+	feature c : c_Public::c_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_protected'." at "c_Public::c_protected"
+	feature d : c_Public::c_protected;
+	//XPECT errors --> "Couldn't resolve reference to Type 'VisibilityPackage::c_Public::c_private'." at "VisibilityPackage::c_Public::c_private"
+	feature e : VisibilityPackage::c_Public::c_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'VisibilityPackage::c_Public::c_protected'." at "VisibilityPackage::c_Public::c_protected"
+	feature f : VisibilityPackage::c_Public::c_protected;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_public'." at "c_Public::c_public"
+	feature g : c_Public::c_public;
+}

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,9 +17,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 END_SETUP 
 */
 
-
-package Classes {
+// XPECT noErrors ---> ""
+package Test3{
 	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_private'." at "c_Private_alias::alias_private"
-	feature f : c_Private_alias::alias_private;
+	class B specializes c_Public{
+ 		class BB specializes c_protected{}
+ 	}
 }

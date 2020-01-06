@@ -1,0 +1,37 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::*;
+	class A specializes c_clazz{
+ 		class AA specializes c_Protect::c_publicc{}
+ 		class BB specializes A::c_Protect::c_publicc{}
+ 		class CC specializes Test3::A::c_Protect::c_publicc{}
+	}
+	
+ 	//c_Protect::c_publicc --- The public members can be available via qualification
+	
+	
+}
+// comment
+// should be valid
+// class CC specializes c_Protect{} 
+// class DD specializes c_Protect::c_publicc{}
+// class BB specializes c_protected{}		

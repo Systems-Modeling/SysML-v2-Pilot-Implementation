@@ -272,9 +272,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		apiElement.put("containingProject", identified(this.project.getIdentifier()));
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String name = feature.getName();
-			if (!apiElement.containsKey(name) && 
-					// TODO: Remove the line below when the API is fixed.
-					!"feature".equals(name) && !"bound".equals(name)) {
+			if (!apiElement.containsKey(name)) {
 				Object value = element.eGet(feature);
 				if (feature instanceof EReference) {
 					value = feature.isMany()?

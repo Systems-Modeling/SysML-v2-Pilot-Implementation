@@ -1,4 +1,4 @@
-package '5-State-based Behavior' {
+package '5-State-based Behavior-1' {
 	import ScalarValues::*;
 	
 	package Definitions {
@@ -40,17 +40,17 @@ package '5-State-based Behavior' {
 				value maintenanceTime: Time::DateTime;
 				value Tmax: ISQ::TemperatureValue;
 				
-				ref action 'perform self test': 'Perform Self Test';
-				ref action 'provide power': 'Provide Power';
-				ref action 'apply parking brake': 'Apply Parking Brake';
+				perform action 'perform self test': 'Perform Self Test';
+				perform action 'provide power': 'Provide Power';
+				perform action 'apply parking brake': 'Apply Parking Brake';
 				
-				ref action 'sense temperature': 'Sense Temperature'(out temp);
+				perform action 'sense temperature': 'Sense Temperature'(out temp);
 				
-				ref state 'vehicle states': 'Vehicle States';
+				exhibit state 'vehicle states': 'Vehicle States';
 			}
 			
 			block VehicleController {
-				ref state 'controller states': 'Controller States';
+				exhibit state 'controller states': 'Controller States';
 			}
 		}		
 	}
@@ -66,21 +66,29 @@ package '5-State-based Behavior' {
 		}
 		
 		package States {
-			state 'vehicle states': 'Vehicle States' (
-				in vehicle : VehicleA[1],
-				in control : VehicleController[1]	
-			) {
+			state 'vehicle states': 'Vehicle States' {
+				ref vehicle : VehicleA;
+				ref control : VehicleController;
+					
 				state 'operational states' {
-					entry; then off;
+					entry action initial;
+					
+					transition initial then off;
 				    
 					state off;
-					accept 'Vehicle Start Signal' 
+					
+					transition 'off-starting'
+						first off
+						accept 'Vehicle Start Signal' 
 						if vehicle::'brake pedal depressed'
 						do send 'Start Signal'() to control
 						then starting;
 						
 					state starting;
-					accept 'Vehicle On Signal'
+					
+					transition 'starting-on'
+						first starting
+						accept 'Vehicle On Signal'
 						then on;
 						
 					state on {
@@ -88,41 +96,66 @@ package '5-State-based Behavior' {
 						do vehicle::'provide power';
 						exit vehicle::'apply parking brake';
 					}
-					accept 'Vehicle Off Signal'
+					
+					transition 'on-off'
+						first on
+						accept 'Vehicle Off Signal'
 						then off;
 				}
 				
 				state 'health states' {
-					entry; then normal;
+					entry action initial;
 					do vehicle::'sense temperature' (out temp);
 					
+					transition initial then normal;
+					
 					state normal;
-					accept 'at(vehicle::maintenanceTime)'
+					
+					transition 'normal-maintenance'
+						first normal
+						accept 'at(vehicle::maintenanceTime)'
 						then maintenance;
-					accept 'when(temp>vehicle::Tmax)' 
+					
+					transition 'normal-degraded'
+						first normal
+						accept 'when(temp>vehicle::Tmax)' 
 						do send 'Over Temp'() to control 
 						then degraded;
 					
 					state maintenance;
-					accept 'Return to Normal'
+					
+					transition 'maintenance-normal'
+						first maintenance
+						accept 'Return to Normal'
 						then normal;
 					
 					state degraded;
-					accept 'Return to Normal'
+					
+					transition 'degraded-normal'
+						first degraded
+						accept 'Return to Normal'
 						then normal;
 				}
 			}
 			
 			state 'controller states': 'Controller States' {
 				state 'operational controller states' {
-					entry; then off;
+					entry action initial; 
+					
+					transition initial then off;
 					
 					state off;
-					accept 'Start Signal'
+					
+					transition 'off-on'
+						first off
+						accept 'Start Signal'
 						then on;
 					
 					state on;
-					accept 'Off Signal'
+					
+					transition 'on-off'
+						first on
+						accept 'Off Signal'
 						then off;
 				}
 			}		
@@ -136,10 +169,10 @@ package '5-State-based Behavior' {
 				
 				perform Actions::'sense temperature' redefines 'sense temperature';
 				
-				exhibit States::'vehicle states'(
-					in vehicle = self,
-					in control = vehicleController
-				) redefines 'vehicle states';
+				exhibit States::'vehicle states' redefines 'vehicle states' {
+					part redefines vehicle = vehicle1_c1::self;
+					part redefines control = vehicleController;
+				}
 					
 				part vehicleController: VehicleController {
 					exhibit States::'controller states' redefines 'controller states';

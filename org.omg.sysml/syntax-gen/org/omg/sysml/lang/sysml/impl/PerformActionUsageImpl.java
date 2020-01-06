@@ -67,10 +67,10 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public ActionUsage basicGetPerformedAction() {
 		EList<Subsetting> subsettings = getOwnedSubsetting();
 		if (subsettings.isEmpty()) {
-			return null;
+			return this;
 		} else {
 			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof ActionUsage? (ActionUsage)subsettedFeature: null;
+			return subsettedFeature instanceof ActionUsage? (ActionUsage)subsettedFeature: this;
 		}
 	}
 

@@ -578,7 +578,11 @@ fragment StateBehaviorPart returns SysML::Type :
 ;
 
 StateActionUsage returns SysML::ActionUsage :
-	EmptyActionUsage ';' | PerformActionUsage | ActionNode
+	  EmptyActionUsage ';' | PerformedActionUsage ActivityBody
+;
+
+PerformedActionUsage returns SysML::ActionUsage :
+	PerformActionUsageDeclaration | AcceptActionNodeDeclaration | SendActionNodeDeclaration
 ;
 
 EmptyActionUsage returns SysML::ActionUsage :
@@ -948,9 +952,7 @@ TriggerStep returns SysML::AcceptActionUsage :
 ;
 
 EffectBehaviorUsage returns SysML::ActionUsage :
-	  EmptyActionUsage
-	| ( PerformActionUsageDeclaration | ActionNodeDeclaration )
-	  ( '{' ActivityBodyItem* '}' )?
+	  EmptyActionUsage | PerformedActionUsage ( '{' ActivityBodyItem* '}' )?
 ;
 
 /* SUCCESSION MEMBERHSIPS */
@@ -1079,8 +1081,9 @@ PerformActionUsage returns SysML::PerformActionUsage :
 ;
 
 PerformActionUsageDeclaration returns SysML::PerformActionUsage :
-    ( name = Name TypePart? 'by' )? 
-    ownedRelationship_comp += Subset 
+   	( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
+   	| 'action' name = Name TypePart?
+   	)
     ActionParameterList? SubsettingPart ValuePart?
 ;
 
@@ -1200,8 +1203,9 @@ AbstractStateUsage returns SysML::StateUsage :
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
-    ( name = Name TypePart? 'by' )? 
-    ownedRelationship_comp += Subset 
+    ( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
+    | 'state' name = Name TypePart?
+    )
     ActionParameterList? SubsettingPart ValuePart?
 	StateBody
 ;

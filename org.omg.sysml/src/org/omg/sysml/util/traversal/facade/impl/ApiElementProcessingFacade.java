@@ -28,13 +28,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.api.ElementApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -52,12 +52,17 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
 	
+	private static final int MAX_DOT_COUNT = 100;
+	
 	private final ApiClient apiClient = new ApiClient();
 	private final ElementApi elementApi = new ElementApi(apiClient);
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
 
 	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
+	
+	private boolean isVerbose = false;
+	private int dotCount = 0;
 
 	/**
 	 * Create a facade for processing the Elements of a project with the given name. A project with that name
@@ -104,6 +109,23 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
+	 * Set whether the facade prints a detailed trace of what is being traversed.
+	 * 
+	 * @param 	isVerbose		whether verbose mode is to be activated
+	 */
+	public void setIsVerbose(boolean isVerbose) {
+		this.isVerbose = isVerbose;
+	}
+	/**
+	 * Return whether verbose mode is active.
+	 * 
+	 * @return whether verbose mode is active
+	 */
+	public boolean isVerbose() {
+		return this.isVerbose;
+	}
+	
+	/**
 	 * Get a string representation of the UUID of the project as it is saved in the repository.
 	 * 
 	 * @return	the UUID of the project saved in the repository
@@ -123,6 +145,17 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
+	 * Create an Identified object containing the identifier of the given element.
+	 * 
+	 * @param element
+	 * @return
+	 */
+	private Identified getIdentified(Element element) {
+		Object identifier = this.traversal.getIdentifier(element);
+		return identifier instanceof UUID? identified((UUID)identifier): null;
+	}
+	
+	/**
 	 * Create a list of Identified objects corresponding to the identifiers of a given list of Elements.
 	 * 
 	 * @param 	elements			the Elements being identified
@@ -130,59 +163,46 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	private List<Identified> getIdentified(List<Element> elements) {
 		return elements.stream().
-				map(traversal::getIdentifier).
-				filter(id->id instanceof UUID).
-				map(id->identified((UUID)id)).
+				map(this::getIdentified).
+				filter(id->id != null).
 				collect(Collectors.toList());
 	}
 
 	/**
-	 * Initialize the given API Element from the given source model Element.
+	 * Return a new API Element initialized with type, containing Project and name from the given 
+	 * source model Element.
 	 * 
-	 * @param 	apiElement			the Element as it is represented in the API
 	 * @param 	modelElement		the Element as it is represented in Ecore
-	 * @return	the repository Element
+	 * @return	the Element as it is represented in the API
 	 */
 	protected org.omg.sysml.model.Element initialize(Element modelElement) {
 		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
-		EClass eClass = modelElement.eClass();
-		apiElement.put("@type", eClass.getName());
+		apiElement.put("@type", modelElement.eClass().getName());
 		apiElement.put("containingProject", identified(this.project.getIdentifier()));
 		apiElement.put("name", modelElement.getName());
-		for (EStructuralFeature feature: eClass.getEAllAttributes()) {
-			apiElement.put(feature.getName(), modelElement.eGet(feature));
-		}
-//		System.out.println("... name = " + apiElement.getName() + 
-//				" type = " + apiElement.getAtType() + 
-//				" containingProject = " + apiElement.getContainingProject().getIdentifier());
 		return apiElement;
 	}
 	
 	/**
 	 * Use the API to save the given source model Element to the repository. Return the data for the Element
-	 * as it was saved in the repository. Note that the given model Element should not be a Relationship.
+	 * as it was saved in the repository.
 	 * 
 	 * @param 	modelElement		the source model Element as it is represented in Ecore
 	 * @return	the Element as saved in the repository, as it is represented in the API
 	 * @throws 	ApiException
 	 */
-	protected org.omg.sysml.model.Element createElement(Element modelElement) throws ApiException {
-		return  elementApi.createElement(this.initialize(modelElement));
-	}
-	
-	/**
-	 * Use the API to save the given source model Relationship to the repository. Return the data for the Relationship
-	 * as it was saved in the repository.
-	 * 
-	 * @param 	modelRelationship	the source model Relationship as it is represented in Ecore
-	 * @return	the Relationship as saved in the repository, as it is represented in the API
-	 * @throws 	ApiException
-	 */
-	protected org.omg.sysml.model.Element createRelationship(Relationship modelRelationship) throws ApiException {
-		org.omg.sysml.model.Element repositoryRelationship = this.initialize(modelRelationship);
-		repositoryRelationship.put("source", getIdentified(modelRelationship.getSource()));
-		repositoryRelationship.put("target", getIdentified(modelRelationship.getTarget()));
-		return  elementApi.createElement(repositoryRelationship);
+	protected org.omg.sysml.model.Element createElement(org.omg.sysml.model.Element apiElement) {
+		try {
+			return this.elementApi.createElement(apiElement);
+		} catch (ApiException e) {
+			System.out.println();
+			if (e.getCode() >= 500) {
+				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
+			} else {
+				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
+				return null;
+			}
+		}
 	}
 	
 	/**
@@ -210,51 +230,61 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * If there is an exception while saving the element, return an identifier based on the
 	 * Element hash code, so that the Element can still be recorded as having been visited.
 	 * 
-	 * @param 	element				the Element to be processed (this should not be a Relationship)
+	 * @param 	element				the Element to be processed
 	 * @return	a unique identifier for the processed Element
 	 */
 	@Override
-	public Object processElement(Element element) {
-		try {
+	public Object process(Element element) {
+		if (this.isVerbose()) {
 			System.out.print("Saving " + descriptionOf(element) + "... ");
-			UUID identifier = UUID.fromString((String)this.createElement(element).get("identifier"));
-			System.out.println("id is " + identifier);
-			return identifier;
-		} catch (ApiException e) {
-			System.out.println();
-			if (e.getCode() >= 500) {
-				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
-			} else {
-				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-				return Integer.toHexString(element.hashCode());
+		} else {
+			if (dotCount == MAX_DOT_COUNT) {
+				System.out.println();
+				dotCount = 0;
 			}
+			System.out.print(".");
+			dotCount++;
 		}
+		Object identifier = UUID.fromString((String)this.createElement(this.initialize(element)).get("identifier"));
+		if (identifier == null) {
+			identifier = Integer.toHexString(element.hashCode());
+		}
+		if (this.isVerbose()) {
+			System.out.println("id is " + identifier);
+		}
+		return identifier;
 	}
 
 	/**
-	 * Save the given Relationship to the repository and, if successful, return the UUID created for it.
-	 * If there is an exception while saving the element, return an identifier based on the
-	 * Repository hash code, so that the Element can still be recorded as having been visited.
+	 * Post-process the given Element by updating its record in the repository with the values of 
+	 * all its attributes. This is done as a post-processing step so that any referenced Elements
+	 * will already have been visited and have generated identifiers.
 	 * 
-	 * @param 	relationship	the Relationship to be processed
-	 * @return	a unique identifier for the processed Relationship
+	 * @param 	element				the Element to be post-processed
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object processRelationship(Relationship relationship) {
-		try {
-			System.out.print("Saving " + descriptionOf(relationship) + "... ");
-			UUID identifier = UUID.fromString((String)this.createRelationship(relationship).get("identifier"));
-			System.out.println("id is " + identifier);
-			return identifier;
-		} catch (ApiException e) {
-			System.out.println();
-			if (e.getCode() >= 500) {
-				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
-			} else {
-				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-				return Integer.toHexString(relationship.hashCode());
+	public void postProcess(Element element) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
+		EClass eClass = element.eClass();
+		apiElement.put("@type", eClass.getName());
+		apiElement.put("identifier", this.traversal.getIdentifier(element).toString());
+		apiElement.put("containingProject", identified(this.project.getIdentifier()));
+		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
+			String name = feature.getName();
+			if (!apiElement.containsKey(name) && 
+					// TODO: Remove the line below when the API is fixed.
+					!"feature".equals(name) && !"bound".equals(name)) {
+				Object value = element.eGet(feature);
+				if (feature instanceof EReference) {
+					value = feature.isMany()?
+						getIdentified((List<Element>)value):
+						getIdentified((Element)value);
+				}
+				apiElement.put(feature.getName(), value);
 			}
 		}
+		this.createElement(apiElement);
 	}
 
 }

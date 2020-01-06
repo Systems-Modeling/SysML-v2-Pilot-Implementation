@@ -31,8 +31,6 @@ import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
-import org.omg.sysml.util.traversal.impl.TraversalImpl;
-import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 
 /**
  * This is a utility for traversing a KerML model graph and processing each Element that is 
@@ -66,15 +64,13 @@ public class KerMLTraversalUtil extends SysMLUtil {
 	}
 	
 	/**
-	 * Initialize the traversal with an element-visitor factor using the given element-processing facade.
+	 * Initialize the traversal using the given element-processing facade.
 	 * 
 	 * @param 	processingFacade	the facade for processing Elements and Relationships
 	 * @return	the initialized traversal object
 	 */
 	protected Traversal initialize(ElementProcessingFacade processingFacade) {
-		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
-		this.traversal = new TraversalImpl(visitorFactory);
-		visitorFactory.setTraversal(this.traversal);	
+		this.traversal = new Traversal(processingFacade);
 		return this.traversal;
 	}
 	

@@ -21,23 +21,23 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.util.traversal.visitor.impl;
+package org.omg.sysml.util.traversal;
 
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
-import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
-import org.omg.sysml.util.traversal.visitor.ElementVisitor;
 
 /**
- * This is an abstract base class that provides the general framework for the implementation of visitors for
- * specific kinds of Elements.
+ * This class implements a generic visitor for any kind of SysML v2 model Element.
  *  
  * @author Ed Seidewitz
  *
  */
-public abstract class VisitorImpl implements ElementVisitor {
+public class ElementVisitor {
 	
 	/**
 	 * The Element this visitor is visiting.
@@ -61,7 +61,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 	 * @param 	traversal		the traversal object the be used to record a visit
 	 * @param 	facade			the facade to be used for Element processing
 	 */
-	public VisitorImpl(Element element, Traversal traversal, ElementProcessingFacade facade) {
+	public ElementVisitor(Element element, Traversal traversal, ElementProcessingFacade facade) {
 		this.element = element;
 		this.traversal = traversal;
 		this.facade = facade;
@@ -72,7 +72,6 @@ public abstract class VisitorImpl implements ElementVisitor {
 	 * 
 	 * @return	the Element is Element visitor is visiting
 	 */
-	@Override
 	public Element getElement() {
 		return this.element;
 	}
@@ -87,7 +86,7 @@ public abstract class VisitorImpl implements ElementVisitor {
 	}
 	
 	/**
-	 * The facade for this visitor.
+	 * Get the facade for this visitor.
 	 * 
 	 * @return	the facade for this visitor
 	 */
@@ -97,20 +96,15 @@ public abstract class VisitorImpl implements ElementVisitor {
 
 	/**
 	 * Process the Element being visited and record with the traversal that the Element has been visited.
-	 * Then visit each of the Relationships owned by the Element.
+	 * Then visit each of the related Elements of the Element, if it is a Relationship, and all 
+	 * Relationships owned by the Element.
 	 * 
 	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
 	 */
-	@Override
 	public Object visit() {
 		this.preProcess();
 		Object identifier = this.process();
-		Element element = this.getElement();
-		Traversal traversal = this.getTraversal();
-		traversal.putIdentifier(element, identifier);
-		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
-			traversal.visit(relationship);
-		}
+		this.getTraversal().putIdentifier(this.getElement(), identifier);
 		this.postProcess();
 		return identifier;
 	}
@@ -119,21 +113,47 @@ public abstract class VisitorImpl implements ElementVisitor {
 	 * Pre-process the element being visited.
 	 */
 	protected void preProcess() {
-		this.getFacade().preProcess(this.getElement());
+		Element element = this.getElement();
+		if (element instanceof Classifier) {
+			((Classifier)element).getOwnedSuperclassing();
+		} else if (element instanceof Feature) {
+			((Feature)element).getOwnedSubsetting();
+			((Feature)element).getFeature();
+			
+			if (element instanceof Expression) {
+				((Expression)element).getInput();
+				((Expression)element).getOutput();
+				((Expression)element).getTyping();
+			}
+		}		
+		this.getFacade().preProcess(element);
 	}
 	
 	/**
-	 * Process the Element being visited. This method is to be defined by subclasses.
+	 * Process the Element being visited using the Element-processing facade for this visitor.
 	 * 
 	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
 	 */
-	protected abstract Object process();
+	protected Object process() {
+		return this.getFacade().process(this.getElement());		
+	}
 	
 	/**
-	 * Post-process the Element being visited.
+	 * Post-process the Element being visited, including at least visiting any related Elements of
+	 * the Element, if it is a Relationship, and all Relationships owned by it.
 	 */
 	protected void postProcess() {
-		this.getFacade().postProcess(this.getElement());
+		Element element = this.getElement();
+		Traversal traversal = this.getTraversal();
+		if (element instanceof Relationship) {
+			for (Element relatedElement: ((Relationship)element).getRelatedElement()) {
+				traversal.visit(relatedElement);
+			}
+		}
+		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
+			traversal.visit(relationship);
+		}
+		this.getFacade().postProcess(element);
 	}
 
 }

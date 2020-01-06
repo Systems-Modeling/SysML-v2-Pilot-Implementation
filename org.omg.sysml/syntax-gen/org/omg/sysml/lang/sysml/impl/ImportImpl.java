@@ -202,21 +202,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		return getImportOwningPackage() != null;
 	}
 	
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = getTargetGen();
-		org.omg.sysml.lang.sysml.Package importedPackage = getImportedPackage();
-		if (importedPackage != null && !target.contains(importedPackage)) {
-			target.add(importedPackage);
-		}
-		return target;
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getTargetGen() {
+	@Override
+	public EList<Element> getTarget() {
 		if (target == null) {
 			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET, null, TARGET_ESUBSETS);
 		}

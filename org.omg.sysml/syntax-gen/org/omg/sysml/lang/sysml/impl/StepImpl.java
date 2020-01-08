@@ -142,7 +142,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	// Utility methods
 	
 	public boolean isSubperformance() {
-		return isPerformanceFeature(this);
+		return isCompositePerformanceFeature(this);
 	}
 	
 	public boolean isEnactedPerformance() {
@@ -164,10 +164,14 @@ public class StepImpl extends FeatureImpl implements Step {
 		return step.getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
 	}
 	
+	public static boolean isCompositePerformanceFeature(Feature step) {
+		return step.isComposite() && isPerformanceFeature(step);
+	}
+	
 	public static boolean isPerformanceFeature(Feature step) {
 		Type owningType = step.getOwningType();
 		return owningType instanceof Behavior || owningType instanceof Step;
-	}
+	}	
 	
 	public List<Step> getSubsteps() {
 		return getOwnedFeature().stream().filter(f->f instanceof Step).

@@ -296,7 +296,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.EXHIBIT_STATE_USAGE:
-				sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_Subsets_SubsettingPart_TypePart_ValuePart(context, (ExhibitStateUsage) semanticObject); 
+				sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(context, (ExhibitStateUsage) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getConnectorEndRule()) {
@@ -830,33 +830,33 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				else break;
 			case SysMLPackage.STATE_DEFINITION:
 				if (rule == grammarAccess.getStateDefinitionRule()) {
-					sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList(context, (StateDefinition) semanticObject); 
+					sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList(context, (StateDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList_UnitPrefix(context, (StateDefinition) semanticObject); 
+					sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList_UnitPrefix(context, (StateDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStateDefinitionUnitRule()) {
-					sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList_UnitPrefix(context, (StateDefinition) semanticObject); 
+					sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList_UnitPrefix(context, (StateDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.STATE_USAGE:
 				if (rule == grammarAccess.getAbstractStateUsageRule()) {
-					sequence_AbstractStateBody_AbstractStateUsage_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_AbstractStateBody_AbstractStateUsage_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStateUsageRule()) {
-					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ActionParameterList_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStateUnitRule()) {
-					sequence_ActionParameterList_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1304,7 +1304,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )
 	 *     )
 	 */
-	protected void sequence_AbstractStateBody_AbstractStateUsage_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_AbstractStateBody_AbstractStateUsage_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1589,7 +1589,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1752,7 +1752,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ExhibitStateUsage semanticObject) {
+	protected void sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ExhibitStateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1847,7 +1847,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1888,7 +1888,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateBehaviorPart_StateBodyItem_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateBodyItem_StateBodyPart_StateDeclaration_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -4473,7 +4473,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList(ISerializationContext context, StateDefinition semanticObject) {
+	protected void sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList(ISerializationContext context, StateDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4503,7 +4503,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, StateDefinition semanticObject) {
+	protected void sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, StateDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4536,7 +4536,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_ParameterList_StateBehaviorPart_StateBodyItem_StateDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, StateDefinition semanticObject) { }
+	// protected void sequence_ParameterList_StateBodyItem_StateBodyPart_StateDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, StateDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:

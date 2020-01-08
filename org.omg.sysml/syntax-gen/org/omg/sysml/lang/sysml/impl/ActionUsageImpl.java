@@ -190,7 +190,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	}
 	
 	public boolean isSubperformance() {
-		return StepImpl.isPerformanceFeature(this);
+		return StepImpl.isCompositePerformanceFeature(this);
 	}
 	
 	/**

@@ -553,11 +553,23 @@ fragment StateDefDeclaration returns SysML::StateDefinition :
 ;
 
 fragment StateBody returns SysML::Type :
-	';' | '{' StateBehaviorPart StateBodyItem* '}'
+	';' | '{' StateBodyPart '}'
 ;
 
 fragment AbstractStateBody returns SysML::Type :
-	isAbstract ?= ';' | isAbstract ?= '{' StateBehaviorPart StateBodyItem* '}'
+	isAbstract ?= ';' | isAbstract ?= '{' StateBodyPart '}'
+;
+
+fragment StateBodyPart returns SysML::Type :
+	( ownedFeatureMembership_comp += EntryActionMember
+	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
+	)?
+	( ownedFeatureMembership_comp += DoActionMember )?
+	( ownedFeatureMembership_comp += ExitActionMember )?
+	
+	// Note: Using a semantic rule here seems to avoid a possible infinite loop while
+	// incrementally parsing.
+	=> StateBodyItem*
 ;
 
 fragment StateBodyItem returns SysML::Type :
@@ -567,14 +579,6 @@ fragment StateBodyItem returns SysML::Type :
 		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
 	| ownedFeatureMembership_comp += TransitionSuccessionMember
 	| ownedImport_comp += Import
-;
-
-fragment StateBehaviorPart returns SysML::Type :
-	( ownedFeatureMembership_comp += EntryActionMember
-	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
-	)?
-	( ownedFeatureMembership_comp += DoActionMember )?
-	( ownedFeatureMembership_comp += ExitActionMember )?
 ;
 
 StateActionUsage returns SysML::ActionUsage :

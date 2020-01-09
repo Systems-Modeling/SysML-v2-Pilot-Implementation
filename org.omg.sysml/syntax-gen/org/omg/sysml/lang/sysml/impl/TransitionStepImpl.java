@@ -2,8 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionStep;
 
@@ -15,6 +16,8 @@ import org.omg.sysml.lang.sysml.TransitionStep;
  * @generated
  */
 public class TransitionStepImpl extends StepImpl implements TransitionStep {
+	
+	public static final String TRANSITION_STEP_SUBSETTING_DEFAULT = "States::transitions";
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +35,11 @@ public class TransitionStepImpl extends StepImpl implements TransitionStep {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.TRANSITION_STEP;
+	}
+	
+	@Override
+	public EList<Subsetting>  getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(TRANSITION_STEP_SUBSETTING_DEFAULT);
 	}
 
 } //TransitionStepImpl

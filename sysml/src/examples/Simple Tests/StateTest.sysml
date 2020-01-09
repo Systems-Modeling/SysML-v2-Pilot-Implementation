@@ -1,10 +1,12 @@
 package StateTest {
 	value type Sig;
 	
+	action act;
+	
 	state S {
 		entry action A;
 		do action B;
-		exit action C;
+		exit act;
 		
 		state S1;
 			accept Sig
@@ -16,7 +18,8 @@ package StateTest {
 		transition T
 			first S2
 			accept Sig
-			do action E
+			if true
+			do send Sig() to S
 			then S1;
 		
 	}

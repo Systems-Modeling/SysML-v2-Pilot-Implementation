@@ -2,7 +2,7 @@ activity DecisionTest {
 	value x = 1;
 	
 	decide 'test x';
-	if x == 1 then A1;
+	if x == 1 then A1; 
 	if x > 1 then A2;
 	else A3; 
 	

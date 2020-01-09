@@ -30,7 +30,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
 
-	public static final String SUCCESSION_SUBSETTING_DEFAULT = "Occurrences::successions";
+	public static final String SUCCESSION_SUBSETTING_BASE_DEFAULT = "Occurrences::successions";
+	public static final String SUCCESSION_SUBSETTING_OUTGOING_DEFAULT = "ControlPerformances::DecisionPerformance::outgoingHBLink";
+	public static final String SUCCESSION_SUBSETTING_INCOMING_DEFAULT = "ControlPerformances::MergePerformance::incomingHBLink";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -108,6 +110,26 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	public void setTransitionStep(Step newTransitionStep) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithDefault(
+//				isDecisionOutgoing()?
+//						SUCCESSION_SUBSETTING_OUTGOING_DEFAULT:
+//				isMergeIncoming()?
+//						SUCCESSION_SUBSETTING_INCOMING_DEFAULT :
+						SUCCESSION_SUBSETTING_BASE_DEFAULT);
+	}
+	
+//	public boolean isDecisionOutgoing() {
+//		EList<Feature> relatedFeatures = getRelatedFeature();
+//		return !relatedFeatures.isEmpty() && ((FeatureImpl)relatedFeatures.get(0)).isDecisionFeature();
+//	}
+//
+//	public boolean isMergeIncoming() {
+//		EList<Feature> relatedFeatures = getRelatedFeature();
+//		return relatedFeatures.size() > 1 && ((FeatureImpl)relatedFeatures.get(1)).isMergeFeature();
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,11 +222,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 				return !getGuardExpression().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(SUCCESSION_SUBSETTING_DEFAULT);
 	}
 
 } // SuccessionImpl

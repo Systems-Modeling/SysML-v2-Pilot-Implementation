@@ -567,8 +567,8 @@ fragment StateBodyPart returns SysML::Type :
 	( ownedFeatureMembership_comp += DoActionMember )?
 	( ownedFeatureMembership_comp += ExitActionMember )?
 	
-	// Note: Using a semantic rule here seems to avoid a possible infinite loop while
-	// incrementally parsing.
+	// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
+	// while incrementally parsing.
 	=> StateBodyItem*
 ;
 
@@ -910,8 +910,8 @@ ConditionalSuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += ConnectorEndMember
 ;
 
-ConditionalStep returns SysML::Step :
-	'if' ownedFeatureMembership_comp += ExpressionMember
+ConditionalStep returns SysML::TransitionStep :
+	ownedFeatureMembership_comp += GuardExpressionMember
 ;
 
 DefaultSuccession returns SysML::Succession :
@@ -943,11 +943,11 @@ ConditionalTransitionSuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += ConnectorEndMember	
 ;
 
-TransitionStep returns SysML::Step :
-	{SysML::Step}  
-	( 'accept' ownedFeatureMembership_comp += TriggerStepMember )?
-	( 'if' ownedFeatureMembership_comp += ExpressionMember )?
-	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
+TransitionStep returns SysML::TransitionStep :
+	{SysML::TransitionStep}  
+	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedFeatureMembership_comp += GuardExpressionMember )?
+	( ownedFeatureMembership_comp += EffectBehaviorMember )?
 ;
 
 TriggerStep returns SysML::AcceptActionUsage :
@@ -973,12 +973,28 @@ TransitionStepMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = TransitionStep
 ;
 
-TriggerStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TriggerStep
+TriggerStepMember returns SysML::TransitionFeatureMembership :
+	kind = TriggerFeatureKind ownedMemberFeature_comp = TriggerStep
 ;
 
-EffectBehaviorMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EffectBehaviorUsage
+enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
+	trigger = 'accept'
+;
+
+GuardExpressionMember returns SysML::TransitionFeatureMembership :
+	kind = GuardFeatureKind ownedMemberFeature_comp = Expression
+;
+
+enum GuardFeatureKind returns SysML::TransitionFeatureKind :
+	guard = 'if'
+;
+
+EffectBehaviorMember returns SysML::TransitionFeatureMembership :
+	kind = EffectFeatureKind ownedMemberFeature_comp = EffectBehaviorUsage
+;
+
+enum EffectFeatureKind returns SysML::TransitionFeatureKind :
+	effect = 'do'
 ;
 
 /* ITEM FLOWS */

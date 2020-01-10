@@ -35,6 +35,7 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.api.ElementApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -50,7 +51,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	/**
 	 * The default base path for accessing the REST end point.
 	 */
-	public static final String DEFAULT_BASE_PATH = "http://sysml2.intercax.com:9000";
+	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
 	private static final int MAX_DOT_COUNT = 100;
 	
@@ -116,6 +117,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public void setIsVerbose(boolean isVerbose) {
 		this.isVerbose = isVerbose;
 	}
+	
 	/**
 	 * Return whether verbose mode is active.
 	 * 
@@ -257,7 +259,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 
 	/**
 	 * Post-process the given Element by updating its record in the repository with the values of 
-	 * all its attributes. This is done as a post-processing step so that any referenced Elements
+	 * all its attributes (unless it is a library model element, in which case only its non-referential
+	 * attribute values are saved). This is done as a post-processing step so that any referenced Elements
 	 * will already have been visited and have generated identifiers.
 	 * 
 	 * @param 	element				the Element to be post-processed
@@ -270,14 +273,16 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		apiElement.put("@type", eClass.getName());
 		apiElement.put("identifier", this.traversal.getIdentifier(element).toString());
 		apiElement.put("containingProject", identified(this.project.getIdentifier()));
+		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String name = feature.getName();
 			if (!apiElement.containsKey(name)) {
 				Object value = element.eGet(feature);
 				if (feature instanceof EReference) {
-					value = feature.isMany()?
-						getIdentified((List<Element>)value):
-						getIdentified((Element)value);
+					value = isLibraryElement? null:
+							feature.isMany()?
+								getIdentified((List<Element>)value):
+								getIdentified((Element)value);
 				}
 				apiElement.put(feature.getName(), value);
 			}

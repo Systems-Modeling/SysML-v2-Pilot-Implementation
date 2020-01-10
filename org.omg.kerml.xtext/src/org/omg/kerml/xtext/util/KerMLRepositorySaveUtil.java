@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.omg.sysml.ApiException;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 /**
@@ -45,12 +46,9 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 */
 	private String projectId;
 	
-	public void initialize(String modelName, String basePath) throws ApiException  {
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, basePath);	
-		processingFacade.setTraversal(this.initialize(processingFacade));
-		processingFacade.setIsVerbose(true);
-		this.projectId = processingFacade.getProjectId();
-	}
+	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
+	private String libraryPath = null;
+	private String projectName;
 	
 	/**
 	 * Return the identifier for the repository Project to which Elements and Relationships are being
@@ -62,6 +60,67 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		return this.projectId;
 	}
 	
+	public String getBasePath() {
+		return this.basePath;
+	}
+	
+	public String getLibraryPath() {
+		return this.libraryPath;
+	}
+	
+	public String getProjectName() {
+		return this.projectName;
+	}
+	
+	protected String[] processArgs(String[] args) {
+		int n = args.length;
+		if (n > 0) {
+			int i = 0;
+			while(("-b".equals(args[i]) || "-l".equals(args[i])) && i + 1 < n) {
+				if ("-b".equals(args[i])) {
+					this.basePath = args[++i];
+				} else if ("-l".equals(args[i])) {
+					this.libraryPath = args[++i];
+					if (!libraryPath.endsWith("/")) {
+						libraryPath += "/";
+					}
+				}
+				i++;
+			}
+			if (i < n) {
+				args = Arrays.copyOfRange(args, i, n);
+				
+				this.projectName = Paths.get(args[0]).getFileName().toString();
+				int j = this.projectName.indexOf('.');
+				if (j >= 0) {
+					this.projectName = this.projectName.substring(0, j);
+				}
+				this.projectName += " " + new Date();
+				
+				if (this.libraryPath != null) {
+					for (int k = 1; k < args.length; k++) {
+						args[k] = this.libraryPath + args[k];
+					}
+				}
+				
+				return args;
+			}
+		}
+		return null;
+	}
+	
+	protected void initialize() throws ApiException  {
+		String libraryPath = this.getLibraryPath();
+		if (libraryPath != null) {
+			SysMLLibraryUtil.setModelLibraryDirectory(libraryPath);
+		}
+		
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.getProjectName(), this.getBasePath());	
+		processingFacade.setTraversal(this.initialize(processingFacade));
+		processingFacade.setIsVerbose(true);
+		this.projectId = processingFacade.getProjectId();
+	}
+	
 	/**
 	 * Run the traversal for the given main program arguments.
 	 * 
@@ -69,25 +128,15 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 */
 	public void run(String[] args) {
 		try {
-			int n = args.length;
-			if (n > 0) {
-				String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
-				if ("-b".equals(args[0]) && n > 1) {
-					basePath = args[1];
-					args = Arrays.copyOfRange(args, 2, n);
-				}
-				String projectName = Paths.get(args[0]).getFileName().toString();
-				int i = projectName.indexOf('.');
-				if (i >= 0) {
-					projectName = projectName.substring(0, i);
-				}
-				projectName += " " + new Date();
+			args = this.processArgs(args);
+			
+			if (args != null) {
 				
-				this.initialize(projectName, basePath);				
+				this.initialize();				
 				this.read(args);
 				
-				System.out.println("Base path is " + basePath);
-				System.out.println("Saving project " + projectName + "... id is " + this.getProjectId());
+				System.out.println("Base path is " + this.getBasePath());
+				System.out.println("Saving project " + this.getProjectName() + "... id is " + this.getProjectId());
 				
 				this.process();
 			}
@@ -103,14 +152,15 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>AlfRepositorySaveImpl [-b base-path-url] input-path [library-path library-path...]
+	 * <p>AlfRepositorySaveImpl [-b base-path-url] [-l library-base-path] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
 	 * <ul>
 	 * <li>base-path-url is the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
+	 * <li>library-base-path is the base path to used for reading model library resources</li>
 	 * <li>input-path is a path for reading input resources</li>
-	 * <li>library-paths are paths for reading library resources</li>
+	 * <li>library-paths are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 * </ul>
 	 * 
 	 */

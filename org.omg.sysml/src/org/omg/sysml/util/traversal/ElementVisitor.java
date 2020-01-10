@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
 /**
@@ -139,19 +140,22 @@ public class ElementVisitor {
 	}
 	
 	/**
-	 * Post-process the Element being visited, including at least visiting any related Elements of
-	 * the Element, if it is a Relationship, and all Relationships owned by it.
+	 * Post-process the Element being visited. Unless the Element is a library model Element, this
+	 * includes at least visiting any related Elements of the Element, if it is a Relationship, and 
+	 * all Relationships owned by it. Relationships are not traversed for library Elements.
 	 */
 	protected void postProcess() {
 		Element element = this.getElement();
-		Traversal traversal = this.getTraversal();
-		if (element instanceof Relationship) {
-			for (Element relatedElement: ((Relationship)element).getRelatedElement()) {
-				traversal.visit(relatedElement);
+		if (!SysMLLibraryUtil.isModelLibrary(element.eResource())) {
+			Traversal traversal = this.getTraversal();
+			if (element instanceof Relationship) {
+				for (Element relatedElement: ((Relationship)element).getRelatedElement()) {
+					traversal.visit(relatedElement);
+				}
 			}
-		}
-		for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
-			traversal.visit(relationship);
+			for (Relationship relationship: ((ElementImpl)element).getOwnedRelationship()) {
+				traversal.visit(relationship);
+			}
 		}
 		this.getFacade().postProcess(element);
 	}

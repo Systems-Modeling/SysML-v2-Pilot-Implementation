@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,9 +14,12 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.StateActionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
@@ -38,6 +42,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
 	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::actions";
 	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Action::subactions";
+	public static final String STATE_BASE = "States::State";
+	public static final String TRANSITION_BASE = "States::Transition";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -169,6 +175,23 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	}	
 	
 	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		String redefinedFeature = getRedefinedFeature();
+		return redefinedFeature == null? super.getRelevantFeatures(type):
+			   type == getOwningType()? Collections.singletonList(this):
+			   Collections.singletonList((Feature)getDefaultType(redefinedFeature));
+	}
+	
+	protected String getRedefinedFeature() {
+		FeatureMembership membership = getOwningFeatureMembership();
+		return membership instanceof StateActionMembership?
+					STATE_BASE + "::" + ((StateActionMembership)membership).getKind().toString() + "Action": 
+			   membership instanceof TransitionFeatureMembership? 
+					TRANSITION_BASE + "::" + ((TransitionFeatureMembership)membership).getKind().toString(): 
+					null;
+	}
+	
+	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		if (isCheckSubsetting) {
 			checkSubsetting();
@@ -185,12 +208,12 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
 	protected String getActionSubsettingDefault() {
 		return isSubperformance()? 
-				ACTION_SUBSETTING_SUBACTION_DEFAULT:
-				ACTION_SUBSETTING_BASE_DEFAULT;
+					ACTION_SUBSETTING_SUBACTION_DEFAULT:
+					ACTION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	public boolean isSubperformance() {
-		return StepImpl.isPerformanceFeature(this);
+		return StepImpl.isCompositePerformanceFeature(this);
 	}
 	
 	/**

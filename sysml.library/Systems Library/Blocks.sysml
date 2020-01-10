@@ -10,6 +10,8 @@ package Blocks {
 	 * Part is the base type of all blocks.
 	 */
 	block Part :> Object {
+		ref self: Part :>> Base::self;
+		
 		/**
 		 * Ports that are on this part.
 		 */

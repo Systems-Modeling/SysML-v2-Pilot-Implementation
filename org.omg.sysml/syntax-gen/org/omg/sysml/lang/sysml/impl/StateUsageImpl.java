@@ -306,7 +306,7 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 	}
 	
 	public boolean isSubperformance() {
-		return StepImpl.isPerformanceFeature(this);
+		return StepImpl.isCompositePerformanceFeature(this);
 	}
 	
 	/**

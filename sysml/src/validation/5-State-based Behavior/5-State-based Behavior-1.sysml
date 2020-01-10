@@ -66,29 +66,21 @@ package '5-State-based Behavior-1' {
 		}
 		
 		package States {
-			state 'vehicle states': 'Vehicle States' (
-				in vehicle : VehicleA[1],
-				in control : VehicleController[1]	
-			) {
+			state 'vehicle states': 'Vehicle States' {
+				ref vehicle : VehicleA;
+				ref control : VehicleController;
+
 				state 'operational states' {
-					entry action initial;
-					
-					transition initial then off;
+					entry; then off;
 				    
 					state off;
-					
-					transition 'off-starting'
-						first off
-						accept 'Vehicle Start Signal' 
+					accept 'Vehicle Start Signal' 
 						if vehicle::'brake pedal depressed'
 						do send 'Start Signal'() to control
 						then starting;
 						
 					state starting;
-					
-					transition 'starting-on'
-						first starting
-						accept 'Vehicle On Signal'
+					accept 'Vehicle On Signal'
 						then on;
 						
 					state on {
@@ -96,66 +88,41 @@ package '5-State-based Behavior-1' {
 						do vehicle::'provide power';
 						exit vehicle::'apply parking brake';
 					}
-					
-					transition 'on-off'
-						first on
-						accept 'Vehicle Off Signal'
+					accept 'Vehicle Off Signal'
 						then off;
 				}
 				
 				state 'health states' {
-					entry action initial;
+					entry; then normal;
 					do vehicle::'sense temperature' (out temp);
 					
-					transition initial then normal;
-					
 					state normal;
-					
-					transition 'normal-maintenance'
-						first normal
-						accept 'at(vehicle::maintenanceTime)'
+					accept 'at(vehicle::maintenanceTime)'
 						then maintenance;
-					
-					transition 'normal-degraded'
-						first normal
-						accept 'when(temp>vehicle::Tmax)' 
+					accept 'when(temp>vehicle::Tmax)' 
 						do send 'Over Temp'() to control 
 						then degraded;
 					
 					state maintenance;
-					
-					transition 'maintenance-normal'
-						first maintenance
-						accept 'Return to Normal'
+					accept 'Return to Normal'
 						then normal;
 					
 					state degraded;
-					
-					transition 'degraded-normal'
-						first degraded
-						accept 'Return to Normal'
+					accept 'Return to Normal'
 						then normal;
 				}
 			}
 			
 			state 'controller states': 'Controller States' {
 				state 'operational controller states' {
-					entry action initial; 
-					
-					transition initial then off;
+					entry; then off;
 					
 					state off;
-					
-					transition 'off-on'
-						first off
-						accept 'Start Signal'
+					accept 'Start Signal'
 						then on;
 					
 					state on;
-					
-					transition 'on-off'
-						first on
-						accept 'Off Signal'
+					accept 'Off Signal'
 						then off;
 				}
 			}		
@@ -169,10 +136,10 @@ package '5-State-based Behavior-1' {
 				
 				perform Actions::'sense temperature' redefines 'sense temperature';
 				
-				exhibit States::'vehicle states'(
-					in vehicle = self,
-					in control = vehicleController
-				) redefines 'vehicle states';
+				exhibit States::'vehicle states' redefines 'vehicle states' {
+					part redefines vehicle = vehicle1_c1::self;
+					part redefines control = vehicleController;
+				}
 					
 				part vehicleController: VehicleController {
 					exhibit States::'controller states' redefines 'controller states';

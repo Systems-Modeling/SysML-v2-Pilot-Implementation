@@ -3,15 +3,22 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionStep;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -30,7 +37,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
 
-	public static final String SUCCESSION_SUBSETTING_DEFAULT = "Occurrences::successions";
+	public static final String SUCCESSION_SUBSETTING_BASE_DEFAULT = "Occurrences::successions";
+	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -56,7 +64,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getTriggerStep() {
-		return new BasicInternalEList<Step>(Step.class);
+		EList<Step> triggerSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.CONDITIONAL_SUCCESSION__TRIGGER_STEP);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionStep) {
+			Feature trigger = ((TransitionStepImpl)transitionStep).getTrigger();
+			if (trigger instanceof Step) {
+				triggerSteps.add((Step)trigger);
+			}
+		}
+		return triggerSteps;
 	}
 
 	/**
@@ -66,7 +82,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getEffectStep() {
-		return new BasicInternalEList<Step>(Step.class);
+		EList<Step> effectSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.CONDITIONAL_SUCCESSION__EFFECT_STEP);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionStep) {
+			Feature effect = ((TransitionStepImpl)transitionStep).getEffect();
+			if (effect instanceof Step) {
+				effectSteps.add((Step)effect);
+			}
+		}
+		return effectSteps;
 	}
 
 	/**
@@ -76,7 +100,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		return new BasicInternalEList<Expression>(Expression.class);
+		EList<Expression> guardExpressions = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.CONDITIONAL_SUCCESSION__GUARD_EXPRESSION);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionStep) {
+			Feature guard = ((TransitionStepImpl)transitionStep).getGuard();
+			if (guard instanceof Expression) {
+				guardExpressions.add((Expression)guard);
+			}
+		}
+		return guardExpressions;
 	}
 
 	/**
@@ -96,7 +128,9 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 * @generated NOT
 	 */
 	public Step basicGetTransitionStep() {
-		return null;
+		Type owningType = getOwningType();
+		return owningType instanceof TransitionStep?
+				(Step)owningType: null;
 	}
 
 	/**
@@ -109,6 +143,28 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(
+					SUCCESSION_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		Type owningType = getOwningType();
+		return !(owningType instanceof TransitionStep)? super.getRelevantFeatures(type):
+			   type == owningType? Collections.singletonList(this):
+			   Collections.singletonList((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
+	}
+	
+	@Override
+	protected Set<Type> getGeneralTypes(Type type) {
+		Type owningType = getOwningType();
+		return owningType instanceof TransitionStep && type == owningType?
+				Collections.singleton(getDefaultType(TransitionStepImpl.TRANSITION_STEP_SUBSETTING_DEFAULT)):
+				super.getGeneralTypes(type);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,11 +256,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 				return !getGuardExpression().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(SUCCESSION_SUBSETTING_DEFAULT);
 	}
 
 } // SuccessionImpl

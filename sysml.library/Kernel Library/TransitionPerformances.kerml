@@ -10,8 +10,8 @@ package TransitionPerformances {
 		step effect[*];
 
 		feature transitionLink: HappensBefore[0..1] {
-			feature earlier redefines earlierOccurrence;
-			feature later redefines laterOccurrence;
+			end earlier redefines earlierOccurrence;
+			end later redefines laterOccurrence;
 		}
 		
 		binding transitionLink::earlier[0..1] = transitionLinkSource[1];

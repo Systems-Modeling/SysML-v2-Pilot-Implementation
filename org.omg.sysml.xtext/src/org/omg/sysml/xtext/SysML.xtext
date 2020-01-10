@@ -520,6 +520,7 @@ fragment ActivityBodyItem returns SysML::Type :
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
 	  ownedFeatureMembership_comp += ActivityNodeMember
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ownedFeatureMembership_comp += GuardedSuccessionMember
 	| ownedImport_comp += Import
 ;
 
@@ -539,7 +540,11 @@ ActivityNodeMember returns SysML::FeatureMembership :
 ;
 
 TargetSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TargetSuccession ';'
+	DefinitionMemberPrefix ownedMemberFeature_comp = ( TargetSuccession | GuardedTargetSuccession | DefaultTargetSuccession ) ';'
+;
+
+GuardedSuccessionMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = GuardedSuccession ';'
 ;
 
 /* STATE DEFINITIONS */
@@ -562,7 +567,7 @@ fragment AbstractStateBody returns SysML::Type :
 
 fragment StateBodyPart returns SysML::Type :
 	( ownedFeatureMembership_comp += EntryActionMember
-	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
+	  ( ownedFeatureMembership_comp += EntryTransitionMember )*
 	)?
 	( ownedFeatureMembership_comp += DoActionMember )?
 	( ownedFeatureMembership_comp += ExitActionMember )?
@@ -577,7 +582,7 @@ fragment StateBodyItem returns SysML::Type :
 	| ownedFeatureMembership_comp += StructureUsageMember
 	| ownedFeatureMembership_comp += StateMember
 		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
-	| ownedFeatureMembership_comp += TransitionSuccessionMember
+	| ownedFeatureMembership_comp += TransitionStepMember
 	| ownedImport_comp += Import
 ;
 
@@ -626,16 +631,19 @@ StateMember returns SysML::FeatureMembership :
 	)
 ;
 
-ConditionalTransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = ConditionalTransitionSuccession ';'
+EntryTransitionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 
+	( ownedMemberFeature_comp = GuardedTargetSuccession 
+	| 'then' ownedMemberFeature_comp = TransitionSuccession
+	) ';'
 ;
 
 TargetTransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionSuccession ';'
+	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionStep ';'
 ;
 
-TransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionSuccession ';'
+TransitionStepMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionStep ';'
 ;
 
 /* USAGES */
@@ -904,97 +912,20 @@ EmptySuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember ownedFeatureMembership_comp += EmptyTargetEndMember
 ;
 
-ConditionalSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += ConditionalStepMember
-	ownedFeatureMembership_comp += EmptySourceEndMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember
-;
-
-ConditionalStep returns SysML::TransitionStep :
+GuardedSuccession returns SysML::TransitionStep :
+	'succession' ( ( name = Name )? TypePart? 'first' )? 
+	ownedFeatureMembership_comp += TransitionSourceMember 
 	ownedFeatureMembership_comp += GuardExpressionMember
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-DefaultSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += EmptySourceEndMember 
-	ownedFeatureMembership_comp += EmptyTransitionStepMember
-	'else' ownedFeatureMembership_comp += ConnectorEndMember
+GuardedTargetSuccession returns SysML::TransitionStep :
+	ownedFeatureMembership_comp += GuardExpressionMember
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-EmptyTransitionStep returns SysML::Step :
-	{SysML::Step}
-;
-
-TransitionSuccession returns SysML::Succession :
-	'transition' ( ( name = Name )? TypePart? 'first' )? 
-	ownedFeatureMembership_comp += ConnectorEndMember 
-	ownedFeatureMembership_comp += TransitionStepMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-TargetTransitionSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += EmptySourceEndMember
-	ownedFeatureMembership_comp += TransitionStepMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-ConditionalTransitionSuccession returns SysML::Succession :
-    ownedFeatureMembership_comp += EmptySourceEndMember
-	( ownedFeatureMembership_comp += ConditionalStepMember )?
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-TransitionStep returns SysML::TransitionStep :
-	{SysML::TransitionStep}  
-	( ownedFeatureMembership_comp += TriggerStepMember )?
-	( ownedFeatureMembership_comp += GuardExpressionMember )?
-	( ownedFeatureMembership_comp += EffectBehaviorMember )?
-;
-
-TriggerStep returns SysML::AcceptActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	ownedFeatureMembership_comp += ItemFeatureMember
-;
-
-EffectBehaviorUsage returns SysML::ActionUsage :
-	  EmptyActionUsage | PerformedActionUsage ( '{' ActivityBodyItem* '}' )?
-;
-
-/* SUCCESSION MEMBERHSIPS */
-
-EmptyTransitionStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EmptyTransitionStep
-;
-
-ConditionalStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = ConditionalStep
-;
-
-TransitionStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TransitionStep
-;
-
-TriggerStepMember returns SysML::TransitionFeatureMembership :
-	kind = TriggerFeatureKind ownedMemberFeature_comp = TriggerStep
-;
-
-enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
-	trigger = 'accept'
-;
-
-GuardExpressionMember returns SysML::TransitionFeatureMembership :
-	kind = GuardFeatureKind ownedMemberFeature_comp = Expression
-;
-
-enum GuardFeatureKind returns SysML::TransitionFeatureKind :
-	guard = 'if'
-;
-
-EffectBehaviorMember returns SysML::TransitionFeatureMembership :
-	kind = EffectFeatureKind ownedMemberFeature_comp = EffectBehaviorUsage
-;
-
-enum EffectFeatureKind returns SysML::TransitionFeatureKind :
-	effect = 'do'
+DefaultTargetSuccession returns SysML::TransitionStep :
+	'else' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
 /* ITEM FLOWS */
@@ -1159,11 +1090,6 @@ MergeNode returns SysML::MergeNode :
 
 DecisionNode returns SysML::DecisionNode :
 	{SysML::DecisionNode} isComposite ?= 'decide' ( name = Name TypePart? )? ';'
- 	( ownedFeatureMembership_comp += ConditionalSuccessionMember ';'
- 	  ( ownedFeatureMembership_comp += ConditionalSuccessionMember ';' )* 
- 	  ( ownedFeatureMembership_comp += DefaultSuccessionMember ';' )? 
- 	)?
-
 ;
 
 JoinNode returns SysML::JoinNode :
@@ -1195,14 +1121,6 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = EmptySuccession
 ;
 
-ConditionalSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = ConditionalSuccession
-;
-
-DefaultSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = DefaultSuccession
-;
-
 EmptyParameterMember returns SysML::ParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
 ;
@@ -1228,6 +1146,72 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
     )
     ActionParameterList? SubsettingPart ValuePart?
 	StateBody
+;
+
+/* TRANSITIONS */
+
+TransitionStep returns SysML::TransitionStep :
+	'transition' ( ( name = Name )? TypePart? 'first' )? 
+	ownedFeatureMembership_comp += TransitionSourceMember 
+	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedFeatureMembership_comp += GuardExpressionMember )?
+	( ownedFeatureMembership_comp += EffectBehaviorMember )?
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+;
+
+TargetTransitionStep returns SysML::TransitionStep :
+	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedFeatureMembership_comp += GuardExpressionMember )?
+	( ownedFeatureMembership_comp += EffectBehaviorMember )?
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+;
+
+TriggerStep returns SysML::AcceptActionUsage :
+	ownedFeatureMembership_comp += EmptyParameterMember
+	ownedFeatureMembership_comp += ItemFeatureMember
+;
+
+EffectBehaviorUsage returns SysML::ActionUsage :
+	  EmptyActionUsage | PerformedActionUsage ( '{' ActivityBodyItem* '}' )?
+;
+
+TransitionSuccession returns SysML::Succession :
+	ownedFeatureMembership_comp += EmptySourceEndMember 
+	ownedFeatureMembership_comp += ConnectorEndMember
+;
+
+/* TRANSITION MEMBERSHIPS */
+
+TransitionSourceMember returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature|QualifiedName]
+;
+
+TransitionSuccessionMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TransitionSuccession
+;
+
+TriggerStepMember returns SysML::TransitionFeatureMembership :
+	kind = TriggerFeatureKind ownedMemberFeature_comp = TriggerStep
+;
+
+enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
+	trigger = 'accept'
+;
+
+GuardExpressionMember returns SysML::TransitionFeatureMembership :
+	kind = GuardFeatureKind ownedMemberFeature_comp = Expression
+;
+
+enum GuardFeatureKind returns SysML::TransitionFeatureKind :
+	guard = 'if'
+;
+
+EffectBehaviorMember returns SysML::TransitionFeatureMembership :
+	kind = EffectFeatureKind ownedMemberFeature_comp = EffectBehaviorUsage
+;
+
+enum EffectFeatureKind returns SysML::TransitionFeatureKind :
+	effect = 'do'
 ;
 
 /* EXPRESSIONS */

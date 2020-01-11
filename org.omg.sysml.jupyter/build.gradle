@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'org.omg.sysml.jupyter.kernel'
-version '2019-09'
+version '2019-12'
 
 sourceCompatibility = 1.8
 

@@ -28,7 +28,7 @@ if errorlevel 1 (
 
 echo --- Step 5: Installing SysML v2 Jupyter kernel ---
 call jupyter kernelspec remove sysml -f
-call python %~dp0\install.py --sys-prefix %* || goto:error
+call python "%~dp0\install.py" --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 %* || goto:error
 
 echo --- Step 6: Installing Jupyter notebook extension for codefolding ---
 call conda install -c conda-forge jupyter_contrib_nbextensions -y || goto:error

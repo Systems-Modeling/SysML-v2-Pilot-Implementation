@@ -17,7 +17,7 @@ command -v python3 || (echo "Python 3 is not installed. Please manually install 
 
 echo "--- Step 5: Installing SysML v2 Jupyter kernel ---"
 jupyter kernelspec remove sysml -f || true
-python3 install.py --sys-prefix "$@"
+python3 install.py --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 "$@"
 
 echo "--- Step 6: Installing Jupyter notebook extension for codefolding ---"
 conda install -c conda-forge jupyter_contrib_nbextensions -y

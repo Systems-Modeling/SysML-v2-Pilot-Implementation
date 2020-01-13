@@ -1,4 +1,4 @@
-package 'Allocation Example' {
+package 'Action Allocation Example' {
 	import 'Action Decomposition'::*;
 	
 	block Camera;

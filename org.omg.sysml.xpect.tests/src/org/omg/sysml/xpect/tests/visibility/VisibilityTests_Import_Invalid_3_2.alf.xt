@@ -1,0 +1,33 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Classes {
+	import VisibilityPackage::c_clazz::*;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Protect'." at "c_Protect"
+	feature a : c_Protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Protect::c_protect'." at "c_Protect::c_protect"
+	feature b : c_Protect::c_protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Package'." at "c_Package"
+	feature c : c_Package;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Package::c_publicc'." at "c_Package::c_publicc"
+	feature d : c_Package::c_publicc;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_protect'." at "c_Public::c_protect"
+	feature e : c_Public::c_protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_packagee'." at "c_Public::c_packagee"
+	feature e : c_Public::c_packagee;
+}

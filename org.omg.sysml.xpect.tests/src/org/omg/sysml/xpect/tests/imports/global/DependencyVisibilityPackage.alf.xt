@@ -29,7 +29,8 @@ package Test3{
 	    VisibilityPackage.c_Public_alias.alias_public, 
 	    VisibilityPackage.c_Public_alias.c_public, 
 	    VisibilityPackage.c_clazz,
-	    VisibilityPackage.c_clazz.c_Public
+	    VisibilityPackage.c_clazz.c_Public,
+	    VisibilityPackage.c_clazz.c_Public.c_publicc
 	--- */
 	import VisibilityPackage::c_Public;
 }

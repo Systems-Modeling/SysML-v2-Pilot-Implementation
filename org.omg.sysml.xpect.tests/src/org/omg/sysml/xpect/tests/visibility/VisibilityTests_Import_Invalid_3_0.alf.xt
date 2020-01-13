@@ -1,0 +1,59 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Classes {
+	import VisibilityPackage::*;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private'." at "c_Private"
+	feature a : c_Private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private::c_private'." at "c_Private::c_private"
+	feature b : c_Private::c_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private::c_public'." at "c_Private::c_public"
+	feature c : c_Private::c_public;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_private'." at "c_Public::c_private"
+	feature d : c_Public::c_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_protected'." at "c_Public::c_protected"
+	feature e : c_Public::c_protected;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public_alias::alias_private'." at "c_Public_alias::alias_private"
+	feature f : c_Public_alias::alias_private;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public_alias::alias_protected'." at "c_Public_alias::alias_protected"
+	feature g : c_Public_alias::alias_protected;	
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias'." at "c_Private_alias"
+	feature h : c_Private_alias;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::c_public'." at "c_Private_alias::c_public"
+	feature i : c_Private_alias::c_public;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_private'." at "c_Private_alias::alias_private"
+	feature j : c_Private_alias::alias_private; 
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_protected'." at "c_Private_alias::alias_protected"
+	feature k : c_Private_alias::alias_protected;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_Private_alias::alias_public'." at "c_Private_alias::alias_public"
+	feature l : c_Private_alias::alias_public;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Protect'." at "c_clazz::c_Protect"
+	feature m : c_clazz::c_Protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
+	feature n : c_clazz::c_Protect::c_publicc;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Protect::c_protect'." at "c_clazz::c_Protect::c_protect"
+	feature o : c_clazz::c_Protect::c_protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Package'." at "c_clazz::c_Package"
+	feature p : c_clazz::c_Package;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Package::c_publicc'." at "c_clazz::c_Package::c_publicc"
+	feature q : c_clazz::c_Package::c_publicc;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"
+	feature r : c_clazz::c_Public::c_protect;
+	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Public::c_packagee'." at "c_clazz::c_Public::c_packagee"
+	feature s : c_clazz::c_Public::c_packagee;
+}

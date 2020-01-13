@@ -32,7 +32,7 @@ package Classes {
 		   c_Public, c_Public.c_public, c_public, 
 		   feature4, featurepublic,
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 	--- */
 		feature feature4 : c_public;
 		//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
@@ -44,7 +44,7 @@ package Classes {
 		   c_Public, c_Public.c_public, c_public, 
 		   feature4, featurepublic,
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 		--- */
 		feature featurepublic : c_Public;
 	}

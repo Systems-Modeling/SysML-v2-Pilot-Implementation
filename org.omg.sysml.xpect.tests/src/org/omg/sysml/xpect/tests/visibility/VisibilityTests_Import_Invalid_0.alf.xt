@@ -1,0 +1,92 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Test3{
+	import VisibilityPackage::*;
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
+	class try specializes c_clazz::c_Protect::c_publicc{}
+	
+	class A specializes c_clazz{
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_protect'." at "c_Public::c_protect"
+		class AA specializes c_Public::c_protect{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_packagee'." at "c_Public::c_packagee"
+		class BB specializes c_Public::c_packagee{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_Package::c_publicc'." at "c_Public::c_Package::c_publicc"
+		class CC specializes c_Public::c_Package::c_publicc{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protected::c_protect'." at "c_Protected::c_protect"
+		class DD specializes c_Protected::c_protect{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Package'." at "c_Package"
+		class EE specializes c_Package{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Package::c_publicc'." at "c_Package::c_publicc"
+		class FF specializes c_Package::c_publicc{}
+	}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"
+	class AAA specializes c_clazz::c_Public::c_protect{}
+	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_packagee'." at "c_clazz::c_Public::c_packagee"
+	class ABB specializes c_clazz::c_Public::c_packagee{}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_Package::c_publicc'." at "c_clazz::c_Public::c_Package::c_publicc"
+	class ACC specializes c_clazz::c_Public::c_Package::c_publicc{}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Protected::c_protect'." at "c_clazz::c_Protected::c_protect"
+	class ADD specializes c_clazz::c_Protected::c_protect{}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Package'." at "c_clazz::c_Package"
+	class AEE specializes c_clazz::c_Package{}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Package::c_publicc'." at "c_clazz::c_Package::c_publicc"
+	class AFF specializes c_clazz::c_Package::c_publicc{}
+	
+	
+	
+	
+	class B specializes c_Public {
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_private'." at "c_private"
+		class AA specializes c_private{}
+	}
+	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_private'." at "c_Public::c_private"
+	class BAA specializes c_Public::c_private{}
+	
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private'." at "c_Private"
+	class C specializes c_Private {
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_private'." at "c_private"
+		class AA specializes c_private{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_public'." at "c_public"
+		class BB specializes c_public{}
+	}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private::c_private'." at "c_Private::c_private"
+	class CC specializes c_Private::c_private{}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private::c_public'." at "c_Private::c_public"
+	class CCC specializes c_Private::c_public{}
+	
+	
+	class D specializes c_Public_alias{
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'alias_private'." at "alias_private"
+  		class AA specializes alias_private{}
+  	}
+  	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private_alias'." at "c_Private_alias"
+  	class E specializes c_Private_alias{
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'c_public'." at "c_public"
+  		class AA specializes c_public{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'alias_private'." at "alias_private"
+  		class BB specializes alias_private{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'alias_public'." at "alias_public"
+  		class CC specializes alias_public{}
+  	}
+  	
+}
+
+ //Only public members are available via qualification

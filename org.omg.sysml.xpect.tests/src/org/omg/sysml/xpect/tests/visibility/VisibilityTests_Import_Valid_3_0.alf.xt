@@ -16,11 +16,15 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 	}
 END_SETUP 
 */
+//XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::c_clazz;
-	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"	
-	class try specializes c_clazz::c_Public::c_protect{}
+	import VisibilityPackage::*;
+	feature a : c_Public;
+	feature b : c_Public::c_public;
+	feature c : c_Public_alias;
+	feature d : c_Public_alias::c_public;
+	feature e : c_Public_alias::alias_public;
+	feature f : c_clazz;
+	feature g : c_clazz::c_Public;	
+	feature h : c_clazz::c_Public::c_publicc;
 }
-
-
-

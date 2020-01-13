@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,10 +17,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 END_SETUP 
 */
 
-package Classes {
-	// XPECT errors --> "Couldn't resolve reference to Element 'VisibilityPackage::c_clazz::c_Public::c_packagee'." at "VisibilityPackage::c_clazz::c_Public::c_packagee"
+
+package Test3{
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_clazz::c_Public::c_packagee'." at "VisibilityPackage::c_clazz::c_Public::c_packagee"
+	import VisibilityPackage::c_clazz::c_Public::c_packagee::*;
+	//XPECT errors --> "Couldn't resolve reference to Element 'VisibilityPackage::c_clazz::c_Public::c_packagee'." at "VisibilityPackage::c_clazz::c_Public::c_packagee"
 	import VisibilityPackage::c_clazz::c_Public::c_packagee;
 	// XPECT errors --> "Couldn't resolve reference to Type 'c_packagee'." at "c_packagee"
 	feature try : c_packagee;
+	
 }
 

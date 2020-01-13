@@ -25,7 +25,7 @@ package Classes {
 	  	 Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
 	  	 Try, Try.c_public, aliass, aliass.c_public,
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 	--- */
 	class Try specializes aliass{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
@@ -34,7 +34,7 @@ package Classes {
 	     Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
 	  	 Try, Try.c_public, aliass, aliass.c_public,
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
+		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 	--- */
 		feature feature4 : c_public;
 	}

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,8 +17,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTest
 END_SETUP 
 */
 
-package Classes {
-	import VisibilityPackage::*;
-	// XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_private'." at "c_Public::c_private"
-	feature f : c_Public::c_private;
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::c_clazz::c_Public::*;
+	class A specializes c_publicc{}
+	class B specializes VisibilityPackage::c_clazz::c_Public::c_publicc{}
+	
 }

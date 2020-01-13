@@ -49,6 +49,7 @@ public class TransitionStepImpl extends StepImpl implements TransitionStep {
 		return getOwnedFeatureMembership().stream().
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
+				filter(f->f != null).
 				findAny().orElse(null);
 	}
 	

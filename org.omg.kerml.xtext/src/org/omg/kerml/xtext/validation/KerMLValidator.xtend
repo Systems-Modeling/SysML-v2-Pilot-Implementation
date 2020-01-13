@@ -48,7 +48,7 @@ import org.eclipse.xtext.EcoreUtil2
 class KerMLValidator extends AbstractKerMLValidator {
 
 	protected def boolean isGlobalPublic(Element p) {
-		var m = p.owningMembership
+		var m = p?.owningMembership
 		while (m !== null) {
 			if (m.visibility !== VisibilityKind.PUBLIC)
 				return false

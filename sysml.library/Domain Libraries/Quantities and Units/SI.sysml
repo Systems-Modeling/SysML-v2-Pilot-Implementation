@@ -15,6 +15,8 @@ package SI {
 	 * SI base units
 	 */	
 	part m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
+
+	part mm = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
 	
 	part kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
 

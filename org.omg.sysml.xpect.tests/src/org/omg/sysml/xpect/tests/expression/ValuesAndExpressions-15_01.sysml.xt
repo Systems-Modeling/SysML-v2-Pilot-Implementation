@@ -1,0 +1,28 @@
+/* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library_expr/Base.alf"}
+       		File {from ="/library_sysml/ISQ.sysml"}
+       		File {from ="/library_sysml/Quantities.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library_expr/Base.alf"}
+                        		File {from ="/library_sysml/ISQ.sysml"}
+                        		File {from ="/library_sysml/Quantities.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import Quantities::*;
+    block Vehicle {
+        value mass:MassValue = 1200;
+    }
+}
+

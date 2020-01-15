@@ -1,0 +1,37 @@
+/* 
+XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library_expr/Base.alf"}
+       		File {from ="/library_sysml/SI.sysml"}
+      		File {from ="/library_sysml/ISQ.sysml"}
+       		File {from ="/library_sysml/Quantities.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library_expr/Base.alf"}
+                        		File {from ="/library_sysml/SI.sysml"}
+                        		File {from ="/library_sysml/ISQ.sysml"}
+                        		File {from ="/library_sysml/Quantities.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import SI::*;
+    block Vehicle {
+        value mass: MassValue[1] = 1200@[kg];
+        value length: LengthValue[1] = 4.82@[m];
+    }
+    block Wheel {
+        value width: LengthValue[1] = 245@[mm];
+        // feature diameter: LengthValue[1] = 18@[in];
+        // feature placement: CartesianAxisPlacement3D[0..1];
+    }
+}
+

@@ -717,12 +717,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'action' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     (rule start) 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'state' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isAbstract?='abstract' 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isComposite?='action' '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
@@ -759,12 +756,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     (rule start) 'action' (ambiguity) ownedRelationship_comp+=Subset
-	 *     (rule start) 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     (rule start) 'state' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isAbstract?='abstract' 'ref' 'action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isComposite?='action' '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset

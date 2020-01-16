@@ -1043,7 +1043,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] { "RULE_WS", "RULE_SL_COMMENT" };
+		return new String[] { "RULE_WS", "RULE_ML_NOTE", "RULE_SL_NOTE" };
 	}
 
 	public SysMLGrammarAccess getGrammarAccess() {

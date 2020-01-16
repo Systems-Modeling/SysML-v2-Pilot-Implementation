@@ -44538,10 +44538,12 @@ RULE_UNRESTRICTED_NAME : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|
 
 RULE_STRING_VALUE : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_DOCUMENTATION_COMMENT : '/**' ( options {greedy=false;} : . )*'*/';
-
 RULE_ML_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
 
-RULE_SL_COMMENT : '//' (~(('\n'|'\r')) ~(('\n'|'\r'))*)? ('\r'? '\n')?;
+RULE_DOCUMENTATION_COMMENT : '/**' ( options {greedy=false;} : . )*'*/';
+
+RULE_ML_NOTE : '//*' ( options {greedy=false;} : . )*'*/';
+
+RULE_SL_NOTE : '//' (~(('\n'|'\r')) ~(('\n'|'\r'))*)? ('\r'? '\n')?;
 
 RULE_WS : (' '|'\t'|'\r'|'\n')+;

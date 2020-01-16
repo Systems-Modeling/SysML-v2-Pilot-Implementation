@@ -11068,9 +11068,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tID;
 	private final TerminalRule tUNRESTRICTED_NAME;
 	private final TerminalRule tSTRING_VALUE;
-	private final TerminalRule tDOCUMENTATION_COMMENT;
 	private final TerminalRule tML_COMMENT;
-	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tDOCUMENTATION_COMMENT;
+	private final TerminalRule tML_NOTE;
+	private final TerminalRule tSL_NOTE;
 	private final TerminalRule tWS;
 	
 	private final Grammar grammar;
@@ -11353,9 +11354,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ID");
 		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UNRESTRICTED_NAME");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.STRING_VALUE");
-		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DOCUMENTATION_COMMENT");
 		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ML_COMMENT");
-		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SL_COMMENT");
+		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DOCUMENTATION_COMMENT");
+		this.tML_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ML_NOTE");
+		this.tSL_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SL_NOTE");
 		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.WS");
 	}
 	
@@ -14335,22 +14337,28 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return tSTRING_VALUE;
 	}
 	
-	//terminal DOCUMENTATION_COMMENT:
-	//	'/**'->'*/';
-	public TerminalRule getDOCUMENTATION_COMMENTRule() {
-		return tDOCUMENTATION_COMMENT;
-	}
-	
 	//terminal ML_COMMENT:
 	//	'/*' !'*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	}
 	
-	//terminal SL_COMMENT:
+	//terminal DOCUMENTATION_COMMENT:
+	//	'/**'->'*/';
+	public TerminalRule getDOCUMENTATION_COMMENTRule() {
+		return tDOCUMENTATION_COMMENT;
+	}
+	
+	//terminal ML_NOTE:
+	//	'//*'->'*/';
+	public TerminalRule getML_NOTERule() {
+		return tML_NOTE;
+	}
+	
+	//terminal SL_NOTE:
 	//	'//' (!('\n' | '\r') !('\n' | '\r')*)? ('\r'? '\n')?;
-	public TerminalRule getSL_COMMENTRule() {
-		return tSL_COMMENT;
+	public TerminalRule getSL_NOTERule() {
+		return tSL_NOTE;
 	}
 	
 	//terminal WS:

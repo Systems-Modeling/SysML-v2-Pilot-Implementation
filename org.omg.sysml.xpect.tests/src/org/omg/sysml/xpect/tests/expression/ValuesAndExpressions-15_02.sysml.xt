@@ -1,5 +1,4 @@
-/* 
-XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library_expr/Base.alf"}

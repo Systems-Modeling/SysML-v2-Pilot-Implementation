@@ -9,15 +9,17 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Generalization determines how instances of Types are related to one another. This includes:</p>
+ * <p>Generalization is a Relationship between two Types that asserts that any instance of the specific type is also an instance of the general Type. Special cases of Generalization include</p>
  * 
  * <ol>
- * 	<li><span><span>A classifier A is a generalization of a classifier B if (as usual) any instance of A is also an instance of B.</span></span></li>
- * 	<li><span><span>A classifier A is a generalization of a feature B if A is the same as or a generalization of the <em>feature type</em> of B.</span></span></li>
- * 	<li><span><span>A feature A is a generalization of a feature B if <em>both</em> the featuring type of A is a generalization of the featuring type of B <em>and</em> the feature type of A is the same as or a generalization of the feature type of B. (In other words, both domain of A is a generalization of domain of B and range of A is a generalization of range of B)</span></span></li>
- * 	<li><span><span>A feature cannot be a generalization of a classifier.</span></span></li>
+ * <li>Subclassing, in which the related Types are both Classifiers,</li>
+ * <li>Subsetting , in which the related Types are both Features, and</li>
+ * <li>FeatureTyping, in which the specific Type is a Feature and the general Type can be either a Classifier or a Feature.</li>
  * </ol>
  * 
+ * <p>A Generalization is not allowed with a specific Type that is a Classifier and a general Type that is a Feature. This is because a Classifier always includes instances that are individual entities, which an never be instances of a Feature.</p>
+ * 
+ * <p>The specific Type of a Generalization can also not be a conjugated Type.</p>
  * <!-- end-model-doc -->
  *
  * <p>

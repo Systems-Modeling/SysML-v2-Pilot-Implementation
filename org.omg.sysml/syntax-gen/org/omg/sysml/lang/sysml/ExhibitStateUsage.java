@@ -7,6 +7,12 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Exhibit State Usage</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An ExhibitStateUsage is a StateUsage that represents the exhibiting of another StateUsage. The StateUsage to be exhibited is related to the ExhibitStateUsage by a Subsetting relationship. 
+ * 
+ * If the ExhibitStateUsage is owned by a Part, then it also subsets the exhibitedStates property of that Part (as defined in the library model for Part), otherwise it subsets either "states" or "subsubstates", as required for a regular StateUsage.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +37,7 @@ public interface ExhibitStateUsage extends StateUsage {
 	 * @see #setExhibitedState(StateUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExhibitStateUsage_ExhibitedState()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exhibitStateUsage'"
 	 * @generated
 	 */
 	StateUsage getExhibitedState();

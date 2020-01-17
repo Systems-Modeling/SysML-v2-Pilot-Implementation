@@ -33,6 +33,9 @@ public interface StateActionMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Whether this is an entry, do or exit Action.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.StateActionKind
 	 * @see #setKind(StateActionKind)

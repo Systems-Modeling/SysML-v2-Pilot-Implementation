@@ -6,6 +6,15 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature
  * Typing</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>FeatureTyping is Generalization in which the specific Type is a Feature. The general Type of a FeatureTyping is asserted to be a subset of the range of the typedFeature.</p>
+ * 
+ * <p>Note, however, that the union of the Types explicitly related to a Feature does not necessarily define the entire range of the Feature. The complete set of <em>types of a Feature</em> include types inherited from Features it subsets, if any, as well as those explicitly specified through FeatureTyping relationships. The range of a Feature is defined to be the union of <em>all</em> the types of the Feature.</p>
+ * 
+ * <p>If no types are explicitly given for a Feature, either through FeatureTyping or via Subsetting, then the Feature is considered to always have at least the (maximal) type Anything from the Base model library as its single type.</p> 
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

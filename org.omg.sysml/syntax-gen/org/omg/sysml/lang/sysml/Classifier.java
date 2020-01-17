@@ -11,7 +11,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Classifiers define sets containing individual objects of interest, such as cars, ships, or people. They are expressed semantically as sets of sequences of objects of length 1.</p>
+ * <p>A Classifier is a Type whose instances include individual entities from the universe of discourse, such as cars, ships or people. However, since FeatureTyping is a kind of Generalization, every Feature typed by a Classifier (directly or indirectly) is semantically a subtype of that Classifier. Therefore, instances of such Features are also instances of the Classifier.</p>
+ *     
+ * <p>Thus, like Features, instances of a Classifier can also, in general, be interpreted as n-tuples. Unlike a Feature, however, the instances of a Classifier include the case of n=1, that is, individual entities. Indeed, for every n-tuple that is an instance of a Classifier, the n-th member of the n-tuple must also be an entity that is also individually an instance of the Classifier (essentially due to the semantics of FeatureTyping).</p>
  * 
  * ownedSuperclassings = ownedGeneralizations->intersection(superclassing)
  * <!-- end-model-doc -->

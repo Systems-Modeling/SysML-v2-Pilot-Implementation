@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping
 class SysMLScopeProvider extends KerMLScopeProvider {
 	
 	override getScope(EObject context, EReference reference) {
-		if (reference === SysMLPackage.eINSTANCE.conjugatedPortTyping_OriginalPortDefinition &&
+		if (reference === SysMLPackage.eINSTANCE.conjugatedPortTyping_PortDefinition &&
 			context instanceof FeatureTyping) 
 			(context as FeatureTyping).typedFeature.scope_owningNamespace(reference)
 		else 

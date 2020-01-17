@@ -218,7 +218,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	protected Set<Type> getGeneralTypes(Type type) {
 		Type owningType = getOwningType();
 		return isTransitionGuard() && type == owningType?
-				Collections.singleton(getDefaultType(TransitionStepImpl.TRANSITION_STEP_SUBSETTING_DEFAULT)):
+				Collections.singleton(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
 				super.getGeneralTypes(type);
 	}
 	

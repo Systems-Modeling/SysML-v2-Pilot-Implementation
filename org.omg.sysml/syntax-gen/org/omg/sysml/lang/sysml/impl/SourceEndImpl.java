@@ -13,7 +13,7 @@ import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
-import org.omg.sysml.lang.sysml.TransitionStep;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 					Feature previousFeature = memberships.get(i).getMemberFeature();
 					if (!(previousFeature instanceof Parameter || 
 						  previousFeature instanceof Connector || 
-						  previousFeature instanceof TransitionStep)) {
+						  previousFeature instanceof TransitionUsage)) {
 						return previousFeature;
 					}
 				}

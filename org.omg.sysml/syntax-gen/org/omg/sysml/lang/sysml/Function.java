@@ -8,6 +8,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Function represents the performance of a calculation that has a singular result. The calculation may be composed of multiple steps.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

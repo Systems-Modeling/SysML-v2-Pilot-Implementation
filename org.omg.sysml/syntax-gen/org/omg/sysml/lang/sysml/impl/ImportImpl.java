@@ -306,7 +306,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	public EList<Membership> importMembership(EList<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,
 			Collection<Type> excludedTypes) {
-		// TODO Implement predicate-based selection of importMembership.
 		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
 		if (importedPackage != null && !excludedPackages.contains(importedPackage)) {
 			org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();

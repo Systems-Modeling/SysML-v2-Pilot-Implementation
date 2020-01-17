@@ -6,6 +6,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An Expression is a single computational step within a Function. These can be interpretated as one side of a mathematical equation, a full equation (which can evaluate to true or false), or a software expression (which evaluates to some data type).
+ * 
+ * Expressions can be typed by Functions, which supports parameterization.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

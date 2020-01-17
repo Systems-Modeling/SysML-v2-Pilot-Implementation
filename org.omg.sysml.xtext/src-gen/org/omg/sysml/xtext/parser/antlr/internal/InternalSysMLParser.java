@@ -28293,7 +28293,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionCrossReference_0());
+              				newCompositeNode(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionCrossReference_0());
               			
             }
             pushFollow(FOLLOW_2);

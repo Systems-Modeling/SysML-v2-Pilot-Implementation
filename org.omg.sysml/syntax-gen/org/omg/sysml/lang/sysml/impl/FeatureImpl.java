@@ -66,7 +66,6 @@ import org.omg.sysml.lang.sysml.DataType;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -558,38 +557,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Multiplicity getMultiplicity() {
-		Multiplicity multiplicity = basicGetMultiplicity();
-		return multiplicity != null && multiplicity.eIsProxy() ? (Multiplicity)eResolveProxy((InternalEObject)multiplicity) : multiplicity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Multiplicity basicGetMultiplicity() {
-		return (Multiplicity)getFeature().stream().
-				filter(feature->feature instanceof Multiplicity).
-				findFirst().orElse(null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setMultiplicity(Multiplicity newMultiplicity) {
-		throw new UnsupportedOperationException();
-	}
-	
 	@Override
 	public EList<FeatureTyping> getTyping() {
 		EList<FeatureTyping> typing = getTypingGen();
@@ -683,12 +650,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FeatureDirectionKind directionFor(Type type) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return type.directionOf(this);
 	}
 
 	/**
@@ -900,9 +865,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getTyping();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd();
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				if (resolve) return getMultiplicity();
-				return basicGetMultiplicity();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -963,9 +925,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				setMultiplicity((Multiplicity)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -1020,9 +979,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd(IS_END_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				setMultiplicity((Multiplicity)null);
-				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -1066,8 +1022,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return typing != null && !typing.isEmpty();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd() != IS_END_EDEFAULT;
-			case SysMLPackage.FEATURE__MULTIPLICITY:
-				return basicGetMultiplicity() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}

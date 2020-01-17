@@ -6,6 +6,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Redefinition</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Redefinition is a Subsetting in which, in addition, the redefining Feature replaces the redefinedFeature in the context of the owningNamespace of the redefiningFeature. Redefinition is only allowed if the owningNamespace of the redefiningFeature is its owningType and the redefinedFeature would have been inherited into the owningNamespace if it had not been redefined.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

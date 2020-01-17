@@ -48,7 +48,14 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import projects from the repository into your Eclipse workspace. This should include at least the projects `org.omg.sysml`, `org.kerml.xtext` and `org.sysml.xtext`, along with the associated `ide` and`ui` projects for each.
+3. Import projects from the repository into your Eclipse workspace. This should include at least the projects:
+   * `org.omg.sysml`
+   * `org.kerml.xtext`
+   * `org.kerml.xtext.ide`
+   * `org.kerml.xtext.ui`
+   * `org.sysml.xtext`
+   * `org.sysml.xtext.ide`
+   * `org.sysml.xtext.ui`
 
    **Note:** The project `org.omg.sysml.xpect.tests` requires the Xpect plugin, not included in the main SysML v2 installation. The `org.omg.sysml.jupyter` project requires Maven to build.
 

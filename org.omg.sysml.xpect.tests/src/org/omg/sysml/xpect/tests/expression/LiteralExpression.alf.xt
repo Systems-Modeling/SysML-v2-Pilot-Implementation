@@ -35,5 +35,5 @@ package P {
     s0 = "aaa";
     
     // Should not parse "1." as a real literal
-    // x[1..*]; // Generates error due to improper library scope resolution.
+    x[1..*];
 }

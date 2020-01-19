@@ -3,12 +3,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library_expr/Base.alf"}
+		File {from ="/library_expr/ScalarValues.alf"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library_expr/Base.alf"}
+				File {from ="/library_expr/ScalarValues.alf"}
 			}
 		}
 	}
@@ -17,21 +19,21 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package P {
-        i0 = 1;
-        iu = *;
-
-        r0 = 0.08;
-        r1 = .08;
-        r2 = 5.;
-        r3 = 1e-5; 
-        r4 = .1e-05; 
-        r5 = 3.1e+05; 
-
-        b0 = true;
-        b1 = false;
-
-        s0 = "aaa";
+    i0 = 1;
+    iu = *;
         
-        // Should not parse "1." as a real literal
-        x[1..*];
+    r1 = 0.08;
+    r2 = .08;
+    r2 = 5.0; // 5. not allowed, to avoid ambiguity with multipicity.
+    r3 = 1e-5; 
+    r4 = .1e-05; 
+    r5 = 3.1e+05; 
+
+    b0 = true;
+    b1 = false;
+
+    s0 = "aaa";
+    
+    // Should not parse "1." as a real literal
+    // x[1..*]; // Generates error due to improper library scope resolution.
 }

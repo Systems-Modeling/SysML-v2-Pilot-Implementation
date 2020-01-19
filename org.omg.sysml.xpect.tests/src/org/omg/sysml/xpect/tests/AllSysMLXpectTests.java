@@ -3,6 +3,7 @@ package org.omg.sysml.xpect.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.omg.sysml.xpect.tests.expression.SysMLExpressionTest;
 import org.omg.sysml.xpect.tests.generator.SysMLGeneratorTest;
 import org.omg.sysml.xpect.tests.imports.global.SysMLImportGlobalTest;
 import org.omg.sysml.xpect.tests.imports.local.SysMLImportLocalTest;
@@ -24,7 +25,8 @@ import org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest;
 		SysMLXtextTest.class, //
 		SysMLValidationTest.class, //
 		SysMLQueryTest.class,
-		SysMLVisibilityTest.class
+		SysMLVisibilityTest.class,
+		SysMLExpressionTest.class
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

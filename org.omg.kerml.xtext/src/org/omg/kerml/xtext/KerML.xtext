@@ -982,7 +982,7 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	NATURAL_VALUE? '.' ( NATURAL_VALUE | EXP_VALUE ) | EXP_VALUE
+        FRACTIONAL_VALUE | EXP_VALUE
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
@@ -1070,8 +1070,16 @@ terminal NATURAL_VALUE returns Ecore::EInt :
 	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
 ;
 
+terminal EXP_SUFFIX :
+	('e' | 'E') ('+' | '-')? ('0'..'9')+
+;
+
+terminal FRACTIONAL_VALUE :
+	((NATURAL_VALUE '.' ('0'..'9')*) |  ('.' ('0'..'9')+)) EXP_SUFFIX?
+;
+
 terminal EXP_VALUE :
-	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE
+	NATURAL_VALUE EXP_SUFFIX
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

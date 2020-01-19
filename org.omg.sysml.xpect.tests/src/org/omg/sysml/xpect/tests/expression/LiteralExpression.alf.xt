@@ -31,4 +31,7 @@ package P {
         b1 = false;
 
         s0 = "aaa";
+        
+        // Should not parse "1." as a real literal
+        x[1..*];
 }

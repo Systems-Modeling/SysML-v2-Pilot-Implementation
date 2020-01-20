@@ -23,6 +23,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
@@ -201,6 +203,56 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<StateUsage> getNestedState();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Constraint</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningUsage <em>Constraint Owning Usage</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested Constraint</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested Constraint</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
+	 * @see org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningUsage
+	 * @model opposite="constraintOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConstraintUsage> getNestedConstraint();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Transition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TransitionUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage <em>Transition Owning Usage</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested Transition</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested Transition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedTransition()
+	 * @see org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage
+	 * @model opposite="transitionOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<TransitionUsage> getNestedTransition();
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference list.

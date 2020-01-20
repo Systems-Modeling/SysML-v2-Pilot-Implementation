@@ -19,5 +19,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface AssociationBlock extends Association, Block {
+public interface AssociationBlock extends Block, Association {
 } // AssociationBlock

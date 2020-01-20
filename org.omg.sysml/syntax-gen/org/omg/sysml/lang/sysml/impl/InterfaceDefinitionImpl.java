@@ -77,7 +77,7 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(
 				getOwnedEndFeature().size() > 2? 
-					ASSOCIATION_SUPERCLASS_DEFAULT: 
+					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT);
 	}
 

@@ -10,12 +10,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 
 /**
@@ -32,6 +34,8 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAction <em>Owned Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedState <em>Owned State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedTransition <em>Owned Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -129,6 +133,26 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ConstraintUsage> getOwnedConstraint() {
+		return new DerivedEObjectEList<ConstraintUsage>(ConstraintUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONSTRAINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<TransitionUsage> getOwnedTransition() {
+		return new DerivedEObjectEList<TransitionUsage>(TransitionUsage.class, this, SysMLPackage.DEFINITION__OWNED_TRANSITION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Usage> getOwnedUsage() {
 		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -153,6 +177,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedAction();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
 				return getOwnedState();
+			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
+				return getOwnedConstraint();
+			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
+				return getOwnedTransition();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
 		}
@@ -192,6 +220,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedState().clear();
 				getOwnedState().addAll((Collection<? extends StateUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
+				getOwnedConstraint().clear();
+				getOwnedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
+				getOwnedTransition().clear();
+				getOwnedTransition().addAll((Collection<? extends TransitionUsage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
@@ -226,6 +262,12 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_STATE:
 				getOwnedState().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
+				getOwnedConstraint().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
+				getOwnedTransition().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				return;
@@ -253,6 +295,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedAction().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
 				return !getOwnedState().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
+				return !getOwnedConstraint().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
+				return !getOwnedTransition().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
 		}

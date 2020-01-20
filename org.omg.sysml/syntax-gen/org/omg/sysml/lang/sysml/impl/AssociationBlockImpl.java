@@ -4,22 +4,28 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.ActionUsage;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationBlock;
-import org.omg.sysml.lang.sysml.Block;
-import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Property;
-import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,19 +35,47 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getFlowProperty <em>Flow Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedAction <em>Owned Action</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedState <em>Owned State</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getRelatedType <em>Related Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getOwningConnector <em>Owning Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationBlockImpl#getAssociationEnd <em>Association End</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationBlockImpl extends AssociationImpl implements AssociationBlock {
+public class AssociationBlockImpl extends BlockImpl implements AssociationBlock {
 
+	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> target;
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> source;
+	/**
+	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRelatedElement_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> ownedRelatedElement_comp;
 	public static final String ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT = "Blocks::Connection";
 
 	/**
@@ -66,11 +100,83 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public EList<PortUsage> getOwnedPort() {
-		return new DerivedEObjectEList<PortUsage>(PortUsage.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public EList<Element> getTarget() {
+		if (target == null) {
+			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION_BLOCK__TARGET);
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getSource() {
+		if (source == null) {
+			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION_BLOCK__SOURCE);
+		}
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwningRelatedElement() {
+		if (eContainerFeatureID() != SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRelatedElement(Element newOwningRelatedElement) {
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelatedElement != null)
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedRelatedElement_comp() {
+		if (ownedRelatedElement_comp == null) {
+			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement_comp;
 	}
 
 	/**
@@ -79,14 +185,52 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Property> getFlowProperty() {
-		EList<Property> flowProperties = new EObjectEList<Property>(Property.class, this, SysMLPackage.DEFINITION__PROPERTY);
-		getMembership().stream().
-			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
-			map(membership->((FeatureMembership)membership).getMemberFeature()).
-			filter(feature->feature instanceof Property).
-			forEachOrdered(feature->flowProperties.add((Property)feature));
-		return flowProperties;
+	public EList<Element> getOwnedRelatedElement() {
+		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
+		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
+		return ownedRelatedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT // derived
+	 */
+	@Override
+	public EList<Type> getRelatedType() {
+		EList<Type> relatedTypes = new BasicInternalEList<Type>(Type.class);
+		getAssociationEnd().stream().flatMap(end -> end.getType().stream()).forEachOrdered(relatedTypes::add);
+		return relatedTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedType() {
+		return !getRelatedType().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Connector getOwningConnector() {
+		Connector owningConnector = basicGetOwningConnector();
+		return owningConnector != null && owningConnector.eIsProxy() ? (Connector)eResolveProxy((InternalEObject)owningConnector) : owningConnector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT // derived
+	 */
+	public Connector basicGetOwningConnector() {
+		Element owner = this.getOwner();
+		return owner instanceof Connector ? (Connector) owner : null;
 	}
 
 	/**
@@ -95,8 +239,8 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Property> getOwnedProperty() {
-		return new DerivedEObjectEList<Property>(Property.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public void setOwningConnector(Connector newOwningConnector) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -105,45 +249,73 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Property> getProperty() {
-		return new DerivedEObjectEList<Property>(Property.class, this, SysMLPackage.ASSOCIATION_BLOCK__PROPERTY, new int[] {SysMLPackage.TYPE__FEATURE});
+	public EList<Feature> getAssociationEnd() {
+		return super.getEndFeature();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	@Override
-	public EList<ActionUsage> getOwnedAction() {
-		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public boolean isSetAssociationEnd() {
+		return !getAssociationEnd().isEmpty();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public EList<StateUsage> getOwnedState() {
-		return new DerivedEObjectEList<StateUsage>(StateUsage.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public EList<Usage> getOwnedUsage() {
-		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(
 				getOwnedEndFeature().size() > 2? 
-					ASSOCIATION_SUPERCLASS_DEFAULT: 
+					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 					ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT);
 	}
 
@@ -155,20 +327,25 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				return getOwnedPort();
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				return getFlowProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				return getOwnedProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				return getProperty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				return getOwnedAction();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE:
-				return getOwnedState();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				return getOwnedUsage();
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_ELEMENT:
+				return getRelatedElement();
+			case SysMLPackage.ASSOCIATION_BLOCK__TARGET:
+				return getTarget();
+			case SysMLPackage.ASSOCIATION_BLOCK__SOURCE:
+				return getSource();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				return getOwnedRelatedElement_comp();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE:
+				return getRelatedType();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR:
+				if (resolve) return getOwningConnector();
+				return basicGetOwningConnector();
+			case SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END:
+				return getAssociationEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,33 +359,35 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				getOwnedPort().clear();
-				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__TARGET:
+				getTarget().clear();
+				getTarget().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				getFlowProperty().clear();
-				getFlowProperty().addAll((Collection<? extends Property>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__SOURCE:
+				getSource().clear();
+				getSource().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				getOwnedProperty().clear();
-				getOwnedProperty().addAll((Collection<? extends Property>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends Property>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				getOwnedRelatedElement_comp().clear();
+				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				getOwnedAction().clear();
-				getOwnedAction().addAll((Collection<? extends ActionUsage>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE:
-				getOwnedState().clear();
-				getOwnedState().addAll((Collection<? extends StateUsage>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE:
+				getRelatedType().clear();
+				getRelatedType().addAll((Collection<? extends Type>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR:
+				setOwningConnector((Connector)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END:
+				getAssociationEnd().clear();
+				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -222,26 +401,29 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				getOwnedPort().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__TARGET:
+				getTarget().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				getFlowProperty().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__SOURCE:
+				getSource().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				getOwnedProperty().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				getProperty().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				getOwnedRelatedElement_comp().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				getOwnedAction().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE:
-				getOwnedState().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE:
+				getRelatedType().clear();
 				return;
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				getOwnedUsage().clear();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR:
+				setOwningConnector((Connector)null);
+				return;
+			case SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END:
+				getAssociationEnd().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -255,20 +437,26 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT:
-				return !getOwnedPort().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY:
-				return !getFlowProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY:
-				return !getOwnedProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY:
-				return !getProperty().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION:
-				return !getOwnedAction().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE:
-				return !getOwnedState().isEmpty();
-			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_ELEMENT:
+				return isSetRelatedElement();
+			case SysMLPackage.ASSOCIATION_BLOCK__TARGET:
+				return target != null && !target.isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__SOURCE:
+				return source != null && !source.isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP:
+				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT:
+				return !getOwnedRelatedElement().isEmpty();
+			case SysMLPackage.ASSOCIATION_BLOCK__END_FEATURE:
+				return isSetEndFeature();
+			case SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE:
+				return isSetRelatedType();
+			case SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR:
+				return basicGetOwningConnector() != null;
+			case SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END:
+				return isSetAssociationEnd();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -280,20 +468,22 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Definition.class) {
+		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT: return SysMLPackage.DEFINITION__OWNED_PORT;
-				case SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY: return SysMLPackage.DEFINITION__FLOW_PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY: return SysMLPackage.DEFINITION__OWNED_PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__PROPERTY: return SysMLPackage.DEFINITION__PROPERTY;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION: return SysMLPackage.DEFINITION__OWNED_ACTION;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE: return SysMLPackage.DEFINITION__OWNED_STATE;
-				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE: return SysMLPackage.DEFINITION__OWNED_USAGE;
+				case SysMLPackage.ASSOCIATION_BLOCK__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION_BLOCK__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
+				case SysMLPackage.ASSOCIATION_BLOCK__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == Block.class) {
+		if (baseClass == Association.class) {
 			switch (derivedFeatureID) {
+				case SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE: return SysMLPackage.ASSOCIATION__RELATED_TYPE;
+				case SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR: return SysMLPackage.ASSOCIATION__OWNING_CONNECTOR;
+				case SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END: return SysMLPackage.ASSOCIATION__ASSOCIATION_END;
 				default: return -1;
 			}
 		}
@@ -307,24 +497,75 @@ public class AssociationBlockImpl extends AssociationImpl implements Association
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Definition.class) {
+		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.DEFINITION__OWNED_PORT: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PORT;
-				case SysMLPackage.DEFINITION__FLOW_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__FLOW_PROPERTY;
-				case SysMLPackage.DEFINITION__OWNED_PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_PROPERTY;
-				case SysMLPackage.DEFINITION__PROPERTY: return SysMLPackage.ASSOCIATION_BLOCK__PROPERTY;
-				case SysMLPackage.DEFINITION__OWNED_ACTION: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_ACTION;
-				case SysMLPackage.DEFINITION__OWNED_STATE: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_STATE;
-				case SysMLPackage.DEFINITION__OWNED_USAGE: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_USAGE;
+				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.ASSOCIATION_BLOCK__RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.ASSOCIATION_BLOCK__TARGET;
+				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION_BLOCK__SOURCE;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT_COMP;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == Block.class) {
+		if (baseClass == Association.class) {
 			switch (baseFeatureID) {
+				case SysMLPackage.ASSOCIATION__RELATED_TYPE: return SysMLPackage.ASSOCIATION_BLOCK__RELATED_TYPE;
+				case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR: return SysMLPackage.ASSOCIATION_BLOCK__OWNING_CONNECTOR;
+				case SysMLPackage.ASSOCIATION__ASSOCIATION_END: return SysMLPackage.ASSOCIATION_BLOCK__ASSOCIATION_END;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> getRelatedElement() {
+		@SuppressWarnings("unchecked")
+		EList<Element> relatedType = (EList<Element>)((EList<?>)getRelatedType());
+		return relatedType;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION_BLOCK__TARGET, SysMLPackage.ASSOCIATION_BLOCK__SOURCE, SysMLPackage.ASSOCIATION_BLOCK__OWNING_RELATED_ELEMENT, SysMLPackage.ASSOCIATION_BLOCK__OWNED_RELATED_ELEMENT};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedElement() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Feature> getEndFeature() {
+		return getAssociationEnd();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndFeature() {
+  		return false;
 	}
 
 } //AssociationBlockImpl

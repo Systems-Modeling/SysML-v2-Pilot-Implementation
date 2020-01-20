@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Transition Feature Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * A StateActionKind indicates whether a Action feature of a State is an entry, do or exit Action.
+ * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionFeatureKind()
  * @model
  * @generated

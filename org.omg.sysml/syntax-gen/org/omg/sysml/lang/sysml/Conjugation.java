@@ -8,6 +8,12 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Conjugation</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Conjugation is a Relationship between two types in which the conjugatedType inherits all the Features of the originalType, but with all input and output Features reversed. That is, any Features with a FeatureMembership with direction <em>in</em> relative to the originalType are considered to have an effective direction of <em>out</em> relative to the conjugatedType and, similarly, Features with direction <em>out</em> in the original type are considered to have an effective direction of <em>in</em> in the original type. Features with direction <em>inout</em>, or with no direction, in the originalType, are inherited without change.</p>
+ * 
+ * <p>A Type may participate as a conjugatedType in at most one Conjugation relationship, and such a Type may not also be the specific Type in any Generalization relationship.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

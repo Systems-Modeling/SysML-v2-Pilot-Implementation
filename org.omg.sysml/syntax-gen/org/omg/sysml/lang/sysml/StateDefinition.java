@@ -9,6 +9,12 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>State Definition</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A StateDefinition is the Definition of the Behavior of a system or part of a system in a certain state condition.
+ * 
+ * A State Definition must subclass, directly or indirectly, the base StateDefinition State from the Systems model library.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

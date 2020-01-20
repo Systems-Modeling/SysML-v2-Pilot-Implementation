@@ -9,11 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
@@ -31,6 +33,8 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConstraint <em>Nested Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
@@ -165,6 +169,26 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ConstraintUsage> getNestedConstraint() {
+		return new DerivedEObjectEList<ConstraintUsage>(ConstraintUsage.class, this, SysMLPackage.USAGE__NESTED_CONSTRAINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<TransitionUsage> getNestedTransition() {
+		return new DerivedEObjectEList<TransitionUsage>(TransitionUsage.class, this, SysMLPackage.USAGE__NESTED_TRANSITION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Property> getProperty() {
 		return new DerivedEObjectEList<Property>(Property.class, this, SysMLPackage.USAGE__PROPERTY, new int[] {SysMLPackage.TYPE__FEATURE});
 	}
@@ -201,6 +225,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedProperty();
 			case SysMLPackage.USAGE__NESTED_STATE:
 				return getNestedState();
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				return getNestedConstraint();
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				return getNestedTransition();
 			case SysMLPackage.USAGE__PROPERTY:
 				return getProperty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -240,6 +268,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedState().clear();
 				getNestedState().addAll((Collection<? extends StateUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				getNestedConstraint().clear();
+				getNestedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				getNestedTransition().clear();
+				getNestedTransition().addAll((Collection<? extends TransitionUsage>)newValue);
+				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
 				getProperty().addAll((Collection<? extends Property>)newValue);
@@ -278,6 +314,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_STATE:
 				getNestedState().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				getNestedConstraint().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				getNestedTransition().clear();
+				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
 				return;
@@ -308,6 +350,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedProperty().isEmpty();
 			case SysMLPackage.USAGE__NESTED_STATE:
 				return !getNestedState().isEmpty();
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				return !getNestedConstraint().isEmpty();
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				return !getNestedTransition().isEmpty();
 			case SysMLPackage.USAGE__PROPERTY:
 				return !getProperty().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:

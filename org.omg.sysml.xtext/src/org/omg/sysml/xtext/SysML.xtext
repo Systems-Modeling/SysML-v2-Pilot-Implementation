@@ -809,7 +809,7 @@ fragment ConjugatePortTypePart returns SysML::Feature :
 ;
 
 ConjugatedPortTyping returns SysML::ConjugatedPortTyping :
-	originalPortDefinition = [SysML::PortDefinition | QualifiedName]
+	portDefinition = [SysML::PortDefinition | QualifiedName]
 ;
 
 /* CONNECTORS */
@@ -912,19 +912,19 @@ EmptySuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember ownedFeatureMembership_comp += EmptyTargetEndMember
 ;
 
-GuardedSuccession returns SysML::TransitionStep :
+GuardedSuccession returns SysML::TransitionUsage :
 	'succession' ( ( name = Name )? TypePart? 'first' )? 
 	ownedFeatureMembership_comp += TransitionSourceMember 
 	ownedFeatureMembership_comp += GuardExpressionMember
 	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-GuardedTargetSuccession returns SysML::TransitionStep :
+GuardedTargetSuccession returns SysML::TransitionUsage :
 	ownedFeatureMembership_comp += GuardExpressionMember
 	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-DefaultTargetSuccession returns SysML::TransitionStep :
+DefaultTargetSuccession returns SysML::TransitionUsage :
 	'else' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
@@ -1150,7 +1150,7 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
 
 /* TRANSITIONS */
 
-TransitionStep returns SysML::TransitionStep :
+TransitionStep returns SysML::TransitionUsage :
 	'transition' ( ( name = Name )? TypePart? 'first' )? 
 	ownedFeatureMembership_comp += TransitionSourceMember 
 	( ownedFeatureMembership_comp += TriggerStepMember )?
@@ -1159,7 +1159,7 @@ TransitionStep returns SysML::TransitionStep :
 	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-TargetTransitionStep returns SysML::TransitionStep :
+TargetTransitionStep returns SysML::TransitionUsage :
 	( ownedFeatureMembership_comp += TriggerStepMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
 	( ownedFeatureMembership_comp += EffectBehaviorMember )?

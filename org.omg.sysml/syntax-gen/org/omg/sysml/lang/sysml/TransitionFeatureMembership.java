@@ -8,6 +8,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Transition Feature Membership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

@@ -1977,10 +1977,10 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_BOOLEAN_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28599:20: ( ( 'true' | 'false' ) )
-            // InternalKerML.g:28599:22: ( 'true' | 'false' )
+            // InternalKerML.g:28641:20: ( ( 'true' | 'false' ) )
+            // InternalKerML.g:28641:22: ( 'true' | 'false' )
             {
-            // InternalKerML.g:28599:22: ( 'true' | 'false' )
+            // InternalKerML.g:28641:22: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1998,7 +1998,7 @@ public class InternalKerMLLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalKerML.g:28599:23: 'true'
+                    // InternalKerML.g:28641:23: 'true'
                     {
                     match("true"); 
 
@@ -2006,7 +2006,7 @@ public class InternalKerMLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:28599:30: 'false'
+                    // InternalKerML.g:28641:30: 'false'
                     {
                     match("false"); 
 
@@ -2032,11 +2032,11 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28601:20: ( '0' .. '9' ( ( '_' )? '0' .. '9' )* )
-            // InternalKerML.g:28601:22: '0' .. '9' ( ( '_' )? '0' .. '9' )*
+            // InternalKerML.g:28643:20: ( '0' .. '9' ( ( '_' )? '0' .. '9' )* )
+            // InternalKerML.g:28643:22: '0' .. '9' ( ( '_' )? '0' .. '9' )*
             {
             matchRange('0','9'); 
-            // InternalKerML.g:28601:31: ( ( '_' )? '0' .. '9' )*
+            // InternalKerML.g:28643:31: ( ( '_' )? '0' .. '9' )*
             loop3:
             do {
                 int alt3=2;
@@ -2049,9 +2049,9 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalKerML.g:28601:32: ( '_' )? '0' .. '9'
+            	    // InternalKerML.g:28643:32: ( '_' )? '0' .. '9'
             	    {
-            	    // InternalKerML.g:28601:32: ( '_' )?
+            	    // InternalKerML.g:28643:32: ( '_' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -2060,7 +2060,7 @@ public class InternalKerMLLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // InternalKerML.g:28601:32: '_'
+            	            // InternalKerML.g:28643:32: '_'
             	            {
             	            match('_'); 
 
@@ -2095,8 +2095,8 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_EXP_SUFFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28603:17: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_DECIMAL_VALUE )
-            // InternalKerML.g:28603:19: ( 'e' | 'E' ) ( '+' | '-' )? RULE_DECIMAL_VALUE
+            // InternalKerML.g:28645:17: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_DECIMAL_VALUE )
+            // InternalKerML.g:28645:19: ( 'e' | 'E' ) ( '+' | '-' )? RULE_DECIMAL_VALUE
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2107,7 +2107,7 @@ public class InternalKerMLLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalKerML.g:28603:29: ( '+' | '-' )?
+            // InternalKerML.g:28645:29: ( '+' | '-' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2150,8 +2150,8 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28605:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalKerML.g:28605:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalKerML.g:28647:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalKerML.g:28647:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2162,7 +2162,7 @@ public class InternalKerMLLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalKerML.g:28605:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalKerML.g:28647:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -2211,11 +2211,11 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_UNRESTRICTED_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28607:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // InternalKerML.g:28607:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // InternalKerML.g:28649:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalKerML.g:28649:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // InternalKerML.g:28607:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // InternalKerML.g:28649:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop6:
             do {
                 int alt6=3;
@@ -2231,7 +2231,7 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalKerML.g:28607:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // InternalKerML.g:28649:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2247,7 +2247,7 @@ public class InternalKerMLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // InternalKerML.g:28607:73: ~ ( ( '\\\\' | '\\'' ) )
+            	    // InternalKerML.g:28649:73: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2284,11 +2284,11 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_STRING_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28609:19: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // InternalKerML.g:28609:21: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // InternalKerML.g:28651:19: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // InternalKerML.g:28651:21: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // InternalKerML.g:28609:25: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // InternalKerML.g:28651:25: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop7:
             do {
                 int alt7=3;
@@ -2304,7 +2304,7 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalKerML.g:28609:26: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // InternalKerML.g:28651:26: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2320,7 +2320,7 @@ public class InternalKerMLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // InternalKerML.g:28609:67: ~ ( ( '\\\\' | '\"' ) )
+            	    // InternalKerML.g:28651:67: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2357,8 +2357,8 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28611:17: ( '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
-            // InternalKerML.g:28611:19: '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
+            // InternalKerML.g:28653:17: ( '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
+            // InternalKerML.g:28653:19: '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -2371,7 +2371,7 @@ public class InternalKerMLLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalKerML.g:28611:31: ( options {greedy=false; } : . )*
+            // InternalKerML.g:28653:31: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
@@ -2396,7 +2396,7 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalKerML.g:28611:59: .
+            	    // InternalKerML.g:28653:59: .
             	    {
             	    matchAny(); 
 
@@ -2426,12 +2426,12 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_DOCUMENTATION_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28613:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // InternalKerML.g:28613:30: '/**' ( options {greedy=false; } : . )* '*/'
+            // InternalKerML.g:28655:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
+            // InternalKerML.g:28655:30: '/**' ( options {greedy=false; } : . )* '*/'
             {
             match("/**"); 
 
-            // InternalKerML.g:28613:36: ( options {greedy=false; } : . )*
+            // InternalKerML.g:28655:36: ( options {greedy=false; } : . )*
             loop9:
             do {
                 int alt9=2;
@@ -2456,7 +2456,7 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // InternalKerML.g:28613:64: .
+            	    // InternalKerML.g:28655:64: .
             	    {
             	    matchAny(); 
 
@@ -2486,12 +2486,12 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_ML_NOTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28615:14: ( '//*' ( options {greedy=false; } : . )* '*/' )
-            // InternalKerML.g:28615:16: '//*' ( options {greedy=false; } : . )* '*/'
+            // InternalKerML.g:28657:14: ( '//*' ( options {greedy=false; } : . )* '*/' )
+            // InternalKerML.g:28657:16: '//*' ( options {greedy=false; } : . )* '*/'
             {
             match("//*"); 
 
-            // InternalKerML.g:28615:22: ( options {greedy=false; } : . )*
+            // InternalKerML.g:28657:22: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -2516,7 +2516,7 @@ public class InternalKerMLLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalKerML.g:28615:50: .
+            	    // InternalKerML.g:28657:50: .
             	    {
             	    matchAny(); 
 
@@ -2546,12 +2546,12 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_SL_NOTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28617:14: ( '//' (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
-            // InternalKerML.g:28617:16: '//' (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
+            // InternalKerML.g:28659:14: ( '//' (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
+            // InternalKerML.g:28659:16: '//' (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalKerML.g:28617:21: (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
+            // InternalKerML.g:28659:21: (~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2560,7 +2560,7 @@ public class InternalKerMLLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalKerML.g:28617:22: ~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
+                    // InternalKerML.g:28659:22: ~ ( ( '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -2571,7 +2571,7 @@ public class InternalKerMLLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // InternalKerML.g:28617:37: (~ ( ( '\\n' | '\\r' ) ) )*
+                    // InternalKerML.g:28659:37: (~ ( ( '\\n' | '\\r' ) ) )*
                     loop11:
                     do {
                         int alt11=2;
@@ -2584,7 +2584,7 @@ public class InternalKerMLLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // InternalKerML.g:28617:37: ~ ( ( '\\n' | '\\r' ) )
+                    	    // InternalKerML.g:28659:37: ~ ( ( '\\n' | '\\r' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2610,7 +2610,7 @@ public class InternalKerMLLexer extends Lexer {
 
             }
 
-            // InternalKerML.g:28617:55: ( ( '\\r' )? '\\n' )?
+            // InternalKerML.g:28659:55: ( ( '\\r' )? '\\n' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2619,9 +2619,9 @@ public class InternalKerMLLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalKerML.g:28617:56: ( '\\r' )? '\\n'
+                    // InternalKerML.g:28659:56: ( '\\r' )? '\\n'
                     {
-                    // InternalKerML.g:28617:56: ( '\\r' )?
+                    // InternalKerML.g:28659:56: ( '\\r' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2630,7 +2630,7 @@ public class InternalKerMLLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // InternalKerML.g:28617:56: '\\r'
+                            // InternalKerML.g:28659:56: '\\r'
                             {
                             match('\r'); 
 
@@ -2662,10 +2662,10 @@ public class InternalKerMLLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerML.g:28619:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalKerML.g:28619:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalKerML.g:28661:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalKerML.g:28661:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalKerML.g:28619:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalKerML.g:28661:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt15=0;
             loop15:
             do {

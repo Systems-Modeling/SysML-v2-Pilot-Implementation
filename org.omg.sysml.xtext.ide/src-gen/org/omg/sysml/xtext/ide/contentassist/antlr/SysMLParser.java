@@ -760,7 +760,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getNameAssignment_0_0(), "rule__ConjugatePortUsageDeclaration__NameAssignment_0_0");
 			builder.put(grammarAccess.getConjugatePortUsageDeclarationAccess().getOwnedRelationship_compAssignment_2_1(), "rule__ConjugatePortUsageDeclaration__OwnedRelationship_compAssignment_2_1");
 			builder.put(grammarAccess.getConjugatePortTypePartAccess().getOwnedRelationship_compAssignment_2(), "rule__ConjugatePortTypePart__OwnedRelationship_compAssignment_2");
-			builder.put(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionAssignment(), "rule__ConjugatedPortTyping__OriginalPortDefinitionAssignment");
+			builder.put(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionAssignment(), "rule__ConjugatedPortTyping__PortDefinitionAssignment");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_0(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_0");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_0_2(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_0_2");
 			builder.put(grammarAccess.getConnectionPartAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__ConnectionPart__OwnedFeatureMembership_compAssignment_1_1");

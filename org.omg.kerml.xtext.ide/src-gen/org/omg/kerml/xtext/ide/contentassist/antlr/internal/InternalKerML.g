@@ -13502,6 +13502,7 @@ rule__ClassifierDeclarationCompletion__Group__1
 	}
 :
 	rule__ClassifierDeclarationCompletion__Group__1__Impl
+	rule__ClassifierDeclarationCompletion__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -13516,6 +13517,32 @@ rule__ClassifierDeclarationCompletion__Group__1__Impl
 	{ before(grammarAccess.getClassifierDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_1()); }
 	(ruleSpecializationOrConjugation)?
 	{ after(grammarAccess.getClassifierDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ClassifierDeclarationCompletion__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ClassifierDeclarationCompletion__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ClassifierDeclarationCompletion__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getClassifierDeclarationCompletionAccess().getOwnedFeatureMembership_compAssignment_2()); }
+	(rule__ClassifierDeclarationCompletion__OwnedFeatureMembership_compAssignment_2)?
+	{ after(grammarAccess.getClassifierDeclarationCompletionAccess().getOwnedFeatureMembership_compAssignment_2()); }
 )
 ;
 finally {
@@ -26090,6 +26117,21 @@ rule__ClassifierDeclarationCompletion__NameAssignment_0
 		{ before(grammarAccess.getClassifierDeclarationCompletionAccess().getNameNameParserRuleCall_0_0()); }
 		ruleName
 		{ after(grammarAccess.getClassifierDeclarationCompletionAccess().getNameNameParserRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ClassifierDeclarationCompletion__OwnedFeatureMembership_compAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getClassifierDeclarationCompletionAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); }
+		ruleMultiplicityMember
+		{ after(grammarAccess.getClassifierDeclarationCompletionAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); }
 	)
 ;
 finally {

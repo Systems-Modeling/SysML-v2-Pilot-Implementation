@@ -2906,9 +2906,9 @@ ruleConjugatedPortTyping
 	}
 	:
 	(
-		{ before(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionAssignment()); }
-		(rule__ConjugatedPortTyping__OriginalPortDefinitionAssignment)
-		{ after(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionAssignment()); }
+		{ before(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionAssignment()); }
+		(rule__ConjugatedPortTyping__PortDefinitionAssignment)
+		{ after(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionAssignment()); }
 	)
 ;
 finally {
@@ -42359,19 +42359,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ConjugatedPortTyping__OriginalPortDefinitionAssignment
+rule__ConjugatedPortTyping__PortDefinitionAssignment
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionCrossReference_0()); }
+		{ before(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionCrossReference_0()); }
 		(
-			{ before(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1()); }
+			{ before(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1()); }
+			{ after(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1()); }
 		)
-		{ after(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionCrossReference_0()); }
+		{ after(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionCrossReference_0()); }
 	)
 ;
 finally {

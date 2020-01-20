@@ -6359,22 +6359,22 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class ConjugatedPortTypingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConjugatedPortTyping");
-		private final Assignment cOriginalPortDefinitionAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cOriginalPortDefinitionPortDefinitionCrossReference_0 = (CrossReference)cOriginalPortDefinitionAssignment.eContents().get(0);
-		private final RuleCall cOriginalPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1 = (RuleCall)cOriginalPortDefinitionPortDefinitionCrossReference_0.eContents().get(1);
+		private final Assignment cPortDefinitionAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cPortDefinitionPortDefinitionCrossReference_0 = (CrossReference)cPortDefinitionAssignment.eContents().get(0);
+		private final RuleCall cPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1 = (RuleCall)cPortDefinitionPortDefinitionCrossReference_0.eContents().get(1);
 		
 		//ConjugatedPortTyping SysML::ConjugatedPortTyping:
-		//	originalPortDefinition=[SysML::PortDefinition|QualifiedName];
+		//	portDefinition=[SysML::PortDefinition|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//originalPortDefinition=[SysML::PortDefinition|QualifiedName]
-		public Assignment getOriginalPortDefinitionAssignment() { return cOriginalPortDefinitionAssignment; }
+		//portDefinition=[SysML::PortDefinition|QualifiedName]
+		public Assignment getPortDefinitionAssignment() { return cPortDefinitionAssignment; }
 		
 		//[SysML::PortDefinition|QualifiedName]
-		public CrossReference getOriginalPortDefinitionPortDefinitionCrossReference_0() { return cOriginalPortDefinitionPortDefinitionCrossReference_0; }
+		public CrossReference getPortDefinitionPortDefinitionCrossReference_0() { return cPortDefinitionPortDefinitionCrossReference_0; }
 		
 		//QualifiedName
-		public RuleCall getOriginalPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1() { return cOriginalPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1; }
+		public RuleCall getPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1() { return cPortDefinitionPortDefinitionQualifiedNameParserRuleCall_0_1; }
 	}
 	public class ConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Connector");
@@ -6995,7 +6995,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedFeatureMembership_compAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_5_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_5.eContents().get(0);
 		
-		//GuardedSuccession SysML::TransitionStep:
+		//GuardedSuccession SysML::TransitionUsage:
 		//	'succession' (name=Name? TypePart? 'first')?
 		//	ownedFeatureMembership_comp+=TransitionSourceMember
 		//	ownedFeatureMembership_comp+=GuardExpressionMember
@@ -7054,7 +7054,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedFeatureMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_2.eContents().get(0);
 		
-		//GuardedTargetSuccession SysML::TransitionStep:
+		//GuardedTargetSuccession SysML::TransitionUsage:
 		//	ownedFeatureMembership_comp+=GuardExpressionMember
 		//	'then' ownedFeatureMembership_comp+=TransitionSuccessionMember;
 		@Override public ParserRule getRule() { return rule; }
@@ -7084,7 +7084,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedFeatureMembership_compAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1.eContents().get(0);
 		
-		//DefaultTargetSuccession SysML::TransitionStep:
+		//DefaultTargetSuccession SysML::TransitionUsage:
 		//	'else' ownedFeatureMembership_comp+=TransitionSuccessionMember;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -8672,7 +8672,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedFeatureMembership_compAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_7_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_7.eContents().get(0);
 		
-		///* TRANSITIONS */ TransitionStep SysML::TransitionStep:
+		///* TRANSITIONS */ TransitionStep SysML::TransitionUsage:
 		//	'transition' (name=Name? TypePart? 'first')?
 		//	ownedFeatureMembership_comp+=TransitionSourceMember
 		//	ownedFeatureMembership_comp+=TriggerStepMember?
@@ -8750,7 +8750,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedFeatureMembership_compAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_4_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_4.eContents().get(0);
 		
-		//TargetTransitionStep SysML::TransitionStep:
+		//TargetTransitionStep SysML::TransitionUsage:
 		//	ownedFeatureMembership_comp+=TriggerStepMember?
 		//	ownedFeatureMembership_comp+=GuardExpressionMember?
 		//	ownedFeatureMembership_comp+=EffectBehaviorMember?
@@ -13047,7 +13047,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConjugatedPortTyping SysML::ConjugatedPortTyping:
-	//	originalPortDefinition=[SysML::PortDefinition|QualifiedName];
+	//	portDefinition=[SysML::PortDefinition|QualifiedName];
 	public ConjugatedPortTypingElements getConjugatedPortTypingAccess() {
 		return pConjugatedPortTyping;
 	}
@@ -13272,7 +13272,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEmptySuccessionAccess().getRule();
 	}
 	
-	//GuardedSuccession SysML::TransitionStep:
+	//GuardedSuccession SysML::TransitionUsage:
 	//	'succession' (name=Name? TypePart? 'first')?
 	//	ownedFeatureMembership_comp+=TransitionSourceMember
 	//	ownedFeatureMembership_comp+=GuardExpressionMember
@@ -13285,7 +13285,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getGuardedSuccessionAccess().getRule();
 	}
 	
-	//GuardedTargetSuccession SysML::TransitionStep:
+	//GuardedTargetSuccession SysML::TransitionUsage:
 	//	ownedFeatureMembership_comp+=GuardExpressionMember
 	//	'then' ownedFeatureMembership_comp+=TransitionSuccessionMember;
 	public GuardedTargetSuccessionElements getGuardedTargetSuccessionAccess() {
@@ -13296,7 +13296,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getGuardedTargetSuccessionAccess().getRule();
 	}
 	
-	//DefaultTargetSuccession SysML::TransitionStep:
+	//DefaultTargetSuccession SysML::TransitionUsage:
 	//	'else' ownedFeatureMembership_comp+=TransitionSuccessionMember;
 	public DefaultTargetSuccessionElements getDefaultTargetSuccessionAccess() {
 		return pDefaultTargetSuccession;
@@ -13761,7 +13761,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getExhibitStateUsageAccess().getRule();
 	}
 	
-	///* TRANSITIONS */ TransitionStep SysML::TransitionStep:
+	///* TRANSITIONS */ TransitionStep SysML::TransitionUsage:
 	//	'transition' (name=Name? TypePart? 'first')?
 	//	ownedFeatureMembership_comp+=TransitionSourceMember
 	//	ownedFeatureMembership_comp+=TriggerStepMember?
@@ -13776,7 +13776,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTransitionStepAccess().getRule();
 	}
 	
-	//TargetTransitionStep SysML::TransitionStep:
+	//TargetTransitionStep SysML::TransitionUsage:
 	//	ownedFeatureMembership_comp+=TriggerStepMember?
 	//	ownedFeatureMembership_comp+=GuardExpressionMember?
 	//	ownedFeatureMembership_comp+=EffectBehaviorMember?

@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureMembership is a Membership for Features within Types. The Feature that is a member of a Type is said to be &quot;nested&quot; under that Type.</p>
+ * <p>FeatureMembership is a Membership for Features within Types. The Feature that is a member of a Type is said to be <em>nested</em> under that Type.</p>
  * 
  * <!-- end-model-doc -->
  *

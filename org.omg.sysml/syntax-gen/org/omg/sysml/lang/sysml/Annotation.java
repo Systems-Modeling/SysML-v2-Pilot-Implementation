@@ -12,8 +12,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingComment <em>Annotating Comment</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingComment <em>Annotating Comment</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()

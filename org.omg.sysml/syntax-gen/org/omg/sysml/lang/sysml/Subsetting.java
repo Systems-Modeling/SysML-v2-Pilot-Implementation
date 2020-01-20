@@ -6,6 +6,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Subsetting is Generalization in which both the specific and general Types are Features. Such a Subsetting relationship implies that the domain (i.e., the intersection of a Feature's featuringTypes) of the subsettingFeature be a subset of the domain of the subsettedFeature and that the range (i.e., the union of a Feature's types) of the subsettingFeature be a subset of the range of the subsettedFeature. Thus, for a specific instance in the domain of both the subsettingFeature and the subsettedFeature (that is, for a specific context), the set of range values of the subsettingFeature will be a subset of the set of range values of the subsettedFeature.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

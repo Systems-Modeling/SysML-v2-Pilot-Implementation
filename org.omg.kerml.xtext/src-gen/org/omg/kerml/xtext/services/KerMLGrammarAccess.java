@@ -2669,15 +2669,18 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final RuleCall cSpecializationOrConjugationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOwnedFeatureMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_2.eContents().get(0);
 		
 		//fragment ClassifierDeclarationCompletion returns SysML::Classifier:
 		//	name=Name
 		//	//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-		//	SpecializationOrConjugation?;
+		//	SpecializationOrConjugation?
+		//	ownedFeatureMembership_comp+=MultiplicityMember?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=Name //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-		//SpecializationOrConjugation?
+		//SpecializationOrConjugation? ownedFeatureMembership_comp+=MultiplicityMember?
 		public Group getGroup() { return cGroup; }
 		
 		//name=Name
@@ -2689,6 +2692,12 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		////  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 		//SpecializationOrConjugation?
 		public RuleCall getSpecializationOrConjugationParserRuleCall_1() { return cSpecializationOrConjugationParserRuleCall_1; }
+		
+		//ownedFeatureMembership_comp+=MultiplicityMember?
+		public Assignment getOwnedFeatureMembership_compAssignment_2() { return cOwnedFeatureMembership_compAssignment_2; }
+		
+		//MultiplicityMember
+		public RuleCall getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0() { return cOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0; }
 	}
 	public class SpecializationOrConjugationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SpecializationOrConjugation");
@@ -8086,7 +8095,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	//fragment ClassifierDeclarationCompletion returns SysML::Classifier:
 	//	name=Name
 	//	//  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
-	//	SpecializationOrConjugation?;
+	//	SpecializationOrConjugation?
+	//	ownedFeatureMembership_comp+=MultiplicityMember?;
 	public ClassifierDeclarationCompletionElements getClassifierDeclarationCompletionAccess() {
 		return pClassifierDeclarationCompletion;
 	}

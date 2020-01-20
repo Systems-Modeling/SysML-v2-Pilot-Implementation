@@ -10529,7 +10529,7 @@ ruleConjugatedPortTyping returns [EObject current=null]
 				}
 			}
 			{
-				newCompositeNode(grammarAccess.getConjugatedPortTypingAccess().getOriginalPortDefinitionPortDefinitionCrossReference_0());
+				newCompositeNode(grammarAccess.getConjugatedPortTypingAccess().getPortDefinitionPortDefinitionCrossReference_0());
 			}
 			ruleQualifiedName
 			{

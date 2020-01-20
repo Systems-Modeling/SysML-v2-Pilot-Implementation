@@ -331,6 +331,7 @@ fragment ClassifierDeclarationCompletion returns SysML::Classifier :
 	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	SpecializationOrConjugation?
+	( ownedFeatureMembership_comp += MultiplicityMember )?
 ;
 
 fragment SpecializationOrConjugation returns SysML::Classifier :

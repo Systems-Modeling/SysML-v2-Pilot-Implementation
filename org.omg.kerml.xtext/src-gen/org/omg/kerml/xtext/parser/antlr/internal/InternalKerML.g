@@ -4338,6 +4338,25 @@ ruleClassifierDeclarationCompletion[EObject in_current]  returns [EObject curren
 				afterParserOrEnumRuleCall();
 			}
 		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getClassifierDeclarationCompletionAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0());
+				}
+				lv_ownedFeatureMembership_comp_2_0=ruleMultiplicityMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClassifierDeclarationCompletionRule());
+					}
+					add(
+						$current,
+						"ownedFeatureMembership_comp",
+						lv_ownedFeatureMembership_comp_2_0,
+						"org.omg.kerml.xtext.KerML.MultiplicityMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

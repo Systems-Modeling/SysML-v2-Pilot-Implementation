@@ -6604,40 +6604,65 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.RealValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_2_0 = (RuleCall)cAlternatives_0_2.eContents().get(0);
-		private final RuleCall cEXP_VALUETerminalRuleCall_0_2_1 = (RuleCall)cAlternatives_0_2.eContents().get(1);
-		private final RuleCall cEXP_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_0_0 = (Group)cAlternatives_0_0.eContents().get(0);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_0_0 = (RuleCall)cGroup_0_0_0.eContents().get(0);
+		private final Keyword cFullStopKeyword_0_0_0_1 = (Keyword)cGroup_0_0_0.eContents().get(1);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_0_2 = (RuleCall)cGroup_0_0_0.eContents().get(2);
+		private final Group cGroup_0_0_1 = (Group)cAlternatives_0_0.eContents().get(1);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_1_0 = (RuleCall)cGroup_0_0_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_0_0_1_1 = (Keyword)cGroup_0_0_1.eContents().get(1);
+		private final RuleCall cEXP_SUFFIXTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cEXP_SUFFIXTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//RealValue Ecore::EDouble:
-		//	DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE;
+		//	(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
+		//	| DECIMAL_VALUE EXP_SUFFIX;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE
+		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX? | DECIMAL_VALUE EXP_SUFFIX
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE)
+		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
 		public Group getGroup_0() { return cGroup_0; }
 		
+		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.')
+		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
+		
+		//DECIMAL_VALUE? '.' DECIMAL_VALUE
+		public Group getGroup_0_0_0() { return cGroup_0_0_0; }
+		
 		//DECIMAL_VALUE?
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0() { return cDECIMAL_VALUETerminalRuleCall_0_0; }
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_0_0() { return cDECIMAL_VALUETerminalRuleCall_0_0_0_0; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_0_1() { return cFullStopKeyword_0_1; }
-		
-		//(DECIMAL_VALUE | EXP_VALUE)
-		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
+		public Keyword getFullStopKeyword_0_0_0_1() { return cFullStopKeyword_0_0_0_1; }
 		
 		//DECIMAL_VALUE
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_2_0() { return cDECIMAL_VALUETerminalRuleCall_0_2_0; }
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_0_2() { return cDECIMAL_VALUETerminalRuleCall_0_0_0_2; }
 		
-		//EXP_VALUE
-		public RuleCall getEXP_VALUETerminalRuleCall_0_2_1() { return cEXP_VALUETerminalRuleCall_0_2_1; }
+		//DECIMAL_VALUE '.'
+		public Group getGroup_0_0_1() { return cGroup_0_0_1; }
 		
-		//EXP_VALUE
-		public RuleCall getEXP_VALUETerminalRuleCall_1() { return cEXP_VALUETerminalRuleCall_1; }
+		//DECIMAL_VALUE
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_1_0() { return cDECIMAL_VALUETerminalRuleCall_0_0_1_0; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_0_0_1_1() { return cFullStopKeyword_0_0_1_1; }
+		
+		//EXP_SUFFIX?
+		public RuleCall getEXP_SUFFIXTerminalRuleCall_0_1() { return cEXP_SUFFIXTerminalRuleCall_0_1; }
+		
+		//DECIMAL_VALUE EXP_SUFFIX
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//DECIMAL_VALUE
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_1_0() { return cDECIMAL_VALUETerminalRuleCall_1_0; }
+		
+		//EXP_SUFFIX
+		public RuleCall getEXP_SUFFIXTerminalRuleCall_1_1() { return cEXP_SUFFIXTerminalRuleCall_1_1; }
 	}
 	public class NaturalLiteralExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.NaturalLiteralExpression");
@@ -7309,7 +7334,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final DotQualifiedNameElements pDotQualifiedName;
 	private final TerminalRule tBOOLEAN_VALUE;
 	private final TerminalRule tDECIMAL_VALUE;
-	private final TerminalRule tEXP_VALUE;
+	private final TerminalRule tEXP_SUFFIX;
 	private final TerminalRule tID;
 	private final TerminalRule tUNRESTRICTED_NAME;
 	private final TerminalRule tSTRING_VALUE;
@@ -7512,7 +7537,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDotQualifiedName = new DotQualifiedNameElements();
 		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.BOOLEAN_VALUE");
 		this.tDECIMAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.DECIMAL_VALUE");
-		this.tEXP_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.EXP_VALUE");
+		this.tEXP_SUFFIX = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.EXP_SUFFIX");
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ID");
 		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.UNRESTRICTED_NAME");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.STRING_VALUE");
@@ -9398,7 +9423,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RealValue Ecore::EDouble:
-	//	DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE;
+	//	(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
+	//	| DECIMAL_VALUE EXP_SUFFIX;
 	public RealValueElements getRealValueAccess() {
 		return pRealValue;
 	}
@@ -9562,10 +9588,10 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		return tDECIMAL_VALUE;
 	}
 	
-	//terminal EXP_VALUE:
-	//	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE;
-	public TerminalRule getEXP_VALUERule() {
-		return tEXP_VALUE;
+	//terminal EXP_SUFFIX:
+	//	('e' | 'E') ('+' | '-')? DECIMAL_VALUE;
+	public TerminalRule getEXP_SUFFIXRule() {
+		return tEXP_SUFFIX;
 	}
 	
 	//terminal ID:

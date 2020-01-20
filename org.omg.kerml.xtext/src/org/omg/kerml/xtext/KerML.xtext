@@ -982,7 +982,8 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	DECIMAL_VALUE? '.' ( DECIMAL_VALUE | EXP_VALUE ) | EXP_VALUE
+	  ( DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.' ) EXP_SUFFIX?
+	| DECIMAL_VALUE EXP_SUFFIX
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
@@ -1074,8 +1075,8 @@ terminal DECIMAL_VALUE returns Ecore::EInt :
 	'0'..'9' (('_')? '0'..'9')*
 ;
 
-terminal EXP_VALUE :
-	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE
+terminal EXP_SUFFIX :
+	('e' | 'E') ('+' | '-')? DECIMAL_VALUE
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

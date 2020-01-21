@@ -147,7 +147,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship_comp+=FeatureTyping
 	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
-	 *     (rule start) (ambiguity) value=NATURAL_VALUE
+	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}

@@ -1063,8 +1063,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1123,8 +1123,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1205,8 +1205,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1401,8 +1401,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1473,8 +1473,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1533,8 +1533,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1789,8 +1789,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         (
@@ -2101,8 +2101,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
+	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2382,7 +2382,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnlimitedNaturalLiteralExpression returns LiteralInteger
 	 *
 	 * Constraint:
-	 *     value=NATURAL_VALUE
+	 *     value=DECIMAL_VALUE
 	 */
 	protected void sequence_NaturalLiteralExpression(ISerializationContext context, LiteralInteger semanticObject) {
 		if (errorAcceptor != null) {
@@ -2390,7 +2390,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_INTEGER__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNaturalLiteralExpressionAccess().getValueNATURAL_VALUETerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getNaturalLiteralExpressionAccess().getValueDECIMAL_VALUETerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

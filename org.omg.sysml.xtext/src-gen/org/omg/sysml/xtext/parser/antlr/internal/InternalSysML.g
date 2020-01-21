@@ -18104,45 +18104,72 @@ ruleRealValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	(
 		(
 			(
-				this_NATURAL_VALUE_0=RULE_NATURAL_VALUE
+				(
+					(
+						this_DECIMAL_VALUE_0=RULE_DECIMAL_VALUE
+						{
+							$current.merge(this_DECIMAL_VALUE_0);
+						}
+						{
+							newLeafNode(this_DECIMAL_VALUE_0, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_0_0());
+						}
+					)?
+					kw='.'
+					{
+						$current.merge(kw);
+						newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_0_0_1());
+					}
+					this_DECIMAL_VALUE_2=RULE_DECIMAL_VALUE
+					{
+						$current.merge(this_DECIMAL_VALUE_2);
+					}
+					{
+						newLeafNode(this_DECIMAL_VALUE_2, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_0_2());
+					}
+				)
+				    |
+				(
+					this_DECIMAL_VALUE_3=RULE_DECIMAL_VALUE
+					{
+						$current.merge(this_DECIMAL_VALUE_3);
+					}
+					{
+						newLeafNode(this_DECIMAL_VALUE_3, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_1_0());
+					}
+					kw='.'
+					{
+						$current.merge(kw);
+						newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_0_1_1());
+					}
+				)
+			)
+			(
+				this_EXP_SUFFIX_5=RULE_EXP_SUFFIX
 				{
-					$current.merge(this_NATURAL_VALUE_0);
+					$current.merge(this_EXP_SUFFIX_5);
 				}
 				{
-					newLeafNode(this_NATURAL_VALUE_0, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_0());
+					newLeafNode(this_EXP_SUFFIX_5, grammarAccess.getRealValueAccess().getEXP_SUFFIXTerminalRuleCall_0_1());
 				}
 			)?
-			kw='.'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_1());
-			}
-			(
-				this_NATURAL_VALUE_2=RULE_NATURAL_VALUE
-				{
-					$current.merge(this_NATURAL_VALUE_2);
-				}
-				{
-					newLeafNode(this_NATURAL_VALUE_2, grammarAccess.getRealValueAccess().getNATURAL_VALUETerminalRuleCall_0_2_0());
-				}
-				    |
-				this_EXP_VALUE_3=RULE_EXP_VALUE
-				{
-					$current.merge(this_EXP_VALUE_3);
-				}
-				{
-					newLeafNode(this_EXP_VALUE_3, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_0_2_1());
-				}
-			)
 		)
 		    |
-		this_EXP_VALUE_4=RULE_EXP_VALUE
-		{
-			$current.merge(this_EXP_VALUE_4);
-		}
-		{
-			newLeafNode(this_EXP_VALUE_4, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_1());
-		}
+		(
+			this_DECIMAL_VALUE_6=RULE_DECIMAL_VALUE
+			{
+				$current.merge(this_DECIMAL_VALUE_6);
+			}
+			{
+				newLeafNode(this_DECIMAL_VALUE_6, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_1_0());
+			}
+			this_EXP_SUFFIX_7=RULE_EXP_SUFFIX
+			{
+				$current.merge(this_EXP_SUFFIX_7);
+			}
+			{
+				newLeafNode(this_EXP_SUFFIX_7, grammarAccess.getRealValueAccess().getEXP_SUFFIXTerminalRuleCall_1_1());
+			}
+		)
 	)
 ;
 
@@ -18163,9 +18190,9 @@ ruleNaturalLiteralExpression returns [EObject current=null]
 }:
 	(
 		(
-			lv_value_0_0=RULE_NATURAL_VALUE
+			lv_value_0_0=RULE_DECIMAL_VALUE
 			{
-				newLeafNode(lv_value_0_0, grammarAccess.getNaturalLiteralExpressionAccess().getValueNATURAL_VALUETerminalRuleCall_0());
+				newLeafNode(lv_value_0_0, grammarAccess.getNaturalLiteralExpressionAccess().getValueDECIMAL_VALUETerminalRuleCall_0());
 			}
 			{
 				if ($current==null) {
@@ -18175,7 +18202,7 @@ ruleNaturalLiteralExpression returns [EObject current=null]
 					$current,
 					"value",
 					lv_value_0_0,
-					"org.omg.sysml.xtext.SysML.NATURAL_VALUE");
+					"org.omg.sysml.xtext.SysML.DECIMAL_VALUE");
 			}
 		)
 	)
@@ -19017,9 +19044,9 @@ ruleEffectFeatureKind returns [Enumerator current=null]
 
 RULE_BOOLEAN_VALUE : ('true'|'false');
 
-RULE_NATURAL_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
+RULE_DECIMAL_VALUE : '0'..'9' ('_'? '0'..'9')*;
 
-RULE_EXP_VALUE : RULE_NATURAL_VALUE ('e'|'E') ('+'|'-')? RULE_NATURAL_VALUE;
+RULE_EXP_SUFFIX : ('e'|'E') ('+'|'-')? RULE_DECIMAL_VALUE;
 
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

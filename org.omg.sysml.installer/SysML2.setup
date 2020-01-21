@@ -16,7 +16,8 @@
   <setupTask
       xsi:type="jdt:JRETask"
       version="JavaSE-1.8"
-      location="${jre.location-1.8}">
+      location="${jre.location-1.8}"
+      name="JRE for JavaSE-1.8">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -37,7 +38,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="2019-06"
+      defaultValue="2019-12"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
@@ -48,7 +49,7 @@
     <requirement
         name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2019-06/"/>
+        url="http://download.eclipse.org/releases/2019-12/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -74,11 +75,11 @@
       <repositoryList
           name="Eclipse">
         <repository
-            url="http://download.eclipse.org/releases/2019-06"/>
+            url="http://download.eclipse.org/releases/2019-12"/>
         <repository
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="http://download.eclipse.org/eclipse/updates/4.12/"/>
+            url="http://download.eclipse.org/eclipse/updates/4.14/"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -112,5 +113,5 @@
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
-  <description>SysML2 provides cool stuff.</description>
+  <description>SysML v2 pilot implementation development environment</description>
 </setup:Project>

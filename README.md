@@ -61,7 +61,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 ### Prototype SysML Implementation
 
-1. Find the file `org.omg.sysml/src/org.omg.kerml.xtext/KerML.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.sysml/src/org.omg.sysml.xtext/SysML.xtext`
+1. Find the file `org.omg.kerml.xtext/src/org.omg.kerml.xtext/KerML.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.sysml.xtext/src/org.omg.sysml.xtext/SysML.xtext`
 
 2. Once the generation is complete, right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
 

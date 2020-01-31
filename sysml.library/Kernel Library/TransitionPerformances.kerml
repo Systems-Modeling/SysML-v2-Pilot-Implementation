@@ -1,8 +1,8 @@
 package TransitionPerformances {
-	import Base::*;
-	import ScalarValues::*;
-	import Occurrences::*;
-	import Transfers::*;
+	private import Base::*;
+	private import ScalarValues::*;
+	private import Occurrences::*;
+	private import Transfers::*;
 	
 	abstract behavior TransitionPerformance(in transitionLinkSource: Performance[1]) {
 		feature trigger: Transfer[*];
@@ -40,9 +40,6 @@ package TransitionPerformances {
 		end feature constrainedHBLink: HappensBefore[0..1];
 		end expr constrainedGuard: Evaluation[*] () result: Boolean;
 		
-		binding constrainedGuard::result = trueResult {
-			feature trueResult: ScalarValues::Boolean = true;
-		}
-		
+		inv { constrainedGuard()->forAll result: Boolean (result) }		
 	}	
 }

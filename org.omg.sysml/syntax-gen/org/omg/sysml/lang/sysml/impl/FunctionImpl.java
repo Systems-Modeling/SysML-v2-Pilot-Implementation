@@ -101,6 +101,25 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Step> getStep() {
+		@SuppressWarnings("unchecked")
+		EList<Step> expression = (EList<Step>)((EList<?>)getExpression());
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetStep() {
+  		return false;
+	}
+
+	/**
 	 * If the function has no Superclassings, then create one whose superclass is
 	 * the appropriate default library class.
 	 */
@@ -176,25 +195,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				return basicGetResult() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Step> getStep() {
-		@SuppressWarnings("unchecked")
-		EList<Step> expression = (EList<Step>)((EList<?>)getExpression());
-		return expression;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStep() {
-  		return false;
 	}
 
 } // FunctionImpl

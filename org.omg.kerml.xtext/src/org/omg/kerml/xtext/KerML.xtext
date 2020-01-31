@@ -44,6 +44,7 @@ Unit returns SysML::Package :
 	| InteractionUnit
 	| BehaviorUnit
 	| FunctionUnit
+	| PredicateUnit
 	| FeatureUnit
 ;
 
@@ -81,6 +82,10 @@ BehaviorUnit returns SysML::Behavior :
 
 FunctionUnit returns SysML::Function :
 	UnitPrefix FunctionDeclaration FunctionBody
+;
+
+PredicateUnit returns SysML::Predicate :
+	UnitPrefix PredicateDeclaration FunctionBody
 ;
 
 FeatureUnit returns SysML::Feature :
@@ -175,6 +180,7 @@ NonFeature returns SysML::Element:
 	| Interaction
 	| Behavior
 	| Function
+	| Predicate
 	| Comment
 ;
 
@@ -199,6 +205,7 @@ fragment NonFeatureMemberElement returns SysML::Membership :
     | 'assoc' ( memberName = Name )? 'is' memberElement = [SysML::Association|QualifiedName] ';'
     | 'behavior' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
     | 'function' ( memberName = Name )? 'is' memberElement = [SysML::Function|QualifiedName] ';'
+    | 'predicate' ( memberName = Name )? 'is' memberElement = [SysML::Predicate|QualifiedName] ';'
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
 ;
 
@@ -212,6 +219,12 @@ fragment PackageFeatureMemberElement returns SysML::Membership :
 	| 'expr' ownedMemberElement_comp = BlockExpression
 	| 'abstract' 'expr' ownedMemberElement_comp = AbstractBlockExpression
 	| 'expr' ( memberName = Name )? 'is' memberElement = [SysML::Expression|QualifiedName] ';'
+	| 'bool' ownedMemberElement_comp = BooleanExpression
+	| 'abstract' 'bool' ownedMemberElement_comp = AbstractBooleanExpression
+	| 'bool' ( memberName = Name )? 'is' memberElement = [SysML::BooleanExpression|QualifiedName] ';'
+	| 'inv' ownedMemberElement_comp = Invariant
+	| 'abstract' 'inv' ownedMemberElement_comp = AbstractInvariant
+	| 'inv' ( memberName = Name )? 'is' memberElement = [SysML::Invariant|QualifiedName] ';'
 ;
 
 /* TYPES */
@@ -279,6 +292,14 @@ fragment FeatureMemberElement returns SysML::FeatureMembership :
 	  ( ownedMemberFeature_comp = BlockExpression
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Expression|QualifiedName] ';'
 	  )
+	| 'bool' ( direction = FeatureDirection )?
+	  ( ownedMemberFeature_comp = BooleanExpression
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::BooleanExpression|QualifiedName] ';'
+	  )
+	| 'inv' ( direction = FeatureDirection )?
+	  ( ownedMemberFeature_comp = Invariant
+	  | ( memberName = Name )? 'is' memberFeature = [SysML::Invariant|QualifiedName] ';'
+	  )
 	| 'succession' ( direction = FeatureDirection )?
 	  ( ownedMemberFeature_comp = Succession 
 	  | ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
@@ -299,6 +320,8 @@ fragment AbstractFeatureMemberElement returns SysML::FeatureMembership :
     | 'binding' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBindingConnector
     | 'step' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStep
     | 'expr' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBlockExpression
+    | 'bool' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBooleanExpression
+    | 'inv' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractInvariant
     | 'succession' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSuccession
     | 'stream' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractItemFlow
     | 'flow' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSuccessionItemFlow
@@ -434,7 +457,7 @@ Function returns SysML::Function :
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
-	( isAbstract ?= 'abstract')? 'function' name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
+	( isAbstract ?= 'abstract' )? 'function' name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -470,6 +493,33 @@ ReturnParameterMember returns SysML::ReturnParameterMembership :
 ExpressionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = Expression
 ;
+
+/* PREDICATES */
+
+Predicate returns SysML::Predicate :
+	PredicateDeclaration FunctionBody  
+;
+
+fragment PredicateDeclaration returns SysML::Predicate :
+	( isAbstract ?= 'abstract' )? 'predicate' name = Name 
+	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart ) 
+	SpecializationOrConjugation?
+;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+EmptyParameter returns SysML::Parameter :
+	{SysML::Parameter}
+;
+
+/* PREDICATE MEMBERSHIPS */
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyParameter
+;
+
 
 /* INTERACTIONS */
 
@@ -726,6 +776,30 @@ fragment StepDeclaration returns SysML::Step :
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? ValuePart?
 ;
 
+/* INVARIANTS */
+
+Invariant returns SysML::Invariant :
+	BooleanExpressionDeclaration InvariantPart FunctionBody
+;
+
+AbstractInvariant returns SysML::Invariant :
+	BooleanExpressionDeclaration InvariantPart AbstractFunctionBody
+;
+
+fragment InvariantPart returns SysML::Invariant :
+	ownedFeatureMembership_comp += TrueLiteralMember
+;
+
+TrueLiteralExpression returns SysML::LiteralBoolean :
+	{SysML::LiteralBoolean}
+;
+
+/* INVARIANT MEMBERSHIPS */
+
+TrueLiteralMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TrueLiteralExpression
+;
+
 /* EXPRESSIONS */
 
 // Block Expressions
@@ -742,6 +816,22 @@ fragment ExpressionDeclaration returns SysML::Expression :
 	  name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
 	| TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
+;
+
+// Boolean Expressions
+
+BooleanExpression returns SysML::BooleanExpression :
+	BooleanExpressionDeclaration FunctionBody
+;
+
+AbstractBooleanExpression returns SysML::BooleanExpression :
+	BooleanExpressionDeclaration AbstractFunctionBody
+;
+
+fragment BooleanExpressionDeclaration returns SysML::Expression :
+	  name = Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+	| TypePart? ( ParameterList EmptyReturnParameterPart )? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? EmptyReturnParameterPart ValuePart?
 ;
 
 // Expressions

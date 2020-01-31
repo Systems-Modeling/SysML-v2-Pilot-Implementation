@@ -199,6 +199,11 @@ package Base {
 		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
 		
 		/**
+		 * Subevaluations of this performance that are boolean evaluations.
+		 */
+		expr subBooleanEvaluations: BooleanEvaluation[0..*] nonunique subsets booleanEvaluations, subevaluations;
+		
+		/**
 		 * Subperformances of this performance that are transfers.
 		 */
 		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
@@ -214,6 +219,12 @@ package Base {
 	 * a result.
 	 */
 	abstract function Evaluation(): Anything[0..*] specializes Performance;
+	
+	/**
+	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
+	 * predicates that may be evaluated to produce a Boolean truth value.
+	 */
+	abstract predicate BooleanEvaluation(): ScalarValues::Boolean[1] specializes Evaluation;
 	
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
@@ -287,6 +298,11 @@ package Base {
 	 * evaluations is a specialization of performances for evaluations of functions.
 	 */
 	abstract expr evaluations: Evaluation[0..*] nonunique subsets performances;
+	
+	/**
+	 * booleanEvaluations is a specialization of evaluations for restricted to type BooleanEvaluation.
+	 */
+	abstract expr booleanEvaluations: BooleanEvaluation[0..*] nonunique subsets evaluations;
 	
 	/**
 	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.

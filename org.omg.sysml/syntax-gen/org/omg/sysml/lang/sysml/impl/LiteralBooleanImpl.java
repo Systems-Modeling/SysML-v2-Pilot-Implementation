@@ -29,10 +29,10 @@ public class LiteralBooleanImpl extends LiteralExpressionImpl implements Literal
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isValue()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final boolean VALUE_EDEFAULT = false;
+	protected static final boolean VALUE_EDEFAULT = true;
 
 	/**
 	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute. <!--

@@ -20,6 +20,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
+import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -34,6 +35,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Interaction;
+import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -49,6 +51,7 @@ import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.QueryPathExpression;
 import org.omg.sysml.lang.sysml.QueryPathStepExpression;
 import org.omg.sysml.lang.sysml.QueryQualifierExpression;
@@ -145,6 +148,16 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else if (rule == grammarAccess.getBlockExpressionRule()) {
 					sequence_ExpressionDeclaration_FunctionBody_MultiplicityPart_ParameterList_Redefines_ReturnParameterPart_Subsets_SubsettingPart_TypePart_ValuePart(context, (BlockExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.BOOLEAN_EXPRESSION:
+				if (rule == grammarAccess.getAbstractBooleanExpressionRule()) {
+					sequence_AbstractFunctionBody_BooleanExpressionDeclaration_EmptyReturnParameterPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (BooleanExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBooleanExpressionRule()) {
+					sequence_BooleanExpressionDeclaration_EmptyReturnParameterPart_FunctionBody_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (BooleanExpression) semanticObject); 
 					return; 
 				}
 				else break;
@@ -313,6 +326,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_NaturalLiteralMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getTrueLiteralMemberRule()) {
+					sequence_TrueLiteralMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
 					sequence_TypeReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -371,6 +388,16 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else break;
+			case SysMLPackage.INVARIANT:
+				if (rule == grammarAccess.getAbstractInvariantRule()) {
+					sequence_AbstractFunctionBody_BooleanExpressionDeclaration_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (Invariant) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInvariantRule()) {
+					sequence_BooleanExpressionDeclaration_EmptyReturnParameterPart_FunctionBody_InvariantPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (Invariant) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				sequence_InvocationExpression_NamedTuple_PositionalTuple(context, (InvocationExpression) semanticObject); 
 				return; 
@@ -401,8 +428,49 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_ItemFlowFeature(context, (ItemFlowFeature) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_BOOLEAN:
-				sequence_BooleanLiteralExpression(context, (LiteralBoolean) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnitsExpressionRule()
+						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getSequenceAccessExpressionRule()
+						|| action == grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getLiteralExpressionRule()
+						|| rule == grammarAccess.getBooleanLiteralExpressionRule()) {
+					sequence_BooleanLiteralExpression(context, (LiteralBoolean) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTrueLiteralExpressionRule()) {
+					sequence_TrueLiteralExpression(context, (LiteralBoolean) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.LITERAL_INTEGER:
 				sequence_NaturalLiteralExpression(context, (LiteralInteger) semanticObject); 
 				return; 
@@ -498,8 +566,15 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.PARAMETER:
-				sequence_MultiplicityPart_Parameter_TypePart(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getEmptyParameterRule()) {
+					sequence_EmptyParameter(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getParameterRule()) {
+					sequence_MultiplicityPart_Parameter_TypePart(context, (org.omg.sysml.lang.sysml.Parameter) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
 				if (rule == grammarAccess.getBodyParameterMemberRule()) {
 					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
@@ -507,6 +582,21 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else if (rule == grammarAccess.getParameterMemberRule()) {
 					sequence_ParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.PREDICATE:
+				if (rule == grammarAccess.getNonFeatureRule()
+						|| rule == grammarAccess.getPredicateRule()) {
+					sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation(context, (Predicate) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnitRule()) {
+					sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation_UnitPrefix(context, (Predicate) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPredicateUnitRule()) {
+					sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation_UnitPrefix(context, (Predicate) semanticObject); 
 					return; 
 				}
 				else break;
@@ -566,8 +656,15 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Redefinition(context, (Redefinition) semanticObject); 
 				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
-				sequence_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getEmptyReturnParameterMemberRule()) {
+					sequence_EmptyReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getReturnParameterMemberRule()) {
+					sequence_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
 				sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
 				return; 
@@ -657,6 +754,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BindingConnector | (memberName=Name? memberFeature=[BindingConnector|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Step | (memberName=Name? memberFeature=[Step|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BlockExpression | (memberName=Name? memberFeature=[Expression|QualifiedName]))) | 
+	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BooleanExpression | (memberName=Name? memberFeature=[BooleanExpression|QualifiedName]))) | 
+	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Invariant | (memberName=Name? memberFeature=[Invariant|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Succession | (memberName=Name? memberFeature=[Succession|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=ItemFlow | (memberName=Name? memberFeature=[ItemFlow|QualifiedName]))) | 
 	 *             (
@@ -668,6 +767,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBindingConnector) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractStep) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBlockExpression) | 
+	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBooleanExpression) | 
+	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractInvariant) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccession) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemFlow) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccessionItemFlow)
@@ -697,6 +798,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BindingConnector | (memberName=Name? memberFeature=[BindingConnector|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Step | (memberName=Name? memberFeature=[Step|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BlockExpression | (memberName=Name? memberFeature=[Expression|QualifiedName]))) | 
+	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=BooleanExpression | (memberName=Name? memberFeature=[BooleanExpression|QualifiedName]))) | 
+	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Invariant | (memberName=Name? memberFeature=[Invariant|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=Succession | (memberName=Name? memberFeature=[Succession|QualifiedName]))) | 
 	 *             (direction=FeatureDirection? (ownedMemberFeature_comp=ItemFlow | (memberName=Name? memberFeature=[ItemFlow|QualifiedName]))) | 
 	 *             (
@@ -708,6 +811,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBindingConnector) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractStep) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBlockExpression) | 
+	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBooleanExpression) | 
+	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractInvariant) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccession) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemFlow) | 
 	 *             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccessionItemFlow)
@@ -715,6 +820,69 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     )
 	 */
 	protected void sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractInvariant returns Invariant
+	 *
+	 * Constraint:
+	 *     (
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         isSufficient?='all'? 
+	 *         ownedRelationship_comp+=FeatureTyping? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (
+	 *             (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *             ownedFeatureMembership_comp+=EmptyReturnParameterMember 
+	 *             ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
+	 *         )? 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedFeatureMembership_comp+=TrueLiteralMember 
+	 *         (
+	 *             isAbstract?=';' | 
+	 *             (
+	 *                 isAbstract?='{' 
+	 *                 (ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)* 
+	 *                 ownedFeatureMembership_comp+=ExpressionMember?
+	 *             )
+	 *         )
+	 *     )
+	 */
+	protected void sequence_AbstractFunctionBody_BooleanExpressionDeclaration_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, Invariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractBooleanExpression returns BooleanExpression
+	 *
+	 * Constraint:
+	 *     (
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         isSufficient?='all'? 
+	 *         ownedRelationship_comp+=FeatureTyping? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (
+	 *             (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *             ownedFeatureMembership_comp+=EmptyReturnParameterMember 
+	 *             ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
+	 *         )? 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         (
+	 *             isAbstract?=';' | 
+	 *             (
+	 *                 isAbstract?='{' 
+	 *                 (ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)* 
+	 *                 ownedFeatureMembership_comp+=ExpressionMember?
+	 *             )
+	 *         )
+	 *     )
+	 */
+	protected void sequence_AbstractFunctionBody_BooleanExpressionDeclaration_EmptyReturnParameterPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1063,8 +1231,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1123,8 +1291,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1205,8 +1373,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1326,6 +1494,58 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Invariant returns Invariant
+	 *
+	 * Constraint:
+	 *     (
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         isSufficient?='all'? 
+	 *         ownedRelationship_comp+=FeatureTyping? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (
+	 *             (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *             ownedFeatureMembership_comp+=EmptyReturnParameterMember 
+	 *             ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
+	 *         )? 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedFeatureMembership_comp+=TrueLiteralMember 
+	 *         (ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)* 
+	 *         ownedFeatureMembership_comp+=ExpressionMember?
+	 *     )
+	 */
+	protected void sequence_BooleanExpressionDeclaration_EmptyReturnParameterPart_FunctionBody_InvariantPart_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, Invariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BooleanExpression returns BooleanExpression
+	 *
+	 * Constraint:
+	 *     (
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         isSufficient?='all'? 
+	 *         ownedRelationship_comp+=FeatureTyping? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (
+	 *             (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *             ownedFeatureMembership_comp+=EmptyReturnParameterMember 
+	 *             ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
+	 *         )? 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NonFeatureBehaviorMember? 
+	 *         ((ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedMembership_comp+=NonFeatureBehaviorMember?)* 
+	 *         ownedFeatureMembership_comp+=ExpressionMember?
+	 *     )
+	 */
+	protected void sequence_BooleanExpressionDeclaration_EmptyReturnParameterPart_FunctionBody_MultiplicityPart_ParameterList_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expression returns LiteralBoolean
 	 *     ConditionalExpression returns LiteralBoolean
 	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralBoolean
@@ -1401,8 +1621,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1473,8 +1693,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1533,8 +1753,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -1723,6 +1943,105 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     EmptyParameter returns Parameter
+	 *
+	 * Constraint:
+	 *     {Parameter}
+	 */
+	protected void sequence_EmptyParameter(ISerializationContext context, org.omg.sysml.lang.sysml.Parameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EmptyReturnParameterMember returns ReturnParameterMembership
+	 *
+	 * Constraint:
+	 *     ownedMemberFeature_comp=EmptyParameter
+	 */
+	protected void sequence_EmptyReturnParameterMember(ISerializationContext context, ReturnParameterMembership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEmptyReturnParameterMemberAccess().getOwnedMemberFeature_compEmptyParameterParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NonFeature returns Predicate
+	 *     Predicate returns Predicate
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
+	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
+	 *         ownedRelationship_comp+=PackageImport? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember)? ownedRelationship_comp+=PackageImport?)* 
+	 *         ownedFeatureMembership_comp+=ExpressionMember?
+	 *     )
+	 */
+	protected void sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation(ISerializationContext context, Predicate semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Unit returns Predicate
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
+	 *         ownedImport_comp+=PackageImport? 
+	 *         ownedRelationship_comp+=UnitAnnotation? 
+	 *         isAbstract?='abstract'? 
+	 *         name=Name 
+	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
+	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
+	 *         ownedRelationship_comp+=PackageImport? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember)? ownedRelationship_comp+=PackageImport?)* 
+	 *         ownedFeatureMembership_comp+=ExpressionMember?
+	 *     )
+	 */
+	protected void sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation_UnitPrefix(ISerializationContext context, Predicate semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     PredicateUnit returns Predicate
+	//
+	// Constraint:
+	//     (
+	//         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementImport)* 
+	//         ownedRelationship_comp+=UnitAnnotation* 
+	//         isAbstract?='abstract'? 
+	//         name=Name 
+	//         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
+	//         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
+	//         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
+	//         ownedMembership_comp+=NonFeatureBehaviorMember? 
+	//         ((ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedMembership_comp+=NonFeatureBehaviorMember?)* 
+	//         ownedFeatureMembership_comp+=ExpressionMember?
+	//     )
+	//
+	// protected void sequence_EmptyReturnParameterPart_FunctionBody_ParameterList_PredicateDeclaration_ReturnParameterPart_SpecializationOrConjugation_UnitPrefix(ISerializationContext context, Predicate semanticObject) { }
+	
+	/**
+	 * Contexts:
 	 *     BlockExpression returns BlockExpression
 	 *
 	 * Constraint:
@@ -1789,8 +2108,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         (
@@ -1799,7 +2118,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *                 isSufficient?='all'? 
 	 *                 ownedRelationship_comp+=FeatureTyping? 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *                 ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
 	 *             )
 	 *         ) 
@@ -2101,8 +2420,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedMembership_comp+=ElementImport? 
 	 *         ownedImport_comp+=PackageImport? 
-	 *         (ownedMembership_comp+=ElementImport ownedImport_comp+=PackageImport?)* 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
@@ -2431,6 +2750,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Function|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Predicate|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Comment|QualifiedName]) | 
 	 *             ownedMemberElement_comp=Feature | 
 	 *             ((memberName=Name | memberName=Name)? memberElement=[Feature|QualifiedName]) | 
@@ -2440,7 +2760,13 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             ownedMemberElement_comp=AbstractStep | 
 	 *             ownedMemberElement_comp=BlockExpression | 
 	 *             ownedMemberElement_comp=AbstractBlockExpression | 
-	 *             (memberName=Name? memberElement=[Expression|QualifiedName])
+	 *             (memberName=Name? memberElement=[Expression|QualifiedName]) | 
+	 *             ownedMemberElement_comp=BooleanExpression | 
+	 *             ownedMemberElement_comp=AbstractBooleanExpression | 
+	 *             (memberName=Name? memberElement=[BooleanExpression|QualifiedName]) | 
+	 *             ownedMemberElement_comp=Invariant | 
+	 *             ownedMemberElement_comp=AbstractInvariant | 
+	 *             (memberName=Name? memberElement=[Invariant|QualifiedName])
 	 *         )
 	 *     )
 	 */
@@ -2468,6 +2794,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (memberName=Name? memberElement=[Association|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Behavior|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Function|QualifiedName]) | 
+	 *             (memberName=Name? memberElement=[Predicate|QualifiedName]) | 
 	 *             (memberName=Name? memberElement=[Comment|QualifiedName])
 	 *         )
 	 *     )
@@ -2986,6 +3313,36 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSuperclassingAccess().getSuperclassClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TrueLiteralExpression returns LiteralBoolean
+	 *
+	 * Constraint:
+	 *     {LiteralBoolean}
+	 */
+	protected void sequence_TrueLiteralExpression(ISerializationContext context, LiteralBoolean semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TrueLiteralMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedMemberFeature_comp=TrueLiteralExpression
+	 */
+	protected void sequence_TrueLiteralMember(ISerializationContext context, FeatureMembership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTrueLiteralMemberAccess().getOwnedMemberFeature_compTrueLiteralExpressionParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
 		feeder.finish();
 	}
 	

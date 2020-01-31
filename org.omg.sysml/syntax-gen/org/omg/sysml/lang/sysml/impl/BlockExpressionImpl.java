@@ -19,8 +19,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class BlockExpressionImpl extends ExpressionImpl implements BlockExpression {
 
 	/**
-	 * The cached value of the BindingConnector from the resultof the last
-	 * sub-Expression to the result of this BindingExpression.
+	 * The cached value of the BindingConnector from the result of the last
+	 * sub-Expression to the result of this BlockExpression.
 	 */
 	protected BindingConnector resultConnector = null;
 
@@ -39,21 +39,32 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		getResultConnector();
 		return super.getFeature();
 	}
-
+	
 	public BindingConnector getResultConnector() {
-		for (Feature feature : getOwnedFeature()) {
+		return resultConnector = getResultConnectorFor(resultConnector, this);
+	}
+
+	public static BindingConnector getResultConnectorFor(BindingConnector resultConnector, ExpressionImpl expression) {
+		EList<Feature> ownedFeatures = expression.getOwnedFeature();
+		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
+			Feature feature = ownedFeatures.get(i);
 			if (feature instanceof Expression) {
-				Feature result = ((ExpressionImpl) feature).getResult();
-				if (resultConnector == null) {
-					resultConnector = addOwnedBindingConnector(result, getResult());
-				} else {
-					((ConnectorImpl) resultConnector).setRelatedFeature(0, result);
-					((ConnectorImpl) resultConnector).setRelatedFeature(1, getResult());
-				}
+				resultConnector = updateBindingConnector(resultConnector, (ExpressionImpl)feature, expression);
 				break;
 			}
 		}
 		return resultConnector;
+	}
+	
+	public static BindingConnector updateBindingConnector(BindingConnector connector, ExpressionImpl source, ExpressionImpl target) {
+		Feature result = source.getResult();
+		if (connector == null) {
+			connector = target.addOwnedBindingConnector(result, target.getResult());
+		} else {
+			((ConnectorImpl) connector).setRelatedFeature(0, result);
+			((ConnectorImpl) connector).setRelatedFeature(1, target.getResult());
+		}
+		return connector;
 	}
 
 	/**

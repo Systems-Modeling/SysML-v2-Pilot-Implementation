@@ -9,7 +9,7 @@ package JohnIndividualExample {
 	    	serves as the "identity" of all those sub-portions. 
 	  	*/
 	  	feature identity : Lifetime_ [1] =
-	    	portionOf == null? self: Occurrence_::portionOf::identity;	  
+	    	portionOf == null? self: Occurrence_::portionOf::identity;
 	    
 	  	// The following are new features not currently in the library model
 	 	// of Occurrence. They are the inverses of the above features.
@@ -102,7 +102,7 @@ package JohnIndividualExample {
 	class UnitedStates specializes Country {
 		class Lifetime specializes UnitedStates, Lifetime_ [1];
 	  	feature presidentOfUS[1] redefines presidentOfCountry {
-	    	// invariant age >= 35;
+	   		inv { age >= 35 } 
 	  	}
 	}
 	

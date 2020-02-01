@@ -154,7 +154,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(resultConnector, this);
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
 	/**

@@ -9,6 +9,7 @@ import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Block
@@ -41,28 +42,30 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = getResultConnectorFor(resultConnector, this);
+		return resultConnector = getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
-	public static BindingConnector getResultConnectorFor(BindingConnector resultConnector, ExpressionImpl expression) {
-		EList<Feature> ownedFeatures = expression.getOwnedFeature();
+	public static BindingConnector getResultConnectorFor(
+			Type owningType, BindingConnector resultConnector, Feature result) {
+		EList<Feature> ownedFeatures = owningType.getOwnedFeature();
 		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
-			Feature feature = ownedFeatures.get(i);
-			if (feature instanceof Expression) {
-				resultConnector = updateBindingConnector(resultConnector, (ExpressionImpl)feature, expression);
+			Feature ownedFeature = ownedFeatures.get(i);
+			if (ownedFeature instanceof Expression) {
+				resultConnector = updateBindingConnectorFor(
+						owningType, resultConnector, ((TypeImpl)ownedFeature).getResult(), result);
 				break;
 			}
 		}
 		return resultConnector;
 	}
 	
-	public static BindingConnector updateBindingConnector(BindingConnector connector, ExpressionImpl source, ExpressionImpl target) {
-		Feature result = source.getResult();
+	public static BindingConnector updateBindingConnectorFor(
+			Type owningType, BindingConnector connector, Feature source, Feature target) {
 		if (connector == null) {
-			connector = target.addOwnedBindingConnector(result, target.getResult());
+			connector = ((TypeImpl)owningType).addOwnedBindingConnector(source, target);
 		} else {
-			((ConnectorImpl) connector).setRelatedFeature(0, result);
-			((ConnectorImpl) connector).setRelatedFeature(1, target.getResult());
+			((ConnectorImpl) connector).setRelatedFeature(0, source);
+			((ConnectorImpl) connector).setRelatedFeature(1, target);
 		}
 		return connector;
 	}

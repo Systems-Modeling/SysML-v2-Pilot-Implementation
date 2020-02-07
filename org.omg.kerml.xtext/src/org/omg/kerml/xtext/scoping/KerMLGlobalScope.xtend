@@ -36,6 +36,7 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.scoping.impl.AbstractScope
+import org.omg.sysml.lang.sysml.Element
 
 class KerMLGlobalScope extends AbstractScope {
 
@@ -45,6 +46,7 @@ class KerMLGlobalScope extends AbstractScope {
 	protected Predicate<IEObjectDescription> rootFilter;
 	protected EClass referenceType	
 	protected KerMLScopeProvider scopeProvider
+	protected Element element
 	
 	static def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
 		return new KerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
@@ -60,8 +62,9 @@ class KerMLGlobalScope extends AbstractScope {
 		this.scopeProvider = scopeProvider
 	}
 	
+	
 	def IScope alfScope(Package pack) {
-		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false)
+		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, null)
 	}
 	
 	def IEObjectDescription addQualification(IEObjectDescription description, String name) {

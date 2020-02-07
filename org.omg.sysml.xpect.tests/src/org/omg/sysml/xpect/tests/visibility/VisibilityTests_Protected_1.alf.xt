@@ -16,12 +16,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	}
 END_SETUP 
 */
-
-package Classes {
-	// XPECT errors ---> "Couldn't resolve reference to Element 'VisibilityPackage::c_Private::c_public'." at "VisibilityPackage::c_Private::c_public"
-	import VisibilityPackage::c_Private::c_public as aliass;
-	class Try{
-		// XPECT errors ---> "Couldn't resolve reference to Type 'aliass'." at "aliass"
-		feature feature1 : aliass;
+ 
+package Test3{
+	class P{
+		protected class PP{}
+	}
+	class A specializes P {
+ 		feature DD: PP;
+	}
+	class B {
+		// XPECT errors --> "Couldn't resolve reference to Type 'P::PP'." at "P::PP"
+		feature BB2: P::PP;
 	}
 }

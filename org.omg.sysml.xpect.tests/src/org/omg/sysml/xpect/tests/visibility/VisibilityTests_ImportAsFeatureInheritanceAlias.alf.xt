@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -17,11 +17,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 END_SETUP 
 */
 
-// XPECT noErrors ---> ""
+// XPECT noErrors ---> " "
 package Classes {
 	import VisibilityPackage::c_Public as aliass;
 	//XPECT linkedName at aliass --> VisibilityPackage.c_Public
-	//* XPECT scope at  aliass ---
+	/* XPECT scope at  aliass ---
 	  	 Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
 	  	 Try, Try.c_public, aliass, aliass.c_public,
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
@@ -29,7 +29,8 @@ package Classes {
 	--- */
 	class Try specializes aliass{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
-		//* XPECT scope at c_public ---
+		/* XPECT scope at c_public ---
+		   Classes.Try.c_protected, Classes.aliass.c_protected, Try.c_protected, c_protected, aliass.c_protected,
 		 Try.feature4, c_public, feature4, Classes.Try.feature4, 	    
 	     Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
 	  	 Try, Try.c_public, aliass, aliass.c_public,

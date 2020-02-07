@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -24,14 +24,12 @@ package Test3{
  		class AA specializes c_Protect::c_publicc{}
  		class BB specializes A::c_Protect::c_publicc{}
  		class CC specializes Test3::A::c_Protect::c_publicc{}
+ 		class DD specializes c_Protect{}
 	}
-	
- 	//c_Protect::c_publicc --- The public members can be available via qualification
-	
-	
+	class B specializes c_Public_alias{
+ 		class AA specializes alias_protected_is_c_protected{}
+	}
+	class C specializes c_Public{
+		class CC specializes c_protected{}
+	}
 }
-// comment
-// should be valid
-// class CC specializes c_Protect{} 
-// class DD specializes c_Protect::c_publicc{}
-// class BB specializes c_protected{}		

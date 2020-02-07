@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -21,14 +21,10 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::*;
 	class A specializes c_clazz{
- 		class EE specializes Test3.A.c_Protect{}
+ 		class AA specializes c_Protect::c_publicc{}
+ 		class BB specializes A::c_Protect::c_publicc{}
+ 		class CC specializes Test3::A::c_Protect::c_publicc{}
+ 		feature ff: c_Protect redefines gg;
+ 		protected feature gg;
 	}
- 	//special case when full qualifiedname within the specialization.
-	
-	
 }
-// comment
-// should be valid
-// class CC specializes c_Protect{} 
-// class DD specializes c_Protect::c_publicc{}
-// class BB specializes c_protected{}		

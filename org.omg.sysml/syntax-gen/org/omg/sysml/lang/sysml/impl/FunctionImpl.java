@@ -10,7 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
@@ -33,6 +35,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FunctionImpl extends BehaviorImpl implements Function {
 
 	public String FUNCTION_SUPERCLASS_DEFAULT = "Base::Evaluation";
+
+	/**
+	 * The cached value of the BindingConnector from the result of the last
+	 * sub-Expression to the result of this Function.
+	 */
+	protected BindingConnector resultConnector = null;
+
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -126,6 +135,21 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(FUNCTION_SUPERCLASS_DEFAULT);
+	}
+
+	@Override
+	public EList<Feature> getFeature() {
+		getResultConnector();
+		return super.getFeature();
+	}
+	
+	public BindingConnector getResultConnector() {
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return filterRelevantFeatures(super.getFeature());
 	}
 
 	/**

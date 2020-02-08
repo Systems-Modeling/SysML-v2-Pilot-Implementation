@@ -50,7 +50,7 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		EList<Feature> ownedFeatures = owningType.getOwnedFeature();
 		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
 			Feature ownedFeature = ownedFeatures.get(i);
-			if (ownedFeature instanceof Expression) {
+			if (ownedFeature instanceof Expression && !ownedFeature.isAbstract()) {
 				resultConnector = updateBindingConnectorFor(
 						owningType, resultConnector, ((TypeImpl)ownedFeature).getResult(), result);
 				break;

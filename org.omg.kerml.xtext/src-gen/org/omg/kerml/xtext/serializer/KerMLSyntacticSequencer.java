@@ -22,9 +22,13 @@ import org.omg.kerml.xtext.services.KerMLGrammarAccess;
 public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected KerMLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
+	protected AbstractElementAlias match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______;
+	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a;
+	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p;
+	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a;
+	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p;
 	protected AbstractElementAlias match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
+	protected AbstractElementAlias match_BooleanExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
 	protected AbstractElementAlias match_Documentation_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__;
 	protected AbstractElementAlias match_ExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
@@ -33,6 +37,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FeatureMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_FeatureMember_AbstractKeyword_1_1_0_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
+	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
 	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_2_1_q;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
@@ -48,9 +53,13 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (KerMLGrammarAccess) access;
-		match_BaseExpression_LeftParenthesisKeyword_6_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
-		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
+		match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______ = new AlternativeAlias(false, false, new GroupAlias(false, false, new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0())), new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_1_3())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())))), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())));
+		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()));
+		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()));
+		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a = new AlternativeAlias(true, true, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()));
+		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p = new AlternativeAlias(true, false, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()));
 		match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0()));
+		match_BooleanExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getBooleanExpressionDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getBooleanExpressionDeclarationAccess().getRedefinesKeyword_2_0_1()));
 		match_Documentation_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getCommentKeyword_0_0());
 		match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getAbstractKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_0_0()));
 		match_ExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getExpressionDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getExpressionDeclarationAccess().getRedefinesKeyword_2_0_1()));
@@ -59,6 +68,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FeatureMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberElementAccess().getFeatureKeyword_0_0());
 		match_FeatureMember_AbstractKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_1_0());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
+		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
 		match_PackageFeatureMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_0_0());
 		match_PackageFeatureMemberElement_FeatureKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_2_1());
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
@@ -84,12 +94,20 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BaseExpression_LeftParenthesisKeyword_6_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_6_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_6_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_6_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______.equals(syntax))
+				emit_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a.equals(syntax))
+				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p.equals(syntax))
+				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a.equals(syntax))
+				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p.equals(syntax))
+				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BooleanExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
+				emit_BooleanExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_CommentKeyword_0_0_q.equals(syntax))
 				emit_Documentation_CommentKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__.equals(syntax))
@@ -106,6 +124,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeatureMember_AbstractKeyword_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
 				emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__.equals(syntax))
+				emit_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageFeatureMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_PackageFeatureMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageFeatureMemberElement_FeatureKeyword_2_1_q.equals(syntax))
@@ -134,14 +154,35 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     '('*
+	 *     ('{' '}') | (('{' '('*)+ (('{' '}') | ('null' '}')))
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('{' '('*)*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 */
+	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('{' '('*)+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
-	 *     (rule start) (ambiguity) 'null' (rule start)
-	 *     (rule start) (ambiguity) '{' '}' (rule start)
-	 *     (rule start) (ambiguity) '{' element_comp+=Expression
+	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
@@ -154,13 +195,37 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
 	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     '('+
+	 *     ('(' | '{')*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
+	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=FeatureTyping
+	 *     (rule start) (ambiguity) value=BOOLEAN_VALUE
+	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
+	 *     (rule start) (ambiguity) value=RealValue
+	 *     (rule start) (ambiguity) value=STRING_VALUE
+	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
+	 */
+	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('(' | '{')+
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
@@ -169,7 +234,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
 	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -198,6 +263,17 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     ':>>' | 'redefines'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=Redefinition
+	 */
+	protected void emit_BooleanExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'comment'?
 	 *
 	 * This ambiguous syntax occurs at:
@@ -217,6 +293,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'binding' memberName=Name
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     (rule start) (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     (rule start) (ambiguity) 'bool' direction=FeatureDirection
+	 *     (rule start) (ambiguity) 'bool' memberName=Name
+	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     (rule start) (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     (rule start) (ambiguity) 'connector' direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'connector' memberName=Name
@@ -238,6 +319,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'flow' memberName=Name
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     (rule start) (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     (rule start) (ambiguity) 'inv' direction=FeatureDirection
+	 *     (rule start) (ambiguity) 'inv' memberName=Name
+	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     (rule start) (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     (rule start) (ambiguity) 'step' direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'step' memberName=Name
@@ -261,6 +347,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' memberName=Name
@@ -282,6 +373,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' memberName=Name
@@ -305,6 +401,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' direction=FeatureDirection
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' memberName=Name
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' memberName=Name
@@ -326,6 +427,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' direction=FeatureDirection
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' memberName=Name
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' memberName=Name
@@ -467,6 +573,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'binding' memberName=Name
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     (rule start) (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     (rule start) (ambiguity) 'bool' direction=FeatureDirection
+	 *     (rule start) (ambiguity) 'bool' memberName=Name
+	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     (rule start) (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     (rule start) (ambiguity) 'connector' direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'connector' memberName=Name
@@ -488,6 +599,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'flow' memberName=Name
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     (rule start) (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     (rule start) (ambiguity) 'inv' direction=FeatureDirection
+	 *     (rule start) (ambiguity) 'inv' memberName=Name
+	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     (rule start) (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     (rule start) (ambiguity) 'step' direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'step' memberName=Name
@@ -511,6 +627,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' memberName=Name
@@ -532,6 +653,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' memberName=Name
@@ -555,6 +681,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' direction=FeatureDirection
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' memberName=Name
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
+	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' memberName=Name
@@ -576,6 +707,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' direction=FeatureDirection
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' memberName=Name
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
+	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' memberName=Name
@@ -609,9 +745,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Conjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
@@ -619,6 +757,18 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('{' '}') | 'null'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) ('(' | '{')* (ambiguity) (rule start)
+	 *     (rule start) ('{' '('*)+ (ambiguity) (rule start)
+	 */
+	protected void emit_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -671,6 +821,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isSufficient?='all' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
@@ -692,6 +843,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Superclassing
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Superclassing
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Superclassing
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Superclassing
 	 */
@@ -705,6 +857,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Conjugation
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Conjugation
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Conjugation
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Conjugation
 	 */
@@ -735,6 +888,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isSufficient?='all' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Subset
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset

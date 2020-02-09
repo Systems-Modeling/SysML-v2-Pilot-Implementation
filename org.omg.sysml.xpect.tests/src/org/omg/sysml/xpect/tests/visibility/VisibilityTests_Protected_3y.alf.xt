@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -19,7 +19,12 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Test3{
-	import VisibilityPackage::c_clazz::*;
-	class A specializes c_Protect{
+	class P{
+		class PP {
+			protected class PPP{}
+		}
+	}
+	class C specializes P::PP {
+		feature CC: PPP;
 	}
 }

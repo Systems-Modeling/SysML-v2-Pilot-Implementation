@@ -15,17 +15,17 @@ import org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest;
 import org.omg.sysml.xpect.tests.validation.SysMLValidationTest;
 import org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest;
 
-@SuiteClasses({ SysMLLinkingTest.class, //
+@SuiteClasses({ 
 		SysMLGeneratorTest.class, //
 		SysMLImportGlobalTest.class, //
 		SysMLImportLocalTest.class, //
 		SysMLLinkingTest.class,//
 		SysMLParserTest.class, //
+		SysMLQueryTest.class, //
 		SysMLScopingTest.class, //
 		SysMLXtextTest.class, //
 		SysMLValidationTest.class, //
-		SysMLQueryTest.class,
-		SysMLVisibilityTest.class,
+		SysMLVisibilityTest.class, //
 		SysMLExpressionTest.class
 })
 @RunWith(Suite.class)

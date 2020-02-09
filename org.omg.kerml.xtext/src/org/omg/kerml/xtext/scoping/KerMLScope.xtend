@@ -40,9 +40,6 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
-import org.omg.sysml.lang.sysml.Classifier
-import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.Class
 import org.omg.sysml.lang.sysml.Generalization
 
 class KerMLScope extends AbstractScope {
@@ -57,8 +54,8 @@ class KerMLScope extends AbstractScope {
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
 	
-	boolean isShadowing = false;
-	protected Element element
+	protected boolean isShadowing = false;
+	protected Type scopingType
 
 	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, Element element) {
 		this(parent, pack, referenceType, scopeProvider, true, element)
@@ -70,7 +67,7 @@ class KerMLScope extends AbstractScope {
 		this.referenceType = referenceType
 		this.scopeProvider = scopeProvider
 		this.isInsideScope = isInsideScope
-		this.element = element
+		this.scopingType = if (element?.owner instanceof Type) element.owner as Type else null
 	}
 	
 	/**
@@ -156,16 +153,11 @@ class KerMLScope extends AbstractScope {
 					} finally {
 						scopeProvider.removeVisited(m)
 					}
-					var validProtected = false; //reset
-					if ( m.visibility == VisibilityKind.PROTECTED){
-						val owningPackage = m.membershipOwningPackage;
-						if ( element instanceof Feature ||  element instanceof Class){
-							val fowner = element.owner //using element's owner
-							if ( fowner !== null && fowner instanceof Type )
-								validProtected = isInheritedProtected(fowner as Type, owningPackage)
-						}
-					}
-					if (elementName !== null && (isInsideScope || m.visibility == VisibilityKind.PUBLIC || validProtected )	) {
+					if (elementName !== null && (isInsideScope || 
+						m.visibility == VisibilityKind.PUBLIC || 
+						m.visibility == VisibilityKind.PROTECTED && 
+							scopingType !== null && 
+							scopingType.isInheritedProtected(m.membershipOwningPackage))) {
 						val elementqn = qn.append(elementName)
 						if (targetqn === null || targetqn.startsWith(elementqn)) {
 							if (!checkIfAdded || !visitedqns.contains(elementqn)) {
@@ -204,17 +196,18 @@ class KerMLScope extends AbstractScope {
 		}
 		return false
 	}
+	
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
 		var gs = general.ownedGeneralization
 		for(Generalization g: gs){
-			if ( g.general == protectedOwningPackage) {
+			if (g.general == protectedOwningPackage || 
+				 g.general.isInheritedProtected(protectedOwningPackage)) {
 				return true
 			}
-			else if ( isInheritedProtected(g.general, protectedOwningPackage))
-				return true;
 		}
 		return false; 
 	}
+	
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
 		if (pack instanceof Type) {
 			var conjugator = pack.conjugator

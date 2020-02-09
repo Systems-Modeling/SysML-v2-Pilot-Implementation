@@ -21,7 +21,7 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::*;
 	class A specializes c_clazz{
- 		class EE specializes Test3.A.c_Protect{}
+ 		class EE specializes Test3::A::c_Protect{}
 	}
  	//special case when full qualifiedname within the specialization.
 	

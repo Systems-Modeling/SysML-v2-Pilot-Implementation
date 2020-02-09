@@ -24,7 +24,6 @@ package Test3{
  		class AA specializes alias_protected{}
  		class BB specializes A::alias_protected{}
  		class CC specializes Test3::A::alias_protected{}
- 		class DD specializes c_protected{}
 	}
 }
 //alias_protected is c_public

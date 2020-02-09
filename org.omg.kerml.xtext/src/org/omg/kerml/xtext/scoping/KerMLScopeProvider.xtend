@@ -48,8 +48,6 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
-import org.omg.sysml.lang.sysml.Classifier
-
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -118,7 +116,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 		return
 			if (context instanceof Package) 
-				context.alfScope(reference, null)
+				context.scopeFor(reference, null)
 			else 
 				super.getScope(context, reference)		
 	}
@@ -135,7 +133,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.alfScope(reference, element)
+			namespace.scopeFor(reference, element)
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
@@ -176,7 +174,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 	}
 	
-	def IScope alfScope(Package pack, EReference reference, Element element) {
+	def IScope scopeFor(Package pack, EReference reference, Element element) {
 		val parent = pack.parentPackage
 		val outerscope = 
 			if (parent === null) { // Root Package
@@ -188,7 +186,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				 else 
 				 	global
 			} else {
-				parent.alfScope(reference, element)
+				parent.scopeFor(reference, element)
 			}		
 
 		new KerMLScope(outerscope, pack, reference.EReferenceType, this, element)

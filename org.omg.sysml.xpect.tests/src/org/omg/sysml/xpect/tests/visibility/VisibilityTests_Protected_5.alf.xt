@@ -26,7 +26,7 @@ package Test3{
 			}
 		}
 	}
-	class C specializes P.PP {
+	class C specializes P::PP {
 		feature CC: PPP;
 	}
 	class D specializes C {

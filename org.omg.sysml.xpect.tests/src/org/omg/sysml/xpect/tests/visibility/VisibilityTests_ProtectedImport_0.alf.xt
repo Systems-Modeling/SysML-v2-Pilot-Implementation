@@ -27,7 +27,7 @@ package Test3{
  		class DD specializes c_Protect{}
 	}
 	class B specializes c_Public_alias{
- 		class AA specializes alias_protected_is_c_protected{}
+ 		class AA specializes alias_protected{}
 	}
 	class C specializes c_Public{
 		class CC specializes c_protected{}

@@ -25,7 +25,7 @@ package HSUVDynamics {
 		value v : Vel[0..*] ordered;
 		value x : Dist[0..*] ordered;
 		
-//		{1..size(x)-1}->forAll n (x[n + 1] == x[n] + v[n] * (5280/3600) * dt)
+		{1..size(x)-1}->forAll n (x[n + 1] == x[n] + v[n] * (5280/3600) * dt)
 	}
 	
 	constraint def VelocityEquation {
@@ -33,7 +33,7 @@ package HSUVDynamics {
 		value v : Vel[0..*] ordered;
 		value a : Accel;
 		
-//		{1..size(v)-1}->forAll n (v[n + 1] == v[n] + a * 32 * (3600/5280) * dt)
+		{1..size(v)-1}->forAll n (v[n + 1] == v[n] + a * 32 * (3600/5280) * dt)
 	}
 	
 	constraint def AccelerationEquation {

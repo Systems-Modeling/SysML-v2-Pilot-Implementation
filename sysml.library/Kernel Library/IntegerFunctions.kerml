@@ -21,6 +21,8 @@ package IntegerFunctions {
 	function '='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'!=';
 	
+	function '..'(lower: Integer, upper: Integer): Integer[0..*] specializes ScalarFunctions::'..';	
+	
 	function ToString(x: Integer): String specializes BaseFunctions::ToString;
 	function ToNatural(x: Integer): Natural;
 	function ToInteger(x: String): Integer;

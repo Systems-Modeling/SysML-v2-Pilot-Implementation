@@ -7238,54 +7238,144 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class SequenceConstructionExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SequenceConstructionExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSequenceConstructionExpressionAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cElement_compAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cElement_compExpressionParserRuleCall_2_0_0 = (RuleCall)cElement_compAssignment_2_0.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cElement_compAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cElement_compExpressionParserRuleCall_2_1_1_0 = (RuleCall)cElement_compAssignment_2_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cNullExpressionAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Alternatives cAlternatives_1_2 = (Alternatives)cGroup_1.eContents().get(2);
+		private final Group cGroup_1_2_0 = (Group)cAlternatives_1_2.eContents().get(0);
+		private final Action cOperatorExpressionOperand_compAction_1_2_0_0 = (Action)cGroup_1_2_0.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_2_0_1 = (Assignment)cGroup_1_2_0.eContents().get(1);
+		private final Keyword cOperatorCommaKeyword_1_2_0_1_0 = (Keyword)cOperatorAssignment_1_2_0_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2_0_2 = (Assignment)cGroup_1_2_0.eContents().get(2);
+		private final RuleCall cOperand_compSequenceElementListParserRuleCall_1_2_0_2_0 = (RuleCall)cOperand_compAssignment_1_2_0_2.eContents().get(0);
+		private final Group cGroup_1_2_1 = (Group)cAlternatives_1_2.eContents().get(1);
+		private final Action cOperatorExpressionOperand_compAction_1_2_1_0 = (Action)cGroup_1_2_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_2_1_1 = (Assignment)cGroup_1_2_1.eContents().get(1);
+		private final Keyword cOperatorFullStopFullStopKeyword_1_2_1_1_0 = (Keyword)cOperatorAssignment_1_2_1_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2_1_2 = (Assignment)cGroup_1_2_1.eContents().get(2);
+		private final RuleCall cOperand_compExpressionParserRuleCall_1_2_1_2_0 = (RuleCall)cOperand_compAssignment_1_2_1_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
-		//SequenceConstructionExpression SysML::SequenceConstructionExpression:
-		//	{SysML::SequenceConstructionExpression} '{' (element_comp+=Expression (',' element_comp+=Expression)*)? '}';
+		//SequenceConstructionExpression SysML::Expression:
+		//	{SysML::NullExpression} '{' '}'
+		//	| '{' Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList
+		//	| {SysML::OperatorExpression.operand_comp+=current} operator='..' operand_comp+=Expression)?
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::SequenceConstructionExpression} '{' (element_comp+=Expression (',' element_comp+=Expression)*)? '}'
-		public Group getGroup() { return cGroup; }
+		//{SysML::NullExpression} '{' '}' | '{' Expression ({SysML::OperatorExpression.operand_comp+=current} operator=','
+		//operand_comp+=SequenceElementList | {SysML::OperatorExpression.operand_comp+=current} operator='..'
+		//operand_comp+=Expression)? '}'
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{SysML::SequenceConstructionExpression}
-		public Action getSequenceConstructionExpressionAction_0() { return cSequenceConstructionExpressionAction_0; }
+		//{SysML::NullExpression} '{' '}'
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{SysML::NullExpression}
+		public Action getNullExpressionAction_0_0() { return cNullExpressionAction_0_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//(element_comp+=Expression (',' element_comp+=Expression)*)?
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//element_comp+=Expression
-		public Assignment getElement_compAssignment_2_0() { return cElement_compAssignment_2_0; }
-		
-		//Expression
-		public RuleCall getElement_compExpressionParserRuleCall_2_0_0() { return cElement_compExpressionParserRuleCall_2_0_0; }
-		
-		//(',' element_comp+=Expression)*
-		public Group getGroup_2_1() { return cGroup_2_1; }
-		
-		//','
-		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
-		
-		//element_comp+=Expression
-		public Assignment getElement_compAssignment_2_1_1() { return cElement_compAssignment_2_1_1; }
-		
-		//Expression
-		public RuleCall getElement_compExpressionParserRuleCall_2_1_1_0() { return cElement_compExpressionParserRuleCall_2_1_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_0_1() { return cLeftCurlyBracketKeyword_0_1; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
+		
+		//'{' Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList |
+		//{SysML::OperatorExpression.operand_comp+=current} operator='..' operand_comp+=Expression)? '}'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+		
+		//Expression
+		public RuleCall getExpressionParserRuleCall_1_1() { return cExpressionParserRuleCall_1_1; }
+		
+		//({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList |
+		//{SysML::OperatorExpression.operand_comp+=current} operator='..' operand_comp+=Expression)?
+		public Alternatives getAlternatives_1_2() { return cAlternatives_1_2; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList
+		public Group getGroup_1_2_0() { return cGroup_1_2_0; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current}
+		public Action getOperatorExpressionOperand_compAction_1_2_0_0() { return cOperatorExpressionOperand_compAction_1_2_0_0; }
+		
+		//operator=','
+		public Assignment getOperatorAssignment_1_2_0_1() { return cOperatorAssignment_1_2_0_1; }
+		
+		//','
+		public Keyword getOperatorCommaKeyword_1_2_0_1_0() { return cOperatorCommaKeyword_1_2_0_1_0; }
+		
+		//operand_comp+=SequenceElementList
+		public Assignment getOperand_compAssignment_1_2_0_2() { return cOperand_compAssignment_1_2_0_2; }
+		
+		//SequenceElementList
+		public RuleCall getOperand_compSequenceElementListParserRuleCall_1_2_0_2_0() { return cOperand_compSequenceElementListParserRuleCall_1_2_0_2_0; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current} operator='..' operand_comp+=Expression
+		public Group getGroup_1_2_1() { return cGroup_1_2_1; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current}
+		public Action getOperatorExpressionOperand_compAction_1_2_1_0() { return cOperatorExpressionOperand_compAction_1_2_1_0; }
+		
+		//operator='..'
+		public Assignment getOperatorAssignment_1_2_1_1() { return cOperatorAssignment_1_2_1_1; }
+		
+		//'..'
+		public Keyword getOperatorFullStopFullStopKeyword_1_2_1_1_0() { return cOperatorFullStopFullStopKeyword_1_2_1_1_0; }
+		
+		//operand_comp+=Expression
+		public Assignment getOperand_compAssignment_1_2_1_2() { return cOperand_compAssignment_1_2_1_2; }
+		
+		//Expression
+		public RuleCall getOperand_compExpressionParserRuleCall_1_2_1_2_0() { return cOperand_compExpressionParserRuleCall_1_2_1_2_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_1_3() { return cRightCurlyBracketKeyword_1_3; }
+	}
+	public class SequenceElementListElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SequenceElementList");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Keyword cOperatorCommaKeyword_1_1_0 = (Keyword)cOperatorAssignment_1_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperand_compSequenceElementListParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		
+		//SequenceElementList SysML::Expression:
+		//	Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList)?
+		public Group getGroup() { return cGroup; }
+		
+		//Expression
+		public RuleCall getExpressionParserRuleCall_0() { return cExpressionParserRuleCall_0; }
+		
+		//({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current}
+		public Action getOperatorExpressionOperand_compAction_1_0() { return cOperatorExpressionOperand_compAction_1_0; }
+		
+		//operator=','
+		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		
+		//','
+		public Keyword getOperatorCommaKeyword_1_1_0() { return cOperatorCommaKeyword_1_1_0; }
+		
+		//operand_comp+=SequenceElementList
+		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
+		
+		//SequenceElementList
+		public RuleCall getOperand_compSequenceElementListParserRuleCall_1_2_0() { return cOperand_compSequenceElementListParserRuleCall_1_2_0; }
 	}
 	public class NullExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.NullExpression");
@@ -8105,6 +8195,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ClassExtentExpressionElements pClassExtentExpression;
 	private final TypeReferenceElements pTypeReference;
 	private final SequenceConstructionExpressionElements pSequenceConstructionExpression;
+	private final SequenceElementListElements pSequenceElementList;
 	private final NullExpressionElements pNullExpression;
 	private final LiteralExpressionElements pLiteralExpression;
 	private final BooleanLiteralExpressionElements pBooleanLiteralExpression;
@@ -8322,6 +8413,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pClassExtentExpression = new ClassExtentExpressionElements();
 		this.pTypeReference = new TypeReferenceElements();
 		this.pSequenceConstructionExpression = new SequenceConstructionExpressionElements();
+		this.pSequenceElementList = new SequenceElementListElements();
 		this.pNullExpression = new NullExpressionElements();
 		this.pLiteralExpression = new LiteralExpressionElements();
 		this.pBooleanLiteralExpression = new BooleanLiteralExpressionElements();
@@ -10329,14 +10421,27 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeReferenceAccess().getRule();
 	}
 	
-	//SequenceConstructionExpression SysML::SequenceConstructionExpression:
-	//	{SysML::SequenceConstructionExpression} '{' (element_comp+=Expression (',' element_comp+=Expression)*)? '}';
+	//SequenceConstructionExpression SysML::Expression:
+	//	{SysML::NullExpression} '{' '}'
+	//	| '{' Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList
+	//	| {SysML::OperatorExpression.operand_comp+=current} operator='..' operand_comp+=Expression)?
+	//	'}';
 	public SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
 		return pSequenceConstructionExpression;
 	}
 	
 	public ParserRule getSequenceConstructionExpressionRule() {
 		return getSequenceConstructionExpressionAccess().getRule();
+	}
+	
+	//SequenceElementList SysML::Expression:
+	//	Expression ({SysML::OperatorExpression.operand_comp+=current} operator=',' operand_comp+=SequenceElementList)?;
+	public SequenceElementListElements getSequenceElementListAccess() {
+		return pSequenceElementList;
+	}
+	
+	public ParserRule getSequenceElementListRule() {
+		return getSequenceElementListAccess().getRule();
 	}
 	
 	//NullExpression SysML::NullExpression:

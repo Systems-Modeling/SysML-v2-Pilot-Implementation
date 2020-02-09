@@ -1046,8 +1046,17 @@ TypeReference returns SysML::Feature :
 	ownedRelationship_comp += FeatureTyping
 ;
 
-SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
-	{SysML::SequenceConstructionExpression} '{' ( element_comp += Expression ( ',' element_comp += Expression )* )? '}'
+SequenceConstructionExpression returns SysML::Expression :
+	  {SysML::NullExpression} '{' '}'
+	| '{' Expression
+	      ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList
+	      | {SysML::OperatorExpression.operand_comp += current} operator = '..' operand_comp += Expression
+	      )?
+	  '}'
+;
+
+SequenceElementList returns SysML::Expression :	
+	Expression ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList )?
 ;
 
 NullExpression returns SysML::NullExpression :

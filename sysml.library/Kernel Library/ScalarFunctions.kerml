@@ -25,6 +25,8 @@ package ScalarFunctions {
 	
 	abstract function '@'(x: ScalarValue, y: Base::Anything): ScalarValue;
 	
+	abstract function '..'(lower: ScalarValue, upper: ScalarValue): ScalarValue[0..*];
+	
 	function sum(collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
 		collection->reduce '+' ?? zero
 	}

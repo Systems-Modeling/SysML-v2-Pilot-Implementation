@@ -267,16 +267,19 @@ public class SysMLInteractive extends SysMLUtil {
 	        			}
 		        		run(input);
 	        		} else {
-	        			String[] tokens = input.split("\\s");
-	        			if ("%exit".equals(tokens[0])) {
+	        			int i = input.indexOf(' ');
+	        			String command = i == -1? input: input.substring(0, i);
+	        			String argument = i == -1? "": input.substring(i + 1);
+	        			
+	        			if ("%exit".equals(command)) {
 	        				break;
-	        			} else if ("%show".equals(tokens[0])) {
-	        				if (tokens.length > 1) {
-	        					System.out.print(this.show(tokens[1]));
+	        			} else if ("%show".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.show(argument));
 	        				}
-	        			} else if ("%publish".equals(tokens[0])) {
-	        				if (tokens.length > 1) {
-	        					System.out.print(this.publish(tokens[1]));
+	        			} else if ("%publish".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.publish(argument));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

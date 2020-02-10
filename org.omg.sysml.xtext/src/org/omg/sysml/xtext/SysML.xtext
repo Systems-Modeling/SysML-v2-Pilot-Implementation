@@ -43,6 +43,7 @@ Unit returns SysML::Package :
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
 	| StateDefinitionUnit
+	| ConstraintDefinitionUnit
 	| PartUnit
 	| ValueUnit
 	| ActionUnit
@@ -79,6 +80,10 @@ ActivityUnit returns SysML::Activity :
 
 StateDefinitionUnit returns SysML::StateDefinition :
 	UnitPrefix StateDefDeclaration StateBody
+;
+
+ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
+	UnitPrefix ConstraintDefDeclaration ConstraintBody
 ;
 
 PartUnit returns SysML::PartProperty :
@@ -192,7 +197,9 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedMemberElement_comp = Activity
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
     | ownedMemberElement_comp = StateDefinition
-    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
+    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::StateDefinition|QualifiedName] ';'
+    | ownedMemberElement_comp = ConstraintDefinition
+    | 'constraint' 'def' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintDefinition|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedMemberElement_comp = Comment
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
@@ -211,7 +218,10 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
 	| 'state' ownedMemberElement_comp = StateUsage
 	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
+	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::StateUsage|QualifiedName] ';'
+	| 'constraint' ownedMemberElement_comp = ConstraintUsage
+	| 'abstract' 'constraint' ownedMemberElement_comp = AbstractConstraintUsage
+	| 'constraint' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintUsage|QualifiedName] ';'
 ;
 
 /* DEFINITIONS */
@@ -259,15 +269,14 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
-	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
 	| 'interface' ownedMemberFeature_comp = InterfaceUsage
 	| 'abstract' 'interface' ownedMemberFeature_comp = AbstractInterfaceUsage
 	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
+    | 'link' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
 	| 'connect' ownedMemberFeature_comp = Connector 
     | 'abstract' 'connect' ownedMemberFeature_comp = AbstractConnector
-    | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
     | 'bind' ownedMemberFeature_comp = BindingConnector
 	| 'succession' ownedMemberFeature_comp = Succession 
     | 'abstract' 'succession' ownedMemberFeature_comp = AbstractSuccession
@@ -288,9 +297,14 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
 	| ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = StateUsage
 	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::StateUsage|QualifiedName] ';'
+	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
+	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = ConstraintUsage
+	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = AbstractConstraintUsage
+	| 'constraint' ( memberName = Name )? 'is' memberFeature = [SysML::ConstraintUsage|QualifiedName] ';'
 	| 'perform' ownedMemberFeature_comp = PerformActionUsage
 	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
+	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage
 	)
 ;
 
@@ -644,6 +658,47 @@ TargetTransitionSuccessionMember returns SysML::FeatureMembership :
 
 TransitionStepMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionStep ';'
+;
+
+/* CONSTRAINT DEFINITIONS */
+
+ConstraintDefinition returns SysML::ConstraintDefinition :
+	ConstraintDefDeclaration ConstraintBody  
+;
+
+fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition :
+	( isAbstract ?= 'abstract' )? 'constraint' 'def' name = Name 
+	ParameterList? EmptyReturnParameterPart SuperclassingList?
+;
+
+fragment ConstraintBody returns SysML::Type :
+	  ';'
+	| '{' ( 
+		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedFeatureMembership_comp += NestedUsageMember 
+		| ownedImport_comp += Import
+		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
+	  '}'
+;
+
+fragment AbstractConstraintBody returns SysML::Type :
+	  isAbstract ?= ';'
+	| isAbstract ?= '{' ( 
+		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedFeatureMembership_comp += NestedUsageMember 
+		| ownedImport_comp += Import
+		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
+	  '}'
+;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+/* CONSTRAINT DEFINITION MEMBERSHIPS */
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyParameter
 ;
 
 /* USAGES */
@@ -1033,7 +1088,7 @@ PerformActionUsage returns SysML::PerformActionUsage :
 
 PerformActionUsageDeclaration returns SysML::PerformActionUsage :
    	( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
-   	| 'action' name = Name TypePart?
+   	| 'action' ( name = Name )? TypePart?
    	)
     ActionParameterList? SubsettingPart ValuePart?
 ;
@@ -1142,7 +1197,7 @@ AbstractStateUsage returns SysML::StateUsage :
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
-    | 'state' name = Name TypePart?
+    | 'state' ( name = Name )? TypePart?
     )
     ActionParameterList? SubsettingPart ValuePart?
 	StateBody
@@ -1212,6 +1267,49 @@ EffectBehaviorMember returns SysML::TransitionFeatureMembership :
 
 enum EffectFeatureKind returns SysML::TransitionFeatureKind :
 	effect = 'do'
+;
+
+/* CONSTRAINTS */
+
+ConstraintUsage returns SysML::ConstraintUsage :
+	ConstraintDeclaration InvariantPart ConstraintBody
+;
+
+AbstractConstraintUsage returns SysML::ConstraintUsage :
+	ConstraintDeclaration InvariantPart AbstractConstraintBody
+;
+
+fragment ConstraintDeclaration returns SysML::ConstraintUsage :
+	  name = Name TypePart? ConstraintParameterPart
+	| TypePart? ( ActionParameterList EmptyReturnParameterPart )? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition 
+		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
+;
+
+fragment ConstraintParameterPart returns SysML::ConstraintUsage :
+	ActionParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+;
+
+fragment InvariantPart returns SysML::Invariant :
+	ownedFeatureMembership_comp += TrueLiteralMember
+;
+
+TrueLiteralExpression returns SysML::LiteralBoolean :
+	{SysML::LiteralBoolean}
+;
+
+AssertConstraintUsage returns SysML::ConstraintUsage :
+    ( ( ( name = Name )? TypePart? 'by' )? ownedRelationship_comp += Subset 
+      ConstraintParameterPart DefinitionBody
+    | 'constraint' ( name = Name )? TypePart? 
+      ConstraintParameterPart InvariantPart ConstraintBody
+    )
+;
+
+/* CONSTRAINT MEMBERSHIPS */
+
+TrueLiteralMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TrueLiteralExpression
 ;
 
 /* EXPRESSIONS */
@@ -1428,8 +1526,17 @@ TypeReference returns SysML::Feature :
 	ownedRelationship_comp += FeatureTyping
 ;
 
-SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
-	{SysML::SequenceConstructionExpression} '{' ( element_comp += Expression ( ',' element_comp += Expression )* )? '}'
+SequenceConstructionExpression returns SysML::Expression :
+	  {SysML::NullExpression} '{' '}'
+	| '{' Expression
+	      ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList
+	      | {SysML::OperatorExpression.operand_comp += current} operator = '..' operand_comp += Expression
+	      )?
+	  '}'
+;
+
+SequenceElementList returns SysML::Expression :	
+	Expression ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList )?
 ;
 
 NullExpression returns SysML::NullExpression :
@@ -1455,11 +1562,12 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	NATURAL_VALUE? '.' ( NATURAL_VALUE | EXP_VALUE ) | EXP_VALUE
+	  ( DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.' ) EXP_SUFFIX?
+	| DECIMAL_VALUE EXP_SUFFIX
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
-	value = NATURAL_VALUE
+	value = DECIMAL_VALUE
 ;
 
 UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
@@ -1540,15 +1648,19 @@ DotQualifiedName :
 terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
 	'true' | 'false' ;
 
-terminal NATURAL_VALUE returns Ecore::EInt :
-	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
-	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
-	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
-	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+//terminal NATURAL_VALUE returns Ecore::EInt :
+//	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
+//	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
+//	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
+//	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+//;
+
+terminal DECIMAL_VALUE returns Ecore::EInt :
+	'0'..'9' (('_')? '0'..'9')*
 ;
 
-terminal EXP_VALUE :
-	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE
+terminal EXP_SUFFIX :
+	('e' | 'E') ('+' | '-')? DECIMAL_VALUE
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

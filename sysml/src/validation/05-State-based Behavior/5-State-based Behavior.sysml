@@ -1,4 +1,4 @@
-package '5-State-based Behavior-1' {
+package '5-State-based Behavior' {
 	import ScalarValues::*;
 	
 	package Definitions {

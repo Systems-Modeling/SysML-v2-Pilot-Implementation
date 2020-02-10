@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}

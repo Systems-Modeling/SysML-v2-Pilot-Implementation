@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.omg.sysml.xpect.tests;singleton:=true
-Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xpect.xtext.lib;bundle-version="0.2.0",
@@ -10,9 +9,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.codegen;bundle-version="2.6.0",
  org.eclipse.xtext.xbase;bundle-version="2.9.2",
  org.eclipse.xtext.ui.shared;bundle-version="2.14.0",
- org.omg.sysml;bundle-version="1.0.0",
- org.omg.kerml.xtext;bundle-version="1.0.0",
- org.omg.kerml.xtext.ui;bundle-version="1.0.0"
+ org.omg.sysml;bundle-version="0.2.0",
+ org.omg.kerml.xtext;bundle-version="0.2.0",
+ org.omg.kerml.xtext.ui;bundle-version="0.2.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.xpect.tests

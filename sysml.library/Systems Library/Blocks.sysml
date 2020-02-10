@@ -16,18 +16,12 @@ package Blocks {
 		 * Ports that are on this part.
 		 */
 		abstract port ports: Port[0..*] :> objects;
-
+		
 		/**
 		 * Actions that are performed by this part.
 		 */
-		abstract action performedActions: Activities::Action[0..*] :> enactedPerformances;	
+		abstract ref action performedActions: Activities::Action[0..*] :> enactedPerformances;
 	}
-	
-	/**
-	 * Value is the most general type of data values that represent value properties of a 
-	 * system or part of a system. Value is the base type of all value types.
-	 */
-	value type Value :> DataValue;
 	
 	/**
 	 * Port is the most general class of objects that represent connection points
@@ -58,6 +52,18 @@ package Blocks {
 		end target: Port[0..*] :>> Connection::target;
 	}
 	
+	/**
+	 * Constraint is the most general class of constraints. Constraint is the base
+	 * type of all constraint definitions.
+	 */
+	constraint def Constraint :> BooleanEvaluation, Part;
+	
+	/**
+	 * Value is the most general type of data values that represent value properties of a 
+	 * system or part of a system. Value is the base type of all value types.
+	 */
+	value type Value :> DataValue;
+	
 	/** 
 	 * parts is the base feature of all part properties.
 	 */
@@ -66,7 +72,7 @@ package Blocks {
 	/**
 	 * connections is the base feature of all connection usages (connectors).
 	 */
-	abstract part connections: Connection[0..*] :> parts, links;
+	abstract part connections: Connection[0..*] :> links;
 	
 	/**
 	 * interfaces is the base feature of all interface usages (connectors).
@@ -74,7 +80,13 @@ package Blocks {
 	abstract part interfaces: Interface[0..*] :> connections;
 	
 	/**
+	 * constraints is the base feature of all constraint usages.
+	 */
+	abstract constraint constraints: Constraint[0..*] :> objects;
+
+	/**
 	 * values is the base feature for all value properties.
 	 */
 	abstract value values: Value[0..*] :> dataValues;		
+
 }

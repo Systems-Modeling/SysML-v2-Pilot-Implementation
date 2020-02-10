@@ -2,11 +2,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -23,6 +27,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression {
+
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::booleanEvaluations";
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subBooleanEvaluations";
+
+	/**
+	 * The cached value of the BindingConnector from the result of the last
+	 * sub-Expression to the result of this BooleanExpression.
+	 */
+	protected BindingConnector resultConnector = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,7 +73,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	 * @generated NOT
 	 */
 	public Predicate basicGetPredicate() {
-		Function function = super.getFunction();
+		Function function = super.basicGetFunction();
 		return function instanceof Predicate? (Predicate)function: null;
 	}
 
@@ -80,6 +94,67 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	 */
 	public boolean isSetPredicate() {
 		return basicGetPredicate() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Function getFunction() {
+		return getPredicate();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Function basicGetFunction() {
+		return basicGetPredicate();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFunction(Function newFunction) {
+		if (newFunction != null && !(newFunction instanceof Predicate)) {
+			throw new IllegalArgumentException("newFunction must be an instance of Predicate");
+		}
+		setPredicate((Predicate) newFunction);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFunction() {
+  		return false;
+	}
+
+	// Additional redefinitions and subsets
+
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isSubperformance()?
+					BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+					BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	@Override
+	public EList<Feature> getFeature() {
+		getResultConnector();
+		return super.getFeature();
+	}
+	
+	public BindingConnector getResultConnector() {
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
 	/**
@@ -142,46 +217,4 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 		}
 		return super.eIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Function getFunction() {
-		return getPredicate();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Function basicGetFunction() {
-		return basicGetPredicate();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFunction(Function newFunction) {
-		if (newFunction != null && !(newFunction instanceof Predicate)) {
-			throw new IllegalArgumentException("newFunction must be an instance of Predicate");
-		}
-		setPredicate((Predicate) newFunction);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFunction() {
-  		return false;
-	}
-
 } //BooleanExpressionImpl

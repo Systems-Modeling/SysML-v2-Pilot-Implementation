@@ -1,0 +1,31 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Test3{
+	class P{
+		protected class PP{}
+	}
+	class B {
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'P::PP'." at "P::PP"
+		class BB specializes P::PP{}
+	}
+	class A specializes P {
+ 		class AA specializes PP{}
+	}
+}

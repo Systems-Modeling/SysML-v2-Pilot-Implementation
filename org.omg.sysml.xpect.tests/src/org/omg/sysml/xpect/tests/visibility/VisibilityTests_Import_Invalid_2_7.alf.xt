@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -25,6 +25,5 @@ package Test3{
 	import VisibilityPackage::c_clazz::c_Public::c_packagee;
 	// XPECT errors --> "Couldn't resolve reference to Type 'c_packagee'." at "c_packagee"
 	feature try : c_packagee;
-	
 }
 

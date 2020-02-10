@@ -5,7 +5,7 @@ package Transfers {
 	private import Base::*;
 	private import ScalarValues::Boolean;
 	private import Occurrences::*;
-	private import BaseFunctions::notEmpty;
+	private import BaseFunctions::*;
 	
 	/**
 	 * Transfer is the most general interaction used for typing item flows. It represents the
@@ -89,16 +89,16 @@ package Transfers {
 		/**
 		 * If isMove is true, then all items leave the transferSource at the start
 		 * of the transfer.
-		 * (isMove implies size(moving) == size(sourceOutputLink))
 		 */	
 		connector moving: HappensWhile[0..*] from sourceOutputLink::endShot[0..*] to startShot[0..1];
+		inv { !isMove | size(moving) == size(sourceOutputLink) }
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
-		 * (isPush implies size(pushing) == size(sourceOutputLink)))
 		 */
 		connector pushing: HappensWhile[0..*] from sourceOutputLink::startShot[0..*] to startShot[0..1];
+		inv { !isPush | size(pushing) == size(sourceOutputLink) }
 		
 		/**
 		 * The input of each of the items to the transferTarget starts at the end of the transfer.

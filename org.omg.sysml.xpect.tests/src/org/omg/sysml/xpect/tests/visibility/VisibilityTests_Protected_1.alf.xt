@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+XPECT_SETUP org.omg.sysml.xpect.tests.visibility.SysMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.alf"}
@@ -16,13 +16,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
 	}
 END_SETUP 
 */
-
-// XPECT noErrors ---> ""
+ 
 package Test3{
-	import VisibilityPackage::*;
-	class A specializes c_Public_alias{
- 		class AA specializes alias_protected{}
- 		class BB specializes A::alias_protected{}
- 		class CC specializes Test3::A::alias_protected{}
+	class P{
+		protected class PP{}
+	}
+	class A specializes P {
+ 		feature DD: PP;
+	}
+	class B {
+		// XPECT errors --> "Couldn't resolve reference to Type 'P::PP'." at "P::PP"
+		feature BB2: P::PP;
 	}
 }

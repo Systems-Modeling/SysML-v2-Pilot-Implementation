@@ -1,6 +1,7 @@
 package '15_02-Basic Properties with Default Values' {
     import SI::*;
     import USCustomaryUnits::*;
+    import '15_12-Compound Value Type'::CartesianAxisPlacement3D;
 
     block Wheel {
         value width: LengthValue = 245@[mm];

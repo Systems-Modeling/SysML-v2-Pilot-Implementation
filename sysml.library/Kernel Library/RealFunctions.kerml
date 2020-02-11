@@ -34,5 +34,7 @@ package RealFunctions {
 	
 	function product(collection: Real[0..*]): Real {
 		ScalarFunctions::product(collection, 1.0)
-	}	
+	}
+	
+	function sqrt(x: Real): Real;
 }

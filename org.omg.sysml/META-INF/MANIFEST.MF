@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.omg.sysml
-Bundle-Vendor: SysML v2 Submission Team
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .,

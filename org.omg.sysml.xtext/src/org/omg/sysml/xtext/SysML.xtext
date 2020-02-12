@@ -1272,11 +1272,11 @@ enum EffectFeatureKind returns SysML::TransitionFeatureKind :
 /* CONSTRAINTS */
 
 ConstraintUsage returns SysML::ConstraintUsage :
-	ConstraintDeclaration InvariantPart ConstraintBody
+	ConstraintDeclaration ConstraintBody
 ;
 
 AbstractConstraintUsage returns SysML::ConstraintUsage :
-	ConstraintDeclaration InvariantPart AbstractConstraintBody
+	ConstraintDeclaration AbstractConstraintBody
 ;
 
 fragment ConstraintDeclaration returns SysML::ConstraintUsage :
@@ -1290,20 +1290,20 @@ fragment ConstraintParameterPart returns SysML::ConstraintUsage :
 	ActionParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
 ;
 
+AssertConstraintUsage returns SysML::AssertConstraintUsage :
+    ( ( ( name = Name )? TypePart? 'by' )? ownedRelationship_comp += Subset 
+      ConstraintParameterPart InvariantPart DefinitionBody
+    | 'constraint' ( name = Name )? TypePart? 
+      ConstraintParameterPart InvariantPart ConstraintBody
+    )
+;
+
 fragment InvariantPart returns SysML::Invariant :
 	ownedFeatureMembership_comp += TrueLiteralMember
 ;
 
 TrueLiteralExpression returns SysML::LiteralBoolean :
 	{SysML::LiteralBoolean}
-;
-
-AssertConstraintUsage returns SysML::ConstraintUsage :
-    ( ( ( name = Name )? TypePart? 'by' )? ownedRelationship_comp += Subset 
-      ConstraintParameterPart DefinitionBody
-    | 'constraint' ( name = Name )? TypePart? 
-      ConstraintParameterPart InvariantPart ConstraintBody
-    )
 ;
 
 /* CONSTRAINT MEMBERSHIPS */

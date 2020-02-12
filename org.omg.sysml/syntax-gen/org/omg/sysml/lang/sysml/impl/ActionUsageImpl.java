@@ -31,9 +31,9 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActivity <em>Activity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningUsage <em>Action Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @generated
@@ -226,14 +226,14 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		switch (featureID) {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.ACTION_USAGE__ACTIVITY:
+				return getActivity();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				if (resolve) return getActionOwningDefinition();
 				return basicGetActionOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				if (resolve) return getActionOwningUsage();
 				return basicGetActionOwningUsage();
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -251,15 +251,15 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case SysMLPackage.ACTION_USAGE__ACTIVITY:
+				getActivity().clear();
+				getActivity().addAll((Collection<? extends Behavior>)newValue);
+				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				getActivity().clear();
-				getActivity().addAll((Collection<? extends Behavior>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,14 +276,14 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				return;
+			case SysMLPackage.ACTION_USAGE__ACTIVITY:
+				getActivity().clear();
+				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				getActivity().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -305,12 +305,12 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return isSetOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__OWNING_USAGE:
 				return isSetOwningUsage();
+			case SysMLPackage.ACTION_USAGE__ACTIVITY:
+				return isSetActivity();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				return isSetActionOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				return isSetActionOwningUsage();
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				return isSetActivity();
 		}
 		return super.eIsSet(featureID);
 	}

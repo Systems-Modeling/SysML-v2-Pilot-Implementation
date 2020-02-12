@@ -30,11 +30,11 @@ package RealFunctions {
 	function ToReal(x: String): Real;
 	function ToComplex(x: Real): Complex;
 	
-	function sum(collection: Real[0..*]): Real {
-		ScalarFunctions::sum(collection, 0.0)
+	function sum(collection: Real[0..*]): Real specializes ScalarFunctions::sum {
+		ScalarFunctions::sum0(collection, 0.0)
 	}
 	
-	function product(collection: Real[0..*]): Real {
-		ScalarFunctions::product(collection, 1.0)
-	}
+	function product(collection: Real[0..*]): Real specializes ScalarFunctions::product {
+		ScalarFunctions::product1(collection, 1.0)
+	}	
 }

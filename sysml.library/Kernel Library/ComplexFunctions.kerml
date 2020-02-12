@@ -24,11 +24,11 @@ package ComplexFunctions {
 	function ToString(x: Complex): String specializes BaseFunctions::ToString;
 	function ToComplex(x: String): Complex;
 	
-	function sum(collection: Complex[0..*]): Complex {
-		ScalarFunctions::sum(collection, Rect(0.0, 0.0))
+	function sum(collection: Complex[0..*]): Complex specializes ScalarFunctions::sum {
+		ScalarFunctions::sum0(collection, Rect(0.0, 0.0))
 	}
 	
-	function product(collection: Real[0..*]): Real {
-		ScalarFunctions::product(collection, Rect(1.0, 0.0))
+	function product(collection: Complex[0..*]): Complex specializes ScalarFunctions::product {
+		ScalarFunctions::product1(collection, Rect(1.0, 0.0))
 	}	
 }

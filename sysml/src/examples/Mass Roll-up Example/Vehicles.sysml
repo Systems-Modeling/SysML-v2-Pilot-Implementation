@@ -1,4 +1,4 @@
-package Vehicles {
+package VehicleMasses {
 	import ScalarValues::*;
 	import MassRollup::*;
 	
@@ -21,16 +21,15 @@ package Vehicles {
 	}
 
 	// Example usage
-	
+	import SI::*;	
 	part c :> car {
-		import SI::*;
-		redefines mass = 1000@[kg];
+		redefines car::mass = 1000@[kg];
 		part redefines engine {
-			redefines mass = 100@[kg];
+			redefines engine::mass = 100@[kg];
 		}
 		
 		part redefines transmission {
-			redefines mass = 50@[kg];
+			redefines transmission::mass = 50@[kg];
 		}	
 	}
 	

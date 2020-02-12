@@ -1,6 +1,6 @@
 package '15_12-Compound Value Type' {
     import ISQ::*;
-    import RealFunctions::sqrt;
+    import RealFunctions::Sqrt;
     import '15_01-Constants'::'Mathematical Constants'::pi;
 
     value type CartesianLocation3D {
@@ -17,7 +17,7 @@ package '15_12-Compound Value Type' {
 		value dirY: DirectionValue;
 		value dirZ: DirectionValue;
 		
-		assert constraint { sqrt(dirX**2 + dirY**2 + dirZ**2) == 1.0 }
+		assert constraint { Sqrt(dirX**2 + dirY**2 + dirZ**2) == 1.0 }
     }
 
     /* 

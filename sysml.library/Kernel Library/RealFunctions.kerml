@@ -19,7 +19,9 @@ package RealFunctions {
 
 	function '='(x: Real, y: Real): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Real, y: Real): Boolean specializes BaseFunctions::'!=';
-	
+		
+	function Sqrt(x: Real): Real;
+
 	function Floor(x: Real): Integer;
 	function Round(x: Real): Integer;
 	
@@ -35,6 +37,4 @@ package RealFunctions {
 	function product(collection: Real[0..*]): Real {
 		ScalarFunctions::product(collection, 1.0)
 	}
-	
-	function sqrt(x: Real): Real;
 }

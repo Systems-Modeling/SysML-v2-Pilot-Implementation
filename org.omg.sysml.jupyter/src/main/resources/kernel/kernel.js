@@ -24,11 +24,11 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
-            keywords: words("about abstract accept action activity allInstances any as assoc bind block by " +
-                "comment connect decide def do else end entry exhibit exit first flow fork from hastype if import " +
+            keywords: words("about abstract accept action activity allInstances any as assert assoc bind block by " +
+                "comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype if import " +
                 "in inout instanceof interface is join link merge nonunique of ordered out package part perform port private " +
                 "protected public redefines ref send specializes state stream subsets succession then to transition type value"),
-            defKeywords: words("action activity assoc block def link interface package part port ref state transition type value"),
+            defKeywords: words("action activity assoc block constraint def link interface package part port ref state transition type value"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

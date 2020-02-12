@@ -28,11 +28,11 @@ package IntegerFunctions {
 	function ToInteger(x: String): Integer;
 	function ToReal(x: Integer): Real;
 	
-	function sum(collection: Integer[0..*]): Integer {
-		ScalarFunctions::sum(collection, 0)
+	function sum(collection: Integer[0..*]): Integer specializes ScalarFunctions::sum {
+		ScalarFunctions::sum0(collection, 0)
 	}
 	
-	function product(collection: Integer[0..*]): Integer {
-		ScalarFunctions::product(collection, 1)
+	function product(collection: Integer[0..*]): Integer specializes ScalarFunctions::product {
+		ScalarFunctions::product1(collection, 1)
 	}
 }	

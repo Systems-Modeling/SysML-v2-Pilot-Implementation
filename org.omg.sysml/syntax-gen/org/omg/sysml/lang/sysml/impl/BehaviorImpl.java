@@ -85,7 +85,11 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return getFeature().stream().filter(feature -> !(feature instanceof Parameter) && feature.isAbstract())
+		return filterRelevantFeatures(getFeature());
+	}
+	
+	public static List<Feature> filterRelevantFeatures(List<Feature> features) {
+		return features.stream().filter(feature -> !(feature instanceof Parameter) && feature.isAbstract())
 				.collect(Collectors.toList());
 	}
 

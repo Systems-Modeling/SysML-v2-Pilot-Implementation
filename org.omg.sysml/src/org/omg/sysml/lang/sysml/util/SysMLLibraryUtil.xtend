@@ -40,7 +40,7 @@ class SysMLLibraryUtil {
 	}
 	
 	def static isModelLibrary(Resource resource) {
-		return resource !== null && resource.URI.path.startsWith(modelLibraryDirectory)
+		return resource !== null && resource.URI.path.contains(modelLibraryDirectory)
 	}
 	
 	def static IModelLibraryProvider getInstance(Resource resource) {

@@ -24,7 +24,7 @@ package Test3{
 			protected class PPP{}
 		}
 	}
-	class C specializes P.PP {
+	class C specializes P::PP {
 		feature CC: PPP;
 	}
 }

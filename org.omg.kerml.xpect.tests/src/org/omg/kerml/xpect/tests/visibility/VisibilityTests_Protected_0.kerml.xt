@@ -24,7 +24,7 @@ package Test3{
 	class A specializes P {
  		class AA specializes PP{}
  		class BB specializes P::PP{}
- 		class CC specializes Test3.P.PP{}
+ 		class CC specializes Test3::P::PP{}
  		feature DD: PP;
 	}	
 	class B {

@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
+import org.omg.sysml.lang.sysml.Function
 
 /**
  * Customization of the default outline structure.
@@ -203,6 +204,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		// Ensure default subclassing
 		classifier.ownedSuperclassing
 		super._isLeaf(classifier)
+	}
+	
+	def boolean _isLeaf(Function function) {
+		// Ensure result connector
+		function.feature
+		_isLeaf(function as Classifier)
 	}
 	
 	def boolean _isLeaf(Feature feature) {

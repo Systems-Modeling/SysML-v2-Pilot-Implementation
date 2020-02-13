@@ -25,11 +25,16 @@ package ScalarFunctions {
 	
 	abstract function '@'(x: ScalarValue, y: Base::Anything): ScalarValue;
 	
-	function sum(collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
+	abstract function '..'(lower: ScalarValue, upper: ScalarValue): ScalarValue[0..*];
+	
+	abstract function sum(collection: ScalarValue[0..*]): ScalarValue;
+	abstract function product(collection: ScalarValue[0..*]);
+	
+	function sum0(collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
 		collection->reduce '+' ?? zero
 	}
 	
-	function product(collection: ScalarValue[0..*], one: ScalarValue): ScalarValue {
+	function product1(collection: ScalarValue[0..*], one: ScalarValue): ScalarValue {
 		collection->reduce '*' ?? one
 	}
 }

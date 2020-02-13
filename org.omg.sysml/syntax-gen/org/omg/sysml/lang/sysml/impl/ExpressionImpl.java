@@ -117,67 +117,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				if (resolve) return getFunction();
-				return basicGetFunction();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				setFunction((Function)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				setFunction((Function)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__BEHAVIOR:
-				return isSetBehavior();
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				return isSetFunction();
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Behavior> getBehavior() {
 		EList<Behavior> behavior = new UniqueEList<Behavior>();
 		Function function = getFunction();
@@ -298,4 +237,65 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return super.getOwnedParameters();
 	}
 		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				if (resolve) return getFunction();
+				return basicGetFunction();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				setFunction((Function)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				setFunction((Function)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__BEHAVIOR:
+				return isSetBehavior();
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				return isSetFunction();
+		}
+		return super.eIsSet(featureID);
+	}
+
 } //ExpressionImpl

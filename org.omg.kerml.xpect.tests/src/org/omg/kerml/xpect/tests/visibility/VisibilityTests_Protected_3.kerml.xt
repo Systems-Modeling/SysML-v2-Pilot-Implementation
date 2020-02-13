@@ -24,16 +24,16 @@ package Test3{
 			protected class PPP{}
 		}
 	}
-	class C specializes P.PP {
+	class C specializes P::PP {
 		feature CC: PPP;
 	}
 	
 	class A specializes P {
-		// XPECT errors --> "Couldn't resolve reference to Classifier 'PP.PPP'." at "PP.PPP"
- 		class AA specializes PP.PPP{}
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'PP::PPP'." at "PP::PPP"
+ 		class AA specializes PP::PPP{}
 	}
 	class B {
-		// XPECT errors --> "Couldn't resolve reference to Type 'P.PP.PPP'." at "P.PP.PPP"
-		feature BB2: P.PP.PPP;
+		// XPECT errors --> "Couldn't resolve reference to Type 'P::PP::PPP'." at "P::PP::PPP"
+		feature BB2: P::PP::PPP;
 	}
 }

@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
+import org.eclipse.emf.ecore.resource.Resource
 
 @Singleton
 class KerMLLibraryProvider implements IModelLibraryProvider {
@@ -49,6 +50,10 @@ class KerMLLibraryProvider implements IModelLibraryProvider {
 	@Inject
 	IQualifiedNameConverter nameConverter
 	
+	protected def isModelLibrary(Resource resource) {
+		SysMLLibraryUtil.isModelLibrary(resource)
+	}
+	
 	protected def fileName(URI uri) {
 		return uri.trimFileExtension.lastSegment
 	}
@@ -60,7 +65,7 @@ class KerMLLibraryProvider implements IModelLibraryProvider {
 			val qname = nameConverter.toQualifiedName(name)
 			val resource = context.eResource();
 			val scope =
-				if (SysMLLibraryUtil.isModelLibrary(resource))
+				if (resource.isModelLibrary)
 					scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference)
 				else 
 					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])

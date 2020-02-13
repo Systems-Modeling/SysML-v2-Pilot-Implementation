@@ -21,16 +21,18 @@ package IntegerFunctions {
 	function '='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'!=';
 	
+	function '..'(lower: Integer, upper: Integer): Integer[0..*] specializes ScalarFunctions::'..';	
+	
 	function ToString(x: Integer): String specializes BaseFunctions::ToString;
 	function ToNatural(x: Integer): Natural;
 	function ToInteger(x: String): Integer;
 	function ToReal(x: Integer): Real;
 	
-	function sum(collection: Integer[0..*]): Integer {
-		ScalarFunctions::sum(collection, 0)
+	function sum(collection: Integer[0..*]): Integer specializes ScalarFunctions::sum {
+		ScalarFunctions::sum0(collection, 0)
 	}
 	
-	function product(collection: Integer[0..*]): Integer {
-		ScalarFunctions::product(collection, 1)
+	function product(collection: Integer[0..*]): Integer specializes ScalarFunctions::product {
+		ScalarFunctions::product1(collection, 1)
 	}
 }	

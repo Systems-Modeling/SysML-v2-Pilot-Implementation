@@ -8,13 +8,13 @@ package JohnIndividualExample {
 	     	indirectly, of EXACTLY ONE maximal portion ("lifetime"), which 
 	    	serves as the "identity" of all those sub-portions. 
 	  	*/
-	  	feature identity : Lifetime_ [1] =
-	    	portionOf == null? self: Occurrence_::portionOf::identity;
+	  	feature maxPortionOf : Lifetime_ [1] subsets portionOf =
+	    	portionOf == self? self: Occurrence_::portionOf::maxPortionOf;
 	    
 	  	// The following are new features not currently in the library model
 	 	// of Occurrence. They are the inverses of the above features.
 	  	// (This is enforced by bidirectional associations not shown here.)
-	  	feature portionOf : Occurrence_[0..1];
+	  	feature portionOf : Occurrence_[1];
 	  	feature timeSliceOf : Occurrence_[0..1] subsets portionOf;
 	  	feature snapshotOf : Occurrence_[0..1] subsets timeSliceOf;
 	}
@@ -23,8 +23,8 @@ package JohnIndividualExample {
 	  This is a classification of all "lifetime" occurrences, defined to
 	  be those occurrences that are "maximal portions".
 	*/
-	classifier Lifetime_ specializes Occurrence_ {
-	  feature redefines portionOf[0];
+	classifier all Lifetime_ specializes Occurrence_ {
+	  feature redefines portionOf = self;
 	}
 	
 	class Object_ specializes Object, Occurrence_;
@@ -69,23 +69,21 @@ package JohnIndividualExample {
 	  There is at most one such person.
 	*/
 	class John specializes Person {
-		class Lifetime specializes John, Lifetime_ [0..1];
+		class all Lifetime specializes John, Lifetime_ [0..1];
 	} 
 	
 	/**
 	  This is the class of time slices of John's life in which he is
 	  a president.
 	*/
-	class JohnAsPresident specializes John, President {
-	  feature redefines timeSliceOf : John::Lifetime [1];
-	}
+	class JohnAsPresident specializes John, President;
 	
 	/**
 	  This is the class of countries, each of which may have at most one
 	  president.
 	*/
 	class Country specializes Object_ {
-		class Lifetime specializes Country, Lifetime_;
+		class all Lifetime specializes Country, Lifetime_;
 
 		feature presidentOfCountry : President[0..1];
 	  
@@ -100,7 +98,7 @@ package JohnIndividualExample {
 	  always has a president who must be at least 35 years old.
 	*/
 	class UnitedStates specializes Country {
-		class Lifetime specializes UnitedStates, Lifetime_ [1];
+		class all Lifetime specializes UnitedStates, Lifetime_ [1];
 	  	feature presidentOfUS[1] redefines presidentOfCountry {
 	   		inv { age >= 35 } 
 	  	}

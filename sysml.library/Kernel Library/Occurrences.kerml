@@ -44,8 +44,24 @@ package Occurrences {
 	 * PortionOf asserts one occurrence is a portion of another.
 	 */
 	assoc PortionOf { 
-		end feature whole: Occurrence[0..1];
+		end feature portionOf: Occurrence[0..1] redefines Occurrence::portionOf, BinaryLink::source;
 		end portion feature 'portion': Occurrence[0..*] redefines Occurrence::portions, BinaryLink::target; 
+	}
+	
+	/**
+	 * TimeSliceOf asserts once occurrence is a time slice of another.
+	 */
+	assoc TimeSliceOf {
+		end feature timeSliceOf: Occurrence[1..*] redefines Occurrence::timeSliceOf, BinaryLink::source;
+		end portion feature timeSlice: Occurrence[0..*] redefines Occurrence::timeSlices, BinaryLink::target;
+	}
+	
+	/**
+	 * SnapshotsOf asserts once occurrence is a snapshot of another.
+	 */
+	assoc SnapshotOf {
+		end feature snapshotOf: Occurrence[1..*] redefines Occurrence::snapshotOf, BinaryLink::source;
+		end portion feature snapshot: Occurrence[0..*] redefines Occurrence::snapshots, BinaryLink::target;
 	}
 	
 	/** 

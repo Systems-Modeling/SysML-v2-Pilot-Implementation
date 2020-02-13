@@ -107,8 +107,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives(), "rule__SequenceConstructionExpression__Alternatives");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives_1_2(), "rule__SequenceConstructionExpression__Alternatives_1_2");
 			builder.put(grammarAccess.getLiteralExpressionAccess().getAlternatives(), "rule__LiteralExpression__Alternatives");
+			builder.put(grammarAccess.getBooleanValueAccess().getAlternatives(), "rule__BooleanValue__Alternatives");
 			builder.put(grammarAccess.getRealValueAccess().getAlternatives(), "rule__RealValue__Alternatives");
-			builder.put(grammarAccess.getRealValueAccess().getAlternatives_0_0(), "rule__RealValue__Alternatives_0_0");
+			builder.put(grammarAccess.getRealValueAccess().getAlternatives_0_2(), "rule__RealValue__Alternatives_0_2");
 			builder.put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getAlternatives(), "rule__UnlimitedNaturalLiteralExpression__Alternatives");
 			builder.put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 			builder.put(grammarAccess.getQualifiedNameAccess().getAlternatives(), "rule__QualifiedName__Alternatives");
@@ -362,9 +363,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceElementListAccess().getGroup_1(), "rule__SequenceElementList__Group_1__0");
 			builder.put(grammarAccess.getNullExpressionAccess().getGroup(), "rule__NullExpression__Group__0");
 			builder.put(grammarAccess.getRealValueAccess().getGroup_0(), "rule__RealValue__Group_0__0");
-			builder.put(grammarAccess.getRealValueAccess().getGroup_0_0_0(), "rule__RealValue__Group_0_0_0__0");
-			builder.put(grammarAccess.getRealValueAccess().getGroup_0_0_1(), "rule__RealValue__Group_0_0_1__0");
-			builder.put(grammarAccess.getRealValueAccess().getGroup_1(), "rule__RealValue__Group_1__0");
 			builder.put(grammarAccess.getUnlimitedNaturalLiteralExpressionAccess().getGroup_1(), "rule__UnlimitedNaturalLiteralExpression__Group_1__0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getGroup(), "rule__NamedExpressionMember__Group__0");
 			builder.put(grammarAccess.getBodyParameterMemberAccess().getGroup(), "rule__BodyParameterMember__Group__0");

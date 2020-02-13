@@ -12845,21 +12845,52 @@ ruleBooleanLiteralExpression returns [EObject current=null]
 }:
 	(
 		(
-			lv_value_0_0=RULE_BOOLEAN_VALUE
 			{
-				newLeafNode(lv_value_0_0, grammarAccess.getBooleanLiteralExpressionAccess().getValueBOOLEAN_VALUETerminalRuleCall_0());
+				newCompositeNode(grammarAccess.getBooleanLiteralExpressionAccess().getValueBooleanValueParserRuleCall_0());
 			}
+			lv_value_0_0=ruleBooleanValue
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getBooleanLiteralExpressionRule());
+					$current = createModelElementForParent(grammarAccess.getBooleanLiteralExpressionRule());
 				}
-				setWithLastConsumed(
+				set(
 					$current,
 					"value",
 					lv_value_0_0,
-					"org.omg.kerml.xtext.KerML.BOOLEAN_VALUE");
+					"org.omg.kerml.xtext.KerML.BooleanValue");
+				afterParserOrEnumRuleCall();
 			}
 		)
+	)
+;
+
+// Entry rule entryRuleBooleanValue
+entryRuleBooleanValue returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getBooleanValueRule()); }
+	iv_ruleBooleanValue=ruleBooleanValue
+	{ $current=$iv_ruleBooleanValue.current.getText(); }
+	EOF;
+
+// Rule BooleanValue
+ruleBooleanValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='true'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBooleanValueAccess().getTrueKeyword_0());
+		}
+		    |
+		kw='false'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getBooleanValueAccess().getFalseKeyword_1());
+		}
 	)
 ;
 
@@ -12952,72 +12983,45 @@ ruleRealValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	(
 		(
 			(
-				(
-					(
-						this_DECIMAL_VALUE_0=RULE_DECIMAL_VALUE
-						{
-							$current.merge(this_DECIMAL_VALUE_0);
-						}
-						{
-							newLeafNode(this_DECIMAL_VALUE_0, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_0_0());
-						}
-					)?
-					kw='.'
-					{
-						$current.merge(kw);
-						newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_0_0_1());
-					}
-					this_DECIMAL_VALUE_2=RULE_DECIMAL_VALUE
-					{
-						$current.merge(this_DECIMAL_VALUE_2);
-					}
-					{
-						newLeafNode(this_DECIMAL_VALUE_2, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_0_2());
-					}
-				)
-				    |
-				(
-					this_DECIMAL_VALUE_3=RULE_DECIMAL_VALUE
-					{
-						$current.merge(this_DECIMAL_VALUE_3);
-					}
-					{
-						newLeafNode(this_DECIMAL_VALUE_3, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0_1_0());
-					}
-					kw='.'
-					{
-						$current.merge(kw);
-						newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_0_1_1());
-					}
-				)
-			)
-			(
-				this_EXP_SUFFIX_5=RULE_EXP_SUFFIX
+				this_DECIMAL_VALUE_0=RULE_DECIMAL_VALUE
 				{
-					$current.merge(this_EXP_SUFFIX_5);
+					$current.merge(this_DECIMAL_VALUE_0);
 				}
 				{
-					newLeafNode(this_EXP_SUFFIX_5, grammarAccess.getRealValueAccess().getEXP_SUFFIXTerminalRuleCall_0_1());
+					newLeafNode(this_DECIMAL_VALUE_0, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0());
 				}
 			)?
+			kw='.'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_1());
+			}
+			(
+				this_DECIMAL_VALUE_2=RULE_DECIMAL_VALUE
+				{
+					$current.merge(this_DECIMAL_VALUE_2);
+				}
+				{
+					newLeafNode(this_DECIMAL_VALUE_2, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_2_0());
+				}
+				    |
+				this_EXP_VALUE_3=RULE_EXP_VALUE
+				{
+					$current.merge(this_EXP_VALUE_3);
+				}
+				{
+					newLeafNode(this_EXP_VALUE_3, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_0_2_1());
+				}
+			)
 		)
 		    |
-		(
-			this_DECIMAL_VALUE_6=RULE_DECIMAL_VALUE
-			{
-				$current.merge(this_DECIMAL_VALUE_6);
-			}
-			{
-				newLeafNode(this_DECIMAL_VALUE_6, grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_1_0());
-			}
-			this_EXP_SUFFIX_7=RULE_EXP_SUFFIX
-			{
-				$current.merge(this_EXP_SUFFIX_7);
-			}
-			{
-				newLeafNode(this_EXP_SUFFIX_7, grammarAccess.getRealValueAccess().getEXP_SUFFIXTerminalRuleCall_1_1());
-			}
-		)
+		this_EXP_VALUE_4=RULE_EXP_VALUE
+		{
+			$current.merge(this_EXP_VALUE_4);
+		}
+		{
+			newLeafNode(this_EXP_VALUE_4, grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_1());
+		}
 	)
 ;
 
@@ -13811,11 +13815,9 @@ ruleFeatureDirection returns [Enumerator current=null]
 	)
 ;
 
-RULE_BOOLEAN_VALUE : ('true'|'false');
+RULE_DECIMAL_VALUE : '0'..'9' ('0'..'9')*;
 
-RULE_DECIMAL_VALUE : '0'..'9' ('_'? '0'..'9')*;
-
-RULE_EXP_SUFFIX : ('e'|'E') ('+'|'-')? RULE_DECIMAL_VALUE;
+RULE_EXP_VALUE : RULE_DECIMAL_VALUE ('e'|'E') ('+'|'-')? RULE_DECIMAL_VALUE;
 
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

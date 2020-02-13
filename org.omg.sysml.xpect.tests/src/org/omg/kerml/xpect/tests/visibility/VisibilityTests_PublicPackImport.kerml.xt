@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.testsuite.SysMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.alf"}
+		File {from ="/src/DependencyVisibilityPackage.alf"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.alf"}
+				File {from ="/src/DependencyVisibilityPackage.alf"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::c_Public::*;
+	//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
+	//* XPECT scope at c_public ---
+		   c_public, f,
+		   Test3.c_public, Test3.f, 
+			 
+			VisibilityPackage.c_Public_alias.alias_public,
+			VisibilityPackage.c_Public, 
+			
+			VisibilityPackage.c_Public.c_public, 
+			VisibilityPackage.c_Public_alias, 
+			VisibilityPackage.c_Public_alias.c_public,
+			VisibilityPackage.c_clazz, 
+			VisibilityPackage.c_clazz.c_Public,
+			VisibilityPackage.c_clazz.c_Public.c_publicc
+	--- */
+	feature f : c_public;
+}

@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	class non{}
+	class A{
+		//XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
+		feature aa is non;
+		feature a: A;
+	}
+	class B{
+		  //* XPECT errors ---
+			"Couldn't resolve reference to Type 'test'." at "test"
+			"no viable alternative at input ':'" at ":"
+		--- */
+		feature b: test:A::a;
+	}
+}

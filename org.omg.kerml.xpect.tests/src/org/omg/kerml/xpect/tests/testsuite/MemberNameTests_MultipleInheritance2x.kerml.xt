@@ -1,0 +1,54 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//this test is similar to MultipleInheritance2 but the order of classes defined are the different.
+// XPECT noErrors --> ""
+package test{
+	
+	//* XPECT scope at B ---
+ 		A, A.AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D,	EE,  
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+	--- */			
+	class C specializes B{
+		//* XPECT scope at AA ---
+ 		A, A.AA, AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D, EE, b, c,  
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b,	test.C, test.C.AA, test.C.b, test.C.c, test.D, test.EE,
+	--- */
+		class c specializes AA {}
+	}
+	//* XPECT scope at A ---
+ 		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D, EE, 
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+	--- */
+	class B specializes A{
+		//* XPECT scope at AA ---
+ 		A, A.AA, AA, B, B.AA, B.b,C, C.AA, C.b, C.c, D, EE, b,   
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b,	test.C, test.C.AA, test.C.b, test.C.c, test.D, test.EE,
+	--- */
+		class b specializes AA {}
+	}
+	
+	class A{
+		class AA {}
+	}
+	class EE{}
+	//* XPECT scope at C::AA ---
+ 		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D, EE, 
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b,test.C.c, test.D, test.EE,
+	--- */
+	class D specializes C::AA{}
+}

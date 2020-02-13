@@ -1,0 +1,36 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+		File {from ="/src/DependencyMultipleMembership.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/src/DependencyMultipleMembership.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package test{
+	import OuterPackage2::*;
+	//XPECT linkedName at C::b --> OuterPackage.B.b
+	//* XPECT scope at C::b ---
+	   	   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+	   	   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, OuterPackage2.C, OuterPackage2.C.c, OuterPackage2.C.b.a1, OuterPackage2.C.b,
+	   	   
+	   	   B.b.a1, C.b.a1, try.a1,
+	   	   test.B.b.a1, test.C.b.a1, test.try.a1,
+		   B, B.b, C, C.b, C.c, try,
+		   test.B, test.B.b, test.C, test.C.b, test.C.c, test.try, 
+   	--- */
+	feature try : C::b;
+}

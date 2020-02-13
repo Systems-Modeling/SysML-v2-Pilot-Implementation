@@ -1,0 +1,28 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Classes {
+	// XPECT errors ---> "Couldn't resolve reference to Element 'VisibilityPackage::c_Private::c_private'." at "VisibilityPackage::c_Private::c_private"
+	import VisibilityPackage::c_Private::c_private as aliass;
+	class Try{
+		// XPECT errors ---> "Couldn't resolve reference to Type 'aliass'." at "aliass"
+		feature feature1 : aliass;
+	}
+}
+

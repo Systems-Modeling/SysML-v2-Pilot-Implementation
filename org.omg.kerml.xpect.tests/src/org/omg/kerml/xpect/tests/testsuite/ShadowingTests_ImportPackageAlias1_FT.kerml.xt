@@ -1,0 +1,55 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyPackageAlias1_Feature.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyPackageAlias1_Feature.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import PackageAlias1::*;
+	feature A{}
+	//XPECT linkedName at A --> test.A
+	//* XPECT scope at A ---
+	   	   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
+	   	   AA.aa_alias, AA_alias.aa_alias,A_alias.a_alias, test_alias.a_alias, test.AA.aa_alias, test.AA_alias.aa_alias, test.A_alias.a_alias, test.test_alias.a_alias,
+ 		   A, AA, AA.aa, AA_alias, AA_alias.aa, A_alias, A_alias.a, test_a,
+ 		   test.A, test.AA,	test.AA.aa, test.AA_alias, test.AA_alias.aa, test.A_alias, test.A_alias.a, test.test_a,
+ 		   test_alias, test_alias.a,
+ 		   test.test_alias, test.test_alias.a,  
+ 		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa,  PackageAlias1.AA.aa_alias
+ 		   --- */
+	feature test_a : A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
+	
+	//XPECT linkedName at A_alias --> PackageAlias1.A
+	//* XPECT scope at A_alias ---
+	       PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
+		   AA.aa_alias, AA_alias.aa_alias,A_alias.a_alias, test_alias.a_alias, test.AA.aa_alias, test.AA_alias.aa_alias, test.A_alias.a_alias, test.test_alias.a_alias,
+		   A, AA, AA.aa, AA_alias, AA_alias.aa, A_alias, A_alias.a, test_a,
+ 		   test.A, test.AA,	test.AA.aa, test.AA_alias, test.AA_alias.aa, test.A_alias, test.A_alias.a, test.test_a,
+ 		   test_alias, test_alias.a,
+ 		   test.test_alias, test.test_alias.a,  
+ 		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.A.a_alias, PackageAlias1.AA.aa_alias, 
+ 		   --- */
+	feature test_alias : A_alias{}
+}
+//*
+   	   Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	   	Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	   	Base.Link.participant,	   	Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	   	Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,	   	Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	   	Base.selfLinks, Base.things, Base.values,
+ 		   Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink, Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink, Base.Value												
+	
+ */

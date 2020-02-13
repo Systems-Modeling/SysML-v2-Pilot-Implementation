@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Import_QualifiedName {
+	package P1 {
+		class A;
+	}
+	package P2 {
+		package P2a {
+			import P1::*;
+		}
+		//* XPECT scope at P2a::A ---
+			   x, P1.A, P2.P2a.A, ,P2.x, P2a.A,  
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.x, Import_QualifiedName.P2.P2a.A,  
+		--- */
+		// The following should not fail.
+		// A is a member of P2a because of the import.
+		x: P2a::A;
+	}
+}

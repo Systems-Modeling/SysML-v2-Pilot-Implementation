@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Test3{
+	class P{
+		protected class PP{}
+	}
+	class A specializes P {
+ 		class AA specializes PP{}
+ 		class BB specializes P::PP{}
+ 		class CC specializes Test3.P.PP{}
+ 		feature DD: PP;
+	}	
+	class B {
+		feature BB1: P;
+		// XPECT errors --> "Couldn't resolve reference to Type 'P::PP'." at "P::PP"
+		feature BB2: P::PP; 
+	}
+}

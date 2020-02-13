@@ -1,0 +1,25 @@
+/* 
+XPECT_SETUP org.omg.kerml.xpect.tests.query.KerMLQueryTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library_expr/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library_expr/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package P {
+	class A;
+	class C;
+	f : C;
+	a : C = ./f;
+}
+

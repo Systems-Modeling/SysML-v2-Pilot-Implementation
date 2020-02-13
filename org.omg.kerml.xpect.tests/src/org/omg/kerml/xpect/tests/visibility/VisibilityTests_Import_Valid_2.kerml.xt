@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::c_Public::*;
+	import VisibilityPackage::c_Public::c_public::*;
+	import VisibilityPackage::c_Public_alias::*;
+	import VisibilityPackage::c_Public_alias::c_public::*;
+	import VisibilityPackage::c_Public_alias::alias_public::*;
+	import VisibilityPackage::c_clazz::*;
+	import VisibilityPackage::c_clazz::c_Public::*;
+	import VisibilityPackage::c_clazz::c_Public::c_publicc::*;
+	import VisibilityPackage::c_clazz::c_Public::c_publicc;
+	feature try : c_publicc;
+}

@@ -1,0 +1,28 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.generator.KerMLGeneratorTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//*
+Test the full generated code
+XPECT generated ---
+(no files have been generated)
+----
+*/
+
+package Classes1 {
+	private class B {
+	} 	
+}

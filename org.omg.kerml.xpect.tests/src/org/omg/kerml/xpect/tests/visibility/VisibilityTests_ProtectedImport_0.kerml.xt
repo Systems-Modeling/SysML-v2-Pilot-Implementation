@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test3{
+	import VisibilityPackage::*;
+	class A specializes c_clazz{
+ 		class AA specializes c_Protect::c_publicc{}
+ 		class BB specializes A::c_Protect::c_publicc{}
+ 		class CC specializes Test3::A::c_Protect::c_publicc{}
+ 		class DD specializes c_Protect{}
+	}
+	class B specializes c_Public_alias{
+ 		class AA specializes alias_protected_is_c_protected{}
+	}
+	class C specializes c_Public{
+		class CC specializes c_protected{}
+	}
+}

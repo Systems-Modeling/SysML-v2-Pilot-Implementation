@@ -1,0 +1,34 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	class A {
+		import test::*;
+		//XPECT linkedName at A --> test.A
+		//*XPECT scope at A ---
+		   test.A.A, test.A.A.a, test.A.A.a.a,
+		   a, a.A, a.A.a, a.a,
+ 		   A, A.a,  A.a.a, test.A, test.A.a, test.A.a.a, 
+ 		   test.A.a.A, test.A.a.A.a,
+		   --- */
+		class a specializes A;
+	}
+}
+
+ //missing A.A, A.A.a, A.A.a.a
+ //A.a.A, A.a.A.a

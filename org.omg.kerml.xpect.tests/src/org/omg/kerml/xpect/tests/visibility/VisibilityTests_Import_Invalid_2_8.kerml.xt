@@ -1,0 +1,27 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Test3{
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_clazz::c_Package::c_publicc'." at "VisibilityPackage::c_clazz::c_Package::c_publicc"
+	import VisibilityPackage::c_clazz::c_Package::c_publicc::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_clazz::c_Public::c_protect'." at "VisibilityPackage::c_clazz::c_Public::c_protect"
+	import VisibilityPackage::c_clazz::c_Public::c_protect::*;
+}
+

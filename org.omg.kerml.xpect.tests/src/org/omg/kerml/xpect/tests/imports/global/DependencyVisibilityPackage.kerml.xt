@@ -1,0 +1,76 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test3{
+	//* XPECT scope at VisibilityPackage::c_Public ---
+	    c_Public, c_Public.c_public,
+	    Test3, Test3.c_Public, Test3.c_Public.c_public,
+	    VisibilityPackage, 
+	    VisibilityPackage.c_Public,
+	    VisibilityPackage.c_Public.c_public, 
+	    VisibilityPackage.c_Public_alias,
+	    VisibilityPackage.c_Public_alias.alias_public, 
+	    VisibilityPackage.c_Public_alias.c_public, 
+	    VisibilityPackage.c_clazz,
+	    VisibilityPackage.c_clazz.c_Public,
+	    VisibilityPackage.c_clazz.c_Public.c_publicc
+	--- */
+	import VisibilityPackage::c_Public;
+}
+
+//*
+   package VisibilityPackage {
+			private class c_Private{
+				private class c_private{}
+				public class c_public{}
+			}
+			
+			public class c_Public{
+				private class c_private{}
+				public class c_public{}
+			}
+			
+			public class c_Public_alias{
+				public class c_public{}
+				private class alias_private is c_public; 
+				public class alias_public is c_public;
+			}
+			
+			private class c_Private_alias{
+				public class c_public{}
+				private class alias_private is c_public; 
+				public class alias_public is c_public;
+			}
+			
+			public class c_clazz{
+				protected class c_Protect{
+					public class c_publicc{}
+				}
+				packaged class c_Package{
+					public class c_publicc{}
+				}
+				
+				public class c_Public{
+					protected class c_protect{}
+					packaged class c_packagee{}
+				}
+			}
+		}
+ */

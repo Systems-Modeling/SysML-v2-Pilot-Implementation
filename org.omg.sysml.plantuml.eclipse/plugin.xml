@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="net.sourceforge.plantuml.eclipse.diagramTextProvider">
+
+      <diagramTextProvider
+            id="org.omg.sysml.plantuml.SysMLDiagramTextProvider"
+            label="Diagrams generated from SysML models"
+            priority="100"
+            providerClass="org.omg.sysml.plantuml.eclipse.SysMLDiagramTextProvider">
+      </diagramTextProvider>
+   </extension>
+   <extension
+         point="net.sourceforge.plantuml.eclipse.linkOpener">
+      <linkOpener
+            linkOpenerClass="org.omg.sysml.plantuml.eclipse.SysMLDiagramLinkOpener">
+      </linkOpener>
+   </extension>
+
+</plugin>

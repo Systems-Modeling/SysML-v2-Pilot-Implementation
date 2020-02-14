@@ -21,6 +21,16 @@ package Blocks {
 		 * Actions that are performed by this part.
 		 */
 		abstract ref action performedActions: Activities::Action[0..*] :> enactedPerformances;
+		
+		/**
+		 * States that are exhibited by this part.
+		 */
+		abstract ref state exhibitedStates: States::State[0..*] :> performedActions;
+		
+		/**
+		 * Constraints that are asserted by this part.
+		 */
+		abstract ref constraint assertedConstraints: Constraints::Constraint[0..*] :> enactedPerformances;
 	}
 	
 	/**
@@ -53,12 +63,6 @@ package Blocks {
 	}
 	
 	/**
-	 * Constraint is the most general class of constraints. Constraint is the base
-	 * type of all constraint definitions.
-	 */
-	constraint def Constraint :> BooleanEvaluation, Part;
-	
-	/**
 	 * Value is the most general type of data values that represent value properties of a 
 	 * system or part of a system. Value is the base type of all value types.
 	 */
@@ -79,11 +83,6 @@ package Blocks {
 	 */
 	abstract part interfaces: Interface[0..*] :> connections;
 	
-	/**
-	 * constraints is the base feature of all constraint usages.
-	 */
-	abstract constraint constraints: Constraint[0..*] :> objects;
-
 	/**
 	 * values is the base feature for all value properties.
 	 */

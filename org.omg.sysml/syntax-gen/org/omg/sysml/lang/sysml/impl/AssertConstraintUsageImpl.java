@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +29,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
+
+	public static final String ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT = "Blocks::Part::assertedConstraints";
+	
+	private Type subsettingBaseDefault;
+	private Type subsettingPartDefault;
+
 	/**
 	 * The cached value of the BindingConnector from the result of the
 	 * this ConstraintUsage to the result of a LiteralBoolean true.
@@ -100,13 +107,31 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetAssertedConstraint() {
-		EList<Subsetting> subsettings = getOwnedSubsetting();
-		if (subsettings.isEmpty()) {
+		Type subsettingBaseDefault = getSubsettingBaseDefault();
+		Type subsettingPartDefault = getSubsettingPartDefault();
+		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
+				allMatch(feature->feature == subsettingBaseDefault || 
+				         feature == subsettingPartDefault)) {
 			return this;
 		} else {
 			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
 			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
 		}
+	}
+	
+	protected Type getSubsettingBaseDefault() {
+		if (subsettingBaseDefault == null) {
+			subsettingBaseDefault = getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+		}
+		return subsettingBaseDefault;
+	}
+
+	protected Type getSubsettingPartDefault() {
+		if (subsettingPartDefault == null) {
+			subsettingPartDefault = getDefaultType(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT);
+		}
+		return subsettingPartDefault;
 	}
 
 	/**
@@ -121,6 +146,17 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 
 	// Additional redefinitions and subsets
 
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return isEnactedPerformance()?
+				getOwnedSubsettingWithComputedRedefinitions(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT):
+				super.getOwnedSubsetting();
+	}
+	
+	public boolean isEnactedPerformance() {
+		return StepImpl.isEnactedPerformance(this);
+	}
+	
 	@Override
 	public EList<Feature> getFeature() {
 		getAssertionConnector();

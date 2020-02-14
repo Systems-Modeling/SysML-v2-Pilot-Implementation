@@ -45,7 +45,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
-	public static final String CONSTRAINT_USAGE_SUBSETTING_DEFAULT = "Blocks::constraints";
+	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraints";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -391,7 +391,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_USAGE_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
 	}
 	
 	@Override

@@ -521,7 +521,6 @@ EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
 ;
 
-
 /* INTERACTIONS */
 
 Interaction returns SysML::Interaction :

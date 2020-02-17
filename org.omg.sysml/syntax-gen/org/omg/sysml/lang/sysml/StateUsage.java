@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * A StateUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is a StateDefinition, a StateUsage is a Usage of that StateDefinition within a system. However, non-StateDefinition Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.
  * 
- * A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base ActionUsage "states" from the Systems model library, if it is not a composite feature, or the StateUsage "substates" inherited from its owner, if it is a composite feature.
+ * A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage "states" from the Systems model library, if it is not a composite feature, or the StateUsage "substates" inherited from its owner, if it is a composite feature.
  * 
  * A StateUsage may have up to three features using StateBehaviorMembership, all of different kinds, corresponding to the entry, do and exit actions of the state.
  * <!-- end-model-doc -->
@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getStateOwningUsage <em>State Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getStateDefinition <em>State Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getStateOwningDefinition <em>State Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getStateDefinition <em>State Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getStateOwningUsage <em>State Owning Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage()

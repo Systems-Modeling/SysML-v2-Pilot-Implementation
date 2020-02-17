@@ -40,6 +40,15 @@ public interface SysMLFactory extends EFactory {
 	SendActionUsage createSendActionUsage();
 
 	/**
+	 * Returns a new object of class '<em>Assert Constraint Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assert Constraint Usage</em>'.
+	 * @generated
+	 */
+	AssertConstraintUsage createAssertConstraintUsage();
+
+	/**
 	 * Returns a new object of class '<em>Accept Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

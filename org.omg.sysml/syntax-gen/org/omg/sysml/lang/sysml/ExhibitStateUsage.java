@@ -8,7 +8,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An ExhibitStateUsage is a StateUsage that represents the exhibiting of another StateUsage. The StateUsage to be exhibited is related to the ExhibitStateUsage by a Subsetting relationship. 
+ * An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting relationship. 
  * 
  * If the ExhibitStateUsage is owned by a Part, then it also subsets the exhibitedStates property of that Part (as defined in the library model for Part), otherwise it subsets either "states" or "subsubstates", as required for a regular StateUsage.
  * <!-- end-model-doc -->
@@ -33,6 +33,9 @@ public interface ExhibitStateUsage extends StateUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the subsetted element of the first owned Subsetting relationship of the ExhibitStateUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exhibited State</em>' reference.
 	 * @see #setExhibitedState(StateUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExhibitStateUsage_ExhibitedState()

@@ -67,7 +67,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		EList<Step> triggerSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__TRIGGER_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			Feature trigger = ((TransitionUsageImpl)transitionStep).getTrigger();
+			Feature trigger = ((TransitionUsageImpl)transitionStep).getTriggerAction();
 			if (trigger instanceof Step) {
 				triggerSteps.add((Step)trigger);
 			}
@@ -85,7 +85,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		EList<Step> effectSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__EFFECT_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			Feature effect = ((TransitionUsageImpl)transitionStep).getEffect();
+			Feature effect = ((TransitionUsageImpl)transitionStep).getEffectAction();
 			if (effect instanceof Step) {
 				effectSteps.add((Step)effect);
 			}
@@ -103,7 +103,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		EList<Expression> guardExpressions = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			Feature guard = ((TransitionUsageImpl)transitionStep).getGuard();
+			Feature guard = ((TransitionUsageImpl)transitionStep).getGuardExpression();
 			if (guard instanceof Expression) {
 				guardExpressions.add((Expression)guard);
 			}

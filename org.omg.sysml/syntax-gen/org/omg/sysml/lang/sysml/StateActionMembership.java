@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A StateBehaviorMembership is a FeatureMembership for an entry, do or exit Action in a StateUsage.
+ * A StateActionMembership is a FeatureMembership for an entry, do or exit Action in a StateUsage. The memberFeature must be an Action.
  * <!-- end-model-doc -->
  *
  * <p>

@@ -16489,22 +16489,11 @@ ruleConstraintUsage returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getConstraintUsageRule());
 			}
-			newCompositeNode(grammarAccess.getConstraintUsageAccess().getInvariantPartParserRuleCall_1());
+			newCompositeNode(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_1());
 		}
-		this_InvariantPart_1=ruleInvariantPart[$current]
+		this_ConstraintBody_1=ruleConstraintBody[$current]
 		{
-			$current = $this_InvariantPart_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getConstraintUsageRule());
-			}
-			newCompositeNode(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_2());
-		}
-		this_ConstraintBody_2=ruleConstraintBody[$current]
-		{
-			$current = $this_ConstraintBody_2.current;
+			$current = $this_ConstraintBody_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -16541,22 +16530,11 @@ ruleAbstractConstraintUsage returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getAbstractConstraintUsageRule());
 			}
-			newCompositeNode(grammarAccess.getAbstractConstraintUsageAccess().getInvariantPartParserRuleCall_1());
+			newCompositeNode(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_1());
 		}
-		this_InvariantPart_1=ruleInvariantPart[$current]
+		this_AbstractConstraintBody_1=ruleAbstractConstraintBody[$current]
 		{
-			$current = $this_InvariantPart_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getAbstractConstraintUsageRule());
-			}
-			newCompositeNode(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_2());
-		}
-		this_AbstractConstraintBody_2=ruleAbstractConstraintBody[$current]
-		{
-			$current = $this_AbstractConstraintBody_2.current;
+			$current = $this_AbstractConstraintBody_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -16817,60 +16795,6 @@ ruleConstraintParameterPart[EObject in_current]  returns [EObject current=in_cur
 	)
 ;
 
-
-// Rule InvariantPart
-ruleInvariantPart[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0());
-			}
-			lv_ownedFeatureMembership_comp_0_0=ruleTrueLiteralMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getInvariantPartRule());
-				}
-				add(
-					$current,
-					"ownedFeatureMembership_comp",
-					lv_ownedFeatureMembership_comp_0_0,
-					"org.omg.sysml.xtext.SysML.TrueLiteralMember");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTrueLiteralExpression
-entryRuleTrueLiteralExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTrueLiteralExpressionRule()); }
-	iv_ruleTrueLiteralExpression=ruleTrueLiteralExpression
-	{ $current=$iv_ruleTrueLiteralExpression.current; }
-	EOF;
-
-// Rule TrueLiteralExpression
-ruleTrueLiteralExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction(),
-				$current);
-		}
-	)
-;
-
 // Entry rule entryRuleAssertConstraintUsage
 entryRuleAssertConstraintUsage returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getAssertConstraintUsageRule()); }
@@ -16960,26 +16884,37 @@ ruleAssertConstraintUsage returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
 				}
-				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_3());
+				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getInvariantPartParserRuleCall_0_3());
 			}
-			this_DefinitionBody_5=ruleDefinitionBody[$current]
+			this_InvariantPart_5=ruleInvariantPart[$current]
 			{
-				$current = $this_DefinitionBody_5.current;
+				$current = $this_InvariantPart_5.current;
+				afterParserOrEnumRuleCall();
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
+				}
+				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_4());
+			}
+			this_DefinitionBody_6=ruleDefinitionBody[$current]
+			{
+				$current = $this_DefinitionBody_6.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
 		    |
 		(
-			otherlv_6='constraint'
+			otherlv_7='constraint'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_1_0());
+				newLeafNode(otherlv_7, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_1_0());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getNameNameParserRuleCall_1_1_0());
 					}
-					lv_name_7_0=ruleName
+					lv_name_8_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssertConstraintUsageRule());
@@ -16987,7 +16922,7 @@ ruleAssertConstraintUsage returns [EObject current=null]
 						set(
 							$current,
 							"name",
-							lv_name_7_0,
+							lv_name_8_0,
 							"org.omg.sysml.xtext.SysML.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -17000,9 +16935,9 @@ ruleAssertConstraintUsage returns [EObject current=null]
 					}
 					newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getTypePartParserRuleCall_1_2());
 				}
-				this_TypePart_8=ruleTypePart[$current]
+				this_TypePart_9=ruleTypePart[$current]
 				{
-					$current = $this_TypePart_8.current;
+					$current = $this_TypePart_9.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -17012,9 +16947,9 @@ ruleAssertConstraintUsage returns [EObject current=null]
 				}
 				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getConstraintParameterPartParserRuleCall_1_3());
 			}
-			this_ConstraintParameterPart_9=ruleConstraintParameterPart[$current]
+			this_ConstraintParameterPart_10=ruleConstraintParameterPart[$current]
 			{
-				$current = $this_ConstraintParameterPart_9.current;
+				$current = $this_ConstraintParameterPart_10.current;
 				afterParserOrEnumRuleCall();
 			}
 			{
@@ -17023,9 +16958,9 @@ ruleAssertConstraintUsage returns [EObject current=null]
 				}
 				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getInvariantPartParserRuleCall_1_4());
 			}
-			this_InvariantPart_10=ruleInvariantPart[$current]
+			this_InvariantPart_11=ruleInvariantPart[$current]
 			{
-				$current = $this_InvariantPart_10.current;
+				$current = $this_InvariantPart_11.current;
 				afterParserOrEnumRuleCall();
 			}
 			{
@@ -17034,12 +16969,66 @@ ruleAssertConstraintUsage returns [EObject current=null]
 				}
 				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getConstraintBodyParserRuleCall_1_5());
 			}
-			this_ConstraintBody_11=ruleConstraintBody[$current]
+			this_ConstraintBody_12=ruleConstraintBody[$current]
 			{
-				$current = $this_ConstraintBody_11.current;
+				$current = $this_ConstraintBody_12.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
+	)
+;
+
+
+// Rule InvariantPart
+ruleInvariantPart[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0());
+			}
+			lv_ownedFeatureMembership_comp_0_0=ruleTrueLiteralMember
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getInvariantPartRule());
+				}
+				add(
+					$current,
+					"ownedFeatureMembership_comp",
+					lv_ownedFeatureMembership_comp_0_0,
+					"org.omg.sysml.xtext.SysML.TrueLiteralMember");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleTrueLiteralExpression
+entryRuleTrueLiteralExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTrueLiteralExpressionRule()); }
+	iv_ruleTrueLiteralExpression=ruleTrueLiteralExpression
+	{ $current=$iv_ruleTrueLiteralExpression.current; }
+	EOF;
+
+// Rule TrueLiteralExpression
+ruleTrueLiteralExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			$current = forceCreateModelElement(
+				grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction(),
+				$current);
+		}
 	)
 ;
 

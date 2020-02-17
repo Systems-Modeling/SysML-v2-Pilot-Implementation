@@ -9543,47 +9543,39 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConstraintUsage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConstraintDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cInvariantPartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final RuleCall cConstraintBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cConstraintBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		///* CONSTRAINTS */ ConstraintUsage SysML::ConstraintUsage:
-		//	ConstraintDeclaration InvariantPart ConstraintBody;
+		//	ConstraintDeclaration ConstraintBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConstraintDeclaration InvariantPart ConstraintBody
+		//ConstraintDeclaration ConstraintBody
 		public Group getGroup() { return cGroup; }
 		
 		//ConstraintDeclaration
 		public RuleCall getConstraintDeclarationParserRuleCall_0() { return cConstraintDeclarationParserRuleCall_0; }
 		
-		//InvariantPart
-		public RuleCall getInvariantPartParserRuleCall_1() { return cInvariantPartParserRuleCall_1; }
-		
 		//ConstraintBody
-		public RuleCall getConstraintBodyParserRuleCall_2() { return cConstraintBodyParserRuleCall_2; }
+		public RuleCall getConstraintBodyParserRuleCall_1() { return cConstraintBodyParserRuleCall_1; }
 	}
 	public class AbstractConstraintUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AbstractConstraintUsage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConstraintDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cInvariantPartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final RuleCall cAbstractConstraintBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cAbstractConstraintBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//AbstractConstraintUsage SysML::ConstraintUsage:
-		//	ConstraintDeclaration InvariantPart AbstractConstraintBody;
+		//	ConstraintDeclaration AbstractConstraintBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConstraintDeclaration InvariantPart AbstractConstraintBody
+		//ConstraintDeclaration AbstractConstraintBody
 		public Group getGroup() { return cGroup; }
 		
 		//ConstraintDeclaration
 		public RuleCall getConstraintDeclarationParserRuleCall_0() { return cConstraintDeclarationParserRuleCall_0; }
 		
-		//InvariantPart
-		public RuleCall getInvariantPartParserRuleCall_1() { return cInvariantPartParserRuleCall_1; }
-		
 		//AbstractConstraintBody
-		public RuleCall getAbstractConstraintBodyParserRuleCall_2() { return cAbstractConstraintBodyParserRuleCall_2; }
+		public RuleCall getAbstractConstraintBodyParserRuleCall_1() { return cAbstractConstraintBodyParserRuleCall_1; }
 	}
 	public class ConstraintDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConstraintDeclaration");
@@ -9713,32 +9705,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ValuePart?
 		public RuleCall getValuePartParserRuleCall_3() { return cValuePartParserRuleCall_3; }
 	}
-	public class InvariantPartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.InvariantPart");
-		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0 = (RuleCall)cOwnedFeatureMembership_compAssignment.eContents().get(0);
-		
-		//fragment InvariantPart returns SysML::Invariant:
-		//	ownedFeatureMembership_comp+=TrueLiteralMember;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedFeatureMembership_comp+=TrueLiteralMember
-		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
-		
-		//TrueLiteralMember
-		public RuleCall getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0() { return cOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0; }
-	}
-	public class TrueLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TrueLiteralExpression");
-		private final Action cLiteralBooleanAction = (Action)rule.eContents().get(1);
-		
-		//TrueLiteralExpression SysML::LiteralBoolean:
-		//	{SysML::LiteralBoolean};
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SysML::LiteralBoolean}
-		public Action getLiteralBooleanAction() { return cLiteralBooleanAction; }
-	}
 	public class AssertConstraintUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AssertConstraintUsage");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -9751,7 +9717,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationship_compAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compSubsetParserRuleCall_0_1_0 = (RuleCall)cOwnedRelationship_compAssignment_0_1.eContents().get(0);
 		private final RuleCall cConstraintParameterPartParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
-		private final RuleCall cDefinitionBodyParserRuleCall_0_3 = (RuleCall)cGroup_0.eContents().get(3);
+		private final RuleCall cInvariantPartParserRuleCall_0_3 = (RuleCall)cGroup_0.eContents().get(3);
+		private final RuleCall cDefinitionBodyParserRuleCall_0_4 = (RuleCall)cGroup_0.eContents().get(4);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cConstraintKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -9761,18 +9728,18 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInvariantPartParserRuleCall_1_4 = (RuleCall)cGroup_1.eContents().get(4);
 		private final RuleCall cConstraintBodyParserRuleCall_1_5 = (RuleCall)cGroup_1.eContents().get(5);
 		
-		//AssertConstraintUsage SysML::ConstraintUsage:
+		//AssertConstraintUsage SysML::AssertConstraintUsage:
 		//	(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset
-		//	ConstraintParameterPart DefinitionBody
+		//	ConstraintParameterPart InvariantPart DefinitionBody
 		//	| 'constraint' name=Name? TypePart?
 		//	ConstraintParameterPart InvariantPart ConstraintBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset ConstraintParameterPart DefinitionBody | 'constraint'
-		//name=Name? TypePart? ConstraintParameterPart InvariantPart ConstraintBody
+		//(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset ConstraintParameterPart InvariantPart DefinitionBody |
+		//'constraint' name=Name? TypePart? ConstraintParameterPart InvariantPart ConstraintBody
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset ConstraintParameterPart DefinitionBody
+		//(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset ConstraintParameterPart InvariantPart DefinitionBody
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//(name=Name? TypePart? 'by')?
@@ -9799,8 +9766,11 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ConstraintParameterPart
 		public RuleCall getConstraintParameterPartParserRuleCall_0_2() { return cConstraintParameterPartParserRuleCall_0_2; }
 		
+		//InvariantPart
+		public RuleCall getInvariantPartParserRuleCall_0_3() { return cInvariantPartParserRuleCall_0_3; }
+		
 		//DefinitionBody
-		public RuleCall getDefinitionBodyParserRuleCall_0_3() { return cDefinitionBodyParserRuleCall_0_3; }
+		public RuleCall getDefinitionBodyParserRuleCall_0_4() { return cDefinitionBodyParserRuleCall_0_4; }
 		
 		//'constraint' name=Name? TypePart? ConstraintParameterPart InvariantPart ConstraintBody
 		public Group getGroup_1() { return cGroup_1; }
@@ -9825,6 +9795,32 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConstraintBody
 		public RuleCall getConstraintBodyParserRuleCall_1_5() { return cConstraintBodyParserRuleCall_1_5; }
+	}
+	public class InvariantPartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.InvariantPart");
+		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0 = (RuleCall)cOwnedFeatureMembership_compAssignment.eContents().get(0);
+		
+		//fragment InvariantPart returns SysML::Invariant:
+		//	ownedFeatureMembership_comp+=TrueLiteralMember;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedFeatureMembership_comp+=TrueLiteralMember
+		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
+		
+		//TrueLiteralMember
+		public RuleCall getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0() { return cOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0; }
+	}
+	public class TrueLiteralExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TrueLiteralExpression");
+		private final Action cLiteralBooleanAction = (Action)rule.eContents().get(1);
+		
+		//TrueLiteralExpression SysML::LiteralBoolean:
+		//	{SysML::LiteralBoolean};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SysML::LiteralBoolean}
+		public Action getLiteralBooleanAction() { return cLiteralBooleanAction; }
 	}
 	public class TrueLiteralMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TrueLiteralMember");
@@ -12145,9 +12141,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final AbstractConstraintUsageElements pAbstractConstraintUsage;
 	private final ConstraintDeclarationElements pConstraintDeclaration;
 	private final ConstraintParameterPartElements pConstraintParameterPart;
+	private final AssertConstraintUsageElements pAssertConstraintUsage;
 	private final InvariantPartElements pInvariantPart;
 	private final TrueLiteralExpressionElements pTrueLiteralExpression;
-	private final AssertConstraintUsageElements pAssertConstraintUsage;
 	private final TrueLiteralMemberElements pTrueLiteralMember;
 	private final ExpressionElements pExpression;
 	private final ConditionalExpressionElements pConditionalExpression;
@@ -12451,9 +12447,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAbstractConstraintUsage = new AbstractConstraintUsageElements();
 		this.pConstraintDeclaration = new ConstraintDeclarationElements();
 		this.pConstraintParameterPart = new ConstraintParameterPartElements();
+		this.pAssertConstraintUsage = new AssertConstraintUsageElements();
 		this.pInvariantPart = new InvariantPartElements();
 		this.pTrueLiteralExpression = new TrueLiteralExpressionElements();
-		this.pAssertConstraintUsage = new AssertConstraintUsageElements();
 		this.pTrueLiteralMember = new TrueLiteralMemberElements();
 		this.pExpression = new ExpressionElements();
 		this.pConditionalExpression = new ConditionalExpressionElements();
@@ -14956,7 +14952,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* CONSTRAINTS */ ConstraintUsage SysML::ConstraintUsage:
-	//	ConstraintDeclaration InvariantPart ConstraintBody;
+	//	ConstraintDeclaration ConstraintBody;
 	public ConstraintUsageElements getConstraintUsageAccess() {
 		return pConstraintUsage;
 	}
@@ -14966,7 +14962,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AbstractConstraintUsage SysML::ConstraintUsage:
-	//	ConstraintDeclaration InvariantPart AbstractConstraintBody;
+	//	ConstraintDeclaration AbstractConstraintBody;
 	public AbstractConstraintUsageElements getAbstractConstraintUsageAccess() {
 		return pAbstractConstraintUsage;
 	}
@@ -14998,6 +14994,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConstraintParameterPartAccess().getRule();
 	}
 	
+	//AssertConstraintUsage SysML::AssertConstraintUsage:
+	//	(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset
+	//	ConstraintParameterPart InvariantPart DefinitionBody
+	//	| 'constraint' name=Name? TypePart?
+	//	ConstraintParameterPart InvariantPart ConstraintBody;
+	public AssertConstraintUsageElements getAssertConstraintUsageAccess() {
+		return pAssertConstraintUsage;
+	}
+	
+	public ParserRule getAssertConstraintUsageRule() {
+		return getAssertConstraintUsageAccess().getRule();
+	}
+	
 	//fragment InvariantPart returns SysML::Invariant:
 	//	ownedFeatureMembership_comp+=TrueLiteralMember;
 	public InvariantPartElements getInvariantPartAccess() {
@@ -15016,19 +15025,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTrueLiteralExpressionRule() {
 		return getTrueLiteralExpressionAccess().getRule();
-	}
-	
-	//AssertConstraintUsage SysML::ConstraintUsage:
-	//	(name=Name? TypePart? 'by')? ownedRelationship_comp+=Subset
-	//	ConstraintParameterPart DefinitionBody
-	//	| 'constraint' name=Name? TypePart?
-	//	ConstraintParameterPart InvariantPart ConstraintBody;
-	public AssertConstraintUsageElements getAssertConstraintUsageAccess() {
-		return pAssertConstraintUsage;
-	}
-	
-	public ParserRule getAssertConstraintUsageRule() {
-		return getAssertConstraintUsageAccess().getRule();
 	}
 	
 	///* CONSTRAINT MEMBERSHIPS */ TrueLiteralMember SysML::FeatureMembership:

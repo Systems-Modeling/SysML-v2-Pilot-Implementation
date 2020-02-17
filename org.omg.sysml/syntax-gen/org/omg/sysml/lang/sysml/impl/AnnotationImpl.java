@@ -28,23 +28,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatingComment <em>Annotating Comment</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AnnotationImpl extends RelationshipImpl implements Annotation {
-	/**
-	 * The cached value of the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element annotatedElement;
-
 	/**
 	 * The cached value of the '{@link #getAnnotatingComment() <em>Annotating Comment</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +44,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @ordered
 	 */
 	protected Comment annotatingComment;
+
+	/**
+	 * The cached value of the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element annotatedElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -319,12 +319,12 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
-				if (resolve) return getAnnotatedElement();
-				return basicGetAnnotatedElement();
 			case SysMLPackage.ANNOTATION__ANNOTATING_COMMENT:
 				if (resolve) return getAnnotatingComment();
 				return basicGetAnnotatingComment();
+			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
+				if (resolve) return getAnnotatedElement();
+				return basicGetAnnotatedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -337,11 +337,11 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
-				setAnnotatedElement((Element)newValue);
-				return;
 			case SysMLPackage.ANNOTATION__ANNOTATING_COMMENT:
 				setAnnotatingComment((Comment)newValue);
+				return;
+			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
+				setAnnotatedElement((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -355,11 +355,11 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
-				setAnnotatedElement((Element)null);
-				return;
 			case SysMLPackage.ANNOTATION__ANNOTATING_COMMENT:
 				setAnnotatingComment((Comment)null);
+				return;
+			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
+				setAnnotatedElement((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -373,14 +373,14 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__TARGET:
-				return isSetTarget();
 			case SysMLPackage.ANNOTATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
-				return isSetAnnotatedElement();
+			case SysMLPackage.ANNOTATION__TARGET:
+				return isSetTarget();
 			case SysMLPackage.ANNOTATION__ANNOTATING_COMMENT:
 				return isSetAnnotatingComment();
+			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
+				return isSetAnnotatedElement();
 		}
 		return super.eIsSet(featureID);
 	}

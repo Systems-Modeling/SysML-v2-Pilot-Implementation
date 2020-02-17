@@ -944,10 +944,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEffectBehaviorMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__EffectBehaviorMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getConstraintDeclarationAccess().getNameAssignment_0_0(), "rule__ConstraintDeclaration__NameAssignment_0_0");
 			builder.put(grammarAccess.getConstraintDeclarationAccess().getOwnedRelationship_compAssignment_2_1(), "rule__ConstraintDeclaration__OwnedRelationship_compAssignment_2_1");
-			builder.put(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compAssignment(), "rule__InvariantPart__OwnedFeatureMembership_compAssignment");
 			builder.put(grammarAccess.getAssertConstraintUsageAccess().getNameAssignment_0_0_0(), "rule__AssertConstraintUsage__NameAssignment_0_0_0");
 			builder.put(grammarAccess.getAssertConstraintUsageAccess().getOwnedRelationship_compAssignment_0_1(), "rule__AssertConstraintUsage__OwnedRelationship_compAssignment_0_1");
 			builder.put(grammarAccess.getAssertConstraintUsageAccess().getNameAssignment_1_1(), "rule__AssertConstraintUsage__NameAssignment_1_1");
+			builder.put(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compAssignment(), "rule__InvariantPart__OwnedFeatureMembership_compAssignment");
 			builder.put(grammarAccess.getTrueLiteralMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TrueLiteralMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_2(), "rule__ConditionalExpression__Operand_compAssignment_1_2");

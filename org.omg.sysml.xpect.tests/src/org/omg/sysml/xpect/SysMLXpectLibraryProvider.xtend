@@ -24,12 +24,12 @@
 
 package org.omg.sysml.xpect
 
-import org.omg.kerml.xtext.library.KerMLLibraryProvider
+import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import com.google.inject.Singleton
 import org.eclipse.emf.ecore.resource.Resource
 
 @Singleton
-class SysMLXpectLibraryProvider extends KerMLLibraryProvider {
+class SysMLXpectLibraryProvider extends SysMLLibraryProvider {
 		
 	override isModelLibrary(Resource resource) {
 		!resource.URI.path.endsWith(".xt")

@@ -23,11 +23,22 @@
  *****************************************************************************/
 package org.omg.sysml.xtext.util;
 
-import org.omg.kerml.xtext.util.KerMLTraversalUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.traversal.Traversal;
+import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
-public class SysMLTraversalUtil extends KerMLTraversalUtil {
-
+public class SysMLTraversalUtil extends SysMLUtil {
+	
+	/**
+	 * The traversal object used to manage the traversal of the model graph.
+	 */
+	protected Traversal traversal;
+	
 	public SysMLTraversalUtil() {
 		super();
 		SysMLStandaloneSetup.doSetup();
@@ -35,7 +46,58 @@ public class SysMLTraversalUtil extends KerMLTraversalUtil {
 	}
 	
 	/**
-	 * The main program reads the KerML and SysML resources as given by its arguments and then processes all the input
+	 * Get the traversal object for this model traversal.
+	 * 
+	 * @return	the traversal object.
+	 */
+	public Traversal getTraversal() {
+		return this.traversal;
+	}
+	
+	/**
+	 * Initialize the traversal using the given element-processing facade.
+	 * 
+	 * @param 	processingFacade	the facade for processing Elements and Relationships
+	 * @return	the initialized traversal object
+	 */
+	protected Traversal initialize(ElementProcessingFacade processingFacade) {
+		this.traversal = new Traversal(processingFacade);
+		return this.traversal;
+	}
+	
+	/**
+	 * Visit each of the top-level model Elements in each of the current input Resources.
+	 * Traversal must be initialized before processing.
+	 */
+	public void process() {
+		for (Resource resource: this.inputResources) {
+			for (EObject object : resource.getContents()) {
+				if (object instanceof Element) {
+					this.traversal.visit((Element) object);
+				}
+			} 
+		}
+	}
+	
+	/**
+	 * Run the traversal for the given main program arguments.
+	 * 
+	 * @param 	args		the array of main program arguments
+	 */
+	public void run(String[] args) {
+		try {
+			this.initialize(new DefaultElementProcessingFacadeImpl());
+			this.read(args);
+			
+			System.out.println("Processing...");
+			this.process();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * The main program reads the KerML resources as given by its arguments and then processes all the input
 	 * resources. Elements from library resources are only traversed if they are referenced from an input
 	 * or are directly or indirectly related to another Element so referenced.
 	 * 

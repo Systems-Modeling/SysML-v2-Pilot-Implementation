@@ -34,18 +34,18 @@ import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.common.util.URI
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
-import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.eclipse.emf.ecore.resource.Resource
+import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
+import org.omg.sysml.xtext.scoping.SysMLScopeProvider
 
 @Singleton
 class SysMLLibraryProvider implements IModelLibraryProvider {
 		
 	@Inject
-	KerMLGlobalScopeProvider globalScope
+	SysMLGlobalScopeProvider globalScope
 	
 	@Inject
-	KerMLScopeProvider scopeProvider;
+	SysMLScopeProvider scopeProvider;
 	
 	@Inject
 	IQualifiedNameConverter nameConverter

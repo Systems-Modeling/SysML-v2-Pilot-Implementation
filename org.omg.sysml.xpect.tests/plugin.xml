@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.xpect.fileExtensions">
+      <fileExtension
+            fileExtension="sysml"
+            xtextLanguageName="org.omg.kerml.xtext.SysML"
+            xtextRuntimeModule="org.omg.sysml.xpect.SysMLXpectRuntimeModule"
+            xtextUiModule="org.omg.kerml.xtext.ui.SysMLUiModule">
+      </fileExtension>
+   </extension>
+
+</plugin>

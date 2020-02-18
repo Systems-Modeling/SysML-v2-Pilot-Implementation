@@ -1,0 +1,18 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package BlockTest {
+	public block A{}
+}

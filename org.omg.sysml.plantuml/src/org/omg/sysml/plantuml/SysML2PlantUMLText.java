@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Block;
 import org.omg.sysml.lang.sysml.Class;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -390,7 +391,7 @@ public class SysML2PlantUMLText {
                 type2P(sb, f, t);
             } else {
                 Element e = m.getMemberElement();
-                element2P(sb, e, null);
+                element2P(sb, e, t);
             }
             for (Relationship r: m.getOwnedRelationship()) {
                 relationship2P(sb, r, m);
@@ -637,6 +638,9 @@ public class SysML2PlantUMLText {
             if (typ instanceof PartProperty) {
                 sb = newText();
                 addPRelation(parent, typ, "*--");
+            } else if (typ instanceof Classifier) {
+                sb = newText();
+                addPRelation(parent, typ, "+--");
             } else if (typ instanceof Feature) {
                 sb.append(typ.getName());
                 Feature f = (Feature) typ;

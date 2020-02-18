@@ -36,6 +36,12 @@ package Base {
 	 * snapshots of an occurrence over time.
 	 */
 	abstract classifier Occurrence specializes Anything {
+		import BaseFunctions::size;
+		
+		feature portionOfLife : Life[1] subsets portionOf;
+		
+		feature self : Occurrence[1] redefines Base::self
+			subsets suboccurrences, portions, portionOf, timeSlices, timeSliceOf;
 		
 		/**
 		 * Occurrences that end no earlier than this occurrence starts.
@@ -49,25 +55,44 @@ package Base {
 		
 		/**
 		 * Occurrences that start no earlier than and end no later than
-		 * this occurrence.
+		 * this occurrence, including at least this occurrence.
 		 */
-		feature suboccurrences: Occurrence[0..*];
+		feature suboccurrences: Occurrence[1..*];
 		
 		/**
-		 * Occurrences that are portions of this occurrence.
+		 * Occurrences that are portions of this occurrence, including at
+		 * least this occurrence.
 		 */
-		portion feature portions: Occurrence[0..*] subsets suboccurrences;
+		portion feature portions: Occurrence[1..*] subsets suboccurrences;
 		
 		/**
-		 * Portions of an occurrence over some finite slice of time. 
+		 * Occurrences of which this occurrence is a portion, including at
+		 * least this occurrence.
 		 */
-		portion feature timeSlices: Occurrence[0..*] subsets portions;
+		 feature portionOf : Occurrence[1..*];
+		
+		/**
+		 * Portions of an occurrence over some slice of time, including at
+		 * least this occurrence.
+		 */
+		portion feature timeSlices: Occurrence[1..*] subsets portions;
+		
+		/**
+		 * Occurrences of which this occurrence is a time slice, including at
+		 * least this occurrence.
+		 */
+		 feature timeSliceOf : Occurrence[1..*] subsets portionOf;
 		
 		/**
 		 * Time slices of an occurrence that happen at a single instant of time
 		 * (i.e., have no duration).
 		 */
 		portion feature snapshots: Occurrence[0..*] subsets timeSlices;
+		
+		/**
+		 * Occurrences of which this occurrence is a snapshot.
+		 */
+		 feature snapshotOf : Occurrence[1..*] subsets timeSliceOf;
 		
 		/**
 		 * The snapshot representing the start of the occurrence in time.
@@ -107,9 +132,15 @@ package Base {
 		/**
 		 * The incoming transfers targeting this occurrence. 
 		 */
-		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers
-			= Transfers::Transfer.allInstances()->
-				select t:Transfers::Transfer (t::transferTarget == self);
+		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers;
+		binding incomingTransfers::transferTarget[*] = self;
+	}
+	
+	abstract class all Life specializes Occurrence {
+		/**
+		 * Lives are only portions of themselves.
+		 */
+		binding portionOf = self;
 	}
 
 	/**

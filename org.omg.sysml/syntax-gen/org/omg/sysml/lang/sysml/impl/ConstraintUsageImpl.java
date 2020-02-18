@@ -20,7 +20,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
@@ -38,15 +37,15 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
-	public static final String CONSTRAINT_USAGE_SUBSETTING_DEFAULT = "Blocks::constraints";
+	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraints";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -54,12 +53,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	protected BindingConnector resultConnector = null;
 
-
-	/**
-	 * The cached value of the BindingConnector from the result of the
-	 * this ConstraintUsage to the result of a LiteralBoolean true.
-	 */
-	protected BindingConnector assertionConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -398,13 +391,12 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_USAGE_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
 	}
 	
 	@Override
 	public EList<Feature> getFeature() {
 		getResultConnector();
-		getAssertionConnector();
 		return super.getFeature();
 	}
 	
@@ -417,14 +409,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	public BindingConnector getResultConnector() {
-		return InvariantImpl.hasNoResultExpression(this)? null:
-			(resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult()));
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
-	public BindingConnector getAssertionConnector() {
-		return assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
-	}
-
+	//
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -444,12 +433,12 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				if (resolve) return getConstraintDefinition();
 				return basicGetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				if (resolve) return getConstraintOwningUsage();
-				return basicGetConstraintOwningUsage();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
 				if (resolve) return getConstraintOwningDefinition();
 				return basicGetConstraintOwningDefinition();
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
+				if (resolve) return getConstraintOwningUsage();
+				return basicGetConstraintOwningUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -476,11 +465,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)newValue);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				setConstraintOwningUsage((Usage)newValue);
-				return;
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
 				setConstraintOwningDefinition((Definition)newValue);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
+				setConstraintOwningUsage((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -506,11 +495,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)null);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				setConstraintOwningUsage((Usage)null);
-				return;
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
 				setConstraintOwningDefinition((Definition)null);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
+				setConstraintOwningUsage((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -532,16 +521,16 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return isSetFunction();
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
-			case SysMLPackage.CONSTRAINT_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
 			case SysMLPackage.CONSTRAINT_USAGE__OWNING_DEFINITION:
 				return isSetOwningDefinition();
+			case SysMLPackage.CONSTRAINT_USAGE__OWNING_USAGE:
+				return isSetOwningUsage();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				return isSetConstraintOwningUsage();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
 				return isSetConstraintOwningDefinition();
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
+				return isSetConstraintOwningUsage();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -571,11 +560,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				default: return -1;
 			}
 		}
-		if (baseClass == Invariant.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -601,11 +585,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		if (baseClass == BooleanExpression.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.BOOLEAN_EXPRESSION__PREDICATE: return SysMLPackage.CONSTRAINT_USAGE__PREDICATE;
-				default: return -1;
-			}
-		}
-		if (baseClass == Invariant.class) {
-			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

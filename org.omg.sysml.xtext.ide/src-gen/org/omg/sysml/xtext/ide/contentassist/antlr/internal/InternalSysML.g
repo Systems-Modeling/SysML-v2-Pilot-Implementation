@@ -5011,6 +5011,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleAssertConstraintUsage
+entryRuleAssertConstraintUsage
+:
+{ before(grammarAccess.getAssertConstraintUsageRule()); }
+	 ruleAssertConstraintUsage
+{ after(grammarAccess.getAssertConstraintUsageRule()); } 
+	 EOF 
+;
+
+// Rule AssertConstraintUsage
+ruleAssertConstraintUsage 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getAssertConstraintUsageAccess().getAlternatives()); }
+		(rule__AssertConstraintUsage__Alternatives)
+		{ after(grammarAccess.getAssertConstraintUsageAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 // Rule InvariantPart
 ruleInvariantPart 
@@ -5047,31 +5072,6 @@ ruleTrueLiteralExpression
 		{ before(grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction()); }
 		()
 		{ after(grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-// Entry rule entryRuleAssertConstraintUsage
-entryRuleAssertConstraintUsage
-:
-{ before(grammarAccess.getAssertConstraintUsageRule()); }
-	 ruleAssertConstraintUsage
-{ after(grammarAccess.getAssertConstraintUsageRule()); } 
-	 EOF 
-;
-
-// Rule AssertConstraintUsage
-ruleAssertConstraintUsage 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getAssertConstraintUsageAccess().getAlternatives()); }
-		(rule__AssertConstraintUsage__Alternatives)
-		{ after(grammarAccess.getAssertConstraintUsageAccess().getAlternatives()); }
 	)
 ;
 finally {
@@ -35481,7 +35481,6 @@ rule__ConstraintUsage__Group__1
 	}
 :
 	rule__ConstraintUsage__Group__1__Impl
-	rule__ConstraintUsage__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -35493,35 +35492,9 @@ rule__ConstraintUsage__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConstraintUsageAccess().getInvariantPartParserRuleCall_1()); }
-	ruleInvariantPart
-	{ after(grammarAccess.getConstraintUsageAccess().getInvariantPartParserRuleCall_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ConstraintUsage__Group__2
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__ConstraintUsage__Group__2__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ConstraintUsage__Group__2__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_2()); }
+	{ before(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_1()); }
 	ruleConstraintBody
-	{ after(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_2()); }
+	{ after(grammarAccess.getConstraintUsageAccess().getConstraintBodyParserRuleCall_1()); }
 )
 ;
 finally {
@@ -35562,7 +35535,6 @@ rule__AbstractConstraintUsage__Group__1
 	}
 :
 	rule__AbstractConstraintUsage__Group__1__Impl
-	rule__AbstractConstraintUsage__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -35574,35 +35546,9 @@ rule__AbstractConstraintUsage__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAbstractConstraintUsageAccess().getInvariantPartParserRuleCall_1()); }
-	ruleInvariantPart
-	{ after(grammarAccess.getAbstractConstraintUsageAccess().getInvariantPartParserRuleCall_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__AbstractConstraintUsage__Group__2
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__AbstractConstraintUsage__Group__2__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__AbstractConstraintUsage__Group__2__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_2()); }
+	{ before(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_1()); }
 	ruleAbstractConstraintBody
-	{ after(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_2()); }
+	{ after(grammarAccess.getAbstractConstraintUsageAccess().getAbstractConstraintBodyParserRuleCall_1()); }
 )
 ;
 finally {
@@ -36183,6 +36129,7 @@ rule__AssertConstraintUsage__Group_0__3
 	}
 :
 	rule__AssertConstraintUsage__Group_0__3__Impl
+	rule__AssertConstraintUsage__Group_0__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -36194,9 +36141,35 @@ rule__AssertConstraintUsage__Group_0__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_3()); }
+	{ before(grammarAccess.getAssertConstraintUsageAccess().getInvariantPartParserRuleCall_0_3()); }
+	ruleInvariantPart
+	{ after(grammarAccess.getAssertConstraintUsageAccess().getInvariantPartParserRuleCall_0_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__AssertConstraintUsage__Group_0__4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__AssertConstraintUsage__Group_0__4__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__AssertConstraintUsage__Group_0__4__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_4()); }
 	ruleDefinitionBody
-	{ after(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_3()); }
+	{ after(grammarAccess.getAssertConstraintUsageAccess().getDefinitionBodyParserRuleCall_0_4()); }
 )
 ;
 finally {
@@ -47940,21 +47913,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__InvariantPart__OwnedFeatureMembership_compAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0()); }
-		ruleTrueLiteralMember
-		{ after(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__AssertConstraintUsage__NameAssignment_0_0_0
 	@init {
 		int stackSize = keepStackSize();
@@ -47994,6 +47952,21 @@ rule__AssertConstraintUsage__NameAssignment_1_1
 		{ before(grammarAccess.getAssertConstraintUsageAccess().getNameNameParserRuleCall_1_1_0()); }
 		ruleName
 		{ after(grammarAccess.getAssertConstraintUsageAccess().getNameNameParserRuleCall_1_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__InvariantPart__OwnedFeatureMembership_compAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0()); }
+		ruleTrueLiteralMember
+		{ after(grammarAccess.getInvariantPartAccess().getOwnedFeatureMembership_compTrueLiteralMemberParserRuleCall_0()); }
 	)
 ;
 finally {

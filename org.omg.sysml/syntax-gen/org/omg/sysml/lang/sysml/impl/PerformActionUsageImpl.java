@@ -11,6 +11,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +29,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
 
 	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedActions";
+
+	private Type subsettingBaseDefault;
+	private Type subsettingPartDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,13 +69,31 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 * @generated NOT
 	 */
 	public ActionUsage basicGetPerformedAction() {
-		EList<Subsetting> subsettings = getOwnedSubsetting();
-		if (subsettings.isEmpty()) {
+		Type subsettingBaseDefault = getSubsettingBaseDefault();
+		Type subsettingPartDefault = getSubsettingPartDefault();
+		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
+				allMatch(feature->feature == subsettingBaseDefault || 
+				         feature == subsettingPartDefault)) {
 			return this;
 		} else {
 			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
 			return subsettedFeature instanceof ActionUsage? (ActionUsage)subsettedFeature: this;
 		}
+	}
+
+	protected Type getSubsettingBaseDefault() {
+		if (subsettingBaseDefault == null) {
+			subsettingBaseDefault = getDefaultType(ACTION_SUBSETTING_BASE_DEFAULT);
+		}
+		return subsettingBaseDefault;
+	}
+
+	protected Type getSubsettingPartDefault() {
+		if (subsettingPartDefault == null) {
+			subsettingPartDefault = getDefaultType(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
+		}
+		return subsettingPartDefault;
 	}
 
 	/**

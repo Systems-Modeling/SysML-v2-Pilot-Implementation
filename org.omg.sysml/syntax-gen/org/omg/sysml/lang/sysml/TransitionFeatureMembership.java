@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage.
+ * A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage. The memberFeature for a trigger must be an AcceptTransferActionUsage, the memberFeature for a guard must be an Expression with a result type of Boolean, and the memberFeature for an effect must be an ActionUsage.
  * <!-- end-model-doc -->
  *
  * <p>

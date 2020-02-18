@@ -1,3 +1,7 @@
+/**
+ * This package defines the base types for states and related behavioral elements in the
+ * SysML language.
+ */
 package States {
 	private import Activities::*;
 	private import StatePerformances::*;

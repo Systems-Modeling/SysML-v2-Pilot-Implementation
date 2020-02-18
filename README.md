@@ -57,7 +57,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    * `org.sysml.xtext.ide`
    * `org.sysml.xtext.ui`
 
-   **Note:** The project `org.omg.sysml.xpect.tests` requires the Xpect plugin, not included in the main SysML v2 installation. The `org.omg.sysml.jupyter` project requires Maven to build.
+   **Note:** The project `org.omg.sysml.jupyter` project uses [Gradle](https://gradle.org/) to build.
 
 ### Prototype SysML Implementation
 
@@ -71,11 +71,17 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 5. Import the projects `kerml`, `sysml` and `sysml.library` into the runtime Eclipse workspace.
 
-6. Select `sysml.library` and execute Project > Clean. Repeat with `kerml` and `sysml`.
+6. Execute Project > Clean with the following settings:
+   * Clean all projects: *Not* selected
+   * `sysml.library`: Selected
+   * Start a build immediately: Selected
+   * Build only the selected projects: Selected
+
+7. Repeat Project > Clean as above for `kerml` and `sysml`.
 
    **Important:** Be sure to first build *only* `sysml.library` before building `kerml` or `sysml`.
 
-7. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
+8. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
  
 ## Copyright License Header
 

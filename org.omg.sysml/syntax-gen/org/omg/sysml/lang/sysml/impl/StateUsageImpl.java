@@ -28,9 +28,9 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getStateOwningUsage <em>State Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getStateDefinition <em>State Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getStateOwningDefinition <em>State Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getStateDefinition <em>State Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getStateOwningUsage <em>State Owning Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -319,14 +319,14 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 		switch (featureID) {
 			case SysMLPackage.STATE_USAGE__BEHAVIOR:
 				return getBehavior();
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
-				if (resolve) return getStateOwningUsage();
-				return basicGetStateOwningUsage();
-			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
-				return getStateDefinition();
 			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
 				if (resolve) return getStateOwningDefinition();
 				return basicGetStateOwningDefinition();
+			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
+				return getStateDefinition();
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
+				if (resolve) return getStateOwningUsage();
+				return basicGetStateOwningUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,15 +344,15 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
-				setStateOwningUsage((Usage)newValue);
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
+				setStateOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
 				getStateDefinition().clear();
 				getStateDefinition().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
-				setStateOwningDefinition((Definition)newValue);
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
+				setStateOwningUsage((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -369,14 +369,14 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 			case SysMLPackage.STATE_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				return;
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
-				setStateOwningUsage((Usage)null);
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
+				setStateOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
 				getStateDefinition().clear();
 				return;
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
-				setStateOwningDefinition((Definition)null);
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
+				setStateOwningUsage((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -394,16 +394,16 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 				return isSetType();
 			case SysMLPackage.STATE_USAGE__BEHAVIOR:
 				return isSetBehavior();
-			case SysMLPackage.STATE_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
 			case SysMLPackage.STATE_USAGE__OWNING_DEFINITION:
 				return isSetOwningDefinition();
-			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
-				return isSetStateOwningUsage();
-			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
-				return isSetStateDefinition();
+			case SysMLPackage.STATE_USAGE__OWNING_USAGE:
+				return isSetOwningUsage();
 			case SysMLPackage.STATE_USAGE__STATE_OWNING_DEFINITION:
 				return isSetStateOwningDefinition();
+			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
+				return isSetStateDefinition();
+			case SysMLPackage.STATE_USAGE__STATE_OWNING_USAGE:
+				return isSetStateOwningUsage();
 		}
 		return super.eIsSet(featureID);
 	}

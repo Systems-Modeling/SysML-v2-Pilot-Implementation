@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Whether this is an entry, do or exit Action.
+ * A StateActionKind indicates whether an Action feature of a State is an entry, do or exit Action.
  * A StateActionKind indicates whether a Action feature of a State is an entry, do or exit Action.
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateActionKind()

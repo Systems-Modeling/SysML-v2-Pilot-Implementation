@@ -473,14 +473,29 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
 
+    private Feature getRedefinedFeature(Feature f) {
+        List<Redefinition> rs = f.getOwnedRedefinition();
+        if (rs.isEmpty()) return null;
+        Redefinition r = rs.get(0);
+        return r.getRedefinedFeature();
+    }
+
     private String convertToDescription(PerformActionUsage pau) {
         StringBuilder sb = new StringBuilder();
         for (Subsetting ss: pau.getOwnedSubsetting()) {
             Feature f = ss.getSubsettedFeature();
             if (f instanceof ActionUsage) {
                 if (ss instanceof Redefinition) {
-                    sb.insert(0, "/ ");
-                    sb.insert(0, f.getName());
+                	// Bold
+                    sb.insert(0, "** / ");
+                    // It may redefine StatePerformace
+                    Feature r = getRedefinedFeature(f);
+                    if (r == null) {
+                        sb.insert(0, f.getName());
+                    } else {
+                        sb.insert(0, r.getName());
+                    }
+                    sb.insert(0, "**");
                 } else {
                     sb.append(f.getName());
                     sb.append(' ');

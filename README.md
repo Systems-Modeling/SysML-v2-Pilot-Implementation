@@ -18,7 +18,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2019-12.
 
-5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
+5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
    
    **Note:** If you have installed the SysML v2 Pilot Implementation previously, this may already be pre-selected.
@@ -32,6 +32,10 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    * Workspace location rule: Change this if you wish to place the workspace at a specific location.
    
 8. On the Confirmation page, press Finish. 
+
+9. (Optional) For PlantUML visualization, GraphViz is needed.  Visit https://www.graphviz.org/download/ and download the appropriate package for your environment.
+   * In the menu of Window->Preferences->PlantUML in Eclipse environment, you may set up the path to GraphViz executable if Eclipse cannot automatically find it.  For detail, visit https://plantuml.com/en/eclipse
+
 
 #### Manual installation
 
@@ -82,6 +86,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    **Important:** Be sure to first build *only* `sysml.library` before building `kerml` or `sysml`.
 
 8. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
+9. (Optional) To show SysML diagrams, in Window->Show View->Other... menu, you can enable PlantUML view.
  
 ## Copyright License Header
 

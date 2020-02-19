@@ -46,10 +46,16 @@
         name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
     <requirement
         name="org.xpect.sdk.feature.group"/>
+    <requirement
+        name="net.sourceforge.plantuml.feature.feature.group"/>
+    <requirement
+        name="net.sourceforge.plantuml.ecore.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/releases/2019-12/"/>
     <repository
         url="http://www.xpect-tests.org/updatesite/nightly/"/>
+    <repository
+        url="http://hallvard.github.io/plantuml/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask

@@ -465,8 +465,7 @@ public class SysML2PlantUMLText {
         for (FeatureMembership fm: aau.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
             if (f instanceof ItemFeature) {
-                List<Type> tts = f.getType();
-                addTypesText(sb, tts);
+                addTypeText(sb, "", f);
             }
         }
         if (sb.length() == 0) return null;
@@ -626,18 +625,15 @@ public class SysML2PlantUMLText {
         owned2P(sb, typ);
     }
 
-    private void addTypesText(StringBuilder sb, List<Type> tts) {
-        boolean first = true;
-        for (Type tt: tts) {
-            String name = tt.getName();
-            if (name == null) continue;
-            if (first) {
-            	first = false;
-            } else {
-                sb.append(',');
-            }
-            sb.append(name);
-        } 
+    private void addTypeText(StringBuilder sb, String prefix, Feature f) {
+        List<Type> ts = f.getType();
+        if (ts.isEmpty()) return;
+        // getType() should return the most specific type but for the time being we use the first type only.
+        Type t = ts.get(0);
+        String name = t.getName();
+        if (name == null) return;
+        sb.append(prefix);
+        sb.append(name);
     }
 
     private void type2P(StringBuilder sb, Type typ, Type parent) {
@@ -655,11 +651,7 @@ public class SysML2PlantUMLText {
             } else if (typ instanceof Feature) {
                 sb.append(typ.getName());
                 Feature f = (Feature) typ;
-                List<Type> tts = f.getType();
-                if (!tts.isEmpty()) {
-                    sb.append(" :");
-                    addTypesText(sb, tts);
-                }
+                addTypeText(sb, ": ", f);
                 sb.append("\n");
                 return;
             }

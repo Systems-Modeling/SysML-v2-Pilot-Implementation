@@ -2,15 +2,11 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
-		File {from ="/library/Blocks.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
-				File {from ="/library/Blocks.sysml"}
 			}
 		}
 	}
@@ -18,5 +14,23 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package BlockTest {
-	public block A{}
+	
+	part f: A;
+
+	public block A {
+		part b: B;
+		protected port c: C;
+	}
+	
+	abstract block B {
+		public abstract part a: A;
+		port x: ~C;
+		package P { }
+	}
+	
+	private port def C specializes B {
+		private ref in y: B;
+		part z is y;
+	}
+	
 }

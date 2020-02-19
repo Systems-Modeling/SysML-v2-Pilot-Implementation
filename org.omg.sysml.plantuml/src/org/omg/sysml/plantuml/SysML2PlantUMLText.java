@@ -479,23 +479,16 @@ public class SysML2PlantUMLText {
         return r.getRedefinedFeature();
     }
 
-    private String convertToDescription(PerformActionUsage pau) {
+    private String convertToDescription(StateActionMembership sam, PerformActionUsage pau) {
         StringBuilder sb = new StringBuilder();
+        // Bold
+        sb.append("**");
+        sb.append(sam.getKind().getName());
+        sb.append("**/ ");
         for (Subsetting ss: pau.getOwnedSubsetting()) {
             Feature f = ss.getSubsettedFeature();
             if (f instanceof ActionUsage) {
-                if (ss instanceof Redefinition) {
-                	// Bold
-                    sb.insert(0, "** / ");
-                    // It may redefine StatePerformace
-                    Feature r = getRedefinedFeature(f);
-                    if (r == null) {
-                        sb.insert(0, f.getName());
-                    } else {
-                        sb.insert(0, r.getName());
-                    }
-                    sb.insert(0, "**");
-                } else {
+                if (!(ss instanceof Redefinition)) {
                     sb.append(f.getName());
                     sb.append(' ');
                 }
@@ -553,7 +546,9 @@ public class SysML2PlantUMLText {
             Feature f = fm.getMemberFeature();
             if (fm instanceof StateActionMembership) {
                 if (f instanceof PerformActionUsage) {
-                    String desc = convertToDescription((PerformActionUsage) f);
+                    StateActionMembership sam = (StateActionMembership) fm;
+                    PerformActionUsage pau = (PerformActionUsage) f;
+                    String desc = convertToDescription(sam, pau);
                     if (desc != null) {
                         if (descriptions == null) {
                             descriptions = new ArrayList<String>();

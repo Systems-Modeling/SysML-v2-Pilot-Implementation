@@ -158,7 +158,6 @@ class SysMLScope extends AbstractScope {
 						m.visibility == VisibilityKind.PROTECTED && 
 							scopingType !== null && 
 							scopingType.isInheritedProtected(m.membershipOwningPackage))) {
-						System.out.println("elementName: " + elementName);		
 						val elementqn = qn.append(elementName)
 						if (targetqn === null || targetqn.startsWith(elementqn)) {
 							if (!checkIfAdded || !visitedqns.contains(elementqn)) {

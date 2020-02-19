@@ -214,7 +214,6 @@ public class SysMLScope extends AbstractScope {
             ((Objects.equal(m.getVisibility(), VisibilityKind.PROTECTED) && 
               (this.scopingType != null)) && 
               this.isInheritedProtected(this.scopingType, m.getMembershipOwningPackage()))))) {
-            System.out.println(("elementName: " + elementName));
             final QualifiedName elementqn = qn.append(elementName);
             if (((this.targetqn == null) || this.targetqn.startsWith(elementqn))) {
               if (((!checkIfAdded) || (!this.visitedqns.contains(elementqn)))) {

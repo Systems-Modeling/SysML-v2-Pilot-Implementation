@@ -24,10 +24,8 @@
 
 package org.omg.sysml.plantuml;
 
-import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +55,8 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+
+import com.google.inject.Inject;
 
 public class SysML2PlantUMLText {
     public enum MODE {
@@ -258,9 +258,6 @@ public class SysML2PlantUMLText {
         private String description;
         public String getDescription() {
             return description;
-        }
-        public void setDescription(String description) {
-            this.description = description;
         }
 
         public PRelation(Element src, Element dest, String rel, String description) {
@@ -522,18 +519,16 @@ public class SysML2PlantUMLText {
 
     private void addTransition(StringBuilder sb, TransitionUsage tu) {
         String description  = null;
-        PRelation pr = null;
         for (FeatureMembership fm: tu.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
-            if (f instanceof Succession) {
-                pr = addSuccession((Succession) f);
-            } else if (f instanceof AcceptActionUsage) {
+            if (f instanceof AcceptActionUsage) {
                 description = convertToDescription((AcceptActionUsage) f);
             }
         }
-
-        if ((pr != null) && (description != null)) {
-            pr.setDescription(description);
+        Feature src = tu.getSource();
+        Feature tgt = tu.getTarget();
+        if ((src != null) && (tgt != null)) {
+            addPRelation(src, tgt, "-->", description);
         }
     }
 

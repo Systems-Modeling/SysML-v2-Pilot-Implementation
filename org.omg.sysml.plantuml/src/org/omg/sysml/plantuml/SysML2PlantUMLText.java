@@ -617,16 +617,17 @@ public class SysML2PlantUMLText {
     }
 
     private void addTypesText(StringBuilder sb, List<Type> tts) {
-        Iterator<Type> it = tts.iterator();
-        if (!it.hasNext()) return;
-        do {
-            Type tt = it.next(); 
-            sb.append(tt.getName());
-            if (it.hasNext()) {
+        boolean first = true;
+        for (Type tt: tts) {
+            String name = tt.getName();
+            if (name == null) continue;
+            if (first) {
+            	first = false;
+            } else {
                 sb.append(',');
-                continue;
             }
-        } while (false);
+            sb.append(name);
+        } 
     }
 
     private void type2P(StringBuilder sb, Type typ, Type parent) {

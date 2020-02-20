@@ -25,28 +25,6 @@
  *****************************************************************************/
 package org.omg.sysml.xtext.scoping
 
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
-import org.eclipse.emf.ecore.EClass
-import com.google.common.base.Predicate
-import org.eclipse.xtext.resource.IEObjectDescription
-import org.eclipse.xtext.scoping.IScope
-import com.google.inject.Inject
-import org.eclipse.emf.ecore.resource.Resource
-import org.omg.sysml.lang.sysml.SysMLPackage
-import com.google.common.base.Predicates
+import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 
-class SysMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
-
-	@Inject
-	SysMLScopeProvider scopeProvider
-	
-	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
-		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
-		return SysMLGlobalScope.createScope(scope, context, filter, rootFilter, type, scopeProvider)
-	}
-	
-	protected def Predicate<IEObjectDescription> getRootFilter() {
-		Predicates.alwaysTrue
-	}
-
-}
+class SysMLGlobalScopeProvider extends KerMLGlobalScopeProvider {}

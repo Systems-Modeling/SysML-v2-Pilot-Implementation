@@ -24,34 +24,8 @@
  */
 package org.omg.sysml.xtext.scoping;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.inject.Inject;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.xtext.scoping.SysMLGlobalScope;
-import org.omg.sysml.xtext.scoping.SysMLScopeProvider;
+import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider;
 
 @SuppressWarnings("all")
-public class SysMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
-  @Inject
-  private SysMLScopeProvider scopeProvider;
-  
-  @Override
-  public IScope getScope(final IScope parent, final Resource context, final boolean ignoreCase, final EClass type, final Predicate<IEObjectDescription> filter) {
-    final Predicate<IEObjectDescription> _function = (IEObjectDescription eod) -> {
-      int _segmentCount = eod.getName().getSegmentCount();
-      return (_segmentCount == 1);
-    };
-    final IScope scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.getElement(), _function);
-    return SysMLGlobalScope.createScope(scope, context, filter, this.getRootFilter(), type, this.scopeProvider);
-  }
-  
-  protected Predicate<IEObjectDescription> getRootFilter() {
-    return Predicates.<IEObjectDescription>alwaysTrue();
-  }
+public class SysMLGlobalScopeProvider extends KerMLGlobalScopeProvider {
 }

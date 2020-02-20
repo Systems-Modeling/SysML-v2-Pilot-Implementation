@@ -24,55 +24,8 @@
 
 package org.omg.sysml.xtext.library
 
-import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.omg.sysml.lang.sysml.Element
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.emf.common.util.URI
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.eclipse.emf.ecore.resource.Resource
-import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
-import org.omg.sysml.xtext.scoping.SysMLScopeProvider
+import org.omg.kerml.xtext.library.KerMLLibraryProvider
 
 @Singleton
-class SysMLLibraryProvider implements IModelLibraryProvider {
-		
-	@Inject
-	SysMLGlobalScopeProvider globalScope
-	
-	@Inject
-	SysMLScopeProvider scopeProvider;
-	
-	@Inject
-	IQualifiedNameConverter nameConverter
-	
-	protected def isModelLibrary(Resource resource) {
-		SysMLLibraryUtil.isModelLibrary(resource)
-	}
-	
-	protected def fileName(URI uri) {
-		return uri.trimFileExtension.lastSegment
-	}
-	
-	override Element getElement(Element context, EReference reference, String name) {
-		if (context === null) {
-			return null
-		} else {
-			val qname = nameConverter.toQualifiedName(name)
-			val resource = context.eResource();
-			val scope =
-				if (resource.isModelLibrary)
-					scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference)
-				else 
-					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])
-			val description = scope.getSingleElement(qname)
-			return if (description === null) null else
-				EcoreUtil.resolve(description.EObjectOrProxy, context) as Element
-		}
-	}
-	
-}
+class SysMLLibraryProvider extends KerMLLibraryProvider {}

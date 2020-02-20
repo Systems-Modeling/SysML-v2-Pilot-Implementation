@@ -3,14 +3,14 @@
  */
 package org.omg.sysml.xtext.validation
 
-
+import org.omg.kerml.xtext.validation.KerMLValidator
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-class SysMLValidator extends AbstractSysMLValidator {
+class SysMLValidator extends KerMLValidator {
 	
 //	public static val INVALID_NAME = 'invalidName'
 //

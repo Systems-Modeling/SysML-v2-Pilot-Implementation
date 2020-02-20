@@ -22,72 +22,10 @@
  */
 package org.omg.sysml.xtext.library;
 
-import com.google.common.base.Predicate;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.naming.IQualifiedNameConverter;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider;
-import org.omg.sysml.xtext.scoping.SysMLScopeProvider;
+import org.omg.kerml.xtext.library.KerMLLibraryProvider;
 
 @Singleton
 @SuppressWarnings("all")
-public class SysMLLibraryProvider implements IModelLibraryProvider {
-  @Inject
-  private SysMLGlobalScopeProvider globalScope;
-  
-  @Inject
-  private SysMLScopeProvider scopeProvider;
-  
-  @Inject
-  private IQualifiedNameConverter nameConverter;
-  
-  protected boolean isModelLibrary(final Resource resource) {
-    return SysMLLibraryUtil.isModelLibrary(resource);
-  }
-  
-  protected String fileName(final URI uri) {
-    return uri.trimFileExtension().lastSegment();
-  }
-  
-  @Override
-  public Element getElement(final Element context, final EReference reference, final String name) {
-    if ((context == null)) {
-      return null;
-    } else {
-      final QualifiedName qname = this.nameConverter.toQualifiedName(name);
-      final Resource resource = context.eResource();
-      IScope _xifexpression = null;
-      boolean _isModelLibrary = this.isModelLibrary(resource);
-      if (_isModelLibrary) {
-        _xifexpression = this.scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference);
-      } else {
-        final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
-          return this.fileName(it.getEObjectURI()).equals(qname.getFirstSegment());
-        };
-        _xifexpression = this.globalScope.getScope(resource, reference, _function);
-      }
-      final IScope scope = _xifexpression;
-      final IEObjectDescription description = scope.getSingleElement(qname);
-      Element _xifexpression_1 = null;
-      if ((description == null)) {
-        _xifexpression_1 = null;
-      } else {
-        EObject _resolve = EcoreUtil.resolve(description.getEObjectOrProxy(), context);
-        _xifexpression_1 = ((Element) _resolve);
-      }
-      return _xifexpression_1;
-    }
-  }
+public class SysMLLibraryProvider extends KerMLLibraryProvider {
 }

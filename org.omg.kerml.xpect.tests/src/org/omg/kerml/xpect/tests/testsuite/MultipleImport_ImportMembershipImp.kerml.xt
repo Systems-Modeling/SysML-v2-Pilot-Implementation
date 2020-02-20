@@ -2,7 +2,6 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 		File {from ="/src/DependencyMultipleImport.kerml"}
 	}
@@ -10,7 +9,6 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 				File {from ="/src/DependencyMultipleImport.kerml"}
 			}

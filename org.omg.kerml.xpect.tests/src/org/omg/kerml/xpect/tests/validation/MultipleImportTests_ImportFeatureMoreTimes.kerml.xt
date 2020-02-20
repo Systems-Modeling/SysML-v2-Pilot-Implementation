@@ -2,7 +2,6 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 		File {from ="/src/DependencyMultipleMembership.kerml"}
 		File {from ="/src/DependencyMembership2.kerml"}
@@ -11,7 +10,6 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 				File {from ="/src/DependencyMultipleMembership.kerml"}
 				File {from ="/src/DependencyMembership2.kerml"}

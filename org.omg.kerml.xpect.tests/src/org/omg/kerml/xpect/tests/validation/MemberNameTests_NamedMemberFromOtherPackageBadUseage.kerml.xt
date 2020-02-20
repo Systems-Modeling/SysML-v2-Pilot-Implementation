@@ -2,13 +2,11 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
 			}
 		}
 	}

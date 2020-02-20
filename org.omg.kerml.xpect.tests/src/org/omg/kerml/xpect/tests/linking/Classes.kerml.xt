@@ -2,14 +2,12 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.linking.KerMLLinkingTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
 		File "Classes2.kerml" {}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
 				File "Classes2.kerml" {}
 			}
 		}

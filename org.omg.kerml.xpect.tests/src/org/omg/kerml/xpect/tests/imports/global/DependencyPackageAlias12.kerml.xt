@@ -2,7 +2,6 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
 	ResourceSet {
 		ThisFile {}
-		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyPackageAlias1.kerml"}
 		File {from ="/src/DependencyPackageAlias2.kerml"}
 	}
@@ -10,7 +9,6 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyPackageAlias1.kerml"}
 				File {from ="/src/DependencyPackageAlias2.kerml"}
 			}

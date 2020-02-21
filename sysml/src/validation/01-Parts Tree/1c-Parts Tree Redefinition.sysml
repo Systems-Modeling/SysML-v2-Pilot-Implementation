@@ -6,11 +6,11 @@ package '1c-Parts Tree Redefinition' {
 	/* Definitions */
 	
 	block Vehicle {
-		value mass is ISQ::mass;
+		value mass :> ISQ::mass;
 	}
 	block AxleAssembly;
 	block Axle { 
-		value mass is ISQ::mass;
+		value mass :> ISQ::mass;
 	}
 	block FrontAxle:> Axle {
 		value steeringAngle: Real;

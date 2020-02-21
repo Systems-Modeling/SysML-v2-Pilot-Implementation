@@ -15,7 +15,8 @@ package BlockTest {
 	
 	private port def C specializes B {
 		private ref in y: B;
-		part z is y;
+		import y as z1;
+		alias y as z2;
 	}
 	
 }

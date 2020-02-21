@@ -3,7 +3,7 @@ package 'Package Example' {
 	 
 	block Automobile;
 	
-	block Car is Automobile;	                         
+	alias Automobile as Car;	                         
 	
-	private value type Torque is ISQ::TorqueValue;
+	private import ISQ::TorqueValue as Torque;
 }

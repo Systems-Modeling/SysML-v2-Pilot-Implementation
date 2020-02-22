@@ -55,6 +55,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0;
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_2_0_q;
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_3_1_q;
+	protected AbstractElementAlias match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q;
 	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
 	protected AbstractElementAlias match_SendActionNodeDeclaration_OfKeyword_3_1_q;
 	protected AbstractElementAlias match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1;
@@ -101,6 +102,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_10_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_10_0_0()));
 		match_PackagedUsageMember_ValueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_2_0());
 		match_PackagedUsageMember_ValueKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_3_1());
+		match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getAnyKeyword_0_1_1()));
 		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
 		match_SendActionNodeDeclaration_OfKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getSendActionNodeDeclarationAccess().getOfKeyword_3_1());
 		match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getSubsetsKeyword_0_1()));
@@ -190,6 +192,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackagedUsageMember_ValueKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedUsageMember_ValueKeyword_3_1_q.equals(syntax))
 				emit_PackagedUsageMember_ValueKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q.equals(syntax))
+				emit_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
 				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SendActionNodeDeclaration_OfKeyword_3_1_q.equals(syntax))
@@ -694,6 +698,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     (':' 'any')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 */
+	protected void emit_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ':>>' | 'redefines'
 	 *
 	 * This ambiguous syntax occurs at:
@@ -715,7 +730,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=Redefinition '(' ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Redefinition
@@ -758,7 +772,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=Redefinition '(' ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Subset

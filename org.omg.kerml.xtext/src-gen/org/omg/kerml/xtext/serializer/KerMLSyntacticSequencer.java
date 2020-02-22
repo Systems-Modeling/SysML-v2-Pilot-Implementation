@@ -49,6 +49,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_1_1_q;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
+	protected AbstractElementAlias match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q;
 	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0;
@@ -90,6 +91,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackageFeatureMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_0_0());
 		match_PackageFeatureMemberElement_FeatureKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_1_1());
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
+		match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterAccess().getColonKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getParameterAccess().getAnyKeyword_1_0_1_1()));
 		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
 		match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getColonGreaterThanSignKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getSpecializesKeyword_0_0_1()));
 		match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getConjugatesKeyword_1_0_1()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getTildeKeyword_1_0_0()));
@@ -168,6 +170,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackageFeatureMemberElement_FeatureKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q.equals(syntax))
+				emit_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
 				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1.equals(syntax))
@@ -848,6 +852,18 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     importedPackage=[Package|Name] (ambiguity) '*' ';' (rule end)
 	 */
 	protected void emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (':' 'any')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 */
+	protected void emit_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

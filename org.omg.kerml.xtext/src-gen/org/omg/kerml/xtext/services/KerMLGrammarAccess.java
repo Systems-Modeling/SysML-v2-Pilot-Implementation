@@ -3563,34 +3563,56 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Keyword cColonKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
-		private final Assignment cOwnedRelationship_compAssignment_0_1_0 = (Assignment)cAlternatives_0_1.eContents().get(0);
-		private final RuleCall cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0 = (RuleCall)cOwnedRelationship_compAssignment_0_1_0.eContents().get(0);
+		private final Group cGroup_0_1_0 = (Group)cAlternatives_0_1.eContents().get(0);
+		private final Assignment cOwnedRelationship_compAssignment_0_1_0_0 = (Assignment)cGroup_0_1_0.eContents().get(0);
+		private final RuleCall cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_0_1_0_0.eContents().get(0);
+		private final Group cGroup_0_1_0_1 = (Group)cGroup_0_1_0.eContents().get(1);
+		private final Keyword cCommaKeyword_0_1_0_1_0 = (Keyword)cGroup_0_1_0_1.eContents().get(0);
+		private final Assignment cOwnedRelationship_compAssignment_0_1_0_1_1 = (Assignment)cGroup_0_1_0_1.eContents().get(1);
+		private final RuleCall cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_1_1_0 = (RuleCall)cOwnedRelationship_compAssignment_0_1_0_1_1.eContents().get(0);
 		private final Keyword cAnyKeyword_0_1_1 = (Keyword)cAlternatives_0_1.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final RuleCall cMultiplicityPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//fragment TypePart returns SysML::Feature:
-		//	':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+		//	':' (ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)*
+		//	| 'any') MultiplicityPart?
 		//	| MultiplicityPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart? | MultiplicityPart
+		//':' (ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)* | 'any') MultiplicityPart? |
+		//MultiplicityPart
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+		//':' (ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)* | 'any') MultiplicityPart?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//':'
 		public Keyword getColonKeyword_0_0() { return cColonKeyword_0_0; }
 		
-		//(ownedRelationship_comp+=FeatureTyping | 'any')
+		//(ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)* | 'any')
 		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
 		
+		//ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)*
+		public Group getGroup_0_1_0() { return cGroup_0_1_0; }
+		
 		//ownedRelationship_comp+=FeatureTyping
-		public Assignment getOwnedRelationship_compAssignment_0_1_0() { return cOwnedRelationship_compAssignment_0_1_0; }
+		public Assignment getOwnedRelationship_compAssignment_0_1_0_0() { return cOwnedRelationship_compAssignment_0_1_0_0; }
 		
 		//FeatureTyping
-		public RuleCall getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0() { return cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0; }
+		public RuleCall getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0_0() { return cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0_0; }
+		
+		//(',' ownedRelationship_comp+=FeatureTyping)*
+		public Group getGroup_0_1_0_1() { return cGroup_0_1_0_1; }
+		
+		//','
+		public Keyword getCommaKeyword_0_1_0_1_0() { return cCommaKeyword_0_1_0_1_0; }
+		
+		//ownedRelationship_comp+=FeatureTyping
+		public Assignment getOwnedRelationship_compAssignment_0_1_0_1_1() { return cOwnedRelationship_compAssignment_0_1_0_1_1; }
+		
+		//FeatureTyping
+		public RuleCall getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_1_1_0() { return cOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_1_1_0; }
 		
 		//'any'
 		public Keyword getAnyKeyword_0_1_1() { return cAnyKeyword_0_1_1; }
@@ -4680,21 +4702,53 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Parameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cParameterAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cTypePartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cColonKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Alternatives cAlternatives_1_0_1 = (Alternatives)cGroup_1_0.eContents().get(1);
+		private final Assignment cOwnedRelationship_compAssignment_1_0_1_0 = (Assignment)cAlternatives_1_0_1.eContents().get(0);
+		private final RuleCall cOwnedRelationship_compFeatureTypingParserRuleCall_1_0_1_0_0 = (RuleCall)cOwnedRelationship_compAssignment_1_0_1_0.eContents().get(0);
+		private final Keyword cAnyKeyword_1_0_1_1 = (Keyword)cAlternatives_1_0_1.eContents().get(1);
+		private final RuleCall cMultiplicityPartParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
+		private final RuleCall cMultiplicityPartParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		///* PARAMETERS */ Parameter SysML::Parameter:
-		//	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
-		//;
+		//	{SysML::Parameter} (':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+		//	| MultiplicityPart)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Parameter} TypePart?
+		//{SysML::Parameter} (':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart? | MultiplicityPart)?
 		public Group getGroup() { return cGroup; }
 		
 		//{SysML::Parameter}
 		public Action getParameterAction_0() { return cParameterAction_0; }
 		
-		//TypePart?
-		public RuleCall getTypePartParserRuleCall_1() { return cTypePartParserRuleCall_1; }
+		//(':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart? | MultiplicityPart)?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1_0_0() { return cColonKeyword_1_0_0; }
+		
+		//(ownedRelationship_comp+=FeatureTyping | 'any')
+		public Alternatives getAlternatives_1_0_1() { return cAlternatives_1_0_1; }
+		
+		//ownedRelationship_comp+=FeatureTyping
+		public Assignment getOwnedRelationship_compAssignment_1_0_1_0() { return cOwnedRelationship_compAssignment_1_0_1_0; }
+		
+		//FeatureTyping
+		public RuleCall getOwnedRelationship_compFeatureTypingParserRuleCall_1_0_1_0_0() { return cOwnedRelationship_compFeatureTypingParserRuleCall_1_0_1_0_0; }
+		
+		//'any'
+		public Keyword getAnyKeyword_1_0_1_1() { return cAnyKeyword_1_0_1_1; }
+		
+		//MultiplicityPart?
+		public RuleCall getMultiplicityPartParserRuleCall_1_0_2() { return cMultiplicityPartParserRuleCall_1_0_2; }
+		
+		//MultiplicityPart
+		public RuleCall getMultiplicityPartParserRuleCall_1_1() { return cMultiplicityPartParserRuleCall_1_1; }
 	}
 	public class StepElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Step");
@@ -8708,7 +8762,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment TypePart returns SysML::Feature:
-	//	':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+	//	':' (ownedRelationship_comp+=FeatureTyping (',' ownedRelationship_comp+=FeatureTyping)*
+	//	| 'any') MultiplicityPart?
 	//	| MultiplicityPart;
 	public TypePartElements getTypePartAccess() {
 		return pTypePart;
@@ -9081,8 +9136,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* PARAMETERS */ Parameter SysML::Parameter:
-	//	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
-	//;
+	//	{SysML::Parameter} (':' (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
+	//	| MultiplicityPart)?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}

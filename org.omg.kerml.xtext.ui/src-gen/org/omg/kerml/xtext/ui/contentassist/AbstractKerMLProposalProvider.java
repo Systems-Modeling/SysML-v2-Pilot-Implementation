@@ -416,6 +416,9 @@ public abstract class AbstractKerMLProposalProvider extends AbstractJavaBasedCon
 	public void completeEmptyItemFeatureMember_OwnedMemberFeature_comp(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+	public void completeParameter_OwnedRelationship_comp(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
 	public void completeStepDeclaration_IsSufficient(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}

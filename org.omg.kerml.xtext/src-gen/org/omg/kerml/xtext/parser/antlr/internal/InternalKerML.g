@@ -6222,27 +6222,54 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					(
-						{
-							newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0());
-						}
-						lv_ownedRelationship_comp_1_0=ruleFeatureTyping
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getTypePartRule());
+						(
+							{
+								newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_0_0());
 							}
-							add(
-								$current,
-								"ownedRelationship_comp",
-								lv_ownedRelationship_comp_1_0,
-								"org.omg.kerml.xtext.KerML.FeatureTyping");
-							afterParserOrEnumRuleCall();
-						}
+							lv_ownedRelationship_comp_1_0=ruleFeatureTyping
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getTypePartRule());
+								}
+								add(
+									$current,
+									"ownedRelationship_comp",
+									lv_ownedRelationship_comp_1_0,
+									"org.omg.kerml.xtext.KerML.FeatureTyping");
+								afterParserOrEnumRuleCall();
+							}
+						)
 					)
+					(
+						otherlv_2=','
+						{
+							newLeafNode(otherlv_2, grammarAccess.getTypePartAccess().getCommaKeyword_0_1_0_1_0());
+						}
+						(
+							(
+								{
+									newCompositeNode(grammarAccess.getTypePartAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_0_1_0_1_1_0());
+								}
+								lv_ownedRelationship_comp_3_0=ruleFeatureTyping
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getTypePartRule());
+									}
+									add(
+										$current,
+										"ownedRelationship_comp",
+										lv_ownedRelationship_comp_3_0,
+										"org.omg.kerml.xtext.KerML.FeatureTyping");
+									afterParserOrEnumRuleCall();
+								}
+							)
+						)
+					)*
 				)
 				    |
-				otherlv_2='any'
+				otherlv_4='any'
 				{
-					newLeafNode(otherlv_2, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1());
+					newLeafNode(otherlv_4, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1());
 				}
 			)
 			(
@@ -6252,9 +6279,9 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 					}
 					newCompositeNode(grammarAccess.getTypePartAccess().getMultiplicityPartParserRuleCall_0_2());
 				}
-				this_MultiplicityPart_3=ruleMultiplicityPart[$current]
+				this_MultiplicityPart_5=ruleMultiplicityPart[$current]
 				{
-					$current = $this_MultiplicityPart_3.current;
+					$current = $this_MultiplicityPart_5.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -6266,9 +6293,9 @@ ruleTypePart[EObject in_current]  returns [EObject current=in_current]
 			}
 			newCompositeNode(grammarAccess.getTypePartAccess().getMultiplicityPartParserRuleCall_1());
 		}
-		this_MultiplicityPart_4=ruleMultiplicityPart[$current]
+		this_MultiplicityPart_6=ruleMultiplicityPart[$current]
 		{
-			$current = $this_MultiplicityPart_4.current;
+			$current = $this_MultiplicityPart_6.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -8249,15 +8276,61 @@ ruleParameter returns [EObject current=null]
 			}
 		)
 		(
+			(
+				otherlv_1=':'
+				{
+					newLeafNode(otherlv_1, grammarAccess.getParameterAccess().getColonKeyword_1_0_0());
+				}
+				(
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getParameterAccess().getOwnedRelationship_compFeatureTypingParserRuleCall_1_0_1_0_0());
+							}
+							lv_ownedRelationship_comp_2_0=ruleFeatureTyping
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getParameterRule());
+								}
+								add(
+									$current,
+									"ownedRelationship_comp",
+									lv_ownedRelationship_comp_2_0,
+									"org.omg.kerml.xtext.KerML.FeatureTyping");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+					    |
+					otherlv_3='any'
+					{
+						newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getAnyKeyword_1_0_1_1());
+					}
+				)
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getParameterRule());
+						}
+						newCompositeNode(grammarAccess.getParameterAccess().getMultiplicityPartParserRuleCall_1_0_2());
+					}
+					this_MultiplicityPart_4=ruleMultiplicityPart[$current]
+					{
+						$current = $this_MultiplicityPart_4.current;
+						afterParserOrEnumRuleCall();
+					}
+				)?
+			)
+			    |
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getParameterRule());
 				}
-				newCompositeNode(grammarAccess.getParameterAccess().getTypePartParserRuleCall_1());
+				newCompositeNode(grammarAccess.getParameterAccess().getMultiplicityPartParserRuleCall_1_1());
 			}
-			this_TypePart_1=ruleTypePart[$current]
+			this_MultiplicityPart_5=ruleMultiplicityPart[$current]
 			{
-				$current = $this_TypePart_1.current;
+				$current = $this_MultiplicityPart_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?

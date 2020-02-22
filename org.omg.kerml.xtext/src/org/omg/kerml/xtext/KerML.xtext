@@ -535,7 +535,8 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	  ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  ':' ( ownedRelationship_comp += FeatureTyping ( ',' ownedRelationship_comp += FeatureTyping )* 
+	  	    | 'any' ) MultiplicityPart?
 	| MultiplicityPart
 ;
 
@@ -716,7 +717,10 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 /* PARAMETERS */
 
 Parameter returns SysML::Parameter :
-	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
+	{SysML::Parameter} 	  
+	( ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  | MultiplicityPart
+	)?
 ;
 
 /* STEPS */

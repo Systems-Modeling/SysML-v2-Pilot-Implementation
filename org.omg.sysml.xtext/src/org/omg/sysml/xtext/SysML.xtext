@@ -705,7 +705,8 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	  ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  ':' ( ownedRelationship_comp += FeatureTyping ( ',' ownedRelationship_comp += FeatureTyping )* 
+	  	    | 'any' ) MultiplicityPart?
 	| MultiplicityPart
 ;
 
@@ -763,7 +764,12 @@ UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
 /* PARAMETERS */
 
 Parameter returns SysML::Parameter :
-	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
+	{SysML::Parameter} ParameterTypePart?
+;
+
+fragment ParameterTypePart returns SysML::Parameter :
+	':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  | MultiplicityPart	
 ;
 
 /* PART PROPERTIES */
@@ -1045,7 +1051,7 @@ fragment ActionParameterList returns SysML::Type :
 ;
 
 ActionParameter returns SysML::Parameter :
-	{SysML::Parameter} TypePart? ValuePart?
+	{SysML::Parameter} ParameterTypePart? ValuePart?
 ;
 
 ActionParameterFlow returns SysML::ItemFlow :

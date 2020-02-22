@@ -11,5 +11,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.xtext"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.xtext.ui"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.kerml.xtext"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.kerml.xpect.tests"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

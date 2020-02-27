@@ -71,6 +71,7 @@ public class InternalSysMLLexer extends Lexer {
     public static final int T__17=17;
     public static final int T__18=18;
     public static final int T__99=99;
+    public static final int T__14=14;
     public static final int T__95=95;
     public static final int T__96=96;
     public static final int T__97=97;
@@ -112,7 +113,7 @@ public class InternalSysMLLexer extends Lexer {
     public static final int T__113=113;
     public static final int T__83=83;
     public static final int T__112=112;
-    public static final int RULE_WS=14;
+    public static final int RULE_WS=13;
     public static final int T__88=88;
     public static final int T__108=108;
     public static final int T__89=89;
@@ -141,15 +142,36 @@ public class InternalSysMLLexer extends Lexer {
     }
     public String getGrammarFileName() { return "InternalSysML.g"; }
 
-    // $ANTLR start "T__15"
-    public final void mT__15() throws RecognitionException {
+    // $ANTLR start "T__14"
+    public final void mT__14() throws RecognitionException {
         try {
-            int _type = T__15;
+            int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalSysML.g:11:7: ( 'entry' )
             // InternalSysML.g:11:9: 'entry'
             {
             match("entry"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__14"
+
+    // $ANTLR start "T__15"
+    public final void mT__15() throws RecognitionException {
+        try {
+            int _type = T__15;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalSysML.g:12:7: ( 'do' )
+            // InternalSysML.g:12:9: 'do'
+            {
+            match("do"); 
 
 
             }
@@ -167,10 +189,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:12:7: ( 'do' )
-            // InternalSysML.g:12:9: 'do'
+            // InternalSysML.g:13:7: ( 'exit' )
+            // InternalSysML.g:13:9: 'exit'
             {
-            match("do"); 
+            match("exit"); 
 
 
             }
@@ -188,11 +210,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:13:7: ( 'exit' )
-            // InternalSysML.g:13:9: 'exit'
+            // InternalSysML.g:14:7: ( '?' )
+            // InternalSysML.g:14:9: '?'
             {
-            match("exit"); 
-
+            match('?'); 
 
             }
 
@@ -209,10 +230,11 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:14:7: ( '?' )
-            // InternalSysML.g:14:9: '?'
+            // InternalSysML.g:15:7: ( '??' )
+            // InternalSysML.g:15:9: '??'
             {
-            match('?'); 
+            match("??"); 
+
 
             }
 
@@ -229,10 +251,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:15:7: ( '??' )
-            // InternalSysML.g:15:9: '??'
+            // InternalSysML.g:16:7: ( '||' )
+            // InternalSysML.g:16:9: '||'
             {
-            match("??"); 
+            match("||"); 
 
 
             }
@@ -250,10 +272,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:16:7: ( '||' )
-            // InternalSysML.g:16:9: '||'
+            // InternalSysML.g:17:7: ( '&&' )
+            // InternalSysML.g:17:9: '&&'
             {
-            match("||"); 
+            match("&&"); 
 
 
             }
@@ -271,11 +293,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:17:7: ( '&&' )
-            // InternalSysML.g:17:9: '&&'
+            // InternalSysML.g:18:7: ( '|' )
+            // InternalSysML.g:18:9: '|'
             {
-            match("&&"); 
-
+            match('|'); 
 
             }
 
@@ -292,10 +313,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:18:7: ( '|' )
-            // InternalSysML.g:18:9: '|'
+            // InternalSysML.g:19:7: ( '^' )
+            // InternalSysML.g:19:9: '^'
             {
-            match('|'); 
+            match('^'); 
 
             }
 
@@ -312,10 +333,10 @@ public class InternalSysMLLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSysML.g:19:7: ( '^' )
-            // InternalSysML.g:19:9: '^'
+            // InternalSysML.g:20:7: ( '&' )
+            // InternalSysML.g:20:9: '&'
             {
-            match('^'); 
+            match('&'); 
 
             }
 
@@ -2217,7 +2238,7 @@ public class InternalSysMLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__115"
+    // $ANTLR end "T__114"
 
     // $ANTLR start "T__115"
     public final void mT__115() throws RecognitionException {
@@ -2682,21 +2703,12 @@ public class InternalSysMLLexer extends Lexer {
     // $ANTLR start "RULE_DOCUMENTATION_COMMENT"
     public final void mRULE_DOCUMENTATION_COMMENT() throws RecognitionException {
         try {
-            int _type = RULE_ML_COMMENT;
+            int _type = RULE_DOCUMENTATION_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalSysML.g:48969:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
             // InternalSysML.g:48969:30: '/**' ( options {greedy=false; } : . )* '*/'
             {
-            match("/*"); 
-
-            if ( (input.LA(1)>='\u0000' && input.LA(1)<=')')||(input.LA(1)>='+' && input.LA(1)<='\uFFFF') ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
+            match("/**"); 
 
             // InternalSysML.g:48969:36: ( options {greedy=false; } : . )*
             loop7:
@@ -2746,7 +2758,7 @@ public class InternalSysMLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RULE_ML_COMMENT"
+    // $ANTLR end "RULE_DOCUMENTATION_COMMENT"
 
     // $ANTLR start "RULE_ML_NOTE"
     public final void mRULE_ML_NOTE() throws RecognitionException {
@@ -2987,709 +2999,709 @@ public class InternalSysMLLexer extends Lexer {
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
-                // InternalSysML.g:1:10: T__15
+                // InternalSysML.g:1:10: T__14
+                {
+                mT__14(); 
+
+                }
+                break;
+            case 2 :
+                // InternalSysML.g:1:16: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
-            case 2 :
-                // InternalSysML.g:1:16: T__16
+            case 3 :
+                // InternalSysML.g:1:22: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
-            case 3 :
-                // InternalSysML.g:1:22: T__17
+            case 4 :
+                // InternalSysML.g:1:28: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
-            case 4 :
-                // InternalSysML.g:1:28: T__18
+            case 5 :
+                // InternalSysML.g:1:34: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
-            case 5 :
-                // InternalSysML.g:1:34: T__19
+            case 6 :
+                // InternalSysML.g:1:40: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 6 :
-                // InternalSysML.g:1:40: T__20
+            case 7 :
+                // InternalSysML.g:1:46: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 7 :
-                // InternalSysML.g:1:46: T__21
+            case 8 :
+                // InternalSysML.g:1:52: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 8 :
-                // InternalSysML.g:1:52: T__22
+            case 9 :
+                // InternalSysML.g:1:58: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 9 :
-                // InternalSysML.g:1:58: T__23
+            case 10 :
+                // InternalSysML.g:1:64: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 10 :
-                // InternalSysML.g:1:64: T__24
+            case 11 :
+                // InternalSysML.g:1:70: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 11 :
-                // InternalSysML.g:1:70: T__25
+            case 12 :
+                // InternalSysML.g:1:76: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 12 :
-                // InternalSysML.g:1:76: T__26
+            case 13 :
+                // InternalSysML.g:1:82: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 13 :
-                // InternalSysML.g:1:82: T__27
+            case 14 :
+                // InternalSysML.g:1:88: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 14 :
-                // InternalSysML.g:1:88: T__28
+            case 15 :
+                // InternalSysML.g:1:94: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 15 :
-                // InternalSysML.g:1:94: T__29
+            case 16 :
+                // InternalSysML.g:1:100: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
-            case 16 :
-                // InternalSysML.g:1:100: T__30
+            case 17 :
+                // InternalSysML.g:1:106: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 17 :
-                // InternalSysML.g:1:106: T__31
+            case 18 :
+                // InternalSysML.g:1:112: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 18 :
-                // InternalSysML.g:1:112: T__32
+            case 19 :
+                // InternalSysML.g:1:118: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 19 :
-                // InternalSysML.g:1:118: T__33
+            case 20 :
+                // InternalSysML.g:1:124: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 20 :
-                // InternalSysML.g:1:124: T__34
+            case 21 :
+                // InternalSysML.g:1:130: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 21 :
-                // InternalSysML.g:1:130: T__35
+            case 22 :
+                // InternalSysML.g:1:136: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 22 :
-                // InternalSysML.g:1:136: T__36
+            case 23 :
+                // InternalSysML.g:1:142: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 23 :
-                // InternalSysML.g:1:142: T__37
+            case 24 :
+                // InternalSysML.g:1:148: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
-            case 24 :
-                // InternalSysML.g:1:148: T__38
+            case 25 :
+                // InternalSysML.g:1:154: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
-            case 25 :
-                // InternalSysML.g:1:154: T__39
+            case 26 :
+                // InternalSysML.g:1:160: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
-            case 26 :
-                // InternalSysML.g:1:160: T__40
+            case 27 :
+                // InternalSysML.g:1:166: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
-            case 27 :
-                // InternalSysML.g:1:166: T__41
+            case 28 :
+                // InternalSysML.g:1:172: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
-            case 28 :
-                // InternalSysML.g:1:172: T__42
+            case 29 :
+                // InternalSysML.g:1:178: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
-            case 29 :
-                // InternalSysML.g:1:178: T__43
+            case 30 :
+                // InternalSysML.g:1:184: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
-            case 30 :
-                // InternalSysML.g:1:184: T__44
+            case 31 :
+                // InternalSysML.g:1:190: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
-            case 31 :
-                // InternalSysML.g:1:190: T__45
+            case 32 :
+                // InternalSysML.g:1:196: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 32 :
-                // InternalSysML.g:1:196: T__46
+            case 33 :
+                // InternalSysML.g:1:202: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 33 :
-                // InternalSysML.g:1:202: T__47
+            case 34 :
+                // InternalSysML.g:1:208: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
-            case 34 :
-                // InternalSysML.g:1:208: T__48
+            case 35 :
+                // InternalSysML.g:1:214: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
-            case 35 :
-                // InternalSysML.g:1:214: T__49
+            case 36 :
+                // InternalSysML.g:1:220: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
-            case 36 :
-                // InternalSysML.g:1:220: T__50
+            case 37 :
+                // InternalSysML.g:1:226: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
-            case 37 :
-                // InternalSysML.g:1:226: T__51
+            case 38 :
+                // InternalSysML.g:1:232: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
-            case 38 :
-                // InternalSysML.g:1:232: T__52
+            case 39 :
+                // InternalSysML.g:1:238: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
-            case 39 :
-                // InternalSysML.g:1:238: T__53
+            case 40 :
+                // InternalSysML.g:1:244: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
-            case 40 :
-                // InternalSysML.g:1:244: T__54
+            case 41 :
+                // InternalSysML.g:1:250: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
-            case 41 :
-                // InternalSysML.g:1:250: T__55
+            case 42 :
+                // InternalSysML.g:1:256: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
-            case 42 :
-                // InternalSysML.g:1:256: T__56
+            case 43 :
+                // InternalSysML.g:1:262: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
-            case 43 :
-                // InternalSysML.g:1:262: T__57
+            case 44 :
+                // InternalSysML.g:1:268: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
-            case 44 :
-                // InternalSysML.g:1:268: T__58
+            case 45 :
+                // InternalSysML.g:1:274: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
-            case 45 :
-                // InternalSysML.g:1:274: T__59
+            case 46 :
+                // InternalSysML.g:1:280: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
-            case 46 :
-                // InternalSysML.g:1:280: T__60
+            case 47 :
+                // InternalSysML.g:1:286: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
-            case 47 :
-                // InternalSysML.g:1:286: T__61
+            case 48 :
+                // InternalSysML.g:1:292: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
-            case 48 :
-                // InternalSysML.g:1:292: T__62
+            case 49 :
+                // InternalSysML.g:1:298: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
-            case 49 :
-                // InternalSysML.g:1:298: T__63
+            case 50 :
+                // InternalSysML.g:1:304: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
-            case 50 :
-                // InternalSysML.g:1:304: T__64
+            case 51 :
+                // InternalSysML.g:1:310: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
-            case 51 :
-                // InternalSysML.g:1:310: T__65
+            case 52 :
+                // InternalSysML.g:1:316: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
-            case 52 :
-                // InternalSysML.g:1:316: T__66
+            case 53 :
+                // InternalSysML.g:1:322: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
-            case 53 :
-                // InternalSysML.g:1:322: T__67
+            case 54 :
+                // InternalSysML.g:1:328: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
-            case 54 :
-                // InternalSysML.g:1:328: T__68
+            case 55 :
+                // InternalSysML.g:1:334: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
-            case 55 :
-                // InternalSysML.g:1:334: T__69
+            case 56 :
+                // InternalSysML.g:1:340: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
-            case 56 :
-                // InternalSysML.g:1:340: T__70
+            case 57 :
+                // InternalSysML.g:1:346: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
-            case 57 :
-                // InternalSysML.g:1:346: T__71
+            case 58 :
+                // InternalSysML.g:1:352: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
-            case 58 :
-                // InternalSysML.g:1:352: T__72
+            case 59 :
+                // InternalSysML.g:1:358: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
-            case 59 :
-                // InternalSysML.g:1:358: T__73
+            case 60 :
+                // InternalSysML.g:1:364: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
-            case 60 :
-                // InternalSysML.g:1:364: T__74
+            case 61 :
+                // InternalSysML.g:1:370: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
-            case 61 :
-                // InternalSysML.g:1:370: T__75
+            case 62 :
+                // InternalSysML.g:1:376: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
-            case 62 :
-                // InternalSysML.g:1:376: T__76
+            case 63 :
+                // InternalSysML.g:1:382: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
-            case 63 :
-                // InternalSysML.g:1:382: T__77
+            case 64 :
+                // InternalSysML.g:1:388: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
-            case 64 :
-                // InternalSysML.g:1:388: T__78
+            case 65 :
+                // InternalSysML.g:1:394: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
-            case 65 :
-                // InternalSysML.g:1:394: T__79
+            case 66 :
+                // InternalSysML.g:1:400: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
-            case 66 :
-                // InternalSysML.g:1:400: T__80
+            case 67 :
+                // InternalSysML.g:1:406: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
-            case 67 :
-                // InternalSysML.g:1:406: T__81
+            case 68 :
+                // InternalSysML.g:1:412: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
-            case 68 :
-                // InternalSysML.g:1:412: T__82
+            case 69 :
+                // InternalSysML.g:1:418: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
-            case 69 :
-                // InternalSysML.g:1:418: T__83
+            case 70 :
+                // InternalSysML.g:1:424: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
-            case 70 :
-                // InternalSysML.g:1:424: T__84
+            case 71 :
+                // InternalSysML.g:1:430: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
-            case 71 :
-                // InternalSysML.g:1:430: T__85
+            case 72 :
+                // InternalSysML.g:1:436: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
-            case 72 :
-                // InternalSysML.g:1:436: T__86
+            case 73 :
+                // InternalSysML.g:1:442: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
-            case 73 :
-                // InternalSysML.g:1:442: T__87
+            case 74 :
+                // InternalSysML.g:1:448: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
-            case 74 :
-                // InternalSysML.g:1:448: T__88
+            case 75 :
+                // InternalSysML.g:1:454: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
-            case 75 :
-                // InternalSysML.g:1:454: T__89
+            case 76 :
+                // InternalSysML.g:1:460: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
-            case 76 :
-                // InternalSysML.g:1:460: T__90
+            case 77 :
+                // InternalSysML.g:1:466: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
-            case 77 :
-                // InternalSysML.g:1:466: T__91
+            case 78 :
+                // InternalSysML.g:1:472: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
-            case 78 :
-                // InternalSysML.g:1:472: T__92
+            case 79 :
+                // InternalSysML.g:1:478: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
-            case 79 :
-                // InternalSysML.g:1:478: T__93
+            case 80 :
+                // InternalSysML.g:1:484: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
-            case 80 :
-                // InternalSysML.g:1:484: T__94
+            case 81 :
+                // InternalSysML.g:1:490: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
-            case 81 :
-                // InternalSysML.g:1:490: T__95
+            case 82 :
+                // InternalSysML.g:1:496: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
-            case 82 :
-                // InternalSysML.g:1:496: T__96
+            case 83 :
+                // InternalSysML.g:1:502: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
-            case 83 :
-                // InternalSysML.g:1:502: T__97
+            case 84 :
+                // InternalSysML.g:1:508: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
-            case 84 :
-                // InternalSysML.g:1:508: T__98
+            case 85 :
+                // InternalSysML.g:1:514: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
-            case 85 :
-                // InternalSysML.g:1:514: T__99
+            case 86 :
+                // InternalSysML.g:1:520: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
-            case 86 :
-                // InternalSysML.g:1:520: T__100
+            case 87 :
+                // InternalSysML.g:1:526: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
-            case 87 :
-                // InternalSysML.g:1:527: T__101
+            case 88 :
+                // InternalSysML.g:1:533: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
-            case 88 :
-                // InternalSysML.g:1:534: T__102
+            case 89 :
+                // InternalSysML.g:1:540: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
-            case 89 :
-                // InternalSysML.g:1:541: T__103
+            case 90 :
+                // InternalSysML.g:1:547: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
-            case 90 :
-                // InternalSysML.g:1:548: T__104
+            case 91 :
+                // InternalSysML.g:1:554: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
-            case 91 :
-                // InternalSysML.g:1:555: T__105
+            case 92 :
+                // InternalSysML.g:1:561: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
-            case 92 :
-                // InternalSysML.g:1:562: T__106
+            case 93 :
+                // InternalSysML.g:1:568: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
-            case 93 :
-                // InternalSysML.g:1:569: T__107
+            case 94 :
+                // InternalSysML.g:1:575: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
-            case 94 :
-                // InternalSysML.g:1:576: T__108
+            case 95 :
+                // InternalSysML.g:1:582: T__108
                 {
                 mT__108(); 
 
                 }
                 break;
-            case 95 :
-                // InternalSysML.g:1:583: T__109
+            case 96 :
+                // InternalSysML.g:1:589: T__109
                 {
                 mT__109(); 
 
                 }
                 break;
-            case 96 :
-                // InternalSysML.g:1:590: T__110
+            case 97 :
+                // InternalSysML.g:1:596: T__110
                 {
                 mT__110(); 
 
                 }
                 break;
-            case 97 :
-                // InternalSysML.g:1:597: T__111
+            case 98 :
+                // InternalSysML.g:1:603: T__111
                 {
                 mT__111(); 
 
                 }
                 break;
-            case 98 :
-                // InternalSysML.g:1:604: T__112
+            case 99 :
+                // InternalSysML.g:1:610: T__112
                 {
                 mT__112(); 
 
                 }
                 break;
-            case 99 :
-                // InternalSysML.g:1:611: T__113
+            case 100 :
+                // InternalSysML.g:1:617: T__113
                 {
                 mT__113(); 
 
                 }
                 break;
-            case 100 :
-                // InternalSysML.g:1:618: T__114
+            case 101 :
+                // InternalSysML.g:1:624: T__114
                 {
                 mT__114(); 
-
-                }
-                break;
-            case 101 :
-                // InternalSysML.g:1:625: T__115
-                {
-                mT__115(); 
 
                 }
                 break;
@@ -3953,8 +3965,6 @@ public class InternalSysMLLexer extends Lexer {
             "\1\u00d0\11\uffff\1\u00cf",
             "",
             "\1\u00d1",
-            "\1\u00d2",
-            "\1\u00d3",
             "",
             "\1\u00d2",
             "\1\u00d3",
@@ -3984,8 +3994,6 @@ public class InternalSysMLLexer extends Lexer {
             "",
             "\1\u00e7",
             "\1\u00e8",
-            "",
-            "",
             "\1\u00e9",
             "\1\u00ea",
             "\1\u00eb",
@@ -4005,10 +4013,8 @@ public class InternalSysMLLexer extends Lexer {
             "\1\u00f9",
             "",
             "\1\u00fa",
-            "",
             "\1\u00fb",
             "\1\u00fc",
-            "",
             "\1\u00fd",
             "\1\u00fe",
             "\1\u00ff",
@@ -4110,7 +4116,7 @@ public class InternalSysMLLexer extends Lexer {
             "",
             "",
             "\1\u0150",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
+            "\1\u0151",
             "\1\u0152",
             "\1\u0153",
             "",
@@ -4174,16 +4180,8 @@ public class InternalSysMLLexer extends Lexer {
             "\1\u017b",
             "",
             "\1\u017c",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
+            "\1\u017d",
             "\1\u017e",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
-            "\1\u0180",
-            "\1\u0181",
-            "\1\u0182",
-            "\1\u0183",
-            "\1\u0184",
-            "\1\u0185",
-            "\1\u0186",
             "",
             "\1\u017f",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",

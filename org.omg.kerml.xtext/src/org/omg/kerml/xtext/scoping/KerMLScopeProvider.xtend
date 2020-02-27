@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
+import org.omg.sysml.lang.sysml.Conjugation
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -77,6 +78,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			case SysMLPackage.eINSTANCE.featureTyping_Type: {
 				if (context instanceof FeatureTyping)
 					return context.typedFeature.scope_owningNamespace(reference)
+			}
+			case SysMLPackage.eINSTANCE.conjugation_OriginalType: {
+				if (context instanceof Conjugation) {
+					return context.conjugatedType.scope_owningNamespace(reference)
+				}
 			}
 			case SysMLPackage.eINSTANCE.generalization_General, 
 			case SysMLPackage.eINSTANCE.superclassing_Superclass: {
@@ -110,7 +116,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 		return
 			if (context instanceof Package) 
-				context.alfScope(reference)
+				context.scopeFor(reference, null)
 			else 
 				super.getScope(context, reference)		
 	}
@@ -127,7 +133,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.alfScope(reference)
+			namespace.scopeFor(reference, element)
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
@@ -168,7 +174,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 	}
 	
-	def IScope alfScope(Package pack, EReference reference) {
+	def IScope scopeFor(Package pack, EReference reference, Element element) {
 		val parent = pack.parentPackage
 		val outerscope = 
 			if (parent === null) { // Root Package
@@ -176,14 +182,14 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				 if (pack.name !== null) 
 				 	// The root scope includes qualified names whose first segment is the name
 				 	// of the root package.
-				 	new KerMLRootScope(global, pack, reference.EReferenceType, this)
+				 	new KerMLRootScope(global, pack, reference.EReferenceType, this, element)
 				 else 
 				 	global
 			} else {
-				parent.alfScope(reference)
+				parent.scopeFor(reference, element)
 			}		
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, element)
 	}
 	
 }

@@ -1,0 +1,44 @@
+package VisibilityPackage {
+			private class c_Private{
+				private class c_private{}
+				public class c_public{}
+			}
+			
+			public class c_Public{
+				private class c_private{}
+				public class c_public{}
+				protected class c_protected{}
+			}
+			
+			public class c_Public_alias{
+				public class c_public{}
+				private class alias_private is c_public; 
+				protected class alias_protected is c_public;
+				public class alias_public is c_public;
+				protected class c_protected{}
+				protected class alias_protected_is_c_protected is c_protected;
+			}
+			
+			private class c_Private_alias{
+				public class c_public{}
+				private class alias_private is c_public; 
+				protected class alias_protected is c_public;
+				public class alias_public is c_public;
+			}
+			
+			public class c_clazz{
+				protected class c_Protect{
+					public class c_publicc{}
+					protected class c_protect{}
+				}
+				packaged class c_Package{
+					public class c_publicc{}
+				}
+				
+				public class c_Public{
+					protected class c_protect{}
+					packaged class c_packagee{}
+					public class c_publicc{}
+				}
+			}
+		}

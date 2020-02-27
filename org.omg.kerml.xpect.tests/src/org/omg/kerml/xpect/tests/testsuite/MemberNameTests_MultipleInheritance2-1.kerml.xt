@@ -1,0 +1,39 @@
+//*
+   This testcase is very similar to MultipleInheritance2.  But change test.A.a to test.A.AA.
+   xpect throws RuntimeException error when test.A.a but not test.A.AA
+ */
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+//RuntimeExcpetion happend for adding linking test to A.a so
+//copied from MultipleInheritance2, rename a to AA then possible to perform linking test
+//XPECT noErrors ---> ""
+package test{
+	class A{
+		class AA {}
+	}
+	class B specializes A{
+		//XPECT linkedName at AA --> test.A.AA  
+		class b specializes AA {}
+	}
+	class C specializes B{
+		//XPECT linkedName at AA --> test.A.AA
+		class c specializes AA {}
+	}
+	//* XPECT scope at C::AA ---
+ 		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D,
+ 		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b, test.C.c, test.D, 
+ 	--- */
+	class D specializes C::AA{}
+}

@@ -12,6 +12,15 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc --> A representation of the literals of the enumeration
  * '<em><b>Feature Direction Kind</b></em>', and utility methods for working
  * with them. <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * <p>FeatureDirectionKind enumerates the possible kinds of direction that a Feature may be given as a member of a Type. These include:</p>
+ * 
+ * <ol>
+ * <li><em>in</em> - The value of the Feature relative to a given domain instance is specified externally to that instance but used internally.</li>
+ * <li><em>out</em> - The value of the Feature relative to a given domain instance is specified internally to that instance but used externally.</li>
+ * <li><em>inout</em> - The value of the Feature relative to a given domain instance is specified externally to that instance and used internally, but may be updated internally, with the updated value made available for use externally.</li>
+ * </ol>
+ * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureDirectionKind()
  * @model
  * @generated

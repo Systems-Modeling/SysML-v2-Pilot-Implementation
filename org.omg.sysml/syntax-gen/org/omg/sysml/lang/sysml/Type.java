@@ -10,7 +10,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Types (M1 elements (indirectly) classified by M2 Type) are set descriptors, which give criteria for things in the real-world (or relationships between them) being members of the set. For example, the set of real numbers, the set of all wheeled vehicles, the set of all occurring actions, and so on.</p>
+ * <p>A Type is a descriptor of a set, giving criteria for things being members of the set, known as the <em>instances</em> of the type. For example, the set of real numbers, the set of all wheeled vehicles, the set of all occurring actions, and so on.</p>
+ * 
+ * <p>Both Classifiers and Features are kinds of Types. A Classifier fundamentally represents a set of individual things, while a Feature represents a relation between such things. However, because Features can be nested, a Feature can also represent a contextualized relations and relations between other Features, to any level.</p> 
+ * 
  * 
  * ownedGeneralization->asSet() = specificOfGeneralization->intersection(ownedElement)
  * <!-- end-model-doc -->
@@ -21,20 +24,21 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  * </ul>
  *
@@ -304,6 +308,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Type is to be interpreted as including all M0 things that meet the constraints (logically speaking) of the type. That is, whether the constraints specified for the Type are not only <em>necessary</em> for inclusion of an instance in the Type, but are also <em>sufficient</em> to <em>require</em> inclusion.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Sufficient</em>' attribute.
 	 * @see #setIsSufficient(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsSufficient()
@@ -453,6 +460,39 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	EList<Feature> getInheritedFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The one feature (at most) of a Type that is a Multiplicity, which constrains the cardinality of the Type.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Multiplicity</em>' reference.
+	 * @see #setMultiplicity(Multiplicity)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Multiplicity()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithMultiplicity'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Multiplicity getMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Multiplicity</em>' reference.
+	 * @see #getMultiplicity()
+	 * @generated
+	 */
+	void setMultiplicity(Multiplicity value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

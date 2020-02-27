@@ -1,5 +1,8 @@
 package StatePerformances {
 	import TransitionPerformances::*;
+	private import BaseFunctions::*;
+	private import Occurrences::*;
+	private import Transfers::*;
 	
 	behavior StatePerformance specializes ControlPerformances::DecisionPerformance {
 		feature isTriggerDuring: Boolean;
@@ -25,7 +28,7 @@ package StatePerformances {
 		succession middle::endShot[*] then do::endShot[1];
 		succession middle[*] then exit[1];
 
-		/* isEmpty(accept) = isEmpty(acceptable) */
+		inv { isEmpty(accepted) == isEmpty(acceptable) }
 
 		abstract feature acceptable: Transfer[*] {
 			feature startShot redefines Occurrence::startShot;
@@ -35,11 +38,11 @@ package StatePerformances {
 		
 		succession do[1] then accepted::endShot[0..1];
 		succession accepted::endShot[0..1] then acceptable::endShot[*] {
-			/* if isAcceptFirst then size() = acceptable->size() */
+			inv { !isAcceptFirst | size(self) == size(acceptable) }
 		}
 		succession acceptable::endShot[*] then exit[1];
 		connector :HappensDuring from acceptable::endShot[*] to self[1] {
-			/* if isTriggerDuring then not isEmpty() */
+			inv { !isTriggerDuring | !isEmpty(self) }
 		}
 	}
 	
@@ -57,11 +60,10 @@ package StatePerformances {
 		
 		binding transitionLinkSource::accepted[0..1] = trigger[1];
 		connector :HappensDuring from transitionLinkSource[0..1] to trigger::endShot[*] {
-			/* if transitionLinkSource.isAcceptFirst then size() = trigger->size() */
+			inv { !transitionLinkSource::isAcceptFirst | size(self) == size(trigger) }
 		}
 		
-		succession :all HappensBefore 
-			first transitionLinkSource::middle[1..*] then guard[*];
+		succession all transitionLinkSource::middle[1..*] then guard[*];
 		succession guard[*] then transitionLinkSource::exit[1];		
 	}
 }

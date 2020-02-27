@@ -59,14 +59,18 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONJUGATED_PORT_DEFINITION;
 	}
+	
+	@Override
+	public PortConjugation getOwnedPortConjugator() {
+		return ownedPortConjugator == null? basicGetOwnedPortConjugator(): getOwnedPortConjugatorGen();
+	}	
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public PortConjugation getOwnedPortConjugator() {
+	public PortConjugation getOwnedPortConjugatorGen() {
 		if (ownedPortConjugator != null && ownedPortConjugator.eIsProxy()) {
 			InternalEObject oldOwnedPortConjugator = (InternalEObject)ownedPortConjugator;
 			ownedPortConjugator = (PortConjugation)eResolveProxy(oldOwnedPortConjugator);
@@ -81,9 +85,14 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
+		if (ownedPortConjugator == null) {
+			ownedPortConjugator = (PortConjugation) getOwnedRelationship().stream().
+					filter(r->r instanceof PortConjugation).
+					findFirst().orElse(null);
+		}
 		return ownedPortConjugator;
 	}
 
@@ -169,6 +178,110 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	public boolean isSetOriginalPortDefinition() {
 		return basicGetOriginalPortDefinition() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Conjugation getOwnedConjugator() {
+		return getOwnedPortConjugator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Conjugation basicGetOwnedConjugator() {
+		return basicGetOwnedPortConjugator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedConjugator(Conjugation newOwnedConjugator) {
+		if (newOwnedConjugator != null && !(newOwnedConjugator instanceof PortConjugation)) {
+			throw new IllegalArgumentException("newOwnedConjugator must be an instance of PortConjugation");
+		}
+		setOwnedPortConjugator((PortConjugation) newOwnedConjugator);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedConjugator() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
+		return getOriginalPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
+		return basicGetOriginalPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
+		if (newOwningNamespace != null && !(newOwningNamespace instanceof PortDefinition)) {
+			throw new IllegalArgumentException("newOwningNamespace must be an instance of PortDefinition");
+		}
+		setOriginalPortDefinition((PortDefinition) newOwningNamespace);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningNamespace() {
+  		return false;
+	}
+	
+	// Additional subsets/redefinitions
+	
+	@Override
+	public String basicGetName() {
+		String name = super.basicGetName();
+		if (name == null) {
+			PortDefinition originalPortDefinition = getOriginalPortDefinition();
+			if (originalPortDefinition != null) {
+				name = originalPortDefinition.getName();
+				if (name != null) {
+					name = "~" + name;
+				}
+			}
+		}
+		return name;
+	}
+	
+	@Override
+	public Conjugation getConjugator() {
+		return getOwnedPortConjugator();
 	}
 
 	/**
@@ -273,88 +386,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 				return isSetOriginalPortDefinition();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Conjugation getOwnedConjugator() {
-		return getOwnedPortConjugator();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Conjugation basicGetOwnedConjugator() {
-		return basicGetOwnedPortConjugator();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedConjugator(Conjugation newOwnedConjugator) {
-		if (newOwnedConjugator != null && !(newOwnedConjugator instanceof PortConjugation)) {
-			throw new IllegalArgumentException("newOwnedConjugator must be an instance of PortConjugation");
-		}
-		setOwnedPortConjugator((PortConjugation) newOwnedConjugator);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedConjugator() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
-		return getOriginalPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
-		return basicGetOriginalPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
-		if (newOwningNamespace != null && !(newOwningNamespace instanceof PortDefinition)) {
-			throw new IllegalArgumentException("newOwningNamespace must be an instance of PortDefinition");
-		}
-		setOriginalPortDefinition((PortDefinition) newOwningNamespace);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningNamespace() {
-  		return false;
 	}
 
 } //ConjugatedPortDefinitionImpl

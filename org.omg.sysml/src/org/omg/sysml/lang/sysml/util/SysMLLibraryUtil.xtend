@@ -31,21 +31,23 @@ import org.omg.sysml.lang.sysml.Element
 
 class SysMLLibraryUtil {
 	
-	static String modelLibraryDirectory = null;
+	public static final String DEFAULT_MODEL_LIBRARY_DIRECTORY = "/resource/sysml.library";
+	
+	static String modelLibraryDirectory = DEFAULT_MODEL_LIBRARY_DIRECTORY;
 	
 	def static setModelLibraryDirectory(String path) {
 		modelLibraryDirectory = path
 	}
 	
+	def static isModelLibrary(Resource resource) {
+		return resource !== null && resource.URI.path.contains(modelLibraryDirectory)
+	}
+	
 	def static IModelLibraryProvider getInstance(Resource resource) {
 		try {
-			val instance = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(IModelLibraryProvider)
-			if (instance !== null && modelLibraryDirectory !== null) {
-				instance.setModelLibraryDirectory(modelLibraryDirectory)
-			}
-			instance
+			IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(IModelLibraryProvider)
 		} catch (Exception e) {
-			System.out.println("[SysMLLibaryUtil] Cannot get library provider: " + e)
+			System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e)
 			null
 		}
 	}

@@ -40,6 +40,15 @@ public interface SysMLFactory extends EFactory {
 	SendActionUsage createSendActionUsage();
 
 	/**
+	 * Returns a new object of class '<em>Assert Constraint Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assert Constraint Usage</em>'.
+	 * @generated
+	 */
+	AssertConstraintUsage createAssertConstraintUsage();
+
+	/**
 	 * Returns a new object of class '<em>Accept Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +191,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Predicate createPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Transition Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Transition Usage</em>'.
+	 * @generated
+	 */
+	TransitionUsage createTransitionUsage();
 
 	/**
 	 * Returns a new object of class '<em>Function</em>'.
@@ -391,6 +409,33 @@ public interface SysMLFactory extends EFactory {
 	StateUsage createStateUsage();
 
 	/**
+	 * Returns a new object of class '<em>Constraint Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Usage</em>'.
+	 * @generated
+	 */
+	ConstraintUsage createConstraintUsage();
+
+	/**
+	 * Returns a new object of class '<em>Invariant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invariant</em>'.
+	 * @generated
+	 */
+	Invariant createInvariant();
+
+	/**
+	 * Returns a new object of class '<em>Boolean Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean Expression</em>'.
+	 * @generated
+	 */
+	BooleanExpression createBooleanExpression();
+
+	/**
 	 * Returns a new object of class '<em>Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,6 +461,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ExhibitStateUsage createExhibitStateUsage();
+
+	/**
+	 * Returns a new object of class '<em>Conjugated Port Typing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conjugated Port Typing</em>'.
+	 * @generated
+	 */
+	ConjugatedPortTyping createConjugatedPortTyping();
 
 	/**
 	 * Returns a new object of class '<em>Value Type</em>'.
@@ -452,6 +506,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	InterfaceUsage createInterfaceUsage();
+
+	/**
+	 * Returns a new object of class '<em>Constraint Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Definition</em>'.
+	 * @generated
+	 */
+	ConstraintDefinition createConstraintDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Connection Usage</em>'.
@@ -598,15 +661,6 @@ public interface SysMLFactory extends EFactory {
 	Ownership createOwnership();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Succession</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Succession</em>'.
-	 * @generated
-	 */
-	ConditionalSuccession createConditionalSuccession();
-
-	/**
 	 * Returns a new object of class '<em>Literal Boolean</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -641,15 +695,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ParameterMembership createParameterMembership();
-
-	/**
-	 * Returns a new object of class '<em>Transition Step</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transition Step</em>'.
-	 * @generated
-	 */
-	TransitionStep createTransitionStep();
 
 	/**
 	 * Returns a new object of class '<em>Return Parameter Membership</em>'.

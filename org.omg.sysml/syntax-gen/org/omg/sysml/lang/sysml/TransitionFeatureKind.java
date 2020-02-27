@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Transition Feature Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * A TransitionActionKind indicates whether a feature of a TransitionUsage is a trigger, guard or effect.
+ * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionFeatureKind()
  * @model
  * @generated

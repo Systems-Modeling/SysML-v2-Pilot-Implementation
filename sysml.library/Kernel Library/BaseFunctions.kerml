@@ -15,10 +15,11 @@ package BaseFunctions {
 	function tail(seq: Anything[0..*]): Boolean;
 	function last(seq: Anything[0..*]): Boolean;
 	
-	function '['(seq: Anything[*], index: Integer): Anything[0..1];
+	function '['(seq: Anything[0..*], index: Integer): Anything[0..1];
+	function ','(x: Anything, seq: Anything[0..*]): Anything[0..*];
 
 	abstract function 'allInstances'(): Object[0..*] {
-		abstract feature type: all Object;
+		abstract feature all type: Object;
 	}
 	
 	abstract function 'instanceof'(x: Anything): Boolean {

@@ -31,17 +31,16 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.common.util.URI
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
+import org.eclipse.emf.ecore.resource.Resource
 
 @Singleton
 class KerMLLibraryProvider implements IModelLibraryProvider {
-	
-	var modelLibraryDirectory = "/resource/sysml.library"
-	
+		
 	@Inject
 	KerMLGlobalScopeProvider globalScope
 	
@@ -51,16 +50,12 @@ class KerMLLibraryProvider implements IModelLibraryProvider {
 	@Inject
 	IQualifiedNameConverter nameConverter
 	
+	protected def isModelLibrary(Resource resource) {
+		SysMLLibraryUtil.isModelLibrary(resource)
+	}
+	
 	protected def fileName(URI uri) {
 		return uri.trimFileExtension.lastSegment
-	}
-	
-	protected def isLibraryResource(Resource resource) {
-		return resource !== null && resource.URI.path.startsWith(modelLibraryDirectory)
-	}
-	
-	override setModelLibraryDirectory(String path) {
-		modelLibraryDirectory = path
 	}
 	
 	override Element getElement(Element context, EReference reference, String name) {
@@ -70,7 +65,7 @@ class KerMLLibraryProvider implements IModelLibraryProvider {
 			val qname = nameConverter.toQualifiedName(name)
 			val resource = context.eResource();
 			val scope =
-				if (isLibraryResource(resource))
+				if (resource.isModelLibrary)
 					scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference)
 				else 
 					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])

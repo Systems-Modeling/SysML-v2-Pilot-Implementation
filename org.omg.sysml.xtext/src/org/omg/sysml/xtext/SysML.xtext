@@ -43,6 +43,7 @@ Unit returns SysML::Package :
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
 	| StateDefinitionUnit
+	| ConstraintDefinitionUnit
 	| PartUnit
 	| ValueUnit
 	| ActionUnit
@@ -79,6 +80,10 @@ ActivityUnit returns SysML::Activity :
 
 StateDefinitionUnit returns SysML::StateDefinition :
 	UnitPrefix StateDefDeclaration StateBody
+;
+
+ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
+	UnitPrefix ConstraintDefDeclaration ConstraintBody
 ;
 
 PartUnit returns SysML::PartProperty :
@@ -192,7 +197,9 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedMemberElement_comp = Activity
     | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
     | ownedMemberElement_comp = StateDefinition
-    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::Behavior|QualifiedName] ';'
+    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::StateDefinition|QualifiedName] ';'
+    | ownedMemberElement_comp = ConstraintDefinition
+    | 'constraint' 'def' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintDefinition|QualifiedName] ';'
 	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedMemberElement_comp = Comment
 	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
@@ -211,7 +218,10 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
 	| 'state' ownedMemberElement_comp = StateUsage
 	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
+	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::StateUsage|QualifiedName] ';'
+	| 'constraint' ownedMemberElement_comp = ConstraintUsage
+	| 'abstract' 'constraint' ownedMemberElement_comp = AbstractConstraintUsage
+	| 'constraint' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintUsage|QualifiedName] ';'
 ;
 
 /* DEFINITIONS */
@@ -259,15 +269,14 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
-	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
 	| 'interface' ownedMemberFeature_comp = InterfaceUsage
 	| 'abstract' 'interface' ownedMemberFeature_comp = AbstractInterfaceUsage
 	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
+    | 'link' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
 	| 'connect' ownedMemberFeature_comp = Connector 
     | 'abstract' 'connect' ownedMemberFeature_comp = AbstractConnector
-    | 'connect' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
     | 'bind' ownedMemberFeature_comp = BindingConnector
 	| 'succession' ownedMemberFeature_comp = Succession 
     | 'abstract' 'succession' ownedMemberFeature_comp = AbstractSuccession
@@ -288,9 +297,14 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
 	| ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = StateUsage
 	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
+	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::StateUsage|QualifiedName] ';'
+	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
+	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = ConstraintUsage
+	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = AbstractConstraintUsage
+	| 'constraint' ( memberName = Name )? 'is' memberFeature = [SysML::ConstraintUsage|QualifiedName] ';'
 	| 'perform' ownedMemberFeature_comp = PerformActionUsage
 	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
+	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage
 	)
 ;
 
@@ -361,6 +375,21 @@ PortDefinition returns SysML::PortDefinition :
 
 fragment PortDeclaration returns SysML::PortDefinition :
 	( isAbstract ?= 'abstract' )? 'port' 'def' ClassifierDeclarationCompletion
+	ownedMembership_comp += ConjugatedPortDefinitionMember
+;
+
+ConjugatedPortDefinition returns SysML::ConjugatedPortDefinition :
+	ownedRelationship_comp += PortConjugation
+;
+
+PortConjugation returns SysML::PortConjugation :
+	{SysML::PortConjugation}
+;
+
+/* PORT DEFINITION MEMBERSHIPS */
+
+ConjugatedPortDefinitionMember returns SysML::Membership :
+	ownedMemberElement_comp = ConjugatedPortDefinition
 ;
 
 /* ASSOCIATION BLOCKS */
@@ -505,6 +534,7 @@ fragment ActivityBodyItem returns SysML::Type :
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
 	  ownedFeatureMembership_comp += ActivityNodeMember
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ownedFeatureMembership_comp += GuardedSuccessionMember
 	| ownedImport_comp += Import
 ;
 
@@ -524,7 +554,11 @@ ActivityNodeMember returns SysML::FeatureMembership :
 ;
 
 TargetSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TargetSuccession ';'
+	DefinitionMemberPrefix ownedMemberFeature_comp = ( TargetSuccession | GuardedTargetSuccession | DefaultTargetSuccession ) ';'
+;
+
+GuardedSuccessionMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = GuardedSuccession ';'
 ;
 
 /* STATE DEFINITIONS */
@@ -538,11 +572,23 @@ fragment StateDefDeclaration returns SysML::StateDefinition :
 ;
 
 fragment StateBody returns SysML::Type :
-	';' | '{' StateBehaviorPart StateBodyItem* '}'
+	';' | '{' StateBodyPart '}'
 ;
 
 fragment AbstractStateBody returns SysML::Type :
-	isAbstract ?= ';' | isAbstract ?= '{' StateBehaviorPart StateBodyItem* '}'
+	isAbstract ?= ';' | isAbstract ?= '{' StateBodyPart '}'
+;
+
+fragment StateBodyPart returns SysML::Type :
+	( ownedFeatureMembership_comp += EntryActionMember
+	  ( ownedFeatureMembership_comp += EntryTransitionMember )*
+	)?
+	( ownedFeatureMembership_comp += DoActionMember )?
+	( ownedFeatureMembership_comp += ExitActionMember )?
+	
+	// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
+	// while incrementally parsing.
+	=> StateBodyItem*
 ;
 
 fragment StateBodyItem returns SysML::Type :
@@ -550,20 +596,16 @@ fragment StateBodyItem returns SysML::Type :
 	| ownedFeatureMembership_comp += StructureUsageMember
 	| ownedFeatureMembership_comp += StateMember
 		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
-	| ownedFeatureMembership_comp += TransitionSuccessionMember
+	| ownedFeatureMembership_comp += TransitionStepMember
 	| ownedImport_comp += Import
 ;
 
-fragment StateBehaviorPart returns SysML::Type :
-	( ownedFeatureMembership_comp += EntryActionMember
-	  ( ownedFeatureMembership_comp += ConditionalTransitionSuccessionMember )*
-	)?
-	( ownedFeatureMembership_comp += DoActionMember )?
-	( ownedFeatureMembership_comp += ExitActionMember )?
+StateActionUsage returns SysML::ActionUsage :
+	  EmptyActionUsage ';' | PerformedActionUsage ActivityBody
 ;
 
-StateActionUsage returns SysML::ActionUsage :
-	EmptyActionUsage ';' | PerformActionUsage | ActionNode
+PerformedActionUsage returns SysML::ActionUsage :
+	PerformActionUsageDeclaration | AcceptActionNodeDeclaration | SendActionNodeDeclaration
 ;
 
 EmptyActionUsage returns SysML::ActionUsage :
@@ -603,16 +645,60 @@ StateMember returns SysML::FeatureMembership :
 	)
 ;
 
-ConditionalTransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = ConditionalTransitionSuccession ';'
+EntryTransitionMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 
+	( ownedMemberFeature_comp = GuardedTargetSuccession 
+	| 'then' ownedMemberFeature_comp = TransitionSuccession
+	) ';'
 ;
 
 TargetTransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionSuccession ';'
+	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionStep ';'
 ;
 
-TransitionSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionSuccession ';'
+TransitionStepMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionStep ';'
+;
+
+/* CONSTRAINT DEFINITIONS */
+
+ConstraintDefinition returns SysML::ConstraintDefinition :
+	ConstraintDefDeclaration ConstraintBody  
+;
+
+fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition :
+	( isAbstract ?= 'abstract' )? 'constraint' 'def' name = Name 
+	ParameterList? EmptyReturnParameterPart SuperclassingList?
+;
+
+fragment ConstraintBody returns SysML::Type :
+	  ';'
+	| '{' ( 
+		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedFeatureMembership_comp += NestedUsageMember 
+		| ownedImport_comp += Import
+		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
+	  '}'
+;
+
+fragment AbstractConstraintBody returns SysML::Type :
+	  isAbstract ?= ';'
+	| isAbstract ?= '{' ( 
+		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedFeatureMembership_comp += NestedUsageMember 
+		| ownedImport_comp += Import
+		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
+	  '}'
+;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+/* CONSTRAINT DEFINITION MEMBERSHIPS */
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyParameter
 ;
 
 /* USAGES */
@@ -768,13 +854,17 @@ AbstractConjugatedPortUsage returns SysML::PortUsage :
 ;
 
 fragment ConjugatePortUsageDeclaration returns SysML::Usage :
-	  name = Name ConjugatePortTyping MultiplicityPart? SubsettingPart
-	| ConjugatePortTyping MultiplicityPart? SubsettingPart
-	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition ConjugatePortTyping MultiplicityPart SubsettingPart
+	  name = Name ConjugatePortTypePart MultiplicityPart? SubsettingPart
+	| ConjugatePortTypePart MultiplicityPart? SubsettingPart
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition ConjugatePortTypePart MultiplicityPart SubsettingPart
 ;
 
-fragment ConjugatePortTyping returns SysML::Feature :
-	':' '~' ownedRelationship_comp += FeatureTyping
+fragment ConjugatePortTypePart returns SysML::Feature :
+	':' '~' ownedRelationship_comp += ConjugatedPortTyping
+;
+
+ConjugatedPortTyping returns SysML::ConjugatedPortTyping :
+	portDefinition = [SysML::PortDefinition | QualifiedName]
 ;
 
 /* CONNECTORS */
@@ -877,83 +967,20 @@ EmptySuccession returns SysML::Succession :
 	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember ownedFeatureMembership_comp += EmptyTargetEndMember
 ;
 
-ConditionalSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += ConditionalStepMember
-	ownedFeatureMembership_comp += EmptySourceEndMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember
+GuardedSuccession returns SysML::TransitionUsage :
+	'succession' ( ( name = Name )? TypePart? 'first' )? 
+	ownedFeatureMembership_comp += TransitionSourceMember 
+	ownedFeatureMembership_comp += GuardExpressionMember
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-ConditionalStep returns SysML::Step :
-	'if' ownedFeatureMembership_comp += ExpressionMember
+GuardedTargetSuccession returns SysML::TransitionUsage :
+	ownedFeatureMembership_comp += GuardExpressionMember
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
-DefaultSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += EmptySourceEndMember 
-	ownedFeatureMembership_comp += EmptyTransitionStepMember
-	'else' ownedFeatureMembership_comp += ConnectorEndMember
-;
-
-EmptyTransitionStep returns SysML::Step :
-	{SysML::Step}
-;
-
-TransitionSuccession returns SysML::Succession :
-	'transition' ( ( name = Name )? TypePart? 'first' )? 
-	ownedFeatureMembership_comp += ConnectorEndMember 
-	ownedFeatureMembership_comp += TransitionStepMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-TargetTransitionSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += EmptySourceEndMember
-	ownedFeatureMembership_comp += TransitionStepMember 
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-ConditionalTransitionSuccession returns SysML::Succession :
-    ownedFeatureMembership_comp += EmptySourceEndMember
-	( ownedFeatureMembership_comp += ConditionalStepMember )?
-	'then' ownedFeatureMembership_comp += ConnectorEndMember	
-;
-
-TransitionStep returns SysML::Step :
-	{SysML::Step}  
-	( 'accept' ownedFeatureMembership_comp += TriggerStepMember )?
-	( 'if' ownedFeatureMembership_comp += ExpressionMember )?
-	( 'do' ownedFeatureMembership_comp += EffectBehaviorMember )?
-;
-
-TriggerStep returns SysML::AcceptActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	ownedFeatureMembership_comp += ItemFeatureMember
-;
-
-EffectBehaviorUsage returns SysML::ActionUsage :
-	  EmptyActionUsage
-	| ( PerformActionUsageDeclaration | ActionNodeDeclaration )
-	  ( '{' ActivityBodyItem* '}' )?
-;
-
-/* SUCCESSION MEMBERHSIPS */
-
-EmptyTransitionStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EmptyTransitionStep
-;
-
-ConditionalStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = ConditionalStep
-;
-
-TransitionStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TransitionStep
-;
-
-TriggerStepMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TriggerStep
-;
-
-EffectBehaviorMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EffectBehaviorUsage
+DefaultTargetSuccession returns SysML::TransitionUsage :
+	'else' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
 /* ITEM FLOWS */
@@ -1060,8 +1087,9 @@ PerformActionUsage returns SysML::PerformActionUsage :
 ;
 
 PerformActionUsageDeclaration returns SysML::PerformActionUsage :
-    ( name = Name TypePart? 'by' )? 
-    ownedRelationship_comp += Subset 
+   	( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
+   	| 'action' ( name = Name )? TypePart?
+   	)
     ActionParameterList? SubsettingPart ValuePart?
 ;
 
@@ -1117,11 +1145,6 @@ MergeNode returns SysML::MergeNode :
 
 DecisionNode returns SysML::DecisionNode :
 	{SysML::DecisionNode} isComposite ?= 'decide' ( name = Name TypePart? )? ';'
- 	( ownedFeatureMembership_comp += ConditionalSuccessionMember ';'
- 	  ( ownedFeatureMembership_comp += ConditionalSuccessionMember ';' )* 
- 	  ( ownedFeatureMembership_comp += DefaultSuccessionMember ';' )? 
- 	)?
-
 ;
 
 JoinNode returns SysML::JoinNode :
@@ -1153,14 +1176,6 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = EmptySuccession
 ;
 
-ConditionalSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = ConditionalSuccession
-;
-
-DefaultSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = DefaultSuccession
-;
-
 EmptyParameterMember returns SysML::ParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
 ;
@@ -1181,10 +1196,120 @@ AbstractStateUsage returns SysML::StateUsage :
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
-    ( name = Name TypePart? 'by' )? 
-    ownedRelationship_comp += Subset 
+    ( ( name = Name TypePart? 'by' )? ownedRelationship_comp += Subset 
+    | 'state' ( name = Name )? TypePart?
+    )
     ActionParameterList? SubsettingPart ValuePart?
 	StateBody
+;
+
+/* TRANSITIONS */
+
+TransitionStep returns SysML::TransitionUsage :
+	'transition' ( ( name = Name )? TypePart? 'first' )? 
+	ownedFeatureMembership_comp += TransitionSourceMember 
+	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedFeatureMembership_comp += GuardExpressionMember )?
+	( ownedFeatureMembership_comp += EffectBehaviorMember )?
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+;
+
+TargetTransitionStep returns SysML::TransitionUsage :
+	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedFeatureMembership_comp += GuardExpressionMember )?
+	( ownedFeatureMembership_comp += EffectBehaviorMember )?
+	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+;
+
+TriggerStep returns SysML::AcceptActionUsage :
+	ownedFeatureMembership_comp += EmptyParameterMember
+	ownedFeatureMembership_comp += ItemFeatureMember
+;
+
+EffectBehaviorUsage returns SysML::ActionUsage :
+	  EmptyActionUsage | PerformedActionUsage ( '{' ActivityBodyItem* '}' )?
+;
+
+TransitionSuccession returns SysML::Succession :
+	ownedFeatureMembership_comp += EmptySourceEndMember 
+	ownedFeatureMembership_comp += ConnectorEndMember
+;
+
+/* TRANSITION MEMBERSHIPS */
+
+TransitionSourceMember returns SysML::FeatureMembership :
+	memberFeature = [SysML::Feature|QualifiedName]
+;
+
+TransitionSuccessionMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TransitionSuccession
+;
+
+TriggerStepMember returns SysML::TransitionFeatureMembership :
+	kind = TriggerFeatureKind ownedMemberFeature_comp = TriggerStep
+;
+
+enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
+	trigger = 'accept'
+;
+
+GuardExpressionMember returns SysML::TransitionFeatureMembership :
+	kind = GuardFeatureKind ownedMemberFeature_comp = Expression
+;
+
+enum GuardFeatureKind returns SysML::TransitionFeatureKind :
+	guard = 'if'
+;
+
+EffectBehaviorMember returns SysML::TransitionFeatureMembership :
+	kind = EffectFeatureKind ownedMemberFeature_comp = EffectBehaviorUsage
+;
+
+enum EffectFeatureKind returns SysML::TransitionFeatureKind :
+	effect = 'do'
+;
+
+/* CONSTRAINTS */
+
+ConstraintUsage returns SysML::ConstraintUsage :
+	ConstraintDeclaration ConstraintBody
+;
+
+AbstractConstraintUsage returns SysML::ConstraintUsage :
+	ConstraintDeclaration AbstractConstraintBody
+;
+
+fragment ConstraintDeclaration returns SysML::ConstraintUsage :
+	  name = Name TypePart? ConstraintParameterPart
+	| TypePart? ( ActionParameterList EmptyReturnParameterPart )? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition 
+		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
+;
+
+fragment ConstraintParameterPart returns SysML::ConstraintUsage :
+	ActionParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+;
+
+AssertConstraintUsage returns SysML::AssertConstraintUsage :
+    ( ( ( name = Name )? TypePart? 'by' )? ownedRelationship_comp += Subset 
+      ConstraintParameterPart InvariantPart DefinitionBody
+    | 'constraint' ( name = Name )? TypePart? 
+      ConstraintParameterPart InvariantPart ConstraintBody
+    )
+;
+
+fragment InvariantPart returns SysML::Invariant :
+	ownedFeatureMembership_comp += TrueLiteralMember
+;
+
+TrueLiteralExpression returns SysML::LiteralBoolean :
+	{SysML::LiteralBoolean}
+;
+
+/* CONSTRAINT MEMBERSHIPS */
+
+TrueLiteralMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TrueLiteralExpression
 ;
 
 /* EXPRESSIONS */
@@ -1401,8 +1526,17 @@ TypeReference returns SysML::Feature :
 	ownedRelationship_comp += FeatureTyping
 ;
 
-SequenceConstructionExpression returns SysML::SequenceConstructionExpression:
-	{SysML::SequenceConstructionExpression} '{' ( element_comp += Expression ( ',' element_comp += Expression )* )? '}'
+SequenceConstructionExpression returns SysML::Expression :
+	  {SysML::NullExpression} '{' '}'
+	| '{' Expression
+	      ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList
+	      | {SysML::OperatorExpression.operand_comp += current} operator = '..' operand_comp += Expression
+	      )?
+	  '}'
+;
+
+SequenceElementList returns SysML::Expression :	
+	Expression ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList )?
 ;
 
 NullExpression returns SysML::NullExpression :
@@ -1416,7 +1550,11 @@ LiteralExpression returns SysML::LiteralExpression :
 ;
 
 BooleanLiteralExpression returns SysML::LiteralBoolean :
-	value = BOOLEAN_VALUE
+	value = BooleanValue
+;
+
+BooleanValue returns Ecore::EBoolean :
+	'true' | 'false'
 ;
 
 StringLiteralExpression returns SysML::LiteralString :
@@ -1428,11 +1566,11 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	NATURAL_VALUE? '.' ( NATURAL_VALUE | EXP_VALUE ) | EXP_VALUE
+	DECIMAL_VALUE? '.' ( DECIMAL_VALUE | EXP_VALUE ) | EXP_VALUE
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
-	value = NATURAL_VALUE
+	value = DECIMAL_VALUE
 ;
 
 UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
@@ -1510,18 +1648,19 @@ DotQualifiedName :
 
 /* TERMINALS */
 
-terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
-	'true' | 'false' ;
+//terminal NATURAL_VALUE returns Ecore::EInt :
+//	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
+//	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
+//	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
+//	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+//;
 
-terminal NATURAL_VALUE returns Ecore::EInt :
-	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
-	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
-	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
-	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+terminal DECIMAL_VALUE returns Ecore::EInt :
+	'0'..'9' ('0'..'9')*
 ;
 
 terminal EXP_VALUE :
-	NATURAL_VALUE ('e' | 'E') ('+' | '-')? NATURAL_VALUE
+	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.omg.sysml.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SysML v2 Submission Team
+Bundle-Version: 0.2.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -13,15 +13,20 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="2.14.0",
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- org.omg.sysml;bundle-version="1.0.0",
- org.omg.kerml.xtext
+ org.omg.sysml;bundle-version="0.2.0",
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.uml.resources,
+ org.omg.kerml.xtext;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.omg.sysml.xtext.serializer,
- org.omg.sysml.xtext.parser.antlr.internal,
+Export-Package: org.omg.sysml.xtext,
+ org.omg.sysml.xtext.generator,
+ org.omg.sysml.xtext.library,
+ org.omg.sysml.xtext.naming,
  org.omg.sysml.xtext.parser.antlr,
- org.omg.sysml.xtext,
+ org.omg.sysml.xtext.parser.antlr.internal,
  org.omg.sysml.xtext.scoping,
- org.omg.sysml.xtext.validation,
+ org.omg.sysml.xtext.serializer,
  org.omg.sysml.xtext.services,
- org.omg.sysml.xtext.generator
+ org.omg.sysml.xtext.util,
+ org.omg.sysml.xtext.validation
 Import-Package: org.apache.log4j

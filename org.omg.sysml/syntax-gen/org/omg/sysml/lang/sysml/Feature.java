@@ -10,7 +10,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Features define sets containing multiple objects of interest, such as cars with wheels, people with other people, and cars and values representing car length. Naming these set descriptors provides context about the relationships and attributes they describe in the real world. They are expressed semantically as sets of sequences of objects of length greater than 1.</p>
+ * <p>A Feature is a Type that represents a relation whose domain is the intersection of its featuringType(s) and whose range is the union of its types. A Feature without any explicitly modeled featuringTypes is implicitly considered to have the (maximal) type Anything from the Base model library as its featuring type.</p>
+ * 
+ * <p>Traditionally, the instances of a relation are given by pairs, the first element of which is from the domain set of the relation and the second element of which is from the range set. Examples include cars with wheels, people with other people and cars with values representing the car length. Naming these relations provies a context about the relationships and attributes they describe at M0.</p>
+ * 
+ * <p>However, since Features are themselves Types, it is possible for the domain and/or range Types of a Feature to themselves be Types. As a result, the instances may be pairs whose members are nested pairs, to any level of nesting. Alternatively, these nested pairs may be flattened out into sequences of individuals with length greater than 1. That is, the instances of Features can be interpreted in general as not just pairs, but n-tuples, where n > 1.</p>
  * 
  * ownedRedefinition = ownedSubsetting->intersection(redefining)
  * referencedType = type - ownedElement
@@ -25,20 +29,19 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -311,40 +314,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setIsComposite(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplicity</em>' reference.
-	 * @see #setMultiplicity(Multiplicity)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Multiplicity()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureWithMultiplicity'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Multiplicity getMultiplicity();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getMultiplicity <em>Multiplicity</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiplicity</em>' reference.
-	 * @see #getMultiplicity()
-	 * @generated
-	 */
-	void setMultiplicity(Multiplicity value);
 
 	/**
 	 * Returns the value of the '<em><b>Typing</b></em>' reference list.

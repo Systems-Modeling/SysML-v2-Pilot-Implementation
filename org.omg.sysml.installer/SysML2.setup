@@ -6,17 +6,19 @@
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
+    xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
     name="sysml"
     label="SysML2">
   <setupTask
       xsi:type="jdt:JRETask"
       version="JavaSE-1.8"
-      location="${jre.location-1.8}">
+      location="${jre.location-1.8}"
+      name="JRE for JavaSE-1.8">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -35,11 +37,6 @@
     <description>Initialize JDT's package explorer to show working sets as its root objects</description>
   </setupTask>
   <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.target.platform"
-      defaultValue="2019-06"
-      storageURI="scope://Workspace"/>
-  <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
         name="org.eclipse.xtext.sdk.feature.group"/>
@@ -47,38 +44,51 @@
         name="org.eclipse.xtend.feature.group"/>
     <requirement
         name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
+    <requirement
+        name="org.xpect.sdk.feature.group"/>
+    <requirement
+        name="net.sourceforge.plantuml.feature.feature.group"/>
+    <requirement
+        name="net.sourceforge.plantuml.ecore.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2019-06/"/>
+        url="http://download.eclipse.org/releases/2019-12/"/>
+    <repository
+        url="http://www.xpect-tests.org/updatesite/nightly/"/>
+    <repository
+        url="http://hallvard.github.io/plantuml/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.sysml2"
-      remoteURI="ssh://git@gitlab.internal.incquerylabs.com:8022/sysml/SysML-v2-Pilot-Implementation.git">
+      remoteURI="git@github.com:ModelDriven/SysML-v2-Pilot-Implementation.git">
     <description>${scope.project.label}</description>
   </setupTask>
   <setupTask
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
-        activeRepositoryList="${eclipse.target.platform}">
+        activeRepositoryList="">
       <requirement
           name="org.eclipse.xtext.sdk.feature.group"/>
       <requirement
           name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>
       <requirement
-          name="*"/>
-      <sourceLocator
-          rootFolder="${git.clone.sysml2.location}"
-          locateNestedProjects="true"/>
+          name="org.eclipse.uml2.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.xpect.xtext.xbase.lib.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.sdk.feature.group"/>
       <repositoryList
           name="Eclipse">
         <repository
-            url="http://download.eclipse.org/releases/2019-06"/>
+            url="http://download.eclipse.org/releases/2019-12"/>
         <repository
             url="http://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="http://download.eclipse.org/eclipse/updates/4.12/"/>
+            url="http://download.eclipse.org/eclipse/updates/4.14/"/>
+        <repository
+            url="https://ci.eclipse.org/xpect/job/Xpect/job/master/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository/"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -95,22 +105,20 @@
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
+  <setupTask
+      xsi:type="projects:ProjectsImportTask">
+    <sourceLocator
+        rootFolder="${git.clone.sysml2.location}"
+        locateNestedProjects="true">
+      <excludedPath>kerml</excludedPath>
+      <excludedPath>sysml</excludedPath>
+      <excludedPath>sysml.library</excludedPath>
+    </sourceLocator>
+  </setupTask>
   <stream name="master"
-      label="Master">
-    <setupTask
-        xsi:type="setup:EclipseIniTask"
-        disabled="true"
-        option="-Doomph.redirection.sysml"
-        value="=https://gitlab.internal.incquerylabs.com/sysml/SysML-v2-Pilot-Implementation.git/org.omg.sysml.installer/SysML2.setup->${git.clone.viatra.location|uri}/org.omg.sysml.installer/SysML2.setup"
-        vm="true">
-      <description>
-        Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.
-        Before enabling this task, replace '...' with the repository path of this setup's containing project.
-      </description>
-    </setupTask>
-  </stream>
+      label="Master"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
-  <description>SysML2 provides cool stuff.</description>
+  <description>SysML v2 pilot implementation development environment</description>
 </setup:Project>

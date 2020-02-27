@@ -23,9 +23,9 @@
  *****************************************************************************/
 package org.omg.sysml.xpect
 
-import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
+import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 
-class KerMLXpectGlobalScopeProvider extends KerMLGlobalScopeProvider {
+class SysMLXpectGlobalScopeProvider extends SysMLGlobalScopeProvider {
 	
 	override getRootFilter() {
 		return [!"Base".equals(name.firstSegment)]

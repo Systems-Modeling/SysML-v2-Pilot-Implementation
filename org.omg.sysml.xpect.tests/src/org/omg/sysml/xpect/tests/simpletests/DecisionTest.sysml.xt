@@ -1,0 +1,54 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/ControlNodes.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+			
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.systems/ControlNodes.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+activity DecisionTest {
+	value x = 1;
+	
+	decide 'test x';
+	if x == 1 then A1; 
+	if x > 1 then A2;
+	else A3; 
+	
+	then decide; 
+	if true then A1;
+	if false then A2;
+	
+	action A1;
+	action A2;
+	action A3;
+	
+	succession S first A1 
+		if x == 0 then A2;
+		
+	first A3;
+		if x > 0 then 'test x';
+}

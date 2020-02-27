@@ -48,7 +48,7 @@ import org.eclipse.xtext.EcoreUtil2
 class KerMLValidator extends AbstractKerMLValidator {
 
 	protected def boolean isGlobalPublic(Element p) {
-		var m = p.owningMembership
+		var m = p?.owningMembership
 		while (m !== null) {
 			if (m.visibility !== VisibilityKind.PUBLIC)
 				return false
@@ -82,19 +82,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 
-	public static val NOT_PUBLIC_SUPERCLASS = 'notPublicSuperclass'
-
-	@Check
-	def checkInheritanceVisibility(Superclassing sup) {
-		val ownerr = sup.owningRelatedElement
-		val ownerrPack = ownerr.filePackage
-		val superPack = sup.superclass.filePackage
-		if (superPack !== null && ownerrPack !== superPack && !sup.superclass.isGlobalPublic) {
-			error("Superclass is not visible in this scope", sup, SysMLPackage.eINSTANCE.superclassing_Superclass,
-				NOT_PUBLIC_SUPERCLASS)
-		}
-	}
-
 	public static val NOT_PUBLIC_FEATURE = 'notPublicFeature'
 
 	@Check
@@ -104,22 +91,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val featurePack = sub.subsettedFeature.filePackage
 		if (ownerrPack !== featurePack && !sub.subsettedFeature.isGlobalPublic) {
 			error("Subsetted/redefined feature is not visible in this scope", sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature,
-				NOT_PUBLIC_SUPERCLASS)
+				NOT_PUBLIC_FEATURE)
 		}
 	}
 
-	public static val NOT_PUBLIC_FEATURE_TYPE = 'notPublicType'
-
-	@Check
-	def checkFeatureVisibility(FeatureTyping typing) {
-		val type = typing.type
-		val featurePack = typing.owningRelatedElement.filePackage
-		val refPack = type.filePackage
-		if (featurePack !== refPack && !type.isGlobalPublic) {
-			error("Referenced type is not visible in this scope", typing,
-				SysMLPackage.eINSTANCE.featureTyping_Type, NOT_PUBLIC_FEATURE_TYPE)
-		}
-	}
 	public static val NOT_PUBLIC_IMPORT = 'notPublicImport'
 
 	@Check

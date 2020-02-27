@@ -9,9 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Block is a Definition of a Class of systems or parts of systems.
+ * <p>A&nbsp;Block is a Definition of a Class of systems or parts of systems. A Block must subclass, directly or indirectly, the base Block Part from the Systems model library.</p>
  * 
- * A Block must subclass, directly or indirectly, the base Block Part from the Systems model library.
  * <!-- end-model-doc -->
  *
  *

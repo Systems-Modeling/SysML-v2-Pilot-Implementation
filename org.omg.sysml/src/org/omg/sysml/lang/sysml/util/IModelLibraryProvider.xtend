@@ -30,6 +30,5 @@ import org.eclipse.emf.ecore.EReference
 interface IModelLibraryProvider {
 	
 	def Element getElement(Element context, EReference reference, String name)
-	def void setModelLibraryDirectory(String path)
 	
 }

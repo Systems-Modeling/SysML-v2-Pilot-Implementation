@@ -10,6 +10,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStateUsage {
+
+	public static final String EXHIBIT_STATE_SUBSETTING_PART_DEFAULT = "Blocks::Part::exhibitedStates";
+
+	private Type subsettingBaseDefault;
+	private Type subsettingPartDefault;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,13 +68,31 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 * @generated NOT
 	 */
 	public StateUsage basicGetExhibitedState() {
-		EList<Subsetting> subsettings = getOwnedSubsetting();
-		if (subsettings.isEmpty()) {
-			return null;
+		Type subsettingBaseDefault = getSubsettingBaseDefault();
+		Type subsettingPartDefault = getSubsettingPartDefault();
+		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
+				allMatch(feature->feature == subsettingBaseDefault || 
+				         feature == subsettingPartDefault)) {
+			return this;
 		} else {
 			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
 			return subsettedFeature instanceof StateUsage? (StateUsage)subsettedFeature: null;
 		}
+	}
+
+	protected Type getSubsettingBaseDefault() {
+		if (subsettingBaseDefault == null) {
+			subsettingBaseDefault = getDefaultType(STATE_SUBSETTING_BASE_DEFAULT);
+		}
+		return subsettingBaseDefault;
+	}
+
+	protected Type getSubsettingPartDefault() {
+		if (subsettingPartDefault == null) {
+			subsettingPartDefault = getDefaultType(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
+		}
+		return subsettingPartDefault;
 	}
 
 	/**
@@ -80,6 +105,25 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	protected void checkSubsetting() {
+		super.checkSubsetting();
+		if (isEnactedPerformance()) {
+			addSubsetting(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
+		}
+	}
+	
+	@Override
+	protected String getActionSubsettingDefault() {
+		return isEnactedPerformance()? 
+				EXHIBIT_STATE_SUBSETTING_PART_DEFAULT:
+				super.getActionSubsettingDefault();
+	}
+	
+	public boolean isEnactedPerformance() {
+		return StepImpl.isEnactedPerformance(this);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

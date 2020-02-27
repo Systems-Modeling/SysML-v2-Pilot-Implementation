@@ -5,7 +5,6 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -13,6 +12,8 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,9 +53,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = getOwningType();
-		return type instanceof ConditionalSuccession?
-				((Feature)type).getOwningType():
-			   type instanceof Feature? 
+		return type instanceof Feature? 
 				getPreviousFeature((Feature)type): 
 				super.getDefaultType(defaultNames);
 	}
@@ -66,9 +65,14 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 		} else {
 			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
 			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
-				Feature previousFeature = memberships.get(i).getMemberFeature();
-				if (!(previousFeature instanceof Parameter || previousFeature instanceof Connector)) {
-					return previousFeature;
+				FeatureMembership membership = memberships.get(i);
+				if (!(membership instanceof TransitionFeatureMembership)) {
+					Feature previousFeature = memberships.get(i).getMemberFeature();
+					if (!(previousFeature instanceof Parameter || 
+						  previousFeature instanceof Connector || 
+						  previousFeature instanceof TransitionUsage)) {
+						return previousFeature;
+					}
 				}
 			}
 			return type instanceof Feature? getPreviousFeature((Feature)type): null;

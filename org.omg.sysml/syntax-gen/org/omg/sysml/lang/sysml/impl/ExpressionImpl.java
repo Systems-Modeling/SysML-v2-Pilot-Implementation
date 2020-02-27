@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.ConditionalSuccession;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -24,6 +24,8 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureKind;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 
 /**
@@ -43,7 +45,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::evaluations";
 	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subevaluations";
-	public static final String EXPRESSION_GUARD_FEATURE_NAME = "guard";
+	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,67 +117,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				if (resolve) return getFunction();
-				return basicGetFunction();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				setFunction((Function)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				setFunction((Function)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.EXPRESSION__BEHAVIOR:
-				return isSetBehavior();
-			case SysMLPackage.EXPRESSION__FUNCTION:
-				return isSetFunction();
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Behavior> getBehavior() {
 		EList<Behavior> behavior = new UniqueEList<Behavior>();
 		Function function = getFunction();
@@ -205,16 +146,27 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();
-		return owningType instanceof ConditionalSuccession &&
-			   !(type instanceof ConditionalSuccession)?
-				   type.getFeature().stream().
-						filter(feature->EXPRESSION_GUARD_FEATURE_NAME.equals(feature.getName())).
-						collect(Collectors.toList()):
+		return isTransitionGuard()?
+					type == owningType? Collections.singletonList(this):
+					Collections.singletonList((Feature)getDefaultType(EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
 			   super.getRelevantFeatures(type);
 	}
 	
+	@Override
+	protected Set<Type> getGeneralTypes(Type type) {
+		Type owningType = getOwningType();
+		return isTransitionGuard() && type == owningType?
+				Collections.singleton(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
+				super.getGeneralTypes(type);
+	}
 	
+	protected boolean isTransitionGuard() {
+		FeatureMembership membership = getOwningFeatureMembership();
+		return (membership instanceof TransitionFeatureMembership) &&
+				((TransitionFeatureMembership)membership).getKind() == TransitionFeatureKind.GUARD;
+	}
+		
 	@Override 
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = super.getInput();
@@ -285,4 +237,65 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return super.getOwnedParameters();
 	}
 		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				if (resolve) return getFunction();
+				return basicGetFunction();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				setFunction((Function)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				setFunction((Function)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.EXPRESSION__BEHAVIOR:
+				return isSetBehavior();
+			case SysMLPackage.EXPRESSION__FUNCTION:
+				return isSetFunction();
+		}
+		return super.eIsSet(featureID);
+	}
+
 } //ExpressionImpl

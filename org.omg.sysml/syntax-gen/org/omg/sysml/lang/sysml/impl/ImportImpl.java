@@ -10,14 +10,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
@@ -113,7 +111,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setImportedPackage(org.omg.sysml.lang.sysml.Package newImportedPackage) {
@@ -121,15 +119,15 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		importedPackage = newImportedPackage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORTED_PACKAGE, oldImportedPackage, importedPackage));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newImportedPackage != null) {
-				EList<Element> target = getTarget();
-				if (!target.contains(newImportedPackage)) {
-					target.add(newImportedPackage);
-				}
-			}
-		}
+//		Resource.Internal eInternalResource = eInternalResource();
+//		if (eInternalResource == null || !eInternalResource.isLoading()) {
+//			if (newImportedPackage != null) {
+//				EList<Element> target = getTarget();
+//				if (!target.contains(newImportedPackage)) {
+//					target.add(newImportedPackage);
+//				}
+//			}
+//		}
 	}
 
 	/**
@@ -202,25 +200,18 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		return getImportOwningPackage() != null;
 	}
 	
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = getTargetGen();
-		org.omg.sysml.lang.sysml.Package importedPackage = getImportedPackage();
-		if (importedPackage != null && !target.contains(importedPackage)) {
-			target.add(importedPackage);
-		}
-		return target;
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<Element> getTargetGen() {
-		if (target == null) {
-			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.IMPORT__TARGET, null, TARGET_ESUBSETS);
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		org.omg.sysml.lang.sysml.Package importedPackage = getImportedPackage();
+		if (importedPackage != null) {
+			target.add(importedPackage);
 		}
-		return target;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
 	}
 
 	/**
@@ -315,7 +306,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	public EList<Membership> importMembership(EList<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,
 			Collection<Type> excludedTypes) {
-		// TODO Implement predicate-based selection of importMembership.
 		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
 		if (importedPackage != null && !excludedPackages.contains(importedPackage)) {
 			org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();

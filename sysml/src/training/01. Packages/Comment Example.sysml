@@ -1,6 +1,6 @@
 package 'Comment Example' {
 	/* This is documentary comment, part of the model, 
-	 * annotating (by default) its owning package. */
+	 * annotating (by default) it's owning package. */
 	
 	comment Comment1 /* This is a named documentary comment. */
 	

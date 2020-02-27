@@ -3,8 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .,
+ lib/sysml-v2-api-client-2019-09-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -33,10 +34,7 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.util,
  org.omg.sysml.util.traversal,
  org.omg.sysml.util.traversal.facade,
- org.omg.sysml.util.traversal.facade.impl,
- org.omg.sysml.util.traversal.impl,
- org.omg.sysml.util.traversal.visitor,
- org.omg.sysml.util.traversal.visitor.impl
+ org.omg.sysml.util.traversal.facade.impl
 Import-Package: com.ibm.icu.impl.text;version="58.2.0",
  org.apache.commons.logging,
  org.apache.log4j

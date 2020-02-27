@@ -16,9 +16,9 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2019-06.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2019-12.
 
-5. In the Projects window, to the left of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Category: Github Projects and browse the file system to select the setup file from the local git repository.
+5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
    
    **Note:** If you have installed the SysML v2 Pilot Implementation previously, this may already be pre-selected.
@@ -33,28 +33,39 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    
 8. On the Confirmation page, press Finish. 
 
+9. (Optional) For PlantUML visualization, GraphViz is needed.  Visit https://www.graphviz.org/download/ and download the appropriate package for your environment.
+   * In the menu of Window->Preferences->PlantUML in Eclipse environment, you may set up the path to GraphViz executable if Eclipse cannot automatically find it.  For detail, visit https://plantuml.com/en/eclipse
+
+
 #### Manual installation
 
-1. Install Eclipse 2019-06 (4.12) and Xtext.
+1. Install Eclipse 2019-12 (4.14) and Xtext.
    * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
-      * https://www.eclipse.org/downloads/packages/release/2019-06/r/eclipse-ide-java-and-dsl-developers
+      * https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-ide-java-and-dsl-developers
       
    * Alternatively, you can install the “Eclipse Modeling Tools” package (which includes other modeling capabilities, like UML, that you don’t need now but will likely be useful in the future), and install Xtext into that (per below).
-      * https://www.eclipse.org/downloads/packages/release/2019-06/r/eclipse-modeling-tools
+      * https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-modeling-tools
       
    * To install Xtext into an existing Eclipse 4.12 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/2019-06
+      * http://download.eclipse.org/releases/2019-12
 
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
-3. Import projects from the repository into your Eclipse workspace. This should include at least the projects `org.omg.sysml`, `org.kerml.xtext` and `org.sysml.xtext`, along with the associated `ide` and`ui` projects for each.
+3. Import projects from the repository into your Eclipse workspace. This should include at least the projects:
+   * `org.omg.sysml`
+   * `org.kerml.xtext`
+   * `org.kerml.xtext.ide`
+   * `org.kerml.xtext.ui`
+   * `org.sysml.xtext`
+   * `org.sysml.xtext.ide`
+   * `org.sysml.xtext.ui`
 
-   **Note:** The project `org.omg.sysml.xpect.tests` requires the Xpect plugin, not included in the main SysML v2 installation. The `org.omg.sysml.jupyter` project requires Maven to build.
+   **Note:** The project `org.omg.sysml.jupyter` project uses [Gradle](https://gradle.org/) to build.
 
 ### Prototype SysML Implementation
 
-1. Find the file `org.omg.sysml/src/org.omg.sysml/Alf.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.sysml/src/org.omg.kerml.xtext/KerML.xtext` and `org.omg.sysml/src/org.omg.sysml.xtext/SysML.xtext`
+1. Find the file `org.omg.kerml.xtext/src/org.omg.kerml.xtext/KerML.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.sysml.xtext/src/org.omg.sysml.xtext/SysML.xtext`
 
 2. Once the generation is complete, right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
 
@@ -64,11 +75,18 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 5. Import the projects `kerml`, `sysml` and `sysml.library` into the runtime Eclipse workspace.
 
-6. Select `sysml.library` and execute Project > Clean. Repeat with `kerml` and `sysml`.
+6. Execute Project > Clean with the following settings:
+   * Clean all projects: *Not* selected
+   * `sysml.library`: Selected
+   * Start a build immediately: Selected
+   * Build only the selected projects: Selected
+
+7. Repeat Project > Clean as above for `kerml` and `sysml`.
 
    **Important:** Be sure to first build *only* `sysml.library` before building `kerml` or `sysml`.
 
-7. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
+8. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
+9. (Optional) To show SysML diagrams, in Window->Show View->Other... menu, you can enable PlantUML view.
  
 ## Copyright License Header
 
@@ -81,7 +99,7 @@ Set up a Java code template as follows:
     ```
     /**
      * SysML 2 Pilot Implementation
-     * Copyright (C) 2019  California Institute of Technology ("Caltech")
+     * Copyright (C) 2020  California Institute of Technology ("Caltech")
      *
      * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU Lesser General Public License as published by

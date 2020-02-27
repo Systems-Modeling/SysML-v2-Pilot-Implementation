@@ -49,8 +49,6 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
-import org.omg.sysml.util.traversal.impl.TraversalImpl;
-import org.omg.sysml.util.traversal.visitor.impl.ElementVisitorFactoryImpl;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicate;
@@ -222,10 +220,7 @@ public class SysMLInteractive extends SysMLUtil {
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
-		final ElementVisitorFactoryImpl visitorFactory = new ElementVisitorFactoryImpl(processingFacade);
-		Traversal traversal = new TraversalImpl(visitorFactory);
-		visitorFactory.setTraversal(traversal);	
-		processingFacade.setTraversal(traversal);
+		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
 	
@@ -239,6 +234,7 @@ public class SysMLInteractive extends SysMLUtil {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
+				System.out.println();
 				return modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
@@ -271,16 +267,19 @@ public class SysMLInteractive extends SysMLUtil {
 	        			}
 		        		run(input);
 	        		} else {
-	        			String[] tokens = input.split("\\s");
-	        			if ("%exit".equals(tokens[0])) {
+	        			int i = input.indexOf(' ');
+	        			String command = i == -1? input: input.substring(0, i);
+	        			String argument = i == -1? "": input.substring(i + 1);
+	        			
+	        			if ("%exit".equals(command)) {
 	        				break;
-	        			} else if ("%show".equals(tokens[0])) {
-	        				if (tokens.length > 1) {
-	        					System.out.print(this.show(tokens[1]));
+	        			} else if ("%show".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.show(argument));
 	        				}
-	        			} else if ("%publish".equals(tokens[0])) {
-	        				if (tokens.length > 1) {
-	        					System.out.print(this.publish(tokens[1]));
+	        			} else if ("%publish".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.publish(argument));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

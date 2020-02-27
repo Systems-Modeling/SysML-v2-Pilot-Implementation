@@ -1,0 +1,44 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage_Feature.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage_Feature.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Classes {
+	import VisibilityPackage::c_Public;
+	//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
+	//* XPECT scope at c_Public ---
+    	Try, Try.c_public, Try.feature4, Classes.Try, Classes.Try.c_public, Classes.Try.feature4, 
+ 		c_Public, c_Public.c_public, Classes.c_Public, Classes.c_Public.c_public,  
+	  	VisibilityPackage.c_Public_alias.alias_public, 
+	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
+	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
+	--- */
+	feature Try : c_Public {
+		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
+		//* XPECT scope at c_public ---
+		feature4, c_public, 
+    	Try, Try.c_public, Try.feature4, Classes.Try, Classes.Try.c_public, Classes.Try.feature4, 
+ 		c_Public, c_Public.c_public, Classes.c_Public, Classes.c_Public.c_public,  
+	  	VisibilityPackage.c_Public_alias.alias_public, 
+	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
+	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
+	--- */
+		feature feature4 : c_public;
+	}
+}
+

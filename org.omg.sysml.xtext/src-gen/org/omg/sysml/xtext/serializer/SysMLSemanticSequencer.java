@@ -2763,7 +2763,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     BooleanLiteralExpression returns LiteralBoolean
 	 *
 	 * Constraint:
-	 *     value=BOOLEAN_VALUE
+	 *     value=BooleanValue
 	 */
 	protected void sequence_BooleanLiteralExpression(ISerializationContext context, LiteralBoolean semanticObject) {
 		if (errorAcceptor != null) {
@@ -2771,7 +2771,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_BOOLEAN__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBooleanLiteralExpressionAccess().getValueBOOLEAN_VALUETerminalRuleCall_0(), semanticObject.isValue());
+		feeder.accept(grammarAccess.getBooleanLiteralExpressionAccess().getValueBooleanValueParserRuleCall_0(), semanticObject.isValue());
 		feeder.finish();
 	}
 	

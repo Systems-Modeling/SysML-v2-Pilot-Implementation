@@ -1,0 +1,45 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencySamePackageName_A.kerml" }
+		File {from ="/src/DependencySamePackageName_B.kerml" }
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencySamePackageName_A.kerml" }
+				File {from ="/src/DependencySamePackageName_B.kerml" }
+			}
+		}
+	}
+END_SETUP 
+*/
+//Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
+//What global scope should be?????
+// XPECT noErrors ---> ""
+package test{
+	//* XPECT scope at SamePackage::container ---
+		test, 
+	    container, container.A, test.container, test.container.A,
+	    SamePackage, SamePackage, 
+	    SamePackage.container, SamePackage.container, SamePackage.container.A,	SamePackage.container.B, 
+	--- */
+	import SamePackage::container;
+	
+}
+//*
+package SamePackage{
+	class container{
+	class A{}
+	}
+}
+package SamePackage{
+	class container{
+	class B{}
+	}
+}
+
+*/
+

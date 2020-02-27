@@ -351,7 +351,7 @@ fragment ClassifierDeclaration returns SysML::Classifier :
 ;
 
 fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
-    (isSufficient ?= 'all' )? name = Name 
+	name = Name 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	SpecializationOrConjugation?
 	( ownedFeatureMembership_comp += MultiplicityMember )?
@@ -411,7 +411,7 @@ fragment BehaviorDeclaration returns SysML::Behavior :
 ;
 
 fragment BehaviorDeclarationCompletion returns SysML::Behavior :
-	(isSufficient ?= 'all' )? name = Name ParameterList? SpecializationOrConjugation?
+	name = Name ParameterList? SpecializationOrConjugation?
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -457,8 +457,7 @@ Function returns SysML::Function :
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
-	( isAbstract ?= 'abstract' )? 'function' (isSufficient ?= 'all' )? 
-	name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
+	( isAbstract ?= 'abstract' )? 'function' name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -502,7 +501,7 @@ Predicate returns SysML::Predicate :
 ;
 
 fragment PredicateDeclaration returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? name = Name 
+	( isAbstract ?= 'abstract' )? 'predicate' name = Name 
 	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart ) 
 	SpecializationOrConjugation?
 ;
@@ -520,6 +519,7 @@ EmptyParameter returns SysML::Parameter :
 EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
 ;
+
 
 /* INTERACTIONS */
 
@@ -546,11 +546,9 @@ fragment FeatureDefinition returns SysML::Feature :
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
-	(isSufficient ?= 'all' )? 
-	( name = Name ( TypePart? SubsettingPart | FeatureConjugationPart )
+	  name = Name ( TypePart? SubsettingPart | FeatureConjugationPart )
 	| TypePart SubsettingPart
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart
-	)
 ;
 
 fragment FeatureConjugationPart returns SysML::Feature :
@@ -578,7 +576,7 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	  ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  ':' (isSufficient ?= 'all' )? ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
 	| MultiplicityPart
 ;
 
@@ -644,7 +642,7 @@ AbstractConnector returns SysML::Connector :
 ;
 
 fragment ConnectorDeclaration returns SysML::Connector :
-	( ( FeatureDeclaration? 'from' | isSufficient ?= 'all' 'from'? )?
+	( ( FeatureDeclaration 'from')?
 	  ownedFeatureMembership_comp += ConnectorEndMember 'to' ownedFeatureMembership_comp += ConnectorEndMember
 	| FeatureDeclaration
 	  '(' ownedFeatureMembership_comp += ConnectorEndMember ',' ownedFeatureMembership_comp += ConnectorEndMember
@@ -674,7 +672,7 @@ AbstractBindingConnector returns SysML::BindingConnector :
 ;
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
-	( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
+	( FeatureDeclaration 'of' )?
 	ownedFeatureMembership_comp += ConnectorEndMember '=' ownedFeatureMembership_comp += ConnectorEndMember
 ;
 
@@ -689,7 +687,7 @@ AbstractSuccession returns SysML::Succession :
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
-	( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
+	( FeatureDeclaration 'first' )?
 	ownedFeatureMembership_comp += ConnectorEndMember 'then' ownedFeatureMembership_comp += ConnectorEndMember
 ;
 
@@ -716,7 +714,7 @@ fragment ItemFlowDeclaration returns SysML::ItemFlow :
       ( 'of'  ownedFeatureMembership_comp += ItemFeatureMember
       | ownedFeatureMembership_comp += EmptyItemFeatureMember
       ) 'from'
-    | ( isSufficient ?= 'all' )? ownedFeatureMembership_comp += EmptyItemFeatureMember 'from'?
+    | ownedFeatureMembership_comp += EmptyItemFeatureMember
     )
 	ownedFeatureMembership_comp += ItemFlowEndMember 'to' ownedFeatureMembership_comp += ItemFlowEndMember
 ;
@@ -773,11 +771,9 @@ AbstractStep returns SysML::Step :
 ;
 
 fragment StepDeclaration returns SysML::Step :
-	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ParameterList? SubsettingPart ValuePart?
+	  name = Name TypePart? ParameterList? SubsettingPart ValuePart?
 	| TypePart? ParameterList? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? ValuePart?
-	)
 ;
 
 /* INVARIANTS */
@@ -817,11 +813,9 @@ AbstractBlockExpression returns SysML::BlockExpression :
 ;
 
 fragment ExpressionDeclaration returns SysML::Expression :
-	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
+	  name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
 	| TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
-	)
 ;
 
 // Boolean Expressions
@@ -835,11 +829,9 @@ AbstractBooleanExpression returns SysML::BooleanExpression :
 ;
 
 fragment BooleanExpressionDeclaration returns SysML::Expression :
-	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+	  name = Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
 	| TypePart? ( ParameterList EmptyReturnParameterPart )? ValuePart?
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? EmptyReturnParameterPart ValuePart?
-	)
 ;
 
 // Expressions
@@ -1078,11 +1070,7 @@ LiteralExpression returns SysML::LiteralExpression :
 ;
 
 BooleanLiteralExpression returns SysML::LiteralBoolean :
-	value = BooleanValue
-;
-
-BooleanValue returns Ecore::EBoolean :
-	'true' | 'false'
+	value = BOOLEAN_VALUE
 ;
 
 StringLiteralExpression returns SysML::LiteralString :
@@ -1094,7 +1082,8 @@ RealLiteralExpression returns SysML::LiteralReal:
 ;
 
 RealValue returns Ecore::EDouble:
-	DECIMAL_VALUE? '.' ( DECIMAL_VALUE | EXP_VALUE ) | EXP_VALUE
+	  ( DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.' ) EXP_SUFFIX?
+	| DECIMAL_VALUE EXP_SUFFIX
 ;
 
 NaturalLiteralExpression returns SysML::LiteralInteger:
@@ -1172,6 +1161,9 @@ DotQualifiedName :
 
 /* TERMINALS */
 
+terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
+	'true' | 'false' ;
+
 //terminal NATURAL_VALUE returns Ecore::EInt :
 //	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
 //	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
@@ -1180,11 +1172,11 @@ DotQualifiedName :
 //;
 
 terminal DECIMAL_VALUE returns Ecore::EInt :
-	'0'..'9' ('0'..'9')*
+	'0'..'9' (('_')? '0'..'9')*
 ;
 
-terminal EXP_VALUE :
-	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE
+terminal EXP_SUFFIX :
+	('e' | 'E') ('+' | '-')? DECIMAL_VALUE
 ;
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;

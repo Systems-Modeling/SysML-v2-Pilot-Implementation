@@ -11278,17 +11278,36 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class BooleanLiteralExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.BooleanLiteralExpression");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueBOOLEAN_VALUETerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueBooleanValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//BooleanLiteralExpression SysML::LiteralBoolean:
-		//	value=BOOLEAN_VALUE;
+		//	value=BooleanValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//value=BOOLEAN_VALUE
+		//value=BooleanValue
 		public Assignment getValueAssignment() { return cValueAssignment; }
 		
-		//BOOLEAN_VALUE
-		public RuleCall getValueBOOLEAN_VALUETerminalRuleCall_0() { return cValueBOOLEAN_VALUETerminalRuleCall_0; }
+		//BooleanValue
+		public RuleCall getValueBooleanValueParserRuleCall_0() { return cValueBooleanValueParserRuleCall_0; }
+	}
+	public class BooleanValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.BooleanValue");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cTrueKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cFalseKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//BooleanValue Ecore::EBoolean:
+		//	'true' | 'false';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'true' | 'false'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'true'
+		public Keyword getTrueKeyword_0() { return cTrueKeyword_0; }
+		
+		//'false'
+		public Keyword getFalseKeyword_1() { return cFalseKeyword_1; }
 	}
 	public class StringLiteralExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StringLiteralExpression");
@@ -11324,65 +11343,40 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RealValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final Group cGroup_0_0_0 = (Group)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_0_0 = (RuleCall)cGroup_0_0_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_0_0_0_1 = (Keyword)cGroup_0_0_0.eContents().get(1);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_0_2 = (RuleCall)cGroup_0_0_0.eContents().get(2);
-		private final Group cGroup_0_0_1 = (Group)cAlternatives_0_0.eContents().get(1);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0_1_0 = (RuleCall)cGroup_0_0_1.eContents().get(0);
-		private final Keyword cFullStopKeyword_0_0_1_1 = (Keyword)cGroup_0_0_1.eContents().get(1);
-		private final RuleCall cEXP_SUFFIXTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cDECIMAL_VALUETerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final RuleCall cEXP_SUFFIXTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Keyword cFullStopKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
+		private final RuleCall cDECIMAL_VALUETerminalRuleCall_0_2_0 = (RuleCall)cAlternatives_0_2.eContents().get(0);
+		private final RuleCall cEXP_VALUETerminalRuleCall_0_2_1 = (RuleCall)cAlternatives_0_2.eContents().get(1);
+		private final RuleCall cEXP_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//RealValue Ecore::EDouble:
-		//	(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
-		//	| DECIMAL_VALUE EXP_SUFFIX;
+		//	DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX? | DECIMAL_VALUE EXP_SUFFIX
+		//DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
+		//DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE)
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.')
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//DECIMAL_VALUE? '.' DECIMAL_VALUE
-		public Group getGroup_0_0_0() { return cGroup_0_0_0; }
-		
 		//DECIMAL_VALUE?
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_0_0() { return cDECIMAL_VALUETerminalRuleCall_0_0_0_0; }
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0() { return cDECIMAL_VALUETerminalRuleCall_0_0; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_0_0_0_1() { return cFullStopKeyword_0_0_0_1; }
+		public Keyword getFullStopKeyword_0_1() { return cFullStopKeyword_0_1; }
+		
+		//(DECIMAL_VALUE | EXP_VALUE)
+		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
 		
 		//DECIMAL_VALUE
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_0_2() { return cDECIMAL_VALUETerminalRuleCall_0_0_0_2; }
+		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_2_0() { return cDECIMAL_VALUETerminalRuleCall_0_2_0; }
 		
-		//DECIMAL_VALUE '.'
-		public Group getGroup_0_0_1() { return cGroup_0_0_1; }
+		//EXP_VALUE
+		public RuleCall getEXP_VALUETerminalRuleCall_0_2_1() { return cEXP_VALUETerminalRuleCall_0_2_1; }
 		
-		//DECIMAL_VALUE
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_0_0_1_0() { return cDECIMAL_VALUETerminalRuleCall_0_0_1_0; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_0_0_1_1() { return cFullStopKeyword_0_0_1_1; }
-		
-		//EXP_SUFFIX?
-		public RuleCall getEXP_SUFFIXTerminalRuleCall_0_1() { return cEXP_SUFFIXTerminalRuleCall_0_1; }
-		
-		//DECIMAL_VALUE EXP_SUFFIX
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//DECIMAL_VALUE
-		public RuleCall getDECIMAL_VALUETerminalRuleCall_1_0() { return cDECIMAL_VALUETerminalRuleCall_1_0; }
-		
-		//EXP_SUFFIX
-		public RuleCall getEXP_SUFFIXTerminalRuleCall_1_1() { return cEXP_SUFFIXTerminalRuleCall_1_1; }
+		//EXP_VALUE
+		public RuleCall getEXP_VALUETerminalRuleCall_1() { return cEXP_VALUETerminalRuleCall_1; }
 	}
 	public class NaturalLiteralExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.NaturalLiteralExpression");
@@ -12190,6 +12184,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final NullExpressionElements pNullExpression;
 	private final LiteralExpressionElements pLiteralExpression;
 	private final BooleanLiteralExpressionElements pBooleanLiteralExpression;
+	private final BooleanValueElements pBooleanValue;
 	private final StringLiteralExpressionElements pStringLiteralExpression;
 	private final RealLiteralExpressionElements pRealLiteralExpression;
 	private final RealValueElements pRealValue;
@@ -12208,15 +12203,15 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final QualifiedNameElements pQualifiedName;
 	private final ColonQualifiedNameElements pColonQualifiedName;
 	private final DotQualifiedNameElements pDotQualifiedName;
-	private final TerminalRule tBOOLEAN_VALUE;
 	private final TerminalRule tDECIMAL_VALUE;
-	private final TerminalRule tEXP_SUFFIX;
+	private final TerminalRule tEXP_VALUE;
 	private final TerminalRule tID;
 	private final TerminalRule tUNRESTRICTED_NAME;
 	private final TerminalRule tSTRING_VALUE;
-	private final TerminalRule tDOCUMENTATION_COMMENT;
 	private final TerminalRule tML_COMMENT;
-	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tDOCUMENTATION_COMMENT;
+	private final TerminalRule tML_NOTE;
+	private final TerminalRule tSL_NOTE;
 	private final TerminalRule tWS;
 	
 	private final Grammar grammar;
@@ -12496,6 +12491,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNullExpression = new NullExpressionElements();
 		this.pLiteralExpression = new LiteralExpressionElements();
 		this.pBooleanLiteralExpression = new BooleanLiteralExpressionElements();
+		this.pBooleanValue = new BooleanValueElements();
 		this.pStringLiteralExpression = new StringLiteralExpressionElements();
 		this.pRealLiteralExpression = new RealLiteralExpressionElements();
 		this.pRealValue = new RealValueElements();
@@ -12514,15 +12510,15 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pColonQualifiedName = new ColonQualifiedNameElements();
 		this.pDotQualifiedName = new DotQualifiedNameElements();
-		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.BOOLEAN_VALUE");
 		this.tDECIMAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DECIMAL_VALUE");
-		this.tEXP_SUFFIX = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EXP_SUFFIX");
+		this.tEXP_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EXP_VALUE");
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ID");
 		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UNRESTRICTED_NAME");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.STRING_VALUE");
-		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DOCUMENTATION_COMMENT");
 		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ML_COMMENT");
-		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SL_COMMENT");
+		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DOCUMENTATION_COMMENT");
+		this.tML_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ML_NOTE");
+		this.tSL_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SL_NOTE");
 		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.WS");
 	}
 	
@@ -15513,13 +15509,23 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BooleanLiteralExpression SysML::LiteralBoolean:
-	//	value=BOOLEAN_VALUE;
+	//	value=BooleanValue;
 	public BooleanLiteralExpressionElements getBooleanLiteralExpressionAccess() {
 		return pBooleanLiteralExpression;
 	}
 	
 	public ParserRule getBooleanLiteralExpressionRule() {
 		return getBooleanLiteralExpressionAccess().getRule();
+	}
+	
+	//BooleanValue Ecore::EBoolean:
+	//	'true' | 'false';
+	public BooleanValueElements getBooleanValueAccess() {
+		return pBooleanValue;
+	}
+	
+	public ParserRule getBooleanValueRule() {
+		return getBooleanValueAccess().getRule();
 	}
 	
 	//StringLiteralExpression SysML::LiteralString:
@@ -15543,8 +15549,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RealValue Ecore::EDouble:
-	//	(DECIMAL_VALUE? '.' DECIMAL_VALUE | DECIMAL_VALUE '.') EXP_SUFFIX?
-	//	| DECIMAL_VALUE EXP_SUFFIX;
+	//	DECIMAL_VALUE? '.' (DECIMAL_VALUE | EXP_VALUE) | EXP_VALUE;
 	public RealValueElements getRealValueAccess() {
 		return pRealValue;
 	}
@@ -15706,22 +15711,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getDotQualifiedNameAccess().getRule();
 	}
 	
-	//terminal BOOLEAN_VALUE returns Ecore::EBoolean:
-	//	'true' | 'false';
-	public TerminalRule getBOOLEAN_VALUERule() {
-		return tBOOLEAN_VALUE;
-	}
-	
 	//terminal DECIMAL_VALUE returns Ecore::EInt:
-	//	'0'..'9' ('_'? '0'..'9')*;
+	//	'0'..'9' '0'..'9'*;
 	public TerminalRule getDECIMAL_VALUERule() {
 		return tDECIMAL_VALUE;
 	}
 	
-	//terminal EXP_SUFFIX:
-	//	('e' | 'E') ('+' | '-')? DECIMAL_VALUE;
-	public TerminalRule getEXP_SUFFIXRule() {
-		return tEXP_SUFFIX;
+	//terminal EXP_VALUE:
+	//	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE;
+	public TerminalRule getEXP_VALUERule() {
+		return tEXP_VALUE;
 	}
 	
 	//terminal ID:
@@ -15742,22 +15741,28 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return tSTRING_VALUE;
 	}
 	
-	//terminal DOCUMENTATION_COMMENT:
-	//	'/**'->'*/';
-	public TerminalRule getDOCUMENTATION_COMMENTRule() {
-		return tDOCUMENTATION_COMMENT;
-	}
-	
 	//terminal ML_COMMENT:
 	//	'/*' !'*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	}
 	
-	//terminal SL_COMMENT:
+	//terminal DOCUMENTATION_COMMENT:
+	//	'/**'->'*/';
+	public TerminalRule getDOCUMENTATION_COMMENTRule() {
+		return tDOCUMENTATION_COMMENT;
+	}
+	
+	//terminal ML_NOTE:
+	//	'//*'->'*/';
+	public TerminalRule getML_NOTERule() {
+		return tML_NOTE;
+	}
+	
+	//terminal SL_NOTE:
 	//	'//' (!('\n' | '\r') !('\n' | '\r')*)? ('\r'? '\n')?;
-	public TerminalRule getSL_COMMENTRule() {
-		return tSL_COMMENT;
+	public TerminalRule getSL_NOTERule() {
+		return tSL_NOTE;
 	}
 	
 	//terminal WS:

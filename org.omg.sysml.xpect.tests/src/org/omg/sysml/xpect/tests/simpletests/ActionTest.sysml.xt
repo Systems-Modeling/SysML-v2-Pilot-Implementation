@@ -1,0 +1,22 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.systems/Activities.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.systems./Activities.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package ActionTest {
+	action a { 
+		first start;
+	}
+}

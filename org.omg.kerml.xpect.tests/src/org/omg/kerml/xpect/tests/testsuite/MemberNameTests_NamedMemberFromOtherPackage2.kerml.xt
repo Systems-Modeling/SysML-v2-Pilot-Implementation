@@ -21,10 +21,10 @@ package test{
 				class AAA{}
 			}
 		}
-		class A_alias is A;
+		alias A as A_alias;
 	}
 	
-	package P1 is P;
+	alias P as P1;
 	//XPECT linkedName at P1::A_alias --> test.P.A
 	//* XPECT scope at P1::A_alias ---
 	    a.AA, a.AA.AAA, test.a.AA, test.a.AA.AAA,

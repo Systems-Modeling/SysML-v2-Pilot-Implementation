@@ -15,7 +15,7 @@ package Classes {
 	}
 	
 	private class C specializes B {
-		private y: B;
+		private y: A, B[0..*];
 		z is y;
 	}
 	

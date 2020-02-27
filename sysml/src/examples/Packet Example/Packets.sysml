@@ -5,7 +5,7 @@ package Packets {
 	value 'packet header' { }
 	
 	value 'packet data field' {	
-		value 'packet secondary header' is 'packet header';
+		value 'packet secondary header' redefines 'packet header';
 		value 'user data field';
 	}
 	
@@ -15,7 +15,7 @@ package Packets {
 			value 'packet identification': String;
 			value 'packet data length': Integer;
 		}
-		value is 'packet data field';
+		value redefines 'packet data field';
 	}
 	
 	block 'Thermal Data Packet' :> 'Data Packet' {

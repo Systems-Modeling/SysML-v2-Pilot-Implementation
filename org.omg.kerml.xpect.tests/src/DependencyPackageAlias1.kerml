@@ -1,12 +1,12 @@
 package PackageAlias1{
-	class A_alias is A;
+	alias A as A_alias;
 	class A{
 		class a{}
-			class a_alias is a;
+			alias a as a_alias;
 	}
-	class AA_alias is AA;
+	alias AA as AA_alias;
 	class AA{
 		class aa{}
-		class aa_alias is aa;
+		alias aa as aa_alias;
 	}
 }

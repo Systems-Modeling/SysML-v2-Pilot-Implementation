@@ -6,18 +6,17 @@ package Inheritance {
 	class B specializes A {
 		
 	}
-	
-	feature x is B::f;
-	
+		
 	feature y: A {
+		feature x is B::f;
 		feature g redefines f;
 	}
 	
-	feature z is y::f;
+	alias y::f as z;
 	
 	feature w subsets y;
 	
-	feature u is w::g;
+	alias w::g as u;
 	
 	feature yy: y;
 }

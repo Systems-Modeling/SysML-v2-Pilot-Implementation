@@ -26,6 +26,6 @@ package test{
 --- */
 	feature B : A{
 		feature b: aa;
-		b_alias is b;
+		alias b as b_alias;
 	}
 }

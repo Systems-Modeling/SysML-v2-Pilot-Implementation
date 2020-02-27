@@ -21,7 +21,7 @@ package test{
 		feature a {}
 		feature aa is a;
 	}
-	AA is A;
+	alias A as AA;
 	//* XPECT scope at AA ---
 	   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa, B.b, B.b_alias,
 	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias,
@@ -34,6 +34,6 @@ package test{
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;
-		b_alias is b;
+		alias b as b_alias;
 	}
 }

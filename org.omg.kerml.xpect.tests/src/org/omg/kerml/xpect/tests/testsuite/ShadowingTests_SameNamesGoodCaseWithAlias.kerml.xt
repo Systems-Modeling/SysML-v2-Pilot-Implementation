@@ -15,7 +15,7 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	class A1 is A;
+	alias A as A1;
 	class A{
 		class a1{}
 	}

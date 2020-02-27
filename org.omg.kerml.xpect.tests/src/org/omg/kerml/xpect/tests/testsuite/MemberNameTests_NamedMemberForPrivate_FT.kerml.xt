@@ -17,7 +17,7 @@ END_SETUP
 //XPECT noErrors ---> ""
 package test {
 	private feature something{}
-	private feature k is something;
+	private alias something as k;
 	feature hello {
 		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 

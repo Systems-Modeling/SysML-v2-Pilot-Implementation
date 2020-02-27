@@ -23,7 +23,7 @@ END_SETUP
 package test{
 	import PackageAlias1::*;
 	feature A{}
-	feature A_alias is A;
+	alias A as A_alias;
 	//XPECT linkedName at  A_alias --> test.A
 	//* XPECT scope at  A_alias ---
 	        test_A, test.test_A,
@@ -48,10 +48,7 @@ package test{
 }
 
 //*
-   The followings are added after alfglobascope is added
-   			PackageAlias2.B.a,
- 		    PackageAlias2.B.a_alias,
- 	But the followings are still missing: 	    
+The following are still missing: 	    
  		    PackageAlias1.A.a_alias,
 			PackageAlias1.A_alias.a,
 			PackageAlias1.A_alias.a_alias,

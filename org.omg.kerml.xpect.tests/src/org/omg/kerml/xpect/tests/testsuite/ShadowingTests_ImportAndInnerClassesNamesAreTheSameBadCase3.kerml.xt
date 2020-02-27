@@ -1,0 +1,37 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{				
+	class A{
+		class a2{}
+	}
+	class inner{
+		import OuterPackage::*;
+		class B specializes A {
+			//XPECT linkedName at a1 --> OuterPackage.A.a1
+			//* XPECT scope at a1 ---
+			inner.A, inner.A.a1, test.inner.A, test.inner.A.a1,
+		    b, a1, 
+		    A, A.a1, B, B.a1, B.b, inner, inner.B, inner.B.a1, inner.B.b,
+		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
+		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
+		--- */
+			class b specializes a1{}
+		}
+	}
+}

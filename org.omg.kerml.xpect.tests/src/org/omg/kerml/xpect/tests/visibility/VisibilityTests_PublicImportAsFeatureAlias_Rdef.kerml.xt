@@ -1,0 +1,50 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyVisibilityPackage_Feature.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyVisibilityPackage_Feature.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Classes {
+	import VisibilityPackage::c_Public::c_public as aliass;
+	import VisibilityPackage::c_Public as Aliass;
+	feature Try{
+		//scope are the same for at aliass and at Aliass
+		//* XPECT scope at aliass ---
+		   aliass, feature4, featurepublic,
+		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
+		   Aliass, Aliass.c_public, 
+		   Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
+		   Try, Try.feature4, Try.featurepublic, 
+	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
+		 VisibilityPackage.c_Public_alias,
+	--- */
+		//XPECT linkedName at aliass --> VisibilityPackage.c_Public.c_public
+		feature feature4 redefines aliass;
+		//XPECT linkedName at Aliass --> VisibilityPackage.c_Public
+		//* XPECT scope at Aliass ---
+		   aliass, feature4, featurepublic,
+		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
+		   Aliass, Aliass.c_public, 
+		   Classes.Aliass, Classes.Aliass.c_public, Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic, Classes.aliass, 
+		   Try, Try.feature4, Try.featurepublic, 
+	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
+		 VisibilityPackage.c_Public_alias,
+	--- */
+		feature featurepublic redefines Aliass;
+	}
+}
+

@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package test{
+	feature A is A1;
+	feature A1{
+		feature A{
+			//XPECT linkedName at A --> test.A1.A
+			//* XPECT scope at A ---
+			A.B.B, A1.A.B.B, B.B, test.A.A.B.B, test.A1.A.B.B,
+		    A, A.B, A1, A1.A, A1.A.B, B, 
+		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
+		--- */
+			feature B : A{}
+		}
+	}
+}

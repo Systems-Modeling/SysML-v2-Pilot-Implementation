@@ -1,0 +1,29 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+		File {from ="/src/DependencyMultipleMembership.kerml"}
+		File {from ="/src/DependencyMembership2.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/src/DependencyMultipleMembership.kerml"}
+				File {from ="/src/DependencyMembership2.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	import OuterPackage3::D;
+	// XPECT errors ---> "Couldn't resolve reference to Classifier 'B'." at "B"
+	class EE specializes B{
+		// XPECT errors ---> "Couldn't resolve reference to Type 'b'." at "b"
+		feature try : b;
+	}
+}

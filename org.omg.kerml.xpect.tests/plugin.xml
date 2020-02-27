@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.xpect.fileExtensions">
+      <fileExtension
+            fileExtension="kerml"
+            xtextLanguageName="org.omg.kerml.xtext.KerML"
+            xtextRuntimeModule="org.omg.kerml.xpect.KerMLXpectRuntimeModule"
+            xtextUiModule="org.omg.kerml.xtext.ui.KerMLUiModule">
+      </fileExtension>
+   </extension>
+
+</plugin>

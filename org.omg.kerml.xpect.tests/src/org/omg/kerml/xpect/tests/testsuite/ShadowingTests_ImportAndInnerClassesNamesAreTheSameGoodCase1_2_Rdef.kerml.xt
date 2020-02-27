@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import OuterPackage::*;
+	feature A{
+		feature a2{}
+	}
+	//* XPECT scope at OuterPackage::A::a1 ---
+	   OuterPackage.B.b,
+		   A, A.a2, B, OuterPackage.B.b.a1,
+		   OuterPackage.A,		   OuterPackage.A.a1, OuterPackage.B, test.A, test.A.a2, test.B, 
+		--- */
+	feature B redefines OuterPackage::A::a1 {} 
+}

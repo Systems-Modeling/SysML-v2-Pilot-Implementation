@@ -1,0 +1,65 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parser.KerMLParserTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//* XPECT ast ---
+Package {
+  ownedMembership_comp = [
+    Membership {
+      memberName = 'C'
+      memberElement -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class Base.kerml#//@ownedMembership_comp.4/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+          }
+        ]
+        ownedFeatureMembership_comp = [
+          FeatureMembership {
+            memberName = 'c'
+            memberFeature -> Feature //@ownedMembership_comp.0/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+            ownedMemberFeature_comp = Feature {
+              ownedRelationship_comp = [
+                FeatureTyping {
+                  type -> Feature DependencyOuterPackage.kerml#//@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                  typedFeature -> Feature //@ownedMembership_comp.0/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                }
+                Subsetting {
+                  subsettedFeature -> Feature Base.kerml#//@ownedMembership_comp.21/@ownedMemberElement_comp
+                  subsettingFeature -> Feature //@ownedMembership_comp.0/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                }
+              ]
+              typing -> [
+                FeatureTyping //@ownedMembership_comp.0/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp/@ownedRelationship_comp.0
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+--- */
+
+
+package test{
+	class C{
+		feature c : OuterPackage.B.b;
+	}
+}

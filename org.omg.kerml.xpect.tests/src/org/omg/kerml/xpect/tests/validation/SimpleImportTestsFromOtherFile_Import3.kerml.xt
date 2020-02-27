@@ -1,0 +1,25 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+//xpect link and scope tests ommitted because same as SimpleImportTestsFromOtherFile.import2
+package test {
+	import OuterPackage::*;
+	class Try specializes B{
+		feature try : b redefines B::b;
+	}
+}

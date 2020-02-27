@@ -1,0 +1,50 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package testt {
+
+	class P{
+		class PP {
+			protected feature PPP;
+			protected feature PPP1;
+			private feature PPP2;
+		}
+	}
+	class A specializes P::PP{
+		feature aa subsets PPP;
+		feature bb redefines PPP;
+		feature cc : PPP redefines dd;
+		feature dd;
+		feature ee: PPP redefines PPP1;
+		feature ff: PPP1 redefines PPP;
+		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP2'." at "PPP2"
+		feature ff1: PPP redefines PPP2;
+	}
+	class B specializes A {
+	}
+	class C specializes B {
+		feature gg subsets PPP;
+		feature ff redefines PPP;
+		feature hh : PPP redefines ii;
+		feature ii;
+		feature jj: PPP redefines PPP1;
+		feature kk: PPP1 redefines PPP;
+		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP2'." at "PPP2"
+		feature ll: PPP redefines PPP2;
+	}
+}

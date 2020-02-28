@@ -20,7 +20,7 @@ package test{
 	class EE {}
 	class A{
 		class a {}
-		class aa is a;
+		alias a as aa;
 	}
 	//* XPECT scope at A ---
 		A, A.a, A.aa, B, B.a, B.aa, EE, 
@@ -29,6 +29,6 @@ package test{
 	class B specializes A{
 		//XPECT linkedName at aa --> test.A.a
 		feature b: aa;
-		b_alias is b;
+		alias b as b_alias;
 	}
 }

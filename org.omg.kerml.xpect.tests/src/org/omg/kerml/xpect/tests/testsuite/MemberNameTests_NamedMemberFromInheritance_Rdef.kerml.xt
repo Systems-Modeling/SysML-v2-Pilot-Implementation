@@ -31,6 +31,6 @@ package test{
 --- */
 //		XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;
-		b_alias is b;
+		alias b as b_alias;
 	}
 }

@@ -10,9 +10,7 @@ package '13a-Model Containment' {
 	package 'Vehicle Model' {
 		
 		package 'Vehicle1-Configuration' {			
-			part 'Sports Sedan' is vehicle1_c1;
-			
-			// Alternate (Alf-legacy) syntax.
+			import 'Sports Sedan' as vehicle1_c1;
 			import vehicle1_c1 as 'Sports Sedan';
 			
 			// import 'vehicle-c1 Specification';		
@@ -24,10 +22,6 @@ package '13a-Model Containment' {
 		 * used in this way.
 		 */
 		package 'Vehicle Reference Model' {
-			block is VehicleA;
-			package is VehicleSubsystems;
-			
-			// Alternate syntax.
 			import VehicleA;			
 			import VehicleSubsystems;
 			

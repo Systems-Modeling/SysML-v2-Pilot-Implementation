@@ -45,7 +45,7 @@ package '2-Parts Interconnection' {
 	/**
 	 * Block Wheel does not include the ports its usages have.
 	 */
-	block Wheel is '1a-Parts Tree'::Wheel;
+	import '1a-Parts Tree'::Wheel;
 	
 	// Port Definitions
 	

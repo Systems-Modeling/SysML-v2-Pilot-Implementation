@@ -105,19 +105,10 @@ package Base {
 		portion feature endShot: Occurrence[1] subsets snapshots;
 		
 		/**
-		 * HappensBeforeSelf asserts that an occurrence happens before itself, 
-		 * which is only possible if the occurrence has no duration.
-		 */
-		private assoc HappensBeforeSelf specializes Occurrences::HappensBefore, SelfLink {
-			end self: Occurrence[1];
-			end myself: Occurrence[1];
-		}
-		
-		/**
 		 * Snapshots have no duration.
 		 */
-		// Note: Connectors are only allowed to have a single type.
-		composite succession :HappensBeforeSelf first snapshots[1] then snapshots[1];
+		composite succession :Occurrences::HappensBefore, SelfLink 
+			first snapshots[1] then snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.

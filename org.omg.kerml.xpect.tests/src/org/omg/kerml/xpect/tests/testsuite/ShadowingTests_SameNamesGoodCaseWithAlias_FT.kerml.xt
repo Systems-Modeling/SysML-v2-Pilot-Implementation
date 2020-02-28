@@ -17,7 +17,7 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	feature A1 is A;
+	alias A as A1;
 	feature A{
 		feature a1{}
 	}

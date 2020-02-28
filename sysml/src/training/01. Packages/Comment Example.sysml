@@ -15,9 +15,9 @@ package 'Comment Example' {
 	 * This is a documentary comment, annotating the
 	 * following element.
 	 */
-	block Car is Automobile;	                         
+	alias Automobile as Car;	                         
 	
 	// This is a lexical comment ("note"). 
 	// It is in the text, but not part of the model.
-	private value type Torque is ISQ::TorqueValue;
+	private import ISQ::TorqueValue as Torque;
 }

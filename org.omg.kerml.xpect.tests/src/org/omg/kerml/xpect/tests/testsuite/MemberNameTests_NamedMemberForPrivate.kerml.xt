@@ -15,7 +15,7 @@ END_SETUP
 //XPECT noErrors ---> ""
 package test {
 	private class something{}
-	private class k is something;
+	private alias something as k;
 	class hello {
 		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 

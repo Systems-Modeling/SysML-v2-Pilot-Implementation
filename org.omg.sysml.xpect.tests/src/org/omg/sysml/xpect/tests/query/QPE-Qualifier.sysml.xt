@@ -1,0 +1,33 @@
+//* XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/ScalarValues.kerml"}
+                File {from ="Vehicle.sysml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library.kernel/Base.kerml"}
+                                File {from ="/library.kernel/ScalarValues.kerml"}
+                                File {from ="Vehicle.sysml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import ScalarValues::*;
+    import Vehicle::*;
+
+    value v1_i: Integer[0..*] = .*/.*[Integer];
+
+    value v2_r: Real[0..*] = .**[Real];
+
+    value v1_i: Integer[0..*] = .*/.*[Integer| ./ < 3];
+
+    value v1_i: Real[0..*] = .*/mass[./ > 3.0];
+}

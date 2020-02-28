@@ -22,9 +22,9 @@ package SI {
 
 	part A = ElectricCurrentUnit(name => "ampere");
 	
-	part temperatureInKelvinTriplePointWater = ScaleValueDefinition(magnitude => 273.16, description => "temperature in kelvin of the triple point of pure water");
+	part temperatureInKelvinTriplePointWater = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of the triple point of pure water");
 	part K = TemperatureUnit(name => "kelvin") {
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
+		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
 	}
 	
 	part mol = AmountOfSubstanceUnit(name => "mol");
@@ -43,11 +43,11 @@ package SI {
 	 *   Quantities::MeasurementUnitPowerFactor(s, -2)
 	 * });	 
 	 */
-	part N: ForceUnit = kg * m / s ^ 2 {name redefines MeasurementScale::name = "newton"; }
+	part N: ForceUnit = kg * m / s ^ 2 {name redefines MeasurementReference::name = "newton"; }
 	
-	part 'm/s': SpeedUnit = m / s {name redefines MeasurementScale::name = "metre per second"; }
-	part J : EnergyUnit = N * m  {name redefines MeasurementScale::name = "joule"; }
-	part 'N.m': TorqueUnit = N * m {name redefines MeasurementScale::name = "newton metre"; }
+	part 'm/s': SpeedUnit = m / s {name redefines MeasurementReference::name = "metre per second"; }
+	part J : EnergyUnit = N * m  {name redefines MeasurementReference::name = "joule"; }
+	part 'N.m': TorqueUnit = N * m {name redefines MeasurementReference::name = "newton metre"; }
 	
 	/*
 	 * Examples of other conversion based units that are accepted in SI, but not standard 
@@ -75,17 +75,17 @@ package SI {
 	 */
 	 
 	/*
-	 * The degree celsius unit and scale
+	 * The degree Celsius unit and scale
 	 * 
 	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
 	 */
 	part '°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
 	 
-	part temperatureInCelsiusTriplePointWater = ScaleValueDefinition(magnitude => 0.01, description => "temperature in degree celsius of the triple point of pure water");
+	part temperatureInCelsiusTriplePointWater = ScaleValueDefinition(num => 0.01, description => "temperature in degree celsius of the triple point of pure water");
 	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
 	part '°C scale' = IntervalScale(name => "degree celsius scale") {
-		ref unit redefines NonRatioScale::unit = '°C';
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
-		ref scaleValueMapping redefines NonRatioScale::scaleValueMapping = celsiusToKelvinScaleMapping;
+		ref unit redefines MeasurementScale::unit = '°C';
+		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
+		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = celsiusToKelvinScaleMapping;
 	}
 }

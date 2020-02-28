@@ -13,7 +13,7 @@ package USCustomaryUnits {
 
     part lb = MassUnit(name => "pound (avoirdupois)", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 0.4535924 ));
 
-    part 'mi/hr': SpeedUnit = mi / hr { name redefines MeasurementScale::name = "mile per hour"; }
+    part 'mi/hr': SpeedUnit = mi / hr { name redefines MeasurementReference::name = "mile per hour"; }
     
     part lbf = ForceUnit(name => "pound-force", unitConversion => ConversionByConvention(referenceUnit => N, conversionFactor => 4.448222 ));
 

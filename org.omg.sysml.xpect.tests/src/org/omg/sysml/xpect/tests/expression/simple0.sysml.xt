@@ -1,9 +1,0 @@
-// XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest END_SETUP
-
-// XPECT noErrors ---> ""
-package P {
-    block Vehicle {
-        value a = 5;
-        value b = 5 * a;
-    }
-}

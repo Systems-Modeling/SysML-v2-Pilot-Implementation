@@ -13,7 +13,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
@@ -250,8 +249,8 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	}
 
 	@Override
-	public EList<Subsetting>  getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(TRANSITION_USAGE_SUBSETTING_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {TRANSITION_USAGE_SUBSETTING_DEFAULT};
 	}
 
 	public Feature getTransitionFeature(TransitionFeatureKind kind) {

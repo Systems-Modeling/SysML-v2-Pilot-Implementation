@@ -40,8 +40,6 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::states";
 	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::State::substates";
 	
-	protected boolean isCheckSubsetting = true;
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,14 +283,16 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 	}	
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			checkSubsetting();
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {getActionSubsettingDefault()};
 	}
-	
+
+	@Override
+	protected EList<Subsetting> getComputedRedefinitions() {
+		checkSubsetting();
+		return super.getComputedRedefinitions();
+	}
+
 	protected void checkSubsetting() {
 		if (isSubperformance()) {
 			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);

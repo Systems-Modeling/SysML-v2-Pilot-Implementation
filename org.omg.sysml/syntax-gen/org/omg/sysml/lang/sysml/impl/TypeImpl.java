@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -285,7 +286,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
-		return basicGetOwnedGeneralization();
+		return new DerivedSubsetEObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, OWNED_GENERALIZATION_ESUPERSETS);
 	}
 
 	protected EList<Generalization> basicGetOwnedGeneralization() {
@@ -298,7 +299,26 @@ public class TypeImpl extends PackageImpl implements Type {
 		}
 		return generalizations;
 	}
-
+	
+	public <T extends Generalization> void calculateOwnedGeneralization() {
+		String[] defaultGeneralizationNames = getDefaultGeneralizationNames();
+		// Add a default generalization only if the type is not conjugated.
+ 		if (defaultGeneralizationNames.length > 0 && !isConjugated()) {
+ 			Generalization generalization = getDefaultGeneralization(getOwnedGeneralization(), getDefaultGeneralizationEClass(), defaultGeneralizationNames);
+			if (generalization != null) {
+				getOwnedRelationship_comp().add(generalization);
+			}
+ 		}
+	}
+	
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[0];
+	}
+	
+	protected EClass getDefaultGeneralizationEClass() {
+		return SysMLPackage.Literals.GENERALIZATION;
+	}
+	
 	@SuppressWarnings("unchecked")
 	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
 		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);

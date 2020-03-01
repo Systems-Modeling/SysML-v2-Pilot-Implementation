@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -187,13 +188,22 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return super.getOwningMembership();
 	}
 
+	@Override
+	public <T extends Generalization> void calculateOwnedGeneralization() {
+		// Calculates subsetting
+		super.calculateOwnedGeneralization();
+		
+		// Calculate implied types
+		getTypes(this, getType(), new HashSet<>(), true);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		return getTypes(true);
+		return new DerivedSubsetEObjectEList<>(Type.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.FEATURE__TYPE});
 	}
 	
 	public EList<Type> getTypes(boolean isWithDefaults) {
@@ -202,7 +212,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return types;
 	}
 	
-	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
+	public static void getTypes(Feature feature, List<? super Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
 		getFeatureTypes(feature, types);
 		Conjugation conjugator = feature.getConjugator();
@@ -214,7 +224,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 		EList<Subsetting> subsettings = isWithDefaults? 
 				feature.getOwnedSubsetting(): 
-				((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();
+				//((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();
+				//TODO there is no way to calculate owned subsetting without defaults
+				feature.getOwnedSubsetting();
 		for (Subsetting subsetting: subsettings) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
@@ -223,7 +235,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}		
 	}
 	
-	public static void getFeatureTypes(Feature feature, List<Type> types) {
+	public static void getFeatureTypes(Feature feature, List<? super Type> types) {
 		types.addAll(feature.getTyping().stream().
 				map(typing->typing.getType()).filter(type->type != null).collect(Collectors.toList()));
 	}
@@ -349,30 +361,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 
+	@Override
+	protected String[] getDefaultGeneralizationNames() {
+		String defaultName = hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+			hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+			FEATURE_SUBSETTING_DEFAULT;
+		return new String[] {defaultName};
+	}
+
+	@Override
+	protected EClass getDefaultGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getSubsetting();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
-				FEATURE_SUBSETTING_DEFAULT);
-	}
-	
-	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String... subsettingDefault) {
-		clearCaches();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithDefault(subsettingDefault);
-	}
-	
-	public EList<Subsetting> getOwnedSubsettingWithDefault(String... subsettingDefault) {
-		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
-	}
-	
-	public EList<Subsetting> getOwnedSubsettingWithoutDefault() {
-		return getOwnedGeneralizationWithoutDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+		return new DerivedSubsetEObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.FEATURE__OWNED_SUBSETTING});
 	}
 	
 	public EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {

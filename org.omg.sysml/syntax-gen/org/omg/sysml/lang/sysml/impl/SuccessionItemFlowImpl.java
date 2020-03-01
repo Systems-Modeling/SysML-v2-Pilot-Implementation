@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -246,9 +245,10 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
-				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		String defaultName = isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
+				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
+		return new String[] {defaultName};
 	}
 
 } // SuccessionItemFlowImpl

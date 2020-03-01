@@ -451,13 +451,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				getConnectorEnd().size() > 2? 
-					CONNECTOR_SUBSETTING_DEFAULT:
-					BINARY_CONNECTOR_SUBSETTING_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		String defaultName = getConnectorEnd().size() > 2? 
+				CONNECTOR_SUBSETTING_DEFAULT:
+				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
+		return new String[] {defaultName};
 	}
-	
+
 	// Utility Methods
 	
 	public Feature addConnectorEnd(Feature relatedFeature) {

@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueProperty;
@@ -72,10 +71,11 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 		return !getValueType().isEmpty();
 	}
 
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(VALUE_PROPERTY_SUBSETTING_DEFAULT);
+	@Override
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {VALUE_PROPERTY_SUBSETTING_DEFAULT};
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

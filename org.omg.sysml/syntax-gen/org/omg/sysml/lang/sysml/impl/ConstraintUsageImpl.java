@@ -23,7 +23,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -390,10 +389,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional redefinitions and subsets
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {CONSTRAINT_SUBSETTING_BASE_DEFAULT};
 	}
-	
+
 	@Override
 	public EList<Feature> getFeature() {
 		getResultConnector();

@@ -5,8 +5,8 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -45,23 +45,25 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return SysMLPackage.Literals.CLASSIFIER;
 	}
 
+	@Override
+	protected EClass getDefaultGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getSuperclassing();
+	}
+	
+	
+
+	@Override
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {CLASSIFIER_SUPERCLASS_DEFAULT};
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(CLASSIFIER_SUPERCLASS_DEFAULT);
-	}
-	
-	protected EList<Superclassing> getOwnedSuperclassingWithDefault(String superclassDefault) {
-		return getOwnedGeneralizationWithDefault(Superclassing.class, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING, SysMLPackage.eINSTANCE.getSuperclassing(), superclassDefault);
-	}
-	
-	@Override
-	public EList<Generalization> getOwnedGeneralization() {
-		getOwnedSuperclassing();
-		return super.getOwnedGeneralization();
+		return new DerivedSubsetEObjectEList<Superclassing>(Superclassing.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP});
 	}
 
 	/**

@@ -13,7 +13,6 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -182,10 +181,10 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(PORT_USAGE_SUBSETTING_BASE_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {PORT_USAGE_SUBSETTING_BASE_DEFAULT};
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

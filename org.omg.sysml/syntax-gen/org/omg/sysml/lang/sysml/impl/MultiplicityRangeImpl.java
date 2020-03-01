@@ -12,7 +12,6 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -155,8 +154,8 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(MULTIPLICITY_RANGE_SUBSETTING_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {MULTIPLICITY_RANGE_SUBSETTING_DEFAULT};
 	}
 
 	/**

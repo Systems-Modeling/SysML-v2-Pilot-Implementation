@@ -11,7 +11,6 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -72,8 +71,8 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(BINDING_CONNECTOR_SUBSETTING_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {BINDING_CONNECTOR_SUBSETTING_DEFAULT};
 	}
 
 } // BindingConnectorImpl

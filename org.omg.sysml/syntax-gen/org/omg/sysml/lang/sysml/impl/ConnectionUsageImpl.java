@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -210,13 +209,13 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				getConnectorEnd().size() > 2? 
-					CONNECTOR_SUBSETTING_DEFAULT:
-					CONNECTOR_USAGE_SUBSETTING_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		String defaultName = getConnectorEnd().size() > 2? 
+				CONNECTOR_SUBSETTING_DEFAULT:
+				CONNECTOR_USAGE_SUBSETTING_DEFAULT; 
+		return new String[] {defaultName};
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

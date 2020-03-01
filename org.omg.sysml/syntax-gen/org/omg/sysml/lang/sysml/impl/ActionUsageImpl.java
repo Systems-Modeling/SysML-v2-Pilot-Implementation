@@ -15,9 +15,9 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.StateActionMembership;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -192,14 +192,18 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			checkSubsetting();
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
+	public <T extends Generalization> void calculateOwnedGeneralization() {
+		checkSubsetting();
+		
+		// Add default computed subsetting
+		super.calculateOwnedGeneralization();
 	}
-	
+
+	@Override
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {getActionSubsettingDefault()};
+	}
+
 	protected void checkSubsetting() {
 		if (isSubperformance()) {
 			addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);

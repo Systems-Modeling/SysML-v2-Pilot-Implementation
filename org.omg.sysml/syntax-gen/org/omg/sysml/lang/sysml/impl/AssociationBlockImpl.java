@@ -23,7 +23,6 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -312,11 +311,11 @@ public class AssociationBlockImpl extends BlockImpl implements AssociationBlock 
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(
-				getOwnedEndFeature().size() > 2? 
-					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
-					ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		String defaultName = getOwnedEndFeature().size() > 2? 
+				AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
+				ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT;
+		return new String[] {defaultName};
 	}
 
 	/**

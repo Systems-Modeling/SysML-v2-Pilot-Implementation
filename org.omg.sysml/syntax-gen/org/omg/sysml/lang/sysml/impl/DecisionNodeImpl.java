@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.DecisionNode;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -40,8 +38,8 @@ public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(DECISION_NODE_SUBSETTING_BASE_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {DECISION_NODE_SUBSETTING_BASE_DEFAULT};
 	}
-	
+
 } //DecisionNodeImpl

@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -144,11 +143,10 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-					SUCCESSION_SUBSETTING_BASE_DEFAULT);
+	protected String[] getDefaultGeneralizationNames() {
+		return new String[] {SUCCESSION_SUBSETTING_BASE_DEFAULT};
 	}
-	
+
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();

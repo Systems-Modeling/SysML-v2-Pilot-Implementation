@@ -3,6 +3,7 @@
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
+                File {from ="/library.kernel/ScalarFunctions.kerml"}
         }
         Workspace {
                 JavaProject {
@@ -10,6 +11,7 @@
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
+                				File {from ="/library.kernel/ScalarFunctions.kerml"}
                         }
                 }
         }

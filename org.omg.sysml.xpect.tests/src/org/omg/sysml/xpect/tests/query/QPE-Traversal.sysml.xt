@@ -23,7 +23,7 @@ package P {
     import ScalarValues::*;
     import Vehicle::*;
 
-    value v_redefining: Integer = ./vehicle_1/cylinders/@redefininig;
+    value v_redefining: Integer = ./vehicle_1/cylinders/@redefining;
 
     value v_redefined: Integer = ./Vehicle::cylinders/@redefined;
 }

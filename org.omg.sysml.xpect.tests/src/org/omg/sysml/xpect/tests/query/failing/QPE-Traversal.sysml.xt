@@ -1,10 +1,10 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+//* XPECT_SETUP org.omg.sysml.xpect.tests.query.failing.SysMLQueryFailingTest
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
-                File {from ="Vehicle.sysml"}
+                File {from ="/src/Vehicle.sysml"}
         }
         Workspace {
                 JavaProject {
@@ -13,7 +13,7 @@
                                 File {from ="/library.kernel/Base.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}
-                                File {from ="Vehicle.sysml"}
+                                File {from ="/src/Vehicle.sysml"}
                         }
                 }
         }
@@ -25,9 +25,7 @@ package P {
     import ScalarValues::*;
     import Vehicle::*;
 
-    // '/*' is prohibited, so we use '.*' or '.**' for wildcards
+    value v_redefining: Integer = ./vehicle_1/cylinders/@redefining;
 
-    value vw_single: Integer[0..*] = .*/cylinders;
-
-    value vw_recursive: Integer[0..*] = .**/cylinders;
+    value v_redefined: Integer = ./Vehicle::cylinders/@redefined;
 }

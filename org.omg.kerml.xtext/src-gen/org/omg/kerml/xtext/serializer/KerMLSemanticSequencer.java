@@ -52,9 +52,6 @@ import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.QueryPathExpression;
-import org.omg.sysml.lang.sysml.QueryPathStepExpression;
-import org.omg.sysml.lang.sysml.QueryQualifierExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
@@ -241,11 +238,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getEndFeatureMemberRule()) {
-					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
+				if (rule == grammarAccess.getFeatureTypeMemberRule()
+						|| rule == grammarAccess.getEndFeatureMemberRule()
 						|| rule == grammarAccess.getFeatureBehaviorMemberRule()) {
 					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
@@ -615,63 +609,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else break;
-			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				if (rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getNullCoalescingExpressionRule()
-						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getConditionalOrExpressionRule()
-						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getConditionalAndExpressionRule()
-						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getOrExpressionRule()
-						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getXorExpressionRule()
-						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getAndExpressionRule()
-						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getEqualityExpressionRule()
-						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getRelationalExpressionRule()
-						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getAdditiveExpressionRule()
-						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getMultiplicativeExpressionRule()
-						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getUnitsExpressionRule()
-						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getUnaryExpressionRule()
-						|| rule == grammarAccess.getSequenceAccessExpressionRule()
-						|| action == grammarAccess.getSequenceAccessExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getSequenceConstructionExpressionRule()
-						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperand_compAction_1_2_0_0()
-						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperand_compAction_1_2_1_0()
-						|| rule == grammarAccess.getSequenceElementListRule()
-						|| action == grammarAccess.getSequenceElementListAccess().getOperatorExpressionOperand_compAction_1_0()
-						|| rule == grammarAccess.getQueryPathExpressionRule()
-						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperand_compAction_1_1()
-						|| action == grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperand_compAction_2_1()
-						|| rule == grammarAccess.getQueryHeadExpressionRule()) {
-					sequence_QueryHeadExpression(context, (QueryPathExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getQueryNameExpressionRule()) {
-					sequence_QueryNameExpression(context, (QueryPathExpression) semanticObject); 
-					return; 
-				}
-				else break;
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
-				sequence_QueryPathExpression(context, (QueryPathStepExpression) semanticObject); 
-				return; 
-			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION:
-				sequence_QueryPathExpression(context, (QueryQualifierExpression) semanticObject); 
-				return; 
 			case SysMLPackage.REDEFINITION:
 				sequence_Redefinition(context, (Redefinition) semanticObject); 
 				return; 
@@ -755,7 +692,9 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     FeatureTypeMember returns EndFeatureMembership
 	 *     EndFeatureMember returns EndFeatureMembership
+	 *     FeatureBehaviorMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
@@ -792,47 +731,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     FeatureTypeMember returns EndFeatureMembership
-	//     FeatureBehaviorMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship_comp+=PrefixAnnotation? 
-	//         visibility=VisibilityIndicator? 
-	//         (isComposite?='composite' | isPortion?='portion')? 
-	//         isPort?='port'? 
-	//         (
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=Feature) | 
-	//             (direction=FeatureDirection? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=Connector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=BindingConnector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=Step) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=BlockExpression) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=BooleanExpression) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=Invariant) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=Succession) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=ItemFlow) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=SuccessionItemFlow) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractFeature) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractConnector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBindingConnector) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractStep) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBlockExpression) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBooleanExpression) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractInvariant) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccession) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemFlow) | 
-	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccessionItemFlow)
-	//         )
-	//     )
-	//
-	// protected void sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2310,8 +2208,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
 	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
-	 *         ownedMembership_comp+=NonFeatureBehaviorMember? 
-	 *         ((ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedMembership_comp+=NonFeatureBehaviorMember?)* 
+	 *         ownedFeatureMembership_comp+=FeatureBehaviorMember? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedFeatureMembership_comp+=FeatureBehaviorMember?)* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
@@ -2334,8 +2232,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
 	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
-	 *         ownedMembership_comp+=NonFeatureBehaviorMember? 
-	 *         ((ownedFeatureMembership_comp+=FeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedMembership_comp+=NonFeatureBehaviorMember?)* 
+	 *         ownedFeatureMembership_comp+=FeatureBehaviorMember? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedFeatureMembership_comp+=FeatureBehaviorMember?)* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
@@ -2453,15 +2351,15 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (name=Name | ownedRelationship_comp+=Redefinition) 
 	 *                         ownedRelationship_comp+=FeatureTyping 
 	 *                         ownedRelationship_comp+=FeatureTyping* 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
 	 *                     (
 	 *                         (
 	 *                             (name=Name ownedFeatureMembership_comp+=MultiplicityMember) | 
 	 *                             (ownedRelationship_comp+=Redefinition ownedFeatureMembership_comp+=MultiplicityMember)
 	 *                         ) 
-	 *                         isOrdered?='ordered'? 
-	 *                         (isNonunique?='nonunique'? isOrdered?='ordered'?)*
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
 	 *                     )
 	 *                 ) 
 	 *                 ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))*
@@ -3379,177 +3277,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ownedRelatedElement_comp+=Documentation
 	 */
 	protected void sequence_PrefixAnnotation(ISerializationContext context, Annotation semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Expression returns QueryPathExpression
-	 *     ConditionalExpression returns QueryPathExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     NullCoalescingExpression returns QueryPathExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ConditionalOrExpression returns QueryPathExpression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ConditionalAndExpression returns QueryPathExpression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     OrExpression returns QueryPathExpression
-	 *     OrExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     XorExpression returns QueryPathExpression
-	 *     XorExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     AndExpression returns QueryPathExpression
-	 *     AndExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     EqualityExpression returns QueryPathExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     ClassificationExpression returns QueryPathExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     RelationalExpression returns QueryPathExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     AdditiveExpression returns QueryPathExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     MultiplicativeExpression returns QueryPathExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     UnitsExpression returns QueryPathExpression
-	 *     UnitsExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     UnaryExpression returns QueryPathExpression
-	 *     SequenceAccessExpression returns QueryPathExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     PrimaryExpression returns QueryPathExpression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryPathExpression
-	 *     BaseExpression returns QueryPathExpression
-	 *     SequenceConstructionExpression returns QueryPathExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_0_0 returns QueryPathExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_1_0 returns QueryPathExpression
-	 *     SequenceElementList returns QueryPathExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns QueryPathExpression
-	 *     QueryPathExpression returns QueryPathExpression
-	 *     QueryPathExpression.QueryQualifierExpression_1_1 returns QueryPathExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathExpression
-	 *     QueryHeadExpression returns QueryPathExpression
-	 *
-	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReference
-	 */
-	protected void sequence_QueryHeadExpression(ISerializationContext context, QueryPathExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     QueryNameExpression returns QueryPathExpression
-	 *
-	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReference
-	 */
-	protected void sequence_QueryNameExpression(ISerializationContext context, QueryPathExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Expression returns QueryPathStepExpression
-	 *     ConditionalExpression returns QueryPathStepExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     NullCoalescingExpression returns QueryPathStepExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     ConditionalOrExpression returns QueryPathStepExpression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     ConditionalAndExpression returns QueryPathStepExpression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     OrExpression returns QueryPathStepExpression
-	 *     OrExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     XorExpression returns QueryPathStepExpression
-	 *     XorExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     AndExpression returns QueryPathStepExpression
-	 *     AndExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     EqualityExpression returns QueryPathStepExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     ClassificationExpression returns QueryPathStepExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     RelationalExpression returns QueryPathStepExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     AdditiveExpression returns QueryPathStepExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     MultiplicativeExpression returns QueryPathStepExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     UnitsExpression returns QueryPathStepExpression
-	 *     UnitsExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     UnaryExpression returns QueryPathStepExpression
-	 *     SequenceAccessExpression returns QueryPathStepExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     PrimaryExpression returns QueryPathStepExpression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     BaseExpression returns QueryPathStepExpression
-	 *     SequenceConstructionExpression returns QueryPathStepExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_0_0 returns QueryPathStepExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_1_0 returns QueryPathStepExpression
-	 *     SequenceElementList returns QueryPathStepExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns QueryPathStepExpression
-	 *     QueryPathExpression returns QueryPathStepExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryPathStepExpression
-	 *     QueryPathExpression.QueryQualifierExpression_2_3_1 returns QueryPathStepExpression
-	 *
-	 * Constraint:
-	 *     (operand_comp+=QueryPathExpression_QueryPathStepExpression_2_1 operand_comp+=QueryNameExpression)
-	 */
-	protected void sequence_QueryPathExpression(ISerializationContext context, QueryPathStepExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Expression returns QueryQualifierExpression
-	 *     ConditionalExpression returns QueryQualifierExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     NullCoalescingExpression returns QueryQualifierExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     ConditionalOrExpression returns QueryQualifierExpression
-	 *     ConditionalOrExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     ConditionalAndExpression returns QueryQualifierExpression
-	 *     ConditionalAndExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     OrExpression returns QueryQualifierExpression
-	 *     OrExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     XorExpression returns QueryQualifierExpression
-	 *     XorExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     AndExpression returns QueryQualifierExpression
-	 *     AndExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     EqualityExpression returns QueryQualifierExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     ClassificationExpression returns QueryQualifierExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     RelationalExpression returns QueryQualifierExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     AdditiveExpression returns QueryQualifierExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     MultiplicativeExpression returns QueryQualifierExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     UnitsExpression returns QueryQualifierExpression
-	 *     UnitsExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     UnaryExpression returns QueryQualifierExpression
-	 *     SequenceAccessExpression returns QueryQualifierExpression
-	 *     SequenceAccessExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     PrimaryExpression returns QueryQualifierExpression
-	 *     PrimaryExpression.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     BaseExpression returns QueryQualifierExpression
-	 *     SequenceConstructionExpression returns QueryQualifierExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_0_0 returns QueryQualifierExpression
-	 *     SequenceConstructionExpression.OperatorExpression_1_2_1_0 returns QueryQualifierExpression
-	 *     SequenceElementList returns QueryQualifierExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns QueryQualifierExpression
-	 *     QueryPathExpression returns QueryQualifierExpression
-	 *     QueryPathExpression.QueryPathStepExpression_2_1 returns QueryQualifierExpression
-	 *
-	 * Constraint:
-	 *     (
-	 *         (operand_comp+=QueryPathExpression_QueryQualifierExpression_1_1 ownedFeatureMembership_comp+=BodyMember) | 
-	 *         (operand_comp+=QueryPathExpression_QueryQualifierExpression_2_3_1 ownedFeatureMembership_comp+=BodyMember)
-	 *     )
-	 */
-	protected void sequence_QueryPathExpression(ISerializationContext context, QueryQualifierExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

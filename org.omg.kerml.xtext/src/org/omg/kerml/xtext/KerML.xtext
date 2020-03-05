@@ -806,7 +806,7 @@ fragment BooleanExpressionDeclaration returns SysML::Expression :
 // Expressions
 
 Expression returns SysML::Expression :
-	 ConditionalExpression | QueryPathExpression
+	 ConditionalExpression
 ;
 
 // Conditional Test Expressions
@@ -1087,31 +1087,6 @@ BodyMember returns SysML::FeatureMembership :
 BodyParameterMember returns SysML::ParameterMembership :
 	memberName = Name ownedMemberFeature_comp = Parameter
 ;
-
-/* QUERY PATH EXPRESSIONS */
-
-QueryPathExpression returns SysML::Expression :
-	QueryHeadExpression
-	( '[' {SysML::QueryQualifierExpression.operand_comp += current}
-         ( ownedFeatureMembership_comp += BodyMember ) ']' )?
-	( '/' {SysML::QueryPathStepExpression.operand_comp += current}
-		operand_comp += QueryNameExpression
-		( '[' {SysML::QueryQualifierExpression.operand_comp += current}
-	         ( ownedFeatureMembership_comp += BodyMember ) ']' )?
-	)*
-;
-
-QueryNameExpression returns SysML::QueryPathExpression :
-    /* isParent ?= '..'
-    | isDescendants ?= '/'
-    | @traversal
-    */
-    ownedFeatureMembership_comp += FeatureReference
-;
-
-QueryHeadExpression returns SysML::QueryPathExpression :
-	'./' ownedFeatureMembership_comp += FeatureReference
-;        
 
 /* NAMES */
 

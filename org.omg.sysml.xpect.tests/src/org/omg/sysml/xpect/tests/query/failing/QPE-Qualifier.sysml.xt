@@ -1,11 +1,11 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+//* XPECT_SETUP org.omg.sysml.xpect.tests.query.failing.SysMLQueryFailingTest
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ScalarFunctions.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
-                File {from ="Vehicle.sysml"}
+                File {from ="/src/Vehicle.sysml"}
         }
         Workspace {
                 JavaProject {
@@ -15,7 +15,7 @@
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}
-                                File {from ="Vehicle.sysml"}
+                                File {from ="/src/Vehicle.sysml"}
                         }
                 }
         }

@@ -4,7 +4,7 @@
                 File {from ="/library.kernel/Base.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
-                File {from ="Vehicle.sysml"}
+                File {from ="/src/Vehicle.sysml"}
         }
         Workspace {
                 JavaProject {
@@ -13,7 +13,7 @@
                                 File {from ="/library.kernel/Base.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}
-                                File {from ="Vehicle.sysml"}
+                                File {from ="/src/Vehicle.sysml"}
                         }
                 }
         }

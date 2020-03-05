@@ -24,7 +24,7 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
-            keywords: words("about abstract accept action activity allInstances any as assert assoc bind block by " +
+            keywords: words("about abstract accept action activity alias allInstances any as assert assoc bind block by " +
                 "comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype if import " +
                 "in inout instanceof interface is join link merge nonunique of ordered out package part perform port private " +
                 "protected public redefines ref send specializes state stream subsets succession then to transition type value"),

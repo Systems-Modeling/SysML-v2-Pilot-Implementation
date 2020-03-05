@@ -1,0 +1,6 @@
+package Q {
+  feature f = 10;
+  class C {
+    feature g = %q(./f);
+  }
+}

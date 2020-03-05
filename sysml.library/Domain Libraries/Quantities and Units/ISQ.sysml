@@ -156,8 +156,12 @@ package ISQ {
 	/**
 	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit"
 	 */
-	block UnitOfDimensionOne :> DerivedUnit {
+	block DimensionOneUnit :> DerivedUnit {
 		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+	}
+	value type DimensionOneValue :> QuantityValue {
+		value magnitude: Real redefines QuantityValue::magnitude;
+		ref scale: DimensionOneUnit redefines QuantityValue::scale;
 	}
 	
 	/**
@@ -196,6 +200,23 @@ package ISQ {
 		ref scale: SpeedUnit redefines QuantityValue::scale;
 	}
 	value speed: SpeedValue :> quantity;
+
+	/**
+	 * acceleration
+	 */
+	block AccelerationUnit :> SIDerivedUnit {
+		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		value timePowerFactor :> SIDerivedUnit::timePowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = -2;
+		}
+	}
+	value type AccelerationValue :> QuantityValue {
+		value magnitude: Real redefines QuantityValue::magnitude;
+		ref scale: AccelerationUnit redefines QuantityValue::scale;
+	}
+	value acceleration: AccelerationValue :> quantity;
 	
 	/**
 	 * torque

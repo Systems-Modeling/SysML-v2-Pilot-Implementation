@@ -1,0 +1,28 @@
+//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/ScalarValues.kerml"}
+                File {from ="/library.kernel/ScalarFunctions.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library.kernel/Base.kerml"}
+                                File {from ="/library.kernel/ScalarValues.kerml"}
+                				File {from ="/library.kernel/ScalarFunctions.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    block Vehicle {
+        import ScalarValues::*;
+        value a: Integer = 5;
+        value b: Integer = 5 * a;
+    }
+}

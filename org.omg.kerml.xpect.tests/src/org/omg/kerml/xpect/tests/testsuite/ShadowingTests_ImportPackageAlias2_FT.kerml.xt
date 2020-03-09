@@ -1,0 +1,62 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyPackageAlias1_Feature.kerml"}
+		File {from ="/src/DependencyPackageAlias2_Feature_FT.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyPackageAlias1_Feature.kerml"}
+				File {from ="/src/DependencyPackageAlias2_Feature_FT.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import PackageAlias1::*;
+	feature A{}
+	alias A as A_alias;
+	//XPECT linkedName at  A_alias --> test.A
+	//* XPECT scope at  A_alias ---
+	        test_A, test.test_A,
+	        A, test.A, 
+			A_alias, test.A_alias,
+			AA, AA.aa, AA.aa_alias,test.AA, test.AA.aa, test.AA.aa_alias, 
+			AA_alias, AA_alias.aa, AA_alias.aa_alias, test.AA_alias, test.AA_alias.aa,test.AA_alias.aa_alias,
+ 		        
+ 		    PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias, 
+ 		    PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		    PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias, 
+ 		    PackageAlias1.AA_alias,PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias, 
+ 		   
+ 		    PackageAlias2.A, PackageAlias2.A.a, PackageAlias2.A.a_alias, 
+ 		    PackageAlias2.A_alias, PackageAlias2.A_alias.a, PackageAlias2.A_alias.a_alias,
+ 		    PackageAlias2.AA, PackageAlias2.AA.aa, PackageAlias2.AA.aa_alias, 
+ 		    PackageAlias2.AA_alias,PackageAlias2.AA_alias.aa, PackageAlias2.AA_alias.aa_alias, 
+ 		     
+ 		   	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.b,  PackageAlias2.B.a_alias,		
+ 		   	--- */
+	feature test_A : A_alias{}
+}
+
+//*
+The following are still missing: 	    
+ 		    PackageAlias1.A.a_alias,
+			PackageAlias1.A_alias.a,
+			PackageAlias1.A_alias.a_alias,
+			PackageAlias1.AA_alias,
+			PackageAlias1.AA.aa_alias,
+			PackageAlias1.AA_alias.aa,
+			PackageAlias1.AA_alias.aa_alias,
+			PackageAlias1.A_alias,
+ 		   	PackageAlias2.B.a_alias,
+ 		   	PackageAlias2.B.b,
+ */

@@ -3,7 +3,7 @@ package '3a-Function-based Behavior' {
 	// ITEMS
 	
 	value type FuelCmd;
-	value type Torque is ISQ::TorqueValue;
+	import ISQ::TorqueValue as Torque;
 	
 	// SIGNALS
 	

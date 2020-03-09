@@ -1,0 +1,28 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package Classes {
+	import VisibilityPackage::*;
+	feature a : c_Public;
+	feature b : c_Public::c_public;
+	feature c : c_Public_alias;
+	feature d : c_Public_alias::c_public;
+	feature e : c_Public_alias::alias_public;
+	feature f : c_clazz;
+	feature g : c_clazz::c_Public;	
+	feature h : c_clazz::c_Public::c_publicc;
+}

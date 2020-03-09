@@ -1,0 +1,53 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+		File {from ="/src/DependencyMultipleImport.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/src/DependencyMultipleImport.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import OuterPackage2::*;
+	//XPECT linkedName at C --> OuterPackage2.C
+	//* XPECT scope at C ---
+	       B.b.a1, C.b.a1, test.B.b.a1, test.C.b.a1,
+	       Test.b.a1, Test.try.a1, test.Test.b.a1, test.Test.try.a1,
+		   Test, test.Test,
+		   A, A.a1, B,C,
+		   test.A, test.A.a1, test.B, test.C, 
+		   	OuterPackage.A, 										  OuterPackage.A.a1, 
+		   	OuterPackage.B,  OuterPackage.B.b.a1, 
+		   	OuterPackage2.B, OuterPackage2.B.b.a1, OuterPackage2.A, OuterPackage2.A.a1, 
+		   	OuterPackage2.C, OuterPackage2.C.b.a1,                                      
+	--- */
+	class Test specializes C {
+		//XPECT linkedName at b --> OuterPackage.B.b
+		//* XPECT scope at b ---
+		   B.b.a1, C.b.a1, test.B.b.a1, test.C.b.a1,
+	       Test.b.a1, Test.try.a1, test.Test.b.a1, test.Test.try.a1,
+	       b.a1, try.a1,
+		   b, c, try, 
+		   Test, Test.b, Test.c, Test.try,
+		   test.Test, test.Test.b, test.Test.c, test.Test.try, 
+		   A, A.a1, B, B.b, C, C.b, C.c, 
+		   test.A, test.A.a1, test.B, test.B.b, test.C, test.C.b, test.C.c,
+		   	OuterPackage.A,  OuterPackage.A.a1, 
+		   	OuterPackage2.A, OuterPackage2.A.a1, OuterPackage.B,  OuterPackage.B.b,  OuterPackage.B.b.a1, 
+	   											 OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
+		   										 OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c, 
+	--- */
+		feature try : b;
+	}
+}

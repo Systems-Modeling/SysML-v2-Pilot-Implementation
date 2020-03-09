@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2020 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  *    
@@ -27,7 +27,7 @@
  * 
  *****************************************************************************/
 
-grammar org.omg.sysml.xtext.SysML hidden (WS, SL_COMMENT)
+grammar org.omg.sysml.xtext.SysML hidden (WS, ML_NOTE, SL_NOTE)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
@@ -183,45 +183,30 @@ fragment PackageMemberPrefix returns SysML::Membership :
 
 fragment PackagedDefinitionMember returns SysML::Membership :
 	( ownedMemberElement_comp = Package
-	| 'package' ( memberName = Name )? 'is' memberElement = [SysML::Package|QualifiedName] ';'
 	| ownedMemberElement_comp = Block
-    | 'block' ( memberName = Name )? 'is' memberElement = [SysML::Block|QualifiedName] ';'
 	| ownedMemberElement_comp = ValueType
-    | 'value' 'type' ( memberName = Name )? 'is' memberElement = [SysML::ValueType|QualifiedName] ';'
 	| ownedMemberElement_comp = AssociationBlock
-    | 'assoc' 'block' ( memberName = Name )? 'is' memberElement = [SysML::AssociationBlock|QualifiedName] ';'
 	| ownedMemberElement_comp = InterfaceDefinition
-    | 'interface' 'def' ( memberName = Name )? 'is' memberElement = [SysML::InterfaceDefinition|QualifiedName] ';'
 	| ownedMemberElement_comp = PortDefinition
-    | 'port' 'def' ( memberName = Name )? 'is' memberElement = [SysML::PortDefinition|QualifiedName] ';'
 	| ownedMemberElement_comp = Activity
-    | 'activity' ( memberName = Name )? 'is' memberElement = [SysML::Activity|QualifiedName] ';'
     | ownedMemberElement_comp = StateDefinition
-    | 'state' 'def' ( memberName = Name )? 'is' memberElement = [SysML::StateDefinition|QualifiedName] ';'
     | ownedMemberElement_comp = ConstraintDefinition
-    | 'constraint' 'def' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintDefinition|QualifiedName] ';'
-	| 'import' memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	| ownedMemberElement_comp = Comment
-	| 'comment' ( memberName = Name )? 'is' memberElement = [SysML::Comment|QualifiedName] ';'
+	| ( 'import' | 'alias' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
 ;
 
 fragment PackagedUsageMember returns SysML::Membership :
 	  'part' ownedMemberElement_comp = PartProperty
 	| 'abstract' 'part' ownedMemberElement_comp = AbstractPartProperty
-	| 'part' ( memberName = Name )? 'is' memberElement = [SysML::PartProperty|QualifiedName] ';'
 	| 'value'? ownedMemberElement_comp = ValueProperty
 	| 'abstract' 'value'? ownedMemberElement_comp = AbstractValueProperty
-	| ( 'value' ( memberName = Name )? | memberName = Name ) 'is' memberElement = [SysML::ValueProperty|QualifiedName] ';'
 	| 'action' ownedMemberElement_comp = ActionUsage
 	| 'abstract' 'action' ownedMemberElement_comp = AbstractActionUsage
-	| 'action' ( memberName = Name )? 'is' memberElement = [SysML::ActionUsage|QualifiedName] ';'
 	| 'state' ownedMemberElement_comp = StateUsage
 	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberElement = [SysML::StateUsage|QualifiedName] ';'
 	| 'constraint' ownedMemberElement_comp = ConstraintUsage
 	| 'abstract' 'constraint' ownedMemberElement_comp = AbstractConstraintUsage
-	| 'constraint' ( memberName = Name )? 'is' memberElement = [SysML::ConstraintUsage|QualifiedName] ';'
 ;
 
 /* DEFINITIONS */
@@ -263,30 +248,23 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	(
 	  isComposite ?= 'part' ownedMemberFeature_comp = PartProperty
 	| 'abstract' isComposite ?= 'part' ownedMemberFeature_comp = AbstractPartProperty
-	| isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName] ';'
 	| 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = ReferenceProperty
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceProperty
-	| 'ref' ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
 	| 'interface' ownedMemberFeature_comp = InterfaceUsage
 	| 'abstract' 'interface' ownedMemberFeature_comp = AbstractInterfaceUsage
-	| 'interface' ( memberName = Name )? 'is' memberFeature = [SysML::InterfaceUsage|QualifiedName] ';'
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
-    | 'link' ( memberName = Name )? 'is' memberFeature = [SysML::ConnectionUsage|QualifiedName] ';'
-	| 'connect' ownedMemberFeature_comp = Connector 
+ 	| 'connect' ownedMemberFeature_comp = Connector 
     | 'abstract' 'connect' ownedMemberFeature_comp = AbstractConnector
     | 'bind' ownedMemberFeature_comp = BindingConnector
 	| 'succession' ownedMemberFeature_comp = Succession 
     | 'abstract' 'succession' ownedMemberFeature_comp = AbstractSuccession
-	| 'succession' ( memberName = Name )? 'is' memberFeature = [SysML::Succession|QualifiedName] ';'
 	| 'stream' ownedMemberFeature_comp = ItemFlow 
     | 'abstract' 'stream' ownedMemberFeature_comp = AbstractItemFlow
-	| 'stream' ( memberName = Name )? 'is' memberFeature = [SysML::ItemFlow|QualifiedName] ';'
 	| 'flow' ownedMemberFeature_comp = SuccessionItemFlow 
     | 'abstract' 'flow' ownedMemberFeature_comp = AbstractSuccessionItemFlow
-	| 'flow' ( memberName = Name )? 'is' memberFeature = [SysML::SuccessionItemFlow|QualifiedName] ';'
     )
 ;
 
@@ -294,14 +272,10 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	( ('ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
-	| 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
 	| ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = StateUsage
 	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
-	| 'state' ( memberName = Name )? 'is' memberFeature = [SysML::StateUsage|QualifiedName] ';'
-	| 'value'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::ValueProperty|QualifiedName] ';'
 	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = ConstraintUsage
 	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = AbstractConstraintUsage
-	| 'constraint' ( memberName = Name )? 'is' memberFeature = [SysML::ConstraintUsage|QualifiedName] ';'
 	| 'perform' ownedMemberFeature_comp = PerformActionUsage
 	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
 	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage
@@ -430,13 +404,10 @@ AssociationEndMember returns SysML::EndFeatureMembership :
 	DefinitionMemberPrefix
     ( 'end' isComposite ?= 'part' ownedMemberFeature_comp = PartProperty 
     | 'abstract' 'end' isComposite ?= 'part' ownedMemberFeature_comp = AbstractPartProperty
-    | 'end' isComposite ?= 'part' ( memberName = Name )? 'is' memberFeature = [SysML::PartProperty|QualifiedName]
     | 'end' 'ref'? ownedMemberFeature_comp = ReferenceProperty
     | 'abstract' 'end' 'ref'? ownedMemberFeature_comp = AbstractReferenceProperty
-	| 'end' 'ref'? ( memberName = Name )? 'is' memberFeature = [SysML::ReferenceProperty|QualifiedName] ';'
     | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
-	| 'end' 'action' ( memberName = Name )? 'is' memberFeature = [SysML::ActionUsage|QualifiedName] ';'
 	)
 ;
 
@@ -734,7 +705,8 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	  ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  ':' ( ownedRelationship_comp += FeatureTyping ( ',' ownedRelationship_comp += FeatureTyping )* 
+	  	    | 'any' ) MultiplicityPart?
 	| MultiplicityPart
 ;
 
@@ -792,7 +764,12 @@ UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
 /* PARAMETERS */
 
 Parameter returns SysML::Parameter :
-	{SysML::Parameter} TypePart? // ( Subsets | Redefines )*
+	{SysML::Parameter} ParameterTypePart?
+;
+
+fragment ParameterTypePart returns SysML::Parameter :
+	':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	  | MultiplicityPart	
 ;
 
 /* PART PROPERTIES */
@@ -1074,7 +1051,7 @@ fragment ActionParameterList returns SysML::Type :
 ;
 
 ActionParameter returns SysML::Parameter :
-	{SysML::Parameter} TypePart? ValuePart?
+	{SysML::Parameter} ParameterTypePart? ValuePart?
 ;
 
 ActionParameterFlow returns SysML::ItemFlow :
@@ -1648,9 +1625,6 @@ DotQualifiedName :
 
 /* TERMINALS */
 
-terminal BOOLEAN_VALUE returns Ecore::EBoolean : 
-	'true' | 'false' ;
-
 //terminal NATURAL_VALUE returns Ecore::EInt :
 //	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
 //	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
@@ -1673,9 +1647,10 @@ terminal UNRESTRICTED_NAME returns Ecore::EString :
 terminal STRING_VALUE returns Ecore::EString : 
 	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
 
+terminal ML_COMMENT	: '/*' !'*' -> '*/';
 terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
 
-terminal ML_COMMENT	: '/*' !'*' -> '*/';
-terminal SL_COMMENT : '//' (!('\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
+terminal ML_NOTE : '//*' -> '*/';
+terminal SL_NOTE : '//' (!('\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
 
 terminal WS : (' '|'\t'|'\r'|'\n')+;

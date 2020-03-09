@@ -1,0 +1,53 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parser.KerMLParserTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//* XPECT ast ---
+Package {
+  ownedMembership_comp = [
+    Membership {
+      memberName = 'A'
+      memberElement -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class Base.kerml#//@ownedMembership_comp.4/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+          }
+        ]
+      }
+    }
+    Membership {
+      memberName = 'B'
+      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class //@ownedMembership_comp.0/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+          }
+        ]
+      }
+    }
+  ]
+}
+--- */
+
+
+package test{
+	class A {}
+	class B specializes test::A{}
+}

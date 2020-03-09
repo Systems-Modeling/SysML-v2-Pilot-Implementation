@@ -1,0 +1,69 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parser.KerMLParserTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+		File {from ="/src/DependencyMultipleMembership.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/src/DependencyMultipleMembership.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//* XPECT ast ---
+Package {
+  ownedMembership_comp = [
+    Membership {
+      memberName = 'C'
+      memberElement -> Class DependencyMultipleMembership.kerml#//@ownedMembership_comp.1/@ownedMemberElement_comp
+    }
+    Membership {
+      memberName = 'D'
+      memberElement -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+      ownedMemberElement_comp = Class {
+        ownedRelationship_comp = [
+          Superclassing {
+            superclass -> Class DependencyMultipleMembership.kerml#//@ownedMembership_comp.1/@ownedMemberElement_comp
+            subclass -> Class //@ownedMembership_comp.1/@ownedMemberElement_comp
+          }
+        ]
+        ownedFeatureMembership_comp = [
+          FeatureMembership {
+            memberName = 'try'
+            memberFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+            ownedMemberFeature_comp = Feature {
+              ownedRelationship_comp = [
+                FeatureTyping {
+                  type -> Feature DependencyOuterPackage.kerml#//@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                  typedFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                }
+                Subsetting {
+                  subsettedFeature -> Feature Base.kerml#//@ownedMembership_comp.21/@ownedMemberElement_comp
+                  subsettingFeature -> Feature //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp
+                }
+              ]
+              typing -> [
+                FeatureTyping //@ownedMembership_comp.1/@ownedMemberElement_comp/@ownedFeatureMembership_comp.0/@ownedMemberFeature_comp/@ownedRelationship_comp.0
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+--- */
+package test{
+	import OuterPackage2::C;
+	class D specializes C{
+		feature try : b;
+	}
+}

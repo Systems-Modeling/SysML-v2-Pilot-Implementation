@@ -1,0 +1,41 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library_expr/Base.kerml"}
+		File {from ="/library_expr/ScalarValues.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library_expr/Base.kerml"}
+				File {from ="/library_expr/ScalarValues.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    i0 = 1;
+    iu = *;
+        
+    r0 = 0.08;
+    r1 = .08;
+    r2 = 5.4321;
+    r3 = 1.0;
+    r4 = 1e-5; 
+    r5 = .1e-05; 
+    r6 = 3.1e+05; 
+    r7 = 3e5;
+
+    b0 = true;
+    b1 = false;
+
+    s0 = "aaa";
+    
+    // Should not parse "1." as a real literal
+    x[1..*];
+}

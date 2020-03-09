@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Test3{
+	class P{
+		protected class PP {
+			class PPP{}
+		}
+	}
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'P::PP'." at "P::PP"
+	class C specializes P::PP {
+		// XPECT errors --> "Couldn't resolve reference to Type 'PPP'." at "PPP"
+		feature CC: PPP;
+	}
+}

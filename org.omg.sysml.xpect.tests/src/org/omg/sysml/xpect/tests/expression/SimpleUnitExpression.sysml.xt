@@ -1,0 +1,32 @@
+//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/ScalarFunctions.kerml"}
+                File {from ="/library.domain/ISQ.sysml"}
+                File {from ="/library.domain/SI.sysml"}
+                File {from ="/library.domain/Quantities.sysml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library.kernel/Base.kerml"}
+                				File {from ="/library.kernel/ScalarFunctions.kerml"}
+                                File {from ="/library.domain/ISQ.sysml"}
+                                File {from ="/library.domain/SI.sysml"}
+                                File {from ="/library.domain/Quantities.sysml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import SI::*;
+    block Vehicle {
+        value mass:MassValue = 1200@[kg];
+    }
+}
+

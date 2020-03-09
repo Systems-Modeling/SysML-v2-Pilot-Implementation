@@ -34,18 +34,22 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ConnectorDeclaration_FromKeyword_0_0_0_1_q;
 	protected AbstractElementAlias match_ConnectorDeclaration_FromKeyword_0_0_1_1_q;
 	protected AbstractElementAlias match_Documentation_CommentKeyword_0_0_q;
+	protected AbstractElementAlias match_ElementAlias_AliasKeyword_1_0_or_ImportKeyword_1_1;
 	protected AbstractElementAlias match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__;
 	protected AbstractElementAlias match_ExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1;
 	protected AbstractElementAlias match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_FeatureDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1;
 	protected AbstractElementAlias match_FeatureMemberElement_FeatureKeyword_0_0_q;
+	protected AbstractElementAlias match_FeatureMemberElement_FeatureKeyword_1_0_q;
 	protected AbstractElementAlias match_FeatureMember_AbstractKeyword_1_1_0_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_ItemFlowDeclaration_FromKeyword_0_1_2_q;
+	protected AbstractElementAlias match_NonFeatureMemberElement_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1;
 	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
 	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_0_0_q;
-	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_2_1_q;
+	protected AbstractElementAlias match_PackageFeatureMemberElement_FeatureKeyword_1_1_q;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
+	protected AbstractElementAlias match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q;
 	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0;
@@ -72,18 +76,22 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ConnectorDeclaration_FromKeyword_0_0_0_1_q = new TokenAlias(false, true, grammarAccess.getConnectorDeclarationAccess().getFromKeyword_0_0_0_1());
 		match_ConnectorDeclaration_FromKeyword_0_0_1_1_q = new TokenAlias(false, true, grammarAccess.getConnectorDeclarationAccess().getFromKeyword_0_0_1_1());
 		match_Documentation_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getCommentKeyword_0_0());
+		match_ElementAlias_AliasKeyword_1_0_or_ImportKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getElementAliasAccess().getAliasKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getElementAliasAccess().getImportKeyword_1_1()));
 		match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getAbstractKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getEndFeatureMemberAccess().getEndKeyword_1_0_0()));
 		match_ExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getExpressionDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0()), new TokenAlias(false, false, grammarAccess.getExpressionDeclarationAccess().getRedefinesKeyword_1_2_0_1()));
 		match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getTildeKeyword_0_0()));
 		match_FeatureDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0()), new TokenAlias(false, false, grammarAccess.getFeatureDeclarationAccess().getRedefinesKeyword_1_2_0_1()));
 		match_FeatureMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberElementAccess().getFeatureKeyword_0_0());
+		match_FeatureMemberElement_FeatureKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberElementAccess().getFeatureKeyword_1_0());
 		match_FeatureMember_AbstractKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberAccess().getAbstractKeyword_1_1_0());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_ItemFlowDeclaration_FromKeyword_0_1_2_q = new TokenAlias(false, true, grammarAccess.getItemFlowDeclarationAccess().getFromKeyword_0_1_2());
+		match_NonFeatureMemberElement_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getNonFeatureMemberElementAccess().getAliasKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getNonFeatureMemberElementAccess().getImportKeyword_1_0_1()));
 		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
 		match_PackageFeatureMemberElement_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_0_0());
-		match_PackageFeatureMemberElement_FeatureKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_2_1());
+		match_PackageFeatureMemberElement_FeatureKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getPackageFeatureMemberElementAccess().getFeatureKeyword_1_1());
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
+		match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterAccess().getColonKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getParameterAccess().getAnyKeyword_1_0_1_1()));
 		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
 		match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getColonGreaterThanSignKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getSpecializesKeyword_0_0_1()));
 		match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getConjugatesKeyword_1_0_1()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getTildeKeyword_1_0_0()));
@@ -132,6 +140,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ConnectorDeclaration_FromKeyword_0_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_CommentKeyword_0_0_q.equals(syntax))
 				emit_Documentation_CommentKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ElementAlias_AliasKeyword_1_0_or_ImportKeyword_1_1.equals(syntax))
+				emit_ElementAlias_AliasKeyword_1_0_or_ImportKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__.equals(syntax))
 				emit_EndFeatureMember_EndKeyword_1_0_0_or___AbstractKeyword_1_1_0_EndKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ExpressionDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1.equals(syntax))
@@ -142,20 +152,26 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeatureDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_FeatureMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureMemberElement_FeatureKeyword_1_0_q.equals(syntax))
+				emit_FeatureMemberElement_FeatureKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureMember_AbstractKeyword_1_1_0_q.equals(syntax))
 				emit_FeatureMember_AbstractKeyword_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
 				emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ItemFlowDeclaration_FromKeyword_0_1_2_q.equals(syntax))
 				emit_ItemFlowDeclaration_FromKeyword_0_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_NonFeatureMemberElement_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1.equals(syntax))
+				emit_NonFeatureMemberElement_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__.equals(syntax))
 				emit_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageFeatureMemberElement_FeatureKeyword_0_0_q.equals(syntax))
 				emit_PackageFeatureMemberElement_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackageFeatureMemberElement_FeatureKeyword_2_1_q.equals(syntax))
-				emit_PackageFeatureMemberElement_FeatureKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackageFeatureMemberElement_FeatureKeyword_1_1_q.equals(syntax))
+				emit_PackageFeatureMemberElement_FeatureKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q.equals(syntax))
+				emit_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
 				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1.equals(syntax))
@@ -209,7 +225,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
@@ -220,8 +235,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -233,7 +246,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
@@ -244,8 +256,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -256,11 +266,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' | '{')+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -358,27 +365,32 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'alias' | 'import'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) memberElement=[Element|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) memberElement=[Element|QualifiedName]
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
+	 */
+	protected void emit_ElementAlias_AliasKeyword_1_0_or_ImportKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'end' | ('abstract' 'end')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     (rule start) (ambiguity) 'binding' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'binding' memberName=Name
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     (rule start) (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     (rule start) (ambiguity) 'bool' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'bool' memberName=Name
 	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     (rule start) (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     (rule start) (ambiguity) 'connector' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'connector' memberName=Name
 	 *     (rule start) (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     (rule start) (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     (rule start) (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     (rule start) (ambiguity) 'expr' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'expr' memberName=Name
 	 *     (rule start) (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     (rule start) (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     (rule start) (ambiguity) 'feature' direction=FeatureDirection
@@ -387,52 +399,34 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'feature'? direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'feature'? memberName=Name
 	 *     (rule start) (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     (rule start) (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     (rule start) (ambiguity) 'flow' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'flow' memberName=Name
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     (rule start) (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     (rule start) (ambiguity) 'inv' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'inv' memberName=Name
 	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     (rule start) (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     (rule start) (ambiguity) 'step' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'step' memberName=Name
 	 *     (rule start) (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     (rule start) (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     (rule start) (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     (rule start) (ambiguity) 'stream' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'stream' memberName=Name
 	 *     (rule start) (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     (rule start) (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     (rule start) (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     (rule start) (ambiguity) 'succession' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'succession' memberName=Name
 	 *     (rule start) (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     (rule start) (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     (rule start) (ambiguity) isComposite?='composite'
 	 *     (rule start) (ambiguity) isPort?='port'
 	 *     (rule start) (ambiguity) isPortion?='portion'
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature' direction=FeatureDirection
@@ -441,52 +435,34 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isComposite?='composite'
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isPort?='port'
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isPortion?='portion'
-	 *     visibility=VisibilityIndicator (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'binding' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     visibility=VisibilityIndicator (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'bool' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     visibility=VisibilityIndicator (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'connector' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     visibility=VisibilityIndicator (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'expr' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature' direction=FeatureDirection
@@ -495,29 +471,19 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'flow' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     visibility=VisibilityIndicator (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'inv' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     visibility=VisibilityIndicator (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'step' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     visibility=VisibilityIndicator (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'stream' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     visibility=VisibilityIndicator (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'succession' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     visibility=VisibilityIndicator (ambiguity) isComposite?='composite'
@@ -561,7 +527,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'feature' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedImport_comp+=PackageImport 'feature' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedMembership_comp+=ElementImport 'feature' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedMembership_comp+=ElementAlias 'feature' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=UnitAnnotation 'feature' (ambiguity) ownedRelationship_comp+=Redefinition
 	 */
 	protected void emit_FeatureDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0_or_RedefinesKeyword_1_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -573,65 +539,35 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     (rule start) 'abstract'? (ambiguity) direction=FeatureDirection
-	 *     (rule start) 'abstract'? (ambiguity) memberName=Name
 	 *     (rule start) 'abstract'? (ambiguity) ownedMemberFeature_comp=Feature
-	 *     (rule start) 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     (rule start) 'end' (ambiguity) direction=FeatureDirection
-	 *     (rule start) 'end' (ambiguity) memberName=Name
 	 *     (rule start) 'end' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
-	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
 	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) ownedMemberFeature_comp=Feature
-	 *     (rule start) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     (rule start) (ambiguity) direction=FeatureDirection
-	 *     (rule start) (ambiguity) memberName=Name
 	 *     (rule start) (ambiguity) ownedMemberFeature_comp=Feature
-	 *     isComposite?='composite' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     isComposite?='composite' (ambiguity) direction=FeatureDirection
-	 *     isComposite?='composite' (ambiguity) memberName=Name
 	 *     isComposite?='composite' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     isPort?='port' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     isPort?='port' (ambiguity) direction=FeatureDirection
-	 *     isPort?='port' (ambiguity) memberName=Name
 	 *     isPort?='port' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     isPortion?='portion' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     isPortion?='portion' (ambiguity) direction=FeatureDirection
-	 *     isPortion?='portion' (ambiguity) memberName=Name
 	 *     isPortion?='portion' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) direction=FeatureDirection
-	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) memberName=Name
 	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     visibility=VisibilityIndicator 'end' (ambiguity) direction=FeatureDirection
-	 *     visibility=VisibilityIndicator 'end' (ambiguity) memberName=Name
 	 *     visibility=VisibilityIndicator 'end' (ambiguity) ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
-	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
 	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberFeature_comp=Feature
 	 */
 	protected void emit_FeatureMemberElement_FeatureKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -640,27 +576,74 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'feature'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     (rule start) 'abstract'? (ambiguity) direction=FeatureDirection
+	 *     (rule start) 'abstract'? (ambiguity) memberName=Name
+	 *     (rule start) 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     (rule start) 'end' (ambiguity) direction=FeatureDirection
+	 *     (rule start) 'end' (ambiguity) memberName=Name
+	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
+	 *     (rule start) ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
+	 *     (rule start) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     (rule start) (ambiguity) direction=FeatureDirection
+	 *     (rule start) (ambiguity) memberName=Name
+	 *     isComposite?='composite' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     isComposite?='composite' (ambiguity) direction=FeatureDirection
+	 *     isComposite?='composite' (ambiguity) memberName=Name
+	 *     isPort?='port' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     isPort?='port' (ambiguity) direction=FeatureDirection
+	 *     isPort?='port' (ambiguity) memberName=Name
+	 *     isPortion?='portion' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     isPortion?='portion' (ambiguity) direction=FeatureDirection
+	 *     isPortion?='portion' (ambiguity) memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract'? (ambiguity) memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) direction=FeatureDirection
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) memberName=Name
+	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) direction=FeatureDirection
+	 *     visibility=VisibilityIndicator 'abstract'? (ambiguity) memberName=Name
+	 *     visibility=VisibilityIndicator 'end' (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     visibility=VisibilityIndicator 'end' (ambiguity) direction=FeatureDirection
+	 *     visibility=VisibilityIndicator 'end' (ambiguity) memberName=Name
+	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) direction=FeatureDirection
+	 *     visibility=VisibilityIndicator ('end' | ('abstract' 'end')) (ambiguity) memberName=Name
+	 *     visibility=VisibilityIndicator (ambiguity) 'is' memberFeature=[Feature|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
+	 *     visibility=VisibilityIndicator (ambiguity) memberName=Name
+	 */
+	protected void emit_FeatureMemberElement_FeatureKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     'abstract'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     (rule start) (ambiguity) 'binding' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'binding' memberName=Name
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     (rule start) (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     (rule start) (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     (rule start) (ambiguity) 'bool' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'bool' memberName=Name
 	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     (rule start) (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     (rule start) (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     (rule start) (ambiguity) 'connector' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'connector' memberName=Name
 	 *     (rule start) (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     (rule start) (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     (rule start) (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     (rule start) (ambiguity) 'expr' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'expr' memberName=Name
 	 *     (rule start) (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     (rule start) (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     (rule start) (ambiguity) 'feature' direction=FeatureDirection
@@ -669,52 +652,34 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'feature'? direction=FeatureDirection
 	 *     (rule start) (ambiguity) 'feature'? memberName=Name
 	 *     (rule start) (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     (rule start) (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     (rule start) (ambiguity) 'flow' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'flow' memberName=Name
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     (rule start) (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     (rule start) (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     (rule start) (ambiguity) 'inv' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'inv' memberName=Name
 	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     (rule start) (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     (rule start) (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     (rule start) (ambiguity) 'step' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'step' memberName=Name
 	 *     (rule start) (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     (rule start) (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     (rule start) (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     (rule start) (ambiguity) 'stream' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'stream' memberName=Name
 	 *     (rule start) (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     (rule start) (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     (rule start) (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     (rule start) (ambiguity) 'succession' direction=FeatureDirection
-	 *     (rule start) (ambiguity) 'succession' memberName=Name
 	 *     (rule start) (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     (rule start) (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     (rule start) (ambiguity) isComposite?='composite'
 	 *     (rule start) (ambiguity) isPort?='port'
 	 *     (rule start) (ambiguity) isPortion?='portion'
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature' direction=FeatureDirection
@@ -723,52 +688,34 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? direction=FeatureDirection
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' direction=FeatureDirection
-	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' memberName=Name
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isComposite?='composite'
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isPort?='port'
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) isPortion?='portion'
-	 *     visibility=VisibilityIndicator (ambiguity) 'binding' 'is' memberFeature=[BindingConnector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'binding' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=AbstractBindingConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'binding' ownedMemberFeature_comp=BindingConnector
-	 *     visibility=VisibilityIndicator (ambiguity) 'bool' 'is' memberFeature=[BooleanExpression|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'bool' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=AbstractBooleanExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'bool' ownedMemberFeature_comp=BooleanExpression
-	 *     visibility=VisibilityIndicator (ambiguity) 'connector' 'is' memberFeature=[Connector|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'connector' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' ownedMemberFeature_comp=AbstractConnector
 	 *     visibility=VisibilityIndicator (ambiguity) 'connector' ownedMemberFeature_comp=Connector
-	 *     visibility=VisibilityIndicator (ambiguity) 'expr' 'is' memberFeature=[Expression|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'expr' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' ownedMemberFeature_comp=AbstractBlockExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'expr' ownedMemberFeature_comp=BlockExpression
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature' direction=FeatureDirection
@@ -777,29 +724,19 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'feature'? ownedMemberFeature_comp=Feature
-	 *     visibility=VisibilityIndicator (ambiguity) 'flow' 'is' memberFeature=[SuccessionItemFlow|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'flow' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=AbstractSuccessionItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'flow' ownedMemberFeature_comp=SuccessionItemFlow
-	 *     visibility=VisibilityIndicator (ambiguity) 'inv' 'is' memberFeature=[Invariant|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'inv' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=AbstractInvariant
 	 *     visibility=VisibilityIndicator (ambiguity) 'inv' ownedMemberFeature_comp=Invariant
-	 *     visibility=VisibilityIndicator (ambiguity) 'step' 'is' memberFeature=[Step|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'step' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' ownedMemberFeature_comp=AbstractStep
 	 *     visibility=VisibilityIndicator (ambiguity) 'step' ownedMemberFeature_comp=Step
-	 *     visibility=VisibilityIndicator (ambiguity) 'stream' 'is' memberFeature=[ItemFlow|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'stream' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' ownedMemberFeature_comp=AbstractItemFlow
 	 *     visibility=VisibilityIndicator (ambiguity) 'stream' ownedMemberFeature_comp=ItemFlow
-	 *     visibility=VisibilityIndicator (ambiguity) 'succession' 'is' memberFeature=[Succession|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' direction=FeatureDirection
-	 *     visibility=VisibilityIndicator (ambiguity) 'succession' memberName=Name
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' ownedMemberFeature_comp=AbstractSuccession
 	 *     visibility=VisibilityIndicator (ambiguity) 'succession' ownedMemberFeature_comp=Succession
 	 *     visibility=VisibilityIndicator (ambiguity) isComposite?='composite'
@@ -848,6 +785,20 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'alias' | 'import'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) memberElement=[Element|QualifiedName]
+	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) memberElement=[Element|QualifiedName]
+	 *     visibility=PackageElementVisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
+	 *     visibility=VisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
+	 */
+	protected void emit_NonFeatureMemberElement_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ('{' '}') | 'null'
 	 *
 	 * This ambiguous syntax occurs at:
@@ -880,7 +831,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract' (ambiguity) ownedMemberElement_comp=AbstractFeature
 	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedMemberElement_comp=AbstractFeature
 	 */
-	protected void emit_PackageFeatureMemberElement_FeatureKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackageFeatureMemberElement_FeatureKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -892,6 +843,18 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     importedPackage=[Package|Name] (ambiguity) '*' ';' (rule end)
 	 */
 	protected void emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (':' 'any')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 */
+	protected void emit_Parameter___ColonKeyword_1_0_0_AnyKeyword_1_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -912,7 +875,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedMembership_comp+=ElementImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     ownedMembership_comp+=ElementAlias 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
@@ -980,7 +943,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedMembership_comp+=ElementImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
+	 *     ownedMembership_comp+=ElementAlias 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset
@@ -1032,7 +995,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) (rule end)
-	 *     ownedMembership_comp+=ElementImport 'feature' ':' 'any' (ambiguity) (rule end)
+	 *     ownedMembership_comp+=ElementAlias 'feature' ':' 'any' (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Conjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
@@ -1056,7 +1019,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isSufficient?='all' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedImport_comp+=PackageImport 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
-	 *     ownedMembership_comp+=ElementImport 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     ownedMembership_comp+=ElementAlias 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=UnitAnnotation 'feature' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */

@@ -1,0 +1,34 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package test{
+	class EE {}
+	class A{
+		class a {}
+		alias a as aa;
+	}
+	//* XPECT scope at A ---
+		A, A.a, A.aa, B, B.a, B.aa, EE, 
+		test.A, test.A.a, test.A.aa, test.B, test.B.a, test.B.aa, test.EE,
+		--- */
+	class B specializes A{
+		//XPECT linkedName at aa --> test.A.a
+		feature b: aa;
+		alias b as b_alias;
+	}
+}

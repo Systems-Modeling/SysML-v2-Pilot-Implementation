@@ -1,0 +1,31 @@
+//* XPECT_SETUP org.omg.sysml.xpect.tests.query.failing.SysMLQueryFailingTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/ScalarValues.kerml"}
+                File {from ="/library.kernel/ControlFunctions.kerml"}
+                File {from ="/src/Vehicle.sysml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library.kernel/Base.kerml"}
+                                File {from ="/library.kernel/ScalarValues.kerml"}
+                				File {from ="/library.kernel/ControlFunctions.kerml"}
+                                File {from ="/src/Vehicle.sysml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import ScalarValues::*;
+    import Vehicle::*;
+
+    value v_redefining: Integer = ./vehicle_1/cylinders/@redefining;
+
+    value v_redefined: Integer = ./Vehicle::cylinders/@redefined;
+}

@@ -1,0 +1,25 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyVisibilityPackage.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyVisibilityPackage.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+
+package Test3{
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Public_alias::alias_private'." at "VisibilityPackage::c_Public_alias::alias_private"
+	import VisibilityPackage::c_Public_alias::alias_private::*;
+	//XPECT errors --> "Couldn't resolve reference to Package 'VisibilityPackage::c_Public_alias::alias_protected'." at "VisibilityPackage::c_Public_alias::alias_protected"
+	import VisibilityPackage::c_Public_alias::alias_protected::*;
+}
+	

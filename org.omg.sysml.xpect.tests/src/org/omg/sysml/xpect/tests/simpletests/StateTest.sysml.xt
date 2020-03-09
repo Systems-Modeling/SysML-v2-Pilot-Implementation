@@ -1,0 +1,49 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package StateTest {
+	value type Sig;
+	
+	action act;
+	
+	state S {
+		entry action A;
+		do action B;
+		exit act;
+		
+		transition T
+			first S2
+			accept Sig
+			if true
+			do send Sig() to S
+			then S1;
+		
+		state S1;
+			accept Sig
+			do action D
+			then S2;
+		
+		state S2;
+		
+	}
+}

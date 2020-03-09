@@ -1,0 +1,26 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyOuterPackage.kerml"}
+		File {from ="/src/DependencyMultipleMembership.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/src/DependencyMultipleMembership.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors --> ""
+package test{
+	import OuterPackage::B::b as bb;
+	class D{
+		//XPECT linkedName at bb --> OuterPackage.B.b	
+		feature try is bb;
+	}
+}

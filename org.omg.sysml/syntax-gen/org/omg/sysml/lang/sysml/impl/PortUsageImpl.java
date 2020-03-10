@@ -3,12 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.PortDefinition;
@@ -181,8 +179,8 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {PORT_USAGE_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(PORT_USAGE_SUBSETTING_BASE_DEFAULT);
 	}
 
 	/**
@@ -272,19 +270,12 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
+	public void computeImplicitFeatureTypings() {
 		PortDefinition portDefinition = getPortDefinition();
 		if (portDefinition != null) {
-			type.add(portDefinition);
+			getType().add(portDefinition);
 		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
 	}
 
 	/**

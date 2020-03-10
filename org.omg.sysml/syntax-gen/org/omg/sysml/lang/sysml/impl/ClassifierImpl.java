@@ -7,8 +7,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,16 +47,17 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return SysMLPackage.Literals.CLASSIFIER;
 	}
 
-	@Override
-	protected EClass getDefaultGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getSuperclassing();
+	public void computeImplicitSuperclassing() {
+		if (!isConjugated()) {
+ 			Generalization superclassing = getDefaultGeneralization(getOwnedGeneralization(), SysMLPackage.eINSTANCE.getSuperclassing(), getDefaultSuperclassingType());
+			if (superclassing != null) {
+				getOwnedRelationship_comp().add(superclassing);
+			}
+ 		}
 	}
 	
-	
-
-	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {CLASSIFIER_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(CLASSIFIER_SUPERCLASS_DEFAULT);
 	}
 
 	/**

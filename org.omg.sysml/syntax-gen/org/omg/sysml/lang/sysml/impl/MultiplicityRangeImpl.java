@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -154,8 +155,8 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {MULTIPLICITY_RANGE_SUBSETTING_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(MULTIPLICITY_RANGE_SUBSETTING_DEFAULT);
 	}
 
 	/**

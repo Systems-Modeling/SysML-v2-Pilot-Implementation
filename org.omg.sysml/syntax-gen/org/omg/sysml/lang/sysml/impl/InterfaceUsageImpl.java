@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,11 +52,11 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getConnectorEnd().size() > 2? 
+	protected Type getImpliedSubsettingType() {
+		String typeName = getConnectorEnd().size() > 2? 
 				CONNECTOR_SUBSETTING_DEFAULT:
 				INTERFACE_CONNECTOR_SUBSETTING_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	/**

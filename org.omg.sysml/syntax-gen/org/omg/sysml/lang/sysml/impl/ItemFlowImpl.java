@@ -243,11 +243,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = isSubtransfer()? 
+	protected Type getImpliedSubsettingType() {
+		String typeName = isSubtransfer()? 
 						ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
 						ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	public boolean isSubtransfer() {
@@ -427,10 +427,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> association = (EList<Type>)((EList<?>)getAssociation());
-		return association;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getAssociation());
 	}
 
 	/**

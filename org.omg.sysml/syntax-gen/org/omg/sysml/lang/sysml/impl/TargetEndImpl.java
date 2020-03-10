@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 
@@ -36,15 +35,7 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		clearCaches();
-		getOwnedSubsettingWithDefault();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithoutDefault();
-	}
-
-	@Override
-	public Type getDefaultType(String... defaultNames) {
+	public Type getImpliedSubsettingType() {
 		Type type = this.getOwningType();
 		if (type instanceof Feature) {
 			Feature feature = (Feature)type;

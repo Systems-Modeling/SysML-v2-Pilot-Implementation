@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -162,16 +161,9 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 		return basicGetStateOwningDefinition() != null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBehavior());
 	}
 
 	/**
@@ -283,22 +275,10 @@ public class StateUsageImpl extends UsageImpl implements StateUsage {
 	}	
 	
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {getActionSubsettingDefault()};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(getActionSubsettingDefault());
 	}
 
-	@Override
-	protected EList<Subsetting> getComputedRedefinitions() {
-		checkSubsetting();
-		return super.getComputedRedefinitions();
-	}
-
-	protected void checkSubsetting() {
-		if (isSubperformance()) {
-			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);
-		} 
-	}
-	
 	protected String getActionSubsettingDefault() {
 		return isSubperformance()? 
 				STATE_SUBSETTING_SUBSTATE_DEFAULT:

@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.ForkNode;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +39,8 @@ public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 	}
 	
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {FORK_NODE_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(FORK_NODE_SUBSETTING_BASE_DEFAULT);
 	}
 
 } //ForkNodeImpl

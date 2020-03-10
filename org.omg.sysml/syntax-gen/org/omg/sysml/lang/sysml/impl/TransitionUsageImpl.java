@@ -189,16 +189,9 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBehavior());
 	}
 
 	/**
@@ -249,8 +242,8 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {TRANSITION_USAGE_SUBSETTING_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(TRANSITION_USAGE_SUBSETTING_DEFAULT);
 	}
 
 	public Feature getTransitionFeature(TransitionFeatureKind kind) {

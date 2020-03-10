@@ -10,7 +10,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SourceEnd;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -43,19 +42,11 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		clearCaches();
-		getOwnedSubsettingWithDefault();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithoutDefault();
-	}
-	
-	@Override
-	public Type getDefaultType(String... defaultNames) {
+	public Type getImpliedSubsettingType() {
 		Type type = getOwningType();
 		return type instanceof Feature? 
 				getPreviousFeature((Feature)type): 
-				super.getDefaultType(defaultNames);
+				super.getImpliedSubsettingType();
 	}
 	
 	protected static Feature getPreviousFeature(Feature feature) {

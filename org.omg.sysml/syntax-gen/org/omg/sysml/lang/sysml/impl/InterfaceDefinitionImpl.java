@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,11 +74,11 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getOwnedEndFeature().size() > 2? 
+	protected Type getDefaultSuperclassingType() {
+		String typeName = getOwnedEndFeature().size() > 2? 
 				AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 				INTERFACE_DEFINITION_SUPERCLASS_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	/**

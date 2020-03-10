@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Block;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,8 +41,8 @@ public class BlockImpl extends DefinitionImpl implements Block {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {BLOCK_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(BLOCK_SUPERCLASS_DEFAULT);
 	}
 
 	@Override

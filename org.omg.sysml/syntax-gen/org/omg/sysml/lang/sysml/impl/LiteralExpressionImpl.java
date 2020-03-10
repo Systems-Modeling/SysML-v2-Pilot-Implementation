@@ -2,12 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Literal
@@ -28,10 +27,8 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsettings = getOwnedSubsettingWithDefault(LITERAL_EXPRESSION_SUBSETTING_DEFAULT);
-		getComputedRedefinitions();
-		return subsettings;
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(LITERAL_EXPRESSION_SUBSETTING_DEFAULT);
 	}
 
 	/**

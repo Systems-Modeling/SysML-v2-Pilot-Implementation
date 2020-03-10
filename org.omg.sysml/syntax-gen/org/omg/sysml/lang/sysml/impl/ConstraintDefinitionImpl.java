@@ -20,6 +20,7 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -150,8 +151,8 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	// Additional redefinitions and subsets
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT);
 	}
 
 	@Override

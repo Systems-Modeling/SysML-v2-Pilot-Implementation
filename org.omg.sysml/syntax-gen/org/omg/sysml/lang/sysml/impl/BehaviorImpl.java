@@ -15,6 +15,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -71,8 +72,8 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {BEHAVIOR_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(BEHAVIOR_SUPERCLASS_DEFAULT);
 	}
 
 	/**

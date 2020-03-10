@@ -209,11 +209,11 @@ public class ConnectionUsageImpl extends ConnectorImpl implements ConnectionUsag
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getConnectorEnd().size() > 2? 
+	protected Type getImpliedSubsettingType() {
+		String typeName = getConnectorEnd().size() > 2? 
 				CONNECTOR_SUBSETTING_DEFAULT:
-				CONNECTOR_USAGE_SUBSETTING_DEFAULT; 
-		return new String[] {defaultName};
+				CONNECTOR_USAGE_SUBSETTING_DEFAULT;
+		return getDefaultType(typeName);
 	}
 
 	/**

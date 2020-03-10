@@ -300,25 +300,6 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	public <T extends Generalization> void calculateOwnedGeneralization() {
-		String[] defaultGeneralizationNames = getDefaultGeneralizationNames();
-		// Add a default generalization only if the type is not conjugated.
- 		if (defaultGeneralizationNames.length > 0 && !isConjugated()) {
- 			Generalization generalization = getDefaultGeneralization(getOwnedGeneralization(), getDefaultGeneralizationEClass(), defaultGeneralizationNames);
-			if (generalization != null) {
-				getOwnedRelationship_comp().add(generalization);
-			}
- 		}
-	}
-	
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[0];
-	}
-	
-	protected EClass getDefaultGeneralizationEClass() {
-		return SysMLPackage.Literals.GENERALIZATION;
-	}
-	
 	@SuppressWarnings("unchecked")
 	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
 		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
@@ -330,26 +311,9 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
-		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
-		
-		// Do not add a default generalization if the type is conjugated.
-		if (!isConjugated()) {
-			Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
-			if (generalization != null) {
-				generalizations.add((T)generalization);
-				getOwnedRelationship_comp().add(generalization);
-			}
-		}
-		
-		return generalizations;
-	}
-	
-	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
+	protected <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, Type general) {
 		Generalization generalization = null;
 		if (generalizations.isEmpty()) {
-			Type general = getDefaultType(defaultNames);
 			// Do not add a default generalization of a type to itself.
 			if (general != null && general != this) {
 				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
@@ -362,7 +326,6 @@ public class TypeImpl extends PackageImpl implements Type {
 					findFirst().orElse(null);
 			if (generalization != null) {
 				// Only resolve a default name if necessary.
-				Type general = getDefaultType(defaultNames);
 				generalization.setGeneral(general);
 			}
 		}
@@ -693,7 +656,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			}
 		}
 		Collection<Feature> redefinedFeatures = getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinitionsWithoutDefault().stream()).
+				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
 				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
 		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
 		return inheritedMemberships;

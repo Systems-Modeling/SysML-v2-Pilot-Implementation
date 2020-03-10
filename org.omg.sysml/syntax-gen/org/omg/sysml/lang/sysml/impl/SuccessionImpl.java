@@ -143,8 +143,8 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {SUCCESSION_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(SUCCESSION_SUBSETTING_BASE_DEFAULT);
 	}
 
 	@Override

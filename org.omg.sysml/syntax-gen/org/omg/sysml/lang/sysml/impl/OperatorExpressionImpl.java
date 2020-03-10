@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -126,18 +125,16 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 
 	@Override
-	public EList<FeatureTyping> getTyping() {
+	protected Type getImpliedSubsettingType() {
 		String operator = getOperator();
-		return operator == null ? super.getTyping()
-				: getOwnedGeneralizationWithDefault(FeatureTyping.class, SysMLPackage.FEATURE__TYPING,
-						SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
+		return operator == null ? super.getImpliedSubsettingType()
+				: getDefaultType(getOperatorQualifiedNames(operator));
 	}
 
 	@Override
-	public EList<Type> getType() {
-		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-		getFeatureTypes(this, types);
-		return types;
+	public void computeImplicitFeatureTypings() {
+		super.computeImplicitFeatureTypings();
+		getFeatureTypes(this, getType());
 	}
 
 	protected String[] getOperatorQualifiedNames(String op) {

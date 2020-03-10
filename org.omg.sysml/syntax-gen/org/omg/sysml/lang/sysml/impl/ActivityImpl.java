@@ -17,6 +17,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,8 +94,8 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {ACTIVITY_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(ACTIVITY_SUPERCLASS_DEFAULT);
 	}
 
 	/**

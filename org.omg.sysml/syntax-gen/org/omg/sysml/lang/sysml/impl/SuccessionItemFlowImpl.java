@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -245,10 +246,10 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
+	protected Type getImpliedSubsettingType() {
+		String typeName = isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
 				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 } // SuccessionItemFlowImpl

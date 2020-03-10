@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +39,8 @@ public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {JOIN_NODE_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(JOIN_NODE_SUBSETTING_BASE_DEFAULT);
 	}
 
 } //JoinNodeImpl

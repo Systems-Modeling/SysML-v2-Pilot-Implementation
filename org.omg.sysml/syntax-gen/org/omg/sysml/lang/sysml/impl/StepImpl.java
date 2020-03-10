@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -89,10 +88,8 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBehavior());
 	}
 
 	/**
@@ -105,29 +102,32 @@ public class StepImpl extends FeatureImpl implements Step {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			if (isSubperformance()) {
-				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
-			} 
-			if (isEnactedPerformance()) {
-				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
-			}
-			if (isIncomingTransfer()) {
-				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
-			}
-			isCheckSubsetting = false;
+	public void computeImplicitSubsettings() {
+		if (isSubperformance()) {
+			addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
+		} 
+		if (isEnactedPerformance()) {
+			addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
 		}
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()? 
-					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-				isEnactedPerformance()?
-					STEP_SUBSETTING_OBJECT_DEFAULT:
-				isIncomingTransfer()?
-					STEP_SUBSETTING_TRANSFER_DEFAULT:
-					STEP_SUBSETTING_BASE_DEFAULT);
+		if (isIncomingTransfer()) {
+			addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
+		}
+		
+		super.computeImplicitSubsettings();
 	}
-	
+
+	@Override
+	protected Type getImpliedSubsettingType() {
+		String typeName = isSubperformance()? 
+				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+			isEnactedPerformance()?
+				STEP_SUBSETTING_OBJECT_DEFAULT:
+			isIncomingTransfer()?
+				STEP_SUBSETTING_TRANSFER_DEFAULT:
+				STEP_SUBSETTING_BASE_DEFAULT;
+		return getDefaultType(typeName);
+	}
+
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return getRelevantFeaturesOf(this);

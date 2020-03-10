@@ -294,10 +294,10 @@ public class AssociationImpl extends ClassImpl implements Association {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getOwnedEndFeature().size() > 2 ? ASSOCIATION_SUPERCLASS_DEFAULT
+	protected Type getDefaultSuperclassingType() {
+		String typeName = getOwnedEndFeature().size() > 2 ? ASSOCIATION_SUPERCLASS_DEFAULT
 				: BINARY_ASSOCIATION_SUPERCLASS_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	/**

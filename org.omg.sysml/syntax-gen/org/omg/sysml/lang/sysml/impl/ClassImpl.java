@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,8 +37,8 @@ public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysm
 	}
 	
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {CLASS_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(CLASS_SUPERCLASS_DEFAULT);
 	}
 
 }

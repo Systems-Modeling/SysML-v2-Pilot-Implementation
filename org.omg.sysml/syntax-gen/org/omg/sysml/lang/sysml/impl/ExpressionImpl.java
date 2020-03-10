@@ -135,11 +135,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = isSubperformance()?
+	protected Type getImpliedSubsettingType() {
+		String typeName = isSubperformance()?
 						EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
 						EXPRESSION_SUBSETTING_BASE_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	@Override

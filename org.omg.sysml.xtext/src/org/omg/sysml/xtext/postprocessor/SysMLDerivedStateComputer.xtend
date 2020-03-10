@@ -21,19 +21,45 @@ package org.omg.sysml.xtext.postprocessor
 
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.resource.IDerivedStateComputer
+import org.omg.sysml.lang.sysml.impl.ClassifierImpl
+import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.impl.TypeImpl
+import org.omg.sysml.lang.sysml.impl.ItemFlowEndImpl
 
 class SysMLDerivedStateComputer implements IDerivedStateComputer {
+	
 	override void installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
-		// Do nothing before starting linking phase
+		// Do nothing before linking phase
 		if (preLinkingPhase) {
 			return
 		}
 		resource.allContents.filter(TypeImpl).forEach[
-			it.calculateOwnedGeneralization
+			it.computeDerivedState
 		]
 	}
-
+	
+	def dispatch void computeDerivedState(ClassifierImpl classifier) {
+		classifier.clearCaches
+		
+		classifier.computeImplicitSuperclassing
+	}
+	
+	def dispatch void computeDerivedState(FeatureImpl feature) {
+		feature.clearCaches
+		
+		feature.computeImplicitSubsettings
+		feature.computeImplicitFeatureTypings
+		feature.computeImplicitRedefinition
+	}
+	
+	def dispatch void computeDerivedState(ItemFlowEndImpl itemFlowEnd) {
+		itemFlowEnd.clearCaches
+		
+		itemFlowEnd.computeImplicitRedefinition
+		itemFlowEnd.computeImplicitFeatureTypings
+		itemFlowEnd.computeImplicitSubsettings
+	}
+		
 	override void discardDerivedState(DerivedStateAwareResource resource) {
 		// Derived state is cleaned up during reparsing, there is nothing to clean up 
 	}

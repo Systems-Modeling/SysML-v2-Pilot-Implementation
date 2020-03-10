@@ -158,16 +158,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
   		return false;
 	}
 
-/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> association = (EList<Type>)((EList<?>)getAssociation());
-		return association;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getAssociation());
 	}
 
 	/**
@@ -451,11 +444,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getConnectorEnd().size() > 2? 
+	protected Type getImpliedSubsettingType() {
+		String typeName = getConnectorEnd().size() > 2? 
 				CONNECTOR_SUBSETTING_DEFAULT:
 				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	// Utility Methods

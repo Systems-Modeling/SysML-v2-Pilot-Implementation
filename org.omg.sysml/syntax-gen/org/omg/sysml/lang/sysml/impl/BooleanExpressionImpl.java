@@ -11,6 +11,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -139,11 +140,11 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	// Additional redefinitions and subsets
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = isSubperformance()?
+	protected Type getImpliedSubsettingType() {
+		String typeName = isSubperformance()?
 				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT; 
-		return new String[] {defaultName};
+				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
+		return getDefaultType(typeName);
 	}
 
 	@Override

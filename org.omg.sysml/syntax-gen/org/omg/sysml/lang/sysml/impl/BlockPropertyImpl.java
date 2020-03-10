@@ -72,8 +72,8 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {BLOCK_PROPERTY_SUBSETTING_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(BLOCK_PROPERTY_SUBSETTING_DEFAULT);
 	}
 
 	/**
@@ -138,16 +138,9 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> block = (EList<Type>)((EList<?>)getBlock());
-		return block;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBlock());
 	}
 
 	/**

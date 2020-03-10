@@ -72,8 +72,8 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {VALUE_PROPERTY_SUBSETTING_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(VALUE_PROPERTY_SUBSETTING_DEFAULT);
 	}
 
 	/**
@@ -138,16 +138,9 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> valueType = (EList<Type>)((EList<?>)getValueType());
-		return valueType;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getValueType());
 	}
 
 	/**

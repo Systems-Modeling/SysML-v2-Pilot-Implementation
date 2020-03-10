@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -35,8 +36,8 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {PREDICATE_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(PREDICATE_SUPERCLASS_DEFAULT);
 	}
 
 } // PredicateImpl

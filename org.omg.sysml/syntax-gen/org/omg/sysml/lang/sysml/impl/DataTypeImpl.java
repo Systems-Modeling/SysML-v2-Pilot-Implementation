@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.DataType;
 
 /**
@@ -37,8 +38,8 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {DATA_TYPE_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(DATA_TYPE_SUPERCLASS_DEFAULT);
 	}
 
 }

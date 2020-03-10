@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ValueType;
 
 /**
@@ -37,8 +38,8 @@ public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {VALUE_TYPE_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(VALUE_TYPE_SUPERCLASS_DEFAULT);
 	}
 
 } //ValueTypeImpl

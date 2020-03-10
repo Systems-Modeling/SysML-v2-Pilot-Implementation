@@ -88,7 +88,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	}
 
 	@Override
-	protected void checkSubsetting() {
+	protected void addDefaultSubsettings() {
 		addSubsetting(TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT);
 	}
 	

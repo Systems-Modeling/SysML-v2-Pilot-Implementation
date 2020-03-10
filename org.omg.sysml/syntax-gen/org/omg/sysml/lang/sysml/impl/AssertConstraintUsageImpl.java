@@ -147,10 +147,10 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	// Additional redefinitions and subsets
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
+	protected Type getImpliedSubsettingType() {
 		return isEnactedPerformance()?
-				new String[] {ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT}:
-				super.getDefaultGeneralizationNames();
+				getDefaultType(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT):
+				super.getImpliedSubsettingType();
 	}
 
 	public boolean isEnactedPerformance() {

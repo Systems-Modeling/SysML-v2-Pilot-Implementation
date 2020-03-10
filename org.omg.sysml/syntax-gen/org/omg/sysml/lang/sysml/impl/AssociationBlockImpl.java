@@ -311,11 +311,11 @@ public class AssociationBlockImpl extends BlockImpl implements AssociationBlock 
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = getOwnedEndFeature().size() > 2? 
+	protected Type getDefaultSuperclassingType() {
+		String typeName = getOwnedEndFeature().size() > 2? 
 				AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 				ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT;
-		return new String[] {defaultName};
+		return getDefaultType(typeName);
 	}
 
 	/**

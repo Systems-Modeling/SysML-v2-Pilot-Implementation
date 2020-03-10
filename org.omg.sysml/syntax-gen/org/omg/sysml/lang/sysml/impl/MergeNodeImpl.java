@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +39,8 @@ public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {MERGE_NODE_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(MERGE_NODE_SUBSETTING_BASE_DEFAULT);
 	}
 
 } //MergeNodeImpl

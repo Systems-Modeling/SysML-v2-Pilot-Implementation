@@ -135,6 +135,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EList<FeatureTyping> typing;
+	protected EList<Subsetting> ownedSubsetting;
+	protected EList<Type> type;
 
 	/**
 	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
@@ -188,13 +190,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return super.getOwningMembership();
 	}
 
-	@Override
-	public <T extends Generalization> void calculateOwnedGeneralization() {
-		// Calculates subsetting
-		super.calculateOwnedGeneralization();
-		
-		// Calculate implied types
+	public void computeImplicitFeatureTypings() {
 		getTypes(this, getType(), new HashSet<>(), true);
+	}
+	
+	public void computeImplicitSubsettings() {
+		if (!isConjugated()) {
+ 			Generalization subsetting = getDefaultGeneralization(getOwnedGeneralization(), SysMLPackage.eINSTANCE.getSubsetting(), getImpliedSubsettingType());
+			if (subsetting != null) {
+				getOwnedRelationship_comp().add(subsetting);
+			}
+ 		}
+	}
+	
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+			hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+			FEATURE_SUBSETTING_DEFAULT);
 	}
 
 	/**
@@ -203,15 +215,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		return new DerivedSubsetEObjectEList<>(Type.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.FEATURE__TYPE});
+		if (type == null) {
+			type = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
+		}
+		return type;
 	}
-	
-	public EList<Type> getTypes(boolean isWithDefaults) {
-		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-		getTypes(this, types, new HashSet<Feature>(), isWithDefaults);
-		return types;
-	}
-	
+
 	public static void getTypes(Feature feature, List<? super Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
 		getFeatureTypes(feature, types);
@@ -361,52 +370,40 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 
-	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		String defaultName = hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-			hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
-			FEATURE_SUBSETTING_DEFAULT;
-		return new String[] {defaultName};
-	}
-
-	@Override
-	protected EClass getDefaultGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getSubsetting();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return new DerivedSubsetEObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.FEATURE__OWNED_SUBSETTING});
-	}
-	
-	public EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
-		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+		if (ownedSubsetting == null) {
+			ownedSubsetting = new DerivedSubsetEObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.DATA_TYPE__OWNED_RELATIONSHIP_COMP});
+		}
+		return ownedSubsetting;
 	}
 	
 	protected void addSubsetting(String name) {
 		Type type = getDefaultType(name);
 		if (type instanceof Feature) {
-			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-			subsetting.setSubsettedFeature((Feature)type);
-			subsetting.setSubsettingFeature(this);
-			getOwnedRelationship_comp().add(subsetting);
+			addSubsetting((Feature)type);
 		}
+	}
+
+	private void addSubsetting(Feature feature) {
+		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+		subsetting.setSubsettedFeature((Feature)feature);
+		subsetting.setSubsettingFeature(this);
+		getOwnedRelationship_comp().add(subsetting);
 	}
 	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
-	protected EList<Subsetting> getComputedRedefinitions() {
-		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
+	public void computeImplicitRedefinition() {
+		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition();
 		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
-			addRedefinitions(redefinitions, ownedRedefinitions);
+			addRedefinitions(ownedRedefinitions);
 		}
-		return redefinitions;
 	}
 	
 	/**
@@ -415,7 +412,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
 	 * overriding getGeneralCategories and getRelevantFeatures.
 	 */
-	protected void addRedefinitions(EList<Subsetting> redefinitions, List<Redefinition> emptyRedefinitions) {
+	protected void addRedefinitions(List<Redefinition> emptyRedefinitions) {
 		Type type = getOwningType();
 		int i = getRelevantFeatures(type).indexOf(this);
 		int j = 0;
@@ -436,7 +433,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 							getOwnedRelationship_comp().add(redefinition);
 						}
 						redefinition.setRedefinedFeature(redefinedFeature);
-						redefinitions.add(redefinition);
+						getOwnedRelationship_comp().add(redefinition);
 					}
 				}
 			}
@@ -747,11 +744,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean isObjectFeature() {
-		return getTypes(false).stream().anyMatch(type->type instanceof Class);
+		return getType().stream().anyMatch(type->type instanceof Class);
 	}
 	
 	public boolean isValueFeature() {
-		return getTypes(false).stream().anyMatch(type->type instanceof DataType);
+		return getType().stream().anyMatch(type->type instanceof DataType);
 	}
 	
 	public boolean hasObjectType() {

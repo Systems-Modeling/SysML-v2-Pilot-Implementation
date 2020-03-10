@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,8 +138,8 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {PORT_DEFINITION_SUPERCLASS_DEFAULT};
+	protected Type getDefaultSuperclassingType() {
+		return getDefaultType(PORT_DEFINITION_SUPERCLASS_DEFAULT);
 	}
 	
 } //PortDefinitionImpl

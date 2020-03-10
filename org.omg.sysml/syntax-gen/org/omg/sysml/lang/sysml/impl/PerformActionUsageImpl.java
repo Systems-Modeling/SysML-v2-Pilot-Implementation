@@ -107,8 +107,8 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	}
 
 	@Override
-	protected void checkSubsetting() {
-		super.checkSubsetting();
+	protected void addDefaultSubsettings() {
+		super.addDefaultSubsettings();
 		if (isEnactedPerformance()) {
 			addSubsetting(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
 		}

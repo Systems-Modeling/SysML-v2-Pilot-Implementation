@@ -191,16 +191,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		return basicGetConstraintOwningDefinition() != null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBehavior());
 	}
 
 	/**
@@ -389,8 +382,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional redefinitions and subsets
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {CONSTRAINT_SUBSETTING_BASE_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
 	}
 
 	@Override

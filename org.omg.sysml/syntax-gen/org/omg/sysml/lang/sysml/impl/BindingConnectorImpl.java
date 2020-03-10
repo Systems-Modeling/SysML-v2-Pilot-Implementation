@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding
@@ -71,8 +72,8 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {BINDING_CONNECTOR_SUBSETTING_DEFAULT};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(BINDING_CONNECTOR_SUBSETTING_DEFAULT);
 	}
 
 } // BindingConnectorImpl

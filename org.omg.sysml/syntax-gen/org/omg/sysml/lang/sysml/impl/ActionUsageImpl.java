@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.StateActionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -191,20 +190,20 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 					null;
 	}
 	
+
 	@Override
-	public <T extends Generalization> void calculateOwnedGeneralization() {
-		checkSubsetting();
-		
+	public void computeImplicitSubsettings() {
+		addDefaultSubsettings();
 		// Add default computed subsetting
-		super.calculateOwnedGeneralization();
+		super.computeImplicitSubsettings();
 	}
 
 	@Override
-	protected String[] getDefaultGeneralizationNames() {
-		return new String[] {getActionSubsettingDefault()};
+	protected Type getImpliedSubsettingType() {
+		return getDefaultType(getActionSubsettingDefault());
 	}
 
-	protected void checkSubsetting() {
+	protected void addDefaultSubsettings() {
 		if (isSubperformance()) {
 			addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
 		} 
@@ -351,16 +350,9 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+	public void computeImplicitFeatureTypings() {
+		getType().addAll(getBehavior());
 	}
 
 	/**

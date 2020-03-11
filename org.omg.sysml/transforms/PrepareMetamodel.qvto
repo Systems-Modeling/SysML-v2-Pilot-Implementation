@@ -70,7 +70,8 @@ helper Class::addNonuniqueAttribute() {
 	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
 }
 
-mapping Package::Namespace(inout model: Model) {
+mapping Package::Namespace(inout model: Model) 
+	when { self.name = null or not self.name.endsWith("TBD") } {
 	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
 	self.ownedMember[Package]->map Namespace(model);
 	if self <> model then {

@@ -65,10 +65,73 @@ public class SysMLSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SysMLPackage.RELATIONSHIP: {
-				Relationship relationship = (Relationship)theEObject;
-				T result = caseRelationship(relationship);
-				if (result == null) result = caseElement(relationship);
+			case SysMLPackage.PART_PROPERTY: {
+				PartProperty partProperty = (PartProperty)theEObject;
+				T result = casePartProperty(partProperty);
+				if (result == null) result = caseBlockProperty(partProperty);
+				if (result == null) result = caseProperty(partProperty);
+				if (result == null) result = caseUsage(partProperty);
+				if (result == null) result = caseFeature(partProperty);
+				if (result == null) result = caseType(partProperty);
+				if (result == null) result = casePackage(partProperty);
+				if (result == null) result = caseElement(partProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.BLOCK_PROPERTY: {
+				BlockProperty blockProperty = (BlockProperty)theEObject;
+				T result = caseBlockProperty(blockProperty);
+				if (result == null) result = caseProperty(blockProperty);
+				if (result == null) result = caseUsage(blockProperty);
+				if (result == null) result = caseFeature(blockProperty);
+				if (result == null) result = caseType(blockProperty);
+				if (result == null) result = casePackage(blockProperty);
+				if (result == null) result = caseElement(blockProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.PROPERTY: {
+				Property property = (Property)theEObject;
+				T result = caseProperty(property);
+				if (result == null) result = caseUsage(property);
+				if (result == null) result = caseFeature(property);
+				if (result == null) result = caseType(property);
+				if (result == null) result = casePackage(property);
+				if (result == null) result = caseElement(property);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.USAGE: {
+				Usage usage = (Usage)theEObject;
+				T result = caseUsage(usage);
+				if (result == null) result = caseFeature(usage);
+				if (result == null) result = caseType(usage);
+				if (result == null) result = casePackage(usage);
+				if (result == null) result = caseElement(usage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.FEATURE: {
+				Feature feature = (Feature)theEObject;
+				T result = caseFeature(feature);
+				if (result == null) result = caseType(feature);
+				if (result == null) result = casePackage(feature);
+				if (result == null) result = caseElement(feature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.TYPE: {
+				Type type = (Type)theEObject;
+				T result = caseType(type);
+				if (result == null) result = casePackage(type);
+				if (result == null) result = caseElement(type);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.PACKAGE: {
+				org.omg.sysml.lang.sysml.Package package_ = (org.omg.sysml.lang.sysml.Package)theEObject;
+				T result = casePackage(package_);
+				if (result == null) result = caseElement(package_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -86,10 +149,10 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.PACKAGE: {
-				org.omg.sysml.lang.sysml.Package package_ = (org.omg.sysml.lang.sysml.Package)theEObject;
-				T result = casePackage(package_);
-				if (result == null) result = caseElement(package_);
+			case SysMLPackage.RELATIONSHIP: {
+				Relationship relationship = (Relationship)theEObject;
+				T result = caseRelationship(relationship);
+				if (result == null) result = caseElement(relationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -98,68 +161,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseImport(import_);
 				if (result == null) result = caseRelationship(import_);
 				if (result == null) result = caseElement(import_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.OWNERSHIP: {
-				Ownership ownership = (Ownership)theEObject;
-				T result = caseOwnership(ownership);
-				if (result == null) result = caseRelationship(ownership);
-				if (result == null) result = caseElement(ownership);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.ANNOTATION: {
-				Annotation annotation = (Annotation)theEObject;
-				T result = caseAnnotation(annotation);
-				if (result == null) result = caseRelationship(annotation);
-				if (result == null) result = caseElement(annotation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.COMMENT: {
-				Comment comment = (Comment)theEObject;
-				T result = caseComment(comment);
-				if (result == null) result = caseElement(comment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.ACTIVITY: {
-				Activity activity = (Activity)theEObject;
-				T result = caseActivity(activity);
-				if (result == null) result = caseDefinition(activity);
-				if (result == null) result = caseBehavior(activity);
-				if (result == null) result = caseClassifier(activity);
-				if (result == null) result = caseType(activity);
-				if (result == null) result = casePackage(activity);
-				if (result == null) result = caseElement(activity);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.BEHAVIOR: {
-				Behavior behavior = (Behavior)theEObject;
-				T result = caseBehavior(behavior);
-				if (result == null) result = caseClassifier(behavior);
-				if (result == null) result = caseType(behavior);
-				if (result == null) result = casePackage(behavior);
-				if (result == null) result = caseElement(behavior);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.CLASSIFIER: {
-				Classifier classifier = (Classifier)theEObject;
-				T result = caseClassifier(classifier);
-				if (result == null) result = caseType(classifier);
-				if (result == null) result = casePackage(classifier);
-				if (result == null) result = caseElement(classifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.TYPE: {
-				Type type = (Type)theEObject;
-				T result = caseType(type);
-				if (result == null) result = casePackage(type);
-				if (result == null) result = caseElement(type);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -180,12 +181,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.FEATURE: {
-				Feature feature = (Feature)theEObject;
-				T result = caseFeature(feature);
-				if (result == null) result = caseType(feature);
-				if (result == null) result = casePackage(feature);
-				if (result == null) result = caseElement(feature);
+			case SysMLPackage.CONJUGATION: {
+				Conjugation conjugation = (Conjugation)theEObject;
+				T result = caseConjugation(conjugation);
+				if (result == null) result = caseRelationship(conjugation);
+				if (result == null) result = caseElement(conjugation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.MULTIPLICITY: {
+				Multiplicity multiplicity = (Multiplicity)theEObject;
+				T result = caseMultiplicity(multiplicity);
+				if (result == null) result = caseFeature(multiplicity);
+				if (result == null) result = caseType(multiplicity);
+				if (result == null) result = casePackage(multiplicity);
+				if (result == null) result = caseElement(multiplicity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,53 +227,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.CONJUGATION: {
-				Conjugation conjugation = (Conjugation)theEObject;
-				T result = caseConjugation(conjugation);
-				if (result == null) result = caseRelationship(conjugation);
-				if (result == null) result = caseElement(conjugation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.MULTIPLICITY: {
-				Multiplicity multiplicity = (Multiplicity)theEObject;
-				T result = caseMultiplicity(multiplicity);
-				if (result == null) result = caseFeature(multiplicity);
-				if (result == null) result = caseType(multiplicity);
-				if (result == null) result = casePackage(multiplicity);
-				if (result == null) result = caseElement(multiplicity);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.SUPERCLASSING: {
-				Superclassing superclassing = (Superclassing)theEObject;
-				T result = caseSuperclassing(superclassing);
-				if (result == null) result = caseGeneralization(superclassing);
-				if (result == null) result = caseRelationship(superclassing);
-				if (result == null) result = caseElement(superclassing);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.STEP: {
-				Step step = (Step)theEObject;
-				T result = caseStep(step);
-				if (result == null) result = caseFeature(step);
-				if (result == null) result = caseType(step);
-				if (result == null) result = casePackage(step);
-				if (result == null) result = caseElement(step);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.PARAMETER: {
-				Parameter parameter = (Parameter)theEObject;
-				T result = caseParameter(parameter);
-				if (result == null) result = caseFeature(parameter);
-				if (result == null) result = caseType(parameter);
-				if (result == null) result = casePackage(parameter);
-				if (result == null) result = caseElement(parameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SysMLPackage.DEFINITION: {
 				Definition definition = (Definition)theEObject;
 				T result = caseDefinition(definition);
@@ -274,13 +237,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.USAGE: {
-				Usage usage = (Usage)theEObject;
-				T result = caseUsage(usage);
-				if (result == null) result = caseFeature(usage);
-				if (result == null) result = caseType(usage);
-				if (result == null) result = casePackage(usage);
-				if (result == null) result = caseElement(usage);
+			case SysMLPackage.CLASSIFIER: {
+				Classifier classifier = (Classifier)theEObject;
+				T result = caseClassifier(classifier);
+				if (result == null) result = caseType(classifier);
+				if (result == null) result = casePackage(classifier);
+				if (result == null) result = caseElement(classifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SUPERCLASSING: {
+				Superclassing superclassing = (Superclassing)theEObject;
+				T result = caseSuperclassing(superclassing);
+				if (result == null) result = caseGeneralization(superclassing);
+				if (result == null) result = caseRelationship(superclassing);
+				if (result == null) result = caseElement(superclassing);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -327,17 +298,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.PROPERTY: {
-				Property property = (Property)theEObject;
-				T result = caseProperty(property);
-				if (result == null) result = caseUsage(property);
-				if (result == null) result = caseFeature(property);
-				if (result == null) result = caseType(property);
-				if (result == null) result = casePackage(property);
-				if (result == null) result = caseElement(property);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SysMLPackage.ACTION_USAGE: {
 				ActionUsage actionUsage = (ActionUsage)theEObject;
 				T result = caseActionUsage(actionUsage);
@@ -350,9 +310,40 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.STEP: {
+				Step step = (Step)theEObject;
+				T result = caseStep(step);
+				if (result == null) result = caseFeature(step);
+				if (result == null) result = caseType(step);
+				if (result == null) result = casePackage(step);
+				if (result == null) result = caseElement(step);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.BEHAVIOR: {
+				Behavior behavior = (Behavior)theEObject;
+				T result = caseBehavior(behavior);
+				if (result == null) result = caseClassifier(behavior);
+				if (result == null) result = caseType(behavior);
+				if (result == null) result = casePackage(behavior);
+				if (result == null) result = caseElement(behavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.PARAMETER: {
+				Parameter parameter = (Parameter)theEObject;
+				T result = caseParameter(parameter);
+				if (result == null) result = caseFeature(parameter);
+				if (result == null) result = caseType(parameter);
+				if (result == null) result = casePackage(parameter);
+				if (result == null) result = caseElement(parameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SysMLPackage.STATE_USAGE: {
 				StateUsage stateUsage = (StateUsage)theEObject;
 				T result = caseStateUsage(stateUsage);
+				if (result == null) result = caseActionUsage(stateUsage);
 				if (result == null) result = caseUsage(stateUsage);
 				if (result == null) result = caseStep(stateUsage);
 				if (result == null) result = caseFeature(stateUsage);
@@ -425,6 +416,7 @@ public class SysMLSwitch<T> extends Switch<T> {
 			case SysMLPackage.TRANSITION_USAGE: {
 				TransitionUsage transitionUsage = (TransitionUsage)theEObject;
 				T result = caseTransitionUsage(transitionUsage);
+				if (result == null) result = caseActionUsage(transitionUsage);
 				if (result == null) result = caseUsage(transitionUsage);
 				if (result == null) result = caseStep(transitionUsage);
 				if (result == null) result = caseFeature(transitionUsage);
@@ -506,91 +498,47 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.EXHIBIT_STATE_USAGE: {
-				ExhibitStateUsage exhibitStateUsage = (ExhibitStateUsage)theEObject;
-				T result = caseExhibitStateUsage(exhibitStateUsage);
-				if (result == null) result = caseStateUsage(exhibitStateUsage);
-				if (result == null) result = caseUsage(exhibitStateUsage);
-				if (result == null) result = caseStep(exhibitStateUsage);
-				if (result == null) result = caseFeature(exhibitStateUsage);
-				if (result == null) result = caseType(exhibitStateUsage);
-				if (result == null) result = casePackage(exhibitStateUsage);
-				if (result == null) result = caseElement(exhibitStateUsage);
+			case SysMLPackage.REQUIREMENT_USAGE: {
+				RequirementUsage requirementUsage = (RequirementUsage)theEObject;
+				T result = caseRequirementUsage(requirementUsage);
+				if (result == null) result = caseConstraintUsage(requirementUsage);
+				if (result == null) result = caseUsage(requirementUsage);
+				if (result == null) result = caseBooleanExpression(requirementUsage);
+				if (result == null) result = caseExpression(requirementUsage);
+				if (result == null) result = caseType(requirementUsage);
+				if (result == null) result = caseStep(requirementUsage);
+				if (result == null) result = caseFeature(requirementUsage);
+				if (result == null) result = casePackage(requirementUsage);
+				if (result == null) result = caseElement(requirementUsage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.STATE_DEFINITION: {
-				StateDefinition stateDefinition = (StateDefinition)theEObject;
-				T result = caseStateDefinition(stateDefinition);
-				if (result == null) result = caseDefinition(stateDefinition);
-				if (result == null) result = caseBehavior(stateDefinition);
-				if (result == null) result = caseClassifier(stateDefinition);
-				if (result == null) result = caseType(stateDefinition);
-				if (result == null) result = casePackage(stateDefinition);
-				if (result == null) result = caseElement(stateDefinition);
+			case SysMLPackage.REQUIREMENT_DEFINITION: {
+				RequirementDefinition requirementDefinition = (RequirementDefinition)theEObject;
+				T result = caseRequirementDefinition(requirementDefinition);
+				if (result == null) result = caseConstraintDefinition(requirementDefinition);
+				if (result == null) result = caseDefinition(requirementDefinition);
+				if (result == null) result = casePredicate(requirementDefinition);
+				if (result == null) result = caseFunction(requirementDefinition);
+				if (result == null) result = caseType(requirementDefinition);
+				if (result == null) result = caseBehavior(requirementDefinition);
+				if (result == null) result = caseClassifier(requirementDefinition);
+				if (result == null) result = casePackage(requirementDefinition);
+				if (result == null) result = caseElement(requirementDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP: {
-				TransitionFeatureMembership transitionFeatureMembership = (TransitionFeatureMembership)theEObject;
-				T result = caseTransitionFeatureMembership(transitionFeatureMembership);
-				if (result == null) result = caseFeatureMembership(transitionFeatureMembership);
-				if (result == null) result = caseMembership(transitionFeatureMembership);
-				if (result == null) result = caseRelationship(transitionFeatureMembership);
-				if (result == null) result = caseElement(transitionFeatureMembership);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.STATE_ACTION_MEMBERSHIP: {
-				StateActionMembership stateActionMembership = (StateActionMembership)theEObject;
-				T result = caseStateActionMembership(stateActionMembership);
-				if (result == null) result = caseFeatureMembership(stateActionMembership);
-				if (result == null) result = caseMembership(stateActionMembership);
-				if (result == null) result = caseRelationship(stateActionMembership);
-				if (result == null) result = caseElement(stateActionMembership);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.CONNECTION_USAGE: {
-				ConnectionUsage connectionUsage = (ConnectionUsage)theEObject;
-				T result = caseConnectionUsage(connectionUsage);
-				if (result == null) result = caseConnector(connectionUsage);
-				if (result == null) result = caseUsage(connectionUsage);
-				if (result == null) result = caseFeature(connectionUsage);
-				if (result == null) result = caseRelationship(connectionUsage);
-				if (result == null) result = caseType(connectionUsage);
-				if (result == null) result = casePackage(connectionUsage);
-				if (result == null) result = caseElement(connectionUsage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.INTERFACE_USAGE: {
-				InterfaceUsage interfaceUsage = (InterfaceUsage)theEObject;
-				T result = caseInterfaceUsage(interfaceUsage);
-				if (result == null) result = caseConnectionUsage(interfaceUsage);
-				if (result == null) result = caseConnector(interfaceUsage);
-				if (result == null) result = caseUsage(interfaceUsage);
-				if (result == null) result = caseFeature(interfaceUsage);
-				if (result == null) result = caseRelationship(interfaceUsage);
-				if (result == null) result = caseType(interfaceUsage);
-				if (result == null) result = casePackage(interfaceUsage);
-				if (result == null) result = caseElement(interfaceUsage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.INTERFACE_DEFINITION: {
-				InterfaceDefinition interfaceDefinition = (InterfaceDefinition)theEObject;
-				T result = caseInterfaceDefinition(interfaceDefinition);
-				if (result == null) result = caseAssociationBlock(interfaceDefinition);
-				if (result == null) result = caseBlock(interfaceDefinition);
-				if (result == null) result = caseAssociation(interfaceDefinition);
-				if (result == null) result = caseDefinition(interfaceDefinition);
-				if (result == null) result = caseClass(interfaceDefinition);
-				if (result == null) result = caseRelationship(interfaceDefinition);
-				if (result == null) result = caseClassifier(interfaceDefinition);
-				if (result == null) result = caseType(interfaceDefinition);
-				if (result == null) result = casePackage(interfaceDefinition);
-				if (result == null) result = caseElement(interfaceDefinition);
+			case SysMLPackage.CONSTRAINT_DEFINITION: {
+				ConstraintDefinition constraintDefinition = (ConstraintDefinition)theEObject;
+				T result = caseConstraintDefinition(constraintDefinition);
+				if (result == null) result = caseDefinition(constraintDefinition);
+				if (result == null) result = casePredicate(constraintDefinition);
+				if (result == null) result = caseFunction(constraintDefinition);
+				if (result == null) result = caseType(constraintDefinition);
+				if (result == null) result = caseBehavior(constraintDefinition);
+				if (result == null) result = caseClassifier(constraintDefinition);
+				if (result == null) result = casePackage(constraintDefinition);
+				if (result == null) result = caseElement(constraintDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -621,144 +569,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.VALUE_TYPE: {
-				ValueType valueType = (ValueType)theEObject;
-				T result = caseValueType(valueType);
-				if (result == null) result = caseDefinition(valueType);
-				if (result == null) result = caseDataType(valueType);
-				if (result == null) result = caseClassifier(valueType);
-				if (result == null) result = caseType(valueType);
-				if (result == null) result = casePackage(valueType);
-				if (result == null) result = caseElement(valueType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.DATA_TYPE: {
-				DataType dataType = (DataType)theEObject;
-				T result = caseDataType(dataType);
-				if (result == null) result = caseClassifier(dataType);
-				if (result == null) result = caseType(dataType);
-				if (result == null) result = casePackage(dataType);
-				if (result == null) result = caseElement(dataType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.VALUE_PROPERTY: {
-				ValueProperty valueProperty = (ValueProperty)theEObject;
-				T result = caseValueProperty(valueProperty);
-				if (result == null) result = caseProperty(valueProperty);
-				if (result == null) result = caseUsage(valueProperty);
-				if (result == null) result = caseFeature(valueProperty);
-				if (result == null) result = caseType(valueProperty);
-				if (result == null) result = casePackage(valueProperty);
-				if (result == null) result = caseElement(valueProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.CONJUGATED_PORT_TYPING: {
-				ConjugatedPortTyping conjugatedPortTyping = (ConjugatedPortTyping)theEObject;
-				T result = caseConjugatedPortTyping(conjugatedPortTyping);
-				if (result == null) result = caseFeatureTyping(conjugatedPortTyping);
-				if (result == null) result = caseGeneralization(conjugatedPortTyping);
-				if (result == null) result = caseRelationship(conjugatedPortTyping);
-				if (result == null) result = caseElement(conjugatedPortTyping);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.CONTROL_NODE: {
-				ControlNode controlNode = (ControlNode)theEObject;
-				T result = caseControlNode(controlNode);
-				if (result == null) result = caseActionUsage(controlNode);
-				if (result == null) result = caseUsage(controlNode);
-				if (result == null) result = caseStep(controlNode);
-				if (result == null) result = caseFeature(controlNode);
-				if (result == null) result = caseType(controlNode);
-				if (result == null) result = casePackage(controlNode);
-				if (result == null) result = caseElement(controlNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.DECISION_NODE: {
-				DecisionNode decisionNode = (DecisionNode)theEObject;
-				T result = caseDecisionNode(decisionNode);
-				if (result == null) result = caseControlNode(decisionNode);
-				if (result == null) result = caseActionUsage(decisionNode);
-				if (result == null) result = caseUsage(decisionNode);
-				if (result == null) result = caseStep(decisionNode);
-				if (result == null) result = caseFeature(decisionNode);
-				if (result == null) result = caseType(decisionNode);
-				if (result == null) result = casePackage(decisionNode);
-				if (result == null) result = caseElement(decisionNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.MERGE_NODE: {
-				MergeNode mergeNode = (MergeNode)theEObject;
-				T result = caseMergeNode(mergeNode);
-				if (result == null) result = caseControlNode(mergeNode);
-				if (result == null) result = caseActionUsage(mergeNode);
-				if (result == null) result = caseUsage(mergeNode);
-				if (result == null) result = caseStep(mergeNode);
-				if (result == null) result = caseFeature(mergeNode);
-				if (result == null) result = caseType(mergeNode);
-				if (result == null) result = casePackage(mergeNode);
-				if (result == null) result = caseElement(mergeNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.JOIN_NODE: {
-				JoinNode joinNode = (JoinNode)theEObject;
-				T result = caseJoinNode(joinNode);
-				if (result == null) result = caseControlNode(joinNode);
-				if (result == null) result = caseActionUsage(joinNode);
-				if (result == null) result = caseUsage(joinNode);
-				if (result == null) result = caseStep(joinNode);
-				if (result == null) result = caseFeature(joinNode);
-				if (result == null) result = caseType(joinNode);
-				if (result == null) result = casePackage(joinNode);
-				if (result == null) result = caseElement(joinNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.FORK_NODE: {
-				ForkNode forkNode = (ForkNode)theEObject;
-				T result = caseForkNode(forkNode);
-				if (result == null) result = caseControlNode(forkNode);
-				if (result == null) result = caseActionUsage(forkNode);
-				if (result == null) result = caseUsage(forkNode);
-				if (result == null) result = caseStep(forkNode);
-				if (result == null) result = caseFeature(forkNode);
-				if (result == null) result = caseType(forkNode);
-				if (result == null) result = casePackage(forkNode);
-				if (result == null) result = caseElement(forkNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.PART_PROPERTY: {
-				PartProperty partProperty = (PartProperty)theEObject;
-				T result = casePartProperty(partProperty);
-				if (result == null) result = caseBlockProperty(partProperty);
-				if (result == null) result = caseProperty(partProperty);
-				if (result == null) result = caseUsage(partProperty);
-				if (result == null) result = caseFeature(partProperty);
-				if (result == null) result = caseType(partProperty);
-				if (result == null) result = casePackage(partProperty);
-				if (result == null) result = caseElement(partProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.BLOCK_PROPERTY: {
-				BlockProperty blockProperty = (BlockProperty)theEObject;
-				T result = caseBlockProperty(blockProperty);
-				if (result == null) result = caseProperty(blockProperty);
-				if (result == null) result = caseUsage(blockProperty);
-				if (result == null) result = caseFeature(blockProperty);
-				if (result == null) result = caseType(blockProperty);
-				if (result == null) result = casePackage(blockProperty);
-				if (result == null) result = caseElement(blockProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SysMLPackage.REFERENCE_PROPERTY: {
 				ReferenceProperty referenceProperty = (ReferenceProperty)theEObject;
 				T result = caseReferenceProperty(referenceProperty);
@@ -772,30 +582,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.PERFORM_ACTION_USAGE: {
-				PerformActionUsage performActionUsage = (PerformActionUsage)theEObject;
-				T result = casePerformActionUsage(performActionUsage);
-				if (result == null) result = caseActionUsage(performActionUsage);
-				if (result == null) result = caseUsage(performActionUsage);
-				if (result == null) result = caseStep(performActionUsage);
-				if (result == null) result = caseFeature(performActionUsage);
-				if (result == null) result = caseType(performActionUsage);
-				if (result == null) result = casePackage(performActionUsage);
-				if (result == null) result = caseElement(performActionUsage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.SEND_ACTION_USAGE: {
-				SendActionUsage sendActionUsage = (SendActionUsage)theEObject;
-				T result = caseSendActionUsage(sendActionUsage);
-				if (result == null) result = caseTransferActionUsage(sendActionUsage);
-				if (result == null) result = caseActionUsage(sendActionUsage);
-				if (result == null) result = caseUsage(sendActionUsage);
-				if (result == null) result = caseStep(sendActionUsage);
-				if (result == null) result = caseFeature(sendActionUsage);
-				if (result == null) result = caseType(sendActionUsage);
-				if (result == null) result = casePackage(sendActionUsage);
-				if (result == null) result = caseElement(sendActionUsage);
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE: {
+				SatisfyRequirementUsage satisfyRequirementUsage = (SatisfyRequirementUsage)theEObject;
+				T result = caseSatisfyRequirementUsage(satisfyRequirementUsage);
+				if (result == null) result = caseRequirementUsage(satisfyRequirementUsage);
+				if (result == null) result = caseAssertConstraintUsage(satisfyRequirementUsage);
+				if (result == null) result = caseConstraintUsage(satisfyRequirementUsage);
+				if (result == null) result = caseInvariant(satisfyRequirementUsage);
+				if (result == null) result = caseUsage(satisfyRequirementUsage);
+				if (result == null) result = caseBooleanExpression(satisfyRequirementUsage);
+				if (result == null) result = caseExpression(satisfyRequirementUsage);
+				if (result == null) result = caseType(satisfyRequirementUsage);
+				if (result == null) result = caseStep(satisfyRequirementUsage);
+				if (result == null) result = caseFeature(satisfyRequirementUsage);
+				if (result == null) result = casePackage(satisfyRequirementUsage);
+				if (result == null) result = caseElement(satisfyRequirementUsage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -840,17 +641,271 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.CONSTRAINT_DEFINITION: {
-				ConstraintDefinition constraintDefinition = (ConstraintDefinition)theEObject;
-				T result = caseConstraintDefinition(constraintDefinition);
-				if (result == null) result = caseDefinition(constraintDefinition);
-				if (result == null) result = casePredicate(constraintDefinition);
-				if (result == null) result = caseFunction(constraintDefinition);
-				if (result == null) result = caseType(constraintDefinition);
-				if (result == null) result = caseBehavior(constraintDefinition);
-				if (result == null) result = caseClassifier(constraintDefinition);
-				if (result == null) result = casePackage(constraintDefinition);
-				if (result == null) result = caseElement(constraintDefinition);
+			case SysMLPackage.CONJUGATED_PORT_TYPING: {
+				ConjugatedPortTyping conjugatedPortTyping = (ConjugatedPortTyping)theEObject;
+				T result = caseConjugatedPortTyping(conjugatedPortTyping);
+				if (result == null) result = caseFeatureTyping(conjugatedPortTyping);
+				if (result == null) result = caseGeneralization(conjugatedPortTyping);
+				if (result == null) result = caseRelationship(conjugatedPortTyping);
+				if (result == null) result = caseElement(conjugatedPortTyping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.JOIN_NODE: {
+				JoinNode joinNode = (JoinNode)theEObject;
+				T result = caseJoinNode(joinNode);
+				if (result == null) result = caseControlNode(joinNode);
+				if (result == null) result = caseActionUsage(joinNode);
+				if (result == null) result = caseUsage(joinNode);
+				if (result == null) result = caseStep(joinNode);
+				if (result == null) result = caseFeature(joinNode);
+				if (result == null) result = caseType(joinNode);
+				if (result == null) result = casePackage(joinNode);
+				if (result == null) result = caseElement(joinNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.CONTROL_NODE: {
+				ControlNode controlNode = (ControlNode)theEObject;
+				T result = caseControlNode(controlNode);
+				if (result == null) result = caseActionUsage(controlNode);
+				if (result == null) result = caseUsage(controlNode);
+				if (result == null) result = caseStep(controlNode);
+				if (result == null) result = caseFeature(controlNode);
+				if (result == null) result = caseType(controlNode);
+				if (result == null) result = casePackage(controlNode);
+				if (result == null) result = caseElement(controlNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.DECISION_NODE: {
+				DecisionNode decisionNode = (DecisionNode)theEObject;
+				T result = caseDecisionNode(decisionNode);
+				if (result == null) result = caseControlNode(decisionNode);
+				if (result == null) result = caseActionUsage(decisionNode);
+				if (result == null) result = caseUsage(decisionNode);
+				if (result == null) result = caseStep(decisionNode);
+				if (result == null) result = caseFeature(decisionNode);
+				if (result == null) result = caseType(decisionNode);
+				if (result == null) result = casePackage(decisionNode);
+				if (result == null) result = caseElement(decisionNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.MERGE_NODE: {
+				MergeNode mergeNode = (MergeNode)theEObject;
+				T result = caseMergeNode(mergeNode);
+				if (result == null) result = caseControlNode(mergeNode);
+				if (result == null) result = caseActionUsage(mergeNode);
+				if (result == null) result = caseUsage(mergeNode);
+				if (result == null) result = caseStep(mergeNode);
+				if (result == null) result = caseFeature(mergeNode);
+				if (result == null) result = caseType(mergeNode);
+				if (result == null) result = casePackage(mergeNode);
+				if (result == null) result = caseElement(mergeNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.FORK_NODE: {
+				ForkNode forkNode = (ForkNode)theEObject;
+				T result = caseForkNode(forkNode);
+				if (result == null) result = caseControlNode(forkNode);
+				if (result == null) result = caseActionUsage(forkNode);
+				if (result == null) result = caseUsage(forkNode);
+				if (result == null) result = caseStep(forkNode);
+				if (result == null) result = caseFeature(forkNode);
+				if (result == null) result = caseType(forkNode);
+				if (result == null) result = casePackage(forkNode);
+				if (result == null) result = caseElement(forkNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.PERFORM_ACTION_USAGE: {
+				PerformActionUsage performActionUsage = (PerformActionUsage)theEObject;
+				T result = casePerformActionUsage(performActionUsage);
+				if (result == null) result = caseActionUsage(performActionUsage);
+				if (result == null) result = caseUsage(performActionUsage);
+				if (result == null) result = caseStep(performActionUsage);
+				if (result == null) result = caseFeature(performActionUsage);
+				if (result == null) result = caseType(performActionUsage);
+				if (result == null) result = casePackage(performActionUsage);
+				if (result == null) result = caseElement(performActionUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SEND_ACTION_USAGE: {
+				SendActionUsage sendActionUsage = (SendActionUsage)theEObject;
+				T result = caseSendActionUsage(sendActionUsage);
+				if (result == null) result = caseTransferActionUsage(sendActionUsage);
+				if (result == null) result = caseActionUsage(sendActionUsage);
+				if (result == null) result = caseUsage(sendActionUsage);
+				if (result == null) result = caseStep(sendActionUsage);
+				if (result == null) result = caseFeature(sendActionUsage);
+				if (result == null) result = caseType(sendActionUsage);
+				if (result == null) result = casePackage(sendActionUsage);
+				if (result == null) result = caseElement(sendActionUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ACTIVITY: {
+				Activity activity = (Activity)theEObject;
+				T result = caseActivity(activity);
+				if (result == null) result = caseDefinition(activity);
+				if (result == null) result = caseBehavior(activity);
+				if (result == null) result = caseClassifier(activity);
+				if (result == null) result = caseType(activity);
+				if (result == null) result = casePackage(activity);
+				if (result == null) result = caseElement(activity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.CONNECTION_USAGE: {
+				ConnectionUsage connectionUsage = (ConnectionUsage)theEObject;
+				T result = caseConnectionUsage(connectionUsage);
+				if (result == null) result = caseUsage(connectionUsage);
+				if (result == null) result = caseConnector(connectionUsage);
+				if (result == null) result = caseFeature(connectionUsage);
+				if (result == null) result = caseRelationship(connectionUsage);
+				if (result == null) result = caseType(connectionUsage);
+				if (result == null) result = casePackage(connectionUsage);
+				if (result == null) result = caseElement(connectionUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.INTERFACE_DEFINITION: {
+				InterfaceDefinition interfaceDefinition = (InterfaceDefinition)theEObject;
+				T result = caseInterfaceDefinition(interfaceDefinition);
+				if (result == null) result = caseAssociationBlock(interfaceDefinition);
+				if (result == null) result = caseBlock(interfaceDefinition);
+				if (result == null) result = caseAssociation(interfaceDefinition);
+				if (result == null) result = caseDefinition(interfaceDefinition);
+				if (result == null) result = caseClass(interfaceDefinition);
+				if (result == null) result = caseRelationship(interfaceDefinition);
+				if (result == null) result = caseClassifier(interfaceDefinition);
+				if (result == null) result = caseType(interfaceDefinition);
+				if (result == null) result = casePackage(interfaceDefinition);
+				if (result == null) result = caseElement(interfaceDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.INTERFACE_USAGE: {
+				InterfaceUsage interfaceUsage = (InterfaceUsage)theEObject;
+				T result = caseInterfaceUsage(interfaceUsage);
+				if (result == null) result = caseConnectionUsage(interfaceUsage);
+				if (result == null) result = caseUsage(interfaceUsage);
+				if (result == null) result = caseConnector(interfaceUsage);
+				if (result == null) result = caseFeature(interfaceUsage);
+				if (result == null) result = caseRelationship(interfaceUsage);
+				if (result == null) result = caseType(interfaceUsage);
+				if (result == null) result = casePackage(interfaceUsage);
+				if (result == null) result = caseElement(interfaceUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.VALUE_PROPERTY: {
+				ValueProperty valueProperty = (ValueProperty)theEObject;
+				T result = caseValueProperty(valueProperty);
+				if (result == null) result = caseProperty(valueProperty);
+				if (result == null) result = caseUsage(valueProperty);
+				if (result == null) result = caseFeature(valueProperty);
+				if (result == null) result = caseType(valueProperty);
+				if (result == null) result = casePackage(valueProperty);
+				if (result == null) result = caseElement(valueProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.DATA_TYPE: {
+				DataType dataType = (DataType)theEObject;
+				T result = caseDataType(dataType);
+				if (result == null) result = caseClassifier(dataType);
+				if (result == null) result = caseType(dataType);
+				if (result == null) result = casePackage(dataType);
+				if (result == null) result = caseElement(dataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.VALUE_TYPE: {
+				ValueType valueType = (ValueType)theEObject;
+				T result = caseValueType(valueType);
+				if (result == null) result = caseDefinition(valueType);
+				if (result == null) result = caseDataType(valueType);
+				if (result == null) result = caseClassifier(valueType);
+				if (result == null) result = caseType(valueType);
+				if (result == null) result = casePackage(valueType);
+				if (result == null) result = caseElement(valueType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.INDIVIDUAL_USAGE: {
+				IndividualUsage individualUsage = (IndividualUsage)theEObject;
+				T result = caseIndividualUsage(individualUsage);
+				if (result == null) result = caseBlockProperty(individualUsage);
+				if (result == null) result = caseProperty(individualUsage);
+				if (result == null) result = caseUsage(individualUsage);
+				if (result == null) result = caseFeature(individualUsage);
+				if (result == null) result = caseType(individualUsage);
+				if (result == null) result = casePackage(individualUsage);
+				if (result == null) result = caseElement(individualUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.INDIVIDUAL_DEFINITION: {
+				IndividualDefinition individualDefinition = (IndividualDefinition)theEObject;
+				T result = caseIndividualDefinition(individualDefinition);
+				if (result == null) result = caseBlock(individualDefinition);
+				if (result == null) result = caseDefinition(individualDefinition);
+				if (result == null) result = caseClass(individualDefinition);
+				if (result == null) result = caseClassifier(individualDefinition);
+				if (result == null) result = caseType(individualDefinition);
+				if (result == null) result = casePackage(individualDefinition);
+				if (result == null) result = caseElement(individualDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP: {
+				TransitionFeatureMembership transitionFeatureMembership = (TransitionFeatureMembership)theEObject;
+				T result = caseTransitionFeatureMembership(transitionFeatureMembership);
+				if (result == null) result = caseFeatureMembership(transitionFeatureMembership);
+				if (result == null) result = caseMembership(transitionFeatureMembership);
+				if (result == null) result = caseRelationship(transitionFeatureMembership);
+				if (result == null) result = caseElement(transitionFeatureMembership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.STATE_DEFINITION: {
+				StateDefinition stateDefinition = (StateDefinition)theEObject;
+				T result = caseStateDefinition(stateDefinition);
+				if (result == null) result = caseActivity(stateDefinition);
+				if (result == null) result = caseDefinition(stateDefinition);
+				if (result == null) result = caseBehavior(stateDefinition);
+				if (result == null) result = caseClassifier(stateDefinition);
+				if (result == null) result = caseType(stateDefinition);
+				if (result == null) result = casePackage(stateDefinition);
+				if (result == null) result = caseElement(stateDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.EXHIBIT_STATE_USAGE: {
+				ExhibitStateUsage exhibitStateUsage = (ExhibitStateUsage)theEObject;
+				T result = caseExhibitStateUsage(exhibitStateUsage);
+				if (result == null) result = caseStateUsage(exhibitStateUsage);
+				if (result == null) result = caseActionUsage(exhibitStateUsage);
+				if (result == null) result = caseUsage(exhibitStateUsage);
+				if (result == null) result = caseStep(exhibitStateUsage);
+				if (result == null) result = caseFeature(exhibitStateUsage);
+				if (result == null) result = caseType(exhibitStateUsage);
+				if (result == null) result = casePackage(exhibitStateUsage);
+				if (result == null) result = caseElement(exhibitStateUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP: {
+				StateSubactionMembership stateSubactionMembership = (StateSubactionMembership)theEObject;
+				T result = caseStateSubactionMembership(stateSubactionMembership);
+				if (result == null) result = caseFeatureMembership(stateSubactionMembership);
+				if (result == null) result = caseMembership(stateSubactionMembership);
+				if (result == null) result = caseRelationship(stateSubactionMembership);
+				if (result == null) result = caseElement(stateSubactionMembership);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -864,94 +919,52 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.ATOMIC_INTERACTION: {
-				AtomicInteraction atomicInteraction = (AtomicInteraction)theEObject;
-				T result = caseAtomicInteraction(atomicInteraction);
+			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: {
+				InstanceCreationExpression instanceCreationExpression = (InstanceCreationExpression)theEObject;
+				T result = caseInstanceCreationExpression(instanceCreationExpression);
+				if (result == null) result = caseInvocationExpression(instanceCreationExpression);
+				if (result == null) result = caseExpression(instanceCreationExpression);
+				if (result == null) result = caseStep(instanceCreationExpression);
+				if (result == null) result = caseFeature(instanceCreationExpression);
+				if (result == null) result = caseType(instanceCreationExpression);
+				if (result == null) result = casePackage(instanceCreationExpression);
+				if (result == null) result = caseElement(instanceCreationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.ITEM_FEATURE: {
-				ItemFeature itemFeature = (ItemFeature)theEObject;
-				T result = caseItemFeature(itemFeature);
-				if (result == null) result = caseFeature(itemFeature);
-				if (result == null) result = caseType(itemFeature);
-				if (result == null) result = casePackage(itemFeature);
-				if (result == null) result = caseElement(itemFeature);
+			case SysMLPackage.INVOCATION_EXPRESSION: {
+				InvocationExpression invocationExpression = (InvocationExpression)theEObject;
+				T result = caseInvocationExpression(invocationExpression);
+				if (result == null) result = caseExpression(invocationExpression);
+				if (result == null) result = caseStep(invocationExpression);
+				if (result == null) result = caseFeature(invocationExpression);
+				if (result == null) result = caseType(invocationExpression);
+				if (result == null) result = casePackage(invocationExpression);
+				if (result == null) result = caseElement(invocationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.ITEM_FLOW_FEATURE: {
-				ItemFlowFeature itemFlowFeature = (ItemFlowFeature)theEObject;
-				T result = caseItemFlowFeature(itemFlowFeature);
-				if (result == null) result = caseFeature(itemFlowFeature);
-				if (result == null) result = caseType(itemFlowFeature);
-				if (result == null) result = casePackage(itemFlowFeature);
-				if (result == null) result = caseElement(itemFlowFeature);
+			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: {
+				SequenceConstructionExpression sequenceConstructionExpression = (SequenceConstructionExpression)theEObject;
+				T result = caseSequenceConstructionExpression(sequenceConstructionExpression);
+				if (result == null) result = caseExpression(sequenceConstructionExpression);
+				if (result == null) result = caseStep(sequenceConstructionExpression);
+				if (result == null) result = caseFeature(sequenceConstructionExpression);
+				if (result == null) result = caseType(sequenceConstructionExpression);
+				if (result == null) result = casePackage(sequenceConstructionExpression);
+				if (result == null) result = caseElement(sequenceConstructionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.ITEM_FLOW_END: {
-				ItemFlowEnd itemFlowEnd = (ItemFlowEnd)theEObject;
-				T result = caseItemFlowEnd(itemFlowEnd);
-				if (result == null) result = caseFeature(itemFlowEnd);
-				if (result == null) result = caseType(itemFlowEnd);
-				if (result == null) result = casePackage(itemFlowEnd);
-				if (result == null) result = caseElement(itemFlowEnd);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.SUCCESSION_ITEM_FLOW: {
-				SuccessionItemFlow successionItemFlow = (SuccessionItemFlow)theEObject;
-				T result = caseSuccessionItemFlow(successionItemFlow);
-				if (result == null) result = caseItemFlow(successionItemFlow);
-				if (result == null) result = caseSuccession(successionItemFlow);
-				if (result == null) result = caseConnector(successionItemFlow);
-				if (result == null) result = caseStep(successionItemFlow);
-				if (result == null) result = caseFeature(successionItemFlow);
-				if (result == null) result = caseRelationship(successionItemFlow);
-				if (result == null) result = caseType(successionItemFlow);
-				if (result == null) result = casePackage(successionItemFlow);
-				if (result == null) result = caseElement(successionItemFlow);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.ITEM_FLOW: {
-				ItemFlow itemFlow = (ItemFlow)theEObject;
-				T result = caseItemFlow(itemFlow);
-				if (result == null) result = caseConnector(itemFlow);
-				if (result == null) result = caseStep(itemFlow);
-				if (result == null) result = caseFeature(itemFlow);
-				if (result == null) result = caseRelationship(itemFlow);
-				if (result == null) result = caseType(itemFlow);
-				if (result == null) result = casePackage(itemFlow);
-				if (result == null) result = caseElement(itemFlow);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.INTERACTION: {
-				Interaction interaction = (Interaction)theEObject;
-				T result = caseInteraction(interaction);
-				if (result == null) result = caseAssociation(interaction);
-				if (result == null) result = caseBehavior(interaction);
-				if (result == null) result = caseClass(interaction);
-				if (result == null) result = caseRelationship(interaction);
-				if (result == null) result = caseClassifier(interaction);
-				if (result == null) result = caseType(interaction);
-				if (result == null) result = casePackage(interaction);
-				if (result == null) result = caseElement(interaction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.QUERY_PATH_EXPRESSION: {
-				QueryPathExpression queryPathExpression = (QueryPathExpression)theEObject;
-				T result = caseQueryPathExpression(queryPathExpression);
-				if (result == null) result = caseFeatureReferenceExpression(queryPathExpression);
-				if (result == null) result = caseExpression(queryPathExpression);
-				if (result == null) result = caseStep(queryPathExpression);
-				if (result == null) result = caseFeature(queryPathExpression);
-				if (result == null) result = caseType(queryPathExpression);
-				if (result == null) result = casePackage(queryPathExpression);
-				if (result == null) result = caseElement(queryPathExpression);
+			case SysMLPackage.BLOCK_EXPRESSION: {
+				BlockExpression blockExpression = (BlockExpression)theEObject;
+				T result = caseBlockExpression(blockExpression);
+				if (result == null) result = caseExpression(blockExpression);
+				if (result == null) result = caseStep(blockExpression);
+				if (result == null) result = caseFeature(blockExpression);
+				if (result == null) result = caseType(blockExpression);
+				if (result == null) result = casePackage(blockExpression);
+				if (result == null) result = caseElement(blockExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -994,55 +1007,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.INVOCATION_EXPRESSION: {
-				InvocationExpression invocationExpression = (InvocationExpression)theEObject;
-				T result = caseInvocationExpression(invocationExpression);
-				if (result == null) result = caseExpression(invocationExpression);
-				if (result == null) result = caseStep(invocationExpression);
-				if (result == null) result = caseFeature(invocationExpression);
-				if (result == null) result = caseType(invocationExpression);
-				if (result == null) result = casePackage(invocationExpression);
-				if (result == null) result = caseElement(invocationExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.BLOCK_EXPRESSION: {
-				BlockExpression blockExpression = (BlockExpression)theEObject;
-				T result = caseBlockExpression(blockExpression);
-				if (result == null) result = caseExpression(blockExpression);
-				if (result == null) result = caseStep(blockExpression);
-				if (result == null) result = caseFeature(blockExpression);
-				if (result == null) result = caseType(blockExpression);
-				if (result == null) result = casePackage(blockExpression);
-				if (result == null) result = caseElement(blockExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.INSTANCE_CREATION_EXPRESSION: {
-				InstanceCreationExpression instanceCreationExpression = (InstanceCreationExpression)theEObject;
-				T result = caseInstanceCreationExpression(instanceCreationExpression);
-				if (result == null) result = caseInvocationExpression(instanceCreationExpression);
-				if (result == null) result = caseExpression(instanceCreationExpression);
-				if (result == null) result = caseStep(instanceCreationExpression);
-				if (result == null) result = caseFeature(instanceCreationExpression);
-				if (result == null) result = caseType(instanceCreationExpression);
-				if (result == null) result = casePackage(instanceCreationExpression);
-				if (result == null) result = caseElement(instanceCreationExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: {
-				SequenceConstructionExpression sequenceConstructionExpression = (SequenceConstructionExpression)theEObject;
-				T result = caseSequenceConstructionExpression(sequenceConstructionExpression);
-				if (result == null) result = caseExpression(sequenceConstructionExpression);
-				if (result == null) result = caseStep(sequenceConstructionExpression);
-				if (result == null) result = caseFeature(sequenceConstructionExpression);
-				if (result == null) result = caseType(sequenceConstructionExpression);
-				if (result == null) result = casePackage(sequenceConstructionExpression);
-				if (result == null) result = caseElement(sequenceConstructionExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SysMLPackage.QUERY_QUALIFIER_EXPRESSION: {
 				QueryQualifierExpression queryQualifierExpression = (QueryQualifierExpression)theEObject;
 				T result = caseQueryQualifierExpression(queryQualifierExpression);
@@ -1057,16 +1021,16 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.LITERAL_REAL: {
-				LiteralReal literalReal = (LiteralReal)theEObject;
-				T result = caseLiteralReal(literalReal);
-				if (result == null) result = caseLiteralExpression(literalReal);
-				if (result == null) result = caseExpression(literalReal);
-				if (result == null) result = caseStep(literalReal);
-				if (result == null) result = caseFeature(literalReal);
-				if (result == null) result = caseType(literalReal);
-				if (result == null) result = casePackage(literalReal);
-				if (result == null) result = caseElement(literalReal);
+			case SysMLPackage.QUERY_PATH_EXPRESSION: {
+				QueryPathExpression queryPathExpression = (QueryPathExpression)theEObject;
+				T result = caseQueryPathExpression(queryPathExpression);
+				if (result == null) result = caseFeatureReferenceExpression(queryPathExpression);
+				if (result == null) result = caseExpression(queryPathExpression);
+				if (result == null) result = caseStep(queryPathExpression);
+				if (result == null) result = caseFeature(queryPathExpression);
+				if (result == null) result = caseType(queryPathExpression);
+				if (result == null) result = casePackage(queryPathExpression);
+				if (result == null) result = caseElement(queryPathExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1092,6 +1056,19 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(literalUnbounded);
 				if (result == null) result = casePackage(literalUnbounded);
 				if (result == null) result = caseElement(literalUnbounded);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.LITERAL_BOOLEAN: {
+				LiteralBoolean literalBoolean = (LiteralBoolean)theEObject;
+				T result = caseLiteralBoolean(literalBoolean);
+				if (result == null) result = caseLiteralExpression(literalBoolean);
+				if (result == null) result = caseExpression(literalBoolean);
+				if (result == null) result = caseStep(literalBoolean);
+				if (result == null) result = caseFeature(literalBoolean);
+				if (result == null) result = caseType(literalBoolean);
+				if (result == null) result = casePackage(literalBoolean);
+				if (result == null) result = caseElement(literalBoolean);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1133,26 +1110,27 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.LITERAL_BOOLEAN: {
-				LiteralBoolean literalBoolean = (LiteralBoolean)theEObject;
-				T result = caseLiteralBoolean(literalBoolean);
-				if (result == null) result = caseLiteralExpression(literalBoolean);
-				if (result == null) result = caseExpression(literalBoolean);
-				if (result == null) result = caseStep(literalBoolean);
-				if (result == null) result = caseFeature(literalBoolean);
-				if (result == null) result = caseType(literalBoolean);
-				if (result == null) result = casePackage(literalBoolean);
-				if (result == null) result = caseElement(literalBoolean);
+			case SysMLPackage.LITERAL_REAL: {
+				LiteralReal literalReal = (LiteralReal)theEObject;
+				T result = caseLiteralReal(literalReal);
+				if (result == null) result = caseLiteralExpression(literalReal);
+				if (result == null) result = caseExpression(literalReal);
+				if (result == null) result = caseStep(literalReal);
+				if (result == null) result = caseFeature(literalReal);
+				if (result == null) result = caseType(literalReal);
+				if (result == null) result = casePackage(literalReal);
+				if (result == null) result = caseElement(literalReal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.FEATURE_VALUE: {
-				FeatureValue featureValue = (FeatureValue)theEObject;
-				T result = caseFeatureValue(featureValue);
-				if (result == null) result = caseFeatureMembership(featureValue);
-				if (result == null) result = caseMembership(featureValue);
-				if (result == null) result = caseRelationship(featureValue);
-				if (result == null) result = caseElement(featureValue);
+			case SysMLPackage.MULTIPLICITY_RANGE: {
+				MultiplicityRange multiplicityRange = (MultiplicityRange)theEObject;
+				T result = caseMultiplicityRange(multiplicityRange);
+				if (result == null) result = caseMultiplicity(multiplicityRange);
+				if (result == null) result = caseFeature(multiplicityRange);
+				if (result == null) result = caseType(multiplicityRange);
+				if (result == null) result = casePackage(multiplicityRange);
+				if (result == null) result = caseElement(multiplicityRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1170,6 +1148,16 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseImportCondition(importCondition);
 				if (result == null) result = caseRelationship(importCondition);
 				if (result == null) result = caseElement(importCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SOURCE_END: {
+				SourceEnd sourceEnd = (SourceEnd)theEObject;
+				T result = caseSourceEnd(sourceEnd);
+				if (result == null) result = caseFeature(sourceEnd);
+				if (result == null) result = caseType(sourceEnd);
+				if (result == null) result = casePackage(sourceEnd);
+				if (result == null) result = caseElement(sourceEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1204,24 +1192,159 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.SOURCE_END: {
-				SourceEnd sourceEnd = (SourceEnd)theEObject;
-				T result = caseSourceEnd(sourceEnd);
-				if (result == null) result = caseFeature(sourceEnd);
-				if (result == null) result = caseType(sourceEnd);
-				if (result == null) result = casePackage(sourceEnd);
-				if (result == null) result = caseElement(sourceEnd);
+			case SysMLPackage.ITEM_FLOW_END: {
+				ItemFlowEnd itemFlowEnd = (ItemFlowEnd)theEObject;
+				T result = caseItemFlowEnd(itemFlowEnd);
+				if (result == null) result = caseFeature(itemFlowEnd);
+				if (result == null) result = caseType(itemFlowEnd);
+				if (result == null) result = casePackage(itemFlowEnd);
+				if (result == null) result = caseElement(itemFlowEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.MULTIPLICITY_RANGE: {
-				MultiplicityRange multiplicityRange = (MultiplicityRange)theEObject;
-				T result = caseMultiplicityRange(multiplicityRange);
-				if (result == null) result = caseMultiplicity(multiplicityRange);
-				if (result == null) result = caseFeature(multiplicityRange);
-				if (result == null) result = caseType(multiplicityRange);
-				if (result == null) result = casePackage(multiplicityRange);
-				if (result == null) result = caseElement(multiplicityRange);
+			case SysMLPackage.ITEM_FEATURE: {
+				ItemFeature itemFeature = (ItemFeature)theEObject;
+				T result = caseItemFeature(itemFeature);
+				if (result == null) result = caseFeature(itemFeature);
+				if (result == null) result = caseType(itemFeature);
+				if (result == null) result = casePackage(itemFeature);
+				if (result == null) result = caseElement(itemFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ITEM_FLOW_FEATURE: {
+				ItemFlowFeature itemFlowFeature = (ItemFlowFeature)theEObject;
+				T result = caseItemFlowFeature(itemFlowFeature);
+				if (result == null) result = caseFeature(itemFlowFeature);
+				if (result == null) result = caseType(itemFlowFeature);
+				if (result == null) result = casePackage(itemFlowFeature);
+				if (result == null) result = caseElement(itemFlowFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.INTERACTION: {
+				Interaction interaction = (Interaction)theEObject;
+				T result = caseInteraction(interaction);
+				if (result == null) result = caseAssociation(interaction);
+				if (result == null) result = caseBehavior(interaction);
+				if (result == null) result = caseClass(interaction);
+				if (result == null) result = caseRelationship(interaction);
+				if (result == null) result = caseClassifier(interaction);
+				if (result == null) result = caseType(interaction);
+				if (result == null) result = casePackage(interaction);
+				if (result == null) result = caseElement(interaction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ITEM_FLOW: {
+				ItemFlow itemFlow = (ItemFlow)theEObject;
+				T result = caseItemFlow(itemFlow);
+				if (result == null) result = caseConnector(itemFlow);
+				if (result == null) result = caseStep(itemFlow);
+				if (result == null) result = caseFeature(itemFlow);
+				if (result == null) result = caseRelationship(itemFlow);
+				if (result == null) result = caseType(itemFlow);
+				if (result == null) result = casePackage(itemFlow);
+				if (result == null) result = caseElement(itemFlow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SUCCESSION_ITEM_FLOW: {
+				SuccessionItemFlow successionItemFlow = (SuccessionItemFlow)theEObject;
+				T result = caseSuccessionItemFlow(successionItemFlow);
+				if (result == null) result = caseItemFlow(successionItemFlow);
+				if (result == null) result = caseSuccession(successionItemFlow);
+				if (result == null) result = caseConnector(successionItemFlow);
+				if (result == null) result = caseStep(successionItemFlow);
+				if (result == null) result = caseFeature(successionItemFlow);
+				if (result == null) result = caseRelationship(successionItemFlow);
+				if (result == null) result = caseType(successionItemFlow);
+				if (result == null) result = casePackage(successionItemFlow);
+				if (result == null) result = caseElement(successionItemFlow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.FEATURE_VALUE: {
+				FeatureValue featureValue = (FeatureValue)theEObject;
+				T result = caseFeatureValue(featureValue);
+				if (result == null) result = caseFeatureMembership(featureValue);
+				if (result == null) result = caseMembership(featureValue);
+				if (result == null) result = caseRelationship(featureValue);
+				if (result == null) result = caseElement(featureValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.ANNOTATION: {
+				Annotation annotation = (Annotation)theEObject;
+				T result = caseAnnotation(annotation);
+				if (result == null) result = caseRelationship(annotation);
+				if (result == null) result = caseElement(annotation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.COMMENT: {
+				Comment comment = (Comment)theEObject;
+				T result = caseComment(comment);
+				if (result == null) result = caseElement(comment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.OWNERSHIP: {
+				Ownership ownership = (Ownership)theEObject;
+				T result = caseOwnership(ownership);
+				if (result == null) result = caseRelationship(ownership);
+				if (result == null) result = caseElement(ownership);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.LIFE_CLASS: {
+				LifeClass lifeClass = (LifeClass)theEObject;
+				T result = caseLifeClass(lifeClass);
+				if (result == null) result = caseBlock(lifeClass);
+				if (result == null) result = caseDefinition(lifeClass);
+				if (result == null) result = caseClass(lifeClass);
+				if (result == null) result = caseClassifier(lifeClass);
+				if (result == null) result = caseType(lifeClass);
+				if (result == null) result = casePackage(lifeClass);
+				if (result == null) result = caseElement(lifeClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.TIME_SLICE_FEATURE: {
+				TimeSliceFeature timeSliceFeature = (TimeSliceFeature)theEObject;
+				T result = caseTimeSliceFeature(timeSliceFeature);
+				if (result == null) result = caseReferenceProperty(timeSliceFeature);
+				if (result == null) result = caseBlockProperty(timeSliceFeature);
+				if (result == null) result = caseProperty(timeSliceFeature);
+				if (result == null) result = caseUsage(timeSliceFeature);
+				if (result == null) result = caseFeature(timeSliceFeature);
+				if (result == null) result = caseType(timeSliceFeature);
+				if (result == null) result = casePackage(timeSliceFeature);
+				if (result == null) result = caseElement(timeSliceFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.SNAPSHOT_FEATURE: {
+				SnapshotFeature snapshotFeature = (SnapshotFeature)theEObject;
+				T result = caseSnapshotFeature(snapshotFeature);
+				if (result == null) result = caseReferenceProperty(snapshotFeature);
+				if (result == null) result = caseBlockProperty(snapshotFeature);
+				if (result == null) result = caseProperty(snapshotFeature);
+				if (result == null) result = caseUsage(snapshotFeature);
+				if (result == null) result = caseFeature(snapshotFeature);
+				if (result == null) result = caseType(snapshotFeature);
+				if (result == null) result = casePackage(snapshotFeature);
+				if (result == null) result = caseElement(snapshotFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP: {
+				RequirementConstraintMembership requirementConstraintMembership = (RequirementConstraintMembership)theEObject;
+				T result = caseRequirementConstraintMembership(requirementConstraintMembership);
+				if (result == null) result = caseFeatureMembership(requirementConstraintMembership);
+				if (result == null) result = caseMembership(requirementConstraintMembership);
+				if (result == null) result = caseRelationship(requirementConstraintMembership);
+				if (result == null) result = caseElement(requirementConstraintMembership);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1391,21 +1514,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMergeNode(MergeNode object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Action Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Action Membership</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateActionMembership(StateActionMembership object) {
 		return null;
 	}
 
@@ -1815,6 +1923,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Usage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequirementUsage(RequirementUsage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequirementDefinition(RequirementDefinition object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2055,6 +2193,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Subaction Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Subaction Membership</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateSubactionMembership(StateSubactionMembership object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Conjugated Port Typing</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2081,6 +2234,36 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseValueType(ValueType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Individual Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Individual Usage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndividualUsage(IndividualUsage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Individual Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Individual Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndividualDefinition(IndividualDefinition object) {
 		return null;
 	}
 
@@ -2205,6 +2388,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Satisfy Requirement Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Satisfy Requirement Usage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSatisfyRequirementUsage(SatisfyRequirementUsage object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Part Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2310,21 +2508,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atomic Interaction</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atomic Interaction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAtomicInteraction(AtomicInteraction object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Interaction</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2381,6 +2564,66 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOwnership(Ownership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Life Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Life Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLifeClass(LifeClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Time Slice Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Time Slice Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimeSliceFeature(TimeSliceFeature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Snapshot Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Snapshot Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSnapshotFeature(SnapshotFeature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Constraint Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Constraint Membership</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequirementConstraintMembership(RequirementConstraintMembership object) {
 		return null;
 	}
 

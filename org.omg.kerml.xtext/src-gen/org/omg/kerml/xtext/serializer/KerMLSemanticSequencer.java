@@ -239,8 +239,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				else break;
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getFeatureTypeMemberRule()
-						|| rule == grammarAccess.getEndFeatureMemberRule()
 						|| rule == grammarAccess.getFeatureBehaviorMemberRule()) {
+					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -693,12 +696,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     FeatureTypeMember returns EndFeatureMembership
-	 *     EndFeatureMember returns EndFeatureMembership
 	 *     FeatureBehaviorMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship_comp+=PrefixAnnotation* 
+	 *         ownedRelationship_comp+=PrefixAnnotation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
 	 *         isPort?='port'? 
@@ -731,6 +733,46 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     EndFeatureMember returns EndFeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship_comp+=PrefixAnnotation* 
+	//         visibility=VisibilityIndicator? 
+	//         (isComposite?='composite' | isPortion?='portion')? 
+	//         isPort?='port'? 
+	//         (
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=Feature) | 
+	//             (direction=FeatureDirection? memberName=Name? memberFeature=[Feature|QualifiedName]) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=Connector) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=BindingConnector) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=Step) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=BlockExpression) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=BooleanExpression) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=Invariant) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=Succession) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=ItemFlow) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=SuccessionItemFlow) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractFeature) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractConnector) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBindingConnector) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractStep) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBlockExpression) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractBooleanExpression) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractInvariant) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccession) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemFlow) | 
+	//             (direction=FeatureDirection? ownedMemberFeature_comp=AbstractSuccessionItemFlow)
+	//         )
+	//     )
+	//
+	// protected void sequence_AbstractFeatureMemberElement_FeatureMemberElement_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1375,7 +1417,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -1437,7 +1480,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -1521,7 +1565,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -1789,7 +1834,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -1863,7 +1909,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -1925,7 +1972,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -2208,8 +2256,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
 	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
-	 *         ownedFeatureMembership_comp+=FeatureBehaviorMember? 
-	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedFeatureMembership_comp+=FeatureBehaviorMember?)* 
+	 *         ownedRelationship_comp+=PackageImport? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember)? ownedRelationship_comp+=PackageImport?)* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
@@ -2224,7 +2272,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -2232,8 +2281,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
 	 *         ((ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*) | ownedRelationship_comp+=Conjugation)? 
-	 *         ownedFeatureMembership_comp+=FeatureBehaviorMember? 
-	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedRelationship_comp+=PackageImport)? ownedFeatureMembership_comp+=FeatureBehaviorMember?)* 
+	 *         ownedRelationship_comp+=PackageImport? 
+	 *         ((ownedMembership_comp+=NonFeatureBehaviorMember | ownedFeatureMembership_comp+=FeatureBehaviorMember)? ownedRelationship_comp+=PackageImport?)* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
@@ -2335,7 +2384,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedMembership_comp+=ElementAlias? 
-	 *         (ownedImport_comp+=PackageImport? ownedMembership_comp+=ElementAlias?)* 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 
@@ -2769,7 +2818,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedImport_comp+=PackageImport | ownedMembership_comp+=ElementAlias)* 
+	 *         ownedMembership_comp+=ElementAlias? 
+	 *         ownedImport_comp+=PackageImport? 
 	 *         ownedRelationship_comp+=UnitAnnotation? 
 	 *         isAbstract?='abstract'? 
 	 *         isSufficient?='all'? 

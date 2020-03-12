@@ -8,6 +8,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Succession</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A Succession is a &quot;temporal Connector,&quot; a relation between Steps with respect to time. Successions classify relations such as &quot;happensBefore&quot; which determine the order of occurrences in time.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +38,9 @@ public interface Succession extends Connector {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Steps that map incoming events to the timing of occurrences of the transitionStep. The values of triggerStep subset the list of acceptable events to be received by a Behavior or the object that performs it.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Step</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_TriggerStep()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -50,6 +58,9 @@ public interface Succession extends Connector {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Steps that represent occurrences that are side effects of the transitionStep occurring.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Step</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_EffectStep()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -67,6 +78,10 @@ public interface Succession extends Connector {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An Expression that must evaluate to true before the transitionStep can occur.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_GuardExpression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -89,6 +104,9 @@ public interface Succession extends Connector {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The transitionStep represents a TransitionPerformance, which means that the Succession is interpreted as an occurrence as well as a time ordering of other occurrences.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Step</em>' reference.
 	 * @see #setTransitionStep(Step)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_TransitionStep()

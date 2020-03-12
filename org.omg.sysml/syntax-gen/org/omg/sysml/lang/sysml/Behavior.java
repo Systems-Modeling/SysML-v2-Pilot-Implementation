@@ -36,6 +36,10 @@ public interface Behavior extends Classifier {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The steps that make up the given Behavior.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Step</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Step()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -60,6 +64,9 @@ public interface Behavior extends Classifier {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The set of parameters that are applied to or returned from the given Behavior.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

@@ -19,5 +19,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ConnectionUsage extends Connector, Usage {
+public interface ConnectionUsage extends Usage, Connector {
 } // ConnectorUsage

@@ -585,27 +585,27 @@ EmptyActionUsage returns SysML::ActionUsage :
 
 /* STATE MEMBERSHIPS */
 
-EntryActionMember returns SysML::StateActionMembership :
+EntryActionMember returns SysML::StateSubactionMembership :
 	DefinitionMemberPrefix kind = EntryActionKind ownedMemberFeature_comp = StateActionUsage
 ;
 
-EntryActionKind returns SysML::StateActionKind :
+EntryActionKind returns SysML::StateSubactionKind :
 	'entry'
 ;
 
-DoActionMember returns SysML::StateActionMembership :
+DoActionMember returns SysML::StateSubactionMembership :
 	DefinitionMemberPrefix kind = DoActionKind ownedMemberFeature_comp = StateActionUsage
 ;
 
-DoActionKind returns SysML::StateActionKind :
+DoActionKind returns SysML::StateSubactionKind :
 	'do'
 ;
 
-ExitActionMember returns SysML::StateActionMembership :
+ExitActionMember returns SysML::StateSubactionMembership :
 	DefinitionMemberPrefix kind = ExitActionKind ownedMemberFeature_comp = StateActionUsage
 ;
 
-ExitActionKind returns SysML::StateActionKind :
+ExitActionKind returns SysML::StateSubactionKind :
 	'exit'
 ;
 

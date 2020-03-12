@@ -10,7 +10,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An Association specifies multiple semantic relationships (pairs) that can occur between individuals of a given Category. It has at least two participant properties to connect Categories. These properties can have further properties nested under them in order to provide navigation between one Category and another.
+ * <p>An Association classifies relations that can occur between objects of a particular Type. It has at least two participant properties to connect Types. The Association itself may have additional properties that describe the relationship itself.</p>
+ * 
  * relatedTypes = associationEnd.type
  * <!-- end-model-doc -->
  *
@@ -64,6 +65,11 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Where the Association is used as a Type for a Connector, it may optionally be owned by the Connector.</p>
+	 * 
+	 * <p>This is the Connector that owns the Association. This is used in the case where the Connector owns its Typing Association. Ownership is unique, so ownership by a Connector precludes ownership by other elements.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Connector</em>' reference.
 	 * @see #setOwningConnector(Connector)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_OwningConnector()
@@ -98,6 +104,11 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ends of an Association define the objects that can be related by it. When there are two values in this attribute, the Association is informally called "binary."</p>
+	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"

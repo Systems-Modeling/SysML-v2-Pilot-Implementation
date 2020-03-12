@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Element is most basic tracked entity in the model. It provides an identifier for the system to track.</p>
+ * <p>An Element is a constituent of a model that may be uniquely identified relative to all other Elements. It may have Relationships with other Elements in the model. Some of these Relationships may imply ownership of certain other Elements, which means that if this Element is deleted from a model, then so are all owned Elements. Conversely, an Element may be owned by another Element. In particular, the owning Element may be a Package that owns this Element through a Membership Relationship.</p>
  * 
  * name = if owningNamespace = null then null
  * else owningNamespace.nameOf(self) endif
@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
@@ -54,6 +54,10 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>owningRelationship</tt> of this Element, if that Relationship is a Membership.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Membership</em>' container reference.
 	 * @see #setOwningMembership(Membership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
@@ -84,6 +88,9 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Relationships for which this Element is the <tt>owningRelatedElement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Relationship comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedRelationship_comp()
 	 * @see org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement
@@ -101,6 +108,10 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Relationship for which this Element is an <tt>ownedRelatedElement</tt>, if any.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Relationship</em>' container reference.
 	 * @see #setOwningRelationship(Relationship)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningRelationship()
@@ -129,6 +140,10 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Package that is the owning namespace for this Element, derived as the <tt>membershipOwningPackage</tt> of the <tt>owningMembership</tt> of this Element, if any.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Namespace</em>' reference.
 	 * @see #setOwningNamespace(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
@@ -158,6 +173,10 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Elements owned by this Element, derived as the <tt>ownedRelatedElements</tt> of the <tt>ownedRelationships</tt> of this Element.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwner
@@ -175,6 +194,9 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owner of this Element, derived as the <tt>owningRelatedElement</tt> of the <tt>owningRelationship</tt> of this Element, if any.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owner</em>' reference.
 	 * @see #setOwner(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Owner()
@@ -202,6 +224,9 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The globally unique identifier for this Element.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
@@ -228,6 +253,10 @@ public interface Element extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The primary name of this Element. If the Element is owned by a Package, then its <tt>name</tt> is derived as the <tt>memberName</tt> of the <tt>owningMembership</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()

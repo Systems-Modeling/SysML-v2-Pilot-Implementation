@@ -49,7 +49,7 @@ import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
-import org.omg.sysml.lang.sysml.StateActionMembership;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
@@ -479,7 +479,7 @@ public class SysML2PlantUMLText {
         return r.getRedefinedFeature();
     }
 
-    private String convertToDescription(StateActionMembership sam, PerformActionUsage pau) {
+    private String convertToDescription(StateSubactionMembership sam, PerformActionUsage pau) {
         StringBuilder sb = new StringBuilder();
         // Bold
         sb.append("**");
@@ -544,9 +544,9 @@ public class SysML2PlantUMLText {
         List<String> descriptions = null;
         for (FeatureMembership fm: su.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
-            if (fm instanceof StateActionMembership) {
+            if (fm instanceof StateSubactionMembership) {
                 if (f instanceof PerformActionUsage) {
-                    StateActionMembership sam = (StateActionMembership) fm;
+                	StateSubactionMembership sam = (StateSubactionMembership) fm;
                     PerformActionUsage pau = (PerformActionUsage) f;
                     String desc = convertToDescription(sam, pau);
                     if (desc != null) {

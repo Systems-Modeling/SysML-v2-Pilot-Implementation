@@ -19,14 +19,15 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -187,7 +188,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAction() <em>Nested Action</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -253,6 +254,31 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<TransitionUsage> getNestedTransition();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Requirement</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RequirementUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningUsage <em>Requirement Owning Usage</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint() <em>Nested Constraint</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested Requirement</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested Requirement</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
+	 * @see org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningUsage
+	 * @model opposite="requirementOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<RequirementUsage> getNestedRequirement();
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference list.

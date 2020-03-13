@@ -48,7 +48,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
-	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraints";
+	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
 	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::Requirement::assumptions";
 	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::Requirement::constraints";
 	

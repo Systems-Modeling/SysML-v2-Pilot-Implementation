@@ -48,4 +48,12 @@ package ControlFunctions {
 		abstract composite expr test[0..*] (argument: Anything[1]): Boolean;
 	}
 	
+	function allTrue(collection: Boolean[0..*]): Boolean {
+		collection->forAll x (x)
+	}
+	
+	function anyTrue(collection: Boolean[0..*]): Boolean {
+		collection->exists x (x)
+	}
+	
 }

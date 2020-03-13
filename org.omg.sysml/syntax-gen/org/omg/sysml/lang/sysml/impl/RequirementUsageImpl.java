@@ -46,7 +46,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
 
-	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirements";
+	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.

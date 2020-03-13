@@ -19,6 +19,7 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -40,6 +41,9 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implements RequirementDefinition {
+	
+	public static final String REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT = "Requirements::RequirementCheck";
+	
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -205,6 +209,11 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		EList<ConstraintUsage> constraints = new EObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
 		getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
+	}
+
+	@Override
+	public EList<Superclassing> getOwnedSuperclassing() {
+		return getOwnedSuperclassingWithDefault(REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT);
 	}
 
 	/**

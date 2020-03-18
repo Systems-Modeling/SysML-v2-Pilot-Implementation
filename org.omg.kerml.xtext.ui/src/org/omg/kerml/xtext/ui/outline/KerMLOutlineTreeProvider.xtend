@@ -49,18 +49,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		else visibility.toString
 	}
 	
-	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
-	}
-	
-	def String nameText(Membership membership) {
-		if (membership.memberName !== null)
-			membership.memberName
-		else if (membership.memberElement?.name !== null)
-			membership.memberElement.name
-		else ""
-	}
-	
 	def String prefixText(Membership membership) {
 		var text = membership.eClass.name;
 		if (membership.ownedMemberElement !== null) {
@@ -72,8 +60,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String prefixText(FeatureMembership membership) {
-		var text = (membership as Membership).prefixText
+	def String nameText(Membership membership) {
+		if (membership.memberName !== null)
+			membership.memberName
+		else if (membership.memberElement?.name !== null)
+			membership.memberElement.name
+		else ""
+	}
+	
+	def String _text(Membership membership) {
+		membership.prefixText + ' ' + membership.nameText
+	}
+	
+	def String featurePrefixText(FeatureMembership membership) {
+		var text = membership.prefixText
 		if (membership.isComposite) {
 			text += ' composite'
 		}
@@ -87,6 +87,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + membership.direction
 		}
 		text
+	}
+	
+	def String _text(FeatureMembership membership) {
+		membership.featurePrefixText + ' ' + membership.nameText
 	}
 	
 	def String _text(Import import_) {
@@ -187,16 +191,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 		}
 		for (_import: _package.ownedImport) {
-			createEObjectNode(parentNode, _import, 
-				_import._image, _import._text, 
-				_import._isLeaf
-			)
+			createNode(parentNode, _import)
 		}
 		for (membership: _package.ownedMembership) {
-			createEObjectNode(parentNode, membership, 
-				membership._image, membership._text, 
-				membership._isLeaf
-			)
+			createNode(parentNode, membership)
 		}
 	}
 	
